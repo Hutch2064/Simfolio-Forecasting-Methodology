@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .frontier import FRONTIER_MODEL_ID, FrontierModel
-from .generic import CompositionalModel, LegacyReferenceModel
 from ..specifications import parse_compositional_spec
+from .frontier import FRONTIER_MODEL_ID
+from .frontier_calendar import CalendarFrontierModel
+from .generic import CompositionalModel, LegacyReferenceModel
 
 
 @dataclass(frozen=True)
@@ -18,7 +19,9 @@ class ModelRegistration:
 
 def registration(model_id: str) -> ModelRegistration:
     if model_id == FRONTIER_MODEL_ID:
-        return ModelRegistration(model_id, "production_method_reference", "FrontierModel")
+        return ModelRegistration(
+            model_id, "production_method_reference", "CalendarFrontierModel"
+        )
     try:
         parse_compositional_spec(model_id)
     except ValueError:
@@ -28,8 +31,8 @@ def registration(model_id: str) -> ModelRegistration:
 
 def build_model(model_id: str):
     item = registration(model_id)
-    if item.implementation == "FrontierModel":
-        return FrontierModel()
+    if item.implementation == "CalendarFrontierModel":
+        return CalendarFrontierModel()
     if item.implementation == "CompositionalModel":
         return CompositionalModel(model_id=model_id)
     return LegacyReferenceModel(model_id=model_id)
