@@ -2,11 +2,21 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 _TEXT_SUFFIXES = {
-    ".py", ".md", ".txt", ".json", ".yaml", ".yml", ".toml", ".csv", ".ini", ".cfg", ".sh"
+    ".py",
+    ".md",
+    ".txt",
+    ".json",
+    ".yaml",
+    ".yml",
+    ".toml",
+    ".csv",
+    ".ini",
+    ".cfg",
+    ".sh",
 }
 
 # Construct sensitive literals in pieces so this scanner does not flag its own
@@ -31,7 +41,15 @@ _PRIVATE_KEY_MARKERS = (
     "-----BEGIN OPENSSH " + "PRIVATE KEY-----",
 )
 
-_EXCLUDED_PARTS = {".git", ".venv", "venv", "__pycache__", ".pytest_cache", "dist", "build"}
+_EXCLUDED_PARTS = {
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    ".pytest_cache",
+    "dist",
+    "build",
+}
 
 
 def scan_text(text: str) -> list[str]:
@@ -64,5 +82,7 @@ def scan_tree(root: str | Path) -> dict[str, list[str]]:
 def assert_publication_safe(root: str | Path) -> None:
     failures = scan_tree(root)
     if failures:
-        formatted = "; ".join(f"{path}: {', '.join(items)}" for path, items in sorted(failures.items()))
+        formatted = "; ".join(
+            f"{path}: {', '.join(items)}" for path, items in sorted(failures.items())
+        )
         raise RuntimeError(f"publication safety scan failed: {formatted}")
