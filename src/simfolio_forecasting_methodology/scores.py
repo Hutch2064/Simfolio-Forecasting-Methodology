@@ -7,13 +7,13 @@ multi-day experiment merely to inspect the published ranking.
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
 import json
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from .catalog import EXPECTED_CELLS_PER_MODEL, load_canonical_175
-from .naming import descriptive_name
 from .models.registry import registration
+from .naming import descriptive_name
 
 CANONICAL_EXPERIMENT_ID = "canonical-dense-oos-2026-08-23"
 CANONICAL_PROTOCOL_ID = "dense-daily-crps-v1"
