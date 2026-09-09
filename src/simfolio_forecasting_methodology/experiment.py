@@ -73,13 +73,11 @@ def _portfolio_tasks(
 ) -> list[OriginTask]:
     assets = returns.loc[:, list(spec.tickers)]
     asset_log = np.log1p(assets.to_numpy(dtype=np.float64))
-    portfolio_log = _portfolio_log_returns(assets, spec.weights, spec.rebalance).to_numpy()
+    portfolio_series = _portfolio_log_returns(assets, spec.weights, spec.rebalance)
+    portfolio_log = portfolio_series.to_numpy()
     n = len(assets)
     holdouts = temporal_holdouts(n)
     first_position = holdouts[0].position
-    # The dense protocol uses the same 25%-training boundary as the earliest
-    # temporal holdout.  Rolling origins are evenly distributed over the
-    # admissible region from that boundary through the penultimate observation.
     rolling_positions = select_full_history_even(
         list(range(first_position, n - 1)), count=int(rolling_origins)
     )
@@ -92,6 +90,7 @@ def _portfolio_tasks(
     tasks: list[OriginTask] = []
     for label, position in labeled_positions:
         seed = deterministic_seed(BASE_SEED, spec.name, label, int(position))
+        future_dates = assets.index[position + 1 :].to_numpy(dtype="datetime64[ns]")
         training = TrainingData(
             portfolio_log_returns=portfolio_log[: position + 1].copy(),
             asset_log_returns=asset_log[: position + 1, :].copy(),
@@ -104,6 +103,7 @@ def _portfolio_tasks(
                 training=training,
                 realized_future_daily_log_returns=portfolio_log[position + 1 :].copy(),
                 seed=seed,
+                future_dates=future_dates,
             )
         )
     return tasks
@@ -133,9 +133,6 @@ def build_experiment_plan(
             raise AssertionError("canonical portfolio count drifted")
         if len(plan.tasks) != EXPECTED_PORTFOLIOS * EXPECTED_ORIGINS_PER_PORTFOLIO:
             raise AssertionError("canonical origin-task count drifted")
-        # Public-source files are periodically refreshed.  Exact historical data
-        # should yield 701,280 cells; rebuilt public data is allowed a small
-        # calendar difference but the value is written into every run manifest.
         if abs(plan.cell_capacity - EXPECTED_CELLS_PER_MODEL) > EXPECTED_PORTFOLIOS * 5:
             raise AssertionError(
                 f"canonical cell capacity drifted materially: {plan.cell_capacity}"
@@ -143,12 +140,7 @@ def build_experiment_plan(
     return plan
 
 
-def run_model(
-    model,
-    plan: ExperimentPlan,
-    *,
-    simulations: int,
-) -> dict[str, object]:
+def run_model(model, plan: ExperimentPlan, *, simulations: int) -> dict[str, object]:
     accumulator = evaluate_model(model, list(plan.tasks), simulations=int(simulations))
     score = accumulator.model_score()
     return {
@@ -168,13 +160,17 @@ def write_result(path: Path, result: dict[str, object]) -> None:
     Path(path).write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
 
 
-def iter_smoke_tasks(plan: ExperimentPlan, count: int = 2, horizon: int = 63) -> Iterable[OriginTask]:
+def iter_smoke_tasks(
+    plan: ExperimentPlan, count: int = 2, horizon: int = 63
+) -> Iterable[OriginTask]:
     for task in plan.tasks[: max(1, int(count))]:
         realized = np.asarray(task.realized_future_daily_log_returns)[: int(horizon)]
+        dates = None if task.future_dates is None else np.asarray(task.future_dates)[: int(horizon)]
         yield OriginTask(
             portfolio_id=task.portfolio_id,
             origin_label=task.origin_label + "_smoke",
             training=task.training,
             realized_future_daily_log_returns=realized,
             seed=task.seed,
+            future_dates=dates,
         )
