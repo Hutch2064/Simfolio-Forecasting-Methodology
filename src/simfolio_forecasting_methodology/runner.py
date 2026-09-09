@@ -1,9 +1,4 @@
-"""Catalogue-independent execution interfaces for dense OOS evaluation.
-
-The runner owns experiment mechanics. Statistical models own only forecast-path
-generation. This boundary is what allows the canonical 175 catalogue and the
-larger master research catalogue to use the same evaluation protocol.
-"""
+"""Catalogue-independent execution interfaces for dense OOS evaluation."""
 
 from __future__ import annotations
 
@@ -61,12 +56,11 @@ class ForecastContext:
     horizon_days: int
     simulations: int
     seed: int
+    future_dates: np.ndarray | None = None
 
 
 @runtime_checkable
 class ForecastModel(Protocol):
-    """Minimal model contract required by the OOS harness."""
-
     model_id: str
 
     def simulate_daily_log_returns(
@@ -85,6 +79,7 @@ class OriginTask:
     training: TrainingData
     realized_future_daily_log_returns: np.ndarray
     seed: int
+    future_dates: np.ndarray | None = None
 
     @property
     def horizon_days(self) -> int:
@@ -95,6 +90,8 @@ class OriginTask:
         realized = np.asarray(self.realized_future_daily_log_returns, dtype=np.float64)
         if realized.ndim != 1 or realized.size < 1 or not np.all(np.isfinite(realized)):
             raise ValueError("realized future returns must be a finite nonempty vector")
+        if self.future_dates is not None and len(self.future_dates) != realized.size:
+            raise ValueError("future_dates must align with realized future returns")
 
 
 def evaluate_origin_task(
@@ -104,7 +101,6 @@ def evaluate_origin_task(
     simulations: int,
 ) -> np.ndarray:
     """Generate one coherent path matrix and score every daily horizon."""
-
     task.validate()
     context = ForecastContext(
         model_id=model.model_id,
@@ -113,6 +109,7 @@ def evaluate_origin_task(
         horizon_days=task.horizon_days,
         simulations=int(simulations),
         seed=int(task.seed),
+        future_dates=None if task.future_dates is None else np.asarray(task.future_dates),
     )
     daily_paths = np.asarray(model.simulate_daily_log_returns(task.training, context), dtype=np.float64)
     expected_shape = (int(simulations), task.horizon_days)
@@ -120,11 +117,9 @@ def evaluate_origin_task(
         raise ValueError(f"model returned path shape {daily_paths.shape}; expected {expected_shape}")
     if not np.all(np.isfinite(daily_paths)):
         raise ValueError("model returned nonfinite forecast paths")
-
     terminal_samples = np.cumsum(daily_paths, axis=1, dtype=np.float64)
     realized_terminal = np.cumsum(
-        np.asarray(task.realized_future_daily_log_returns, dtype=np.float64),
-        dtype=np.float64,
+        np.asarray(task.realized_future_daily_log_returns, dtype=np.float64), dtype=np.float64
     )
     return empirical_crps_by_horizon(terminal_samples, realized_terminal)
 
@@ -136,7 +131,6 @@ def evaluate_model(
     simulations: int,
 ) -> CellAccumulator:
     """Evaluate a model over origin tasks using streaming cell-first aggregation."""
-
     accumulator = CellAccumulator()
     for task in tasks:
         losses = evaluate_origin_task(model, task, simulations=simulations)
