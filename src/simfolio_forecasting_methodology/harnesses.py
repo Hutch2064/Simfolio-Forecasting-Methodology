@@ -8,9 +8,9 @@ never be lost when the broader research universe is reconstructed.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
 
 from .catalog import CanonicalRow, load_canonical_175
 from .protocol import CANONICAL_DENSE_PROTOCOL, DenseDailyProtocol
