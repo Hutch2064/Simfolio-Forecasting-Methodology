@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from collections.abc import Hashable, Iterable, Sequence
 from dataclasses import dataclass
-from typing import Hashable, Iterable, Sequence
 
 import numpy as np
 
