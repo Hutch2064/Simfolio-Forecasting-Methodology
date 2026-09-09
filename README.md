@@ -1,2 +1,2 @@
 # Simfolio-Forecasting-Methodology
-This is supposed to be blanl in the beginning 
+This is supposed to be blank in the beginning 
