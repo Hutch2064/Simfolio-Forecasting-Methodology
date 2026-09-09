@@ -1,6 +1,6 @@
 """Public, standalone evaluation protocol definitions.
 
-No production service package is imported here.  The research catalogue and
+No production service package is imported here. The research catalogue and
 the evaluation protocol are deliberately independent objects.
 """
 
@@ -8,10 +8,26 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-
 ORIGIN_SELECTION_HORIZONS_DAYS = (
-    21, 42, 63, 126, 189, 252, 378, 504, 756, 1008, 1260, 1512, 1764,
-    2016, 2268, 2520, 3780, 5040, 7560,
+    21,
+    42,
+    63,
+    126,
+    189,
+    252,
+    378,
+    504,
+    756,
+    1008,
+    1260,
+    1512,
+    1764,
+    2016,
+    2268,
+    2520,
+    3780,
+    5040,
+    7560,
 )
 TEMPORAL_SPLITS = (
     ("train_first_quarter_test_remaining", 0.25),
