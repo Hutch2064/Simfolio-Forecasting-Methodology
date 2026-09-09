@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from math import floor
-from typing import Sequence, TypeVar
+from typing import TypeVar
 
 import numpy as np
 
@@ -33,7 +34,7 @@ def evenly_spaced_indices(length: int, count: int) -> list[int]:
     if n <= target:
         return list(range(n))
     raw = np.linspace(0, n - 1, target)
-    selected = sorted({int(round(float(index))) for index in raw})
+    selected = sorted({round(float(index)) for index in raw})
     while len(selected) < target:
         for index in range(n):
             if index not in selected:
@@ -43,7 +44,10 @@ def evenly_spaced_indices(length: int, count: int) -> list[int]:
     return selected[:target]
 
 
-def select_full_history_even(eligible_origins: Sequence[T], count: int = ROLLING_ORIGINS_PER_PORTFOLIO) -> list[T]:
+def select_full_history_even(
+    eligible_origins: Sequence[T],
+    count: int = ROLLING_ORIGINS_PER_PORTFOLIO,
+) -> list[T]:
     return [eligible_origins[index] for index in evenly_spaced_indices(len(eligible_origins), count)]
 
 
@@ -53,7 +57,7 @@ def temporal_holdouts(n_observations: int) -> list[TemporalOrigin]:
         raise ValueError("at least 81 observations are required")
     output: list[TemporalOrigin] = []
     for split_name, train_fraction in TEMPORAL_SPLITS:
-        position = int(floor(float(n) * float(train_fraction))) - 1
+        position = floor(float(n) * float(train_fraction)) - 1
         position = max(79, min(position, n - 2))
         output.append(TemporalOrigin(split_name, train_fraction, position, n - position - 1))
     return output
