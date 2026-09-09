@@ -1,5 +1,11 @@
-from simfolio_forecasting_methodology.origins import expected_origin_tasks, temporal_holdouts
-from simfolio_forecasting_methodology.panel import generate_equal_class_history_panel, rebalance_counts
+from simfolio_forecasting_methodology.origins import (
+    expected_origin_tasks,
+    temporal_holdouts,
+)
+from simfolio_forecasting_methodology.panel import (
+    generate_equal_class_history_panel,
+    rebalance_counts,
+)
 
 
 def test_canonical_panel_shape_and_rebalance_counts():
@@ -19,10 +25,20 @@ def test_first_canonical_portfolios_are_stable():
     assert panel[0].name == "equal_class_history_001"
     assert panel[0].rebalance == "annually"
     assert panel[0].tickers == (
-        "URTHSIM", "VXUSSIM", "IEISIM", "ZROZSIM", "GLDSIM", "REITSIM"
+        "URTHSIM",
+        "VXUSSIM",
+        "IEISIM",
+        "ZROZSIM",
+        "GLDSIM",
+        "REITSIM",
     )
     assert panel[1].tickers == (
-        "VOOSIM", "VVSIM", "SHYSIM", "TLTSIM", "GSGSIM", "SLVSIM"
+        "VOOSIM",
+        "VVSIM",
+        "SHYSIM",
+        "TLTSIM",
+        "GSGSIM",
+        "SLVSIM",
     )
 
 
