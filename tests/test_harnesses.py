@@ -1,5 +1,9 @@
 from simfolio_forecasting_methodology.catalog import FRONTIER_SOURCE_ID
-from simfolio_forecasting_methodology.harnesses import canonical_plan, master_plan
+from simfolio_forecasting_methodology.harnesses import (
+    canonical_plan,
+    load_historical_master_ids,
+    master_plan,
+)
 
 
 def test_canonical_harness_is_exact_175_with_frontier_first():
@@ -10,10 +14,17 @@ def test_canonical_harness_is_exact_175_with_frontier_first():
     assert plan.protocol.simulations_per_origin == 240
 
 
-def test_master_harness_materializes_exact_369_historical_ids():
-    plan = master_plan()
-    assert plan.model_count == 369
-    assert len(set(plan.model_ids)) == 369
-    assert "naive_iid_historical_portfolio_bootstrap" in plan.model_ids
-    assert plan.expected_origin_tasks == 4080
-    assert plan.protocol.simulations_per_origin == 240
+def test_master_harness_is_canonical_superset_plus_historical_snapshot():
+    canonical = canonical_plan()
+    historical = load_historical_master_ids()
+    master = master_plan()
+    assert len(historical) == 369
+    assert len(set(historical)) == 369
+    assert set(canonical.model_ids).issubset(set(master.model_ids))
+    assert set(historical).issubset(set(master.model_ids))
+    assert len(master.model_ids) == len(set(master.model_ids))
+    assert master.model_count >= 369
+    assert FRONTIER_SOURCE_ID in master.model_ids
+    assert "naive_iid_historical_portfolio_bootstrap" in master.model_ids
+    assert master.expected_origin_tasks == 4080
+    assert master.protocol.simulations_per_origin == 240
