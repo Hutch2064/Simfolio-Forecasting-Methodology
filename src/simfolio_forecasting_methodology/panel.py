@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import itertools
-from typing import Iterable, Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass
 
 import numpy as np
 
@@ -16,10 +16,34 @@ HOLDINGS_PER_CLASS = 2
 
 CANONICAL_ELIGIBLE_TICKERS: Mapping[str, tuple[str, ...]] = {
     "equity": (
-        "EFASIM", "IWCSIM", "IWMSIM", "SPYSIM", "URTHSIM", "VBSIM", "VBKSIM",
-        "VBRSIM", "VEASIM", "VOESIM", "VOOSIM", "VOSIM", "VOTSIM", "VTSIM",
-        "VTISIM", "VTVSIM", "VUGSIM", "VVSIM", "VXUSSIM", "XLBSIM", "XLCSIM",
-        "XLESIM", "XLFSIM", "XLISIM", "XLKSIM", "XLPSIM", "XLUSIM", "XLVSIM",
+        "EFASIM",
+        "IWCSIM",
+        "IWMSIM",
+        "SPYSIM",
+        "URTHSIM",
+        "VBSIM",
+        "VBKSIM",
+        "VBRSIM",
+        "VEASIM",
+        "VOESIM",
+        "VOOSIM",
+        "VOSIM",
+        "VOTSIM",
+        "VTSIM",
+        "VTISIM",
+        "VTVSIM",
+        "VUGSIM",
+        "VVSIM",
+        "VXUSSIM",
+        "XLBSIM",
+        "XLCSIM",
+        "XLESIM",
+        "XLFSIM",
+        "XLISIM",
+        "XLKSIM",
+        "XLPSIM",
+        "XLUSIM",
+        "XLVSIM",
         "XLYSIM",
     ),
     "fixed_income": ("IEFSIM", "IEISIM", "SHYSIM", "TLTSIM", "ZROZSIM"),
@@ -46,7 +70,9 @@ class PortfolioSpec:
 
 def _normalize_groups(groups: Mapping[str, Sequence[str]]) -> dict[str, tuple[str, ...]]:
     return {
-        asset_class: tuple(sorted({str(t).strip().upper() for t in groups[asset_class] if str(t).strip()}))
+        asset_class: tuple(
+            sorted({str(ticker).strip().upper() for ticker in groups[asset_class] if str(ticker).strip()})
+        )
         for asset_class in ASSET_CLASSES
     }
 
@@ -96,15 +122,13 @@ def generate_equal_class_history_panel(
                 for ticker in selection[asset_class]:
                     projected[asset_class][ticker] += 1
             imbalance = tuple(
-                max(projected[c].values()) - min(projected[c].values())
-                for c in ASSET_CLASSES
+                max(projected[c].values()) - min(projected[c].values()) for c in ASSET_CLASSES
             )
             usage_pressure = tuple(
-                sum(usage[c][ticker] for ticker in selection[c])
-                for c in ASSET_CLASSES
+                sum(usage[c][ticker] for ticker in selection[c]) for c in ASSET_CLASSES
             )
             square_pressure = tuple(
-                float(sum(v * v for v in projected[c].values()))
+                float(sum(value * value for value in projected[c].values()))
                 for c in ASSET_CLASSES
             )
             score = (imbalance, usage_pressure, square_pressure, jitter, key)
