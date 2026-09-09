@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import asdict
 import json
+from dataclasses import asdict
 from pathlib import Path
 
 from .data import write_canonical_data
@@ -67,16 +67,12 @@ def _selected_models(args: argparse.Namespace, harness_id: str) -> tuple[str, ..
     if args.all:
         return plan.model_ids
     if args.frontier:
-        if FRONTIER_MODEL_ID not in plan.model_ids and harness_id == MASTER_HARNESS_ID:
-            return (FRONTIER_MODEL_ID,)
         return (FRONTIER_MODEL_ID,)
     if args.model:
         if args.model not in plan.model_ids:
             raise SystemExit(f"model ID is not in {harness_id}: {args.model}")
         return (args.model,)
-    # Canonical defaults to the published winner; master defaults to a plan to
-    # prevent an accidental multi-day 369-model execution.
-    if harness_id == CANONICAL_HARNESS_ID:
+    if args.smoke or harness_id == CANONICAL_HARNESS_ID:
         return (FRONTIER_MODEL_ID,)
     raise SystemExit("master-research requires --model, --frontier, --smoke, or --all")
 
@@ -86,14 +82,17 @@ def _execute(args: argparse.Namespace, harness_id: str) -> int:
         print(json.dumps(_plan_payload(harness_id), indent=2, sort_keys=True))
         return 0
     model_ids = _selected_models(args, harness_id)
-    plan = build_experiment_plan(args.data, portfolio_limit=1 if args.smoke else None,
-                                 rolling_origins=1 if args.smoke else 48)
+    plan = build_experiment_plan(
+        args.data,
+        portfolio_limit=1 if args.smoke else None,
+        rolling_origins=1 if args.smoke else 48,
+    )
     tasks = list(iter_smoke_tasks(plan)) if args.smoke else list(plan.tasks)
-    outputs: list[dict[str, object]] = []
     for model_id in model_ids:
         model = build_model(model_id)
         if args.smoke:
-            accumulator = evaluate_model(model, tasks, simulations=min(int(args.simulations), 32))
+            simulations = min(int(args.simulations), 32)
+            accumulator = evaluate_model(model, tasks, simulations=simulations)
             result: dict[str, object] = {
                 "model_id": model_id,
                 "name": descriptive_name(model_id),
@@ -102,13 +101,12 @@ def _execute(args: argparse.Namespace, harness_id: str) -> int:
                 "exact_empirical_crps": accumulator.model_score(),
                 "cells": accumulator.cell_count,
                 "origin_tasks": len(tasks),
-                "simulations": min(int(args.simulations), 32),
+                "simulations": simulations,
             }
         else:
             result = run_model(model, plan, simulations=int(args.simulations))
             result["name"] = descriptive_name(model_id)
             result["fidelity"] = registration(model_id).fidelity
-        outputs.append(result)
         path = args.output / harness_id / f"{model_id.replace('|', '__')}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
