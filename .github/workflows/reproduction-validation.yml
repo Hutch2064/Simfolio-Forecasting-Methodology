@@ -1,0 +1,52 @@
+name: reproduction-validation
+
+on:
+  push:
+    branches: [reconstruction/standalone-validation]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reproduction-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bounded-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Archive reviewed public checkout
+        run: git archive --format=zip --output=public-source.zip HEAD
+      - name: Preserve public source for clean-room validation
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-source-${{ github.sha }}
+          path: public-source.zip
+          retention-days: 7
+      - name: Install development dependencies
+        run: python -m pip install -e '.[dev]'
+      - name: Lint
+        run: ruff check src tests
+      - name: Run bounded tests (never the full experiment)
+        run: python -m pytest -q --junitxml=validation-results.xml
+      - name: Preserve test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-results-${{ github.sha }}
+          path: validation-results.xml
+          if-no-files-found: ignore
+          retention-days: 30
