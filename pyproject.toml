@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simfolio-forecasting-methodology"
-version = "0.1.0"
+version = "0.2.0"
 description = "Standalone reproducible out-of-sample methodology for probabilistic portfolio forecasting."
 requires-python = ">=3.11,<3.13"
 dependencies = [
@@ -13,6 +13,9 @@ dependencies = [
   "scipy>=1.13,<2",
   "pyyaml>=6.0,<7",
 ]
+
+[project.scripts]
+simfolio-oos = "simfolio_forecasting_methodology.cli:main"
 
 [project.optional-dependencies]
 dev = ["pytest>=8.3,<9", "ruff>=0.8,<1"]
