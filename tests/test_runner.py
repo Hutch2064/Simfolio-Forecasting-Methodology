@@ -47,5 +47,8 @@ def test_model_evaluation_streams_origins_into_cells():
         ),
     ]
     result = evaluate_model(ZeroPathModel(), tasks, simulations=3)
-    assert result.cell_means() == {("p1", 1): 0.2, ("p1", 2): 0.2}
-    assert result.aggregate_score() == 0.2
+    means = result.cell_means()
+    assert set(means) == {("p1", 1), ("p1", 2)}
+    assert np.isclose(means[("p1", 1)], 0.2, atol=1e-15, rtol=0.0)
+    assert np.isclose(means[("p1", 2)], 0.2, atol=1e-15, rtol=0.0)
+    assert np.isclose(result.aggregate_score(), 0.2, atol=1e-15, rtol=0.0)
