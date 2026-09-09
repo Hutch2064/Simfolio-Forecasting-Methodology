@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import csv
+from dataclasses import dataclass
 from pathlib import Path
-
 
 FRONTIER_SOURCE_ID = "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced"
 EXPECTED_CANONICAL_COUNT = 175
@@ -60,5 +59,8 @@ def validate_canonical_175(rows: list[CanonicalRow]) -> None:
         raise ValueError("canonical catalogue cell count drifted")
     if rows[0].model_id != FRONTIER_SOURCE_ID:
         raise ValueError("canonical rank 1 is not the Frontier source specification")
-    if any(rows[index].exact_empirical_crps > rows[index + 1].exact_empirical_crps for index in range(len(rows) - 1)):
+    if any(
+        rows[index].exact_empirical_crps > rows[index + 1].exact_empirical_crps
+        for index in range(len(rows) - 1)
+    ):
         raise ValueError("canonical scores are not monotonically nondecreasing")
