@@ -1,5 +1,7 @@
-"""Standalone statistical model implementations used by the OOS harnesses."""
+"""Canonical model package.
 
-from .frontier import FRONTIER_MODEL_ID, FrontierModel, fit_dynamic_gaussian_factor_model
+Executable model factories are registered explicitly in :mod:`registry`.
+Unsupported draft implementations are intentionally not re-exported here.
+"""
 
-__all__ = ["FRONTIER_MODEL_ID", "FrontierModel", "fit_dynamic_gaussian_factor_model"]
+__all__: list[str] = []

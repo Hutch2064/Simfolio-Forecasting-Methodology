@@ -3,11 +3,19 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
+import json
+from pathlib import Path
 from typing import Protocol, runtime_checkable
 
 import numpy as np
 
 from .evaluation import CellAccumulator, empirical_crps_by_horizon
+
+
+CANONICAL_EXPERIMENT_ID = "canonical-dense-oos-2026-08-23"
+CANONICAL_PROTOCOL_ID = "dense-daily-crps-v1"
+TERMINAL_FORECAST_SEMANTICS = "terminal_log_return_ensemble_by_horizon"
 
 
 @dataclass(frozen=True)
@@ -121,13 +129,32 @@ def evaluate_origin_task(
         future_dates=None if task.future_dates is None else np.asarray(task.future_dates),
         origin_date=task.origin_date,
     )
-    daily_paths = np.asarray(model.simulate_daily_log_returns(task.training, context), dtype=np.float64)
     expected_shape = (int(simulations), task.horizon_days)
-    if daily_paths.shape != expected_shape:
-        raise ValueError(f"model returned path shape {daily_paths.shape}; expected {expected_shape}")
-    if not np.all(np.isfinite(daily_paths)):
+    terminal_method = getattr(model, "simulate_terminal_log_returns", None)
+    if callable(terminal_method):
+        semantics = getattr(model, "forecast_output_semantics", None)
+        if semantics != TERMINAL_FORECAST_SEMANTICS:
+            raise ValueError(
+                "terminal forecast method must declare "
+                f"forecast_output_semantics={TERMINAL_FORECAST_SEMANTICS!r}"
+            )
+        terminal_samples = np.asarray(terminal_method(task.training, context), dtype=np.float64)
+        if terminal_samples.shape != expected_shape:
+            raise ValueError(
+                f"model returned terminal ensemble shape {terminal_samples.shape}; "
+                f"expected {expected_shape}"
+            )
+    else:
+        daily_paths = np.asarray(
+            model.simulate_daily_log_returns(task.training, context), dtype=np.float64
+        )
+        if daily_paths.shape != expected_shape:
+            raise ValueError(
+                f"model returned path shape {daily_paths.shape}; expected {expected_shape}"
+            )
+        terminal_samples = np.cumsum(daily_paths, axis=1, dtype=np.float64)
+    if not np.all(np.isfinite(terminal_samples)):
         raise ValueError("model returned nonfinite forecast paths")
-    terminal_samples = np.cumsum(daily_paths, axis=1, dtype=np.float64)
     realized_terminal = np.cumsum(
         np.asarray(task.realized_future_daily_log_returns, dtype=np.float64), dtype=np.float64
     )
@@ -146,3 +173,158 @@ def evaluate_model(
         losses = evaluate_origin_task(model, task, simulations=simulations)
         accumulator.add_vector(task.portfolio_id, losses)
     return accumulator
+
+
+def _array_digest(values: np.ndarray | None, *, dtype: str | None = None) -> str | None:
+    """Hash array shape, dtype, and bytes for a deterministic task identity."""
+
+    if values is None:
+        return None
+    array = np.asarray(values, dtype=dtype) if dtype is not None else np.asarray(values)
+    contiguous = np.ascontiguousarray(array)
+    payload = {
+        "dtype": str(contiguous.dtype),
+        "shape": list(contiguous.shape),
+        "sha256": hashlib.sha256(contiguous.tobytes(order="C")).hexdigest(),
+    }
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+
+
+def _training_digest(training: TrainingData) -> str:
+    policy = None
+    if training.policy is not None:
+        policy = {
+            "tickers": list(training.policy.tickers),
+            "weights": [float(item) for item in training.policy.weights],
+            "rebalance": training.policy.rebalance,
+        }
+    payload = {
+        "portfolio_log_returns": _array_digest(training.portfolio_log_returns, dtype="<f8"),
+        "asset_log_returns": _array_digest(training.asset_log_returns, dtype="<f8"),
+        "training_dates": _array_digest(training.training_dates, dtype="datetime64[ns]"),
+        "policy": policy,
+    }
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+
+
+def task_identity(task: OriginTask, model_id: str, simulations: int):
+    """Return the durable identity of one constructed forecast task."""
+
+    from .results.checkpoint import TaskIdentity, stable_digest
+
+    task.validate()
+    future_dates_digest = _array_digest(task.future_dates, dtype="datetime64[ns]")
+    payload = {
+        "model_id": str(model_id),
+        "simulations": int(simulations),
+        "portfolio_id": task.portfolio_id,
+        "origin_label": task.origin_label,
+        "horizon_days": task.horizon_days,
+        "seed": int(task.seed),
+        "training_digest": _training_digest(task.training),
+        "realized_digest": _array_digest(task.realized_future_daily_log_returns, dtype="<f8"),
+        "future_dates_digest": future_dates_digest,
+        "origin_date": task.origin_date,
+    }
+    return TaskIdentity(
+        task_id=stable_digest(payload),
+        model_id=str(model_id),
+        portfolio_id=str(task.portfolio_id),
+        origin_label=str(task.origin_label),
+        horizon_days=int(task.horizon_days),
+        seed=int(task.seed),
+        training_digest=str(payload["training_digest"]),
+        realized_digest=str(payload["realized_digest"]),
+        future_dates_digest=future_dates_digest,
+        origin_date=None if task.origin_date is None else str(task.origin_date),
+    )
+
+
+def build_execution_manifest(
+    model_id: str,
+    tasks: list[OriginTask] | tuple[OriginTask, ...],
+    *,
+    simulations: int,
+):
+    """Build a source-linked manifest from the canonical task constructor."""
+
+    from .catalogue import EXPECTED_MEMBERSHIP_DIGEST, canonical_model, load_canonical_ledger
+    from .results.checkpoint import ExecutionManifest
+
+    record = canonical_model(model_id)
+    ledger = load_canonical_ledger()
+    identities = tuple(task_identity(task, model_id, int(simulations)) for task in tasks)
+    if not identities:
+        raise ValueError("an execution manifest requires at least one origin task")
+    expected_cells = tuple(
+        sorted(
+            {
+                (identity.portfolio_id, horizon)
+                for identity in identities
+                for horizon in range(1, identity.horizon_days + 1)
+            }
+        )
+    )
+    identity_policy = ledger.get("identity_policy", {})
+    return ExecutionManifest.create(
+        model_id=model_id,
+        experiment_id=str(record["experiment_id"]),
+        protocol_id=CANONICAL_PROTOCOL_ID,
+        membership_digest=EXPECTED_MEMBERSHIP_DIGEST,
+        source_revision=str(record["source_revision"]),
+        simulations=int(simulations),
+        tasks=identities,
+        expected_cells=expected_cells,
+        protocol_fingerprint=record.get("protocol_fingerprint")
+        or identity_policy.get("protocol_fingerprint"),
+        dataset_fingerprint=record.get("dataset_fingerprint")
+        or identity_policy.get("dataset_fingerprint"),
+        panel_fingerprint=record.get("panel_fingerprint")
+        or identity_policy.get("panel_fingerprint"),
+    )
+
+
+def execute_model_checkpointed(
+    model: ForecastModel,
+    tasks: list[OriginTask] | tuple[OriginTask, ...],
+    *,
+    simulations: int,
+    checkpoint_dir: Path,
+    workers: int = 1,
+    resume: bool = False,
+):
+    """Execute a canonical model with durable task checkpoints."""
+
+    from .results.executor import execute_checkpointed
+
+    manifest = build_execution_manifest(model.model_id, tasks, simulations=int(simulations))
+    return execute_checkpointed(
+        model,
+        tasks,
+        manifest=manifest,
+        checkpoint_dir=Path(checkpoint_dir),
+        simulations=int(simulations),
+        workers=int(workers),
+        resume=bool(resume),
+    )
+
+
+__all__ = [
+    "CANONICAL_EXPERIMENT_ID",
+    "CANONICAL_PROTOCOL_ID",
+    "TERMINAL_FORECAST_SEMANTICS",
+    "ForecastContext",
+    "ForecastModel",
+    "OriginTask",
+    "PortfolioPolicy",
+    "TrainingData",
+    "build_execution_manifest",
+    "evaluate_model",
+    "evaluate_origin_task",
+    "execute_model_checkpointed",
+    "task_identity",
+]

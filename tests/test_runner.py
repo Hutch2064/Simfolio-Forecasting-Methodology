@@ -2,6 +2,7 @@ import numpy as np
 
 from simfolio_forecasting_methodology.runner import (
     OriginTask,
+    TERMINAL_FORECAST_SEMANTICS,
     TrainingData,
     evaluate_model,
     evaluate_origin_task,
@@ -14,6 +15,15 @@ class ZeroPathModel:
     def simulate_daily_log_returns(self, training, context):
         del training
         return np.zeros((context.simulations, context.horizon_days), dtype=float)
+
+
+class TerminalEnsembleModel:
+    model_id = "test_terminal"
+    forecast_output_semantics = TERMINAL_FORECAST_SEMANTICS
+
+    def simulate_terminal_log_returns(self, training, context):
+        del training
+        return np.tile(np.array([[0.2, 0.3]], dtype=float), (context.simulations, 1))
 
 
 def test_origin_task_scores_every_daily_horizon():
@@ -52,3 +62,17 @@ def test_model_evaluation_streams_origins_into_cells():
     assert np.isclose(means[("p1", 1)], 0.2, atol=1e-15, rtol=0.0)
     assert np.isclose(means[("p1", 2)], 0.2, atol=1e-15, rtol=0.0)
     assert np.isclose(result.aggregate_score(), 0.2, atol=1e-15, rtol=0.0)
+
+
+def test_terminal_ensemble_extension_does_not_reconstruct_daily_increments():
+    task = OriginTask(
+        portfolio_id="p1",
+        origin_label="o1",
+        training=TrainingData(portfolio_log_returns=np.array([0.0, 0.0])),
+        realized_future_daily_log_returns=np.array([0.1, 0.1]),
+        seed=3,
+    )
+    losses = evaluate_origin_task(TerminalEnsembleModel(), task, simulations=2)
+    # Direct terminal samples [0.2, 0.3] score against terminal observations
+    # [0.1, 0.2]. A daily cumsum would incorrectly produce [0.2, 0.5].
+    assert np.allclose(losses, [0.1, 0.1], atol=1e-15, rtol=0.0)

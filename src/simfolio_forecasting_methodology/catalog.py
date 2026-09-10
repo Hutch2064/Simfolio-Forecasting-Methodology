@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from importlib.abc import Traversable
-from importlib.resources import files
 from pathlib import Path
 
 from .catalogue import (
@@ -28,12 +26,6 @@ class CanonicalRow:
     cells: int
     exact_empirical_crps_text: str = ""
     publication_empirical_crps_text: str = ""
-
-
-def _catalog_root() -> Traversable:
-    """Return the legacy-resource directory used by the master-ID loader."""
-
-    return files("simfolio_forecasting_methodology").joinpath("resources/catalogs")
 
 
 def load_canonical_175(root: Path | None = None) -> list[CanonicalRow]:
@@ -84,7 +76,6 @@ __all__ = [
     "EXPECTED_CELLS_PER_MODEL",
     "EXPECTED_SOURCE_RANKS",
     "FRONTIER_SOURCE_ID",
-    "_catalog_root",
     "load_canonical_175",
     "validate_canonical_175",
 ]
