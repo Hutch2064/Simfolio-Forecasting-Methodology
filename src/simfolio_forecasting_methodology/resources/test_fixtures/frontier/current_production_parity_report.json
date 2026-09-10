@@ -1,4 +1,12 @@
 {
+  "experiment_context": {
+    "canonical_dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+    "canonical_panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+    "canonical_protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+    "execution_variant": "source_parity_noncanonical",
+    "full_study_rerun": false,
+    "result_type": "newly_computed_bounded_validation"
+  },
   "method": {
     "aligned_seed_contract": "HistoricalFrontierModel deterministic_seed(asset_level_current_engine,ticker,origin,FRONTIER_MARGINAL_ID,horizon,simulations) and copula_alternatives seed.",
     "dependence_intermediates": [
