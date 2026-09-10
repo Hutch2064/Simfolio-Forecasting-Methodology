@@ -33,8 +33,8 @@
         "source_code": {
           "research_gate_path": "source-research/scripts/forecast_oos_research_gate.py",
           "research_gate_sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
-          "engine_path": "source-main/app/engine.py",
-          "engine_sha256": "c2fcb7ad07ed94317d3102d69bd5160ed2a385703e69786ad0e2cedbf733cd4e",
+          "engine_path": "source-research/app/engine.py",
+          "engine_sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
           "extracted_functions_sha256": "84a78bd1bc1f2bf9195be6682fd72429276547602061e31acbd2ac76546a2985"
         },
         "parameter_dictionary": {
@@ -51,7 +51,7 @@
         "source_gate_fit": "source-research/scripts/forecast_oos_research_gate.py#_fit_dp_mixture_sv_sbb",
         "source_gate_simulation": "source-research/scripts/forecast_oos_research_gate.py#_simulate_dp_mixture_sv_sbb",
         "source_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
-        "source_engine": "source-main/app/engine.py#SimfolioEngine._sample_mean_near_zero_shrinkage",
+        "source_engine": "source-research/app/engine.py#SimfolioEngine._sample_mean_near_zero_shrinkage",
         "public_catalogue_anchor": "canonical_rank=23"
       },
       "implementation_factory": {
@@ -169,8 +169,8 @@
         "source_code": {
           "research_gate_path": "source-research/scripts/forecast_oos_research_gate.py",
           "research_gate_sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
-          "engine_path": "source-main/app/engine.py",
-          "engine_sha256": "c2fcb7ad07ed94317d3102d69bd5160ed2a385703e69786ad0e2cedbf733cd4e",
+          "engine_path": "source-research/app/engine.py",
+          "engine_sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
           "extracted_functions_sha256": "84a78bd1bc1f2bf9195be6682fd72429276547602061e31acbd2ac76546a2985"
         },
         "parameter_dictionary": {
@@ -187,7 +187,7 @@
         "source_gate_fit": "source-research/scripts/forecast_oos_research_gate.py#_fit_observable_markov_state_sbb",
         "source_gate_simulation": "source-research/scripts/forecast_oos_research_gate.py#_simulate_observable_markov_state_sbb",
         "source_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
-        "source_engine": "source-main/app/engine.py#SimfolioEngine._sample_mean_near_zero_shrinkage",
+        "source_engine": "source-research/app/engine.py#SimfolioEngine._sample_mean_near_zero_shrinkage",
         "public_catalogue_anchor": "canonical_rank=25"
       },
       "implementation_factory": {

@@ -46,6 +46,7 @@ SOURCE_FUNCTION_NAMES: tuple[str, ...] = (
     "_fit_sv_state_space_params",
     "_fit_sv_ar1_with_mean",
     "_fit_sv_ar1",
+    "_sample_mean_near_zero_shrinkage",
     "_sv_initial_log_var",
     "_simulate_sv_ar1",
     "_simulate_sv_ar1_sbb",
@@ -55,7 +56,7 @@ SOURCE_FUNCTION_NAMES: tuple[str, ...] = (
 # SHA-256 over the exact source function segments above: the first ten come
 # from the research gate and the last comes from its imported engine module;
 # segments are joined with one blank line and a trailing newline.
-SOURCE_FUNCTIONS_SHA256 = "63035755f9fa6f9097c099ab481667f9fc97effc0d5364b3fe6ae0282e20944f"
+SOURCE_FUNCTIONS_SHA256 = "dc7fd492f019b154c4c00e9f608de257440dde3a31429f56ffaa0cc03f0272a7"
 
 SOURCE_SEED_CONTRACT = (
     "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', "

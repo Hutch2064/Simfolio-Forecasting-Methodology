@@ -1,0 +1,182 @@
+{
+  "schema_version": "canonical-175-source-closure-provenance-v1",
+  "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+  "source_authority": {
+    "engine": {
+      "path": "source-research/app/engine.py",
+      "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
+    },
+    "research_gate": {
+      "path": "source-research/scripts/forecast_oos_research_gate.py",
+      "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+    }
+  },
+  "source_engine_equivalence": {
+    "path": "source-main/app/engine.py",
+    "sha256": "c2fcb7ad07ed94317d3102d69bd5160ed2a385703e69786ad0e2cedbf733cd4e",
+    "comparison": "AST source segments are byte-equal for the owned engine functions listed in each batch."
+  },
+  "extraction_generator": {
+    "language": "python",
+    "algorithm": "ast.parse; ast.walk; ast.get_source_segment; SHA-256 of segments joined by two newlines plus trailing newline",
+    "function_selection": "exact function name, final matching AST node",
+    "scope": "owned batches only; no broader catalogue extraction"
+  },
+  "batches": {
+    "reference_families": {
+      "functions": [
+        {
+          "name": "_deterministic_seed",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "5b6d6be86bd20d0cf86fce4f8f7c6df5b6359db8dce35782885fc8eabee1299a"
+        },
+        {
+          "name": "_constant_mean_gaussian_log_terminal_samples",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "747f9f9408f919459dd4b162443ba05630f881add2c82cc68855b32a77bdc611"
+        },
+        {
+          "name": "_iid_historical_bootstrap_log_terminal_samples",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "6de0543761c25dd0647ce3dbc4d5d085e4feb90794252da2ef18f76c84f8cdc7"
+        },
+        {
+          "name": "_fit_constant_mean_student_t_log_params",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "22b4b0343f4777e67b09fb75f318442843aaf7e3123b0cad4ac8f07815f1776a"
+        },
+        {
+          "name": "_constant_mean_student_t_log_paths",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "81de39c3f1deff14ff8a983522d58457d88ec0383f6975ab88501eb4705b1a2f"
+        },
+        {
+          "name": "_constant_mean_student_t_log_terminal_samples",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "cfd28f403f3996da771e2abe59503c0c3fd1e535241d8f1faaab48b025cd9665"
+        },
+        {
+          "name": "_terminal_logs_for_candidate",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "6e2bb4f2ecb36a6115599025ff6ddd15471e5ac379eee3d217d173751b26765d"
+        }
+      ],
+      "joined_segments_sha256": "90c3e63c7cbd1137630280774f17579af77a67042d7fbda60383c3d3021163a6"
+    },
+    "sv_reference": {
+      "functions": [
+        {
+          "name": "_sv_observed_log_variance",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "168a5cbc361d5a6e24e82189f331925900058af3bd13e24e3ed79ce9b481780e"
+        },
+        {
+          "name": "_sv_observed_log_variance_from_residuals",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "806b22269f692636e92602c31a24f7f88447bc75797a04d9a3ca061ccca21942"
+        },
+        {
+          "name": "_sv_kalman_filter",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "9707f498b90b5b6eacdd2e956ec612a3b83c5d5b262820cff809dc3a5ae276b2"
+        },
+        {
+          "name": "_initial_sv_state_space_params",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "0149a74c96ccf57f3892b4357a725019edf767f11ab1894d1467aac13f8d78b8"
+        },
+        {
+          "name": "_fit_sv_state_space_params",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "5dad41f3eedd742253e3e0168865527720a80f71b8e27bba097cc7073e6e82b9"
+        },
+        {
+          "name": "_fit_sv_ar1_with_mean",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "5cf7952f9bd6edaeadc767f708a6153a1ef7e35d5d59de79300c2277fa219dbc"
+        },
+        {
+          "name": "_fit_sv_ar1",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "5ab88c507151163c5683d0dda4bca2f5adb319e6c5ced95d1e45341883a5c9f6"
+        },
+        {
+          "name": "_sample_mean_near_zero_shrinkage",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "021ce93eabc58026f0f565ec0444b1ba2fe9e3ecbf47390fffede110406ece51"
+        },
+        {
+          "name": "_sv_initial_log_var",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "1c4a687951181edbedb29ec63ab1f097b54218e4e0640be9f01b9808bb52eab1"
+        },
+        {
+          "name": "_simulate_sv_ar1",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "23aa904527b1b2efbe1608686a2ad309b4bc5947c376ea2f072db1b0deb0a8e1"
+        },
+        {
+          "name": "_simulate_sv_ar1_sbb",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "45bd5cd3432baf1cec3aa4bf197c07a287245ed9e44c881ac0ce7ad99354299b"
+        },
+        {
+          "name": "_politis_white_block_length",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "bb03010e506ae9d9bc4533ca3cb4efcfcbdb08e3562b796e1e8179f017fa3b36"
+        },
+        {
+          "name": "_terminal_logs_for_candidate",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "6e2bb4f2ecb36a6115599025ff6ddd15471e5ac379eee3d217d173751b26765d"
+        }
+      ],
+      "joined_segments_sha256": "894ff866034c85c12edeec1df08b7e1b6f63e81a5b604030ad9e23a41ba5e117"
+    },
+    "sv_extensions": {
+      "functions": [
+        {
+          "name": "_categorical_next_states",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "f35455d39c290b77c0d5429afcd7de50834c72d365bb6ca3e95ce33b9c27ce0c"
+        },
+        {
+          "name": "_fit_observable_markov_state_sbb",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "cce28dd7507b9f2eaa7a7a7dfebd286e5394318906cdad02618fb356e6b1f21a"
+        },
+        {
+          "name": "_simulate_observable_markov_state_sbb",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "02d8c904db96d64e632039d690f9972b565b70495cebbc488c744cac08c475b0"
+        },
+        {
+          "name": "_fit_dp_mixture_sv_sbb",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "abc2efb03b6e32e5d4207c66a85e4225815207b12fe739d2ba19a9591c857c90"
+        },
+        {
+          "name": "_simulate_dp_mixture_sv_sbb",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "0afc947e68dff12aa56801388add2d0342dca9646efa4aa93f89acc07a8cbf71"
+        },
+        {
+          "name": "_sample_mean_near_zero_shrinkage",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "021ce93eabc58026f0f565ec0444b1ba2fe9e3ecbf47390fffede110406ece51"
+        },
+        {
+          "name": "_deterministic_seed",
+          "source_path": "source-research/app/engine.py",
+          "segment_sha256": "5b6d6be86bd20d0cf86fce4f8f7c6df5b6359db8dce35782885fc8eabee1299a"
+        },
+        {
+          "name": "_terminal_logs_for_candidate",
+          "source_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "segment_sha256": "6e2bb4f2ecb36a6115599025ff6ddd15471e5ac379eee3d217d173751b26765d"
+        }
+      ],
+      "joined_segments_sha256": "55a17e4ba079345721838f55f99cc2505ec51639dc7d69b7a9e77873f0acf080"
+    }
+  }
+}
