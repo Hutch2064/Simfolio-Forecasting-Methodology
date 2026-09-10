@@ -52,7 +52,9 @@ def test_canonical_cli_default_wires_all_175_real_factories(monkeypatch, tmp_pat
         realized_future_daily_log_returns=np.array([0.01]),
         seed=17,
     )
-    data_root = tmp_path / "caller-owned-data-cache"
+    data_root = tmp_path / ".simfolio-oos-data"
+    data_root.mkdir()
+    monkeypatch.chdir(tmp_path)
     output_root = tmp_path / "canonical-output"
 
     def recording_build_model(model_id: str):
@@ -69,7 +71,7 @@ def test_canonical_cli_default_wires_all_175_real_factories(monkeypatch, tmp_pat
     ):
         plan_calls.append(
             {
-                "data_root": Path(data_root_arg),
+                "data_root": Path(data_root_arg).resolve(),
                 "portfolio_limit": portfolio_limit,
                 "rolling_origins": rolling_origins,
             }
@@ -115,12 +117,8 @@ def test_canonical_cli_default_wires_all_175_real_factories(monkeypatch, tmp_pat
         cli.main(
             [
                 "canonical-175",
-                "--data",
-                str(data_root),
                 "--output",
                 str(output_root),
-                "--simulations",
-                "240",
             ]
         )
         == 0
