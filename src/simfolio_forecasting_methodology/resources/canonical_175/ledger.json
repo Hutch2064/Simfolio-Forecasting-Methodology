@@ -798,6 +798,16 @@
       "factory_name": "simfolio_forecasting_methodology.models.portfolio.full_mcmc:FullMCMCSVModel",
       "status": "verified_explicit_factory",
       "seed_contract": "origin_task.seed_to_forecast_context.seed.v1"
+    },
+    "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.gjr_reference:PortfolioGJRGARCHModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate, origin_date, dense_horizon_tuple, historical_model_id, simulations"
+    },
+    "portfolio_gjr_garch_eb_sampler_moving_block_optimal": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.gjr_reference:PortfolioGJRGARCHModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate, origin_date, dense_horizon_tuple, historical_model_id, simulations"
     }
   },
   "validation_policy": {
@@ -7749,7 +7759,14 @@
         "source_model_key": "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "original source seed call and bounded paths independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "portfolio_volatility_extension",
       "structured_specification": {
@@ -7769,9 +7786,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -7787,14 +7803,18 @@
         "row_source_description": "canonical-175 retained extension evidence#portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.gjr_reference:PortfolioGJRGARCHModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "forecast_oos_candidate, origin_date, dense_horizon_tuple, historical_model_id, simulations"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "arch"
+        ],
+        "verified": true,
+        "status": "source closure exercised under locked Python 3.11 and 3.12 numerical environments"
       },
       "historical_rank": 63,
       "canonical_rank": 52,
@@ -7837,17 +7857,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_daily_path_parity_verified_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN fit/simulation and recovered moving-block wrapper comparison at horizons 5, 21, 128 and 256 with 7 paths: all daily arrays byte-identical. Public evaluator cumulatively converts daily paths; historical moving-block wrapper selected daily increments, documented separately."
       ]
     },
     {
@@ -19260,7 +19280,14 @@
         "source_model_key": "portfolio_gjr_garch_eb_sampler_moving_block_optimal",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "original source seed call and bounded paths independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "portfolio_volatility_extension",
       "structured_specification": {
@@ -19280,9 +19307,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -19298,14 +19324,18 @@
         "row_source_description": "canonical-175 retained extension evidence#portfolio_gjr_garch_eb_sampler_moving_block_optimal"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.gjr_reference:PortfolioGJRGARCHModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "forecast_oos_candidate, origin_date, dense_horizon_tuple, historical_model_id, simulations"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "arch"
+        ],
+        "verified": true,
+        "status": "source closure exercised under locked Python 3.11 and 3.12 numerical environments"
       },
       "historical_rank": 125,
       "canonical_rank": 114,
@@ -19348,17 +19378,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_daily_path_parity_verified_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN fit/simulation and recovered moving-block wrapper comparison at horizons 5, 21, 128 and 256 with 7 paths: all daily arrays byte-identical. Public evaluator cumulatively converts daily paths; historical moving-block wrapper selected daily increments, documented separately."
       ]
     },
     {

@@ -10,8 +10,8 @@ private datastore, or operational API.
 ## Current release state
 
 The canonical ledger contains **175 exact model identities**. The public
-runtime currently has **135 explicit executable factories**: 84 canonical base models,
-40 full MCMC SV models, ten portfolio reference models, and Frontier. Those 135
+runtime currently has **137 explicit executable factories**: 84 canonical base models,
+40 full MCMC SV models, twelve portfolio reference models, and Frontier. Those 137
 factories have passed package instantiation and bounded forecast/source-parity
 checks. The other ledger rows remain registered evidence identities and fail
 closed when execution is requested.
