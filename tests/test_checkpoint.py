@@ -283,3 +283,23 @@ def test_checkpoint_implementation_identity_includes_numerical_helpers(tmp_path,
     helper.write_text("BOUND = 2\n")
     after = runner._implementation_digest(HistoricalFrontierModel(), {})
     assert before != after
+
+
+def test_smoke_data_identity_cannot_claim_the_canonical_dataset():
+    from simfolio_forecasting_methodology.catalogue import canonical_model
+
+    tasks = _tasks()
+    result = build_execution_manifest(
+        MODEL_ID, tasks, simulations=3, model=ZeroPathModel(),
+        execution_variant="smoke_noncanonical",
+    )
+    canonical = canonical_model(MODEL_ID)
+    assert result.dataset_fingerprint != canonical["dataset_fingerprint"]
+    assert result.panel_fingerprint != canonical["panel_fingerprint"]
+    assert result.protocol_fingerprint == canonical["protocol_fingerprint"]
+    tasks[0].training.portfolio_log_returns[0] += .01
+    changed = build_execution_manifest(
+        MODEL_ID, tasks, simulations=3, model=ZeroPathModel(),
+        execution_variant="smoke_noncanonical",
+    )
+    assert result.dataset_fingerprint != changed.dataset_fingerprint

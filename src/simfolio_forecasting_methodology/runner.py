@@ -14,9 +14,9 @@ from typing import Protocol, runtime_checkable
 import numpy as np
 
 from .evaluation import CellAccumulator, empirical_crps_by_horizon
+from .protocol import CANONICAL_PROTOCOL_ID
 
 CANONICAL_EXPERIMENT_ID = "canonical-dense-oos-2026-08-23"
-CANONICAL_PROTOCOL_ID = "dense-daily-crps-v1"
 TERMINAL_FORECAST_SEMANTICS = "terminal_log_return_ensemble_by_horizon"
 
 
@@ -322,7 +322,7 @@ def build_execution_manifest(
     """Build a source-linked manifest from the canonical task constructor."""
 
     from .catalogue import EXPECTED_MEMBERSHIP_DIGEST, canonical_model, load_canonical_ledger
-    from .results.checkpoint import ExecutionManifest
+    from .results.checkpoint import ExecutionManifest, stable_digest
 
     record = canonical_model(model_id)
     ledger = load_canonical_ledger()
@@ -365,6 +365,18 @@ def build_execution_manifest(
     else:
         manifest_experiment_id = f"{record['experiment_id']}::{execution_variant}"
         manifest_protocol_id = f"{CANONICAL_PROTOCOL_ID}::{execution_variant}"
+    dataset_fingerprint = record.get("dataset_fingerprint") or identity_policy.get("dataset_fingerprint")
+    panel_fingerprint = record.get("panel_fingerprint") or identity_policy.get("panel_fingerprint")
+    if execution_variant != "canonical":
+        dataset_fingerprint = stable_digest({
+            "kind": "noncanonical_task_inputs",
+            "inputs": [(item.training_digest, item.realized_digest) for item in identities],
+        })
+        panel_fingerprint = stable_digest({
+            "kind": "noncanonical_task_panel",
+            "portfolios": [(task.portfolio_id, None if task.training.policy is None
+                            else task.training.policy.__dict__) for task in tasks],
+        })
     return ExecutionManifest.create(
         model_id=model_id,
         experiment_id=manifest_experiment_id,
@@ -381,10 +393,8 @@ def build_execution_manifest(
         seed_contract=seed_contract,
         protocol_fingerprint=record.get("protocol_fingerprint")
         or identity_policy.get("protocol_fingerprint"),
-        dataset_fingerprint=record.get("dataset_fingerprint")
-        or identity_policy.get("dataset_fingerprint"),
-        panel_fingerprint=record.get("panel_fingerprint")
-        or identity_policy.get("panel_fingerprint"),
+        dataset_fingerprint=dataset_fingerprint,
+        panel_fingerprint=panel_fingerprint,
     )
 
 

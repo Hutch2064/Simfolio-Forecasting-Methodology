@@ -65,9 +65,9 @@ def test_each_row_uses_the_exact_flat_contract_and_initial_flags_are_conservativ
         assert model["forecast_smoke_tested"] is executable
         assert model["source_parity_checked"] is executable
         assert model["historical_score_verified"] is False
-        assert model["protocol_fingerprint"] is None
-        assert model["dataset_fingerprint"] is None
-        assert model["panel_fingerprint"] is None
+        assert model["protocol_fingerprint"] == payload["identity_policy"]["protocol_fingerprint"]
+        assert model["dataset_fingerprint"] == payload["identity_policy"]["dataset_fingerprint"]
+        assert model["panel_fingerprint"] == payload["identity_policy"]["panel_fingerprint"]
         assert model["implementation_factory"]["callable"] is executable
         if executable:
             assert build_model(model["public_model_id"]).model_id == model["public_model_id"]
