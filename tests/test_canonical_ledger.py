@@ -24,6 +24,18 @@ from simfolio_forecasting_methodology.catalogue import (
 from simfolio_forecasting_methodology.models.registry import build_model, registration
 
 
+def _resolved_specification_ids() -> set[str]:
+    resource = (
+        Path(__file__).parents[1]
+        / "src"
+        / "simfolio_forecasting_methodology"
+        / "resources"
+        / "specifications"
+        / "canonical_statistical_specifications.json"
+    )
+    return set(json.loads(resource.read_text(encoding="utf-8"))["accepted_model_ids"])
+
+
 def test_membership_is_exact_and_digest_is_immutable():
     payload = load_canonical_ledger()
     models = list(load_canonical_models())
@@ -39,9 +51,9 @@ def test_rehashing_a_mutated_id_is_rejected():
     payload = deepcopy(load_canonical_ledger())
     original_id = payload["models"][0]["public_model_id"]
     payload["models"][0]["public_model_id"] += "_tampered"
-    payload["implementation_factory_map"][payload["models"][0]["public_model_id"]] = (
-        payload["implementation_factory_map"].pop(original_id)
-    )
+    payload["implementation_factory_map"][payload["models"][0]["public_model_id"]] = payload[
+        "implementation_factory_map"
+    ].pop(original_id)
     payload["models"][0]["historical_model_ids"] = [payload["models"][0]["public_model_id"]]
     payload["membership"]["membership_digest"] = canonical_membership_digest(payload["models"])
 
@@ -49,15 +61,16 @@ def test_rehashing_a_mutated_id_is_rejected():
         validate_canonical_ledger(payload)
 
 
-def test_each_row_uses_the_exact_flat_contract_and_initial_flags_are_conservative():
+def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scoped():
     payload = load_canonical_ledger()
     assert tuple(payload["required_model_fields"]) == REQUIRED_MODEL_FIELDS
+    resolved_ids = _resolved_specification_ids()
 
     for model in payload["models"]:
         assert set(model) == set(REQUIRED_MODEL_FIELDS) | {"canonical_rank"}
         assert model["historical_model_ids"] == [model["public_model_id"]]
         assert model["identity_recovered"] is True
-        assert model["specification_recovered"] is False
+        assert model["specification_recovered"] is (model["public_model_id"] in resolved_ids)
         assert model["source_reference_verified"] is True
         executable = (model["canonical_rank"] == 1 or model["model_family"] == "base"
                       or model["public_model_id"] in {'dp_mixture_sv_sbb', 'observable_markov_state_sbb', 'stochastic_volatility_ar1_empirical', 'stochastic_volatility_ar1_empirical_sbb', 'zero_mean_gaussian_vol_only', 'constant_mean_gaussian', 'naive_iid_historical_portfolio_bootstrap', 'constant_mean_student_t'})
@@ -75,10 +88,20 @@ def test_each_row_uses_the_exact_flat_contract_and_initial_flags_are_conservativ
         else:
             assert model["implementation_factory"]["name"] is None
 
-    assert payload["identity_policy"]["full_statistical_specifications_confirmed"] == 0
+    assert (
+        payload["identity_policy"]["full_statistical_specifications_confirmed"]
+        == len(resolved_ids)
+        == 125
+    )
     artifact = payload["score_evidence"]["retained_score_artifact"]
-    assert artifact["observed_sha256"] == "1244270ed1e637f55d776efab2d1c3ad8f498d63cac16fc808b22cf4343d061a"
-    assert artifact["declared_sha256"] == "1d1a7cbaa2a990a43a67fc1b73640aeec877c05730e49d43931983b03cdedcc4"
+    assert (
+        artifact["observed_sha256"]
+        == "1244270ed1e637f55d776efab2d1c3ad8f498d63cac16fc808b22cf4343d061a"
+    )
+    assert (
+        artifact["declared_sha256"]
+        == "1d1a7cbaa2a990a43a67fc1b73640aeec877c05730e49d43931983b03cdedcc4"
+    )
     assert artifact["observed_sha256"] != artifact["declared_sha256"]
     assert artifact["digest_status"] == "mismatch_observed_vs_declared"
     assert "/Users/" not in json.dumps(payload)
@@ -88,7 +111,9 @@ def test_each_row_uses_the_exact_flat_contract_and_initial_flags_are_conservativ
 
 def test_retained_lexical_scores_and_public_precision_reconcile():
     models = load_canonical_models()
-    assert all(isinstance(model["historical_score"]["exact_empirical_crps"], str) for model in models)
+    assert all(
+        isinstance(model["historical_score"]["exact_empirical_crps"], str) for model in models
+    )
     assert any(
         model["score_precision"]["retained_source_token"]
         != model["score_precision"]["publication_token"]
@@ -142,7 +167,7 @@ def test_registry_is_fail_closed_for_known_and_unknown_ids():
 
 def test_future_verified_specification_record_can_validate_without_factory_claim():
     payload = deepcopy(load_canonical_ledger())
-    model = payload["models"][1]
+    model = next(item for item in payload["models"] if not item["specification_recovered"])
     model["specification_recovered"] = True
     model["structured_specification"]["verified_numerical_defaults"] = "source-backed-test-fixture"
     model["specification_fingerprint"] = {
@@ -160,13 +185,13 @@ def test_future_verified_specification_record_can_validate_without_factory_claim
     model["dataset_fingerprint"] = "d" * 64
     model["panel_fingerprint"] = "e" * 64
     model["verification_status"] = "specification_evidence_verified"
-    payload["identity_policy"]["full_statistical_specifications_confirmed"] = 1
+    payload["identity_policy"]["full_statistical_specifications_confirmed"] += 1
     validate_canonical_ledger(payload)
 
 
 def test_partially_verified_record_can_remain_blocked():
     payload = deepcopy(load_canonical_ledger())
-    model = payload["models"][0]
+    model = next(item for item in payload["models"] if not item["specification_recovered"])
     model["specification_recovered"] = True
     model["specification_fingerprint"] = {
         "value": "a" * 64,
@@ -174,7 +199,7 @@ def test_partially_verified_record_can_remain_blocked():
         "status": "partially_verified",
     }
     model["verification_status"] = "specification_partially_verified_blocked"
-    payload["identity_policy"]["full_statistical_specifications_confirmed"] = 1
+    payload["identity_policy"]["full_statistical_specifications_confirmed"] += 1
     validate_canonical_ledger(payload)
 
 

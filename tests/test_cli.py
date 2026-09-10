@@ -19,7 +19,7 @@ def test_canonical_cli_inspection_is_ledger_scoped(capsys):
     coverage = json.loads(capsys.readouterr().out)
     assert coverage["scope"] == "canonical_175_only"
     assert coverage["model_count"] == 175
-    assert coverage["counts"]["full_statistical_specifications_confirmed"] == 0
+    assert coverage["counts"]["full_statistical_specifications_confirmed"] == 125
 
     assert cli.main(["scores", "--json"]) == 0
     scores = json.loads(capsys.readouterr().out)

@@ -1,0 +1,4034 @@
+# Canonical resolved statistical specifications
+
+Generated from `resources/specifications/canonical_statistical_specifications.json`.
+The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.
+
+## 001. `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`
+
+- Family: `frontier`
+- Resolved-definition SHA-256: `9a9e73485c60e8ddf2a38678909d87b9d3c02414995cafbacac3675ef4bf89f4`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `asset_level_current_engine marginal seed context`, `copula_alternatives dependence seed context`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.frontier`.
+- Marginal candidate: `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_fast_map_laplace_sigma_points`.
+- Dependence component: `frontier.dependence_parameterization`.
+- Portfolio rejoin: `frontier.portfolio_rejoin`.
+
+## 002. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `b7c49ed9cd8567d6e3bd9e475bcc4779d9f3fe39bdcce0f97bbf2d8521cdc5af`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"fixed"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"positive_sample_mean"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 003. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `b85b8ffc4618f8075a224734b0ea64b70f4032cc99d1969c6564845f4406354c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_evt_drift_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"fixed"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 004. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `73f8bdd725dc4d9f6240440b19ca469f43219308d80622e1f4c306cc36ec3ad5`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_sv_baseline_improvement"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 005. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `406fc6fe6041b95600f1ea87fe59065f64a82111fd6ccfebe07a48e9e60d77d0`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_academic_sampler_mean_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 006. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `2f6931475160626899a81ef0f1236a69ccc15c650c98593357684b119b65f80c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_low_arbitrariness"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"fixed"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"positive_sample_mean"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage_transformed_raw_innovations"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 007. `bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `d2d595ef83ff3a5106df027f669f92c37b2efa8dbeef864dbb16b1a322a2e210`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"fixed"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"positive_sample_mean"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 008. `bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `bcd5955f6638c4ba31c8b0d8178a4410181486112e4189407e645f170dd99424`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_sv_baseline_improvement"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"ridge_harx_ff6"`
+  - `vol_anchor_target` = `"current_latent_log_variance"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 009. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `4a90d18eea047b1885db566d82cdfae864d5f22b7b27380323b04d33a07fdc1e`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 010. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `5fe33d053e43783f81283cd7db3a09108267f706107a68b57bfaec617689f81c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 011. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `933a15b4cc0b689f3f14701cb636dcbf4c4855c4e81126f3791322de2bda48a4`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 012. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `278f240ce7f53b4d808f64974dbe69d293b68d2c85c246d8aabfcabf9d1ee599`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 013. `bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `1132289125bf5cc3c5518d4fc8bb91547365024731931b2a8c8a2f68606e444b`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 014. `bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `4c3094cc5b11d3319aa4914011eafc2c0d918b9350ea36036c67823888b4d237`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 015. `bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `c07b14911d9927fc52faf1e64df3184b2eff468f08f78c52e01842d7b52e8a3c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 016. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `76868bad156401c6640a8d91869c92242d321c85501ee76805a10dac738c5eaa`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 017. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `12d64ba459ed9575abeec464d621831664a89fd8528ce6d6438d86a4cc6ac587`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 018. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `5ca01dcd99ec7d865f10829cfb848d38c8cdb836887e49ee506286bd97d9d295`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 019. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `4d8539da29fe2a5de9ed7e4a62d0147edb4b7f373bd2b94a90e34e2d007db11d`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 020. `bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `623d315d92d69399c6f80f096b10e9de0793d36df8dc4ca3a646f2d8f42524b0`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 021. `bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `2e0242452b1bfb241fee5597e764c68e3fa97c35585c834c3bb74cf61cd9c65a`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 022. `bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `4ebb89e0a48a2a4bbf58870cdcbdb3d96c004e1f4727da77279f7dd17be87a11`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 023. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `ae66078c5bf84be4733b2e507cd18ba07b4629cf6b1a2279c051ae4c985c9eb1`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 024. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `92482d52a8aef4deb8490052b42da66bc37291d119ab011780eff6056a6257b3`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 025. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `d3b4190c8d2545a6ec1c3d01b7ad74d0847e7c3d9a4cde66a72e16e806712164`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 026. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `bc1c0a3eda5978344744dfcb292db5408be513da7a585b415feaffba008971af`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 027. `bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `37cbb3443328a155ebbd02dccb3ae642a8cfa3c2715d9130a199e0ef1ab9905b`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 028. `bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `75892b53a56ff4ee75c0aba44862745d5944d2518637d7f0812887534c22b191`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 029. `bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `51233606500ac9fc9ca540b1caefdebe07aab8620204593f5cc4764225554f87`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 030. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `d9f1e69eae893d8c3358354468fe61d0b107a84348f045324f20d1098c28ea54`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 031. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `630b99470058e9f579ce53ea961d36e21eba90790a551926c156d84d3b41ef52`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 032. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `5adad85ad42a9a05fc46a94586a1de7bd76d751cdf22a036d9e607b516cd62e2`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 033. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `5e1bc415a22fd918648cc440864d735512d3224e1337048332064ccbe296856f`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 034. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `7ddaf78af986660d2d4aec110bd101bcac436a13cab3c553710f7e7930261103`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 035. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `8ddd318493be62b51c9c90f7916680aca69277f87fff7d2571a4f50e120a83e1`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 036. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `5812d276648a5fa4b353bea7b95710b34c9714a47e8e3b4961991bd032514caf`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 037. `expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `09cf8fb8f59abc3ec1d7a74713cb99bf033a425a5ead94272b73a1e06118effd`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 038. `expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `84ea88cdf11e27c2634ee20cda69f57a19a116f90c842ebd48f0d95f0339a29c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 039. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `daeb9f482f114b92445ea6597d9db021bd190721bc6e810e6ce0798276534047`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 040. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `5684a5229c02adff5a40e89186e8e8482b96955fdad4470b95a2b85299cc6cd0`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 041. `expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `508b483f4bcff64f40b5d34bcb49ef5c46a778e0984d56ab373082d937762573`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 042. `expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `1ee1e2b0702569a31f3f231fdcef1af81fb076812d24666faa718927039d8085`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 043. `expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `f112471a04597f14361d9bdb81494a1312ee57a19ea2888097440d1120f1a5e3`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 044. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `3c5f346ba9252b0236e32bdd75ab5da5d41ce6c190b651ca380496cfc21f74a9`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 045. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `642525071ecc559d974d0b968def7855deb335e296cfdee751624656a5285441`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 046. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `4afd49b00fedcb21c635bbbd67519ef1bec1183f299577bfa0cda10e2c9f495a`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 047. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `f0ed77753a5406c8a1a8a8f66fc7783851228c3e2e9e367a99dd087a949b57bb`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 048. `expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `c570df8d2234831d6938897a51f687c2787490becc081a1e1d0fb80f0ecf9504`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 049. `expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `ac2c9c50c1c37b454cd4dd063efeb0017d574c6039e9c50dfe9afedb5c70cc2d`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 050. `expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `bd6f731004ebcd3d50dc9f88f5ada2d3643a1c3bd3400278981592879a82ae87`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 051. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `91d21b635502adb8fd98cd3d2b2b83af1d4ec7d6efdf8c71a32ee66ab22dded1`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 052. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `9d573e36b27b508cd1a55ed262cdc75e60a6da12e14d4cef0f545aa3f55e1f07`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 053. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `de6a88647e785f42d40f2eea7630e8ec3d2ae40cb1429d67d3a6c20441b80115`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 054. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `6d9a08828a4727bc631358b29c01ba86c2e551288695c13363365d67432ebd92`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 055. `expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `33cba713d80105bd5eb1c14f5202ba739c4fca2f765cceb8e0ddb5452cdeb89b`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 056. `expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `f1d4d22fae3253d4e92838ab37b84952e26903fb3a2e156d6fc5539c026405a5`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 057. `expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `d4e7679186339061125ce5c7ca4af105597a9ecc8d18118882273f91d11bf8c2`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 058. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `bea2046522a55fbc9d11799553444383229e2442aa8130df3f9b34025b888f59`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 059. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `cc28eb46b779fcbcd53e0c738485170b5791f065640a2890fc384c3afecb3430`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 060. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `5f935fe00003735d9566354c1270803c02d7f14139e0d7152ea79bf7d079936c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 061. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `d527a7f58f01a91219f97a406a6c90a4f4aefef84a95e87657b0d1d47af10f8e`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 062. `expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `587996804fedf8157f41c3ceb16937746e29b6b1a4ae3a0dc0d536b5385fd71c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 063. `expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `ad2fdefe269006eb102c879c241ca93bfe54b529bd914f25e97b14ef07833aa7`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 064. `expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `bd4e2dc86cce71f069477a64c3588144ec74a68d00350b08f5b4fd752c73d8f0`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 065. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `27515d110f053a73fb639ed50eaca2ec07c8f034b10e7d42cedbddf88eb1767e`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 066. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `3dc2fc271702904beb93fad2254e55e4bb5c994916a44376af3f8a054c79dcd1`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 067. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `afbe9ca76226ff45d239ee8808d34dfe75e1ffd8bf7b8e44ed903a18c4f9b027`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 068. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `3dd91aa806cc05a46b34aac475b3a16c287c34616ffcb86b58446bc9beb3b8c9`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 069. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `2b3a333c2d6acd10b232bca555e651264c9eaaec61be76b323f8ec007d9cb807`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 070. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `894a3ec6d3567abc4bae51ba9463ded7ace744bc6d03c62a40d67c134aedf268`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 071. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `44d7ccb0e2daa203f295c57c7a37ef9b657fd9ff792283b2b0fe7162c543dcca`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 072. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `9adb904e5bb452b797fa801954dc91779a4e1ae0bf22bab2e0b7d5a8a680b71c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 073. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `f38ded05747b9900accbca5e558e6c50d2b071e7296d4aba7f13ac5dc9d97804`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 074. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `37e4b5a77b77f3f6743025f7df03291d7d22160e9b0ad6a9e212de102e0323d6`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 075. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `0e4c64a1de8453f7206a12a55ad2c3b43855b2bae6557f29c4b601a244472da2`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 076. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `80378a61997e6d1d09ad2bad331116ce6c7d626f10c02c4193689a7f14dcd30d`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 077. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `11028b0f15e7562d6f856c6f720506234e1ca67bbd273e1635eae6f95b4914f6`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 078. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `2c9a410254cfddabd5978fd8ac6640a9c9e9c17a664e1edce72858a3099ad879`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 079. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `1a94507f7f7c1f629faf8b3eaf2f3d278a88734d2f8fcc0f1b6d787652851844`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 080. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `2baabbacc85ee7f915140573fb11b0b701fbbab8a80cfd4c343c34ee17fb9ec6`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 081. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `93296bce4e84219d5063f9c4cade07283e22034449512658cc416ac005c2cb21`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 082. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `1145027c2cbe3aaf978a6e2c2acb1d31f43a39a963d3cae3b218b2d7c9f4c7b7`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 083. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `1fec09c8d74764df9949dfa282ce8f0e08787fcd4876500591eb6689af0f2634`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 084. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `139fc290508f69841e2b2776fc49465efee515b7a1e3b0072d1173addec9d0a5`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 085. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `36a1fca3d9a782b0b499bf3c6e68c96328e0af28a16798af7b1b2776844241f2`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 086. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `1a4a92fe53088851f7ef44f38207cd1055f82faa6363440594015061d6138bc5`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 087. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `a1f1f37ca67e09a1ce5111b951253a5cffa3c6c31b2e5b3a8001cf4053c35c6d`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 088. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `f0f8ccd42a32198d61c4befcb27203d36b19671b2727e6149875858b873fe227`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 089. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `364ff5784c80e3db98e16378ba9bedf595847f7095efbb671e6726ed4ebe01e6`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 090. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `170092ab06e5b1799d22dfd766219745c5c777e770a78bbf53dc3e43b6828d25`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 091. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `d4d68aa444198796b8601bababfdeff0ddfece88446e642e7ccb745b0f0f6573`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 092. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `ab9668528908247e5f3015d18f7e8199ce36e937fbb3a4117796840f2d497685`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 093. `sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `b67ddbbb1f3b7fa789d55eeef1db08679ae9ae17c4a7dc805c8cc9a23f72a96e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_block_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_bootstrap_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"circular_block_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"circular_block_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"circular_block_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 094. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `45dacf84c344626e0ba6c9660381e0511aa6fbbc79f3a6630dfc0c3945e649c1`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_plus_empirical_sv_state_shocks"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 095. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `2550e0d4bd92c9381ebdd70d8f98136c4ca0c1d89d9039c79cbcebed1d5be705`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_distribution_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_residual_distribution_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_empirical_log_variance_measurement_bias"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 096. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `98022ac010b69c222cf8b353449de6eb5661f0f9da248b9abad1c526f8034d45`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_distribution_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_residual_distribution_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_with_evt_pot_gpd_tail_splice"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"automated_evt_pot_gpd_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 097. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `29cfc83c28384efdde46f0b89947fa8a7dfa90e1ea4558b1967d81b0e1b187c5`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_distribution_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_residual_distribution_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_robust_median_mad_standardization"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 098. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `51ac06ceee56f03fb70b0a20608bc9f9d5cb5517ad95c61ba33036b9a2d32424`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_block_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_bootstrap_incumbent"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 099. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `375f81649078319063ef86aa971f7b4a373d21888d4340168a3a6a6b2b9e2c45`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"paired_stationary_bootstrap_latent_sv_filtered_return_and_state_shocks"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"paired_stationary_bootstrap_return_state_shocks_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 100. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `0ed768b5d3f8cf80ba240cf512893dbe14e1aab0a4a12d423dd1a983cda23846`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_plus_student_t_sv_state_shocks"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 101. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `00238d6a0b9bebecc516b988a5cc5ee8215c740d26cada7eb0b34651bca3a03e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_distribution_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_residual_distribution_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_conditioned_on_filtered_log_volatility"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 102. `sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `eb35b1f5a70aaf65a91ac70ea4c44c97b1827253c4995581d9bfabd7e7b8197e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_mean_distributional_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc"`
+  - `innovation_component` = `"jones_faddy_skew_t_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"jones_faddy_skew_t_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"jones_faddy_skew_t_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"jones_faddy_skew_t"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 103. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `bbea1dd8e2d233e62184c4e2480800027f7a50a8766b3e1ab42d61e4241caf3d`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_mean_distributional_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_nig_sv_live_baseline_parametric_tail_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc"`
+  - `innovation_component` = `"normal_inverse_gaussian_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"normal_inverse_gaussian_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"normal_inverse_gaussian_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"normal_inverse_gaussian"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 104. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `d097c5e901f8333b8bc619389df39910c2c7a28a93f60e52fe0ca744c11adbea`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_nig_vs_sbb_optimal_block_and_sampler_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_sampler_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"normal_inverse_gaussian_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"normal_inverse_gaussian_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"normal_inverse_gaussian_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"normal_inverse_gaussian"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 105. `sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `c91d8009b579789265273ca33519d7eae1e3414418f6c10391b046520ac71127`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_tail_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_parametric_tail_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc"`
+  - `innovation_component` = `"normal_inverse_gaussian_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"normal_inverse_gaussian_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"normal_inverse_gaussian_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_student_t_state_innovations"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"normal_inverse_gaussian"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 106. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `b89c0b08afe848cb69934e3d54d95c3b1f168804971575c066bc6bb6bfd1cce9`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_optimal_block_sampler_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sbb_optimal_block_fixed_proposal_comparator"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_empirical_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 107. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `0c83b477fd0fe9ec7f4f39b4af89c9a8ebbb0470413b5afb0ad4f628aecae0ae`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_optimal_block_sampler_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_unfiltered_sbb_sampler_incumbent"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_empirical_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 108. `sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `2de95d65e5f1aadf5eae0ce93e57ad698fb4752954eba564ed274adaa8e49d7a`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc"`
+  - `innovation_component` = `"jones_faddy_skew_t_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"jones_faddy_skew_t_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"jones_faddy_skew_t_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_student_t_state_innovations"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"jones_faddy_skew_t"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 109. `sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `381de0912e511592c8cec4eaf6f8c228bd4aa89be548d1cda716c63bb518b639`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"marginal_likelihood_ar1_latent_drift_with_empirical_bayes_anchor"`
+  - `mean_model` = `"evidence_estimated_dlm_drift"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 110. `sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `8e6f5f74373117d49dea9eb23438a08dd59da66f3d0b5798fed4e972f86bf37c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"jorion_james_stein_style_hierarchical_sharpe_shrinkage"`
+  - `mean_model` = `"hierarchical_empirical_bayes_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 111. `sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `ebdc1bebcc7404aff6db7f893d77ce7d566483131d8c70164f608d56ae69d699`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_mean_distributional_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_variant"`
+  - `id` = `"sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc"`
+  - `innovation_component` = `"jones_faddy_skew_t_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"jones_faddy_skew_t_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"hierarchical_empirical_bayes_sharpe_shrinkage"`
+  - `mean_model` = `"hierarchical_empirical_bayes_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"jones_faddy_skew_t_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"jones_faddy_skew_t"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 112. `sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `b8fdf7d5991757cf795770abece04ee5f1a051f21737dece1f7e4965b4964304`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"newey_west_hac_signed_mean_horizon_shrink_to_zero"`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 113. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `0691e146ae0a4e6d7c8ef75aa3a44e20eff5a6bd06839ee73fe68784ba2f95b3`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"signed_hac_horizon_mean_with_portfolio_block_drift_instability_decay"`
+  - `mean_model` = `"horizon_credibility_hac_drift_instability"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 114. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `52dfadcdf01b39ac9b5eda6a13ba28c431fe3cdef193a232351944366c3ef785`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_innovation_pool_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_mean_sample_innovation_variant"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_with_automated_evt_pot_tail_splice"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"newey_west_hac_signed_mean_horizon_shrink_to_zero"`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"automated_evt_pot_gpd_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 115. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `6714f7cefc0e50b5a44cbc6195ee0efbde36740867b0a0fb26109bca6c8011a5`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_innovation_pool_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_mean_sample_innovation_variant"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"newey_west_hac_signed_mean_horizon_shrink_to_zero"`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 116. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `46cad32dfc281163c9b0db47f6f136e9b3179914c9449ac1fb8c6ccdff5f5c7d`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"volatility_conditioned_stationary_bootstrap_sample_standardized_residuals"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"newey_west_hac_signed_mean_horizon_shrink_to_zero"`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 117. `sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `cf80a38d04bf23d590978a53fd4e52573b0a86b7d9d6473c56c20e1f104ad98c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"campbell_thompson_positive_empirical_bayes_sharpe_restriction"`
+  - `mean_model` = `"empirical_bayes_hac_positive_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 118. `sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `14b76b556e741f14409ef45aa0b0a380a8577a977adf2f787382578add1d51bd`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"merton_campbell_thompson_positive_hac_mean_uncertainty"`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 119. `sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `04c2aa9404a934f6dc8aa2da6b5150631bd497c85abb6c51b0fb8be6153add92`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"prequential_score_selected_sample_mean_shrinkage"`
+  - `mean_model` = `"prequential_crps_shrinkage"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 120. `sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `4e727d58295fbc89162877032ad387e5113227a5d891c776900f5b2403e3392b`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"trimmed_signed_hac_horizon_credibility_mean"`
+  - `mean_model` = `"robust_horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 121. `sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `a0834b677d3b2e8923a357f7862e70fd27ab71c2d6626498cab9c5d023907f53`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"constant_historical_sample_mean"`
+  - `mean_model` = `"historical_realized_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 122. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `01723e6b6e45544b61f0eae7c584f6111097de2e998572825d919b04217e60cc`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"current_live_bdes_cagr_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_bdes_cagr_full_latent_mcmc_sv_overlay"`
+  - `id` = `"sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_standardized_residuals_scaled_by_bdes_multiscale_latent_sv_paths"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"portfolio_likelihood_estimated_latent_sharpe_dlm_to_historical_cagr_anchor"`
+  - `mean_model` = `"evidence_estimated_sharpe_dlm_historical_cagr_anchor"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_bdes_multiscale_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 123. `sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `60a9fda4f3cf142711c1ba5b44491715a78029ecb4e1523b9c0986cbfe739084`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"zero_drift_forecast"`
+  - `mean_model` = `"zero_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 124. `sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `fb2ba562d65eb6a7d6013054b40eaa7de6d7ccfd9cddd61c499d5399115e7610`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_mean_distributional_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"jones_faddy_skew_t_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"zero_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"jones_faddy_skew_t_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"jones_faddy_skew_t"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 125. `sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `40dc8ed1cac655e80a261b569914ede8ed7298b5ce552341c5b094245a43b19c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"zero_expected_return_mean"`
+  - `mean_model` = `"zero_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
