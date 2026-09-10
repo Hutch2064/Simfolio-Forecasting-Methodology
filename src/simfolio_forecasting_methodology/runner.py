@@ -222,7 +222,12 @@ def _implementation_digest(model, record: dict[str, object]) -> str | None:
         # A model adapter delegates to numerical helpers in other modules.
         # Bind the installed executable closure, including scoring and seeds,
         # so changing a helper cannot silently reuse old task losses.
-        source_files.update(Path(__file__).resolve().parent.rglob("*.py"))
+        package_root = Path(__file__).resolve().parent
+        source_files.update(package_root.rglob("*.py"))
+        source_files.update(
+            path for path in (package_root / "resources").rglob("*")
+            if path.is_file() and path.suffix in {".json", ".yaml", ".yml", ".csv"}
+        )
     try:
         source_file = inspect.getsourcefile(type(model))
         if source_file is not None:

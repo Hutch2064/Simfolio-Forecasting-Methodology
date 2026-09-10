@@ -303,3 +303,23 @@ def test_smoke_data_identity_cannot_claim_the_canonical_dataset():
         execution_variant="smoke_noncanonical",
     )
     assert result.dataset_fingerprint != changed.dataset_fingerprint
+
+
+def test_numerical_parameter_resource_changes_implementation_identity():
+    import simfolio_forecasting_methodology.runner as runner
+    from simfolio_forecasting_methodology.catalogue import canonical_model
+    from simfolio_forecasting_methodology.models.registry import build_model
+
+    model = build_model(MODEL_ID)
+    record = canonical_model(MODEL_ID)
+    path = Path(runner.__file__).parent / "resources" / "checkpoint_parameter_probe.json"
+    assert not path.exists()
+    original = runner._implementation_digest(model, record)
+    try:
+        path.write_text('{"test_parameter": 1}')
+        first = runner._implementation_digest(model, record)
+        path.write_text('{"test_parameter": 2}')
+        second = runner._implementation_digest(model, record)
+        assert original != first != second
+    finally:
+        path.unlink(missing_ok=True)
