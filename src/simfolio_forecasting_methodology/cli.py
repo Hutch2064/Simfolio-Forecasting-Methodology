@@ -399,6 +399,10 @@ def _data_function(name: str):
 def _quick_validation_payload() -> dict[str, Any]:
     ledger = load_canonical_ledger()
     CANONICAL_DENSE_PROTOCOL.validate()
+    executable_count = sum(
+        registration(row["public_model_id"]).factory is not None
+        for row in ledger["models"]
+    )
     return {
         "scope": "canonical_175_only",
         "status": "passed",
@@ -407,7 +411,11 @@ def _quick_validation_payload() -> dict[str, Any]:
             "protocol": "passed",
             "membership_digest": ledger["membership"]["membership_digest"],
             "model_count": ledger["membership"]["count"],
-            "implementation_release_gate": "blocked_until_explicit_factories",
+            "explicit_factory_count": executable_count,
+            "implementation_release_gate": (
+                "passed" if executable_count == EXPECTED_CANONICAL_COUNT
+                else "incomplete_explicit_factory_coverage"
+            ),
         },
     }
 
