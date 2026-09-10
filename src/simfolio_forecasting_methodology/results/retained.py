@@ -26,7 +26,7 @@ def retained_score_report(model_id: str | None = None) -> dict[str, Any]:
             {
                 "public_model_id": row["public_model_id"],
                 "display_name": row["display_name"],
-                "historical_model_id": row["seed_identity"],
+                "historical_model_id": row["seed_identity"]["source_model_key"],
                 "specification_fingerprint": row["specification_fingerprint"],
                 "experiment_id": row["experiment_id"],
                 "protocol_fingerprint": row["protocol_fingerprint"],
