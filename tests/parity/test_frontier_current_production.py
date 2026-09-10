@@ -2,9 +2,11 @@
 
 The source-side production replay is intentionally kept outside the package:
 the checked-in fixtures contain only sanitized arrays and source digests.  The
-tests verify the public extracted closure against those arrays, exercise three
-different calendar policies, and preserve the distinction between the
-historical seed contract and the current production seed contract.
+tests separate fitted factor-coordinate identity from conditional simulation:
+eigenvector signs may vary by numerical backend, while seeded factor normals
+remain coordinate-sensitive.  Stored source-versus-production paths therefore
+use their recorded factor orientation, and the live adapter is compared with a
+native pipeline run from the same current fit.
 """
 
 from __future__ import annotations
@@ -57,6 +59,10 @@ DEPENDENCE_KEYS = (
     "kalman_state",
     "kalman_covariance",
 )
+SIGNED_DEPENDENCE_KEYS = ("factor_loading", "kalman_state", "kalman_covariance")
+INVARIANT_DEPENDENCE_KEYS = tuple(
+    key for key in DEPENDENCE_KEYS if key not in SIGNED_DEPENDENCE_KEYS
+)
 
 
 def _fixture_path(name: str):
@@ -69,6 +75,105 @@ def _load(name: str) -> dict[str, np.ndarray]:
     fixture = _fixture_path(name)
     with fixture.open("rb") as handle, np.load(handle, allow_pickle=False) as data:
         return {key: np.asarray(data[key]) for key in data.files}
+
+
+def _stored_dependence_model(fixture: dict[str, np.ndarray]) -> dict[str, np.ndarray | int]:
+    loading = np.asarray(fixture["public_factor_loading"], dtype=np.float64)
+    observations = np.asarray(fixture["public_factor_observations"], dtype=np.float64)
+    return {
+        "mean": np.asarray(fixture["public_factor_mean"], dtype=np.float64),
+        "observations": observations,
+        "loading": loading,
+        "residual_variance": np.asarray(
+            fixture["public_factor_residual_variance"], dtype=np.float64
+        ),
+        "phi": np.asarray(fixture["public_factor_phi"], dtype=np.float64),
+        "innovation_variance": np.asarray(
+            fixture["public_factor_innovation_variance"], dtype=np.float64
+        ),
+        "initial_variance": np.asarray(
+            fixture["public_factor_initial_variance"], dtype=np.float64
+        ),
+        "factor_count": int(loading.shape[1]),
+        "observation_count": int(observations.shape[0]),
+        "asset_count": int(loading.shape[0]),
+    }
+
+
+def _factor_signs(
+    reference_loading: np.ndarray, candidate_loading: np.ndarray
+) -> np.ndarray:
+    reference = np.asarray(reference_loading, dtype=np.float64)
+    candidate = np.asarray(candidate_loading, dtype=np.float64)
+    if reference.shape != candidate.shape or reference.ndim != 2:
+        raise AssertionError("factor loading dimensions changed")
+    overlap = np.einsum("ij,ij->j", reference, candidate)
+    if not np.all(np.isfinite(overlap)) or np.any(overlap == 0.0):
+        raise AssertionError("factor loading has an ambiguous sign alignment")
+    return np.where(overlap < 0.0, -1.0, 1.0)
+
+
+def _assert_fitted_dependence_matches(
+    candidate: dict[str, np.ndarray], fixture: dict[str, np.ndarray]
+) -> None:
+    """Compare fit outputs modulo the diagonal sign of each factor coordinate."""
+    reference = {
+        key: np.asarray(fixture[f"public_{key}"], dtype=np.float64)
+        for key in DEPENDENCE_KEYS
+    }
+    signs = _factor_signs(reference["factor_loading"], candidate["factor_loading"])
+
+    for key in INVARIANT_DEPENDENCE_KEYS:
+        np.testing.assert_allclose(
+            candidate[key], reference[key], rtol=0.0, atol=2e-12
+        )
+    np.testing.assert_allclose(
+        candidate["factor_loading"] * signs[None, :],
+        reference["factor_loading"],
+        rtol=0.0,
+        atol=2e-12,
+    )
+    np.testing.assert_allclose(
+        candidate["kalman_state"] * signs,
+        reference["kalman_state"],
+        rtol=0.0,
+        atol=2e-12,
+    )
+    np.testing.assert_allclose(
+        candidate["kalman_covariance"] * signs[:, None] * signs[None, :],
+        reference["kalman_covariance"],
+        rtol=0.0,
+        atol=2e-12,
+    )
+
+
+def _stored_conditional_pipeline(fixture: dict[str, np.ndarray]) -> dict[str, np.ndarray]:
+    """Run conditional simulation with the fixture's frozen fit/orientation."""
+    training_dates = pd.DatetimeIndex(fixture["training_dates"])
+    origin = str(pd.Timestamp(training_dates[-1]).date())
+    simulations, horizon, _ = fixture["public_marginal_paths"].shape
+    dependence = _stored_dependence_model(fixture)
+    state, covariance = kalman_terminal_posterior(dependence)
+    np.testing.assert_allclose(
+        state, fixture["public_kalman_state"], rtol=0.0, atol=2e-12
+    )
+    np.testing.assert_allclose(
+        covariance, fixture["public_kalman_covariance"], rtol=0.0, atol=2e-12
+    )
+    dependence_seed = deterministic_seed(
+        "copula_alternatives", FRONTIER_DEPENDENCE_ID, origin, horizon, simulations
+    )
+    uniforms = simulate_future_gaussian_uniforms(
+        dependence, simulations, horizon, np.random.default_rng(dependence_seed)
+    )
+    mapped = map_uniforms_to_marginal_paths(fixture["public_marginal_paths"], uniforms)
+    rejoined = rebalanced_portfolio_log_paths(
+        mapped,
+        fixture["weights"],
+        fixture["public_rebalance_mask"],
+        cost_per_turnover_bps=15.0,
+    )
+    return {"uniforms": uniforms, "mapped_paths": mapped, "rejoined": rejoined}
 
 
 def _public_pipeline(fixture: dict[str, np.ndarray], tickers: tuple[str, ...], rebalance: str):
@@ -206,18 +311,8 @@ def test_current_production_frontier_fixtures_preserve_source_evidence() -> None
                 rtol=0.0,
                 atol=2e-12,
             )
-            np.testing.assert_allclose(
-                public[key], fixture[f"public_{key}"], rtol=0.0, atol=2e-12
-            )
-
-        np.testing.assert_allclose(
-            public["uniforms"], fixture["public_uniforms"], rtol=0.0, atol=5e-14
-        )
         np.testing.assert_allclose(
             fixture["public_uniforms"], fixture["aligned_production_uniforms"], rtol=0.0, atol=5e-14
-        )
-        np.testing.assert_allclose(
-            public["marginal_paths"], fixture["public_marginal_paths"], rtol=0.0, atol=2e-12
         )
         np.testing.assert_allclose(
             fixture["public_marginal_paths"],
@@ -226,16 +321,10 @@ def test_current_production_frontier_fixtures_preserve_source_evidence() -> None
             atol=1e-8,
         )
         np.testing.assert_allclose(
-            public["mapped_paths"], fixture["public_mapped_paths"], rtol=0.0, atol=2e-12
-        )
-        np.testing.assert_allclose(
             fixture["public_mapped_paths"],
             fixture["aligned_production_mapped_paths"],
             rtol=0.0,
             atol=1e-8,
-        )
-        np.testing.assert_allclose(
-            public["rejoined"], fixture["public_rejoined"], rtol=0.0, atol=2e-12
         )
         np.testing.assert_allclose(
             fixture["public_rejoined"],
@@ -243,26 +332,9 @@ def test_current_production_frontier_fixtures_preserve_source_evidence() -> None
             rtol=0.0,
             atol=1e-8,
         )
-
-        # Match the two documented production storage boundaries. This tests
-        # exact output identity instead of merely accepting a float32-sized
-        # discrepancy in the historical float64 reference paths.
-        stored_marginals = public["marginal_paths"].astype(np.float32)
-        np.testing.assert_array_equal(
-            stored_marginals, fixture["aligned_production_marginal_paths"]
-        )
-        stored_mapped = map_uniforms_to_marginal_paths(
-            stored_marginals, public["uniforms"]
-        ).astype(np.float32)
-        np.testing.assert_array_equal(
-            stored_mapped, fixture["aligned_production_mapped_paths"]
-        )
-        production_precision_rejoined = rebalanced_portfolio_log_paths(
-            stored_mapped, fixture["weights"], public["rebalance_mask"],
-            cost_per_turnover_bps=15.0,
-        )
-        np.testing.assert_array_equal(
-            production_precision_rejoined, fixture["aligned_production_rejoined"]
+        _assert_fitted_dependence_matches(public, fixture)
+        np.testing.assert_allclose(
+            public["marginal_paths"], fixture["public_marginal_paths"], rtol=0.0, atol=2e-12
         )
 
         # Current production's root/per-asset seed contract is deliberately
@@ -273,10 +345,64 @@ def test_current_production_frontier_fixtures_preserve_source_evidence() -> None
         assert np.isfinite(fixture["production_default_output"]).all()
         assert np.isfinite(fixture["production_default_uniforms"]).all()
 
-        model_result = _public_model_result(fixture, tickers, panel["rebalance"])
+
+def test_current_production_frontier_conditional_paths_use_stored_orientation() -> None:
+    """Keep conditional source/path parity strict after freezing factor coordinates."""
+    report = json.loads(
+        _fixture_path("current_production_parity_report.json").read_text(encoding="utf-8")
+    )
+    for panel in report["panels"]:
+        fixture = _load(Path(panel["fixture"]).name)
+        conditional = _stored_conditional_pipeline(fixture)
+
         np.testing.assert_allclose(
-            model_result, fixture["public_rejoined"], rtol=0.0, atol=2e-12
+            conditional["uniforms"], fixture["public_uniforms"], rtol=0.0, atol=5e-14
         )
+        np.testing.assert_allclose(
+            conditional["mapped_paths"], fixture["public_mapped_paths"], rtol=0.0, atol=2e-12
+        )
+        np.testing.assert_allclose(
+            conditional["rejoined"], fixture["public_rejoined"], rtol=0.0, atol=2e-12
+        )
+
+        # Match the two documented production storage boundaries. These are
+        # exact comparisons, rather than float32-sized acceptance windows.
+        stored_marginals = fixture["public_marginal_paths"].astype(np.float32)
+        np.testing.assert_array_equal(
+            stored_marginals, fixture["aligned_production_marginal_paths"]
+        )
+        stored_mapped = map_uniforms_to_marginal_paths(
+            stored_marginals, conditional["uniforms"]
+        ).astype(np.float32)
+        np.testing.assert_array_equal(
+            stored_mapped, fixture["aligned_production_mapped_paths"]
+        )
+        production_precision_rejoined = rebalanced_portfolio_log_paths(
+            stored_mapped,
+            fixture["weights"],
+            fixture["public_rebalance_mask"],
+            cost_per_turnover_bps=15.0,
+        )
+        np.testing.assert_array_equal(
+            production_precision_rejoined, fixture["aligned_production_rejoined"]
+        )
+
+
+def test_current_production_frontier_adapter_matches_native_pipeline() -> None:
+    """The adapter and manual pipeline must agree under the current fit/seed contract."""
+    report = json.loads(
+        _fixture_path("current_production_parity_report.json").read_text(encoding="utf-8")
+    )
+    for panel in report["panels"]:
+        fixture = _load(Path(panel["fixture"]).name)
+        tickers = tuple(panel["tickers"])
+        public = _public_pipeline(fixture, tickers, panel["rebalance"])
+        adapter = _public_model_result(fixture, tickers, panel["rebalance"])
+
+        np.testing.assert_array_equal(
+            public["rebalance_mask"], fixture["public_rebalance_mask"]
+        )
+        np.testing.assert_allclose(public["rejoined"], adapter, rtol=0.0, atol=2e-12)
 
 
 def test_current_production_frontier_fixture_seed_identity_is_explicit() -> None:

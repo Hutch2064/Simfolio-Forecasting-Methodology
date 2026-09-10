@@ -15,16 +15,38 @@ numerical source, without claiming a complete deployment-image audit.
 | Frozen canonical portfolio 1 | 600 | 24 | 260 | Annual |
 | Frozen canonical portfolio 7 | 600 | 24 | 70 | Quarterly |
 
-With identical marginal/dependence random streams and the two production
-float32 storage steps, all three mapped asset-path arrays and rejoined
-portfolio-path arrays are **byte-identical**, with maximum absolute difference
-zero. The public computation is rerun in the parity test; these comparisons
-are not based only on output dimensions or scalar scores.
+The parity test keeps three contracts separate:
 
-Marginal parameter estimates match exactly. The largest observed difference
-in Kalman intermediates is `8.1e-14`; coupled uniforms differ by at most
-`7.8e-16`. These differences disappear at production's asset-path storage
-precision. Both marginal paths and dependence-mapped paths are stored as
+1. **Native fitted dependence.** `numpy.linalg.eigh` may choose either sign for
+   each fitted eigenvector column. If the current fit is `L D`, where `D` is a
+   diagonal matrix of `+1` or `-1`, the test compares `L`, the Kalman terminal
+   state, and its covariance after the corresponding `D` transform. Mean,
+   observations, residual variance, and AR parameters remain strict
+   `2e-12` comparisons. A non-sign loading or state change still fails.
+2. **Stored conditional simulation and rejoin.** The test rebuilds the
+   dependence input from the stored fit arrays and recorded factor orientation,
+   then reruns Gaussian uniforms, marginal mapping, and calendar rejoin. The
+   stored source-versus-production arrays retain their `5e-14` uniform and
+   `2e-12` conditional path tolerances. After the two production float32
+   storage boundaries, mapped asset paths and rejoined portfolio paths remain
+   exact array comparisons.
+3. **Native adapter integration.** The `HistoricalFrontierModel` adapter is
+   compared with the manually wired native pipeline under the same current fit,
+   seed contract, and rebalance mask. This catches changes to the adapter's
+   output or calendar/rebalance behavior.
+
+The factor normals in `simulate_future_gaussian_uniforms` are injected by
+factor coordinate. Therefore, a native same-seed simulation can change when
+`D` changes, even though the fitted dependence is mathematically equivalent;
+the test does not relabel such seeded paths as equal. The strict byte-equality
+claim applies to the stored conditional replay with its frozen orientation and
+to the persisted local source-versus-production evidence. The public native
+fit is rerun for the first and third contracts; the conditional replay is
+deliberately fed the stored fit state.
+
+Marginal parameter estimates match exactly. The largest observed difference in
+the stored Kalman intermediates is `8.1e-14`; coupled uniforms differ by at
+most `7.8e-16`. Both marginal paths and dependence-mapped paths are stored as
 float32 by production, before portfolio arithmetic in float64. The canonical
 historical reference preserves its original float64 arithmetic.
 
@@ -45,5 +67,6 @@ python -m pytest tests/parity/test_frontier_current_production.py -q
 ```
 
 This establishes bounded numerical agreement with the identified production
-source. It does not claim a full white-paper rerun or reproduction of retained
-CRPS `0.2557255171048505`.
+source under the three contracts above. The reference-platform fit orientation
+is not a cross-platform identity guarantee, and this does not claim a full
+white-paper rerun or reproduction of retained CRPS `0.2557255171048505`.
