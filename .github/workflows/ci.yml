@@ -17,13 +17,15 @@ concurrency:
 jobs:
   clean-wheel:
     name: Python ${{ matrix.python-version }} clean wheel
-    runs-on: ubuntu-latest
+    runs-on: macos-26
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.11.15", "3.12.13"]
     env:
       PYTHONDONTWRITEBYTECODE: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
       SIMFOLIO_WHEEL_TEST: "1"
     steps:
       - uses: actions/checkout@v4
@@ -39,6 +41,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements-lock.txt
           mkdir -p "$NUMBA_CACHE_DIR"
+      - name: Record numerical environment
+        run: |
+          sw_vers
+          uname -m
+          python -c "import platform, numpy, scipy; print(platform.python_version(), numpy.__version__, scipy.__version__); numpy.show_config(); scipy.show_config()"
       - name: Build wheel outside checkout
         id: wheel
         run: |
