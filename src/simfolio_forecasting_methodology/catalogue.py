@@ -8,15 +8,16 @@ identity or falling back to a generic model.
 
 from __future__ import annotations
 
-from copy import deepcopy
-from decimal import Decimal, InvalidOperation
 import hashlib
 import json
+import re
+from collections.abc import Mapping
+from copy import deepcopy
+from decimal import Decimal, InvalidOperation
 from importlib.abc import Traversable
 from importlib.resources import files
 from pathlib import Path
-import re
-from typing import Any, Mapping
+from typing import Any
 
 LEDGER_RESOURCE = "resources/canonical_175/ledger.json"
 EXPECTED_CANONICAL_COUNT = 175
@@ -96,7 +97,7 @@ def canonical_membership_digest(models: list[Mapping[str, Any]]) -> str:
 
 def _as_decimal(value: Any, field: str) -> Decimal:
     if not isinstance(value, str):
-        raise ValueError(f"{field} must retain its source numeric token as a string")
+        raise TypeError(f"{field} must retain its source numeric token as a string")
     try:
         return Decimal(value)
     except InvalidOperation as exc:
@@ -126,7 +127,7 @@ def _assert_public_paths(value: Any, field: str = "ledger") -> None:
         for index, item in enumerate(value):
             _assert_public_paths(item, f"{field}[{index}]")
     elif isinstance(value, str) and (
-        value.startswith("/") or value.startswith("~") or re.match(r"^[A-Za-z]:[\\/]", value)
+        value.startswith(("/", "~")) or re.match(r"^[A-Za-z]:[\\/]", value)
     ):
         raise ValueError(f"{field} contains an absolute local path")
 
@@ -135,7 +136,7 @@ def _validate_score(model: Mapping[str, Any], root_score: Mapping[str, Any]) -> 
     score = model["historical_score"]
     precision = model["score_precision"]
     if not isinstance(score, Mapping) or not isinstance(precision, Mapping):
-        raise ValueError(f"{model['public_model_id']}: historical score metadata is malformed")
+        raise TypeError(f"{model['public_model_id']}: historical score metadata is malformed")
     retained = score["exact_empirical_crps"]
     retained_decimal = _as_decimal(retained, "historical_score.exact_empirical_crps")
     publication = precision["publication_token"]
@@ -156,7 +157,7 @@ def _validate_artifacts(model: Mapping[str, Any], payload: Mapping[str, Any]) ->
     digest = model["source_artifact_digest"]
     for name in ("retained_score_artifact", "source_code", "parameter_dictionary"):
         if not isinstance(digest.get(name), Mapping):
-            raise ValueError(f"{model['public_model_id']}: {name} artifact digest is malformed")
+            raise TypeError(f"{model['public_model_id']}: {name} artifact digest is malformed")
     if digest["retained_score_artifact"].get("root_reference") != (
         "score_evidence.retained_score_artifact"
     ):
@@ -180,9 +181,9 @@ def _validate_artifacts(model: Mapping[str, Any], payload: Mapping[str, Any]) ->
 def _validate_factory(model: Mapping[str, Any], payload: Mapping[str, Any]) -> None:
     factory = model["implementation_factory"]
     if not isinstance(factory, Mapping):
-        raise ValueError(f"{model['public_model_id']}: implementation_factory must be an object")
+        raise TypeError(f"{model['public_model_id']}: implementation_factory must be an object")
     if not isinstance(factory.get("callable"), bool):
-        raise ValueError(f"{model['public_model_id']}: implementation_factory.callable must be boolean")
+        raise TypeError(f"{model['public_model_id']}: implementation_factory.callable must be boolean")
     name = factory.get("name")
     if name is not None and not isinstance(name, str):
         raise ValueError(f"{model['public_model_id']}: implementation_factory.name must be string or null")
@@ -191,7 +192,7 @@ def _validate_factory(model: Mapping[str, Any], payload: Mapping[str, Any]) -> N
         raise ValueError(f"{model['public_model_id']}: implementation_factory.status must be non-empty")
     factory_map = payload.get("implementation_factory_map", {})
     if not isinstance(factory_map, Mapping):
-        raise ValueError("implementation_factory_map must be an object")
+        raise TypeError("implementation_factory_map must be an object")
     mapped = factory_map.get(model["public_model_id"])
     verified_claim = "verified" in status.lower() and "unverified" not in status.lower()
     if name is not None or factory["callable"] or verified_claim:
@@ -239,13 +240,12 @@ def _validate_flags(model: Mapping[str, Any], payload: Mapping[str, Any]) -> Non
             raise ValueError(f"{model['public_model_id']}: instantiation lacks a mapped callable factory")
     if model["forecast_smoke_tested"] and not model["instantiation_validated"]:
         raise ValueError(f"{model['public_model_id']}: smoke test lacks validated instantiation")
-    if model["source_parity_checked"]:
-        if (
-            not model["implementation_available"]
-            or not model["forecast_smoke_tested"]
-            or not model["source_reference_verified"]
-        ):
-            raise ValueError(f"{model['public_model_id']}: source parity lacks implementation, smoke, or source evidence")
+    if model["source_parity_checked"] and (
+        not model["implementation_available"]
+        or not model["forecast_smoke_tested"]
+        or not model["source_reference_verified"]
+    ):
+        raise ValueError(f"{model['public_model_id']}: source parity lacks implementation, smoke, or source evidence")
     if model["historical_score_verified"] and not model["source_reference_verified"]:
         raise ValueError(f"{model['public_model_id']}: verified score lacks a verified source reference")
 
@@ -253,9 +253,11 @@ def _validate_flags(model: Mapping[str, Any], payload: Mapping[str, Any]) -> Non
     if not isinstance(status, str) or not status.strip():
         raise ValueError(f"{model['public_model_id']}: verification_status must be a non-empty string")
     normalized_status = status.lower()
-    if "verified" in normalized_status and "unverified" not in normalized_status:
-        if not (model["source_reference_verified"] or model["historical_score_verified"]):
-            raise ValueError(f"{model['public_model_id']}: verified status lacks evidence flags")
+    if (
+        "verified" in normalized_status and "unverified" not in normalized_status
+        and not (model["source_reference_verified"] or model["historical_score_verified"])
+    ):
+        raise ValueError(f"{model['public_model_id']}: verified status lacks evidence flags")
 
 
 def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
@@ -272,7 +274,7 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
         raise ValueError(f"canonical ledger must contain {EXPECTED_CANONICAL_COUNT} models")
     membership = payload.get("membership")
     if not isinstance(membership, Mapping):
-        raise ValueError("canonical ledger membership metadata is missing")
+        raise TypeError("canonical ledger membership metadata is missing")
     if membership.get("count") != EXPECTED_CANONICAL_COUNT:
         raise ValueError("canonical ledger membership count drifted")
     if tuple(membership.get("canonical_rank_range", ())) != (1, EXPECTED_CANONICAL_COUNT):
@@ -282,7 +284,7 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
 
     for index, model in enumerate(models, start=1):
         if not isinstance(model, Mapping):
-            raise ValueError(f"canonical ledger model {index} is not an object")
+            raise TypeError(f"canonical ledger model {index} is not an object")
         missing = [field for field in REQUIRED_MODEL_FIELDS if field not in model]
         if missing:
             raise ValueError(f"{model.get('public_model_id')}: missing required fields {missing}")
@@ -297,7 +299,7 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
         raise ValueError("canonical ledger contains duplicate public model IDs")
     factory_map = payload.get("implementation_factory_map", {})
     if not isinstance(factory_map, Mapping):
-        raise ValueError("implementation_factory_map must be an object")
+        raise TypeError("implementation_factory_map must be an object")
     unknown_factory_ids = sorted(set(factory_map) - set(ids))
     if unknown_factory_ids:
         raise ValueError(f"implementation factory map contains unknown IDs: {unknown_factory_ids}")
@@ -315,16 +317,16 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
 
     score_evidence = payload.get("score_evidence")
     if not isinstance(score_evidence, Mapping):
-        raise ValueError("score_evidence metadata is missing")
+        raise TypeError("score_evidence metadata is missing")
     for field in ("cells_per_model", "horizon_count", "portfolio_count"):
         if not isinstance(score_evidence.get(field), int) or score_evidence[field] <= 0:
             raise ValueError(f"score_evidence {field} must be a positive integer")
     retained_artifact = score_evidence.get("retained_score_artifact")
     if not isinstance(retained_artifact, Mapping):
-        raise ValueError("score_evidence retained artifact metadata is missing")
+        raise TypeError("score_evidence retained artifact metadata is missing")
     source_provenance = payload.get("source_provenance")
     if not isinstance(source_provenance, Mapping):
-        raise ValueError("source_provenance metadata is missing")
+        raise TypeError("source_provenance metadata is missing")
     if not _is_git_sha(source_provenance.get("pinned_source_revision")):
         raise ValueError("source_provenance pinned source revision is not a full commit SHA")
     for field in ("observed_sha256", "declared_sha256"):
@@ -353,7 +355,7 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
             raise ValueError(f"{model['public_model_id']}: source location reference is missing")
         score_precision = model["score_precision"]
         if not isinstance(score_precision, Mapping):
-            raise ValueError(f"{model['public_model_id']}: score precision metadata is malformed")
+            raise TypeError(f"{model['public_model_id']}: score precision metadata is malformed")
         if model["historical_rank"] != model["canonical_rank"] + 11:
             raise ValueError(f"{model['public_model_id']}: rank mapping drifted")
         _validate_score(model, score_evidence)

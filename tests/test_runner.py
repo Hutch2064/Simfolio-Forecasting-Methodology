@@ -1,8 +1,8 @@
 import numpy as np
 
 from simfolio_forecasting_methodology.runner import (
-    OriginTask,
     TERMINAL_FORECAST_SEMANTICS,
+    OriginTask,
     TrainingData,
     evaluate_model,
     evaluate_origin_task,

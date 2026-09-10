@@ -71,11 +71,11 @@ def validate_canonical_175(rows: list[CanonicalRow]) -> None:
 
 
 __all__ = [
-    "CanonicalRow",
     "EXPECTED_CANONICAL_COUNT",
     "EXPECTED_CELLS_PER_MODEL",
     "EXPECTED_SOURCE_RANKS",
     "FRONTIER_SOURCE_ID",
+    "CanonicalRow",
     "load_canonical_175",
     "validate_canonical_175",
 ]

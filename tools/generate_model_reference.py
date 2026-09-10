@@ -4,17 +4,18 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = REPOSITORY_ROOT / "src"
 if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
-from simfolio_forecasting_methodology.catalogue import load_canonical_ledger, validate_canonical_ledger  # noqa: E402
-
+from simfolio_forecasting_methodology.catalogue import (
+    load_canonical_ledger,
+    validate_canonical_ledger,
+)
 
 OUTPUT_PATH = REPOSITORY_ROOT / "docs" / "canonical-model-reference.md"
 
