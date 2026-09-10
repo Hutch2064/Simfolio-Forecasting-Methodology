@@ -25,7 +25,7 @@ checks passed. Its separate Linux frozen-data job passed all nine portability
 checks.
 
 [Follow-up run 34456948385](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34456948385)
-completed successfully after the source-derived INLA array fix from `192fc16`.
+completed successfully after the source-derived INLA array fix from `fefffec`.
 Both macOS 26 ARM64 clean-wheel legs reported 161 passing checks, and the
 Linux frozen-data job reported 9 passed. This is the current hosted CI result;
 it ran at head `fefffecfaacdbe6177fb8c57f70c6bc86ac64061`. It validates the
@@ -64,14 +64,16 @@ an identity check.
 
 Native Frontier factor fitting is sensitive to matrix-factor orientation and
 eigenvector sign conventions. Those representations can differ across BLAS
-implementations even when the implied covariance and forecast values satisfy a
-declared numeric tolerance. Native float64 array bytes therefore are not a
-portable identity across numerical backends.
+implementations while the implied covariance is equivalent. Native same-seed
+paths can differ because factor innovations use those coordinates. Tests
+therefore check fitted-state equivalence under a consistent sign transform,
+and separately compare simulation using the retained source orientation.
+Native float64 array bytes are not a portable identity across backends.
 
 The bounded current-production replay tests a narrower storage contract. It
 quantizes the public marginal paths to float32, runs the recorded uniforms and
 rank mapping, quantizes the mapped paths to float32, and performs the public
-portfolio rejoin. For the three frozen panels in the audit, the mapped arrays
+portfolio rejoin. For the three bounded cases in the audit (one synthetic and two canonical-data cases), the mapped arrays
 and rejoined portfolio arrays were byte-identical to the aligned production
 evidence. This is conditional production-storage parity, not a claim of
 universal native Frontier byte parity.

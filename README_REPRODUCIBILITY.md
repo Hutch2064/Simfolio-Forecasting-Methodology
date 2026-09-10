@@ -41,7 +41,7 @@ label. [Run 34455737291](https://github.com/Hutch2064/Simfolio-Forecasting-Metho
 was the preceding result: it reported 158 passing checks and three INLA
 hash-only failures in each macOS leg; all Frontier and factor checks passed,
 and its Linux frozen-data job passed nine checks. The follow-up with the
-source-derived INLA array fix from `192fc16`, [run 34456948385](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34456948385),
+source-derived INLA array fix from `fefffec`, [run 34456948385](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34456948385),
 completed successfully with 161 passing checks in each macOS leg and 9 passed
 Linux frozen-data checks at head
 `fefffecfaacdbe6177fb8c57f70c6bc86ac64061`. Full Linux numerical parity
@@ -60,7 +60,7 @@ Native Frontier factor fitting can vary in matrix-factor orientation and
 eigenvector sign across BLAS implementations. The bounded current-production
 replay has a narrower storage contract: it quantizes public marginals to
 float32, applies the recorded uniform/rank map, quantizes mapped paths to
-float32, and rejoins the public portfolio. The three frozen-panel replays were
+float32, and rejoins the public portfolio. The three bounded replays (one synthetic and two canonical-data cases) were
 byte-identical under that aligned contract. This does not claim universal
 native Frontier byte identity or live production behavior. The evidence is
 from local source replay and frozen inputs; no live API call or website
@@ -69,10 +69,9 @@ execution was performed.
 The wheel checks run outside the source checkout. They verify package-resource
 loading, the 60-file offline snapshot, the 80/4,080/701,280 protocol counts,
 the registered factory map, bounded family and Frontier parity, and public-safety
-scans before the complete test suite. The current root-side installed-wheel
-check reported 161 passing checks. A separate Python 3.11 check reported 160
-passing and one skipped check, and an isolated omitted-installation check
-passed with `SIMFOLIO_WHEEL_TEST=1`. Run `simfolio-oos coverage --json` for the
+scans before the complete test suite. Independent local clean-wheel checks passed all 161 tests on both Python
+versions. The final Python 3.11 wheel included all 155 tracked package files
+with zero missing, extra, or byte-mismatched files and no skipped tests. Run `simfolio-oos coverage --json` for the
 current per-row counts; the coverage report is authoritative for what is
 executable and what remains evidence-only.
 

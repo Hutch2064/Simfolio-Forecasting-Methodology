@@ -32,15 +32,15 @@ and factor checks passed, and its separate Linux frozen-data job passed nine
 checks.
 
 [Follow-up run 34456948385](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34456948385)
-completed successfully with the source-derived INLA array fix from `192fc16`.
+completed successfully with the source-derived INLA array fix from `fefffec`.
 Each macOS 26 ARM64 clean-wheel leg reported 161 passing checks, and the Linux
 frozen-data job reported 9 passed at head
 `fefffecfaacdbe6177fb8c57f70c6bc86ac64061`. This closes the hosted numerical CI
 gate for that revision. It does not establish full Linux numerical parity,
-reproduce the retained score ranking, or establish live API behavior. The current root-side
-installed-wheel check also reported 161 passing checks. A separate Python 3.11
-check reported 160 passing and one skipped check; an isolated
-omitted-installation check passed with `SIMFOLIO_WHEEL_TEST=1`.
+reproduce the retained score ranking, or establish live API behavior. Independent local clean-wheel checks passed all 161 tests on both Python
+versions. The final Python 3.11 wheel at the same numerical head included all
+155 tracked package files with zero missing, extra, or byte-mismatched files;
+`SIMFOLIO_WHEEL_TEST=1` enabled the installation gate with zero skipped tests.
 
 The older Ubuntu run 34450295393 recorded 18 strict parity/data failures in
 each leg. The newer nine-check Linux frozen-data result supersedes its data
@@ -50,7 +50,7 @@ sensitive to matrix-factor orientation and eigenvector signs across numerical
 backends. The bounded current-production replay has a narrower contract: it
 quantizes public marginals to float32, applies the recorded uniform/rank map,
 quantizes the mapped paths to float32, and rejoins the public portfolio. The
-three frozen-panel replays were byte-identical under that aligned storage
+three bounded replays (one synthetic and two canonical-data cases) were byte-identical under that aligned storage
 contract; this does not establish universal native Frontier byte identity or
 live API behavior.
 
