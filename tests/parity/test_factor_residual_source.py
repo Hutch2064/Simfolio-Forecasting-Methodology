@@ -29,6 +29,8 @@ _FIXTURE_RESOURCE = resources.files("simfolio_forecasting_methodology").joinpath
 )
 FIT_NUMERIC_RTOL = 0.0
 FIT_NUMERIC_ATOL = 2e-12
+NATIVE_PATH_RTOL = 0.0
+NATIVE_PATH_ATOL = 2e-12
 
 
 def _load_fixture() -> dict[str, Any]:
@@ -48,6 +50,16 @@ def _array_record(values: Any, *, include_values: bool = False) -> dict[str, Any
     if include_values:
         record["values"] = array.tolist()
     return record
+
+
+def _assert_source_array_record(
+    values: Any, expected: Mapping[str, Any], path: str
+) -> None:
+    required = {"dtype", "shape", "sha256"}
+    assert set(expected) == required, f"{path}: source array record fields changed"
+    assert _array_record(values) == dict(expected), (
+        f"{path}: stored source array values do not match their preserved digest"
+    )
 
 
 def _plain(value: Any) -> Any:
@@ -307,16 +319,40 @@ def test_both_factor_paths_match_source_fit_states_and_daily_paths() -> None:
         )
         paths = model.simulate_daily_log_returns(training, context)
         expected = np.asarray(case["paths"], dtype=np.float64)
-        np.testing.assert_allclose(paths, expected, rtol=2e-10, atol=2e-12)
-        assert _array_record(paths) == case["paths_array"]
+        _assert_source_array_record(expected, case["paths_array"], f"{model_id}.paths")
+        assert paths.shape == expected.shape, f"{model_id}: native path shape changed"
+        assert paths.dtype == expected.dtype, f"{model_id}: native path dtype changed"
+        np.testing.assert_allclose(
+            paths,
+            expected,
+            rtol=NATIVE_PATH_RTOL,
+            atol=NATIVE_PATH_ATOL,
+            err_msg=f"{model_id}: native paths differ from pinned source",
+        )
         dispatcher = case["dispatcher"]
         _assert_fit_summary_equal(dispatcher["fit"], case["fit"])
         for horizon_key, terminal_record in dispatcher["terminals"].items():
             horizon = int(horizon_key)
             terminal = np.cumsum(paths, axis=1, dtype=np.float64)[:, horizon - 1]
             expected_terminal = np.asarray(terminal_record["values"], dtype=np.float64)
-            np.testing.assert_array_equal(terminal, expected_terminal)
-            assert _array_record(terminal) == terminal_record["array"]
+            _assert_source_array_record(
+                expected_terminal,
+                terminal_record["array"],
+                f"{model_id}.terminal[{horizon}]",
+            )
+            assert terminal.shape == expected_terminal.shape, (
+                f"{model_id}: terminal shape changed at horizon {horizon}"
+            )
+            assert terminal.dtype == expected_terminal.dtype, (
+                f"{model_id}: terminal dtype changed at horizon {horizon}"
+            )
+            np.testing.assert_allclose(
+                terminal,
+                expected_terminal,
+                rtol=NATIVE_PATH_RTOL,
+                atol=NATIVE_PATH_ATOL,
+                err_msg=f"{model_id}: terminal paths differ at horizon {horizon}",
+            )
         assert (
             forecast_oos_candidate_seed(
                 context.origin_date,
@@ -332,8 +368,12 @@ def test_factor_fit_fixture_rejects_numeric_perturbation() -> None:
     fixture = _load_fixture()
     expected = fixture["cases"][0]["fit"]
     perturbed = copy.deepcopy(expected)
-    perturbed["model"]["scaler_mean"]["values"][0] += 1e-6
-    with pytest.raises(AssertionError, match="actual array digest"):
+    record = perturbed["model"]["scaler_mean"]
+    record["values"][0] += 1e-6
+    actual_record = _array_record(np.asarray(record["values"], dtype=record["dtype"]))
+    assert actual_record is not None
+    record["sha256"] = actual_record["sha256"]
+    with pytest.raises(AssertionError, match="numeric fit state"):
         _assert_fit_summary_equal(perturbed, expected)
 
 
