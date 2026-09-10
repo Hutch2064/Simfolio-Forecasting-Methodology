@@ -19,7 +19,7 @@ Gaussian dependence uniforms, mapped asset paths, and rejoined daily logs.
 The adapter therefore preserves the source simple-return to log-return input
 round trip, seed contexts, source asset ordering, and rejoin arithmetic for
 this bounded case. The replay evidence is kept in
-`resources/test_fixtures/inla/source_dispatcher_parity_report.json`; the
+`resources/test_fixtures/inla/source_dispatcher_parity_report.json`. The replay
 redirects Numba's cache and loads the machine-local alternate-wrapper path in
 memory without writing to the source tree.
 
