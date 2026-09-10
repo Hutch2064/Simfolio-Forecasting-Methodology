@@ -9,7 +9,6 @@ rebalancing dates cannot silently change.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Set
 
 import numpy as np
 import pandas as pd
@@ -30,12 +29,11 @@ from ..numerical.dynamic_gaussian import (
     simulate_future_gaussian_uniforms,
 )
 
-
 FRONTIER_MODEL_ID = "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced"
 TURNOVER_COST_BPS = 15.0
 
 
-def _historical_rebalance_dates(dates: pd.DatetimeIndex, frequency: str) -> Set[pd.Timestamp]:
+def _historical_rebalance_dates(dates: pd.DatetimeIndex, frequency: str) -> set[pd.Timestamp]:
     normalized = str(frequency or "none").lower()
     if normalized in {"none", ""}:
         return set()
@@ -57,7 +55,7 @@ def _historical_rebalance_dates(dates: pd.DatetimeIndex, frequency: str) -> Set[
         return set()
     positions = np.unique(dates.searchsorted(target_dates, side="right") - 1)
     positions = positions[positions >= 0]
-    return set(pd.Timestamp(value) for value in dates.take(positions))
+    return {pd.Timestamp(value) for value in dates.take(positions)}
 
 
 def _validate_calendar(training: TrainingData, context: ForecastContext) -> tuple[pd.DatetimeIndex, pd.DatetimeIndex]:
@@ -134,7 +132,6 @@ class HistoricalFrontierModel:
             marginal[:, :, asset_index] = simulate_fastmap_marginal(fit, simulations, horizon, asset_seed)
         if assets.shape[1] == 1:
             dependent_assets = marginal
-            dependence_meta = {"single_asset_limit": True}
         else:
             dependence = fit_dynamic_gaussian_factor_model(assets)
             dependence_seed = deterministic_seed(
@@ -146,7 +143,6 @@ class HistoricalFrontierModel:
             )
             uniforms = simulate_future_gaussian_uniforms(dependence, simulations, horizon, np.random.default_rng(dependence_seed))
             dependent_assets = map_uniforms_to_marginal_paths(marginal, uniforms)
-            dependence_meta = {"factor_count": int(dependence["factor_count"])}
         full_dates = train_dates.append(future_dates)
         rebalance_dates = _historical_rebalance_dates(full_dates, training.policy.rebalance)
         rebalance_mask = np.asarray([date in rebalance_dates for date in future_dates], dtype=bool)

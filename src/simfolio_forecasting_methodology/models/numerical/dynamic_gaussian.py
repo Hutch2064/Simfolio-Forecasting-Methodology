@@ -9,10 +9,11 @@ the reference path used for source parity probes.
 from __future__ import annotations
 
 import math
-from typing import Any, Dict, Optional, Sequence, Tuple
+from collections.abc import Sequence
+from typing import Any
 
 import numpy as np
-from scipy.special import ndtr, ndtri
+from scipy.special import ndtri
 from scipy.stats import rankdata
 
 
@@ -26,7 +27,7 @@ def pseudo_observations(values: np.ndarray) -> np.ndarray:
     return np.clip(ranks / float(values.shape[0] + 1), 1e-8, 1.0 - 1e-8).astype(np.float64)
 
 
-def fit_dynamic_gaussian_factor_model(history: np.ndarray) -> Dict[str, Any]:
+def fit_dynamic_gaussian_factor_model(history: np.ndarray) -> dict[str, Any]:
     values = np.asarray(history, dtype=np.float64)
     if values.ndim != 2 or values.shape[0] < 80 or values.shape[1] < 2:
         raise ValueError("frontier_requires_80_observations_and_two_assets")
@@ -74,7 +75,7 @@ def fit_dynamic_gaussian_factor_model(history: np.ndarray) -> Dict[str, Any]:
     }
 
 
-def kalman_terminal_posterior(model: Dict[str, Any]) -> Tuple[np.ndarray, np.ndarray]:
+def kalman_terminal_posterior(model: dict[str, Any]) -> tuple[np.ndarray, np.ndarray]:
     observations = np.asarray(model["observations"], dtype=np.float64)
     loading = np.asarray(model["loading"], dtype=np.float64)
     mean = np.asarray(model["mean"], dtype=np.float64)
@@ -106,7 +107,7 @@ def kalman_terminal_posterior(model: Dict[str, Any]) -> Tuple[np.ndarray, np.nda
 
 
 def simulate_future_gaussian_uniforms(
-    model: Dict[str, Any],
+    model: dict[str, Any],
     simulations: int,
     horizon: int,
     rng: np.random.Generator,

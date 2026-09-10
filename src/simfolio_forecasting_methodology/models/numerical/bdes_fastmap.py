@@ -12,10 +12,20 @@ from __future__ import annotations
 
 import hashlib
 import math
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
+from collections.abc import Mapping
+from typing import Any
 
 import numpy as np
 from scipy.optimize import minimize
+
+try:
+    from numba import njit as _numba_njit
+except ImportError:  # pragma: no cover - optional source-compatible accelerator
+    def _numba_njit(*_args: Any, **_kwargs: Any):
+        def decorate(function: Any) -> Any:
+            return function
+
+        return decorate
 
 
 SV_LOG_CHI_SQUARE_MEAN = -1.2703628454614782
@@ -31,10 +41,11 @@ FRONTIER_MARGINAL_ID = (
 )
 FRONTIER_DEPENDENCE_ID = "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced"
 
-# These are the candidate dictionary values from the source-research registry.
-# The public model accepts no alternate values because silently changing one of
-# them would create a different historical candidate.
-FRONTIER_CANDIDATE: Dict[str, Any] = {
+# These are the numerical candidate values from the source-research registry.
+# Deployment-only controls are intentionally omitted; model and seed identity
+# remain explicit, and the public model accepts no alternate values because
+# silently changing one of them would create a different historical candidate.
+FRONTIER_CANDIDATE: dict[str, Any] = {
     "ablation_family": "current_production_bdes_cagr_fast_map_laplace",
     "id": FRONTIER_MARGINAL_ID,
     "type": "bdes_non_mcmc_sv_overlay",
@@ -42,7 +53,6 @@ FRONTIER_CANDIDATE: Dict[str, Any] = {
     "forecast_level": "portfolio_return",
     "factor_model": "not_applicable",
     "regime_model": "not_applicable",
-    "sv_research_baseline": False,
     "mean_component": "portfolio_likelihood_estimated_latent_sharpe_dlm_to_historical_cagr_anchor",
     "mean_model_ablation_of": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
     "innovation_component": "bdes_multiscale_latent_log_volatility_with_conditional_sharpe_mean_scaling",
@@ -86,13 +96,10 @@ FRONTIER_CANDIDATE: Dict[str, Any] = {
     "sv_research_baseline": False,
     "simulation_method": FRONTIER_MARGINAL_ID,
     "selection_method": "pre_specified_bdes_cagr_fast_map_laplace_sv_overlay_validation",
-    "ablation_family": "current_production_bdes_cagr_fast_map_laplace",
     "feature_family": "current_production_bdes_cagr_non_mcmc_state_inference",
     "comparison_target": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
     "previous_incumbent_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
-    "rollback_env_var": "SIMFOLIO_FORECAST_MODEL=bdes_mcmc",
     "validation_status": "paired_80_portfolio_fast_map_laplace_sigma_point_sv_overlay_candidate",
-    "production_status": "promoted_to_live_engine_20260703",
     "parameter_sampler": "deterministic_map_laplace_sigma_points",
     "state_inference": "map_laplace_sigma_points",
     "transformed_parameter_mcmc": False,
@@ -177,7 +184,7 @@ def stationary_bootstrap_indices(
     return out
 
 
-def _hac_mean_standard_error(values: np.ndarray) -> Tuple[float, int, float]:
+def _hac_mean_standard_error(values: np.ndarray) -> tuple[float, int, float]:
     x = np.asarray(values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 2:
@@ -206,7 +213,7 @@ DLM_DRIFT_MAX_ANNUAL_DRIFT_SHARPE_SD = 2.5
 DLM_DRIFT_STATE_VAR_RATIO_MAX = float((DLM_DRIFT_MAX_ANNUAL_DRIFT_SHARPE_SD**2) / 252.0)
 
 
-def _overlay_half_life_days(persistence: float) -> Optional[float]:
+def _overlay_half_life_days(persistence: float) -> float | None:
     p = abs(float(persistence))
     if not np.isfinite(p) or p <= 0.0 or p >= 0.999999:
         return None
@@ -249,7 +256,7 @@ def _kalman_ar1_drift_filter(
     obs_var: float,
     phi: float,
     state_var_ratio: float,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     values = np.asarray(y, dtype=np.float64)
     obs = float(obs_var)
     phi_value = float(np.clip(phi, DLM_DRIFT_PHI_MIN, DLM_DRIFT_PHI_MAX))
@@ -296,7 +303,7 @@ def _estimate_evidence_dlm_drift_params(
     *,
     obs_var: float,
     signal_ratio_start: float,
-) -> Dict[str, float]:
+) -> dict[str, float]:
     values = np.asarray(centered_returns, dtype=np.float64)
     values = values[np.isfinite(values)]
     ratio_start = float(np.clip(signal_ratio_start, DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX))
@@ -334,7 +341,7 @@ def _estimate_evidence_dlm_drift_params(
     return {"phi": float(best_phi), "state_var_ratio": float(best_ratio), "loglik": float(best_loglik)}
 
 
-def dlm_mu_draw_paths(fit: Mapping[str, Any], total_days: int, n_paths: int, rng: np.random.Generator) -> Optional[np.ndarray]:
+def dlm_mu_draw_paths(fit: Mapping[str, Any], total_days: int, n_paths: int, rng: np.random.Generator) -> np.ndarray | None:
     if not bool(fit.get("dlm_drift_paths", False)) or int(total_days) <= 0 or int(n_paths) <= 0:
         return None
     anchor_mu = float(fit.get("dlm_long_run_anchor_mean", 0.0))
@@ -354,7 +361,7 @@ def dlm_mu_draw_paths(fit: Mapping[str, Any], total_days: int, n_paths: int, rng
     return out if np.all(np.isfinite(out)) else None
 
 
-def _sv_observed_log_variance(train_values: np.ndarray, mu: float, *, winsorize: bool = True) -> Tuple[np.ndarray, np.ndarray]:
+def _sv_observed_log_variance(train_values: np.ndarray, mu: float, *, winsorize: bool = True) -> tuple[np.ndarray, np.ndarray]:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     eps_x = (x - float(mu)) * 100.0
@@ -376,7 +383,7 @@ def _sv_observed_log_variance(train_values: np.ndarray, mu: float, *, winsorize:
     return observed.astype(np.float64), eps_x[: observed.size].astype(np.float64)
 
 
-def _sv_kalman_filter(observed_log_var: np.ndarray, level: float, phi: float, eta: float, *, return_path: bool = False) -> Tuple[float, np.ndarray, np.ndarray]:
+def _sv_kalman_filter(observed_log_var: np.ndarray, level: float, phi: float, eta: float, *, return_path: bool = False) -> tuple[float, np.ndarray, np.ndarray]:
     y = np.asarray(observed_log_var, dtype=np.float64)
     y = y[np.isfinite(y)]
     if y.size == 0 or not all(np.isfinite(v) for v in (level, phi, eta)):
@@ -406,7 +413,7 @@ def _sv_kalman_filter(observed_log_var: np.ndarray, level: float, phi: float, et
     return float(loglik), filtered, filtered_var
 
 
-def _initial_sv_state_space_params(observed_log_var: np.ndarray) -> Tuple[float, float, float]:
+def _initial_sv_state_space_params(observed_log_var: np.ndarray) -> tuple[float, float, float]:
     y = np.asarray(observed_log_var, dtype=np.float64)
     y = y[np.isfinite(y)]
     level = float(np.mean(y)) if y.size else 0.0
@@ -448,7 +455,7 @@ def _sv_transformed_log_posterior(y: np.ndarray, level: float, phi_logit: float,
     return float(likelihood + prior_level + prior_phi + prior_eta + math.log(max(phi * (1.0 - phi), 1e-300)) + log_eta)
 
 
-def _fit_sv_map_state_space_params(observed_log_var: np.ndarray, *, start_count: int = 1, maxiter: int = 60) -> Tuple[float, float, float]:
+def _fit_sv_map_state_space_params(observed_log_var: np.ndarray, *, start_count: int = 1, maxiter: int = 60) -> tuple[float, float, float]:
     y = np.asarray(observed_log_var, dtype=np.float64)
     y = y[np.isfinite(y)]
     if y.size < 30:
@@ -461,7 +468,7 @@ def _fit_sv_map_state_space_params(observed_log_var: np.ndarray, *, start_count:
         return float(-value) if np.isfinite(value) else 1e100
 
     starts = [(init_level, init_phi, init_eta), (init_level, 0.90, max(init_eta, 0.10)), (init_level, 0.97, max(init_eta * 0.5, 0.08)), (float(np.median(y)), 0.985, 0.12)]
-    best: Optional[Tuple[float, np.ndarray]] = None
+    best: tuple[float, np.ndarray] | None = None
     for level, phi, eta in starts[: int(np.clip(int(start_count), 1, len(starts)))]:
         x0 = np.asarray([level, _logit(float(np.clip(phi, 0.001, 0.995))), math.log(float(np.clip(eta, 0.02, 2.5)))], dtype=np.float64)
         result = minimize(objective, x0, method="L-BFGS-B", bounds=((float(y_lo - 4.0), float(y_hi + 4.0)), (-7.0, 7.0), (math.log(0.02), math.log(2.5))), options={"maxiter": int(max(1, maxiter))})
@@ -474,7 +481,7 @@ def _fit_sv_map_state_space_params(observed_log_var: np.ndarray, *, start_count:
     return float(params[0]), float(_inv_logit(float(params[1]))), float(math.exp(float(params[2])))
 
 
-def _sv_kalman_rts_smoother_mean(observed_log_var: np.ndarray, level: float, phi: float, eta: float) -> Tuple[float, np.ndarray, np.ndarray]:
+def _sv_kalman_rts_smoother_mean(observed_log_var: np.ndarray, level: float, phi: float, eta: float) -> tuple[float, np.ndarray, np.ndarray]:
     y = np.asarray(observed_log_var, dtype=np.float64)
     y = y[np.isfinite(y)]
     n = int(y.size)
@@ -505,7 +512,7 @@ def _sv_kalman_rts_smoother_mean(observed_log_var: np.ndarray, level: float, phi
     return float(loglik), np.clip(smooth_mean, -18.0, 18.0), smooth_var
 
 
-def _fast_bdes_delta_method_sigma_samples(*, state_level: float, state_phi: float, state_eta: float, last_log_var: float, rho: float, h_path: np.ndarray) -> List[Tuple[float, float, float, float, float]]:
+def _fast_bdes_delta_method_sigma_samples(*, state_level: float, state_phi: float, state_eta: float, last_log_var: float, rho: float, h_path: np.ndarray) -> list[tuple[float, float, float, float, float]]:
     h = np.asarray(h_path, dtype=np.float64)
     h = h[np.isfinite(h)]
     baseline = (float(state_level), float(np.clip(state_phi, 0.0, 0.995)), float(np.clip(state_eta, 0.02, 2.50)), float(np.clip(last_log_var, -18.0, 18.0)), float(np.clip(rho, -0.95, 0.95)))
@@ -519,8 +526,8 @@ def _fast_bdes_delta_method_sigma_samples(*, state_level: float, state_phi: floa
     last_state_se = math.sqrt(max(1.0 / ((1.0 / max(eta * eta, 1e-10)) + (1.0 / max(SV_LOG_CHI_SQUARE_VAR, 1e-10))), 1e-10))
     rho_se = math.sqrt(max((1.0 - baseline[4] * baseline[4]) ** 2 / max(n_eff - 1.0, 1.0), 1e-10))
     raw = [baseline, (baseline[0] - level_se, baseline[1], baseline[2], baseline[3], baseline[4]), (baseline[0] + level_se, baseline[1], baseline[2], baseline[3], baseline[4]), (baseline[0], baseline[1] - phi_se, baseline[2], baseline[3], baseline[4]), (baseline[0], baseline[1] + phi_se, baseline[2], baseline[3], baseline[4]), (baseline[0], baseline[1], baseline[2] * math.exp(-eta_log_se), baseline[3], baseline[4]), (baseline[0], baseline[1], baseline[2] * math.exp(eta_log_se), baseline[3], baseline[4]), (baseline[0], baseline[1], baseline[2], baseline[3] - last_state_se, baseline[4]), (baseline[0], baseline[1], baseline[2], baseline[3] + last_state_se, baseline[4]), (baseline[0], baseline[1], baseline[2], baseline[3], baseline[4] - rho_se), (baseline[0], baseline[1], baseline[2], baseline[3], baseline[4] + rho_se)]
-    samples: List[Tuple[float, float, float, float, float]] = []
-    seen: set[Tuple[float, float, float, float, float]] = set()
+    samples: list[tuple[float, float, float, float, float]] = []
+    seen: set[tuple[float, float, float, float, float]] = set()
     for values in raw:
         sample = (float(np.clip(values[0], -18.0, 18.0)), float(np.clip(values[1], 0.0, 0.995)), float(np.clip(values[2], 0.02, 2.50)), float(np.clip(values[3], -18.0, 18.0)), float(np.clip(values[4], -0.95, 0.95)))
         key = tuple(round(value, 12) for value in sample)
@@ -529,7 +536,7 @@ def _fast_bdes_delta_method_sigma_samples(*, state_level: float, state_phi: floa
     return samples or [baseline]
 
 
-def _standardized_empirical_innovation_pool(values: np.ndarray, *, clip: Optional[float] = None, method: str = "mean_std") -> Optional[np.ndarray]:
+def _standardized_empirical_innovation_pool(values: np.ndarray, *, clip: float | None = None, method: str = "mean_std") -> np.ndarray | None:
     z = np.asarray(values, dtype=np.float64)
     z = z[np.isfinite(z)]
     if z.size == 0:
@@ -574,7 +581,7 @@ def _bdes_ewma(x: np.ndarray, alpha: float) -> np.ndarray:
     return out
 
 
-def _bdes_multiscale_components(h_path: np.ndarray, k_star: int, scale_grid: str = BDES_MULTISCALE_GRID_FIXED) -> Dict[str, Any]:
+def _bdes_multiscale_components(h_path: np.ndarray, k_star: int, scale_grid: str = BDES_MULTISCALE_GRID_FIXED) -> dict[str, Any]:
     h = np.asarray(h_path, dtype=float); finite = h[np.isfinite(h)]; fill = float(np.nanmedian(finite)) if finite.size else 0.0
     h = np.clip(np.nan_to_num(h, nan=fill, posinf=fill, neginf=fill), -18.0, 18.0); n = h.size; ell = float(np.nanmean(h)); centered = h - ell
     half_lives = _bdes_multiscale_half_lives(n, k_star, scale_grid); phis = np.exp(-np.log(2.0) / np.maximum(half_lives, 2.0)); q = np.empty((n, phis.size), dtype=float)
@@ -609,7 +616,7 @@ def _bdes_multiscale_components(h_path: np.ndarray, k_star: int, scale_grid: str
     return {"ell": ell, "phis": phis, "b": b, "q_last": q[-1, :].copy(), "q_var": q_var, "half_lives": half_lives.copy(), "scale_count": int(half_lives.size), "hbar": float(np.nanmean(h)), "h_low": float(h_q005 - h_iqr), "h_high": float(h_q995 + h_iqr), "component_low": float(np.quantile(component, 0.01)), "component_high": float(np.quantile(component, 0.99)), "resid_var": resid_var, "residual_last": float(residual[-1]), "residual_phi": residual_phi, "residual_innovation_sd": residual_innovation_sd, "residual_common_loading": residual_common_loading, "component_var": component_var, "reliability_weight": reliability_weight, "inverse_mse_weight": inverse_mse_weight, "dominant_half_life_days": dominant_half_life, "max_half_life_days": float(np.max(half_lives))}
 
 
-def fit_bdes_fastmap(log_returns: np.ndarray, candidate: Optional[Mapping[str, Any]] = None) -> Dict[str, Any]:
+def fit_bdes_fastmap(log_returns: np.ndarray, candidate: Mapping[str, Any] | None = None) -> dict[str, Any]:
     """Fit the exact promoted historical FastMAP candidate for one asset."""
     settings = dict(FRONTIER_CANDIDATE if candidate is None else candidate)
     if settings != FRONTIER_CANDIDATE:
@@ -640,6 +647,7 @@ def fit_bdes_fastmap(log_returns: np.ndarray, candidate: Optional[Mapping[str, A
     return {**settings, "mu": posterior_mean, "residuals": (x - sample_mu).astype(np.float64), "base_fit": {"sample_mu": sample_mu, "sigma": sample_sigma, "posterior_mean": posterior_mean, "posterior_sd": posterior_sd, "posterior_mu_draws": False, "dlm_drift_paths": True, "dlm_long_run_anchor_mean": sample_mu, "dlm_state_transition_phi": phi_dlm, "dlm_state_noise_var": float(filtered["state_noise_var"]) * annual_sharpe_to_daily_mu**2, "dlm_state_posterior_deviation_mean": float(filtered["final_mean"]) * annual_sharpe_to_daily_mu, "dlm_state_posterior_deviation_var": float(filtered["final_var"]) * annual_sharpe_to_daily_mu**2, "standardized_residuals": np.clip(z, -20.0, 20.0), "sample_mean": sample_mu}, "innovation_pool": z_pool, "posterior_samples": posterior_samples, "posterior_center": (float(level), float(phi), float(eta), float(state_path[-1]), float(rho)), "bdes_multiscale_vol": bdes, "unclipped_empirical_innovations": True, "leverage": True, "leverage_alignment": "lagged_return", "sv_sigma_scale": 1.0, "state_loglikelihood": float(state_loglik), "state_path_variance_last": float(state_var_path[-1]), "n_obs": int(x.size), "mean_meta": {"method": "evidence_estimated_ar1_latent_sharpe_dlm_with_historical_cagr_anchor", "sample_mean": sample_mu, "sample_sigma": sample_sigma, "hac_bandwidth": int(bandwidth), "hac_long_run_variance": float(long_run_var), "historical_cagr_anchor": True}}
 
 
+@_numba_njit(cache=False)
 def simulate_full_mcmc_sv_bdes_log_paths_serial_numba(
     z_draws: np.ndarray,
     path_mu: np.ndarray,
@@ -716,7 +724,10 @@ def simulate_full_mcmc_sv_bdes_log_paths_serial_numba(
                 for q_idx in range(q_last.size):
                     q_state[q_idx] = q_phis[q_idx] * q_state[q_idx] + q_sd[q_idx] * center_state_shock
                     log_var_day += q_state[q_idx] * q_b[q_idx]
-                log_var_day = float(np.clip(log_var_day, q_low, q_high))
+                if log_var_day < q_low:
+                    log_var_day = q_low
+                elif log_var_day > q_high:
+                    log_var_day = q_high
                 if posterior_centered_multiscale:
                     sample_ar1_log_var = level + phi * (sample_ar1_log_var - level) + eta * state_shock
                     center_ar1_log_var = center_level + center_phi * (center_ar1_log_var - center_level) + center_eta * center_state_shock
@@ -726,7 +737,10 @@ def simulate_full_mcmc_sv_bdes_log_paths_serial_numba(
             else:
                 log_var = level + phi * (log_var - level) + eta * state_shock
             if not unclipped_sv_measurement:
-                log_var = float(np.clip(log_var, -18.0, 18.0))
+                if log_var < -18.0:
+                    log_var = -18.0
+                elif log_var > 18.0:
+                    log_var = 18.0
             sigma = sigma_scale * math.exp(0.5 * log_var) / 100.0
             day_mu = float(path_values[row_idx, day_idx])
             if mean_state_scaling_code == 1:
@@ -734,29 +748,90 @@ def simulate_full_mcmc_sv_bdes_log_paths_serial_numba(
             elif mean_state_scaling_code == 2:
                 ratio = sigma / mean_sigma_denom; day_mu = day_mu * ratio * ratio
             value = day_mu + sigma * z
-            out[row_idx, day_idx] = float(np.clip(value, -1.0, 1.0)) if clip_simulated_returns else value
+            if clip_simulated_returns:
+                if value < -1.0:
+                    value = -1.0
+                elif value > 1.0:
+                    value = 1.0
+            out[row_idx, day_idx] = value
             prev_z = z
     return out
 
 
 def simulate_fastmap_marginal(fit: Mapping[str, Any], simulations: int, horizon: int, seed: int) -> np.ndarray:
     n_paths, total_days = int(simulations), int(horizon)
-    if n_paths <= 0 or total_days <= 0: return np.empty((max(n_paths, 0), max(total_days, 0)), dtype=np.float64)
-    samples = list(fit.get("posterior_samples") or []); z_pool = np.asarray(fit.get("innovation_pool"), dtype=np.float64); z_pool = z_pool[np.isfinite(z_pool)]
-    if not samples or z_pool.size < FULL_MCMC_SV_MIN_OBS: raise ValueError("frontier_fastmap_missing_fit_state")
-    rng = np.random.default_rng(int(seed)); block_length = max(politis_white_block_length(z_pool), politis_white_block_length(z_pool * z_pool)); z_indices = stationary_bootstrap_indices(z_pool.size, block_length, total_days, n_paths, rng); z_draws = z_pool[z_indices]
-    sample_idx = rng.integers(0, len(samples), size=n_paths); levels = np.asarray([samples[int(idx)][0] for idx in sample_idx]); phis = np.asarray([samples[int(idx)][1] for idx in sample_idx]); etas = np.asarray([samples[int(idx)][2] for idx in sample_idx]); log_var = np.asarray([samples[int(idx)][3] for idx in sample_idx]); rhos = np.asarray([samples[int(idx)][4] for idx in sample_idx]); rhos = np.where(np.isfinite(rhos), rhos, 0.0)
+    if n_paths <= 0 or total_days <= 0:
+        return np.empty((max(n_paths, 0), max(total_days, 0)), dtype=np.float64)
+    samples = list(fit.get("posterior_samples") or [])
+    z_pool = np.asarray(fit.get("innovation_pool"), dtype=np.float64)
+    z_pool = z_pool[np.isfinite(z_pool)]
+    if not samples or z_pool.size < FULL_MCMC_SV_MIN_OBS:
+        raise ValueError("frontier_fastmap_missing_fit_state")
+    rng = np.random.default_rng(int(seed))
+    block_length = max(
+        politis_white_block_length(z_pool),
+        politis_white_block_length(z_pool * z_pool),
+    )
+    z_indices = stationary_bootstrap_indices(
+        z_pool.size,
+        block_length,
+        total_days,
+        n_paths,
+        rng,
+    )
+    z_draws = z_pool[z_indices]
+    sample_idx = rng.integers(0, len(samples), size=n_paths)
+    levels = np.asarray([samples[int(idx)][0] for idx in sample_idx], dtype=np.float64)
+    phis = np.asarray([samples[int(idx)][1] for idx in sample_idx], dtype=np.float64)
+    etas = np.asarray([samples[int(idx)][2] for idx in sample_idx], dtype=np.float64)
+    log_var = np.asarray([samples[int(idx)][3] for idx in sample_idx], dtype=np.float64)
+    rhos = np.asarray([samples[int(idx)][4] for idx in sample_idx], dtype=np.float64)
+    rhos = np.where(np.isfinite(rhos), rhos, 0.0)
     # The historical simulator draws the DLM mean paths before the leverage
     # and residual shock matrices.  Keep that ordering so the seed alias is
     # byte-for-byte compatible with the academic wrapper.
     path_mu = dlm_mu_draw_paths(fit["base_fit"], total_days, n_paths, rng)
     if path_mu is None:
         raise ValueError("frontier_fastmap_missing_dlm_mean_paths")
-    prev_z = rng.choice(z_pool, size=n_paths, replace=True); base_state_shocks = rng.normal(0.0, 1.0, size=(n_paths, total_days)); residual_shocks = rng.normal(0.0, 1.0, size=(n_paths, total_days)); q = fit["bdes_multiscale_vol"]; q_state = np.tile(np.asarray(q["q_last"], dtype=np.float64).reshape(1, -1), (n_paths, 1)); q_phis = np.asarray(q["phis"], dtype=np.float64).reshape(1, -1); q_b = np.asarray(q["b"], dtype=np.float64); q_sd = np.sqrt(np.maximum(np.asarray(q["q_var"], dtype=np.float64), 1e-10)).reshape(1, -1); residual_state = np.full(n_paths, float(q["residual_last"]))
-    out = np.empty((n_paths, total_days), dtype=np.float64); mean_sigma = max(float(fit["base_fit"]["sigma"]), np.finfo(np.float64).tiny); residual_phi = float(q["residual_phi"]); residual_sd = float(q["residual_innovation_sd"]); common_loading = float(np.clip(q["residual_common_loading"], -1.0, 1.0)); level_q, high_q = float(q["h_low"]), float(q["h_high"]); q_ell = float(q["ell"])
-    for day in range(total_days):
-        z = z_draws[:, day]; state_shock = rhos * prev_z + np.sqrt(np.maximum(1.0 - rhos * rhos, 1e-8)) * base_state_shocks[:, day]; q_state = q_phis * q_state + q_sd * state_shock[:, None]; residual_shock = common_loading * state_shock + math.sqrt(max(1.0 - common_loading**2, 0.0)) * residual_shocks[:, day]; residual_state = residual_phi * residual_state + residual_sd * residual_shock; log_var_day = np.clip(q_ell + q_state @ q_b + residual_state, level_q, high_q); sigma = np.exp(0.5 * log_var_day) / 100.0; day_mu = path_mu[:, day] * sigma / mean_sigma; out[:, day] = np.clip(day_mu + sigma * z, -1.0, 1.0); prev_z = z
-    if not np.all(np.isfinite(out)): raise ValueError("frontier_fastmap_nonfinite_paths")
+    q = fit["bdes_multiscale_vol"]
+    out = simulate_full_mcmc_sv_bdes_log_paths_serial_numba(
+        np.asarray(z_draws, dtype=np.float64),
+        np.asarray(path_mu, dtype=np.float64),
+        levels,
+        phis,
+        etas,
+        log_var,
+        rhos,
+        np.asarray(rng.choice(z_pool, size=n_paths, replace=True), dtype=np.float64),
+        np.asarray(rng.normal(0.0, 1.0, size=(n_paths, total_days)), dtype=np.float64),
+        np.asarray(rng.normal(0.0, 1.0, size=(n_paths, total_days)), dtype=np.float64),
+        np.asarray(q["q_last"], dtype=np.float64),
+        np.asarray(q["phis"], dtype=np.float64),
+        np.asarray(q["b"], dtype=np.float64),
+        np.sqrt(np.maximum(np.asarray(q["q_var"], dtype=np.float64), 1e-10)),
+        float(q["ell"]),
+        float(q["residual_last"]),
+        float(q["residual_phi"]),
+        float(q["residual_innovation_sd"]),
+        float(np.clip(q["residual_common_loading"], -1.0, 1.0)),
+        float(q["h_low"]),
+        float(q["h_high"]),
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        max(float(fit["base_fit"]["sigma"]), np.finfo(np.float64).tiny),
+        True,
+        False,
+        False,
+        1,
+        False,
+        True,
+    )
+    if not np.all(np.isfinite(out)):
+        raise ValueError("frontier_fastmap_nonfinite_paths")
     return out
 
 

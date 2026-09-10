@@ -8,7 +8,7 @@ marginal paths, Kalman state, dependent uniforms, and portfolio rejoin.
 
 from __future__ import annotations
 
-from pathlib import Path
+from importlib import resources
 
 import numpy as np
 import pandas as pd
@@ -25,6 +25,7 @@ from simfolio_forecasting_methodology.models.numerical.bdes_fastmap import (
     deterministic_seed,
     fit_bdes_fastmap,
     simulate_fastmap_marginal,
+    simulate_full_mcmc_sv_bdes_log_paths_serial_numba,
 )
 from simfolio_forecasting_methodology.models.numerical.dynamic_gaussian import (
     fit_dynamic_gaussian_factor_model,
@@ -36,11 +37,12 @@ from simfolio_forecasting_methodology.models.numerical.dynamic_gaussian import (
 from simfolio_forecasting_methodology.runner import ForecastContext, PortfolioPolicy, TrainingData
 
 
-FIXTURE = Path(__file__).resolve().parents[2] / "resources/test_fixtures/frontier/source_reference.npz"
-
-
-def _load() -> dict[str, np.ndarray]:
-    with np.load(FIXTURE, allow_pickle=False) as data:
+def _load(name: str = "source_reference.npz") -> dict[str, np.ndarray]:
+    fixture = (
+        resources.files("simfolio_forecasting_methodology")
+        .joinpath("resources", "test_fixtures", "frontier", name)
+    )
+    with fixture.open("rb") as handle, np.load(handle, allow_pickle=False) as data:
         return {name: np.asarray(data[name]) for name in data.files}
 
 
@@ -83,6 +85,70 @@ def test_factor_kalman_uniform_and_rejoin_match_source_fixture() -> None:
     np.testing.assert_allclose(rejoined, fixture["rejoined_log_returns"], rtol=0.0, atol=2e-12)
 
 
+def test_named_serial_bdes_kernel_preserves_measurement_clamp() -> None:
+    output = simulate_full_mcmc_sv_bdes_log_paths_serial_numba(
+        np.ones((1, 1), dtype=np.float64),
+        np.zeros((1, 1), dtype=np.float64),
+        np.zeros(1, dtype=np.float64),
+        np.ones(1, dtype=np.float64),
+        np.zeros(1, dtype=np.float64),
+        np.zeros(1, dtype=np.float64),
+        np.zeros(1, dtype=np.float64),
+        np.zeros(1, dtype=np.float64),
+        np.ones((1, 1), dtype=np.float64),
+        np.zeros((1, 1), dtype=np.float64),
+        np.zeros(1, dtype=np.float64),
+        np.ones(1, dtype=np.float64),
+        np.ones(1, dtype=np.float64),
+        np.ones(1, dtype=np.float64) * 100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -200.0,
+        200.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        False,
+        False,
+        False,
+        0,
+        False,
+        False,
+    )
+    np.testing.assert_allclose(output, np.asarray([[np.exp(9.0) / 100.0]]), rtol=0.0, atol=1e-12)
+
+
+def test_source_rejoin_fixture_exercises_calendar_turnover() -> None:
+    fixture = _load("rejoin_calendar_reference.npz")
+    full_dates = pd.DatetimeIndex(fixture["historical_dates"]).append(
+        pd.DatetimeIndex(fixture["future_dates"])
+    )
+    future_dates = pd.DatetimeIndex(fixture["future_dates"])
+    for policy in ("none", "monthly", "quarterly", "annually"):
+        dates = _historical_rebalance_dates(full_dates, policy)
+        mask = np.asarray([date in dates for date in future_dates], dtype=bool)
+        np.testing.assert_array_equal(mask, fixture[f"mask_{policy}"])
+        output = rebalanced_portfolio_log_paths(
+            fixture["log_paths"],
+            fixture["weights"],
+            mask,
+            cost_per_turnover_bps=float(fixture["cost_bps"]),
+        )
+        np.testing.assert_allclose(
+            output,
+            fixture[f"output_{policy}"],
+            rtol=0.0,
+            atol=2e-14,
+        )
+
+
 def test_public_model_requires_real_calendar_and_returns_frontier_shape() -> None:
     fixture = _load()
     train = TrainingData(
@@ -104,5 +170,6 @@ def test_public_model_requires_real_calendar_and_returns_frontier_shape() -> Non
     result = HistoricalFrontierModel().simulate_daily_log_returns(train, context)
     assert result.shape == (16, 8)
     assert np.isfinite(result).all()
+    np.testing.assert_allclose(result, fixture["rejoined_log_returns"], rtol=0.0, atol=2e-12)
     with np.testing.assert_raises(ValueError):
         HistoricalFrontierModel().simulate_daily_log_returns(train, ForecastContext(**{**context.__dict__, "origin_date": None}))

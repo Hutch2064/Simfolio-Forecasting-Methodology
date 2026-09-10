@@ -14,9 +14,8 @@ import ast
 import hashlib
 import importlib.metadata
 import json
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
-
 
 SOURCE_FUNCTIONS = {
     "engine.py": (
@@ -108,7 +107,7 @@ def build_report(source_root: Path | None, panel_root: Path | None, package_root
             "rejoin": "tmp/asset_level_full_panel_20260823/simfolio_oos_copula_alternatives.py",
             "wrapper": "tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py",
         },
-        "source_linkage": "verified_when_source_root_supplied",
+        "source_linkage": "unverified_without_source_roots",
         "source_function_digests": {},
         "extracted_function_digests": {},
         "dependency_closure": [
@@ -136,7 +135,17 @@ def build_report(source_root: Path | None, panel_root: Path | None, package_root
             if path is not None:
                 digest_out[relative] = _digest_functions(path, names)
         report["source_function_digests"] = digest_out
-        report["source_linkage"] = "verified" if digest_out else "unverified_source_files_missing"
+        expected_count = sum(len(names) for names in SOURCE_FUNCTIONS.values())
+        observed_count = sum(len(names) for names in digest_out.values())
+        report["source_linkage"] = (
+            "verified"
+            if observed_count == expected_count
+            else "partial_source_function_coverage"
+        )
+        report["source_linkage_counts"] = {
+            "expected_function_digests": expected_count,
+            "observed_function_digests": observed_count,
+        }
     local_out: dict[str, dict[str, str]] = {}
     for relative, names in LOCAL_FUNCTIONS.items():
         path = package_root / relative
