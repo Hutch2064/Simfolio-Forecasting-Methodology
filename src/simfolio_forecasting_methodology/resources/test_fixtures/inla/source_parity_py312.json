@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "source_engine_path": "source-research/app/engine.py",
+  "source_engine_sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+  "source_revision": "retained-publication-source",
+  "source_candidate_method": "SimfolioEngine._bdes_cagr_candidate",
+  "generator": {
+    "expression": "np.sin(np.arange(180,dtype=float)/8)*0.01 + np.random.default_rng(2).normal(0,0.01,180)",
+    "length": 180,
+    "fit_min_obs": 5,
+    "simulations": 4,
+    "horizon_days": 10,
+    "simulation_seed": 123
+  },
+  "comparison": {
+    "posterior_samples": {
+      "shape": [
+        81,
+        5
+      ],
+      "dtype": "float64",
+      "sha256": "b16991f52f75342b0e51264c2e0dc1509c64f4a22f7c3e32f5889f1fc47dd37c"
+    },
+    "posterior_sample_weights": {
+      "shape": [
+        81
+      ],
+      "dtype": "float64",
+      "sha256": "f3b51230207a2901f80bb152dfbd99c0d93778753467a36e7565c91996a93793"
+    },
+    "innovation_pool": {
+      "shape": [
+        180
+      ],
+      "dtype": "float64",
+      "sha256": "d2436c2a67a0e909398e9fdadd6eb5dbe879c1ed58036558d90b2bcba9983ac8"
+    },
+    "standardized_residuals": {
+      "shape": [
+        180
+      ],
+      "dtype": "float64",
+      "sha256": "e31ba72a863c5c5227a58f2a96e83965433670f4181a65a3b721f8c7923f0539"
+    },
+    "bdes_q_last": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64",
+      "sha256": "61963870f08f15b4a4f3866f1f7641d3dc37927893e240983061c344264110d0"
+    },
+    "bdes_phis": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64",
+      "sha256": "680f1cd5f53c5b621d2b81298885377c2f216152deed91b5e82b6ebf953933ca"
+    },
+    "bdes_b": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64",
+      "sha256": "556bc5c8e5a898474a82da44b065d4965fd64a328f7148065c9f3bfbef06a6d3"
+    },
+    "bdes_q_var": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64",
+      "sha256": "95219b4d5d40c3ade441c103f092013ad78326cbabb5f814039fc7a9097ac60a"
+    },
+    "bdes_residual_last": -0.018756804538418638,
+    "bdes_residual_phi": 0.8833202103948044,
+    "bdes_residual_innovation_sd": 0.01840452070004354,
+    "bdes_residual_common_loading": 0.30161413987077157,
+    "posterior_center": [
+      0.5881669087233228,
+      0.7245949075083438,
+      0.2171363319414712,
+      0.5834559928271001,
+      -0.14860806905675086
+    ],
+    "paths": {
+      "shape": [
+        4,
+        10
+      ],
+      "dtype": "float64",
+      "sha256": "4d709c77a2fe946ac7dba8c9ac5e2ca0d32a02aa6e459362cade575a1ef59b84"
+    },
+    "source_candidate_digest": "472d8bac243f3b1b123071a21a52d96394e775e8c4accb8d5fa18fd676451034",
+    "source_candidate_key_count": 82,
+    "source_fit_path_exact": true
+  }
+}
