@@ -29,7 +29,7 @@ from simfolio_forecasting_methodology.models.numerical.base_models import (
 
 SOURCE_REVISION = "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
 SOURCE_ENGINE_SHA256 = "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
-MODEL_MEAN = "expanding_sample_mean"
+DEFAULT_MEAN_MODELS = ("expanding_sample_mean",)
 VOL_MODELS = (
     "constant_sample_volatility",
     "garch_1_1_volatility",
@@ -86,31 +86,32 @@ def _source_path_and_tail(resampling: str | None, tail: str) -> tuple[str, str]:
     return path, tail
 
 
-def _candidate_rows() -> list[dict[str, str | None]]:
+def _candidate_rows(mean_models: tuple[str, ...]) -> list[dict[str, str | None]]:
     rows: list[dict[str, str | None]] = []
-    for vol in VOL_MODELS:
-        for innovation in PARAMETRIC_INNOVATIONS:
-            rows.append(
-                {
-                    "model_id": f"{MODEL_MEAN}|{vol}|{innovation}|parametric",
-                    "mean_model": MODEL_MEAN,
-                    "vol_model": vol,
-                    "innovation_method": innovation,
-                    "resampling": None,
-                    "tail_method": "parametric",
-                }
-            )
-        for resampling, tail in EMPIRICAL_VARIANTS:
-            rows.append(
-                {
-                    "model_id": f"{MODEL_MEAN}|{vol}|empirical|{resampling}|{tail}",
-                    "mean_model": MODEL_MEAN,
-                    "vol_model": vol,
-                    "innovation_method": "empirical_standardized_residuals",
-                    "resampling": resampling,
-                    "tail_method": tail,
-                }
-            )
+    for mean_model in mean_models:
+        for vol in VOL_MODELS:
+            for innovation in PARAMETRIC_INNOVATIONS:
+                rows.append(
+                    {
+                        "model_id": f"{mean_model}|{vol}|{innovation}|parametric",
+                        "mean_model": mean_model,
+                        "vol_model": vol,
+                        "innovation_method": innovation,
+                        "resampling": None,
+                        "tail_method": "parametric",
+                    }
+                )
+            for resampling, tail in EMPIRICAL_VARIANTS:
+                rows.append(
+                    {
+                        "model_id": f"{mean_model}|{vol}|empirical|{resampling}|{tail}",
+                        "mean_model": mean_model,
+                        "vol_model": vol,
+                        "innovation_method": "empirical_standardized_residuals",
+                        "resampling": resampling,
+                        "tail_method": tail,
+                    }
+                )
     return rows
 
 
@@ -192,9 +193,9 @@ def _source_arrays(source_root: Path, values: np.ndarray, rows: list[dict[str, s
         sys.path.remove(str(source_root))
 
 
-def generate(source_root: Path, output: Path) -> None:
+def generate(source_root: Path, output: Path, mean_models: tuple[str, ...]) -> None:
     values = _training()
-    rows = _candidate_rows()
+    rows = _candidate_rows(mean_models)
     origin = "2026-05-13"
     horizon = 16
     simulations = 16
@@ -213,6 +214,7 @@ def generate(source_root: Path, output: Path) -> None:
         "simulations": simulations,
         "training_generator": "default_rng(20260823), 600 synthetic finite daily log returns",
         "model_count": len(rows),
+        "mean_models": list(mean_models),
         "array_sha256": hashlib.sha256(output.read_bytes()).hexdigest(),
         "cache_policy": "NUMBA_CACHE_DIR temporary under destination clone; PYTHONDONTWRITEBYTECODE=1",
     }
@@ -224,8 +226,16 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--mean-models",
+        default=",".join(DEFAULT_MEAN_MODELS),
+        help="comma-delimited canonical mean IDs; default generates the first 28-row batch",
+    )
     args = parser.parse_args()
-    generate(args.source_root.resolve(), args.output.resolve())
+    mean_models = tuple(value.strip() for value in str(args.mean_models).split(",") if value.strip())
+    if not mean_models:
+        raise ValueError("at least one mean model is required")
+    generate(args.source_root.resolve(), args.output.resolve(), mean_models)
     return 0
 
 

@@ -1,11 +1,13 @@
 {
-  "array_sha256": "b641625bef54f578d223c5a08d7f66c6a7b53535fe80e5b6734480f9980df683",
+  "array_sha256": "47f885d407be1a854d2d28e326894bc62de4f0e4e9eea2b09d8ae991063d9fc1",
   "cache_policy": "NUMBA_CACHE_DIR temporary under destination clone; PYTHONDONTWRITEBYTECODE=1",
   "horizon_days": 16,
   "mean_models": [
-    "expanding_sample_mean"
+    "expanding_sample_mean",
+    "bic_auto_arma_mean",
+    "factor_premium_near_zero_alpha_shrinkage"
   ],
-  "model_count": 28,
+  "model_count": 84,
   "origin": "2026-05-13",
   "schema": "canonical-base-source-fixture-v1",
   "simulations": 16,

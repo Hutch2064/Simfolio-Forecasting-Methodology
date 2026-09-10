@@ -38,24 +38,29 @@ _EMPIRICAL = (
 _PARAM_KEYS = ("sigma_x", "omega", "alpha[1]", "gamma[1]", "beta[1]", "nu", "eta", "lambda")
 
 
-def _ids() -> list[str]:
+def _ids_for_means(means: tuple[str, ...]) -> list[str]:
     values: list[str] = []
-    for volatility in _VOL_MODELS:
-        values.extend(
-            f"expanding_sample_mean|{volatility}|{innovation}|parametric"
-            for innovation in _PARAMETRIC
-        )
-        values.extend(
-            f"expanding_sample_mean|{volatility}|empirical|{resampling}|{tail}"
-            for resampling, tail in _EMPIRICAL
-        )
+    for mean in means:
+        for volatility in _VOL_MODELS:
+            values.extend(
+                f"{mean}|{volatility}|{innovation}|parametric"
+                for innovation in _PARAMETRIC
+            )
+            values.extend(
+                f"{mean}|{volatility}|empirical|{resampling}|{tail}"
+                for resampling, tail in _EMPIRICAL
+            )
     return values
 
 
-def _load() -> dict[str, np.ndarray]:
+def _ids() -> list[str]:
+    return _ids_for_means(("expanding_sample_mean",))
+
+
+def _load(name: str = "source_reference.npz") -> dict[str, np.ndarray]:
     fixture = (
         resources.files("simfolio_forecasting_methodology")
-        .joinpath("resources", "test_fixtures", "base", "source_reference.npz")
+        .joinpath("resources", "test_fixtures", "base", name)
     )
     with fixture.open("rb") as handle, np.load(handle, allow_pickle=False) as data:
         return {name: np.asarray(data[name]) for name in data.files}
@@ -105,6 +110,47 @@ def test_expanding_source_fixture_matches_fit_state_and_paths() -> None:
         np.testing.assert_allclose(observed, expected, rtol=0.0, atol=2e-12, equal_nan=True)
         seed = historical_base_seed(model_id, "2026-05-13", 16, 16)
         assert seed == int(fixture["seed"][row])
+        paths = simulate_base_paths(
+            fit,
+            horizon_days=16,
+            simulations=16,
+            rng=np.random.default_rng(seed),
+        )
+        np.testing.assert_allclose(paths, fixture["paths"][row], rtol=0.0, atol=2e-12)
+
+
+def test_all_84_mean_and_volatility_branches_match_source_fixture() -> None:
+    fixture = _load("source_reference_all_means.npz")
+    ids = [str(value) for value in fixture["model_ids"]]
+    assert ids == _ids_for_means(
+        (
+            "expanding_sample_mean",
+            "bic_auto_arma_mean",
+            "factor_premium_near_zero_alpha_shrinkage",
+        )
+    )
+    values = fixture["training_log_returns"]
+    for row, model_id in enumerate(ids):
+        fit = fit_base_model(values, parse_compositional_spec(model_id))
+        np.testing.assert_allclose(fit["mu"], fixture["fit_mu"][row], rtol=0.0, atol=2e-12)
+        np.testing.assert_allclose(
+            fit["residuals"], fixture["fit_residuals"][row], rtol=0.0, atol=2e-12
+        )
+        np.testing.assert_allclose(
+            fit["standardized_residuals"],
+            fixture["fit_standardized_residuals"][row],
+            rtol=0.0,
+            atol=2e-12,
+        )
+        np.testing.assert_allclose(
+            fit["vol_fit"]["sigma_x"], fixture["fit_sigma_x"][row], rtol=0.0, atol=2e-12
+        )
+        params = fit["vol_fit"].get("params", {})
+        observed = np.asarray([float(params.get(key, np.nan)) for key in _PARAM_KEYS])
+        np.testing.assert_allclose(
+            observed, fixture["fit_params"][row], rtol=0.0, atol=2e-12, equal_nan=True
+        )
+        seed = historical_base_seed(model_id, "2026-05-13", 16, 16)
         paths = simulate_base_paths(
             fit,
             horizon_days=16,

@@ -100,24 +100,29 @@
       "severity": "low"
     },
     {
-      "finding": "first source fixture covers 28 expanding-mean rows; BIC ARIMA and factor-name dispatch are implemented in the shared closure but not promoted to source-parity-checked rows in this batch.",
+      "finding": "all 84 base rows now have source-derived fit/path parity fixtures; historical score linkage and cross-environment dependency pinning remain unresolved.",
       "id": "M08",
-      "impact": "root can wire the 28-row batch now; promote remaining 56 rows only after separate fixtures under chosen dependency pins.",
-      "severity": "low"
+      "impact": "root can wire all 84 rows after selecting destination dependency pins; do not claim retained historical score reproduction.",
+      "severity": "medium"
     }
   ],
   "implementation": {
+    "all_means_fixture": "src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference_all_means.npz",
+    "all_means_fixture_metadata": "src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference_all_means.json",
+    "all_means_fixture_metadata_sha256": "404e5d1a7bdff21caf96072d77e9433f4bea4f876168c6b8b8b6d09c86873601",
+    "all_means_fixture_sha256": "47f885d407be1a854d2d28e326894bc62de4f0e4e9eea2b09d8ae991063d9fc1",
     "extraction_tool": "tools/extract_base_numeric.py",
-    "extraction_tool_sha256": "b9b3a39da319aa5e0cbb9de2bf155b790c73166f1627de0e920430388146117e",
-    "first_batch_family": "expanding_sample_mean x four canonical volatility models x seven canonical innovation/path-tail variants",
-    "first_batch_rows": 28,
+    "extraction_tool_sha256": "e5f57b77cc478584fb98cf46bec348b9dea697946066321b616797407bb9a1e1",
+    "first_batch_family": "all three canonical means x four canonical volatility models x seven canonical innovation/path-tail variants",
+    "first_batch_rows": 84,
     "fixture": "src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference.npz",
     "fixture_metadata": "src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference.json",
-    "fixture_metadata_sha256": "f9064889aa05c66d72ea932e3722ac55544be924508cc51956a2ebb9b8e09dc9",
+    "fixture_metadata_sha256": "05881a17eec3e5bf0ecb66c39bc9f95807ca630217edb3fe209c91d2848502af",
     "fixture_sha256": "b641625bef54f578d223c5a08d7f66c6a7b53535fe80e5b6734480f9980df683",
     "module": "src/simfolio_forecasting_methodology/models/numerical/base_models.py",
     "module_sha256": "066bea65fe5d91f931c1e4dc1465c04595f1e91e115075ba255daede10e52c39",
     "parity_metrics": {
+      "all_84_rows_fit_and_paths": "0.0 max abs difference under py311 source/extracted generation environment",
       "fit_mu_max_abs": 0.0,
       "fit_parameter_max_abs": 0.0,
       "fixture_generation": "source and extracted arrays compared under identical environment",
@@ -126,13 +131,13 @@
       "sigma_x_max_abs": 0.0,
       "standardized_residual_max_abs": 0.0
     },
-    "tests": "tests/parity/test_base_source.py"
+    "tests": "tests/parity/test_base_source.py (28-row and all-84 source fixtures)"
   },
   "implementation_plan": {
     "cache_policy": "source generation must set NUMBA_CACHE_DIR to temporary directory within own clone before importing numba/source and set PYTHONDONTWRITEBYTECODE=1",
     "daily_output": "(simulations,horizon_days) float64 increments; runner owns cumulative terminal transformation",
     "factory_domain": "exact canonical base84 public IDs only",
-    "first_coherent_batch": "implemented: expanding_sample_mean x four canonical vol models x seven innovation/path-tail configurations (28 rows); BIC and factor means share same closure and are instantiated by strict factory but require separate source parity fixtures",
+    "first_coherent_batch": "implemented: all 84 canonical base rows are strict parameterized factories; 28-row expanding fixture and 84-row all-mean fixture source-parity checked under the documented environment.",
     "unknown_id_policy": "raise ValueError; no generic fallback"
   },
   "ledger": {
