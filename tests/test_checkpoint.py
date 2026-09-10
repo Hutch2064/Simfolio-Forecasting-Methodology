@@ -306,7 +306,7 @@ def test_smoke_data_identity_cannot_claim_the_canonical_dataset():
 
 
 def test_numerical_parameter_resource_changes_implementation_identity():
-    import simfolio_forecasting_methodology.runner as runner
+    from simfolio_forecasting_methodology import runner
     from simfolio_forecasting_methodology.catalogue import canonical_model
     from simfolio_forecasting_methodology.models.registry import build_model
 

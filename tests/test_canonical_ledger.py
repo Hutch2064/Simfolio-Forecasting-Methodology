@@ -60,7 +60,7 @@ def test_each_row_uses_the_exact_flat_contract_and_initial_flags_are_conservativ
         assert model["specification_recovered"] is False
         assert model["source_reference_verified"] is True
         executable = (model["canonical_rank"] == 1 or model["model_family"] == "base"
-                      or model["public_model_id"] in {'stochastic_volatility_ar1_empirical', 'stochastic_volatility_ar1_empirical_sbb', 'zero_mean_gaussian_vol_only', 'constant_mean_gaussian', 'naive_iid_historical_portfolio_bootstrap', 'constant_mean_student_t'})
+                      or model["public_model_id"] in {'dp_mixture_sv_sbb', 'observable_markov_state_sbb', 'stochastic_volatility_ar1_empirical', 'stochastic_volatility_ar1_empirical_sbb', 'zero_mean_gaussian_vol_only', 'constant_mean_gaussian', 'naive_iid_historical_portfolio_bootstrap', 'constant_mean_student_t'})
         assert model["implementation_available"] is executable
         assert model["instantiation_validated"] is executable
         assert model["forecast_smoke_tested"] is executable
@@ -227,6 +227,6 @@ def test_generated_reference_is_current_and_scoped_to_the_ledger():
     )
     assert result.returncode == 0, result.stderr
     reference = (repository_root / "docs/canonical-model-reference.md").read_text(encoding="utf-8")
-    assert reference.count("retained_score_evidence_only_blocked") == 84
+    assert reference.count("retained_score_evidence_only_blocked") == 82
     assert EXPECTED_MEMBERSHIP_DIGEST in reference
     assert "master_369" not in reference

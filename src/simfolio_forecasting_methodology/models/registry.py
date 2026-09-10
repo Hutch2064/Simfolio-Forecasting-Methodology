@@ -16,6 +16,7 @@ from ..catalogue import canonical_model, load_canonical_models
 from .asset_level.frontier import FRONTIER_MODEL_ID, HistoricalFrontierModel
 from .numerical.base_models import CanonicalBaseModel
 from .portfolio.reference_families import REFERENCE_FACTORIES
+from .portfolio.sv_extensions import REFERENCE_FACTORIES as SV_EXTENSION_FACTORIES
 from .portfolio.sv_reference import SVReferenceModel
 
 
@@ -30,6 +31,7 @@ class ModelRegistration:
 _EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {
     FRONTIER_MODEL_ID: HistoricalFrontierModel,
     **REFERENCE_FACTORIES,
+    **SV_EXTENSION_FACTORIES,
     "stochastic_volatility_ar1_empirical": partial(SVReferenceModel, "stochastic_volatility_ar1_empirical"),
     "stochastic_volatility_ar1_empirical_sbb": partial(SVReferenceModel, "stochastic_volatility_ar1_empirical_sbb"),
     **{

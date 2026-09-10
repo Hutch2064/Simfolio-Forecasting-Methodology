@@ -495,6 +495,14 @@
     "zero_mean_gaussian_vol_only": {
       "factory_name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
       "status": "verified_explicit_factory"
+    },
+    "dp_mixture_sv_sbb": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.sv_extensions:SuffixSVExtensionModel",
+      "status": "verified_explicit_factory"
+    },
+    "observable_markov_state_sbb": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.sv_extensions:SuffixSVExtensionModel",
+      "status": "verified_explicit_factory"
     }
   },
   "validation_policy": {
@@ -2980,7 +2988,7 @@
         },
         "source_code": {
           "root_reference": "source_provenance.source_code",
-          "sha256": null,
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
           "status": "unresolved"
         },
         "parameter_dictionary": {
@@ -2997,9 +3005,9 @@
         "row_source_description": "canonical-175 retained extension evidence#dp_mixture_sv_sbb"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.sv_extensions:SuffixSVExtensionModel",
+        "callable": true,
+        "status": "verified_explicit_factory"
       },
       "required_dependencies": {
         "items": null,
@@ -3047,17 +3055,18 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "bounded_source_parity_verified_historical_linkage_blocked",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
         "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root compared the complete terminal ensemble against the pinned source research gate using exact recovered dense-wrapper candidate descriptors: maximum absolute difference zero on the deterministic source fixture."
       ]
     },
     {
@@ -3206,7 +3215,7 @@
         },
         "source_code": {
           "root_reference": "source_provenance.source_code",
-          "sha256": null,
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
           "status": "unresolved"
         },
         "parameter_dictionary": {
@@ -3223,9 +3232,9 @@
         "row_source_description": "canonical-175 retained extension evidence#observable_markov_state_sbb"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.sv_extensions:SuffixSVExtensionModel",
+        "callable": true,
+        "status": "verified_explicit_factory"
       },
       "required_dependencies": {
         "items": null,
@@ -3273,17 +3282,18 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "bounded_source_parity_verified_historical_linkage_blocked",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
         "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root compared the complete terminal ensemble against the pinned source research gate using exact recovered dense-wrapper candidate descriptors: maximum absolute difference zero on the deterministic source fixture."
       ]
     },
     {

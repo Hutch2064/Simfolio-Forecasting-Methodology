@@ -91,17 +91,6 @@ jobs:
           PY
       - name: Lint source and tests
         run: python -m ruff check src tests tools
-      - name: Run bounded numerical and public-safety gates
-        env:
-          PYTHONPATH: ${{ steps.wheel.outputs.install_dir }}
-        run: |
-          python -m pytest -q \
-            tests/parity/test_frontier_source.py \
-            tests/parity/test_base_source.py \
-            tests/test_full_mcmc_adapter.py \
-            tests/test_canonical_ledger.py \
-            tests/test_safety_scan.py \
-            tests/test_data.py
       - name: Run complete test suite against installed wheel
         env:
           PYTHONPATH: ${{ steps.wheel.outputs.install_dir }}
