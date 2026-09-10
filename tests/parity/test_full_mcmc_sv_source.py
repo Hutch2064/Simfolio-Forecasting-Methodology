@@ -9,7 +9,6 @@ import sys
 from importlib.resources import files
 
 import numpy as np
-import pytest
 
 from simfolio_forecasting_methodology.models.numerical.mcmc_sv import (
     canonical_full_mcmc_sv_ids,
@@ -49,7 +48,7 @@ def _environment_fixture():
         return _FIXTURE
     if environment["label"] == "python3.11-numpy2.4.6-scipy1.17.1":
         return _PY311_FIXTURE
-    pytest.skip(f"no byte-exact fixture for {environment['label']}")
+    raise AssertionError(f"no byte-exact fixture for {environment['label']}; install requirements-lock.txt")
 
 
 def test_owned_full_mcmc_sv_catalogue_is_exactly_40_source_entries():

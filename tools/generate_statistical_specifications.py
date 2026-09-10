@@ -588,13 +588,30 @@ def _resolve_frontier_model(model_id: str) -> dict[str, Any]:
         "family": "frontier",
         "source_id": model_id,
         "source_reference": {
-            "path": "source-research/scripts/forecast_oos_research_gate.py",
+            "path": "source-research/app/engine.py",
             "entrypoints": [
-                "asset_level_current_engine marginal seed context",
-                "copula_alternatives dependence seed context",
+                "SimfolioEngine._fit_bdes_non_mcmc_sv_forecast_base",
+                "_simulate_full_mcmc_sv_bdes_log_paths_serial_numba",
             ],
-            "revision": MCMC_SOURCE_REVISION,
-            "sha256": MCMC_SOURCE_SHA256,
+            "revision": BASE_SOURCE_REVISION,
+            "sha256": BASE_SOURCE_SHA256,
+            "dependency_artifacts": [
+                {
+                    "path": "asset_level_full_exact_crps.py",
+                    "sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465",
+                    "entrypoints": ["_asset_terminal_matrix"],
+                },
+                {
+                    "path": "simfolio_oos_copula_alternatives.py",
+                    "sha256": "413d2ca7f74cda13dd228c8974f822ce23e690cc56e098babf3fd2c121fbf95e",
+                    "entrypoints": ["_exact_kalman_rejoined_portfolio_paths", "_map_uniforms_to_marginal_paths", "_rebalanced_portfolio_log_paths_numba"],
+                },
+                {
+                    "path": "simfolio_adaptive_pgas.py",
+                    "sha256": "f7988a6cfbdf674c1efeb1ca6836b34e5f34c1ee241e97ef44551ded7ba87c69",
+                    "entrypoints": ["_fit_dynamic_factor_model", "_kalman_terminal_posterior_numba_information_small", "_simulate_future_gaussian_uniforms_flat_numba"],
+                },
+            ],
         },
         "marginal": {
             "ref": "frontier.marginal_parameterization",

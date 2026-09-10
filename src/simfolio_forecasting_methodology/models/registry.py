@@ -39,7 +39,7 @@ _EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {
     **MCMC_REFERENCE_FACTORIES,
     **{model_id: partial(FullMCMCSVModel, model_id)
        for model_id in canonical_full_mcmc_sv_ids()
-       if model_id != "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor"},
+},
     **SV_EXTENSION_FACTORIES,
     "stochastic_volatility_ar1_empirical": partial(SVReferenceModel, "stochastic_volatility_ar1_empirical"),
     "stochastic_volatility_ar1_empirical_sbb": partial(SVReferenceModel, "stochastic_volatility_ar1_empirical_sbb"),

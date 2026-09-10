@@ -6,9 +6,9 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 001. `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`
 
 - Family: `frontier`
-- Resolved-definition SHA-256: `3e80d41d88d53f0b0852794a623c498f62ed21f5b6206b409a30519f9a9925e5`
-- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
-- Source entrypoints: `asset_level_current_engine marginal seed context`, `copula_alternatives dependence seed context`.
+- Resolved-definition SHA-256: `46041a40c78422e5aa293b7ad92950a8314344dfd6016b6ee595fd9e5415b7e9`
+- Source: `source-research/app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_bdes_non_mcmc_sv_forecast_base`, `_simulate_full_mcmc_sv_bdes_log_paths_serial_numba`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.frontier`.
 - Marginal candidate: `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_fast_map_laplace_sigma_points`.

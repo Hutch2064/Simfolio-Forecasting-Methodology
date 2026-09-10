@@ -134,17 +134,44 @@
         "frontier.portfolio_rejoin",
         "seed_identity.frontier"
       ],
-      "definition_fingerprint": "3e80d41d88d53f0b0852794a623c498f62ed21f5b6206b409a30519f9a9925e5",
+      "definition_fingerprint": "46041a40c78422e5aa293b7ad92950a8314344dfd6016b6ee595fd9e5415b7e9",
       "family": "frontier",
       "seed_contract": "origin_task.seed_to_forecast_context.seed.v1",
       "source_reference": {
-        "entrypoints": [
-          "asset_level_current_engine marginal seed context",
-          "copula_alternatives dependence seed context"
+        "dependency_artifacts": [
+          {
+            "entrypoints": [
+              "_asset_terminal_matrix"
+            ],
+            "path": "asset_level_full_exact_crps.py",
+            "sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465"
+          },
+          {
+            "entrypoints": [
+              "_exact_kalman_rejoined_portfolio_paths",
+              "_map_uniforms_to_marginal_paths",
+              "_rebalanced_portfolio_log_paths_numba"
+            ],
+            "path": "simfolio_oos_copula_alternatives.py",
+            "sha256": "413d2ca7f74cda13dd228c8974f822ce23e690cc56e098babf3fd2c121fbf95e"
+          },
+          {
+            "entrypoints": [
+              "_fit_dynamic_factor_model",
+              "_kalman_terminal_posterior_numba_information_small",
+              "_simulate_future_gaussian_uniforms_flat_numba"
+            ],
+            "path": "simfolio_adaptive_pgas.py",
+            "sha256": "f7988a6cfbdf674c1efeb1ca6836b34e5f34c1ee241e97ef44551ded7ba87c69"
+          }
         ],
-        "path": "source-research/scripts/forecast_oos_research_gate.py",
-        "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
-        "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+        "entrypoints": [
+          "SimfolioEngine._fit_bdes_non_mcmc_sv_forecast_base",
+          "_simulate_full_mcmc_sv_bdes_log_paths_serial_numba"
+        ],
+        "path": "source-research/app/engine.py",
+        "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+        "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
       }
     },
     "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean": {
@@ -3037,13 +3064,40 @@
       ],
       "source_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
       "source_reference": {
-        "entrypoints": [
-          "asset_level_current_engine marginal seed context",
-          "copula_alternatives dependence seed context"
+        "dependency_artifacts": [
+          {
+            "entrypoints": [
+              "_asset_terminal_matrix"
+            ],
+            "path": "asset_level_full_exact_crps.py",
+            "sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465"
+          },
+          {
+            "entrypoints": [
+              "_exact_kalman_rejoined_portfolio_paths",
+              "_map_uniforms_to_marginal_paths",
+              "_rebalanced_portfolio_log_paths_numba"
+            ],
+            "path": "simfolio_oos_copula_alternatives.py",
+            "sha256": "413d2ca7f74cda13dd228c8974f822ce23e690cc56e098babf3fd2c121fbf95e"
+          },
+          {
+            "entrypoints": [
+              "_fit_dynamic_factor_model",
+              "_kalman_terminal_posterior_numba_information_small",
+              "_simulate_future_gaussian_uniforms_flat_numba"
+            ],
+            "path": "simfolio_adaptive_pgas.py",
+            "sha256": "f7988a6cfbdf674c1efeb1ca6836b34e5f34c1ee241e97ef44551ded7ba87c69"
+          }
         ],
-        "path": "source-research/scripts/forecast_oos_research_gate.py",
-        "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
-        "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+        "entrypoints": [
+          "SimfolioEngine._fit_bdes_non_mcmc_sv_forecast_base",
+          "_simulate_full_mcmc_sv_bdes_log_paths_serial_numba"
+        ],
+        "path": "source-research/app/engine.py",
+        "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+        "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
       },
       "source_seed_context_ref": "seed_identity.frontier"
     },
