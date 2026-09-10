@@ -8,6 +8,7 @@ or write a cache.
 
 from __future__ import annotations
 
+import hashlib
 from importlib import resources
 from typing import Final
 
@@ -21,6 +22,10 @@ _FACTOR_COLUMNS: Final[dict[str, tuple[str, ...]]] = {
 _FACTOR_FILES: Final[dict[str, str]] = {
     "ff6": "french_daily.csv.gz",
     "q5": "q5_daily.csv.gz",
+}
+_FACTOR_FILE_SHA256: Final[dict[str, str]] = {
+    "ff6": "9ec302fa1f2ac1c630e0019cfb3fcabb97a91255a1543e737aa60beea72ff192",
+    "q5": "915434fba2c8c425a6c3b5930f3a6d05bec0f7717adab5eb35c1348ddacbc45a",
 }
 
 
@@ -40,6 +45,13 @@ def load_packaged_factor_frame(factor_model: str) -> pd.DataFrame:
     )
     try:
         with resources.as_file(resource) as path:
+            content_sha256 = hashlib.sha256(path.read_bytes()).hexdigest()
+            expected_sha256 = _FACTOR_FILE_SHA256[model]
+            if content_sha256 != expected_sha256:
+                raise ValueError(
+                    f"packaged {model} factor snapshot SHA-256 mismatch: "
+                    f"expected {expected_sha256}, got {content_sha256}"
+                )
             frame = pd.read_csv(path, compression="infer")
     except (FileNotFoundError, OSError, ValueError) as exc:
         raise ValueError(f"packaged {model} factor snapshot is unavailable") from exc
