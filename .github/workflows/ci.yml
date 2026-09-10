@@ -24,7 +24,6 @@ jobs:
         python-version: ["3.11", "3.12"]
     env:
       PYTHONDONTWRITEBYTECODE: "1"
-      NUMBA_CACHE_DIR: ${{ runner.temp }}/simfolio-numba-cache-${{ matrix.python-version }}
       SIMFOLIO_WHEEL_TEST: "1"
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +34,8 @@ jobs:
           cache-dependency-path: requirements-lock.txt
       - name: Install locked runtime, all-models, and test dependencies
         run: |
+          export NUMBA_CACHE_DIR="${RUNNER_TEMP}/simfolio-numba-cache-${{ matrix.python-version }}"
+          echo "NUMBA_CACHE_DIR=$NUMBA_CACHE_DIR" >> "$GITHUB_ENV"
           python -m pip install --upgrade pip
           python -m pip install -r requirements-lock.txt
           mkdir -p "$NUMBA_CACHE_DIR"
