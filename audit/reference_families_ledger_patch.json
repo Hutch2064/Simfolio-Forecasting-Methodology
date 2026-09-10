@@ -1,6 +1,6 @@
 {
   "schema_version": "canonical-175-reference-family-patch-v1",
-  "scope": "exact requested batch: four source-extracted portfolio families plus the requested BDES closure assessment",
+  "scope": "exact requested batch: four source-extracted portfolio reference families",
   "base_ledger_membership_digest": "c93ea4fca270f7343924a11ec6c3574d1693c07592d9f203b650915548b1d9b5",
   "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
   "source_artifact_policy": "all paths are repository-relative; no private or temporary paths are serialized",
@@ -515,82 +515,6 @@
         "Source kernel smoke and fixture parity cover numerical closure only; no full canonical experiment was run.",
         "Retained scalar score and nine-significant-digit publication token are preserved; score reproduction remains unverified.",
         "Dense runner adapter generates direct terminal ensembles per horizon using the source seed call arguments."
-      ]
-    },
-    {
-      "public_model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
-      "canonical_rank": 9,
-      "historical_rank": 20,
-      "model_family": "bdes_non_mcmc_sv_overlay",
-      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
-      "source_location_reference": {
-        "source_gate": "source-research/scripts/forecast_oos_research_gate.py#_fit_bdes_non_mcmc_sv_overlay",
-        "public_catalogue_anchor": "canonical_rank=9"
-      },
-      "implementation_factory": {
-        "module": "simfolio_forecasting_methodology.models.portfolio.reference_families",
-        "map": "REFERENCE_FACTORIES",
-        "callable": false,
-        "status": "blocked_full_inla_closure_unavailable"
-      },
-      "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "full-INLA dependency closure unresolved"
-      },
-      "specification_fingerprint": {
-        "value": null,
-        "kind": "not_derived",
-        "status": "full-INLA numerical defaults and closure unresolved"
-      },
-      "evidence_flags": {
-        "identity_recovered": true,
-        "specification_recovered": false,
-        "source_reference_verified": true,
-        "implementation_available": false,
-        "instantiation_validated": false,
-        "forecast_smoke_tested": false,
-        "source_parity_checked": false,
-        "historical_score_verified": false
-      },
-      "historical_score": {
-        "exact_empirical_crps": "0.2928636384101145",
-        "relative_to_naive": "0.8651665788835552",
-        "skill_vs_naive": "0.1348334211164448",
-        "paired_improvement_vs_current": "0.0",
-        "paired_mean_diff_vs_current": "0.0",
-        "paired_portfolio_cluster_diff_ci_90": null,
-        "paired_portfolio_cluster_probability_better": null,
-        "portfolio_losses_vs_current": 0,
-        "portfolio_wins_vs_current": 0
-      },
-      "score_precision": {
-        "retained_source_token": "0.2928636384101145",
-        "retained_source_precision": {
-          "kind": "serialized_source_json_numeric_token",
-          "decimal_places": 16,
-          "significant_digits": 16
-        },
-        "publication_token": "0.292863638",
-        "publication_precision": {
-          "kind": "reconciled_9_significant_digits_variable_decimal_places",
-          "decimal_places": 9,
-          "significant_digits": 9
-        },
-        "public_minus_retained_text": "-0.0000000004101145",
-        "source_policy": "serialized_source_json_numeric_token",
-        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
-        "status": "source token preserved; publication token reconciles row-by-row"
-      },
-      "experiment_id": "canonical-dense-oos-2026-08-23",
-      "protocol_fingerprint": null,
-      "dataset_fingerprint": null,
-      "panel_fingerprint": null,
-      "verification_status": "retained_score_evidence_only_blocked",
-      "notes": [
-        "Full-INLA source branch remains blocked because its complete numerical dependency closure was not extracted in this batch.",
-        "The accepted FastMAP Frontier candidate is a distinct model and is not used as a global alias.",
-        "Retained scalar score is not represented as a newly reproduced result."
       ]
     }
   ]
