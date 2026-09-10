@@ -103,4 +103,6 @@ jobs:
       - name: Run complete test suite against installed wheel
         env:
           PYTHONPATH: ${{ steps.wheel.outputs.install_dir }}
-        run: python -m pytest -q
+        run: |
+          cd "$RUNNER_TEMP"
+          python -m pytest "$GITHUB_WORKSPACE/tests" -q

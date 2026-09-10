@@ -1,4 +1,4 @@
-from pathlib import Path
+from importlib.resources import files
 
 from simfolio_forecasting_methodology.data import (
     CANONICAL_COMMON_RETURN_COUNT,
@@ -31,14 +31,14 @@ def test_source_comparison_fixture_covers_all_canonical_series():
 
 def test_scored_panel_resource_hash_and_shape_are_frozen():
     assert len(load_scored52_portfolio_panel()) == 80
-    resource = Path("src/simfolio_forecasting_methodology/resources/panels/scored52_portfolio_panel.csv")
+    resource = files("simfolio_forecasting_methodology").joinpath("resources/panels/scored52_portfolio_panel.csv")
     import hashlib
 
     assert hashlib.sha256(resource.read_bytes()).hexdigest() == CANONICAL_PANEL_RESOURCE_SHA256
 
 
 def test_harness_identity_is_source_relative_and_pinned():
-    path = Path("src/simfolio_forecasting_methodology/resources/protocols/source_harness_identity.json")
+    path = files("simfolio_forecasting_methodology").joinpath("resources/protocols/source_harness_identity.json")
     identity = __import__("json").loads(path.read_text())
     assert identity["harness_path"] == "source-research/scripts/forecast_oos_research_gate.py"
     assert identity["harness_sha256"] == "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
