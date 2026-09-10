@@ -3,8 +3,9 @@
 The retained white-paper run used simulated return arrays from the pinned
 source repository. This package carries the exact, user-authorized snapshot
 files identified by the manifest, together with their source attribution and
-hashes. Verification and preparation are local operations; an explicitly
-supplied caller snapshot remains supported for independent re-verification.
+hashes, plus the verified source-derived canonical matrices. Verification and
+preparation are local operations; an explicitly supplied caller snapshot
+remains supported for independent re-verification.
 
 There is intentionally no network, proxy, refresh, or source-builder path in
 this module. A missing or inconsistent snapshot fails closed.
@@ -184,12 +185,141 @@ def _derived_fingerprint_manifest() -> dict[str, object]:
         return json.load(handle)
 
 
+def _frozen_derived_snapshot_manifest() -> Mapping[str, object]:
+    manifest = _derived_fingerprint_manifest().get("frozen_snapshot")
+    if not isinstance(manifest, Mapping):
+        raise CanonicalDataUnavailable("frozen canonical derived snapshot metadata is missing")
+    return manifest
+
+
+@contextmanager
+def _frozen_derived_snapshot_context(snapshot_path: Path | None = None):
+    """Yield the packaged or explicitly supplied frozen derived snapshot."""
+    if snapshot_path is not None:
+        yield Path(snapshot_path)
+        return
+    with resources.as_file(
+        _resource_path("data", "canonical_derived_matrices.npz")
+    ) as packaged:
+        yield Path(packaged)
+
+
 def _matrix_fingerprint(
     series: Mapping[str, pd.Series],
     dates: pd.DatetimeIndex,
 ) -> str:
     """Hash a deterministic date/column matrix using the published formatter."""
     return _normalized_return_hash(series, dates)
+
+
+def _array_digest(array: np.ndarray) -> str:
+    values = np.ascontiguousarray(array)
+    return hashlib.sha256(values.tobytes(order="C")).hexdigest()
+
+
+def _array_matrix_fingerprint(
+    values: np.ndarray,
+    labels: tuple[str, ...],
+    dates: np.ndarray,
+) -> str:
+    """Apply the published ``.17g`` matrix identity to a frozen ndarray."""
+    order = sorted(range(len(labels)), key=lambda index: labels[index])
+    ordered = [labels[index] for index in order]
+    lines = ["date," + ",".join(ordered)]
+    for date, row in zip(dates, values):
+        rendered = [format(float(row[index]), ".17g") for index in order]
+        lines.append(
+            f"{pd.Timestamp(date).date().isoformat()}," + ",".join(rendered)
+        )
+    return hashlib.sha256(("\n".join(lines) + "\n").encode("utf-8")).hexdigest()
+
+
+def _validate_frozen_derived_arrays(
+    arrays: Mapping[str, np.ndarray],
+    *,
+    expected_snapshot: Mapping[str, object] | None = None,
+) -> tuple[np.ndarray, tuple[str, ...], tuple[str, ...], np.ndarray, np.ndarray]:
+    """Validate the complete frozen derived matrix schema and identities."""
+    if expected_snapshot is None:
+        expected_snapshot = _frozen_derived_snapshot_manifest()
+    if expected_snapshot.get("calendar_sha256") != CANONICAL_CALENDAR_SHA256:
+        raise CanonicalDataUnavailable("frozen derived calendar identity is not canonical")
+    expected_schema = expected_snapshot.get("array_schema")
+    if not isinstance(expected_schema, Mapping):
+        raise CanonicalDataUnavailable("frozen derived array schema is missing")
+    expected_keys = {
+        "dates", "tickers", "portfolio_ids", "asset_log_returns", "portfolio_log_returns"
+    }
+    if set(arrays) != expected_keys:
+        raise CanonicalDataUnavailable("frozen derived snapshot array keys drifted")
+
+    for key in expected_keys:
+        array = arrays[key]
+        expected = expected_schema.get(key)
+        if not isinstance(expected, Mapping):
+            raise CanonicalDataUnavailable(f"frozen derived schema is missing {key}")
+        if array.dtype.str != str(expected.get("dtype")):
+            raise CanonicalDataUnavailable(f"frozen derived dtype mismatch for {key}")
+        if tuple(array.shape) != tuple(int(value) for value in expected.get("shape", ())):
+            raise CanonicalDataUnavailable(f"frozen derived shape mismatch for {key}")
+        if not array.flags.c_contiguous:
+            raise CanonicalDataUnavailable(f"frozen derived layout mismatch for {key}")
+        if _array_digest(array) != str(expected.get("sha256")):
+            raise CanonicalDataUnavailable(f"frozen derived array identity mismatch for {key}")
+
+    dates = arrays["dates"]
+    calendar = canonical_calendar().to_numpy(dtype="<M8[D]")
+    if not np.array_equal(dates, calendar):
+        raise CanonicalDataUnavailable("frozen derived date order does not match canonical calendar")
+
+    tickers = tuple(str(value) for value in arrays["tickers"].tolist())
+    if tickers != CANONICAL_TICKERS:
+        raise CanonicalDataUnavailable("frozen derived asset column order drifted")
+
+    from .panel import load_scored52_portfolio_panel
+
+    portfolio_ids = tuple(spec.name for spec in load_scored52_portfolio_panel())
+    stored_portfolio_ids = tuple(str(value) for value in arrays["portfolio_ids"].tolist())
+    if stored_portfolio_ids != portfolio_ids:
+        raise CanonicalDataUnavailable("frozen derived portfolio column order drifted")
+
+    asset_values = arrays["asset_log_returns"]
+    portfolio_values = arrays["portfolio_log_returns"]
+    if not np.all(np.isfinite(asset_values)) or not np.all(np.isfinite(portfolio_values)):
+        raise CanonicalDataUnavailable("frozen derived matrices contain nonfinite values")
+    if _array_matrix_fingerprint(asset_values, tickers, dates) != str(
+        expected_schema["asset_log_returns"]["matrix_fingerprint"]
+    ):
+        raise CanonicalDataUnavailable("frozen derived asset matrix fingerprint mismatch")
+    if _array_matrix_fingerprint(portfolio_values, portfolio_ids, dates) != str(
+        expected_schema["portfolio_log_returns"]["matrix_fingerprint"]
+    ):
+        raise CanonicalDataUnavailable("frozen derived portfolio matrix fingerprint mismatch")
+    return dates, tickers, portfolio_ids, asset_values, portfolio_values
+
+
+def _load_frozen_derived_snapshot(
+    snapshot_path: Path | None = None,
+) -> tuple[np.ndarray, tuple[str, ...], tuple[str, ...], np.ndarray, np.ndarray]:
+    """Load and validate the immutable source-derived matrices."""
+    expected_snapshot = _frozen_derived_snapshot_manifest()
+    path = Path(snapshot_path) if snapshot_path is not None else None
+    with _frozen_derived_snapshot_context(path) as resolved:
+        if not resolved.is_file():
+            raise CanonicalDataUnavailable("frozen canonical derived snapshot is missing")
+        if _sha256(resolved) != str(expected_snapshot.get("sha256")):
+            raise CanonicalDataUnavailable("frozen canonical derived snapshot hash mismatch")
+        try:
+            with np.load(resolved, allow_pickle=False) as archive:
+                arrays = {
+                    name: np.array(archive[name], copy=True)
+                    for name in archive.files
+                }
+        except (OSError, ValueError, EOFError) as exc:
+            raise CanonicalDataUnavailable(
+                "frozen canonical derived snapshot cannot be read"
+            ) from exc
+    return _validate_frozen_derived_arrays(arrays)
 
 
 def _factor_identity(path: Path, expected: Mapping[str, object]) -> None:
@@ -402,9 +532,9 @@ def _prepare_canonical_data_path(
 ) -> Path:
     """Write a deterministic local cache from one verified snapshot path.
 
-    The source snapshot is retained only in the caller's cache.  Portfolio logs
-    are constructed from the full source price histories before the canonical
-    window is trimmed, matching the historical ``simulate_portfolio`` closure.
+    The source snapshot is retained in the caller's cache, while the exact
+    source-derived canonical-window matrices are copied from the packaged
+    frozen snapshot. This avoids platform-dependent re-computation.
     """
     verification = _verify_canonical_snapshot_path(
         snapshot_root, rights_confirmed=rights_confirmed
@@ -424,8 +554,18 @@ def _prepare_canonical_data_path(
     series_root.mkdir(parents=True, exist_ok=True)
     portfolio_root.mkdir(parents=True, exist_ok=True)
 
-    # Keep an authorized exact copy outside the package so source-price-based
-    # portfolio construction can be audited without a live source dependency.
+    expected_snapshot = _frozen_derived_snapshot_manifest()
+    with _frozen_derived_snapshot_context() as packaged_snapshot:
+        frozen_dates, frozen_tickers, frozen_portfolio_ids, frozen_assets, frozen_portfolios = (
+            _load_frozen_derived_snapshot(packaged_snapshot)
+        )
+        derived_snapshot_path = destination / "canonical_derived_matrices.npz"
+        shutil.copyfile(packaged_snapshot, derived_snapshot_path)
+    if _sha256(derived_snapshot_path) != str(expected_snapshot["sha256"]):
+        raise CanonicalDataUnavailable("prepared frozen derived snapshot copy drifted")
+
+    # Keep an authorized exact source copy beside the frozen derived matrices
+    # so source-price construction can still be audited without a live source.
     source_records: list[dict[str, object]] = []
     for ticker in CANONICAL_TICKERS:
         source_path = source_root / f"{ticker}.csv.gz"
@@ -438,8 +578,8 @@ def _prepare_canonical_data_path(
         })
 
     # Preserve the authorized local context inputs beside the exact source
-    # series.  These files remain outside the Python package and are verified
-    # by hash; no public array bundle is created by this repository.
+    # series. These files are verified by hash and remain separate from the
+    # canonical derived matrix consumed by the engine.
     manifest = canonical_snapshot_manifest()
     supporting_records: list[dict[str, object]] = []
     for expected in manifest.get("supporting_series", []):
@@ -489,26 +629,27 @@ def _prepare_canonical_data_path(
             }
         )
 
-    from .panel import load_scored52_portfolio_panel
-
     portfolio_records: list[dict[str, object]] = []
-    constructed_portfolio_logs: dict[str, pd.Series] = {}
-    prices = pd.concat(
-        {ticker: frame["price"] for ticker, frame in frames.items()},
-        axis=1,
-    )
-    for spec in load_scored52_portfolio_panel():
-        logs = _source_portfolio_log_returns(prices, spec)
-        constructed_portfolio_logs[spec.name] = logs
-        path = portfolio_root / f"{spec.name}.csv.gz"
-        frame = pd.DataFrame({"date": logs.index.strftime("%Y-%m-%d"), "portfolio_log_return": logs.to_numpy()})
+    for portfolio_index, portfolio_id in enumerate(frozen_portfolio_ids):
+        logs = pd.Series(
+            frozen_portfolios[:, portfolio_index].copy(),
+            index=pd.DatetimeIndex(frozen_dates),
+            dtype=float,
+        )
+        path = portfolio_root / f"{portfolio_id}.csv.gz"
+        frame = pd.DataFrame(
+            {
+                "date": logs.index.strftime("%Y-%m-%d"),
+                "portfolio_log_return": logs.to_numpy(),
+            }
+        )
         csv_bytes = frame.to_csv(index=False, float_format="%.17g", lineterminator="\n").encode("utf-8")
         with path.open("wb") as raw, gzip.GzipFile(
             filename="", mode="wb", fileobj=raw, mtime=0
         ) as handle:
             handle.write(csv_bytes)
         portfolio_records.append({
-            "portfolio_id": spec.name,
+            "portfolio_id": portfolio_id,
             "path": f"canonical_portfolios/{path.name}",
             "rows": len(logs),
             "first_date": str(logs.index.min().date()),
@@ -517,24 +658,20 @@ def _prepare_canonical_data_path(
         })
 
     derived_fingerprints = _derived_fingerprint_manifest()
-    source_price_frame = _source_loader_price_frame(prices, CANONICAL_TICKERS)
-    derived_asset_logs: dict[str, pd.Series] = {}
-    for ticker in CANONICAL_TICKERS:
-        returns = _price_simple_returns(source_price_frame[[ticker]])[ticker]
-        derived_asset_logs[ticker] = pd.Series(
-            np.log1p(np.clip(returns.to_numpy(dtype=np.float64), -0.999999, None)),
-            index=returns.index,
-        ).reindex(common)
-    derived_portfolio_logs = {
-        portfolio_id: values.reindex(common)
-        for portfolio_id, values in constructed_portfolio_logs.items()
-    }
-    asset_fingerprint = _matrix_fingerprint(derived_asset_logs, common)
-    portfolio_fingerprint = _matrix_fingerprint(derived_portfolio_logs, common)
+    if not np.array_equal(frozen_dates, common.to_numpy(dtype="datetime64[D]")):
+        raise CanonicalDataUnavailable("frozen derived dates do not match canonical calendar")
+    if frozen_tickers != CANONICAL_TICKERS:
+        raise CanonicalDataUnavailable("frozen derived asset order does not match canonical order")
+    asset_fingerprint = _array_matrix_fingerprint(
+        frozen_assets, frozen_tickers, frozen_dates
+    )
+    portfolio_fingerprint = _array_matrix_fingerprint(
+        frozen_portfolios, frozen_portfolio_ids, frozen_dates
+    )
     if asset_fingerprint != str(derived_fingerprints["asset_log_matrix_sha256"]):
-        raise CanonicalDataUnavailable("derived canonical asset fingerprint does not match source evidence")
+        raise CanonicalDataUnavailable("frozen canonical asset fingerprint does not match source evidence")
     if portfolio_fingerprint != str(derived_fingerprints["portfolio_log_matrix_sha256"]):
-        raise CanonicalDataUnavailable("derived canonical portfolio fingerprint does not match source evidence")
+        raise CanonicalDataUnavailable("frozen canonical portfolio fingerprint does not match source evidence")
 
     output = {
         "dataset_id": CANONICAL_DATASET_ID,
@@ -547,17 +684,26 @@ def _prepare_canonical_data_path(
         "derived_fingerprints": {
             "asset_log_matrix_sha256": asset_fingerprint,
             "portfolio_log_matrix_sha256": portfolio_fingerprint,
-            "source_loader_price_frame": {
-                "row_count": len(source_price_frame),
-                "start": str(source_price_frame.index.min().date()),
-                "end": str(source_price_frame.index.max().date()),
-            },
+            "source_loader_price_frame": dict(derived_fingerprints["source_loader_price_frame"]),
+        },
+        "derived_snapshot": {
+            "schema_version": str(expected_snapshot["schema_version"]),
+            "path": derived_snapshot_path.name,
+            "sha256": str(expected_snapshot["sha256"]),
+            "source_cache_manifest_sha256": str(expected_snapshot["source_cache_manifest_sha256"]),
+            "source_snapshot_manifest_sha256": str(expected_snapshot["source_snapshot_manifest_sha256"]),
+            "source_manifest_sha256": str(expected_snapshot["source_manifest_sha256"]),
+            "source_revision": str(expected_snapshot["source_revision"]),
+            "calendar_sha256": str(expected_snapshot["calendar_sha256"]),
+            "generation": dict(expected_snapshot["generation"]),
+            "array_schema": dict(expected_snapshot["array_schema"]),
         },
         "portfolio_construction": {
             "method": "source_price_simulate_portfolio_no_flows",
             "initial_capital": 10000.0,
             "turnover_cost_bps": 15.0,
             "constructed_before_common_window_trim": True,
+            "frozen_common_window_matrix": True,
         },
         "source_series": source_records,
         "supporting_series": supporting_records,
@@ -617,6 +763,37 @@ def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
         raise CanonicalDataUnavailable("prepared cache has an unknown local-use status")
 
     calendar = canonical_calendar()
+    expected_snapshot = _frozen_derived_snapshot_manifest()
+    declared_snapshot = manifest.get("derived_snapshot")
+    if not isinstance(declared_snapshot, Mapping):
+        raise CanonicalDataUnavailable(
+            "prepared cache frozen derived snapshot metadata is missing"
+        )
+    if declared_snapshot.get("path") != "canonical_derived_matrices.npz":
+        raise CanonicalDataUnavailable("prepared cache frozen derived snapshot path drifted")
+    for field in (
+        "schema_version",
+        "sha256",
+        "source_cache_manifest_sha256",
+        "source_snapshot_manifest_sha256",
+        "source_manifest_sha256",
+        "source_revision",
+        "calendar_sha256",
+        "generation",
+        "array_schema",
+    ):
+        if declared_snapshot.get(field) != expected_snapshot.get(field):
+            raise CanonicalDataUnavailable(
+                f"prepared cache frozen derived snapshot metadata drifted: {field}"
+            )
+    frozen_snapshot_path = root / "canonical_derived_matrices.npz"
+    frozen_dates, frozen_tickers, frozen_portfolio_ids, frozen_assets, frozen_portfolios = (
+        _load_frozen_derived_snapshot(frozen_snapshot_path)
+    )
+    if not np.array_equal(frozen_dates, calendar.to_numpy(dtype="datetime64[D]")):
+        raise CanonicalDataUnavailable(
+            "prepared frozen derived dates do not match canonical calendar"
+        )
     columns: dict[str, pd.Series] = {}
     for ticker in CANONICAL_TICKERS:
         path = root / "canonical_series" / f"{ticker}.csv.gz"
@@ -686,22 +863,12 @@ def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
             raise CanonicalDataUnavailable(f"prepared factor record hash mismatch for {factor_id}")
         _factor_identity(path, expected)
 
-    prices = pd.concat(
-        {ticker: frame["price"] for ticker, frame in source_frames.items()},
-        axis=1,
-    )
-    source_price_frame = _source_loader_price_frame(prices, CANONICAL_TICKERS)
-    derived_assets = {}
-    for ticker in CANONICAL_TICKERS:
-        returns = _price_simple_returns(source_price_frame[[ticker]])[ticker]
-        derived_assets[ticker] = pd.Series(
-            np.log1p(np.clip(returns.to_numpy(dtype=np.float64), -0.999999, None)),
-            index=returns.index,
-        ).reindex(calendar)
     fingerprints = _derived_fingerprint_manifest()
-    asset_fingerprint = _matrix_fingerprint(derived_assets, calendar)
+    asset_fingerprint = _array_matrix_fingerprint(
+        frozen_assets, frozen_tickers, frozen_dates
+    )
     if asset_fingerprint != str(fingerprints["asset_log_matrix_sha256"]):
-        raise CanonicalDataUnavailable("prepared source-derived asset fingerprint mismatch")
+        raise CanonicalDataUnavailable("prepared frozen asset fingerprint mismatch")
 
     from .panel import load_scored52_portfolio_panel
 
@@ -713,8 +880,9 @@ def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
     }
     if set(portfolio_records) != set(expected_portfolios):
         raise CanonicalDataUnavailable("prepared cache is missing exact portfolio series")
-    derived_portfolios: dict[str, pd.Series] = {}
-    for portfolio_id, spec in expected_portfolios.items():
+    if tuple(expected_portfolios) != frozen_portfolio_ids:
+        raise CanonicalDataUnavailable("prepared portfolio panel order differs from frozen matrix")
+    for portfolio_index, portfolio_id in enumerate(frozen_portfolio_ids):
         record = portfolio_records[portfolio_id]
         path = root / Path(str(record["path"]))
         if not path.is_file() or _sha256(path) != str(record.get("sha256", "")):
@@ -725,33 +893,41 @@ def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
             raise CanonicalDataUnavailable(f"prepared portfolio schema mismatch for {portfolio_id}")
         dates = pd.DatetimeIndex(pd.to_datetime(frame["date"], errors="raise"))
         values = pd.to_numeric(frame["portfolio_log_return"], errors="raise").to_numpy(dtype=np.float64)
-        if dates.has_duplicates or not dates.is_monotonic_increasing or not np.all(np.isfinite(values)):
-            raise CanonicalDataUnavailable(f"prepared portfolio values mismatch for {portfolio_id}")
-        expected_logs = _source_portfolio_log_returns(prices, spec)
-        if not dates.equals(expected_logs.index) or not np.array_equal(
-            values, expected_logs.to_numpy(dtype=np.float64)
+        if (
+            dates.has_duplicates
+            or not dates.is_monotonic_increasing
+            or not np.all(np.isfinite(values))
+            or len(values) != len(calendar)
+            or not dates.equals(calendar)
         ):
+            raise CanonicalDataUnavailable(f"prepared portfolio values mismatch for {portfolio_id}")
+        if not np.array_equal(values, frozen_portfolios[:, portfolio_index]):
             raise CanonicalDataUnavailable(
-                f"prepared portfolio values do not match source simulation for {portfolio_id}"
+                f"prepared portfolio values do not match frozen matrix for {portfolio_id}"
             )
-        derived_portfolios[portfolio_id] = expected_logs.reindex(calendar)
 
-    portfolio_fingerprint = _matrix_fingerprint(derived_portfolios, calendar)
+    portfolio_fingerprint = _array_matrix_fingerprint(
+        frozen_portfolios, frozen_portfolio_ids, frozen_dates
+    )
     if portfolio_fingerprint != str(fingerprints["portfolio_log_matrix_sha256"]):
-        raise CanonicalDataUnavailable("prepared source-derived portfolio fingerprint mismatch")
+        raise CanonicalDataUnavailable("prepared frozen portfolio fingerprint mismatch")
     declared_derived = manifest.get("derived_fingerprints") or {}
     if declared_derived.get("asset_log_matrix_sha256") != asset_fingerprint:
         raise CanonicalDataUnavailable("prepared manifest asset fingerprint mismatch")
     if declared_derived.get("portfolio_log_matrix_sha256") != portfolio_fingerprint:
         raise CanonicalDataUnavailable("prepared manifest portfolio fingerprint mismatch")
-    if int(declared_derived.get("source_loader_price_frame", {}).get("row_count", -1)) != len(source_price_frame):
-        raise CanonicalDataUnavailable("prepared source-loader frame count mismatch")
+    if declared_derived.get("source_loader_price_frame") != fingerprints.get(
+        "source_loader_price_frame"
+    ):
+        raise CanonicalDataUnavailable("prepared source-loader provenance drifted")
 
     construction = manifest.get("portfolio_construction") or {}
     if construction.get("constructed_before_common_window_trim") is not True:
         raise CanonicalDataUnavailable("portfolio construction provenance is incomplete")
     if float(construction.get("turnover_cost_bps", -1.0)) != 15.0:
         raise CanonicalDataUnavailable("portfolio turnover cost provenance drifted")
+    if construction.get("frozen_common_window_matrix") is not True:
+        raise CanonicalDataUnavailable("prepared frozen portfolio provenance is incomplete")
     return {
         "verified": True,
         "rights_status": str(manifest.get("rights_status")),
@@ -773,47 +949,25 @@ def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
 def load_canonical_engine_inputs(
     cache: Path,
 ) -> tuple[pd.DataFrame, dict[str, pd.Series]]:
-    """Load exact source-price-derived assets and portfolio logs from a cache."""
+    """Load the verified frozen source-derived matrices from a cache."""
     verify_prepared_canonical_data(Path(cache))
     root = Path(cache)
     calendar = canonical_calendar()
-    manifest = json.loads((root / "canonical_data_manifest.json").read_text(encoding="utf-8"))
-    source_records = {
-        str(item["ticker"]): item
-        for item in manifest["source_series"]
-    }
-    expected_source = {str(item["ticker"]): item for item in canonical_snapshot_manifest()["series"]}
-    source_frames = {
-        ticker: _read_snapshot_series(
-            root / Path(str(source_records[ticker]["path"])), expected_source[ticker]
-        )
-        for ticker in CANONICAL_TICKERS
-    }
-    prices = pd.concat(
-        {ticker: frame["price"] for ticker, frame in source_frames.items()},
-        axis=1,
+    frozen_dates, frozen_tickers, frozen_portfolio_ids, frozen_assets, frozen_portfolios = (
+        _load_frozen_derived_snapshot(root / "canonical_derived_matrices.npz")
     )
-    source_price_frame = _source_loader_price_frame(prices, CANONICAL_TICKERS)
-    asset_logs: dict[str, pd.Series] = {}
-    for ticker in CANONICAL_TICKERS:
-        simple = _price_simple_returns(source_price_frame[[ticker]])[ticker]
-        values = np.log1p(np.clip(simple.to_numpy(dtype=np.float64), -0.999999, None))
-        series = pd.Series(values, index=simple.index).reindex(calendar)
-        if series.isna().any():
-            raise CanonicalDataUnavailable(f"prepared source price history misses calendar for {ticker}")
-        asset_logs[ticker] = series.astype(float)
-    portfolio_logs: dict[str, pd.Series] = {}
-    for record in manifest["portfolio_series"]:
-        path = root / Path(str(record["path"]))
-        with gzip.open(path, "rt", encoding="utf-8", newline="") as handle:
-            frame = pd.read_csv(handle, float_precision="round_trip")
-        dates = pd.DatetimeIndex(pd.to_datetime(frame["date"], errors="raise"))
-        values = pd.to_numeric(frame["portfolio_log_return"], errors="raise").to_numpy(dtype=np.float64)
-        series = pd.Series(values, index=dates).reindex(calendar)
-        if series.isna().any():
-            raise CanonicalDataUnavailable(f"prepared portfolio history misses calendar for {record['portfolio_id']}")
-        portfolio_logs[str(record["portfolio_id"])] = series.astype(float)
-    return pd.DataFrame(asset_logs, index=calendar), portfolio_logs
+    if not np.array_equal(frozen_dates, calendar.to_numpy(dtype="datetime64[D]")):
+        raise CanonicalDataUnavailable("prepared frozen derived dates do not match canonical calendar")
+    asset_frame = pd.DataFrame(
+        frozen_assets.copy(), index=calendar, columns=list(frozen_tickers)
+    )
+    portfolio_logs = {
+        portfolio_id: pd.Series(
+            frozen_portfolios[:, index].copy(), index=calendar, dtype=float
+        )
+        for index, portfolio_id in enumerate(frozen_portfolio_ids)
+    }
+    return asset_frame, portfolio_logs
 
 
 def load_canonical_returns(cache: Path) -> pd.DataFrame:

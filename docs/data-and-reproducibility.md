@@ -9,7 +9,8 @@ matrix identity is:
 
 The source revision is `773bc1c325559e6bf57a567f1d8bf473a3427fbc`. The package
 publishes the manifest, source-relative paths, schemas, raw file hashes,
-common calendar, and all 60 whitelisted compressed source files. Aidan
+common calendar, all 60 whitelisted compressed source files, and the exact
+source-derived canonical matrices. Aidan
 Hutchison confirmed redistribution approval for this exact research snapshot.
 The package records that authorization and preserves the source attribution
 in `resources/protocols/canonical_snapshot_attribution.json`; it does not
@@ -41,22 +42,29 @@ simfolio-oos data prepare --destination .simfolio-oos-data
 Preparation verifies every required asset series, all six supporting series,
 both factor inputs, row counts, date bounds, schemas, and the normalized matrix hash
 before writing the caller's local cache. It also retains the authorized source
-copy and supporting/factor inputs in that cache and constructs each scored
-portfolio from its full source price history before trimming to the common
-window. This preserves the source `simulate_portfolio` closure: initial capital
-10,000, equal six-way weights, no cash flows, and the source 15 bps turnover
-cost. The generated `canonical_portfolios/` logs and source-price-derived asset
-logs are local caller-owned inputs; they are not packaged. Verification
-recomputes the source-price simulation and rejects a changed portfolio even if
-its local manifest hash is rewritten.
+copy and supporting/factor inputs in that cache and copies the exact frozen
+source-derived matrices from `resources/data/canonical_derived_matrices.npz`.
+That snapshot contains 11,687 x 52 asset log returns and 11,687 x 80 portfolio
+log returns, with SHA-256
+`1a7153a9bc26b8c5146064757ed301c2c905f594db6a5f2a1be6c455101d0630` and matrix
+identities `d0198f779d1e60146df4e0c5761ca2716abad8a140119222cada0c894354a460`
+and `cc685b4f6f4570b48bbac1a92be9e91659e14cf84dd2d6703efaa84530e2927f`.
+Its stored date array is bound to the canonical calendar SHA-256
+`8204fbf08e1664a8f254d935052b34c2b4ec9f088ee91f414e7e72c95fb32e04`.
+The matrix provenance retains the source `simulate_portfolio` closure:
+initial capital 10,000, equal six-way weights, no cash flows, and the source
+15 bps turnover cost. The cache's `canonical_portfolios/` files are verified
+CSV views of the frozen portfolio matrix; runtime preparation and loading do
+not repeat floating-point price or portfolio calculations.
 
 `load_canonical_returns` reads the normalized raw return identity.
-`load_canonical_engine_inputs` reads the verified source-price-derived asset
-logs and portfolio logs used by the canonical task constructor. A prepared
+`load_canonical_engine_inputs` reads the verified frozen source-derived asset
+and portfolio matrices used by the canonical task constructor. A prepared
 manifest records the packaged snapshot authorization and requires all exact
-source and derived-value checks to pass. `redistribution_status` is kept separate and is never inferred
-from a hash. The loaders never download, refresh, proxy, or import private
-arrays. No public-provider proxy is accepted as the canonical dataset.
+source, matrix schema, order, binary, and derived-value checks to pass.
+`redistribution_status` is kept separate and is never inferred from a hash.
+The loaders never download, refresh, proxy, or import private arrays. No
+public-provider proxy is accepted as the canonical dataset.
 
 `resources/data/canonical_calendar.csv` is calendar metadata rather than a
 financial dataset. Its SHA-256 is
