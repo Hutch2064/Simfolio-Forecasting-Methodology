@@ -23,7 +23,7 @@ def test_manifest_and_calendar_are_value_free_identities():
 
 
 def test_snapshot_verifier_fails_closed_before_any_source_read(tmp_path):
-    with pytest.raises(CanonicalDataUnavailable, match="rights"):
+    with pytest.raises(CanonicalDataUnavailable, match="snapshot series"):
         verify_canonical_snapshot(tmp_path)
 
 

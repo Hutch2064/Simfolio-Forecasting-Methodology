@@ -1,0 +1,427 @@
+{
+  "asset_log_matrix_sha256": "d0198f779d1e60146df4e0c5761ca2716abad8a140119222cada0c894354a460",
+  "canonical_window": {
+    "end": "2026-05-13",
+    "start": "1979-12-31",
+    "row_count": 11687
+  },
+  "dataset_id": "simfolio-canonical-simulated-returns-2026-05-13",
+  "portfolio_log_matrix_sha256": "cc685b4f6f4570b48bbac1a92be9e91659e14cf84dd2d6703efaa84530e2927f",
+  "portfolio_count": 80,
+  "source_loader_price_frame": {
+    "end": "2026-05-14",
+    "row_count": 11689,
+    "start": "1979-12-28"
+  },
+  "source_parity": {
+    "all_portfolios_exact": true,
+    "max_abs_log_return_difference": 0.0,
+    "portfolio_construction_source": "scripts/consolidated_forecast_oos_gate.py:_construct_portfolio_returns",
+    "portfolio_simulation_source": "app/engine.py:SimfolioEngine.simulate_portfolio",
+    "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+    "weight_call_semantics": "equal-class raw 1/6 values normalized by source _normalize_weights",
+    "portfolio_history_bounds": {
+      "equal_class_history_001": {
+        "rows": 11938,
+        "first": "1979-01-03",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_002": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_003": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_004": {
+        "rows": 14624,
+        "first": "1968-04-03",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_005": {
+        "rows": 14625,
+        "first": "1968-04-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_006": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_007": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_008": {
+        "rows": 14686,
+        "first": "1968-01-04",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_009": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_010": {
+        "rows": 14211,
+        "first": "1970-01-05",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_011": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_012": {
+        "rows": 11939,
+        "first": "1979-01-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_013": {
+        "rows": 14686,
+        "first": "1968-01-04",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_014": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_015": {
+        "rows": 14625,
+        "first": "1968-04-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_016": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_017": {
+        "rows": 14687,
+        "first": "1968-01-04",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_018": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_019": {
+        "rows": 14687,
+        "first": "1968-01-04",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_020": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_021": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_022": {
+        "rows": 14624,
+        "first": "1968-04-03",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_023": {
+        "rows": 14211,
+        "first": "1970-01-05",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_024": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_025": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_026": {
+        "rows": 14686,
+        "first": "1968-01-04",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_027": {
+        "rows": 14211,
+        "first": "1970-01-05",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_028": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_029": {
+        "rows": 14687,
+        "first": "1968-01-04",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_030": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_031": {
+        "rows": 14624,
+        "first": "1968-04-03",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_032": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_033": {
+        "rows": 13651,
+        "first": "1972-03-21",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_034": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_035": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_036": {
+        "rows": 11939,
+        "first": "1979-01-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_037": {
+        "rows": 14211,
+        "first": "1970-01-05",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_038": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_039": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_040": {
+        "rows": 14686,
+        "first": "1968-01-04",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_041": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_042": {
+        "rows": 11939,
+        "first": "1979-01-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_043": {
+        "rows": 14211,
+        "first": "1970-01-05",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_044": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_045": {
+        "rows": 11939,
+        "first": "1979-01-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_046": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_047": {
+        "rows": 14625,
+        "first": "1968-04-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_048": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_049": {
+        "rows": 14625,
+        "first": "1968-04-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_050": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_051": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_052": {
+        "rows": 14211,
+        "first": "1970-01-05",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_053": {
+        "rows": 14625,
+        "first": "1968-04-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_054": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_055": {
+        "rows": 14625,
+        "first": "1968-04-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_056": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_057": {
+        "rows": 13651,
+        "first": "1972-03-21",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_058": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_059": {
+        "rows": 14687,
+        "first": "1968-01-04",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_060": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_061": {
+        "rows": 14211,
+        "first": "1970-01-05",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_062": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_063": {
+        "rows": 14686,
+        "first": "1968-01-04",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_064": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_065": {
+        "rows": 14624,
+        "first": "1968-04-03",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_066": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_067": {
+        "rows": 14624,
+        "first": "1968-04-03",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_068": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_069": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_070": {
+        "rows": 14212,
+        "first": "1970-01-05",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_071": {
+        "rows": 14211,
+        "first": "1970-01-05",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_072": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_073": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_074": {
+        "rows": 14686,
+        "first": "1968-01-04",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_075": {
+        "rows": 14625,
+        "first": "1968-04-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_076": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_077": {
+        "rows": 14625,
+        "first": "1968-04-03",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_078": {
+        "rows": 11688,
+        "first": "1979-12-31",
+        "last": "2026-05-14"
+      },
+      "equal_class_history_079": {
+        "rows": 14624,
+        "first": "1968-04-03",
+        "last": "2026-05-13"
+      },
+      "equal_class_history_080": {
+        "rows": 11687,
+        "first": "1979-12-31",
+        "last": "2026-05-13"
+      }
+    }
+  },
+  "ticker_count": 52
+}

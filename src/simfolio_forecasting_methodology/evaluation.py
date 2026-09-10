@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Hashable
+from collections.abc import Hashable, Mapping
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -12,7 +12,7 @@ def empirical_crps_by_horizon(
     terminal_samples: np.ndarray,
     realized_terminal: np.ndarray,
     *,
-    strict: bool = False,
+    strict: bool = True,
 ) -> np.ndarray:
     """Exact empirical CRPS independently at every daily horizon.
 
@@ -49,6 +49,8 @@ def empirical_crps_by_horizon(
     pairwise_sum = 2.0 * np.sum((2.0 * ranks - n - 1.0)[:, None] * ordered, axis=0)
     pairwise_mean = pairwise_sum / (n * n)
     output[valid] = np.maximum(0.0, observation_term - 0.5 * pairwise_mean)
+    if not np.all(np.isfinite(output[valid])):
+        raise ValueError("fixed-denominator CRPS produced a nonfinite loss")
     return output
 
 
@@ -58,6 +60,7 @@ class CellAccumulator:
 
     loss_sum: dict[tuple[Hashable, int], float] = field(default_factory=dict)
     origin_count: dict[tuple[Hashable, int], int] = field(default_factory=dict)
+    expected_origin_counts: Mapping[tuple[Hashable, int], int] | None = None
 
     def add_vector(
         self,
@@ -67,11 +70,13 @@ class CellAccumulator:
         first_horizon_day: int = 1,
     ) -> None:
         losses = np.asarray(horizon_losses, dtype=np.float64).reshape(-1)
-        for offset, loss in enumerate(losses):
-            if not np.isfinite(loss):
-                continue
-            horizon = int(first_horizon_day) + offset
-            key = (portfolio_id, horizon)
+        if not np.all(np.isfinite(losses)):
+            raise ValueError("fixed-denominator evaluation requires finite horizon losses")
+        pending = [
+            ((portfolio_id, int(first_horizon_day) + offset), float(loss))
+            for offset, loss in enumerate(losses)
+        ]
+        for key, loss in pending:
             self.loss_sum[key] = self.loss_sum.get(key, 0.0) + float(loss)
             self.origin_count[key] = self.origin_count.get(key, 0) + 1
 
@@ -83,7 +88,10 @@ class CellAccumulator:
             count = self.origin_count[key]
             if count <= 0:
                 raise RuntimeError(f"nonpositive origin count for cell {key!r}")
-            result[key] = total / float(count)
+            mean = total / float(count)
+            if not np.isfinite(mean):
+                raise ValueError(f"nonfinite loss mean for cell {key!r}")
+            result[key] = mean
         return result
 
     def aggregate_score(self) -> float:
@@ -99,8 +107,14 @@ class CellAccumulator:
         expected_tasks: int,
         completed_tasks: int,
         failed_tasks: int = 0,
+        expected_origin_counts: Mapping[tuple[Hashable, int], int] | None = None,
     ) -> None:
-        """Apply the canonical fail-closed task and cell denominator gates."""
+        """Apply task, cell, and per-cell-origin fail-closed denominator gates.
+
+        ``expected_origin_counts`` is required here (or at construction) for a
+        fixed-denominator score because a unique-cell count cannot detect a
+        missing origin when another origin covers the same cell.
+        """
         if int(failed_tasks) != 0:
             raise ValueError(f"fixed-denominator evaluation has {int(failed_tasks)} failed tasks")
         if int(completed_tasks) != int(expected_tasks):
@@ -113,6 +127,24 @@ class CellAccumulator:
                 f"fixed-denominator evaluation requires {int(expected_cells)} cells; "
                 f"observed {self.cell_count}"
             )
+        expected_counts = expected_origin_counts or self.expected_origin_counts
+        if expected_counts is None:
+            raise ValueError(
+                "fixed-denominator evaluation requires expected origin counts per cell"
+            )
+        expected_counts = dict(expected_counts)
+        if set(expected_counts) != set(self.origin_count):
+            raise ValueError("fixed-denominator evaluation has missing or unexpected cells")
+        mismatches = {
+            key: (int(expected_counts[key]), int(self.origin_count[key]))
+            for key in expected_counts
+            if int(expected_counts[key]) != int(self.origin_count[key])
+        }
+        if mismatches:
+            raise ValueError(
+                "fixed-denominator evaluation has incorrect origin counts per cell: "
+                f"{mismatches}"
+            )
 
     def fixed_denominator_score(
         self,
@@ -121,12 +153,14 @@ class CellAccumulator:
         expected_tasks: int,
         completed_tasks: int,
         failed_tasks: int = 0,
+        expected_origin_counts: Mapping[tuple[Hashable, int], int] | None = None,
     ) -> float:
         self.assert_complete(
             expected_cells=expected_cells,
             expected_tasks=expected_tasks,
             completed_tasks=completed_tasks,
             failed_tasks=failed_tasks,
+            expected_origin_counts=expected_origin_counts,
         )
         return self.aggregate_score()
 

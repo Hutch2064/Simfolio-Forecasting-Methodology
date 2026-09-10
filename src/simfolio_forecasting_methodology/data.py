@@ -4,10 +4,13 @@ The retained white-paper run used simulated return arrays from the pinned
 source repository. Those arrays are not redistributed by this package. The
 package carries only source-relative identities, schemas, hashes, and the
 common calendar. A caller with the required rights must provide a frozen
-source snapshot and explicitly authorize its use before preparation.
+source snapshot before preparation; local hash verification records whether
+the caller separately confirmed use rights.
 
 There is intentionally no network, proxy, refresh, or source-builder path in
-this module. A missing or unauthorized snapshot fails closed.
+this module. A missing or inconsistent snapshot fails closed. Hash
+verification does not make a redistribution grant or require one to be
+asserted by the verifier.
 """
 
 from __future__ import annotations
@@ -99,6 +102,7 @@ def _snapshot_series_root(snapshot_root: Path) -> Path:
     candidates = (
         root,
         root / "series",
+        root / "source_series",
         root / "app" / "simulated_data" / "series",
     )
     for candidate in candidates:
@@ -128,7 +132,10 @@ def _read_snapshot_series(path: Path, expected: Mapping[str, object]) -> pd.Data
     if _sha256(path) != str(expected["sha256"]):
         raise CanonicalDataUnavailable(f"source hash mismatch for {ticker}")
     with gzip.open(path, "rt", encoding="utf-8", newline="") as handle:
-        frame = pd.read_csv(handle, float_precision="round_trip")
+        # The pinned source registry uses pandas' default CSV float parser.
+        # Keep that parser for source-price parity; the return-matrix identity
+        # is independently stabilized by the .17g normalized hash.
+        frame = pd.read_csv(handle)
     expected_schema = ["date", "daily_return", "price"]
     if list(frame.columns) != expected_schema:
         raise CanonicalDataUnavailable(f"schema mismatch for {ticker}")
@@ -157,12 +164,27 @@ def _normalized_return_hash(series: Mapping[str, pd.Series], dates: pd.DatetimeI
     return hashlib.sha256(("\n".join(lines) + "\n").encode("utf-8")).hexdigest()
 
 
+def _derived_fingerprint_manifest() -> dict[str, object]:
+    with _resource_path("data", "canonical_derived_fingerprints.json").open(
+        "r", encoding="utf-8"
+    ) as handle:
+        return json.load(handle)
+
+
+def _matrix_fingerprint(
+    series: Mapping[str, pd.Series],
+    dates: pd.DatetimeIndex,
+) -> str:
+    """Hash a deterministic date/column matrix using the published formatter."""
+    return _normalized_return_hash(series, dates)
+
+
 def _factor_identity(path: Path, expected: Mapping[str, object]) -> None:
     factor_id = str(expected["id"])
     if _sha256(path) != str(expected["sha256"]):
         raise CanonicalDataUnavailable(f"factor input hash mismatch for {factor_id}")
     with gzip.open(path, "rt", encoding="utf-8", newline="") as handle:
-        frame = pd.read_csv(handle, float_precision="round_trip")
+        frame = pd.read_csv(handle)
     if list(frame.columns) != list(expected["schema"]):
         raise CanonicalDataUnavailable(f"factor input schema mismatch for {factor_id}")
 
@@ -173,11 +195,6 @@ def verify_canonical_snapshot(
     rights_confirmed: bool = False,
 ) -> dict[str, object]:
     """Verify a caller-provided exact snapshot against the published identities."""
-    if not rights_confirmed:
-        raise CanonicalDataUnavailable(
-            "canonical arrays are identified but use and redistribution rights are not confirmed; "
-            "provide an authorized snapshot and pass rights_confirmed=True"
-        )
     manifest = canonical_snapshot_manifest()
     root = _snapshot_series_root(Path(snapshot_root))
     expected_series = {str(item["ticker"]): item for item in manifest["series"]}
@@ -218,7 +235,10 @@ def verify_canonical_snapshot(
 
     return {
         "verified": True,
-        "rights_status": "caller_authorized",
+        "rights_status": (
+            "caller_authorized_local_use" if rights_confirmed else "local_use_unconfirmed"
+        ),
+        "redistribution_status": "not_granted_by_this_verifier",
         "dataset_id": str(manifest["dataset_id"]),
         "source_revision": str(manifest["source_revision"]),
         "series_count": len(frames),
@@ -240,6 +260,28 @@ def _price_simple_returns(prices: pd.DataFrame) -> pd.DataFrame:
     return returns.replace([np.inf, -np.inf], np.nan).dropna(how="any")
 
 
+def _source_loader_price_frame(prices: pd.DataFrame, tickers: tuple[str, ...]) -> pd.DataFrame:
+    """Match ``load_price_data_ohlc`` normalization before source simulation.
+
+    The pinned loader normalizes simulated price frames to the union calendar,
+    forward-fills at most one missing observation, and then drops rows that
+    remain incomplete.  This matters at the pre-1979 boundary and when one
+    simulated series ends one observation after its portfolio peers.
+    """
+    frame = prices.reindex(columns=list(tickers)).copy()
+    if frame.empty:
+        return frame
+    frame.index = pd.DatetimeIndex(pd.to_datetime(frame.index)).tz_localize(None)
+    frame = frame.sort_index()
+    first_valid = [frame[ticker].first_valid_index() for ticker in tickers]
+    first_valid = [value for value in first_valid if value is not None and not pd.isna(value)]
+    if first_valid:
+        frame = frame.loc[frame.index >= max(first_valid)]
+    trading_days = frame[list(tickers)].dropna(how="all").index
+    frame = frame.loc[trading_days]
+    return frame.ffill(limit=1).dropna(how="any")
+
+
 def _rebalance_dates(dates: pd.DatetimeIndex, frequency: str) -> set[pd.Timestamp]:
     normalized = str(frequency).lower()
     if normalized in {"none", ""} or len(dates) == 0:
@@ -257,26 +299,52 @@ def _rebalance_dates(dates: pd.DatetimeIndex, frequency: str) -> set[pd.Timestam
 def _source_portfolio_log_returns(prices: pd.DataFrame, spec: object) -> pd.Series:
     """Reproduce the no-flow engine portfolio construction from source prices."""
     tickers = tuple(str(value) for value in spec.tickers)
-    weights = np.asarray(spec.weights, dtype=np.float64)
-    selected = prices.reindex(columns=list(tickers)).dropna(how="any")
+    # The source generator passes equal-class weights as ``1 / len(tickers)``
+    # and then normalizes them in ``_construct_portfolio_returns``.  The
+    # reviewed panel stores the post-normalization IEEE-754 value, so deriving
+    # the raw equal-holding value here preserves source call semantics instead
+    # of normalizing the serialized value a second time.
+    weights = np.full(len(tickers), 1.0 / max(len(tickers), 1), dtype=np.float64)
+    weights = np.maximum(weights, 0.0)
+    total_weight = float(np.sum(weights))
+    if total_weight <= 0.0:
+        raise CanonicalDataUnavailable(f"invalid equal-class weights for {spec.name}")
+    weights = weights / total_weight
+    selected = _source_loader_price_frame(prices, tickers)
     if selected.empty:
         raise CanonicalDataUnavailable(f"no common price history for {spec.name}")
     returns = _price_simple_returns(selected)
     if len(returns) < 1:
         raise CanonicalDataUnavailable(f"no price returns for {spec.name}")
-    holdings = weights * 10_000.0
+    holdings = {
+        ticker: 10_000.0 * float(weight)
+        for ticker, weight in zip(tickers, weights)
+    }
     rebalance_dates = _rebalance_dates(pd.DatetimeIndex(returns.index), spec.rebalance)
     equity = np.empty(len(returns), dtype=np.float64)
     cost_rate = 15.0 / 10_000.0
     for row_index, (date, row) in enumerate(returns.iterrows()):
-        holdings *= 1.0 + row.to_numpy(dtype=np.float64)
-        current = float(np.sum(holdings))
+        current = 0.0
+        daily_returns = row.to_numpy(dtype=np.float64)
+        for asset_index, ticker in enumerate(tickers):
+            holdings[ticker] *= 1.0 + daily_returns[asset_index]
+            current += holdings[ticker]
         if row_index > 0 and pd.Timestamp(date) in rebalance_dates and current > 0.0:
-            drifted = holdings / current
-            gross = np.abs(weights - drifted)
-            trade_cost = 0.5 * current * float(np.sum(gross * cost_rate))
+            drifted = {
+                ticker: holdings[ticker] / current
+                for ticker in tickers
+            }
+            gross = {
+                ticker: abs(float(weight) - drifted[ticker])
+                for ticker, weight in zip(tickers, weights)
+            }
+            trade_cost = 0.5 * current * sum(
+                gross[ticker] * cost_rate
+                for ticker in tickers
+            )
             current = max(current - trade_cost, 0.0)
-            holdings = current * weights
+            for ticker, weight in zip(tickers, weights):
+                holdings[ticker] = current * float(weight)
         equity[row_index] = current
     simple = pd.Series(equity, index=returns.index).pct_change().dropna()
     values = np.clip(simple.to_numpy(dtype=np.float64), -0.999999, None)
@@ -311,9 +379,13 @@ def prepare_canonical_data(
     common = canonical_calendar()
     destination = Path(destination)
     source_series_root = destination / "source_series"
+    supporting_root = destination / "supporting_series"
+    factor_root = destination / "factor_inputs"
     series_root = destination / "canonical_series"
     portfolio_root = destination / "canonical_portfolios"
     source_series_root.mkdir(parents=True, exist_ok=True)
+    supporting_root.mkdir(parents=True, exist_ok=True)
+    factor_root.mkdir(parents=True, exist_ok=True)
     series_root.mkdir(parents=True, exist_ok=True)
     portfolio_root.mkdir(parents=True, exist_ok=True)
 
@@ -327,6 +399,35 @@ def prepare_canonical_data(
         source_records.append({
             "ticker": ticker,
             "path": f"source_series/{destination_path.name}",
+            "sha256": _sha256(destination_path),
+        })
+
+    # Preserve the authorized local context inputs beside the exact source
+    # series.  These files remain outside the Python package and are verified
+    # by hash; no public array bundle is created by this repository.
+    manifest = canonical_snapshot_manifest()
+    supporting_records: list[dict[str, object]] = []
+    for expected in manifest.get("supporting_series", []):
+        ticker = str(expected["ticker"])
+        source_path = source_root / f"{ticker}.csv.gz"
+        if not source_path.is_file():
+            raise CanonicalDataUnavailable(f"missing required supporting series {ticker}")
+        destination_path = supporting_root / source_path.name
+        shutil.copyfile(source_path, destination_path)
+        supporting_records.append({
+            "ticker": ticker,
+            "path": f"supporting_series/{destination_path.name}",
+            "sha256": _sha256(destination_path),
+        })
+
+    factor_records: list[dict[str, object]] = []
+    for expected in manifest.get("factor_inputs", []):
+        source_path = _snapshot_factor_path(Path(snapshot_root), str(expected["path"]))
+        destination_path = factor_root / Path(str(expected["path"])).name
+        shutil.copyfile(source_path, destination_path)
+        factor_records.append({
+            "id": str(expected["id"]),
+            "path": f"factor_inputs/{destination_path.name}",
             "sha256": _sha256(destination_path),
         })
 
@@ -355,11 +456,14 @@ def prepare_canonical_data(
     from .panel import load_scored52_portfolio_panel
 
     portfolio_records: list[dict[str, object]] = []
+    constructed_portfolio_logs: dict[str, pd.Series] = {}
+    prices = pd.concat(
+        {ticker: frame["price"] for ticker, frame in frames.items()},
+        axis=1,
+    )
     for spec in load_scored52_portfolio_panel():
-        logs = _source_portfolio_log_returns(
-            pd.concat({ticker: frame["price"] for ticker, frame in frames.items()}, axis=1),
-            spec,
-        )
+        logs = _source_portfolio_log_returns(prices, spec)
+        constructed_portfolio_logs[spec.name] = logs
         path = portfolio_root / f"{spec.name}.csv.gz"
         frame = pd.DataFrame({"date": logs.index.strftime("%Y-%m-%d"), "portfolio_log_return": logs.to_numpy()})
         csv_bytes = frame.to_csv(index=False, float_format="%.17g", lineterminator="\n").encode("utf-8")
@@ -375,13 +479,43 @@ def prepare_canonical_data(
             "sha256": _sha256(path),
         })
 
+    derived_fingerprints = _derived_fingerprint_manifest()
+    source_price_frame = _source_loader_price_frame(prices, CANONICAL_TICKERS)
+    derived_asset_logs: dict[str, pd.Series] = {}
+    for ticker in CANONICAL_TICKERS:
+        returns = _price_simple_returns(source_price_frame[[ticker]])[ticker]
+        derived_asset_logs[ticker] = pd.Series(
+            np.log1p(np.clip(returns.to_numpy(dtype=np.float64), -0.999999, None)),
+            index=returns.index,
+        ).reindex(common)
+    derived_portfolio_logs = {
+        portfolio_id: values.reindex(common)
+        for portfolio_id, values in constructed_portfolio_logs.items()
+    }
+    asset_fingerprint = _matrix_fingerprint(derived_asset_logs, common)
+    portfolio_fingerprint = _matrix_fingerprint(derived_portfolio_logs, common)
+    if asset_fingerprint != str(derived_fingerprints["asset_log_matrix_sha256"]):
+        raise CanonicalDataUnavailable("derived canonical asset fingerprint does not match source evidence")
+    if portfolio_fingerprint != str(derived_fingerprints["portfolio_log_matrix_sha256"]):
+        raise CanonicalDataUnavailable("derived canonical portfolio fingerprint does not match source evidence")
+
     output = {
         "dataset_id": CANONICAL_DATASET_ID,
         "source_revision": CANONICAL_SOURCE_REVISION,
         "rights_status": verification["rights_status"],
+        "redistribution_status": verification["redistribution_status"],
         "canonical_window": {"start": str(CANONICAL_START.date()), "end": str(CANONICAL_END.date())},
         "common_date_count": len(common),
         "normalized_return_matrix_sha256": CANONICAL_NORMALIZED_RETURN_SHA256,
+        "derived_fingerprints": {
+            "asset_log_matrix_sha256": asset_fingerprint,
+            "portfolio_log_matrix_sha256": portfolio_fingerprint,
+            "source_loader_price_frame": {
+                "row_count": len(source_price_frame),
+                "start": str(source_price_frame.index.min().date()),
+                "end": str(source_price_frame.index.max().date()),
+            },
+        },
         "portfolio_construction": {
             "method": "source_price_simulate_portfolio_no_flows",
             "initial_capital": 10000.0,
@@ -389,6 +523,8 @@ def prepare_canonical_data(
             "constructed_before_common_window_trim": True,
         },
         "source_series": source_records,
+        "supporting_series": supporting_records,
+        "factor_inputs": factor_records,
         "series": generated,
         "portfolio_series": portfolio_records,
     }
@@ -398,7 +534,7 @@ def prepare_canonical_data(
 
 
 def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
-    """Verify a prepared cache without accessing source files or live services."""
+    """Verify a prepared cache, including source-derived portfolio values."""
     root = Path(cache)
     manifest_path = root / "canonical_data_manifest.json"
     if not manifest_path.is_file():
@@ -406,8 +542,21 @@ def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     if manifest.get("dataset_id") != CANONICAL_DATASET_ID:
         raise CanonicalDataUnavailable("prepared cache is not the canonical dataset identity")
-    if manifest.get("rights_status") != "caller_authorized":
-        raise CanonicalDataUnavailable("prepared cache does not record caller authorization")
+    if manifest.get("source_revision") != CANONICAL_SOURCE_REVISION:
+        raise CanonicalDataUnavailable("prepared cache source revision drifted")
+    if int(manifest.get("common_date_count", -1)) != CANONICAL_COMMON_RETURN_COUNT:
+        raise CanonicalDataUnavailable("prepared cache common date count drifted")
+    if manifest.get("normalized_return_matrix_sha256") != CANONICAL_NORMALIZED_RETURN_SHA256:
+        raise CanonicalDataUnavailable("prepared cache declared return identity drifted")
+    if manifest.get("rights_status") not in {
+        "caller_authorized_local_use",
+        "local_use_unconfirmed",
+        # Accept the legacy spelling for caches prepared by f126ac7; source
+        # hashes and derived values below still provide the integrity gate.
+        "caller_authorized",
+    }:
+        raise CanonicalDataUnavailable("prepared cache has an unknown local-use status")
+
     calendar = canonical_calendar()
     columns: dict[str, pd.Series] = {}
     for ticker in CANONICAL_TICKERS:
@@ -427,30 +576,90 @@ def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
     if normalized_hash != CANONICAL_NORMALIZED_RETURN_SHA256:
         raise CanonicalDataUnavailable("prepared canonical return hash mismatch")
 
-    # Exact portfolio construction requires the authorized source-price copy;
-    # a raw return-only cache cannot claim parity with the retained panel.
-    source_records = {str(item["ticker"]): item for item in manifest.get("source_series", [])}
-    expected_source = {str(item["ticker"]): item for item in canonical_snapshot_manifest()["series"]}
+    snapshot_manifest = canonical_snapshot_manifest()
+    expected_source = {str(item["ticker"]): item for item in snapshot_manifest["series"]}
+    source_records = {
+        str(item["ticker"]): item for item in manifest.get("source_series", [])
+    }
     if set(source_records) != set(CANONICAL_TICKERS):
         raise CanonicalDataUnavailable("prepared cache is missing exact source series")
+    source_frames: dict[str, pd.DataFrame] = {}
     for ticker in CANONICAL_TICKERS:
         relative = Path(str(source_records[ticker]["path"]))
         path = root / relative
-        if not path.is_file() or _sha256(path) != str(expected_source[ticker]["sha256"]):
+        expected = expected_source[ticker]
+        if not path.is_file() or _sha256(path) != str(expected["sha256"]):
             raise CanonicalDataUnavailable(f"prepared source series hash mismatch for {ticker}")
+        if _sha256(path) != str(source_records[ticker].get("sha256", "")):
+            raise CanonicalDataUnavailable(f"prepared source record hash mismatch for {ticker}")
+        source_frames[ticker] = _read_snapshot_series(path, expected)
+
+    expected_supporting = {
+        str(item["ticker"]): item
+        for item in snapshot_manifest.get("supporting_series", [])
+    }
+    supporting_records = {
+        str(item["ticker"]): item for item in manifest.get("supporting_series", [])
+    }
+    if set(supporting_records) != set(expected_supporting):
+        raise CanonicalDataUnavailable("prepared cache is missing exact supporting series")
+    for ticker, expected in expected_supporting.items():
+        path = root / Path(str(supporting_records[ticker]["path"]))
+        if not path.is_file() or _sha256(path) != str(expected["sha256"]):
+            raise CanonicalDataUnavailable(f"prepared supporting series hash mismatch for {ticker}")
+        if _sha256(path) != str(supporting_records[ticker].get("sha256", "")):
+            raise CanonicalDataUnavailable(f"prepared supporting record hash mismatch for {ticker}")
+        _read_snapshot_series(path, expected)
+
+    expected_factors = {
+        str(item["id"]): item for item in snapshot_manifest.get("factor_inputs", [])
+    }
+    factor_records = {
+        str(item["id"]): item for item in manifest.get("factor_inputs", [])
+    }
+    if set(factor_records) != set(expected_factors):
+        raise CanonicalDataUnavailable("prepared cache is missing exact factor inputs")
+    for factor_id, expected in expected_factors.items():
+        path = root / Path(str(factor_records[factor_id]["path"]))
+        if not path.is_file() or _sha256(path) != str(expected["sha256"]):
+            raise CanonicalDataUnavailable(f"prepared factor input hash mismatch for {factor_id}")
+        if _sha256(path) != str(factor_records[factor_id].get("sha256", "")):
+            raise CanonicalDataUnavailable(f"prepared factor record hash mismatch for {factor_id}")
+        _factor_identity(path, expected)
+
+    prices = pd.concat(
+        {ticker: frame["price"] for ticker, frame in source_frames.items()},
+        axis=1,
+    )
+    source_price_frame = _source_loader_price_frame(prices, CANONICAL_TICKERS)
+    derived_assets = {}
+    for ticker in CANONICAL_TICKERS:
+        returns = _price_simple_returns(source_price_frame[[ticker]])[ticker]
+        derived_assets[ticker] = pd.Series(
+            np.log1p(np.clip(returns.to_numpy(dtype=np.float64), -0.999999, None)),
+            index=returns.index,
+        ).reindex(calendar)
+    fingerprints = _derived_fingerprint_manifest()
+    asset_fingerprint = _matrix_fingerprint(derived_assets, calendar)
+    if asset_fingerprint != str(fingerprints["asset_log_matrix_sha256"]):
+        raise CanonicalDataUnavailable("prepared source-derived asset fingerprint mismatch")
 
     from .panel import load_scored52_portfolio_panel
 
-    expected_portfolios = {item.name for item in load_scored52_portfolio_panel()}
+    panel = load_scored52_portfolio_panel()
+    expected_portfolios = {item.name: item for item in panel}
     portfolio_records = {
-        str(item["portfolio_id"]): item for item in manifest.get("portfolio_series", [])
+        str(item["portfolio_id"]): item
+        for item in manifest.get("portfolio_series", [])
     }
-    if set(portfolio_records) != expected_portfolios:
+    if set(portfolio_records) != set(expected_portfolios):
         raise CanonicalDataUnavailable("prepared cache is missing exact portfolio series")
-    for portfolio_id, record in portfolio_records.items():
+    derived_portfolios: dict[str, pd.Series] = {}
+    for portfolio_id, spec in expected_portfolios.items():
+        record = portfolio_records[portfolio_id]
         path = root / Path(str(record["path"]))
-        if not path.is_file() or _sha256(path) != str(record["sha256"]):
-            raise CanonicalDataUnavailable(f"prepared portfolio series hash mismatch for {portfolio_id}")
+        if not path.is_file() or _sha256(path) != str(record.get("sha256", "")):
+            raise CanonicalDataUnavailable(f"prepared portfolio bytes mismatch for {portfolio_id}")
         with gzip.open(path, "rt", encoding="utf-8", newline="") as handle:
             frame = pd.read_csv(handle, float_precision="round_trip")
         if list(frame.columns) != ["date", "portfolio_log_return"]:
@@ -459,8 +668,25 @@ def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
         values = pd.to_numeric(frame["portfolio_log_return"], errors="raise").to_numpy(dtype=np.float64)
         if dates.has_duplicates or not dates.is_monotonic_increasing or not np.all(np.isfinite(values)):
             raise CanonicalDataUnavailable(f"prepared portfolio values mismatch for {portfolio_id}")
-        if len(dates) < CANONICAL_COMMON_RETURN_COUNT or not set(calendar).issubset(set(dates)):
-            raise CanonicalDataUnavailable(f"prepared portfolio does not cover canonical calendar for {portfolio_id}")
+        expected_logs = _source_portfolio_log_returns(prices, spec)
+        if not dates.equals(expected_logs.index) or not np.array_equal(
+            values, expected_logs.to_numpy(dtype=np.float64)
+        ):
+            raise CanonicalDataUnavailable(
+                f"prepared portfolio values do not match source simulation for {portfolio_id}"
+            )
+        derived_portfolios[portfolio_id] = expected_logs.reindex(calendar)
+
+    portfolio_fingerprint = _matrix_fingerprint(derived_portfolios, calendar)
+    if portfolio_fingerprint != str(fingerprints["portfolio_log_matrix_sha256"]):
+        raise CanonicalDataUnavailable("prepared source-derived portfolio fingerprint mismatch")
+    declared_derived = manifest.get("derived_fingerprints") or {}
+    if declared_derived.get("asset_log_matrix_sha256") != asset_fingerprint:
+        raise CanonicalDataUnavailable("prepared manifest asset fingerprint mismatch")
+    if declared_derived.get("portfolio_log_matrix_sha256") != portfolio_fingerprint:
+        raise CanonicalDataUnavailable("prepared manifest portfolio fingerprint mismatch")
+    if int(declared_derived.get("source_loader_price_frame", {}).get("row_count", -1)) != len(source_price_frame):
+        raise CanonicalDataUnavailable("prepared source-loader frame count mismatch")
 
     construction = manifest.get("portfolio_construction") or {}
     if construction.get("constructed_before_common_window_trim") is not True:
@@ -469,17 +695,21 @@ def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
         raise CanonicalDataUnavailable("portfolio turnover cost provenance drifted")
     return {
         "verified": True,
-        "rights_status": "caller_authorized",
+        "rights_status": str(manifest.get("rights_status")),
+        "redistribution_status": str(manifest.get("redistribution_status", "unknown")),
         "dataset_id": CANONICAL_DATASET_ID,
         "common_date_count": CANONICAL_COMMON_RETURN_COUNT,
         "common_start": str(CANONICAL_START.date()),
         "common_end": str(CANONICAL_END.date()),
         "normalized_return_matrix_sha256": normalized_hash,
+        "asset_log_matrix_sha256": asset_fingerprint,
+        "portfolio_log_matrix_sha256": portfolio_fingerprint,
         "source_series_count": len(source_records),
+        "supporting_series_count": len(supporting_records),
+        "factor_input_count": len(factor_records),
         "portfolio_series_count": len(portfolio_records),
         "portfolio_construction": construction,
     }
-
 
 def load_canonical_engine_inputs(
     cache: Path,
@@ -488,24 +718,32 @@ def load_canonical_engine_inputs(
     verify_prepared_canonical_data(Path(cache))
     root = Path(cache)
     calendar = canonical_calendar()
+    manifest = json.loads((root / "canonical_data_manifest.json").read_text(encoding="utf-8"))
     source_records = {
         str(item["ticker"]): item
-        for item in json.loads((root / "canonical_data_manifest.json").read_text(encoding="utf-8"))["source_series"]
+        for item in manifest["source_series"]
     }
-    asset_logs: dict[str, pd.Series] = {}
     expected_source = {str(item["ticker"]): item for item in canonical_snapshot_manifest()["series"]}
-    for ticker in CANONICAL_TICKERS:
-        frame = _read_snapshot_series(
+    source_frames = {
+        ticker: _read_snapshot_series(
             root / Path(str(source_records[ticker]["path"])), expected_source[ticker]
         )
-        simple = _price_simple_returns(frame[["price"]])["price"]
+        for ticker in CANONICAL_TICKERS
+    }
+    prices = pd.concat(
+        {ticker: frame["price"] for ticker, frame in source_frames.items()},
+        axis=1,
+    )
+    source_price_frame = _source_loader_price_frame(prices, CANONICAL_TICKERS)
+    asset_logs: dict[str, pd.Series] = {}
+    for ticker in CANONICAL_TICKERS:
+        simple = _price_simple_returns(source_price_frame[[ticker]])[ticker]
         values = np.log1p(np.clip(simple.to_numpy(dtype=np.float64), -0.999999, None))
         series = pd.Series(values, index=simple.index).reindex(calendar)
         if series.isna().any():
             raise CanonicalDataUnavailable(f"prepared source price history misses calendar for {ticker}")
         asset_logs[ticker] = series.astype(float)
     portfolio_logs: dict[str, pd.Series] = {}
-    manifest = json.loads((root / "canonical_data_manifest.json").read_text(encoding="utf-8"))
     for record in manifest["portfolio_series"]:
         path = root / Path(str(record["path"]))
         with gzip.open(path, "rt", encoding="utf-8", newline="") as handle:

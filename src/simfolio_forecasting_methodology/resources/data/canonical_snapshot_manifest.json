@@ -41,8 +41,8 @@
     "algorithm": "UTF-8 CSV, LF line endings; header date plus lexicographically sorted tickers; dates ascending; each daily_return rendered with Python format(.17g); rows restricted to canonical window.",
     "normalized_return_matrix_sha256": "52c5bdd96b39762183ef0c204fa8165c2dfd5a4864e7198662615daddb8d6a49"
   },
-  "price_column_role": "source_validation_only",
-  "reproduction_note": "Prepare an authorized copy from the pinned source revision, then run the package verifier. The package publishes identities and checksums, never third-party arrays. Redistribution authorization remains an external prerequisite.",
+  "price_column_role": "source_portfolio_construction",
+  "reproduction_note": "Prepare a caller-provided frozen copy from the pinned source revision, then run the package verifier. The source price column is required to reconstruct portfolio histories. The package publishes identities and checksums, never third-party arrays; any use or redistribution authorization remains external to the verifier.",
   "required_risk_free_series": [
     "EFFRX"
   ],
@@ -810,4 +810,3 @@
   ],
   "unfiltered_common_date_count": 11688
 }
-

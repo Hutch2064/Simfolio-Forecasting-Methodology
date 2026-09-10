@@ -15,6 +15,20 @@ The scored portfolio return history is constructed from the full source price
 history before the common-window trim, with initial capital 10,000, equal six-way
 weights, no cash flows, and the source 15 bps turnover cost.
 
+The source construction parity record is
+`resources/panels/scored52_generation_provenance.json`. Direct comparison of
+all 80 source-generated definitions to the executable panel matched names,
+order, six tickers, equal weights, and rebalance strings. Using the source
+loader's default pandas float parser, union-calendar normalization, one-row
+forward fill, and source simulation loop produced exact all-80 portfolio logs
+(maximum absolute log-return difference 0.0). The canonical source-derived
+asset log matrix fingerprint is
+`d0198f779d1e60146df4e0c5761ca2716abad8a140119222cada0c894354a460`; the
+portfolio log matrix fingerprint is
+`cc685b4f6f4570b48bbac1a92be9e91659e14cf84dd2d6703efaa84530e2927f`. The
+source price frame used for construction has 11,689 rows from 1979-12-28
+through 2026-05-14 before the canonical window is applied.
+
 Each portfolio has 48 full-history-even rolling origins and three temporal
 origins, giving 4,080 origin tasks at 240 simulations per task. Rolling
 candidates are calendar quarter ends at positions at least 504. The preserved
@@ -27,12 +41,24 @@ future daily horizon. With 11,687 dates, the largest temporal future is 8,766
 horizons, so the fixed portfolio-horizon denominator is 80 × 8,766 = 701,280
 cells.
 
+The exact eligibility, selected-origin, descriptor, and horizon-mask digests
+from the archived source functions on the packaged calendar are recorded in
+`resources/protocols/origin_reference_digests.json`: 178 eligible quarter-end
+positions, 48 selected rolling positions, and 51 total descriptors. The
+resource stores every descriptor's date, position, split, and horizon cap while
+the mask digest covers every daily future-row mask.
+
 Forecast models return daily log-return increments. The evaluator cumulatively
 sums those increments to terminal log returns, computes exact empirical CRPS
 with the `n²` pairwise denominator, averages origins within each
 portfolio-horizon cell, and then weights cells equally. Nonfinite forecasts,
 missing tasks, failed origins, and missing cells fail the fixed denominator
 rather than changing it.
+
+The fixed score gate also checks the expected origin count for every
+portfolio-horizon cell. This catches a missing origin even when another origin
+has already populated the same unique cell; nonfinite vectors are rejected
+atomically before they can partially update the accumulator.
 
 Seeds retain the source call contexts. The BLAKE2b helper uses null-delimited
 string parts, an eight-byte digest, little-endian decoding, and reduction

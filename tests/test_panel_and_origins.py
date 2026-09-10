@@ -1,8 +1,13 @@
-import numpy as np
-import pandas as pd
+import hashlib
+import json
+from importlib import resources
 
+import numpy as np
+
+from simfolio_forecasting_methodology.data import canonical_calendar
 from simfolio_forecasting_methodology.experiment import build_experiment_schedule
 from simfolio_forecasting_methodology.origins import (
+    eligible_quarter_end_positions,
     expected_dense_cell_count,
     expected_origin_tasks,
     origin_schedule,
@@ -77,7 +82,7 @@ def test_dense_origin_contract():
 
 
 def test_source_equivalent_rolling_selection_and_masks():
-    dates = pd.bdate_range("1979-12-31", periods=11687)
+    dates = canonical_calendar()
     descriptors = origin_schedule(dates)
     assert len(descriptors) == 51
     assert descriptors[0].position >= 504
@@ -86,6 +91,46 @@ def test_source_equivalent_rolling_selection_and_masks():
     mask = descriptors[-1].horizon_mask(len(dates))
     assert mask.dtype == np.bool_
     assert mask.sum() == descriptors[-1].max_horizon
+
+
+def test_origin_schedule_matches_archived_source_reference_digests():
+    resource = resources.files("simfolio_forecasting_methodology").joinpath(
+        "resources", "protocols", "origin_reference_digests.json"
+    )
+    reference = json.loads(resource.read_text(encoding="utf-8"))
+    dates = canonical_calendar()
+    descriptors = origin_schedule(dates)
+
+    def digest(payload):
+        body = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        return hashlib.sha256(body).hexdigest()
+
+    eligible = eligible_quarter_end_positions(dates)
+    assert len(eligible) == reference["selection"]["eligible_count"]
+    assert digest([int(position) for position in eligible]) == reference["selection"]["eligible_position_sha256"]
+    assert digest([dates[int(position)].date().isoformat() for position in eligible]) == reference["selection"]["eligible_date_sha256"]
+    selected = [item.position for item in descriptors if item.evaluation_split == "rolling_origin"]
+    selected_dates = [dates[int(position)].date().isoformat() for position in selected]
+    assert digest([int(position) for position in selected]) == reference["selection"]["selected_position_sha256"]
+    assert digest(selected_dates) == reference["selection"]["selected_date_sha256"]
+
+    rows = [
+        {
+            "label": item.origin_label,
+            "split": item.evaluation_split,
+            "position": int(item.position),
+            "origin_date": item.origin_date,
+            "max_horizon": int(item.max_horizon),
+        }
+        for item in descriptors
+    ]
+    masks = [
+        [int(position) for position in np.flatnonzero(item.horizon_mask(len(dates)))]
+        for item in descriptors
+    ]
+    assert len(descriptors) == reference["descriptors"]["count"]
+    assert digest(rows) == reference["descriptors"]["descriptor_sha256"]
+    assert digest(masks) == reference["descriptors"]["horizon_mask_sha256"]
 
 
 def test_value_free_canonical_schedule_has_fixed_counts():

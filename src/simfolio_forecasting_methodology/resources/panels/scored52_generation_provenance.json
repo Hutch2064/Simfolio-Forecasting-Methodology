@@ -1,0 +1,27 @@
+{
+  "comparison": {
+    "packaged_panel_semantic_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+    "source_panel_definition_count": 80,
+    "source_panel_definitions_equal_packaged_rows": true,
+    "source_panel_weights_equal_packaged_weights": true
+  },
+  "panel_id": "scored52-dense-whitepaper-20260823",
+  "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+  "source_paths": [
+    "scripts/consolidated_forecast_oos_gate.py:_build_equal_class_history_panel",
+    "scripts/consolidated_forecast_oos_gate.py:_equal_class_history_specs_from_ticker_groups",
+    "scripts/consolidated_forecast_oos_gate.py:_build_portfolio_records"
+  ],
+  "source_rules": {
+    "asset_classes": ["equity", "fixed_income", "alternatives"],
+    "holdings_per_asset_class": 2,
+    "raw_weight_expression": "1.0 / (3 * 2)",
+    "seed": 20260528,
+    "target_portfolios": 80
+  },
+  "source_price_loader": {
+    "parser": "SimulatedSeriesRegistry.load_frame then load_price_series selects frame['price']",
+    "normalization": "SimfolioEngine._normalize_ohlc_payload_for_request: common start, union calendar, one-row forward fill, drop incomplete rows",
+    "portfolio_constructor": "_construct_portfolio_returns calls load_price_data_ohlc(..., '1800-01-01') then simulate_portfolio with initial_capital=10000, no cash flow, and source rebalance string"
+  }
+}

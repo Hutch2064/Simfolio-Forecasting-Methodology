@@ -13,6 +13,10 @@ data:
   source_manifest_sha256: 28dd1abaeb9763c0094f731318a092efccf59ec45feaf4b22482709b95a63c1d
   calendar_path: resources/data/canonical_calendar.csv
   calendar_sha256: 8204fbf08e1664a8f254d935052b34c2b4ec9f088ee91f414e7e72c95fb32e04
+  derived_fingerprints_path: resources/data/canonical_derived_fingerprints.json
+  derived_asset_log_matrix_sha256: d0198f779d1e60146df4e0c5761ca2716abad8a140119222cada0c894354a460
+  derived_portfolio_log_matrix_sha256: cc685b4f6f4570b48bbac1a92be9e91659e14cf84dd2d6703efaa84530e2927f
+  source_loader_price_frame: {start: '1979-12-28', end: '2026-05-14', observations: 11689}
   canonical_input_window: {start: '1979-12-31', end: '2026-05-13', observations: 11687}
   preparation_requires_caller_rights: true
   source_price_portfolio_construction:
@@ -80,4 +84,6 @@ provenance:
   historical_appendix_status: provenance_only_not_executable
   historical_appendix_normalized_lf_sha256: 6691eb1daf38cc2aae6708fe1d155aab7975f29ebc6ada197f46bd8d9a8ecf70
   historical_appendix_original_crlf_sha256: 847946335fea3473e987af23f528483d66ab265e85596f5d226216091fb476b4
+  origin_reference_digests_path: resources/protocols/origin_reference_digests.json
+  scored_panel_generation_provenance_path: resources/panels/scored52_generation_provenance.json
   historical_terminal_adapter_parity: unresolved

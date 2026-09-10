@@ -10,7 +10,9 @@ matrix identity is:
 The source revision is `773bc1c325559e6bf57a567f1d8bf473a3427fbc`. The package
 publishes the manifest, source-relative paths, schemas, raw file hashes, and the
 common calendar. It does not publish financial value arrays. The source policy
-requires the caller to establish rights to use and redistribute a frozen copy.
+requires the caller to establish any rights needed for its intended local use
+or redistribution of a frozen copy; the verifier records those claims but
+does not grant them.
 
 The frozen calendar is `resources/data/canonical_calendar.csv`, covering the
 11687 observed dates in the canonical window. Its SHA-256 is
@@ -43,20 +45,24 @@ prepare_canonical_data(
 Preparation verifies every required series, the supporting `EFFRX` series, both
 factor inputs, row counts, date bounds, schemas, and the normalized matrix hash
 before writing the caller's local cache. It also retains the authorized source
-copy in that cache and constructs each scored portfolio from its full source
-price history before trimming to the common window. This preserves the source
-`simulate_portfolio` closure: initial capital 10,000, equal six-way weights, no
-cash flows, and the source 15 bps turnover cost. The generated
-`canonical_portfolios/` logs and source-price-derived asset logs are local
-caller-owned inputs; they are not packaged.
+copy and supporting/factor inputs in that cache and constructs each scored
+portfolio from its full source price history before trimming to the common
+window. This preserves the source `simulate_portfolio` closure: initial capital
+10,000, equal six-way weights, no cash flows, and the source 15 bps turnover
+cost. The generated `canonical_portfolios/` logs and source-price-derived asset
+logs are local caller-owned inputs; they are not packaged. Verification
+recomputes the source-price simulation and rejects a changed portfolio even if
+its local manifest hash is rewritten.
 
 `load_canonical_returns` reads the normalized raw return identity.
 `load_canonical_engine_inputs` reads the verified source-price-derived asset
-logs and portfolio logs used by the canonical task constructor. Both accept only
-that prepared manifest with `rights_status: caller_authorized`; they never
-download, refresh, proxy, or import private arrays. The compatibility CLI
-data-build entry point fails closed because a public proxy is not the canonical
-dataset.
+logs and portfolio logs used by the canonical task constructor. A prepared
+manifest may record `caller_authorized_local_use` or
+`local_use_unconfirmed`; both still require all exact source and derived-value
+checks to pass. `redistribution_status` is kept separate and is never inferred
+from a hash. The loaders never download, refresh, proxy, or import private
+arrays. The compatibility CLI data-build entry point fails closed because a
+public proxy is not the canonical dataset.
 
 `resources/data/canonical_calendar.csv` is calendar metadata rather than a
 financial dataset. Its SHA-256 is
