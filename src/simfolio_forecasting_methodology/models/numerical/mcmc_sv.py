@@ -6,26 +6,36 @@ priors, filtering equations, Metropolis proposals, stopping gates, and RNG
 seed contexts.  They are deliberately standalone: no source checkout or live
 provider is imported at runtime.
 """
-# ruff: noqa
 
 from __future__ import annotations
 
 import copy
-import hashlib
 import json
 import math
-from dataclasses import dataclass
+from collections.abc import Mapping, Sequence
 from importlib import resources
-from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
+from typing import Any
 
 import numpy as np
 import pandas as pd
 
-from ...runner import ForecastContext, ForecastModel, TrainingData
+from ...catalog import load_canonical_175
 from ...seeds import deterministic_seed
 
 # Pinned source constants.
-_FULL_MCMC_SV_PARAMETRIC_INNOVATION_META: Dict[str, Tuple[str, str]] = {
+_SOURCE_FALLBACK_ERRORS = (
+    ArithmeticError,
+    AttributeError,
+    IndexError,
+    KeyError,
+    LookupError,
+    OSError,
+    RuntimeError,
+    TypeError,
+    ValueError,
+)
+
+_FULL_MCMC_SV_PARAMETRIC_INNOVATION_META: dict[str, tuple[str, str]] = {
     "jones_faddy_skew_t_iid": (
         "jones_faddy_skew_t",
         "jones_faddy_skew_t_innovations_scaled_by_latent_sv_paths",
@@ -52,36 +62,75 @@ CONTINUOUS_META_DECAY_SOURCE_RESULT = (
     ".forecast-oos-runs/consolidated-no-crypto/"
     "targeted_horizon_drift_instability_controls_33orig_300sims_equal_class_1979_80p_20260528.json"
 )
-CONTINUOUS_META_DECAY_FEATURE_NAMES: Tuple[str, ...] = (
-    "log_years", "log1p_abs_t", "sign_t", "abs_t_cap5_scaled", "log_ann_vol",
-    "ac1", "skew_scaled", "exk_scaled", "sign_stability_minus_half",
-    "log1p_block_mean_sd_over_se", "log1p_maxdd", "log1p_hac_bandwidth",
+CONTINUOUS_META_DECAY_FEATURE_NAMES: tuple[str, ...] = (
+    "log_years",
+    "log1p_abs_t",
+    "sign_t",
+    "abs_t_cap5_scaled",
+    "log_ann_vol",
+    "ac1",
+    "skew_scaled",
+    "exk_scaled",
+    "sign_stability_minus_half",
+    "log1p_block_mean_sd_over_se",
+    "log1p_maxdd",
+    "log1p_hac_bandwidth",
 )
-CONTINUOUS_META_DECAY_COEFFICIENTS: Tuple[float, ...] = (
-    0.248559776, -0.741480825, 0.036090925, 0.102097678, 0.911871872,
-    0.170420659, 0.034359381, 0.042140635, -0.028533942, 0.054180728,
-    -0.087225952, 0.153349228, 0.130478606,
+CONTINUOUS_META_DECAY_COEFFICIENTS: tuple[float, ...] = (
+    0.248559776,
+    -0.741480825,
+    0.036090925,
+    0.102097678,
+    0.911871872,
+    0.170420659,
+    0.034359381,
+    0.042140635,
+    -0.028533942,
+    0.054180728,
+    -0.087225952,
+    0.153349228,
+    0.130478606,
 )
-CONTINUOUS_META_DECAY_FEATURE_MEANS: Tuple[float, ...] = (
-    2.956206828, 1.470444913, 0.963636364, 0.714927087, -2.169969251,
-    0.064039619, -0.056602222, 0.421587682, 0.198331028, 2.126861217,
-    0.329667776, 4.450456529,
+CONTINUOUS_META_DECAY_FEATURE_MEANS: tuple[float, ...] = (
+    2.956206828,
+    1.470444913,
+    0.963636364,
+    0.714927087,
+    -2.169969251,
+    0.064039619,
+    -0.056602222,
+    0.421587682,
+    0.198331028,
+    2.126861217,
+    0.329667776,
+    4.450456529,
 )
-CONTINUOUS_META_DECAY_FEATURE_SDS: Tuple[float, ...] = (
-    0.78008805, 0.413778809, 0.267217063, 0.278421883, 0.233213381,
-    0.057595401, 0.069899272, 0.255845881, 0.089217851, 0.190956608,
-    0.11049454, 0.478150744,
+CONTINUOUS_META_DECAY_FEATURE_SDS: tuple[float, ...] = (
+    0.78008805,
+    0.413778809,
+    0.267217063,
+    0.278421883,
+    0.233213381,
+    0.057595401,
+    0.069899272,
+    0.255845881,
+    0.089217851,
+    0.190956608,
+    0.11049454,
+    0.478150744,
 )
 CONTINUOUS_META_DECAY_MIN_SCALE = 0.25
 CONTINUOUS_META_DECAY_MAX_SCALE = 6.0
 
-def _full_mcmc_sv_parametric_innovation_meta(innovation_resampling: str) -> Optional[Tuple[str, str]]:
+
+def _full_mcmc_sv_parametric_innovation_meta(innovation_resampling: str) -> tuple[str, str] | None:
     return _FULL_MCMC_SV_PARAMETRIC_INNOVATION_META.get(str(innovation_resampling))
+
 
 def _fit_full_mcmc_sv_parametric_innovation_distribution(
     z_pool: np.ndarray,
     innovation_resampling: str,
-) -> Optional[Tuple[float, ...]]:
+) -> tuple[float, ...] | None:
     if _full_mcmc_sv_parametric_innovation_meta(innovation_resampling) is None:
         return None
     try:
@@ -103,15 +152,16 @@ def _fit_full_mcmc_sv_parametric_innovation_distribution(
         if not all(np.isfinite(value) for value in innovation_distribution_params):
             return None
         return innovation_distribution_params
-    except Exception:
+    except _SOURCE_FALLBACK_ERRORS:
         return None
+
 
 def _draw_full_mcmc_sv_parametric_innovations(
     raw_params: Sequence[float],
     innovation_resampling: str,
-    shape: Tuple[int, int],
+    shape: tuple[int, int],
     rng: np.random.Generator,
-) -> Optional[np.ndarray]:
+) -> np.ndarray | None:
     try:
         from scipy import stats
 
@@ -128,10 +178,11 @@ def _draw_full_mcmc_sv_parametric_innovations(
             return None
         z_draws = np.asarray(draws, dtype=np.float64)
         return np.clip(np.where(np.isfinite(z_draws), z_draws, 0.0), -30.0, 30.0)
-    except Exception:
+    except _SOURCE_FALLBACK_ERRORS:
         return None
 
-def _mean_schedule_from_fit(fit: Dict[str, Any], total_days: int) -> Optional[np.ndarray]:
+
+def _mean_schedule_from_fit(fit: dict[str, Any], total_days: int) -> np.ndarray | None:
     total_days = int(total_days)
     if total_days <= 0:
         return None
@@ -140,7 +191,11 @@ def _mean_schedule_from_fit(fit: Dict[str, Any], total_days: int) -> Optional[np
         short_mu = float(decay_meta.get("short_posterior_mean", fit.get("posterior_mean", 0.0)))
         long_mu = float(decay_meta.get("long_posterior_mean", short_mu))
         uncertainty_ratio = float(decay_meta.get("mean_uncertainty_to_process_variance_ratio", 0.0))
-        if not np.isfinite(short_mu) or not np.isfinite(long_mu) or not np.isfinite(uncertainty_ratio):
+        if (
+            not np.isfinite(short_mu)
+            or not np.isfinite(long_mu)
+            or not np.isfinite(uncertainty_ratio)
+        ):
             return None
         day_index = np.arange(1, total_days + 1, dtype=np.float64)
         weight = 1.0 / (1.0 + day_index * max(uncertainty_ratio, 0.0))
@@ -174,12 +229,13 @@ def _mean_schedule_from_fit(fit: Dict[str, Any], total_days: int) -> Optional[np
         return None
     return schedule
 
+
 def _posterior_decay_mu_draw_paths(
-    fit: Dict[str, Any],
+    fit: dict[str, Any],
     total_days: int,
     n_paths: int,
     rng: np.random.Generator,
-) -> Optional[np.ndarray]:
+) -> np.ndarray | None:
     if not bool(fit.get("posterior_mu_draws_with_horizon_decay", False)):
         return None
     total_days = int(total_days)
@@ -206,17 +262,20 @@ def _posterior_decay_mu_draw_paths(
     paths = long_mu + weight[None, :] * (mu_draws[:, None] - long_mu)
     return paths.astype(np.float64) if np.all(np.isfinite(paths)) else None
 
+
 def _kalman_ar1_drift_filter(
     y: np.ndarray,
     *,
     obs_var: float,
     phi: float,
     state_var_ratio: float,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     values = np.asarray(y, dtype=np.float64)
     obs = float(obs_var)
     phi_value = float(np.clip(phi, DLM_DRIFT_PHI_MIN, DLM_DRIFT_PHI_MAX))
-    ratio = float(np.clip(state_var_ratio, DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX))
+    ratio = float(
+        np.clip(state_var_ratio, DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX)
+    )
     stationary_var = max(obs * ratio, obs * 1.0e-14)
     state_noise_var = max((1.0 - phi_value * phi_value) * stationary_var, obs * 1.0e-14)
     predicted_mean = np.empty(values.size, dtype=np.float64)
@@ -254,15 +313,18 @@ def _kalman_ar1_drift_filter(
         "final_var": float(p),
     }
 
+
 def _estimate_evidence_dlm_drift_params(
     centered_returns: np.ndarray,
     *,
     obs_var: float,
     signal_ratio_start: float,
-) -> Dict[str, float]:
+) -> dict[str, float]:
     values = np.asarray(centered_returns, dtype=np.float64)
     values = values[np.isfinite(values)]
-    ratio_start = float(np.clip(signal_ratio_start, DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX))
+    ratio_start = float(
+        np.clip(signal_ratio_start, DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX)
+    )
     phi_starts = (0.25, 0.75, 0.95, 0.99)
     ratio_starts = (
         ratio_start,
@@ -288,7 +350,15 @@ def _estimate_evidence_dlm_drift_params(
                 start = np.asarray(
                     [
                         float(np.clip(phi0, DLM_DRIFT_PHI_MIN, DLM_DRIFT_PHI_MAX)),
-                        math.log(float(np.clip(ratio0, DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX))),
+                        math.log(
+                            float(
+                                np.clip(
+                                    ratio0,
+                                    DLM_DRIFT_STATE_VAR_RATIO_MIN,
+                                    DLM_DRIFT_STATE_VAR_RATIO_MAX,
+                                )
+                            )
+                        ),
                     ],
                     dtype=np.float64,
                 )
@@ -309,15 +379,23 @@ def _estimate_evidence_dlm_drift_params(
                 if not result.success and not np.isfinite(result.fun):
                     continue
                 phi_hat = float(np.clip(result.x[0], DLM_DRIFT_PHI_MIN, DLM_DRIFT_PHI_MAX))
-                ratio_hat = float(np.clip(math.exp(float(result.x[1])), DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX))
+                ratio_hat = float(
+                    np.clip(
+                        math.exp(float(result.x[1])),
+                        DLM_DRIFT_STATE_VAR_RATIO_MIN,
+                        DLM_DRIFT_STATE_VAR_RATIO_MAX,
+                    )
+                )
                 loglik = score(phi_hat, ratio_hat)
                 if np.isfinite(loglik) and loglik > best_loglik:
                     best_phi = phi_hat
                     best_ratio = ratio_hat
                     best_loglik = loglik
-    except Exception:
+    except _SOURCE_FALLBACK_ERRORS:
         for phi_hat in (0.0, 0.50, 0.90, 0.97, 0.995):
-            for ratio_hat in np.geomspace(DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX, 10):
+            for ratio_hat in np.geomspace(
+                DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX, 10
+            ):
                 loglik = score(float(phi_hat), float(ratio_hat))
                 if np.isfinite(loglik) and loglik > best_loglik:
                     best_phi = float(phi_hat)
@@ -332,12 +410,13 @@ def _estimate_evidence_dlm_drift_params(
         "loglik": float(best_loglik),
     }
 
+
 def _dlm_mu_draw_paths(
-    fit: Dict[str, Any],
+    fit: dict[str, Any],
     total_days: int,
     n_paths: int,
     rng: np.random.Generator,
-) -> Optional[np.ndarray]:
+) -> np.ndarray | None:
     if not bool(fit.get("dlm_drift_paths", False)):
         return None
     total_days = int(total_days)
@@ -349,7 +428,9 @@ def _dlm_mu_draw_paths(
     state_noise_var = float(max(fit.get("dlm_state_noise_var", 0.0), 0.0))
     state_mean = float(fit.get("dlm_state_posterior_deviation_mean", 0.0))
     state_var = float(max(fit.get("dlm_state_posterior_deviation_var", 0.0), 0.0))
-    if not all(np.isfinite(value) for value in (anchor_mu, phi, state_noise_var, state_mean, state_var)):
+    if not all(
+        np.isfinite(value) for value in (anchor_mu, phi, state_noise_var, state_mean, state_var)
+    ):
         return None
     phi = float(np.clip(phi, DLM_DRIFT_PHI_MIN, DLM_DRIFT_PHI_MAX))
     states = rng.normal(state_mean, math.sqrt(state_var), size=n_paths)
@@ -363,7 +444,8 @@ def _dlm_mu_draw_paths(
         out[:, day] = anchor_mu + states
     return out.astype(np.float64) if np.all(np.isfinite(out)) else None
 
-def _hac_mean_standard_error(values: np.ndarray) -> Tuple[float, int, float]:
+
+def _hac_mean_standard_error(values: np.ndarray) -> tuple[float, int, float]:
     x = np.asarray(values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 2:
@@ -373,9 +455,14 @@ def _hac_mean_standard_error(values: np.ndarray) -> Tuple[float, int, float]:
     if not np.isfinite(sample_var) or sample_var <= 0.0:
         return 0.0, 0, 0.0
     try:
-        bandwidth = int(max(_politis_white_block_length(centered), _politis_white_block_length(centered * centered)))
-    except Exception:
-        bandwidth = int(round(float(x.size) ** (1.0 / 3.0)))
+        bandwidth = int(
+            max(
+                _politis_white_block_length(centered),
+                _politis_white_block_length(centered * centered),
+            )
+        )
+    except _SOURCE_FALLBACK_ERRORS:
+        bandwidth = round(float(x.size) ** (1.0 / 3.0))
     bandwidth = int(max(0, min(bandwidth, x.size - 1)))
     long_run_var = float(np.dot(centered, centered) / x.size)
     for lag in range(1, bandwidth + 1):
@@ -388,12 +475,13 @@ def _hac_mean_standard_error(values: np.ndarray) -> Tuple[float, int, float]:
     se = math.sqrt(max(long_run_var, 0.0) / float(x.size))
     return float(se), int(bandwidth), float(long_run_var)
 
+
 def _fit_empirical_bayes_sharpe_sbb(
     train_values: np.ndarray,
     *,
     nonnegative_sharpe: bool = False,
     posterior_mu_draws: bool = False,
-) -> Optional[Dict[str, Any]]:
+) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 60:
@@ -425,7 +513,9 @@ def _fit_empirical_bayes_sharpe_sbb(
     posterior_var_sr = float((tau2 * se_sr2) / (tau2 + se_sr2)) if tau2 > 0.0 else 0.0
     posterior_mean = float(posterior_sr * sigma / math.sqrt(252.0))
     posterior_sd = float(math.sqrt(max(posterior_var_sr, 0.0)) * sigma / math.sqrt(252.0))
-    cap_sr = float(max(abs(posterior_sr) + 1.6448536269514722 * math.sqrt(max(posterior_var_sr, 0.0)), 1e-12))
+    cap_sr = float(
+        max(abs(posterior_sr) + 1.6448536269514722 * math.sqrt(max(posterior_var_sr, 0.0)), 1e-12)
+    )
     mu_cap = cap_sr * sigma / math.sqrt(252.0)
 
     residuals = x - sample_mu
@@ -469,16 +559,17 @@ def _fit_empirical_bayes_sharpe_sbb(
         },
     }
 
+
 def _standardized_residual_fit_payload(
     x: np.ndarray,
     *,
     posterior_mean: float,
     posterior_sd: float,
     mu_cap: float,
-    meta: Dict[str, Any],
+    meta: dict[str, Any],
     nonnegative_drift: bool = False,
     posterior_mu_draws: bool = False,
-) -> Optional[Dict[str, Any]]:
+) -> dict[str, Any] | None:
     x = np.asarray(x, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 60:
@@ -515,7 +606,8 @@ def _standardized_residual_fit_payload(
         },
     }
 
-def _fit_hierarchical_empirical_bayes_sharpe_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_hierarchical_empirical_bayes_sharpe_sbb(train_values: np.ndarray) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 120:
@@ -536,12 +628,17 @@ def _fit_hierarchical_empirical_bayes_sharpe_sbb(train_values: np.ndarray) -> Op
 
     centered = x - sample_mu
     try:
-        block_length = int(max(_politis_white_block_length(centered), _politis_white_block_length(centered * centered)))
-    except Exception:
-        block_length = int(round(math.sqrt(float(x.size))))
+        block_length = int(
+            max(
+                _politis_white_block_length(centered),
+                _politis_white_block_length(centered * centered),
+            )
+        )
+    except _SOURCE_FALLBACK_ERRORS:
+        block_length = round(math.sqrt(float(x.size)))
     block_length = int(max(20, min(block_length, max(20, x.size // 4))))
-    block_sharpes: List[float] = []
-    block_se2: List[float] = []
+    block_sharpes: list[float] = []
+    block_se2: list[float] = []
     for start in range(0, x.size - block_length + 1, block_length):
         block = x[start : start + block_length]
         block_sigma = float(np.std(block, ddof=1)) if block.size > 1 else 0.0
@@ -556,7 +653,9 @@ def _fit_hierarchical_empirical_bayes_sharpe_sbb(train_values: np.ndarray) -> Op
         tau2 = float(max(sample_sr * sample_sr - se_sr * se_sr, 0.0))
     shrink_weight = float(tau2 / (tau2 + se_sr * se_sr)) if tau2 > 0.0 else 0.0
     posterior_sr = float(shrink_weight * sample_sr)
-    posterior_sd_sr = math.sqrt(float((tau2 * se_sr * se_sr) / (tau2 + se_sr * se_sr))) if tau2 > 0.0 else 0.0
+    posterior_sd_sr = (
+        math.sqrt(float((tau2 * se_sr * se_sr) / (tau2 + se_sr * se_sr))) if tau2 > 0.0 else 0.0
+    )
     return _standardized_residual_fit_payload(
         x,
         posterior_mean=float(posterior_sr * sigma / math.sqrt(252.0)),
@@ -573,14 +672,17 @@ def _fit_hierarchical_empirical_bayes_sharpe_sbb(train_values: np.ndarray) -> Op
             "hac_bandwidth": int(bandwidth),
             "hac_long_run_variance": long_run_var,
             "hierarchical_block_length": int(block_length),
-            "hierarchical_block_count": int(len(block_sharpes)),
+            "hierarchical_block_count": len(block_sharpes),
             "hierarchical_tau2_sharpe": tau2,
             "shrink_weight": shrink_weight,
             "posterior_sharpe_annualized": posterior_sr,
         },
     )
 
-def _fit_hierarchical_empirical_bayes_sharpe_mu_uncertainty_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_hierarchical_empirical_bayes_sharpe_mu_uncertainty_sbb(
+    train_values: np.ndarray,
+) -> dict[str, Any] | None:
     fit = _fit_hierarchical_empirical_bayes_sharpe_sbb(train_values)
     if fit is None:
         return None
@@ -593,7 +695,8 @@ def _fit_hierarchical_empirical_bayes_sharpe_mu_uncertainty_sbb(train_values: np
     }
     return out
 
-def _fit_prequential_crps_shrinkage_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_prequential_crps_shrinkage_sbb(train_values: np.ndarray) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 120:
@@ -617,10 +720,14 @@ def _fit_prequential_crps_shrinkage_sbb(train_values: np.ndarray) -> Optional[Di
     else:
         # Deterministic CRPS for the drift component is absolute error; the
         # least-squares solution is used as a stable prequential score proxy.
-        shrink_weight = float(np.clip(float(np.dot(mu_hat, realized) / np.dot(mu_hat, mu_hat)), 0.0, 1.0))
+        shrink_weight = float(
+            np.clip(float(np.dot(mu_hat, realized) / np.dot(mu_hat, mu_hat)), 0.0, 1.0)
+        )
     posterior_mean = float(shrink_weight * sample_mu)
     se_mu, bandwidth, long_run_var = _hac_mean_standard_error(x)
-    posterior_sd = float(abs(sample_mu) * math.sqrt(max(shrink_weight * (1.0 - shrink_weight), 0.0)))
+    posterior_sd = float(
+        abs(sample_mu) * math.sqrt(max(shrink_weight * (1.0 - shrink_weight), 0.0))
+    )
     return _standardized_residual_fit_payload(
         x,
         posterior_mean=posterior_mean,
@@ -643,7 +750,8 @@ def _fit_prequential_crps_shrinkage_sbb(train_values: np.ndarray) -> Optional[Di
         },
     )
 
-def _fit_positive_sample_mean_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_positive_sample_mean_sbb(train_values: np.ndarray) -> dict[str, Any] | None:
     base = _fit_historical_realized_sharpe_sbb(train_values)
     if base is None:
         return None
@@ -659,7 +767,10 @@ def _fit_positive_sample_mean_sbb(train_values: np.ndarray) -> Optional[Dict[str
     }
     return out
 
-def _fit_merton_positive_hac_drift_uncertainty_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_merton_positive_hac_drift_uncertainty_sbb(
+    train_values: np.ndarray,
+) -> dict[str, Any] | None:
     base = _fit_positive_sample_mean_sbb(train_values)
     if base is None:
         return None
@@ -690,7 +801,8 @@ def _fit_merton_positive_hac_drift_uncertainty_sbb(train_values: np.ndarray) -> 
     }
     return out
 
-def _fit_unconstrained_hac_drift_uncertainty_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_unconstrained_hac_drift_uncertainty_sbb(train_values: np.ndarray) -> dict[str, Any] | None:
     base = _fit_historical_realized_sharpe_sbb(train_values)
     if base is None:
         return None
@@ -721,18 +833,22 @@ def _fit_unconstrained_hac_drift_uncertainty_sbb(train_values: np.ndarray) -> Op
     }
     return out
 
+
 def _trimmed_mean(values: np.ndarray, proportion_to_cut: float) -> float:
     x = np.asarray(values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size == 0:
         return 0.0
-    cut = int(math.floor(float(x.size) * float(np.clip(proportion_to_cut, 0.0, 0.49))))
+    cut = math.floor(float(x.size) * float(np.clip(proportion_to_cut, 0.0, 0.49)))
     if cut <= 0 or 2 * cut >= x.size:
         return float(np.mean(x))
     ordered = np.sort(x)
     return float(np.mean(ordered[cut : x.size - cut]))
 
-def _fit_robust_realized_mean_sbb(train_values: np.ndarray, trim_fraction: float = 0.10) -> Optional[Dict[str, Any]]:
+
+def _fit_robust_realized_mean_sbb(
+    train_values: np.ndarray, trim_fraction: float = 0.10
+) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 60:
@@ -773,11 +889,12 @@ def _fit_robust_realized_mean_sbb(train_values: np.ndarray, trim_fraction: float
         },
     }
 
+
 def _estimate_random_effects_drift_instability(
     values: np.ndarray,
     *,
     fallback_sigma: float,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     x = np.asarray(values, dtype=np.float64)
     x = x[np.isfinite(x)]
     sigma = float(fallback_sigma)
@@ -800,16 +917,16 @@ def _estimate_random_effects_drift_instability(
                 _politis_white_block_length(centered * centered),
             )
         )
-    except Exception:
-        block_length = int(round(math.sqrt(float(x.size))))
+    except _SOURCE_FALLBACK_ERRORS:
+        block_length = round(math.sqrt(float(x.size)))
     block_length = int(max(20, min(block_length, max(20, x.size // 4))))
-    block_count = int(x.size // block_length)
+    block_count = x.size // block_length
     if block_count < 3:
         return {**empty, "block_mean_length": int(block_length)}
 
-    block_means: List[float] = []
-    block_variances: List[float] = []
-    block_bandwidths: List[int] = []
+    block_means: list[float] = []
+    block_variances: list[float] = []
+    block_bandwidths: list[int] = []
     eps = float(np.finfo(np.float64).tiny)
     for start in range(0, block_count * block_length, block_length):
         block = x[start : start + block_length]
@@ -826,7 +943,7 @@ def _estimate_random_effects_drift_instability(
             block_variances.append(float(max(se_block * se_block, eps)))
             block_bandwidths.append(int(bandwidth))
 
-    k = int(len(block_means))
+    k = len(block_means)
     if k < 3:
         return {**empty, "block_mean_length": int(block_length), "block_mean_count": k}
     means = np.asarray(block_means, dtype=np.float64)
@@ -850,10 +967,13 @@ def _estimate_random_effects_drift_instability(
         "block_mean_fixed_effect_mean": fixed_mean,
         "block_mean_observed_variance": float(np.var(means, ddof=1)) if k > 1 else 0.0,
         "block_mean_median_sampling_variance": float(np.median(variances)),
-        "block_mean_average_hac_bandwidth": float(np.mean(block_bandwidths)) if block_bandwidths else 0.0,
+        "block_mean_average_hac_bandwidth": float(np.mean(block_bandwidths))
+        if block_bandwidths
+        else 0.0,
         "block_mean_method": "der_simonian_laird_random_effects_on_portfolio_time_blocks",
         "block_length_method": "politis_white_automatic_dependent_bootstrap_length",
     }
+
 
 def _max_log_return_drawdown(x: np.ndarray) -> float:
     if x.size <= 1:
@@ -864,7 +984,10 @@ def _max_log_return_drawdown(x: np.ndarray) -> float:
     max_drawdown = float(np.max(drawdowns)) if drawdowns.size else 0.0
     return max(max_drawdown, 0.0) if np.isfinite(max_drawdown) else 0.0
 
-def _continuous_meta_decay_feature_values(x: np.ndarray, se_mu: float, bandwidth: int) -> Dict[str, float]:
+
+def _continuous_meta_decay_feature_values(
+    x: np.ndarray, se_mu: float, bandwidth: int
+) -> dict[str, float]:
     x = np.asarray(x, dtype=np.float64)
     x = x[np.isfinite(x)]
     eps = float(np.finfo(np.float64).tiny)
@@ -875,7 +998,11 @@ def _continuous_meta_decay_feature_values(x: np.ndarray, se_mu: float, bandwidth
     mu = float(np.mean(x))
     sigma = float(np.std(x, ddof=1)) if n > 1 else 0.0
     sigma = max(sigma, eps)
-    se = float(se_mu) if np.isfinite(se_mu) and se_mu > 0.0 else float(sigma / math.sqrt(float(max(n, 1))))
+    se = (
+        float(se_mu)
+        if np.isfinite(se_mu) and se_mu > 0.0
+        else float(sigma / math.sqrt(float(max(n, 1))))
+    )
     t_stat = float(mu / max(se, eps))
 
     ac1 = 0.0
@@ -890,7 +1017,7 @@ def _continuous_meta_decay_feature_values(x: np.ndarray, se_mu: float, bandwidth
     centered = x - mu
     variance = float(np.mean(centered * centered)) if n > 0 else 0.0
     if np.isfinite(variance) and variance > eps:
-        skewness = float(np.mean(centered**3) / (variance ** 1.5))
+        skewness = float(np.mean(centered**3) / (variance**1.5))
         excess_kurtosis = float(np.mean(centered**4) / (variance * variance) - 3.0)
     else:
         skewness = 0.0
@@ -902,8 +1029,8 @@ def _continuous_meta_decay_feature_values(x: np.ndarray, se_mu: float, bandwidth
 
     try:
         block_length = int(_politis_white_block_length(x))
-    except Exception:
-        block_length = int(round(math.sqrt(float(n))))
+    except _SOURCE_FALLBACK_ERRORS:
+        block_length = round(math.sqrt(float(n)))
     block_length = int(min(max(block_length, 5), max(n, 1)))
     block_means = [
         float(np.mean(x[start : start + block_length]))
@@ -934,11 +1061,11 @@ def _continuous_meta_decay_feature_values(x: np.ndarray, se_mu: float, bandwidth
         "log1p_hac_bandwidth": math.log1p(float(max(int(bandwidth), 0))),
     }
     return {
-        name: float(value) if np.isfinite(value) else 0.0
-        for name, value in feature_values.items()
+        name: float(value) if np.isfinite(value) else 0.0 for name, value in feature_values.items()
     }
 
-def _continuous_meta_decay_scale(x: np.ndarray) -> Dict[str, Any]:
+
+def _continuous_meta_decay_scale(x: np.ndarray) -> dict[str, Any]:
     x = np.asarray(x, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size == 0:
@@ -959,7 +1086,9 @@ def _continuous_meta_decay_scale(x: np.ndarray) -> Dict[str, Any]:
     coefs = np.asarray(CONTINUOUS_META_DECAY_COEFFICIENTS, dtype=np.float64)
     means = np.asarray(CONTINUOUS_META_DECAY_FEATURE_MEANS, dtype=np.float64)
     sds = np.asarray(CONTINUOUS_META_DECAY_FEATURE_SDS, dtype=np.float64)
-    values = np.asarray([features[name] for name in CONTINUOUS_META_DECAY_FEATURE_NAMES], dtype=np.float64)
+    values = np.asarray(
+        [features[name] for name in CONTINUOUS_META_DECAY_FEATURE_NAMES], dtype=np.float64
+    )
     z = (values - means) / np.maximum(sds, np.finfo(np.float64).eps)
     raw_log_scale = float(coefs[0] + np.dot(coefs[1:], z))
     min_log = math.log(CONTINUOUS_META_DECAY_MIN_SCALE)
@@ -970,16 +1099,21 @@ def _continuous_meta_decay_scale(x: np.ndarray) -> Dict[str, Any]:
         "scale": scale if np.isfinite(scale) and scale > 0.0 else 1.0,
         "raw_log_scale": raw_log_scale if np.isfinite(raw_log_scale) else 0.0,
         "clipped_log_scale": clipped_log_scale if np.isfinite(clipped_log_scale) else 0.0,
-        "features": {name: float(value) for name, value in zip(CONTINUOUS_META_DECAY_FEATURE_NAMES, values)},
-        "standardized_features": {name: float(value) for name, value in zip(CONTINUOUS_META_DECAY_FEATURE_NAMES, z)},
+        "features": {
+            name: float(value) for name, value in zip(CONTINUOUS_META_DECAY_FEATURE_NAMES, values)
+        },
+        "standardized_features": {
+            name: float(value) for name, value in zip(CONTINUOUS_META_DECAY_FEATURE_NAMES, z)
+        },
     }
+
 
 def _fit_horizon_credibility_hac_drift_uncertainty_sbb(
     train_values: np.ndarray,
     *,
     uncertainty_ratio_scale: float = 1.0,
     robust_location: bool = False,
-) -> Optional[Dict[str, Any]]:
+) -> dict[str, Any] | None:
     base = (
         _fit_robust_realized_mean_sbb(train_values)
         if bool(robust_location)
@@ -1054,7 +1188,10 @@ def _fit_horizon_credibility_hac_drift_uncertainty_sbb(
     }
     return out
 
-def _fit_horizon_credibility_hac_continuous_meta_decay_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_horizon_credibility_hac_continuous_meta_decay_sbb(
+    train_values: np.ndarray,
+) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     scale_info = _continuous_meta_decay_scale(x)
@@ -1072,14 +1209,18 @@ def _fit_horizon_credibility_hac_continuous_meta_decay_sbb(train_values: np.ndar
             "method": method,
             "mean_uncertainty_ratio_scale": scale,
             "continuous_meta_decay_raw_log_scale": float(scale_info.get("raw_log_scale", 0.0)),
-            "continuous_meta_decay_clipped_log_scale": float(scale_info.get("clipped_log_scale", 0.0)),
+            "continuous_meta_decay_clipped_log_scale": float(
+                scale_info.get("clipped_log_scale", 0.0)
+            ),
             "continuous_meta_decay_min_scale": CONTINUOUS_META_DECAY_MIN_SCALE,
             "continuous_meta_decay_max_scale": CONTINUOUS_META_DECAY_MAX_SCALE,
             "continuous_meta_decay_model": "weighted_ridge_quadratic_surrogate_on_saved_oos_score_corpus",
             "continuous_meta_decay_source_result": CONTINUOUS_META_DECAY_SOURCE_RESULT,
             "continuous_meta_decay_feature_names": list(CONTINUOUS_META_DECAY_FEATURE_NAMES),
             "continuous_meta_decay_features": dict(scale_info.get("features", {}) or {}),
-            "continuous_meta_decay_standardized_features": dict(scale_info.get("standardized_features", {}) or {}),
+            "continuous_meta_decay_standardized_features": dict(
+                scale_info.get("standardized_features", {}) or {}
+            ),
         }
     )
     meta = dict(out.get("meta", {}) or {})
@@ -1093,13 +1234,17 @@ def _fit_horizon_credibility_hac_continuous_meta_decay_sbb(train_values: np.ndar
             "posterior_mean_decay_meta": decay_meta,
             "continuous_meta_decay_scale": scale,
             "continuous_meta_decay_raw_log_scale": float(scale_info.get("raw_log_scale", 0.0)),
-            "continuous_meta_decay_clipped_log_scale": float(scale_info.get("clipped_log_scale", 0.0)),
+            "continuous_meta_decay_clipped_log_scale": float(
+                scale_info.get("clipped_log_scale", 0.0)
+            ),
             "continuous_meta_decay_min_scale": CONTINUOUS_META_DECAY_MIN_SCALE,
             "continuous_meta_decay_max_scale": CONTINUOUS_META_DECAY_MAX_SCALE,
             "continuous_meta_decay_model": "weighted_ridge_quadratic_surrogate_on_saved_oos_score_corpus",
             "continuous_meta_decay_source_result": CONTINUOUS_META_DECAY_SOURCE_RESULT,
             "continuous_meta_decay_features": dict(scale_info.get("features", {}) or {}),
-            "continuous_meta_decay_standardized_features": dict(scale_info.get("standardized_features", {}) or {}),
+            "continuous_meta_decay_standardized_features": dict(
+                scale_info.get("standardized_features", {}) or {}
+            ),
             "live_oos_refit_required": False,
         }
     )
@@ -1107,16 +1252,18 @@ def _fit_horizon_credibility_hac_continuous_meta_decay_sbb(train_values: np.ndar
     out["meta"] = meta
     return out
 
+
 def _standard_normal_cdf(value: float) -> float:
     if not np.isfinite(value):
         return 0.5
     return float(0.5 * math.erfc(-float(value) / math.sqrt(2.0)))
 
+
 def _hac_sign_uncertainty_multiplier(
     values: np.ndarray,
     *,
     max_multiplier: float,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     x = np.asarray(values, dtype=np.float64)
     x = x[np.isfinite(x)]
     eps = float(np.finfo(np.float64).tiny)
@@ -1159,11 +1306,12 @@ def _hac_sign_uncertainty_multiplier(
         "sample_sigma": sigma,
     }
 
+
 def _fit_horizon_credibility_hac_sign_uncertainty_decay_sbb(
     train_values: np.ndarray,
     *,
     max_multiplier: float,
-) -> Optional[Dict[str, Any]]:
+) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     scale_info = _hac_sign_uncertainty_multiplier(x, max_multiplier=max_multiplier)
@@ -1182,7 +1330,9 @@ def _fit_horizon_credibility_hac_sign_uncertainty_decay_sbb(
             "method": method,
             "mean_uncertainty_ratio_scale": multiplier,
             "minimum_mean_uncertainty_ratio_scale": 1.0,
-            "maximum_mean_uncertainty_ratio_scale": float(scale_info.get("max_multiplier", max_multiplier)),
+            "maximum_mean_uncertainty_ratio_scale": float(
+                scale_info.get("max_multiplier", max_multiplier)
+            ),
             "hac_sign_uncertainty_rule": (
                 "scale_equals_1_plus_max_minus_1_times_normalized_binary_entropy_of_"
                 "normal_hac_mean_sign_probability"
@@ -1202,7 +1352,9 @@ def _fit_horizon_credibility_hac_sign_uncertainty_decay_sbb(
             ),
             "mean_uncertainty_ratio_scale": multiplier,
             "minimum_mean_uncertainty_ratio_scale": 1.0,
-            "maximum_mean_uncertainty_ratio_scale": float(scale_info.get("max_multiplier", max_multiplier)),
+            "maximum_mean_uncertainty_ratio_scale": float(
+                scale_info.get("max_multiplier", max_multiplier)
+            ),
             "hac_sign_uncertainty_rule": decay_meta["hac_sign_uncertainty_rule"],
             "hac_t_statistic": float(scale_info.get("hac_t_statistic", 0.0)),
             "absolute_hac_t_statistic": float(scale_info.get("absolute_hac_t_statistic", 0.0)),
@@ -1216,11 +1368,12 @@ def _fit_horizon_credibility_hac_sign_uncertainty_decay_sbb(
     out["meta"] = meta
     return out
 
+
 def _fit_horizon_credibility_hac_predictive_drift_draws_sbb(
     train_values: np.ndarray,
     *,
     uncertainty_ratio_scale: float,
-) -> Optional[Dict[str, Any]]:
+) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     out = _fit_horizon_credibility_hac_drift_uncertainty_sbb(
@@ -1272,7 +1425,8 @@ def _fit_horizon_credibility_hac_predictive_drift_draws_sbb(
     out["meta"] = meta
     return out
 
-def _fit_evidence_estimated_dlm_drift_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_evidence_estimated_dlm_drift_sbb(train_values: np.ndarray) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 252:
@@ -1382,7 +1536,10 @@ def _fit_evidence_estimated_dlm_drift_sbb(train_values: np.ndarray) -> Optional[
             "hac_long_run_variance": float(long_run_var),
             "signal_ratio_start": signal_ratio_start,
             "phi_bounds": [DLM_DRIFT_PHI_MIN, DLM_DRIFT_PHI_MAX],
-            "state_var_ratio_bounds": [DLM_DRIFT_STATE_VAR_RATIO_MIN, DLM_DRIFT_STATE_VAR_RATIO_MAX],
+            "state_var_ratio_bounds": [
+                DLM_DRIFT_STATE_VAR_RATIO_MIN,
+                DLM_DRIFT_STATE_VAR_RATIO_MAX,
+            ],
             "max_annual_drift_sharpe_sd": DLM_DRIFT_MAX_ANNUAL_DRIFT_SHARPE_SD,
             "academic_lineage": (
                 "discounted_dynamic_linear_models_west_harrison_"
@@ -1391,7 +1548,10 @@ def _fit_evidence_estimated_dlm_drift_sbb(train_values: np.ndarray) -> Optional[
         },
     }
 
-def _fit_horizon_credibility_hac_drift_instability_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_horizon_credibility_hac_drift_instability_sbb(
+    train_values: np.ndarray,
+) -> dict[str, Any] | None:
     base = _fit_historical_realized_sharpe_sbb(train_values)
     if base is None:
         return None
@@ -1412,7 +1572,9 @@ def _fit_horizon_credibility_hac_drift_instability_sbb(train_values: np.ndarray)
     drift_instability_ratio = float(drift_instability_variance / process_variance)
     total_uncertainty_ratio = float(total_mean_uncertainty_variance / process_variance)
     posterior_mean = float(base["posterior_mean"])
-    method = "horizon_credibility_signed_hac_mean_plus_random_effects_drift_instability_shrink_to_zero"
+    method = (
+        "horizon_credibility_signed_hac_mean_plus_random_effects_drift_instability_shrink_to_zero"
+    )
     decay_meta = {
         "method": method,
         "short_posterior_mean": posterior_mean,
@@ -1462,7 +1624,8 @@ def _fit_horizon_credibility_hac_drift_instability_sbb(train_values: np.ndarray)
     }
     return out
 
-def _fit_sbb_mean_model(train_values: np.ndarray, mean_model: str) -> Optional[Dict[str, Any]]:
+
+def _fit_sbb_mean_model(train_values: np.ndarray, mean_model: str) -> dict[str, Any] | None:
     model = str(mean_model or "positive_sample_mean")
     if model == "evidence_estimated_sharpe_dlm_historical_cagr_anchor":
         x = np.asarray(train_values, dtype=np.float64)
@@ -1470,7 +1633,9 @@ def _fit_sbb_mean_model(train_values: np.ndarray, mean_model: str) -> Optional[D
         if x.size < 60:
             return None
         mu, residuals, mean_meta = _evidence_estimated_sharpe_dlm_historical_cagr_anchor_mean(x)
-        base_fit_override = mean_meta.get("_base_fit_override") if isinstance(mean_meta, dict) else None
+        base_fit_override = (
+            mean_meta.get("_base_fit_override") if isinstance(mean_meta, dict) else None
+        )
         if isinstance(base_fit_override, dict):
             return dict(base_fit_override)
         return _base_sbb_fit_from_mean_fit(
@@ -1539,7 +1704,8 @@ def _fit_sbb_mean_model(train_values: np.ndarray, mean_model: str) -> Optional[D
         return _fit_historical_realized_sharpe_sbb(train_values)
     return _fit_positive_sample_mean_sbb(train_values)
 
-def _fit_ar1_constant_ols_mean_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_ar1_constant_ols_mean_sbb(train_values: np.ndarray) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 252:
@@ -1549,7 +1715,7 @@ def _fit_ar1_constant_ols_mean_sbb(train_values: np.ndarray) -> Optional[Dict[st
     design = np.column_stack([np.ones_like(lagged), lagged])
     try:
         beta, *_ = np.linalg.lstsq(design, y, rcond=None)
-    except Exception:
+    except _SOURCE_FALLBACK_ERRORS:
         return None
     intercept = float(beta[0])
     ar_coef = float(beta[1])
@@ -1600,7 +1766,8 @@ def _fit_ar1_constant_ols_mean_sbb(train_values: np.ndarray) -> Optional[Dict[st
         },
     }
 
-def _fit_zero_sharpe_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_zero_sharpe_sbb(train_values: np.ndarray) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 60:
@@ -1638,7 +1805,8 @@ def _fit_zero_sharpe_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
         },
     }
 
-def _fit_historical_realized_sharpe_sbb(train_values: np.ndarray) -> Optional[Dict[str, Any]]:
+
+def _fit_historical_realized_sharpe_sbb(train_values: np.ndarray) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 60:
@@ -1678,27 +1846,30 @@ def _fit_historical_realized_sharpe_sbb(train_values: np.ndarray) -> Optional[Di
         },
     }
 
-def _overlay_half_life_days(persistence: float) -> Optional[float]:
+
+def _overlay_half_life_days(persistence: float) -> float | None:
     p = abs(float(persistence))
     if not np.isfinite(p) or p <= 0.0 or p >= 0.999999:
         return None
     return float(math.log(0.5) / math.log(p))
+
 
 def _sv_observed_log_variance(
     train_values: np.ndarray,
     mu: float,
     *,
     winsorize: bool = True,
-) -> Tuple[np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray]:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     return _sv_observed_log_variance_from_residuals(x - float(mu), winsorize=winsorize)
+
 
 def _sv_observed_log_variance_from_residuals(
     residual_values: np.ndarray,
     *,
     winsorize: bool = True,
-) -> Tuple[np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray]:
     residuals = np.asarray(residual_values, dtype=np.float64)
     residuals = residuals[np.isfinite(residuals)]
     eps_x = residuals * 100.0
@@ -1722,6 +1893,7 @@ def _sv_observed_log_variance_from_residuals(
         observed = np.clip(observed, lo, hi)
     return observed.astype(np.float64), eps_x[: observed.size].astype(np.float64)
 
+
 def _sv_kalman_filter(
     observed_log_var: np.ndarray,
     level: float,
@@ -1729,7 +1901,7 @@ def _sv_kalman_filter(
     eta: float,
     *,
     return_path: bool = False,
-) -> Tuple[float, np.ndarray, np.ndarray]:
+) -> tuple[float, np.ndarray, np.ndarray]:
     y = np.asarray(observed_log_var, dtype=np.float64)
     y = y[np.isfinite(y)]
     if y.size == 0:
@@ -1746,13 +1918,17 @@ def _sv_kalman_filter(
     variance = float(max(q / max(1.0 - phi * phi, 1e-4), 1e-6))
     loglik = 0.0
     filtered = np.empty(y.size, dtype=np.float64) if return_path else np.empty(1, dtype=np.float64)
-    filtered_var = np.empty(y.size, dtype=np.float64) if return_path else np.empty(1, dtype=np.float64)
+    filtered_var = (
+        np.empty(y.size, dtype=np.float64) if return_path else np.empty(1, dtype=np.float64)
+    )
     last_mean = mean
     last_var = variance
     for idx, obs in enumerate(y):
         forecast_var = float(max(variance + measurement_var, 1e-8))
         innovation = float(obs - mean)
-        loglik += -0.5 * (math.log(2.0 * math.pi * forecast_var) + (innovation * innovation) / forecast_var)
+        loglik += -0.5 * (
+            math.log(2.0 * math.pi * forecast_var) + (innovation * innovation) / forecast_var
+        )
         gain = variance / forecast_var
         updated_mean = mean + gain * innovation
         updated_var = float(max((1.0 - gain) * variance, 1e-8))
@@ -1768,7 +1944,8 @@ def _sv_kalman_filter(
         filtered_var[0] = last_var
     return float(loglik), filtered, filtered_var
 
-def _initial_sv_state_space_params(observed_log_var: np.ndarray) -> Tuple[float, float, float]:
+
+def _initial_sv_state_space_params(observed_log_var: np.ndarray) -> tuple[float, float, float]:
     y = np.asarray(observed_log_var, dtype=np.float64)
     y = y[np.isfinite(y)]
     level = float(np.mean(y)) if y.size else 0.0
@@ -1781,19 +1958,24 @@ def _initial_sv_state_space_params(observed_log_var: np.ndarray) -> Tuple[float,
     eta = float(np.sqrt(max(signal_variance * (1.0 - phi * phi), 0.02 * signal_variance, 1e-4)))
     return level, phi, float(np.clip(eta, 0.03, 2.0))
 
+
 def _fit_sv_state_space_params(
     observed_log_var: np.ndarray,
     *,
     start_count: int = 4,
     maxiter: int = 120,
-) -> Tuple[float, float, float]:
+) -> tuple[float, float, float]:
     y = np.asarray(observed_log_var, dtype=np.float64)
     y = y[np.isfinite(y)]
     if y.size < 30:
         return _initial_sv_state_space_params(y)
     init_level, init_phi, init_eta = _initial_sv_state_space_params(y)
     y_lo, y_hi = np.quantile(y, [0.01, 0.99])
-    bounds = [(float(y_lo - 4.0), float(y_hi + 4.0)), (0.001, 0.995), (math.log(0.02), math.log(2.5))]
+    bounds = [
+        (float(y_lo - 4.0), float(y_hi + 4.0)),
+        (0.001, 0.995),
+        (math.log(0.02), math.log(2.5)),
+    ]
 
     def objective(params: np.ndarray) -> float:
         level = float(params[0])
@@ -1811,12 +1993,14 @@ def _fit_sv_state_space_params(
         (float(np.median(y)), 0.985, 0.12),
     ]
     starts = starts[: int(np.clip(int(start_count), 1, len(starts)))]
-    best: Optional[Tuple[float, np.ndarray]] = None
+    best: tuple[float, np.ndarray] | None = None
     try:
         from scipy import optimize
 
         for level, phi, eta in starts:
-            x0 = np.asarray([level, phi, math.log(float(np.clip(eta, 0.02, 2.5)))], dtype=np.float64)
+            x0 = np.asarray(
+                [level, phi, math.log(float(np.clip(eta, 0.02, 2.5)))], dtype=np.float64
+            )
             result = optimize.minimize(
                 objective,
                 x0,
@@ -1827,12 +2011,13 @@ def _fit_sv_state_space_params(
             value = float(result.fun) if np.isfinite(result.fun) else math.inf
             if result.success and (best is None or value < best[0]):
                 best = (value, np.asarray(result.x, dtype=np.float64))
-    except Exception:
+    except _SOURCE_FALLBACK_ERRORS:
         best = None
     if best is None:
         return init_level, init_phi, init_eta
     params = best[1]
     return float(params[0]), float(params[1]), float(math.exp(params[2]))
+
 
 def _sv_mcmc_log_posterior(y: np.ndarray, level: float, phi: float, eta: float) -> float:
     if not (np.isfinite(level) and np.isfinite(phi) and np.isfinite(eta)):
@@ -1847,10 +2032,12 @@ def _sv_mcmc_log_posterior(y: np.ndarray, level: float, phi: float, eta: float) 
     prior_eta = -0.5 * ((math.log(eta) - math.log(0.35)) / 1.0) ** 2
     return float(ll + prior_level + prior_phi + prior_eta)
 
+
 def _logit_unit_interval(value: float) -> float:
     eps = np.finfo(np.float64).eps
     p = float(min(max(value, eps), 1.0 - eps))
     return float(math.log(p / (1.0 - p)))
+
 
 def _inv_logit_unit_interval(value: float) -> float:
     x = float(value)
@@ -1860,7 +2047,10 @@ def _inv_logit_unit_interval(value: float) -> float:
     z = math.exp(x)
     return float(z / (1.0 + z))
 
-def _sv_transformed_log_posterior(y: np.ndarray, level: float, phi_logit: float, log_eta: float) -> float:
+
+def _sv_transformed_log_posterior(
+    y: np.ndarray, level: float, phi_logit: float, log_eta: float
+) -> float:
     if not (np.isfinite(level) and np.isfinite(phi_logit) and np.isfinite(log_eta)):
         return -math.inf
     phi = _inv_logit_unit_interval(float(phi_logit))
@@ -1872,12 +2062,13 @@ def _sv_transformed_log_posterior(y: np.ndarray, level: float, phi_logit: float,
     # gives the implied posterior density over those coordinates.
     return float(lp + math.log(max(phi * (1.0 - phi), 1e-300)) + log_eta)
 
+
 def _standardized_empirical_innovation_pool(
     values: np.ndarray,
     *,
-    clip: Optional[float] = None,
+    clip: float | None = None,
     method: str = "mean_std",
-) -> Optional[np.ndarray]:
+) -> np.ndarray | None:
     z = np.asarray(values, dtype=np.float64)
     z = z[np.isfinite(z)]
     if z.size == 0:
@@ -1896,7 +2087,10 @@ def _standardized_empirical_innovation_pool(
         z = np.clip(z, -float(clip), float(clip))
     return z.astype(np.float64)
 
-def _finite_correlation(x_values: np.ndarray, y_values: np.ndarray, *, method: str = "pearson") -> float:
+
+def _finite_correlation(
+    x_values: np.ndarray, y_values: np.ndarray, *, method: str = "pearson"
+) -> float:
     x = np.asarray(x_values, dtype=np.float64)
     y = np.asarray(y_values, dtype=np.float64)
     n = min(int(x.size), int(y.size))
@@ -1919,6 +2113,7 @@ def _finite_correlation(x_values: np.ndarray, y_values: np.ndarray, *, method: s
     corr = float(np.corrcoef(x, y)[0, 1])
     return corr if np.isfinite(corr) else math.nan
 
+
 def _circular_block_bootstrap_indices(
     *,
     n: int,
@@ -1933,11 +2128,12 @@ def _circular_block_bootstrap_indices(
     n_paths = int(max(n_paths, 0))
     if total_days <= 0 or n_paths <= 0:
         return np.empty((n_paths, total_days), dtype=np.int64)
-    block_count = int(math.ceil(float(total_days) / float(block_length)))
+    block_count = math.ceil(float(total_days) / float(block_length))
     starts = rng.integers(0, n, size=(n_paths, block_count), endpoint=False)
     offsets = np.arange(block_length, dtype=np.int64)
     indices = (starts[:, :, None] + offsets[None, None, :]) % n
     return indices.reshape(n_paths, block_count * block_length)[:, :total_days].astype(np.int64)
+
 
 def _ffbs_sv_log_variance_path(
     observed_log_var: np.ndarray,
@@ -1947,7 +2143,7 @@ def _ffbs_sv_log_variance_path(
     rng: np.random.Generator,
     *,
     clip_path: bool = True,
-) -> Optional[np.ndarray]:
+) -> np.ndarray | None:
     y = np.asarray(observed_log_var, dtype=np.float64)
     y = y[np.isfinite(y)]
     n = int(y.size)
@@ -2001,7 +2197,8 @@ def _ffbs_sv_log_variance_path(
         path = np.clip(path, -18.0, 18.0)
     return path
 
-def _full_mcmc_sv_overlay_fit_signature(candidate: Dict[str, Any]) -> Tuple[Any, ...]:
+
+def _full_mcmc_sv_overlay_fit_signature(candidate: dict[str, Any]) -> tuple[Any, ...]:
     defaults = {
         "mean_model": "positive_sample_mean",
         "leverage": False,
@@ -2033,10 +2230,16 @@ def _full_mcmc_sv_overlay_fit_signature(candidate: Dict[str, Any]) -> Tuple[Any,
     signature = []
     for key, default in defaults.items():
         value = candidate.get(key, default)
-        if key == "innovation_resampling" and _full_mcmc_sv_parametric_innovation_meta(str(value)) is None:
+        if (
+            key == "innovation_resampling"
+            and _full_mcmc_sv_parametric_innovation_meta(str(value)) is None
+        ):
             value = "empirical_nonparametric_fit_agnostic"
         signature.append((key, value))
-    if str(candidate.get("mcmc_stopping", "fixed")) == "dynamic_multichain_rhat_ess_forecast_stability":
+    if (
+        str(candidate.get("mcmc_stopping", "fixed"))
+        == "dynamic_multichain_rhat_ess_forecast_stability"
+    ):
         for key, default in (
             ("mcmc_initial_iterations", candidate.get("mcmc_iterations", 160)),
             ("mcmc_extend_iterations", candidate.get("mcmc_check_interval", 40)),
@@ -2061,7 +2264,10 @@ def _full_mcmc_sv_overlay_fit_signature(candidate: Dict[str, Any]) -> Tuple[Any,
         signature.append(("mcmc_seed_salt", str(candidate.get("mcmc_seed_salt"))))
     return tuple(signature)
 
-def _evt_tail_splice_standardized_draws(z_pool: np.ndarray, z_draws: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+
+def _evt_tail_splice_standardized_draws(
+    z_pool: np.ndarray, z_draws: np.ndarray, rng: np.random.Generator
+) -> np.ndarray:
     pool = np.asarray(z_pool, dtype=np.float64)
     pool = pool[np.isfinite(pool)]
     if pool.size == 0:
@@ -2073,6 +2279,7 @@ def _evt_tail_splice_standardized_draws(z_pool: np.ndarray, z_draws: np.ndarray,
     extreme = np.abs(z_draws) >= threshold
     spliced = np.where(extreme, tail_draws, z_draws)
     return _standardize_generated_innovations(spliced)
+
 
 def _mcmc_effective_sample_size(values: Sequence[float]) -> float:
     arr = np.asarray(values, dtype=np.float64)
@@ -2093,6 +2300,7 @@ def _mcmc_effective_sample_size(values: Sequence[float]) -> float:
         rho_sum += rho
     return float(max(1.0, n / max(1.0 + 2.0 * rho_sum, 1e-12)))
 
+
 def _split_rhat_from_chains(chains: np.ndarray) -> float:
     arr = np.asarray(chains, dtype=np.float64)
     if arr.ndim != 2:
@@ -2106,7 +2314,7 @@ def _split_rhat_from_chains(chains: np.ndarray) -> float:
     if half < 2:
         return math.inf
     split = np.concatenate([arr[:, :half], arr[:, -half:]], axis=0)
-    m, n = split.shape
+    _m, n = split.shape
     chain_means = np.mean(split, axis=1)
     chain_vars = np.var(split, axis=1, ddof=1)
     w = float(np.mean(chain_vars))
@@ -2118,7 +2326,8 @@ def _split_rhat_from_chains(chains: np.ndarray) -> float:
         return math.inf
     return float(math.sqrt(max(var_hat / w, 0.0)))
 
-def _rank_normalized_chains(chains: np.ndarray) -> Optional[np.ndarray]:
+
+def _rank_normalized_chains(chains: np.ndarray) -> np.ndarray | None:
     arr = np.asarray(chains, dtype=np.float64)
     if arr.ndim != 2 or arr.size == 0 or not np.all(np.isfinite(arr)):
         return None
@@ -2130,10 +2339,11 @@ def _rank_normalized_chains(chains: np.ndarray) -> Optional[np.ndarray]:
         u = (ranks - 0.375) / (float(flat.size) + 0.25)
         z = stats.norm.ppf(np.clip(u, 1e-6, 1.0 - 1e-6))
         return z.reshape(arr.shape).astype(np.float64)
-    except Exception:
+    except _SOURCE_FALLBACK_ERRORS:
         return None
 
-def _mcmc_multichain_diagnostics(chains: np.ndarray) -> Dict[str, Any]:
+
+def _mcmc_multichain_diagnostics(chains: np.ndarray) -> dict[str, Any]:
     arr = np.asarray(chains, dtype=np.float64)
     if arr.ndim != 2:
         arr = np.atleast_2d(arr)
@@ -2166,13 +2376,14 @@ def _mcmc_multichain_diagnostics(chains: np.ndarray) -> Dict[str, Any]:
         "rank_normalized": rank_arr is not None,
     }
 
+
 def _dynamic_mcmc_path_sample_interval(observed_log_var: Sequence[float]) -> int:
     arr = np.asarray(observed_log_var, dtype=np.float64)
     arr = arr[np.isfinite(arr)]
     n = int(arr.size)
     if n <= 0:
         return 1
-    size_stride = int(math.ceil(math.sqrt(float(n)) / 32.0))
+    size_stride = math.ceil(math.sqrt(float(n)) / 32.0)
     dependence_stride = 1
     if n >= 20:
         try:
@@ -2181,15 +2392,16 @@ def _dynamic_mcmc_path_sample_interval(observed_log_var: Sequence[float]) -> int
                 _politis_white_block_length(centered),
                 _politis_white_block_length(centered * centered),
             )
-            dependence_stride = int(math.ceil(float(dependence_span) / 8.0))
-        except Exception:
+            dependence_stride = math.ceil(float(dependence_span) / 8.0)
+        except _SOURCE_FALLBACK_ERRORS:
             dependence_stride = 1
     return int(max(1, min(8, max(size_stride, dependence_stride))))
 
+
 def _fit_bayesian_sbb_full_mcmc_sv_overlay(
     train_values: np.ndarray,
-    candidate: Dict[str, Any],
-) -> Optional[Dict[str, Any]]:
+    candidate: dict[str, Any],
+) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < FULL_MCMC_SV_MIN_OBS:
@@ -2214,9 +2426,13 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
     leverage_correlation_scope = str(candidate.get("leverage_correlation_scope", "per_state_path"))
     state_innovation_distribution = str(candidate.get("state_innovation_distribution", "gaussian"))
     state_innovation_source = str(candidate.get("state_innovation_source", "posterior_ffbs_path"))
-    state_innovation_standardization = str(candidate.get("state_innovation_standardization", "mean_std"))
+    state_innovation_standardization = str(
+        candidate.get("state_innovation_standardization", "mean_std")
+    )
     state_innovation_resampling = str(candidate.get("state_innovation_resampling", "iid"))
-    state_innovation_coupling = str(candidate.get("state_innovation_coupling", "correlation_mixture"))
+    state_innovation_coupling = str(
+        candidate.get("state_innovation_coupling", "correlation_mixture")
+    )
     sv_sigma_scale_method = str(candidate.get("sv_sigma_scale_method", "none"))
     innovation_tail_splice = str(candidate.get("innovation_tail_splice", "none"))
     latent_vol_persistence = str(candidate.get("latent_vol_persistence", "ar1"))
@@ -2243,10 +2459,14 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         return None
     sv_measurement_bias_value = float(SV_LOG_CHI_SQUARE_MEAN)
     if sv_measurement_bias == "empirical_standardized_residuals":
-        z_for_bias = _standardized_empirical_innovation_pool(eps_x, clip=None, method=innovation_standardization)
+        z_for_bias = _standardized_empirical_innovation_pool(
+            eps_x, clip=None, method=innovation_standardization
+        )
         if z_for_bias is None or z_for_bias.size < 30:
             return None
-        empirical_bias = float(np.mean(np.log(np.maximum(z_for_bias * z_for_bias, np.finfo(np.float64).tiny))))
+        empirical_bias = float(
+            np.mean(np.log(np.maximum(z_for_bias * z_for_bias, np.finfo(np.float64).tiny)))
+        )
         if not np.isfinite(empirical_bias):
             return None
         observed_log_var = observed_log_var + float(SV_LOG_CHI_SQUARE_MEAN - empirical_bias)
@@ -2274,31 +2494,35 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
     burn = int(min(max(candidate.get("mcmc_burn", 60), 0), iterations_limit - 1))
     thin = int(max(candidate.get("mcmc_thin", 10), 1))
     if mcmc_stopping == "adaptive_ess_forecast_stability":
-        min_iterations = int(min(max(candidate.get("mcmc_min_iterations", 120), burn + thin), iterations_limit))
+        min_iterations = int(
+            min(max(candidate.get("mcmc_min_iterations", 120), burn + thin), iterations_limit)
+        )
         check_interval = int(max(candidate.get("mcmc_check_interval", 40), thin))
     else:
         min_iterations = iterations_limit
         check_interval = iterations_limit
     leverage = bool(candidate.get("leverage", False))
-    samples: List[Tuple[float, float, float, float, float]] = []
-    state_innovation_values: List[np.ndarray] = []
-    paired_innovation_values: List[np.ndarray] = []
+    samples: list[tuple[float, float, float, float, float]] = []
+    state_innovation_values: list[np.ndarray] = []
+    paired_innovation_values: list[np.ndarray] = []
     accepted = 0
     iterations_run = 0
     mcmc_stop_reason = "fixed_iteration_budget"
-    previous_forecast_quantiles: Optional[np.ndarray] = None
-    final_ess_min: Optional[float] = None
-    final_rhat_max: Optional[float] = None
-    mcmc_diagnostic_checks: List[Dict[str, Any]] = []
+    previous_forecast_quantiles: np.ndarray | None = None
+    final_ess_min: float | None = None
+    final_rhat_max: float | None = None
+    mcmc_diagnostic_checks: list[dict[str, Any]] = []
     mcmc_chain_count = 1
     proposal_adaptation = str(candidate.get("mcmc_proposal_adaptation", "fixed"))
-    proposal_adaptation_meta: Dict[str, Any] = {
+    proposal_adaptation_meta: dict[str, Any] = {
         "method": proposal_adaptation,
         "active": False,
     }
 
     if innovation_pool_source == "latent_filtered_standardized":
-        loglik, filtered_log_var, _ = _sv_kalman_filter(observed_log_var, level, phi, eta, return_path=True)
+        loglik, filtered_log_var, _ = _sv_kalman_filter(
+            observed_log_var, level, phi, eta, return_path=True
+        )
         if not np.isfinite(loglik) or filtered_log_var.size == 0:
             return None
         sigma_x = np.exp(0.5 * np.clip(filtered_log_var, -18.0, 18.0))
@@ -2311,7 +2535,9 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         if z_pool is None:
             return None
     elif raw_empirical_innovations:
-        z_pool = _standardized_empirical_innovation_pool(eps_x, clip=None, method=innovation_standardization)
+        z_pool = _standardized_empirical_innovation_pool(
+            eps_x, clip=None, method=innovation_standardization
+        )
         if z_pool is None:
             return None
     else:
@@ -2320,7 +2546,7 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         z_pool = z_pool[: observed_log_var.size]
     if z_pool.size < observed_log_var.size:
         return None
-    innovation_distribution_params: Optional[Tuple[float, ...]] = None
+    innovation_distribution_params: tuple[float, ...] | None = None
     if _full_mcmc_sv_parametric_innovation_meta(innovation_resampling) is not None:
         innovation_distribution_params = _fit_full_mcmc_sv_parametric_innovation_distribution(
             z_pool,
@@ -2331,9 +2557,16 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
 
     if mcmc_stopping == "dynamic_multichain_rhat_ess_forecast_stability":
         mcmc_chain_count = int(max(candidate.get("mcmc_chains", 4), 2))
-        initial_iterations = int(max(candidate.get("mcmc_initial_iterations", 160), burn + thin, 40))
+        initial_iterations = int(
+            max(candidate.get("mcmc_initial_iterations", 160), burn + thin, 40)
+        )
         extend_iterations = int(max(candidate.get("mcmc_extend_iterations", 80), thin, 1))
-        iterations_limit = int(max(candidate.get("mcmc_max_iterations", candidate.get("mcmc_iterations", 320)), initial_iterations))
+        iterations_limit = int(
+            max(
+                candidate.get("mcmc_max_iterations", candidate.get("mcmc_iterations", 320)),
+                initial_iterations,
+            )
+        )
         rhat_threshold = float(candidate.get("mcmc_rhat_threshold", 1.01))
         min_ess_config = float(candidate.get("mcmc_min_ess", 100.0))
         ess_target = float(max(min_ess_config, min(400.0, math.sqrt(float(observed_log_var.size)))))
@@ -2341,7 +2574,9 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         path_sample_interval = _dynamic_mcmc_path_sample_interval(observed_log_var)
         proposal_adaptation = str(candidate.get("mcmc_proposal_adaptation", "fixed"))
         adaptive_proposal = bool(
-            proposal_adaptation == "warmup_empirical_covariance" and transformed_sampler and not no_latent_ar
+            proposal_adaptation == "warmup_empirical_covariance"
+            and transformed_sampler
+            and not no_latent_ar
         )
         adaptation_iterations = int(
             min(
@@ -2350,14 +2585,14 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
             )
         )
         target_acceptance = float(candidate.get("mcmc_adaptation_target_acceptance", 0.234))
-        proposal_chol: Optional[np.ndarray] = None
-        proposal_adaptation_meta: Dict[str, Any] = {
+        proposal_chol: np.ndarray | None = None
+        proposal_adaptation_meta: dict[str, Any] = {
             "method": proposal_adaptation,
             "active": adaptive_proposal,
             "adaptation_iterations": int(adaptation_iterations),
             "target_acceptance": target_acceptance,
         }
-        chain_states: List[Dict[str, Any]] = []
+        chain_states: list[dict[str, Any]] = []
         for chain_idx in range(mcmc_chain_count):
             chain_rng = np.random.default_rng(
                 deterministic_seed(
@@ -2377,11 +2612,15 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
             if transformed_sampler and not no_latent_ar:
                 chain_phi_coord = _logit_unit_interval(chain_phi)
                 chain_eta_coord = math.log(max(float(chain_eta), np.finfo(np.float64).tiny))
-                chain_lp = _sv_transformed_log_posterior(observed_log_var, chain_level, chain_phi_coord, chain_eta_coord)
+                chain_lp = _sv_transformed_log_posterior(
+                    observed_log_var, chain_level, chain_phi_coord, chain_eta_coord
+                )
             else:
                 chain_phi_coord = 0.0
                 chain_eta_coord = 0.0
-                chain_lp = _sv_mcmc_log_posterior(observed_log_var, chain_level, chain_phi, chain_eta)
+                chain_lp = _sv_mcmc_log_posterior(
+                    observed_log_var, chain_level, chain_phi, chain_eta
+                )
             chain_states.append(
                 {
                     "level": chain_level,
@@ -2421,10 +2660,15 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                             cov = np.asarray([[float(cov)]], dtype=np.float64)
                         cov = np.asarray(cov, dtype=np.float64)
                         if cov.shape == (dim, dim) and np.all(np.isfinite(cov)):
-                            diag_floor = np.asarray([0.03, 0.06, 0.05], dtype=np.float64)[:dim] ** 2 * 0.01
+                            diag_floor = (
+                                np.asarray([0.03, 0.06, 0.05], dtype=np.float64)[:dim] ** 2 * 0.01
+                            )
                             total_proposals = max(adaptation_iterations * mcmc_chain_count, 1)
                             adaptation_acceptance = float(
-                                sum(int(chain_state["accepted_during_adaptation"]) for chain_state in chain_states)
+                                sum(
+                                    int(chain_state["accepted_during_adaptation"])
+                                    for chain_state in chain_states
+                                )
                                 / total_proposals
                             )
                             scale = float((2.38 * 2.38) / max(dim, 1))
@@ -2436,23 +2680,36 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                             try:
                                 proposal_chol = np.linalg.cholesky(regularized)
                             except np.linalg.LinAlgError:
-                                proposal_chol = np.linalg.cholesky(np.diag(np.maximum(np.diag(regularized), diag_floor)))
+                                proposal_chol = np.linalg.cholesky(
+                                    np.diag(np.maximum(np.diag(regularized), diag_floor))
+                                )
                             proposal_adaptation_meta.update(
                                 {
                                     "accepted_during_adaptation": int(
-                                        sum(int(chain_state["accepted_during_adaptation"]) for chain_state in chain_states)
+                                        sum(
+                                            int(chain_state["accepted_during_adaptation"])
+                                            for chain_state in chain_states
+                                        )
                                     ),
                                     "adaptation_acceptance_rate": adaptation_acceptance,
                                     "adaptation_esjd": float(
-                                        sum(float(chain_state["proposal_sq_jump_sum"]) for chain_state in chain_states)
+                                        sum(
+                                            float(chain_state["proposal_sq_jump_sum"])
+                                            for chain_state in chain_states
+                                        )
                                         / max(
-                                            sum(int(chain_state["accepted_during_adaptation"]) for chain_state in chain_states),
+                                            sum(
+                                                int(chain_state["accepted_during_adaptation"])
+                                                for chain_state in chain_states
+                                            ),
                                             1,
                                         )
                                     ),
                                     "proposal_dimension": dim,
                                     "proposal_scale": scale,
-                                    "proposal_covariance_diag": [float(value) for value in np.diag(regularized)],
+                                    "proposal_covariance_diag": [
+                                        float(value) for value in np.diag(regularized)
+                                    ],
                                 }
                             )
             for chain_state in chain_states:
@@ -2463,15 +2720,23 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                 chain_phi_coord = float(chain_state["phi_coord"])
                 chain_eta_coord = float(chain_state["eta_coord"])
                 chain_lp = float(chain_state["current_lp"])
-                current_vector = np.asarray([chain_level, chain_phi_coord, chain_eta_coord], dtype=np.float64)
+                current_vector = np.asarray(
+                    [chain_level, chain_phi_coord, chain_eta_coord], dtype=np.float64
+                )
                 proposal_vector = current_vector.copy()
                 if adaptive_proposal and proposal_chol is not None:
-                    proposal_vector = current_vector + proposal_chol @ chain_rng.normal(size=current_vector.size)
+                    proposal_vector = current_vector + proposal_chol @ chain_rng.normal(
+                        size=current_vector.size
+                    )
                     proposal_level = float(proposal_vector[0])
                     proposal_phi_coord = float(proposal_vector[1])
                     proposal_eta_coord = float(proposal_vector[2])
                     proposal_phi = _inv_logit_unit_interval(proposal_phi_coord)
-                    proposal_eta = float(math.exp(proposal_eta_coord)) if np.isfinite(proposal_eta_coord) else math.inf
+                    proposal_eta = (
+                        float(math.exp(proposal_eta_coord))
+                        if np.isfinite(proposal_eta_coord)
+                        else math.inf
+                    )
                     proposal_lp = (
                         _sv_transformed_log_posterior(
                             observed_log_var,
@@ -2479,19 +2744,29 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                             proposal_phi_coord,
                             proposal_eta_coord,
                         )
-                        if np.isfinite(proposal_level) and np.isfinite(proposal_phi_coord) and np.isfinite(proposal_eta)
+                        if np.isfinite(proposal_level)
+                        and np.isfinite(proposal_phi_coord)
+                        and np.isfinite(proposal_eta)
                         else -math.inf
                     )
                 else:
                     proposal_level = float(chain_level + chain_rng.normal(0.0, 0.03))
                     if no_latent_ar:
                         proposal_phi = 0.0
-                        proposal_eta = float(np.clip(chain_eta * math.exp(chain_rng.normal(0.0, 0.05)), 1e-4, 5.0))
-                        proposal_lp = _sv_mcmc_log_posterior(observed_log_var, proposal_level, proposal_phi, proposal_eta)
+                        proposal_eta = float(
+                            np.clip(chain_eta * math.exp(chain_rng.normal(0.0, 0.05)), 1e-4, 5.0)
+                        )
+                        proposal_lp = _sv_mcmc_log_posterior(
+                            observed_log_var, proposal_level, proposal_phi, proposal_eta
+                        )
                         proposal_phi_coord = 0.0
                         proposal_eta_coord = 0.0
                         proposal_vector = np.asarray(
-                            [proposal_level, proposal_phi_coord, math.log(max(proposal_eta, np.finfo(np.float64).tiny))],
+                            [
+                                proposal_level,
+                                proposal_phi_coord,
+                                math.log(max(proposal_eta, np.finfo(np.float64).tiny)),
+                            ],
                             dtype=np.float64,
                         )
                     elif transformed_sampler:
@@ -2505,15 +2780,28 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                             proposal_phi_coord,
                             proposal_eta_coord,
                         )
-                        proposal_vector = np.asarray([proposal_level, proposal_phi_coord, proposal_eta_coord], dtype=np.float64)
+                        proposal_vector = np.asarray(
+                            [proposal_level, proposal_phi_coord, proposal_eta_coord],
+                            dtype=np.float64,
+                        )
                     else:
-                        proposal_phi = float(np.clip(chain_phi + chain_rng.normal(0.0, 0.012), 0.001, 0.994))
-                        proposal_eta = float(np.clip(chain_eta * math.exp(chain_rng.normal(0.0, 0.05)), 1e-4, 5.0))
-                        proposal_lp = _sv_mcmc_log_posterior(observed_log_var, proposal_level, proposal_phi, proposal_eta)
+                        proposal_phi = float(
+                            np.clip(chain_phi + chain_rng.normal(0.0, 0.012), 0.001, 0.994)
+                        )
+                        proposal_eta = float(
+                            np.clip(chain_eta * math.exp(chain_rng.normal(0.0, 0.05)), 1e-4, 5.0)
+                        )
+                        proposal_lp = _sv_mcmc_log_posterior(
+                            observed_log_var, proposal_level, proposal_phi, proposal_eta
+                        )
                         proposal_phi_coord = 0.0
                         proposal_eta_coord = 0.0
                         proposal_vector = np.asarray(
-                            [proposal_level, proposal_phi, math.log(max(proposal_eta, np.finfo(np.float64).tiny))],
+                            [
+                                proposal_level,
+                                proposal_phi,
+                                math.log(max(proposal_eta, np.finfo(np.float64).tiny)),
+                            ],
                             dtype=np.float64,
                         )
                 accepted_move = False
@@ -2539,11 +2827,15 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                     if np.all(np.isfinite(adapted_vector)):
                         chain_state["adapt_values"].append(adapted_vector)
                     if accepted_move:
-                        chain_state["accepted_during_adaptation"] = int(chain_state["accepted_during_adaptation"]) + 1
-                        if np.all(np.isfinite(proposal_vector)) and np.all(np.isfinite(current_vector)):
-                            chain_state["proposal_sq_jump_sum"] = float(chain_state["proposal_sq_jump_sum"]) + float(
-                                np.sum((proposal_vector - current_vector) ** 2)
-                            )
+                        chain_state["accepted_during_adaptation"] = (
+                            int(chain_state["accepted_during_adaptation"]) + 1
+                        )
+                        if np.all(np.isfinite(proposal_vector)) and np.all(
+                            np.isfinite(current_vector)
+                        ):
+                            chain_state["proposal_sq_jump_sum"] = float(
+                                chain_state["proposal_sq_jump_sum"]
+                            ) + float(np.sum((proposal_vector - current_vector) ** 2))
                 if step >= burn:
                     chain_state["param_values"].append(
                         (
@@ -2568,7 +2860,8 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                         state_innov = (
                             state_path[1:]
                             - float(chain_state["level"])
-                            - float(chain_state["phi"]) * (state_path[:-1] - float(chain_state["level"]))
+                            - float(chain_state["phi"])
+                            * (state_path[:-1] - float(chain_state["level"]))
                         ) / max(float(chain_state["eta"]), 1e-8)
                         if state_innovation_distribution == "empirical_centered_standardized":
                             if state_innovation_source == "kalman_filtered_path":
@@ -2583,11 +2876,16 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                                     filtered_innov = (
                                         filtered_path[1:]
                                         - float(chain_state["level"])
-                                        - float(chain_state["phi"]) * (filtered_path[:-1] - float(chain_state["level"]))
+                                        - float(chain_state["phi"])
+                                        * (filtered_path[:-1] - float(chain_state["level"]))
                                     ) / max(float(chain_state["eta"]), 1e-8)
-                                    chain_state["state_innovation_values"].append(filtered_innov.astype(np.float64))
+                                    chain_state["state_innovation_values"].append(
+                                        filtered_innov.astype(np.float64)
+                                    )
                             else:
-                                chain_state["state_innovation_values"].append(state_innov.astype(np.float64))
+                                chain_state["state_innovation_values"].append(
+                                    state_innov.astype(np.float64)
+                                )
                         if leverage_alignment == "same_period_return":
                             z_for_rho = z_pool[1 : state_innov.size + 1]
                         else:
@@ -2605,7 +2903,9 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                                         ]
                                     )
                                 )
-                            corr = _finite_correlation(z_for_rho, state_innov, method=leverage_correlation_method)
+                            corr = _finite_correlation(
+                                z_for_rho, state_innov, method=leverage_correlation_method
+                            )
                             if np.isfinite(corr):
                                 if raw_empirical_innovations and abs(corr) < 1.0:
                                     rho = float(corr)
@@ -2621,28 +2921,35 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                         )
                     )
             should_check = iterations_run >= initial_iterations and (
-                iterations_run == initial_iterations or (iterations_run - initial_iterations) % extend_iterations == 0
+                iterations_run == initial_iterations
+                or (iterations_run - initial_iterations) % extend_iterations == 0
             )
             if should_check:
-                retained_param_counts = [len(chain_state["param_values"]) for chain_state in chain_states]
+                retained_param_counts = [
+                    len(chain_state["param_values"]) for chain_state in chain_states
+                ]
                 min_param_retained = int(min(retained_param_counts)) if retained_param_counts else 0
                 retained_path_counts = [len(chain_state["samples"]) for chain_state in chain_states]
                 min_path_retained = int(min(retained_path_counts)) if retained_path_counts else 0
                 if min_param_retained >= 8 and min_path_retained >= 8:
                     param_arrays = [
-                        np.asarray(chain_state["param_values"][-min_param_retained:], dtype=np.float64)
+                        np.asarray(
+                            chain_state["param_values"][-min_param_retained:], dtype=np.float64
+                        )
                         for chain_state in chain_states
                     ]
                     sample_arrays = [
                         np.asarray(chain_state["samples"][-min_path_retained:], dtype=np.float64)
                         for chain_state in chain_states
                     ]
-                    param_diags: Dict[str, Dict[str, Any]] = {}
+                    param_diags: dict[str, dict[str, Any]] = {}
                     for col_idx, name in enumerate(("level", "phi", "eta")):
                         chain_values = np.vstack([arr[:, col_idx] for arr in param_arrays])
                         param_diags[name] = _mcmc_multichain_diagnostics(chain_values)
                     chain_last_log_variance = np.vstack([arr[:, 3] for arr in sample_arrays])
-                    param_diags["last_log_variance"] = _mcmc_multichain_diagnostics(chain_last_log_variance)
+                    param_diags["last_log_variance"] = _mcmc_multichain_diagnostics(
+                        chain_last_log_variance
+                    )
                     final_rhat_max = float(max(diag["rhat"] for diag in param_diags.values()))
                     final_ess_min = float(min(diag["ess"] for diag in param_diags.values()))
                     pooled_last_log_var = np.concatenate([arr[:, 3] for arr in sample_arrays])
@@ -2675,15 +2982,20 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         for chain_state in chain_states:
             samples.extend([tuple(sample) for sample in chain_state["samples"]])
             state_innovation_values.extend(
-                value for value in chain_state["state_innovation_values"] if isinstance(value, np.ndarray)
+                value
+                for value in chain_state["state_innovation_values"]
+                if isinstance(value, np.ndarray)
             )
             paired_innovation_values.extend(
-                value for value in chain_state["paired_innovation_values"] if isinstance(value, np.ndarray)
+                value
+                for value in chain_state["paired_innovation_values"]
+                if isinstance(value, np.ndarray)
             )
             accepted += int(chain_state["accepted"])
     else:
         adaptive_proposal = bool(
-            proposal_adaptation in {"adaptive_metropolis_warmup_covariance", "warmup_empirical_covariance"}
+            proposal_adaptation
+            in {"adaptive_metropolis_warmup_covariance", "warmup_empirical_covariance"}
             and transformed_sampler
             and not no_latent_ar
         )
@@ -2694,8 +3006,8 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
             )
         )
         target_acceptance = float(candidate.get("mcmc_adaptation_target_acceptance", 0.234))
-        proposal_chol: Optional[np.ndarray] = None
-        adapt_values: List[np.ndarray] = []
+        proposal_chol: np.ndarray | None = None
+        adapt_values: list[np.ndarray] = []
         accepted_during_adaptation = 0
         proposal_sq_jump_sum = 0.0
         if adaptive_proposal:
@@ -2710,8 +3022,14 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
             iterations_run = int(step + 1)
             if adaptive_proposal and proposal_chol is None and step >= adaptation_iterations:
                 adapted = np.asarray(adapt_values, dtype=np.float64)
-                finite = np.all(np.isfinite(adapted), axis=1) if adapted.ndim == 2 else np.asarray([], dtype=bool)
-                adapted = adapted[finite] if adapted.ndim == 2 else np.empty((0, 3), dtype=np.float64)
+                finite = (
+                    np.all(np.isfinite(adapted), axis=1)
+                    if adapted.ndim == 2
+                    else np.asarray([], dtype=bool)
+                )
+                adapted = (
+                    adapted[finite] if adapted.ndim == 2 else np.empty((0, 3), dtype=np.float64)
+                )
                 if adapted.ndim == 2 and adapted.shape[0] >= max(12, adapted.shape[1] + 2):
                     dim = int(adapted.shape[1])
                     cov = np.cov(adapted, rowvar=False)
@@ -2719,8 +3037,12 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                         cov = np.asarray([[float(cov)]], dtype=np.float64)
                     cov = np.asarray(cov, dtype=np.float64)
                     if cov.shape == (dim, dim) and np.all(np.isfinite(cov)):
-                        diag_floor = np.asarray([0.03, 0.06, 0.05], dtype=np.float64)[:dim] ** 2 * 0.01
-                        adaptation_acceptance = float(accepted_during_adaptation / max(adaptation_iterations, 1))
+                        diag_floor = (
+                            np.asarray([0.03, 0.06, 0.05], dtype=np.float64)[:dim] ** 2 * 0.01
+                        )
+                        adaptation_acceptance = float(
+                            accepted_during_adaptation / max(adaptation_iterations, 1)
+                        )
                         scale = float((2.38 * 2.38) / max(dim, 1))
                         if adaptation_acceptance < 0.5 * target_acceptance:
                             scale *= 0.5
@@ -2730,15 +3052,21 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                         try:
                             proposal_chol = np.linalg.cholesky(regularized)
                         except np.linalg.LinAlgError:
-                            proposal_chol = np.linalg.cholesky(np.diag(np.maximum(np.diag(regularized), diag_floor)))
+                            proposal_chol = np.linalg.cholesky(
+                                np.diag(np.maximum(np.diag(regularized), diag_floor))
+                            )
                         proposal_adaptation_meta.update(
                             {
                                 "accepted_during_adaptation": int(accepted_during_adaptation),
                                 "adaptation_acceptance_rate": adaptation_acceptance,
-                                "adaptation_esjd": float(proposal_sq_jump_sum / max(accepted_during_adaptation, 1)),
+                                "adaptation_esjd": float(
+                                    proposal_sq_jump_sum / max(accepted_during_adaptation, 1)
+                                ),
                                 "proposal_dimension": dim,
                                 "proposal_scale": scale,
-                                "proposal_covariance_diag": [float(value) for value in np.diag(regularized)],
+                                "proposal_covariance_diag": [
+                                    float(value) for value in np.diag(regularized)
+                                ],
                             }
                         )
                 if proposal_chol is None:
@@ -2748,19 +3076,31 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                         {
                             "fallback_reason": "insufficient_or_nonfinite_warmup_covariance",
                             "proposal_dimension": int(fallback_diag.size),
-                            "proposal_covariance_diag": [float(value * value) for value in fallback_diag],
+                            "proposal_covariance_diag": [
+                                float(value * value) for value in fallback_diag
+                            ],
                         }
                     )
             current_vector = np.asarray([level, phi_coord, eta_coord], dtype=np.float64)
             proposal_vector = current_vector.copy()
             if adaptive_proposal and proposal_chol is not None:
-                proposal_vector = current_vector + proposal_chol @ rng.normal(size=current_vector.size)
+                proposal_vector = current_vector + proposal_chol @ rng.normal(
+                    size=current_vector.size
+                )
                 proposal_level = float(proposal_vector[0])
                 proposal_phi_coord = float(proposal_vector[1])
                 proposal_eta_coord = float(proposal_vector[2])
-                if np.isfinite(proposal_level) and np.isfinite(proposal_phi_coord) and np.isfinite(proposal_eta_coord):
+                if (
+                    np.isfinite(proposal_level)
+                    and np.isfinite(proposal_phi_coord)
+                    and np.isfinite(proposal_eta_coord)
+                ):
                     proposal_phi = _inv_logit_unit_interval(proposal_phi_coord)
-                    proposal_eta = float(math.exp(proposal_eta_coord)) if -20.0 <= proposal_eta_coord <= 20.0 else math.inf
+                    proposal_eta = (
+                        float(math.exp(proposal_eta_coord))
+                        if -20.0 <= proposal_eta_coord <= 20.0
+                        else math.inf
+                    )
                     proposal_lp = (
                         _sv_transformed_log_posterior(
                             observed_log_var,
@@ -2780,9 +3120,15 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                 if no_latent_ar:
                     proposal_phi = 0.0
                     proposal_eta = float(np.clip(eta * math.exp(rng.normal(0.0, 0.05)), 1e-4, 5.0))
-                    proposal_lp = _sv_mcmc_log_posterior(observed_log_var, proposal_level, proposal_phi, proposal_eta)
+                    proposal_lp = _sv_mcmc_log_posterior(
+                        observed_log_var, proposal_level, proposal_phi, proposal_eta
+                    )
                     proposal_vector = np.asarray(
-                        [proposal_level, 0.0, math.log(max(proposal_eta, np.finfo(np.float64).tiny))],
+                        [
+                            proposal_level,
+                            0.0,
+                            math.log(max(proposal_eta, np.finfo(np.float64).tiny)),
+                        ],
                         dtype=np.float64,
                     )
                 elif transformed_sampler:
@@ -2796,13 +3142,21 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                         proposal_phi_coord,
                         proposal_eta_coord,
                     )
-                    proposal_vector = np.asarray([proposal_level, proposal_phi_coord, proposal_eta_coord], dtype=np.float64)
+                    proposal_vector = np.asarray(
+                        [proposal_level, proposal_phi_coord, proposal_eta_coord], dtype=np.float64
+                    )
                 else:
                     proposal_phi = float(np.clip(phi + rng.normal(0.0, 0.012), 0.001, 0.994))
                     proposal_eta = float(np.clip(eta * math.exp(rng.normal(0.0, 0.05)), 1e-4, 5.0))
-                    proposal_lp = _sv_mcmc_log_posterior(observed_log_var, proposal_level, proposal_phi, proposal_eta)
+                    proposal_lp = _sv_mcmc_log_posterior(
+                        observed_log_var, proposal_level, proposal_phi, proposal_eta
+                    )
                     proposal_vector = np.asarray(
-                        [proposal_level, proposal_phi, math.log(max(proposal_eta, np.finfo(np.float64).tiny))],
+                        [
+                            proposal_level,
+                            proposal_phi,
+                            math.log(max(proposal_eta, np.finfo(np.float64).tiny)),
+                        ],
                         dtype=np.float64,
                     )
             accepted_move = False
@@ -2820,7 +3174,9 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                 if accepted_move:
                     accepted_during_adaptation += 1
                     if np.all(np.isfinite(proposal_vector)) and np.all(np.isfinite(current_vector)):
-                        proposal_sq_jump_sum += float(np.sum((proposal_vector - current_vector) ** 2))
+                        proposal_sq_jump_sum += float(
+                            np.sum((proposal_vector - current_vector) ** 2)
+                        )
             if step >= burn and (step - burn) % thin == 0:
                 state_path = _ffbs_sv_log_variance_path(
                     observed_log_var,
@@ -2834,12 +3190,18 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                     continue
                 rho = 0.0
                 if leverage:
-                    state_innov = (state_path[1:] - level - phi * (state_path[:-1] - level)) / max(eta, 1e-8)
+                    state_innov = (state_path[1:] - level - phi * (state_path[:-1] - level)) / max(
+                        eta, 1e-8
+                    )
                     if state_innovation_distribution == "empirical_centered_standardized":
                         if state_innovation_source == "kalman_filtered_path":
-                            loglik, filtered_path, _ = _sv_kalman_filter(observed_log_var, level, phi, eta, return_path=True)
+                            loglik, filtered_path, _ = _sv_kalman_filter(
+                                observed_log_var, level, phi, eta, return_path=True
+                            )
                             if np.isfinite(loglik) and filtered_path.size >= 2:
-                                filtered_innov = (filtered_path[1:] - level - phi * (filtered_path[:-1] - level)) / max(eta, 1e-8)
+                                filtered_innov = (
+                                    filtered_path[1:] - level - phi * (filtered_path[:-1] - level)
+                                ) / max(eta, 1e-8)
                                 state_innovation_values.append(filtered_innov.astype(np.float64))
                         else:
                             state_innovation_values.append(state_innov.astype(np.float64))
@@ -2860,13 +3222,17 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                                     ]
                                 )
                             )
-                        corr = _finite_correlation(z_for_rho, state_innov, method=leverage_correlation_method)
+                        corr = _finite_correlation(
+                            z_for_rho, state_innov, method=leverage_correlation_method
+                        )
                         if np.isfinite(corr):
                             if raw_empirical_innovations and abs(corr) < 1.0:
                                 rho = float(corr)
                             else:
                                 rho = float(np.clip(corr, -0.95, 0.95))
-                samples.append((float(level), float(phi), float(eta), float(state_path[-1]), float(rho)))
+                samples.append(
+                    (float(level), float(phi), float(eta), float(state_path[-1]), float(rho))
+                )
             if (
                 mcmc_stopping == "adaptive_ess_forecast_stability"
                 and iterations_run >= min_iterations
@@ -2883,10 +3249,15 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                 final_ess_min = float(min(ess_values))
                 forecast_quantiles = np.quantile(arr[:, 3], [0.05, 0.50, 0.95])
                 forecast_scale = float(max(np.std(arr[:, 3], ddof=1), 1e-6))
-                ess_target = float(max(8.0, min(24.0, math.sqrt(float(observed_log_var.size)) / 2.0)))
+                ess_target = float(
+                    max(8.0, min(24.0, math.sqrt(float(observed_log_var.size)) / 2.0))
+                )
                 stable = False
                 if previous_forecast_quantiles is not None:
-                    stable = bool(np.max(np.abs(forecast_quantiles - previous_forecast_quantiles)) <= 0.10 * forecast_scale)
+                    stable = bool(
+                        np.max(np.abs(forecast_quantiles - previous_forecast_quantiles))
+                        <= 0.10 * forecast_scale
+                    )
                 previous_forecast_quantiles = forecast_quantiles
                 if final_ess_min >= ess_target and stable:
                     mcmc_stop_reason = "adaptive_ess_and_forecast_quantile_stability"
@@ -2906,7 +3277,9 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
 
     if leverage_correlation_scope == "pooled_posterior" and paired_innovation_values:
         pooled = np.concatenate(paired_innovation_values, axis=0)
-        pooled_rho = _finite_correlation(pooled[:, 0], pooled[:, 1], method=leverage_correlation_method)
+        pooled_rho = _finite_correlation(
+            pooled[:, 0], pooled[:, 1], method=leverage_correlation_method
+        )
         if np.isfinite(pooled_rho):
             if raw_empirical_innovations and abs(float(pooled_rho)) < 1.0:
                 rho_value = float(pooled_rho)
@@ -2920,9 +3293,12 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
             rho_value = float(np.median(rho_arr))
             samples = [(a, b, c, d, rho_value) for a, b, c, d, _ in samples]
 
-    state_innovation_pool: Optional[np.ndarray] = None
-    state_innovation_t_params: Optional[Tuple[float, float, float]] = None
-    if state_innovation_distribution == "empirical_centered_standardized" and state_innovation_values:
+    state_innovation_pool: np.ndarray | None = None
+    state_innovation_t_params: tuple[float, float, float] | None = None
+    if (
+        state_innovation_distribution == "empirical_centered_standardized"
+        and state_innovation_values
+    ):
         state_innovation_pool = _standardized_empirical_innovation_pool(
             np.concatenate(state_innovation_values),
             clip=None,
@@ -2935,17 +3311,23 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
                 from scipy import stats
 
                 t_df, t_loc, t_scale = stats.t.fit(state_innovation_pool, floc=0.0)
-                if not (np.isfinite(t_df) and np.isfinite(t_loc) and np.isfinite(t_scale)) or t_df <= 0.0 or t_scale <= 0.0:
+                if (
+                    not (np.isfinite(t_df) and np.isfinite(t_loc) and np.isfinite(t_scale))
+                    or t_df <= 0.0
+                    or t_scale <= 0.0
+                ):
                     return None
                 state_innovation_t_params = (float(t_df), float(t_loc), float(t_scale))
-            except Exception:
+            except _SOURCE_FALLBACK_ERRORS:
                 return None
-    joint_innovation_pool: Optional[np.ndarray] = None
+    joint_innovation_pool: np.ndarray | None = None
     if state_innovation_resampling == "paired_stationary_bootstrap" and paired_innovation_values:
         joint = np.concatenate(paired_innovation_values, axis=0)
         finite = np.isfinite(joint[:, 0]) & np.isfinite(joint[:, 1])
         joint = joint[finite]
-        z_joint = _standardized_empirical_innovation_pool(joint[:, 0], clip=None, method=innovation_standardization)
+        z_joint = _standardized_empirical_innovation_pool(
+            joint[:, 0], clip=None, method=innovation_standardization
+        )
         state_joint = _standardized_empirical_innovation_pool(
             joint[:, 1],
             clip=None,
@@ -2955,11 +3337,13 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
             return None
         joint_innovation_pool = np.column_stack([z_joint, state_joint]).astype(np.float64)
 
-    conditioned_innovation_low_pool: Optional[np.ndarray] = None
-    conditioned_innovation_high_pool: Optional[np.ndarray] = None
-    innovation_condition_threshold: Optional[float] = None
+    conditioned_innovation_low_pool: np.ndarray | None = None
+    conditioned_innovation_high_pool: np.ndarray | None = None
+    innovation_condition_threshold: float | None = None
     if innovation_conditioning == "filtered_log_volatility_median":
-        loglik, filtered_for_conditioning, _ = _sv_kalman_filter(observed_log_var, level, phi, eta, return_path=True)
+        loglik, filtered_for_conditioning, _ = _sv_kalman_filter(
+            observed_log_var, level, phi, eta, return_path=True
+        )
         if not np.isfinite(loglik) or filtered_for_conditioning.size < 60:
             return None
         conditioning_len = min(int(filtered_for_conditioning.size), int(z_pool.size))
@@ -2968,8 +3352,12 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         high_mask = ~low_mask
         conditioned_innovation_low_pool = z_pool[:conditioning_len][low_mask]
         conditioned_innovation_high_pool = z_pool[:conditioning_len][high_mask]
-        conditioned_innovation_low_pool = conditioned_innovation_low_pool[np.isfinite(conditioned_innovation_low_pool)]
-        conditioned_innovation_high_pool = conditioned_innovation_high_pool[np.isfinite(conditioned_innovation_high_pool)]
+        conditioned_innovation_low_pool = conditioned_innovation_low_pool[
+            np.isfinite(conditioned_innovation_low_pool)
+        ]
+        conditioned_innovation_high_pool = conditioned_innovation_high_pool[
+            np.isfinite(conditioned_innovation_high_pool)
+        ]
         if conditioned_innovation_low_pool.size < 30 or conditioned_innovation_high_pool.size < 30:
             return None
         innovation_condition_threshold = threshold
@@ -2979,24 +3367,37 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         target_var = float(np.var(eps_x, ddof=1)) if eps_x.size > 1 else math.nan
         model_var = math.nan
         if sv_sigma_scale_method == "filtered_mean_variance_target":
-            loglik, filtered_log_var, _ = _sv_kalman_filter(observed_log_var, level, phi, eta, return_path=True)
+            loglik, filtered_log_var, _ = _sv_kalman_filter(
+                observed_log_var, level, phi, eta, return_path=True
+            )
             if np.isfinite(loglik) and filtered_log_var.size:
                 model_var = float(np.mean(np.exp(np.clip(filtered_log_var, -60.0, 60.0))))
         elif sv_sigma_scale_method == "posterior_stationary_variance_target" and samples:
-            stationary_vars: List[float] = []
+            stationary_vars: list[float] = []
             for sample_level, sample_phi, sample_eta, _, _ in samples:
                 denom = max(1.0 - float(sample_phi) * float(sample_phi), 1e-8)
-                stationary_log_var = float(sample_level) + 0.5 * float(sample_eta) * float(sample_eta) / denom
-                stationary_vars.append(float(math.exp(float(np.clip(stationary_log_var, -60.0, 60.0)))))
+                stationary_log_var = (
+                    float(sample_level) + 0.5 * float(sample_eta) * float(sample_eta) / denom
+                )
+                stationary_vars.append(
+                    float(math.exp(float(np.clip(stationary_log_var, -60.0, 60.0))))
+                )
             if stationary_vars:
                 model_var = float(np.mean(stationary_vars))
-        if not (np.isfinite(target_var) and np.isfinite(model_var)) or target_var <= 0.0 or model_var <= 0.0:
+        if (
+            not (np.isfinite(target_var) and np.isfinite(model_var))
+            or target_var <= 0.0
+            or model_var <= 0.0
+        ):
             return None
         sigma_scale = float(math.sqrt(target_var / model_var))
         if not np.isfinite(sigma_scale) or sigma_scale <= 0.0:
             return None
 
-    if mcmc_stopping == "adaptive_ess_forecast_stability" and mcmc_stop_reason == "fixed_iteration_budget":
+    if (
+        mcmc_stopping == "adaptive_ess_forecast_stability"
+        and mcmc_stop_reason == "fixed_iteration_budget"
+    ):
         mcmc_stop_reason = "adaptive_max_iteration_budget"
     if final_ess_min is None and samples:
         sample_arr = np.asarray(samples, dtype=np.float64)
@@ -3036,28 +3437,42 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
 
     return {
         "base_fit": base_fit,
-        "innovation_pool": z_pool.astype(float) if raw_empirical_innovations or innovation_pool_source != "sample_standardized" else None,
-        "innovation_distribution_params": list(innovation_distribution_params) if innovation_distribution_params is not None else None,
+        "innovation_pool": z_pool.astype(float)
+        if raw_empirical_innovations or innovation_pool_source != "sample_standardized"
+        else None,
+        "innovation_distribution_params": list(innovation_distribution_params)
+        if innovation_distribution_params is not None
+        else None,
         "innovation_standardization": innovation_standardization,
         "innovation_resampling": innovation_resampling,
         "innovation_tail_splice": innovation_tail_splice,
         "innovation_conditioning": innovation_conditioning,
         "innovation_condition_threshold": innovation_condition_threshold,
         "conditioned_innovation_low_pool": (
-            conditioned_innovation_low_pool.astype(float) if conditioned_innovation_low_pool is not None else None
+            conditioned_innovation_low_pool.astype(float)
+            if conditioned_innovation_low_pool is not None
+            else None
         ),
         "conditioned_innovation_high_pool": (
-            conditioned_innovation_high_pool.astype(float) if conditioned_innovation_high_pool is not None else None
+            conditioned_innovation_high_pool.astype(float)
+            if conditioned_innovation_high_pool is not None
+            else None
         ),
         "innovation_pool_source": innovation_pool_source,
-        "state_innovation_pool": state_innovation_pool.astype(float) if state_innovation_pool is not None else None,
+        "state_innovation_pool": state_innovation_pool.astype(float)
+        if state_innovation_pool is not None
+        else None,
         "state_innovation_distribution": state_innovation_distribution,
         "state_innovation_source": state_innovation_source,
         "state_innovation_standardization": state_innovation_standardization,
         "state_innovation_resampling": state_innovation_resampling,
-        "state_innovation_t_params": list(state_innovation_t_params) if state_innovation_t_params is not None else None,
+        "state_innovation_t_params": list(state_innovation_t_params)
+        if state_innovation_t_params is not None
+        else None,
         "state_innovation_coupling": state_innovation_coupling,
-        "joint_innovation_pool": joint_innovation_pool.astype(float) if joint_innovation_pool is not None else None,
+        "joint_innovation_pool": joint_innovation_pool.astype(float)
+        if joint_innovation_pool is not None
+        else None,
         "sv_sigma_scale_method": sv_sigma_scale_method,
         "sv_sigma_scale": float(sigma_scale),
         "latent_vol_persistence": latent_vol_persistence,
@@ -3078,7 +3493,9 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         "mcmc_burn": burn,
         "mcmc_thin": thin,
         "mcmc_chains": int(mcmc_chain_count),
-        "mcmc_path_sample_interval": int(path_sample_interval) if "path_sample_interval" in locals() else int(thin),
+        "mcmc_path_sample_interval": int(path_sample_interval)
+        if "path_sample_interval" in locals()
+        else int(thin),
         "mcmc_stopping": mcmc_stopping,
         "mcmc_stop_reason": mcmc_stop_reason,
         "mcmc_rhat_max": final_rhat_max,
@@ -3086,18 +3503,20 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         "mcmc_ess_target": float(ess_target) if "ess_target" in locals() else None,
         "mcmc_rhat_threshold": (
             float(rhat_threshold)
-            if mcmc_stopping == "dynamic_multichain_rhat_ess_forecast_stability" and "rhat_threshold" in locals()
+            if mcmc_stopping == "dynamic_multichain_rhat_ess_forecast_stability"
+            and "rhat_threshold" in locals()
             else None
         ),
         "mcmc_forecast_stability_tolerance": (
             float(stability_tolerance)
-            if mcmc_stopping == "dynamic_multichain_rhat_ess_forecast_stability" and "stability_tolerance" in locals()
+            if mcmc_stopping == "dynamic_multichain_rhat_ess_forecast_stability"
+            and "stability_tolerance" in locals()
             else None
         ),
         "mcmc_proposal_adaptation": str(proposal_adaptation),
         "mcmc_proposal_adaptation_meta": dict(proposal_adaptation_meta),
         "mcmc_diagnostic_checks": mcmc_diagnostic_checks,
-        "mcmc_retained_samples": int(len(samples)),
+        "mcmc_retained_samples": len(samples),
         "mcmc_acceptance_rate": float(accepted / mcmc_total_chain_iterations),
         "meta": {
             "method": "bayesian_sbb_full_latent_mcmc_stochastic_volatility_overlay",
@@ -3105,8 +3524,7 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
             "parameter_sampler": (
                 "level_eta_metropolis_hastings_no_latent_ar"
                 if no_latent_ar
-                else
-                "stationary_transformed_metropolis_hastings"
+                else "stationary_transformed_metropolis_hastings"
                 if transformed_sampler
                 else "collapsed_marginal_metropolis_hastings"
             ),
@@ -3125,7 +3543,9 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
             "tail_method": fit_tail_method,
             "innovation_standardization": innovation_standardization,
             "innovation_resampling": innovation_resampling,
-            "innovation_distribution_params": list(innovation_distribution_params) if innovation_distribution_params is not None else None,
+            "innovation_distribution_params": list(innovation_distribution_params)
+            if innovation_distribution_params is not None
+            else None,
             "innovation_tail_splice": innovation_tail_splice,
             "innovation_conditioning": innovation_conditioning,
             "innovation_condition_threshold": innovation_condition_threshold,
@@ -3134,14 +3554,18 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
             "state_innovation_source": state_innovation_source,
             "state_innovation_standardization": state_innovation_standardization,
             "state_innovation_resampling": state_innovation_resampling,
-            "state_innovation_t_params": list(state_innovation_t_params) if state_innovation_t_params is not None else None,
+            "state_innovation_t_params": list(state_innovation_t_params)
+            if state_innovation_t_params is not None
+            else None,
             "state_innovation_coupling": state_innovation_coupling,
             "sv_sigma_scale_method": sv_sigma_scale_method,
             "sv_sigma_scale": float(sigma_scale),
             "mcmc_stopping": mcmc_stopping,
             "mcmc_stop_reason": mcmc_stop_reason,
             "mcmc_chains": int(mcmc_chain_count),
-            "mcmc_path_sample_interval": int(path_sample_interval) if "path_sample_interval" in locals() else int(thin),
+            "mcmc_path_sample_interval": int(path_sample_interval)
+            if "path_sample_interval" in locals()
+            else int(thin),
             "mcmc_rhat_max": final_rhat_max,
             "mcmc_effective_sample_size_min": final_ess_min,
             "mcmc_ess_target": float(ess_target) if "ess_target" in locals() else None,
@@ -3157,8 +3581,9 @@ def _fit_bayesian_sbb_full_mcmc_sv_overlay(
         },
     }
 
+
 def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
-    fit: Dict[str, Any],
+    fit: dict[str, Any],
     total_days: int,
     n_paths: int,
     rng: np.random.Generator,
@@ -3167,9 +3592,11 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
     samples = list(fit.get("posterior_samples") or [])
     if not samples:
         return np.empty((int(n_paths), int(total_days)), dtype=np.float64)
-    if bool(fit.get("unclipped_empirical_innovations", False)):
-        z_pool = np.asarray(fit.get("innovation_pool"), dtype=np.float64)
-    elif str(fit.get("innovation_pool_source", "sample_standardized")) != "sample_standardized" and fit.get("innovation_pool") is not None:
+    if (
+        bool(fit.get("unclipped_empirical_innovations", False))
+        or str(fit.get("innovation_pool_source", "sample_standardized")) != "sample_standardized"
+        and fit.get("innovation_pool") is not None
+    ):
         z_pool = np.asarray(fit.get("innovation_pool"), dtype=np.float64)
     else:
         z_pool = np.asarray(base_fit.get("standardized_residuals"), dtype=np.float64)
@@ -3179,26 +3606,30 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
     state_innovation_distribution = str(fit.get("state_innovation_distribution", "gaussian"))
     state_innovation_resampling = str(fit.get("state_innovation_resampling", "iid"))
     state_innovation_coupling = str(fit.get("state_innovation_coupling", "correlation_mixture"))
-    state_shock_draws: Optional[np.ndarray] = None
+    state_shock_draws: np.ndarray | None = None
     raw_joint_innovation_pool = fit.get("joint_innovation_pool")
     joint_innovation_pool = np.asarray(
         raw_joint_innovation_pool if raw_joint_innovation_pool is not None else [],
         dtype=np.float64,
     )
     if joint_innovation_pool.ndim == 2 and joint_innovation_pool.shape[1] >= 2:
-        joint_innovation_pool = joint_innovation_pool[np.all(np.isfinite(joint_innovation_pool[:, :2]), axis=1), :2]
+        joint_innovation_pool = joint_innovation_pool[
+            np.all(np.isfinite(joint_innovation_pool[:, :2]), axis=1), :2
+        ]
     else:
         joint_innovation_pool = np.empty((0, 2), dtype=np.float64)
     if state_innovation_resampling == "paired_stationary_bootstrap" and joint_innovation_pool.size:
         try:
-            
-
             joint_block_length = int(
                 max(
                     _politis_white_block_length(joint_innovation_pool[:, 0]),
                     _politis_white_block_length(joint_innovation_pool[:, 1]),
-                    _politis_white_block_length(joint_innovation_pool[:, 0] * joint_innovation_pool[:, 0]),
-                    _politis_white_block_length(joint_innovation_pool[:, 1] * joint_innovation_pool[:, 1]),
+                    _politis_white_block_length(
+                        joint_innovation_pool[:, 0] * joint_innovation_pool[:, 0]
+                    ),
+                    _politis_white_block_length(
+                        joint_innovation_pool[:, 1] * joint_innovation_pool[:, 1]
+                    ),
                 )
             )
             joint_indices = _stationary_bootstrap_indices(
@@ -3210,26 +3641,21 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
             )
             z_draws = joint_innovation_pool[joint_indices, 0]
             state_shock_draws = joint_innovation_pool[joint_indices, 1]
-        except Exception:
-            sampled = rng.integers(0, len(joint_innovation_pool), size=(int(n_paths), int(total_days)))
+        except _SOURCE_FALLBACK_ERRORS:
+            sampled = rng.integers(
+                0, len(joint_innovation_pool), size=(int(n_paths), int(total_days))
+            )
             z_draws = joint_innovation_pool[sampled, 0]
             state_shock_draws = joint_innovation_pool[sampled, 1]
     else:
-        block_length = max(_politis_white_block_length(z_pool), _politis_white_block_length(z_pool * z_pool))
+        block_length = max(
+            _politis_white_block_length(z_pool), _politis_white_block_length(z_pool * z_pool)
+        )
         innovation_resampling = str(fit.get("innovation_resampling", "stationary_bootstrap"))
-        if innovation_resampling == "jones_faddy_skew_t_iid":
-            raw_params = fit.get("innovation_distribution_params")
-            if raw_params is None:
-                return np.empty((int(n_paths), int(total_days)), dtype=np.float64)
-            z_draws = _draw_full_mcmc_sv_parametric_innovations(
-                raw_params,
-                innovation_resampling,
-                (int(n_paths), int(total_days)),
-                rng,
-            )
-            if z_draws is None:
-                return np.empty((int(n_paths), int(total_days)), dtype=np.float64)
-        elif _full_mcmc_sv_parametric_innovation_meta(innovation_resampling) is not None:
+        if (
+            innovation_resampling == "jones_faddy_skew_t_iid"
+            or _full_mcmc_sv_parametric_innovation_meta(innovation_resampling) is not None
+        ):
             raw_params = fit.get("innovation_distribution_params")
             if raw_params is None:
                 return np.empty((int(n_paths), int(total_days)), dtype=np.float64)
@@ -3242,7 +3668,9 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
             if z_draws is None:
                 return np.empty((int(n_paths), int(total_days)), dtype=np.float64)
         elif innovation_resampling == "iid":
-            z_draws = rng.choice(z_pool, size=(int(n_paths), int(total_days)), replace=True).astype(np.float64)
+            z_draws = rng.choice(z_pool, size=(int(n_paths), int(total_days)), replace=True).astype(
+                np.float64
+            )
         elif innovation_resampling == "circular_block_bootstrap":
             z_indices = _circular_block_bootstrap_indices(
                 n=len(z_pool),
@@ -3254,8 +3682,6 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
             z_draws = z_pool[z_indices]
         else:
             try:
-                
-
                 z_indices = _stationary_bootstrap_indices(
                     n=len(z_pool),
                     block_length=int(max(1, block_length)),
@@ -3264,13 +3690,13 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
                     rng=rng,
                 )
                 z_draws = z_pool[z_indices]
-            except Exception:
+            except _SOURCE_FALLBACK_ERRORS:
                 z_draws = rng.choice(z_pool, size=(int(n_paths), int(total_days)), replace=True)
     if str(fit.get("innovation_tail_splice", "none")) == "automated_evt_pot_gpd_tail":
         z_draws = _evt_tail_splice_standardized_draws(z_pool, z_draws, rng)
 
-    conditioned_z_low_draws: Optional[np.ndarray] = None
-    conditioned_z_high_draws: Optional[np.ndarray] = None
+    conditioned_z_low_draws: np.ndarray | None = None
+    conditioned_z_high_draws: np.ndarray | None = None
     innovation_condition_threshold = fit.get("innovation_condition_threshold")
     if str(fit.get("innovation_conditioning", "none")) == "filtered_log_volatility_median":
         low_pool = np.asarray(fit.get("conditioned_innovation_low_pool"), dtype=np.float64)
@@ -3280,10 +3706,14 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
         if low_pool.size == 0 or high_pool.size == 0 or innovation_condition_threshold is None:
             return np.empty((int(n_paths), int(total_days)), dtype=np.float64)
         try:
-            
-
-            low_block_length = max(_politis_white_block_length(low_pool), _politis_white_block_length(low_pool * low_pool))
-            high_block_length = max(_politis_white_block_length(high_pool), _politis_white_block_length(high_pool * high_pool))
+            low_block_length = max(
+                _politis_white_block_length(low_pool),
+                _politis_white_block_length(low_pool * low_pool),
+            )
+            high_block_length = max(
+                _politis_white_block_length(high_pool),
+                _politis_white_block_length(high_pool * high_pool),
+            )
             low_indices = _stationary_bootstrap_indices(
                 n=len(low_pool),
                 block_length=int(max(1, low_block_length)),
@@ -3300,9 +3730,13 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
             )
             conditioned_z_low_draws = low_pool[low_indices]
             conditioned_z_high_draws = high_pool[high_indices]
-        except Exception:
-            conditioned_z_low_draws = rng.choice(low_pool, size=(int(n_paths), int(total_days)), replace=True)
-            conditioned_z_high_draws = rng.choice(high_pool, size=(int(n_paths), int(total_days)), replace=True)
+        except _SOURCE_FALLBACK_ERRORS:
+            conditioned_z_low_draws = rng.choice(
+                low_pool, size=(int(n_paths), int(total_days)), replace=True
+            )
+            conditioned_z_high_draws = rng.choice(
+                high_pool, size=(int(n_paths), int(total_days)), replace=True
+            )
 
     sample_idx = rng.integers(0, len(samples), size=int(n_paths))
     levels = np.asarray([samples[int(idx)][0] for idx in sample_idx], dtype=np.float64)
@@ -3339,12 +3773,14 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
         if str(fit.get("vol_path_model", "none")) == "bdes_multiscale_log_vol"
         else None
     )
-    bdes_multiscale_shock_coupling = str(fit.get("bdes_multiscale_shock_coupling", "convex_state_independent_mix"))
+    bdes_multiscale_shock_coupling = str(
+        fit.get("bdes_multiscale_shock_coupling", "convex_state_independent_mix")
+    )
     vol_path_blend = str(fit.get("vol_path_blend", "none"))
-    q_state: Optional[np.ndarray] = None
-    q_phis: Optional[np.ndarray] = None
-    q_b: Optional[np.ndarray] = None
-    q_var: Optional[np.ndarray] = None
+    q_state: np.ndarray | None = None
+    q_phis: np.ndarray | None = None
+    q_b: np.ndarray | None = None
+    q_var: np.ndarray | None = None
     q_ell = 0.0
     q_resid_sd = 0.0
     q_low = -18.0
@@ -3375,12 +3811,26 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
         q_high = float(bdes_multiscale.get("h_high", 18.0))
         q_component_low = float(bdes_multiscale.get("component_low", q_low - q_ell))
         q_component_high = float(bdes_multiscale.get("component_high", q_high - q_ell))
-        q_reliability_weight = float(np.clip(float(bdes_multiscale.get("reliability_weight", 1.0)), 0.0, 1.0))
-        q_inverse_mse_weight = float(np.clip(float(bdes_multiscale.get("inverse_mse_weight", q_reliability_weight)), 0.0, 1.0))
+        q_reliability_weight = float(
+            np.clip(float(bdes_multiscale.get("reliability_weight", 1.0)), 0.0, 1.0)
+        )
+        q_inverse_mse_weight = float(
+            np.clip(
+                float(bdes_multiscale.get("inverse_mse_weight", q_reliability_weight)), 0.0, 1.0
+            )
+        )
         q_blend_horizon_days = float(bdes_multiscale.get("dominant_half_life_days", 252.0))
-        q_blend_horizon_days = max(q_blend_horizon_days, 1.0) if np.isfinite(q_blend_horizon_days) else 252.0
-        q_long_scale_horizon_days = float(bdes_multiscale.get("max_half_life_days", q_blend_horizon_days))
-        q_long_scale_horizon_days = max(q_long_scale_horizon_days, 1.0) if np.isfinite(q_long_scale_horizon_days) else q_blend_horizon_days
+        q_blend_horizon_days = (
+            max(q_blend_horizon_days, 1.0) if np.isfinite(q_blend_horizon_days) else 252.0
+        )
+        q_long_scale_horizon_days = float(
+            bdes_multiscale.get("max_half_life_days", q_blend_horizon_days)
+        )
+        q_long_scale_horizon_days = (
+            max(q_long_scale_horizon_days, 1.0)
+            if np.isfinite(q_long_scale_horizon_days)
+            else q_blend_horizon_days
+        )
     mean_state_scaling = str(fit.get("mean_state_scaling", "none"))
     base_mean_sigma = float(base_fit.get("sigma", 0.0))
     if mean_state_scaling in {"conditional_sv_sharpe", "conditional_sv_variance_premium"} and (
@@ -3389,7 +3839,7 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
         return np.empty((int(n_paths), int(total_days)), dtype=np.float64)
     sv_in_mean = fit.get("bdes_sv_in_mean") if mean_state_scaling == "bdes_sv_in_mean" else None
     sv_in_mean_lambda = 0.0
-    sv_in_mean_vbar: Optional[np.ndarray] = None
+    sv_in_mean_vbar: np.ndarray | None = None
     sv_in_mean_phi = 0.0
     sv_in_mean_cap = 0.0
     if sv_in_mean is not None:
@@ -3412,22 +3862,31 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
     mu = float(base_fit.get("posterior_mean", 0.0))
     mean_dynamics = dict(base_fit.get("mean_dynamics", {}) or {})
     dynamic_ar1_mean = str(mean_dynamics.get("type", "")) == "ar1_constant_ols"
-    mean_schedule = None if bool(base_fit.get("posterior_mu_draws", False)) or dynamic_ar1_mean else _mean_schedule_from_fit(base_fit, int(total_days))
+    mean_schedule = (
+        None
+        if bool(base_fit.get("posterior_mu_draws", False)) or dynamic_ar1_mean
+        else _mean_schedule_from_fit(base_fit, int(total_days))
+    )
     path_mu_is_schedule = False
     path_mu_is_path_matrix = False
     if dynamic_ar1_mean:
         ar1_intercept = float(mean_dynamics.get("intercept", 0.0))
         ar1_coef = float(mean_dynamics.get("ar_coef", 0.0))
-        prev_return_path = np.full(int(n_paths), float(mean_dynamics.get("last_return", 0.0)), dtype=np.float64)
+        prev_return_path = np.full(
+            int(n_paths), float(mean_dynamics.get("last_return", 0.0)), dtype=np.float64
+        )
         path_mu = 0.0
-    elif (mu_draw_path := _dlm_mu_draw_paths(base_fit, int(total_days), int(n_paths), rng)) is not None:
-        path_mu = mu_draw_path
-        path_mu_is_path_matrix = True
-    elif (mu_draw_path := _posterior_decay_mu_draw_paths(base_fit, int(total_days), int(n_paths), rng)) is not None:
+    elif (
+        mu_draw_path := _dlm_mu_draw_paths(base_fit, int(total_days), int(n_paths), rng)
+    ) is not None or (
+        mu_draw_path := _posterior_decay_mu_draw_paths(base_fit, int(total_days), int(n_paths), rng)
+    ) is not None:
         path_mu = mu_draw_path
         path_mu_is_path_matrix = True
     elif bool(base_fit.get("posterior_mu_draws", False)):
-        mu_draws = rng.normal(mu, float(max(base_fit.get("posterior_sd", 0.0), 0.0)), size=int(n_paths))
+        mu_draws = rng.normal(
+            mu, float(max(base_fit.get("posterior_sd", 0.0), 0.0)), size=int(n_paths)
+        )
         cap = float(max(base_fit.get("mu_cap", 0.0), 0.0))
         if cap > 0.0:
             mu_draws = np.clip(mu_draws, -cap, cap)
@@ -3460,8 +3919,6 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
             state_shock_draws = state_innovation_pool[state_indices]
         else:
             try:
-                
-
                 state_block_length = max(
                     _politis_white_block_length(state_innovation_pool),
                     _politis_white_block_length(state_innovation_pool * state_innovation_pool),
@@ -3474,22 +3931,32 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
                     rng=rng,
                 )
                 state_shock_draws = state_innovation_pool[state_indices]
-            except Exception:
+            except _SOURCE_FALLBACK_ERRORS:
                 state_shock_draws = None
     for day in range(int(total_days)):
         if conditioned_z_low_draws is not None and conditioned_z_high_draws is not None:
             high_state = log_var >= float(innovation_condition_threshold)
-            z = np.where(high_state, conditioned_z_high_draws[:, day], conditioned_z_low_draws[:, day])
+            z = np.where(
+                high_state, conditioned_z_high_draws[:, day], conditioned_z_low_draws[:, day]
+            )
         else:
             z = z_draws[:, day]
         if state_shock_draws is not None:
             base_state_shock = state_shock_draws[:, day]
-        elif state_innovation_distribution == "empirical_centered_standardized" and state_innovation_pool.size:
-            if state_innovation_resampling == "student_t_mle" and state_innovation_t_params is not None:
+        elif (
+            state_innovation_distribution == "empirical_centered_standardized"
+            and state_innovation_pool.size
+        ):
+            if (
+                state_innovation_resampling == "student_t_mle"
+                and state_innovation_t_params is not None
+            ):
                 t_df, t_loc, t_scale = state_innovation_t_params
                 base_state_shock = t_loc + t_scale * rng.standard_t(t_df, size=int(n_paths))
             else:
-                base_state_shock = rng.choice(state_innovation_pool, size=int(n_paths), replace=True)
+                base_state_shock = rng.choice(
+                    state_innovation_pool, size=int(n_paths), replace=True
+                )
         else:
             base_state_shock = rng.normal(0.0, 1.0, size=int(n_paths))
         if use_leverage:
@@ -3499,7 +3966,10 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
             ):
                 state_shock = base_state_shock
             else:
-                state_shock = rhos * leverage_driver + np.sqrt(np.maximum(1.0 - rhos * rhos, 1e-8)) * base_state_shock
+                state_shock = (
+                    rhos * leverage_driver
+                    + np.sqrt(np.maximum(1.0 - rhos * rhos, 1e-8)) * base_state_shock
+                )
         else:
             state_shock = base_state_shock
         ar1_log_var = levels + phis * (log_var - levels) + etas * state_shock
@@ -3508,47 +3978,68 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
                 local_shock = state_shock[:, None]
             else:
                 local_shock = 0.70 * state_shock[:, None] + 0.30 * rng.normal(size=q_state.shape)
-            q_state = q_phis.reshape(1, -1) * q_state + np.sqrt(np.maximum(q_var, 1e-10)).reshape(1, -1) * local_shock
+            q_state = (
+                q_phis.reshape(1, -1) * q_state
+                + np.sqrt(np.maximum(q_var, 1e-10)).reshape(1, -1) * local_shock
+            )
             multiscale_log_var = q_ell + q_state @ q_b + 0.15 * q_resid_sd * state_shock
             multiscale_log_var = np.clip(multiscale_log_var, q_low, q_high)
             if vol_path_blend == "annual_horizon_ramp":
                 blend_weight = float((day + 1) / ((day + 1) + 252.0))
                 log_var = (1.0 - blend_weight) * ar1_log_var + blend_weight * multiscale_log_var
             elif vol_path_blend == "data_reliability":
-                log_var = (1.0 - q_reliability_weight) * ar1_log_var + q_reliability_weight * multiscale_log_var
+                log_var = (
+                    1.0 - q_reliability_weight
+                ) * ar1_log_var + q_reliability_weight * multiscale_log_var
             elif vol_path_blend == "inverse_mse":
-                log_var = (1.0 - q_inverse_mse_weight) * ar1_log_var + q_inverse_mse_weight * multiscale_log_var
+                log_var = (
+                    1.0 - q_inverse_mse_weight
+                ) * ar1_log_var + q_inverse_mse_weight * multiscale_log_var
             elif vol_path_blend == "reliability_inverse_mse":
                 blend_weight = q_reliability_weight * q_inverse_mse_weight
                 log_var = (1.0 - blend_weight) * ar1_log_var + blend_weight * multiscale_log_var
             elif vol_path_blend == "inverse_mse_horizon_ramp":
-                blend_weight = q_inverse_mse_weight * float((day + 1) / ((day + 1) + q_blend_horizon_days))
+                blend_weight = q_inverse_mse_weight * float(
+                    (day + 1) / ((day + 1) + q_blend_horizon_days)
+                )
                 log_var = (1.0 - blend_weight) * ar1_log_var + blend_weight * multiscale_log_var
             elif vol_path_blend == "inverse_mse_long_horizon_ramp":
                 if float(total_days) >= q_blend_horizon_days:
-                    blend_weight = q_inverse_mse_weight * float((day + 1) / ((day + 1) + q_blend_horizon_days))
+                    blend_weight = q_inverse_mse_weight * float(
+                        (day + 1) / ((day + 1) + q_blend_horizon_days)
+                    )
                 else:
                     blend_weight = 0.0
                 log_var = (1.0 - blend_weight) * ar1_log_var + blend_weight * multiscale_log_var
             elif vol_path_blend == "inverse_mse_long_scale_ramp":
                 if float(total_days) >= q_long_scale_horizon_days:
-                    blend_weight = q_inverse_mse_weight * float((day + 1) / ((day + 1) + q_blend_horizon_days))
+                    blend_weight = q_inverse_mse_weight * float(
+                        (day + 1) / ((day + 1) + q_blend_horizon_days)
+                    )
                 else:
                     blend_weight = 0.0
                 log_var = (1.0 - blend_weight) * ar1_log_var + blend_weight * multiscale_log_var
             elif vol_path_blend == "inverse_mse_maturity_ramp":
-                maturity_weight = float(total_days) / (float(total_days) + q_long_scale_horizon_days)
+                maturity_weight = float(total_days) / (
+                    float(total_days) + q_long_scale_horizon_days
+                )
                 day_weight = float((day + 1) / ((day + 1) + q_blend_horizon_days))
                 blend_weight = q_inverse_mse_weight * maturity_weight * day_weight
                 log_var = (1.0 - blend_weight) * ar1_log_var + blend_weight * multiscale_log_var
             elif vol_path_blend == "inverse_mse_horizon_gate":
-                blend_weight = q_inverse_mse_weight if float(total_days) >= q_blend_horizon_days else 0.0
+                blend_weight = (
+                    q_inverse_mse_weight if float(total_days) >= q_blend_horizon_days else 0.0
+                )
                 log_var = (1.0 - blend_weight) * ar1_log_var + blend_weight * multiscale_log_var
             elif vol_path_blend == "inverse_mse_long_scale_gate":
-                blend_weight = q_inverse_mse_weight if float(total_days) >= q_long_scale_horizon_days else 0.0
+                blend_weight = (
+                    q_inverse_mse_weight if float(total_days) >= q_long_scale_horizon_days else 0.0
+                )
                 log_var = (1.0 - blend_weight) * ar1_log_var + blend_weight * multiscale_log_var
             elif vol_path_blend == "additive_residual_overlay":
-                multiscale_residual = np.clip(multiscale_log_var - q_ell, q_component_low, q_component_high)
+                multiscale_residual = np.clip(
+                    multiscale_log_var - q_ell, q_component_low, q_component_high
+                )
                 log_var = ar1_log_var + multiscale_residual
             else:
                 log_var = multiscale_log_var
@@ -3586,7 +4077,10 @@ def _simulate_bayesian_sbb_full_mcmc_sv_overlay(
         out = np.clip(out, -1.0, 1.0)
     return out
 
-def _legacy_stationary_bootstrap_indices(n: int, rng: np.random.Generator, p: float = 0.25) -> np.ndarray:
+
+def _legacy_stationary_bootstrap_indices(
+    n: int, rng: np.random.Generator, p: float = 0.25
+) -> np.ndarray:
     if n <= 0:
         return np.array([], dtype=np.int64)
     out = np.empty(n, dtype=np.int64)
@@ -3597,6 +4091,7 @@ def _legacy_stationary_bootstrap_indices(n: int, rng: np.random.Generator, p: fl
         else:
             out[i] = (out[i - 1] + 1) % n
     return out
+
 
 def _politis_white_block_length(values: np.ndarray) -> int:
     """Pinned SimfolioEngine Politis-White automatic block length."""
@@ -3631,8 +4126,10 @@ def _stationary_bootstrap_indices(
     n: int, block_length: int, total_days: int, n_paths: int, rng: np.random.Generator
 ) -> np.ndarray:
     """Pinned engine stationary bootstrap index matrix (including RNG draw order)."""
-    n = int(n); block_length = max(int(block_length), 1)
-    total_days = int(total_days); n_paths = int(n_paths)
+    n = int(n)
+    block_length = max(int(block_length), 1)
+    total_days = int(total_days)
+    n_paths = int(n_paths)
     if n_paths <= 0 or total_days <= 0:
         return np.empty((max(n_paths, 0), max(total_days, 0)), dtype=np.int32)
     if n <= 0:
@@ -3655,7 +4152,8 @@ def _standardize_generated_innovations(draws: np.ndarray) -> np.ndarray:
     np.clip(arr, -20.0, 20.0, out=arr)
     if arr.size == 0:
         return arr
-    mean = float(np.mean(arr)); std = float(np.std(arr))
+    mean = float(np.mean(arr))
+    std = float(np.std(arr))
     arr -= mean
     if std > 1e-12 and np.isfinite(std):
         arr /= std
@@ -3663,28 +4161,45 @@ def _standardize_generated_innovations(draws: np.ndarray) -> np.ndarray:
     return arr
 
 
-def _evt_standardized_draws(z: np.ndarray, size: Tuple[int, int], rng: np.random.Generator) -> np.ndarray:
+def _evt_standardized_draws(
+    z: np.ndarray, size: tuple[int, int], rng: np.random.Generator
+) -> np.ndarray:
     """Pinned engine EVT/POT standardized innovation draw helper."""
     from scipy import stats
-    clean = np.asarray(z, dtype=np.float64); clean = clean[np.isfinite(clean)]
+
+    clean = np.asarray(z, dtype=np.float64)
+    clean = clean[np.isfinite(clean)]
     if clean.size < 100:
         return rng.choice(clean if clean.size else np.array([0.0]), size=size, replace=True)
     exceedance_share = float(np.clip(math.sqrt(clean.size) / clean.size, 0.02, 0.10))
-    lower_q = float(np.quantile(clean, exceedance_share)); upper_q = float(np.quantile(clean, 1.0-exceedance_share))
+    lower_q = float(np.quantile(clean, exceedance_share))
+    upper_q = float(np.quantile(clean, 1.0 - exceedance_share))
     central = clean[(clean >= lower_q) & (clean <= upper_q)]
-    if central.size == 0: central = clean
+    if central.size == 0:
+        central = clean
     out = rng.choice(central, size=size, replace=True).astype(np.float64)
-    uniforms = rng.random(size); lower_mask = uniforms < exceedance_share; upper_mask = uniforms > (1.0-exceedance_share)
+    uniforms = rng.random(size)
+    lower_mask = uniforms < exceedance_share
+    upper_mask = uniforms > (1.0 - exceedance_share)
     try:
-        lower_excess = lower_q - clean[clean < lower_q]; upper_excess = clean[clean > upper_q] - upper_q
+        lower_excess = lower_q - clean[clean < lower_q]
+        upper_excess = clean[clean > upper_q] - upper_q
         if lower_excess.size >= 10:
-            c, _, scale = stats.genpareto.fit(lower_excess, floc=0.0); c = float(np.clip(c, -0.45, 0.45)) if np.isfinite(c) else 0.0
-            out[lower_mask] = lower_q - stats.genpareto.rvs(c, loc=0.0, scale=max(scale,1e-8), size=int(np.sum(lower_mask)), random_state=rng)
+            c, _, scale = stats.genpareto.fit(lower_excess, floc=0.0)
+            c = float(np.clip(c, -0.45, 0.45)) if np.isfinite(c) else 0.0
+            out[lower_mask] = lower_q - stats.genpareto.rvs(
+                c, loc=0.0, scale=max(scale, 1e-8), size=int(np.sum(lower_mask)), random_state=rng
+            )
         if upper_excess.size >= 10:
-            c, _, scale = stats.genpareto.fit(upper_excess, floc=0.0); c = float(np.clip(c, -0.45, 0.45)) if np.isfinite(c) else 0.0
-            out[upper_mask] = upper_q + stats.genpareto.rvs(c, loc=0.0, scale=max(scale,1e-8), size=int(np.sum(upper_mask)), random_state=rng)
-    except Exception:
-        out[lower_mask | upper_mask] = rng.choice(clean, size=int(np.sum(lower_mask | upper_mask)), replace=True)
+            c, _, scale = stats.genpareto.fit(upper_excess, floc=0.0)
+            c = float(np.clip(c, -0.45, 0.45)) if np.isfinite(c) else 0.0
+            out[upper_mask] = upper_q + stats.genpareto.rvs(
+                c, loc=0.0, scale=max(scale, 1e-8), size=int(np.sum(upper_mask)), random_state=rng
+            )
+    except _SOURCE_FALLBACK_ERRORS:
+        out[lower_mask | upper_mask] = rng.choice(
+            clean, size=int(np.sum(lower_mask | upper_mask)), replace=True
+        )
     return np.clip(out, -20.0, 20.0)
 
 
@@ -3692,67 +4207,161 @@ def _base_sbb_fit_from_mean_fit(
     train_values: np.ndarray,
     posterior_mean: float,
     residuals: np.ndarray,
-    mean_meta: Dict[str, Any],
-) -> Optional[Dict[str, Any]]:
+    mean_meta: dict[str, Any],
+) -> dict[str, Any] | None:
     """Build the source SBB fit payload from a mean-model fit."""
-    x = np.asarray(train_values, dtype=np.float64); x = x[np.isfinite(x)]
-    eps = np.asarray(residuals, dtype=np.float64); eps = eps[np.isfinite(eps)]
+    x = np.asarray(train_values, dtype=np.float64)
+    x = x[np.isfinite(x)]
+    eps = np.asarray(residuals, dtype=np.float64)
+    eps = eps[np.isfinite(eps)]
     if x.size < FULL_MCMC_SV_MIN_OBS or eps.size < FULL_MCMC_SV_MIN_OBS:
         return None
     sample_mu = float(mean_meta.get("sample_mean", np.mean(x)))
     sigma = float(np.std(eps, ddof=1)) if eps.size > 1 else 0.0
     if not np.isfinite(sigma) or sigma <= 1e-10:
         return None
-    z = eps / sigma; z = z[np.isfinite(z)]
-    if z.size == 0: return None
-    z = z - float(np.mean(z)); z_sd = float(np.std(z, ddof=1)) if z.size > 1 else 1.0
-    if np.isfinite(z_sd) and z_sd > 1e-12: z = z / z_sd
-    out: Dict[str, Any] = {
-        "sample_mu": sample_mu, "sigma": sigma, "posterior_mean": float(posterior_mean),
+    z = eps / sigma
+    z = z[np.isfinite(z)]
+    if z.size == 0:
+        return None
+    z = z - float(np.mean(z))
+    z_sd = float(np.std(z, ddof=1)) if z.size > 1 else 1.0
+    if np.isfinite(z_sd) and z_sd > 1e-12:
+        z = z / z_sd
+    out: dict[str, Any] = {
+        "sample_mu": sample_mu,
+        "sigma": sigma,
+        "posterior_mean": float(posterior_mean),
         "posterior_sd": float(mean_meta.get("posterior_sd", 0.0) or 0.0),
-        "mu_cap": float(mean_meta.get("mu_cap", 0.0) or 0.0), "sample_mu_days": 0,
+        "mu_cap": float(mean_meta.get("mu_cap", 0.0) or 0.0),
+        "sample_mu_days": 0,
         "nonnegative_drift": bool(mean_meta.get("nonnegative_drift", False)),
         "posterior_mu_draws": bool(mean_meta.get("posterior_mu_draws", False)),
-        "standardized_residuals": np.clip(z, -20.0, 20.0), "meta": copy.deepcopy(mean_meta),
+        "standardized_residuals": np.clip(z, -20.0, 20.0),
+        "meta": copy.deepcopy(mean_meta),
     }
     for key in ("posterior_mean_decay_meta", "posterior_mean_schedule_segments", "mean_dynamics"):
-        if key in mean_meta: out[key] = copy.deepcopy(mean_meta[key])
+        if key in mean_meta:
+            out[key] = copy.deepcopy(mean_meta[key])
     return out
 
-def _evidence_estimated_sharpe_dlm_historical_cagr_anchor_mean(log_returns: np.ndarray) -> Tuple[float, np.ndarray, Dict[str, Any]]:
+
+def _evidence_estimated_sharpe_dlm_historical_cagr_anchor_mean(
+    log_returns: np.ndarray,
+) -> tuple[float, np.ndarray, dict[str, Any]]:
     """Standalone equivalent of the pinned engine CAGR anchored Sharpe DLM mean."""
-    arr = np.asarray(log_returns, dtype=np.float64); arr = arr[np.isfinite(arr)]
-    if arr.size == 0: return 0.0, np.array([], dtype=np.float64), {"method":"empty_zero"}
+    arr = np.asarray(log_returns, dtype=np.float64)
+    arr = arr[np.isfinite(arr)]
+    if arr.size == 0:
+        return 0.0, np.array([], dtype=np.float64), {"method": "empty_zero"}
     if arr.size < 5:
-        return float(np.mean(arr)), arr - float(np.mean(arr)), {"method":"historical_sample_mean_short_history"}
-    sample_mu = float(np.mean(arr)); sample_sigma = float(np.std(arr, ddof=1)) if arr.size > 1 else 0.0
+        return (
+            float(np.mean(arr)),
+            arr - float(np.mean(arr)),
+            {"method": "historical_sample_mean_short_history"},
+        )
+    sample_mu = float(np.mean(arr))
+    sample_sigma = float(np.std(arr, ddof=1)) if arr.size > 1 else 0.0
     if not np.isfinite(sample_sigma) or sample_sigma <= 1e-10:
-        return sample_mu, arr-sample_mu, {"method":"historical_cagr_anchor_degenerate_sample","sample_mean":sample_mu}
-    daily_to_annual_sharpe = math.sqrt(252.0)/sample_sigma; annual_sharpe_to_daily_mu = sample_sigma/math.sqrt(252.0)
-    anchor_sharpe = sample_mu*daily_to_annual_sharpe; observed_sharpe = arr*daily_to_annual_sharpe
-    centered_sharpe = observed_sharpe-anchor_sharpe; obs_var=float(np.var(centered_sharpe,ddof=1))
-    if not np.isfinite(obs_var) or obs_var <= 1e-16: obs_var=252.0
+        return (
+            sample_mu,
+            arr - sample_mu,
+            {"method": "historical_cagr_anchor_degenerate_sample", "sample_mean": sample_mu},
+        )
+    daily_to_annual_sharpe = math.sqrt(252.0) / sample_sigma
+    annual_sharpe_to_daily_mu = sample_sigma / math.sqrt(252.0)
+    anchor_sharpe = sample_mu * daily_to_annual_sharpe
+    observed_sharpe = arr * daily_to_annual_sharpe
+    centered_sharpe = observed_sharpe - anchor_sharpe
+    obs_var = float(np.var(centered_sharpe, ddof=1))
+    if not np.isfinite(obs_var) or obs_var <= 1e-16:
+        obs_var = 252.0
     se_mu, bandwidth, long_run_var = _hac_mean_standard_error(arr)
-    if not np.isfinite(se_mu) or se_mu <= 0: se_mu=sample_sigma/math.sqrt(max(arr.size,1)); bandwidth=0; long_run_var=sample_sigma*sample_sigma
-    se_sharpe=se_mu*daily_to_annual_sharpe; signal_ratio_start=(se_sharpe/max(math.sqrt(obs_var),np.finfo(np.float64).tiny))**2
-    params=_estimate_evidence_dlm_drift_params(centered_sharpe,obs_var=obs_var,signal_ratio_start=signal_ratio_start)
-    filtered=_kalman_ar1_drift_filter(centered_sharpe,obs_var=obs_var,phi=float(params['phi']),state_var_ratio=float(params['state_var_ratio']))
-    if not np.isfinite(float(filtered.get('loglik',-math.inf))):
-        return sample_mu, arr-sample_mu, {"method":"historical_cagr_anchor_filter_failed"}
-    predicted=(anchor_sharpe+np.asarray(filtered['predicted_mean'],dtype=np.float64))*annual_sharpe_to_daily_mu
-    residuals=arr-predicted; z=residuals/sample_sigma; z=z[np.isfinite(z)]
-    if z.size == 0: z= (arr-sample_mu)/sample_sigma
-    z=z-float(np.mean(z)); zsd=float(np.std(z,ddof=1)) if z.size>1 else 1.0
-    if np.isfinite(zsd) and zsd>1e-12: z=z/zsd
-    final_dev=float(filtered['final_mean'])*annual_sharpe_to_daily_mu; final_var=float(max(filtered['final_var'],0.0))*(annual_sharpe_to_daily_mu**2)
-    posterior_mean=sample_mu+final_dev; posterior_sd=math.sqrt(max(final_var,0.0))
-    meta={"method":"evidence_estimated_ar1_latent_sharpe_dlm_with_historical_cagr_anchor","historical_cagr_anchor":True,"anchor_posterior_mean":sample_mu,"anchor_sharpe_annualized":anchor_sharpe,"sample_mean":sample_mu,"sample_sigma":sample_sigma,"posterior_mean":posterior_mean,"posterior_sd":posterior_sd,"dlm_drift_paths":True,"dlm_long_run_anchor_mean":sample_mu,"dlm_state_transition_phi":float(params['phi']),"dlm_state_stationary_var":float(filtered['stationary_var'])*(annual_sharpe_to_daily_mu**2),"dlm_state_noise_var":float(filtered['state_noise_var'])*(annual_sharpe_to_daily_mu**2),"dlm_state_posterior_deviation_mean":final_dev,"dlm_state_posterior_deviation_var":final_var,"dlm_loglik":float(filtered['loglik']),"hac_mean_standard_error":float(se_mu),"hac_bandwidth":int(bandwidth),"hac_long_run_variance":float(long_run_var),"signal_ratio_start":float(signal_ratio_start)}
-    base={"sample_mu":sample_mu,"sigma":sample_sigma,"posterior_mean":posterior_mean,"posterior_sd":posterior_sd,"mu_cap":0.0,"sample_mu_days":0,"nonnegative_drift":False,"posterior_mu_draws":False,"dlm_drift_paths":True,"dlm_long_run_anchor_mean":sample_mu,"dlm_state_transition_phi":float(params['phi']),"dlm_state_stationary_var":float(filtered['stationary_var'])*(annual_sharpe_to_daily_mu**2),"dlm_state_stationary_var_ratio":float(params['state_var_ratio']),"dlm_state_noise_var":float(filtered['state_noise_var'])*(annual_sharpe_to_daily_mu**2),"dlm_state_noise_sd":float(math.sqrt(max(float(filtered['state_noise_var'])*(annual_sharpe_to_daily_mu**2),0.0))),"dlm_state_posterior_deviation_mean":final_dev,"dlm_state_posterior_deviation_var":final_var,"standardized_residuals":np.clip(z,-20.0,20.0),"meta":copy.deepcopy(meta)}
-    meta['_base_fit_override']=base
-    return posterior_mean,residuals,meta
+    if not np.isfinite(se_mu) or se_mu <= 0:
+        se_mu = sample_sigma / math.sqrt(max(arr.size, 1))
+        bandwidth = 0
+        long_run_var = sample_sigma * sample_sigma
+    se_sharpe = se_mu * daily_to_annual_sharpe
+    signal_ratio_start = (se_sharpe / max(math.sqrt(obs_var), np.finfo(np.float64).tiny)) ** 2
+    params = _estimate_evidence_dlm_drift_params(
+        centered_sharpe, obs_var=obs_var, signal_ratio_start=signal_ratio_start
+    )
+    filtered = _kalman_ar1_drift_filter(
+        centered_sharpe,
+        obs_var=obs_var,
+        phi=float(params["phi"]),
+        state_var_ratio=float(params["state_var_ratio"]),
+    )
+    if not np.isfinite(float(filtered.get("loglik", -math.inf))):
+        return sample_mu, arr - sample_mu, {"method": "historical_cagr_anchor_filter_failed"}
+    predicted = (
+        anchor_sharpe + np.asarray(filtered["predicted_mean"], dtype=np.float64)
+    ) * annual_sharpe_to_daily_mu
+    residuals = arr - predicted
+    z = residuals / sample_sigma
+    z = z[np.isfinite(z)]
+    if z.size == 0:
+        z = (arr - sample_mu) / sample_sigma
+    z = z - float(np.mean(z))
+    zsd = float(np.std(z, ddof=1)) if z.size > 1 else 1.0
+    if np.isfinite(zsd) and zsd > 1e-12:
+        z = z / zsd
+    final_dev = float(filtered["final_mean"]) * annual_sharpe_to_daily_mu
+    final_var = float(max(filtered["final_var"], 0.0)) * (annual_sharpe_to_daily_mu**2)
+    posterior_mean = sample_mu + final_dev
+    posterior_sd = math.sqrt(max(final_var, 0.0))
+    meta = {
+        "method": "evidence_estimated_ar1_latent_sharpe_dlm_with_historical_cagr_anchor",
+        "historical_cagr_anchor": True,
+        "anchor_posterior_mean": sample_mu,
+        "anchor_sharpe_annualized": anchor_sharpe,
+        "sample_mean": sample_mu,
+        "sample_sigma": sample_sigma,
+        "posterior_mean": posterior_mean,
+        "posterior_sd": posterior_sd,
+        "dlm_drift_paths": True,
+        "dlm_long_run_anchor_mean": sample_mu,
+        "dlm_state_transition_phi": float(params["phi"]),
+        "dlm_state_stationary_var": float(filtered["stationary_var"])
+        * (annual_sharpe_to_daily_mu**2),
+        "dlm_state_noise_var": float(filtered["state_noise_var"]) * (annual_sharpe_to_daily_mu**2),
+        "dlm_state_posterior_deviation_mean": final_dev,
+        "dlm_state_posterior_deviation_var": final_var,
+        "dlm_loglik": float(filtered["loglik"]),
+        "hac_mean_standard_error": float(se_mu),
+        "hac_bandwidth": int(bandwidth),
+        "hac_long_run_variance": float(long_run_var),
+        "signal_ratio_start": float(signal_ratio_start),
+    }
+    base = {
+        "sample_mu": sample_mu,
+        "sigma": sample_sigma,
+        "posterior_mean": posterior_mean,
+        "posterior_sd": posterior_sd,
+        "mu_cap": 0.0,
+        "sample_mu_days": 0,
+        "nonnegative_drift": False,
+        "posterior_mu_draws": False,
+        "dlm_drift_paths": True,
+        "dlm_long_run_anchor_mean": sample_mu,
+        "dlm_state_transition_phi": float(params["phi"]),
+        "dlm_state_stationary_var": float(filtered["stationary_var"])
+        * (annual_sharpe_to_daily_mu**2),
+        "dlm_state_stationary_var_ratio": float(params["state_var_ratio"]),
+        "dlm_state_noise_var": float(filtered["state_noise_var"]) * (annual_sharpe_to_daily_mu**2),
+        "dlm_state_noise_sd": float(
+            math.sqrt(max(float(filtered["state_noise_var"]) * (annual_sharpe_to_daily_mu**2), 0.0))
+        ),
+        "dlm_state_posterior_deviation_mean": final_dev,
+        "dlm_state_posterior_deviation_var": final_var,
+        "standardized_residuals": np.clip(z, -20.0, 20.0),
+        "meta": copy.deepcopy(meta),
+    }
+    meta["_base_fit_override"] = base
+    return posterior_mean, residuals, meta
 
 
-def _fit_harx_ff6_current_log_variance_anchor(*args: Any, **kwargs: Any) -> Optional[Dict[str, Any]]:
+def _fit_harx_ff6_current_log_variance_anchor(*args: Any, **kwargs: Any) -> dict[str, Any] | None:
     """The retained no-AR HARX factor anchor requires source factor inputs.
 
     The standalone package intentionally fails closed until a caller supplies
@@ -3762,10 +4371,14 @@ def _fit_harx_ff6_current_log_variance_anchor(*args: Any, **kwargs: Any) -> Opti
     return None
 
 
-def _dlm_ar1_loglik(values: np.ndarray, obs_var: float, phi: float, state_var_ratio: float) -> float:
+def _dlm_ar1_loglik(
+    values: np.ndarray, obs_var: float, phi: float, state_var_ratio: float
+) -> float:
     """Pure Python form of the pinned engine DLM likelihood kernel."""
     values = np.asarray(values, dtype=np.float64)
-    obs = float(obs_var); phi_value = float(phi); ratio = float(state_var_ratio)
+    obs = float(obs_var)
+    phi_value = float(phi)
+    ratio = float(state_var_ratio)
     if values.size < 2 or not np.isfinite(obs) or obs <= 0.0:
         return -math.inf
     if not np.isfinite(phi_value) or phi_value < 0.0 or phi_value >= 1.0:
@@ -3774,35 +4387,55 @@ def _dlm_ar1_loglik(values: np.ndarray, obs_var: float, phi: float, state_var_ra
         return -math.inf
     stationary_var = max(obs * ratio, obs * 1.0e-14)
     state_noise_var = max((1.0 - phi_value * phi_value) * stationary_var, obs * 1.0e-14)
-    m = 0.0; p = stationary_var; loglik = 0.0; log_two_pi = math.log(2.0 * math.pi)
+    m = 0.0
+    p = stationary_var
+    loglik = 0.0
+    log_two_pi = math.log(2.0 * math.pi)
     for value in values:
-        a = phi_value * m; r = phi_value * phi_value * p + state_noise_var; f = r + obs
+        a = phi_value * m
+        r = phi_value * phi_value * p + state_noise_var
+        f = r + obs
         if not np.isfinite(f) or f <= 0.0:
             return -math.inf
         innovation = float(value) - a
         loglik += -0.5 * (log_two_pi + math.log(f) + (innovation * innovation) / f)
-        k = r / f; m = a + k * innovation; p = max((1.0 - k) * r, obs * 1.0e-14)
+        k = r / f
+        m = a + k * innovation
+        p = max((1.0 - k) * r, obs * 1.0e-14)
     return float(loglik) if np.isfinite(loglik) else -math.inf
 
 
-def _apply_full_mcmc_sv_simulation_options(fit: Dict[str, Any], candidate: Dict[str, Any]) -> Dict[str, Any]:
+def _apply_full_mcmc_sv_simulation_options(
+    fit: dict[str, Any], candidate: dict[str, Any]
+) -> dict[str, Any]:
     """Retain the source harness's post-fit simulation option application."""
     model = dict(fit)
-    model["innovation_resampling"] = str(candidate.get("innovation_resampling", fit.get("innovation_resampling", "stationary_bootstrap")))
-    model["innovation_tail_splice"] = str(candidate.get("innovation_tail_splice", fit.get("innovation_tail_splice", "none")))
-    model["clip_simulated_returns"] = bool(candidate.get("clip_simulated_returns", fit.get("clip_simulated_returns", True)))
+    model["innovation_resampling"] = str(
+        candidate.get(
+            "innovation_resampling", fit.get("innovation_resampling", "stationary_bootstrap")
+        )
+    )
+    model["innovation_tail_splice"] = str(
+        candidate.get("innovation_tail_splice", fit.get("innovation_tail_splice", "none"))
+    )
+    model["clip_simulated_returns"] = bool(
+        candidate.get("clip_simulated_returns", fit.get("clip_simulated_returns", True))
+    )
     meta = dict(model.get("meta", {}) or {})
     meta["innovation_resampling"] = model["innovation_resampling"]
     meta["innovation_tail_splice"] = model["innovation_tail_splice"]
     meta["simulated_return_clip"] = model["clip_simulated_returns"]
     parametric_meta = _full_mcmc_sv_parametric_innovation_meta(model["innovation_resampling"])
     meta["tail_method"] = (
-        parametric_meta[0] if parametric_meta is not None
-        else "automated_evt_pot_gpd_tail" if model["innovation_tail_splice"] == "automated_evt_pot_gpd_tail"
+        parametric_meta[0]
+        if parametric_meta is not None
+        else "automated_evt_pot_gpd_tail"
+        if model["innovation_tail_splice"] == "automated_evt_pot_gpd_tail"
         else meta.get("tail_method", "filtered_empirical_tail")
     )
     meta["path_generator"] = (
-        parametric_meta[1] if parametric_meta is not None
+        parametric_meta[1]
+        if parametric_meta is not None
         else "iid_standardized_residuals_scaled_by_latent_sv_paths"
         if model["innovation_resampling"] == "iid"
         else "stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"
@@ -3833,22 +4466,19 @@ def load_canonical_full_mcmc_sv_specs() -> tuple[dict[str, Any], ...]:
     entries = payload.get("entries")
     if not isinstance(entries, list) or len(entries) != 40:
         raise ValueError("full MCMC SV manifest must contain exactly 40 entries")
+    ledger_ids = {row.model_id for row in load_canonical_175()}
     seen: set[str] = set()
-    for expected_rank, entry in enumerate(entries, 1):
+    for entry in entries:
         if not isinstance(entry, dict):
-            raise ValueError("full MCMC SV manifest entry is not an object")
+            raise TypeError("full MCMC SV manifest entry is not an object")
         model_id = str(entry.get("id", ""))
         if not model_id or model_id in seen:
             raise ValueError("full MCMC SV manifest contains duplicate or empty IDs")
         seen.add(model_id)
         if entry.get("type") != CANONICAL_FULL_MCMC_SV_TYPE:
             raise ValueError(f"full MCMC SV entry {model_id} has the wrong type")
-        if int(entry.get("owned_rank", 0)) != expected_rank:
-            raise ValueError("full MCMC SV owned ranks drifted")
-        if int(entry.get("canonical_cells", 0)) != 701_280:
-            raise ValueError("full MCMC SV canonical cell count drifted")
-        if int(entry.get("canonical_rank", 0)) <= 1 or int(entry.get("source_rank", 0)) < 12:
-            raise ValueError("full MCMC SV ledger rank provenance is missing")
+        if model_id not in ledger_ids:
+            raise ValueError(f"full MCMC SV entry {model_id} is absent from the canonical ledger")
     return tuple(dict(entry) for entry in entries)
 
 
@@ -3866,7 +4496,7 @@ def spec_for_full_mcmc_sv(model_id: str) -> dict[str, Any]:
 def fit_full_mcmc_sv(
     train_values: np.ndarray,
     model_id: str | Mapping[str, Any],
-) -> Optional[Dict[str, Any]]:
+) -> dict[str, Any] | None:
     """Fit one of the 40 pinned full latent MCMC SV overlays.
 
     ``model_id`` may be an owned ID or its source-derived manifest entry.  The
@@ -3874,15 +4504,15 @@ def fit_full_mcmc_sv(
     not depend on process or call order.
     """
     candidate = (
-        dict(model_id)
-        if isinstance(model_id, Mapping)
-        else spec_for_full_mcmc_sv(str(model_id))
+        dict(model_id) if isinstance(model_id, Mapping) else spec_for_full_mcmc_sv(str(model_id))
     )
     if candidate.get("type") != CANONICAL_FULL_MCMC_SV_TYPE:
         raise ValueError("fit_full_mcmc_sv received a candidate outside the owned type")
     if str(candidate.get("id", "")) not in set(canonical_full_mcmc_sv_ids()):
         raise ValueError("fit_full_mcmc_sv received an ID outside the owned canonical set")
-    fitted = _fit_bayesian_sbb_full_mcmc_sv_overlay(np.asarray(train_values, dtype=np.float64), candidate)
+    fitted = _fit_bayesian_sbb_full_mcmc_sv_overlay(
+        np.asarray(train_values, dtype=np.float64), candidate
+    )
     if fitted is not None:
         # The research harness applies these options immediately before
         # simulation.  Store them at fit time too so direct callers cannot

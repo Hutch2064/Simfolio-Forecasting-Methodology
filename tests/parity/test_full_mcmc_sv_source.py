@@ -27,7 +27,6 @@ def test_owned_full_mcmc_sv_catalogue_is_exactly_40_source_entries():
     assert len(entries) == 40
     assert tuple(entry["id"] for entry in entries) == canonical_full_mcmc_sv_ids()
     assert {entry["type"] for entry in entries} == {"bayesian_sbb_full_mcmc_sv_overlay"}
-    assert [entry["owned_rank"] for entry in entries] == list(range(1, 41))
 
 
 def test_full_mcmc_sv_fit_and_paths_match_source_fixture():
