@@ -1,49 +1,77 @@
-# Clean wheel quickstart
+# Install and run
 
-Use a fresh Python 3.11 or 3.12 environment. The tested dependency matrix is
-recorded in [`requirements-lock.txt`](../requirements-lock.txt); the optional
-`all-models` extra is included in that lock.
+Use Python 3.11 or 3.12. Install from this repository; no PyPI publication is
+required. The numerical dependency matrix is pinned in `requirements-lock.txt`.
 
 ```bash
-python -m venv /tmp/simfolio-methodology-venv
-source /tmp/simfolio-methodology-venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install 'simfolio-forecasting-methodology[all-models]'
+git clone https://github.com/Hutch2064/Simfolio-Forecasting-Methodology.git
+cd Simfolio-Forecasting-Methodology
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-lock.txt
+python -m pip install '.[all-models]'
 ```
 
-Verify the packaged data and inspect the value-free protocol plan:
+Inspect the packaged evidence without running forecasts:
 
 ```bash
 simfolio-oos data verify --json
-simfolio-oos data prepare --destination .simfolio-oos-data --json
+simfolio-oos validate --quick --json
+simfolio-oos catalogue --json
 simfolio-oos coverage --json
+simfolio-oos scores --experiment canonical-whitepaper --json
 simfolio-oos canonical-175 --plan --json
 ```
 
-The verifier checks the packaged 52 asset series, `EFFRX`, French and Q5
-factor inputs, source hashes, the 11,687-date common calendar, and the
-normalized return-matrix identity. Preparation is offline and writes only the
-destination cache. It does not contact a data provider.
-
-The plan is value-free. It describes 80 portfolios and 4,080 origin tasks with
-701,280 scored cells per model. A bounded run can select the exact Frontier ID
-and a small simulation count through the smoke command. The canonical command
-preserves 240 simulations per origin and should be treated as a large research
-run, not an installation check.
-
-To build and inspect a wheel without importing the checkout, use a temporary
-wheel and target directory:
+The snapshot contains 52 asset series, six supporting series (including the
+canonical drift-factor proxies and `EFFRX`), and French and Q5 factor inputs.
+Verification checks exact hashes. Preparation reconstructs the 11,687-date
+common calendar and matrix fingerprints offline:
 
 ```bash
-wheel_dir=/tmp/simfolio-methodology-wheel
-install_dir=/tmp/simfolio-methodology-installed
-mkdir -p "$wheel_dir" "$install_dir"
-python -m pip wheel . --no-deps --no-build-isolation --wheel-dir "$wheel_dir"
-python -m pip install --no-deps --target "$install_dir" "$wheel_dir"/*.whl
-PYTHONPATH="$install_dir" python -c \
-  'from simfolio_forecasting_methodology.data import verify_canonical_snapshot; print(verify_canonical_snapshot())'
+simfolio-oos data prepare --destination .simfolio-oos-data --json
 ```
 
-The CI performs the same clean-wheel check for both supported Python versions,
-then runs the bounded parity and public-safety gates followed by the complete
-test suite.
+A bounded Frontier check using the frozen canonical inputs:
+
+```bash
+simfolio-oos canonical-175 \
+  --model asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced \
+  --smoke --data .simfolio-oos-data --task-count 1 --horizon 8 \
+  --simulations 16 --output results/frontier-smoke
+```
+
+Smoke outputs are noncanonical. They explicitly reduce portfolios, origins,
+horizons, and simulations. Omitting `--data` in smoke mode uses a labeled
+synthetic test fixture instead of the canonical dataset.
+
+The later complete experiment uses 175 models, 80 portfolios, 4,080 tasks per
+model, 240 simulations per origin, and 701,280 portfolio-horizon cells per
+model. It preflights every selected factory and refuses incomplete coverage.
+**These full-study commands are not installation tests:**
+
+```bash
+simfolio-oos canonical-175 --output results/canonical
+simfolio-oos canonical-175 --output results/canonical --resume
+```
+
+Resumption requires identical model, implementation, data, panel, protocol,
+and task identities. Failed tasks remain visible and cannot improve the score
+by reducing its denominator. Read `docs/historical-runtime-discrepancies.md`
+before interpreting a new result as a reproduction of retained scores.
+
+For an isolated wheel installation, run from a clean clone:
+
+```bash
+python -m pip wheel . --no-deps --no-build-isolation --wheel-dir dist
+python -m venv /tmp/simfolio-wheel-check
+/tmp/simfolio-wheel-check/bin/python -m pip install -r requirements-lock.txt
+/tmp/simfolio-wheel-check/bin/python -m pip install --no-deps dist/*.whl
+cd /tmp
+/tmp/simfolio-wheel-check/bin/simfolio-oos data verify --json
+/tmp/simfolio-wheel-check/bin/simfolio-oos validate --quick --json
+```
+
+CI checks wheel contents against tracked package files and runs the complete
+bounded suite against the installed wheel outside the checkout on both
+supported Python versions.

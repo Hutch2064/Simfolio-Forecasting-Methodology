@@ -16,10 +16,11 @@ label, optional explicit origin date, simulation count, horizon, seed, and futur
 dates. Historical seed identities and argument order belong to each verified
 source adapter; presentation aliases cannot alter them.
 
-Concrete model factories expose `simulate_daily_log_returns(training, context)`.
-Its result is a finite float64 matrix with simulations on axis zero and daily
-increments on axis one. Source routines returning cumulative paths must convert
-them explicitly at this boundary. A univariate portfolio fit cannot implement
+Concrete model factories expose `simulate_daily_log_returns(training, context)`
+or `simulate_terminal_log_returns(training, context)`. Both return finite
+float64 matrices with simulations on axis zero and days on axis one. The
+method name declares whether entries are daily increments or cumulative
+terminal returns; the evaluator cumulatively sums only daily increments. A univariate portfolio fit cannot implement
 the asset-level Frontier model. Frontier must fit asset marginals, construct
 joint dependence, and apply the ordered portfolio policy and calendar.
 
