@@ -30,6 +30,7 @@
     "production_entrypoint_replay_verified": true,
     "production_precision": "Current source stores marginal/rejoined captured asset paths as float32 and performs rejoin arithmetic in float64; destination reference stores marginal paths as float64.",
     "production_seed_contract": "simulate_frontier_fastmap_log_returns draws one root seed from the caller RNG, then deterministic_seed(frontier_fastmap_asset,ticker,horizon,n_paths,root_seed) per asset and consumes dependence RNG sequentially.",
+    "root_independent_storage_aligned_check": "Recomputed public marginals and dependence; cast marginal and mapped asset paths at the two actual production float32 storage boundaries. All three mapped asset and rejoined portfolio arrays are byte-identical to aligned production evidence, maximum absolute difference zero.",
     "scope_limitations": [
       "No full 80-row study rerun.",
       "No live API/deployment write or authenticated deployed revision check.",
@@ -138,6 +139,8 @@
         "production_default_output_vs_public_max_abs": 0.020744719241644182,
         "production_rebalance_mask_equals_public": true,
         "rebalance_count": 2,
+        "root_production_storage_aligned_mapped_exact": true,
+        "root_production_storage_aligned_rejoined_max_abs": 0.0,
         "source_current_production_metadata": {
           "block_size_days": 512,
           "cost_per_turnover_bps": 15.0,
@@ -275,6 +278,8 @@
         "production_default_output_vs_public_max_abs": 0.03554757642867644,
         "production_rebalance_mask_equals_public": true,
         "rebalance_count": 1,
+        "root_production_storage_aligned_mapped_exact": true,
+        "root_production_storage_aligned_rejoined_max_abs": 0.0,
         "source_current_production_metadata": {
           "block_size_days": 512,
           "cost_per_turnover_bps": 15.0,
@@ -446,6 +451,8 @@
         "production_default_output_vs_public_max_abs": 0.022534557343624712,
         "production_rebalance_mask_equals_public": true,
         "rebalance_count": 1,
+        "root_production_storage_aligned_mapped_exact": true,
+        "root_production_storage_aligned_rejoined_max_abs": 0.0,
         "source_current_production_metadata": {
           "block_size_days": 512,
           "cost_per_turnover_bps": 15.0,

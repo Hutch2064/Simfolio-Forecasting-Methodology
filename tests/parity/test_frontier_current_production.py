@@ -38,7 +38,6 @@ from simfolio_forecasting_methodology.models.numerical.dynamic_gaussian import (
 )
 from simfolio_forecasting_methodology.runner import ForecastContext, PortfolioPolicy, TrainingData
 
-
 FIXTURE_NAMES = (
     "current_production_synthetic_fixture4_monthly.npz",
     "current_production_canonical80_row001_annually.npz",
@@ -138,7 +137,7 @@ def _public_model_result(fixture: dict[str, np.ndarray], tickers: tuple[str, ...
         model_id=FRONTIER_MODEL_ID,
         portfolio_id="current-production-frontier-audit",
         origin_label=str(pd.Timestamp(training_dates[-1]).date()),
-        horizon_days=int(len(fixture["future_dates"])),
+        horizon_days=len(fixture["future_dates"]),
         simulations=int(fixture["public_marginal_paths"].shape[0]),
         seed=999,
         future_dates=np.asarray(fixture["future_dates"]),
@@ -148,7 +147,7 @@ def _public_model_result(fixture: dict[str, np.ndarray], tickers: tuple[str, ...
 
 
 def test_current_production_frontier_fixtures_preserve_source_evidence() -> None:
-    report_path = Path(__file__).parents[2] / "audit" / "frontier_current_production_parity.json"
+    report_path = _fixture_path("current_production_parity_report.json")
     report = json.loads(report_path.read_text(encoding="utf-8"))
     assert report["status"] == "completed_bounded_audit"
     report_text = json.dumps(report)
@@ -223,6 +222,27 @@ def test_current_production_frontier_fixtures_preserve_source_evidence() -> None
             fixture["aligned_production_rejoined"],
             rtol=0.0,
             atol=1e-8,
+        )
+
+        # Match the two documented production storage boundaries. This tests
+        # exact output identity instead of merely accepting a float32-sized
+        # discrepancy in the historical float64 reference paths.
+        stored_marginals = public["marginal_paths"].astype(np.float32)
+        np.testing.assert_array_equal(
+            stored_marginals, fixture["aligned_production_marginal_paths"]
+        )
+        stored_mapped = map_uniforms_to_marginal_paths(
+            stored_marginals, public["uniforms"]
+        ).astype(np.float32)
+        np.testing.assert_array_equal(
+            stored_mapped, fixture["aligned_production_mapped_paths"]
+        )
+        production_precision_rejoined = rebalanced_portfolio_log_paths(
+            stored_mapped, fixture["weights"], public["rebalance_mask"],
+            cost_per_turnover_bps=15.0,
+        )
+        np.testing.assert_array_equal(
+            production_precision_rejoined, fixture["aligned_production_rejoined"]
         )
 
         # Current production's root/per-asset seed contract is deliberately
