@@ -3845,6 +3845,10 @@ def load_canonical_full_mcmc_sv_specs() -> tuple[dict[str, Any], ...]:
             raise ValueError(f"full MCMC SV entry {model_id} has the wrong type")
         if int(entry.get("owned_rank", 0)) != expected_rank:
             raise ValueError("full MCMC SV owned ranks drifted")
+        if int(entry.get("canonical_cells", 0)) != 701_280:
+            raise ValueError("full MCMC SV canonical cell count drifted")
+        if int(entry.get("canonical_rank", 0)) <= 1 or int(entry.get("source_rank", 0)) < 12:
+            raise ValueError("full MCMC SV ledger rank provenance is missing")
     return tuple(dict(entry) for entry in entries)
 
 
