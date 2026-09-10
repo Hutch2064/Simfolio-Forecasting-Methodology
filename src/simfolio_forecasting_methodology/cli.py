@@ -202,15 +202,15 @@ def build_parser() -> argparse.ArgumentParser:
     )
     data_sub = data.add_subparsers(dest="data_command", required=True)
     verify = data_sub.add_parser("verify", help="Verify a frozen source snapshot against its identity.")
-    verify.add_argument("--snapshot", type=Path, required=True)
-    verify.add_argument("--rights-confirmed", action="store_true")
+    verify.add_argument("--snapshot", type=Path, default=None)
+    verify.add_argument("--rights-confirmed", action="store_true", default=None)
     verify.add_argument("--json", action="store_true")
     prepare = data_sub.add_parser(
-        "prepare", help="Prepare a verified caller-owned snapshot into an execution cache."
+        "prepare", help="Prepare the bundled frozen snapshot into an execution cache."
     )
-    prepare.add_argument("--snapshot", type=Path, required=True)
+    prepare.add_argument("--snapshot", type=Path, default=None)
     prepare.add_argument("--destination", type=Path, required=True)
-    prepare.add_argument("--rights-confirmed", action="store_true")
+    prepare.add_argument("--rights-confirmed", action="store_true", default=None)
     prepare.add_argument("--json", action="store_true")
 
     canonical = sub.add_parser(
@@ -311,8 +311,11 @@ def _execute(args: argparse.Namespace, *, command: str, smoke: bool) -> int:
         tasks = fixture_smoke_tasks(origins=int(args.task_count), horizon=int(args.horizon))
     else:
         try:
+            cache = args.data or Path(".simfolio-oos-data")
+            if args.data is None and not cache.exists():
+                _data_function("prepare_canonical_data")(destination=cache)
             plan = build_experiment_plan(
-                args.data or Path(".simfolio-oos-data"),
+                cache,
                 portfolio_limit=1 if smoke else None,
                 rolling_origins=1 if smoke else 48,
             )
@@ -411,7 +414,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "data":
         if args.data_command == "verify":
             result = _data_function("verify_canonical_snapshot")(
-                args.snapshot, rights_confirmed=bool(args.rights_confirmed)
+                args.snapshot, rights_confirmed=args.rights_confirmed
             )
             _print_inspection(dict(result), as_json=bool(args.json))
             return 0
@@ -419,7 +422,7 @@ def main(argv: list[str] | None = None) -> int:
             manifest = _data_function("prepare_canonical_data")(
                 args.snapshot,
                 args.destination,
-                rights_confirmed=bool(args.rights_confirmed),
+                rights_confirmed=args.rights_confirmed,
             )
             payload = {"status": "prepared", "manifest": str(manifest)}
             _print_inspection(payload, as_json=bool(args.json))
