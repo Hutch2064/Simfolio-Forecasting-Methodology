@@ -16,6 +16,7 @@ from ..catalogue import canonical_model, load_canonical_models
 from .asset_level.frontier import FRONTIER_MODEL_ID, HistoricalFrontierModel
 from .numerical.base_models import CanonicalBaseModel
 from .numerical.mcmc_sv import canonical_full_mcmc_sv_ids
+from .portfolio.bayesian_vol import BAYESIAN_VOL_FACTORIES
 from .portfolio.full_mcmc import FullMCMCSVModel
 from .portfolio.gas_reference import REFERENCE_FACTORIES as GAS_FACTORIES
 from .portfolio.gjr_reference import REFERENCE_FACTORIES as GJR_FACTORIES
@@ -38,6 +39,7 @@ _EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {
     **REFERENCE_FACTORIES,
     **GAS_FACTORIES,
     **GJR_FACTORIES,
+    **BAYESIAN_VOL_FACTORIES,
     **MCMC_REFERENCE_FACTORIES,
     **{model_id: partial(FullMCMCSVModel, model_id)
        for model_id in canonical_full_mcmc_sv_ids()

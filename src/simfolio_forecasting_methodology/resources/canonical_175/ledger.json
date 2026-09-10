@@ -808,6 +808,106 @@
       "factory_name": "simfolio_forecasting_methodology.models.portfolio.gjr_reference:PortfolioGJRGARCHModel",
       "status": "verified_explicit_factory",
       "seed_contract": "forecast_oos_candidate, origin_date, dense_horizon_tuple, historical_model_id, simulations"
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_ml_vol_overlay_rf_harx_ff6": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_harch_1_5_22": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_ewma_absolute": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_figarch_1_d_1": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_zero_sharpe": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
     }
   },
   "validation_policy": {
@@ -1080,7 +1180,14 @@
         "source_model_key": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -1098,9 +1205,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -1116,14 +1222,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=2]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 13,
       "canonical_rank": 2,
@@ -1166,17 +1279,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -1189,7 +1302,14 @@
         "source_model_key": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_ml_vol_overlay",
       "structured_specification": {},
@@ -1205,9 +1325,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -1223,14 +1342,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=3]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 14,
       "canonical_rank": 3,
@@ -1273,17 +1399,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -1296,7 +1422,14 @@
         "source_model_key": "bayesian_sbb_overlay_harch_1_5_22",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -1314,9 +1447,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -1332,14 +1464,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=4]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 15,
       "canonical_rank": 4,
@@ -1382,17 +1521,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -1405,7 +1544,14 @@
         "source_model_key": "bayesian_sbb_overlay_ewma_absolute",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -1423,9 +1569,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -1441,14 +1586,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=5]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 16,
       "canonical_rank": 5,
@@ -1491,17 +1643,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -1514,7 +1666,14 @@
         "source_model_key": "bayesian_sbb_overlay_gjr_garch_1_1",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -1532,9 +1691,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -1550,14 +1708,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=6]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 17,
       "canonical_rank": 6,
@@ -1600,17 +1765,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -1623,7 +1788,14 @@
         "source_model_key": "bayesian_sbb_overlay_figarch_1_d_1",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -1641,9 +1813,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -1659,14 +1830,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=7]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 18,
       "canonical_rank": 7,
@@ -1709,17 +1887,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -3777,7 +3955,14 @@
         "source_model_key": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -3796,9 +3981,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3814,14 +3998,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=26]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 37,
       "canonical_rank": 26,
@@ -3864,17 +4055,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -4328,7 +4519,14 @@
         "source_model_key": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -4350,9 +4548,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -4368,14 +4565,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=30]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 41,
       "canonical_rank": 30,
@@ -4418,17 +4622,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -4441,7 +4645,14 @@
         "source_model_key": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -4464,9 +4675,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -4482,14 +4692,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=31]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 42,
       "canonical_rank": 31,
@@ -4532,17 +4749,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -6521,7 +6738,14 @@
         "source_model_key": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -6544,9 +6768,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -6562,14 +6785,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=45]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 56,
       "canonical_rank": 45,
@@ -6612,17 +6842,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -6854,7 +7084,14 @@
         "source_model_key": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -6877,9 +7114,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -6895,14 +7131,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=47]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 58,
       "canonical_rank": 47,
@@ -6945,17 +7188,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -7422,7 +7665,14 @@
         "source_model_key": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -7441,9 +7691,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -7459,14 +7708,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=50]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 61,
       "canonical_rank": 50,
@@ -7509,17 +7765,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -8788,7 +9044,14 @@
         "source_model_key": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -8807,9 +9070,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -8825,14 +9087,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=57]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 68,
       "canonical_rank": 57,
@@ -8875,17 +9144,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -9125,7 +9394,14 @@
         "source_model_key": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -9144,9 +9420,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -9162,14 +9437,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=59]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 70,
       "canonical_rank": 59,
@@ -9212,17 +9494,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -9462,7 +9744,14 @@
         "source_model_key": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -9482,9 +9771,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -9500,14 +9788,21 @@
         "row_source_description": "canonical-175 retained extension evidence#bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 72,
       "canonical_rank": 61,
@@ -9550,17 +9845,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -10027,7 +10322,14 @@
         "source_model_key": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -10047,9 +10349,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -10065,14 +10366,21 @@
         "row_source_description": "canonical-175 retained extension evidence#bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 75,
       "canonical_rank": 64,
@@ -10115,17 +10423,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -10138,7 +10446,14 @@
         "source_model_key": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -10157,9 +10472,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -10175,14 +10489,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=65]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 76,
       "canonical_rank": 65,
@@ -10225,17 +10546,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -10929,7 +11250,14 @@
         "source_model_key": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -10948,9 +11276,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -10966,14 +11293,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=69]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 80,
       "canonical_rank": 69,
@@ -11016,17 +11350,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -13982,7 +14316,14 @@
         "source_model_key": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -14001,9 +14342,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -14019,14 +14359,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=83]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 94,
       "canonical_rank": 83,
@@ -14069,17 +14416,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
@@ -14546,7 +14893,14 @@
         "source_model_key": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
         "panel_seed": 20260528,
         "per_model_rng_schedule": null,
-        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+        "status": "actual raw historical descriptor and source forecast seed independently verified",
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "historical_model_id",
+          "simulations"
+        ]
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "structured_specification": {
@@ -14565,9 +14919,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "source": "source-research/scripts/forecast_oos_research_gate.py"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -14583,14 +14936,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=86]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "status": "verified_explicit_factory",
+        "callable": true,
+        "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "scikit-learn"
+        ],
+        "verified": true,
+        "status": "bounded fit/path closure verified under both locked numerical environments"
       },
       "historical_rank": 97,
       "canonical_rank": 86,
@@ -14633,17 +14993,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Independent original GEN dispatcher with exact retained raw descriptor, original factor normalization, five horizons and four simulations: cumulative terminal arrays byte-identical. Source fit-state and path fixtures pass on both locked Python environments. Historical label does not override omitted source parameters."
       ]
     },
     {
