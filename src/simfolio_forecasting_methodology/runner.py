@@ -263,12 +263,18 @@ def _implementation_digest(model, record: dict[str, object]) -> str | None:
     return None
 
 
+def _dependency_json_default(value):
+    if isinstance(value, Mapping):
+        return dict(value)
+    raise TypeError(f"dependency identity contains non-JSON value: {type(value).__name__}")
+
+
 def _dependency_identity(model, record: dict[str, object]) -> dict[str, object]:
     explicit = getattr(model, "dependency_identity", None)
     if explicit is not None:
         if not isinstance(explicit, Mapping):
             raise ValueError("model dependency_identity must be a mapping")
-        identity = json.loads(json.dumps(dict(explicit), sort_keys=True))
+        identity = json.loads(json.dumps(explicit, sort_keys=True, default=_dependency_json_default))
     else:
         identity = {}
     identity["python"] = platform.python_version()

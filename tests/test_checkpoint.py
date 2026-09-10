@@ -340,3 +340,8 @@ def test_registered_model_dependency_manifests_accept_immutable_mappings():
         )
         assert manifest.dependency_identity["numpy"] == np.__version__, model_id
         assert manifest.model_id == model_id
+        if model_id == "canonical":
+            proxy = manifest.dependency_identity["factor_proxy_loader"]
+            assert proxy["manifest_sha256"] == ledger["identity_policy"]["dataset_fingerprint"]
+            assert proxy["series_sha256"] == dict(model.dependency_identity["factor_proxy_loader"]["series_sha256"])
+            assert len(proxy["tickers"]) == len(proxy["series_sha256"]) == 9
