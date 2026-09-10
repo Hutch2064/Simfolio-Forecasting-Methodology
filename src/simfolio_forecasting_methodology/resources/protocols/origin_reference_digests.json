@@ -1,0 +1,418 @@
+{
+  "protocol_id": "canonical-whitepaper-dense-daily-v1",
+  "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+  "source_paths": [
+    "scripts/forecast_oos_research_gate.py:_origin_panel",
+    "app/engine.py:SimfolioEngine._evenly_spaced_origins",
+    "tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py:_rolling_payloads",
+    "tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py:_temporal_payloads"
+  ],
+  "calendar": {
+    "start": "1979-12-31",
+    "end": "2026-05-13",
+    "row_count": 11687
+  },
+  "selection": {
+    "policy": "full_history_even",
+    "min_training_observations": 504,
+    "horizons_days": [
+      21,
+      42,
+      63,
+      126,
+      189,
+      252,
+      378,
+      504,
+      756,
+      1008,
+      1260,
+      1512,
+      1764,
+      2016,
+      2268,
+      2520,
+      3780,
+      5040,
+      7560
+    ],
+    "eligible_count": 178,
+    "eligible_position_sha256": "84c3f40eceaeb2d3b60ef2684ca3069b15c3ebb387035b86ae2d324e2e73d774",
+    "eligible_date_sha256": "7eff21e3f3c9d916f4a5d8b8bbce4e563f70a10466ea14b6da1609584c2dc2ab",
+    "selected_count": 48,
+    "selected_position_sha256": "1aca710eff9bf167b3e794184857f8fde454bc4ab4d6e7ab964668ad3bdcf8cc",
+    "selected_date_sha256": "02f92e96b631a46b2ea66eb7b009a42f1e19f8fe024aee2c9278512b245ad43f"
+  },
+  "descriptors": {
+    "count": 51,
+    "rolling_count": 48,
+    "temporal_count": 3,
+    "descriptor_sha256": "25136bf82557b8b60af0ed3d8e52b2b7e54c85fc136d6f45f8586ae7ec2f9fe7",
+    "horizon_mask_sha256": "d4b5891f727e7fd9e0f59574a1fc3a4187e1f63f386794554be8ec100061a7e8",
+    "mask_encoding": "for each descriptor, future-row positions 0..max_horizon-1 are true and all later positions are false",
+    "rows": [
+      {
+        "label": "rolling_01",
+        "split": "rolling_origin",
+        "position": 506,
+        "origin_date": "1981-12-31",
+        "max_horizon": 126
+      },
+      {
+        "label": "rolling_02",
+        "split": "rolling_origin",
+        "position": 759,
+        "origin_date": "1982-12-31",
+        "max_horizon": 190
+      },
+      {
+        "label": "rolling_03",
+        "split": "rolling_origin",
+        "position": 1012,
+        "origin_date": "1983-12-30",
+        "max_horizon": 253
+      },
+      {
+        "label": "rolling_04",
+        "split": "rolling_origin",
+        "position": 1201,
+        "origin_date": "1984-09-28",
+        "max_horizon": 300
+      },
+      {
+        "label": "rolling_05",
+        "split": "rolling_origin",
+        "position": 1453,
+        "origin_date": "1985-09-30",
+        "max_horizon": 363
+      },
+      {
+        "label": "rolling_06",
+        "split": "rolling_origin",
+        "position": 1706,
+        "origin_date": "1986-09-30",
+        "max_horizon": 426
+      },
+      {
+        "label": "rolling_07",
+        "split": "rolling_origin",
+        "position": 1959,
+        "origin_date": "1987-09-30",
+        "max_horizon": 490
+      },
+      {
+        "label": "rolling_08",
+        "split": "rolling_origin",
+        "position": 2149,
+        "origin_date": "1988-06-30",
+        "max_horizon": 537
+      },
+      {
+        "label": "rolling_09",
+        "split": "rolling_origin",
+        "position": 2402,
+        "origin_date": "1989-06-30",
+        "max_horizon": 600
+      },
+      {
+        "label": "rolling_10",
+        "split": "rolling_origin",
+        "position": 2654,
+        "origin_date": "1990-06-29",
+        "max_horizon": 663
+      },
+      {
+        "label": "rolling_11",
+        "split": "rolling_origin",
+        "position": 2906,
+        "origin_date": "1991-06-28",
+        "max_horizon": 726
+      },
+      {
+        "label": "rolling_12",
+        "split": "rolling_origin",
+        "position": 3097,
+        "origin_date": "1992-03-31",
+        "max_horizon": 774
+      },
+      {
+        "label": "rolling_13",
+        "split": "rolling_origin",
+        "position": 3350,
+        "origin_date": "1993-03-31",
+        "max_horizon": 837
+      },
+      {
+        "label": "rolling_14",
+        "split": "rolling_origin",
+        "position": 3604,
+        "origin_date": "1994-03-31",
+        "max_horizon": 901
+      },
+      {
+        "label": "rolling_15",
+        "split": "rolling_origin",
+        "position": 3856,
+        "origin_date": "1995-03-31",
+        "max_horizon": 964
+      },
+      {
+        "label": "rolling_16",
+        "split": "rolling_origin",
+        "position": 4045,
+        "origin_date": "1995-12-29",
+        "max_horizon": 1011
+      },
+      {
+        "label": "rolling_17",
+        "split": "rolling_origin",
+        "position": 4299,
+        "origin_date": "1996-12-31",
+        "max_horizon": 1075
+      },
+      {
+        "label": "rolling_18",
+        "split": "rolling_origin",
+        "position": 4552,
+        "origin_date": "1997-12-31",
+        "max_horizon": 1138
+      },
+      {
+        "label": "rolling_19",
+        "split": "rolling_origin",
+        "position": 4804,
+        "origin_date": "1998-12-31",
+        "max_horizon": 1201
+      },
+      {
+        "label": "rolling_20",
+        "split": "rolling_origin",
+        "position": 5056,
+        "origin_date": "1999-12-31",
+        "max_horizon": 1264
+      },
+      {
+        "label": "rolling_21",
+        "split": "rolling_origin",
+        "position": 5245,
+        "origin_date": "2000-09-29",
+        "max_horizon": 1311
+      },
+      {
+        "label": "rolling_22",
+        "split": "rolling_origin",
+        "position": 5492,
+        "origin_date": "2001-09-28",
+        "max_horizon": 1373
+      },
+      {
+        "label": "rolling_23",
+        "split": "rolling_origin",
+        "position": 5744,
+        "origin_date": "2002-09-30",
+        "max_horizon": 1436
+      },
+      {
+        "label": "rolling_24",
+        "split": "rolling_origin",
+        "position": 5996,
+        "origin_date": "2003-09-30",
+        "max_horizon": 1499
+      },
+      {
+        "label": "rolling_25",
+        "split": "rolling_origin",
+        "position": 6184,
+        "origin_date": "2004-06-30",
+        "max_horizon": 1546
+      },
+      {
+        "label": "rolling_26",
+        "split": "rolling_origin",
+        "position": 6437,
+        "origin_date": "2005-06-30",
+        "max_horizon": 1609
+      },
+      {
+        "label": "rolling_27",
+        "split": "rolling_origin",
+        "position": 6689,
+        "origin_date": "2006-06-30",
+        "max_horizon": 1672
+      },
+      {
+        "label": "rolling_28",
+        "split": "rolling_origin",
+        "position": 6939,
+        "origin_date": "2007-06-29",
+        "max_horizon": 1735
+      },
+      {
+        "label": "rolling_29",
+        "split": "rolling_origin",
+        "position": 7127,
+        "origin_date": "2008-03-31",
+        "max_horizon": 1782
+      },
+      {
+        "label": "rolling_30",
+        "split": "rolling_origin",
+        "position": 7380,
+        "origin_date": "2009-03-31",
+        "max_horizon": 1845
+      },
+      {
+        "label": "rolling_31",
+        "split": "rolling_origin",
+        "position": 7632,
+        "origin_date": "2010-03-31",
+        "max_horizon": 1908
+      },
+      {
+        "label": "rolling_32",
+        "split": "rolling_origin",
+        "position": 7885,
+        "origin_date": "2011-03-31",
+        "max_horizon": 1971
+      },
+      {
+        "label": "rolling_33",
+        "split": "rolling_origin",
+        "position": 8137,
+        "origin_date": "2012-03-30",
+        "max_horizon": 2034
+      },
+      {
+        "label": "rolling_34",
+        "split": "rolling_origin",
+        "position": 8325,
+        "origin_date": "2012-12-31",
+        "max_horizon": 2081
+      },
+      {
+        "label": "rolling_35",
+        "split": "rolling_origin",
+        "position": 8577,
+        "origin_date": "2013-12-31",
+        "max_horizon": 2144
+      },
+      {
+        "label": "rolling_36",
+        "split": "rolling_origin",
+        "position": 8829,
+        "origin_date": "2014-12-31",
+        "max_horizon": 2207
+      },
+      {
+        "label": "rolling_37",
+        "split": "rolling_origin",
+        "position": 9081,
+        "origin_date": "2015-12-31",
+        "max_horizon": 2270
+      },
+      {
+        "label": "rolling_38",
+        "split": "rolling_origin",
+        "position": 9270,
+        "origin_date": "2016-09-30",
+        "max_horizon": 2317
+      },
+      {
+        "label": "rolling_39",
+        "split": "rolling_origin",
+        "position": 9521,
+        "origin_date": "2017-09-29",
+        "max_horizon": 2165
+      },
+      {
+        "label": "rolling_40",
+        "split": "rolling_origin",
+        "position": 9772,
+        "origin_date": "2018-09-28",
+        "max_horizon": 1914
+      },
+      {
+        "label": "rolling_41",
+        "split": "rolling_origin",
+        "position": 10023,
+        "origin_date": "2019-09-30",
+        "max_horizon": 1663
+      },
+      {
+        "label": "rolling_42",
+        "split": "rolling_origin",
+        "position": 10212,
+        "origin_date": "2020-06-30",
+        "max_horizon": 1474
+      },
+      {
+        "label": "rolling_43",
+        "split": "rolling_origin",
+        "position": 10464,
+        "origin_date": "2021-06-30",
+        "max_horizon": 1222
+      },
+      {
+        "label": "rolling_44",
+        "split": "rolling_origin",
+        "position": 10716,
+        "origin_date": "2022-06-30",
+        "max_horizon": 970
+      },
+      {
+        "label": "rolling_45",
+        "split": "rolling_origin",
+        "position": 10967,
+        "origin_date": "2023-06-30",
+        "max_horizon": 719
+      },
+      {
+        "label": "rolling_46",
+        "split": "rolling_origin",
+        "position": 11154,
+        "origin_date": "2024-03-28",
+        "max_horizon": 532
+      },
+      {
+        "label": "rolling_47",
+        "split": "rolling_origin",
+        "position": 11405,
+        "origin_date": "2025-03-31",
+        "max_horizon": 281
+      },
+      {
+        "label": "rolling_48",
+        "split": "rolling_origin",
+        "position": 11656,
+        "origin_date": "2026-03-31",
+        "max_horizon": 30
+      },
+      {
+        "label": "train_first_quarter_test_remaining",
+        "split": "train_first_quarter_test_remaining",
+        "position": 2920,
+        "origin_date": "1991-07-19",
+        "max_horizon": 8766
+      },
+      {
+        "label": "train_first_half_test_remaining",
+        "split": "train_first_half_test_remaining",
+        "position": 5842,
+        "origin_date": "2003-02-20",
+        "max_horizon": 5844
+      },
+      {
+        "label": "train_first_three_quarters_test_final_quarter",
+        "split": "train_first_three_quarters_test_final_quarter",
+        "position": 8764,
+        "origin_date": "2014-09-29",
+        "max_horizon": 2922
+      }
+    ],
+    "source_full_descriptor_mask_sha256": "33dceaddd52e364e69804e8a18d52fa95761625671464d2c8aeea3646e5c813b"
+  },
+  "comparison": {
+    "source_selected_dates_equal_local": true,
+    "source_eligible_positions_equal_local": true
+  }
+}

@@ -1,0 +1,774 @@
+{
+  "accepted_model_ids": [
+    "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+    "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced"
+  ],
+  "bindings": {
+    "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced": {
+      "component_digests": {
+        "asset_exact.dependence_parameterization": "454d0c90003a8d0bd5585b1c3937b204a5bbd7c88515a6439192555a53d0a1da",
+        "asset_exact.marginal_dispatch": "a9579a448e3a0f0e3f7d8c9ef6871f296d631715cc57fd2c6b38bf75d4f98239",
+        "asset_exact.portfolio_rejoin": "23473241e08d4dd1d09fc4fee12611dfd60a3ba1851f6b9cc447cc6bc796d600",
+        "inla.marginal_parameterization": "fb090efc8add0988bbece2780e8b613b064b4f9e11deed9de84057c413638954",
+        "inla.source_candidate": "472d8bac243f3b1b123071a21a52d96394e775e8c4accb8d5fa18fd676451034",
+        "seed_identity.asset_exact": "8b280c8cf3ec672fca4b62a70ef3ef2324db0e740c48c5d10ef078dd5c24c8c5"
+      },
+      "component_refs": [
+        "inla.source_candidate",
+        "inla.marginal_parameterization",
+        "asset_exact.dependence_parameterization",
+        "asset_exact.marginal_dispatch",
+        "asset_exact.portfolio_rejoin",
+        "seed_identity.asset_exact"
+      ],
+      "definition_fingerprint": "943fdb16a39fc01e13e6bc9c126c078a6132311fa8b8ad209e9a49896734ab93"
+    },
+    "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale": {
+      "component_digests": {
+        "inla.failure_semantics": "ae24de1b4355e3ad248c72ab295ccb1ebb783e79adaf303ac1a09463d8308e13",
+        "inla.marginal_parameterization": "fb090efc8add0988bbece2780e8b613b064b4f9e11deed9de84057c413638954",
+        "inla.source_candidate": "472d8bac243f3b1b123071a21a52d96394e775e8c4accb8d5fa18fd676451034",
+        "seed_identity.inla_current_engine_control": "241da1157537b50d53d6adfc760c797da34b1686525fb10de8ad0f5f285ed122"
+      },
+      "component_refs": [
+        "inla.source_candidate",
+        "inla.marginal_parameterization",
+        "inla.failure_semantics",
+        "seed_identity.inla_current_engine_control"
+      ],
+      "definition_fingerprint": "801e9b2fa908ab4ba0547bbdcd990bb3c4f7025acc051b45cd3873f52aab5ae2"
+    }
+  },
+  "fingerprint": {
+    "algorithm": "sha256(canonical JSON with sorted keys, compact separators, UTF-8; fingerprint field excluded)",
+    "value": "0389878be32deac834da72e151374879716452c464b47b72038affc883c01747"
+  },
+  "resolved_definitions": {
+    "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced": {
+      "dependence": {
+        "ref": "asset_exact.dependence_parameterization"
+      },
+      "factory": {
+        "class": "simfolio_forecasting_methodology.models.asset_level.exact_kalman.ExactKalmanDynamicGaussianFactorModel",
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "factory_seed_contract": "origin_task.seed_to_forecast_context.seed.v1",
+      "failure_semantics": {
+        "ref": "asset_exact.dependence_parameterization.failure_semantics"
+      },
+      "family": "asset_level_extension",
+      "kind": "exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "marginal": {
+        "candidate_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+        "ref": "inla.marginal_parameterization"
+      },
+      "marginal_dispatch": {
+        "ref": "asset_exact.marginal_dispatch"
+      },
+      "portfolio_rejoin": {
+        "ref": "asset_exact.portfolio_rejoin"
+      },
+      "resolved_defaults": {
+        "dependence_seed_alias": "copula_alternatives",
+        "factor_explained_variance_target": 0.8,
+        "future_calendar": "business days from training end plus one BDay",
+        "marginal_seed_alias": "asset_level_current_engine",
+        "maximum_factors": 3,
+        "minimum_assets": 2,
+        "minimum_observations": 80,
+        "student_scale_mixture": false,
+        "turnover_cost_bps": 15.0
+      },
+      "shared_component_digests": {
+        "asset_exact.dependence_parameterization": "454d0c90003a8d0bd5585b1c3937b204a5bbd7c88515a6439192555a53d0a1da",
+        "asset_exact.marginal_dispatch": "a9579a448e3a0f0e3f7d8c9ef6871f296d631715cc57fd2c6b38bf75d4f98239",
+        "asset_exact.portfolio_rejoin": "23473241e08d4dd1d09fc4fee12611dfd60a3ba1851f6b9cc447cc6bc796d600",
+        "inla.marginal_parameterization": "fb090efc8add0988bbece2780e8b613b064b4f9e11deed9de84057c413638954",
+        "inla.source_candidate": "472d8bac243f3b1b123071a21a52d96394e775e8c4accb8d5fa18fd676451034",
+        "seed_identity.asset_exact": "8b280c8cf3ec672fca4b62a70ef3ef2324db0e740c48c5d10ef078dd5c24c8c5"
+      },
+      "shared_component_refs": [
+        "inla.source_candidate",
+        "inla.marginal_parameterization",
+        "asset_exact.dependence_parameterization",
+        "asset_exact.marginal_dispatch",
+        "asset_exact.portfolio_rejoin",
+        "seed_identity.asset_exact"
+      ],
+      "source_candidate": {
+        "id": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+        "marginal_candidate_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+        "student_scale_mixture": false
+      },
+      "source_id": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "source_reference": {
+        "entrypoints": [
+          "_coupled_asset_paths (PGAS_ID branch)",
+          "_exact_kalman_rejoined_portfolio_paths"
+        ],
+        "path": "tmp/asset_level_full_panel_20260823/simfolio_oos_copula_alternatives.py",
+        "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+        "sha256": "413d2ca7f74cda13dd228c8974f822ce23e690cc56e098babf3fd2c121fbf95e"
+      },
+      "source_seed_context_ref": "seed_identity.asset_exact",
+      "wrapper_references": [
+        {
+          "entrypoints": [
+            "_asset_terminal_matrix"
+          ],
+          "path": "tmp/oos_all_daily_exact_crps.py",
+          "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+          "sha256": "88aaa532d8a0a63e24964305a26ee6fa45d0d9099dd5da800ab691afad583ea7"
+        },
+        {
+          "entrypoints": [
+            "_engine_forecast_log_paths",
+            "_rebalanced_portfolio_log_paths"
+          ],
+          "path": "tmp/asset_level_full_panel_20260823/simfolio_oos_two_candidates.py",
+          "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+          "sha256": "0577e79abee09d09735ee76f85941e007f995cc6a370ee375a0743cf440a23c2"
+        },
+        {
+          "entrypoints": [
+            "adaptive_pgas_uniform_paths"
+          ],
+          "path": "tmp/asset_level_full_panel_20260823/simfolio_adaptive_pgas.py",
+          "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+          "sha256": "f7988a6cfbdf674c1efeb1ca6836b34e5f34c1ee241e97ef44551ded7ba87c69"
+        },
+        {
+          "behavior_note": "asset branch also cumsums rejoin increments; generic base branch directly indexes paths[:, h-1]",
+          "entrypoints": [
+            "historical prior wrapper provenance"
+          ],
+          "path": "tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py",
+          "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+          "sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465"
+        }
+      ]
+    },
+    "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale": {
+      "factory": {
+        "class": "simfolio_forecasting_methodology.models.portfolio.inla.FullINLABDESModel",
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "factory_seed_contract": "origin_task.seed_to_forecast_context.seed.v1",
+      "failure_semantics": {
+        "ref": "inla.failure_semantics"
+      },
+      "family": "bdes_non_mcmc_sv_overlay",
+      "kind": "full_inla_bdes_historical_runtime_candidate",
+      "marginal": {
+        "ref": "inla.marginal_parameterization"
+      },
+      "resolved_defaults": {
+        "bdes_multiscale_k_star": 4,
+        "inla_hyperparameter_quadrature_order": 3,
+        "inla_latent_terminal_quadrature_order": 3,
+        "map_maxiter": 100,
+        "map_start_count": 1,
+        "minimum_observations": 5,
+        "student_scale_mixture": false,
+        "uses_mcmc": false
+      },
+      "shared_component_digests": {
+        "inla.failure_semantics": "ae24de1b4355e3ad248c72ab295ccb1ebb783e79adaf303ac1a09463d8308e13",
+        "inla.marginal_parameterization": "fb090efc8add0988bbece2780e8b613b064b4f9e11deed9de84057c413638954",
+        "inla.source_candidate": "472d8bac243f3b1b123071a21a52d96394e775e8c4accb8d5fa18fd676451034",
+        "seed_identity.inla_current_engine_control": "241da1157537b50d53d6adfc760c797da34b1686525fb10de8ad0f5f285ed122"
+      },
+      "shared_component_refs": [
+        "inla.source_candidate",
+        "inla.marginal_parameterization",
+        "inla.failure_semantics",
+        "seed_identity.inla_current_engine_control"
+      ],
+      "source_candidate": {
+        "ablation_family": "current_production_bdes_cagr_inla_laplace",
+        "bdes_multiscale_component_count": "history_gated",
+        "bdes_multiscale_scale_grid": "history_gated_calendar_geometric_without_daily",
+        "bdes_multiscale_shock_coupling": "shared_state_estimated_residual",
+        "clip_simulated_returns": true,
+        "comparison_target": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_inla_laplace_sigma_points",
+        "external_factors": false,
+        "factor_model": "not_applicable",
+        "feature_family": "current_production_bdes_cagr_non_mcmc_state_inference",
+        "forecast_level": "portfolio_return",
+        "id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+        "inla_hyperparameter_quadrature_order": 3,
+        "inla_latent_terminal_quadrature_order": 3,
+        "innovation_component": "bdes_multiscale_latent_log_volatility_with_conditional_sharpe_mean_scaling",
+        "innovation_conditioning": "none",
+        "innovation_method": "empirical_standardized_residuals",
+        "innovation_pool_source": "sample_standardized",
+        "innovation_resampling": "stationary_bootstrap",
+        "innovation_standardization": "mean_std",
+        "innovation_tail_splice": "none",
+        "latent_vol_persistence": "ar1",
+        "leverage": true,
+        "leverage_alignment": "lagged_return",
+        "leverage_correlation_method": "pearson",
+        "leverage_correlation_scope": "deterministic_selected_state_path",
+        "map_maxiter": 100,
+        "map_start_count": 1,
+        "mcmc_adaptation_iterations": 0,
+        "mcmc_adaptation_target_acceptance": null,
+        "mcmc_burn": 0,
+        "mcmc_chains": 0,
+        "mcmc_check_interval": 0,
+        "mcmc_extend_iterations": 0,
+        "mcmc_forecast_stability_tolerance": null,
+        "mcmc_initial_iterations": 0,
+        "mcmc_iterations": 0,
+        "mcmc_max_iterations": 0,
+        "mcmc_min_ess": null,
+        "mcmc_min_iterations": 0,
+        "mcmc_proposal_adaptation": "none",
+        "mcmc_rhat_threshold": null,
+        "mcmc_stopping": "none",
+        "mcmc_thin": 0,
+        "mean_component": "portfolio_likelihood_estimated_latent_sharpe_dlm_to_historical_cagr_anchor",
+        "mean_model": "evidence_estimated_sharpe_dlm_historical_cagr_anchor",
+        "mean_model_ablation_of": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+        "mean_state_scaling": "conditional_sv_sharpe",
+        "measurement_equation": "log_chi_square_mean_corrected_winsorized",
+        "overlay_model": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+        "parameter_sampler": "deterministic_full_inla_laplace_quadrature",
+        "path_generator": "stationary_bootstrap_standardized_residuals_scaled_by_bdes_multiscale_latent_sv_paths",
+        "previous_incumbent_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_inla_laplace_sigma_points",
+        "production_status": "promoted_to_live_engine_20260713",
+        "regime_model": "not_applicable",
+        "research_rationale": "Posterior-weighted integrated nested Laplace quadrature perturbs the central multiscale log-volatility forecast by the sampled AR(1) path's deviation from its central-mode counterpart under common innovations. The central multiscale basis uses history-supported calendar half-lives through one year and geometric doubling thereafter. Its residual state and common-state loading are estimated from information available at the forecast origin.",
+        "residual_tail_method": "raw_empirical_untruncated",
+        "return_target": "portfolio_daily_log_return",
+        "rollback_env_var": "SIMFOLIO_FORECAST_MODEL=inla_sigma_points",
+        "selection_method": "pre_specified_bdes_cagr_mode_centered_full_inla_laplace_quadrature_sv_validation",
+        "simulation_method": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+        "state_inference": "full_inla_laplace_quadrature",
+        "state_inference_model": "full_inla_laplace_quadrature",
+        "state_innovation_coupling": "correlation_mixture",
+        "state_innovation_distribution": "gaussian",
+        "state_innovation_resampling": "iid",
+        "state_innovation_source": "mode_centered_common_innovation_full_inla_quadrature_state_path",
+        "state_innovation_standardization": "mean_std",
+        "sv_measurement_bias": "log_chi_square_theoretical",
+        "sv_research_baseline": false,
+        "sv_sigma_scale_method": "none",
+        "tail_method": "filtered_empirical_tail",
+        "transformed_parameter_mcmc": false,
+        "type": "bdes_non_mcmc_sv_overlay",
+        "unclipped_empirical_innovations": true,
+        "unclipped_sv_measurement": false,
+        "validation_status": "paired_80_portfolio_calendar_geometric_mode_centered_full_inla_33_origin_15_horizon_300_simulation_validation",
+        "vol_anchor_model": "none",
+        "vol_anchor_target": "none",
+        "vol_model": "latent_stochastic_log_volatility_overlay",
+        "vol_overlay_model": "latent_stochastic_log_volatility_overlay",
+        "vol_path_blend": "inla_mode_centered_multiscale",
+        "vol_path_model": "bdes_multiscale_log_vol"
+      },
+      "source_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+      "source_reference": {
+        "entrypoints": [
+          "SimfolioEngine._bdes_cagr_candidate",
+          "SimfolioEngine._bdes_cagr_mcmc_candidate",
+          "SimfolioEngine._bdes_cagr_fastmap_candidate"
+        ],
+        "path": "source-research/app/engine.py",
+        "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+        "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
+      },
+      "source_seed_context_ref": "seed_identity.inla_current_engine_control",
+      "wrapper_references": [
+        {
+          "entrypoints": [
+            "_current_terminal_matrix"
+          ],
+          "path": "tmp/oos_all_daily_exact_crps.py",
+          "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+          "sha256": "88aaa532d8a0a63e24964305a26ee6fa45d0d9099dd5da800ab691afad583ea7"
+        },
+        {
+          "entrypoints": [
+            "retained full_panel_results.meta.whitepaper_catalog.catalog_path"
+          ],
+          "path": "docs/forecast_oos_publication_master_catalog.json",
+          "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+          "sha256": "b80e3e3c9616916f090b0449cdbe3a79f150340dd98846d1f40b0691dae537a8"
+        }
+      ]
+    }
+  },
+  "schema_version": 1,
+  "scope": "canonical_2_resolved_statistical_definitions_fragment",
+  "shared_components": {
+    "asset_exact": {
+      "dependence_parameterization": {
+        "covariance": {
+          "eigen_order": "descending",
+          "eigenvalue_floor": 1e-08,
+          "estimator": "np.cov(scores, rowvar=False, ddof=1)",
+          "psd_rejection_threshold": -1e-07
+        },
+        "dispatcher": "_coupled_asset_paths(method=PGAS_ID)",
+        "factor_dynamics": {
+          "initial_variance": "innovation_variance / max(1 - phi^2, 1e-7)",
+          "innovation_variance_floor": 1e-07,
+          "phi_clip": [
+            -0.995,
+            0.995
+          ],
+          "terminal_inference": "exact linear-Gaussian Kalman posterior"
+        },
+        "factor_selection": {
+          "explained_variance_target": 0.8,
+          "loading": "ordered_eigenvectors * sqrt(ordered_eigenvalues)",
+          "maximum_factors": 3,
+          "prior": "none; sample score covariance eigendecomposition",
+          "residual_variance_floor": 1e-07
+        },
+        "failure_semantics": {
+          "non_psd_covariance": "reject when minimum eigenvalue <= -1e-7",
+          "nonfinite_history": "reject",
+          "output": "reject nonfinite uniforms or mapped asset paths",
+          "residual_variance": "reject at or below 1e-7",
+          "student_configuration": "reject student_scale_mixture=true",
+          "terminal_posterior": "reject nonfinite or nonpositive posterior covariance"
+        },
+        "minimum_assets": 2,
+        "minimum_observations": 80,
+        "pseudo_observations": {
+          "clip": [
+            1e-08,
+            0.99999999
+          ],
+          "denominator": "n + 1",
+          "rank_method": "average"
+        },
+        "score_transform": "ndtri(pseudo_observations)",
+        "simulation": {
+          "callback_block_default": 512,
+          "callback_semantics": "consume contiguous horizon blocks without changing seeded draw order",
+          "factor_state_draw": "rng.multivariate_normal(terminal_mean, terminal_covariance, size=simulations, check_valid='raise')",
+          "future_shocks": "Gaussian factor and asset innovations in source day-major order",
+          "student_branch": "reject as unassigned for this canonical ID",
+          "student_scale_mixture": false,
+          "uniform_clip": [
+            1e-08,
+            0.99999999
+          ],
+          "uniform_transform": "standard normal CDF"
+        }
+      },
+      "marginal_dispatch": {
+        "candidate_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+        "output": "INLA daily log-return marginal paths",
+        "per_asset_input": "np.expm1(asset_log_history[:, asset])",
+        "seed_parts": [
+          "asset_level_current_engine",
+          "ticker",
+          "origin_date",
+          "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+          "horizon_days",
+          "simulations"
+        ],
+        "source_selector": "production engine candidate selector"
+      },
+      "portfolio_rejoin": {
+        "daily_output": "log(ending_value / previous_value)",
+        "failure_semantics": {
+          "calendar": "require explicit training and future dates aligned to source business-day policy",
+          "output": "reject nonfinite daily rejoin",
+          "weights": "reject nonfinite or nonpositive normalized target"
+        },
+        "future_calendar": "pd.bdate_range(last_training_date + BDay(1), periods=horizon_days)",
+        "gross_return_clip": [
+          -745.0,
+          50.0
+        ],
+        "rebalance_calendar": "engine._get_dates_for_freq(training_dates + future_dates, raw policy token)",
+        "source_frequency_tokens": [
+          "none",
+          "daily",
+          "weekly",
+          "biweekly",
+          "monthly",
+          "quarterly",
+          "annually"
+        ],
+        "terminal_wrapper_behavior": "retained wrapper applies np.cumsum to daily rejoin increments",
+        "turnover": "one_way = 0.5 * sum(abs(target - drifted_weights))",
+        "turnover_cost_bps": 15.0,
+        "weight_policy": "max(weights, 0) then normalize to sum one"
+      }
+    },
+    "inla": {
+      "failure_semantics": {
+        "fallback_scope": "only source-internal deterministic initialization and sigma-point fallback; never another candidate",
+        "innovation_pool": "reject missing, nonfinite, or fewer-than-five standardized innovations",
+        "mean_fit": "raise source-specific error when no usable mean fit exists",
+        "nonfinite_input": "finite filtering occurs before fit; no finite observations fails",
+        "output": "reject wrong shape or any nonfinite path",
+        "posterior": "reject empty posterior sample set or invalid weights",
+        "short_history": "fewer than five finite observations raises",
+        "state_fit": "reject invalid/nonfinite Kalman state or state path"
+      },
+      "marginal_parameterization": {
+        "bdes_multiscale": {
+          "coefficient_failure": "zero coefficient vector",
+          "coefficient_shrinkage": "signal/(signal + median_positive_signal + 1e-8)",
+          "entrypoint": "_bdes_multiscale_components",
+          "ewma_initialization": "first observation",
+          "extension": "append 504 then double while <= history length",
+          "grid": "history_gated_calendar_geometric_without_daily",
+          "k_star": 4,
+          "log_variance_clip": [
+            -18.0,
+            18.0
+          ],
+          "note": "calendar grid is history-gated; k_star does not truncate this grid",
+          "requested_half_lives_days": [
+            5.0,
+            21.0,
+            63.0,
+            126.0,
+            252.0
+          ],
+          "residual_ar_phi_clip": [
+            -0.999999,
+            0.999999
+          ],
+          "residual_common_loading_clip": [
+            -1.0,
+            1.0
+          ],
+          "ridge_fraction": 0.05
+        },
+        "full_inla_laplace_quadrature": {
+          "cholesky_jitter": 1e-10,
+          "entrypoint": "_sv_full_inla_laplace_quadrature_samples",
+          "fallback_sigma_point_standard_deviations": [
+            0.05,
+            0.12,
+            0.1
+          ],
+          "finite_difference_hessian_steps": [
+            0.03,
+            0.08,
+            0.06
+          ],
+          "hessian_eigenvalue_clip": [
+            0.0001,
+            1000000.0
+          ],
+          "hyperparameter_dimension": 3,
+          "hyperparameter_nodes": "tensor Gauss-Hermite, normalized by sqrt(pi)",
+          "hyperparameter_order_clamp": [
+            3,
+            5
+          ],
+          "hyperparameter_order_default": 3,
+          "invalid_hessian_or_cholesky": "fallback to eleven-point sigma-point closure",
+          "latent_nodes_order_3": [
+            "-sqrt(3)",
+            0.0,
+            "sqrt(3)"
+          ],
+          "latent_terminal_order_clamp": [
+            1,
+            3
+          ],
+          "latent_terminal_order_default": 3,
+          "latent_weights_order_3": [
+            0.16666666666666666,
+            0.6666666666666666,
+            0.16666666666666666
+          ],
+          "posterior_weighting": "positive normalized Laplace posterior-ratio weights"
+        },
+        "innovations": {
+          "minimum_pool_size": 5,
+          "pool": "finite scaled-return residuals standardized by sample mean and ddof=1 sample standard deviation",
+          "pool_clip": null,
+          "state_innovation_coupling": "mode-centered common innovation with residual loading",
+          "state_innovation_distribution": "gaussian",
+          "stationary_bootstrap_block_length": "max(Politis-White(z), Politis-White(z^2))",
+          "stationary_bootstrap_restart_probability": "1/block_length"
+        },
+        "input": {
+          "finite_observation_policy": "drop nonfinite values before fitting",
+          "minimum_observations": 5,
+          "source_control_round_trip": {
+            "after_selection": "np.log1p(np.clip(simple_returns, -0.999999, None))",
+            "before_selection": "np.expm1(log_returns)",
+            "reason": "the retained engine selector receives simple returns"
+          },
+          "unit": "daily_log_return"
+        },
+        "mean": {
+          "drift_fit": {
+            "annual_drift_sharpe_sd_cap": 2.5,
+            "ftol": 1e-07,
+            "gtol": 1e-05,
+            "maxiter": 45,
+            "optimizer": "L-BFGS-B",
+            "phi_bounds": [
+              0.0,
+              0.9995
+            ],
+            "prior": "none beyond bounded likelihood and source starts",
+            "ratio_start_multipliers": [
+              0.1,
+              1.0,
+              10.0
+            ],
+            "starts": [
+              0.25,
+              0.75,
+              0.95,
+              0.99
+            ],
+            "state_variance_ratio_bounds": [
+              1e-10,
+              0.0248015873015873
+            ]
+          },
+          "entrypoint": "_evidence_estimated_sharpe_dlm_historical_cagr_anchor_mean",
+          "failure": "source mean-fit failure raises inla_mean_fit_failed",
+          "model": "evidence_estimated_sharpe_dlm_historical_cagr_anchor"
+        },
+        "simulation": {
+          "draw_order": [
+            "stationary-bootstrap innovation indices",
+            "posterior weighted sample selection",
+            "DLM mean paths",
+            "initial residual innovations",
+            "state shocks",
+            "residual shocks"
+          ],
+          "entrypoint": "simulate_bdes_full_inla",
+          "nonfinite_output": "raise inla_nonfinite_paths",
+          "output": "daily log-return increments, shape (simulations, horizon_days)",
+          "return_clip": [
+            -1.0,
+            1.0
+          ],
+          "rng": "np.random.default_rng(source_control_seed)"
+        },
+        "state_inference": {
+          "eta_floor_for_state_innovations": 1e-08,
+          "filter": "linear Gaussian Kalman filter",
+          "smoother": "RTS smoother mean when finite and at least five states",
+          "smoother_failure": "use filtered path and filtered likelihood",
+          "state_path_clip": [
+            -18.0,
+            18.0
+          ]
+        },
+        "sv_map": {
+          "entrypoint": "_fit_sv_map_state_space_params",
+          "level_bounds": "[observed_q01 - 4, observed_q99 + 4]",
+          "log_eta_bounds": [
+            "log(0.02)",
+            "log(2.5)"
+          ],
+          "maxiter": 100,
+          "natural_parameter_bounds": {
+            "eta": [
+              0.02,
+              2.5
+            ],
+            "level": [
+              -18.0,
+              18.0
+            ],
+            "phi_for_filter": [
+              0.0,
+              0.999
+            ],
+            "phi_for_samples": [
+              0.001,
+              0.995
+            ]
+          },
+          "optimizer": "L-BFGS-B",
+          "optimizer_failure": "return deterministic source initialization",
+          "priors": {
+            "eta": "Normal(log(0.35), 1^2) on log eta",
+            "jacobian": "log(phi * (1 - phi)) + log(eta)",
+            "level": "Normal(sample_mean(observed_log_variance), 4^2)",
+            "phi": "Normal(0.94, 0.20^2) on natural phi"
+          },
+          "short_history_initialization_below_30": {
+            "eta": 0.25,
+            "level": "sample mean",
+            "phi": 0.94
+          },
+          "start_count": 1,
+          "transformed_phi_bounds": [
+            -7.0,
+            7.0
+          ]
+        },
+        "sv_observation_equation": {
+          "log_variance_clip": [
+            -18.0,
+            18.0
+          ],
+          "measurement_mean": -1.2703628454614782,
+          "measurement_variance": "pi^2/2",
+          "observation": "log(max(squared_scaled_residual, floor)) - measurement_mean",
+          "positive_square_floor": "max(quantile(positive_squared, 0.001)*0.1, 1e-10)",
+          "return_scale": 100.0,
+          "winsor_clip_when_n_at_least_80": [
+            0.005,
+            0.995
+          ],
+          "winsorize": true
+        }
+      },
+      "source_candidate": {
+        "ablation_family": "current_production_bdes_cagr_inla_laplace",
+        "bdes_multiscale_component_count": "history_gated",
+        "bdes_multiscale_scale_grid": "history_gated_calendar_geometric_without_daily",
+        "bdes_multiscale_shock_coupling": "shared_state_estimated_residual",
+        "clip_simulated_returns": true,
+        "comparison_target": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_inla_laplace_sigma_points",
+        "external_factors": false,
+        "factor_model": "not_applicable",
+        "feature_family": "current_production_bdes_cagr_non_mcmc_state_inference",
+        "forecast_level": "portfolio_return",
+        "id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+        "inla_hyperparameter_quadrature_order": 3,
+        "inla_latent_terminal_quadrature_order": 3,
+        "innovation_component": "bdes_multiscale_latent_log_volatility_with_conditional_sharpe_mean_scaling",
+        "innovation_conditioning": "none",
+        "innovation_method": "empirical_standardized_residuals",
+        "innovation_pool_source": "sample_standardized",
+        "innovation_resampling": "stationary_bootstrap",
+        "innovation_standardization": "mean_std",
+        "innovation_tail_splice": "none",
+        "latent_vol_persistence": "ar1",
+        "leverage": true,
+        "leverage_alignment": "lagged_return",
+        "leverage_correlation_method": "pearson",
+        "leverage_correlation_scope": "deterministic_selected_state_path",
+        "map_maxiter": 100,
+        "map_start_count": 1,
+        "mcmc_adaptation_iterations": 0,
+        "mcmc_adaptation_target_acceptance": null,
+        "mcmc_burn": 0,
+        "mcmc_chains": 0,
+        "mcmc_check_interval": 0,
+        "mcmc_extend_iterations": 0,
+        "mcmc_forecast_stability_tolerance": null,
+        "mcmc_initial_iterations": 0,
+        "mcmc_iterations": 0,
+        "mcmc_max_iterations": 0,
+        "mcmc_min_ess": null,
+        "mcmc_min_iterations": 0,
+        "mcmc_proposal_adaptation": "none",
+        "mcmc_rhat_threshold": null,
+        "mcmc_stopping": "none",
+        "mcmc_thin": 0,
+        "mean_component": "portfolio_likelihood_estimated_latent_sharpe_dlm_to_historical_cagr_anchor",
+        "mean_model": "evidence_estimated_sharpe_dlm_historical_cagr_anchor",
+        "mean_model_ablation_of": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+        "mean_state_scaling": "conditional_sv_sharpe",
+        "measurement_equation": "log_chi_square_mean_corrected_winsorized",
+        "overlay_model": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+        "parameter_sampler": "deterministic_full_inla_laplace_quadrature",
+        "path_generator": "stationary_bootstrap_standardized_residuals_scaled_by_bdes_multiscale_latent_sv_paths",
+        "previous_incumbent_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_inla_laplace_sigma_points",
+        "production_status": "promoted_to_live_engine_20260713",
+        "regime_model": "not_applicable",
+        "research_rationale": "Posterior-weighted integrated nested Laplace quadrature perturbs the central multiscale log-volatility forecast by the sampled AR(1) path's deviation from its central-mode counterpart under common innovations. The central multiscale basis uses history-supported calendar half-lives through one year and geometric doubling thereafter. Its residual state and common-state loading are estimated from information available at the forecast origin.",
+        "residual_tail_method": "raw_empirical_untruncated",
+        "return_target": "portfolio_daily_log_return",
+        "rollback_env_var": "SIMFOLIO_FORECAST_MODEL=inla_sigma_points",
+        "selection_method": "pre_specified_bdes_cagr_mode_centered_full_inla_laplace_quadrature_sv_validation",
+        "simulation_method": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+        "state_inference": "full_inla_laplace_quadrature",
+        "state_inference_model": "full_inla_laplace_quadrature",
+        "state_innovation_coupling": "correlation_mixture",
+        "state_innovation_distribution": "gaussian",
+        "state_innovation_resampling": "iid",
+        "state_innovation_source": "mode_centered_common_innovation_full_inla_quadrature_state_path",
+        "state_innovation_standardization": "mean_std",
+        "sv_measurement_bias": "log_chi_square_theoretical",
+        "sv_research_baseline": false,
+        "sv_sigma_scale_method": "none",
+        "tail_method": "filtered_empirical_tail",
+        "transformed_parameter_mcmc": false,
+        "type": "bdes_non_mcmc_sv_overlay",
+        "unclipped_empirical_innovations": true,
+        "unclipped_sv_measurement": false,
+        "validation_status": "paired_80_portfolio_calendar_geometric_mode_centered_full_inla_33_origin_15_horizon_300_simulation_validation",
+        "vol_anchor_model": "none",
+        "vol_anchor_target": "none",
+        "vol_model": "latent_stochastic_log_volatility_overlay",
+        "vol_overlay_model": "latent_stochastic_log_volatility_overlay",
+        "vol_path_blend": "inla_mode_centered_multiscale",
+        "vol_path_model": "bdes_multiscale_log_vol"
+      },
+      "source_candidate_digest": "472d8bac243f3b1b123071a21a52d96394e775e8c4accb8d5fa18fd676451034"
+    },
+    "seed_identity": {
+      "asset_exact": {
+        "dependence": {
+          "asset_model_id": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+          "context_seed_used": false,
+          "contract": "deterministic_seed('copula_alternatives', asset_model_id, origin_date, horizon_days, simulations)"
+        },
+        "implementation": "bdes_fastmap.deterministic_seed",
+        "marginal": {
+          "context_seed_used": false,
+          "contract": "deterministic_seed('asset_level_current_engine', ticker, origin_date, selected_model_id, horizon_days, simulations)",
+          "selected_model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale"
+        }
+      },
+      "inla_current_engine_control": {
+        "context_seed_used": false,
+        "contract": "deterministic_seed('forecast_final_fixed', selected_model_id, horizon_days, simulations)",
+        "implementation": "bdes_fastmap.deterministic_seed",
+        "origin_date_in_seed": false,
+        "parts": [
+          "forecast_final_fixed",
+          "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+          "horizon_days",
+          "simulations"
+        ]
+      }
+    }
+  },
+  "source_provenance": {
+    "current_core_catalog": "not used for either definition",
+    "descriptor_policy": "raw historical source dictionaries are seed-bearing; resolved defaults are recorded separately and never inserted into them",
+    "historical_runtime_catalog": {
+      "binding": "retained full_panel_results.meta.whitepaper_catalog.catalog_path",
+      "path": "docs/forecast_oos_publication_master_catalog.json",
+      "sha256": "b80e3e3c9616916f090b0449cdbe3a79f150340dd98846d1f40b0691dae537a8"
+    },
+    "source_engine": {
+      "entrypoints": [
+        "historical source candidate closure"
+      ],
+      "path": "source-research/app/engine.py",
+      "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
+    },
+    "source_research_gate": {
+      "entrypoints": [
+        "canonical gate harness provenance"
+      ],
+      "path": "source-research/scripts/forecast_oos_research_gate.py",
+      "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+      "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+    }
+  }
+}

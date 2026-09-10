@@ -1,0 +1,281 @@
+{
+  "schema_version": "canonical-175-sv-extension-patch-v1",
+  "scope": "exact requested batch: two source-extracted state-transition stochastic-volatility extensions",
+  "base_ledger_membership_digest": "c93ea4fca270f7343924a11ec6c3574d1693c07592d9f203b650915548b1d9b5",
+  "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+  "source_artifact_policy": "all paths are repository-relative; no private or temporary paths are serialized",
+  "records": [
+    {
+      "public_model_id": "dp_mixture_sv_sbb",
+      "canonical_rank": 23,
+      "historical_rank": 34,
+      "model_family": "sv_extension",
+      "structured_specification": {
+        "type": "dp_mixture_sv_sbb",
+        "return_target": "portfolio_daily_log_return",
+        "forecast_level": "portfolio_return",
+        "mean_model": "sample_mean_near_zero_shrinkage",
+        "vol_model": "truncated_dirichlet_process_mixture_stochastic_volatility_proxy",
+        "innovation_method": "state_conditioned_empirical_standardized_residuals",
+        "tail_method": "state_conditioned_empirical_tail",
+        "path_generator": "dirichlet_process_mixture_stochastic_volatility_stationary_bootstrap",
+        "max_components": 6,
+        "max_fit_obs": 5000,
+        "candidate_role": "stochastic_volatility_extension"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "source_function_closure_only",
+        "status": "numerical closure recovered; full experiment/data/protocol fingerprint unresolved"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "research_gate_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "research_gate_sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "engine_path": "source-research/app/engine.py",
+          "engine_sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "extracted_functions_sha256": "84a78bd1bc1f2bf9195be6682fd72429276547602061e31acbd2ac76546a2985"
+        },
+        "parameter_dictionary": {
+          "ledger_root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; full experiment closure unresolved"
+        },
+        "retained_score_artifact": {
+          "ledger_root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_declared_vs_actual_digest_mismatch retained"
+        }
+      },
+      "source_location_reference": {
+        "source_gate_fit": "source-research/scripts/forecast_oos_research_gate.py#_fit_dp_mixture_sv_sbb",
+        "source_gate_simulation": "source-research/scripts/forecast_oos_research_gate.py#_simulate_dp_mixture_sv_sbb",
+        "source_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "source_engine": "source-research/app/engine.py#SimfolioEngine._sample_mean_near_zero_shrinkage",
+        "public_catalogue_anchor": "canonical_rank=23"
+      },
+      "implementation_factory": {
+        "module": "simfolio_forecasting_methodology.models.portfolio.sv_extensions",
+        "map": "REFERENCE_FACTORIES",
+        "callable": true,
+        "status": "source_extracted_explicit_factory"
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "pandas",
+          "scikit-learn"
+        ],
+        "constraints": [
+          "numpy>=2.0,<3",
+          "pandas>=2.0,<4",
+          "scikit-learn>=1.0,<2"
+        ],
+        "verified": true,
+        "status": "source closure imports numpy, pandas, and scikit-learn"
+      },
+      "seed_identity": {
+        "seed_function": "SimfolioEngine._deterministic_seed",
+        "seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "public_model_id",
+          "simulations"
+        ],
+        "rng": "numpy.random.default_rng",
+        "status": "source call arguments preserved; canonical task seed remains task identity and is not passed by source branch"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "historical_score": {
+        "exact_empirical_crps": "0.3302581015632387",
+        "relative_to_naive": "0.9756358741877083",
+        "skill_vs_naive": "0.024364125812291748",
+        "paired_improvement_vs_current": "-0.12768557870867694",
+        "paired_mean_diff_vs_current": "0.037394463153124176",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.010301192831508503",
+          "0.0647490190511093"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.007",
+        "portfolio_losses_vs_current": 47,
+        "portfolio_wins_vs_current": 33
+      },
+      "score_precision": {
+        "retained_source_token": "0.3302581015632387",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.330258102",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "0.0000000004367613",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "evidence_flags": {
+        "identity_recovered": true,
+        "specification_recovered": false,
+        "source_reference_verified": true,
+        "implementation_available": true,
+        "instantiation_validated": true,
+        "forecast_smoke_tested": true,
+        "source_parity_checked": true,
+        "historical_score_verified": false
+      },
+      "verification_status": "source_kernel_parity_verified_experiment_identity_unresolved",
+      "notes": [
+        "Source fit/simulation closure is recovered from the research gate and its engine dependencies; no full canonical experiment was run.",
+        "DP mixture uses the source-declared scikit-learn BayesianGaussianMixture closure with explicit source quantile fallback.",
+        "Retained scalar score and nine-significant-digit publication token are preserved; score reproduction remains unverified.",
+        "The adapter preserves the source origin-date plus dense-horizon seed context and cumulative daily-path semantics.",
+        "The source fit requires at least 504 finite training observations."
+      ]
+    },
+    {
+      "public_model_id": "observable_markov_state_sbb",
+      "canonical_rank": 25,
+      "historical_rank": 36,
+      "model_family": "sv_extension",
+      "structured_specification": {
+        "type": "observable_markov_state_sbb",
+        "return_target": "portfolio_daily_log_return",
+        "forecast_level": "portfolio_return",
+        "mean_model": "state_conditioned_observable_markov_bootstrap",
+        "vol_model": "observable_rolling_volatility_tertiles",
+        "innovation_method": "state_conditioned_empirical_residuals",
+        "tail_method": "state_conditioned_empirical_tail",
+        "path_generator": "observable_markov_chain_state_specific_bootstrap",
+        "state_count": 12,
+        "state_alpha": 0.5,
+        "candidate_role": "state_transition_volatility_extension"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "source_function_closure_only",
+        "status": "numerical closure recovered; full experiment/data/protocol fingerprint unresolved"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "research_gate_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "research_gate_sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "engine_path": "source-research/app/engine.py",
+          "engine_sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "extracted_functions_sha256": "84a78bd1bc1f2bf9195be6682fd72429276547602061e31acbd2ac76546a2985"
+        },
+        "parameter_dictionary": {
+          "ledger_root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; full experiment closure unresolved"
+        },
+        "retained_score_artifact": {
+          "ledger_root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_declared_vs_actual_digest_mismatch retained"
+        }
+      },
+      "source_location_reference": {
+        "source_gate_fit": "source-research/scripts/forecast_oos_research_gate.py#_fit_observable_markov_state_sbb",
+        "source_gate_simulation": "source-research/scripts/forecast_oos_research_gate.py#_simulate_observable_markov_state_sbb",
+        "source_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "source_engine": "source-research/app/engine.py#SimfolioEngine._sample_mean_near_zero_shrinkage",
+        "public_catalogue_anchor": "canonical_rank=25"
+      },
+      "implementation_factory": {
+        "module": "simfolio_forecasting_methodology.models.portfolio.sv_extensions",
+        "map": "REFERENCE_FACTORIES",
+        "callable": true,
+        "status": "source_extracted_explicit_factory"
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "pandas",
+          "scikit-learn"
+        ],
+        "constraints": [
+          "numpy>=2.0,<3",
+          "pandas>=2.0,<4",
+          "scikit-learn>=1.0,<2"
+        ],
+        "verified": true,
+        "status": "source closure imports numpy, pandas, and scikit-learn"
+      },
+      "seed_identity": {
+        "seed_function": "SimfolioEngine._deterministic_seed",
+        "seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "public_model_id",
+          "simulations"
+        ],
+        "rng": "numpy.random.default_rng",
+        "status": "source call arguments preserved; canonical task seed remains task identity and is not passed by source branch"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "historical_score": {
+        "exact_empirical_crps": "0.33135186581975373",
+        "relative_to_naive": "0.9788670307937363",
+        "skill_vs_naive": "0.02113296920626373",
+        "paired_improvement_vs_current": "-0.13142030065112373",
+        "paired_mean_diff_vs_current": "0.03848822740963923",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.021112073236911683",
+          "0.05723898393956178"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.0",
+        "portfolio_losses_vs_current": 50,
+        "portfolio_wins_vs_current": 30
+      },
+      "score_precision": {
+        "retained_source_token": "0.33135186581975373",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 17,
+          "significant_digits": 17
+        },
+        "publication_token": "0.331351866",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "0.00000000018024627",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "evidence_flags": {
+        "identity_recovered": true,
+        "specification_recovered": false,
+        "source_reference_verified": true,
+        "implementation_available": true,
+        "instantiation_validated": true,
+        "forecast_smoke_tested": true,
+        "source_parity_checked": true,
+        "historical_score_verified": false
+      },
+      "verification_status": "source_kernel_parity_verified_experiment_identity_unresolved",
+      "notes": [
+        "Source fit/simulation closure is recovered from the research gate and its engine dependencies; no full canonical experiment was run.",
+        "Observable Markov uses the source-declared rolling proxy and 12-state Dirichlet-smoothed transition closure.",
+        "Retained scalar score and nine-significant-digit publication token are preserved; score reproduction remains unverified.",
+        "The adapter preserves the source origin-date plus dense-horizon seed context and cumulative daily-path semantics.",
+        "The source fit requires at least 504 finite training observations."
+      ]
+    }
+  ]
+}

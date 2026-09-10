@@ -15,21 +15,133 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  clean-wheel:
+    name: Python ${{ matrix.python-version }} clean wheel
+    runs-on: macos-26
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.11.15", "3.12.13"]
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      SIMFOLIO_WHEEL_TEST: "1"
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
-      - name: Install
-        run: python -m pip install -e '.[dev]'
-      - name: Lint
-        run: ruff check src tests
-      - name: Tests and publication-safety gate
-        run: pytest -q
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: requirements-lock.txt
+      - name: Create pinned reference Python environment
+        run: |
+          reference_env="${RUNNER_TEMP}/reference-python-${{ matrix.python-version }}"
+          uv venv --managed-python --python "${{ matrix.python-version }}" --seed "$reference_env"
+          echo "$reference_env/bin" >> "$GITHUB_PATH"
+      - name: Install locked runtime, all-models, and test dependencies
+        run: |
+          export NUMBA_CACHE_DIR="${RUNNER_TEMP}/simfolio-numba-cache-${{ matrix.python-version }}"
+          echo "NUMBA_CACHE_DIR=$NUMBA_CACHE_DIR" >> "$GITHUB_ENV"
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-lock.txt
+          mkdir -p "$NUMBA_CACHE_DIR"
+      - name: Record numerical environment
+        run: |
+          sw_vers
+          uname -m
+          python -c "import os, platform, numpy, scipy; print(platform.uname()); print(platform.python_version(), numpy.__version__, scipy.__version__); print({key: os.environ.get(key) for key in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS')}); numpy.show_runtime(); numpy.show_config(); scipy.show_config()"
+      - name: Build wheel outside checkout
+        id: wheel
+        run: |
+          wheel_dir="${RUNNER_TEMP}/simfolio-wheel-${{ matrix.python-version }}"
+          install_dir="${RUNNER_TEMP}/simfolio-installed-${{ matrix.python-version }}"
+          mkdir -p "$wheel_dir" "$install_dir"
+          python -m pip wheel . --no-deps --no-build-isolation --wheel-dir "$wheel_dir"
+          wheel_path="$(find "$wheel_dir" -maxdepth 1 -type f -name 'simfolio_forecasting_methodology-*.whl' -print -quit)"
+          test -n "$wheel_path"
+          python -m pip install --no-deps --target "$install_dir" "$wheel_path"
+          echo "install_dir=$install_dir" >> "$GITHUB_OUTPUT"
+          echo "wheel_path=$wheel_path" >> "$GITHUB_OUTPUT"
+          WHEEL_PATH="$wheel_path" python - <<'PY'
+          import hashlib
+          import os
+          import subprocess
+          import zipfile
+          from pathlib import Path
+
+          wheel = Path(os.environ["WHEEL_PATH"])
+          tracked = set(subprocess.check_output(["git", "ls-files", "src"], text=True).splitlines())
+          with zipfile.ZipFile(wheel) as archive:
+              packaged = {name for name in archive.namelist() if name.startswith("simfolio_forecasting_methodology/")}
+          unexpected = sorted(name for name in packaged if "src/" + name not in tracked)
+          assert not unexpected, f"Untracked or obsolete files in wheel: {unexpected}"
+          missing = sorted(name for name in tracked if name.startswith("src/simfolio_forecasting_methodology/") and name[4:] not in packaged)
+          assert not missing, f"Tracked package files missing from wheel: {missing}"
+          print(f"wheel={wheel}")
+          print(f"wheel_sha256={hashlib.sha256(wheel.read_bytes()).hexdigest()}")
+          print(f"wheel_bytes={wheel.stat().st_size}")
+          PY
+      - name: Verify installed wheel resources and offline canonical data
+        env:
+          PYTHONPATH: ${{ steps.wheel.outputs.install_dir }}
+        run: |
+          python - <<'PY'
+          from importlib import resources
+
+          from simfolio_forecasting_methodology.data import verify_canonical_snapshot
+          from simfolio_forecasting_methodology.experiment import build_experiment_schedule
+
+          snapshot = resources.files("simfolio_forecasting_methodology").joinpath(
+              "resources", "data", "canonical_snapshot"
+          )
+          assert snapshot.is_dir()
+          from importlib.metadata import metadata
+
+          extras = metadata("simfolio-forecasting-methodology").get_all("Provides-Extra") or []
+          assert "all-models" in extras
+          verified = verify_canonical_snapshot()
+          assert verified["series_count"] == 52
+          assert verified["supporting_series"] == ["BNDSIM", "CASHX", "EFFRX", "KMLMSIM", "TIPSIM", "UUPSIM"]
+          assert verified["factor_inputs"] == ["french_daily", "q5_daily"]
+          assert verified["redistribution_status"] == "user_authorized_exact_snapshot"
+          schedule = build_experiment_schedule()
+          assert len(schedule.portfolios) == 80
+          assert schedule.task_count == 4080
+          assert schedule.cell_capacity == 701280
+          print({"data": verified, "tasks": schedule.task_count, "cells": schedule.cell_capacity})
+          PY
+      - name: Lint source and tests
+        run: python -m ruff check src tests tools
+      - name: Run complete test suite against installed wheel
+        env:
+          PYTHONPATH: ${{ steps.wheel.outputs.install_dir }}
+        run: |
+          cd "$RUNNER_TEMP"
+          python -m pytest "$GITHUB_WORKSPACE/tests" -q
+
+  frozen-data-portability:
+    name: Linux frozen-data portability
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      SIMFOLIO_WHEEL_TEST: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: requirements-lock.txt
+      - name: Install isolated wheel and locked dependencies
+        run: |
+          reference_env="${RUNNER_TEMP}/data-python"
+          uv venv --managed-python --python 3.12.13 --seed "$reference_env"
+          "$reference_env/bin/python" -m pip install -r requirements-lock.txt
+          "$reference_env/bin/python" -m pip wheel . --no-deps --no-build-isolation --wheel-dir "${RUNNER_TEMP}/data-wheel"
+          "$reference_env/bin/python" -m pip install --no-deps "${RUNNER_TEMP}"/data-wheel/*.whl
+          echo "$reference_env/bin" >> "$GITHUB_PATH"
+      - name: Verify exact frozen data outside checkout
+        run: |
+          cd "$RUNNER_TEMP"
+          python -m pytest "$GITHUB_WORKSPACE/tests/test_data.py" -q

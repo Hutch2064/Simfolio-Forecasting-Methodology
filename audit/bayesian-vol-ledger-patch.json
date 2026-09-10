@@ -1,0 +1,1691 @@
+{
+  "adaptations": [
+    "The source stationary-bootstrap import is bound to the extracted base_models._stationary_bootstrap_indices kernel; no iid fallback is permitted.",
+    "ML and HARX FF6 anchor paths require aligned real training_dates and use the frozen packaged factor snapshot; no fabricated calendar or live refresh is permitted.",
+    "Unknown model IDs fail closed; fit failures raise ValueError rather than selecting a default model.",
+    "Historical recovered GJR/EGARCH descriptors retain source numerical fields but are flagged historical_recovered; deployment/comparison labels are not executable parameters.",
+    "The two private moving-block helper functions retain the recovered historical sampler and are not silently replaced by stationary bootstrap."
+  ],
+  "candidate_specs": {
+    "bayesian_sbb_ml_vol_overlay_rf_harx_ff6": {
+      "id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "type": "bayesian_sbb_ml_vol_overlay"
+    },
+    "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+      "innovation_method": "empirical_standardized_residuals",
+      "mean_model": "empirical_bayes_hac_sharpe",
+      "overlay_model": "egarch_1_1",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "prior_source": "data_driven_sharpe_shrinkage",
+      "residual_resampling": "stationary_bootstrap",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "vol_model": "egarch_1_1_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute": {
+      "id": "bayesian_sbb_overlay_ewma_absolute",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+      "mean_model": "empirical_bayes_hac_positive_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+      "mean_model": "empirical_bayes_hac_positive_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+      "mean_model": "empirical_bayes_hac_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+      "mean_model": "historical_realized_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+      "mean_model": "positive_sample_mean",
+      "overlay_model": "ewma_absolute",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "vol_model": "absolute_return_ewma_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_zero_sharpe": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
+      "mean_model": "zero_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_figarch_1_d_1": {
+      "id": "bayesian_sbb_overlay_figarch_1_d_1",
+      "overlay_model": "figarch_1_d_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+      "mean_model": "empirical_bayes_hac_sharpe",
+      "overlay_model": "garch_1_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+      "mean_model": "hierarchical_empirical_bayes_sharpe",
+      "overlay_model": "garch_1_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean": {
+      "id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+      "mean_model": "positive_sample_mean",
+      "overlay_model": "garch_1_1",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "validation_status": "previous_live_garch_incumbent_promoted_from_strict_rank10_baseline",
+      "vol_model": "garch_1_1_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage": {
+      "id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+      "mean_model": "prequential_crps_shrinkage",
+      "overlay_model": "garch_1_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1": {
+      "id": "bayesian_sbb_overlay_gjr_garch_1_1",
+      "overlay_model": "gjr_garch_1_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+      "innovation_method": "empirical_standardized_residuals",
+      "mean_model": "empirical_bayes_hac_sharpe",
+      "overlay_model": "gjr_garch_1_1",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "prior_source": "data_driven_sharpe_shrinkage",
+      "residual_resampling": "stationary_bootstrap",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "vol_model": "gjr_garch_1_1_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean": {
+      "id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+      "mean_model": "positive_sample_mean",
+      "overlay_model": "gjr_garch_1_1",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "validation_status": "focused_80_portfolio_validation_candidate",
+      "vol_model": "gjr_garch_1_1_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_harch_1_5_22": {
+      "id": "bayesian_sbb_overlay_harch_1_5_22",
+      "overlay_model": "harch_1_5_22",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected": {
+      "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+      "overlay_model": "sv_ar1_logvol_bias_corrected",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor": {
+      "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+      "mean_model": "merton_positive_hac_drift_uncertainty",
+      "overlay_model": "sv_ar1_logvol_bias_corrected",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "validation_status": "clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate",
+      "vol_model": "sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor"
+    }
+  },
+  "candidate_status": {
+    "classification": "retained wrapper/catalog binding; no source_descriptor_status field is added to executable or seed-bearing descriptors",
+    "descriptor_source": {
+      "recovered_descriptor_path": "external_recovery/historical-20-descriptors.json",
+      "recovered_descriptor_sha256": "ace6b8ccfa1300b68149ffd5d25f8d4eafe20fcfaf8afc3bfb12ce3f6764dbad",
+      "retained_runtime_catalog": "source-research/docs/forecast_oos_publication_master_catalog.json",
+      "retained_runtime_catalog_sha256": "b80e3e3c9616916f090b0449cdbe3a79f150340dd98846d1f40b0691dae537a8"
+    },
+    "exact_raw_descriptor_count": 20,
+    "exact_raw_descriptor_ids": [
+      "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+      "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "bayesian_sbb_overlay_harch_1_5_22",
+      "bayesian_sbb_overlay_ewma_absolute",
+      "bayesian_sbb_overlay_gjr_garch_1_1",
+      "bayesian_sbb_overlay_figarch_1_d_1",
+      "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+      "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+      "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+      "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+      "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+      "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+      "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+      "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+      "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+      "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+      "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+      "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+      "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+      "bayesian_sbb_overlay_ewma_absolute_zero_sharpe"
+    ]
+  },
+  "dependency_closure": {
+    "excluded_unreachable_branches": [
+      "SimfolioEngine._evidence_estimated_sharpe_dlm_historical_cagr_anchor_mean",
+      "SimfolioEngine._base_sbb_fit_from_mean_fit",
+      "mean_model historical_sharpe_prior_cap and horizon schedules",
+      "overlay_model ewma_qmle, har_log_variance, har_absolute_volatility, sv_no_ar_logvol_bias_corrected"
+    ],
+    "live_provider_or_cache_dependency": false,
+    "package_helpers": {
+      "models.numerical.base_models": [
+        "_fit_arch_volatility",
+        "_fit_ewma_volatility",
+        "_politis_white_block_length",
+        "_stationary_bootstrap_indices"
+      ],
+      "models.numerical.factors": [
+        "load_packaged_factor_frame"
+      ],
+      "models.numerical.mcmc_sv": [
+        "_dlm_mu_draw_paths",
+        "_fit_empirical_bayes_sharpe_sbb",
+        "_fit_hierarchical_empirical_bayes_sharpe_sbb",
+        "_fit_historical_realized_sharpe_sbb",
+        "_fit_merton_positive_hac_drift_uncertainty_sbb",
+        "_fit_positive_sample_mean_sbb",
+        "_fit_prequential_crps_shrinkage_sbb",
+        "_fit_zero_sharpe_sbb",
+        "_hac_mean_standard_error",
+        "_posterior_decay_mu_draw_paths"
+      ],
+      "models.portfolio.sv_reference": [
+        "_fit_sv_ar1"
+      ],
+      "runner": [
+        "TrainingData",
+        "ForecastContext"
+      ],
+      "seeds": [
+        "deterministic_seed",
+        "forecast_oos_candidate_seed"
+      ]
+    },
+    "reachable_source_functions": [
+      "_fit_bayesian_constrained_sbb",
+      "_mean_schedule_from_fit",
+      "_simulate_bayesian_constrained_sbb",
+      "_historical_sharpe_stats",
+      "_overlay_half_life_days",
+      "_overlay_vol_clip_bounds",
+      "_fit_absolute_ewma_volatility",
+      "_fit_har_overlay",
+      "_fit_arch_forecast_overlay",
+      "_fit_bayesian_sbb_vol_overlay",
+      "_overlay_vol_multiplier_curve",
+      "_simulate_bayesian_sbb_vol_overlay",
+      "_factor_model_frame_config",
+      "_ml_forecast_feature_panel",
+      "_recent_exponential_weights",
+      "_fit_sklearn_regressor",
+      "_target_persistence",
+      "_fit_bayesian_sbb_ml_vol_overlay",
+      "_simulate_bayesian_sbb_ml_vol_overlay",
+      "_fit_harx_ff6_current_log_variance_anchor",
+      "_apply_bayesian_sbb_vol_overlay_vol_anchor",
+      "_sv_log_chi_square_bias",
+      "_fit_sv_variant"
+    ],
+    "source_runtime_imported_by_package": false,
+    "third_party_runtime": [
+      "numpy",
+      "pandas",
+      "scipy",
+      "arch (HARCH/FIGARCH/GARCH/TARCH/EGARCH fits)",
+      "scikit-learn (RandomForestRegressor and Ridge/StandardScaler pipeline branches)"
+    ]
+  },
+  "factor_snapshot": {
+    "loader": "importlib.resources package-relative offline loader",
+    "models": {
+      "ff6": [
+        "Date",
+        "RF",
+        "Mkt_RF",
+        "SMB",
+        "HML",
+        "RMW",
+        "CMA",
+        "UMD"
+      ],
+      "q5": [
+        "Date",
+        "R_F",
+        "R_MKT",
+        "R_ME",
+        "R_IA",
+        "R_ROE",
+        "R_EG"
+      ]
+    },
+    "path": "resources/data/canonical_snapshot/app/factor_data/french_daily.csv.gz",
+    "semantics": [
+      "strict date normalization",
+      "unique sorted dates",
+      "required-column validation",
+      "finite numeric validation"
+    ],
+    "sha256": "9ec302fa1f2ac1c630e0019cfb3fcabb97a91255a1543e737aa60beea72ff192"
+  },
+  "files_owned_by_batch": [
+    "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py",
+    "src/simfolio_forecasting_methodology/models/numerical/factors.py",
+    "tests/parity/test_bayesian_vol_source.py",
+    "src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/bayesian_vol_source_parity.json",
+    "tools/generate_bayesian_vol_source_fixture.py",
+    "audit/bayesian-vol-source-candidates.json",
+    "audit/bayesian-vol-ledger-patch.json"
+  ],
+  "fixture": {
+    "cases": 20,
+    "environment_runs": [
+      {
+        "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache <py311-env>/bin/pytest -q tests/parity/test_bayesian_vol_source.py",
+        "numpy": "2.4.6",
+        "python": "3.11.15",
+        "result": "5 passed in 1.46s",
+        "scipy": "1.17.1"
+      },
+      {
+        "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache python -m pytest -q tests/parity/test_bayesian_vol_source.py",
+        "numpy": "2.5.3",
+        "python": "3.12.13",
+        "result": "5 passed, 1 warning in 2.56s",
+        "scipy": "1.18.1"
+      }
+    ],
+    "generator_cache_policy": "Tool forces NUMBA_CACHE_DIR to a task-owned destination path before source import and records only the policy label; PYTHONDONTWRITEBYTECODE=1; no NUMBA_DISABLE_CACHING setting.",
+    "horizon_days": 5,
+    "parity_scope": [
+      "all 20 fit summaries",
+      "standardized-residual array digest",
+      "curve parameters",
+      "factor anchor metadata",
+      "daily path arrays"
+    ],
+    "path": "resources/test_fixtures/portfolio/bayesian_vol_source_parity.json",
+    "schema": "bayesian-vol-source-parity-v1",
+    "sha256": "baee8ba76986b119fff4fbbea105547380c809f4582b4952ed8db8db9fbeb13a",
+    "simulations": 4,
+    "source_factor_frame": "original source loader invoked against exact packaged frozen FF6 bytes; in-memory refresh disabled; normalized frame equals package frame",
+    "source_generation_command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache <py311-env>/bin/python tools/generate_bayesian_vol_source_fixture.py --source-root /path/to/source-research --output src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/bayesian_vol_source_parity.json",
+    "training_observations": 720
+  },
+  "historical_identity": {
+    "blocker": "The retained catalog/parameter dictionary does not establish the complete historical experiment, dataset, panel, protocol, or exact source-wrapper identity for these rows; source-kernel parity therefore does not certify the retained scored artifact.",
+    "claim_boundary": "No historical score reproduction or optimizer identity claim is made.",
+    "historical_score_linkage": "blocked",
+    "ledger_parameter_dictionary_sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+    "retained_runtime_catalog": {
+      "path": "docs/forecast_oos_publication_master_catalog.json",
+      "sha256": "b80e3e3c9616916f090b0449cdbe3a79f150340dd98846d1f40b0691dae537a8",
+      "status": "retained snapshot identity reported by root audit; not copied into this branch"
+    }
+  },
+  "legacy_moving_block": {
+    "function_names": [
+      "_moving_block_indices",
+      "_moving_block_bayesian_sbb_paths"
+    ],
+    "function_sha256": {
+      "_moving_block_bayesian_sbb_paths": "9d3a8972682118fb876e8d1483f23ca57fd2d116caf77329037304997bb54779",
+      "_moving_block_indices": "e193f8ebf78fe52212a099e162d67f8e0e4ebd103f2aebd0c0b5383edec2ce98"
+    },
+    "legacy_candidate_descriptors": [
+      {
+        "id": "portfolio_gjr_garch_eb_sampler_moving_block_optimal",
+        "mean_model": "empirical_bayes_hac_sharpe",
+        "overlay_model": "gjr_garch_1_1",
+        "path_generator": "moving_block_bootstrap_standardized_residuals",
+        "residual_resampling": "moving_block_bootstrap",
+        "status": "private helper retained; outside assigned 20 public factories",
+        "type": "bayesian_sbb_vol_overlay"
+      },
+      {
+        "id": "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
+        "mean_model": "empirical_bayes_hac_sharpe",
+        "overlay_model": "gjr_garch_1_1",
+        "path_generator": "stationary_bootstrap_standardized_residuals",
+        "residual_resampling": "stationary_bootstrap",
+        "status": "descriptor recorded for historical wrapper comparison; outside assigned 20 public factories",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    ],
+    "line_ranges": {
+      "_moving_block_bayesian_sbb_paths": [
+        665,
+        741
+      ],
+      "_moving_block_indices": [
+        641,
+        662
+      ]
+    },
+    "path": "simfolio/tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py",
+    "scope_note": "The recovered temp wrapper names two legacy sampler cases; the moving-block kernel is retained privately so the moving-block case is never silently routed through stationary sampling. Neither legacy ID is added to the exact-20 factory domain.",
+    "sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465"
+  },
+  "model_ids": [
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+    "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+    "bayesian_sbb_overlay_harch_1_5_22",
+    "bayesian_sbb_overlay_ewma_absolute",
+    "bayesian_sbb_overlay_gjr_garch_1_1",
+    "bayesian_sbb_overlay_figarch_1_d_1",
+    "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+    "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+    "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+    "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+    "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+    "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+    "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+    "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+    "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+    "bayesian_sbb_overlay_ewma_absolute_zero_sharpe"
+  ],
+  "raw_candidate_specs": {
+    "bayesian_sbb_ml_vol_overlay_rf_harx_ff6": {
+      "id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "type": "bayesian_sbb_ml_vol_overlay"
+    },
+    "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+      "innovation_method": "empirical_standardized_residuals",
+      "mean_model": "empirical_bayes_hac_sharpe",
+      "overlay_model": "egarch_1_1",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "prior_source": "data_driven_sharpe_shrinkage",
+      "residual_resampling": "stationary_bootstrap",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "vol_model": "egarch_1_1_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute": {
+      "id": "bayesian_sbb_overlay_ewma_absolute",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+      "mean_model": "empirical_bayes_hac_positive_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+      "mean_model": "empirical_bayes_hac_positive_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+      "mean_model": "empirical_bayes_hac_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+      "mean_model": "historical_realized_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+      "mean_model": "positive_sample_mean",
+      "overlay_model": "ewma_absolute",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "vol_model": "absolute_return_ewma_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_zero_sharpe": {
+      "id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
+      "mean_model": "zero_sharpe",
+      "overlay_model": "ewma_absolute",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_figarch_1_d_1": {
+      "id": "bayesian_sbb_overlay_figarch_1_d_1",
+      "overlay_model": "figarch_1_d_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+      "mean_model": "empirical_bayes_hac_sharpe",
+      "overlay_model": "garch_1_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+      "mean_model": "hierarchical_empirical_bayes_sharpe",
+      "overlay_model": "garch_1_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean": {
+      "id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+      "mean_model": "positive_sample_mean",
+      "overlay_model": "garch_1_1",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "validation_status": "previous_live_garch_incumbent_promoted_from_strict_rank10_baseline",
+      "vol_model": "garch_1_1_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage": {
+      "id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+      "mean_model": "prequential_crps_shrinkage",
+      "overlay_model": "garch_1_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1": {
+      "id": "bayesian_sbb_overlay_gjr_garch_1_1",
+      "overlay_model": "gjr_garch_1_1",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe": {
+      "id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+      "innovation_method": "empirical_standardized_residuals",
+      "mean_model": "empirical_bayes_hac_sharpe",
+      "overlay_model": "gjr_garch_1_1",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "prior_source": "data_driven_sharpe_shrinkage",
+      "residual_resampling": "stationary_bootstrap",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "vol_model": "gjr_garch_1_1_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean": {
+      "id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+      "mean_model": "positive_sample_mean",
+      "overlay_model": "gjr_garch_1_1",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "validation_status": "focused_80_portfolio_validation_candidate",
+      "vol_model": "gjr_garch_1_1_volatility_overlay"
+    },
+    "bayesian_sbb_overlay_harch_1_5_22": {
+      "id": "bayesian_sbb_overlay_harch_1_5_22",
+      "overlay_model": "harch_1_5_22",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected": {
+      "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+      "overlay_model": "sv_ar1_logvol_bias_corrected",
+      "type": "bayesian_sbb_vol_overlay"
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor": {
+      "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+      "mean_model": "merton_positive_hac_drift_uncertainty",
+      "overlay_model": "sv_ar1_logvol_bias_corrected",
+      "path_generator": "stationary_bootstrap_standardized_residuals",
+      "tail_method": "filtered_empirical_tail",
+      "type": "bayesian_sbb_vol_overlay",
+      "validation_status": "clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate",
+      "vol_model": "sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor"
+    }
+  },
+  "raw_descriptor_policy": {
+    "execution_rule": "Only fields present in raw_candidate_specs are eligible source descriptor inputs; public ID text never supplies omitted parameters. Resolved defaults are documented separately and never written back into raw descriptors.",
+    "factor_activation": "FF6 activation requires an explicit raw ml_model or vol_anchor_model field. Neither field is present in these 20 exact rows; the RF-HARX and HARX labels in IDs and vol_model text do not activate factors.",
+    "raw_descriptor_hash_scope": "All fields in the retained raw wrapper descriptors are preserved exactly; no source_descriptor_status, posterior_mu_draws, fixed_sharpe_cap, or vol_anchor/ML parameter is inferred from an ID.",
+    "seed_activation": "panel_seed=20260528 is retained as raw experiment context; runtime source seed arguments remain origin_date, dense_horizon_tuple, public_model_id, simulations."
+  },
+  "raw_seed_descriptors": {
+    "bayesian_sbb_ml_vol_overlay_rf_harx_ff6": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_ewma_absolute": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_ewma_absolute",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_ewma_absolute_zero_sharpe": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_figarch_1_d_1": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_figarch_1_d_1",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_gjr_garch_1_1",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_harch_1_5_22": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_harch_1_5_22",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor": {
+      "panel_seed": 20260528,
+      "per_model_rng_schedule": null,
+      "source_model_key": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+      "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+    }
+  },
+  "resolved_statistical_specs": {
+    "bayesian_sbb_ml_vol_overlay_rf_harx_ff6": {
+      "family": "bayesian_sbb_ml_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "base_candidate": {
+          "overlay_model": "ewma_absolute"
+        },
+        "branch": "source ML wrapper base fit",
+        "fit_function": "_fit_bayesian_sbb_vol_overlay",
+        "wrapper_defaults": {
+          "nonnegative_drift": false,
+          "posterior_mu_draws": false,
+          "posterior_sd_scale": 0.0,
+          "prior_source": "zero",
+          "prior_sr": 0.75,
+          "sample_mean_blend": 0.0,
+          "sample_mu_days": 0,
+          "sr_cap": 0.75
+        }
+      },
+      "minimum_finite_training_observations": 180,
+      "ml_descriptor": {
+        "factor_model": "none",
+        "model": "ridge_harx",
+        "parameter_source": "source function default because raw descriptor omits ml_model"
+      },
+      "overlay_dispatch": {
+        "factor_model": "none",
+        "factor_parameter_source": "source function default because raw descriptor omits ml_model",
+        "fit_function": "_fit_bayesian_sbb_ml_vol_overlay",
+        "model": "ridge_harx",
+        "random_forest": {
+          "bootstrap": true,
+          "max_depth": 5,
+          "max_features": 0.75,
+          "min_samples_leaf": 25,
+          "n_estimators": 64,
+          "n_jobs": 1
+        },
+        "recent_weight_half_life_days": 504.0
+      }
+    },
+    "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "empirical_bayes_hac_sharpe",
+        "fit_function": "_fit_empirical_bayes_sharpe_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_arch_volatility",
+        "innovation_method": "gaussian_iid_standardized_innovations",
+        "max_fit_observations": 1260,
+        "model": "egarch_1_1",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        },
+        "vol_model": "egarch_1_1_volatility"
+      }
+    },
+    "bayesian_sbb_overlay_ewma_absolute": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "source else branch",
+        "fit_function": "default_bayesian_constrained_sbb",
+        "wrapper_defaults": {
+          "nonnegative_drift": false,
+          "posterior_mu_draws": false,
+          "posterior_sd_scale": 0.0,
+          "prior_source": "zero",
+          "prior_sr": 0.75,
+          "sample_mean_blend": 0.0,
+          "sample_mu_days": 0,
+          "sr_cap": 0.75
+        }
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_absolute_ewma_volatility",
+        "lambda_grid": [
+          0.8,
+          0.995,
+          80
+        ],
+        "minimum_residual_observations": 60,
+        "model": "ewma_absolute",
+        "objective": "one_step_log_absolute_return_volatility_mse"
+      }
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "arguments": {
+          "nonnegative_sharpe": true,
+          "posterior_mu_draws": false
+        },
+        "branch": "empirical_bayes_hac_positive_sharpe",
+        "fit_function": "_fit_empirical_bayes_sharpe_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_absolute_ewma_volatility",
+        "lambda_grid": [
+          0.8,
+          0.995,
+          80
+        ],
+        "minimum_residual_observations": 60,
+        "model": "ewma_absolute",
+        "objective": "one_step_log_absolute_return_volatility_mse"
+      }
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "arguments": {
+          "nonnegative_sharpe": true,
+          "posterior_mu_draws": false
+        },
+        "branch": "empirical_bayes_hac_positive_sharpe",
+        "fit_function": "_fit_empirical_bayes_sharpe_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_absolute_ewma_volatility",
+        "lambda_grid": [
+          0.8,
+          0.995,
+          80
+        ],
+        "minimum_residual_observations": 60,
+        "model": "ewma_absolute",
+        "objective": "one_step_log_absolute_return_volatility_mse"
+      }
+    },
+    "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "empirical_bayes_hac_sharpe",
+        "fit_function": "_fit_empirical_bayes_sharpe_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_absolute_ewma_volatility",
+        "lambda_grid": [
+          0.8,
+          0.995,
+          80
+        ],
+        "minimum_residual_observations": 60,
+        "model": "ewma_absolute",
+        "objective": "one_step_log_absolute_return_volatility_mse"
+      }
+    },
+    "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "historical_realized_sharpe",
+        "fit_function": "_fit_historical_realized_sharpe_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_absolute_ewma_volatility",
+        "lambda_grid": [
+          0.8,
+          0.995,
+          80
+        ],
+        "minimum_residual_observations": 60,
+        "model": "ewma_absolute",
+        "objective": "one_step_log_absolute_return_volatility_mse"
+      }
+    },
+    "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "positive_sample_mean",
+        "fit_function": "_fit_positive_sample_mean_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_absolute_ewma_volatility",
+        "lambda_grid": [
+          0.8,
+          0.995,
+          80
+        ],
+        "minimum_residual_observations": 60,
+        "model": "ewma_absolute",
+        "objective": "one_step_log_absolute_return_volatility_mse"
+      }
+    },
+    "bayesian_sbb_overlay_ewma_absolute_zero_sharpe": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "zero_sharpe",
+        "fit_function": "_fit_zero_sharpe_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_absolute_ewma_volatility",
+        "lambda_grid": [
+          0.8,
+          0.995,
+          80
+        ],
+        "minimum_residual_observations": 60,
+        "model": "ewma_absolute",
+        "objective": "one_step_log_absolute_return_volatility_mse"
+      }
+    },
+    "bayesian_sbb_overlay_figarch_1_d_1": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "source else branch",
+        "fit_function": "default_bayesian_constrained_sbb",
+        "wrapper_defaults": {
+          "nonnegative_drift": false,
+          "posterior_mu_draws": false,
+          "posterior_sd_scale": 0.0,
+          "prior_source": "zero",
+          "prior_sr": 0.75,
+          "sample_mean_blend": 0.0,
+          "sample_mu_days": 0,
+          "sr_cap": 0.75
+        }
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "arch_specification": {
+          "p": 1,
+          "q": 1,
+          "vol": "FIGARCH"
+        },
+        "fit_function": "_fit_arch_forecast_overlay",
+        "max_fit_observations": 1260,
+        "model": "figarch_1_d_1",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        }
+      }
+    },
+    "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "empirical_bayes_hac_sharpe",
+        "fit_function": "_fit_empirical_bayes_sharpe_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_arch_volatility",
+        "innovation_method": "gaussian_iid_standardized_innovations",
+        "max_fit_observations": 1260,
+        "model": "garch_1_1",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        },
+        "vol_model": "garch_1_1_volatility"
+      }
+    },
+    "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "hierarchical_empirical_bayes_sharpe",
+        "fit_function": "_fit_hierarchical_empirical_bayes_sharpe_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_arch_volatility",
+        "innovation_method": "gaussian_iid_standardized_innovations",
+        "max_fit_observations": 1260,
+        "model": "garch_1_1",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        },
+        "vol_model": "garch_1_1_volatility"
+      }
+    },
+    "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "positive_sample_mean",
+        "fit_function": "_fit_positive_sample_mean_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_arch_volatility",
+        "innovation_method": "gaussian_iid_standardized_innovations",
+        "max_fit_observations": 1260,
+        "model": "garch_1_1",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        },
+        "vol_model": "garch_1_1_volatility"
+      }
+    },
+    "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "prequential_crps_shrinkage",
+        "fit_function": "_fit_prequential_crps_shrinkage_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_arch_volatility",
+        "innovation_method": "gaussian_iid_standardized_innovations",
+        "max_fit_observations": 1260,
+        "model": "garch_1_1",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        },
+        "vol_model": "garch_1_1_volatility"
+      }
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "source else branch",
+        "fit_function": "default_bayesian_constrained_sbb",
+        "wrapper_defaults": {
+          "nonnegative_drift": false,
+          "posterior_mu_draws": false,
+          "posterior_sd_scale": 0.0,
+          "prior_source": "zero",
+          "prior_sr": 0.75,
+          "sample_mean_blend": 0.0,
+          "sample_mu_days": 0,
+          "sr_cap": 0.75
+        }
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_arch_volatility",
+        "innovation_method": "gaussian_iid_standardized_innovations",
+        "max_fit_observations": 1260,
+        "model": "gjr_garch_1_1",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        },
+        "vol_model": "gjr_tarch_1_1_volatility"
+      }
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "empirical_bayes_hac_sharpe",
+        "fit_function": "_fit_empirical_bayes_sharpe_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_arch_volatility",
+        "innovation_method": "gaussian_iid_standardized_innovations",
+        "max_fit_observations": 1260,
+        "model": "gjr_garch_1_1",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        },
+        "vol_model": "gjr_tarch_1_1_volatility"
+      }
+    },
+    "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "positive_sample_mean",
+        "fit_function": "_fit_positive_sample_mean_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_arch_volatility",
+        "innovation_method": "gaussian_iid_standardized_innovations",
+        "max_fit_observations": 1260,
+        "model": "gjr_garch_1_1",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        },
+        "vol_model": "gjr_tarch_1_1_volatility"
+      }
+    },
+    "bayesian_sbb_overlay_harch_1_5_22": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "source else branch",
+        "fit_function": "default_bayesian_constrained_sbb",
+        "wrapper_defaults": {
+          "nonnegative_drift": false,
+          "posterior_mu_draws": false,
+          "posterior_sd_scale": 0.0,
+          "prior_source": "zero",
+          "prior_sr": 0.75,
+          "sample_mean_blend": 0.0,
+          "sample_mu_days": 0,
+          "sr_cap": 0.75
+        }
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "arch_specification": {
+          "p": [
+            1,
+            5,
+            22
+          ],
+          "vol": "HARCH"
+        },
+        "fit_function": "_fit_arch_forecast_overlay",
+        "max_fit_observations": 1260,
+        "model": "harch_1_5_22",
+        "optimizer": {
+          "ftol": 1e-06,
+          "maxiter": 80
+        }
+      }
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "source else branch",
+        "fit_function": "default_bayesian_constrained_sbb",
+        "wrapper_defaults": {
+          "nonnegative_drift": false,
+          "posterior_mu_draws": false,
+          "posterior_sd_scale": 0.0,
+          "prior_source": "zero",
+          "prior_sr": 0.75,
+          "sample_mean_blend": 0.0,
+          "sample_mu_days": 0,
+          "sr_cap": 0.75
+        }
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_sv_variant",
+        "model": "sv_ar1_logvol_bias_corrected",
+        "variant": {
+          "bias_correct": true,
+          "eta_scale": 0.0,
+          "last_blend": 0.0,
+          "phi_cap": 0.995
+        }
+      }
+    },
+    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor": {
+      "family": "bayesian_sbb_vol_overlay",
+      "innovation_and_simulation": {
+        "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+        "block_length_floor": 1,
+        "index_kernel": "_stationary_bootstrap_indices",
+        "overlay_multiplier_clip": [
+          0.01,
+          100.0
+        ],
+        "resampling": "stationary_bootstrap",
+        "residual_scale": 100.0,
+        "simulated_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "standardized_residual_clip": [
+          -20.0,
+          20.0
+        ]
+      },
+      "mean_dispatch": {
+        "branch": "merton_positive_hac_drift_uncertainty",
+        "fit_function": "_fit_merton_positive_hac_drift_uncertainty_sbb"
+      },
+      "minimum_finite_training_observations": 60,
+      "overlay_dispatch": {
+        "fit_function": "_fit_sv_variant",
+        "model": "sv_ar1_logvol_bias_corrected",
+        "variant": {
+          "bias_correct": true,
+          "eta_scale": 0.0,
+          "last_blend": 0.0,
+          "phi_cap": 0.995
+        }
+      }
+    }
+  },
+  "schema_version": "canonical-175-bayesian-vol-family-patch-v1",
+  "scope": {
+    "assigned_rows": "19 bayesian_sbb_vol_overlay + 1 bayesian_sbb_ml_vol_overlay",
+    "canonical_scope": "canonical175_only",
+    "central_ledger_policy": "audit_patch_only; central registry and ledger are untouched",
+    "family": "bayesian_sbb_vol_overlay",
+    "source_checkout_policy": "read_only_source_research_and_recovered_historical_wrapper",
+    "working_tree": {
+      "base_commit": "efbdcece3dfa73c36c5a6801789ee7316f5ccaf6",
+      "branch": "bayesian-vol-c175"
+    }
+  },
+  "source": {
+    "artifacts": {
+      "engine": {
+        "path": "source-research/app/engine.py",
+        "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
+      },
+      "research_gate": {
+        "path": "source-research/scripts/forecast_oos_research_gate.py",
+        "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+      },
+      "source_revision": {
+        "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+      }
+    },
+    "candidate_descriptor_audit": {
+      "count": 20,
+      "path": "audit/bayesian-vol-source-candidates.json",
+      "sha256": "1c6384ead80210878eae958f2df745dcd9727f044255f6ab7c7129a742d6ff38"
+    },
+    "digest_scope": "SHA-256 of ordered AST source fragments for the 23 retained source functions; destination boundary code is excluded",
+    "extracted_function_digest": "13951693868ba16eb6877e415c0b047b8c94f694dc409f209947cb56ef4e70dc",
+    "function_line_ranges": {
+      "_apply_bayesian_sbb_vol_overlay_vol_anchor": [
+        13866,
+        13909
+      ],
+      "_factor_model_frame_config": [
+        6018,
+        6042
+      ],
+      "_fit_absolute_ewma_volatility": [
+        5470,
+        5503
+      ],
+      "_fit_arch_forecast_overlay": [
+        5561,
+        5602
+      ],
+      "_fit_bayesian_constrained_sbb": [
+        3564,
+        3637
+      ],
+      "_fit_bayesian_sbb_ml_vol_overlay": [
+        7235,
+        7294
+      ],
+      "_fit_bayesian_sbb_vol_overlay": [
+        5605,
+        5927
+      ],
+      "_fit_har_overlay": [
+        5506,
+        5558
+      ],
+      "_fit_harx_ff6_current_log_variance_anchor": [
+        13777,
+        13830
+      ],
+      "_fit_sklearn_regressor": [
+        6148,
+        6190
+      ],
+      "_fit_sv_variant": [
+        13196,
+        13213
+      ],
+      "_historical_sharpe_stats": [
+        3921,
+        3947
+      ],
+      "_mean_schedule_from_fit": [
+        3640,
+        3681
+      ],
+      "_ml_forecast_feature_panel": [
+        6045,
+        6136
+      ],
+      "_overlay_half_life_days": [
+        5449,
+        5453
+      ],
+      "_overlay_vol_clip_bounds": [
+        5456,
+        5467
+      ],
+      "_overlay_vol_multiplier_curve": [
+        5930,
+        5993
+      ],
+      "_recent_exponential_weights": [
+        6139,
+        6145
+      ],
+      "_simulate_bayesian_constrained_sbb": [
+        5388,
+        5446
+      ],
+      "_simulate_bayesian_sbb_ml_vol_overlay": [
+        7297,
+        7303
+      ],
+      "_simulate_bayesian_sbb_vol_overlay": [
+        5996,
+        6015
+      ],
+      "_sv_log_chi_square_bias": [
+        13185,
+        13193
+      ],
+      "_target_persistence": [
+        7220,
+        7232
+      ]
+    },
+    "function_names": [
+      "_fit_bayesian_constrained_sbb",
+      "_mean_schedule_from_fit",
+      "_simulate_bayesian_constrained_sbb",
+      "_historical_sharpe_stats",
+      "_overlay_half_life_days",
+      "_overlay_vol_clip_bounds",
+      "_fit_absolute_ewma_volatility",
+      "_fit_har_overlay",
+      "_fit_arch_forecast_overlay",
+      "_fit_bayesian_sbb_vol_overlay",
+      "_overlay_vol_multiplier_curve",
+      "_simulate_bayesian_sbb_vol_overlay",
+      "_factor_model_frame_config",
+      "_ml_forecast_feature_panel",
+      "_recent_exponential_weights",
+      "_fit_sklearn_regressor",
+      "_target_persistence",
+      "_fit_bayesian_sbb_ml_vol_overlay",
+      "_simulate_bayesian_sbb_ml_vol_overlay",
+      "_fit_harx_ff6_current_log_variance_anchor",
+      "_apply_bayesian_sbb_vol_overlay_vol_anchor",
+      "_sv_log_chi_square_bias",
+      "_fit_sv_variant"
+    ],
+    "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+    "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+  },
+  "target_family_counts": {
+    "bayesian_sbb_ml_vol_overlay": 1,
+    "bayesian_sbb_vol_overlay": 19,
+    "total": 20
+  },
+  "verification_status": "source_kernel_parity_verified_exact_raw_descriptor_binding_corrected_experiment_identity_unresolved"
+}

@@ -1,0 +1,97 @@
+{
+  "appendix_mismatch": {
+    "historical_appendix_asset_count": 38,
+    "historical_appendix_rebalance_counts": {
+      "annually": 18,
+      "monthly": 20,
+      "none": 24,
+      "quarterly": 18
+    },
+    "reason": "The retained dense scored artifact and Frontier candidate runs use the 52-series panel; the 38-series appendix definitions do not match those scored inputs.",
+    "status": "preserved_as_provenance_only"
+  },
+  "contract": {
+    "aggregation": "mean_origins_within_portfolio_horizon_cells_then_equal_cells",
+    "bootstrap_reps": 1000,
+    "common_end": "2026-05-13",
+    "common_start": "1979-12-31",
+    "dataset_id": "simfolio-canonical-simulated-returns-2026-05-13",
+    "failure_policy": "fail_closed_nonfinite_or_missing_cells",
+    "horizon_units": "trading_days",
+    "origin_policy": "full_history_even",
+    "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+    "panel_id": "scored52-dense-whitepaper-20260823",
+    "panel_seed": 20260528,
+    "portfolio_count": 80,
+    "rolling_horizon_rule": "daily_1_to_min_forward_and_floor_training_over_4",
+    "rolling_min_training_observations": 504,
+    "rolling_origins_per_portfolio": 48,
+    "score": "exact_empirical_crps",
+    "score_pairwise_denominator": "n_squared",
+    "scored_cells_per_model": 701280,
+    "selection_horizons_days": [
+      21,
+      42,
+      63,
+      126,
+      189,
+      252,
+      378,
+      504,
+      756,
+      1008,
+      1260,
+      1512,
+      1764,
+      2016,
+      2268,
+      2520,
+      3780,
+      5040,
+      7560
+    ],
+    "simulations_per_origin": 240,
+    "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+    "target": "terminal_log_return",
+    "temporal_origins_per_portfolio": 3,
+    "temporal_position_rule": "floor(n_times_train_fraction)-1_clipped_to_79_through_n-2",
+    "temporal_splits": [
+      [
+        "train_first_quarter_test_remaining",
+        0.25
+      ],
+      [
+        "train_first_half_test_remaining",
+        0.5
+      ],
+      [
+        "train_first_three_quarters_test_final_quarter",
+        0.75
+      ]
+    ]
+  },
+  "evidence": {
+    "retained_artifact": "outputs/019f1c90-82e5-72b0-88d6-1149e944528e/bdes_cagr_recovery_package/academic/whitepaper_oos_canonical_20260823_fastmap/full_panel_results.json.gz",
+    "retained_dense_panel_common_return_count": 11687,
+    "retained_dense_panel_rebalance_counts": {
+      "annually": 19,
+      "monthly": 26,
+      "none": 18,
+      "quarterly": 17
+    },
+    "retained_dense_panel_ticker_count": 52,
+    "retained_result_note": "The archived generic candidate adapter indexed daily path columns without cumulative summation; active evaluator therefore applies terminal accumulation and historical scores retain their original result identity until independently reconciled.",
+    "retained_score_cells_per_model": 701280,
+    "source_locations": [
+      "scripts/forecast_oos_research_gate.py:_origin_panel",
+      "app/engine.py:_evenly_spaced_origins",
+      "tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py:_rolling_payloads",
+      "tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py:_temporal_payloads"
+    ],
+    "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+  },
+  "identity_status": "verified_against_retained_dense_20260823_artifact",
+  "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+  "protocol_id": "canonical-whitepaper-dense-daily-v1"
+}
+

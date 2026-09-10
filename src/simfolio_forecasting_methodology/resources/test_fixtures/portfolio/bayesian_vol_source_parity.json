@@ -1,0 +1,3403 @@
+{
+  "cases": [
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 0.00047894979763731926,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.00026571977112314037,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "log_variance_decay",
+          "fit_status": "complete",
+          "last_log_variance_error_variance": 0.27335840976489173,
+          "last_log_variance_x": 0.42520440983815755,
+          "long_log_variance_x": 0.027304059093910715,
+          "persistence": 0.855342850238797
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 4.4360597361388185,
+          "overlay_model": "sv_ar1_logvol_bias_corrected",
+          "overlay_persistence": 0.855342850238797
+        },
+        "sigma_clip_bounds_x": [
+          0.017703455869209267,
+          2.418383063574683
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+      "paths": [
+        [
+          -0.014610031656094324,
+          0.0007410843571555606,
+          -0.007280801104942571,
+          -0.0053839232364878194,
+          -0.003998058495159305
+        ],
+        [
+          -0.007035844755175047,
+          -0.0019226874442432435,
+          -0.015430835425595668,
+          -0.008209320026660583,
+          0.003990403620105366
+        ],
+        [
+          0.013642058111539452,
+          -0.010889409960312615,
+          0.0003541083814759788,
+          -0.017333563228091334,
+          -0.0005049960306115106
+        ],
+        [
+          -0.0008260910688359761,
+          -0.002291198981555308,
+          0.01015609097638723,
+          0.007763138714952374,
+          0.005136753251318659
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "08481e4879f3284c179a63df38bcfd1be51ac00a4f336580c8a1ad5a0375c20b",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 450889633,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+        "overlay_model": "sv_ar1_logvol_bias_corrected",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 0.00047894979763731926,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.00026571977112314037,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 0.604855087120846,
+          "long_variance_x": 1.0276802307825939,
+          "persistence": 0.11573224097546148
+        },
+        "meta": {
+          "feature_count": 22,
+          "feature_set": "harx",
+          "method": "bayesian_sbb_with_machine_learning_conditional_volatility_overlay",
+          "ml_model": "ridge_harx",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 0.32142586934023964,
+          "overlay_model": "ewma_absolute",
+          "overlay_persistence": 0.11573224097546148,
+          "training_rows": 594
+        },
+        "sigma_clip_bounds_x": [
+          0.024045289897967455,
+          3.090805072341773
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "paths": [
+        [
+          0.000494227217808588,
+          0.001813616104182078,
+          0.004562541635327844,
+          0.004515528872331343,
+          0.001081974710309906
+        ],
+        [
+          0.017217345389850078,
+          0.01510081571860128,
+          0.008909893866086673,
+          0.018948727112602336,
+          0.017501283441841695
+        ],
+        [
+          -0.0044164269646614004,
+          -0.007560239318571457,
+          0.003161659449468354,
+          -0.004591376988461079,
+          -0.02090767540933898
+        ],
+        [
+          -0.002076960287220641,
+          0.015909345562539902,
+          0.006667320573284873,
+          0.01338538909248502,
+          0.011548892416223545
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "24abcf62cbf0cf2d307060f087cc4b4e40313a2accc286b536cc697aa7f5d247",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 2539935978,
+      "source_specification": {
+        "id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+        "type": "bayesian_sbb_ml_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "arch_params": {
+          "alpha[1]": 0.024139946530749305,
+          "alpha[22]": 6.312099776138323e-15,
+          "alpha[5]": 0.264790837869705,
+          "omega": 0.7333776669408332
+        },
+        "base": {
+          "mu_cap": 0.00047894979763731926,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.00026571977112314037,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "arch_forecast",
+          "fit_status": "complete",
+          "persistence": 0.2889307844004606
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 0.5582836490811127,
+          "overlay_model": "harch_1_5_22",
+          "overlay_persistence": 0.2889307844004606
+        },
+        "sigma_clip_bounds_x": [
+          0.8704307450599429,
+          1.2336949456955075
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_harch_1_5_22",
+      "paths": [
+        [
+          0.025231297085254144,
+          0.0005109489381715097,
+          0.017999166034435646,
+          0.006130238460481049,
+          0.00891940753851171
+        ],
+        [
+          -0.012017161311523448,
+          0.015185181342247157,
+          0.013022577235230943,
+          0.008343409032427756,
+          0.0025929816611674587
+        ],
+        [
+          0.001985288268688,
+          -0.010898133671237374,
+          0.0056286026158941785,
+          -0.01307041910247795,
+          -0.009018816768484334
+        ],
+        [
+          -0.00975652234784574,
+          -0.00985488449352141,
+          -0.015556406749680075,
+          -0.01484852674849539,
+          -0.00433398840379758
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "24adf7fb3fa07e93493494fd3bddec156fbb4d88bd072000889a5df3e93be359",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 851126750,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_harch_1_5_22",
+        "overlay_model": "harch_1_5_22",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 0.00047894979763731926,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.00026571977112314037,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.9864722293769363,
+          "long_variance_x": 1.0276802307825939,
+          "objective": "one_step_log_absolute_return_volatility_mse",
+          "persistence": 0.8
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.1062837195053903,
+          "overlay_model": "ewma_absolute",
+          "overlay_persistence": 0.8
+        },
+        "sigma_clip_bounds_x": [
+          0.4453323390876698,
+          1.7409201631586835
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_ewma_absolute",
+      "paths": [
+        [
+          -0.01678660099499967,
+          -0.011403331510159315,
+          -0.009911329762495558,
+          -0.017687933140172953,
+          -0.025114410004911845
+        ],
+        [
+          -0.0066476328394582535,
+          0.008997901673038516,
+          -0.0038300184057079856,
+          0.02130224439768947,
+          0.005748315592394359
+        ],
+        [
+          -0.014922533078276259,
+          0.004141233427896497,
+          0.0033445619033897023,
+          -0.017337814111627603,
+          -0.00724697458086322
+        ],
+        [
+          0.009859844835533706,
+          -0.010514662014353129,
+          -0.0016840043461570204,
+          0.003365038155369007,
+          0.005376103071672106
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "048bbb539c35a087ed08fc85e3577cbc3aaf7c271b2abc4b98f5f6660bfb11f7",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 3000296585,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_ewma_absolute",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "arch_params": {
+          "alpha[1]": 0.09065170915587412,
+          "beta[1]": 0.7385261513825473,
+          "gamma[1]": -0.009319198317242684,
+          "omega": 0.18155408539656337
+        },
+        "base": {
+          "mu_cap": 0.00047894979763731926,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.00026571977112314037,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.269806274224704,
+          "long_variance_x": 1.0276802307825939,
+          "persistence": 0.8245182613798001
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.592255336957976,
+          "overlay_model": "gjr_garch_1_1",
+          "overlay_persistence": 0.8245182613798001
+        },
+        "sigma_clip_bounds_x": [
+          0.8682372084615304,
+          1.2518947362674993
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1",
+      "paths": [
+        [
+          -0.008093404770157958,
+          -0.004175132281803807,
+          -0.00600597363890057,
+          -0.004721053957332087,
+          0.004010065610369929
+        ],
+        [
+          -0.00010145995403716858,
+          0.015372323927415677,
+          0.010884544496755579,
+          0.010824401716814157,
+          0.003052993682460932
+        ],
+        [
+          -0.013914135235667348,
+          -0.012113698292203027,
+          0.003528582709816279,
+          0.002932832694878613,
+          -0.015365502745956624
+        ],
+        [
+          0.008806969078246057,
+          0.0027586818186454043,
+          0.018303256307044213,
+          -0.0073427983373196845,
+          -0.0004686801459115722
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "80c82c5827f1968d75577bd24f89add7e64bb7fd7bb338ccf6e5f650eca9e6aa",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 3554063336,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_gjr_garch_1_1",
+        "overlay_model": "gjr_garch_1_1",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "arch_params": {
+          "beta": 0.04210932130000215,
+          "d": 0.12050245142931917,
+          "omega": 0.4279123094236103,
+          "phi": 0.0
+        },
+        "base": {
+          "mu_cap": 0.00047894979763731926,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.00026571977112314037,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "arch_forecast",
+          "fit_status": "complete",
+          "persistence": 0.1626117727293213
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 0.38160708994732384,
+          "overlay_model": "figarch_1_d_1",
+          "overlay_persistence": 0.1626117727293213
+        },
+        "sigma_clip_bounds_x": [
+          0.8875500145641655,
+          1.221620778192588
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_figarch_1_d_1",
+      "paths": [
+        [
+          -0.014460802641138373,
+          -0.007745128783455721,
+          0.0038225183484066633,
+          -0.013267641123809085,
+          0.0009890342466976581
+        ],
+        [
+          0.00807395829907001,
+          0.01884004124712174,
+          -0.007139237530872702,
+          0.008562688302131914,
+          0.01655915683354363
+        ],
+        [
+          0.0003486460460310146,
+          -0.01636962285142715,
+          -0.00047025701999398874,
+          0.012924807055709293,
+          -0.0008125854083457064
+        ],
+        [
+          -0.006362636616180693,
+          0.012998512456686057,
+          0.01905787094661475,
+          0.004376844047565209,
+          0.018098864036854415
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "8e26a89a38410f1efd90228b9b0abc0ee36b6f0b16bada2ffb3dea1f84b4f3ed",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 841334999,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_figarch_1_d_1",
+        "overlay_model": "figarch_1_d_1",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 0.0,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.00043105651759976093,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.9864722293769363,
+          "long_variance_x": 1.0276802307825939,
+          "objective": "one_step_log_absolute_return_volatility_mse",
+          "persistence": 0.8
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.1062837195053903,
+          "overlay_model": "ewma_absolute",
+          "overlay_persistence": 0.8
+        },
+        "sigma_clip_bounds_x": [
+          0.4453323390876698,
+          1.7409201631586835
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+      "paths": [
+        [
+          -0.0037489365737138226,
+          0.0014773211708305057,
+          -0.0038674421335108747,
+          -0.012212478627062689,
+          -0.006971111215753954
+        ],
+        [
+          0.0031228048674390788,
+          0.0036062339329835827,
+          0.007661499192261471,
+          -0.005369751834821328,
+          0.01705836010976673
+        ],
+        [
+          -0.008159773866030704,
+          0.01933297557256981,
+          0.02490109441490145,
+          0.020852289643965946,
+          0.01742970775206419
+        ],
+        [
+          -0.00262668373211101,
+          0.019014433689188766,
+          -0.008640901389001178,
+          0.006377763975611515,
+          -0.012095269620044579
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "b64b0f4ed5752cbf954a0b5d34bc28907164ac4218737e5b27ccdcafef4a2086",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 1701767009,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+        "mean_model": "historical_realized_sharpe",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 0.0,
+          "nonnegative_drift": true,
+          "posterior_mean": 0.00043105651759976093,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.9864722293769363,
+          "long_variance_x": 1.0276802307825939,
+          "objective": "one_step_log_absolute_return_volatility_mse",
+          "persistence": 0.8
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.1062837195053903,
+          "overlay_model": "ewma_absolute",
+          "overlay_persistence": 0.8
+        },
+        "sigma_clip_bounds_x": [
+          0.4453323390876698,
+          1.7409201631586835
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+      "paths": [
+        [
+          0.008200966451034698,
+          -0.0029905946673437394,
+          -0.008436236590710978,
+          -0.001304969630043286,
+          -0.0002627988386599306
+        ],
+        [
+          0.008875989725550214,
+          -0.012594540735835755,
+          -0.008817859577609855,
+          -0.012596381903662336,
+          -0.007516486125068047
+        ],
+        [
+          0.001982455285866104,
+          -0.0026026458190151307,
+          0.019500036343750443,
+          0.007959473627596473,
+          0.0007501125448398894
+        ],
+        [
+          0.026134798931948932,
+          0.015416226389476054,
+          0.025036454075800976,
+          0.008126285253045823,
+          0.01348813545764145
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "88b437763d28d9255755e3c2997264c2b26adcd969ec52893f5c66afbd3324af",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 11340610,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+        "mean_model": "positive_sample_mean",
+        "overlay_model": "ewma_absolute",
+        "path_generator": "stationary_bootstrap_standardized_residuals",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "vol_model": "absolute_return_ewma_volatility_overlay"
+      }
+    },
+    {
+      "fit": {
+        "arch_params": {
+          "alpha[1]": 0.08713496854179702,
+          "beta[1]": 0.7386332269979775,
+          "omega": 0.18041297769609346
+        },
+        "base": {
+          "mu_cap": 0.0,
+          "nonnegative_drift": true,
+          "posterior_mean": 0.00043105651759976093,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.305121545472681,
+          "long_variance_x": 1.0276802307825939,
+          "persistence": 0.8257681955397745
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.620679632949691,
+          "overlay_model": "garch_1_1",
+          "overlay_persistence": 0.8257681955397745
+        },
+        "sigma_clip_bounds_x": [
+          0.8671447791832555,
+          1.247931851783034
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+      "paths": [
+        [
+          0.001971848984917035,
+          0.018568097222827425,
+          0.02077170954966488,
+          -0.0009063367792580112,
+          0.01237425722301863
+        ],
+        [
+          0.009074224916251495,
+          0.00294958548075582,
+          0.018626845118174657,
+          -0.0072343368895171345,
+          -0.0003080044941681305
+        ],
+        [
+          -0.003262620290664329,
+          0.008356565270735061,
+          0.0015618847070400655,
+          0.0007272812002668044,
+          -0.006039312924965038
+        ],
+        [
+          -0.009404865276580026,
+          -0.0249892180355229,
+          -0.0014614835033268485,
+          0.0012925375210030617,
+          0.005631829421564925
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "ed8cc44bee1b81d66531ed1ad3627c614cdeaf9c1ae65ec33477b036cfa8fdce",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 3854749066,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+        "mean_model": "positive_sample_mean",
+        "overlay_model": "garch_1_1",
+        "path_generator": "stationary_bootstrap_standardized_residuals",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "validation_status": "previous_live_garch_incumbent_promoted_from_strict_rank10_baseline",
+        "vol_model": "garch_1_1_volatility_overlay"
+      }
+    },
+    {
+      "fit": {
+        "arch_params": {
+          "alpha[1]": 0.09065170915587412,
+          "beta[1]": 0.7385261513825473,
+          "gamma[1]": -0.009319198317242684,
+          "omega": 0.18155408539656337
+        },
+        "base": {
+          "mu_cap": 0.0,
+          "nonnegative_drift": true,
+          "posterior_mean": 0.00043105651759976093,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.269806274224704,
+          "long_variance_x": 1.0276802307825939,
+          "persistence": 0.8245182613798001
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.592255336957976,
+          "overlay_model": "gjr_garch_1_1",
+          "overlay_persistence": 0.8245182613798001
+        },
+        "sigma_clip_bounds_x": [
+          0.8682372084615304,
+          1.2518947362674993
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+      "paths": [
+        [
+          0.011524991185018563,
+          -0.0036801325641103782,
+          0.01886167727619621,
+          0.007636333329887091,
+          0.012776947309127708
+        ],
+        [
+          0.0060351266671232265,
+          0.0029706140846683564,
+          -0.006200099265869234,
+          -0.006724912583603949,
+          -0.01575711546517974
+        ],
+        [
+          -0.008690769333185452,
+          -0.014599547869642284,
+          0.0010133310419925183,
+          0.0017313500821568141,
+          -0.007704547879327471
+        ],
+        [
+          0.004738313332290644,
+          -0.01042376386781436,
+          -0.012175219087005121,
+          0.011695514645952301,
+          0.004874436857598988
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "5cdedb57951a21010817f55719e1e1d84404ea39146f682161cd771b5a0e5266",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 277643757,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+        "mean_model": "positive_sample_mean",
+        "overlay_model": "gjr_garch_1_1",
+        "path_generator": "stationary_bootstrap_standardized_residuals",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "validation_status": "focused_80_portfolio_validation_candidate",
+        "vol_model": "gjr_garch_1_1_volatility_overlay"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 0.0,
+          "nonnegative_drift": true,
+          "posterior_mean": 0.00043105651759976093,
+          "posterior_mu_draws": true,
+          "posterior_sd": 0.001340202503673917,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "log_variance_decay",
+          "fit_status": "complete",
+          "last_log_variance_error_variance": 0.27335840976489173,
+          "last_log_variance_x": 0.42520440983815755,
+          "long_log_variance_x": 0.027304059093910715,
+          "persistence": 0.855342850238797
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 4.4360597361388185,
+          "overlay_model": "sv_ar1_logvol_bias_corrected",
+          "overlay_persistence": 0.855342850238797
+        },
+        "sigma_clip_bounds_x": [
+          0.017703455869209267,
+          2.418383063574683
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+      "paths": [
+        [
+          -0.0003747357402139701,
+          -0.0027801185589036567,
+          -0.003725535094495569,
+          -0.005463902049658456,
+          -0.002170387125828125
+        ],
+        [
+          -0.01190710643305606,
+          -0.01953183047624676,
+          -0.002478147693287693,
+          -0.011897245286293202,
+          -0.022570443392081575
+        ],
+        [
+          -0.012333283991815991,
+          -0.016784035239788987,
+          -0.011828783870423788,
+          -0.006961350852241413,
+          0.003021896298558235
+        ],
+        [
+          -0.01276057598012998,
+          0.0015511256435747328,
+          0.013622640824252739,
+          0.0018760562845359537,
+          0.008929502812753223
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "cef06831179fedae745b322390149a2b88ee1594bf1bb14c9ac1bb9a740b87af",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 3004841120,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+        "mean_model": "merton_positive_hac_drift_uncertainty",
+        "overlay_model": "sv_ar1_logvol_bias_corrected",
+        "path_generator": "stationary_bootstrap_standardized_residuals",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "validation_status": "clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate",
+        "vol_model": "sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 6.385997301830923e-16,
+          "nonnegative_drift": true,
+          "posterior_mean": 0.0,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.9864722293769363,
+          "long_variance_x": 1.0276802307825939,
+          "objective": "one_step_log_absolute_return_volatility_mse",
+          "persistence": 0.8
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.1062837195053903,
+          "overlay_model": "ewma_absolute",
+          "overlay_persistence": 0.8
+        },
+        "sigma_clip_bounds_x": [
+          0.4453323390876698,
+          1.7409201631586835
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+      "paths": [
+        [
+          0.00913114949948068,
+          -0.004258023223464349,
+          0.021751415677768993,
+          0.005640773123894636,
+          0.0015325862090523246
+        ],
+        [
+          0.011426958323185275,
+          0.023611780494341237,
+          0.020951611420301063,
+          0.01462294717653987,
+          0.011042437333467884
+        ],
+        [
+          -0.017173573548885993,
+          0.0008809681498378655,
+          0.0009222837807272739,
+          0.0046336992345959935,
+          -0.011515578892503514
+        ],
+        [
+          -0.008980344406465677,
+          -0.019597203352764627,
+          0.007717650777229968,
+          -0.007177162425327511,
+          -0.00010107898937202743
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "1b729b4d35c56ae1ef28d6707eea5030266f36afb0730507e22f904324e0b202",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 561028811,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+        "mean_model": "empirical_bayes_hac_positive_sharpe",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 6.385997301830923e-16,
+          "nonnegative_drift": true,
+          "posterior_mean": 0.0,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.9864722293769363,
+          "long_variance_x": 1.0276802307825939,
+          "objective": "one_step_log_absolute_return_volatility_mse",
+          "persistence": 0.8
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.1062837195053903,
+          "overlay_model": "ewma_absolute",
+          "overlay_persistence": 0.8
+        },
+        "sigma_clip_bounds_x": [
+          0.4453323390876698,
+          1.7409201631586835
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+      "paths": [
+        [
+          -0.003230872788884556,
+          0.02015228495488918,
+          0.005312350304288858,
+          0.00030342777859638354,
+          -9.442381269580378e-06
+        ],
+        [
+          0.014910825644087598,
+          -0.012187851596244356,
+          9.486745886615559e-05,
+          -0.018600468658726835,
+          -0.0008040088423256021
+        ],
+        [
+          0.008798080557430409,
+          -0.001617251511970536,
+          0.00913507606706731,
+          0.002394651959942022,
+          0.0028709539116923265
+        ],
+        [
+          0.003320249164860483,
+          0.0075169338213062886,
+          -0.00599793910735817,
+          0.017107014684840553,
+          0.0022220116370015508
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "8334eee352fe07694f152894d24dd55c3d707427ae695d1372c31966297ab49d",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 4067741607,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+        "mean_model": "empirical_bayes_hac_positive_sharpe",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "arch_params": {
+          "alpha[1]": 0.08713496854179702,
+          "beta[1]": 0.7386332269979775,
+          "omega": 0.18041297769609346
+        },
+        "base": {
+          "mu_cap": 6.385997301830923e-16,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.0,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.305121545472681,
+          "long_variance_x": 1.0276802307825939,
+          "persistence": 0.8257681955397745
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.620679632949691,
+          "overlay_model": "garch_1_1",
+          "overlay_persistence": 0.8257681955397745
+        },
+        "sigma_clip_bounds_x": [
+          0.8671447791832555,
+          1.247931851783034
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+      "paths": [
+        [
+          -0.021467820459663764,
+          -0.02304011570079714,
+          -0.007857016025561525,
+          -0.0181103120023857,
+          -0.0051124410094904454
+        ],
+        [
+          0.004918637752858613,
+          0.011290638494174516,
+          0.008819116811097882,
+          0.01020229039607654,
+          0.020388511832651366
+        ],
+        [
+          -0.004291655530962989,
+          -0.0034663444183024553,
+          -0.007434672264659192,
+          -0.012869183144189974,
+          0.0007505568962961498
+        ],
+        [
+          -0.01021105641955234,
+          -0.009110120070781332,
+          -0.01639099876289553,
+          -0.023563951930285796,
+          0.0010763960601247887
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "a0ea3afa94743f72c07c9e8fe38dca76ecb5d36040a5f4b056dddae39ba88b03",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 794131740,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+        "mean_model": "empirical_bayes_hac_sharpe",
+        "overlay_model": "garch_1_1",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "arch_params": {
+          "alpha[1]": 0.09065170915587412,
+          "beta[1]": 0.7385261513825473,
+          "gamma[1]": -0.009319198317242684,
+          "omega": 0.18155408539656337
+        },
+        "base": {
+          "mu_cap": 6.385997301830923e-16,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.0,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.269806274224704,
+          "long_variance_x": 1.0276802307825939,
+          "persistence": 0.8245182613798001
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.592255336957976,
+          "overlay_model": "gjr_garch_1_1",
+          "overlay_persistence": 0.8245182613798001
+        },
+        "sigma_clip_bounds_x": [
+          0.8682372084615304,
+          1.2518947362674993
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+      "paths": [
+        [
+          0.005409922333473579,
+          0.0030391265827101515,
+          -0.004308366431355698,
+          0.019123940280425654,
+          -0.0031390825559219587
+        ],
+        [
+          -0.021279330235276665,
+          -0.015107226075450952,
+          -0.013523521896983155,
+          -0.009988169255764307,
+          -0.00025675918702529294
+        ],
+        [
+          -0.010062556608361308,
+          -0.014769365705061738,
+          -0.02252826996897128,
+          -0.007708547699555446,
+          -0.017820386921769148
+        ],
+        [
+          0.019960752674219397,
+          0.01832105141271199,
+          -0.004336718768300732,
+          0.02335470347827502,
+          0.0038144403496619783
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "f674d528757a817d34b4140e767ec6f218a715a6d0f8342cf5a2e00ae170bc8f",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 24313390,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+        "innovation_method": "empirical_standardized_residuals",
+        "mean_model": "empirical_bayes_hac_sharpe",
+        "overlay_model": "gjr_garch_1_1",
+        "path_generator": "stationary_bootstrap_standardized_residuals",
+        "prior_source": "data_driven_sharpe_shrinkage",
+        "residual_resampling": "stationary_bootstrap",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "vol_model": "gjr_garch_1_1_volatility_overlay"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 6.385997301830923e-16,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.0,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "log_variance_decay",
+          "fit_status": "complete",
+          "last_log_variance_x": 0.2915357906804747,
+          "long_log_variance_x": 0.027304059093910715,
+          "persistence": 0.8310258540964605
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.744831195533936,
+          "overlay_model": "egarch_1_1",
+          "overlay_persistence": 0.8310258540964605
+        },
+        "sigma_clip_bounds_x": [
+          0.8071263077152787,
+          1.2481548142454038
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+      "paths": [
+        [
+          -0.015053647069014563,
+          -0.010316552492540446,
+          -0.010038701734016258,
+          -0.01640081619146757,
+          -0.0154103466435578
+        ],
+        [
+          0.003770729062974086,
+          -0.008615643414364755,
+          -0.009181164029448775,
+          -0.007815877595327168,
+          -0.009329654374986058
+        ],
+        [
+          -0.0038073430412438433,
+          -0.005898850350972036,
+          0.0032130189798813204,
+          -0.005506458956185174,
+          -0.003519645852006526
+        ],
+        [
+          -0.006878708505173949,
+          0.006815177666816622,
+          0.010466453472250514,
+          0.015208504289322468,
+          0.021361537239753307
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "6e48bf1c956ba26a3f55f534afee3ff3e3293985ca429b5512f4922d81eaecbc",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 2637579987,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+        "innovation_method": "empirical_standardized_residuals",
+        "mean_model": "empirical_bayes_hac_sharpe",
+        "overlay_model": "egarch_1_1",
+        "path_generator": "stationary_bootstrap_standardized_residuals",
+        "prior_source": "data_driven_sharpe_shrinkage",
+        "residual_resampling": "stationary_bootstrap",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "vol_model": "egarch_1_1_volatility_overlay"
+      }
+    },
+    {
+      "fit": {
+        "arch_params": {
+          "alpha[1]": 0.08713496854179702,
+          "beta[1]": 0.7386332269979775,
+          "omega": 0.18041297769609346
+        },
+        "base": {
+          "mu_cap": 0.0,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.00041891326982586074,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0013211902976198496,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.305121545472681,
+          "long_variance_x": 1.0276802307825939,
+          "persistence": 0.8257681955397745
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.620679632949691,
+          "overlay_model": "garch_1_1",
+          "overlay_persistence": 0.8257681955397745
+        },
+        "sigma_clip_bounds_x": [
+          0.8671447791832555,
+          1.247931851783034
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+      "paths": [
+        [
+          -0.00979214314972648,
+          -0.00869120680095547,
+          -0.01597208549306967,
+          -0.023145038660459936,
+          -0.016194776870716555
+        ],
+        [
+          0.02447532578018002,
+          0.009511062009272993,
+          0.01136444561326981,
+          0.01606512944230386,
+          0.019330564533778263
+        ],
+        [
+          -0.01686908405739675,
+          -0.005473274302888633,
+          -0.011935380338245729,
+          -0.014122013328077427,
+          -0.0073257212519613445
+        ],
+        [
+          -0.017069477548982533,
+          -0.0025289361069636583,
+          -0.01308519382523274,
+          -0.012893389718828535,
+          0.0008506616729750103
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "23b0fca6f216a706a6e086c9df9a77d6261c4f5a06b62ddc5dcc54cdb6050efd",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 1387824742,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+        "mean_model": "hierarchical_empirical_bayes_sharpe",
+        "overlay_model": "garch_1_1",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 6.385997301830923e-16,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.0,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.9864722293769363,
+          "long_variance_x": 1.0276802307825939,
+          "objective": "one_step_log_absolute_return_volatility_mse",
+          "persistence": 0.8
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.1062837195053903,
+          "overlay_model": "ewma_absolute",
+          "overlay_persistence": 0.8
+        },
+        "sigma_clip_bounds_x": [
+          0.4453323390876698,
+          1.7409201631586835
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+      "paths": [
+        [
+          0.019489445903775503,
+          0.022749825361201022,
+          0.019877883829158137,
+          0.009144163999922565,
+          -0.0026703738057150908
+        ],
+        [
+          0.0002360472931853919,
+          -0.003130186140120986,
+          0.006506633747602931,
+          0.0021475915008550145,
+          0.0019891707526438628
+        ],
+        [
+          0.0038182664033042063,
+          0.007109625909450676,
+          0.0033018988932238063,
+          0.006303978460191163,
+          0.032655226121432124
+        ],
+        [
+          -0.034793950033602666,
+          -0.01280554168782017,
+          -0.011315595716196227,
+          -0.020873861164754676,
+          -0.006822618965489864
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "22b9ca0e762381abf613f2d182a7ff59f281e9314f34e383d0e3d06d6dd45449",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 1327646372,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+        "mean_model": "empirical_bayes_hac_sharpe",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "arch_params": {
+          "alpha[1]": 0.08713496854179702,
+          "beta[1]": 0.7386332269979775,
+          "omega": 0.18041297769609346
+        },
+        "base": {
+          "mu_cap": 0.0,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.0,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.305121545472681,
+          "long_variance_x": 1.0276802307825939,
+          "persistence": 0.8257681955397745
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.620679632949691,
+          "overlay_model": "garch_1_1",
+          "overlay_persistence": 0.8257681955397745
+        },
+        "sigma_clip_bounds_x": [
+          0.8671447791832555,
+          1.247931851783034
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+      "paths": [
+        [
+          -0.014916291158513702,
+          -0.010247123572507948,
+          -0.009987973085731044,
+          -0.016337243224063706,
+          -0.015363444289093371
+        ],
+        [
+          0.00922865251287972,
+          0.005918808056010878,
+          0.01247207132039357,
+          0.001478160295830594,
+          0.017510213368821918
+        ],
+        [
+          -0.016444050189990036,
+          -0.009165833404669315,
+          -0.007733168259188008,
+          -0.0024057899729702076,
+          0.010409051252579557
+        ],
+        [
+          -0.004291655530962989,
+          -0.0034663444183024553,
+          -0.007434672264659192,
+          -0.012869183144189974,
+          0.0007505568962961498
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "0141487c99be55256ec3a61b0514f3cb5d01bd46ade0c06eec5f8159812186f1",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 746474582,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+        "mean_model": "prequential_crps_shrinkage",
+        "overlay_model": "garch_1_1",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    },
+    {
+      "fit": {
+        "base": {
+          "mu_cap": 0.0,
+          "nonnegative_drift": false,
+          "posterior_mean": 0.0,
+          "posterior_mu_draws": false,
+          "posterior_sd": 0.0,
+          "sample_mu": 0.00043105651759976093,
+          "sample_mu_days": 0,
+          "sigma": 0.010137456440264462
+        },
+        "curve": {
+          "curve_type": "variance_decay",
+          "fit_status": "complete",
+          "last_variance_x": 1.9864722293769363,
+          "long_variance_x": 1.0276802307825939,
+          "objective": "one_step_log_absolute_return_volatility_mse",
+          "persistence": 0.8
+        },
+        "meta": {
+          "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+          "overlay_fit_status": "complete",
+          "overlay_half_life_days": 3.1062837195053903,
+          "overlay_model": "ewma_absolute",
+          "overlay_persistence": 0.8
+        },
+        "sigma_clip_bounds_x": [
+          0.4453323390876698,
+          1.7409201631586835
+        ],
+        "standardized_residuals": {
+          "dtype": "float64",
+          "sha256": "189d43b9e19e5f95c57abc8467b9087dda3aa8a67e571fa87c84f572b1508681",
+          "shape": [
+            720
+          ]
+        }
+      },
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
+      "paths": [
+        [
+          -0.009680570322846617,
+          -0.010935077762994462,
+          -0.005517550765810589,
+          -0.015524679647310715,
+          -0.02852330893269732
+        ],
+        [
+          7.725730055517992e-06,
+          -0.009152808284999226,
+          -0.005550010847500678,
+          -0.010090702351941842,
+          0.0023820896222634374
+        ],
+        [
+          -0.0003285868889731544,
+          -0.0029637062552596337,
+          -0.003937276484023284,
+          -0.005723540335975807,
+          -0.0022212605367970656
+        ],
+        [
+          -0.019098554092266868,
+          -0.01313510524197503,
+          -0.007554463952147429,
+          0.00328750431550035,
+          -0.010655062791405713
+        ]
+      ],
+      "paths_array": {
+        "dtype": "float64",
+        "sha256": "fbe6ebcfb32693b65dbbab5f98813e0ee6df0ed8038eaf7dea632eb64f5deed2",
+        "shape": [
+          4,
+          5
+        ]
+      },
+      "source_forecast_seed": 1490564011,
+      "source_specification": {
+        "id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
+        "mean_model": "zero_sharpe",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay"
+      }
+    }
+  ],
+  "context": {
+    "horizon_days": 5,
+    "origin_date": "2026-05-13",
+    "simulations": 4
+  },
+  "environment": {
+    "numba_cache_dir": "task_owned_redirected_cache",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "python": "3.11.15"
+  },
+  "schema": "bayesian-vol-source-parity-v1",
+  "source_artifacts": {
+    "engine": {
+      "path": "app/engine.py",
+      "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
+    },
+    "research_gate": {
+      "path": "scripts/forecast_oos_research_gate.py",
+      "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+    },
+    "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+  },
+  "source_function_digest": "13951693868ba16eb6877e415c0b047b8c94f694dc409f209947cb56ef4e70dc",
+  "source_function_line_ranges": {
+    "_apply_bayesian_sbb_vol_overlay_vol_anchor": [
+      13866,
+      13909
+    ],
+    "_factor_model_frame_config": [
+      6018,
+      6042
+    ],
+    "_fit_absolute_ewma_volatility": [
+      5470,
+      5503
+    ],
+    "_fit_arch_forecast_overlay": [
+      5561,
+      5602
+    ],
+    "_fit_bayesian_constrained_sbb": [
+      3564,
+      3637
+    ],
+    "_fit_bayesian_sbb_ml_vol_overlay": [
+      7235,
+      7294
+    ],
+    "_fit_bayesian_sbb_vol_overlay": [
+      5605,
+      5927
+    ],
+    "_fit_har_overlay": [
+      5506,
+      5558
+    ],
+    "_fit_harx_ff6_current_log_variance_anchor": [
+      13777,
+      13830
+    ],
+    "_fit_sklearn_regressor": [
+      6148,
+      6190
+    ],
+    "_fit_sv_variant": [
+      13196,
+      13213
+    ],
+    "_historical_sharpe_stats": [
+      3921,
+      3947
+    ],
+    "_mean_schedule_from_fit": [
+      3640,
+      3681
+    ],
+    "_ml_forecast_feature_panel": [
+      6045,
+      6136
+    ],
+    "_overlay_half_life_days": [
+      5449,
+      5453
+    ],
+    "_overlay_vol_clip_bounds": [
+      5456,
+      5467
+    ],
+    "_overlay_vol_multiplier_curve": [
+      5930,
+      5993
+    ],
+    "_recent_exponential_weights": [
+      6139,
+      6145
+    ],
+    "_simulate_bayesian_constrained_sbb": [
+      5388,
+      5446
+    ],
+    "_simulate_bayesian_sbb_ml_vol_overlay": [
+      7297,
+      7303
+    ],
+    "_simulate_bayesian_sbb_vol_overlay": [
+      5996,
+      6015
+    ],
+    "_sv_log_chi_square_bias": [
+      13185,
+      13193
+    ],
+    "_target_persistence": [
+      7220,
+      7232
+    ]
+  },
+  "source_function_names": [
+    "_fit_bayesian_constrained_sbb",
+    "_mean_schedule_from_fit",
+    "_simulate_bayesian_constrained_sbb",
+    "_historical_sharpe_stats",
+    "_overlay_half_life_days",
+    "_overlay_vol_clip_bounds",
+    "_fit_absolute_ewma_volatility",
+    "_fit_har_overlay",
+    "_fit_arch_forecast_overlay",
+    "_fit_bayesian_sbb_vol_overlay",
+    "_overlay_vol_multiplier_curve",
+    "_simulate_bayesian_sbb_vol_overlay",
+    "_factor_model_frame_config",
+    "_ml_forecast_feature_panel",
+    "_recent_exponential_weights",
+    "_fit_sklearn_regressor",
+    "_target_persistence",
+    "_fit_bayesian_sbb_ml_vol_overlay",
+    "_simulate_bayesian_sbb_ml_vol_overlay",
+    "_fit_harx_ff6_current_log_variance_anchor",
+    "_apply_bayesian_sbb_vol_overlay_vol_anchor",
+    "_sv_log_chi_square_bias",
+    "_fit_sv_variant"
+  ],
+  "training": {
+    "dates": [
+      "2000-01-03",
+      "2000-01-04",
+      "2000-01-05",
+      "2000-01-06",
+      "2000-01-07",
+      "2000-01-10",
+      "2000-01-11",
+      "2000-01-12",
+      "2000-01-13",
+      "2000-01-14",
+      "2000-01-17",
+      "2000-01-18",
+      "2000-01-19",
+      "2000-01-20",
+      "2000-01-21",
+      "2000-01-24",
+      "2000-01-25",
+      "2000-01-26",
+      "2000-01-27",
+      "2000-01-28",
+      "2000-01-31",
+      "2000-02-01",
+      "2000-02-02",
+      "2000-02-03",
+      "2000-02-04",
+      "2000-02-07",
+      "2000-02-08",
+      "2000-02-09",
+      "2000-02-10",
+      "2000-02-11",
+      "2000-02-14",
+      "2000-02-15",
+      "2000-02-16",
+      "2000-02-17",
+      "2000-02-18",
+      "2000-02-21",
+      "2000-02-22",
+      "2000-02-23",
+      "2000-02-24",
+      "2000-02-25",
+      "2000-02-28",
+      "2000-02-29",
+      "2000-03-01",
+      "2000-03-02",
+      "2000-03-03",
+      "2000-03-06",
+      "2000-03-07",
+      "2000-03-08",
+      "2000-03-09",
+      "2000-03-10",
+      "2000-03-13",
+      "2000-03-14",
+      "2000-03-15",
+      "2000-03-16",
+      "2000-03-17",
+      "2000-03-20",
+      "2000-03-21",
+      "2000-03-22",
+      "2000-03-23",
+      "2000-03-24",
+      "2000-03-27",
+      "2000-03-28",
+      "2000-03-29",
+      "2000-03-30",
+      "2000-03-31",
+      "2000-04-03",
+      "2000-04-04",
+      "2000-04-05",
+      "2000-04-06",
+      "2000-04-07",
+      "2000-04-10",
+      "2000-04-11",
+      "2000-04-12",
+      "2000-04-13",
+      "2000-04-14",
+      "2000-04-17",
+      "2000-04-18",
+      "2000-04-19",
+      "2000-04-20",
+      "2000-04-21",
+      "2000-04-24",
+      "2000-04-25",
+      "2000-04-26",
+      "2000-04-27",
+      "2000-04-28",
+      "2000-05-01",
+      "2000-05-02",
+      "2000-05-03",
+      "2000-05-04",
+      "2000-05-05",
+      "2000-05-08",
+      "2000-05-09",
+      "2000-05-10",
+      "2000-05-11",
+      "2000-05-12",
+      "2000-05-15",
+      "2000-05-16",
+      "2000-05-17",
+      "2000-05-18",
+      "2000-05-19",
+      "2000-05-22",
+      "2000-05-23",
+      "2000-05-24",
+      "2000-05-25",
+      "2000-05-26",
+      "2000-05-29",
+      "2000-05-30",
+      "2000-05-31",
+      "2000-06-01",
+      "2000-06-02",
+      "2000-06-05",
+      "2000-06-06",
+      "2000-06-07",
+      "2000-06-08",
+      "2000-06-09",
+      "2000-06-12",
+      "2000-06-13",
+      "2000-06-14",
+      "2000-06-15",
+      "2000-06-16",
+      "2000-06-19",
+      "2000-06-20",
+      "2000-06-21",
+      "2000-06-22",
+      "2000-06-23",
+      "2000-06-26",
+      "2000-06-27",
+      "2000-06-28",
+      "2000-06-29",
+      "2000-06-30",
+      "2000-07-03",
+      "2000-07-04",
+      "2000-07-05",
+      "2000-07-06",
+      "2000-07-07",
+      "2000-07-10",
+      "2000-07-11",
+      "2000-07-12",
+      "2000-07-13",
+      "2000-07-14",
+      "2000-07-17",
+      "2000-07-18",
+      "2000-07-19",
+      "2000-07-20",
+      "2000-07-21",
+      "2000-07-24",
+      "2000-07-25",
+      "2000-07-26",
+      "2000-07-27",
+      "2000-07-28",
+      "2000-07-31",
+      "2000-08-01",
+      "2000-08-02",
+      "2000-08-03",
+      "2000-08-04",
+      "2000-08-07",
+      "2000-08-08",
+      "2000-08-09",
+      "2000-08-10",
+      "2000-08-11",
+      "2000-08-14",
+      "2000-08-15",
+      "2000-08-16",
+      "2000-08-17",
+      "2000-08-18",
+      "2000-08-21",
+      "2000-08-22",
+      "2000-08-23",
+      "2000-08-24",
+      "2000-08-25",
+      "2000-08-28",
+      "2000-08-29",
+      "2000-08-30",
+      "2000-08-31",
+      "2000-09-01",
+      "2000-09-04",
+      "2000-09-05",
+      "2000-09-06",
+      "2000-09-07",
+      "2000-09-08",
+      "2000-09-11",
+      "2000-09-12",
+      "2000-09-13",
+      "2000-09-14",
+      "2000-09-15",
+      "2000-09-18",
+      "2000-09-19",
+      "2000-09-20",
+      "2000-09-21",
+      "2000-09-22",
+      "2000-09-25",
+      "2000-09-26",
+      "2000-09-27",
+      "2000-09-28",
+      "2000-09-29",
+      "2000-10-02",
+      "2000-10-03",
+      "2000-10-04",
+      "2000-10-05",
+      "2000-10-06",
+      "2000-10-09",
+      "2000-10-10",
+      "2000-10-11",
+      "2000-10-12",
+      "2000-10-13",
+      "2000-10-16",
+      "2000-10-17",
+      "2000-10-18",
+      "2000-10-19",
+      "2000-10-20",
+      "2000-10-23",
+      "2000-10-24",
+      "2000-10-25",
+      "2000-10-26",
+      "2000-10-27",
+      "2000-10-30",
+      "2000-10-31",
+      "2000-11-01",
+      "2000-11-02",
+      "2000-11-03",
+      "2000-11-06",
+      "2000-11-07",
+      "2000-11-08",
+      "2000-11-09",
+      "2000-11-10",
+      "2000-11-13",
+      "2000-11-14",
+      "2000-11-15",
+      "2000-11-16",
+      "2000-11-17",
+      "2000-11-20",
+      "2000-11-21",
+      "2000-11-22",
+      "2000-11-23",
+      "2000-11-24",
+      "2000-11-27",
+      "2000-11-28",
+      "2000-11-29",
+      "2000-11-30",
+      "2000-12-01",
+      "2000-12-04",
+      "2000-12-05",
+      "2000-12-06",
+      "2000-12-07",
+      "2000-12-08",
+      "2000-12-11",
+      "2000-12-12",
+      "2000-12-13",
+      "2000-12-14",
+      "2000-12-15",
+      "2000-12-18",
+      "2000-12-19",
+      "2000-12-20",
+      "2000-12-21",
+      "2000-12-22",
+      "2000-12-25",
+      "2000-12-26",
+      "2000-12-27",
+      "2000-12-28",
+      "2000-12-29",
+      "2001-01-01",
+      "2001-01-02",
+      "2001-01-03",
+      "2001-01-04",
+      "2001-01-05",
+      "2001-01-08",
+      "2001-01-09",
+      "2001-01-10",
+      "2001-01-11",
+      "2001-01-12",
+      "2001-01-15",
+      "2001-01-16",
+      "2001-01-17",
+      "2001-01-18",
+      "2001-01-19",
+      "2001-01-22",
+      "2001-01-23",
+      "2001-01-24",
+      "2001-01-25",
+      "2001-01-26",
+      "2001-01-29",
+      "2001-01-30",
+      "2001-01-31",
+      "2001-02-01",
+      "2001-02-02",
+      "2001-02-05",
+      "2001-02-06",
+      "2001-02-07",
+      "2001-02-08",
+      "2001-02-09",
+      "2001-02-12",
+      "2001-02-13",
+      "2001-02-14",
+      "2001-02-15",
+      "2001-02-16",
+      "2001-02-19",
+      "2001-02-20",
+      "2001-02-21",
+      "2001-02-22",
+      "2001-02-23",
+      "2001-02-26",
+      "2001-02-27",
+      "2001-02-28",
+      "2001-03-01",
+      "2001-03-02",
+      "2001-03-05",
+      "2001-03-06",
+      "2001-03-07",
+      "2001-03-08",
+      "2001-03-09",
+      "2001-03-12",
+      "2001-03-13",
+      "2001-03-14",
+      "2001-03-15",
+      "2001-03-16",
+      "2001-03-19",
+      "2001-03-20",
+      "2001-03-21",
+      "2001-03-22",
+      "2001-03-23",
+      "2001-03-26",
+      "2001-03-27",
+      "2001-03-28",
+      "2001-03-29",
+      "2001-03-30",
+      "2001-04-02",
+      "2001-04-03",
+      "2001-04-04",
+      "2001-04-05",
+      "2001-04-06",
+      "2001-04-09",
+      "2001-04-10",
+      "2001-04-11",
+      "2001-04-12",
+      "2001-04-13",
+      "2001-04-16",
+      "2001-04-17",
+      "2001-04-18",
+      "2001-04-19",
+      "2001-04-20",
+      "2001-04-23",
+      "2001-04-24",
+      "2001-04-25",
+      "2001-04-26",
+      "2001-04-27",
+      "2001-04-30",
+      "2001-05-01",
+      "2001-05-02",
+      "2001-05-03",
+      "2001-05-04",
+      "2001-05-07",
+      "2001-05-08",
+      "2001-05-09",
+      "2001-05-10",
+      "2001-05-11",
+      "2001-05-14",
+      "2001-05-15",
+      "2001-05-16",
+      "2001-05-17",
+      "2001-05-18",
+      "2001-05-21",
+      "2001-05-22",
+      "2001-05-23",
+      "2001-05-24",
+      "2001-05-25",
+      "2001-05-28",
+      "2001-05-29",
+      "2001-05-30",
+      "2001-05-31",
+      "2001-06-01",
+      "2001-06-04",
+      "2001-06-05",
+      "2001-06-06",
+      "2001-06-07",
+      "2001-06-08",
+      "2001-06-11",
+      "2001-06-12",
+      "2001-06-13",
+      "2001-06-14",
+      "2001-06-15",
+      "2001-06-18",
+      "2001-06-19",
+      "2001-06-20",
+      "2001-06-21",
+      "2001-06-22",
+      "2001-06-25",
+      "2001-06-26",
+      "2001-06-27",
+      "2001-06-28",
+      "2001-06-29",
+      "2001-07-02",
+      "2001-07-03",
+      "2001-07-04",
+      "2001-07-05",
+      "2001-07-06",
+      "2001-07-09",
+      "2001-07-10",
+      "2001-07-11",
+      "2001-07-12",
+      "2001-07-13",
+      "2001-07-16",
+      "2001-07-17",
+      "2001-07-18",
+      "2001-07-19",
+      "2001-07-20",
+      "2001-07-23",
+      "2001-07-24",
+      "2001-07-25",
+      "2001-07-26",
+      "2001-07-27",
+      "2001-07-30",
+      "2001-07-31",
+      "2001-08-01",
+      "2001-08-02",
+      "2001-08-03",
+      "2001-08-06",
+      "2001-08-07",
+      "2001-08-08",
+      "2001-08-09",
+      "2001-08-10",
+      "2001-08-13",
+      "2001-08-14",
+      "2001-08-15",
+      "2001-08-16",
+      "2001-08-17",
+      "2001-08-20",
+      "2001-08-21",
+      "2001-08-22",
+      "2001-08-23",
+      "2001-08-24",
+      "2001-08-27",
+      "2001-08-28",
+      "2001-08-29",
+      "2001-08-30",
+      "2001-08-31",
+      "2001-09-03",
+      "2001-09-04",
+      "2001-09-05",
+      "2001-09-06",
+      "2001-09-07",
+      "2001-09-10",
+      "2001-09-11",
+      "2001-09-12",
+      "2001-09-13",
+      "2001-09-14",
+      "2001-09-17",
+      "2001-09-18",
+      "2001-09-19",
+      "2001-09-20",
+      "2001-09-21",
+      "2001-09-24",
+      "2001-09-25",
+      "2001-09-26",
+      "2001-09-27",
+      "2001-09-28",
+      "2001-10-01",
+      "2001-10-02",
+      "2001-10-03",
+      "2001-10-04",
+      "2001-10-05",
+      "2001-10-08",
+      "2001-10-09",
+      "2001-10-10",
+      "2001-10-11",
+      "2001-10-12",
+      "2001-10-15",
+      "2001-10-16",
+      "2001-10-17",
+      "2001-10-18",
+      "2001-10-19",
+      "2001-10-22",
+      "2001-10-23",
+      "2001-10-24",
+      "2001-10-25",
+      "2001-10-26",
+      "2001-10-29",
+      "2001-10-30",
+      "2001-10-31",
+      "2001-11-01",
+      "2001-11-02",
+      "2001-11-05",
+      "2001-11-06",
+      "2001-11-07",
+      "2001-11-08",
+      "2001-11-09",
+      "2001-11-12",
+      "2001-11-13",
+      "2001-11-14",
+      "2001-11-15",
+      "2001-11-16",
+      "2001-11-19",
+      "2001-11-20",
+      "2001-11-21",
+      "2001-11-22",
+      "2001-11-23",
+      "2001-11-26",
+      "2001-11-27",
+      "2001-11-28",
+      "2001-11-29",
+      "2001-11-30",
+      "2001-12-03",
+      "2001-12-04",
+      "2001-12-05",
+      "2001-12-06",
+      "2001-12-07",
+      "2001-12-10",
+      "2001-12-11",
+      "2001-12-12",
+      "2001-12-13",
+      "2001-12-14",
+      "2001-12-17",
+      "2001-12-18",
+      "2001-12-19",
+      "2001-12-20",
+      "2001-12-21",
+      "2001-12-24",
+      "2001-12-25",
+      "2001-12-26",
+      "2001-12-27",
+      "2001-12-28",
+      "2001-12-31",
+      "2002-01-01",
+      "2002-01-02",
+      "2002-01-03",
+      "2002-01-04",
+      "2002-01-07",
+      "2002-01-08",
+      "2002-01-09",
+      "2002-01-10",
+      "2002-01-11",
+      "2002-01-14",
+      "2002-01-15",
+      "2002-01-16",
+      "2002-01-17",
+      "2002-01-18",
+      "2002-01-21",
+      "2002-01-22",
+      "2002-01-23",
+      "2002-01-24",
+      "2002-01-25",
+      "2002-01-28",
+      "2002-01-29",
+      "2002-01-30",
+      "2002-01-31",
+      "2002-02-01",
+      "2002-02-04",
+      "2002-02-05",
+      "2002-02-06",
+      "2002-02-07",
+      "2002-02-08",
+      "2002-02-11",
+      "2002-02-12",
+      "2002-02-13",
+      "2002-02-14",
+      "2002-02-15",
+      "2002-02-18",
+      "2002-02-19",
+      "2002-02-20",
+      "2002-02-21",
+      "2002-02-22",
+      "2002-02-25",
+      "2002-02-26",
+      "2002-02-27",
+      "2002-02-28",
+      "2002-03-01",
+      "2002-03-04",
+      "2002-03-05",
+      "2002-03-06",
+      "2002-03-07",
+      "2002-03-08",
+      "2002-03-11",
+      "2002-03-12",
+      "2002-03-13",
+      "2002-03-14",
+      "2002-03-15",
+      "2002-03-18",
+      "2002-03-19",
+      "2002-03-20",
+      "2002-03-21",
+      "2002-03-22",
+      "2002-03-25",
+      "2002-03-26",
+      "2002-03-27",
+      "2002-03-28",
+      "2002-03-29",
+      "2002-04-01",
+      "2002-04-02",
+      "2002-04-03",
+      "2002-04-04",
+      "2002-04-05",
+      "2002-04-08",
+      "2002-04-09",
+      "2002-04-10",
+      "2002-04-11",
+      "2002-04-12",
+      "2002-04-15",
+      "2002-04-16",
+      "2002-04-17",
+      "2002-04-18",
+      "2002-04-19",
+      "2002-04-22",
+      "2002-04-23",
+      "2002-04-24",
+      "2002-04-25",
+      "2002-04-26",
+      "2002-04-29",
+      "2002-04-30",
+      "2002-05-01",
+      "2002-05-02",
+      "2002-05-03",
+      "2002-05-06",
+      "2002-05-07",
+      "2002-05-08",
+      "2002-05-09",
+      "2002-05-10",
+      "2002-05-13",
+      "2002-05-14",
+      "2002-05-15",
+      "2002-05-16",
+      "2002-05-17",
+      "2002-05-20",
+      "2002-05-21",
+      "2002-05-22",
+      "2002-05-23",
+      "2002-05-24",
+      "2002-05-27",
+      "2002-05-28",
+      "2002-05-29",
+      "2002-05-30",
+      "2002-05-31",
+      "2002-06-03",
+      "2002-06-04",
+      "2002-06-05",
+      "2002-06-06",
+      "2002-06-07",
+      "2002-06-10",
+      "2002-06-11",
+      "2002-06-12",
+      "2002-06-13",
+      "2002-06-14",
+      "2002-06-17",
+      "2002-06-18",
+      "2002-06-19",
+      "2002-06-20",
+      "2002-06-21",
+      "2002-06-24",
+      "2002-06-25",
+      "2002-06-26",
+      "2002-06-27",
+      "2002-06-28",
+      "2002-07-01",
+      "2002-07-02",
+      "2002-07-03",
+      "2002-07-04",
+      "2002-07-05",
+      "2002-07-08",
+      "2002-07-09",
+      "2002-07-10",
+      "2002-07-11",
+      "2002-07-12",
+      "2002-07-15",
+      "2002-07-16",
+      "2002-07-17",
+      "2002-07-18",
+      "2002-07-19",
+      "2002-07-22",
+      "2002-07-23",
+      "2002-07-24",
+      "2002-07-25",
+      "2002-07-26",
+      "2002-07-29",
+      "2002-07-30",
+      "2002-07-31",
+      "2002-08-01",
+      "2002-08-02",
+      "2002-08-05",
+      "2002-08-06",
+      "2002-08-07",
+      "2002-08-08",
+      "2002-08-09",
+      "2002-08-12",
+      "2002-08-13",
+      "2002-08-14",
+      "2002-08-15",
+      "2002-08-16",
+      "2002-08-19",
+      "2002-08-20",
+      "2002-08-21",
+      "2002-08-22",
+      "2002-08-23",
+      "2002-08-26",
+      "2002-08-27",
+      "2002-08-28",
+      "2002-08-29",
+      "2002-08-30",
+      "2002-09-02",
+      "2002-09-03",
+      "2002-09-04",
+      "2002-09-05",
+      "2002-09-06",
+      "2002-09-09",
+      "2002-09-10",
+      "2002-09-11",
+      "2002-09-12",
+      "2002-09-13",
+      "2002-09-16",
+      "2002-09-17",
+      "2002-09-18",
+      "2002-09-19",
+      "2002-09-20",
+      "2002-09-23",
+      "2002-09-24",
+      "2002-09-25",
+      "2002-09-26",
+      "2002-09-27",
+      "2002-09-30",
+      "2002-10-01",
+      "2002-10-02",
+      "2002-10-03",
+      "2002-10-04"
+    ],
+    "factor_snapshot": "resources/data/canonical_snapshot/app/factor_data/french_daily.csv.gz",
+    "factor_snapshot_sha256": "9ec302fa1f2ac1c630e0019cfb3fcabb97a91255a1543e737aa60beea72ff192",
+    "n_obs": 720,
+    "source_loader_frame": {
+      "columns": [
+        "Mkt_RF",
+        "SMB",
+        "HML",
+        "RMW",
+        "CMA",
+        "RF",
+        "UMD"
+      ],
+      "frame_equals_packaged": true,
+      "rows": 15854,
+      "values_array": {
+        "dtype": "float64",
+        "sha256": "4e622d61681937c8625db218867fe4acb3894fcfddac69e82818b9b7002fc097",
+        "shape": [
+          15854,
+          7
+        ]
+      }
+    },
+    "values": [
+      -0.006773849452434956,
+      -0.001836610443511451,
+      0.010339235406441142,
+      0.0032633816946187446,
+      0.008922906388149332,
+      0.007088681537515943,
+      -0.0008486537118839281,
+      0.00794593709270653,
+      0.0024679384311295793,
+      0.0029435333888944014,
+      0.006379109145330327,
+      -0.004503089159747561,
+      0.014982218602500135,
+      0.0023756202470896232,
+      0.014487377041999478,
+      0.008826607098434022,
+      0.018956745653862798,
+      0.003944923951536222,
+      0.006685233356168537,
+      0.01150511204919516,
+      -0.006069739528830019,
+      0.015387900887493002,
+      0.02056109277745042,
+      0.01780128029244776,
+      0.015307198518994928,
+      0.009077988440691498,
+      0.019114753401651537,
+      0.017666693804433253,
+      0.012869280161221493,
+      0.010094697682324861,
+      0.007430215673694768,
+      0.001220700909004337,
+      0.01825218062616674,
+      -0.005732409082973056,
+      0.006651942847290612,
+      0.01013325639312674,
+      0.014710832030984021,
+      0.02070281281916488,
+      0.014975532217871589,
+      0.005605465605817214,
+      0.012340927658214111,
+      -0.002013788056740718,
+      0.01637729927165308,
+      0.004801209301962855,
+      0.0006891510401542903,
+      0.0004227931440732311,
+      0.003941015160510173,
+      0.001080780853144836,
+      0.019306644954553066,
+      -0.002313810601588026,
+      0.0023690262083767067,
+      0.001757549349698145,
+      0.001174651376702815,
+      0.000776854098319807,
+      -0.003569648644798061,
+      -0.004869496586439599,
+      -0.007404466454066973,
+      -0.012365008362455143,
+      -0.0010048246855589567,
+      0.0038097080262717697,
+      -0.007433292874035088,
+      -0.008079704910794292,
+      -0.006907533482977717,
+      -0.008422635880323017,
+      -0.015739549548324797,
+      0.0034027780834031546,
+      -0.003525492438804387,
+      -0.012002525903310041,
+      -0.005337822622300325,
+      -0.010858410714140142,
+      -0.009614393298453768,
+      -0.005900253504329047,
+      -0.0020625756536268736,
+      0.001648744328876543,
+      0.0027164540883056875,
+      -0.011143529124530854,
+      -0.013057323721691796,
+      -0.008985880722770175,
+      -0.008874625772246835,
+      -0.014968220689091823,
+      -0.01419311533738671,
+      -0.0041434017870647455,
+      0.0017043045261531335,
+      -0.011291414573328341,
+      -0.01412517751882692,
+      -0.011422841193000712,
+      -0.016221812767036766,
+      -0.010950109176647006,
+      -0.005835221175576034,
+      -0.00908312087699955,
+      0.0004369026806780585,
+      -0.006811442440737875,
+      -0.004134605377638772,
+      -0.008152056794608151,
+      0.0025157103523107327,
+      -0.014809889676228809,
+      -0.007915979761166297,
+      -0.013523480412811921,
+      0.0009783147528582212,
+      0.0016658585782091421,
+      -0.007362221822866502,
+      0.008402990647573449,
+      -0.004724993151464039,
+      -0.011758481654282244,
+      -0.0034662639861544197,
+      0.001605020678084075,
+      -0.0019694729514648976,
+      0.01611796542022562,
+      0.006834699679686661,
+      0.013551210052791347,
+      0.011714277355109196,
+      -0.009213033005704495,
+      0.0005090983005700354,
+      -0.015390431877338528,
+      -0.00027256105439696365,
+      0.012587003626778096,
+      -0.0006081666445925515,
+      0.0013327338998952226,
+      0.008548225679147675,
+      0.012231081495520258,
+      0.004657525233034454,
+      0.005768666212715477,
+      0.013604225374744303,
+      0.010074814340110455,
+      0.00662626611669676,
+      0.011122357096453392,
+      0.009720902192107144,
+      0.011206436565567184,
+      0.023636498105304587,
+      0.00766251212211576,
+      0.006158337532452575,
+      0.01993594887452376,
+      0.0051702711533842816,
+      0.02218458999885687,
+      0.008786590971111482,
+      0.010628886007833554,
+      0.015178980434219919,
+      0.018432699439685226,
+      0.016783402350875977,
+      0.008209047882258742,
+      0.00686676823942906,
+      0.01162924573749492,
+      0.009873842592472676,
+      0.004138394545606577,
+      0.011183551032502292,
+      0.014913218254936238,
+      0.008738857261508517,
+      0.018114558969808143,
+      0.009607654721505817,
+      0.005191046912053796,
+      0.006508229279364634,
+      0.0013913753120986718,
+      -0.0024193790035175267,
+      0.0076068844317486424,
+      -0.0022443453352109016,
+      0.0006652066559062878,
+      0.0019832356026253627,
+      0.00472924923529131,
+      0.0046810224685188825,
+      0.001247314943154514,
+      -0.013239024702313668,
+      -0.001754091422800856,
+      -0.006323205694830451,
+      -0.002256737078933351,
+      0.004884733722203409,
+      0.0030096014197428297,
+      -0.0016418795137248113,
+      -0.0001923619110415424,
+      -0.01468659599380167,
+      -0.003423442539151153,
+      -0.0009186356562509738,
+      -0.010716979588866695,
+      -0.003402560183933638,
+      -0.009344546355811362,
+      -9.288241281411001e-05,
+      0.000269901676260809,
+      -0.011598686627463078,
+      0.0020467696913453078,
+      -0.009833871400581796,
+      0.005650615307314682,
+      -0.012472662269595883,
+      -0.008802513018428578,
+      -0.007940993292451046,
+      -0.014840252845325938,
+      -0.0217800241943006,
+      -0.015383200701614218,
+      -0.0022779683496095297,
+      -0.012150568318194523,
+      -0.012116950583121268,
+      0.0008420296514205072,
+      -0.00623206378760199,
+      -0.004647886828242834,
+      -0.003461518805887573,
+      -0.015570137338016748,
+      -0.008123273736922235,
+      -0.007691345186840618,
+      -0.009570673788370879,
+      -0.01579579525341651,
+      -0.004555386720265793,
+      -0.0190408501343353,
+      -0.013594616619329952,
+      -0.012279200273284833,
+      -0.00905404155172309,
+      0.000185101120393414,
+      0.00638103384227734,
+      0.007345717149344289,
+      0.001455657555693166,
+      -0.0005731023905438271,
+      -0.019456454586900037,
+      0.005371816499802534,
+      0.016434498331177883,
+      0.0017802278251714714,
+      0.0008319152957692265,
+      0.004671366425994196,
+      0.005469029475108513,
+      0.0019004211745816215,
+      -0.0010761149246933273,
+      0.0046526895482746355,
+      -0.006909186384405718,
+      -0.009919482659296723,
+      0.013337489184308975,
+      0.0011452410559158136,
+      0.009889575912313764,
+      0.016269907956469806,
+      0.014421456453523673,
+      0.002477669498795863,
+      0.009075169110515436,
+      -0.0009332557848308557,
+      0.006900314539652024,
+      0.015331535157491898,
+      0.008583503061880703,
+      -0.011278760585317184,
+      -0.0067860241443022905,
+      0.0036231959313185024,
+      0.018797037277086107,
+      0.01105577294940581,
+      0.010816013834098706,
+      0.0007467823981275531,
+      0.011081095117226417,
+      -0.0058068789401580015,
+      0.012540920214468128,
+      0.018396959712216228,
+      0.004378782616663672,
+      0.01761785755364207,
+      0.004878841530969148,
+      0.010806966728012506,
+      0.008647728550723805,
+      0.01004760539292899,
+      0.019838495064422784,
+      0.015046484607502228,
+      0.0038318847230018084,
+      -0.011109985787423922,
+      0.01414918694598399,
+      0.012846984561011465,
+      0.008246829258580493,
+      0.0027455430187408774,
+      0.017383868291998842,
+      -0.006794245594611656,
+      -0.00027244167226165,
+      -0.0055617730148312524,
+      0.006770482361358661,
+      0.0003603131626702732,
+      0.01784719693566119,
+      0.0026261658258349046,
+      0.00025439388496325513,
+      0.0053533241338428895,
+      -0.004366709689400711,
+      -0.007416555599475671,
+      0.0033279201134661608,
+      -0.004426219505147698,
+      0.005246750807471313,
+      0.00018241043178999312,
+      -0.001914085956510134,
+      -0.0028079052985233665,
+      -0.004437365276768119,
+      -0.0015128498966040182,
+      -0.007662867700201944,
+      -0.019085547242769438,
+      -0.005317207177804968,
+      -0.009545385172347605,
+      -0.016396661532855874,
+      -0.0017065378660417992,
+      -0.010220843237979064,
+      -0.02013688488635202,
+      -0.00877680673709051,
+      -0.013280944268275283,
+      -0.020742429098146227,
+      -0.006889237024696794,
+      -0.0166394927176366,
+      -0.004435379322854661,
+      -0.015891540083978844,
+      -0.002881169517024728,
+      -0.006819765941360445,
+      -0.009080285973142308,
+      -0.015139668379047743,
+      -0.0034888236460829825,
+      -0.006236789841059697,
+      -0.012203367202922887,
+      -0.005473047558919434,
+      -0.016554008717462265,
+      -0.018137771198920176,
+      -0.009620579499840812,
+      -0.00819451642946353,
+      -0.005407119843104165,
+      -0.0076276856014476395,
+      0.0009499133032842963,
+      -0.016393398025217498,
+      -0.0029804018755907637,
+      -0.004953407292922556,
+      0.003409462950047926,
+      -0.0047391427519755825,
+      -0.002909030957327433,
+      0.007714468101169772,
+      0.0014846364346669605,
+      0.000710274127406478,
+      -0.005727965698564019,
+      -0.0014609156608109306,
+      -0.013428049866732258,
+      -0.00718787567487991,
+      0.0038314707823362015,
+      -0.012564415869144011,
+      0.0011281552340654383,
+      0.0011897642084431584,
+      0.0043724635870070645,
+      -0.009646648146746126,
+      -0.011417114493750182,
+      0.011128160992831131,
+      0.0046874704326186085,
+      0.007321757022959778,
+      0.01629035688616621,
+      0.006697429378510341,
+      -0.007780291904284288,
+      0.004252190721092148,
+      0.012611741191743601,
+      0.004328265399928293,
+      0.005584303575718777,
+      0.003865637977958058,
+      0.01869638293893719,
+      0.01744047157210455,
+      -0.003644864651075056,
+      0.022609460507254917,
+      0.004084994677283257,
+      0.023888808979177976,
+      0.0006565395675326487,
+      0.01769057308635333,
+      0.00610542004267707,
+      0.009037240294505693,
+      0.01633325005356184,
+      0.004959789940592774,
+      0.012297777793573569,
+      0.012161656602614795,
+      0.018232981981175726,
+      0.019311725057178052,
+      0.022716039240692695,
+      0.011475282172772872,
+      0.011962676775087677,
+      0.004843936355508981,
+      0.00314838364948222,
+      -0.0010681119316797785,
+      0.006231836814580085,
+      0.00851986376412386,
+      0.0071506262637444145,
+      0.010582694649918852,
+      -0.003385805292516456,
+      0.017753313577680216,
+      0.007273427269549296,
+      0.012257462842828214,
+      0.006487732653328958,
+      -0.0026122045645379515,
+      0.0006830722431418945,
+      -0.0206928449797254,
+      0.003315315447935664,
+      0.0007506689261001639,
+      0.009140614669178928,
+      -0.012230234823886054,
+      -0.0010763298585456658,
+      -0.0032494667373391658,
+      -0.010534942405226077,
+      -0.0125443900766952,
+      -0.011062097190066152,
+      0.003497700409639579,
+      0.0029638357483060627,
+      -0.014542442921898102,
+      -0.006143577343152527,
+      -0.00215863960868062,
+      -0.003669189349606248,
+      -0.01703350497620923,
+      -0.011048567167193407,
+      -0.017295509650776753,
+      -0.0005134147079351422,
+      0.010182823216996161,
+      -0.008661300962356776,
+      -0.02363059531127824,
+      -0.003149186470125554,
+      0.0017816502808189784,
+      0.0010294824427943324,
+      -0.00834099925573527,
+      -0.0059236749244775495,
+      -0.009073467354648502,
+      -0.0047644079452623415,
+      -0.003254808365689442,
+      -0.015121587223290971,
+      -0.013919355221583624,
+      -0.012138275089296269,
+      -0.011257240031846773,
+      -0.008167699756955818,
+      -0.001510456034294826,
+      -0.018285484229149933,
+      -0.0024762413560508647,
+      -0.010019825382161776,
+      -0.0284081452933233,
+      -0.01081143631754955,
+      -0.009577579547155518,
+      -0.003449766204518218,
+      -0.002754456725183526,
+      -0.006495744088510295,
+      -0.011699271466326166,
+      0.0011454974223760617,
+      -0.009769867905686364,
+      -0.012837251083707656,
+      -0.008480583216909098,
+      -0.007218060769460792,
+      -0.0036918671106519205,
+      -0.005463475569702357,
+      -0.004304549843558276,
+      0.004017849570029689,
+      0.0049870011948672036,
+      0.0037290316260078947,
+      -0.0015789578730040468,
+      -0.003497069638456761,
+      0.00013435128194873606,
+      0.001307383440743685,
+      0.008794299814079459,
+      0.001503041086838817,
+      -0.004419566628281851,
+      -0.0013118615920360913,
+      0.017418706441231974,
+      -0.00095588655791578,
+      -0.0027892665260612357,
+      0.00447976214991056,
+      0.019291001578937192,
+      0.008057159158355674,
+      0.009824124665432477,
+      -0.0028932223999779023,
+      -0.002009584868893797,
+      0.008776265984697522,
+      0.005870343319096678,
+      0.01205114521904977,
+      0.0018243515698453394,
+      0.017098697230491275,
+      0.01938221438113226,
+      -0.0008295533558181148,
+      0.01179956323576017,
+      0.008179489817062685,
+      0.020248217435581674,
+      0.011712103717091922,
+      0.0167508596131314,
+      0.009456658801921708,
+      0.012068289348568174,
+      0.02464354637964916,
+      0.024059997218037057,
+      -0.002570289188773691,
+      0.011721067148852248,
+      0.010458201647009596,
+      0.0009396834181553395,
+      0.0027384006407138633,
+      0.009039729674609545,
+      0.014041626310271376,
+      0.010590937118194303,
+      0.003554092554893967,
+      -0.0014087511154662388,
+      -0.009119760398996583,
+      0.015808601127705015,
+      0.0006096766557919871,
+      -0.0020458193387845793,
+      0.005783674842856136,
+      0.002257789737673983,
+      0.0021718526650821362,
+      0.006310651099357018,
+      -0.0022764518635560813,
+      -0.006863535037434247,
+      -0.0010456007673422148,
+      -0.0001761617061155634,
+      -0.008839023142096981,
+      -0.009535890914254316,
+      -0.0097048867190546,
+      0.0027730309680629975,
+      0.006199337060711723,
+      0.004881584132797828,
+      -0.010951404138197287,
+      -0.009925923385541206,
+      -0.014502937429288876,
+      0.006821450223336943,
+      -0.009875930322094573,
+      -0.007177473438188175,
+      -0.010650033404350598,
+      -0.006524129001752693,
+      -0.015387750978864252,
+      -0.012712572051698283,
+      -0.01504778644192345,
+      -0.025481639215422458,
+      -0.00737549043187361,
+      -0.004189641051219638,
+      -0.0027320000611790376,
+      0.00125895222187101,
+      -0.0031050611652959316,
+      -0.01032348672711672,
+      -0.006046851452901913,
+      -0.01356096216719103,
+      -0.0042553044636421625,
+      -0.01174142980855656,
+      -0.02589799000264277,
+      -0.00970180319573953,
+      -0.008877607123413992,
+      -0.01732417095731508,
+      -0.005539667109358442,
+      -0.0002791582364690959,
+      -0.01637982459400006,
+      -0.002665230379258,
+      -0.0015270402759860729,
+      -0.01386640470349386,
+      -0.009904874846509756,
+      -0.01402107434650255,
+      -0.009962582578782492,
+      -0.005783549030568655,
+      0.003227395272838336,
+      -0.008893579003915329,
+      -0.014773087156191255,
+      -0.025356789387309977,
+      -0.007474952265854531,
+      -0.011415899713627076,
+      -0.00034747921636162863,
+      0.0005407829343639613,
+      -0.011588043794541876,
+      0.0026443926889441727,
+      -0.0007847861359471851,
+      -0.0004899087351124376,
+      -0.001779509737417031,
+      0.009163654530120522,
+      0.007171122395117567,
+      0.004878019642964517,
+      0.01217057747270208,
+      0.004890066590762962,
+      0.006135082241386841,
+      0.009411389312345024,
+      0.004252305461840044,
+      -0.0018087680259307685,
+      0.01938025149542561,
+      0.01405825576968186,
+      -0.0012502650882129165,
+      0.0013254638945309092,
+      0.0010826155392517512,
+      -0.001818306400483128,
+      0.01165697082594126,
+      0.01988142157009154,
+      0.01228862785616361,
+      0.020672445072590473,
+      0.006976589018316279,
+      0.011857784306547556,
+      0.003609322444148547,
+      0.010290046683495877,
+      0.01766768257953503,
+      0.015118792522473657,
+      0.017206748766381338,
+      0.007116482600252384,
+      0.016231176145059416,
+      0.019832717523412355,
+      0.013431806211430843,
+      -0.0004705038793638254,
+      0.010978349542943223,
+      0.010423147439293635,
+      0.003690288314119025,
+      0.0008323266316611856,
+      0.001987149503868418,
+      0.015315600316225975,
+      0.007779377146437031,
+      0.01809666271184792,
+      -0.006648321718854072,
+      0.00839825892027732,
+      0.016133955390190444,
+      0.017227964702121647,
+      9.506430103309402e-05,
+      0.01445615225965963,
+      0.010411296140703546,
+      0.010457932431808955,
+      0.003101048855277802,
+      0.008089370337761484,
+      0.006837018054597282,
+      -0.004373869751309258,
+      -0.01965798809381505,
+      0.0066661504556243525,
+      0.005559128201055072,
+      0.002788802682926631,
+      -0.005801320925960453,
+      -0.006364489990263996,
+      -0.015075957335333862,
+      0.006779906104123493,
+      -0.005673810736249253,
+      0.0003425985935847581,
+      -0.008463289386080724,
+      -0.02292975575385227,
+      -0.001332201753562634,
+      0.0012430775298208447,
+      0.005381573816662515,
+      -0.008766289750795343,
+      -0.011636052075956685,
+      -0.007514583842635557,
+      -0.016124093770458085,
+      -0.015201990534605275,
+      -0.0049837664996228125,
+      -0.01107930001273947,
+      -0.01327503553552265,
+      -0.0069409145111285035,
+      -0.01217128109454554,
+      0.007097617777376242,
+      -0.011803951288600905,
+      0.001149379452794315,
+      -0.0047342367142515825,
+      -0.002712567773986798,
+      -0.006877108737194563,
+      -0.010232431528908724,
+      -0.00898157262980084,
+      -0.01297542576702663,
+      -0.005872310686177858,
+      -0.0013741022857291325,
+      -0.024893690623615832,
+      -0.016355242294285463,
+      -0.015488534588543594,
+      -0.0021498475196934028,
+      -0.001905885359887692,
+      -0.008713465742231346,
+      0.0051933751779784845,
+      -0.007505298258905569,
+      -0.0005490252549304278,
+      0.0017834558579841973,
+      -0.004391165822164739,
+      0.004583127481981204,
+      -0.00472493746394376,
+      -0.0016983453156681587,
+      -0.00020852448835826265,
+      0.004892312757585759,
+      0.01024876761727917,
+      -0.004540893122600465,
+      -0.008308652880131677,
+      0.006584417325722996,
+      -0.012167922204437284,
+      0.003431956837986546,
+      0.007691059043841686,
+      -0.008099320326385506,
+      -0.0011728648715813661,
+      0.0030673250304126664,
+      0.004903340030681682,
+      0.006178427609843166,
+      0.00945793973513666,
+      0.011942331353800954,
+      -0.0035642952211553227,
+      0.016625439600227648,
+      0.006239155720512111,
+      0.005655605772729215,
+      0.01666107280272551,
+      0.005381470910670372,
+      0.0032526066723375085,
+      -0.0036182173408597,
+      0.018591786916419027,
+      -0.0025759412293951504,
+      0.0008074718132930828,
+      -0.004800369702161083,
+      0.007340719252728514,
+      -0.002938262253236989,
+      0.01832464491881987,
+      0.005229076833948469,
+      0.0017722788158146818,
+      0.012451299865639828,
+      0.0021029637398911616,
+      0.00856250560932117,
+      0.015582949922843946,
+      0.0033203896821926366,
+      0.006056811656354001,
+      0.0031473312011908857,
+      0.005793196788353687,
+      0.02900884037642592,
+      -0.007727960059878157,
+      0.013159450045913741,
+      0.0067235941115923415,
+      0.0009661208779235351,
+      0.012469444182562229,
+      0.01359268299209109,
+      -0.0019843737664117476,
+      0.003155092668272867,
+      -0.0010524378999103418,
+      0.005811568994980358,
+      0.0033326998081100114,
+      0.001377508740253196,
+      0.0039321470864966575,
+      0.00390710685828,
+      0.010148600803159618,
+      -0.006878404278165615,
+      -0.0018827763528763402,
+      0.015135842810153484,
+      -0.007031900522930739,
+      0.005489303423162726,
+      -0.010531190063562953,
+      0.0008712493155843652,
+      -0.005952644214878705,
+      -0.002369148002920831,
+      -0.007764304176325209,
+      0.0028902924834088017,
+      -0.006894360289820906,
+      -0.00822172925500589,
+      -0.004107902410354391,
+      -0.012774177360194023,
+      -0.024530735343402398,
+      -0.018981686381529916,
+      -0.013776817525060072,
+      0.0030348248633384027,
+      0.006743873900944558,
+      -0.01882066833697941,
+      -0.008419251878236339,
+      -0.014438833006511755,
+      -0.007992192925690807
+    ],
+    "values_array": {
+      "dtype": "float64",
+      "sha256": "8f64834b9a4a642827b8c87811d9e3e1494c3a848fadc127e428c21a8d953f73",
+      "shape": [
+        720
+      ]
+    }
+  }
+}

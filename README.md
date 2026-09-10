@@ -1,25 +1,68 @@
 # Simfolio Forecasting Methodology
 
-A standalone, public-safe research codebase for reproducing the out-of-sample methodology used to compare probabilistic portfolio forecasting models.
+This repository is a standalone, public-safe research package for the
+out-of-sample comparison of probabilistic portfolio forecasts. It contains
+the canonical catalogue and protocol contracts, source-derived numerical
+implementations that have passed bounded parity checks, and an offline frozen
+data snapshot. It has no dependency on a production website, customer system,
+private datastore, or operational API.
 
-This repository is intentionally independent of any production website, deployment environment, customer system, private datastore, or operational API. Its purpose is methodological reproducibility: model definitions, deterministic portfolio construction, forecast-origin selection, simulation policy, distributional scoring, ranking, and auditable experiment manifests.
+## Current release state
 
-## Canonical study
+The canonical ledger contains **175 exact model identities**. The public
+runtime has **175 explicit executable factories**. Every model has passed
+instantiation and bounded forecasting/source-parity checks. The numerical
+implementations reuse the recovered statistical methods and their source
+parameter defaults; no model was dropped or replaced with a generic baseline.
 
-The canonical catalogue contains **175 admissible forecasting specifications**. The leading specification is the asset-level FastMAP + dynamic Gaussian-factor/Kalman model represented by the immutable historical source ID `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`.
+Historical score tokens are retained as evidence. Historical score linkage has
+not been verified, and no retained score is presented as a newly reproduced
+result. All 175 ledger entries have complete, fingerprinted statistical specifications.
 
-The dense evaluation protocol uses 80 deterministic multi-asset portfolios over the common 1979-12-31 through 2026-05-13 evaluation window. Each portfolio contributes 48 rolling origins selected across the full eligible history plus three temporal holdout origins, for 4,080 origin tasks. Each origin uses 240 forecast simulations. Every eligible daily horizon is scored using exact empirical CRPS on terminal log returns. Origin losses are averaged within portfolio–horizon cells before those cells receive equal weight.
+The packaged canonical data snapshot contains 60 manifest-whitelisted files:
+52 asset series, `EFFRX`, five additional canonical drift-proxy series,
+and the French daily and Q5 factor inputs. Verification is offline and hash based. The frozen common
+window is 1979-12-31 through 2026-05-13 with 11,687 dates. The protocol
+constructs 80 portfolios, 4,080 origin tasks, and 701,280 scored cells per
+model, with 240 simulations per origin.
 
-The protocol is encoded in `methodology/canonical_dense_oos.yaml`. The immutable ranked catalogue is in `catalogs/canonical_175_part1.csv` and `catalogs/canonical_175_part2.csv`.
+## Install and inspect
 
-## Reproducibility design
+The reference numerical environment is macOS ARM64 with Python 3.11 or 3.12
+and `requirements-lock.txt`. Cross-platform byte equality is not established.
+The optional `all-models` extra installs the numerical dependencies:
 
-Catalogue membership and evaluation methodology are separate objects. The canonical 175 catalogue answers **which models are evaluated**; the dense protocol answers **how they are evaluated**. The broader research catalogue can therefore use the same evaluation protocol without creating another incompatible harness.
+```bash
+python -m pip install '.[all-models]'
+simfolio-oos data verify --json
+simfolio-oos data prepare --destination .simfolio-oos-data --json
+simfolio-oos coverage --json
+simfolio-oos canonical-175 --plan --json
+```
 
-Historical source identifiers remain attached to evidence and execution records. Shorter `M###` names are presentation aliases only; renaming a table row never changes the model's research identity.
+The data commands use the packaged snapshot by default. Preparation writes a
+caller-local execution cache after rechecking every source hash and derived
+fingerprint; it never downloads or refreshes data. Use
+`simfolio-oos scores --json` to inspect retained score evidence without
+starting a forecast run.
 
-## Current implementation status
+The bounded implementation surface can be exercised with an exact model ID or
+the Frontier rank-one selector. A full canonical run requires the preserved
+240 simulations per origin and is not implied by a smoke run.
 
-The repository currently contains the canonical ranking, deterministic 80-portfolio generator, dense-origin selection primitives, exact empirical CRPS scoring, experiment-protocol definitions, readable model naming, CI, and a fail-closed publication-safety scan. Statistical model implementations are promoted into this public tree only after standalone reconstruction and provenance checks in the private staging repository.
+## Frontier production validation
 
-See `README_REPRODUCIBILITY.md` for the reconstruction principles and `methodology/canonical_dense_oos.yaml` for the machine-readable protocol.
+The leading asset-level Frontier method matches the verified live numerical
+source on three bounded cases. With identical random streams and production
+storage precision, joint asset paths and rejoined portfolio paths match
+exactly. The historical and production default seed schedules differ; the
+[production parity report](docs/frontier-production-parity.md) records both
+contracts, intermediate comparisons, and source hashes. This is bounded
+numerical validation, not a rerun of the retained white-paper score.
+
+## Reproducibility
+
+Read [README_REPRODUCIBILITY.md](README_REPRODUCIBILITY.md) for the numerical
+environment, source/data identities, parity checks, and known validation
+limits. [docs/quickstart.md](docs/quickstart.md) shows a clean wheel install;
+[docs/validation.md](docs/validation.md) describes the CI gates.

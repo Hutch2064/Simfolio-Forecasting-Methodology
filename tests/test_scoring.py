@@ -31,3 +31,13 @@ def test_cell_first_aggregation() -> None:
         ScoredOrigin("b", 21, 4.0),
     ]
     assert aggregate_equal_portfolio_horizon(rows) == 16.0 / 3.0
+
+
+def test_fixed_cell_denominator_gate_rejects_missing_cells():
+    rows = [ScoredOrigin("a", 1, 1.0), ScoredOrigin("a", 2, 2.0)]
+    try:
+        aggregate_equal_portfolio_horizon(rows, expected_cells=3)
+    except ValueError as exc:
+        assert "fixed denominator" in str(exc)
+    else:
+        raise AssertionError("missing fixed-denominator cells must fail closed")

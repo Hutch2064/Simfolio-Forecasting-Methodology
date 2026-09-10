@@ -1,0 +1,130 @@
+{
+  "schema_version": "canonical-175-sv-mcmc-reference-family-patch-v1",
+  "scope": "one exact source-extracted canonical family; no broader catalogue entries",
+  "base_ledger_membership_digest": "c93ea4fca270f7343924a11ec6c3574d1693c07592d9f203b650915548b1d9b5",
+  "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+  "source_artifact_policy": "all paths are repository-relative; no private or temporary paths are serialized",
+  "records": [
+    {
+      "public_model_id": "bayesian_mcmc_stochastic_volatility_sbb",
+      "canonical_rank": 43,
+      "historical_rank": 54,
+      "model_family": "sv_mcmc_sbb",
+      "structured_specification": {
+        "id": "bayesian_mcmc_stochastic_volatility_sbb",
+        "type": "sv_mcmc_sbb",
+        "innovation": "empirical"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "source_function_closure_only",
+        "status": "numerical closure recovered; full experiment/data/protocol fingerprint unresolved"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "research_gate_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "research_gate_sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "engine_path": "source-research/app/engine.py",
+          "engine_sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "extracted_functions_sha256": "1ccb06cf25e440f7cdb815da6ee3bd0068ef67604f55d53af936916aaf3d406e"
+        },
+        "parameter_dictionary": {
+          "ledger_root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; full experiment closure unresolved"
+        },
+        "retained_score_artifact": {
+          "ledger_root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_declared_vs_actual_digest_mismatch retained"
+        }
+      },
+      "source_location_reference": {
+        "source_engine_seed": "source-research/app/engine.py#SimfolioEngine._deterministic_seed",
+        "source_engine_mean": "source-research/app/engine.py#SimfolioEngine._sample_mean_near_zero_shrinkage",
+        "source_gate_fit": "source-research/scripts/forecast_oos_research_gate.py#_fit_sv_mcmc",
+        "source_gate_mcmc": "source-research/scripts/forecast_oos_research_gate.py#_fit_sv_mcmc_from_base",
+        "source_gate_simulation": "source-research/scripts/forecast_oos_research_gate.py#_simulate_sv_mcmc_sbb",
+        "source_gate_dispatch": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=43"
+      },
+      "implementation_factory": {
+        "module": "simfolio_forecasting_methodology.models.portfolio.sv_mcmc_reference",
+        "map": "REFERENCE_FACTORIES",
+        "callable": true,
+        "status": "source_extracted_explicit_factory"
+      },
+      "required_dependencies": {
+        "items": ["numpy", "scipy"],
+        "constraints": ["numpy>=2.0,<3", "scipy>=1.13,<2"],
+        "verified": true,
+        "status": "source closure imports numpy, scipy.optimize, and scipy.stats"
+      },
+      "seed_identity": {
+        "seed_function": "SimfolioEngine._deterministic_seed",
+        "fit_seed_arguments": ["sv_mcmc_fit", "finite_observation_count", "round(finite_observation_mean, 10)"],
+        "forecast_seed_arguments": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "public_model_id",
+          "simulations"
+        ],
+        "rng": "numpy.random.default_rng",
+        "status": "source fit and forecast call arguments preserved; canonical task seed remains task identity and is not passed by source branch"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "historical_score": {
+        "exact_empirical_crps": "0.34268977488684255",
+        "relative_to_naive": "1.01236104887163",
+        "skill_vs_naive": "-0.01236104887162992",
+        "paired_improvement_vs_current": "-0.17013425342668695",
+        "paired_mean_diff_vs_current": "0.049826136476728025",
+        "paired_portfolio_cluster_diff_ci_90": ["0.036964177746702666", "0.06282705710418518"],
+        "paired_portfolio_cluster_probability_better": "0.0",
+        "portfolio_losses_vs_current": 61,
+        "portfolio_wins_vs_current": 19
+      },
+      "score_precision": {
+        "retained_source_token": "0.34268977488684255",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 17,
+          "significant_digits": 17
+        },
+        "publication_token": "0.342689775",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "0.00000000011315745",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "evidence_flags": {
+        "identity_recovered": true,
+        "specification_recovered": false,
+        "source_reference_verified": true,
+        "implementation_available": true,
+        "instantiation_validated": true,
+        "forecast_smoke_tested": true,
+        "source_parity_checked": true,
+        "historical_score_verified": false
+      },
+      "verification_status": "source_kernel_parity_verified_experiment_identity_unresolved",
+      "notes": [
+        "The source fit uses a fixed 420-step random-walk MCMC with 120 burn-in steps and thin=4; the source seed label is sv_mcmc_fit.",
+        "The source path generator samples posterior states, replays standardized residuals with the pinned stationary-bootstrap index kernel, and evolves log variance daily.",
+        "The adapter preserves the source origin-date plus dense-horizon forecast seed context and cumulative daily-path semantics.",
+        "The source fit requires at least 504 finite training observations.",
+        "The retained scalar score and nine-significant-digit publication token are preserved; score reproduction remains unverified.",
+        "The retained score artifact has the shared declared-versus-actual gzip digest mismatch recorded at ledger root."
+      ]
+    }
+  ]
+}

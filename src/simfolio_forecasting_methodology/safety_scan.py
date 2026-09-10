@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections.abc import Iterable
 from pathlib import Path
 
@@ -35,6 +36,15 @@ _FORBIDDEN = (
     "/Users/" + "aidan",
 )
 
+# Values are never returned in findings: diagnostics identify only the rule.
+_SECRET_PATTERNS = {
+    "github credential": re.compile(r"\b(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,})\b"),
+    "AWS access key": re.compile(r"\b(?:AKIA|ASIA)[A-Z0-9]{16}\b"),
+    "signed URL": re.compile(r"[?&](?:X-Amz-Signature|X-Goog-Signature|Signature|sig)=[A-Za-z0-9%/+_-]{16,}", re.IGNORECASE),
+    "credential in URL": re.compile(r"https?://[^\s/:]+:[^\s/@]+@", re.IGNORECASE),
+    "developer home path": re.compile(r"(?:/Users/|/home/)[A-Za-z0-9_.-]+/"),
+}
+
 _PRIVATE_KEY_MARKERS = (
     "-----BEGIN " + "PRIVATE KEY-----",
     "-----BEGIN RSA " + "PRIVATE KEY-----",
@@ -57,6 +67,7 @@ def scan_text(text: str) -> list[str]:
     for marker in (*_FORBIDDEN, *_PRIVATE_KEY_MARKERS):
         if marker.lower() in text.lower():
             findings.append(marker)
+    findings.extend(name for name, pattern in _SECRET_PATTERNS.items() if pattern.search(text))
     return findings
 
 

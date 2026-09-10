@@ -1,0 +1,358 @@
+{
+  "source_cache_audit": {
+    "pre_redirection": {
+      "observed_by_parent_audit": {
+        "pinned_source_research_app_artifacts": 12,
+        "recovered_temp_panel_artifacts": 8
+      },
+      "status": "Earlier unredirected source probes created or updated source-side Numba artifacts; exact per-probe attribution was uncertain because some artifacts predated this batch.",
+      "cleanup": "No uncertain source-side cache artifact was deleted."
+    },
+    "post_redirection": {
+      "generator_policy": "Every later source import forced PYTHONDONTWRITEBYTECODE=1 and NUMBA_CACHE_DIR inside this isolated checkout before importing Numba.",
+      "fixture_metadata": "Only the portable policy label task_owned_redirected_cache is recorded; no source cache path is serialized."
+    }
+  },
+  "dependency_closure": {
+    "failure_policy": "unknown IDs, missing dates, missing factor data, bad alignment, failed fit, sampler errors, shape errors, and nonfinite outputs fail closed; no iid or generic model fallback",
+    "package_modules": {
+      "models.numerical.base_models": [
+        "_politis_white_block_length",
+        "_stationary_bootstrap_indices"
+      ],
+      "models.numerical.factors": [
+        "load_packaged_factor_frame"
+      ],
+      "models.portfolio.bayesian_vol": [
+        "_factor_model_frame_config",
+        "_fit_bayesian_sbb_vol_overlay",
+        "_fit_sklearn_regressor",
+        "_overlay_vol_multiplier_curve"
+      ],
+      "models.portfolio.factor_residual": [
+        "_fit_factor_residual_sbb",
+        "_simulate_factor_residual_sbb",
+        "FactorResidualSBBModel"
+      ],
+      "runner": [
+        "TrainingData",
+        "ForecastContext"
+      ],
+      "seeds": [
+        "deterministic_seed",
+        "forecast_oos_candidate_seed"
+      ]
+    },
+    "required_runtime": {
+      "factor_columns": [
+        "Mkt_RF",
+        "SMB",
+        "HML",
+        "RMW",
+        "CMA",
+        "UMD"
+      ],
+      "factor_model": "ff6",
+      "minimum_finite_training_observations": 180,
+      "real_training_dates": true,
+      "risk_free_column": "RF"
+    },
+    "third_party_runtime": [
+      "numpy",
+      "pandas",
+      "scikit-learn",
+      "scipy (base numerical helper imports); arch is not required by either assigned factor-residual branch"
+    ]
+  },
+  "factor_snapshot": {
+    "files": {
+      "ff6": "resources/data/canonical_snapshot/app/factor_data/french_daily.csv.gz",
+      "q5": "resources/data/canonical_snapshot/app/factor_data/q5_daily.csv.gz"
+    },
+    "loader": "importlib.resources package-relative offline loader",
+    "sha256": {
+      "ff6": "9ec302fa1f2ac1c630e0019cfb3fcabb97a91255a1543e737aa60beea72ff192",
+      "q5": "915434fba2c8c425a6c3b5930f3a6d05bec0f7717adab5eb35c1348ddacbc45a"
+    },
+    "source_loader_verification": "Original source _load_french_factor_frame invoked against exact packaged FF6 bytes with refresh callback disabled in memory; normalized source frame equals package frame."
+  },
+  "fixture": {
+    "cache_policy": "Generator forces NUMBA_CACHE_DIR to a task-owned destination path before source import and records a policy label only; no NUMBA_DISABLE_CACHING.",
+    "cases": 2,
+    "cross_stack_generation": {
+      "comparison": "both cases direct fit states and daily paths, plus original dispatcher fit states and terminal arrays, are exactly equal",
+      "py311_output_sha256": "68fe19be1c9f6146c73f7f4c12758dd3032932abbc9c17abe3d80ea5b698e6f0",
+      "py312_output_path": "external_comparison/factor-py312.json",
+      "py312_output_sha256": "2493e4737c54ae9b610bdd5d00157047b5da90afa6ace658b6e1a7786f482d40"
+    },
+    "generation_command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache <py311-env>/bin/python tools/generate_factor_residual_source_fixture.py --source-root /path/to/source-research --output src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/factor_residual_source_parity.json",
+    "horizon_days": 5,
+    "parity_scope": [
+      "raw descriptors",
+      "source factor frame",
+      "Ridge fit arrays and pipeline parameters",
+      "block length",
+      "overlay fit state",
+      "source forecast seed",
+      "daily path arrays"
+    ],
+    "path": "resources/test_fixtures/portfolio/factor_residual_source_parity.json",
+    "schema": "factor-residual-source-parity-v1",
+    "sha256": "68fe19be1c9f6146c73f7f4c12758dd3032932abbc9c17abe3d80ea5b698e6f0",
+    "simulations": 4,
+    "source_factor_frame": {
+      "columns": [
+        "Mkt_RF",
+        "SMB",
+        "HML",
+        "RMW",
+        "CMA",
+        "RF",
+        "UMD"
+      ],
+      "frame_equals_packaged": true,
+      "rows": 15854,
+      "values_array": {
+        "dtype": "float64",
+        "sha256": "4e622d61681937c8625db218867fe4acb3894fcfddac69e82818b9b7002fc097",
+        "shape": [
+          15854,
+          7
+        ]
+      }
+    },
+    "training_observations": 720
+  },
+  "historical_identity": {
+    "claim_boundary": "Source-kernel parity and genuine bounded model execution are established; the retained scored artifact identity, full experiment wrapper, and historical environment remain unverified.",
+    "historical_score_linkage": "blocked",
+    "retained_runtime_catalog": {
+      "path": "docs/forecast_oos_publication_master_catalog.json",
+      "sha256": "b80e3e3c9616916f090b0449cdbe3a79f150340dd98846d1f40b0691dae537a8"
+    }
+  },
+  "model_ids": [
+    "factor_ff6_ridge_residual_sbb_none",
+    "factor_ff6_ridge_residual_sbb_absolute_ewma"
+  ],
+  "raw_candidate_specs": {
+    "factor_ff6_ridge_residual_sbb_absolute_ewma": {
+      "id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
+      "type": "factor_residual_sbb"
+    },
+    "factor_ff6_ridge_residual_sbb_none": {
+      "id": "factor_ff6_ridge_residual_sbb_none",
+      "type": "factor_residual_sbb"
+    }
+  },
+  "resolved_statistical_specs": {
+    "factor_ff6_ridge_residual_sbb_absolute_ewma": {
+      "alignment": "normalize dates, concat portfolio and factor frame, dropna, require final aligned date equals final training date",
+      "block_length": "max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))",
+      "block_length_floor": 1,
+      "factor_columns": [
+        "Mkt_RF",
+        "SMB",
+        "HML",
+        "RMW",
+        "CMA",
+        "UMD"
+      ],
+      "factor_model": "ff6",
+      "factor_model_parameter_source": "source function default because raw descriptor omits factor_model",
+      "family": "factor_residual_sbb",
+      "fit_function": "_fit_factor_residual_sbb",
+      "minimum_finite_training_observations": 180,
+      "path_definition": "risk_free_draw + factor_prediction_draw + residual_draw, clipped to [-1, 1]",
+      "regressor": {
+        "alpha": 10.0,
+        "half_life_days": 504.0,
+        "kind": "ridge",
+        "pipeline": [
+          "StandardScaler",
+          "Ridge"
+        ],
+        "sample_weight": "recent_exponential_weights"
+      },
+      "resampling": "stationary_bootstrap",
+      "residual_definition": "portfolio_return - risk_free - ridge_factor_prediction",
+      "residual_overlay": "none",
+      "residual_overlay_parameter_source": "source function default because raw descriptor omits residual_overlay",
+      "risk_free_column": "RF",
+      "seed": {
+        "fit": [
+          "factor_residual_sbb",
+          "factor_model",
+          "len(combined)",
+          "len(factor_cols)"
+        ],
+        "forecast": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "public_model_id",
+          "simulations"
+        ]
+      },
+      "stationary_kernel": "_stationary_bootstrap_indices"
+    },
+    "factor_ff6_ridge_residual_sbb_none": {
+      "alignment": "normalize dates, concat portfolio and factor frame, dropna, require final aligned date equals final training date",
+      "block_length": "max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))",
+      "block_length_floor": 1,
+      "factor_columns": [
+        "Mkt_RF",
+        "SMB",
+        "HML",
+        "RMW",
+        "CMA",
+        "UMD"
+      ],
+      "factor_model": "ff6",
+      "factor_model_parameter_source": "source function default because raw descriptor omits factor_model",
+      "family": "factor_residual_sbb",
+      "fit_function": "_fit_factor_residual_sbb",
+      "minimum_finite_training_observations": 180,
+      "path_definition": "risk_free_draw + factor_prediction_draw + residual_draw, clipped to [-1, 1]",
+      "regressor": {
+        "alpha": 10.0,
+        "half_life_days": 504.0,
+        "kind": "ridge",
+        "pipeline": [
+          "StandardScaler",
+          "Ridge"
+        ],
+        "sample_weight": "recent_exponential_weights"
+      },
+      "resampling": "stationary_bootstrap",
+      "residual_definition": "portfolio_return - risk_free - ridge_factor_prediction",
+      "residual_overlay": "none",
+      "residual_overlay_parameter_source": "source function default because raw descriptor omits residual_overlay",
+      "risk_free_column": "RF",
+      "seed": {
+        "fit": [
+          "factor_residual_sbb",
+          "factor_model",
+          "len(combined)",
+          "len(factor_cols)"
+        ],
+        "forecast": [
+          "forecast_oos_candidate",
+          "origin_date",
+          "dense_horizon_tuple",
+          "public_model_id",
+          "simulations"
+        ]
+      },
+      "stationary_kernel": "_stationary_bootstrap_indices"
+    }
+  },
+  "schema": "factor-residual-ledger-patch-v1",
+  "scope": {
+    "assigned_rows": "2 exact ledger IDs: factor_ff6_ridge_residual_sbb_none and factor_ff6_ridge_residual_sbb_absolute_ewma",
+    "base_commit": "c32442e",
+    "canonical_scope": "canonical175_only",
+    "central_ledger_policy": "audit_patch_only; root owns central registry and ledger",
+    "family": "factor_residual_sbb",
+    "source_checkout_policy": "read_only_source_research_and_recovered_artifacts"
+  },
+  "source": {
+    "artifacts": {
+      "engine": {
+        "path": "source-research/app/engine.py",
+        "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
+      },
+      "research_gate": {
+        "path": "source-research/scripts/forecast_oos_research_gate.py",
+        "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+      },
+      "source_revision": {
+        "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+      }
+    },
+    "dispatcher": "_terminal_logs_for_candidate factor_residual_sbb branch; source fit then source simulator with one RNG seeded by forecast_oos_candidate contract",
+    "extracted_function_sha256": "a2e1abb838a6f8eaf557c2383f0dcd5573c171e94d0022d493ef4f73fc9420ca",
+    "function_line_ranges": {
+      "_fit_factor_residual_sbb": [
+        7363,
+        7417
+      ],
+      "_simulate_factor_residual_sbb": [
+        7420,
+        7456
+      ]
+    },
+    "function_names": [
+      "_fit_factor_residual_sbb",
+      "_simulate_factor_residual_sbb"
+    ],
+    "historical_wrapper_reference": {
+      "path": "simfolio/tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py",
+      "role": "retained historical wrapper context; factor residual functions are pinned in the research gate above",
+      "sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465"
+    },
+    "raw_descriptor_source": {
+      "descriptors": {
+        "factor_ff6_ridge_residual_sbb_absolute_ewma": {
+          "id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
+          "type": "factor_residual_sbb"
+        },
+        "factor_ff6_ridge_residual_sbb_none": {
+          "id": "factor_ff6_ridge_residual_sbb_none",
+          "type": "factor_residual_sbb"
+        }
+      },
+      "path": "external_recovery/historical-factor2-descriptors.json",
+      "sha256": "430ea471d11fc4ed6b5b892728df0c492663ec89f2d11ec5758be1e0283ee80d",
+      "resolution_policy": "The retained descriptors are seed-bearing and remain sparse. The source function's factor_model=ff6 and residual_overlay=none defaults are recorded only in resolved_statistical_specs; the ID suffix does not activate an omitted overlay.",
+      "line_ranges": {
+        "_prequential_combo_expert_candidates": [
+          7459,
+          7468
+        ],
+        "factor_specs_generation": [
+          3458,
+          3490
+        ]
+      },
+      "source_dispatch_path": "source-research/scripts/forecast_oos_research_gate.py"
+    },
+    "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+    "seed_contract": "blake2b-64-little-mod-2^32-1; fit args=('factor_residual_sbb', factor_model, len(combined), len(factor_cols)); forecast args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
+  },
+  "target_family_counts": {
+    "factor_residual_sbb": 2,
+    "total": 2
+  },
+  "validation": {
+    "long_horizon_kernel_check": {
+      "horizons": [
+        128,
+        256
+      ],
+      "models": 2,
+      "max_abs_difference": 0.0,
+      "array_equal": true,
+      "stack": "py311 source engine versus extracted package kernel"
+    },
+    "py311": {
+      "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache <py311-env>/bin/pytest -q tests/parity/test_factor_residual_source.py",
+      "numpy": "2.4.6",
+      "python": "3.11.15",
+      "result": "5 passed in 0.98s",
+      "scipy": "1.17.1"
+    },
+    "py312": {
+      "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache <py312-env>/bin/pytest -q tests/parity/test_factor_residual_source.py",
+      "numpy": "2.5.3",
+      "python": "3.12.13",
+      "result": "5 passed, 1 warning in 0.94s",
+      "scipy": "1.18.1"
+    },
+    "ruff": {
+      "command": "<py311-env>/bin/ruff check src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py src/simfolio_forecasting_methodology/models/numerical/factors.py tools/generate_factor_residual_source_fixture.py tests/parity/test_factor_residual_source.py",
+      "result": "All checks passed"
+    }
+  },
+  "verification_status": "source_kernel_parity_verified_exact_factor_descriptors_and_frozen_factor_frame_historical_score_linkage_unresolved"
+}

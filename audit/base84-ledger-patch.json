@@ -1,0 +1,2459 @@
+{
+  "evidence": {
+    "environment": "py311 validation environment; dependency versions documented by parent audit, not historical proof",
+    "observed_max_abs_difference": 0.0,
+    "parity_test": "tests/parity/test_base_source.py",
+    "source_fixture": "src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference_all_means.npz",
+    "source_fixture_sha256": "a7b4210860029f47bb6ac34eaad7f6dc059a66336532b7223537b4181d89d585"
+  },
+  "proposed_updates": [
+    {
+      "canonical_rank": 91,
+      "forecast_smoke_tested": true,
+      "historical_rank": 102,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 92,
+      "forecast_smoke_tested": true,
+      "historical_rank": 103,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 93,
+      "forecast_smoke_tested": true,
+      "historical_rank": 104,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 94,
+      "forecast_smoke_tested": true,
+      "historical_rank": 105,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 95,
+      "forecast_smoke_tested": true,
+      "historical_rank": 106,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 96,
+      "forecast_smoke_tested": true,
+      "historical_rank": 107,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 97,
+      "forecast_smoke_tested": true,
+      "historical_rank": 108,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 98,
+      "forecast_smoke_tested": true,
+      "historical_rank": 109,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 99,
+      "forecast_smoke_tested": true,
+      "historical_rank": 110,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 100,
+      "forecast_smoke_tested": true,
+      "historical_rank": 111,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 101,
+      "forecast_smoke_tested": true,
+      "historical_rank": 112,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 102,
+      "forecast_smoke_tested": true,
+      "historical_rank": 113,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 103,
+      "forecast_smoke_tested": true,
+      "historical_rank": 114,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 104,
+      "forecast_smoke_tested": true,
+      "historical_rank": 115,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 105,
+      "forecast_smoke_tested": true,
+      "historical_rank": 116,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 106,
+      "forecast_smoke_tested": true,
+      "historical_rank": 117,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 107,
+      "forecast_smoke_tested": true,
+      "historical_rank": 118,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 108,
+      "forecast_smoke_tested": true,
+      "historical_rank": 119,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 109,
+      "forecast_smoke_tested": true,
+      "historical_rank": 120,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 110,
+      "forecast_smoke_tested": true,
+      "historical_rank": 121,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 111,
+      "forecast_smoke_tested": true,
+      "historical_rank": 122,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 112,
+      "forecast_smoke_tested": true,
+      "historical_rank": 123,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 113,
+      "forecast_smoke_tested": true,
+      "historical_rank": 124,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 115,
+      "forecast_smoke_tested": true,
+      "historical_rank": 126,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 116,
+      "forecast_smoke_tested": true,
+      "historical_rank": 127,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 117,
+      "forecast_smoke_tested": true,
+      "historical_rank": 128,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 118,
+      "forecast_smoke_tested": true,
+      "historical_rank": 129,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 119,
+      "forecast_smoke_tested": true,
+      "historical_rank": 130,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 120,
+      "forecast_smoke_tested": true,
+      "historical_rank": 131,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 121,
+      "forecast_smoke_tested": true,
+      "historical_rank": 132,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 122,
+      "forecast_smoke_tested": true,
+      "historical_rank": 133,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 123,
+      "forecast_smoke_tested": true,
+      "historical_rank": 134,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 124,
+      "forecast_smoke_tested": true,
+      "historical_rank": 135,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 125,
+      "forecast_smoke_tested": true,
+      "historical_rank": 136,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 126,
+      "forecast_smoke_tested": true,
+      "historical_rank": 137,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 127,
+      "forecast_smoke_tested": true,
+      "historical_rank": 138,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 128,
+      "forecast_smoke_tested": true,
+      "historical_rank": 139,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 129,
+      "forecast_smoke_tested": true,
+      "historical_rank": 140,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 130,
+      "forecast_smoke_tested": true,
+      "historical_rank": 141,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 131,
+      "forecast_smoke_tested": true,
+      "historical_rank": 142,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 132,
+      "forecast_smoke_tested": true,
+      "historical_rank": 143,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 133,
+      "forecast_smoke_tested": true,
+      "historical_rank": 144,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 134,
+      "forecast_smoke_tested": true,
+      "historical_rank": 145,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 135,
+      "forecast_smoke_tested": true,
+      "historical_rank": 146,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 136,
+      "forecast_smoke_tested": true,
+      "historical_rank": 147,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 137,
+      "forecast_smoke_tested": true,
+      "historical_rank": 148,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 138,
+      "forecast_smoke_tested": true,
+      "historical_rank": 149,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 139,
+      "forecast_smoke_tested": true,
+      "historical_rank": 150,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 140,
+      "forecast_smoke_tested": true,
+      "historical_rank": 151,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 141,
+      "forecast_smoke_tested": true,
+      "historical_rank": 152,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 142,
+      "forecast_smoke_tested": true,
+      "historical_rank": 153,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 143,
+      "forecast_smoke_tested": true,
+      "historical_rank": 154,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 144,
+      "forecast_smoke_tested": true,
+      "historical_rank": 155,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 145,
+      "forecast_smoke_tested": true,
+      "historical_rank": 156,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 146,
+      "forecast_smoke_tested": true,
+      "historical_rank": 157,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 147,
+      "forecast_smoke_tested": true,
+      "historical_rank": 158,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 148,
+      "forecast_smoke_tested": true,
+      "historical_rank": 159,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 149,
+      "forecast_smoke_tested": true,
+      "historical_rank": 160,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 150,
+      "forecast_smoke_tested": true,
+      "historical_rank": 161,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 151,
+      "forecast_smoke_tested": true,
+      "historical_rank": 162,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 152,
+      "forecast_smoke_tested": true,
+      "historical_rank": 163,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 153,
+      "forecast_smoke_tested": true,
+      "historical_rank": 164,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 154,
+      "forecast_smoke_tested": true,
+      "historical_rank": 165,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 155,
+      "forecast_smoke_tested": true,
+      "historical_rank": 166,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 156,
+      "forecast_smoke_tested": true,
+      "historical_rank": 167,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 157,
+      "forecast_smoke_tested": true,
+      "historical_rank": 168,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 158,
+      "forecast_smoke_tested": true,
+      "historical_rank": 169,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 159,
+      "forecast_smoke_tested": true,
+      "historical_rank": 170,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 160,
+      "forecast_smoke_tested": true,
+      "historical_rank": 171,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 161,
+      "forecast_smoke_tested": true,
+      "historical_rank": 172,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 162,
+      "forecast_smoke_tested": true,
+      "historical_rank": 173,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 163,
+      "forecast_smoke_tested": true,
+      "historical_rank": 174,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 164,
+      "forecast_smoke_tested": true,
+      "historical_rank": 175,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 165,
+      "forecast_smoke_tested": true,
+      "historical_rank": 176,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 166,
+      "forecast_smoke_tested": true,
+      "historical_rank": 177,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 167,
+      "forecast_smoke_tested": true,
+      "historical_rank": 178,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 168,
+      "forecast_smoke_tested": true,
+      "historical_rank": 179,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 169,
+      "forecast_smoke_tested": true,
+      "historical_rank": 180,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 170,
+      "forecast_smoke_tested": true,
+      "historical_rank": 181,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 171,
+      "forecast_smoke_tested": true,
+      "historical_rank": 182,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 172,
+      "forecast_smoke_tested": true,
+      "historical_rank": 183,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 173,
+      "forecast_smoke_tested": true,
+      "historical_rank": 184,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 174,
+      "forecast_smoke_tested": true,
+      "historical_rank": 185,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 175,
+      "forecast_smoke_tested": true,
+      "historical_rank": 186,
+      "historical_score_verified": false,
+      "implementation_available": true,
+      "implementation_factory": {
+        "callable": true,
+        "name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
+        "status": "source_parity_checked_pending_root_registry_wiring"
+      },
+      "instantiation_validated": true,
+      "notes": "All 84 exact parameterizations fit/simulate against source-generated fixture under documented py311 environment; source engine 702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665; historical score linkage remains unresolved.",
+      "public_model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_dependencies": {
+        "items": [
+          "numpy",
+          "scipy",
+          "pandas",
+          "arch",
+          "statsmodels",
+          "numba"
+        ],
+        "status": "source-parity-checked-py311; destination cross-version pin still required",
+        "verified": false
+      },
+      "source_parity_checked": true,
+      "verification_status": "source_parity_checked_score_linkage_unverified"
+    }
+  ],
+  "schema": "base84-ledger-patch-v1",
+  "scope": {
+    "branch": "base84-audit-c175",
+    "canonical_ledger_commit": "d2aeb3c682bef125dd51218207f488f1857ec01d",
+    "catalogue": "canonical175",
+    "ledger_path": "<authoritative-ledger-checkout>/src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json",
+    "model_family": "base",
+    "row_count": 84,
+    "starting_revision": "5f75590afd59c18f675b116fbdc9287f2d096af0",
+    "working_clone": "<destination-clone>"
+  },
+  "source_audit": "audit/base84-closure.json"
+}

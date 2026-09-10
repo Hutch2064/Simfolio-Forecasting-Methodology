@@ -1,0 +1,572 @@
+{
+  "experiment_context": {
+    "canonical_dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+    "canonical_panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+    "canonical_protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+    "execution_variant": "source_parity_noncanonical",
+    "full_study_rerun": false,
+    "result_type": "newly_computed_bounded_validation"
+  },
+  "method": {
+    "aligned_seed_contract": "HistoricalFrontierModel deterministic_seed(asset_level_current_engine,ticker,origin,FRONTIER_MARGINAL_ID,horizon,simulations) and copula_alternatives seed.",
+    "dependence_intermediates": [
+      "mean",
+      "observations",
+      "loading",
+      "residual_variance",
+      "phi",
+      "innovation_variance",
+      "initial_variance",
+      "kalman_terminal_state",
+      "kalman_terminal_covariance"
+    ],
+    "fit_intermediates": [
+      "posterior_center",
+      "bdes_multiscale_vol.b",
+      "mu",
+      "state_loglikelihood",
+      "state_path_variance_last"
+    ],
+    "panels": 3,
+    "path_outputs": [
+      "marginal_paths",
+      "gaussian_uniforms",
+      "mapped_asset_paths",
+      "rejoined_portfolio_log_paths"
+    ],
+    "production_entrypoint_replay_tolerance": "2e-12 absolute; full current source entry point matched the manually replayed internal path for all three panels",
+    "production_entrypoint_replay_verified": true,
+    "production_precision": "Current source stores marginal/rejoined captured asset paths as float32 and performs rejoin arithmetic in float64; destination reference stores marginal paths as float64.",
+    "production_seed_contract": "simulate_frontier_fastmap_log_returns draws one root seed from the caller RNG, then deterministic_seed(frontier_fastmap_asset,ticker,horizon,n_paths,root_seed) per asset and consumes dependence RNG sequentially.",
+    "root_independent_replay": "Original production entrypoint and its internal replay rerun in a separate locked Python 3.11 environment against the packaged frozen input series; every storage-aligned mapped and portfolio array is exact.",
+    "root_independent_storage_aligned_check": "Recomputed public marginals and dependence; cast marginal and mapped asset paths at the two actual production float32 storage boundaries. All three mapped asset and rejoined portfolio arrays are byte-identical to aligned production evidence, maximum absolute difference zero.",
+    "scope_limitations": [
+      "No full 80-row study rerun.",
+      "Default production and historical adapter outputs intentionally use different seed contracts; differences are recorded rather than relabeled as arithmetic mismatches.",
+      "Running numerical source hashes are verified; this is not a full deployment-image audit."
+    ],
+    "tolerances": {
+      "aligned_mapped_and_rejoined": "1e-8 absolute for historical float64 versus production float32 storage; observed maximum4.72e-9. Separate production-storage-aligned comparisons require exact array equality.",
+      "aligned_uniforms": "5e-14 absolute",
+      "fit_and_dependence": "2e-12 absolute"
+    }
+  },
+  "panels": [
+    {
+      "array_digests": {
+        "aligned_production_bdes_coefficients": "075a1894396c8a0886558f036344579e26f732fa43bab216de4f997b054fd9a2",
+        "aligned_production_dependence_seed": "299e661b279657608123377767c356c357e6a6ea1c0903223835d34cd103fe88",
+        "aligned_production_factor_initial_variance": "b14e6e0ab18c00e1e61ea06038116c211044538772ec76ab8f039ef907e42d25",
+        "aligned_production_factor_innovation_variance": "4c6f5d2870e26e0929662dd1f6e4a79cfbb9aaa396da1625583e709fa0f3a1b5",
+        "aligned_production_factor_loading": "52f7d48e8071bad547e06d251cd99d19f4cd939512425efa2a110df9ca9bbfb4",
+        "aligned_production_factor_mean": "59f4860a8997068dfef3f59c23d9ab73c8e8b0216e68da6cc33a68b733d75840",
+        "aligned_production_factor_observations": "d7e6b66ffab849bbc20ef3b7987c223634b942690b59395290ecdd08767c4f5f",
+        "aligned_production_factor_phi": "abad52994f1643294291fa316b9a39c8418bc713d87f3769c090b77826527f4c",
+        "aligned_production_factor_residual_variance": "af77751564c3c890cb744a06983866f3b1f1daa383a0a74c6e7d8bf8679f3f6c",
+        "aligned_production_kalman_covariance": "aa949da865397048506f3b5a59fb4307630ddffca997385a7749e018c264048b",
+        "aligned_production_kalman_state": "9b6b14904609a2a8a88b9bf475d60987aeb5bb9a0a36f35432409e6c56777934",
+        "aligned_production_mapped_paths": "0962fe93e5a7acc1aa27a7911434453209b7a6136268399d325eb90cb15650c2",
+        "aligned_production_marginal_paths": "971daf5078644aa5a9e1bc5d9123d797cbf81718770729da87fb9acbafd01341",
+        "aligned_production_marginal_seeds": "b80c499839a32a0a833dcca33ca0bda4b72ba7f0600f9caa314b2913c8bfb408",
+        "aligned_production_mu": "cc39047424f495e03969d0ff414a2a1653d3b339223fc0a042ad4bbdd771e0ed",
+        "aligned_production_posterior_centers": "9b5d9e6a7c273d9bfae842649cdc6823b28000184d6823b4ea6cb2743c6fbc9c",
+        "aligned_production_rebalance_mask": "b8b61214a3d88d029080cf9d37d0b9e8244eba93d922a95d68e8db00a45561ac",
+        "aligned_production_rejoined": "9fb0fc5a2184397b2734730ec3896053e36d37b23dea3178d67328f8e123f3f5",
+        "aligned_production_state_loglik": "917407da9d9ab213b06f8b87473c3ee0c8198cd641744cd77ebac9a57f4cf34e",
+        "aligned_production_state_path_var": "9d7913473b487ce91c91d5f800a8f8a622faf8fba9c4f8e0ada4ec1050424ace",
+        "aligned_production_uniforms": "1e851ad15ba7df5050ae5c74a18e31110ba747944652389a99996c955dd5dd7a",
+        "asset_log_returns": "40e882db0ff51137e1865bff71233973a0f21b7c36e8656e3f7399e7c2772bbf",
+        "future_dates": "8d5a5c22778e0ebc5ac22d7807c232c62633527c0582d5df6800e114e9dd4b07",
+        "production_default_mapped_paths": "6bffd2fefc36a0551b6de0441536ec2c138a25cdf0bafc14cf895437beddf762",
+        "production_default_output": "dd09f9a6b09c67436926cbe36cec7412b67dcc701654b1a8defb22c1bea37a06",
+        "production_default_raw_marginal_paths": "9bc087018e41c8a5ab7b2d8a0a7c9be9cbd8c428e65283b0263307035fda314d",
+        "production_default_rebalance_mask": "b8b61214a3d88d029080cf9d37d0b9e8244eba93d922a95d68e8db00a45561ac",
+        "production_default_uniforms": "7f39f831a87040dfc9776d429219ea0699b4d4ef3984228a4506b3777878ceeb",
+        "production_root_seed": "5834e91d9a4b7d6fd056cd0b1a3d060f5e166300c2f8f6b527388fd80a8b08aa",
+        "public_bdes_coefficients": "075a1894396c8a0886558f036344579e26f732fa43bab216de4f997b054fd9a2",
+        "public_dependence_seed": "299e661b279657608123377767c356c357e6a6ea1c0903223835d34cd103fe88",
+        "public_factor_initial_variance": "b14e6e0ab18c00e1e61ea06038116c211044538772ec76ab8f039ef907e42d25",
+        "public_factor_innovation_variance": "4c6f5d2870e26e0929662dd1f6e4a79cfbb9aaa396da1625583e709fa0f3a1b5",
+        "public_factor_loading": "52f7d48e8071bad547e06d251cd99d19f4cd939512425efa2a110df9ca9bbfb4",
+        "public_factor_mean": "59f4860a8997068dfef3f59c23d9ab73c8e8b0216e68da6cc33a68b733d75840",
+        "public_factor_observations": "d7e6b66ffab849bbc20ef3b7987c223634b942690b59395290ecdd08767c4f5f",
+        "public_factor_phi": "abad52994f1643294291fa316b9a39c8418bc713d87f3769c090b77826527f4c",
+        "public_factor_residual_variance": "af77751564c3c890cb744a06983866f3b1f1daa383a0a74c6e7d8bf8679f3f6c",
+        "public_kalman_covariance": "6bbeda316bb0fd57158a0a266686761bf19c4fc112f7a248d3ae1a6f898852db",
+        "public_kalman_state": "205a59f4615c9618b73b736ac76637efd6bc8dea3960a368a4b072728a3ad886",
+        "public_mapped_paths": "3273f4efe9c4badcfe9cc48b4eec98e58878735e2f70c141aa2d4a18a1167ab3",
+        "public_marginal_paths": "ed22c13c94a9b1e87a4559180214041ba081081f1031e3a380d52e44ba88f101",
+        "public_marginal_seeds": "b80c499839a32a0a833dcca33ca0bda4b72ba7f0600f9caa314b2913c8bfb408",
+        "public_mu": "cc39047424f495e03969d0ff414a2a1653d3b339223fc0a042ad4bbdd771e0ed",
+        "public_posterior_centers": "9b5d9e6a7c273d9bfae842649cdc6823b28000184d6823b4ea6cb2743c6fbc9c",
+        "public_rebalance_mask": "b8b61214a3d88d029080cf9d37d0b9e8244eba93d922a95d68e8db00a45561ac",
+        "public_rejoined": "6906e3a40e479de4654072cc04cf00ce502e5b5808b67aac103e2013707d6af0",
+        "public_state_loglik": "917407da9d9ab213b06f8b87473c3ee0c8198cd641744cd77ebac9a57f4cf34e",
+        "public_state_path_var": "9d7913473b487ce91c91d5f800a8f8a622faf8fba9c4f8e0ada4ec1050424ace",
+        "public_uniforms": "4bdb1c911f4fc09b85485a28ef63e1ca42f62235bbad0f1a10ccb1dc903c9a87",
+        "simple_returns": "88750587263e15c47dbff85bb38de0676ee90fcd08c8ef8158624e15975bd960",
+        "training_dates": "ecdbb06a41c7f0aac1c6306bf30bae99086b4ce7136c81ceeaaf8bdc74d13bab",
+        "weights": "c0faea93f222ef6a2767274e128928651a9222e6cc8906ea9d19aec499025df0"
+      },
+      "context_seed": 123,
+      "fixture": "resources/test_fixtures/frontier/current_production_synthetic_fixture4_monthly.npz",
+      "fixture_sha256": "01822421c2681b28b3c150f6173351f4a665ddc00cf16f5d342287f4368af56d",
+      "future_end": "2026-07-08",
+      "future_start": "2026-05-14",
+      "horizon_days": 40,
+      "metrics": {
+        "aligned_mapped_paths_max_abs": 1.5076170242767084e-09,
+        "aligned_raw_marginal_max_abs": 9.202835368760098e-10,
+        "aligned_rebalance_mask_equals_public": true,
+        "aligned_rejoined_max_abs": 5.65826647688783e-10,
+        "aligned_uniforms_max_abs": 7.771561172376096e-16,
+        "bdes_coefficients_max_abs": 0.0,
+        "factor_initial_variance_max_abs": 0.0,
+        "factor_innovation_variance_max_abs": 0.0,
+        "factor_loading_max_abs": 0.0,
+        "factor_mean_max_abs": 0.0,
+        "factor_observations_max_abs": 0.0,
+        "factor_phi_max_abs": 0.0,
+        "factor_residual_variance_max_abs": 0.0,
+        "first_default_marginal_difference": {
+          "abs_diff": 0.005130383849096264,
+          "asset": 0,
+          "day": 0,
+          "production": -0.0009615279850549996,
+          "public": -0.006091911834151264,
+          "simulation": 0,
+          "ticker": "ALPHA"
+        },
+        "kalman_covariance_max_abs": 2.275957200481571e-15,
+        "kalman_state_max_abs": 8.08242361927114e-14,
+        "mu_max_abs": 0.0,
+        "posterior_centers_max_abs": 0.0,
+        "production_default_mapped_vs_public_max_abs": 0.04313995076394934,
+        "production_default_output_equals_public": false,
+        "production_default_output_vs_public_max_abs": 0.020744719241644182,
+        "production_rebalance_mask_equals_public": true,
+        "rebalance_count": 2,
+        "root_production_storage_aligned_mapped_exact": true,
+        "root_production_storage_aligned_rejoined_max_abs": 0.0,
+        "source_current_production_metadata": {
+          "block_size_days": 512,
+          "cost_per_turnover_bps": 15.0,
+          "factor_count": 3,
+          "marginal_source_storage": "float32_memory",
+          "rebalancing": "monthly",
+          "source_precision": "float32; simulation and policy arithmetic float64"
+        },
+        "source_current_production_runtime": {
+          "dependence_fit_and_terminal_posterior": 0.00044620793778449297,
+          "dependence_rejoin": 0.00042824994307011366,
+          "marginal_fit_and_paths": 0.036174084059894085,
+          "total": 0.03925416595302522
+        },
+        "state_loglik_max_abs": 0.0,
+        "state_path_var_max_abs": 0.0
+      },
+      "name": "synthetic_fixture4_monthly",
+      "rebalance": "monthly",
+      "simulations": 24,
+      "source": {
+        "kind": "existing_isolated_frontier_source_fixture",
+        "source_reference": "resources/test_fixtures/frontier/source_reference.npz"
+      },
+      "tickers": [
+        "ALPHA",
+        "BETA",
+        "GAMMA",
+        "DELTA"
+      ],
+      "training_end": "2026-05-13",
+      "training_observations": 600,
+      "training_start": "2024-01-25",
+      "weights": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "array_digests": {
+        "aligned_production_bdes_coefficients": "9b30431642860a94a0fb790553a9588f721bc39da499512228e0e3ae7e859cdc",
+        "aligned_production_dependence_seed": "95e08efec66396e97857d077e64bf570d83ace2f29f59c9c543cae7479aeae91",
+        "aligned_production_factor_initial_variance": "4dd5577a15a005427d05592bdbc2de0628868bc1980f16cbf6b840b2cf1a98b2",
+        "aligned_production_factor_innovation_variance": "260da77cfb285171f5dde229dfa96d30a1e9d81c333293f583489dad86d20ea6",
+        "aligned_production_factor_loading": "68a2ead8d5b316a0fe65bf407e124c2be6ec97aa05c2704dd3d9b010a5137dfb",
+        "aligned_production_factor_mean": "205b573b061c09a8337488731826c24050ef65900459fb63d5398526fa4fadb2",
+        "aligned_production_factor_observations": "fbbc0fd90b1f5317342eb0ae95c5bea14e2b12645a6598e26b3d477ab7d34f80",
+        "aligned_production_factor_phi": "0357530de6ac27f882adf498fdedbf20530ebcf8b6dfc7abe2c8ac9a1955d55d",
+        "aligned_production_factor_residual_variance": "650f8cec3d83528b373f790e9c19216d15831d27085fc82eb9dfcc6d67c818a6",
+        "aligned_production_kalman_covariance": "f1a89c788f3e088004b22afd994a0768229a2c6dd9608f1faeca69b5755e18b5",
+        "aligned_production_kalman_state": "40c763447672febdff2f603b2efc1858ae9a7c2e9301b3224b41e0ac42d40f43",
+        "aligned_production_mapped_paths": "ed4cf38d963273ea6d17794c6695412270885ea1fe307807a7246537e31c18e3",
+        "aligned_production_marginal_paths": "759c19be37f7c9f82e482e9bc68afe9fe2d341021e5ec2d659a89f48b0e12f49",
+        "aligned_production_marginal_seeds": "6016741ef40f0c71eb72f19c27dc99948862907f47d4ee483eeb440d433734bd",
+        "aligned_production_mu": "403f5ef3165e91b5fb61eb7deabeb6bd489cb5ad6a863ba73ed59858c30f5bab",
+        "aligned_production_posterior_centers": "fcfa32aab866f3b36b49a86f732d8a589579f1d0f4661cf485d8222ec22dcddc",
+        "aligned_production_rebalance_mask": "6e57bd0a86d65b1583dc71bc419f04f96d273aefaa0abb7c38b4cb0b4045d084",
+        "aligned_production_rejoined": "5cbcbe6416ac6976ee11a0e6c3eb3307455f0ba35c9227219293b6dd7d9a49cb",
+        "aligned_production_state_loglik": "30303c6808489a95bf8394ca752729fd36174bea94f6b3818b49df74037a6e57",
+        "aligned_production_state_path_var": "ca7b2078262f927ada49b87a0524bb7ece0ab4e01a6afcca41213cb8b9e3f344",
+        "aligned_production_uniforms": "892dc36a09ddfe44ae63bd850d1b9ebed50946beffe809056ed196db63051d85",
+        "asset_log_returns": "834ec098c5dfe90d105aedf6a7879117c1bc9c23bf7f6813670ac47172f4f211",
+        "future_dates": "8b12f22f15c8e73ed3adfdf7b5c6667e37efa61832810838084c09c1d3ca4d3b",
+        "production_default_mapped_paths": "ba285ac1938920f46a2bbb9d2bba142d4a6ffc7356044a4e0e36b25387c0c40b",
+        "production_default_output": "ff4a82dcff2ae260d0dab72e4f5aaac9419e09e608a42e4c58380302e69ef869",
+        "production_default_raw_marginal_paths": "87f7e81d62d40edd137fc6ed4d559ea5d60ad1a92fd7ba516bbd6b33e54b2719",
+        "production_default_rebalance_mask": "6e57bd0a86d65b1583dc71bc419f04f96d273aefaa0abb7c38b4cb0b4045d084",
+        "production_default_uniforms": "1f7ac0b6961ee2f8a7a98305923c0b684bc31b5d44d49108ee0dfb7372d8f57e",
+        "production_root_seed": "c95759f9c56cdcba5168fa784fb74379c20ea88b3844e7a94a6f8f1a98c82c54",
+        "public_bdes_coefficients": "9b30431642860a94a0fb790553a9588f721bc39da499512228e0e3ae7e859cdc",
+        "public_dependence_seed": "95e08efec66396e97857d077e64bf570d83ace2f29f59c9c543cae7479aeae91",
+        "public_factor_initial_variance": "4dd5577a15a005427d05592bdbc2de0628868bc1980f16cbf6b840b2cf1a98b2",
+        "public_factor_innovation_variance": "260da77cfb285171f5dde229dfa96d30a1e9d81c333293f583489dad86d20ea6",
+        "public_factor_loading": "68a2ead8d5b316a0fe65bf407e124c2be6ec97aa05c2704dd3d9b010a5137dfb",
+        "public_factor_mean": "205b573b061c09a8337488731826c24050ef65900459fb63d5398526fa4fadb2",
+        "public_factor_observations": "fbbc0fd90b1f5317342eb0ae95c5bea14e2b12645a6598e26b3d477ab7d34f80",
+        "public_factor_phi": "0357530de6ac27f882adf498fdedbf20530ebcf8b6dfc7abe2c8ac9a1955d55d",
+        "public_factor_residual_variance": "650f8cec3d83528b373f790e9c19216d15831d27085fc82eb9dfcc6d67c818a6",
+        "public_kalman_covariance": "e6b9011d4020f9ab57bd8303c83b2fde7551af403a859fe3e274baf77a3fbc0a",
+        "public_kalman_state": "287ba0860f55564396f7aa9376a3a5f74d6af720d2930d697d7df51081d53c71",
+        "public_mapped_paths": "22ad90f3a56946a68198af274a5e0e9001e17b527756db99e79423f337d0a83d",
+        "public_marginal_paths": "e09eadea131e7bcddc5735cc864b87d36b5bf8df4d956b799d10d8f3cc89909b",
+        "public_marginal_seeds": "6016741ef40f0c71eb72f19c27dc99948862907f47d4ee483eeb440d433734bd",
+        "public_mu": "403f5ef3165e91b5fb61eb7deabeb6bd489cb5ad6a863ba73ed59858c30f5bab",
+        "public_posterior_centers": "fcfa32aab866f3b36b49a86f732d8a589579f1d0f4661cf485d8222ec22dcddc",
+        "public_rebalance_mask": "6e57bd0a86d65b1583dc71bc419f04f96d273aefaa0abb7c38b4cb0b4045d084",
+        "public_rejoined": "937db93f652fee519ebf6bdfab08bbfabc827c374fc390a63267c95783797d6a",
+        "public_state_loglik": "30303c6808489a95bf8394ca752729fd36174bea94f6b3818b49df74037a6e57",
+        "public_state_path_var": "ca7b2078262f927ada49b87a0524bb7ece0ab4e01a6afcca41213cb8b9e3f344",
+        "public_uniforms": "6a8a39462c34a76d274524f43178e392f7b2f97e1727c9ec91154d6090832e07",
+        "simple_returns": "71e1ba620d5ded631030b95b12b658c106c46bc9801f0dc79392ba6b780074c0",
+        "training_dates": "764ce872547572853b576eb5c9db6b8f5e20d9f36865b4b9c22902d6886ef6b3",
+        "weights": "be8a266fcf0f2e6e7a558265777fcadf01b6a3aa167a09cc040468dccb0016a5"
+      },
+      "context_seed": 20260910,
+      "fixture": "resources/test_fixtures/frontier/current_production_canonical80_row001_annually.npz",
+      "fixture_sha256": "fb55c9b208b6105e54a79006b12169addbd9d1a7650fbcfaa7d69f351d147b36",
+      "future_end": "2027-05-12",
+      "future_start": "2026-05-14",
+      "horizon_days": 260,
+      "metrics": {
+        "aligned_mapped_paths_max_abs": 4.7199423813815145e-09,
+        "aligned_raw_marginal_max_abs": 3.5938939879631704e-09,
+        "aligned_rebalance_mask_equals_public": true,
+        "aligned_rejoined_max_abs": 1.0481204584800174e-09,
+        "aligned_uniforms_max_abs": 2.220446049250313e-16,
+        "bdes_coefficients_max_abs": 0.0,
+        "factor_initial_variance_max_abs": 0.0,
+        "factor_innovation_variance_max_abs": 0.0,
+        "factor_loading_max_abs": 0.0,
+        "factor_mean_max_abs": 0.0,
+        "factor_observations_max_abs": 0.0,
+        "factor_phi_max_abs": 0.0,
+        "factor_residual_variance_max_abs": 0.0,
+        "first_default_marginal_difference": {
+          "abs_diff": 0.0027235846486396054,
+          "asset": 0,
+          "day": 0,
+          "production": -0.0038643022999167442,
+          "public": -0.0011407176512771388,
+          "simulation": 0,
+          "ticker": "IWMSIM"
+        },
+        "kalman_covariance_max_abs": 1.3877787807814457e-17,
+        "kalman_state_max_abs": 1.1102230246251565e-16,
+        "mu_max_abs": 0.0,
+        "posterior_centers_max_abs": 0.0,
+        "production_default_mapped_vs_public_max_abs": 0.09751545557522817,
+        "production_default_output_equals_public": false,
+        "production_default_output_vs_public_max_abs": 0.03550855618233919,
+        "production_rebalance_mask_equals_public": true,
+        "rebalance_count": 1,
+        "root_production_storage_aligned_mapped_exact": true,
+        "root_production_storage_aligned_rejoined_max_abs": 0.0,
+        "source_current_production_metadata": {
+          "block_size_days": 512,
+          "cost_per_turnover_bps": 15.0,
+          "factor_count": 3,
+          "marginal_source_storage": "float32_memory",
+          "rebalancing": "annually",
+          "source_precision": "float32; simulation and policy arithmetic float64"
+        },
+        "source_current_production_runtime": {
+          "dependence_fit_and_terminal_posterior": 0.0005829159636050463,
+          "dependence_rejoin": 0.0007928330451250076,
+          "marginal_fit_and_paths": 0.05275100003927946,
+          "total": 0.05607520800549537
+        },
+        "state_loglik_max_abs": 0.0,
+        "state_path_var_max_abs": 0.0
+      },
+      "name": "canonical80_row001_annually",
+      "rebalance": "annually",
+      "simulations": 24,
+      "source": {
+        "canonical_portfolio_name": "equal_class_history_001",
+        "canonical_row_index": 1,
+        "kind": "frozen_canonical80_panel_row",
+        "panel_resource": "resources/panels/scored52_portfolio_panel.csv",
+        "panel_resource_sha256": "fc42d3a5b7b0272cab1b4fc5db998d059a3f8fed93f6275295331fdc744f2f36",
+        "panel_semantic_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+        "source_series": {
+          "GLDSIM": {
+            "resource": "simulated_data/series/GLDSIM.csv.gz",
+            "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc"
+          },
+          "IEISIM": {
+            "resource": "simulated_data/series/IEISIM.csv.gz",
+            "sha256": "b374b4685a73eac973257283edeb8b05fa5cd60c452b66e1bbb7970994f08668"
+          },
+          "IWMSIM": {
+            "resource": "simulated_data/series/IWMSIM.csv.gz",
+            "sha256": "aa093eb6547d41aeca170e36a1aed7fcf29f2d57106b58ed8ff022d75475ae8a"
+          },
+          "REITSIM": {
+            "resource": "simulated_data/series/REITSIM.csv.gz",
+            "sha256": "1c0105a25c4ecc3cf5680cf5adcce5f35a3503e4baec423c6d566cfed26e2ab8"
+          },
+          "XLPSIM": {
+            "resource": "simulated_data/series/XLPSIM.csv.gz",
+            "sha256": "9a940a5b577ba6b7e54fa53d5e9f5ebaa903d206317854cbcd7135c0fd7b1490"
+          },
+          "ZROZSIM": {
+            "resource": "simulated_data/series/ZROZSIM.csv.gz",
+            "sha256": "336718b01668563e3acb88e4f46d751d0539cc276fe8ece64fc57da4a4bc9d62"
+          }
+        }
+      },
+      "tickers": [
+        "IWMSIM",
+        "XLPSIM",
+        "IEISIM",
+        "ZROZSIM",
+        "GLDSIM",
+        "REITSIM"
+      ],
+      "training_end": "2026-05-13",
+      "training_observations": 600,
+      "training_start": "2023-12-20",
+      "weights": [
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669
+      ]
+    },
+    {
+      "array_digests": {
+        "aligned_production_bdes_coefficients": "802c5bee9d8cc283a7456d876894ac2235d5ebd2328a60d4a68391ff68b2d303",
+        "aligned_production_dependence_seed": "53159ba5be9be33e511a9ef423807da326f5cdfa169379e049513b557e25fd9d",
+        "aligned_production_factor_initial_variance": "f535eebdcc65af506cf0a6648011e42825cf8f76f8dab02fc76542dffa25eaef",
+        "aligned_production_factor_innovation_variance": "a84cf3f316021c70d033cf0a2cc882165fbeadbbbb53bce5c53f305b9384a9e9",
+        "aligned_production_factor_loading": "ee75333402e17f0e063adda356689b58b1ff2b1033d4755b5e112cdadbfe8443",
+        "aligned_production_factor_mean": "e9357578c7819e1791be24ef34470e5bf4e8f13dadd7de9342ab4cd90b404ad6",
+        "aligned_production_factor_observations": "c7591743e892f60a7f84587bea0aca7e85b862c33dcfaea9add5673deda43d92",
+        "aligned_production_factor_phi": "9f0a939c8ce4c8648821336d5a543efd03157ab290200a7236d6e7e0d01a7aa1",
+        "aligned_production_factor_residual_variance": "edecdd05ff3e9b1817ac54439a720bcd37f9b7ab8c98d91538b59d6d05da18ea",
+        "aligned_production_kalman_covariance": "07af0984b0386d0d841ab9f8df10391618b2f538985f06471e113be62ae574a8",
+        "aligned_production_kalman_state": "c1b5a838bf1d3dc13ad881180f1c3ed69dc2d8887c2e9320696fc7c6d6a1e7d1",
+        "aligned_production_mapped_paths": "5c98c89743252b8e69885432ffaaad2cc82d3f0fcfbdbc8b087d22f25c7c2a7b",
+        "aligned_production_marginal_paths": "354e7194b0123a957c75c6bb77087671c8ee7973db760d538dfed97b076dade4",
+        "aligned_production_marginal_seeds": "3ac4644521f9798cceeaf9e6b60f3513faf783736985c1a91f0ec75ba77e9a71",
+        "aligned_production_mu": "3be531d3dec02405416e133212dd1e35eb4cf5a5dabed3de030fe0ea63169e5b",
+        "aligned_production_posterior_centers": "661dff4b36f8b895b04a231fa0f34ee9c582a8019d5dc6b8aabb30d844b6a163",
+        "aligned_production_rebalance_mask": "3ae67fb8f37b60a6b84260a6262f7ca02353452cbde248b804cd0ab635780add",
+        "aligned_production_rejoined": "5b8f5510c17aac66b21d78744d9f11742826eebf97d564e14f3ff01923a7b259",
+        "aligned_production_state_loglik": "5579c06852fe9506a2253932fa59c24da6611324c6d49f1cfe008589792a9b44",
+        "aligned_production_state_path_var": "77c1e45963a3af14fec1b5eb570bb4734d730ed39441f48f74714fcf7b1a5b5c",
+        "aligned_production_uniforms": "711e2dcd754d9ed21e3325fafb96a46cb23bdd500c32b150d7210d7952055b97",
+        "asset_log_returns": "4930c916a2b975eed2dfce945f048c646c70e2e7999123ff7a9e6d31b8e7320b",
+        "future_dates": "578812a74fa1954ffdbbf83d1e0aa1c39ce55b25eda3b8ed70d77632c6c99754",
+        "production_default_mapped_paths": "0a8a5dcf8928b58abc501bb3778b370f1ee3833a0fcb8c8a7cd9e5f58ba882a4",
+        "production_default_output": "1289910010ac7ec7c1257ede3ffedb1863b7a437747864c68f0ea9ffed8a640f",
+        "production_default_raw_marginal_paths": "0879104db6eed316088dda3c2486be2b2bbd6c64c3c2c43ebfcf4c5874750d79",
+        "production_default_rebalance_mask": "3ae67fb8f37b60a6b84260a6262f7ca02353452cbde248b804cd0ab635780add",
+        "production_default_uniforms": "c5142a433ca4ac49e4d33d28530ec3c628ff951529a12d6a2026d15d2d9df1a4",
+        "production_root_seed": "5973591a21eefab0ab1cfcc0ce110cd5533e88826f07453bfce97996a4d0333b",
+        "public_bdes_coefficients": "802c5bee9d8cc283a7456d876894ac2235d5ebd2328a60d4a68391ff68b2d303",
+        "public_dependence_seed": "53159ba5be9be33e511a9ef423807da326f5cdfa169379e049513b557e25fd9d",
+        "public_factor_initial_variance": "f535eebdcc65af506cf0a6648011e42825cf8f76f8dab02fc76542dffa25eaef",
+        "public_factor_innovation_variance": "a84cf3f316021c70d033cf0a2cc882165fbeadbbbb53bce5c53f305b9384a9e9",
+        "public_factor_loading": "ee75333402e17f0e063adda356689b58b1ff2b1033d4755b5e112cdadbfe8443",
+        "public_factor_mean": "e9357578c7819e1791be24ef34470e5bf4e8f13dadd7de9342ab4cd90b404ad6",
+        "public_factor_observations": "c7591743e892f60a7f84587bea0aca7e85b862c33dcfaea9add5673deda43d92",
+        "public_factor_phi": "9f0a939c8ce4c8648821336d5a543efd03157ab290200a7236d6e7e0d01a7aa1",
+        "public_factor_residual_variance": "edecdd05ff3e9b1817ac54439a720bcd37f9b7ab8c98d91538b59d6d05da18ea",
+        "public_kalman_covariance": "be1051fe2d1bdb5c6acc9509b7c9430ebbbfb2e0cd64b86d17d26895d92c57bb",
+        "public_kalman_state": "adc5a977e287556ff6437044fcbc6bef9acd6625ad48300189ee5869a5fc15b9",
+        "public_mapped_paths": "b2da8a5cd30667fe8f041573137802855e303069a0f83cccacddd1bac610e778",
+        "public_marginal_paths": "d5984345db7215c40e89df0ac76fcf6e9f5337a23ee1b6072dde962d186cc190",
+        "public_marginal_seeds": "3ac4644521f9798cceeaf9e6b60f3513faf783736985c1a91f0ec75ba77e9a71",
+        "public_mu": "3be531d3dec02405416e133212dd1e35eb4cf5a5dabed3de030fe0ea63169e5b",
+        "public_posterior_centers": "661dff4b36f8b895b04a231fa0f34ee9c582a8019d5dc6b8aabb30d844b6a163",
+        "public_rebalance_mask": "3ae67fb8f37b60a6b84260a6262f7ca02353452cbde248b804cd0ab635780add",
+        "public_rejoined": "1bf0d6afb31a0b883e7b56d4d17ff2df9e010608f638ba0fe5b26a06c12e1764",
+        "public_state_loglik": "5579c06852fe9506a2253932fa59c24da6611324c6d49f1cfe008589792a9b44",
+        "public_state_path_var": "77c1e45963a3af14fec1b5eb570bb4734d730ed39441f48f74714fcf7b1a5b5c",
+        "public_uniforms": "b7410a823b9834580a8fe41d2c497142b06064f9fee5a544b5e4e8781d65d02c",
+        "simple_returns": "41483253d74d4453fdcefdbbec5261b1db5121fdaac36a2cc996087114a1981f",
+        "training_dates": "e9dfa13bc39c946ab6d618a8710d10c5a5b62ebd102e9a7c93ef3bafa695ebfb",
+        "weights": "be8a266fcf0f2e6e7a558265777fcadf01b6a3aa167a09cc040468dccb0016a5"
+      },
+      "context_seed": 314159,
+      "fixture": "resources/test_fixtures/frontier/current_production_canonical80_row007_quarterly.npz",
+      "fixture_sha256": "a362d47171c2613ce9ce628632c70e587704576d0ae3f4b99d486ab5bb587bc4",
+      "future_end": "2026-04-08",
+      "future_start": "2026-01-01",
+      "horizon_days": 70,
+      "metrics": {
+        "aligned_mapped_paths_max_abs": 2.798118486913026e-09,
+        "aligned_raw_marginal_max_abs": 3.181707369792619e-09,
+        "aligned_rebalance_mask_equals_public": true,
+        "aligned_rejoined_max_abs": 3.9405089781452407e-10,
+        "aligned_uniforms_max_abs": 2.220446049250313e-16,
+        "bdes_coefficients_max_abs": 0.0,
+        "factor_initial_variance_max_abs": 0.0,
+        "factor_innovation_variance_max_abs": 0.0,
+        "factor_loading_max_abs": 0.0,
+        "factor_mean_max_abs": 0.0,
+        "factor_observations_max_abs": 0.0,
+        "factor_phi_max_abs": 0.0,
+        "factor_residual_variance_max_abs": 0.0,
+        "first_default_marginal_difference": {
+          "abs_diff": 0.00882543951218648,
+          "asset": 0,
+          "day": 0,
+          "production": 0.01057711523026228,
+          "public": 0.0017516757180757992,
+          "simulation": 0,
+          "ticker": "VOSIM"
+        },
+        "kalman_covariance_max_abs": 2.7755575615628914e-17,
+        "kalman_state_max_abs": 3.3306690738754696e-16,
+        "mu_max_abs": 0.0,
+        "posterior_centers_max_abs": 0.0,
+        "production_default_mapped_vs_public_max_abs": 0.06869042102592673,
+        "production_default_output_equals_public": false,
+        "production_default_output_vs_public_max_abs": 0.022506089377086175,
+        "production_rebalance_mask_equals_public": true,
+        "rebalance_count": 1,
+        "root_production_storage_aligned_mapped_exact": true,
+        "root_production_storage_aligned_rejoined_max_abs": 0.0,
+        "source_current_production_metadata": {
+          "block_size_days": 512,
+          "cost_per_turnover_bps": 15.0,
+          "factor_count": 3,
+          "marginal_source_storage": "float32_memory",
+          "rebalancing": "quarterly",
+          "source_precision": "float32; simulation and policy arithmetic float64"
+        },
+        "source_current_production_runtime": {
+          "dependence_fit_and_terminal_posterior": 0.0005212080432102084,
+          "dependence_rejoin": 0.0004979170626029372,
+          "marginal_fit_and_paths": 0.05309529206715524,
+          "total": 0.055670166038908064
+        },
+        "state_loglik_max_abs": 0.0,
+        "state_path_var_max_abs": 0.0
+      },
+      "name": "canonical80_row007_quarterly",
+      "rebalance": "quarterly",
+      "simulations": 24,
+      "source": {
+        "canonical_portfolio_name": "equal_class_history_007",
+        "canonical_row_index": 7,
+        "kind": "frozen_canonical80_panel_row",
+        "panel_resource": "resources/panels/scored52_portfolio_panel.csv",
+        "panel_resource_sha256": "fc42d3a5b7b0272cab1b4fc5db998d059a3f8fed93f6275295331fdc744f2f36",
+        "panel_semantic_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+        "source_series": {
+          "GLDSIM": {
+            "resource": "simulated_data/series/GLDSIM.csv.gz",
+            "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc"
+          },
+          "GSGSIM": {
+            "resource": "simulated_data/series/GSGSIM.csv.gz",
+            "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f"
+          },
+          "IEFSIM": {
+            "resource": "simulated_data/series/IEFSIM.csv.gz",
+            "sha256": "e78341660692c91cd6475e72e0ae8808834f865daf70d0f4695c723fc4a24b84"
+          },
+          "TLTSIM": {
+            "resource": "simulated_data/series/TLTSIM.csv.gz",
+            "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0"
+          },
+          "VOSIM": {
+            "resource": "simulated_data/series/VOSIM.csv.gz",
+            "sha256": "cfd0ad097e050bbcb57052cdca42542e025ece40f05c1ee99c8804e00844b674"
+          },
+          "VTSIM": {
+            "resource": "simulated_data/series/VTSIM.csv.gz",
+            "sha256": "b7a2b5d64fa67e598845a264342b032c40806aee5b9650eabe831cd91c91ec4a"
+          }
+        }
+      },
+      "tickers": [
+        "VOSIM",
+        "VTSIM",
+        "IEFSIM",
+        "TLTSIM",
+        "GLDSIM",
+        "GSGSIM"
+      ],
+      "training_end": "2025-12-31",
+      "training_observations": 600,
+      "training_start": "2023-08-11",
+      "weights": [
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669
+      ]
+    }
+  ],
+  "schema_version": "frontier-current-production-parity-v1",
+  "scope": "bounded_current_production_frontier_numerical_closure",
+  "source_identity": {
+    "current_production_checkout_label": "simfolio-nav-engine",
+    "current_production_engine_source": {
+      "path": "app/engine.py",
+      "sha256": "f16c49caca96cd6eec9f7620c7fb922bd3c64d4c1abc256f70032334f4b6545d"
+    },
+    "current_production_fastmap_source": {
+      "path": "app/fastmap_asset_forecast.py",
+      "sha256": "2cec016e89da604884d8bc90e6975b5964c87be7af0c29578563327410dd2b7f"
+    },
+    "current_production_revision": "1485d2088ccbee7fcbc7e81e358d253eef7b6058",
+    "deployment_note": "Running production numerical files verified by read-only hashes and matched to current remote main. Whole-image Git provenance remains unverified; numerical closure identity is verified.",
+    "deployment_revision_verified": false,
+    "destination_bdes_closure": {
+      "path": "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py"
+    },
+    "destination_dynamic_closure": {
+      "path": "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py"
+    },
+    "destination_frontier_adapter": {
+      "path": "src/simfolio_forecasting_methodology/models/asset_level/frontier.py",
+      "revision": "d3523eac83ed31ee124c60ab094d30a71c8cacab"
+    },
+    "live_numerical_source_verification": {
+      "comparison_to_replayed_source": "Frontier module byte-identical. Engine AST comparison found no changed module/class constants and no changed forecasting numerical functions; changed functions concern benchmark diagnostics and backtest reporting.",
+      "engine_sha256": "c2fcb7ad07ed94317d3102d69bd5160ed2a385703e69786ad0e2cedbf733cd4e",
+      "fastmap_asset_forecast_sha256": "2cec016e89da604884d8bc90e6975b5964c87be7af0c29578563327410dd2b7f",
+      "method": "read-only SHA-256 capture of the two numerical source files in an already-running production machine; no application execution or configuration changes",
+      "remote_main_file_hashes_match_live": true,
+      "remote_main_revision": "974b79699d8b7e5a474d21c3f4209b18e4927ccf",
+      "verified_at_utc": "2026-09-10T06:48:44Z",
+      "whole_image_git_revision_verified": false
+    },
+    "live_numerical_source_verified": true,
+    "pinned_historical_engine_sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+    "pinned_historical_research_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+  },
+  "status": "completed_bounded_audit"
+}

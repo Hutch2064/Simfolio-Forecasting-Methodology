@@ -1,0 +1,5928 @@
+# Canonical resolved statistical specifications
+
+Generated from `resources/specifications/canonical_statistical_specifications.json`.
+The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.
+The resource contains all 175 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.
+Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.
+
+## 001. `asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced`
+
+- Family: `asset_level_extension`
+- Resolved-definition SHA-256: `550446485804a94de71427d7db10ec6f4d1b9bfbd92efde5c00e294cfb77279e`
+- Source: `tmp/asset_level_full_panel_20260823/simfolio_oos_copula_alternatives.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `413d2ca7f74cda13dd228c8974f822ce23e690cc56e098babf3fd2c121fbf95e`).
+- Source entrypoints: `_coupled_asset_paths (PGAS_ID branch)`, `_exact_kalman_rejoined_portfolio_paths`.
+- Factory seed contract: `deterministic_seed('asset_level_current_engine', ticker, origin_date, selected_model_id, horizon_days, simulations); deterministic_seed('copula_alternatives', asset_model_id, origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.asset_exact`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, marginal_candidate_id, student_scale_mixture`.
+- Resolved defaults:
+  - `dependence_seed_alias` = `"copula_alternatives"`
+  - `factor_explained_variance_target` = `0.8`
+  - `future_calendar` = `"business days from training end plus one BDay"`
+  - `marginal_seed_alias` = `"asset_level_current_engine"`
+  - `maximum_factors` = `3`
+  - `minimum_assets` = `2`
+  - `minimum_observations` = `80`
+  - `student_scale_mixture` = `false`
+  - `turnover_cost_bps` = `15.0`
+
+## 002. `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`
+
+- Family: `frontier`
+- Resolved-definition SHA-256: `25760d1badb1ff6f5e37a947a92b84140dc7967b2b20d4a9ac37d7ce4fd41aa6`
+- Source: `source-research/app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_bdes_non_mcmc_sv_forecast_base`, `_simulate_full_mcmc_sv_bdes_log_paths_serial_numba`.
+- Factory seed contract: `deterministic_seed('asset_level_current_engine', ticker, origin_date, selected_model_id, horizon_days, simulations); deterministic_seed('copula_alternatives', asset_model_id, origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.frontier`.
+- Marginal candidate: `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_fast_map_laplace_sigma_points`.
+- Dependence component: `frontier.dependence_parameterization`.
+- Portfolio rejoin: `frontier.portfolio_rejoin`.
+
+## 003. `bayesian_mcmc_stochastic_volatility_sbb`
+
+- Family: `sv_mcmc_sbb`
+- Resolved-definition SHA-256: `3b51bb3c6c3976d9d4438d20ac2f122445580cffe0426699d5793f9bb59e92fc`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_sample_mean_near_zero_shrinkage`, `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sv_mcmc_log_posterior`, `_fit_sv_mcmc_from_base`, `_fit_sv_mcmc`, `_sv_initial_log_var`, `_politis_white_block_length`, `_stationary_bootstrap_indices_from_draws_fast`, `_stationary_bootstrap_indices_from_draws`, `_stationary_bootstrap_indices`, `_simulate_sv_mcmc_sbb`.
+- Factory seed contract: `fit: blake2b-64-little-mod-2^32-1; args=('sv_mcmc_fit', finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation, type`.
+- Resolved defaults:
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `fit_seed_arguments` = `["sv_mcmc_fit", "finite_observation_count", "round(finite_observation_mean, 10)"]`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_mcmc_stochastic_volatility_sbb"`
+  - `innovation` = `"empirical"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `measurement_equation` = `{"log_variance_clip": [-18.0, 18.0], "mean": -1.2703628454614782, "variance": "pi^2 / 2"}`
+  - `minimum_finite_training_observations` = `504`
+  - `output_semantics` = `"cumulative terminal samples from source daily MCMC-SV paths"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `sampler` = `{"burn": 120, "eta_bounds": [0.0001, 5.0], "iterations": 420, "phi_bounds": [0.001, 0.994], "proposal": "bounded random walk over level, phi, eta", "thin": 4}`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stationary_bootstrap` = `"_politis_white_block_length plus source index kernel"`
+  - `type` = `"sv_mcmc_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 004. `bayesian_sbb_ml_vol_overlay_rf_harx_ff6`
+
+- Family: `bayesian_sbb_ml_vol_overlay`
+- Resolved-definition SHA-256: `7eee4dce3cd4a4ff89cc5b0652a47186b81f9e7620a23a5fa436987bec6419ee`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_ml_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_ml_vol_overlay_rf_harx_ff6"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"base_candidate": {"overlay_model": "ewma_absolute"}, "branch": "source ML wrapper base fit", "fit_function": "_fit_bayesian_sbb_vol_overlay", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `180`
+  - `ml_descriptor` = `{"factor_model": "none", "model": "ridge_harx", "parameter_source": "source function default because raw descriptor omits ml_model"}`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"factor_model": "none", "factor_parameter_source": "source function default because raw descriptor omits ml_model", "fit_function": "_fit_bayesian_sbb_ml_vol_overlay", "model": "ridge_harx", "random_forest": {"bootstrap": true, "max_depth": 5, "max_features": 0.75, "min_samples_leaf": 25, "n_estimators": 64, "n_jobs": 1}, "recent_weight_half_life_days": 504.0}`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_ml_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 005. `bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `821005670aa3bbfd96121dd9221af649852312e1a8c6fdd93a5a1935ce8c7f9b`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "empirical_bayes_hac_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "egarch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "egarch_1_1_volatility"}`
+  - `overlay_model` = `"egarch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `prior_source` = `"data_driven_sharpe_shrinkage"`
+  - `residual_resampling` = `"stationary_bootstrap"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"egarch_1_1_volatility_overlay"`
+
+## 006. `bayesian_sbb_overlay_ewma_absolute`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `fa16bea85396e474ae3551d5591a8a327457992546192d439ee7a88319cb06c1`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 007. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `8986cfc249e0f2c26c368c393c113edfac36d123c136fe16bf3a93864bed17ad`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"arguments": {"nonnegative_sharpe": true, "posterior_mu_draws": false}, "branch": "empirical_bayes_hac_positive_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_positive_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 008. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `78b52afbf8f2c8b6bd8507b8fcfa39fb17a5d4aa8b725dbb19659fd2dbbec68c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"arguments": {"nonnegative_sharpe": true, "posterior_mu_draws": false}, "branch": "empirical_bayes_hac_positive_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_positive_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 009. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `8f270b7521ffdebe598a9277d3827be302f28711a683ab513428689bcfbce3bb`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "empirical_bayes_hac_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 010. `bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `540dc7859351fd17f350af83f6f1ef7bbcdb7e37da5bee63474f87c94d1b3ea2`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "historical_realized_sharpe", "fit_function": "_fit_historical_realized_sharpe_sbb"}`
+  - `mean_model` = `"historical_realized_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 011. `bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `a5f28f385b682cbabda23d2f0951897a8250ce648e005d749e23a5b3a7201a02`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "positive_sample_mean", "fit_function": "_fit_positive_sample_mean_sbb"}`
+  - `mean_model` = `"positive_sample_mean"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"absolute_return_ewma_volatility_overlay"`
+
+## 012. `bayesian_sbb_overlay_ewma_absolute_zero_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `0fb07ea82833f9a45ce0ec99c1aad92ac34e8813234f0a8bdec49d60c45828a2`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_zero_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "zero_sharpe", "fit_function": "_fit_zero_sharpe_sbb"}`
+  - `mean_model` = `"zero_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 013. `bayesian_sbb_overlay_figarch_1_d_1`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `375a01606da7ca404a86683801c209ad21af1dbb4bb2f04c405a812472b611c8`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_figarch_1_d_1"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"arch_specification": {"p": 1, "q": 1, "vol": "FIGARCH"}, "fit_function": "_fit_arch_forecast_overlay", "max_fit_observations": 1260, "model": "figarch_1_d_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `overlay_model` = `"figarch_1_d_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 014. `bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `9bdf786a8cddc8f5be390abfc077b7614156b5f988776c2a748dfb6547dbe30d`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "empirical_bayes_hac_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "garch_1_1_volatility"}`
+  - `overlay_model` = `"garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 015. `bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `5d8891bdeec5b7211f30672710f56bb729e1388d9f9e7b4a8e6e8ea9b8adaa5c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "hierarchical_empirical_bayes_sharpe", "fit_function": "_fit_hierarchical_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"hierarchical_empirical_bayes_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "garch_1_1_volatility"}`
+  - `overlay_model` = `"garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 016. `bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `8eef3bccac894f6cfaad8acea1ee7de342794ecc77d27e2405dc42d905bfd57d`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "positive_sample_mean", "fit_function": "_fit_positive_sample_mean_sbb"}`
+  - `mean_model` = `"positive_sample_mean"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "garch_1_1_volatility"}`
+  - `overlay_model` = `"garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `validation_status` = `"previous_live_garch_incumbent_promoted_from_strict_rank10_baseline"`
+  - `vol_model` = `"garch_1_1_volatility_overlay"`
+
+## 017. `bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `18812e5db7be62abd241c9805a9fdd1c043d54b807520b838e550e8b04f7e93a`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "prequential_crps_shrinkage", "fit_function": "_fit_prequential_crps_shrinkage_sbb"}`
+  - `mean_model` = `"prequential_crps_shrinkage"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "garch_1_1_volatility"}`
+  - `overlay_model` = `"garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 018. `bayesian_sbb_overlay_gjr_garch_1_1`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `d1a64137bc500e66f90d8f0424e01706b2a08c185114863b24443a0a04e5e125`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_gjr_garch_1_1"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "gjr_garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "gjr_tarch_1_1_volatility"}`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 019. `bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `32ca94941ae6ac54fdb76ce196ef2b8b6e95db4c7ef1b0b67dd2b686a1d94b8e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "empirical_bayes_hac_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "gjr_garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "gjr_tarch_1_1_volatility"}`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `prior_source` = `"data_driven_sharpe_shrinkage"`
+  - `residual_resampling` = `"stationary_bootstrap"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
+
+## 020. `bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `9f53bdf3383be13e3e671c817fb89a63ee4b3deff414015a7741144e32c878cf`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "positive_sample_mean", "fit_function": "_fit_positive_sample_mean_sbb"}`
+  - `mean_model` = `"positive_sample_mean"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "gjr_garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "gjr_tarch_1_1_volatility"}`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `validation_status` = `"focused_80_portfolio_validation_candidate"`
+  - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
+
+## 021. `bayesian_sbb_overlay_harch_1_5_22`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `606ad0f4cf016bcd3dd47924739257a1ee81f37ab2d08482e38025aa7741d163`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_harch_1_5_22"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"arch_specification": {"p": [1, 5, 22], "vol": "HARCH"}, "fit_function": "_fit_arch_forecast_overlay", "max_fit_observations": 1260, "model": "harch_1_5_22", "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `overlay_model` = `"harch_1_5_22"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 022. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `6bcc12f4a76e5909b70879cbc08bcfbbd4516c0d29114086c9c2ccb1d1d2dc91`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"fixed"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"positive_sample_mean"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 023. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `85a4204134fa8b5516ed943f7dece2fdde8c495394fbd6d4af21a98da933bbd6`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_evt_drift_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"fixed"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 024. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `a95e5e0a4e3214a07f2de04d7e36f2d8fbb105879b3739e361bf1c686c8c2aca`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_sv_baseline_improvement"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 025. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `2dc202c2dd3c940df29a2334a1b92f41749892d92a609142a5b89dc58de5f68f`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_academic_sampler_mean_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 026. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `93d90da52839de834149f7e341f018655f9c8b27f9e18bad297f86191379e74e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_low_arbitrariness"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"fixed"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"positive_sample_mean"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1_leverage_transformed_raw_innovations"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 027. `bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `585ea29c7cb9bc2b04ead09e47fe94aecf66c3485703c145ac09938d59106d4e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"fixed"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"positive_sample_mean"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_ar1"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 028. `bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `b237004a16f4a5bf033824f0cc3fc2b6a4e541031fe9bc86d66d737d7d122c27`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"mcmc_sv_overlay_sv_baseline_improvement"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"ridge_harx_ff6"`
+  - `vol_anchor_target` = `"current_latent_log_variance"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 029. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `ab59656280a1eba4af8f1de68bfa8d52b826de88ab250ef42b691c76a215af4d`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_sv_variant", "model": "sv_ar1_logvol_bias_corrected", "variant": {"bias_correct": true, "eta_scale": 0.0, "last_blend": 0.0, "phi_cap": 0.995}}`
+  - `overlay_model` = `"sv_ar1_logvol_bias_corrected"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 030. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `a165a431a2398dd9fcd3f98bf1bac25870d60f810d0147d54536d522afecf4de`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "merton_positive_hac_drift_uncertainty", "fit_function": "_fit_merton_positive_hac_drift_uncertainty_sbb"}`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_sv_variant", "model": "sv_ar1_logvol_bias_corrected", "variant": {"bias_correct": true, "eta_scale": 0.0, "last_blend": 0.0, "phi_cap": 0.995}}`
+  - `overlay_model` = `"sv_ar1_logvol_bias_corrected"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `validation_status` = `"clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate"`
+  - `vol_model` = `"sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor"`
+
+## 031. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `7d4a1784be8c3a04363930026847f770d10b51835025c0f9107a45c862745c46`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 032. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `f546752f6900dc0aa47a72b51eaa594eea737f4980b494f145abb8b1cf84b9d0`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 033. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `483138b806a642fe8387784e44479ff20de9de9777c11a94b2692c2ed9a37236`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 034. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `4f4029a366115b12a3e548f2b6b9fb6b37ef9ef4a0fbab8e6fb61b37a5a9d560`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 035. `bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `a6d63d89c9f9500c52c069232a0ed77b8bfce3138dbdf1e2cb201e3eb1f18cb7`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 036. `bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `80f5ef6e17b1264e713576894fded7f57b26fff93fdc074f9541087b81994bfd`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 037. `bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `fe8f6ebd8fbb4a2db89b99415292bd202e9234d04b5eba43b5f708078a420848`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 038. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `ec1f9a6158e097eef70c7210fed02dbabeeeb47b609d21fe46f85b44fd67a377`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 039. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `b475d9ba1bb4371ee09d2b7d39e8fc989dbbf6cf9e88f264298798012373c1f1`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 040. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `1616127ad7faa63150d2bfbc13e9411615c1fc623a18e5c655c0651df5f83299`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 041. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `8339cae6e0e4a5333430ca5419ae18d6a4553b77885a54312ea0794b2644858a`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 042. `bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `3a90a148bbb9f5796fa7fce8ad2808aec68e1d4087dbcecb278664d36a0a14f6`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 043. `bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `6ba811e3646c8fa9d050018a4307409740d98ddea4eef2f19ed7d384f9a744d2`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 044. `bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `c04e685559c93d056f465627f355df220eb319705f92686ad2ccd59c7ac827a6`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 045. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `4b2a8f155e94300892320af549bc7cedeb3037b9ba2262d23d9350934ecd9f73`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 046. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `f8f6a297813307bbb2b093bf4c283bc37e89a1541661cdb3501adc56beb10a44`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 047. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `7e94f000dfeabef0be6533ecf79768de442c9391f3e34d3c8a630c3d8124b970`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 048. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `e4eb12e44f957b10ba7a9721171544223ac9a3af1f2c5ef0a0b0c9ec106dd81e`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 049. `bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `72a5974d775ec7a5690779dd939be21143b9dac318b12f2cf261b942f74e5a29`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 050. `bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `b5a294307e4db7c809045213ed7143f931740430353c2d9a08348cb4cb3eab85`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 051. `bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `85d16d358a557f494a839267fd6f70d3038013f322f76a9eb14b5f3098a86204`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 052. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `0d75e6169634b933a2ee49b2c06324fdb567e61e765ef74a847b21447cc00dd9`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 053. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `6cfa5d5d3d16f973d7b7e0f989a28bfd579458ea33252ed2806a2b3830540d4c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 054. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `6750c271ff7bc29b13e305bfa7415cdeb0c5efa0d5150aa3d5e71db2850ee0bd`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 055. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `0888a48f3e95a248824a2e3cf3acbda674554af17da10ecb5a6e8d4dc9c36fcb`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 056. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `9a66e38f7150fdae120aadb45dbd7aaae657c7626f3a805911dfebd2c00a4c91`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 057. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `e76930e2a626b50b51221c1bdb0b9f5f0ec4ef1edab339ec7a932f536fff7490`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 058. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `5cd63bb4129e878111d9c906bd52750a1cdc76ab67040ceef11f9b69410e995e`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.bic_auto_arma_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 059. `canonical`
+
+- Family: `canonical`
+- Resolved-definition SHA-256: `bd99202fbc010a543d7462691777934050f30c2381edd8170e5d86f686a00169`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"canonical"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"canonical"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 060. `constant_mean_gaussian`
+
+- Family: `gaussian`
+- Resolved-definition SHA-256: `23892feeca26afefa0b36c6c284423d75da9312538367de61e23bf92a3ce6e3a`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"gaussian_shrinkage_component"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
+  - `id` = `"constant_mean_gaussian"`
+  - `innovation_method` = `"gaussian_iid_standardized_innovations"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"constant_mean_gaussian_log_returns"`
+  - `minimum_finite_training_observations` = `{"constant_mean_gaussian": 30, "constant_mean_student_t": 30, "naive_iid_historical_portfolio_bootstrap": 1, "zero_mean_gaussian_vol_only": 1}`
+  - `naive` = `{"index_sampling": "iid uniform integer over finite history"}`
+  - `output_semantics` = `"direct terminal log-return samples by dense horizon"`
+  - `path_generator` = `"parametric_monte_carlo"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `student_t` = `{"df": "clip(4 + 6 / excess_kurtosis, 4, 30); default 30", "innovation_scale": "sigma / sqrt(df / (df - 2))"}`
+  - `tail_method` = `"native_distribution_tail"`
+  - `type` = `"gaussian"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"constant_sample_volatility"`
+  - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
+
+## 061. `constant_mean_student_t`
+
+- Family: `student_t`
+- Resolved-definition SHA-256: `1afd1e298f9d5fb017062cebe7b079ccd2314ed53c53d2ae8abab536a2c46d5e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"heavy_tailed_shrinkage_component"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
+  - `id` = `"constant_mean_student_t"`
+  - `innovation_method` = `"student_t_iid_standardized_innovations"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"constant_mean_student_t_log_returns"`
+  - `minimum_finite_training_observations` = `{"constant_mean_gaussian": 30, "constant_mean_student_t": 30, "naive_iid_historical_portfolio_bootstrap": 1, "zero_mean_gaussian_vol_only": 1}`
+  - `naive` = `{"index_sampling": "iid uniform integer over finite history"}`
+  - `output_semantics` = `"direct terminal log-return samples by dense horizon"`
+  - `path_generator` = `"parametric_student_t_monte_carlo"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `student_t` = `{"df": "clip(4 + 6 / excess_kurtosis, 4, 30); default 30", "innovation_scale": "sigma / sqrt(df / (df - 2))"}`
+  - `tail_method` = `"native_student_t_tail"`
+  - `type` = `"student_t"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"constant_sample_volatility"`
+  - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
+
+## 062. `dp_mixture_sv_sbb`
+
+- Family: `sv_extension`
+- Resolved-definition SHA-256: `3ab71f9c9c25b39fefcff2aa7a7cac95991742620fa2e3e331329aff5c792d47`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_categorical_next_states`, `_fit_observable_markov_state_sbb`, `_simulate_observable_markov_state_sbb`, `_fit_dp_mixture_sv_sbb`, `_simulate_dp_mixture_sv_sbb`, `_sample_mean_near_zero_shrinkage`, `_deterministic_seed`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, max_components, max_fit_obs, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"stochastic_volatility_extension"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `dp_mixture` = `{"max_components": 6, "max_fit_observations": 5000, "mixture_max_iter": 120, "rolling_windows": {"absolute_return_mean": 21, "trend_sum": 63}, "transition_prior_alpha": 0.5, "weight_concentration_prior": 0.5}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"dp_mixture_sv_sbb"`
+  - `innovation_method` = `"state_conditioned_empirical_standardized_residuals"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `max_components` = `6`
+  - `max_fit_obs` = `5000`
+  - `mean_model` = `"sample_mean_near_zero_shrinkage"`
+  - `minimum_finite_training_observations` = `504`
+  - `observable_markov` = `{"rolling_windows": {"trend": [63, 21], "volatility": [21, 10]}, "state_count": 12, "transition_prior_alpha": 0.5}`
+  - `output_semantics` = `"cumulative terminal samples from source daily extension paths"`
+  - `path_generator` = `"dirichlet_process_mixture_stochastic_volatility_stationary_bootstrap"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"state_conditioned_empirical_tail"`
+  - `type` = `"dp_mixture_sv_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"truncated_dirichlet_process_mixture_stochastic_volatility_proxy"`
+
+## 063. `expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `e32e294c2b298e3e60330d7d051206d9099e1b405cf40afcd00dee81adecddcc`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 064. `expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `d37718f2332792bbb5c42993779f7fab0a32384f643de9d37159450e40a8dca9`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 065. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `7ea39da3251c7c422728f22888a0153f49e4bd81b7ef8721dbb6854b766647e1`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 066. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `b9eed43d92676df2576a56847fb80829dbb78bbc1b1b61d42245c8e63a8d1933`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 067. `expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `8a07736c373bd978a2a2ae2fbd2b8a927485d801c2854b54d46a503b9623ba58`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 068. `expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `26c5984acf52ccce2202ebfb3b9193156b7f0e67b2490e2ad1b5192167006908`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 069. `expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `97013282966bc432e0842990d16f44d343435cdb7ea4c791733cedc274bb7e5f`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 070. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `5f1ee79d494e398d2c495947f67525eb0eb7439d3162b022054e905e0845763e`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 071. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `674c570ed189a3d2c277280c68b1610e60046a981d137c499896bbea72870ca2`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 072. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `7a571364452246e17aef2434176634374b2cf4e78e385f2b9c36f50d7d1d8635`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 073. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `de1513d5e8406b8c4d865466bdf2619ac39e7a42e78aad5defca5c5323b0829c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 074. `expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `b8c33d9ef113d42629ab7c60abbf599e85e4111a61486fb23c835263d8b7b752`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 075. `expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `83f767b727ee16fdf6db8204abaeac56180913f2c3078cf663a496587987429c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 076. `expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `685a6c016ed117b058e168176781dc59c91b0f01eba9b9539558508e22d92994`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 077. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `17b101de6584ba5af6223269ef9fa1ae824411e4a9ad666f4dd2f1ff79f3cb3f`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 078. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `b84c45a49441f6e8d3b889c073544ee663cad62b7f867186c4533d9d7020b074`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 079. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `0c8c1b82c0dcb12d9aa70a84dcd25d17b906a51e7cc214f608e6d8e9dc25b9cc`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 080. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `27495298400f143381733fe8cf4b0e59f3dff13c0cfad720c6a76b1a952aab05`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 081. `expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `304f02194097af07b8537a5095c6d06e62279afcc25295bdf1f9544e95c235d0`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 082. `expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `0de91a4cc15aed0562fbd57dbef0066d1f82f286fe3c1e2c04a5f8f7d449f4f5`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 083. `expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `9887ae35e246ebfca57e86a93880eebbe647a51173ca74b3287030b3d68d0d18`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 084. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `568d6c656d128697e0eeea1ef20e1b59804f237ada162c2b95383e0dbb5e1178`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 085. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `9f243108dec4f6c8af86b50338705bd5663e610f99d19319aca6777ead3ce034`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 086. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `ab32a1756f374dde65d788e21914ce2008e7e555cc30ed9d72c3ab3a863bea8d`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 087. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `a44d4d5ded4f7927ffb8f3315e7d861438ee4e9243a78b5073ca9542503401e8`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 088. `expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `19fffc57463ba6c2a3ee159c3e581f1dcbeb811188a4c93b7bec4b071f0ffb5a`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 089. `expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `9cfeadadc537b5689e23240a49eb200d8b771c1d33ec98f59a1999811fe90b1f`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 090. `expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `143676667a8a7584a4e1a1009f276d03fa1c8d9bd15197c0df5de4ccfa453131`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.expanding_sample_mean`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 091. `factor_ff6_ridge_residual_sbb_absolute_ewma`
+
+- Family: `factor_residual_sbb`
+- Resolved-definition SHA-256: `9fce9ab7b259ccdca460cbd8dd3b9ae9606fb24f6255f01c2003cb0c0c51a04f`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_factor_residual_sbb`, `_simulate_factor_residual_sbb`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; fit args=('factor_residual_sbb', factor_model, len(combined), len(factor_cols)); forecast args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `alignment` = `"normalize dates, concat portfolio and factor frame, dropna, require final aligned date equals final training date"`
+  - `block_length` = `"max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))"`
+  - `block_length_floor` = `1`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_columns` = `["Mkt_RF", "SMB", "HML", "RMW", "CMA", "UMD"]`
+  - `factor_model` = `"ff6"`
+  - `factor_model_parameter_source` = `"source function default because raw descriptor omits factor_model"`
+  - `family` = `"factor_residual_sbb"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `fit_function` = `"_fit_factor_residual_sbb"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"factor_ff6_ridge_residual_sbb_absolute_ewma"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `180`
+  - `output_semantics` = `"daily log-return increments"`
+  - `path_definition` = `"risk_free_draw + factor_prediction_draw + residual_draw, clipped to [-1, 1]"`
+  - `regressor` = `{"alpha": 10.0, "half_life_days": 504.0, "kind": "ridge", "pipeline": ["StandardScaler", "Ridge"], "sample_weight": "recent_exponential_weights"}`
+  - `resampling` = `"stationary_bootstrap"`
+  - `residual_definition` = `"portfolio_return - risk_free - ridge_factor_prediction"`
+  - `residual_overlay` = `"none"`
+  - `residual_overlay_parameter_source` = `"source function default because raw descriptor omits residual_overlay"`
+  - `risk_free_column` = `"RF"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `seed` = `{"fit": ["factor_residual_sbb", "factor_model", "len(combined)", "len(factor_cols)"], "forecast": ["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]}`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stationary_bootstrap` = `"max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))"`
+  - `stationary_kernel` = `"_stationary_bootstrap_indices"`
+  - `type` = `"factor_residual_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 092. `factor_ff6_ridge_residual_sbb_none`
+
+- Family: `factor_residual_sbb`
+- Resolved-definition SHA-256: `0d4d530a6727e3f6f17af6b32ae4df24b199ef8500c0ec42a77110c7b9feb5c3`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_factor_residual_sbb`, `_simulate_factor_residual_sbb`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; fit args=('factor_residual_sbb', factor_model, len(combined), len(factor_cols)); forecast args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `alignment` = `"normalize dates, concat portfolio and factor frame, dropna, require final aligned date equals final training date"`
+  - `block_length` = `"max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))"`
+  - `block_length_floor` = `1`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_columns` = `["Mkt_RF", "SMB", "HML", "RMW", "CMA", "UMD"]`
+  - `factor_model` = `"ff6"`
+  - `factor_model_parameter_source` = `"source function default because raw descriptor omits factor_model"`
+  - `family` = `"factor_residual_sbb"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `fit_function` = `"_fit_factor_residual_sbb"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"factor_ff6_ridge_residual_sbb_none"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `180`
+  - `output_semantics` = `"daily log-return increments"`
+  - `path_definition` = `"risk_free_draw + factor_prediction_draw + residual_draw, clipped to [-1, 1]"`
+  - `regressor` = `{"alpha": 10.0, "half_life_days": 504.0, "kind": "ridge", "pipeline": ["StandardScaler", "Ridge"], "sample_weight": "recent_exponential_weights"}`
+  - `resampling` = `"stationary_bootstrap"`
+  - `residual_definition` = `"portfolio_return - risk_free - ridge_factor_prediction"`
+  - `residual_overlay` = `"none"`
+  - `residual_overlay_parameter_source` = `"source function default because raw descriptor omits residual_overlay"`
+  - `risk_free_column` = `"RF"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `seed` = `{"fit": ["factor_residual_sbb", "factor_model", "len(combined)", "len(factor_cols)"], "forecast": ["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]}`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stationary_bootstrap` = `"max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))"`
+  - `stationary_kernel` = `"_stationary_bootstrap_indices"`
+  - `type` = `"factor_residual_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 093. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `d7ee9e6d662b303499adaf8e0803327a018b684f1a2c1d39e04e67c9e55ff1e4`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 094. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `3dd44adfbb16474bd576a4067ab0f5221b496e1711d892d2fb165a2983fe84f1`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 095. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `1780dd9c48fc45ed9a5ff7d3c79bd769622a80c6f486db2fe47d7cd4d0f01c7f`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 096. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `086a7843cb5f6d6b938f542208bb797e7291e907a7581fbdd831aca5cd7ce15b`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 097. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `27f70d1f0f9f07594488156198a4e9b11599a278939578e70a0e10a2c57b142c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 098. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `8eea5bbb6e7ba35206962dff4039f4f70f254cd069854311646bfe3486ddd172`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 099. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `f8d4823ec52f8b8423842d7d9a6ccb75abe1d2be7e8f46881e6e91807533a7af`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.constant_sample_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 100. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `e5c432325e3a7b99a4f48efbf8e84c6e5410d3bc5a7a046087e39a59b1bfc524`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 101. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `66be80a8af69e6d422488a0f08edf0493a2478f19dfba4df7db6811cb7e0001b`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 102. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `7981c8164d9c634af67442c4289ef8f556b1be0dc5222c1757d70cc05c50c184`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 103. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `0608c7f878ce6b4c937d0007285f5cfa02447e8065976a999b1b8f4af51dddfc`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 104. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `12d24e6091a626e4e0b2a5c0067224caec2f4deeef39230cca418c654d3c44d2`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 105. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `e9a3b6be96831a5a34b1686c494d7bcbef7a92056aeee52ecbdaebd969db963b`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 106. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `06ba0578413f9a53643f5555453c540e8e20d572efdde6d900b471dfff581b39`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.egarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 107. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `ccda944127a6b7e5da40f29bf851ffbd8f66729efadbd7065da0c9f25fc7d6ae`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 108. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `8146e0a83036032591a4b14ea23806ad4ac46741cb027de6c5c0a445d972131c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 109. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `cc2dce71f73167e791c30e1c550f1b82aa9d37d230032f7d9a146f86fdc1279a`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 110. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `57636119a13ad11fbd06f6e10f689a30988c736d3d3d1dcabff31b7ddeb2a91a`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 111. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `954ff640cb9e2fabc6a1a2edc396018c93ed671089b7de7e00535c278634648e`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 112. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `810ad540768b1a462de73ae9e33694a03e413ae919fea71f5119bcfb3b6da87a`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 113. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `11f833ea0eac34da9a459d0e58245d44c00d5c2052259f10a8df4b507a60f6ae`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.garch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 114. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `c3b8828f955a90c5f113bfb90a84b13ee0c488c1ff44ed1ef4e5e4ffb053f353`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 115. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `898d2cb84a2d1e3492abe679f54fc3bb0b379648ce2071931fd6688d1f5cc576`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
+- Path generator: `filtered_historical_simulation`.
+
+## 116. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `d8e86ec9e242aba177c0736a0dfd5d15d4d863061b9ba15057a4980c94c5452f`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 117. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+
+- Family: `base`
+- Resolved-definition SHA-256: `4a7530ac4c184ebed74ca4aa27383e5ac8d3bbca2606142776c18a07ddb6b51c`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
+- Path generator: `stationary_bootstrap_standardized_residuals`.
+
+## 118. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `603a23053053172ddd97ca15e70e72958a3065d8b1f93f6f5b0cccc3c98f28b3`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 119. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `c0c31a17d94de1bea54963cd865693246e3a9748a63463dc30eaf2b8bf5523e9`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 120. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+
+- Family: `base`
+- Resolved-definition SHA-256: `263fbc18897f9f3b2080facb45d30998a0ce6b4e57c20def9b5434eaec2d4832`
+- Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
+- Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
+- Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
+- Path generator: `parametric_monte_carlo`.
+
+## 121. `gas_score_driven_skewt`
+
+- Family: `gas_score_driven_skewt`
+- Resolved-definition SHA-256: `c2385b130a4c6b7b0dfd1b8d573654679efc9903c25d9227da1a7f6bb54aa653`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_sample_mean_near_zero_shrinkage`, `_gas_t_score`, `_fit_gas_score_driven_skewt`, `_simulate_gas_score_driven_skewt`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `feature_family, id, mean_component, state_inference, type`.
+- Resolved defaults:
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `df_bounds` = `[4.0, 30.0]`
+  - `feature_family` = `"gas_distributional_baseline"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `grid` = `{"alpha": [0.03, 0.06, 0.1, 0.16], "beta": [0.85, 0.93, 0.97, 0.985]}`
+  - `id` = `"gas_score_driven_skewt"`
+  - `innovation` = `"Jones-Faddy skew-t when fit succeeds; source empirical pool on fit failure"`
+  - `innovation_clip` = `[-20.0, 20.0]`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `log_variance_clip` = `[-18.0, 18.0]`
+  - `max_fit_observations` = `5000`
+  - `mean_component` = `"near_zero_shrinkage_existing_candidate"`
+  - `minimum_finite_training_observations` = `504`
+  - `output_semantics` = `"cumulative terminal samples from source daily GAS paths"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_inference` = `"score_driven_observed_volatility"`
+  - `type` = `"gas_score_driven_skewt"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 122. `naive_iid_historical_portfolio_bootstrap`
+
+- Family: `naive_iid_historical_portfolio_bootstrap`
+- Resolved-definition SHA-256: `576cd2dd4124b01d4097d1bcc9b802c1f573ecd39ea6329b5c475421b48fa774`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"naive_benchmark_candidate"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
+  - `id` = `"naive_iid_historical_portfolio_bootstrap"`
+  - `innovation_method` = `"iid_resampled_historical_portfolio_returns"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"none"`
+  - `minimum_finite_training_observations` = `{"constant_mean_gaussian": 30, "constant_mean_student_t": 30, "naive_iid_historical_portfolio_bootstrap": 1, "zero_mean_gaussian_vol_only": 1}`
+  - `naive` = `{"index_sampling": "iid uniform integer over finite history"}`
+  - `output_semantics` = `"direct terminal log-return samples by dense horizon"`
+  - `path_generator` = `"iid_historical_portfolio_return_bootstrap"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `student_t` = `{"df": "clip(4 + 6 / excess_kurtosis, 4, 30); default 30", "innovation_scale": "sigma / sqrt(df / (df - 2))"}`
+  - `tail_method` = `"empirical_historical_tail"`
+  - `type` = `"naive_iid_historical_portfolio_bootstrap"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"none"`
+  - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
+
+## 123. `observable_markov_state_sbb`
+
+- Family: `sv_extension`
+- Resolved-definition SHA-256: `39dadd258b970db419ca1992956594ca10ed2c6468659d3335b336add8d9420c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_categorical_next_states`, `_fit_observable_markov_state_sbb`, `_simulate_observable_markov_state_sbb`, `_fit_dp_mixture_sv_sbb`, `_simulate_dp_mixture_sv_sbb`, `_sample_mean_near_zero_shrinkage`, `_deterministic_seed`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, state_alpha, state_count, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"state_transition_volatility_extension"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `dp_mixture` = `{"max_components": 6, "max_fit_observations": 5000, "mixture_max_iter": 120, "rolling_windows": {"absolute_return_mean": 21, "trend_sum": 63}, "transition_prior_alpha": 0.5, "weight_concentration_prior": 0.5}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"observable_markov_state_sbb"`
+  - `innovation_method` = `"state_conditioned_empirical_residuals"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"state_conditioned_observable_markov_bootstrap"`
+  - `minimum_finite_training_observations` = `504`
+  - `observable_markov` = `{"rolling_windows": {"trend": [63, 21], "volatility": [21, 10]}, "state_count": 12, "transition_prior_alpha": 0.5}`
+  - `output_semantics` = `"cumulative terminal samples from source daily extension paths"`
+  - `path_generator` = `"observable_markov_chain_state_specific_bootstrap"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_alpha` = `0.5`
+  - `state_count` = `12`
+  - `tail_method` = `"state_conditioned_empirical_tail"`
+  - `type` = `"observable_markov_state_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"observable_rolling_volatility_tertiles"`
+
+## 124. `portfolio_gjr_garch_eb_sampler_moving_block_optimal`
+
+- Family: `portfolio_volatility_extension`
+- Resolved-definition SHA-256: `ed6f507eeebf6a90372fad7993c54746f7c1d550ea0e1f20a8b292681952b5c4`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `_hac_mean_standard_error`, `_fit_empirical_bayes_sharpe_sbb`, `_simulate_bayesian_constrained_sbb`, `_overlay_vol_clip_bounds`, `_fit_bayesian_sbb_vol_overlay[GJR branch]`, `_overlay_vol_multiplier_curve[variance_decay branch]`, `_simulate_bayesian_sbb_vol_overlay`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_arch_volatility`, `_moving_block_indices`, `_moving_block_bayesian_sbb_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "o": 1, "optimizer": {"ftol": 1e-06, "maxiter": 80}, "p": 1, "power": 2.0, "q": 1, "vol": "GARCH"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"portfolio_gjr_garch_eb_sampler_moving_block_optimal"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovations` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "moving_block": "non-circular Kunsch blocks from recovery wrapper", "standardized_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_fit` = `{"model": "empirical_bayes_hac_sharpe", "posterior_mu_draws": false, "prior_sr": 0.75, "sr_cap": 0.75}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `path_generator` = `"moving_block_bootstrap_standardized_residuals"`
+  - `prior_source` = `"data_driven_empirical_bayes_hac_sharpe"`
+  - `residual_resampling` = `"moving_block_bootstrap"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
+
+## 125. `portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal`
+
+- Family: `portfolio_volatility_extension`
+- Resolved-definition SHA-256: `f449ceb26dbc63748c3bdc230d282814f4488808e083f05387e9dc2a526dcbf5`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `_hac_mean_standard_error`, `_fit_empirical_bayes_sharpe_sbb`, `_simulate_bayesian_constrained_sbb`, `_overlay_vol_clip_bounds`, `_fit_bayesian_sbb_vol_overlay[GJR branch]`, `_overlay_vol_multiplier_curve[variance_decay branch]`, `_simulate_bayesian_sbb_vol_overlay`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_arch_volatility`, `_moving_block_indices`, `_moving_block_bayesian_sbb_paths`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "o": 1, "optimizer": {"ftol": 1e-06, "maxiter": 80}, "p": 1, "power": 2.0, "q": 1, "vol": "GARCH"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovations` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "moving_block": "non-circular Kunsch blocks from recovery wrapper", "standardized_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_fit` = `{"model": "empirical_bayes_hac_sharpe", "posterior_mu_draws": false, "prior_sr": 0.75, "sr_cap": 0.75}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `prior_source` = `"data_driven_empirical_bayes_hac_sharpe"`
+  - `residual_resampling` = `"stationary_bootstrap"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
+
+## 126. `stack_canonical_gaussian_w0.50`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `17fe35b19d53a9d3d076f84487472e54e652edffe8a18876078bfe770434f4cd`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.50"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 127. `stack_canonical_gaussian_w0.60`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `8ede4febbb262caa80ca8eafa4bd0ffe02716efba94d2313e6523502a9e3e2fc`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.60"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 128. `stack_canonical_gaussian_w0.70`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `502501c0e70a414a4b5c51392ba2e961d062de74fc69bca38712a1b755e41944`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.70"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 129. `stack_canonical_gaussian_w0.80`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `a28b7caf470768638646e2d66b8e9f0dba73b314ddf337592040e08dad3e73f8`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.80"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 130. `stack_canonical_gaussian_w0.90`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `e0079f3c731c7facf82f89429cad24f450778dee3250a623b1c810ec0a9728d6`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.90"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 131. `stack_canonical_gaussian_w1.00`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `7a10f3da30bfb9d84f715ffd96fc484552bb421352b6da45c2cc60b7ae764376`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w1.00"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 132. `stack_canonical_student_t_w0.50`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `eb7f4f4d5570f70d9f6f178bf30b777358c14ba26350a16ef039b1b0e32453f8`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.50"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 133. `stack_canonical_student_t_w0.60`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `e467cf5b47c34050a113f5501b953124c225c03442db45ff715ae4344e11c61e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.60"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 134. `stack_canonical_student_t_w0.70`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `bad956d21fb77f985c343a30521c389007be393892d97c93deffbd83613d1e80`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.70"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 135. `stack_canonical_student_t_w0.80`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `e4047e6f50e14fefe72168e8d311d1c7c35f994a4a100f3ac2d4023ad8724dbb`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.80"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 136. `stack_canonical_student_t_w0.90`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `927b8aa81f42081ac5d3a91d5ad8feacd1886008e1ea0ff84f34e4412873bb81`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.90"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 137. `stack_canonical_student_t_w1.00`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `c31df8e1d830a0117abe8adb6e6bef57ae490002a8062a151417cccd6e8ea17b`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w1.00"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 138. `stochastic_volatility_ar1_empirical`
+
+- Family: `sv`
+- Resolved-definition SHA-256: `9d7c0c344aa9fc471ab5ce85756a98c173359a63b991edd23f361c8b7e1a6682`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sample_mean_near_zero_shrinkage`, `_sv_initial_log_var`, `_simulate_sv_ar1`, `_simulate_sv_ar1_sbb`, `_politis_white_block_length`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"stochastic_volatility_reference"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"stochastic_volatility_ar1_empirical"`
+  - `innovation` = `{"empirical_clip": [-12.0, 12.0], "stationary_bootstrap": "max(_politis_white_block_length(z), 1)", "student_t_df_bounds": [4.0, 30.0]}`
+  - `innovation_method` = `"empirical_standardized_residuals_iid"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"sample_mean_near_zero_shrinkage"`
+  - `measurement_equation` = `{"log_variance_clip": [-18.0, 18.0], "mean": -1.2703628454614782, "variance": "pi^2 / 2", "winsorize": "5th and 95th percentile only when observed count >= 80"}`
+  - `minimum_finite_training_observations` = `252`
+  - `output_semantics` = `"cumulative terminal samples from source daily SV paths"`
+  - `path_generator` = `"stochastic_volatility_ar1"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_space_fit` = `{"eta_bounds": [0.02, 2.5], "optimizer": "L-BFGS-B", "phi_bounds": [0.001, 0.995], "starts": 4}`
+  - `tail_method` = `"empirical_standardized_residual_tail"`
+  - `type` = `"sv"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"stochastic_volatility_ar1_log_variance"`
+
+## 139. `stochastic_volatility_ar1_empirical_sbb`
+
+- Family: `sv_sbb`
+- Resolved-definition SHA-256: `5fe8571c6c34d6beb59838e310f00a484bf72b10c16db54914032536352b8bea`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sample_mean_near_zero_shrinkage`, `_sv_initial_log_var`, `_simulate_sv_ar1`, `_simulate_sv_ar1_sbb`, `_politis_white_block_length`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"stochastic_volatility_stationary_bootstrap_reference"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"stochastic_volatility_ar1_empirical_sbb"`
+  - `innovation` = `{"empirical_clip": [-12.0, 12.0], "stationary_bootstrap": "max(_politis_white_block_length(z), 1)", "student_t_df_bounds": [4.0, 30.0]}`
+  - `innovation_method` = `"empirical_standardized_residuals_stationary_bootstrap"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"sample_mean_near_zero_shrinkage"`
+  - `measurement_equation` = `{"log_variance_clip": [-18.0, 18.0], "mean": -1.2703628454614782, "variance": "pi^2 / 2", "winsorize": "5th and 95th percentile only when observed count >= 80"}`
+  - `minimum_finite_training_observations` = `252`
+  - `output_semantics` = `"cumulative terminal samples from source daily SV paths"`
+  - `path_generator` = `"stochastic_volatility_ar1_stationary_bootstrap"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_space_fit` = `{"eta_bounds": [0.02, 2.5], "optimizer": "L-BFGS-B", "phi_bounds": [0.001, 0.995], "starts": 4}`
+  - `tail_method` = `"empirical_standardized_residual_tail"`
+  - `type` = `"sv_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"stochastic_volatility_ar1_log_variance"`
+
+## 140. `stochastic_volatility_ar1_student_t`
+
+- Family: `sv`
+- Resolved-definition SHA-256: `dc734fb98977385df42d0e2c093cfd8addd039b6af42e0a5b25d74c2a4e92699`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sample_mean_near_zero_shrinkage`, `_sv_initial_log_var`, `_simulate_sv_ar1`, `_simulate_sv_ar1_sbb`, `_politis_white_block_length`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"stochastic_volatility_ar1_student_t"`
+  - `innovation` = `{"empirical_clip": [-12.0, 12.0], "stationary_bootstrap": "max(_politis_white_block_length(z), 1)", "student_t_df_bounds": [4.0, 30.0]}`
+  - `innovation_dispatch` = `{"parameter_source": "SVReferenceModel source default because raw descriptor omits innovation", "source_default": "empirical"}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `measurement_equation` = `{"log_variance_clip": [-18.0, 18.0], "mean": -1.2703628454614782, "variance": "pi^2 / 2", "winsorize": "5th and 95th percentile only when observed count >= 80"}`
+  - `minimum_finite_training_observations` = `252`
+  - `output_semantics` = `"cumulative terminal samples from source daily SV paths"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_space_fit` = `{"eta_bounds": [0.02, 2.5], "optimizer": "L-BFGS-B", "phi_bounds": [0.001, 0.995], "starts": 4}`
+  - `type` = `"sv"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 141. `sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `e5f855be1b307c86f8a2b07ad6fa24cdb4513fcf08f59314726065ec8e31d9f6`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_block_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_bootstrap_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"circular_block_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"circular_block_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"circular_block_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 142. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `7081170c825cf83df1e987f90b24b99b9c8344a409ab064a7f858a58e107cc80`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_plus_empirical_sv_state_shocks"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 143. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `3fee049637e0cce664b8b7adeb6db129aeb468287693bef0a25f6e739b0ffaec`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_distribution_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_residual_distribution_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_empirical_log_variance_measurement_bias"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 144. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `dbb29503d2a51ffdcb5be3cbb531649033bc83728f74a37fddd48066f58da0ca`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_distribution_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_residual_distribution_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_with_evt_pot_gpd_tail_splice"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"automated_evt_pot_gpd_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 145. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `d16e7d5cff526fadcac5168b2aef0fc838fbf6415ac35e0eed4d04bd83127697`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_distribution_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_residual_distribution_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_robust_median_mad_standardization"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 146. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `c9ba72de6f247524c9caa8c105b47a58aa8768f25e47a70224dc2b7abb377a93`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_block_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_bootstrap_incumbent"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 147. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `86ec554bc58ab4bad0c065b1349ed4db8a0bf63e19ba86ec205d255b8b805bb3`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"paired_stationary_bootstrap_latent_sv_filtered_return_and_state_shocks"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"paired_stationary_bootstrap_return_state_shocks_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 148. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `2139fb01b61dfcff1f1fe831aaa1e30538f86b921038e30b703ee9490b421aca`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_plus_student_t_sv_state_shocks"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 149. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `fd9abe28c9a6797a7220b48426b053cd32b706384f7d8777b5544d7d6de266a5`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_filtered_residual_distribution_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_filtered_residual_distribution_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_conditioned_on_filtered_log_volatility"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 150. `sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `89fc6fa01d01d2e56c7e40670b8825145eba012bebaa3d7a93fd5cc6a2c91700`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_mean_distributional_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc"`
+  - `innovation_component` = `"jones_faddy_skew_t_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"jones_faddy_skew_t_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"jones_faddy_skew_t_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"jones_faddy_skew_t"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 151. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `7bf1b07592069955df398127ab2ddc23fbbd119f9892caece3dce2d39b498596`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_mean_distributional_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_nig_sv_live_baseline_parametric_tail_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc"`
+  - `innovation_component` = `"normal_inverse_gaussian_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"normal_inverse_gaussian_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"normal_inverse_gaussian_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"normal_inverse_gaussian"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 152. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `9f714f81bc2e4c94542c6e7eacc75ffe8d32022060125ab03d5cab3368f63f6c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_nig_vs_sbb_optimal_block_and_sampler_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_sampler_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"normal_inverse_gaussian_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"normal_inverse_gaussian_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"normal_inverse_gaussian_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"normal_inverse_gaussian"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 153. `sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `abf971ad156007be2fc2eaecc7105bf25d4e955becc5405118ff6788fc0b5efc`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_tail_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_parametric_tail_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc"`
+  - `innovation_component` = `"normal_inverse_gaussian_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"normal_inverse_gaussian_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"normal_inverse_gaussian_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_student_t_state_innovations"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"normal_inverse_gaussian"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 154. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `6776744e5e3e10a78617d99a4ed10dc0bc5cfae823912dd0a8066d2b58d778a5`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_optimal_block_sampler_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sbb_optimal_block_fixed_proposal_comparator"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_empirical_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 155. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `eae37dab44b567b9d8d2960bab69054e022d3551377d581f71a793bfb81ca0cb`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_sbb_optimal_block_sampler_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_unfiltered_sbb_sampler_incumbent"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_empirical_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 156. `sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `7773967af287d0c301e66320a759d6ef535fd69f876ef6a0a8f7d64926abe17f`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_state_shock_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_state_shock_variant"`
+  - `id` = `"sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc"`
+  - `innovation_component` = `"jones_faddy_skew_t_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"jones_faddy_skew_t_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"empirical_bayes_hac_sharpe_shrinkage"`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"jones_faddy_skew_t_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_student_t_state_innovations"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"jones_faddy_skew_t"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 157. `sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `7bad75eeead75c23b7985e8b5045b9d7791744da8bafd0398ab79bcfe85bb351`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"marginal_likelihood_ar1_latent_drift_with_empirical_bayes_anchor"`
+  - `mean_model` = `"evidence_estimated_dlm_drift"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 158. `sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `c04c05b9f4b6d3991c6ce0b55fddda565b6fa965190241ff3832602514ba5c6a`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"jorion_james_stein_style_hierarchical_sharpe_shrinkage"`
+  - `mean_model` = `"hierarchical_empirical_bayes_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 159. `sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `be4b454ac3db6ce5ff55aa52a15078706bc416a7e7de9f9f43bf3c9b89b0133a`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_mean_distributional_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_variant"`
+  - `id` = `"sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc"`
+  - `innovation_component` = `"jones_faddy_skew_t_iid"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"jones_faddy_skew_t_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"hierarchical_empirical_bayes_sharpe_shrinkage"`
+  - `mean_model` = `"hierarchical_empirical_bayes_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"jones_faddy_skew_t_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"jones_faddy_skew_t"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 160. `sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `5b81974fa1d0bbbf71027b7537249f0bcb415fe6813e664c43771e0c999edb66`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"newey_west_hac_signed_mean_horizon_shrink_to_zero"`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 161. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `cc154a00139eba8c81a332ffbcb13974e78bbda42e27e8b48fa47c721ade9878`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"signed_hac_horizon_mean_with_portfolio_block_drift_instability_decay"`
+  - `mean_model` = `"horizon_credibility_hac_drift_instability"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 162. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `4da61754d513ea3180f7e127e632e9f38fab8126d8741072ff69ef0ddda9b3c0`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_innovation_pool_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_mean_sample_innovation_variant"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_with_automated_evt_pot_tail_splice"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"newey_west_hac_signed_mean_horizon_shrink_to_zero"`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"automated_evt_pot_gpd_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 163. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `956d38f0c6a9930bfed401deec64ebc3be8ef695b1a013717847a1d3af2964a5`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_innovation_pool_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_mean_sample_innovation_variant"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"newey_west_hac_signed_mean_horizon_shrink_to_zero"`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 164. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `f7387e1e67f4e6a5761400c6b4fc7605ee08e704598c5e1a4b1743d01674a30c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"volatility_conditioned_stationary_bootstrap_sample_standardized_residuals"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"newey_west_hac_signed_mean_horizon_shrink_to_zero"`
+  - `mean_model` = `"horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 165. `sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `37403f7f68e58228626aac526d2f38e52f07a89b32f4fe8be7231c7f2afa8a99`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"campbell_thompson_positive_empirical_bayes_sharpe_restriction"`
+  - `mean_model` = `"empirical_bayes_hac_positive_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 166. `sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `e059845dca4a32513838672aeb1186405b293c3ec70a079fd59c0763171b3016`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"merton_campbell_thompson_positive_hac_mean_uncertainty"`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 167. `sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `188c50729f7bc95aa4629a0396b06a15309a23217ba2d72cc23a17f94018de80`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"prequential_score_selected_sample_mean_shrinkage"`
+  - `mean_model` = `"prequential_crps_shrinkage"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 168. `sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `34c99100f5df90b1d21c7e81cae8cf93d4953cda5e0c6edc46e0c781e16e4041`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"trimmed_signed_hac_horizon_credibility_mean"`
+  - `mean_model` = `"robust_horizon_credibility_hac_drift_uncertainty"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 169. `sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `4e5d0e17a17b27528284eeb078751537ec264b5db74f64e53d2e211c550f598c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"constant_historical_sample_mean"`
+  - `mean_model` = `"historical_realized_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 170. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale`
+
+- Family: `bdes_non_mcmc_sv_overlay`
+- Resolved-definition SHA-256: `4ae9a3a569b5e24bb4c44337520a0719bf0bb7de4546e48a8236059ba7fe2b65`
+- Source: `source-research/app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._bdes_cagr_candidate`, `SimfolioEngine._bdes_cagr_mcmc_candidate`, `SimfolioEngine._bdes_cagr_fastmap_candidate`.
+- Factory seed contract: `deterministic_seed('forecast_final_fixed', selected_model_id, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.inla_current_engine_control`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, bdes_multiscale_component_count, bdes_multiscale_scale_grid, bdes_multiscale_shock_coupling, clip_simulated_returns, comparison_target, external_factors, factor_model, feature_family, forecast_level, id, inla_hyperparameter_quadrature_order, inla_latent_terminal_quadrature_order, innovation_component, innovation_conditioning, innovation_method, innovation_pool_source, innovation_resampling, innovation_standardization, innovation_tail_splice, latent_vol_persistence, leverage, leverage_alignment, leverage_correlation_method, leverage_correlation_scope, map_maxiter, map_start_count, mcmc_adaptation_iterations, mcmc_adaptation_target_acceptance, mcmc_burn, mcmc_chains, mcmc_check_interval, mcmc_extend_iterations, mcmc_forecast_stability_tolerance, mcmc_initial_iterations, mcmc_iterations, mcmc_max_iterations, mcmc_min_ess, mcmc_min_iterations, mcmc_proposal_adaptation, mcmc_rhat_threshold, mcmc_stopping, mcmc_thin, mean_component, mean_model, mean_model_ablation_of, mean_state_scaling, measurement_equation, overlay_model, parameter_sampler, path_generator, previous_incumbent_id, production_status, regime_model, research_rationale, residual_tail_method, return_target, rollback_env_var, selection_method, simulation_method, state_inference, state_inference_model, state_innovation_coupling, state_innovation_distribution, state_innovation_resampling, state_innovation_source, state_innovation_standardization, sv_measurement_bias, sv_research_baseline, sv_sigma_scale_method, tail_method, transformed_parameter_mcmc, type, unclipped_empirical_innovations, unclipped_sv_measurement, validation_status, vol_anchor_model, vol_anchor_target, vol_model, vol_overlay_model, vol_path_blend, vol_path_model`.
+- Resolved defaults:
+  - `bdes_multiscale_k_star` = `4`
+  - `inla_hyperparameter_quadrature_order` = `3`
+  - `inla_latent_terminal_quadrature_order` = `3`
+  - `map_maxiter` = `100`
+  - `map_start_count` = `1`
+  - `minimum_observations` = `5`
+  - `student_scale_mixture` = `false`
+  - `uses_mcmc` = `false`
+
+## 171. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `c35035ff3161c6ac9e3057f639535092cd1def0ad7bd7edeef732811082050e0`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"current_live_bdes_cagr_retest"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_bdes_cagr_full_latent_mcmc_sv_overlay"`
+  - `id` = `"sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_standardized_residuals_scaled_by_bdes_multiscale_latent_sv_paths"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"portfolio_likelihood_estimated_latent_sharpe_dlm_to_historical_cagr_anchor"`
+  - `mean_model` = `"evidence_estimated_sharpe_dlm_historical_cagr_anchor"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_bdes_multiscale_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 172. `sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `3a7c9e6461f48b95aef8c04bd97a0afc6ab44ba3924f911cc34fee1308aace33`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_filtered_sbb_mean_model_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"previous_sv_live_baseline_filtered_mean_model_variant"`
+  - `id` = `"sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_latent_sv_filtered_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"latent_filtered_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"zero_drift_forecast"`
+  - `mean_model` = `"zero_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 173. `sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `492e1873eb05cac4a0570891d240c9e9ae4544c059ec1febb00cf68ea68c4dd5`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"sv_live_baseline_mean_distributional_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `id` = `"sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"jones_faddy_skew_t_iid"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"fixed"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_model` = `"zero_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"jones_faddy_skew_t_innovations_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"jones_faddy_skew_t"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 174. `sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+
+- Family: `full_mcmc_sv`
+- Resolved-definition SHA-256: `de2004c6ccd1fdc2e6d580a80b7abe3ba8feedf48ac4f73da0262c86fc1b4af8`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.base_and_full_mcmc`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `ablation_family` = `"live_horizon_mean_sample_sbb_targeted_tweak_research"`
+  - `bdes_multiscale_k_star` = `4`
+  - `bdes_multiscale_shock_coupling` = `"convex_state_independent_mix"`
+  - `clip_simulated_returns` = `true`
+  - `feature_family` = `"current_sv_live_baseline_horizon_sample_tweak"`
+  - `id` = `"sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `innovation_component` = `"stationary_bootstrap_sample_standardized_residuals_politis_white_block_length"`
+  - `innovation_conditioning` = `"none"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovation_pool_source` = `"sample_standardized"`
+  - `innovation_resampling` = `"stationary_bootstrap"`
+  - `innovation_standardization` = `"mean_std"`
+  - `innovation_tail_splice` = `"none"`
+  - `latent_vol_persistence` = `"ar1"`
+  - `leverage` = `false`
+  - `leverage_alignment` = `"lagged_return"`
+  - `leverage_correlation_method` = `"pearson"`
+  - `leverage_correlation_scope` = `"per_state_path"`
+  - `mcmc_adaptation_iterations` = `60`
+  - `mcmc_adaptation_target_acceptance` = `0.234`
+  - `mcmc_burn` = `60`
+  - `mcmc_chains` = `1`
+  - `mcmc_check_interval` = `40`
+  - `mcmc_extend_iterations` = `40`
+  - `mcmc_forecast_stability_tolerance` = `0.05`
+  - `mcmc_initial_iterations` = `160`
+  - `mcmc_iterations` = `160`
+  - `mcmc_max_iterations` = `160`
+  - `mcmc_min_ess` = `100.0`
+  - `mcmc_min_iterations` = `70`
+  - `mcmc_proposal_adaptation` = `"adaptive_metropolis_warmup_covariance"`
+  - `mcmc_rhat_threshold` = `1.01`
+  - `mcmc_stopping` = `"adaptive_ess_forecast_stability"`
+  - `mcmc_thin` = `10`
+  - `mean_component` = `"zero_expected_return_mean"`
+  - `mean_model` = `"zero_sharpe"`
+  - `mean_state_scaling` = `"none"`
+  - `measurement_equation` = `"log_chi_square_mean_corrected_winsorized"`
+  - `overlay_model` = `"sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"`
+  - `parameter_sampler` = `"bounded_random_walk_metropolis_hastings"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths"`
+  - `residual_tail_method` = `"clipped_empirical"`
+  - `state_inference` = `"same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance"`
+  - `state_innovation_coupling` = `"correlation_mixture"`
+  - `state_innovation_distribution` = `"gaussian"`
+  - `state_innovation_resampling` = `"iid"`
+  - `state_innovation_source` = `"posterior_ffbs_path"`
+  - `state_innovation_standardization` = `"mean_std"`
+  - `sv_measurement_bias` = `"log_chi_square_theoretical"`
+  - `sv_research_baseline` = `false`
+  - `sv_sigma_scale_method` = `"none"`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `transformed_parameter_mcmc` = `false`
+  - `type` = `"bayesian_sbb_full_mcmc_sv_overlay"`
+  - `unclipped_empirical_innovations` = `false`
+  - `unclipped_sv_measurement` = `false`
+  - `validation_status` = `"paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate"`
+  - `vol_anchor_model` = `"none"`
+  - `vol_anchor_target` = `"none"`
+  - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
+  - `vol_path_blend` = `"none"`
+  - `vol_path_model` = `"none"`
+
+## 175. `zero_mean_gaussian_vol_only`
+
+- Family: `zero_gaussian`
+- Resolved-definition SHA-256: `040ac48c5b0a59a7de4c6b13a535a7eaf843581249cd7846a48348be5e72366c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"zero_mean_volatility_reference"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
+  - `id` = `"zero_mean_gaussian_vol_only"`
+  - `innovation_method` = `"gaussian_iid_standardized_innovations"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"zero"`
+  - `minimum_finite_training_observations` = `{"constant_mean_gaussian": 30, "constant_mean_student_t": 30, "naive_iid_historical_portfolio_bootstrap": 1, "zero_mean_gaussian_vol_only": 1}`
+  - `naive` = `{"index_sampling": "iid uniform integer over finite history"}`
+  - `output_semantics` = `"direct terminal log-return samples by dense horizon"`
+  - `path_generator` = `"parametric_monte_carlo"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `student_t` = `{"df": "clip(4 + 6 / excess_kurtosis, 4, 30); default 30", "innovation_scale": "sigma / sqrt(df / (df - 2))"}`
+  - `tail_method` = `"native_distribution_tail"`
+  - `type` = `"zero_gaussian"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"constant_sample_volatility"`
+  - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`

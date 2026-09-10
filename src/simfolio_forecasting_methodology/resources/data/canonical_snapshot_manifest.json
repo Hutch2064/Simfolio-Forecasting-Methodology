@@ -1,0 +1,888 @@
+{
+  "canonical_window": {
+    "end": "2026-05-13",
+    "start": "1979-12-31"
+  },
+  "common_date_count": 11687,
+  "dataset_id": "simfolio-canonical-simulated-returns-2026-05-13",
+  "factor_inputs": [
+    {
+      "id": "french_daily",
+      "path": "app/factor_data/french_daily.csv.gz",
+      "schema": [
+        "Date",
+        "Mkt_RF",
+        "SMB",
+        "HML",
+        "RMW",
+        "CMA",
+        "RF",
+        "UMD"
+      ],
+      "sha256": "9ec302fa1f2ac1c630e0019cfb3fcabb97a91255a1543e737aa60beea72ff192"
+    },
+    {
+      "id": "q5_daily",
+      "path": "app/factor_data/q5_daily.csv.gz",
+      "schema": [
+        "Date",
+        "R_F",
+        "R_MKT",
+        "R_ME",
+        "R_IA",
+        "R_ROE",
+        "R_EG"
+      ],
+      "sha256": "915434fba2c8c425a6c3b5930f3a6d05bec0f7717adab5eb35c1348ddacbc45a"
+    }
+  ],
+  "forecast_input_column": "daily_return",
+  "normalization": {
+    "algorithm": "UTF-8 CSV, LF line endings; header date plus lexicographically sorted tickers; dates ascending; each daily_return rendered with Python format(.17g); rows restricted to canonical window.",
+    "normalized_return_matrix_sha256": "52c5bdd96b39762183ef0c204fa8165c2dfd5a4864e7198662615daddb8d6a49"
+  },
+  "price_column_role": "source_portfolio_construction",
+  "reproduction_note": "The package bundles the exact manifest-whitelisted source snapshot from the pinned source revision. Verification and preparation are offline and hash every packaged price, supporting, and factor file; no proxy refresh or implicit transformation is used.",
+  "required_risk_free_series": [
+    "EFFRX"
+  ],
+  "schema": [
+    "date",
+    "daily_return",
+    "price"
+  ],
+  "series": [
+    {
+      "first_date": "1970-01-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/EFASIM.csv.gz",
+      "row_count": 14212,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "ba8061023e918026a00304a6530c4db2237cfcef0ff5e68b68e2dc5843af8c02",
+      "ticker": "EFASIM"
+    },
+    {
+      "first_date": "1968-04-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/GLDSIM.csv.gz",
+      "row_count": 14625,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc",
+      "ticker": "GLDSIM"
+    },
+    {
+      "first_date": "1979-12-28",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/GSGSIM.csv.gz",
+      "row_count": 11688,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f",
+      "ticker": "GSGSIM"
+    },
+    {
+      "first_date": "1962-01-03",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/IEFSIM.csv.gz",
+      "row_count": 16198,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "e78341660692c91cd6475e72e0ae8808834f865daf70d0f4695c723fc4a24b84",
+      "ticker": "IEFSIM"
+    },
+    {
+      "first_date": "1962-01-03",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/IEISIM.csv.gz",
+      "row_count": 16198,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "b374b4685a73eac973257283edeb8b05fa5cd60c452b66e1bbb7970994f08668",
+      "ticker": "IEISIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/IWCSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "04ccbe95d3cb1d63a2023500d6a0c6f039afbb2adb76b021a2fc76163172c1be",
+      "ticker": "IWCSIM"
+    },
+    {
+      "first_date": "1979-01-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/IWMSIM.csv.gz",
+      "row_count": 11939,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "aa093eb6547d41aeca170e36a1aed7fcf29f2d57106b58ed8ff022d75475ae8a",
+      "ticker": "IWMSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/REITSIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "1c0105a25c4ecc3cf5680cf5adcce5f35a3503e4baec423c6d566cfed26e2ab8",
+      "ticker": "REITSIM"
+    },
+    {
+      "first_date": "1885-03-23",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/SDSSIM.csv.gz",
+      "row_count": 35412,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "70a1cb6541910866171f037b80f4b1aae327d6664aa0741d18a77891ba11ae21",
+      "ticker": "SDSSIM"
+    },
+    {
+      "first_date": "1962-01-03",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/SHYSIM.csv.gz",
+      "row_count": 16198,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "d61ffa8a1009a580d0b54d7ce9d90c37304e884e3ff92fb99b9a6520b19411e6",
+      "ticker": "SHYSIM"
+    },
+    {
+      "first_date": "1968-01-03",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/SLVSIM.csv.gz",
+      "row_count": 14687,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "5a394c0bf4b273c888547f85c971ee41496d9a994927dfa271c385a62c66e6ce",
+      "ticker": "SLVSIM"
+    },
+    {
+      "first_date": "1972-03-20",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/SPMOSIM.csv.gz",
+      "row_count": 13712,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "7033292c8024955daeac46881049a664dc8f4eedd57d31c46bcbe3354f4b3836",
+      "ticker": "SPMOSIM"
+    },
+    {
+      "first_date": "1885-03-23",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/SPXLSIM.csv.gz",
+      "row_count": 35412,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "0bbff5e277bf5d886b0873529a2a9ca52236d07e51db8e7136bd709bcd311899",
+      "ticker": "SPXLSIM"
+    },
+    {
+      "first_date": "1885-03-23",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/SPXUSIM.csv.gz",
+      "row_count": 35412,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "dcf5a5da4e64ba4da73ee3f1bb711bd6ab2771eeb0d4b67f695436add18d85ed",
+      "ticker": "SPXUSIM"
+    },
+    {
+      "first_date": "1885-03-23",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/SPYSIM.csv.gz",
+      "row_count": 35351,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0",
+      "ticker": "SPYSIM"
+    },
+    {
+      "first_date": "1885-03-23",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/SSOSIM.csv.gz",
+      "row_count": 35412,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "29b2c177838f5d92c92664466dc7d3d03d253716c728c9c14651b610813e1597",
+      "ticker": "SSOSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/TECLSIM.csv.gz",
+      "row_count": 25145,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "01adc9a783523f3e001a940a044847b93c055996c3a28cffd661c3442cb56b2d",
+      "ticker": "TECLSIM"
+    },
+    {
+      "first_date": "1962-01-03",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/TLTSIM.csv.gz",
+      "row_count": 16198,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0",
+      "ticker": "TLTSIM"
+    },
+    {
+      "first_date": "1962-01-03",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/TMFSIM.csv.gz",
+      "row_count": 16259,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "41b618da74a1b547d5bd369b9245e225a3ae9b0f3c894e99e4faf6caec9b669f",
+      "ticker": "TMFSIM"
+    },
+    {
+      "first_date": "1979-01-02",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/TNASIM.csv.gz",
+      "row_count": 12000,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "f12f9e670f46ea1f47660d02056fb5c50986640478952a622ebbd3f4a5ca265b",
+      "ticker": "TNASIM"
+    },
+    {
+      "first_date": "1962-01-03",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/TYDSIM.csv.gz",
+      "row_count": 16259,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "697f4f33dddcdb8e0a3bbc5d0ee1751fee4c18b273aafb8a155c3ecf4b50cc6c",
+      "ticker": "TYDSIM"
+    },
+    {
+      "first_date": "1962-01-03",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/UBTSIM.csv.gz",
+      "row_count": 16259,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "4f652e8b89330e3b26da528884621312bff366f820ac905b5cc587b68ad11c9a",
+      "ticker": "UBTSIM"
+    },
+    {
+      "first_date": "1968-04-02",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/UGLSIM.csv.gz",
+      "row_count": 14686,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "9ec40de496289d585b2632ee482dc9f167f7bd1cda05ab083643d546e372c43f",
+      "ticker": "UGLSIM"
+    },
+    {
+      "first_date": "1885-03-23",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/UPROSIM.csv.gz",
+      "row_count": 35412,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "5cc94a93928aebedad408d2fd1ace111689a6e11a69152decb957d765b98dab4",
+      "ticker": "UPROSIM"
+    },
+    {
+      "first_date": "1970-01-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/URTHSIM.csv.gz",
+      "row_count": 14212,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "1ca7a0c14cc62642784c3e39a5c90b02d27bed80a22ffe0734084f1c5efa6951",
+      "ticker": "URTHSIM"
+    },
+    {
+      "first_date": "1979-01-02",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/URTYSIM.csv.gz",
+      "row_count": 12000,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "3d0d2f72ead0938ff0d348bc044706fc269cc996e59779194f013bb72c0051cf",
+      "ticker": "URTYSIM"
+    },
+    {
+      "first_date": "1979-01-02",
+      "last_date": "2026-08-11",
+      "path": "app/simulated_data/series/UWMSIM.csv.gz",
+      "row_count": 12000,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "9efded33afe7a86567ba38868f885d6abfe91e720d5877186102f0d818c2e9fb",
+      "ticker": "UWMSIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VBKSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "40d204b7c649484df80051780021b1a604adbf6d8506f0226a083593719708ad",
+      "ticker": "VBKSIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VBRSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "41f8689f3d4aee08286d8c2a94b4ee23814f3a1529f765b387a2979fb234022e",
+      "ticker": "VBRSIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VBSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "02fd840c467bea3859aac9fbf2bf99550efc4bbd825f5cb7d6ebc9edc762df5f",
+      "ticker": "VBSIM"
+    },
+    {
+      "first_date": "1970-01-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VEASIM.csv.gz",
+      "row_count": 14212,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "45bc3d9ddfd1c0c824aa1a8f69f1d5306bc95a48793ddfe4f985797364881f1d",
+      "ticker": "VEASIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VOESIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "fe8795c81652e3d8d5d62fef1777420d6d36c0d14aba72e026346ce4cbeaf139",
+      "ticker": "VOESIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VOOSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "02c846bdbe8091dd86ac8e8741f83ec9ac642bd62ddd482a44892b0aec7e45a2",
+      "ticker": "VOOSIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VOSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "cfd0ad097e050bbcb57052cdca42542e025ece40f05c1ee99c8804e00844b674",
+      "ticker": "VOSIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VOTSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "0612e987bee31364fbd913fbbf4ff1e92f0fe90797601841f3e93e3da67675d2",
+      "ticker": "VOTSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VTISIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "b8c7f4c1fd4b1ec4af58f3303e168ab3abaf10372b774207a5729839e8b05b43",
+      "ticker": "VTISIM"
+    },
+    {
+      "first_date": "1970-01-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VTSIM.csv.gz",
+      "row_count": 14212,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "b7a2b5d64fa67e598845a264342b032c40806aee5b9650eabe831cd91c91ec4a",
+      "ticker": "VTSIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VTVSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "6b05be9ff3dd74d6bb14110cfb67f6823d75ad29a3ec65dba002a6e164a26d7e",
+      "ticker": "VTVSIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VUGSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "fbbd4faeffd4c8ab84e73d3bdca3c994ac9caac8c7047ae6def7c68e07263f12",
+      "ticker": "VUGSIM"
+    },
+    {
+      "first_date": "1926-07-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VVSIM.csv.gz",
+      "row_count": 25083,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "23bdbe78325f2dac9c8f36dd3a21c80effd8637368013c35e3c76e2ca7cc592b",
+      "ticker": "VVSIM"
+    },
+    {
+      "first_date": "1970-01-02",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/VXUSSIM.csv.gz",
+      "row_count": 14212,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "e5da0f658d85000d2f2fdcd815478112c7a8075abb7df305f26a00ff9b5ce77e",
+      "ticker": "VXUSSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLBSIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "8c23be2d64458abfcb9a2960955e78db83626b296bc2c24b14922b9a76e88853",
+      "ticker": "XLBSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLCSIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "bfff2bade78448c88764611f797d084ab8f115b76e16afc7d1c29a6346588ef1",
+      "ticker": "XLCSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLESIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "ee66be930300063c20c4aedd162141936c765186097cb9e795a03ec3d2f6e04d",
+      "ticker": "XLESIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLFSIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "238d3b7fca5f91b3406c586528825e8c8fb8ffe28637c6f0c8fd718d479b4424",
+      "ticker": "XLFSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLISIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "28d08b6d41f27e31f1b67bdddb604a02c72425177c8b260d8ce058b8687e5f1a",
+      "ticker": "XLISIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLKSIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "b2c376d37c51f22d4cd9769c929af9dcfcdfe5877c50dea0b4d639889c9d6768",
+      "ticker": "XLKSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLPSIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "9a940a5b577ba6b7e54fa53d5e9f5ebaa903d206317854cbcd7135c0fd7b1490",
+      "ticker": "XLPSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLUSIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "cb6a00fb69886b21f728fb9ab6efece22f0001e5fda452a89de7a45e8e9cf2f5",
+      "ticker": "XLUSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLVSIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "d00770cd26a81fb6a73e796cbe6720fda4221423d1e802a00d4dae828d80dd9f",
+      "ticker": "XLVSIM"
+    },
+    {
+      "first_date": "1926-07-01",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/XLYSIM.csv.gz",
+      "row_count": 25084,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "ac1276a2d1e906a87bb062614533ff076cef7925c6718e37c6eb482848055f46",
+      "ticker": "XLYSIM"
+    },
+    {
+      "first_date": "1962-01-03",
+      "last_date": "2026-05-13",
+      "path": "app/simulated_data/series/ZROZSIM.csv.gz",
+      "row_count": 16198,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "336718b01668563e3acb88e4f46d751d0539cc276fe8ece64fc57da4a4bc9d62",
+      "ticker": "ZROZSIM"
+    }
+  ],
+  "source_manifest_sha256": "280f8f73a6d94bb05eeabf37ce0ffc16dd27674d2e12ad839461164f99e34ca0",
+  "source_paths": [
+    "app/simulated_data/manifest.json",
+    "app/simulated_data/README.md",
+    "app/simulated_data/series/<ticker>.csv.gz"
+  ],
+  "source_policy": "Pinned source README provenance is retained. The user authorized this exact standalone redistribution of the manifest-whitelisted files; no upstream license is inferred by this package.",
+  "source_policy_sha256": "0e66d22a6c3ded001735278cdac3b5183e743d0519e04cbac06c87a14d49839a",
+  "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+  "status": "packaged_under_user_redistribution_approval",
+  "supporting_series": [
+    {
+      "ticker": "BNDSIM",
+      "path": "app/simulated_data/series/BNDSIM.csv.gz",
+      "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "1986-12-12",
+      "last_date": "2026-05-13",
+      "row_count": 9929,
+      "role": "canonical_drift_proxy_input"
+    },
+    {
+      "ticker": "CASHX",
+      "path": "app/simulated_data/series/CASHX.csv.gz",
+      "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "1885-03-23",
+      "last_date": "2026-05-15",
+      "row_count": 35353,
+      "role": "canonical_drift_proxy_input"
+    },
+    {
+      "first_date": "1885-03-23",
+      "last_date": "2026-05-15",
+      "path": "app/simulated_data/series/EFFRX.csv.gz",
+      "row_count": 35353,
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "sha256": "4aa13c0966edab3fa0d75d5b8bf0307de45cd214ad543a4fc3e888d41bb89398",
+      "ticker": "EFFRX"
+    },
+    {
+      "ticker": "KMLMSIM",
+      "path": "app/simulated_data/series/KMLMSIM.csv.gz",
+      "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "1988-01-04",
+      "last_date": "2026-05-13",
+      "row_count": 9663,
+      "role": "canonical_drift_proxy_input"
+    },
+    {
+      "ticker": "TIPSIM",
+      "path": "app/simulated_data/series/TIPSIM.csv.gz",
+      "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "2000-06-30",
+      "last_date": "2026-05-13",
+      "row_count": 6505,
+      "role": "canonical_drift_proxy_input"
+    },
+    {
+      "ticker": "UUPSIM",
+      "path": "app/simulated_data/series/UUPSIM.csv.gz",
+      "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "1971-01-05",
+      "last_date": "2026-05-13",
+      "row_count": 13957,
+      "role": "canonical_drift_proxy_input"
+    }
+  ],
+  "ticker_order": [
+    "EFASIM",
+    "GLDSIM",
+    "GSGSIM",
+    "IEFSIM",
+    "IEISIM",
+    "IWCSIM",
+    "IWMSIM",
+    "REITSIM",
+    "SDSSIM",
+    "SHYSIM",
+    "SLVSIM",
+    "SPMOSIM",
+    "SPXLSIM",
+    "SPXUSIM",
+    "SPYSIM",
+    "SSOSIM",
+    "TECLSIM",
+    "TLTSIM",
+    "TMFSIM",
+    "TNASIM",
+    "TYDSIM",
+    "UBTSIM",
+    "UGLSIM",
+    "UPROSIM",
+    "URTHSIM",
+    "URTYSIM",
+    "UWMSIM",
+    "VBKSIM",
+    "VBRSIM",
+    "VBSIM",
+    "VEASIM",
+    "VOESIM",
+    "VOOSIM",
+    "VOSIM",
+    "VOTSIM",
+    "VTISIM",
+    "VTSIM",
+    "VTVSIM",
+    "VUGSIM",
+    "VVSIM",
+    "VXUSSIM",
+    "XLBSIM",
+    "XLCSIM",
+    "XLESIM",
+    "XLFSIM",
+    "XLISIM",
+    "XLKSIM",
+    "XLPSIM",
+    "XLUSIM",
+    "XLVSIM",
+    "XLYSIM",
+    "ZROZSIM"
+  ],
+  "unfiltered_common_date_count": 11688,
+  "distribution": {
+    "status": "user_authorized_exact_snapshot",
+    "attribution_resource": "resources/protocols/canonical_snapshot_attribution.json",
+    "source_root": "evidence/sources/source-research",
+    "license_status": "not_asserted"
+  }
+}
