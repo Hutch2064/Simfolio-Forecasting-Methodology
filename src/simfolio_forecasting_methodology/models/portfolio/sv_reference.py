@@ -31,8 +31,8 @@ SOURCE_ARTIFACTS: Mapping[str, Mapping[str, str]] = MappingProxyType(
         ),
         "engine": MappingProxyType(
             {
-                "path": "source-main/app/engine.py",
-                "sha256": "c2fcb7ad07ed94317d3102d69bd5160ed2a385703e69786ad0e2cedbf733cd4e",
+                "path": "source-research/app/engine.py",
+                "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
             }
         ),
     }

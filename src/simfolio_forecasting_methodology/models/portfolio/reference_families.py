@@ -2,7 +2,7 @@
 
 The four executable families in this module are the small, explicit terminal
 ensemble branches used by the retained research gate.  Their numerical
-functions are extracted from the source-main ``SimfolioEngine`` methods and
+functions are extracted from the source-research ``SimfolioEngine`` methods and
 keep the source's float64 operations, minimum-history rules, and NumPy RNG
 calls.  The adapter exposes terminal ensembles directly because the retained
 research gate scored these families at each requested horizon; it does not
@@ -30,6 +30,7 @@ from ...runner import (
     ForecastContext,
     TrainingData,
 )
+from ...seeds import coherent_daily_seed
 
 # The source artifact is referenced only by repository-relative paths.  These
 # digests are provenance metadata; they are not a claim that the retained
@@ -38,8 +39,8 @@ SOURCE_ARTIFACTS: Mapping[str, Mapping[str, str]] = MappingProxyType(
     {
         "engine": MappingProxyType(
             {
-                "path": "source-main/app/engine.py",
-                "sha256": "c2fcb7ad07ed94317d3102d69bd5160ed2a385703e69786ad0e2cedbf733cd4e",
+                "path": "source-research/app/engine.py",
+                "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
             }
         ),
         "research_gate": MappingProxyType(
@@ -148,7 +149,7 @@ SOURCE_CANDIDATE_SPECS: Mapping[str, Mapping[str, str]] = MappingProxyType(
 
 
 class _SourceKernel:
-    """The exact source-main numerical function closure.
+    """The exact source-research numerical function closure.
 
     The six methods below were AST-extracted from ``app/engine.py``.  Keep
     them as a small class so the classmethod dispatch in the Student-t source
@@ -365,13 +366,10 @@ class ReferencePortfolioModel:
                 raise ValueError("constant_mean_student_t requires at least 30 finite observations")
             result = np.cumsum(paths, axis=1, dtype=np.float64)
         elif self.model_id == "naive_iid_historical_portfolio_bootstrap":
-            columns = [
-                _SourceKernel._iid_historical_bootstrap_log_terminal_samples(
-                    values, horizon=day, n_sims=simulations, rng=rng
-                )
-                for day in horizon_grid
-            ]
-            result = np.column_stack(columns)
+            origin = context.origin_date or context.origin_label
+            rng = np.random.default_rng(coherent_daily_seed(origin, horizon, simulations))
+            indices = rng.integers(0, int(values.size), size=(simulations, horizon))
+            result = np.cumsum(values[indices], axis=1, dtype=np.float64)
         elif self.model_id == "zero_mean_gaussian_vol_only":
             train_values = values[np.isfinite(values)]
             sigma = float(np.std(train_values, ddof=1)) if train_values.size > 1 else 0.0

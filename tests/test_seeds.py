@@ -36,7 +36,7 @@ def test_seed_parts_are_null_delimited_and_order_sensitive():
 
 
 def test_retained_seed_context_helpers():
-    assert coherent_daily_seed("2000-01-03", 252, 240) == 1688747045
+    assert coherent_daily_seed("2000-01-03", 252, 240) == 3397576335
     assert (
         copula_alternatives_seed(
             "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",

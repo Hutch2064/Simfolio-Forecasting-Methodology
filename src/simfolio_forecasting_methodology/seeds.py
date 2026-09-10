@@ -24,7 +24,7 @@ def deterministic_seed(*parts: Any) -> int:
 def coherent_daily_seed(origin_date: str, max_horizon: int, simulations: int) -> int:
     """Seed context used by the retained all-daily coherent benchmark."""
     return deterministic_seed(
-        "asset_level_naive",
+        "naive_iid_historical_portfolio_bootstrap",
         "forecast_oos_all_daily_coherent",
         str(origin_date),
         int(max_horizon),
