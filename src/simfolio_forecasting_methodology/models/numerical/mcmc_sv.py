@@ -3880,6 +3880,8 @@ def fit_full_mcmc_sv(
     )
     if candidate.get("type") != CANONICAL_FULL_MCMC_SV_TYPE:
         raise ValueError("fit_full_mcmc_sv received a candidate outside the owned type")
+    if str(candidate.get("id", "")) not in set(canonical_full_mcmc_sv_ids()):
+        raise ValueError("fit_full_mcmc_sv received an ID outside the owned canonical set")
     fitted = _fit_bayesian_sbb_full_mcmc_sv_overlay(np.asarray(train_values, dtype=np.float64), candidate)
     if fitted is not None:
         # The research harness applies these options immediately before
