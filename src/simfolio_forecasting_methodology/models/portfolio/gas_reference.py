@@ -9,6 +9,7 @@ daily path from terminal samples.
 from __future__ import annotations
 
 import hashlib
+import logging
 import math
 from collections.abc import Mapping
 from dataclasses import dataclass, field
@@ -126,7 +127,8 @@ def _fit_gas_score_driven_skewt(train_values: np.ndarray, candidate: Mapping[str
         from scipy import stats
 
         kurt = float(stats.kurtosis(standardized, fisher=True, bias=False))
-    except Exception:  # noqa: BLE001 - preserve the source's explicit fallback
+    except Exception:
+        logging.getLogger(__name__).warning("Using retained source failure rule", exc_info=True)
         kurt = 0.0
     df = float(np.clip(4.0 + 6.0 / max(kurt, 0.1), 4.0, 30.0)) if np.isfinite(kurt) and kurt > 0.1 else 12.0
     t_scale = math.sqrt((df - 2.0) / df)
@@ -144,7 +146,8 @@ def _fit_gas_score_driven_skewt(train_values: np.ndarray, candidate: Mapping[str
                     from scipy import stats
 
                     ll += float(stats.t.logpdf(z / t_scale, df) - math.log(max(t_scale, 1e-8)) - math.log(max(sigma, 1e-8)))
-                except Exception:  # noqa: BLE001 - preserve the source's explicit fallback
+                except Exception:
+                    logging.getLogger(__name__).warning("Using retained source failure rule", exc_info=True)
                     ll += -0.5 * (z * z + math.log(max(sigma * sigma, 1e-8)))
                 score = float(_gas_t_score(np.asarray([z], dtype=np.float64), df)[0])
                 h_path[idx] = h
@@ -164,7 +167,8 @@ def _fit_gas_score_driven_skewt(train_values: np.ndarray, candidate: Mapping[str
 
         params = stats.jf_skew_t.fit(z_fit)
         jf_params = tuple(float(value) for value in params)
-    except Exception:  # noqa: BLE001 - preserve the source's explicit fallback
+    except Exception:
+        logging.getLogger(__name__).warning("Using retained source failure rule", exc_info=True)
         jf_params = None
     return {
         "mu": float(mu),
@@ -216,7 +220,8 @@ def _simulate_gas_score_driven_skewt(
                 from scipy import stats
 
                 z = np.asarray(stats.jf_skew_t.rvs(*jf_params, size=n_paths, random_state=rng), dtype=np.float64)
-            except Exception:  # noqa: BLE001 - preserve the source's explicit fallback
+            except Exception:
+                logging.getLogger(__name__).warning("Using retained source failure rule", exc_info=True)
                 z = rng.choice(z_pool, size=n_paths, replace=True)
         else:
             z = rng.choice(z_pool, size=n_paths, replace=True)

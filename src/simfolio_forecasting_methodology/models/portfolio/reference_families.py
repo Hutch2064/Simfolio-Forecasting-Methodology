@@ -16,6 +16,7 @@ intentionally not aliased to this univariate candidate.
 from __future__ import annotations
 
 import hashlib
+import logging
 import math
 from collections.abc import Mapping
 from dataclasses import dataclass, field
@@ -220,7 +221,8 @@ class _SourceKernel:
         standardized = (train_values - mu) / sigma
         try:
             excess_kurtosis = float(stats.kurtosis(standardized, fisher=True, bias=False))
-        except Exception:  # noqa: BLE001 - preserve the source kernel fallback
+        except Exception:
+            logging.getLogger(__name__).warning("Using retained source failure rule", exc_info=True)
             excess_kurtosis = 0.0
         if np.isfinite(excess_kurtosis) and excess_kurtosis > 0.1:
             df = float(np.clip(4.0 + 6.0 / excess_kurtosis, 4.0, 30.0))

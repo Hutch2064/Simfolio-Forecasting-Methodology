@@ -10,6 +10,7 @@ are turned back into artificial daily increments.
 from __future__ import annotations
 
 import hashlib
+import logging
 import math
 from collections.abc import Mapping
 from dataclasses import dataclass, field
@@ -272,7 +273,8 @@ def _fit_sv_state_space_params(
             value = float(result.fun) if np.isfinite(result.fun) else math.inf
             if result.success and (best is None or value < best[0]):
                 best = (value, np.asarray(result.x, dtype=np.float64))
-    except Exception:  # noqa: BLE001 - preserve source fallback when the fit fails
+    except Exception:
+        logging.getLogger(__name__).warning("Using retained source failure rule", exc_info=True)
         best = None
     if best is None:
         return init_level, init_phi, init_eta
@@ -330,7 +332,8 @@ def _fit_sv_ar1_with_mean(
     kurt = 0.0
     try:
         kurt = float(stats.kurtosis(standardized, fisher=True, bias=False))
-    except Exception:  # noqa: BLE001 - preserve source fallback for scipy statistics
+    except Exception:
+        logging.getLogger(__name__).warning("Using retained source failure rule", exc_info=True)
         kurt = 0.0
     df = float(np.clip(4.0 + 6.0 / max(kurt, 0.1), 4.0, 30.0)) if np.isfinite(kurt) and kurt > 0.1 else 30.0
     return {

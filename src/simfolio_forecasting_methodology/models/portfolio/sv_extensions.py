@@ -9,9 +9,11 @@ the same semantics as the source gate.
 from __future__ import annotations
 
 import hashlib
+import logging
 import math
 from collections.abc import Mapping
 from dataclasses import dataclass, field
+from itertools import pairwise
 from types import MappingProxyType
 from typing import Any
 
@@ -140,7 +142,7 @@ def _fit_observable_markov_state_sbb(
     state_count = 12
     alpha = float(max(candidate.get("state_alpha", 0.5), 1e-6))
     counts = np.full((state_count, state_count), alpha, dtype=np.float64)
-    for left, right in zip(states[:-1], states[1:]):  # noqa: RUF007 - preserve source loop
+    for left, right in pairwise(states):
         if 0 <= int(left) < state_count and 0 <= int(right) < state_count:
             counts[int(left), int(right)] += 1.0
     transition = counts / np.maximum(counts.sum(axis=1, keepdims=True), 1e-12)
@@ -240,7 +242,8 @@ def _fit_dp_mixture_sv_sbb(
             warnings.simplefilter("ignore", ConvergenceWarning)
             model.fit(log_abs.reshape(-1, 1))
         raw_labels = model.predict(log_abs.reshape(-1, 1)).astype(int)
-    except Exception:  # noqa: BLE001 - preserve source's explicit quantile fallback
+    except Exception:
+        logging.getLogger(__name__).warning("Using retained source failure rule", exc_info=True)
         edges = np.quantile(log_abs, [0.2, 0.4, 0.6, 0.8])
         raw_labels = np.digitize(log_abs, edges, right=False).astype(int)
     unique = sorted(int(value) for value in np.unique(raw_labels))
@@ -251,7 +254,7 @@ def _fit_dp_mixture_sv_sbb(
         return None
     alpha = 0.5
     counts = np.full((k, k), alpha, dtype=np.float64)
-    for left, right in zip(labels[:-1], labels[1:]):  # noqa: RUF007 - preserve source loop
+    for left, right in pairwise(labels):
         counts[int(left), int(right)] += 1.0
     transition = counts / np.maximum(counts.sum(axis=1, keepdims=True), 1e-12)
     global_sigma_x = float(max(np.std(eps_x, ddof=1), 1e-6))
