@@ -185,3 +185,20 @@ def test_unknown_base_components_fail_closed() -> None:
         )
     with pytest.raises(ValueError, match="unknown canonical base mean model"):
         fit_mean(np.ones(40, dtype=np.float64), "unknown_mean_model")
+
+
+def test_all_registered_base_adapters_match_source_fixture():
+    from simfolio_forecasting_methodology.models.registry import build_model
+
+    fixture = _load("source_reference_all_means.npz")
+    training = TrainingData(portfolio_log_returns=fixture["training_log_returns"])
+    for row, value in enumerate(fixture["model_ids"]):
+        model_id = str(value)
+        model = build_model(model_id)
+        context = ForecastContext(
+            model_id=model_id, portfolio_id="synthetic-source-fixture",
+            origin_label="fixture", origin_date="2026-05-13",
+            horizon_days=16, simulations=16, seed=999,
+        )
+        actual = model.simulate_daily_log_returns(training, context)
+        np.testing.assert_allclose(actual, fixture["paths"][row], rtol=0, atol=2e-12)

@@ -789,7 +789,7 @@ def historical_base_seed(
     return deterministic_seed(
         "forecast_oos_candidate",
         str(origin_date_or_label),
-        (int(horizon_days),),
+        tuple(range(1, int(horizon_days) + 1)),
         str(model_id),
         int(simulations),
     )

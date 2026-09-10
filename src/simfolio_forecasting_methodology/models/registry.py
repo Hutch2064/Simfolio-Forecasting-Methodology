@@ -9,10 +9,12 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
+from functools import partial
 from typing import Any
 
-from ..catalogue import canonical_model
+from ..catalogue import canonical_model, load_canonical_models
 from .asset_level.frontier import FRONTIER_MODEL_ID, HistoricalFrontierModel
+from .numerical.base_models import CanonicalBaseModel
 
 
 @dataclass(frozen=True)
@@ -25,6 +27,11 @@ class ModelRegistration:
 
 _EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {
     FRONTIER_MODEL_ID: HistoricalFrontierModel,
+    **{
+        row["public_model_id"]: partial(CanonicalBaseModel, row["public_model_id"])
+        for row in load_canonical_models()
+        if row["model_family"] == "base"
+    },
 }
 
 

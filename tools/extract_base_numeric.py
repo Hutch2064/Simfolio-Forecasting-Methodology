@@ -23,10 +23,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from simfolio_forecasting_methodology.models.numerical.base_models import (
-    historical_base_seed,
-)
-
 SOURCE_REVISION = "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
 SOURCE_ENGINE_SHA256 = "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
 DEFAULT_MEAN_MODELS = ("expanding_sample_mean",)
@@ -158,7 +154,10 @@ def _source_arrays(source_root: Path, values: np.ndarray, rows: list[dict[str, s
             )
             if fit is None:
                 raise RuntimeError(f"source fit returned None for {row['model_id']}")
-            seed = historical_base_seed(str(row["model_id"]), origin, horizon, simulations)
+            seed = engine._deterministic_seed(
+                "forecast_oos_candidate", origin, tuple(range(1, horizon + 1)),
+                str(row["model_id"]), simulations,
+            )
             path_values = engine._simulate_candidate_log_paths(
                 fit, source_tail, path, horizon, simulations, np.random.default_rng(seed)
             )
@@ -194,6 +193,8 @@ def _source_arrays(source_root: Path, values: np.ndarray, rows: list[dict[str, s
 
 
 def generate(source_root: Path, output: Path, mean_models: tuple[str, ...]) -> None:
+    if hashlib.sha256((source_root / "app/engine.py").read_bytes()).hexdigest() != SOURCE_ENGINE_SHA256:
+        raise ValueError("source engine digest does not match the pinned numerical reference")
     values = _training()
     rows = _candidate_rows(mean_models)
     origin = "2026-05-13"
