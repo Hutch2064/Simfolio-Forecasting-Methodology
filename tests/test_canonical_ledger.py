@@ -25,9 +25,6 @@ from simfolio_forecasting_methodology.models.registry import build_model, regist
 
 
 def _resolved_specification_ids() -> set[str]:
-    # The specification resource is complete before the coordinator applies
-    # its generated ledger patch.  Flat ledger flags therefore remain the
-    # authority for which rows are already recovered in this checkout.
     return {
         row["public_model_id"]
         for row in load_canonical_ledger()["models"]
@@ -64,6 +61,7 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
     payload = load_canonical_ledger()
     assert tuple(payload["required_model_fields"]) == REQUIRED_MODEL_FIELDS
     resolved_ids = _resolved_specification_ids()
+    assert len(resolved_ids) == 175
 
     for model in payload["models"]:
         assert set(model) == set(REQUIRED_MODEL_FIELDS) | {"canonical_rank"}

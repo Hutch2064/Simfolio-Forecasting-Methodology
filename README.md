@@ -17,7 +17,7 @@ parameter defaults; no model was dropped or replaced with a generic baseline.
 
 Historical score tokens are retained as evidence. Historical score linkage has
 not been verified, and no retained score is presented as a newly reproduced
-result. The ledger's full statistical specification gate remains open.
+result. All 175 ledger entries have complete, fingerprinted statistical specifications.
 
 The packaged canonical data snapshot contains 60 manifest-whitelisted files:
 52 asset series, `EFFRX`, five additional canonical drift-proxy series,

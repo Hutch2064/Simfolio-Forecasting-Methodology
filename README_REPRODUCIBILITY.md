@@ -59,7 +59,7 @@ relabelled as reproduced until its historical execution and score linkage are
 verified.
 
 The latest canonical-only coverage reports 175 registered factories,
-instantiations, forecast smoke checks, and bounded source-parity checks; 159
+instantiations, forecast smoke checks, and bounded source-parity checks; 175
 rows have complete statistical specifications, and zero historical scores are
 verified. These counts are status fields from `simfolio-oos coverage --json`,
 not evidence that the retained score ranking has been rerun.

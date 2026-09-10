@@ -83,13 +83,9 @@ def test_each_resolved_definition_has_a_stable_full_fingerprint_and_source_ident
         assert set(definition["shared_component_digests"]) == set(
             definition["shared_component_refs"]
         )
-        if row.get("specification_recovered"):
-            # The ledger is integration-owned and may still carry the prior
-            # definition fingerprint until the coordinator applies this
-            # generator's final output.
-            assert len(str(row["specification_fingerprint"]["value"])) == 64
-        else:
-            assert row["specification_recovered"] is False
+        assert row["specification_recovered"] is True
+        assert row["specification_fingerprint"]["value"] == binding["definition_fingerprint"]
+        assert row["structured_specification"]["resolved_definition"] == definition
         source = definition["source_reference"]
         assert not source["path"].startswith(("/", "~"))
         assert len(source["revision"]) == 40

@@ -1622,52 +1622,6 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
     return resource, resolved
 
 
-def patch_ledger(resolved: dict[str, dict[str, Any]]) -> None:
-    ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
-    for row in ledger["models"]:
-        model_id = str(row["public_model_id"])
-        definition = resolved.get(model_id)
-        if definition is None:
-            continue
-        row["structured_specification"] = {
-            "schema_version": 1,
-            "resource": "resources/specifications/canonical_statistical_specifications.json",
-            "resolved_definition": definition,
-        }
-        row["specification_fingerprint"] = {
-            "value": _digest(definition),
-            "kind": "resolved_statistical_definition_sha256",
-            "status": "full resolved statistical definition",
-        }
-        row["specification_recovered"] = True
-        row["source_reference_verified"] = True
-        artifact = row.get("source_artifact_digest")
-        if not isinstance(artifact, dict):
-            artifact = {}
-            row["source_artifact_digest"] = artifact
-        source_code = artifact.setdefault("source_code", {})
-        if model_id in {
-            r["public_model_id"] for r in ledger["models"] if r["model_family"] == "base"
-        }:
-            source_code["sha256"] = BASE_SOURCE_SHA256
-        elif row["model_family"] == "bayesian_sbb_full_mcmc_sv_overlay":
-            source_code["sha256"] = MCMC_SOURCE_SHA256
-        else:
-            source_code["sha256"] = BASE_SOURCE_SHA256
-        factory = row.get("implementation_factory")
-        if isinstance(factory, dict) and factory.get("callable"):
-            factory["seed_contract"] = definition.get(
-                "factory_seed_contract", factory.get("seed_contract")
-            )
-            mapped = ledger.get("implementation_factory_map", {}).get(model_id)
-            if isinstance(mapped, dict):
-                mapped["seed_contract"] = definition.get(
-                    "factory_seed_contract", mapped.get("seed_contract")
-                )
-    ledger["identity_policy"]["full_statistical_specifications_confirmed"] = len(resolved)
-    LEDGER_PATH.write_text(json.dumps(ledger, indent=2) + "\n", encoding="utf-8")
-
-
 def build_portfolio_ledger_patch(
     resource: dict[str, Any], ledger: dict[str, Any]
 ) -> dict[str, Any]:

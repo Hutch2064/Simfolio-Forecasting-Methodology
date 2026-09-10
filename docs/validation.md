@@ -40,9 +40,9 @@ bounded fixture does not make a retained score a reproduced result.
 The latest canonical-only verification reports 175 recovered identities, 175
 verified source references, protocol/data/panel fingerprints, registered
 factories, instantiations, forecast smoke checks, and bounded source-parity
-checks. It reports 159 complete statistical specifications and zero historical
-scores verified; the remaining specification work is tracked per row rather
-than inferred from factory coverage.
+checks. It reports 175 complete statistical specifications and zero historical
+scores verified; complete specifications and factory coverage are checked
+separately for every row.
 
 The retained score artifact is evidence only. Its digest status is recorded as
 `mismatch_observed_vs_declared`, and no historical score is marked verified.
