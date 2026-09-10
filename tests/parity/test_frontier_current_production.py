@@ -9,6 +9,8 @@ historical seed contract and the current production seed contract.
 
 from __future__ import annotations
 
+import gzip
+import hashlib
 import json
 from importlib import resources
 from pathlib import Path
@@ -158,6 +160,24 @@ def test_current_production_frontier_fixtures_preserve_source_evidence() -> None
     for panel in report["panels"]:
         fixture = _load(Path(panel["fixture"]).name)
         tickers = tuple(panel["tickers"])
+        if panel["source"]["kind"] == "frozen_canonical80_panel_row":
+            columns = []
+            for ticker in tickers:
+                evidence = panel["source"]["source_series"][ticker]
+                raw = resources.files("simfolio_forecasting_methodology").joinpath(
+                    "resources", "data", "canonical_snapshot", "app", evidence["resource"]
+                ).read_bytes()
+                assert hashlib.sha256(raw).hexdigest() == evidence["sha256"]
+                from io import BytesIO
+
+                frame = pd.read_csv(
+                    BytesIO(gzip.decompress(raw)), usecols=["date", "daily_return"],
+                    parse_dates=["date"],
+                ).set_index("date")
+                series = frame["daily_return"]
+                series = series[~series.index.duplicated(keep="last")]
+                columns.append(series.loc[pd.DatetimeIndex(fixture["training_dates"])].to_numpy())
+            np.testing.assert_array_equal(np.column_stack(columns), fixture["simple_returns"])
         public = _public_pipeline(fixture, tickers, panel["rebalance"])
 
         assert len(tickers) == fixture["asset_log_returns"].shape[1]

@@ -2,7 +2,12 @@
 
 Three bounded cases compare the standalone Frontier numerical implementation
 with production source revision `1485d2088ccbee7fcbc7e81e358d253eef7b6058`.
-The deployed revision has not been independently confirmed.
+Read-only hashes from the running production machine match current main
+`974b79699d8b7e5a474d21c3f4209b18e4927ccf`. Its Frontier module is byte-identical
+to the tested source. An AST comparison found no changes to the engine
+forecasting numerical functions or module/class constants; intervening changes
+affect benchmark diagnostics and backtest reporting. This verifies the live
+numerical source, without claiming a complete deployment-image audit.
 
 | Input | Training observations | Simulations | Daily horizons | Rebalancing |
 | --- | ---: | ---: | ---: | --- |
