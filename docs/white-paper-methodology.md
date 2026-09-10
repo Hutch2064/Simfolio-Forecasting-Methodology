@@ -63,7 +63,7 @@ atomically before they can partially update the accumulator.
 Seeds retain the source call contexts. The BLAKE2b helper uses null-delimited
 string parts, an eight-byte digest, little-endian decoding, and reduction
 modulo `2**32 - 1`. Daily coherent benchmark calls use
-`asset_level_naive`, `forecast_oos_all_daily_coherent`, origin date, maximum
+`naive_iid_historical_portfolio_bootstrap`, `forecast_oos_all_daily_coherent`, origin date, maximum
 horizon, and simulation count. Asset dependence calls use
 `copula_alternatives`, candidate ID, origin date, maximum horizon, and
 simulation count. Fixed-horizon candidate calls use

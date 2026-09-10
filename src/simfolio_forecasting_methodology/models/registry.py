@@ -17,8 +17,10 @@ from .asset_level.frontier import FRONTIER_MODEL_ID, HistoricalFrontierModel
 from .numerical.base_models import CanonicalBaseModel
 from .numerical.mcmc_sv import canonical_full_mcmc_sv_ids
 from .portfolio.full_mcmc import FullMCMCSVModel
+from .portfolio.gas_reference import REFERENCE_FACTORIES as GAS_FACTORIES
 from .portfolio.reference_families import REFERENCE_FACTORIES
 from .portfolio.sv_extensions import REFERENCE_FACTORIES as SV_EXTENSION_FACTORIES
+from .portfolio.sv_mcmc_reference import REFERENCE_FACTORIES as MCMC_REFERENCE_FACTORIES
 from .portfolio.sv_reference import SVReferenceModel
 
 
@@ -33,6 +35,8 @@ class ModelRegistration:
 _EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {
     FRONTIER_MODEL_ID: HistoricalFrontierModel,
     **REFERENCE_FACTORIES,
+    **GAS_FACTORIES,
+    **MCMC_REFERENCE_FACTORIES,
     **{model_id: partial(FullMCMCSVModel, model_id)
        for model_id in canonical_full_mcmc_sv_ids()
        if model_id != "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor"},

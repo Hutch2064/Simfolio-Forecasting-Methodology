@@ -1,6 +1,6 @@
 import json
 import warnings
-from pathlib import Path
+from importlib.resources import files
 
 import numpy as np
 import pytest
@@ -14,8 +14,8 @@ from simfolio_forecasting_methodology.models.portfolio.gas_reference import (
 )
 from simfolio_forecasting_methodology.runner import ForecastContext, TrainingData
 
-FIXTURE = Path(__file__).parent / "fixtures" / "gas_reference_source_parity.json"
-TRAINING_FIXTURE = Path(__file__).parent / "fixtures" / "sv_extension_source_parity.json"
+FIXTURE = files("simfolio_forecasting_methodology").joinpath("resources/test_fixtures/portfolio/gas_reference_source_parity.json")
+TRAINING_FIXTURE = files("simfolio_forecasting_methodology").joinpath("resources/test_fixtures/portfolio/sv_extension_source_parity.json")
 
 
 def _fixture_context() -> ForecastContext:

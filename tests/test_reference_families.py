@@ -1,5 +1,5 @@
 import json
-from pathlib import Path
+from importlib.resources import files
 
 import numpy as np
 import pytest
@@ -15,7 +15,7 @@ from simfolio_forecasting_methodology.models.portfolio.reference_families import
 )
 from simfolio_forecasting_methodology.runner import ForecastContext, TrainingData
 
-FIXTURE = Path(__file__).parent / "fixtures" / "reference_family_source_parity.json"
+FIXTURE = files("simfolio_forecasting_methodology").joinpath("resources/test_fixtures/portfolio/reference_family_source_parity.json")
 
 
 def _fixture_payload() -> dict:

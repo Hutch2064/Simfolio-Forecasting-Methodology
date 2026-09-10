@@ -5,6 +5,7 @@ import subprocess
 import sys
 from copy import deepcopy
 from decimal import Decimal
+from importlib.resources import files
 from pathlib import Path
 
 import pytest
@@ -25,13 +26,8 @@ from simfolio_forecasting_methodology.models.registry import build_model, regist
 
 
 def _resolved_specification_ids() -> set[str]:
-    resource = (
-        Path(__file__).parents[1]
-        / "src"
-        / "simfolio_forecasting_methodology"
-        / "resources"
-        / "specifications"
-        / "canonical_statistical_specifications.json"
+    resource = files("simfolio_forecasting_methodology").joinpath(
+        "resources/specifications/canonical_statistical_specifications.json"
     )
     return set(json.loads(resource.read_text(encoding="utf-8"))["accepted_model_ids"])
 
@@ -74,7 +70,7 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
         assert model["source_reference_verified"] is True
         executable = (model["canonical_rank"] == 1 or model["model_family"] == "base"
                       or (model["model_family"] == "bayesian_sbb_full_mcmc_sv_overlay" and "harx_ff6_vol_anchor" not in model["public_model_id"])
-                      or model["public_model_id"] in {'dp_mixture_sv_sbb', 'observable_markov_state_sbb', 'stochastic_volatility_ar1_empirical', 'stochastic_volatility_ar1_empirical_sbb', 'zero_mean_gaussian_vol_only', 'constant_mean_gaussian', 'naive_iid_historical_portfolio_bootstrap', 'constant_mean_student_t'})
+                      or model["public_model_id"] in {'gas_score_driven_skewt', 'bayesian_mcmc_stochastic_volatility_sbb', 'dp_mixture_sv_sbb', 'observable_markov_state_sbb', 'stochastic_volatility_ar1_empirical', 'stochastic_volatility_ar1_empirical_sbb', 'zero_mean_gaussian_vol_only', 'constant_mean_gaussian', 'naive_iid_historical_portfolio_bootstrap', 'constant_mean_student_t'})
         assert model["implementation_available"] is executable
         assert model["instantiation_validated"] is executable
         assert model["forecast_smoke_tested"] is executable
@@ -253,6 +249,6 @@ def test_generated_reference_is_current_and_scoped_to_the_ledger():
     )
     assert result.returncode == 0, result.stderr
     reference = (repository_root / "docs/canonical-model-reference.md").read_text(encoding="utf-8")
-    assert reference.count("retained_score_evidence_only_blocked") == 43
+    assert reference.count("retained_score_evidence_only_blocked") == 41
     assert EXPECTED_MEMBERSHIP_DIGEST in reference
     assert "master_369" not in reference
