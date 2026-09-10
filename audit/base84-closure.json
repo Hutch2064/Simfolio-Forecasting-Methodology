@@ -7,7 +7,7 @@
     "status": "remediated_prior_to_this_audit"
   },
   "commands": [
-    "git -C /tmp/c175-audit-a2 status --short --branch",
+    "git -C <destination-clone> status --short --branch",
     "python3 - <<'PY' ... ast.parse(source-research/app/engine.py) ... PY",
     "sha256sum source-research/app/engine.py source-research/scripts/forecast_oos_research_gate.py source-research/requirements.txt tmp/asset_level_full_panel_20260823/*.py"
   ],
@@ -3882,47 +3882,47 @@
     "branch": "base84-audit-c175",
     "canonical_ledger_commit": "d2aeb3c682bef125dd51218207f488f1857ec01d",
     "catalogue": "canonical175",
-    "ledger_path": "/tmp/simfolio-canonical175-integration/src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json",
+    "ledger_path": "<authoritative-ledger-checkout>/src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json",
     "model_family": "base",
     "row_count": 84,
     "starting_revision": "5f75590afd59c18f675b116fbdc9287f2d096af0",
-    "working_clone": "/tmp/c175-audit-a2"
+    "working_clone": "<destination-clone>"
   },
   "source_artifacts": [
     {
       "git_revision": null,
-      "path": "/Users/aidanhutchison/forecast-consolidation-20260909/evidence/sources/source-research/app/engine.py",
+      "path": "<source-research-root>/app/engine.py",
       "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
       "status": "pinned_source_research_engine_static_reference"
     },
     {
       "git_revision": null,
-      "path": "/Users/aidanhutchison/forecast-consolidation-20260909/evidence/sources/source-research/scripts/forecast_oos_research_gate.py",
+      "path": "<source-research-root>/scripts/forecast_oos_research_gate.py",
       "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
       "status": "pinned_source_research_catalog_static_reference"
     },
     {
-      "path": "/Users/aidanhutchison/forecast-consolidation-20260909/evidence/sources/source-research/requirements.txt",
+      "path": "<source-research-root>/requirements.txt",
       "sha256": "6d85409ebbf13a65b26453404ceaf1da42cd37e080c2561ab003f7ea603d72e3",
       "status": "unversioned_source_requirements"
     },
     {
-      "path": "/Users/aidanhutchison/simfolio/tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py",
+      "path": "<historical-tmp-panel-root>/asset_level_full_exact_crps.py",
       "sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465",
       "status": "historical_wrapper_static_reference"
     },
     {
-      "path": "/Users/aidanhutchison/simfolio/tmp/asset_level_full_panel_20260823/simfolio_adaptive_pgas.py",
+      "path": "<historical-tmp-panel-root>/simfolio_adaptive_pgas.py",
       "sha256": "f7988a6cfbdf674c1efeb1ca6836b34e5f34c1ee241e97ef44551ded7ba87c69",
       "status": "historical_wrapper_static_reference"
     },
     {
-      "path": "/Users/aidanhutchison/simfolio/tmp/asset_level_full_panel_20260823/simfolio_oos_copula_alternatives.py",
+      "path": "<historical-tmp-panel-root>/simfolio_oos_copula_alternatives.py",
       "sha256": "413d2ca7f74cda13dd228c8974f822ce23e690cc56e098babf3fd2c121fbf95e",
       "status": "historical_wrapper_static_reference"
     },
     {
-      "path": "/Users/aidanhutchison/simfolio/tmp/asset_level_full_panel_20260823/simfolio_oos_two_candidates.py",
+      "path": "<historical-tmp-panel-root>/simfolio_oos_two_candidates.py",
       "sha256": "0577e79abee09d09735ee76f85941e007f995cc6a370ee375a0743cf440a23c2",
       "status": "historical_wrapper_static_reference"
     }
@@ -4511,7 +4511,7 @@
       "STATIONARY_BOOTSTRAP_ROW_ASSEMBLY_MIN_DAYS",
       "_simulate_auto_vol_log_paths_numba"
     ],
-    "source_file": "/Users/aidanhutchison/forecast-consolidation-20260909/evidence/sources/source-research/app/engine.py",
+    "source_file": "<source-research-root>/app/engine.py",
     "source_file_sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
   }
 }
