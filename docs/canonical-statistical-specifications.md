@@ -2,28 +2,52 @@
 
 Generated from `resources/specifications/canonical_statistical_specifications.json`.
 The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.
-The resource contains the 34-model source-backed portfolio batch in addition to the previously ledger-bound definitions. `ledger_bound_model_ids` records the rows already applied to the canonical ledger; `audit/statistical-specifications-34-ledger-patch.json` is the narrow generated update for the staged batch.
+The resource contains all 175 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.
 Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.
 
-## 001. `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`
+## 001. `asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced`
+
+- Family: `asset_level_extension`
+- Resolved-definition SHA-256: `550446485804a94de71427d7db10ec6f4d1b9bfbd92efde5c00e294cfb77279e`
+- Source: `tmp/asset_level_full_panel_20260823/simfolio_oos_copula_alternatives.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `413d2ca7f74cda13dd228c8974f822ce23e690cc56e098babf3fd2c121fbf95e`).
+- Source entrypoints: `_coupled_asset_paths (PGAS_ID branch)`, `_exact_kalman_rejoined_portfolio_paths`.
+- Factory seed contract: `deterministic_seed('asset_level_current_engine', ticker, origin_date, selected_model_id, horizon_days, simulations); deterministic_seed('copula_alternatives', asset_model_id, origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.asset_exact`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, marginal_candidate_id, student_scale_mixture`.
+- Resolved defaults:
+  - `dependence_seed_alias` = `"copula_alternatives"`
+  - `factor_explained_variance_target` = `0.8`
+  - `future_calendar` = `"business days from training end plus one BDay"`
+  - `marginal_seed_alias` = `"asset_level_current_engine"`
+  - `maximum_factors` = `3`
+  - `minimum_assets` = `2`
+  - `minimum_observations` = `80`
+  - `student_scale_mixture` = `false`
+  - `turnover_cost_bps` = `15.0`
+
+## 002. `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`
 
 - Family: `frontier`
-- Resolved-definition SHA-256: `46041a40c78422e5aa293b7ad92950a8314344dfd6016b6ee595fd9e5415b7e9`
+- Resolved-definition SHA-256: `25760d1badb1ff6f5e37a947a92b84140dc7967b2b20d4a9ac37d7ce4fd41aa6`
 - Source: `source-research/app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_bdes_non_mcmc_sv_forecast_base`, `_simulate_full_mcmc_sv_bdes_log_paths_serial_numba`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `deterministic_seed('asset_level_current_engine', ticker, origin_date, selected_model_id, horizon_days, simulations); deterministic_seed('copula_alternatives', asset_model_id, origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.frontier`.
 - Marginal candidate: `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_fast_map_laplace_sigma_points`.
 - Dependence component: `frontier.dependence_parameterization`.
 - Portfolio rejoin: `frontier.portfolio_rejoin`.
 
-## 002. `bayesian_mcmc_stochastic_volatility_sbb`
+## 003. `bayesian_mcmc_stochastic_volatility_sbb`
 
 - Family: `sv_mcmc_sbb`
-- Resolved-definition SHA-256: `bdde8fe0c49b381914c32805be0ecd8ef8a265b90980533038d7bbcbf48d2e5b`
+- Resolved-definition SHA-256: `3b51bb3c6c3976d9d4438d20ac2f122445580cffe0426699d5793f9bb59e92fc`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_deterministic_seed`, `_sample_mean_near_zero_shrinkage`, `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sv_mcmc_log_posterior`, `_fit_sv_mcmc_from_base`, `_fit_sv_mcmc`, `_sv_initial_log_var`, `_politis_white_block_length`, `_stationary_bootstrap_indices_from_draws_fast`, `_stationary_bootstrap_indices_from_draws`, `_stationary_bootstrap_indices`, `_simulate_sv_mcmc_sbb`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: blake2b-64-little-mod-2^32-1; args=('sv_mcmc_fit', finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, innovation, type`.
@@ -33,6 +57,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `fit_seed_arguments` = `["sv_mcmc_fit", "finite_observation_count", "round(finite_observation_mean, 10)"]`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_mcmc_stochastic_volatility_sbb"`
   - `innovation` = `"empirical"`
   - `input_unit` = `"portfolio_daily_log_return"`
@@ -46,13 +71,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"sv_mcmc_sbb"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 003. `bayesian_sbb_ml_vol_overlay_rf_harx_ff6`
+## 004. `bayesian_sbb_ml_vol_overlay_rf_harx_ff6`
 
 - Family: `bayesian_sbb_ml_vol_overlay`
-- Resolved-definition SHA-256: `83319a89bd9a7de3eb7afb5e88df503b8a5257016a5bad7b8d14f02593f199eb`
+- Resolved-definition SHA-256: `7eee4dce3cd4a4ff89cc5b0652a47186b81f9e7620a23a5fa436987bec6419ee`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, type`.
@@ -63,6 +89,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_ml_vol_overlay_rf_harx_ff6"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -80,13 +107,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_ml_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 004. `bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe`
+## 005. `bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `6e76f14a33c7f5d8aef159a2858ab45c3a0f5a0a0090ebe778c6a4a58ec6e4dc`
+- Resolved-definition SHA-256: `821005670aa3bbfd96121dd9221af649852312e1a8c6fdd93a5a1935ce8c7f9b`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
@@ -97,6 +125,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -121,13 +150,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"egarch_1_1_volatility_overlay"`
 
-## 005. `bayesian_sbb_overlay_ewma_absolute`
+## 006. `bayesian_sbb_overlay_ewma_absolute`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `b68bdd7c640f3fcd85a97eb939931f213e63c48ae8bf45cc6c725e0e3b75b12d`
+- Resolved-definition SHA-256: `fa16bea85396e474ae3551d5591a8a327457992546192d439ee7a88319cb06c1`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, overlay_model, type`.
@@ -138,6 +168,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_ewma_absolute"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -155,13 +186,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 006. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe`
+## 007. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `427eb8fc329edd2f222978a20e86b40adac4dc3d32db79b0289150c71ae7eea2`
+- Resolved-definition SHA-256: `8986cfc249e0f2c26c368c393c113edfac36d123c136fe16bf3a93864bed17ad`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, type`.
@@ -172,6 +204,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -190,13 +223,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 007. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty`
+## 008. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `4aca7e5cd57f3ebca29533054348e5fbb27926976c2ae4f10e5bf739f95506e9`
+- Resolved-definition SHA-256: `78b52afbf8f2c8b6bd8507b8fcfa39fb17a5d4aa8b725dbb19659fd2dbbec68c`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, type`.
@@ -207,6 +241,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -225,13 +260,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 008. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe`
+## 009. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `ae9749118d08f2535bebfb9b9e3fdf859ca83b9a8331a93cc1aaf4f0805d430e`
+- Resolved-definition SHA-256: `8f270b7521ffdebe598a9277d3827be302f28711a683ab513428689bcfbce3bb`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, type`.
@@ -242,6 +278,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -260,13 +297,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 009. `bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe`
+## 010. `bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `332a969130c146a4dad63d2a9a7bf412d182d074adecd55b1ae2738145835e71`
+- Resolved-definition SHA-256: `540dc7859351fd17f350af83f6f1ef7bbcdb7e37da5bee63474f87c94d1b3ea2`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, type`.
@@ -277,6 +315,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -295,13 +334,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 010. `bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean`
+## 011. `bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `693c6a9b083ed4545500990da9573939e39940095b2338f3a8544a4f7b943f27`
+- Resolved-definition SHA-256: `a5f28f385b682cbabda23d2f0951897a8250ce648e005d749e23a5b3a7201a02`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, vol_model`.
@@ -312,6 +352,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -333,13 +374,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"absolute_return_ewma_volatility_overlay"`
 
-## 011. `bayesian_sbb_overlay_ewma_absolute_zero_sharpe`
+## 012. `bayesian_sbb_overlay_ewma_absolute_zero_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `78e9e358d66ce83ab08bf96497f03cead0ff9431b702ee40b61ce2415ceaad8a`
+- Resolved-definition SHA-256: `0fb07ea82833f9a45ce0ec99c1aad92ac34e8813234f0a8bdec49d60c45828a2`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, type`.
@@ -350,6 +392,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_ewma_absolute_zero_sharpe"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -368,13 +411,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 012. `bayesian_sbb_overlay_figarch_1_d_1`
+## 013. `bayesian_sbb_overlay_figarch_1_d_1`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `1484d67b7fa45ee540b6104d884479e3ec6bb05c2f5c94f0873a75b1a7dcc75d`
+- Resolved-definition SHA-256: `375a01606da7ca404a86683801c209ad21af1dbb4bb2f04c405a812472b611c8`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, overlay_model, type`.
@@ -385,6 +429,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_figarch_1_d_1"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -402,13 +447,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 013. `bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe`
+## 014. `bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `b3707c2023af8597c0c71b161d356293a52da7ff276d50bb4ff6de71bb4cccba`
+- Resolved-definition SHA-256: `9bdf786a8cddc8f5be390abfc077b7614156b5f988776c2a748dfb6547dbe30d`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, type`.
@@ -419,6 +465,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -437,13 +484,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 014. `bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe`
+## 015. `bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `2e958106514966d352117679c52ecc1161dc4a5bb79d17e5878910f5e16fe908`
+- Resolved-definition SHA-256: `5d8891bdeec5b7211f30672710f56bb729e1388d9f9e7b4a8e6e8ea9b8adaa5c`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, type`.
@@ -454,6 +502,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -472,13 +521,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 015. `bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean`
+## 016. `bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `cbbfef2a9c22ba683b64f127777044246bf76dae74196311ec4593c42bf92660`
+- Resolved-definition SHA-256: `8eef3bccac894f6cfaad8acea1ee7de342794ecc77d27e2405dc42d905bfd57d`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -489,6 +539,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -511,13 +562,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `validation_status` = `"previous_live_garch_incumbent_promoted_from_strict_rank10_baseline"`
   - `vol_model` = `"garch_1_1_volatility_overlay"`
 
-## 016. `bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage`
+## 017. `bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `89328311e604dafa64c14678b86d725980943d30ad4b5a87ee1c5e7668f6ad2c`
+- Resolved-definition SHA-256: `18812e5db7be62abd241c9805a9fdd1c043d54b807520b838e550e8b04f7e93a`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, type`.
@@ -528,6 +580,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -546,13 +599,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 017. `bayesian_sbb_overlay_gjr_garch_1_1`
+## 018. `bayesian_sbb_overlay_gjr_garch_1_1`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `edb26b9666c6931dabcbfdce58079e9f69f30306a561716c816d96869c533106`
+- Resolved-definition SHA-256: `d1a64137bc500e66f90d8f0424e01706b2a08c185114863b24443a0a04e5e125`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, overlay_model, type`.
@@ -563,6 +617,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_gjr_garch_1_1"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -580,13 +635,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 018. `bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe`
+## 019. `bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `4cd5ffb8f30814c882704225da8e5aa23659e7bbfe6957bb68904a4a7dccfdee`
+- Resolved-definition SHA-256: `32ca94941ae6ac54fdb76ce196ef2b8b6e95db4c7ef1b0b67dd2b686a1d94b8e`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
@@ -597,6 +653,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -621,13 +678,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
 
-## 019. `bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean`
+## 020. `bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `2b92b1b2a8ad3803c231bbb8c195dac02860a18dbc7b3e7e90549e92ae109518`
+- Resolved-definition SHA-256: `9f53bdf3383be13e3e671c817fb89a63ee4b3deff414015a7741144e32c878cf`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -638,6 +696,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -660,13 +719,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `validation_status` = `"focused_80_portfolio_validation_candidate"`
   - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
 
-## 020. `bayesian_sbb_overlay_harch_1_5_22`
+## 021. `bayesian_sbb_overlay_harch_1_5_22`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `83e1dcb612507ce2f8deb6506fe45e01184f91b6407f07f50d2044c4ae9063e2`
+- Resolved-definition SHA-256: `606ad0f4cf016bcd3dd47924739257a1ee81f37ab2d08482e38025aa7741d163`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, overlay_model, type`.
@@ -677,6 +737,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_harch_1_5_22"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -694,13 +755,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 021. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean`
+## 022. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `e9d167af687b48588521a0aa1cbbe99c30df74823dd645c9174e627a3a41bdd7`
+- Resolved-definition SHA-256: `6bcc12f4a76e5909b70879cbc08bcfbbd4516c0d29114086c9c2ccb1d1d2dc91`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -763,13 +825,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 022. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty`
+## 023. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `c0107e0a8d357fb8f114b534ec76b67a983fcb148b25782563f3dab3d65c0fe7`
+- Resolved-definition SHA-256: `85a4204134fa8b5516ed943f7dece2fdde8c495394fbd6d4af21a98da933bbd6`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -833,13 +896,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 023. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc`
+## 024. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `6ce8f86c06286e53b6540bbbb7569d8aed4b57c2b012eec1f9bc87ca05dda73e`
+- Resolved-definition SHA-256: `a95e5e0a4e3214a07f2de04d7e36f2d8fbb105879b3739e361bf1c686c8c2aca`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -903,13 +967,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 024. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc`
+## 025. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `d8eda726171ef406b9aef2b7c53edb8c098c42924f7242bdb1ae8f9e2b2466f5`
+- Resolved-definition SHA-256: `2dc202c2dd3c940df29a2334a1b92f41749892d92a609142a5b89dc58de5f68f`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -973,13 +1038,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 025. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean`
+## 026. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `34c63990f78c9abaf3b846f276a22474104a272aaea4f1767a354a4c98e3aa04`
+- Resolved-definition SHA-256: `93d90da52839de834149f7e341f018655f9c8b27f9e18bad297f86191379e74e`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -1043,13 +1109,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 026. `bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean`
+## 027. `bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `c97b9056f6c277cd7f3300a51155f49d3f43415b3e0d9f76c7b5a87dff754ae9`
+- Resolved-definition SHA-256: `585ea29c7cb9bc2b04ead09e47fe94aecf66c3485703c145ac09938d59106d4e`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -1112,13 +1179,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 027. `bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor`
+## 028. `bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `4c2d130e7588639109c78f3a4e5e460d8a4d13db80c77fb9ee8ebfb8f3a881f7`
+- Resolved-definition SHA-256: `b237004a16f4a5bf033824f0cc3fc2b6a4e541031fe9bc86d66d737d7d122c27`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -1182,13 +1250,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 028. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected`
+## 029. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `d4596c07d43060b33e71acb44355aa4b1ed6202198bb492b3fcb3a6f0fb67428`
+- Resolved-definition SHA-256: `ab59656280a1eba4af8f1de68bfa8d52b826de88ab250ef42b691c76a215af4d`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, overlay_model, type`.
@@ -1199,6 +1268,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -1216,13 +1286,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 029. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor`
+## 030. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor`
 
 - Family: `bayesian_sbb_vol_overlay`
-- Resolved-definition SHA-256: `1f7a7657559334ec2d8e61e1d5964f5130b8e2e4bd9d5f64739d8a7a4915a988`
+- Resolved-definition SHA-256: `a165a431a2398dd9fcd3f98bf1bac25870d60f810d0147d54536d522afecf4de`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -1233,6 +1304,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor"`
   - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
   - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
@@ -1255,377 +1327,437 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `validation_status` = `"clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate"`
   - `vol_model` = `"sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor"`
 
-## 030. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 031. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `ec75732d7f3a2f90de4b84754a6a8743e0fae94ea70e5d1e918bfba87ea9d5bf`
+- Resolved-definition SHA-256: `7d4a1784be8c3a04363930026847f770d10b51835025c0f9107a45c862745c46`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 031. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+## 032. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `70ee67447e4bbfe2d9a7d27bd1bb37cdb53f6f97861024d7b2a7b8d9b2745071`
+- Resolved-definition SHA-256: `f546752f6900dc0aa47a72b51eaa594eea737f4980b494f145abb8b1cf84b9d0`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 032. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 033. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `6e7cdc78ef858a5854f53d1308270e900ef770392f8d3cafcfba714b30d519a0`
+- Resolved-definition SHA-256: `483138b806a642fe8387784e44479ff20de9de9777c11a94b2692c2ed9a37236`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 033. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 034. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `f43eb552383195a5dfaaf07dd4224c8a5ec4680e2f8275f9eaaa3e9601f5c730`
+- Resolved-definition SHA-256: `4f4029a366115b12a3e548f2b6b9fb6b37ef9ef4a0fbab8e6fb61b37a5a9d560`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 034. `bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+## 035. `bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `dab38af6ede94687471b660f1191bbbab3e5fdbeb4d5918aff598791a14d3913`
+- Resolved-definition SHA-256: `a6d63d89c9f9500c52c069232a0ed77b8bfce3138dbdf1e2cb201e3eb1f18cb7`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 035. `bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+## 036. `bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `3101c6c76c72eb7c2f9acf2b455a0d568c9d4b51c5d9582286f7441aaea27058`
+- Resolved-definition SHA-256: `80f5ef6e17b1264e713576894fded7f57b26fff93fdc074f9541087b81994bfd`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 036. `bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+## 037. `bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `758f9d5c8d0145759184e47cf073728266a418f58ae52e14be6df75b3f7ddcc0`
+- Resolved-definition SHA-256: `fe8f6ebd8fbb4a2db89b99415292bd202e9234d04b5eba43b5f708078a420848`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 037. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 038. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `3a16442ecaef51f16b84fb6c3ee3ef16c92b533ba866c155647b2f6dd737b277`
+- Resolved-definition SHA-256: `ec1f9a6158e097eef70c7210fed02dbabeeeb47b609d21fe46f85b44fd67a377`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 038. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 039. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `40d03a9a3a8ce656f97eac3b0777fcdce308dc389e7b192b10dbd53725c93a51`
+- Resolved-definition SHA-256: `b475d9ba1bb4371ee09d2b7d39e8fc989dbbf6cf9e88f264298798012373c1f1`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 039. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 040. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `a062e79ed07515595f6d8610852379d8e5780fe3a8e2c084367c30b21f9fa913`
+- Resolved-definition SHA-256: `1616127ad7faa63150d2bfbc13e9411615c1fc623a18e5c655c0651df5f83299`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 040. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 041. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `45e77b6dc28515af264bf05442f361cb9ab0ee8224958cdd95ec6f7046b3996a`
+- Resolved-definition SHA-256: `8339cae6e0e4a5333430ca5419ae18d6a4553b77885a54312ea0794b2644858a`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 041. `bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 042. `bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `e5709ba7d31fb97214361f4c222c90715643baf64b8e8df9de73a8570998e4f2`
+- Resolved-definition SHA-256: `3a90a148bbb9f5796fa7fce8ad2808aec68e1d4087dbcecb278664d36a0a14f6`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 042. `bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 043. `bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `d8ef249034a7a2318b2e052cedbdc579384305b21ce88f09315a45c43c843f89`
+- Resolved-definition SHA-256: `6ba811e3646c8fa9d050018a4307409740d98ddea4eef2f19ed7d384f9a744d2`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 043. `bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 044. `bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `0c03c1dc8e2dcdae95a166b1203cde20afebd489b0c5d1ccd08eef4b2814a632`
+- Resolved-definition SHA-256: `c04e685559c93d056f465627f355df220eb319705f92686ad2ccd59c7ac827a6`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 044. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 045. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `e795173b676b751101b76f3e12c14dee4330297220bddb63526f80eb50d9f892`
+- Resolved-definition SHA-256: `4b2a8f155e94300892320af549bc7cedeb3037b9ba2262d23d9350934ecd9f73`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 045. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 046. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `21033a5ed5ce4987a94563abc8ae8178c3dfb3e16c1236c3bae6da5b7cbd268e`
+- Resolved-definition SHA-256: `f8f6a297813307bbb2b093bf4c283bc37e89a1541661cdb3501adc56beb10a44`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 046. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 047. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `06d9ed076a638d35755ebff83963a00952c3bbdf4252bb236fe2e14fa0db2146`
+- Resolved-definition SHA-256: `7e94f000dfeabef0be6533ecf79768de442c9391f3e34d3c8a630c3d8124b970`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 047. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 048. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `86747dec91dfa30943342c98220a713f9255609bba057c2da5216d81a9029ebb`
+- Resolved-definition SHA-256: `e4eb12e44f957b10ba7a9721171544223ac9a3af1f2c5ef0a0b0c9ec106dd81e`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 048. `bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 049. `bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `28eff5451f35e32e535de0364434bfe5ea62dae4912f906f64f0c6feeaafa317`
+- Resolved-definition SHA-256: `72a5974d775ec7a5690779dd939be21143b9dac318b12f2cf261b942f74e5a29`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 049. `bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 050. `bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `be334fd115a33c177f5e12f53822a5ba25751267e4c390c1fd465cc81ef7202a`
+- Resolved-definition SHA-256: `b5a294307e4db7c809045213ed7143f931740430353c2d9a08348cb4cb3eab85`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 050. `bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 051. `bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `618c9f93b1a08172625e51a19dee3eb564a68dca28665cb9564f6ec30f665e33`
+- Resolved-definition SHA-256: `85d16d358a557f494a839267fd6f70d3038013f322f76a9eb14b5f3098a86204`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 051. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 052. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `731a1ca219b1ec5ca10855f88341885c55438ef23af4cf4b46a153834d7ccc64`
+- Resolved-definition SHA-256: `0d75e6169634b933a2ee49b2c06324fdb567e61e765ef74a847b21447cc00dd9`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 052. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 053. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `e74089b2a867adb404b91a87eb297b07f635cafac10aa830240b8fa258675fa0`
+- Resolved-definition SHA-256: `6cfa5d5d3d16f973d7b7e0f989a28bfd579458ea33252ed2806a2b3830540d4c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 053. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 054. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `6af435bc7e0e51ff476e650279491a9ff154d316bf3f9f68c485fd8ff19a239c`
+- Resolved-definition SHA-256: `6750c271ff7bc29b13e305bfa7415cdeb0c5efa0d5150aa3d5e71db2850ee0bd`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 054. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 055. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `2b37dabca426b7760db907e681a7274c3af638eb3f46e12b88fafa1facef7999`
+- Resolved-definition SHA-256: `0888a48f3e95a248824a2e3cf3acbda674554af17da10ecb5a6e8d4dc9c36fcb`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 055. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 056. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `cf503d0d575e2c6dcb55fa4a49b8887553285ff8bc5d542dfadc9338d2430c6d`
+- Resolved-definition SHA-256: `9a66e38f7150fdae120aadb45dbd7aaae657c7626f3a805911dfebd2c00a4c91`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 056. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 057. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `e5b1278e1de05ae72df55b4e93fa88a5c5662c9f16c4b6df1b503ae33d8dca61`
+- Resolved-definition SHA-256: `e76930e2a626b50b51221c1bdb0b9f5f0ec4ef1edab339ec7a932f536fff7490`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 057. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 058. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `623e2df6372a74ac731c40b7098efb09db910a6e976436524b7566b108ed85c0`
+- Resolved-definition SHA-256: `5cd63bb4129e878111d9c906bd52750a1cdc76ab67040ceef11f9b69410e995e`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.bic_auto_arma_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 058. `constant_mean_gaussian`
+## 059. `canonical`
+
+- Family: `canonical`
+- Resolved-definition SHA-256: `bd99202fbc010a543d7462691777934050f30c2381edd8170e5d86f686a00169`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"canonical"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"canonical"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 060. `constant_mean_gaussian`
 
 - Family: `gaussian`
-- Resolved-definition SHA-256: `6ca3796f3df4ba4a6920bc9e925b92097003b3465b4e8e7869b5888c2b0fbdf1`
+- Resolved-definition SHA-256: `23892feeca26afefa0b36c6c284423d75da9312538367de61e23bf92a3ce6e3a`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
@@ -1636,6 +1768,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_level` = `"portfolio_return"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
   - `id` = `"constant_mean_gaussian"`
   - `innovation_method` = `"gaussian_iid_standardized_innovations"`
@@ -1655,13 +1788,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_model` = `"constant_sample_volatility"`
   - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
 
-## 059. `constant_mean_student_t`
+## 061. `constant_mean_student_t`
 
 - Family: `student_t`
-- Resolved-definition SHA-256: `17a1124b6d4049b694ee55d9bf9ed4951e9799b13e1254036613d82a5b46b123`
+- Resolved-definition SHA-256: `1afd1e298f9d5fb017062cebe7b079ccd2314ed53c53d2ae8abab536a2c46d5e`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
@@ -1672,6 +1806,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_level` = `"portfolio_return"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
   - `id` = `"constant_mean_student_t"`
   - `innovation_method` = `"student_t_iid_standardized_innovations"`
@@ -1691,13 +1826,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_model` = `"constant_sample_volatility"`
   - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
 
-## 060. `dp_mixture_sv_sbb`
+## 062. `dp_mixture_sv_sbb`
 
 - Family: `sv_extension`
-- Resolved-definition SHA-256: `d47f059da3ca540c352cc204dd04695f64593c71fc58424681cb199660de5f0f`
+- Resolved-definition SHA-256: `3ab71f9c9c25b39fefcff2aa7a7cac95991742620fa2e3e331329aff5c792d47`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_categorical_next_states`, `_fit_observable_markov_state_sbb`, `_simulate_observable_markov_state_sbb`, `_fit_dp_mixture_sv_sbb`, `_simulate_dp_mixture_sv_sbb`, `_sample_mean_near_zero_shrinkage`, `_deterministic_seed`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, max_components, max_fit_obs, mean_model, path_generator, return_target, tail_method, type, vol_model`.
@@ -1709,6 +1845,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_level` = `"portfolio_return"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"dp_mixture_sv_sbb"`
   - `innovation_method` = `"state_conditioned_empirical_standardized_residuals"`
   - `input_unit` = `"portfolio_daily_log_return"`
@@ -1727,377 +1864,406 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"truncated_dirichlet_process_mixture_stochastic_volatility_proxy"`
 
-## 061. `expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 063. `expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `57e6290a7a2bc0d738c1e3eb630b5ac14c623550f0b9a36c3a39cbe6a46540ff`
+- Resolved-definition SHA-256: `e32e294c2b298e3e60330d7d051206d9099e1b405cf40afcd00dee81adecddcc`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 062. `expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+## 064. `expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `8a36024322def91c83931453c29541562a51500b13dd73c224abf8736a88722e`
+- Resolved-definition SHA-256: `d37718f2332792bbb5c42993779f7fab0a32384f643de9d37159450e40a8dca9`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 063. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 065. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `82dd149f68accfb20d5e99feee9eed346124e99c5e9e91ca303477a355f78a82`
+- Resolved-definition SHA-256: `7ea39da3251c7c422728f22888a0153f49e4bd81b7ef8721dbb6854b766647e1`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 064. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 066. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `bd194bffc71f76572379416b27ea5d373218bf843fbe35d22aa91781a27e1a4d`
+- Resolved-definition SHA-256: `b9eed43d92676df2576a56847fb80829dbb78bbc1b1b61d42245c8e63a8d1933`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 065. `expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+## 067. `expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `c6541bdf6d98f48d1c81f6c52a8d7f67ada2c28b05c6f25959bf35c9a7b826cd`
+- Resolved-definition SHA-256: `8a07736c373bd978a2a2ae2fbd2b8a927485d801c2854b54d46a503b9623ba58`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 066. `expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+## 068. `expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `b3198f8f2f08d437d9576727f14dc6453205ad3bf782c03e838e7d5e1d9eb965`
+- Resolved-definition SHA-256: `26c5984acf52ccce2202ebfb3b9193156b7f0e67b2490e2ad1b5192167006908`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 067. `expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+## 069. `expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `beae26c078b931b701f209d977cbd0d0a31fd82f5cd663b2f5b59ab7148edbf2`
+- Resolved-definition SHA-256: `97013282966bc432e0842990d16f44d343435cdb7ea4c791733cedc274bb7e5f`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 068. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 070. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `98ff855ecb14c52d0b707ef4f2987414c2877702631da8aef4076fc5a307dde7`
+- Resolved-definition SHA-256: `5f1ee79d494e398d2c495947f67525eb0eb7439d3162b022054e905e0845763e`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 069. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 071. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `e741eec61c51cec473a662b03dc7f6477a258d639f1e73148f37792b7f56d314`
+- Resolved-definition SHA-256: `674c570ed189a3d2c277280c68b1610e60046a981d137c499896bbea72870ca2`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 070. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 072. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `a11f47e6bbd390481df077b70010d9de01257d6c9d36747baef4387b4909fa6f`
+- Resolved-definition SHA-256: `7a571364452246e17aef2434176634374b2cf4e78e385f2b9c36f50d7d1d8635`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 071. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 073. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `35b547ecfd4040e3328eb10004b5321590a791503023783c040568baeace8b91`
+- Resolved-definition SHA-256: `de1513d5e8406b8c4d865466bdf2619ac39e7a42e78aad5defca5c5323b0829c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 072. `expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 074. `expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `0dba6899c8b94beea1c462e3678c154f9f42b7b9fca7c4766034683d09e8f61e`
+- Resolved-definition SHA-256: `b8c33d9ef113d42629ab7c60abbf599e85e4111a61486fb23c835263d8b7b752`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 073. `expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 075. `expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `368498f1cd84cfdc74d09ded9cb9161a9851e17ad345fb4717c376d73df4f1ab`
+- Resolved-definition SHA-256: `83f767b727ee16fdf6db8204abaeac56180913f2c3078cf663a496587987429c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 074. `expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 076. `expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `0d2eb56e7744d9c40b58f52d9a8897e4ed1352fe05d0a6b71a8e22d5817cc0d6`
+- Resolved-definition SHA-256: `685a6c016ed117b058e168176781dc59c91b0f01eba9b9539558508e22d92994`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 075. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 077. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `cc4a81732f93ab13905b32fa97361a621b5e087c6a8feeeae03177700c30b5aa`
+- Resolved-definition SHA-256: `17b101de6584ba5af6223269ef9fa1ae824411e4a9ad666f4dd2f1ff79f3cb3f`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 076. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 078. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `f29e27aa9a83177d1276ff31a431b1434be30dd3794cca1778b8b3a0950447ec`
+- Resolved-definition SHA-256: `b84c45a49441f6e8d3b889c073544ee663cad62b7f867186c4533d9d7020b074`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 077. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 079. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `c3308ab4347950b20d8fc3a40c31104d7fed6dc1450070d9ceb950e1a1713f4c`
+- Resolved-definition SHA-256: `0c8c1b82c0dcb12d9aa70a84dcd25d17b906a51e7cc214f608e6d8e9dc25b9cc`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 078. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 080. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `020f180be89543af6334bcadce6e954ee2fa009062aaec006de2177821e3d13c`
+- Resolved-definition SHA-256: `27495298400f143381733fe8cf4b0e59f3dff13c0cfad720c6a76b1a952aab05`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 079. `expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 081. `expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `8875505d016fe596092c83aac021b9e89d871b7d9a5570b9247ccacbe3fb2916`
+- Resolved-definition SHA-256: `304f02194097af07b8537a5095c6d06e62279afcc25295bdf1f9544e95c235d0`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 080. `expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 082. `expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `ce4bf5e3faf2786a72a2cabf7e359b355cc441ded9f2872032a4b32de58f4659`
+- Resolved-definition SHA-256: `0de91a4cc15aed0562fbd57dbef0066d1f82f286fe3c1e2c04a5f8f7d449f4f5`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 081. `expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 083. `expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `462ec8930e16dec616a659f1238b8a4cc309cbc584c77e98f2f6d1ee34d9672e`
+- Resolved-definition SHA-256: `9887ae35e246ebfca57e86a93880eebbe647a51173ca74b3287030b3d68d0d18`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 082. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 084. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `54333833ebb945eb85491f1b9ab1d5dc945681299ad12af3ce0bf4a091a03248`
+- Resolved-definition SHA-256: `568d6c656d128697e0eeea1ef20e1b59804f237ada162c2b95383e0dbb5e1178`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 083. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 085. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `cd74f7697ce890cdf789f96c7c365dc3910ea2d4c662116316bc962d3bcf67a6`
+- Resolved-definition SHA-256: `9f243108dec4f6c8af86b50338705bd5663e610f99d19319aca6777ead3ce034`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 084. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 086. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `9aba56f1701112ce098c1928e06eef6675bb1be3f214172df2b86288e3922cff`
+- Resolved-definition SHA-256: `ab32a1756f374dde65d788e21914ce2008e7e555cc30ed9d72c3ab3a863bea8d`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 085. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 087. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `f4f7ed969e67cf2e5c06c4c9e6df85f7700e592f81994f4a566b196ccd0460d4`
+- Resolved-definition SHA-256: `a44d4d5ded4f7927ffb8f3315e7d861438ee4e9243a78b5073ca9542503401e8`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 086. `expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 088. `expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `a481f1ad8b1ad652f29bdda3967063972330a40d0e518e67bee8c17a79e0ae05`
+- Resolved-definition SHA-256: `19fffc57463ba6c2a3ee159c3e581f1dcbeb811188a4c93b7bec4b071f0ffb5a`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 087. `expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 089. `expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `eb7f58b51ae499e15d4e66f108db9378feafc105a71c74b65e4440fbb5e6d57e`
+- Resolved-definition SHA-256: `9cfeadadc537b5689e23240a49eb200d8b771c1d33ec98f59a1999811fe90b1f`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 088. `expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 090. `expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `3ef6ef3ece3f9af8d06871c3f3342cbfc837964ca453a863ea6961cc94a34c25`
+- Resolved-definition SHA-256: `143676667a8a7584a4e1a1009f276d03fa1c8d9bd15197c0df5de4ccfa453131`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.expanding_sample_mean`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 089. `factor_ff6_ridge_residual_sbb_absolute_ewma`
+## 091. `factor_ff6_ridge_residual_sbb_absolute_ewma`
 
 - Family: `factor_residual_sbb`
-- Resolved-definition SHA-256: `82a940564cf345ba6f6eae62ae1ca88b63d9ac286960346ad9351d98a2d12b2d`
+- Resolved-definition SHA-256: `9fce9ab7b259ccdca460cbd8dd3b9ae9606fb24f6255f01c2003cb0c0c51a04f`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_factor_residual_sbb`, `_simulate_factor_residual_sbb`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; fit args=('factor_residual_sbb', factor_model, len(combined), len(factor_cols)); forecast args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, type`.
@@ -2114,6 +2280,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `fit_function` = `"_fit_factor_residual_sbb"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"factor_ff6_ridge_residual_sbb_absolute_ewma"`
   - `input_unit` = `"portfolio_daily_log_return"`
   - `minimum_finite_training_observations` = `180`
@@ -2133,13 +2300,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"factor_residual_sbb"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 090. `factor_ff6_ridge_residual_sbb_none`
+## 092. `factor_ff6_ridge_residual_sbb_none`
 
 - Family: `factor_residual_sbb`
-- Resolved-definition SHA-256: `df6159e1fe35a05e980249cf662be007fa192f6794b5e8640959103d03c8135f`
+- Resolved-definition SHA-256: `0d4d530a6727e3f6f17af6b32ae4df24b199ef8500c0ec42a77110c7b9feb5c3`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_factor_residual_sbb`, `_simulate_factor_residual_sbb`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; fit args=('factor_residual_sbb', factor_model, len(combined), len(factor_cols)); forecast args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, type`.
@@ -2156,6 +2324,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `fit_function` = `"_fit_factor_residual_sbb"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"factor_ff6_ridge_residual_sbb_none"`
   - `input_unit` = `"portfolio_daily_log_return"`
   - `minimum_finite_training_observations` = `180`
@@ -2175,377 +2344,406 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"factor_residual_sbb"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 091. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 093. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `8c044a303d5c695a37e9b8f1ed6622873634fa766a4a0b97d2d864c9ae191ee2`
+- Resolved-definition SHA-256: `d7ee9e6d662b303499adaf8e0803327a018b684f1a2c1d39e04e67c9e55ff1e4`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 092. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+## 094. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `ed60a82dafc511b38d1d935da9dd8fca0c72cbcd08a3ab8cd3f3527a02f3e311`
+- Resolved-definition SHA-256: `3dd44adfbb16474bd576a4067ab0f5221b496e1711d892d2fb165a2983fe84f1`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 093. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 095. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `bcbaf087c811d8f27ae4a06395208a4fe6d857fd3a11ea3717f83a0bc716d1b2`
+- Resolved-definition SHA-256: `1780dd9c48fc45ed9a5ff7d3c79bd769622a80c6f486db2fe47d7cd4d0f01c7f`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 094. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 096. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `3eb6bf104b1fcf8d38c5007a8411cf81360d4cf9460a471177db44fedb6d3bce`
+- Resolved-definition SHA-256: `086a7843cb5f6d6b938f542208bb797e7291e907a7581fbdd831aca5cd7ce15b`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 095. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+## 097. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `7fc4de4db0d76d45b8a7eba3e57c312c9b2965d0caeec64946fc9cd84f7d8ca8`
+- Resolved-definition SHA-256: `27f70d1f0f9f07594488156198a4e9b11599a278939578e70a0e10a2c57b142c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 096. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+## 098. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `da2701b23acace81ce69ca393f08fc41f0cb2e069c025c56d51342fe71cf6abc`
+- Resolved-definition SHA-256: `8eea5bbb6e7ba35206962dff4039f4f70f254cd069854311646bfe3486ddd172`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 097. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric`
+## 099. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `269c69142570ff9cc874e7c8b26796eb49bbe551611fdf7c9f982bb917721efa`
+- Resolved-definition SHA-256: `f8d4823ec52f8b8423842d7d9a6ccb75abe1d2be7e8f46881e6e91807533a7af`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.constant_sample_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 098. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 100. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `ecfa67e27d262a1061b8a12a53d9583759a94b4a17887248d87f256c1aa85084`
+- Resolved-definition SHA-256: `e5c432325e3a7b99a4f48efbf8e84c6e5410d3bc5a7a046087e39a59b1bfc524`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 099. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 101. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `49d4dadb2a3c9300be0de0d14d8191e2a3e3e5521c713ec0b9ea0f59d1edcf2c`
+- Resolved-definition SHA-256: `66be80a8af69e6d422488a0f08edf0493a2478f19dfba4df7db6811cb7e0001b`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 100. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 102. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `e5215a257b38fd31f63b738296f5b62ee3b8a4f740d07f0ac93d47e7402264f8`
+- Resolved-definition SHA-256: `7981c8164d9c634af67442c4289ef8f556b1be0dc5222c1757d70cc05c50c184`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 101. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 103. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `2bebe5b3d0b1f0737e7db069046512b5db204920980974080fba778f1b77f78b`
+- Resolved-definition SHA-256: `0608c7f878ce6b4c937d0007285f5cfa02447e8065976a999b1b8f4af51dddfc`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 102. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 104. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `275398bae175d909ea1b0af6e1e6ec534a6eabdf8707cc150632357e61f94669`
+- Resolved-definition SHA-256: `12d24e6091a626e4e0b2a5c0067224caec2f4deeef39230cca418c654d3c44d2`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 103. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 105. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `136be4a2c53857ca45721bb748f9b2f21fd46b042363169474fd195510286acf`
+- Resolved-definition SHA-256: `e9a3b6be96831a5a34b1686c494d7bcbef7a92056aeee52ecbdaebd969db963b`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 104. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 106. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `9660016305561dc52474855ad2814f88a37ab9883445e8244cf866d14cce23f5`
+- Resolved-definition SHA-256: `06ba0578413f9a53643f5555453c540e8e20d572efdde6d900b471dfff581b39`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.egarch_1_1_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 105. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 107. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `149e16b867d798d2d41ec51dc5518b94f10f90509e10c50cba5af02e850a6c32`
+- Resolved-definition SHA-256: `ccda944127a6b7e5da40f29bf851ffbd8f66729efadbd7065da0c9f25fc7d6ae`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 106. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 108. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `56fc883d147262d950e61b4e82efb697c1cf1e7e7956e93e93c98fcb2bce2ffc`
+- Resolved-definition SHA-256: `8146e0a83036032591a4b14ea23806ad4ac46741cb027de6c5c0a445d972131c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 107. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 109. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `6cae7ecb625e12d9f1935f80f286e49b239490efeb72768030bfb3f501638d68`
+- Resolved-definition SHA-256: `cc2dce71f73167e791c30e1c550f1b82aa9d37d230032f7d9a146f86fdc1279a`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 108. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 110. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `12a86a86c3aa3fb19e80cc60aa8f0b5270ecf3eff0552f06f67ba48766f30511`
+- Resolved-definition SHA-256: `57636119a13ad11fbd06f6e10f689a30988c736d3d3d1dcabff31b7ddeb2a91a`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 109. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 111. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `d6d6ed1133eeed7420082d8bc355563bdbd0e2897663269f76d631885f5bcbcc`
+- Resolved-definition SHA-256: `954ff640cb9e2fabc6a1a2edc396018c93ed671089b7de7e00535c278634648e`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 110. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 112. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `ec16ad456b779b16e5d335da0b45ecd24a6498d13477d6c8530ed95b75cd1a9f`
+- Resolved-definition SHA-256: `810ad540768b1a462de73ae9e33694a03e413ae919fea71f5119bcfb3b6da87a`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 111. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 113. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `c0b5857ac08fd700ba0ce17cb539436a26b9b4ed5e857dfeafc75a91eaf0cc5f`
+- Resolved-definition SHA-256: `11f833ea0eac34da9a459d0e58245d44c00d5c2052259f10a8df4b507a60f6ae`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.garch_1_1_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 112. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 114. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `7936a778c35d258bd19993a982aa013dd5e1219f3278bd5684817384bba9cceb`
+- Resolved-definition SHA-256: `c3b8828f955a90c5f113bfb90a84b13ee0c488c1ff44ed1ef4e5e4ffb053f353`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 113. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 115. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `62a5c1cd175837b441ab65f12133ba76d85828f5ba0ecdbd07559450f2c12e08`
+- Resolved-definition SHA-256: `898d2cb84a2d1e3492abe679f54fc3bb0b379648ce2071931fd6688d1f5cc576`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 114. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 116. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `22605c1a297030ba336e9c5515058b4d4cb6874e443d42d80d555f7e58d141bd`
+- Resolved-definition SHA-256: `d8e86ec9e242aba177c0736a0dfd5d15d4d863061b9ba15057a4980c94c5452f`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 115. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 117. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `5eb4f988c00626e526181471ec91fd389569c41d6f1ce62b3c4263ac57725c41`
+- Resolved-definition SHA-256: `4a7530ac4c184ebed74ca4aa27383e5ac8d3bbca2606142776c18a07ddb6b51c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 116. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 118. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `b4c731675e5ebaeeb88ba54b933daa5888845763878001b98a2d19b8063c7ee3`
+- Resolved-definition SHA-256: `603a23053053172ddd97ca15e70e72958a3065d8b1f93f6f5b0cccc3c98f28b3`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 117. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 119. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `6a23731e310ba857071fe93a7b43e3f4f6cfbcc355e144ee420a1d9df26e6372`
+- Resolved-definition SHA-256: `c0c31a17d94de1bea54963cd865693246e3a9748a63463dc30eaf2b8bf5523e9`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 118. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 120. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `19254585d83185b81f0035ba29ee1fa4e42dbf7bc3e1305f7d0e2f150fd9fd67`
+- Resolved-definition SHA-256: `263fbc18897f9f3b2080facb45d30998a0ce6b4e57c20def9b5434eaec2d4832`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Mean component: `base.mean_models.factor_premium_near_zero_alpha_shrinkage`.
 - Volatility component: `base.volatility_models.gjr_tarch_1_1_volatility`.
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 119. `gas_score_driven_skewt`
+## 121. `gas_score_driven_skewt`
 
 - Family: `gas_score_driven_skewt`
-- Resolved-definition SHA-256: `1bdeb2faaf004a6dc62b62f880327ad69e45f5a39fe756e8e0c7f15272457351`
+- Resolved-definition SHA-256: `c2385b130a4c6b7b0dfd1b8d573654679efc9903c25d9227da1a7f6bb54aa653`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_deterministic_seed`, `_sample_mean_near_zero_shrinkage`, `_gas_t_score`, `_fit_gas_score_driven_skewt`, `_simulate_gas_score_driven_skewt`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `feature_family, id, mean_component, state_inference, type`.
@@ -2556,6 +2754,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `grid` = `{"alpha": [0.03, 0.06, 0.1, 0.16], "beta": [0.85, 0.93, 0.97, 0.985]}`
   - `id` = `"gas_score_driven_skewt"`
   - `innovation` = `"Jones-Faddy skew-t when fit succeeds; source empirical pool on fit failure"`
@@ -2572,13 +2771,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"gas_score_driven_skewt"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 120. `naive_iid_historical_portfolio_bootstrap`
+## 122. `naive_iid_historical_portfolio_bootstrap`
 
 - Family: `naive_iid_historical_portfolio_bootstrap`
-- Resolved-definition SHA-256: `846310892632e0cc214177d6fad2638767602f0290f0e1206600827a584d37bc`
+- Resolved-definition SHA-256: `576cd2dd4124b01d4097d1bcc9b802c1f573ecd39ea6329b5c475421b48fa774`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
@@ -2589,6 +2789,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_level` = `"portfolio_return"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
   - `id` = `"naive_iid_historical_portfolio_bootstrap"`
   - `innovation_method` = `"iid_resampled_historical_portfolio_returns"`
@@ -2608,13 +2809,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_model` = `"none"`
   - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
 
-## 121. `observable_markov_state_sbb`
+## 123. `observable_markov_state_sbb`
 
 - Family: `sv_extension`
-- Resolved-definition SHA-256: `54c7a63311cf970a1008a64681d77f8c472245e18af7c66f1d2766c839f90835`
+- Resolved-definition SHA-256: `39dadd258b970db419ca1992956594ca10ed2c6468659d3335b336add8d9420c`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_categorical_next_states`, `_fit_observable_markov_state_sbb`, `_simulate_observable_markov_state_sbb`, `_fit_dp_mixture_sv_sbb`, `_simulate_dp_mixture_sv_sbb`, `_sample_mean_near_zero_shrinkage`, `_deterministic_seed`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, state_alpha, state_count, tail_method, type, vol_model`.
@@ -2626,6 +2828,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_level` = `"portfolio_return"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"observable_markov_state_sbb"`
   - `innovation_method` = `"state_conditioned_empirical_residuals"`
   - `input_unit` = `"portfolio_daily_log_return"`
@@ -2644,13 +2847,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"observable_rolling_volatility_tertiles"`
 
-## 122. `portfolio_gjr_garch_eb_sampler_moving_block_optimal`
+## 124. `portfolio_gjr_garch_eb_sampler_moving_block_optimal`
 
 - Family: `portfolio_volatility_extension`
-- Resolved-definition SHA-256: `87ea4305e82942df9039cb8f22df47cc80acf0097719ee933eee7033f82b1508`
+- Resolved-definition SHA-256: `ed6f507eeebf6a90372fad7993c54746f7c1d550ea0e1f20a8b292681952b5c4`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `SimfolioEngine._deterministic_seed`, `_hac_mean_standard_error`, `_fit_empirical_bayes_sharpe_sbb`, `_simulate_bayesian_constrained_sbb`, `_overlay_vol_clip_bounds`, `_fit_bayesian_sbb_vol_overlay[GJR branch]`, `_overlay_vol_multiplier_curve[variance_decay branch]`, `_simulate_bayesian_sbb_vol_overlay`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_arch_volatility`, `_moving_block_indices`, `_moving_block_bayesian_sbb_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
@@ -2660,6 +2864,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"portfolio_gjr_garch_eb_sampler_moving_block_optimal"`
   - `innovation_method` = `"empirical_standardized_residuals"`
   - `innovations` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "moving_block": "non-circular Kunsch blocks from recovery wrapper", "standardized_clip": [-20.0, 20.0]}`
@@ -2679,13 +2884,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
 
-## 123. `portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal`
+## 125. `portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal`
 
 - Family: `portfolio_volatility_extension`
-- Resolved-definition SHA-256: `482352fb1866898f69d4ca7cdb7f4133457726c34696963e8203af1e7845038a`
+- Resolved-definition SHA-256: `f449ceb26dbc63748c3bdc230d282814f4488808e083f05387e9dc2a526dcbf5`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `SimfolioEngine._deterministic_seed`, `_hac_mean_standard_error`, `_fit_empirical_bayes_sharpe_sbb`, `_simulate_bayesian_constrained_sbb`, `_overlay_vol_clip_bounds`, `_fit_bayesian_sbb_vol_overlay[GJR branch]`, `_overlay_vol_multiplier_curve[variance_decay branch]`, `_simulate_bayesian_sbb_vol_overlay`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_arch_volatility`, `_moving_block_indices`, `_moving_block_bayesian_sbb_paths`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
@@ -2695,6 +2901,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal"`
   - `innovation_method` = `"empirical_standardized_residuals"`
   - `innovations` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "moving_block": "non-circular Kunsch blocks from recovery wrapper", "standardized_clip": [-20.0, 20.0]}`
@@ -2714,13 +2921,386 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
 
-## 124. `stochastic_volatility_ar1_empirical`
+## 126. `stack_canonical_gaussian_w0.50`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `17fe35b19d53a9d3d076f84487472e54e652edffe8a18876078bfe770434f4cd`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.50"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 127. `stack_canonical_gaussian_w0.60`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `8ede4febbb262caa80ca8eafa4bd0ffe02716efba94d2313e6523502a9e3e2fc`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.60"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 128. `stack_canonical_gaussian_w0.70`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `502501c0e70a414a4b5c51392ba2e961d062de74fc69bca38712a1b755e41944`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.70"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 129. `stack_canonical_gaussian_w0.80`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `a28b7caf470768638646e2d66b8e9f0dba73b314ddf337592040e08dad3e73f8`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.80"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 130. `stack_canonical_gaussian_w0.90`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `e0079f3c731c7facf82f89429cad24f450778dee3250a623b1c810ec0a9728d6`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w0.90"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 131. `stack_canonical_gaussian_w1.00`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `7a10f3da30bfb9d84f715ffd96fc484552bb421352b6da45c2cc60b7ae764376`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_gaussian_w1.00"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 132. `stack_canonical_student_t_w0.50`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `eb7f4f4d5570f70d9f6f178bf30b777358c14ba26350a16ef039b1b0e32453f8`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.50"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 133. `stack_canonical_student_t_w0.60`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `e467cf5b47c34050a113f5501b953124c225c03442db45ff715ae4344e11c61e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.60"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 134. `stack_canonical_student_t_w0.70`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `bad956d21fb77f985c343a30521c389007be393892d97c93deffbd83613d1e80`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.70"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 135. `stack_canonical_student_t_w0.80`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `e4047e6f50e14fefe72168e8d311d1c7c35f994a4a100f3ac2d4023ad8724dbb`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.80"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 136. `stack_canonical_student_t_w0.90`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `927b8aa81f42081ac5d3a91d5ad8feacd1886008e1ea0ff84f34e4412873bb81`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w0.90"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 137. `stack_canonical_student_t_w1.00`
+
+- Family: `stack`
+- Resolved-definition SHA-256: `c31df8e1d830a0117abe8adb6e6bef57ae490002a8062a151417cccd6e8ea17b`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `SimfolioEngine._canonical_forecast_candidate`, `SimfolioEngine._sample_mean_near_zero_shrinkage`, `_ewma_volatility_nll`, `_ewma_volatility_sigma_path`, `SimfolioEngine._fit_ewma_volatility`, `SimfolioEngine._standardize_residuals`, `SimfolioEngine._canonical_proxy_factor_returns`, `SimfolioEngine._fit_factor_drift_prior`, `SimfolioEngine._fit_sticky_volatility_regime_filter`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_canonical_forecast_model`, `SimfolioEngine._evt_standardized_draws`, `SimfolioEngine._standardize_generated_innovations`, `SimfolioEngine._standardize_generated_innovations_inplace`, `SimfolioEngine._simulate_canonical_forecast_log_paths`, `forecast_oos_research_gate._terminal_logs_for_candidate[stack]`, `SimfolioEngine._mix_terminal_log_values`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `canonical_fit` = `{"ewma_lambda_bounds": [0.8, 0.995], "ewma_lambda_default": 0.94, "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)", "history_window": 5040, "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero", "minimum_standardized_residuals": 20, "residual_standardized_clip": [-12.0, 12.0], "scaled_returns": 100.0, "volatility": "estimated_decay_ewma_volatility"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_proxy` = `{"alignment": {"factor_frame": "reindex frozen factor frame to the portfolio index", "index": "normalized portfolio dates", "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value"}, "alpha_shrinkage": {"estimate": "alpha_raw * weight", "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta", "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1", "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))"}, "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0", "dispatch": "_fit_factor_drift_prior", "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)", "expected_factor_count": 9, "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column", "manifest": {"path": "resources/data/canonical_snapshot_manifest.json", "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12", "validation": "content hash and every manifest series entry are checked before loading"}, "minimum_history": 252, "minimum_joint_overlap": "max(252, min(756, len(y) // 3))", "no_overlap_behavior": {"insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0", "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count", "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0"}, "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor", "regression": {"adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)", "center_factors": "x_arr - mean(x_arr, axis=0)", "center_portfolio": "y_arr - mean(y_arr)", "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)", "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure"}, "series": [{"label": "Equity Market", "sha256": "2b4675e69ae630e29e25cd663dc73a316de77a2c049c99b1ea408d453c8d85d0", "ticker": "SPYSIM"}, {"label": "Core Bonds", "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563", "ticker": "BNDSIM"}, {"label": "Long Duration", "sha256": "cee5ae06395c0d550a7614a4ebeb19c1884be22d8955387927eb89f8231e75e0", "ticker": "TLTSIM"}, {"label": "Inflation-Linked Bonds", "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8", "ticker": "TIPSIM"}, {"label": "Gold", "sha256": "071805166240ec36ee79c141a93ab5f823ce993af8528d8de75b01dd5ace50dc", "ticker": "GLDSIM"}, {"label": "Commodities", "sha256": "c3a3fcff7c8e3b6a8999f3383c79941149468d79e533b77f0900a62fd335b17f", "ticker": "GSGSIM"}, {"label": "US Dollar", "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855", "ticker": "UUPSIM"}, {"label": "Managed Futures", "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c", "ticker": "KMLMSIM"}, {"label": "Cash", "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb", "ticker": "CASHX"}], "status": "complete_frozen_manifest_whitelisted_source_snapshot", "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows"}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "candidate_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"candidate_id"`
+  - `id` = `"stack_canonical_student_t_w1.00"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))", "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)", "evt_shape_clip": [-0.45, 0.45], "evt_threshold": 0.9, "generated_clip": [-20.0, 20.0], "resampling": "stationary_bootstrap", "row_assembly_threshold": 128}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `30`
+  - `output_semantics` = `"terminal log-return samples by dense horizon"`
+  - `regime_filter` = `{"convergence_tolerance": 0.00025, "fallback_transition_matrix": [[0.97, 0.03, 0.0], [0.015, 0.97, 0.015], [0.0, 0.03, 0.97]], "fit_max_iterations": 8, "fit_min_iterations": 4, "log_sigma_quantiles": [0.2, 0.55, 0.85], "log_variance_floor": 0.0001, "regime_blend_bounds": [0.005, 0.08], "sigma_floor": 1e-06, "state_sigma_quantiles": [0.25, 0.55, 0.85], "states": 3, "sticky_diagonal_prior": 25.0}`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stack_dispatch` = `{"canonical_weight_rounding": "round(weight * n_sims)", "empty_component_policy": "return the nonempty component", "mix_method": "source_terminal_prefix_concatenation", "weight_bounds": [0.0, 1.0]}`
+  - `type` = `"stack"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 138. `stochastic_volatility_ar1_empirical`
 
 - Family: `sv`
-- Resolved-definition SHA-256: `9aab1c506bfea564b978f04954c6722e7b20da80627306e0b95c33df70c02c77`
+- Resolved-definition SHA-256: `9d7c0c344aa9fc471ab5ce85756a98c173359a63b991edd23f361c8b7e1a6682`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sample_mean_near_zero_shrinkage`, `_sv_initial_log_var`, `_simulate_sv_ar1`, `_simulate_sv_ar1_sbb`, `_politis_white_block_length`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `candidate_role, forecast_level, id, innovation, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
@@ -2731,6 +3311,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_level` = `"portfolio_return"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"stochastic_volatility_ar1_empirical"`
   - `innovation` = `{"empirical_clip": [-12.0, 12.0], "stationary_bootstrap": "max(_politis_white_block_length(z), 1)", "student_t_df_bounds": [4.0, 30.0]}`
   - `innovation_method` = `"empirical_standardized_residuals_iid"`
@@ -2749,13 +3330,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"stochastic_volatility_ar1_log_variance"`
 
-## 125. `stochastic_volatility_ar1_empirical_sbb`
+## 139. `stochastic_volatility_ar1_empirical_sbb`
 
 - Family: `sv_sbb`
-- Resolved-definition SHA-256: `cdce75cc9072bed3dbe8e47900f54fb7c49edd052b517175aa0ac156a2de59fd`
+- Resolved-definition SHA-256: `5fe8571c6c34d6beb59838e310f00a484bf72b10c16db54914032536352b8bea`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sample_mean_near_zero_shrinkage`, `_sv_initial_log_var`, `_simulate_sv_ar1`, `_simulate_sv_ar1_sbb`, `_politis_white_block_length`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `candidate_role, forecast_level, id, innovation, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
@@ -2766,6 +3348,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_level` = `"portfolio_return"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `id` = `"stochastic_volatility_ar1_empirical_sbb"`
   - `innovation` = `{"empirical_clip": [-12.0, 12.0], "stationary_bootstrap": "max(_politis_white_block_length(z), 1)", "student_t_df_bounds": [4.0, 30.0]}`
   - `innovation_method` = `"empirical_standardized_residuals_stationary_bootstrap"`
@@ -2784,13 +3367,44 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"stochastic_volatility_ar1_log_variance"`
 
-## 126. `sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 140. `stochastic_volatility_ar1_student_t`
+
+- Family: `sv`
+- Resolved-definition SHA-256: `dc734fb98977385df42d0e2c093cfd8addd039b6af42e0a5b25d74c2a4e92699`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sample_mean_near_zero_shrinkage`, `_sv_initial_log_var`, `_simulate_sv_ar1`, `_simulate_sv_ar1_sbb`, `_politis_white_block_length`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
+  - `id` = `"stochastic_volatility_ar1_student_t"`
+  - `innovation` = `{"empirical_clip": [-12.0, 12.0], "stationary_bootstrap": "max(_politis_white_block_length(z), 1)", "student_t_df_bounds": [4.0, 30.0]}`
+  - `innovation_dispatch` = `{"parameter_source": "SVReferenceModel source default because raw descriptor omits innovation", "source_default": "empirical"}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `measurement_equation` = `{"log_variance_clip": [-18.0, 18.0], "mean": -1.2703628454614782, "variance": "pi^2 / 2", "winsorize": "5th and 95th percentile only when observed count >= 80"}`
+  - `minimum_finite_training_observations` = `252`
+  - `output_semantics` = `"cumulative terminal samples from source daily SV paths"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_space_fit` = `{"eta_bounds": [0.02, 2.5], "optimizer": "L-BFGS-B", "phi_bounds": [0.001, 0.995], "starts": 4}`
+  - `type` = `"sv"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 141. `sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `242540d7a01b0ab2b1542c4f7df873170f703af5944da091cf0746f8704bacee`
+- Resolved-definition SHA-256: `e5f855be1b307c86f8a2b07ad6fa24cdb4513fcf08f59314726065ec8e31d9f6`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -2858,13 +3472,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 127. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 142. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `69fa1eadf64b6dc18e11849d2b3236fb22d7bb7e08ab473998bf207bb99f517e`
+- Resolved-definition SHA-256: `7081170c825cf83df1e987f90b24b99b9c8344a409ab064a7f858a58e107cc80`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -2932,13 +3547,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 128. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 143. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `79a66c88a4079a57f8d0a14a71d03560738604c348be0c7e144520c38d66a1e1`
+- Resolved-definition SHA-256: `3fee049637e0cce664b8b7adeb6db129aeb468287693bef0a25f6e739b0ffaec`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3006,13 +3622,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 129. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 144. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `462c2eec9f5ea7b2641f8cf061831e5b2298f728c7f6d77cb7bda2bbe2a937ab`
+- Resolved-definition SHA-256: `dbb29503d2a51ffdcb5be3cbb531649033bc83728f74a37fddd48066f58da0ca`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3080,13 +3697,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 130. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 145. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `08087f7c948500f011abb2dba8b37ce9e4934307d7a63003c21781a870ae5905`
+- Resolved-definition SHA-256: `d16e7d5cff526fadcac5168b2aef0fc838fbf6415ac35e0eed4d04bd83127697`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3154,13 +3772,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 131. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 146. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `17785421f63937eee656389c8c8bf43d1b342125243f6bcb8b7223abf4e27aad`
+- Resolved-definition SHA-256: `c9ba72de6f247524c9caa8c105b47a58aa8768f25e47a70224dc2b7abb377a93`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3228,13 +3847,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 132. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 147. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `24a33296983f7a584a915b8447729b738a97ab1c79ba4d82f3ffb90ec226461e`
+- Resolved-definition SHA-256: `86ec554bc58ab4bad0c065b1349ed4db8a0bf63e19ba86ec205d255b8b805bb3`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3302,13 +3922,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 133. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 148. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `64dc79728ed5116bf5efcdaae73712420c0b5d0da05849a7350b36ceef9d9b33`
+- Resolved-definition SHA-256: `2139fb01b61dfcff1f1fe831aaa1e30538f86b921038e30b703ee9490b421aca`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3376,13 +3997,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 134. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 149. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `257fa2b73747d87e6e461ad22a57345aa72f69072925157ea3da452e99f3a8ab`
+- Resolved-definition SHA-256: `fd9abe28c9a6797a7220b48426b053cd32b706384f7d8777b5544d7d6de266a5`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3450,13 +4072,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 135. `sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc`
+## 150. `sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `c08160f05e881318d9fe12b5cfc657d638cc70907d5981ff9d61b7f181fe5b30`
+- Resolved-definition SHA-256: `89fc6fa01d01d2e56c7e40670b8825145eba012bebaa3d7a93fd5cc6a2c91700`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3524,13 +4147,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 136. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc`
+## 151. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `63fe035c8bc7078214d699335fd574b4b99ccc68a55a61cb491443d3c441c8e1`
+- Resolved-definition SHA-256: `7bf1b07592069955df398127ab2ddc23fbbd119f9892caece3dce2d39b498596`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3598,13 +4222,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 137. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc`
+## 152. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `b59d777c8c473fdcb2956466bf978755ff1e0a2d1fc0fe0caf002938140552cc`
+- Resolved-definition SHA-256: `9f714f81bc2e4c94542c6e7eacc75ffe8d32022060125ab03d5cab3368f63f6c`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3672,13 +4297,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 138. `sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc`
+## 153. `sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `b6dac4624b77d1802cdb1306b6acbda00873006c9b6223a7a6eb71dec796bfcd`
+- Resolved-definition SHA-256: `abf971ad156007be2fc2eaecc7105bf25d4e955becc5405118ff6788fc0b5efc`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3746,13 +4372,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 139. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc`
+## 154. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `cbf127f648fa074c1b425a297cd2bbaeb381f8b6a34f7abe4a2e36552946699c`
+- Resolved-definition SHA-256: `6776744e5e3e10a78617d99a4ed10dc0bc5cfae823912dd0a8066d2b58d778a5`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3820,13 +4447,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 140. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 155. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `ddfa2f978ab858c2250cede9572afe86675a441f6c255bbece2a8f77985b4593`
+- Resolved-definition SHA-256: `eae37dab44b567b9d8d2960bab69054e022d3551377d581f71a793bfb81ca0cb`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3894,13 +4522,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 141. `sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc`
+## 156. `sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `f85e73a3bb2d96d2e91f032a6c1e548aaa29946d3590db9541b730f55599b46a`
+- Resolved-definition SHA-256: `7773967af287d0c301e66320a759d6ef535fd69f876ef6a0a8f7d64926abe17f`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -3968,13 +4597,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 142. `sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 157. `sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `6305806bb36a564fd02f5df6b203151eefd9f796f8dfe8c8f41d20a1e475de66`
+- Resolved-definition SHA-256: `7bad75eeead75c23b7985e8b5045b9d7791744da8bafd0398ab79bcfe85bb351`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4042,13 +4672,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 143. `sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 158. `sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `deb845ef3b8e506b5f52ec24ddae9978138ec20d64ff0b77ac02a067f74f1963`
+- Resolved-definition SHA-256: `c04c05b9f4b6d3991c6ce0b55fddda565b6fa965190241ff3832602514ba5c6a`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4116,13 +4747,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 144. `sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc`
+## 159. `sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `f38238b07dff8024636ee0c9ad492a645851e111c9f8cb4aa6e46579c7a7cfd6`
+- Resolved-definition SHA-256: `be4b454ac3db6ce5ff55aa52a15078706bc416a7e7de9f9f43bf3c9b89b0133a`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4190,13 +4822,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 145. `sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 160. `sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `aa065f71a367c82776d26b660e29d0f29ee52fb60419be33832c1f5b4ba2b682`
+- Resolved-definition SHA-256: `5b81974fa1d0bbbf71027b7537249f0bcb415fe6813e664c43771e0c999edb66`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4264,13 +4897,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 146. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 161. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `2cf8e7d98786f91ba091a8f14456c503dd1a5ca83cbcd0e89956b9aba054800f`
+- Resolved-definition SHA-256: `cc154a00139eba8c81a332ffbcb13974e78bbda42e27e8b48fa47c721ade9878`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4338,13 +4972,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 147. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 162. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `679c5caedc6884080eab49289d2afdae648424f664711eba6915cca6307ca393`
+- Resolved-definition SHA-256: `4da61754d513ea3180f7e127e632e9f38fab8126d8741072ff69ef0ddda9b3c0`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4412,13 +5047,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 148. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 163. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `99be3cd05ba1d32737ae982f85134c94d4bbfe9e35a035a3a8a9c4258d7cfd84`
+- Resolved-definition SHA-256: `956d38f0c6a9930bfed401deec64ebc3be8ef695b1a013717847a1d3af2964a5`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4486,13 +5122,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 149. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 164. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `964d323f89558b788317ac33632d2d4ca902dea7f78cfd72a937be6e631de499`
+- Resolved-definition SHA-256: `f7387e1e67f4e6a5761400c6b4fc7605ee08e704598c5e1a4b1743d01674a30c`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4560,13 +5197,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 150. `sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 165. `sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `13995e11884ae17282c7914c462ffd4bd62cf4426eee7e5e50c969cf5f9a413b`
+- Resolved-definition SHA-256: `37403f7f68e58228626aac526d2f38e52f07a89b32f4fe8be7231c7f2afa8a99`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4634,13 +5272,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 151. `sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 166. `sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `ed157d90c7f324d5002c1495c0e9cff33ad825e28a0589cd810f6fc420c0670e`
+- Resolved-definition SHA-256: `e059845dca4a32513838672aeb1186405b293c3ec70a079fd59c0763171b3016`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4708,13 +5347,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 152. `sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 167. `sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `abe82df60ef565a76876bd3000ad9836b96e190c2c7e0967fc0e837ce24207f2`
+- Resolved-definition SHA-256: `188c50729f7bc95aa4629a0396b06a15309a23217ba2d72cc23a17f94018de80`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4782,13 +5422,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 153. `sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 168. `sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `56b1e3183fd6d908343af1f8a0e41b49aa50dc9261606c80270cb667c0134a89`
+- Resolved-definition SHA-256: `34c99100f5df90b1d21c7e81cae8cf93d4953cda5e0c6edc46e0c781e16e4041`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4856,13 +5497,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 154. `sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 169. `sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `b339facf75a9281422f3ea739f7bd919178ba2dea0e010d2da278781a59d08e0`
+- Resolved-definition SHA-256: `4e5d0e17a17b27528284eeb078751537ec264b5db74f64e53d2e211c550f598c`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -4930,13 +5572,35 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 155. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 170. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale`
+
+- Family: `bdes_non_mcmc_sv_overlay`
+- Resolved-definition SHA-256: `4ae9a3a569b5e24bb4c44337520a0719bf0bb7de4546e48a8236059ba7fe2b65`
+- Source: `source-research/app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
+- Source entrypoints: `SimfolioEngine._bdes_cagr_candidate`, `SimfolioEngine._bdes_cagr_mcmc_candidate`, `SimfolioEngine._bdes_cagr_fastmap_candidate`.
+- Factory seed contract: `deterministic_seed('forecast_final_fixed', selected_model_id, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `seed_identity.inla_current_engine_control`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `ablation_family, bdes_multiscale_component_count, bdes_multiscale_scale_grid, bdes_multiscale_shock_coupling, clip_simulated_returns, comparison_target, external_factors, factor_model, feature_family, forecast_level, id, inla_hyperparameter_quadrature_order, inla_latent_terminal_quadrature_order, innovation_component, innovation_conditioning, innovation_method, innovation_pool_source, innovation_resampling, innovation_standardization, innovation_tail_splice, latent_vol_persistence, leverage, leverage_alignment, leverage_correlation_method, leverage_correlation_scope, map_maxiter, map_start_count, mcmc_adaptation_iterations, mcmc_adaptation_target_acceptance, mcmc_burn, mcmc_chains, mcmc_check_interval, mcmc_extend_iterations, mcmc_forecast_stability_tolerance, mcmc_initial_iterations, mcmc_iterations, mcmc_max_iterations, mcmc_min_ess, mcmc_min_iterations, mcmc_proposal_adaptation, mcmc_rhat_threshold, mcmc_stopping, mcmc_thin, mean_component, mean_model, mean_model_ablation_of, mean_state_scaling, measurement_equation, overlay_model, parameter_sampler, path_generator, previous_incumbent_id, production_status, regime_model, research_rationale, residual_tail_method, return_target, rollback_env_var, selection_method, simulation_method, state_inference, state_inference_model, state_innovation_coupling, state_innovation_distribution, state_innovation_resampling, state_innovation_source, state_innovation_standardization, sv_measurement_bias, sv_research_baseline, sv_sigma_scale_method, tail_method, transformed_parameter_mcmc, type, unclipped_empirical_innovations, unclipped_sv_measurement, validation_status, vol_anchor_model, vol_anchor_target, vol_model, vol_overlay_model, vol_path_blend, vol_path_model`.
+- Resolved defaults:
+  - `bdes_multiscale_k_star` = `4`
+  - `inla_hyperparameter_quadrature_order` = `3`
+  - `inla_latent_terminal_quadrature_order` = `3`
+  - `map_maxiter` = `100`
+  - `map_start_count` = `1`
+  - `minimum_observations` = `5`
+  - `student_scale_mixture` = `false`
+  - `uses_mcmc` = `false`
+
+## 171. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `b14abe76219bab5e601c95d38d0f3e7d33c1a0a599882f10d0fc04758c13cda9`
+- Resolved-definition SHA-256: `c35035ff3161c6ac9e3057f639535092cd1def0ad7bd7edeef732811082050e0`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -5004,13 +5668,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 156. `sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 172. `sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `1f1f0eca46e5dee8f9d46bc2685883efc092204ee23de12ec2de97adef63e13c`
+- Resolved-definition SHA-256: `3a7c9e6461f48b95aef8c04bd97a0afc6ab44ba3924f911cc34fee1308aace33`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -5078,13 +5743,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 157. `sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc`
+## 173. `sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `7ec791094a838db18153575315cc1a1f688664d3916d1ebbe33fc312281fede4`
+- Resolved-definition SHA-256: `492e1873eb05cac4a0570891d240c9e9ae4544c059ec1febb00cf68ea68c4dd5`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, id, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
@@ -5148,13 +5814,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 158. `sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 174. `sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `99e1bd695635e2b7dfaefbc39930f615a262fad7e0a4bbb72c71f074b3b96555`
+- Resolved-definition SHA-256: `de2004c6ccd1fdc2e6d580a80b7abe3ba8feedf48ac4f73da0262c86fc1b4af8`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `seed_identity.base_and_full_mcmc`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `ablation_family, feature_family, id, innovation_component, innovation_pool_source, innovation_resampling, mcmc_proposal_adaptation, mcmc_stopping, mean_component, mean_model, overlay_model, path_generator, state_inference, tail_method, type, validation_status, vol_model`.
@@ -5222,13 +5889,14 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 159. `zero_mean_gaussian_vol_only`
+## 175. `zero_mean_gaussian_vol_only`
 
 - Family: `zero_gaussian`
-- Resolved-definition SHA-256: `681ff3a34ad0f1a22550d57dc6444a6c41e80f59384280351fd34532d0abdc94`
+- Resolved-definition SHA-256: `040ac48c5b0a59a7de4c6b13a535a7eaf843581249cd7846a48348be5e72366c`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
-- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Factory seed contract: `blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
 - Source seed context: `portfolio.seed_identity`.
 - Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
 - Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
@@ -5239,6 +5907,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
   - `forecast_level` = `"portfolio_return"`
   - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `forecast_seed_model_argument` = `"public_model_id"`
   - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
   - `id` = `"zero_mean_gaussian_vol_only"`
   - `innovation_method` = `"gaussian_iid_standardized_innovations"`

@@ -83,7 +83,7 @@ def test_unknown_ids_fail_closed_and_short_history_is_visible() -> None:
         )
 
 
-def test_source_provenance_is_relative_and_factor_gap_is_explicit() -> None:
+def test_source_provenance_is_relative_and_factor_closure_is_explicit() -> None:
     payload = _payload()
     assert payload["source_function_digest"] == SOURCE_FUNCTIONS_SHA256
     assert "complete manifest-whitelisted nine-series factor closure" in payload["factor_branch"]

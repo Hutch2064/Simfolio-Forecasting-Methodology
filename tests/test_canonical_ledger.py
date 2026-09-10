@@ -5,7 +5,6 @@ import subprocess
 import sys
 from copy import deepcopy
 from decimal import Decimal
-from importlib.resources import files
 from pathlib import Path
 
 import pytest
@@ -26,13 +25,14 @@ from simfolio_forecasting_methodology.models.registry import build_model, regist
 
 
 def _resolved_specification_ids() -> set[str]:
-    resource = files("simfolio_forecasting_methodology").joinpath(
-        "resources/specifications/canonical_statistical_specifications.json"
-    )
-    payload = json.loads(resource.read_text(encoding="utf-8"))
-    # The portfolio batch is staged in the shared resource until its narrow
-    # generated ledger patch is applied by the integration owner.
-    return set(payload.get("ledger_bound_model_ids", payload["accepted_model_ids"]))
+    # The specification resource is complete before the coordinator applies
+    # its generated ledger patch.  Flat ledger flags therefore remain the
+    # authority for which rows are already recovered in this checkout.
+    return {
+        row["public_model_id"]
+        for row in load_canonical_ledger()["models"]
+        if row["specification_recovered"]
+    }
 
 
 def test_membership_is_exact_and_digest_is_immutable():
@@ -89,7 +89,9 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
     assert (
         payload["identity_policy"]["full_statistical_specifications_confirmed"]
         == len(resolved_ids)
-        == 159
+    )
+    assert len(resolved_ids) == sum(
+        row["specification_recovered"] for row in payload["models"]
     )
     artifact = payload["score_evidence"]["retained_score_artifact"]
     assert (

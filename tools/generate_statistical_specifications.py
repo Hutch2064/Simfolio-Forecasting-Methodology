@@ -1,16 +1,16 @@
 """Generate the resolved statistical-definition resource and ledger patches.
 
 The canonical score catalogue remains the membership authority.  This utility
-resolves numerical defaults for the accepted base, Frontier, and full MCMC-SV
-rows and records the additional source-backed portfolio families that have a
-complete local numerical closure.  It never infers parameters from a model ID:
-the raw seed-bearing descriptor is kept beside a separately resolved object.
+resolves numerical defaults for every one of the 175 canonical rows, including
+the source-backed portfolio and asset-level extensions.  It never infers
+parameters from a model ID: each raw seed-bearing descriptor is kept beside a
+separately resolved object.
 
-The source manifest is intentionally kept separate from this resource.  It is
-the row-level historical candidate identity; this file adds defaults and
-failure semantics needed to execute a candidate without changing its ID.  The
-main entry point writes a narrow 34-row ledger patch rather than mutating the
-canonical ledger in place.  The latter remains an integration-owned artifact.
+The source manifests and fragments are intentionally kept separate from this
+resource.  They are row-level historical candidate identities; this file adds
+defaults and failure semantics needed to execute a candidate without changing
+its ID.  The generated ledger patch contains only source-backed extension
+metadata and never mutates the canonical ledger in place.
 """
 
 from __future__ import annotations
@@ -27,6 +27,9 @@ from simfolio_forecasting_methodology.models.numerical.bdes_fastmap import (
 )
 from simfolio_forecasting_methodology.models.portfolio import (
     bayesian_vol as _bayesian_vol,
+)
+from simfolio_forecasting_methodology.models.portfolio import (
+    canonical_stack_reference as _canonical_stack_reference,
 )
 from simfolio_forecasting_methodology.models.portfolio import (
     factor_residual as _factor_residual,
@@ -62,25 +65,51 @@ RESOURCE_PATH = (
     / "src/simfolio_forecasting_methodology/resources/specifications/canonical_statistical_specifications.json"
 )
 READABLE_PATH = ROOT / "docs/canonical-statistical-specifications.md"
-PORTFOLIO_LEDGER_PATCH_PATH = ROOT / "audit/statistical-specifications-34-ledger-patch.json"
+PORTFOLIO_LEDGER_PATCH_PATH = ROOT / "audit/statistical-specifications-portfolio-ledger-patch.json"
+INLA_ASSET_FRAGMENT_PATH = (
+    ROOT
+    / "src/simfolio_forecasting_methodology/resources/specifications/canonical_inla_asset_spec_fragment.json"
+)
 
 BASE_SOURCE_REVISION = "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
 BASE_SOURCE_SHA256 = "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
 MCMC_SOURCE_REVISION = "511fb82c0be43564b79df3694ee570677f3137ed"
 MCMC_SOURCE_SHA256 = "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
 
-PORTFOLIO_FACTORY_SEED_CONTRACT = "origin_task.seed_to_forecast_context.seed.v1"
+# These are the numerical RNG calls made by the extracted factories.  The
+# runner checkpoint contract remains separately recorded in ``seed_identity``;
+# it must not replace the source factory seed identity in a resolved row.
+BASE_FACTORY_SEED_CONTRACT = (
+    "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', "
+    "origin_date, dense_horizon_tuple, model_id, simulations)"
+)
+FULL_MCMC_FACTORY_SEED_CONTRACT = (
+    "fit: deterministic_seed('full_mcmc_sv_overlay_fit', "
+    "repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, "
+    "round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; "
+    "args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)"
+)
+FRONTIER_FACTORY_SEED_CONTRACT = (
+    "deterministic_seed('asset_level_current_engine', ticker, origin_date, "
+    "selected_model_id, horizon_days, simulations); deterministic_seed('copula_alternatives', "
+    "asset_model_id, origin_date, horizon_days, simulations)"
+)
+
 PORTFOLIO_SOURCE_SEED_CONTEXT_REF = "portfolio.seed_identity"
 
-# The student-t SV candidate is source-extracted but remains blocked in the
-# registry because its factory is not available.  The other twelve entries
-# below have explicit factories and are the requested reference/GJR batch.
+# These modules expose exact source candidate dictionaries and explicit ID
+# factories.  The two-row INLA/asset fragment is merged separately because it
+# has a different shared-component namespace and source wrapper contract.
 _PORTFOLIO_SOURCES: tuple[tuple[str, Any, tuple[str, ...]], ...] = (
     ("reference_families", _reference_families, _reference_families.REFERENCE_MODEL_IDS),
     (
         "sv_reference",
         _sv_reference,
-        ("stochastic_volatility_ar1_empirical", "stochastic_volatility_ar1_empirical_sbb"),
+        (
+            "stochastic_volatility_ar1_empirical",
+            "stochastic_volatility_ar1_empirical_sbb",
+            "stochastic_volatility_ar1_student_t",
+        ),
     ),
     ("sv_extensions", _sv_extensions, _sv_extensions.REFERENCE_MODEL_IDS),
     ("sv_mcmc_reference", _sv_mcmc_reference, _sv_mcmc_reference.REFERENCE_MODEL_IDS),
@@ -88,6 +117,11 @@ _PORTFOLIO_SOURCES: tuple[tuple[str, Any, tuple[str, ...]], ...] = (
     ("gjr_reference", _gjr_reference, _gjr_reference.REFERENCE_MODEL_IDS),
     ("bayesian_vol", _bayesian_vol, _bayesian_vol.BAYESIAN_VOL_MODEL_IDS),
     ("factor_residual", _factor_residual, _factor_residual.FACTOR_RESIDUAL_MODEL_IDS),
+    (
+        "canonical_stack",
+        _canonical_stack_reference,
+        _canonical_stack_reference.REFERENCE_MODEL_IDS,
+    ),
 )
 
 _PORTFOLIO_SOURCE_BY_ID: dict[str, tuple[str, Any]] = {
@@ -161,6 +195,8 @@ def _shared_component_refs(definition: dict[str, Any]) -> list[str]:
         "bayesian_sbb_vol_overlay",
         "bayesian_sbb_ml_vol_overlay",
         "factor_residual_sbb",
+        "canonical",
+        "stack",
         "gaussian",
         "student_t",
         "naive_iid_historical_portfolio_bootstrap",
@@ -179,6 +215,11 @@ def _shared_component_refs(definition: dict[str, Any]) -> list[str]:
                 str(definition["source_component_ref"]),
             ]
         )
+    elif family in {"asset_level_extension", "bdes_non_mcmc_sv_overlay"}:
+        # The INLA/asset fragment has its own exact dependency graph.  Keep
+        # those references verbatim so merging the fragment does not silently
+        # replace its source dispatch or seed aliases.
+        refs.extend(str(reference) for reference in definition["shared_component_refs"])
     else:
         raise ValueError(f"cannot bind shared components for family {family!r}")
 
@@ -547,9 +588,70 @@ def _plain(value: Any) -> Any:
     return value
 
 
+def _canonical_stack_factor_proxy_contract() -> dict[str, Any]:
+    """Describe the complete frozen factor-prior input and fit semantics."""
+
+    proxy_map = tuple(_canonical_stack_reference._CANONICAL_PROXY_MAP)
+    series_digests = _canonical_stack_reference._CANONICAL_PROXY_SERIES_SHA256
+    manifest = _canonical_stack_reference.SOURCE_ARTIFACTS[
+        "canonical_proxy_snapshot_manifest"
+    ]
+    return {
+        "status": "complete_frozen_manifest_whitelisted_source_snapshot",
+        "dispatch": "_fit_factor_drift_prior",
+        "manifest": {
+            "path": str(manifest["path"]),
+            "sha256": str(manifest["sha256"]),
+            "validation": "content hash and every manifest series entry are checked before loading",
+        },
+        "series": [
+            {
+                "ticker": str(ticker),
+                "label": str(label),
+                "sha256": str(series_digests[ticker]),
+            }
+            for ticker, label in proxy_map
+        ],
+        "expected_factor_count": len(proxy_map),
+        "minimum_history": 252,
+        "minimum_joint_overlap": "max(252, min(756, len(y) // 3))",
+        "alignment": {
+            "index": "normalized portfolio dates",
+            "factor_frame": "reindex frozen factor frame to the portfolio index",
+            "joint_fit": "concatenate portfolio and usable factors then drop rows with any missing value",
+        },
+        "usable_factor_rule": "retain columns with at least minimum_joint_overlap nonmissing aligned rows",
+        "overlap_reduction": "while joint rows are below the threshold, drop the factor with the lowest valid count; stop at one factor",
+        "regression": {
+            "center_portfolio": "y_arr - mean(y_arr)",
+            "center_factors": "x_arr - mean(x_arr, axis=0)",
+            "ridge_penalty": "max(trace(X.T @ X) / p * (p / n), 1e-12)",
+            "solver": "solve(X.T @ X + ridge * I, X.T @ y); use pinv(X) @ y on arithmetic/runtime/value failure",
+            "adjusted_r_squared": "clip(1 - (1 - r2) * ((n - 1) / max(n - p - 1, 1)), 0, 0.95)",
+        },
+        "alpha_shrinkage": {
+            "raw": "mean(y_arr) - mean(x_arr, axis=0) @ beta",
+            "residual_standard_deviation": "sample std of centered residuals, ddof=1 when n > p + 1",
+            "weight": "t^2 / (1 + t^2), t = abs(alpha_raw) / (resid_sigma / sqrt(n))",
+            "estimate": "alpha_raw * weight",
+        },
+        "factor_mean_shrinkage": "_sample_mean_near_zero_shrinkage for every aligned factor column",
+        "daily_log_mean": "alpha_shrunk + factor_mean_arr @ beta; nonfinite result becomes 0.0",
+        "no_overlap_behavior": {
+            "insufficient_history": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0",
+            "no_factor_proxy_overlap": "status skipped, daily_log_mean 0.0, adjusted_r_squared 0.0, factor_count 0",
+            "insufficient_joint_overlap": "status skipped with retained factor count and combined observation count",
+        },
+        "downstream_forecast_weight": "clip(adjusted_r_squared * (observation_count / len(portfolio)), 0, 0.50)",
+    }
+
+
 def _portfolio_parameter_contract(module_name: str) -> dict[str, Any]:
     """Return the resolved numerical defaults for one extracted module."""
 
+    seed_model_argument = (
+        "candidate_id" if module_name == "canonical_stack" else "public_model_id"
+    )
     common = {
         "input_unit": "portfolio_daily_log_return",
         "finite_observation_policy": "drop nonfinite observations before fitting",
@@ -561,9 +663,10 @@ def _portfolio_parameter_contract(module_name: str) -> dict[str, Any]:
             "forecast_oos_candidate",
             "origin_date",
             "dense_horizon_tuple",
-            "public_model_id",
+            seed_model_argument,
             "simulations",
         ],
+        "forecast_seed_model_argument": seed_model_argument,
         "dense_horizon_tuple": "tuple(range(1, horizon_days + 1))",
     }
     contracts: dict[str, dict[str, Any]] = {
@@ -720,6 +823,57 @@ def _portfolio_parameter_contract(module_name: str) -> dict[str, Any]:
             "residual_overlay": "none source default because raw descriptors omit residual_overlay",
             "stationary_bootstrap": "max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))",
         },
+        "canonical_stack": {
+            **common,
+            "output_semantics": "terminal log-return samples by dense horizon",
+            "minimum_finite_training_observations": 30,
+            "canonical_fit": {
+                "history_window": _canonical_stack_reference.CANONICAL_REGIME_FIT_MAX_OBS,
+                "mean": "sample_mean_positive_part_t_stat_shrinkage_to_zero",
+                "volatility": "estimated_decay_ewma_volatility",
+                "ewma_lambda_bounds": [0.80, 0.995],
+                "ewma_lambda_default": 0.94,
+                "ewma_objective": "sum(log(h_t) + x_t^2 / h_t)",
+                "scaled_returns": 100.0,
+                "residual_standardized_clip": [-12.0, 12.0],
+                "minimum_standardized_residuals": 20,
+            },
+            "regime_filter": {
+                "states": 3,
+                "fit_max_iterations": _canonical_stack_reference.CANONICAL_REGIME_EM_MAX_ITER,
+                "fit_min_iterations": _canonical_stack_reference.CANONICAL_REGIME_EM_MIN_ITER,
+                "convergence_tolerance": _canonical_stack_reference.CANONICAL_REGIME_EM_TOL,
+                "fallback_transition_matrix": [
+                    [0.97, 0.03, 0.0],
+                    [0.015, 0.97, 0.015],
+                    [0.0, 0.03, 0.97],
+                ],
+                "sticky_diagonal_prior": 25.0,
+                "log_sigma_quantiles": [0.20, 0.55, 0.85],
+                "state_sigma_quantiles": [0.25, 0.55, 0.85],
+                "log_variance_floor": 1.0e-4,
+                "sigma_floor": 1.0e-6,
+                "regime_blend_bounds": [0.005, 0.08],
+            },
+            "innovation": {
+                "resampling": "stationary_bootstrap",
+                "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(residuals*residuals))",
+                "row_assembly_threshold": _canonical_stack_reference.STATIONARY_BOOTSTRAP_ROW_ASSEMBLY_MIN_DAYS,
+                "evt_threshold": 0.90,
+                "evt_exceedance_share": "clip(sqrt(n)/n, 0.02, 0.10)",
+                "evt_shape_clip": [-0.45, 0.45],
+                "generated_clip": [-20.0, 20.0],
+            },
+            "factor_proxy": {
+                **_canonical_stack_factor_proxy_contract(),
+            },
+            "stack_dispatch": {
+                "mix_method": "source_terminal_prefix_concatenation",
+                "canonical_weight_rounding": "round(weight * n_sims)",
+                "weight_bounds": [0.0, 1.0],
+                "empty_component_policy": "return the nonempty component",
+            },
+        },
     }
     return contracts[module_name]
 
@@ -766,6 +920,14 @@ def _portfolio_runtime_dependencies(module_name: str) -> dict[str, Any]:
                 "numpy>=2.0,<3",
                 "pandas>=2.2,<3",
                 "scikit-learn>=1.9,<2",
+                "scipy>=1.13,<2",
+            ],
+        },
+        "canonical_stack": {
+            "items": ["numpy", "pandas", "scipy"],
+            "constraints": [
+                "numpy>=2.0,<3",
+                "pandas>=2.2,<3",
                 "scipy>=1.13,<2",
             ],
         },
@@ -843,9 +1005,13 @@ def _portfolio_shared_components() -> dict[str, Any]:
                 "forecast_oos_candidate",
                 "origin_date",
                 "dense_horizon_tuple",
-                "public_model_id",
+                "public_model_id for existing adapters; candidate_id for canonical_stack",
                 "simulations",
             ],
+            "model_argument_policy": {
+                "existing_adapters": "public_model_id",
+                "canonical_stack": "candidate_id",
+            },
             "fit_contract_exceptions": {
                 "sv_mcmc_reference": "deterministic_seed('sv_mcmc_fit', finite_observation_count, round(finite_observation_mean, 10))",
                 "factor_residual": "deterministic_seed('factor_residual_sbb', factor_model, len(combined), len(factor_cols))",
@@ -879,6 +1045,14 @@ def _portfolio_resolved_candidate(
         resolved.update(_plain(module.RESOLVED_STATISTICAL_SPECS[model_id]))
     elif module_name == "factor_residual":
         resolved.update(_plain(module.RESOLVED_FACTOR_RESIDUAL_SPECS[model_id]))
+    elif module_name == "sv_reference" and model_id == "stochastic_volatility_ar1_student_t":
+        # The retained row is labelled Student-t but its raw historical
+        # descriptor omits innovation.  The source dispatcher therefore takes
+        # its empirical default; keep that dispatch in resolved fields only.
+        resolved["innovation_dispatch"] = {
+            "source_default": "empirical",
+            "parameter_source": "SVReferenceModel source default because raw descriptor omits innovation",
+        }
     # The source candidate remains unchanged above.  The module contract and,
     # where available, the extracted family specification are resolved fields
     # only; neither object is passed to the source seed call.
@@ -887,6 +1061,9 @@ def _portfolio_resolved_candidate(
 
 
 def _portfolio_seed_descriptor(module_name: str, module: Any, model_id: str) -> dict[str, Any]:
+    seed_model_argument = (
+        "candidate_id" if module_name == "canonical_stack" else "public_model_id"
+    )
     descriptor = {
         "source_model_key": model_id,
         "forecast_seed_contract": str(module.SOURCE_SEED_CONTRACT),
@@ -894,14 +1071,14 @@ def _portfolio_seed_descriptor(module_name: str, module: Any, model_id: str) -> 
             "forecast_oos_candidate",
             "origin_date",
             "dense_horizon_tuple",
-            "public_model_id",
+            seed_model_argument,
             "simulations",
         ],
         "status": "source seed arguments retained separately from resolved defaults",
     }
     if module_name == "bayesian_vol":
         descriptor.update(_plain(module.RAW_SEED_DESCRIPTORS[model_id]))
-    elif module_name == "gjr_reference":
+    elif module_name in {"gjr_reference", "canonical_stack"}:
         descriptor["panel_seed"] = 20260528
         descriptor["panel_seed_status"] = "source-declared; exact experiment schedule unresolved"
     if module_name == "sv_mcmc_reference":
@@ -924,6 +1101,7 @@ _PORTFOLIO_FACTORY_MAPS = {
     "gjr_reference": ("REFERENCE_FACTORIES", "PortfolioGJRGARCHModel"),
     "bayesian_vol": ("BAYESIAN_VOL_FACTORIES", "BayesianVolOverlayModel"),
     "factor_residual": ("FACTOR_RESIDUAL_FACTORIES", "FactorResidualSBBModel"),
+    "canonical_stack": ("REFERENCE_FACTORIES", "CanonicalStackModel"),
 }
 
 
@@ -960,7 +1138,7 @@ def _resolve_portfolio_model(
             "class": class_name,
             "exact_id_dispatch": True,
         },
-        "factory_seed_contract": PORTFOLIO_FACTORY_SEED_CONTRACT,
+        "factory_seed_contract": str(module.SOURCE_SEED_CONTRACT),
         "source_seed_context_ref": PORTFOLIO_SOURCE_SEED_CONTEXT_REF,
         "failure_semantics": {
             "unknown_model": "raise ValueError",
@@ -969,6 +1147,77 @@ def _resolve_portfolio_model(
             "historical_score": "not verified by this resolved specification",
         },
     }
+    return _bind_shared_component_digests(definition, shared_components)
+
+
+def _load_inla_asset_fragment() -> dict[str, Any]:
+    """Load the checked-in two-row source fragment without importing its generator."""
+
+    fragment = json.loads(INLA_ASSET_FRAGMENT_PATH.read_text(encoding="utf-8"))
+    accepted = fragment.get("accepted_model_ids")
+    definitions = fragment.get("resolved_definitions")
+    components = fragment.get("shared_components")
+    if not isinstance(accepted, list) or not isinstance(definitions, dict):
+        raise TypeError("INLA/asset fragment has no complete accepted definitions")
+    if set(accepted) != set(definitions) or not isinstance(components, dict):
+        raise ValueError("INLA/asset fragment membership or components are inconsistent")
+    return fragment
+
+
+def _merge_inla_asset_components(
+    shared_components: dict[str, Any], fragment: dict[str, Any]
+) -> None:
+    """Merge fragment components while retaining their dotted references."""
+
+    fragment_components = fragment["shared_components"]
+    for name in ("asset_exact", "inla"):
+        if name in shared_components:
+            raise ValueError(f"INLA/asset component collides with central component: {name}")
+        shared_components[name] = copy.deepcopy(fragment_components[name])
+    fragment_seed_identity = fragment_components.get("seed_identity", {})
+    if not isinstance(fragment_seed_identity, dict):
+        raise TypeError("INLA/asset fragment seed identity is not an object")
+    central_seed_identity = shared_components["seed_identity"]
+    for name, value in fragment_seed_identity.items():
+        if name in central_seed_identity:
+            raise ValueError(f"INLA/asset seed component collides with central component: {name}")
+        central_seed_identity[name] = copy.deepcopy(value)
+
+
+def _fragment_factory_seed_contract(model_id: str) -> str:
+    """Return the actual source seed calls for the two extension adapters."""
+
+    if model_id == "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced":
+        return (
+            "deterministic_seed('asset_level_current_engine', ticker, origin_date, "
+            "selected_model_id, horizon_days, simulations); "
+            "deterministic_seed('copula_alternatives', asset_model_id, origin_date, "
+            "horizon_days, simulations)"
+        )
+    if model_id == (
+        "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_"
+        "full_inla_laplace_quadrature_centered_multiscale"
+    ):
+        return "deterministic_seed('forecast_final_fixed', selected_model_id, horizon_days, simulations)"
+    raise ValueError(f"unknown INLA/asset fragment model: {model_id}")
+
+
+def _resolve_fragment_model(
+    row: dict[str, Any], fragment: dict[str, Any], shared_components: dict[str, Any]
+) -> dict[str, Any]:
+    """Bind a fragment definition into the central resource without rewriting it."""
+
+    model_id = str(row["public_model_id"])
+    try:
+        source_definition = fragment["resolved_definitions"][model_id]
+    except KeyError as exc:
+        raise ValueError(f"INLA/asset fragment missing ledger row: {model_id}") from exc
+    definition = copy.deepcopy(source_definition)
+    # The fragment was generated before the seed audit distinguished adapter
+    # calls from the runner checkpoint contract.  Correct only that resolved
+    # metadata field; the raw source_candidate and component graph stay intact.
+    definition["source_seed_contract"] = _fragment_factory_seed_contract(model_id)
+    definition["factory_seed_contract"] = definition["source_seed_contract"]
     return _bind_shared_component_digests(definition, shared_components)
 
 
@@ -1095,7 +1344,8 @@ def _resolve_base_model(model_id: str) -> dict[str, Any]:
             if spec.resampling == "stationary_bootstrap"
             else "filtered_historical_simulation"
         ),
-        "factory_seed_contract": "origin_task.seed_to_forecast_context.seed.v1",
+        "source_seed_contract": BASE_FACTORY_SEED_CONTRACT,
+        "factory_seed_contract": BASE_FACTORY_SEED_CONTRACT,
         "source_seed_context_ref": "seed_identity.base_and_full_mcmc",
         "failure_semantics": {
             "short_history": "reject below 30 observations",
@@ -1140,7 +1390,8 @@ def _resolve_frontier_model(model_id: str) -> dict[str, Any]:
         },
         "dependence": {"ref": "frontier.dependence_parameterization"},
         "portfolio_rejoin": {"ref": "frontier.portfolio_rejoin"},
-        "factory_seed_contract": "origin_task.seed_to_forecast_context.seed.v1",
+        "source_seed_contract": FRONTIER_FACTORY_SEED_CONTRACT,
+        "factory_seed_contract": FRONTIER_FACTORY_SEED_CONTRACT,
         "source_seed_context_ref": "seed_identity.frontier",
         "failure_semantics": {
             "calendar": "strict source business-day rejoin",
@@ -1152,6 +1403,7 @@ def _resolve_frontier_model(model_id: str) -> dict[str, Any]:
 def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     manifest = json.loads(MCMC_MANIFEST_PATH.read_text(encoding="utf-8"))
+    inla_asset_fragment = _load_inla_asset_fragment()
     shared_components = {
         "base": _base_components(),
         "frontier": _frontier_definition(),
@@ -1159,6 +1411,7 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
         "seed_identity": _seed_identity(),
         "portfolio": _portfolio_shared_components(),
     }
+    _merge_inla_asset_components(shared_components, inla_asset_fragment)
     rows = ledger["models"]
     base_rows = [row for row in rows if row["model_family"] == "base"]
     mcmc_rows = [row for row in rows if row["model_family"] == "bayesian_sbb_full_mcmc_sv_overlay"]
@@ -1222,7 +1475,8 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
             },
             "source_candidate": candidate_record["source_candidate"],
             "resolved_candidate": candidate_record["resolved_candidate"],
-            "factory_seed_contract": "origin_task.seed_to_forecast_context.seed.v1",
+            "source_seed_contract": FULL_MCMC_FACTORY_SEED_CONTRACT,
+            "factory_seed_contract": FULL_MCMC_FACTORY_SEED_CONTRACT,
             "source_seed_context_ref": "seed_identity.base_and_full_mcmc",
             "fit_contract": {"ref": "full_mcmc_sv.contract"},
             "failure_semantics": {"ref": "full_mcmc_sv.contract.failure"},
@@ -1258,20 +1512,40 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
             "definition_fingerprint": _digest(definition),
         }
         resolved[model_id] = definition
-    ledger_bound_ids = sorted(
-        model_id
-        for model_id in resolved
-        if any(
-            str(row["public_model_id"]) == model_id and row.get("specification_recovered")
-            for row in rows
+
+    fragment_model_ids = tuple(str(model_id) for model_id in inla_asset_fragment["accepted_model_ids"])
+    fragment_rows = {
+        str(row["public_model_id"]): row
+        for row in rows
+        if str(row["public_model_id"]) in fragment_model_ids
+    }
+    if set(fragment_rows) != set(fragment_model_ids):
+        missing = sorted(set(fragment_model_ids) - set(fragment_rows))
+        raise ValueError(f"INLA/asset source rows missing from canonical ledger: {missing}")
+    for model_id in fragment_model_ids:
+        definition = _resolve_fragment_model(
+            fragment_rows[model_id], inla_asset_fragment, shared_components
         )
-    )
+        bindings[model_id] = {
+            "family": definition["family"],
+            "component_refs": definition["shared_component_refs"],
+            "seed_contract": definition["factory_seed_contract"],
+            "source_reference": definition["source_reference"],
+            "factory": definition["factory"],
+            "definition_fingerprint": _digest(definition),
+        }
+        resolved[model_id] = definition
+
+    ledger_model_ids = {str(row["public_model_id"]) for row in rows}
+    if set(resolved) != ledger_model_ids:
+        missing = sorted(ledger_model_ids - set(resolved))
+        extra = sorted(set(resolved) - ledger_model_ids)
+        raise ValueError(f"resolved canonical membership mismatch; missing={missing}, extra={extra}")
+    extended_model_ids = sorted(set(_PORTFOLIO_MODEL_IDS) | set(fragment_model_ids))
     resource = {
         "schema_version": 1,
-        "scope": "canonical_159_resolved_statistical_definitions_with_staged_portfolio_batch",
-        "portfolio_model_ids": sorted(_PORTFOLIO_MODEL_IDS),
-        "ledger_bound_model_ids": ledger_bound_ids,
-        "staged_model_ids": sorted(set(_PORTFOLIO_MODEL_IDS) - set(ledger_bound_ids)),
+        "scope": "canonical_175_resolved_statistical_definitions",
+        "portfolio_model_ids": extended_model_ids,
         "fingerprint": {
             "algorithm": "sha256(canonical JSON sorted keys, compact separators, UTF-8; includes shared_component_digests)",
             "shared_component_digest_algorithm": "sha256(canonical JSON sorted keys, compact separators, UTF-8) per dotted reference",
@@ -1290,6 +1564,12 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
             "mcmc_source_script_sha256": MCMC_SOURCE_SHA256,
             "mcmc_candidate_manifest": "resources/catalogs/canonical_40_full_mcmc_sv_specs.json",
             "mcmc_candidate_manifest_sha256": _file_digest(MCMC_MANIFEST_PATH),
+            "inla_asset_spec_fragment": {
+                "path": "resources/specifications/canonical_inla_asset_spec_fragment.json",
+                "sha256": _file_digest(INLA_ASSET_FRAGMENT_PATH),
+                "accepted_model_ids": list(fragment_model_ids),
+                "descriptor_policy": "fragment source_candidate fields remain raw; resolved defaults remain separate",
+            },
             "historical_candidate_identity_reference": "retained academic publication_master_catalog_snapshot.json (source evidence; not package input)",
             "catalog_identity": {
                 "historical_publication_catalog": {
@@ -1376,10 +1656,14 @@ def patch_ledger(resolved: dict[str, dict[str, Any]]) -> None:
             source_code["sha256"] = BASE_SOURCE_SHA256
         factory = row.get("implementation_factory")
         if isinstance(factory, dict) and factory.get("callable"):
-            factory["seed_contract"] = "origin_task.seed_to_forecast_context.seed.v1"
+            factory["seed_contract"] = definition.get(
+                "factory_seed_contract", factory.get("seed_contract")
+            )
             mapped = ledger.get("implementation_factory_map", {}).get(model_id)
             if isinstance(mapped, dict):
-                mapped["seed_contract"] = "origin_task.seed_to_forecast_context.seed.v1"
+                mapped["seed_contract"] = definition.get(
+                    "factory_seed_contract", mapped.get("seed_contract")
+                )
     ledger["identity_policy"]["full_statistical_specifications_confirmed"] = len(resolved)
     LEDGER_PATH.write_text(json.dumps(ledger, indent=2) + "\n", encoding="utf-8")
 
@@ -1387,13 +1671,13 @@ def patch_ledger(resolved: dict[str, dict[str, Any]]) -> None:
 def build_portfolio_ledger_patch(
     resource: dict[str, Any], ledger: dict[str, Any]
 ) -> dict[str, Any]:
-    """Build the staged 34-row update without mutating the canonical ledger.
+    """Build the extension-row update without mutating the canonical ledger.
 
     The ledger owns membership, score, protocol, and dataset identity.  This
     patch contains only the resolved-specification and implementation metadata
-    required to apply the already-audited portfolio rows.  A coordinator can
-    apply it after registry wiring without risking a rewrite of unrelated
-    canonical fields.
+    required to apply the already-audited source-backed portfolio rows.  A
+    coordinator can apply it after registry wiring without risking a rewrite
+    of unrelated canonical fields.
     """
 
     rows = {str(row["public_model_id"]): row for row in ledger["models"]}
@@ -1447,7 +1731,7 @@ def build_portfolio_ledger_patch(
                     "name": factory_name,
                     "callable": True,
                     "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring",
-                    "seed_contract": PORTFOLIO_FACTORY_SEED_CONTRACT,
+                    "seed_contract": definition["factory_seed_contract"],
                 },
                 "required_dependencies": closure["runtime_dependencies"],
                 "seed_identity": definition["source_seed_descriptor"],
@@ -1465,8 +1749,8 @@ def build_portfolio_ledger_patch(
             }
         )
     return {
-        "schema_version": "canonical-175-statistical-specifications-34-patch-v1",
-        "scope": "exact 34 source-backed portfolio models: Bayesian 20, FF6 factor residual 2, executable reference/GJR 12",
+        "schema_version": "canonical-175-statistical-specifications-portfolio-patch-v2",
+        "scope": f"exact {len(_PORTFOLIO_MODEL_IDS)} source-backed portfolio models, including canonical and stack extensions",
         "base_ledger_membership_digest": ledger["membership"]["membership_digest"],
         "resource": "resources/specifications/canonical_statistical_specifications.json",
         "resource_scope": resource["scope"],
@@ -1495,7 +1779,7 @@ def render_readable(resource: dict[str, Any]) -> str:
         "",
         "Generated from `resources/specifications/canonical_statistical_specifications.json`.",
         "The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.",
-        "The resource contains the 34-model source-backed portfolio batch in addition to the previously ledger-bound definitions. `ledger_bound_model_ids` records the rows already applied to the canonical ledger; `audit/statistical-specifications-34-ledger-patch.json` is the narrow generated update for the staged batch.",
+        "The resource contains all 175 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.",
         "Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.",
         "",
     ]
@@ -1513,7 +1797,8 @@ def render_readable(resource: dict[str, Any]) -> str:
                 f"- Resolved-definition SHA-256: `{binding['definition_fingerprint']}`",
                 f"- Source: `{source['path']}` at `{source['revision']}` (SHA-256 `{source['sha256']}`).",
                 f"- Source entrypoints: {', '.join(f'`{item}`' for item in source['entrypoints'])}.",
-                f"- Factory/checkpoint seed contract: `{definition['factory_seed_contract']}`.",
+                f"- Factory seed contract: `{definition['factory_seed_contract']}`.",
+                "- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.",
                 f"- Source seed context: `{definition['source_seed_context_ref']}`.",
             ]
         )
@@ -1536,7 +1821,7 @@ def render_readable(resource: dict[str, Any]) -> str:
             )
         else:
             source_candidate = definition["source_candidate"]
-            resolved_candidate = definition["resolved_candidate"]
+            resolved_candidate = definition.get("resolved_candidate", definition.get("resolved_defaults"))
             lines.extend(
                 [
                     "- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.",
@@ -1544,6 +1829,8 @@ def render_readable(resource: dict[str, Any]) -> str:
                     "- Resolved defaults:",
                 ]
             )
+            if resolved_candidate is None:
+                raise ValueError(f"resolved candidate missing for {model_id}")
             for key in sorted(resolved_candidate):
                 lines.append(
                     f"  - `{key}` = `{json.dumps(resolved_candidate[key], sort_keys=True)}`"
@@ -1570,7 +1857,7 @@ def main() -> int:
     )
     print(
         f"wrote {len(resource['resolved_definitions'])} resolved definitions and "
-        f"{len(portfolio_patch['records'])} staged ledger updates"
+        f"{len(portfolio_patch['records'])} extension ledger updates"
     )
     return 0
 
