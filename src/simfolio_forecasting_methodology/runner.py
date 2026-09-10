@@ -3,10 +3,14 @@
 from __future__ import annotations
 
 import hashlib
+import importlib
 import importlib.metadata
 import inspect
 import json
+import os
 import platform
+import re
+import sys
 from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
@@ -269,6 +273,133 @@ def _dependency_json_default(value):
     raise TypeError(f"dependency identity contains non-JSON value: {type(value).__name__}")
 
 
+_NUMERICAL_THREAD_ENVIRONMENT_KEYS = (
+    "BLIS_NUM_THREADS",
+    "GOTO_NUM_THREADS",
+    "MKL_DYNAMIC",
+    "MKL_NUM_THREADS",
+    "NUMBA_NUM_THREADS",
+    "NUMBA_THREADING_LAYER",
+    "NUMEXPR_NUM_THREADS",
+    "OMP_DYNAMIC",
+    "OMP_NUM_THREADS",
+    "OMP_PLACES",
+    "OMP_PROC_BIND",
+    "OPENBLAS_NUM_THREADS",
+    "VECLIB_MAXIMUM_THREADS",
+)
+_SAFE_IDENTITY_TEXT = re.compile(r"^[A-Za-z0-9_.:+,\- ]+$")
+
+
+def _safe_identity_text(value, *, max_length: int = 128) -> str | None:
+    """Keep environment metadata scalar and free of host/path information."""
+
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text or len(text) > max_length or not _SAFE_IDENTITY_TEXT.fullmatch(text):
+        return "<redacted>"
+    return text
+
+
+def _safe_thread_setting(value) -> str | None:
+    """Serialize an allowlisted thread setting without copying arbitrary env text."""
+
+    return _safe_identity_text(value, max_length=64)
+
+
+def _build_library_identity(config_module) -> dict[str, object]:
+    """Read static BLAS/LAPACK build metadata without loading runtime libraries."""
+
+    config = getattr(config_module, "CONFIG", None)
+    dependencies = config.get("Build Dependencies") if isinstance(config, Mapping) else None
+    if not isinstance(dependencies, Mapping):
+        dependencies = {}
+    result: dict[str, object] = {}
+    fields = (
+        "name",
+        "version",
+        "detection method",
+        "found",
+        "has ilp64",
+        "cython blas ilp64",
+        "openblas configuration",
+    )
+    for library in ("blas", "lapack"):
+        details = dependencies.get(library)
+        if not isinstance(details, Mapping):
+            result[library] = {"name": None, "version": None}
+            continue
+        normalized: dict[str, object] = {}
+        for field in fields:
+            if field not in details:
+                continue
+            value = details[field]
+            if isinstance(value, (bool, int, float)) or value is None:
+                normalized[field] = value
+            else:
+                normalized[field] = _safe_identity_text(value)
+        result[library] = normalized
+    return result
+
+
+def _package_build_identity(package: str, config_module) -> dict[str, object]:
+    """Return package version and static numerical backend metadata."""
+
+    try:
+        package_version = importlib.metadata.version(package)
+    except importlib.metadata.PackageNotFoundError:
+        package_version = None
+    return {
+        "version": package_version,
+        "blas_lapack": _build_library_identity(config_module),
+    }
+
+
+def _numerical_environment_identity() -> dict[str, object]:
+    """Return stable numerical runtime identity used by checkpoint manifests.
+
+    This deliberately uses static package build metadata and an allowlist of
+    thread settings.  Runtime library discovery (for example, threadpoolctl)
+    is avoided because its answer depends on which extension modules have
+    already been imported.
+    """
+
+    try:
+        scipy_config = importlib.import_module("scipy.__config__")
+    except ImportError:
+        scipy_config = None
+    scipy_identity = _package_build_identity("scipy", scipy_config)
+    return {
+        "platform": {
+            "system": _safe_identity_text(platform.system()),
+            "release": _safe_identity_text(platform.release()),
+            "machine": _safe_identity_text(platform.machine()),
+            "version": _safe_identity_text(platform.version()),
+        },
+        "interpreter": {
+            "implementation": _safe_identity_text(platform.python_implementation()),
+            "version": _safe_identity_text(platform.python_version()),
+            "compiler": _safe_identity_text(platform.python_compiler()),
+            "build": [_safe_identity_text(value) for value in platform.python_build()],
+            "cache_tag": _safe_identity_text(getattr(sys.implementation, "cache_tag", None)),
+        },
+        "packages": {
+            "numpy": _package_build_identity("numpy", np.__config__),
+            "scipy": scipy_identity,
+        },
+        "thread_settings": {
+            "environment": {
+                key: _safe_thread_setting(os.environ.get(key))
+                for key in _NUMERICAL_THREAD_ENVIRONMENT_KEYS
+            },
+            "numpy_seterr": {
+                key: _safe_thread_setting(value) for key, value in sorted(np.geterr().items())
+            },
+        },
+    }
+
+
 def _dependency_identity(model, record: dict[str, object]) -> dict[str, object]:
     explicit = getattr(model, "dependency_identity", None)
     if explicit is not None:
@@ -284,6 +415,7 @@ def _dependency_identity(model, record: dict[str, object]) -> dict[str, object]:
             identity[package] = importlib.metadata.version(package)
         except importlib.metadata.PackageNotFoundError:
             identity[package] = None
+    identity["numerical_environment"] = _numerical_environment_identity()
     required = record.get("required_dependencies")
     if required is not None:
         identity["ledger_required_dependencies"] = required

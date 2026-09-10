@@ -272,6 +272,45 @@ def test_changed_specification_or_implementation_cannot_resume(tmp_path: Path):
             checkpoint_dir=checkpoint,
             resume=True,
         )
+
+
+def test_checkpoint_resume_rejects_changed_numerical_environment_identity(
+    tmp_path: Path, monkeypatch
+):
+    from simfolio_forecasting_methodology import runner
+
+    checkpoint = tmp_path / "numerical-environment"
+    execute_model_checkpointed(
+        ZeroPathModel(), _tasks(), simulations=2, checkpoint_dir=checkpoint
+    )
+    manifest = json.loads((checkpoint / "manifest.json").read_text())
+    baseline = manifest["dependency_identity"]["numerical_environment"]
+    assert baseline["platform"]["machine"]
+    assert baseline["packages"]["numpy"]["blas_lapack"]["blas"]["name"]
+
+    changed_platform = json.loads(json.dumps(baseline))
+    changed_platform["platform"]["machine"] = "synthetic-x86_64"
+    monkeypatch.setattr(
+        runner,
+        "_numerical_environment_identity",
+        lambda: changed_platform,
+    )
+    with pytest.raises(CheckpointIdentityError, match="manifest fingerprint differs"):
+        execute_model_checkpointed(
+            ZeroPathModel(), _tasks(), simulations=2, checkpoint_dir=checkpoint, resume=True
+        )
+
+    changed_backend = json.loads(json.dumps(baseline))
+    changed_backend["packages"]["numpy"]["blas_lapack"]["blas"]["name"] = "synthetic-blas"
+    monkeypatch.setattr(
+        runner,
+        "_numerical_environment_identity",
+        lambda: changed_backend,
+    )
+    with pytest.raises(CheckpointIdentityError, match="manifest fingerprint differs"):
+        execute_model_checkpointed(
+            ZeroPathModel(), _tasks(), simulations=2, checkpoint_dir=checkpoint, resume=True
+        )
 def test_checkpoint_implementation_identity_includes_numerical_helpers(tmp_path, monkeypatch):
     from simfolio_forecasting_methodology import runner
     from simfolio_forecasting_methodology.models.asset_level.frontier import HistoricalFrontierModel
