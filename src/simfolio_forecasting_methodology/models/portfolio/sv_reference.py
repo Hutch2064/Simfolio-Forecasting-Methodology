@@ -106,15 +106,6 @@ SOURCE_CANDIDATE_SPECS: Mapping[str, Mapping[str, str]] = MappingProxyType(
             {
                 "id": "stochastic_volatility_ar1_student_t",
                 "type": "sv",
-                "innovation": "student_t",
-                "return_target": "portfolio_daily_log_return",
-                "forecast_level": "portfolio_return",
-                "mean_model": "sample_mean_near_zero_shrinkage",
-                "vol_model": "stochastic_volatility_ar1_log_variance",
-                "innovation_method": "student_t_standardized_innovations",
-                "tail_method": "student_t_standardized_residual_tail",
-                "path_generator": "stochastic_volatility_ar1",
-                "candidate_role": "stochastic_volatility_student_t_reference",
             }
         ),
     }
@@ -579,7 +570,10 @@ class SVReferenceModel:
         if self.model_id == "stochastic_volatility_ar1_empirical_sbb":
             paths = _simulate_sv_ar1_sbb(fit, context.horizon_days, context.simulations, rng)
         else:
-            innovation = str(SOURCE_CANDIDATE_SPECS[self.model_id]["innovation"])
+            # The retained historical descriptor contains only ``id`` and
+            # ``type``.  Preserve the source dispatcher's explicit fallback
+            # for an omitted innovation; do not infer it from the public name.
+            innovation = str(SOURCE_CANDIDATE_SPECS[self.model_id].get("innovation", "empirical"))
             paths = _simulate_sv_ar1(fit, context.horizon_days, context.simulations, rng, innovation)
         terminals = np.cumsum(paths, axis=1, dtype=np.float64)
         expected_shape = (int(context.simulations), int(context.horizon_days))

@@ -275,16 +275,8 @@
       "historical_rank": 55,
       "model_family": "sv",
       "structured_specification": {
-        "type": "sv",
-        "innovation": "student_t",
-        "return_target": "portfolio_daily_log_return",
-        "forecast_level": "portfolio_return",
-        "mean_model": "sample_mean_near_zero_shrinkage",
-        "vol_model": "stochastic_volatility_ar1_log_variance",
-        "innovation_method": "student_t_standardized_innovations",
-        "tail_method": "student_t_standardized_residual_tail",
-        "path_generator": "stochastic_volatility_ar1",
-        "candidate_role": "stochastic_volatility_student_t_reference"
+        "id": "stochastic_volatility_ar1_student_t",
+        "type": "sv"
       },
       "specification_fingerprint": {
         "value": null,
@@ -398,7 +390,8 @@
         "Source fit/simulation closure is recovered from the research gate and its engine dependencies; no full canonical experiment was run.",
         "Retained scalar score and nine-significant-digit publication token are preserved; score reproduction remains unverified.",
         "The adapter preserves the source origin-date plus dense-horizon seed context and cumulative daily-path semantics.",
-        "The SV source fit requires at least 252 finite training observations."
+        "The SV source fit requires at least 252 finite training observations.",
+        "Historical retained descriptor is exactly {id, type=sv}; the source dispatcher resolves its omitted innovation with the explicit empirical default. The public Student-t label and later expanded student_t dictionary describe a different intended branch and are preserved only as a documented specification discrepancy."
       ]
     }
   ]

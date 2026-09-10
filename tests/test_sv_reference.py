@@ -8,6 +8,7 @@ from simfolio_forecasting_methodology.models.portfolio.sv_reference import (
     REFERENCE_MODEL_IDS,
     SOURCE_FUNCTION_NAMES,
     SOURCE_FUNCTIONS_SHA256,
+    SOURCE_CANDIDATE_SPECS,
     SVReferenceModel,
     make_sv_reference_model,
 )
@@ -59,3 +60,14 @@ def test_sv_factory_is_exact_id_only():
         make_sv_reference_model("stochastic_volatility_ar1_empirical_suffix")
     with pytest.raises(ValueError, match="unknown SV reference model"):
         SVReferenceModel("stochastic_volatility_ar1_empirical_suffix")
+
+
+def test_student_t_public_row_preserves_raw_historical_descriptor():
+    spec = SOURCE_CANDIDATE_SPECS["stochastic_volatility_ar1_student_t"]
+    assert dict(spec) == {
+        "id": "stochastic_volatility_ar1_student_t",
+        "type": "sv",
+    }
+    # The source dispatcher resolves an omitted innovation with its explicit
+    # empirical fallback; the public Student-t label is not a runtime switch.
+    assert "innovation" not in spec
