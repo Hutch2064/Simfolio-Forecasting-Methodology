@@ -266,9 +266,7 @@
       },
       "source_forecast_seed": 2328972389,
       "source_specification": {
-        "factor_model": "ff6",
         "id": "factor_ff6_ridge_residual_sbb_none",
-        "residual_overlay": "none",
         "type": "factor_residual_sbb"
       }
     },
@@ -295,7 +293,7 @@
             ],
             "factor_model": "ff6",
             "method": "ridge_factor_model_with_joint_stationary_bootstrap_factor_residual_paths",
-            "residual_overlay": "absolute_ewma",
+            "residual_overlay": "none",
             "rf_col": "RF",
             "training_rows": 692
           },
@@ -327,44 +325,7 @@
               "ridge"
             ]
           },
-          "residual_overlay_fit": {
-            "base": {
-              "mu_cap": 0.0004781731136484256,
-              "nonnegative_drift": false,
-              "posterior_mean": 8.402817384411581e-05,
-              "posterior_mu_draws": false,
-              "posterior_sd": 0.0,
-              "sample_mu": 0.00013842791644839888,
-              "sample_mu_days": 0,
-              "sigma": 0.010121017138809278
-            },
-            "curve": {
-              "curve_type": "variance_decay",
-              "fit_status": "complete",
-              "last_variance_x": 1.9609957341411437,
-              "long_variance_x": 1.0243498792407115,
-              "objective": "one_step_log_absolute_return_volatility_mse",
-              "persistence": 0.8
-            },
-            "meta": {
-              "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
-              "overlay_fit_status": "complete",
-              "overlay_half_life_days": 3.1062837195053903,
-              "overlay_model": "ewma_absolute",
-              "overlay_persistence": 0.8
-            },
-            "sigma_clip_bounds_x": [
-              0.465131396958935,
-              1.7468995203124102
-            ],
-            "standardized_residuals": {
-              "dtype": "float64",
-              "sha256": "bd143f76ca8183201f0e80c4a6974e86f463e0b46364bdedd38726659e9f4bc7",
-              "shape": [
-                692
-              ]
-            }
-          },
+          "residual_overlay_fit": null,
           "residuals": {
             "dtype": "float64",
             "sha256": "90e00665cf9c245b4e1877d621c4dba71470a69f4ecbdd84e4cf61d2a766b0f2",
@@ -391,76 +352,76 @@
           "1": {
             "array": {
               "dtype": "float64",
-              "sha256": "db798b15e33747599971c526afde67e64dbe8765ccaa4b68b31b8d8173877d51",
+              "sha256": "90de49140fb7038138b7228ba5ab73f7a9541b29e62d88e02e2583d8d3c859c7",
               "shape": [
                 4
               ]
             },
             "values": [
-              -0.010746940283263997,
-              0.005249297671081934,
-              -0.007161261687287169,
-              0.017588542002642097
+              -0.007940993292451046,
+              0.004017849570029689,
+              -0.005463475569702357,
+              0.013551210052791347
             ]
           },
           "2": {
             "array": {
               "dtype": "float64",
-              "sha256": "ecfac7c0388e2acfbb69b7efce4ca0257d8ac85e2da7ee149a91648c7f4e202b",
+              "sha256": "6aa03c86542a3567abedf75f891ed7aa7610341dfa5820658ccd337a57fa7680",
               "shape": [
                 4
               ]
             },
             "values": [
-              -0.02959288621670797,
-              0.011544508226873782,
-              -0.01248575812352819,
-              0.032300918388467395
+              -0.022781246137776982,
+              0.009004850764896892,
+              -0.009768025413260634,
+              0.025265487407900543
             ]
           },
           "3": {
             "array": {
               "dtype": "float64",
-              "sha256": "1a452c04fa98f443a3106bb36b92a93af9cb56b38530d2a970c22d79e775846a",
+              "sha256": "93ad445439bbb20ea060c2614119fb10924f836fa81f20f868a76379fe7a362a",
               "shape": [
                 4
               ]
             },
             "values": [
-              -0.05610340727449344,
-              0.01598834274216911,
-              -0.007642654324548581,
-              0.02115646344634329
+              -0.04456127033207758,
+              0.012733882390904786,
+              -0.005750175843230945,
+              0.016052454402196048
             ]
           },
           "4": {
             "array": {
               "dtype": "float64",
-              "sha256": "197399264e6a5f532adedc7e3f7ba7eed1bf56adb596946c601e360b99c682d5",
+              "sha256": "bf2f02ad9b06366b4621838451554136192fca503e03cac56185b319fa9c2037",
               "shape": [
                 4
               ]
             },
             "values": [
-              -0.07417788200090036,
-              0.014049367005199414,
-              -0.0017850057498158215,
-              0.021650157104013693
+              -0.0599444710336918,
+              0.01115492451790074,
+              -0.0007631746483637413,
+              0.01656155270276608
             ]
           },
           "5": {
             "array": {
               "dtype": "float64",
-              "sha256": "b9f1ebceff1f476468e34e4171922b17523b556f47a5cbbd65541e0473c26720",
+              "sha256": "83f6081cf565f98f02529e8cd662570110dae54f7c39a77e73c6f54f4bf2b971",
               "shape": [
                 4
               ]
             },
             "values": [
-              -0.07692468932183902,
-              0.009868201470534285,
-              0.0024168201257392975,
-              0.0040684030317157255
+              -0.062222439383301326,
+              0.007657854879443979,
+              0.0029658569776441534,
+              0.0011711208254275556
             ]
           }
         }
@@ -486,7 +447,7 @@
           ],
           "factor_model": "ff6",
           "method": "ridge_factor_model_with_joint_stationary_bootstrap_factor_residual_paths",
-          "residual_overlay": "absolute_ewma",
+          "residual_overlay": "none",
           "rf_col": "RF",
           "training_rows": 692
         },
@@ -518,44 +479,7 @@
             "ridge"
           ]
         },
-        "residual_overlay_fit": {
-          "base": {
-            "mu_cap": 0.0004781731136484256,
-            "nonnegative_drift": false,
-            "posterior_mean": 8.402817384411581e-05,
-            "posterior_mu_draws": false,
-            "posterior_sd": 0.0,
-            "sample_mu": 0.00013842791644839888,
-            "sample_mu_days": 0,
-            "sigma": 0.010121017138809278
-          },
-          "curve": {
-            "curve_type": "variance_decay",
-            "fit_status": "complete",
-            "last_variance_x": 1.9609957341411437,
-            "long_variance_x": 1.0243498792407115,
-            "objective": "one_step_log_absolute_return_volatility_mse",
-            "persistence": 0.8
-          },
-          "meta": {
-            "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
-            "overlay_fit_status": "complete",
-            "overlay_half_life_days": 3.1062837195053903,
-            "overlay_model": "ewma_absolute",
-            "overlay_persistence": 0.8
-          },
-          "sigma_clip_bounds_x": [
-            0.465131396958935,
-            1.7468995203124102
-          ],
-          "standardized_residuals": {
-            "dtype": "float64",
-            "sha256": "bd143f76ca8183201f0e80c4a6974e86f463e0b46364bdedd38726659e9f4bc7",
-            "shape": [
-              692
-            ]
-          }
-        },
+        "residual_overlay_fit": null,
         "residuals": {
           "dtype": "float64",
           "sha256": "90e00665cf9c245b4e1877d621c4dba71470a69f4ecbdd84e4cf61d2a766b0f2",
@@ -574,37 +498,37 @@
       "model_id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
       "paths": [
         [
-          -0.010746940283263997,
-          -0.01884594593344397,
-          -0.026510521057785473,
-          -0.018074474726406928,
-          -0.0027468073209386476
+          -0.007940993292451046,
+          -0.014840252845325938,
+          -0.0217800241943006,
+          -0.01538320070161422,
+          -0.0022779683496095297
         ],
         [
-          0.005249297671081934,
-          0.006295210555791847,
-          0.004443834515295328,
-          -0.001938975736969697,
-          -0.004181165534665128
+          0.004017849570029689,
+          0.0049870011948672036,
+          0.0037290316260078947,
+          -0.0015789578730040468,
+          -0.0034970696384567608
         ],
         [
-          -0.007161261687287169,
-          -0.0053244964362410205,
-          0.0048431037989796095,
-          0.00585764857473276,
-          0.004201825875555119
+          -0.005463475569702357,
+          -0.004304549843558277,
+          0.004017849570029689,
+          0.0049870011948672036,
+          0.0037290316260078947
         ],
         [
-          0.017588542002642097,
-          0.014712376385825296,
-          -0.011144454942124104,
-          0.0004936936576704032,
-          -0.017581754072297968
+          0.013551210052791347,
+          0.011714277355109194,
+          -0.009213033005704497,
+          0.0005090983005700354,
+          -0.015390431877338526
         ]
       ],
       "paths_array": {
         "dtype": "float64",
-        "sha256": "804528e72842ea8495ee0020feabc599156eb4783044d64abac25bf3f861df24",
+        "sha256": "035199a36f28d75828f4f7ecdfe6d077a2f4a80d691030474560de59d29ff2e6",
         "shape": [
           4,
           5
@@ -612,9 +536,7 @@
       },
       "source_forecast_seed": 3233160820,
       "source_specification": {
-        "factor_model": "ff6",
         "id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
-        "residual_overlay": "absolute_ewma",
         "type": "factor_residual_sbb"
       }
     }

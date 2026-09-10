@@ -81,9 +81,9 @@
     "cases": 2,
     "cross_stack_generation": {
       "comparison": "both cases direct fit states and daily paths, plus original dispatcher fit states and terminal arrays, are exactly equal",
-      "py311_output_sha256": "03c0d5aa014580c64bef36687eb5bd996a32984eb9f1d108985d9e8c35a86958",
+      "py311_output_sha256": "68fe19be1c9f6146c73f7f4c12758dd3032932abbc9c17abe3d80ea5b698e6f0",
       "py312_output_path": "external_comparison/factor-py312.json",
-      "py312_output_sha256": "f450d94423aebefb2757f869921c4c9e798aaf12ee8741dfd2eabb0233ba5d21"
+      "py312_output_sha256": "2493e4737c54ae9b610bdd5d00157047b5da90afa6ace658b6e1a7786f482d40"
     },
     "generation_command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache <py311-env>/bin/python tools/generate_factor_residual_source_fixture.py --source-root /path/to/source-research --output src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/factor_residual_source_parity.json",
     "horizon_days": 5,
@@ -98,7 +98,7 @@
     ],
     "path": "resources/test_fixtures/portfolio/factor_residual_source_parity.json",
     "schema": "factor-residual-source-parity-v1",
-    "sha256": "03c0d5aa014580c64bef36687eb5bd996a32984eb9f1d108985d9e8c35a86958",
+    "sha256": "68fe19be1c9f6146c73f7f4c12758dd3032932abbc9c17abe3d80ea5b698e6f0",
     "simulations": 4,
     "source_factor_frame": {
       "columns": [
@@ -137,15 +137,11 @@
   ],
   "raw_candidate_specs": {
     "factor_ff6_ridge_residual_sbb_absolute_ewma": {
-      "factor_model": "ff6",
       "id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
-      "residual_overlay": "absolute_ewma",
       "type": "factor_residual_sbb"
     },
     "factor_ff6_ridge_residual_sbb_none": {
-      "factor_model": "ff6",
       "id": "factor_ff6_ridge_residual_sbb_none",
-      "residual_overlay": "none",
       "type": "factor_residual_sbb"
     }
   },
@@ -163,6 +159,7 @@
         "UMD"
       ],
       "factor_model": "ff6",
+      "factor_model_parameter_source": "source function default because raw descriptor omits factor_model",
       "family": "factor_residual_sbb",
       "fit_function": "_fit_factor_residual_sbb",
       "minimum_finite_training_observations": 180,
@@ -179,7 +176,8 @@
       },
       "resampling": "stationary_bootstrap",
       "residual_definition": "portfolio_return - risk_free - ridge_factor_prediction",
-      "residual_overlay": "absolute_ewma",
+      "residual_overlay": "none",
+      "residual_overlay_parameter_source": "source function default because raw descriptor omits residual_overlay",
       "risk_free_column": "RF",
       "seed": {
         "fit": [
@@ -211,6 +209,7 @@
         "UMD"
       ],
       "factor_model": "ff6",
+      "factor_model_parameter_source": "source function default because raw descriptor omits factor_model",
       "family": "factor_residual_sbb",
       "fit_function": "_fit_factor_residual_sbb",
       "minimum_finite_training_observations": 180,
@@ -228,6 +227,7 @@
       "resampling": "stationary_bootstrap",
       "residual_definition": "portfolio_return - risk_free - ridge_factor_prediction",
       "residual_overlay": "none",
+      "residual_overlay_parameter_source": "source function default because raw descriptor omits residual_overlay",
       "risk_free_column": "RF",
       "seed": {
         "fit": [
@@ -294,18 +294,17 @@
     "raw_descriptor_source": {
       "descriptors": {
         "factor_ff6_ridge_residual_sbb_absolute_ewma": {
-          "factor_model": "ff6",
           "id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
-          "residual_overlay": "absolute_ewma",
           "type": "factor_residual_sbb"
         },
         "factor_ff6_ridge_residual_sbb_none": {
-          "factor_model": "ff6",
           "id": "factor_ff6_ridge_residual_sbb_none",
-          "residual_overlay": "none",
           "type": "factor_residual_sbb"
         }
       },
+      "path": "external_recovery/historical-factor2-descriptors.json",
+      "sha256": "430ea471d11fc4ed6b5b892728df0c492663ec89f2d11ec5758be1e0283ee80d",
+      "resolution_policy": "The retained descriptors are seed-bearing and remain sparse. The source function's factor_model=ff6 and residual_overlay=none defaults are recorded only in resolved_statistical_specs; the ID suffix does not activate an omitted overlay.",
       "line_ranges": {
         "_prequential_combo_expert_candidates": [
           7459,
@@ -316,7 +315,7 @@
           3490
         ]
       },
-      "path": "source-research/scripts/forecast_oos_research_gate.py"
+      "source_dispatch_path": "source-research/scripts/forecast_oos_research_gate.py"
     },
     "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
     "seed_contract": "blake2b-64-little-mod-2^32-1; fit args=('factor_residual_sbb', factor_model, len(combined), len(factor_cols)); forecast args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"

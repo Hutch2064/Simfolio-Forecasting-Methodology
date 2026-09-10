@@ -140,11 +140,17 @@ def test_factor_residual_factory_domain_and_specification() -> None:
     assert {case["model_id"] for case in fixture["cases"]} == set(FACTOR_RESIDUAL_MODEL_IDS)
     assert set(RESOLVED_FACTOR_RESIDUAL_SPECS) == set(FACTOR_RESIDUAL_MODEL_IDS)
     for model_id in FACTOR_RESIDUAL_MODEL_IDS:
+        assert set(RAW_FACTOR_RESIDUAL_SPECS[model_id]) == {"id", "type"}
         assert dict(RAW_FACTOR_RESIDUAL_SPECS[model_id]) == next(
             case["source_specification"]
             for case in fixture["cases"]
             if case["model_id"] == model_id
         )
+        resolved = RESOLVED_FACTOR_RESIDUAL_SPECS[model_id]
+        assert resolved["factor_model"] == "ff6"
+        assert resolved["residual_overlay"] == "none"
+        assert "source function default" in resolved["factor_model_parameter_source"]
+        assert "source function default" in resolved["residual_overlay_parameter_source"]
         assert isinstance(make_factor_residual_model(model_id), FactorResidualSBBModel)
     with pytest.raises(ValueError, match="unknown factor residual model"):
         FactorResidualSBBModel("factor_ff6_ridge_residual_sbb_unknown")

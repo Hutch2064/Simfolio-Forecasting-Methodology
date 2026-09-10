@@ -71,16 +71,12 @@ RAW_FACTOR_RESIDUAL_SPECS: Mapping[str, Mapping[str, Any]] = MappingProxyType(
             {
                 "id": "factor_ff6_ridge_residual_sbb_none",
                 "type": "factor_residual_sbb",
-                "factor_model": "ff6",
-                "residual_overlay": "none",
             }
         ),
         "factor_ff6_ridge_residual_sbb_absolute_ewma": MappingProxyType(
             {
                 "id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
                 "type": "factor_residual_sbb",
-                "factor_model": "ff6",
-                "residual_overlay": "absolute_ewma",
             }
         ),
     }
@@ -94,6 +90,7 @@ RESOLVED_FACTOR_RESIDUAL_SPECS: Mapping[str, Mapping[str, Any]] = MappingProxyTy
                 "fit_function": "_fit_factor_residual_sbb",
                 "minimum_finite_training_observations": 180,
                 "factor_model": "ff6",
+                "factor_model_parameter_source": "source function default because raw descriptor omits factor_model",
                 "factor_columns": ["Mkt_RF", "SMB", "HML", "RMW", "CMA", "UMD"],
                 "risk_free_column": "RF",
                 "alignment": "normalize dates, concat portfolio and factor frame, dropna, require final aligned date equals final training date",
@@ -110,7 +107,8 @@ RESOLVED_FACTOR_RESIDUAL_SPECS: Mapping[str, Mapping[str, Any]] = MappingProxyTy
                 "resampling": "stationary_bootstrap",
                 "stationary_kernel": "_stationary_bootstrap_indices",
                 "path_definition": "risk_free_draw + factor_prediction_draw + residual_draw, clipped to [-1, 1]",
-                "residual_overlay": RAW_FACTOR_RESIDUAL_SPECS[model_id]["residual_overlay"],
+                "residual_overlay": "none",
+                "residual_overlay_parameter_source": "source function default because raw descriptor omits residual_overlay",
                 "seed": {
                     "fit": [
                         "factor_residual_sbb",
