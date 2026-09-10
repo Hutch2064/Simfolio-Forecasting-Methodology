@@ -53,9 +53,18 @@ jobs:
           WHEEL_PATH="$wheel_path" python - <<'PY'
           import hashlib
           import os
+          import subprocess
+          import zipfile
           from pathlib import Path
 
           wheel = Path(os.environ["WHEEL_PATH"])
+          tracked = set(subprocess.check_output(["git", "ls-files", "src"], text=True).splitlines())
+          with zipfile.ZipFile(wheel) as archive:
+              packaged = {name for name in archive.namelist() if name.startswith("simfolio_forecasting_methodology/")}
+          unexpected = sorted(name for name in packaged if "src/" + name not in tracked)
+          assert not unexpected, f"Untracked or obsolete files in wheel: {unexpected}"
+          missing = sorted(name for name in tracked if name.startswith("src/simfolio_forecasting_methodology/") and name[4:] not in packaged)
+          assert not missing, f"Tracked package files missing from wheel: {missing}"
           print(f"wheel={wheel}")
           print(f"wheel_sha256={hashlib.sha256(wheel.read_bytes()).hexdigest()}")
           print(f"wheel_bytes={wheel.stat().st_size}")
