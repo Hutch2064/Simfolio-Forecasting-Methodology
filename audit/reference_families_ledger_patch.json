@@ -72,7 +72,7 @@
         "seed_function": "SimfolioEngine._deterministic_seed",
         "seed_arguments": [
           "forecast_oos_candidate",
-          "origin_label",
+          "origin_date",
           "dense_horizon_tuple",
           "public_model_id",
           "simulations"
@@ -200,7 +200,7 @@
         "seed_function": "SimfolioEngine._deterministic_seed",
         "seed_arguments": [
           "forecast_oos_candidate",
-          "origin_label",
+          "origin_date",
           "dense_horizon_tuple",
           "public_model_id",
           "simulations"
@@ -328,7 +328,7 @@
         "seed_function": "SimfolioEngine._deterministic_seed",
         "seed_arguments": [
           "forecast_oos_candidate",
-          "origin_label",
+          "origin_date",
           "dense_horizon_tuple",
           "public_model_id",
           "simulations"
@@ -456,7 +456,7 @@
         "seed_function": "SimfolioEngine._deterministic_seed",
         "seed_arguments": [
           "forecast_oos_candidate",
-          "origin_label",
+          "origin_date",
           "dense_horizon_tuple",
           "public_model_id",
           "simulations"

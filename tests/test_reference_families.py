@@ -56,6 +56,7 @@ def test_source_fixture_matches_each_terminal_closure() -> None:
             horizon_days=int(payload["horizon_days"]),
             simulations=int(payload["simulations"]),
             seed=20260528,
+            origin_date=payload["origin_label"],
         )
         actual = model.simulate_terminal_log_returns(training, context)
         assert actual.shape == (payload["simulations"], payload["horizon_days"])
@@ -73,6 +74,7 @@ def test_terminal_models_do_not_make_a_daily_increment_claim() -> None:
         horizon_days=5,
         simulations=7,
         seed=20260528,
+        origin_date=payload["origin_label"],
     )
     result = model.simulate_terminal_log_returns(training, context)
     # Every column is generated as a source terminal ensemble.  The adapter

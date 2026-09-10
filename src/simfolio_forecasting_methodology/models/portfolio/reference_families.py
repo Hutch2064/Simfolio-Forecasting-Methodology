@@ -66,7 +66,7 @@ SOURCE_FUNCTIONS_SHA256 = "a76c48963e9bc8fcc3375e15542f38bb079f76d9df4b01b287d71
 
 SOURCE_SEED_CONTRACT = (
     "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', "
-    "origin_label, dense_horizon_tuple, public_model_id, simulations)"
+    "origin_date, dense_horizon_tuple, public_model_id, simulations)"
 )
 
 BDES_BLOCKED_MODEL_ID = (
@@ -317,9 +317,14 @@ class ReferencePortfolioModel:
         # These are the exact seed call arguments at the source gate.  The
         # canonical runner's task seed remains part of the task identity, but
         # the retained source candidate RNG did not pass it to this call.
+        source_origin = (
+            str(context.origin_date)
+            if context.origin_date is not None
+            else str(context.origin_label)
+        )
         seed = _SourceKernel._deterministic_seed(
             "forecast_oos_candidate",
-            context.origin_label,
+            source_origin,
             horizon_grid,
             self.model_id,
             int(context.simulations),
