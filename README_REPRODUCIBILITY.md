@@ -35,6 +35,15 @@ and SciPy 1.18.1. The three NIG MCMC paths can therefore have different
 environment-specific digest values. Each matrix leg must match its own
 source-local fixture; tolerances are not widened to hide a dependency change.
 
+Strict fixture identity also includes the reference platform. The retained
+source replay used macOS 27 arm64 with Apple Accelerate BLAS/LAPACK; the
+recorded Ubuntu x64 run fails 18 strict parity/data tests in each Python leg.
+Cross-platform byte-exact equivalence is unsupported, and a local source
+replay or GitHub Actions wheel test does not establish live website, API, or
+deployed-server behavior. See [Numerical environment and cross-platform parity](docs/numerical-environment.md)
+for the measured differences and the pending explicit ARM64 reference-job
+policy. No tolerance widening is part of that policy.
+
 The wheel checks run outside the source checkout. They verify package-resource
 loading, the 60-file offline snapshot, the 80/4,080/701,280 protocol counts,
 the registered factory map, bounded family and Frontier parity, and public-safety
