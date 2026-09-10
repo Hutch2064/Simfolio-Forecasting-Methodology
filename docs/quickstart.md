@@ -1,7 +1,8 @@
 # Install and run
 
-Use Python 3.11 or 3.12. Install from this repository; no PyPI publication is
-required. The numerical dependency matrix is pinned in `requirements-lock.txt`.
+Use the reference macOS ARM64 environment with Python 3.11 or 3.12. Install
+from this repository; no PyPI publication is required. Cross-platform byte-exact
+parity is not established; see [numerical environment](numerical-environment.md). The numerical dependency matrix is pinned in `requirements-lock.txt`.
 
 ```bash
 git clone https://github.com/Hutch2064/Simfolio-Forecasting-Methodology.git

@@ -28,8 +28,9 @@ model, with 240 simulations per origin.
 
 ## Install and inspect
 
-The optional `all-models` extra installs the numerical dependencies used by the
-validated source-derived paths:
+The reference numerical environment is macOS ARM64 with Python 3.11 or 3.12
+and `requirements-lock.txt`. Cross-platform byte equality is not established.
+The optional `all-models` extra installs the numerical dependencies:
 
 ```bash
 python -m pip install '.[all-models]'

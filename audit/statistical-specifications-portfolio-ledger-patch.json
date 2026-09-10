@@ -1,6 +1,6 @@
 {
   "base_ledger_membership_digest": "c93ea4fca270f7343924a11ec6c3574d1693c07592d9f203b650915548b1d9b5",
-  "generator_sha256": "b788e1c9dc301f2ef856b402d8117c529ce29788d1e0262454ebb675a14e26d5",
+  "generator_sha256": "d7b14403ec8a40614d1e6833b597f01ea61c1bb1ec7df3d2e6de6506e2450053",
   "preserved_ledger_fields": [
     "public_model_id",
     "canonical_rank",
@@ -21,13 +21,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
       "required_dependencies": {
@@ -272,13 +272,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_ml_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
       "required_dependencies": {
@@ -534,13 +534,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_harch_1_5_22",
       "required_dependencies": {
@@ -792,13 +792,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_ewma_absolute",
       "required_dependencies": {
@@ -1044,13 +1044,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_gjr_garch_1_1",
       "required_dependencies": {
@@ -1296,13 +1296,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_figarch_1_d_1",
       "required_dependencies": {
@@ -1551,13 +1551,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "canonical",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "canonical",
       "required_dependencies": {
@@ -1900,13 +1900,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_gaussian_w0.60",
       "required_dependencies": {
@@ -2249,13 +2249,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_gaussian_w0.50",
       "required_dependencies": {
@@ -2598,13 +2598,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_student_t_w0.60",
       "required_dependencies": {
@@ -2947,13 +2947,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_student_t_w0.50",
       "required_dependencies": {
@@ -3296,13 +3296,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_gaussian_w0.70",
       "required_dependencies": {
@@ -3645,13 +3645,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_student_t_w0.70",
       "required_dependencies": {
@@ -3994,13 +3994,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_gaussian_w0.80",
       "required_dependencies": {
@@ -4343,13 +4343,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_student_t_w0.80",
       "required_dependencies": {
@@ -4692,13 +4692,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_student_t_w0.90",
       "required_dependencies": {
@@ -5041,13 +5041,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_gaussian_w0.90",
       "required_dependencies": {
@@ -5390,13 +5390,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_gaussian_w1.00",
       "required_dependencies": {
@@ -5739,13 +5739,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "stack",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stack_canonical_student_t_w1.00",
       "required_dependencies": {
@@ -6088,13 +6088,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.sv_extensions:SuffixSVExtensionModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "sv_extension",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "dp_mixture_sv_sbb",
       "required_dependencies": {
@@ -6292,13 +6292,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.sv_extensions:SuffixSVExtensionModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "sv_extension",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "observable_markov_state_sbb",
       "required_dependencies": {
@@ -6496,13 +6496,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
       "required_dependencies": {
@@ -6740,13 +6740,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.factor_residual:FactorResidualSBBModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; fit args=('factor_residual_sbb', factor_model, len(combined), len(factor_cols)); forecast args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "factor_residual_sbb",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "factor_ff6_ridge_residual_sbb_none",
       "required_dependencies": {
@@ -6946,13 +6946,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.factor_residual:FactorResidualSBBModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; fit args=('factor_residual_sbb', factor_model, len(combined), len(factor_cols)); forecast args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "factor_residual_sbb",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
       "required_dependencies": {
@@ -7152,13 +7152,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
       "required_dependencies": {
@@ -7402,13 +7402,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
       "required_dependencies": {
@@ -7654,13 +7654,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.gas_reference:GasScoreDrivenSkewTModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "gas_score_driven_skewt",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "gas_score_driven_skewt",
       "required_dependencies": {
@@ -7843,13 +7843,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "gaussian",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "constant_mean_gaussian",
       "required_dependencies": {
@@ -8036,13 +8036,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "student_t",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "constant_mean_student_t",
       "required_dependencies": {
@@ -8229,13 +8229,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "naive_iid_historical_portfolio_bootstrap",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "naive_iid_historical_portfolio_bootstrap",
       "required_dependencies": {
@@ -8422,13 +8422,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "sv",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stochastic_volatility_ar1_empirical",
       "required_dependencies": {
@@ -8633,13 +8633,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "sv_sbb",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stochastic_volatility_ar1_empirical_sbb",
       "required_dependencies": {
@@ -8844,13 +8844,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.sv_mcmc_reference:BayesianMCMCSVModel",
         "seed_contract": "fit: blake2b-64-little-mod-2^32-1; args=('sv_mcmc_fit', finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "sv_mcmc_sbb",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_mcmc_stochastic_volatility_sbb",
       "required_dependencies": {
@@ -9044,13 +9044,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "sv",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "stochastic_volatility_ar1_student_t",
       "required_dependencies": {
@@ -9242,13 +9242,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
       "required_dependencies": {
@@ -9494,13 +9494,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
       "required_dependencies": {
@@ -9745,13 +9745,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
       "required_dependencies": {
@@ -9993,13 +9993,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.gjr_reference:PortfolioGJRGARCHModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "portfolio_volatility_extension",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
       "required_dependencies": {
@@ -10208,13 +10208,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
       "required_dependencies": {
@@ -10456,13 +10456,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
       "required_dependencies": {
@@ -10700,13 +10700,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
       "required_dependencies": {
@@ -10956,13 +10956,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
       "required_dependencies": {
@@ -11212,13 +11212,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
       "required_dependencies": {
@@ -11456,13 +11456,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
       "required_dependencies": {
@@ -11700,13 +11700,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
       "required_dependencies": {
@@ -11944,13 +11944,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "bayesian_sbb_vol_overlay",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
       "required_dependencies": {
@@ -12188,13 +12188,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "zero_gaussian",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "zero_mean_gaussian_vol_only",
       "required_dependencies": {
@@ -12381,13 +12381,13 @@
         "callable": true,
         "name": "simfolio_forecasting_methodology.models.portfolio.gjr_reference:PortfolioGJRGARCHModel",
         "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)",
-        "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring"
+        "status": "source_kernel_parity_verified_registry_wired"
       },
       "model_family": "portfolio_volatility_extension",
       "notes": [
         "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
         "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-        "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch."
+        "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified."
       ],
       "public_model_id": "portfolio_gjr_garch_eb_sampler_moving_block_optimal",
       "required_dependencies": {

@@ -50,7 +50,7 @@ jobs:
         run: |
           sw_vers
           uname -m
-          python -c "import platform, numpy, scipy; print(platform.python_version(), numpy.__version__, scipy.__version__); numpy.show_config(); scipy.show_config()"
+          python -c "import os, platform, numpy, scipy; print(platform.uname()); print(platform.python_version(), numpy.__version__, scipy.__version__); print({key: os.environ.get(key) for key in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS')}); numpy.show_runtime(); numpy.show_config(); scipy.show_config()"
       - name: Build wheel outside checkout
         id: wheel
         run: |

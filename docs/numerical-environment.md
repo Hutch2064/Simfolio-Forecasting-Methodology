@@ -39,7 +39,7 @@ Representative strict differences from the run are:
 | Python 3.12 | Base standardized residuals | 0.24567462 |
 | Python 3.12 | Current-production Frontier paths | 8.84260058e-08 |
 
-The GAS case fails exact array equality even at the displayed sub-attosecond
+The GAS case fails exact array equality even at the displayed sub-machine-epsilon
 scale; widening tolerances would hide the identity check. The data test also
 reports a canonical asset fingerprint mismatch. The supplied Ubuntu log does
 not report its BLAS/LAPACK provider, so it does not support naming a specific

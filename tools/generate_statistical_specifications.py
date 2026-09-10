@@ -1684,7 +1684,7 @@ def build_portfolio_ledger_patch(
                 "implementation_factory": {
                     "name": factory_name,
                     "callable": True,
-                    "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring",
+                    "status": "source_kernel_parity_verified_registry_wired",
                     "seed_contract": definition["factory_seed_contract"],
                 },
                 "required_dependencies": closure["runtime_dependencies"],
@@ -1698,7 +1698,7 @@ def build_portfolio_ledger_patch(
                 "notes": [
                     "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
                     "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
-                    "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch.",
+                    "Protocol, dataset, and panel identities are verified independently; their historical linkage to retained score execution remains qualified.",
                 ],
             }
         )
