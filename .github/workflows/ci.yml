@@ -29,11 +29,16 @@ jobs:
       SIMFOLIO_WHEEL_TEST: "1"
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v10
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
-          cache-dependency-path: requirements-lock.txt
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: requirements-lock.txt
+      - name: Create pinned reference Python environment
+        run: |
+          reference_env="${RUNNER_TEMP}/reference-python-${{ matrix.python-version }}"
+          uv venv --managed-python --python "${{ matrix.python-version }}" --seed "$reference_env"
+          echo "$reference_env/bin" >> "$GITHUB_PATH"
       - name: Install locked runtime, all-models, and test dependencies
         run: |
           export NUMBA_CACHE_DIR="${RUNNER_TEMP}/simfolio-numba-cache-${{ matrix.python-version }}"
