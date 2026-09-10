@@ -38,8 +38,8 @@ simfolio-oos data verify
 simfolio-oos data prepare --destination .simfolio-oos-data
 ```
 
-Preparation verifies every required series, the supporting `EFFRX` series, both
-factor inputs, row counts, date bounds, schemas, and the normalized matrix hash
+Preparation verifies every required asset series, all six supporting series,
+both factor inputs, row counts, date bounds, schemas, and the normalized matrix hash
 before writing the caller's local cache. It also retains the authorized source
 copy and supporting/factor inputs in that cache and constructs each scored
 portfolio from its full source price history before trimming to the common

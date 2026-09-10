@@ -48,8 +48,10 @@ positions, 48 selected rolling positions, and 51 total descriptors. The
 resource stores every descriptor's date, position, split, and horizon cap while
 the mask digest covers every daily future-row mask.
 
-Forecast models return daily log-return increments. The evaluator cumulatively
-sums those increments to terminal log returns, computes exact empirical CRPS
+Forecast models declare daily log-return increments or an explicit terminal
+log-return ensemble. The evaluator cumulatively sums only daily increments;
+source methods that directly simulate terminal ensembles retain that contract.
+It computes exact empirical CRPS
 with the `n²` pairwise denominator, averages origins within each
 portfolio-horizon cell, and then weights cells equally. Nonfinite forecasts,
 missing tasks, failed origins, and missing cells fail the fixed denominator

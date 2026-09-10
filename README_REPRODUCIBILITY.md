@@ -16,9 +16,9 @@ exact empirical CRPS.
 
 The packaged data manifest identifies source revision
 `773bc1c325559e6bf57a567f1d8bf473a3427fbc`, the 52-series asset panel, `EFFRX`,
-and the French/Q5 factor inputs. The normalized return-matrix identity is
+five additional drift-proxy series, and the French/Q5 factor inputs. The normalized return-matrix identity is
 `52c5bdd96b39762183ef0c204fa8165c2dfd5a4864e7198662615daddb8d6a49`. All
-verification and preparation is local; no proxy series, network refresh, or
+verification and preparation is local; no substituted histories, network refresh, or
 implicit annualization is allowed.
 
 ## Runtime and dependency matrix
