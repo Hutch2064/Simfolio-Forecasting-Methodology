@@ -1,25 +1,58 @@
 # Simfolio Forecasting Methodology
 
-A standalone, public-safe research codebase for reproducing the out-of-sample methodology used to compare probabilistic portfolio forecasting models.
+This repository is a standalone, public-safe research package for the
+out-of-sample comparison of probabilistic portfolio forecasts. It contains
+the canonical catalogue and protocol contracts, source-derived numerical
+implementations that have passed bounded parity checks, and an offline frozen
+data snapshot. It has no dependency on a production website, customer system,
+private datastore, or operational API.
 
-This repository is intentionally independent of any production website, deployment environment, customer system, private datastore, or operational API. Its purpose is methodological reproducibility: model definitions, deterministic portfolio construction, forecast-origin selection, simulation policy, distributional scoring, ranking, and auditable experiment manifests.
+## Current release state
 
-## Canonical study
+The canonical ledger contains **175 exact model identities**. The public
+runtime currently has **85 explicit executable factories**: the 84 canonical
+base specifications and the rank-one asset-level Frontier model. Those 85
+factories have passed package instantiation and bounded forecast/source-parity
+checks. The other ledger rows remain registered evidence identities and fail
+closed when execution is requested.
 
-The canonical catalogue contains **175 admissible forecasting specifications**. The leading specification is the asset-level FastMAP + dynamic Gaussian-factor/Kalman model represented by the immutable historical source ID `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`.
+Historical score tokens are retained as evidence. Historical score linkage has
+not been verified, and no retained score is presented as a newly reproduced
+result. The ledger's full statistical specification gate remains open.
 
-The dense evaluation protocol uses 80 deterministic multi-asset portfolios over the common 1979-12-31 through 2026-05-13 evaluation window. Each portfolio contributes 48 rolling origins selected across the full eligible history plus three temporal holdout origins, for 4,080 origin tasks. Each origin uses 240 forecast simulations. Every eligible daily horizon is scored using exact empirical CRPS on terminal log returns. Origin losses are averaged within portfolio–horizon cells before those cells receive equal weight.
+The packaged canonical data snapshot contains 55 manifest-whitelisted files:
+52 asset series, the `EFFRX` supporting series, and the French daily and Q5
+factor inputs. Verification is offline and hash based. The frozen common
+window is 1979-12-31 through 2026-05-13 with 11,687 dates. The protocol
+constructs 80 portfolios, 4,080 origin tasks, and 701,280 scored cells per
+model, with 240 simulations per origin.
 
-The authoritative membership and verification ledger is packaged at `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`. See the generated [canonical model reference](docs/canonical-model-reference.md) for row-level status.
+## Install and inspect
 
-## Reproducibility design
+The optional `all-models` extra installs the numerical dependencies used by the
+validated source-derived paths:
 
-This repository implements only the 175 canonical white-paper identities. The ledger records model membership and evidence; the protocol defines their evaluation.
+```bash
+python -m pip install 'simfolio-forecasting-methodology[all-models]'
+simfolio-oos data verify --json
+simfolio-oos data prepare --destination .simfolio-oos-data --json
+simfolio-oos coverage --json
+simfolio-oos canonical-175 --plan --json
+```
 
-Historical source identifiers remain attached to evidence and execution records. Shorter `M###` names are presentation aliases only; renaming a table row never changes the model's research identity.
+The data commands use the packaged snapshot by default. Preparation writes a
+caller-local execution cache after rechecking every source hash and derived
+fingerprint; it never downloads or refreshes data. Use
+`simfolio-oos scores --json` to inspect retained score evidence without
+starting a forecast run.
 
-## Current implementation status
+The bounded implementation surface can be exercised with an exact model ID or
+the Frontier rank-one selector. A full canonical run requires the preserved
+240 simulations per origin and is not implied by a smoke run.
 
-Implementation and validation are in progress. Run `simfolio-oos coverage` for evidence-backed counts and `simfolio-oos scores --experiment canonical-whitepaper` to inspect imported retained results without forecasting. Unverified model mappings fail explicitly. A successful bounded smoke run does not establish reproduction of a retained white-paper score.
+## Reproducibility
 
-See [reproducibility status](README_REPRODUCIBILITY.md) and [architecture](docs/architecture.md).
+Read [README_REPRODUCIBILITY.md](README_REPRODUCIBILITY.md) for the numerical
+environment, source/data identities, parity checks, and known validation
+limits. [docs/quickstart.md](docs/quickstart.md) shows a clean wheel install;
+[docs/validation.md](docs/validation.md) describes the CI gates.

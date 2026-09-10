@@ -475,9 +475,10 @@ def _prepare_canonical_data_path(
             for date, value in values.items()
         )
         path = series_root / f"{ticker}.csv.gz"
-        with path.open("wb") as raw:
-            with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as handle:
-                handle.write(("\n".join(lines) + "\n").encode("utf-8"))
+        with path.open("wb") as raw, gzip.GzipFile(
+            filename="", mode="wb", fileobj=raw, mtime=0
+        ) as handle:
+            handle.write(("\n".join(lines) + "\n").encode("utf-8"))
         generated.append(
             {
                 "ticker": ticker,
@@ -502,9 +503,10 @@ def _prepare_canonical_data_path(
         path = portfolio_root / f"{spec.name}.csv.gz"
         frame = pd.DataFrame({"date": logs.index.strftime("%Y-%m-%d"), "portfolio_log_return": logs.to_numpy()})
         csv_bytes = frame.to_csv(index=False, float_format="%.17g", lineterminator="\n").encode("utf-8")
-        with path.open("wb") as raw:
-            with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as handle:
-                handle.write(csv_bytes)
+        with path.open("wb") as raw, gzip.GzipFile(
+            filename="", mode="wb", fileobj=raw, mtime=0
+        ) as handle:
+            handle.write(csv_bytes)
         portfolio_records.append({
             "portfolio_id": spec.name,
             "path": f"canonical_portfolios/{path.name}",
