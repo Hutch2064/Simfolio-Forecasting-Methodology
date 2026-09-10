@@ -151,7 +151,7 @@
   "candidate_status": {
     "classification": "retained wrapper/catalog binding; no source_descriptor_status field is added to executable or seed-bearing descriptors",
     "descriptor_source": {
-      "recovered_descriptor_path": "/tmp/c175-historical-20-descriptors.json",
+      "recovered_descriptor_path": "external_recovery/historical-20-descriptors.json",
       "recovered_descriptor_sha256": "ace6b8ccfa1300b68149ffd5d25f8d4eafe20fcfaf8afc3bfb12ce3f6764dbad",
       "retained_runtime_catalog": "source-research/docs/forecast_oos_publication_master_catalog.json",
       "retained_runtime_catalog_sha256": "b80e3e3c9616916f090b0449cdbe3a79f150340dd98846d1f40b0691dae537a8"
@@ -301,7 +301,7 @@
     "cases": 20,
     "environment_runs": [
       {
-        "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache /tmp/c175-validation-py311/bin/pytest -q tests/parity/test_bayesian_vol_source.py",
+        "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache <py311-env>/bin/pytest -q tests/parity/test_bayesian_vol_source.py",
         "numpy": "2.4.6",
         "python": "3.11.15",
         "result": "5 passed in 1.46s",
@@ -329,7 +329,7 @@
     "sha256": "baee8ba76986b119fff4fbbea105547380c809f4582b4952ed8db8db9fbeb13a",
     "simulations": 4,
     "source_factor_frame": "original source loader invoked against exact packaged frozen FF6 bytes; in-memory refresh disabled; normalized frame equals package frame",
-    "source_generation_command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache /tmp/c175-validation-py311/bin/python tools/generate_bayesian_vol_source_fixture.py --source-root /path/to/source-research --output src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/bayesian_vol_source_parity.json",
+    "source_generation_command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache <py311-env>/bin/python tools/generate_bayesian_vol_source_fixture.py --source-root /path/to/source-research --output src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/bayesian_vol_source_parity.json",
     "training_observations": 720
   },
   "historical_identity": {
