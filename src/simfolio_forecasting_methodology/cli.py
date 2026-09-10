@@ -160,7 +160,7 @@ def _add_execution_arguments(
     command.add_argument(
         "--plan", action="store_true", help="Print the canonical protocol plan only."
     )
-    command.add_argument("--data", type=Path, default=Path(".simfolio-oos-data"))
+    command.add_argument("--data", type=Path, default=None)
     selection = command.add_mutually_exclusive_group()
     selection.add_argument("--model", default="", help="Run one exact canonical model ID.")
     selection.add_argument("--frontier", action="store_true", help="Select canonical rank one.")
@@ -305,19 +305,24 @@ def _execute(args: argparse.Namespace, *, command: str, smoke: bool) -> int:
         ]
     except (RuntimeError, ValueError, OSError) as exc:
         raise SystemExit(str(exc)) from exc
-    try:
-        plan = build_experiment_plan(
-            args.data,
-            portfolio_limit=1 if smoke else None,
-            rolling_origins=1 if smoke else 48,
+    if smoke and args.data is None:
+        from .smoke import fixture_smoke_tasks
+
+        tasks = fixture_smoke_tasks(origins=int(args.task_count), horizon=int(args.horizon))
+    else:
+        try:
+            plan = build_experiment_plan(
+                args.data or Path(".simfolio-oos-data"),
+                portfolio_limit=1 if smoke else None,
+                rolling_origins=1 if smoke else 48,
+            )
+        except (RuntimeError, ValueError, OSError) as exc:
+            raise SystemExit(f"canonical data/protocol unavailable: {exc}") from exc
+        tasks = list(
+            iter_smoke_tasks(plan, count=int(args.task_count), horizon=int(args.horizon))
+            if smoke
+            else plan.tasks
         )
-    except (RuntimeError, ValueError, OSError) as exc:
-        raise SystemExit(f"canonical data/protocol unavailable: {exc}") from exc
-    tasks = list(
-        iter_smoke_tasks(plan, count=int(args.task_count), horizon=int(args.horizon))
-        if smoke
-        else plan.tasks
-    )
     if not tasks:
         raise SystemExit("canonical task constructor returned no tasks")
 
