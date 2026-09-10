@@ -172,7 +172,8 @@ def main() -> int:
     # while disabling its refresh callback in memory.  This proves the local
     # frame before it is passed as an explicit fit input and avoids source
     # checkout writes or remote refreshes.
-    import app.engine as source_engine_module
+    # Resolve the engine already loaded by the digest-verified source gate.
+    source_engine_module = sys.modules[source.SimfolioEngine.__module__]
 
     previous_refresh = source_engine_module.refresh_factor_frame
     source_engine_module.refresh_factor_frame = lambda key, frame: (

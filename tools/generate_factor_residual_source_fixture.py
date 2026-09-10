@@ -174,7 +174,8 @@ def main() -> int:
         "french_daily.csv.gz",
     )
 
-    import app.engine as source_engine_module
+    # Resolve the engine already loaded by the digest-verified source gate.
+    source_engine_module = sys.modules[source.SimfolioEngine.__module__]
 
     previous_refresh = source_engine_module.refresh_factor_frame
     source_engine_module.refresh_factor_frame = lambda key, frame: (
