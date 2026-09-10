@@ -30,11 +30,18 @@ class TrainingData:
     portfolio_log_returns: np.ndarray
     asset_log_returns: np.ndarray | None = None
     policy: PortfolioPolicy | None = None
+    training_dates: np.ndarray | None = None
 
     def validate(self) -> None:
         portfolio = np.asarray(self.portfolio_log_returns, dtype=np.float64)
         if portfolio.ndim != 1 or portfolio.size < 1 or not np.all(np.isfinite(portfolio)):
             raise ValueError("portfolio_log_returns must be a finite one-dimensional series")
+        if self.training_dates is not None:
+            dates = np.asarray(self.training_dates, dtype="datetime64[ns]")
+            if dates.shape != portfolio.shape or np.any(np.isnat(dates)):
+                raise ValueError("training_dates must align with portfolio history")
+            if np.any(dates[1:] <= dates[:-1]):
+                raise ValueError("training_dates must be strictly increasing")
         if self.asset_log_returns is not None:
             assets = np.asarray(self.asset_log_returns, dtype=np.float64)
             if assets.ndim != 2 or assets.shape[0] != portfolio.size:
@@ -57,6 +64,7 @@ class ForecastContext:
     simulations: int
     seed: int
     future_dates: np.ndarray | None = None
+    origin_date: str | None = None
 
 
 @runtime_checkable
