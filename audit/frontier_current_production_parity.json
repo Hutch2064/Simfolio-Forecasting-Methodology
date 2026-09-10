@@ -26,6 +26,8 @@
       "mapped_asset_paths",
       "rejoined_portfolio_log_paths"
     ],
+    "production_entrypoint_replay_tolerance": "2e-12 absolute; full current source entry point matched the manually replayed internal path for all three panels",
+    "production_entrypoint_replay_verified": true,
     "production_precision": "Current source stores marginal/rejoined captured asset paths as float32 and performs rejoin arithmetic in float64; destination reference stores marginal paths as float64.",
     "production_seed_contract": "simulate_frontier_fastmap_log_returns draws one root seed from the caller RNG, then deterministic_seed(frontier_fastmap_asset,ticker,horizon,n_paths,root_seed) per asset and consumes dependence RNG sequentially.",
     "scope_limitations": [
