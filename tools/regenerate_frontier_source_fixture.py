@@ -15,6 +15,8 @@ import importlib.resources
 import importlib.util
 import os
 import sys
+import tempfile
+from contextlib import contextmanager
 from pathlib import Path
 
 import numpy as np
@@ -51,6 +53,34 @@ def _historical_seed(*parts: object) -> int:
     return int.from_bytes(digest.digest(), "little") % (2**32 - 1)
 
 
+@contextmanager
+def _isolated_runtime():
+    """Keep source bytecode and Numba caches inside this checkout."""
+
+    previous_cache_dir = os.environ.get("NUMBA_CACHE_DIR")
+    previous_bytecode_flag = os.environ.get("PYTHONDONTWRITEBYTECODE")
+    previous_dont_write_bytecode = sys.dont_write_bytecode
+    with tempfile.TemporaryDirectory(
+        prefix=".frontier-numba-cache-",
+        dir=Path(__file__).resolve().parents[1],
+    ) as cache_dir:
+        os.environ["NUMBA_CACHE_DIR"] = str(Path(cache_dir).resolve())
+        os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
+        sys.dont_write_bytecode = True
+        try:
+            yield
+        finally:
+            sys.dont_write_bytecode = previous_dont_write_bytecode
+            if previous_cache_dir is None:
+                os.environ.pop("NUMBA_CACHE_DIR", None)
+            else:
+                os.environ["NUMBA_CACHE_DIR"] = previous_cache_dir
+            if previous_bytecode_flag is None:
+                os.environ.pop("PYTHONDONTWRITEBYTECODE", None)
+            else:
+                os.environ["PYTHONDONTWRITEBYTECODE"] = previous_bytecode_flag
+
+
 def _load_source(source_root: Path, panel_root: Path):
     paths = {
         "engine.py": source_root / "app/engine.py",
@@ -67,8 +97,6 @@ def _load_source(source_root: Path, panel_root: Path):
         if actual != expected:
             raise ValueError(f"source_hash_mismatch:{name}:{actual}")
     os.environ["SIMFOLIO_OOS_ENGINE_ROOT"] = str(source_root)
-    os.environ["NUMBA_DISABLE_CACHING"] = "1"
-    sys.dont_write_bytecode = True
     sys.path.insert(0, str(panel_root))
     path = paths["simfolio_oos_copula_alternatives.py"]
     spec = importlib.util.spec_from_file_location("frontier_source_wrapper", path)
@@ -95,7 +123,7 @@ def _default_input() -> Path:
     return resource
 
 
-def regenerate(source_root: Path, panel_root: Path, input_fixture: Path, output: Path) -> None:
+def _regenerate(source_root: Path, panel_root: Path, input_fixture: Path, output: Path) -> None:
     source, pgas = _load_source(source_root, panel_root)
     with np.load(input_fixture, allow_pickle=False) as data:
         panel = {name: np.asarray(data[name]) for name in data.files}
@@ -202,6 +230,11 @@ def regenerate(source_root: Path, panel_root: Path, input_fixture: Path, output:
     }
     output.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(output, **payload)
+
+
+def regenerate(source_root: Path, panel_root: Path, input_fixture: Path, output: Path) -> None:
+    with _isolated_runtime():
+        _regenerate(source_root, panel_root, input_fixture, output)
 
 
 def main() -> int:

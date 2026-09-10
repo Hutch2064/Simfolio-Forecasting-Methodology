@@ -13,6 +13,8 @@ import hashlib
 import importlib.util
 import os
 import sys
+import tempfile
+from contextlib import contextmanager
 from pathlib import Path
 
 import numpy as np
@@ -50,10 +52,36 @@ def _verify_source(source_root: Path, panel_root: Path) -> None:
             raise ValueError(f"source_hash_mismatch:{name}:{actual}")
 
 
+@contextmanager
+def _isolated_runtime():
+    """Keep source bytecode and Numba caches inside this checkout."""
+
+    previous_cache_dir = os.environ.get("NUMBA_CACHE_DIR")
+    previous_bytecode_flag = os.environ.get("PYTHONDONTWRITEBYTECODE")
+    previous_dont_write_bytecode = sys.dont_write_bytecode
+    with tempfile.TemporaryDirectory(
+        prefix=".frontier-numba-cache-",
+        dir=Path(__file__).resolve().parents[1],
+    ) as cache_dir:
+        os.environ["NUMBA_CACHE_DIR"] = str(Path(cache_dir).resolve())
+        os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
+        sys.dont_write_bytecode = True
+        try:
+            yield
+        finally:
+            sys.dont_write_bytecode = previous_dont_write_bytecode
+            if previous_cache_dir is None:
+                os.environ.pop("NUMBA_CACHE_DIR", None)
+            else:
+                os.environ["NUMBA_CACHE_DIR"] = previous_cache_dir
+            if previous_bytecode_flag is None:
+                os.environ.pop("PYTHONDONTWRITEBYTECODE", None)
+            else:
+                os.environ["PYTHONDONTWRITEBYTECODE"] = previous_bytecode_flag
+
+
 def _load_source_alt(source_root: Path, panel_root: Path):
     os.environ["SIMFOLIO_OOS_ENGINE_ROOT"] = str(source_root)
-    os.environ["NUMBA_DISABLE_CACHING"] = "1"
-    sys.dont_write_bytecode = True
     sys.path.insert(0, str(panel_root))
     path = panel_root / "simfolio_oos_copula_alternatives.py"
     spec = importlib.util.spec_from_file_location("frontier_source_rejoin", path)
@@ -65,7 +93,7 @@ def _load_source_alt(source_root: Path, panel_root: Path):
     return module
 
 
-def build_fixture(source_root: Path, panel_root: Path, output: Path) -> None:
+def _build_fixture(source_root: Path, panel_root: Path, output: Path) -> None:
     _verify_source(source_root, panel_root)
     source = _load_source_alt(source_root, panel_root)
     engine = source.SimfolioEngine()
@@ -107,6 +135,11 @@ def build_fixture(source_root: Path, panel_root: Path, output: Path) -> None:
         payload[f"output_{policy}"] = np.asarray(output_values, dtype=np.float64)
     output.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(output, **payload)
+
+
+def build_fixture(source_root: Path, panel_root: Path, output: Path) -> None:
+    with _isolated_runtime():
+        _build_fixture(source_root, panel_root, output)
 
 
 def main() -> int:

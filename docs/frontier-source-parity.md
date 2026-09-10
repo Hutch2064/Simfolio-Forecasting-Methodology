@@ -71,7 +71,7 @@ To regenerate it from the retained source copies, install the historical
 wrapper dependencies, then run from the repository root:
 
 ```
-PYTHONPATH=src NUMBA_DISABLE_CACHING=1 python3 tools/generate_frontier_rejoin_fixture.py \
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 tools/generate_frontier_rejoin_fixture.py \
   --source-research-root /path/to/source-research \
   --panel-root /path/to/asset_level_full_panel_20260823
 ```
@@ -82,18 +82,21 @@ For the complete source fixture, run the following procedure with the
 committed fixture as the frozen panel input:
 
 ```
-PYTHONPATH=src NUMBA_DISABLE_CACHING=1 python3 tools/regenerate_frontier_source_fixture.py \
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 tools/regenerate_frontier_source_fixture.py \
   --source-research-root /path/to/source-research \
   --panel-root /path/to/asset_level_full_panel_20260823 \
   --input-fixture src/simfolio_forecasting_methodology/resources/test_fixtures/frontier/source_reference.npz \
   --output /tmp/frontier-source-regenerated.npz
 ```
 
-The regenerated file is byte-identical to the committed fixture under the
-recorded source hashes. The script uses the original source FastMAP fitter and
-simulator, exact Gaussian factor/Kalman helpers through their Python bodies to
-avoid source cache writes, the original rank mapping, and the original 15 bps
-rejoin. It does not import the extracted package to produce any derived array.
+Both tools set a temporary `NUMBA_CACHE_DIR` inside the checkout before loading
+the source modules and remove that directory on exit, so source trees receive
+no bytecode or Numba cache writes. The regenerated file is byte-identical to
+the committed fixture under the recorded source hashes. The script uses the
+original source FastMAP fitter and simulator, exact Gaussian factor/Kalman
+helpers through their Python bodies to avoid source cache writes, the original
+rank mapping, and the original 15 bps rejoin. It does not import the extracted
+package to produce any derived array.
 
 The focused parity test compares each of those numerical layers against the
 fixture without importing the historical source tree. The observed source to
