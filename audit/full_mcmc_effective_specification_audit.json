@@ -1,0 +1,393 @@
+{
+  "bounded_source_fixture": {
+    "fixture_input": {
+      "generator": "np.random.default_rng(173).normal(0.0002,0.01,420).astype(np.float64)",
+      "length": 420
+    },
+    "path": "src/simfolio_forecasting_methodology/resources/test_fixtures/mcmc/full_mcmc_sv_source_parity.json",
+    "path_duplicate_groups": [
+      [
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean"
+      ],
+      [
+        "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc"
+      ],
+      [
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc"
+      ]
+    ],
+    "path_duplicate_row_count": 14,
+    "path_unique_groups": 26,
+    "posterior_duplicate_groups": [
+      [
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean"
+      ],
+      [
+        "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc"
+      ],
+      [
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc"
+      ]
+    ],
+    "posterior_duplicate_row_count": 15,
+    "posterior_unique_groups": 25,
+    "sha256": "d7fddfc93b35045d826a7d4e6a4fa715da3e5c27999252050253c60f780c11a6",
+    "simulation": {
+      "horizon_days": 17,
+      "n_paths": 9,
+      "seed": 9841
+    }
+  },
+  "critical_interpretation": {
+    "harx_row": "The historical HARX-labelled row omits vol_anchor_model. The source anchor gate defaults that field to none, so its scored source path is identical to the non-HARX AR1 row in the bounded fixture. The package preserves the raw descriptor and does not activate an FF6 anchor from the public ID; any future anchor remains parked until an explicit source descriptor and verified factor-panel evidence are recovered.",
+    "no_silent_reinterpretation": "The raw manifest remains sparse; name-implied values are listed as discrepancies and are not written into the historical source descriptor."
+  },
+  "effective_specification_normalization": {
+    "duplicate_groups": [
+      [
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean"
+      ],
+      [
+        "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc"
+      ],
+      [
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc"
+      ]
+    ],
+    "duplicate_row_count": 11,
+    "excluded_label_keys": [
+      "id",
+      "ablation_family",
+      "feature_family",
+      "innovation_component",
+      "mean_component",
+      "overlay_model",
+      "state_inference",
+      "validation_status"
+    ],
+    "excluded_rng_label_keys": [],
+    "normalized_unique_groups": 29,
+    "preserved_keys": "all other raw descriptor keys, including mcmc controls and innovation resampling; omitted fields remain omitted"
+  },
+  "historical_wrapper": {
+    "catalog_path_recorded": "docs/forecast_oos_publication_master_catalog.json",
+    "path": "tmp/oos_all_daily_exact_crps.py",
+    "sha256": "88aaa532d8a0a63e24964305a26ee6fa45d0d9099dd5da800ab691afad583ea7"
+  },
+  "model_name_vs_actual_parameter_discrepancies": [
+    {
+      "description": "leverage token but source field omitted",
+      "field": "leverage",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "leverage"
+    },
+    {
+      "description": "leverage token but source field omitted",
+      "field": "leverage",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "leverage"
+    },
+    {
+      "description": "leverage token but source field omitted",
+      "field": "leverage",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "leverage"
+    },
+    {
+      "description": "leverage token but source field omitted",
+      "field": "leverage",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "leverage"
+    },
+    {
+      "description": "leverage token but source field omitted",
+      "field": "leverage",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "leverage"
+    },
+    {
+      "description": "leverage token but source field omitted",
+      "field": "leverage",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "leverage"
+    },
+    {
+      "description": "transformed token but source field omitted",
+      "field": "transformed_parameter_mcmc",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "transformed"
+    },
+    {
+      "description": "transformed token but source field omitted",
+      "field": "transformed_parameter_mcmc",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "transformed"
+    },
+    {
+      "description": "transformed token but source field omitted",
+      "field": "transformed_parameter_mcmc",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "transformed"
+    },
+    {
+      "description": "transformed token but source field omitted",
+      "field": "transformed_parameter_mcmc",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "transformed"
+    },
+    {
+      "description": "transformed token but source field omitted",
+      "field": "transformed_parameter_mcmc",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "transformed"
+    },
+    {
+      "description": "raw_innovations token but source field omitted",
+      "field": "unclipped_empirical_innovations",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "raw_innovations"
+    },
+    {
+      "description": "raw_innovations token but source field omitted",
+      "field": "unclipped_empirical_innovations",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "raw_innovations"
+    },
+    {
+      "description": "raw_innovations token but source field omitted",
+      "field": "unclipped_empirical_innovations",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "raw_innovations"
+    },
+    {
+      "description": "raw_innovations token but source field omitted",
+      "field": "unclipped_empirical_innovations",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "raw_innovations"
+    },
+    {
+      "description": "raw_innovations token but source field omitted",
+      "field": "unclipped_empirical_innovations",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+      "name_implied_value": true,
+      "source_value": "<omitted>",
+      "token": "raw_innovations"
+    },
+    {
+      "description": "no_ar token but source field omitted",
+      "field": "latent_vol_persistence",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+      "name_implied_value": "no_ar",
+      "source_value": "<omitted>",
+      "token": "no_ar"
+    },
+    {
+      "description": "student_t_state_shocks token but source field omitted",
+      "field": "state_innovation_distribution",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name_implied_value": "student_t",
+      "source_value": "<omitted>",
+      "token": "student_t_state_shocks"
+    },
+    {
+      "description": "student_t_state_shocks token but source field omitted",
+      "field": "state_innovation_distribution",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc",
+      "name_implied_value": "student_t",
+      "source_value": "<omitted>",
+      "token": "student_t_state_shocks"
+    },
+    {
+      "description": "student_t_state_shocks token but source field omitted",
+      "field": "state_innovation_distribution",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+      "name_implied_value": "student_t",
+      "source_value": "<omitted>",
+      "token": "student_t_state_shocks"
+    },
+    {
+      "description": "empirical_state_shocks token but source field omitted",
+      "field": "state_innovation_distribution",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name_implied_value": "empirical_centered_standardized",
+      "source_value": "<omitted>",
+      "token": "empirical_state_shocks"
+    },
+    {
+      "description": "paired_state_shocks token but source field omitted",
+      "field": "state_innovation_resampling",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name_implied_value": "paired_stationary_bootstrap",
+      "source_value": "<omitted>",
+      "token": "paired_state_shocks"
+    },
+    {
+      "description": "harx_ff6_vol_anchor token but source field omitted",
+      "field": "vol_anchor_model",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+      "name_implied_value": "ridge_harx_ff6",
+      "source_value": "<omitted>",
+      "token": "harx_ff6_vol_anchor"
+    }
+  ],
+  "raw_manifest": {
+    "path": "src/simfolio_forecasting_methodology/resources/catalogs/canonical_40_full_mcmc_sv_specs.json",
+    "sha256": "30d868665f277ecf2494ad6256c60aa1a8fd9a8fce006ab384d667e02e32c078",
+    "source_revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+    "source_script_sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+  },
+  "schema_version": 1,
+  "scope": "historical raw 40 full MCMC SV descriptors; no descriptor values were filled in",
+  "source_fit_signature": {
+    "duplicate_groups": [
+      [
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean"
+      ],
+      [
+        "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+        "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc"
+      ],
+      [
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc"
+      ],
+      [
+        "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+        "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc"
+      ]
+    ],
+    "duplicate_row_count": 15,
+    "function": "source-research/scripts/forecast_oos_research_gate.py::_full_mcmc_sv_overlay_fit_signature",
+    "function_sha256": "9a57b1f8b464d8f68c1d4f0aa563b611dab5b4d0594784beabe262fa0f4d38b9",
+    "interpretation": "fit/posterior identity only; simulation options can still split a posterior group",
+    "unique_groups": 25
+  },
+  "terminal_behavior_comparison": {
+    "actual_wrapper_path": "tmp/oos_all_daily_exact_crps.py",
+    "actual_wrapper_sha256": "88aaa532d8a0a63e24964305a26ee6fa45d0d9099dd5da800ab691afad583ea7",
+    "finding": "current and old wrappers cumsum current/naive paths, while both generic base branches select paths[:,h-1] directly; source engine _simulate_candidate_log_paths returns daily increments for that branch, so generic terminal behavior is historically identical and retains the direct-index discrepancy.",
+    "old_wrapper_path": "tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py",
+    "old_wrapper_sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465",
+    "same_ast_hashes": {
+      "_coherent_iid_paths": "efc536adf9e806281848285cac8ea92ef2056eee974bfa51a3d29a10f9f50d3f",
+      "_current_terminal_matrix": "c860c4898aa1f763c449cfcfd713e5bdefee3019626dc57ba086fc2df7bb8987",
+      "_daily_empirical_crps": "b0a025506a7ddeeb13c32a492c4dda00689a04a6d884ee7fcb254988eb942515",
+      "_generic_terminal_matrix": "3031cff987ba342374e38e7004ab48547a05760e1859b4af9d1bc6372ebba549"
+    }
+  }
+}

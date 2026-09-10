@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import numpy as np
-import pytest
 
 from simfolio_forecasting_methodology.models.numerical.mcmc_sv import (
     load_canonical_full_mcmc_sv_specs,
@@ -47,7 +46,7 @@ def test_adapter_uses_source_candidate_seed(monkeypatch):
     assert observed == [expected_draw]
 
 
-def test_each_unblocked_full_mcmc_adapter_forecasts_and_harx_fails_closed():
+def test_each_raw_full_mcmc_descriptor_forecasts_without_name_inference():
     values = np.random.default_rng(404).normal(0.0002, 0.01, 420).astype(np.float64)
     training = TrainingData(values)
     entries = load_canonical_full_mcmc_sv_specs()
@@ -58,13 +57,10 @@ def test_each_unblocked_full_mcmc_adapter_forecasts_and_harx_fails_closed():
         or "harx_ff6_vol_anchor" in str(entry["id"])
     ]
     assert len(harx_ids) == 1
+    assert all(entry.get("vol_anchor_model") != "ridge_harx_ff6" for entry in entries)
     for entry in entries:
         model_id = str(entry["id"])
         model = FullMCMCSVModel(model_id)
-        if model_id in harx_ids:
-            with pytest.raises(ValueError, match="factor panel"):
-                model.simulate_daily_log_returns(training, _context(model_id))
-            continue
         paths = model.simulate_daily_log_returns(training, _context(model_id))
         assert paths.shape == (2, 3), model_id
         assert np.all(np.isfinite(paths)), model_id
