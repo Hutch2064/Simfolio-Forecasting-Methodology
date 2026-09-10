@@ -52,7 +52,10 @@ def test_each_unblocked_full_mcmc_adapter_forecasts_and_harx_fails_closed():
     training = TrainingData(values)
     entries = load_canonical_full_mcmc_sv_specs()
     harx_ids = [
-        str(entry["id"]) for entry in entries if entry.get("vol_anchor_model") == "ridge_harx_ff6"
+        str(entry["id"])
+        for entry in entries
+        if entry.get("vol_anchor_model") == "ridge_harx_ff6"
+        or "harx_ff6_vol_anchor" in str(entry["id"])
     ]
     assert len(harx_ids) == 1
     for entry in entries:

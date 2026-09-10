@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from pathlib import Path
+from importlib.resources import files
 
 import numpy as np
 
@@ -15,7 +15,12 @@ from simfolio_forecasting_methodology.models.numerical.mcmc_sv import (
     simulate_full_mcmc_sv,
 )
 
-_FIXTURE = Path(__file__).parents[1] / "data" / "full_mcmc_sv_source_parity.json"
+_FIXTURE = files("simfolio_forecasting_methodology").joinpath(
+    "resources/test_fixtures/mcmc/full_mcmc_sv_source_parity.json"
+)
+_MANIFEST = files("simfolio_forecasting_methodology").joinpath(
+    "resources/catalogs/canonical_40_full_mcmc_sv_specs.json"
+)
 
 
 def _digest(values: np.ndarray) -> str:
@@ -24,13 +29,27 @@ def _digest(values: np.ndarray) -> str:
 
 def test_owned_full_mcmc_sv_catalogue_is_exactly_40_source_entries():
     entries = load_canonical_full_mcmc_sv_specs()
+    manifest = json.loads(_MANIFEST.read_text(encoding="utf-8"))
+    runtime = manifest["scored_runtime_catalog"]
     assert len(entries) == 40
     assert tuple(entry["id"] for entry in entries) == canonical_full_mcmc_sv_ids()
     assert {entry["type"] for entry in entries} == {"bayesian_sbb_full_mcmc_sv_overlay"}
+    assert runtime["catalog_section_consumed_by_wrapper"] == "full_current_catalog"
+    assert runtime["catalog_sha256"] == manifest["historical_descriptor_source_sha256"]
+    assert runtime["exact_row_match_verified"] is True
+    assert runtime["status"] == (
+        "scored-runtime-catalog-input-resolved-to-historical-publication-file"
+    )
 
 
 def test_full_mcmc_sv_fit_and_paths_match_source_fixture():
     fixture = json.loads(_FIXTURE.read_text(encoding="utf-8"))
+    manifest_digest = hashlib.sha256(_MANIFEST.read_bytes()).hexdigest()
+    assert fixture["source_candidate_manifest"] == (
+        "src/simfolio_forecasting_methodology/resources/catalogs/"
+        "canonical_40_full_mcmc_sv_specs.json"
+    )
+    assert fixture["source_candidate_manifest_sha256"] == manifest_digest
     values = np.random.default_rng(173).normal(0.0002, 0.01, 420).astype(np.float64)
     assert fixture["fixture_input"]["length"] == values.size
     simulation = fixture["simulation"]

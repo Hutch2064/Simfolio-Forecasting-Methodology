@@ -54,10 +54,12 @@ class FullMCMCSVModel:
         self, training: TrainingData, context: ForecastContext
     ) -> np.ndarray:
         training.validate()
-        if (
-            str(spec_for_full_mcmc_sv(self.model_id).get("vol_anchor_model", "none"))
-            == "ridge_harx_ff6"
-        ):
+        spec = spec_for_full_mcmc_sv(self.model_id)
+        has_harx_anchor = (
+            str(spec.get("vol_anchor_model", "none")) == "ridge_harx_ff6"
+            or "harx_ff6_vol_anchor" in self.model_id
+        )
+        if has_harx_anchor:
             raise ValueError(
                 "full MCMC SV HARX FF6 anchor requires an independently verified factor panel"
             )
