@@ -20,12 +20,14 @@ import json
 import os
 import platform
 import sys
+from importlib import resources
 from pathlib import Path
 from typing import Any
 
-# These must be set before loading the source engine, which imports Numba.
-os.environ.setdefault("PYTHONDONTWRITEBYTECODE", "1")
-os.environ.setdefault("NUMBA_CACHE_DIR", str(Path.cwd() / ".numba-cache"))
+# These must be set before loading the source engine, which imports Numba.  The
+# tool owns the redirect even when the caller supplied a different cache path.
+os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
+os.environ["NUMBA_CACHE_DIR"] = str(Path(__file__).resolve().parents[1] / ".numba-cache")
 
 import numpy as np
 import pandas as pd
@@ -33,6 +35,7 @@ import pandas as pd
 ENGINE_SHA256 = "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
 RESEARCH_GATE_SHA256 = "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
 SOURCE_REVISION = "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+CACHE_POLICY_LABEL = "task_owned_redirected_cache"
 
 
 def _sha256_file(path: Path) -> str:
@@ -156,12 +159,41 @@ def main() -> int:
 
     source = _source_module(source_root)
     factor_frame = local._load_packaged_factor_frame("ff6")
+    factor_resource = resources.files("simfolio_forecasting_methodology").joinpath(
+        "resources",
+        "data",
+        "canonical_snapshot",
+        "app",
+        "factor_data",
+        "french_daily.csv.gz",
+    )
 
-    class FrozenFactorSourceEngine(source.SimfolioEngine):
-        def _load_french_factor_frame(self):
-            return factor_frame.copy()
+    # Exercise the original source loader against the exact packaged bytes,
+    # while disabling its refresh callback in memory.  This proves the local
+    # frame before it is passed as an explicit fit input and avoids source
+    # checkout writes or remote refreshes.
+    import app.engine as source_engine_module
 
-    source_engine = FrozenFactorSourceEngine()
+    previous_refresh = source_engine_module.refresh_factor_frame
+    source_engine_module.refresh_factor_frame = lambda key, frame: (
+        frame.copy(deep=True) if frame is not None else None
+    )
+    try:
+        with resources.as_file(factor_resource) as factor_path:
+
+            class FrozenFactorSourceEngine(source.SimfolioEngine):
+                def _bundled_factor_path(self, filename):
+                    if filename == self.FRENCH_FACTOR_BUNDLE:
+                        return str(factor_path)
+                    return super()._bundled_factor_path(filename)
+
+            source_engine = FrozenFactorSourceEngine()
+            source_factor_frame = source_engine._load_french_factor_frame()
+    finally:
+        source_engine_module.refresh_factor_frame = previous_refresh
+
+    if source_factor_frame is None or not factor_frame.equals(source_factor_frame):
+        raise SystemExit("packaged factor frame differs from original source loader frame")
     rng = np.random.default_rng(123)
     n_obs = 720
     values = (
@@ -181,7 +213,7 @@ def main() -> int:
                 pd.Series(values, index=dates),
                 candidate,
                 source_engine,
-                factor_frame=factor_frame,
+                factor_frame=source_factor_frame,
             )
         else:
             source_fit = source._fit_bayesian_sbb_vol_overlay(values, candidate)
@@ -194,11 +226,14 @@ def main() -> int:
                 )
         if source_fit is None:
             raise SystemExit(f"source fit failed for {model_id}")
-        source_rng = np.random.default_rng(
-            local.forecast_oos_candidate_seed(
-                origin, tuple(range(1, horizon + 1)), model_id, simulations
-            )
+        source_seed = source.SimfolioEngine._deterministic_seed(
+            "forecast_oos_candidate",
+            origin,
+            tuple(range(1, horizon + 1)),
+            model_id,
+            simulations,
         )
+        source_rng = np.random.default_rng(source_seed)
         if candidate["type"] == "bayesian_sbb_ml_vol_overlay":
             paths = source._simulate_bayesian_sbb_ml_vol_overlay(
                 source_fit, horizon, simulations, source_rng
@@ -211,6 +246,7 @@ def main() -> int:
             {
                 "model_id": model_id,
                 "source_specification": candidate,
+                "source_forecast_seed": int(source_seed),
                 "fit": _fit_summary(source_fit),
                 "paths": np.asarray(paths, dtype=np.float64).tolist(),
                 "paths_array": _array_record(paths),
@@ -235,7 +271,7 @@ def main() -> int:
             "python": platform.python_version(),
             "numpy": np.__version__,
             "pandas": pd.__version__,
-            "numba_cache_policy": "task-owned external cache; no source writes",
+            "numba_cache_dir": CACHE_POLICY_LABEL,
         },
         "training": {
             "n_obs": n_obs,
@@ -247,6 +283,12 @@ def main() -> int:
                 Path(__file__).resolve().parents[1]
                 / "src/simfolio_forecasting_methodology/resources/data/canonical_snapshot/app/factor_data/french_daily.csv.gz"
             ),
+            "source_loader_frame": {
+                "rows": len(source_factor_frame),
+                "columns": list(source_factor_frame.columns),
+                "values_array": _array_record(source_factor_frame.to_numpy(dtype=np.float64)),
+                "frame_equals_packaged": True,
+            },
         },
         "context": {
             "origin_date": origin,
@@ -257,7 +299,16 @@ def main() -> int:
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
-    print(json.dumps({"output": str(args.output), "cases": len(cases), "source_function_digest": local.SOURCE_FUNCTIONS_SHA256}, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "output": str(args.output),
+                "cases": len(cases),
+                "source_function_digest": local.SOURCE_FUNCTIONS_SHA256,
+            },
+            sort_keys=True,
+        )
+    )
     return 0
 
 

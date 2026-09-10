@@ -150,9 +150,13 @@ def test_exact_bayesian_vol_factory_domain_and_unknown_rejection() -> None:
     assert len(BAYESIAN_VOL_MODEL_IDS) == 20
     assert set(BAYESIAN_VOL_MODEL_IDS) == {case["model_id"] for case in fixture["cases"]}
     assert sum("ml_vol_overlay" in SOURCE_CANDIDATE_SPECS[mid]["type"] for mid in BAYESIAN_VOL_MODEL_IDS) == 1
-    assert SOURCE_CANDIDATE_SPECS[
-        "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe"
-    ]["source_descriptor_status"] == "historical_recovered"
+    assert all("source_descriptor_status" not in spec for spec in SOURCE_CANDIDATE_SPECS.values())
+    assert "ml_model" not in SOURCE_CANDIDATE_SPECS[
+        "bayesian_sbb_ml_vol_overlay_rf_harx_ff6"
+    ]
+    assert "vol_anchor_model" not in SOURCE_CANDIDATE_SPECS[
+        "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor"
+    ]
     with pytest.raises(ValueError, match="unknown Bayesian volatility model"):
         BayesianVolOverlayModel("bayesian_sbb_overlay_unknown")
     with pytest.raises(ValueError, match="no source-backed Bayesian volatility factory"):
@@ -170,15 +174,15 @@ def test_raw_seed_descriptors_and_resolved_defaults_are_separate() -> None:
         assert "mean_dispatch" in resolved
         assert "innovation_and_simulation" in resolved
     anchor_id = "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor"
-    assert RESOLVED_STATISTICAL_SPECS[anchor_id]["vol_anchor"]["factor_model"] == "ff6"
-    assert RAW_CANDIDATE_SPECS[anchor_id]["vol_anchor_model"] == "ridge_harx_ff6"
+    assert "vol_anchor" not in RESOLVED_STATISTICAL_SPECS[anchor_id]
+    assert "vol_anchor_model" not in RAW_CANDIDATE_SPECS[anchor_id]
     assert RAW_CANDIDATE_SPECS[anchor_id]["validation_status"].startswith("clean_rank33")
-    assert "vol_anchor" not in RESOLVED_STATISTICAL_SPECS[
-        "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected"
-    ]
     assert RESOLVED_STATISTICAL_SPECS[
         "bayesian_sbb_ml_vol_overlay_rf_harx_ff6"
-    ]["ml_descriptor"]["factor_model"] == "ff6"
+    ]["ml_descriptor"]["model"] == "ridge_harx"
+    assert RESOLVED_STATISTICAL_SPECS[
+        "bayesian_sbb_ml_vol_overlay_rf_harx_ff6"
+    ]["ml_descriptor"]["factor_model"] == "none"
 
 
 def test_source_function_digest_and_fixture_identity() -> None:
@@ -200,6 +204,7 @@ def test_all_20_source_fit_states_and_daily_paths_match_fixture() -> None:
     context_payload = fixture["context"]
     for case in fixture["cases"]:
         model_id = case["model_id"]
+        assert case["source_specification"] == dict(RAW_CANDIDATE_SPECS[model_id])
         context = ForecastContext(
             model_id=model_id,
             portfolio_id="fixture",
@@ -218,7 +223,7 @@ def test_all_20_source_fit_states_and_daily_paths_match_fixture() -> None:
         assert _array_record(paths) == case["paths_array"]
 
 
-def test_bayesian_vol_adapter_requires_real_dates_for_ml_and_anchor() -> None:
+def test_bayesian_vol_adapter_requires_real_dates_only_for_explicit_factor_paths() -> None:
     values = np.linspace(-0.01, 0.01, 720, dtype=np.float64)
     training = TrainingData(values)
     ml = make_bayesian_vol_model("bayesian_sbb_ml_vol_overlay_rf_harx_ff6")
@@ -227,5 +232,4 @@ def test_bayesian_vol_adapter_requires_real_dates_for_ml_and_anchor() -> None:
     )
     with pytest.raises(ValueError, match="requires training_dates"):
         ml.fit(training)
-    with pytest.raises(ValueError, match="requires training_dates"):
-        anchor.fit(training)
+    anchor.fit(training)

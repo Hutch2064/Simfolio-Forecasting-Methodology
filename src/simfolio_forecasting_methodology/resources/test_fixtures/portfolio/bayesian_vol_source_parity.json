@@ -78,10 +78,10 @@
           5
         ]
       },
+      "source_forecast_seed": 450889633,
       "source_specification": {
         "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
         "overlay_model": "sv_ar1_logvol_bias_corrected",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -100,24 +100,24 @@
         "curve": {
           "curve_type": "variance_decay",
           "fit_status": "complete",
-          "last_variance_x": 1.01588173037547,
+          "last_variance_x": 0.604855087120846,
           "long_variance_x": 1.0276802307825939,
-          "persistence": 0.13356584583000436
+          "persistence": 0.11573224097546148
         },
         "meta": {
-          "feature_count": 54,
-          "feature_set": "harx_ff6",
+          "feature_count": 22,
+          "feature_set": "harx",
           "method": "bayesian_sbb_with_machine_learning_conditional_volatility_overlay",
-          "ml_model": "rf_harx_ff6",
+          "ml_model": "ridge_harx",
           "overlay_fit_status": "complete",
-          "overlay_half_life_days": 0.3443079243962153,
+          "overlay_half_life_days": 0.32142586934023964,
           "overlay_model": "ewma_absolute",
-          "overlay_persistence": 0.13356584583000436,
-          "training_rows": 542
+          "overlay_persistence": 0.11573224097546148,
+          "training_rows": 594
         },
         "sigma_clip_bounds_x": [
-          0.024939518511445682,
-          3.1071075568430118
+          0.024045289897967455,
+          3.090805072341773
         ],
         "standardized_residuals": {
           "dtype": "float64",
@@ -130,46 +130,45 @@
       "model_id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
       "paths": [
         [
-          0.0004996903140178743,
-          0.0018177398940025101,
-          0.004563853697398141,
-          0.004515677957670234,
-          0.0010819779974988518
+          0.000494227217808588,
+          0.001813616104182078,
+          0.004562541635327844,
+          0.004515528872331343,
+          0.001081974710309906
         ],
         [
-          0.01762262041699783,
-          0.015140338273404707,
-          0.008912533419998259,
-          0.01894938252144887,
-          0.017501352852208052
+          0.017217345389850078,
+          0.01510081571860128,
+          0.008909893866086673,
+          0.018948727112602336,
+          0.017501283441841695
         ],
         [
-          -0.004528366502976744,
-          -0.00758108865436995,
-          0.0031625437431928574,
-          -0.004591547377741911,
-          -0.020907760677981453
+          -0.0044164269646614004,
+          -0.007560239318571457,
+          0.003161659449468354,
+          -0.004591376988461079,
+          -0.02090767540933898
         ],
         [
-          -0.0021329684687129763,
-          0.015951022142176093,
-          0.006669275343081515,
-          0.013385849336769019,
-          0.011548937855361013
+          -0.002076960287220641,
+          0.015909345562539902,
+          0.006667320573284873,
+          0.01338538909248502,
+          0.011548892416223545
         ]
       ],
       "paths_array": {
         "dtype": "float64",
-        "sha256": "66e723629814dc5ea4c26cdddcc34cb109c88e4eeb1e37c32b3b0f7a510b4e48",
+        "sha256": "24abcf62cbf0cf2d307060f087cc4b4e40313a2accc286b536cc697aa7f5d247",
         "shape": [
           4,
           5
         ]
       },
+      "source_forecast_seed": 2539935978,
       "source_specification": {
         "id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
-        "ml_model": "rf_harx_ff6",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_ml_vol_overlay"
       }
     },
@@ -254,10 +253,10 @@
           5
         ]
       },
+      "source_forecast_seed": 851126750,
       "source_specification": {
         "id": "bayesian_sbb_overlay_harch_1_5_22",
         "overlay_model": "harch_1_5_22",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -339,10 +338,10 @@
           5
         ]
       },
+      "source_forecast_seed": 3000296585,
       "source_specification": {
         "id": "bayesian_sbb_overlay_ewma_absolute",
         "overlay_model": "ewma_absolute",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -429,10 +428,10 @@
           5
         ]
       },
+      "source_forecast_seed": 3554063336,
       "source_specification": {
         "id": "bayesian_sbb_overlay_gjr_garch_1_1",
         "overlay_model": "gjr_garch_1_1",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -517,10 +516,10 @@
           5
         ]
       },
+      "source_forecast_seed": 841334999,
       "source_specification": {
         "id": "bayesian_sbb_overlay_figarch_1_d_1",
         "overlay_model": "figarch_1_d_1",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -602,11 +601,11 @@
           5
         ]
       },
+      "source_forecast_seed": 1701767009,
       "source_specification": {
         "id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
         "mean_model": "historical_realized_sharpe",
         "overlay_model": "ewma_absolute",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -688,13 +687,12 @@
           5
         ]
       },
+      "source_forecast_seed": 11340610,
       "source_specification": {
         "id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
-        "innovation_method": "empirical_standardized_residuals",
         "mean_model": "positive_sample_mean",
         "overlay_model": "ewma_absolute",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "source_descriptor_status": "core_catalog",
         "tail_method": "filtered_empirical_tail",
         "type": "bayesian_sbb_vol_overlay",
         "vol_model": "absolute_return_ewma_volatility_overlay"
@@ -782,15 +780,15 @@
           5
         ]
       },
+      "source_forecast_seed": 3854749066,
       "source_specification": {
         "id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
-        "innovation_method": "empirical_standardized_residuals",
         "mean_model": "positive_sample_mean",
         "overlay_model": "garch_1_1",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "source_descriptor_status": "core_catalog",
         "tail_method": "filtered_empirical_tail",
         "type": "bayesian_sbb_vol_overlay",
+        "validation_status": "previous_live_garch_incumbent_promoted_from_strict_rank10_baseline",
         "vol_model": "garch_1_1_volatility_overlay"
       }
     },
@@ -877,15 +875,15 @@
           5
         ]
       },
+      "source_forecast_seed": 277643757,
       "source_specification": {
         "id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
-        "innovation_method": "empirical_standardized_residuals",
         "mean_model": "positive_sample_mean",
         "overlay_model": "gjr_garch_1_1",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "source_descriptor_status": "core_catalog",
         "tail_method": "filtered_empirical_tail",
         "type": "bayesian_sbb_vol_overlay",
+        "validation_status": "focused_80_portfolio_validation_candidate",
         "vol_model": "gjr_garch_1_1_volatility_overlay"
       }
     },
@@ -904,8 +902,8 @@
         "curve": {
           "curve_type": "log_variance_decay",
           "fit_status": "complete",
-          "last_log_variance_error_variance": 0.25340803041662835,
-          "last_log_variance_x": 0.29366498410902286,
+          "last_log_variance_error_variance": 0.27335840976489173,
+          "last_log_variance_x": 0.42520440983815755,
           "long_log_variance_x": 0.027304059093910715,
           "persistence": 0.855342850238797
         },
@@ -926,81 +924,56 @@
           "shape": [
             720
           ]
-        },
-        "vol_anchor": {
-          "anchor_log_variance_error_variance": 3.472175391109681,
-          "anchor_log_variance_x": -1.3771376715335115,
-          "anchor_weight": 0.07298249710123113,
-          "factor_cols": [
-            "Mkt_RF",
-            "SMB",
-            "HML",
-            "RMW",
-            "CMA",
-            "UMD"
-          ],
-          "factor_model": "ff6",
-          "feature_count": 54,
-          "model": "ridge_harx_ff6",
-          "pre_anchor_log_variance_error_variance": 0.27335840976489173,
-          "pre_anchor_log_variance_x": 0.42520440983815755,
-          "predicted_sigma_x": 0.5022944207133339,
-          "target": "current_latent_log_variance",
-          "training_rows": 542
         }
       },
       "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
       "paths": [
         [
-          -0.00033065683785822125,
-          -0.0026292621995071016,
-          -0.003557933767014681,
-          -0.005259988687484183,
-          -0.0020932223013514785
+          -0.0003747357402139701,
+          -0.0027801185589036567,
+          -0.003725535094495569,
+          -0.005463902049658456,
+          -0.002170387125828125
         ],
         [
-          -0.0112321772876373,
-          -0.01859400292614765,
-          -0.0023608432926728023,
-          -0.011470795220181846,
-          -0.021888165800670295
+          -0.01190710643305606,
+          -0.01953183047624676,
+          -0.002478147693287693,
+          -0.011897245286293202,
+          -0.022570443392081575
         ],
         [
-          -0.011635041841318527,
-          -0.015975295134585774,
-          -0.011334444826444256,
-          -0.006705639022523279,
-          0.0029450460091238117
+          -0.012333283991815991,
+          -0.016784035239788987,
+          -0.011828783870423788,
+          -0.006961350852241413,
+          0.003021896298558235
         ],
         [
-          -0.012038959862400085,
-          0.0014985064164720321,
-          0.013090732172236632,
-          0.0018260720891501588,
-          0.00867741927508119
+          -0.01276057598012998,
+          0.0015511256435747328,
+          0.013622640824252739,
+          0.0018760562845359537,
+          0.008929502812753223
         ]
       ],
       "paths_array": {
         "dtype": "float64",
-        "sha256": "8091c5777eb029875ca3b9e43f84ab4f65964e7d2ca57c1d9e9d241366c54e4d",
+        "sha256": "cef06831179fedae745b322390149a2b88ee1594bf1bb14c9ac1bb9a740b87af",
         "shape": [
           4,
           5
         ]
       },
+      "source_forecast_seed": 3004841120,
       "source_specification": {
-        "fixed_sharpe_cap": false,
         "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
-        "innovation_method": "empirical_standardized_residuals",
         "mean_model": "merton_positive_hac_drift_uncertainty",
         "overlay_model": "sv_ar1_logvol_bias_corrected",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "source_descriptor_status": "core_catalog",
         "tail_method": "filtered_empirical_tail",
         "type": "bayesian_sbb_vol_overlay",
-        "vol_anchor_blend": "inverse_variance",
-        "vol_anchor_model": "ridge_harx_ff6",
-        "vol_anchor_target": "current_latent_log_variance",
+        "validation_status": "clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate",
         "vol_model": "sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor"
       }
     },
@@ -1082,11 +1055,11 @@
           5
         ]
       },
+      "source_forecast_seed": 561028811,
       "source_specification": {
         "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
         "mean_model": "empirical_bayes_hac_positive_sharpe",
         "overlay_model": "ewma_absolute",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -1096,7 +1069,7 @@
           "mu_cap": 6.385997301830923e-16,
           "nonnegative_drift": true,
           "posterior_mean": 0.0,
-          "posterior_mu_draws": true,
+          "posterior_mu_draws": false,
           "posterior_sd": 0.0,
           "sample_mu": 0.00043105651759976093,
           "sample_mu_days": 0,
@@ -1168,12 +1141,11 @@
           5
         ]
       },
+      "source_forecast_seed": 4067741607,
       "source_specification": {
         "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
         "mean_model": "empirical_bayes_hac_positive_sharpe",
         "overlay_model": "ewma_absolute",
-        "posterior_mu_draws": true,
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -1259,13 +1231,11 @@
           5
         ]
       },
+      "source_forecast_seed": 794131740,
       "source_specification": {
-        "fixed_sharpe_cap": false,
         "id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
         "mean_model": "empirical_bayes_hac_sharpe",
         "overlay_model": "garch_1_1",
-        "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -1352,15 +1322,15 @@
           5
         ]
       },
+      "source_forecast_seed": 24313390,
       "source_specification": {
-        "fixed_sharpe_cap": false,
         "id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
         "innovation_method": "empirical_standardized_residuals",
         "mean_model": "empirical_bayes_hac_sharpe",
         "overlay_model": "gjr_garch_1_1",
         "path_generator": "stationary_bootstrap_standardized_residuals",
         "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "historical_recovered",
+        "residual_resampling": "stationary_bootstrap",
         "tail_method": "filtered_empirical_tail",
         "type": "bayesian_sbb_vol_overlay",
         "vol_model": "gjr_garch_1_1_volatility_overlay"
@@ -1443,15 +1413,15 @@
           5
         ]
       },
+      "source_forecast_seed": 2637579987,
       "source_specification": {
-        "fixed_sharpe_cap": false,
         "id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
         "innovation_method": "empirical_standardized_residuals",
         "mean_model": "empirical_bayes_hac_sharpe",
         "overlay_model": "egarch_1_1",
         "path_generator": "stationary_bootstrap_standardized_residuals",
         "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "historical_recovered",
+        "residual_resampling": "stationary_bootstrap",
         "tail_method": "filtered_empirical_tail",
         "type": "bayesian_sbb_vol_overlay",
         "vol_model": "egarch_1_1_volatility_overlay"
@@ -1539,13 +1509,11 @@
           5
         ]
       },
+      "source_forecast_seed": 1387824742,
       "source_specification": {
-        "fixed_sharpe_cap": false,
         "id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
         "mean_model": "hierarchical_empirical_bayes_sharpe",
         "overlay_model": "garch_1_1",
-        "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -1627,11 +1595,11 @@
           5
         ]
       },
+      "source_forecast_seed": 1327646372,
       "source_specification": {
         "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
         "mean_model": "empirical_bayes_hac_sharpe",
         "overlay_model": "ewma_absolute",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -1717,13 +1685,11 @@
           5
         ]
       },
+      "source_forecast_seed": 746474582,
       "source_specification": {
-        "fixed_sharpe_cap": false,
         "id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
         "mean_model": "prequential_crps_shrinkage",
         "overlay_model": "garch_1_1",
-        "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     },
@@ -1805,11 +1771,11 @@
           5
         ]
       },
+      "source_forecast_seed": 1490564011,
       "source_specification": {
         "id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
         "mean_model": "zero_sharpe",
         "overlay_model": "ewma_absolute",
-        "source_descriptor_status": "core_catalog",
         "type": "bayesian_sbb_vol_overlay"
       }
     }
@@ -1820,10 +1786,10 @@
     "simulations": 4
   },
   "environment": {
-    "numba_cache_policy": "task-owned external cache; no source writes",
-    "numpy": "2.5.3",
+    "numba_cache_dir": "task_owned_redirected_cache",
+    "numpy": "2.4.6",
     "pandas": "2.3.3",
-    "python": "3.12.13"
+    "python": "3.11.15"
   },
   "schema": "bayesian-vol-source-parity-v1",
   "source_artifacts": {
@@ -2683,6 +2649,27 @@
     "factor_snapshot": "resources/data/canonical_snapshot/app/factor_data/french_daily.csv.gz",
     "factor_snapshot_sha256": "9ec302fa1f2ac1c630e0019cfb3fcabb97a91255a1543e737aa60beea72ff192",
     "n_obs": 720,
+    "source_loader_frame": {
+      "columns": [
+        "Mkt_RF",
+        "SMB",
+        "HML",
+        "RMW",
+        "CMA",
+        "RF",
+        "UMD"
+      ],
+      "frame_equals_packaged": true,
+      "rows": 15854,
+      "values_array": {
+        "dtype": "float64",
+        "sha256": "4e622d61681937c8625db218867fe4acb3894fcfddac69e82818b9b7002fc097",
+        "shape": [
+          15854,
+          7
+        ]
+      }
+    },
     "values": [
       -0.006773849452434956,
       -0.001836610443511451,

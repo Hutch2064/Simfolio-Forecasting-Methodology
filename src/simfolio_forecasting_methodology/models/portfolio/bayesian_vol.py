@@ -74,183 +74,148 @@ SOURCE_SEED_CONTRACT = (
     "origin_date, dense_horizon_tuple, public_model_id, simulations)"
 )
 
-# The research-gate descriptors contain operational comparison and deployment
-# labels.  Those are kept in audit/bayesian-vol-source-candidates.json, while
-# this executable map retains only numerical parameters and provenance-safe
-# source fields consumed by the fit/simulation closure.
+# These are the exact raw descriptors recovered from the retained wrapper/catalog
+# binding.  No model-name suffix or later current-catalog default is inferred.
 _SOURCE_CANDIDATE_SPECS: dict[str, dict[str, Any]] = {
     "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected": {
         "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
-        "type": "bayesian_sbb_vol_overlay",
         "overlay_model": "sv_ar1_logvol_bias_corrected",
-        "source_descriptor_status": "core_catalog",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_ml_vol_overlay_rf_harx_ff6": {
         "id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
         "type": "bayesian_sbb_ml_vol_overlay",
-        "ml_model": "rf_harx_ff6",
-        "source_descriptor_status": "core_catalog",
     },
     "bayesian_sbb_overlay_harch_1_5_22": {
         "id": "bayesian_sbb_overlay_harch_1_5_22",
-        "type": "bayesian_sbb_vol_overlay",
         "overlay_model": "harch_1_5_22",
-        "source_descriptor_status": "core_catalog",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_ewma_absolute": {
         "id": "bayesian_sbb_overlay_ewma_absolute",
-        "type": "bayesian_sbb_vol_overlay",
         "overlay_model": "ewma_absolute",
-        "source_descriptor_status": "core_catalog",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_gjr_garch_1_1": {
         "id": "bayesian_sbb_overlay_gjr_garch_1_1",
-        "type": "bayesian_sbb_vol_overlay",
         "overlay_model": "gjr_garch_1_1",
-        "source_descriptor_status": "core_catalog",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_figarch_1_d_1": {
         "id": "bayesian_sbb_overlay_figarch_1_d_1",
-        "type": "bayesian_sbb_vol_overlay",
         "overlay_model": "figarch_1_d_1",
-        "source_descriptor_status": "core_catalog",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe": {
         "id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "ewma_absolute",
         "mean_model": "historical_realized_sharpe",
-        "source_descriptor_status": "core_catalog",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean": {
         "id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "ewma_absolute",
         "mean_model": "positive_sample_mean",
-        "vol_model": "absolute_return_ewma_volatility_overlay",
-        "innovation_method": "empirical_standardized_residuals",
-        "tail_method": "filtered_empirical_tail",
+        "overlay_model": "ewma_absolute",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "source_descriptor_status": "core_catalog",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "vol_model": "absolute_return_ewma_volatility_overlay",
     },
     "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean": {
         "id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "garch_1_1",
         "mean_model": "positive_sample_mean",
-        "vol_model": "garch_1_1_volatility_overlay",
-        "innovation_method": "empirical_standardized_residuals",
-        "tail_method": "filtered_empirical_tail",
+        "overlay_model": "garch_1_1",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "source_descriptor_status": "core_catalog",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "validation_status": "previous_live_garch_incumbent_promoted_from_strict_rank10_baseline",
+        "vol_model": "garch_1_1_volatility_overlay",
     },
     "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean": {
         "id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "gjr_garch_1_1",
         "mean_model": "positive_sample_mean",
-        "vol_model": "gjr_garch_1_1_volatility_overlay",
-        "innovation_method": "empirical_standardized_residuals",
-        "tail_method": "filtered_empirical_tail",
+        "overlay_model": "gjr_garch_1_1",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "source_descriptor_status": "core_catalog",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "validation_status": "focused_80_portfolio_validation_candidate",
+        "vol_model": "gjr_garch_1_1_volatility_overlay",
     },
     "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor": {
         "id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "sv_ar1_logvol_bias_corrected",
         "mean_model": "merton_positive_hac_drift_uncertainty",
-        "fixed_sharpe_cap": False,
-        "vol_anchor_model": "ridge_harx_ff6",
-        "vol_anchor_target": "current_latent_log_variance",
-        "vol_anchor_blend": "inverse_variance",
-        "vol_model": "sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor",
-        "innovation_method": "empirical_standardized_residuals",
-        "tail_method": "filtered_empirical_tail",
+        "overlay_model": "sv_ar1_logvol_bias_corrected",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "source_descriptor_status": "core_catalog",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_vol_overlay",
+        "validation_status": "clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate",
+        "vol_model": "sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor",
     },
     "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe": {
         "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "ewma_absolute",
         "mean_model": "empirical_bayes_hac_positive_sharpe",
-        "source_descriptor_status": "core_catalog",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty": {
         "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "ewma_absolute",
         "mean_model": "empirical_bayes_hac_positive_sharpe",
-        "posterior_mu_draws": True,
-        "source_descriptor_status": "core_catalog",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe": {
         "id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "garch_1_1",
         "mean_model": "empirical_bayes_hac_sharpe",
-        "fixed_sharpe_cap": False,
-        "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "core_catalog",
+        "overlay_model": "garch_1_1",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe": {
         "id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
         "type": "bayesian_sbb_vol_overlay",
         "overlay_model": "gjr_garch_1_1",
-        "mean_model": "empirical_bayes_hac_sharpe",
         "vol_model": "gjr_garch_1_1_volatility_overlay",
+        "mean_model": "empirical_bayes_hac_sharpe",
         "innovation_method": "empirical_standardized_residuals",
         "tail_method": "filtered_empirical_tail",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "fixed_sharpe_cap": False,
+        "residual_resampling": "stationary_bootstrap",
         "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "historical_recovered",
     },
     "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe": {
         "id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
         "type": "bayesian_sbb_vol_overlay",
         "overlay_model": "egarch_1_1",
-        "mean_model": "empirical_bayes_hac_sharpe",
         "vol_model": "egarch_1_1_volatility_overlay",
+        "mean_model": "empirical_bayes_hac_sharpe",
         "innovation_method": "empirical_standardized_residuals",
         "tail_method": "filtered_empirical_tail",
         "path_generator": "stationary_bootstrap_standardized_residuals",
-        "fixed_sharpe_cap": False,
+        "residual_resampling": "stationary_bootstrap",
         "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "historical_recovered",
     },
     "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe": {
         "id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "garch_1_1",
         "mean_model": "hierarchical_empirical_bayes_sharpe",
-        "fixed_sharpe_cap": False,
-        "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "core_catalog",
+        "overlay_model": "garch_1_1",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe": {
         "id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "ewma_absolute",
         "mean_model": "empirical_bayes_hac_sharpe",
-        "source_descriptor_status": "core_catalog",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage": {
         "id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "garch_1_1",
         "mean_model": "prequential_crps_shrinkage",
-        "fixed_sharpe_cap": False,
-        "prior_source": "data_driven_sharpe_shrinkage",
-        "source_descriptor_status": "core_catalog",
+        "overlay_model": "garch_1_1",
+        "type": "bayesian_sbb_vol_overlay",
     },
     "bayesian_sbb_overlay_ewma_absolute_zero_sharpe": {
         "id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
-        "type": "bayesian_sbb_vol_overlay",
-        "overlay_model": "ewma_absolute",
         "mean_model": "zero_sharpe",
-        "source_descriptor_status": "core_catalog",
+        "overlay_model": "ewma_absolute",
+        "type": "bayesian_sbb_vol_overlay",
     },
 }
 SOURCE_CANDIDATE_SPECS: Mapping[str, Mapping[str, Any]] = MappingProxyType(
@@ -258,41 +223,9 @@ SOURCE_CANDIDATE_SPECS: Mapping[str, Mapping[str, Any]] = MappingProxyType(
 )
 BAYESIAN_VOL_MODEL_IDS: tuple[str, ...] = tuple(_SOURCE_CANDIDATE_SPECS)
 
-# Preserve the raw source descriptors separately from the executable status
-# annotation above.  In particular, an ID suffix is never allowed to infer a
-# parameter that was absent from the descriptor passed to the source wrapper.
-_RAW_DESCRIPTOR_AUDIT_FIELDS: Mapping[str, Mapping[str, Any]] = {
-    "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean": {
-        "production_status": "previous_live_incumbent_full_216_panel_baseline",
-    },
-    "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean": {
-        "validation_status": "previous_live_garch_incumbent_promoted_from_strict_rank10_baseline",
-        "previous_incumbent_id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
-    },
-    "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean": {
-        "validation_status": "focused_80_portfolio_validation_candidate",
-        "comparison_target": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
-    },
-    "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor": {
-        "comparison_target": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
-        "validation_status": "clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate",
-    },
-}
-
+# Raw descriptors are intentionally identical to the retained source rows.
 RAW_CANDIDATE_SPECS: Mapping[str, Mapping[str, Any]] = MappingProxyType(
-    {
-        key: MappingProxyType(
-            {
-                **{
-                    field: value
-                    for field, value in descriptor.items()
-                    if field != "source_descriptor_status"
-                },
-                **dict(_RAW_DESCRIPTOR_AUDIT_FIELDS.get(key, {})),
-            }
-        )
-        for key, descriptor in _SOURCE_CANDIDATE_SPECS.items()
-    }
+    {key: MappingProxyType(dict(value)) for key, value in _SOURCE_CANDIDATE_SPECS.items()}
 )
 
 RAW_SEED_DESCRIPTORS: Mapping[str, Mapping[str, Any]] = MappingProxyType(
@@ -315,6 +248,7 @@ def _resolved_statistical_spec(candidate: Mapping[str, Any]) -> dict[str, Any]:
     model_type = str(candidate["type"])
     mean_model = str(candidate.get("mean_model", ""))
     if model_type == "bayesian_sbb_ml_vol_overlay":
+        ml_model = str(candidate.get("ml_model", "ridge_harx"))
         mean_dispatch = {
             "fit_function": "_fit_bayesian_sbb_vol_overlay",
             "branch": "source ML wrapper base fit",
@@ -333,9 +267,13 @@ def _resolved_statistical_spec(candidate: Mapping[str, Any]) -> dict[str, Any]:
         minimum_observations = 180
         overlay_dispatch = {
             "fit_function": "_fit_bayesian_sbb_ml_vol_overlay",
-            "model": "rf_harx_ff6",
-            "factor_model": "ff6",
-            "factor_parameter_source": "raw ml_model descriptor",
+            "model": ml_model,
+            "factor_model": "ff6" if "ff6" in ml_model else "none",
+            "factor_parameter_source": (
+                "raw ml_model descriptor"
+                if "ml_model" in candidate
+                else "source function default because raw descriptor omits ml_model"
+            ),
             "random_forest": {
                 "n_estimators": 64,
                 "max_depth": 5,
@@ -442,9 +380,13 @@ def _resolved_statistical_spec(candidate: Mapping[str, Any]) -> dict[str, Any]:
         }
     if model_type == "bayesian_sbb_ml_vol_overlay":
         resolved["ml_descriptor"] = {
-            "model": str(candidate["ml_model"]),
-            "factor_model": "ff6" if "ff6" in str(candidate["ml_model"]) else "none",
-            "parameter_source": "explicit raw descriptor field ml_model",
+            "model": ml_model,
+            "factor_model": "ff6" if "ff6" in ml_model else "none",
+            "parameter_source": (
+                "explicit raw descriptor field ml_model"
+                if "ml_model" in candidate
+                else "source function default because raw descriptor omits ml_model"
+            ),
         }
     return resolved
 
@@ -455,7 +397,6 @@ RESOLVED_STATISTICAL_SPECS: Mapping[str, Mapping[str, Any]] = MappingProxyType(
         for model_id in BAYESIAN_VOL_MODEL_IDS
     }
 )
-
 
 
 def _load_packaged_factor_frame(model: str) -> pd.DataFrame:
@@ -495,7 +436,10 @@ _SOURCE_FALLBACK_ERRORS = (
     ValueError,
 )
 
-def _fit_bayesian_constrained_sbb(train_values: np.ndarray, candidate: dict[str, Any]) -> dict[str, Any] | None:
+
+def _fit_bayesian_constrained_sbb(
+    train_values: np.ndarray, candidate: dict[str, Any]
+) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 60:
@@ -515,11 +459,19 @@ def _fit_bayesian_constrained_sbb(train_values: np.ndarray, candidate: dict[str,
         for lookback, weight in ((63, 0.25), (126, 0.25), (252, 0.50)):
             if x.size >= lookback:
                 window_mu = float(np.mean(x[-lookback:]))
-                window_mu = float(np.clip(window_mu, -sr_cap * sigma / math.sqrt(252.0), sr_cap * sigma / math.sqrt(252.0)))
+                window_mu = float(
+                    np.clip(
+                        window_mu,
+                        -sr_cap * sigma / math.sqrt(252.0),
+                        sr_cap * sigma / math.sqrt(252.0),
+                    )
+                )
                 trailing.append((weight, window_mu))
         if trailing:
             total_weight = float(sum(weight for weight, _ in trailing))
-            technical_mu = float(sum(weight * value for weight, value in trailing) / max(total_weight, 1e-12))
+            technical_mu = float(
+                sum(weight * value for weight, value in trailing) / max(total_weight, 1e-12)
+            )
             prior_mu = 0.25 * technical_mu
             prior_meta["technical_prior_daily_mu"] = technical_mu
 
@@ -570,6 +522,7 @@ def _fit_bayesian_constrained_sbb(train_values: np.ndarray, candidate: dict[str,
         },
     }
 
+
 def _mean_schedule_from_fit(fit: dict[str, Any], total_days: int) -> np.ndarray | None:
     total_days = int(total_days)
     if total_days <= 0:
@@ -579,7 +532,11 @@ def _mean_schedule_from_fit(fit: dict[str, Any], total_days: int) -> np.ndarray 
         short_mu = float(decay_meta.get("short_posterior_mean", fit.get("posterior_mean", 0.0)))
         long_mu = float(decay_meta.get("long_posterior_mean", short_mu))
         uncertainty_ratio = float(decay_meta.get("mean_uncertainty_to_process_variance_ratio", 0.0))
-        if not np.isfinite(short_mu) or not np.isfinite(long_mu) or not np.isfinite(uncertainty_ratio):
+        if (
+            not np.isfinite(short_mu)
+            or not np.isfinite(long_mu)
+            or not np.isfinite(uncertainty_ratio)
+        ):
             return None
         day_index = np.arange(1, total_days + 1, dtype=np.float64)
         weight = 1.0 / (1.0 + day_index * max(uncertainty_ratio, 0.0))
@@ -613,6 +570,7 @@ def _mean_schedule_from_fit(fit: dict[str, Any], total_days: int) -> np.ndarray 
         return None
     return schedule
 
+
 def _simulate_bayesian_constrained_sbb(
     fit: dict[str, Any],
     total_days: int,
@@ -629,7 +587,9 @@ def _simulate_bayesian_constrained_sbb(
     if fixed_block_length is not None:
         block_length = int(max(1, min(int(fixed_block_length), int(z_pool.size))))
     else:
-        block_length = max(_politis_white_block_length(z_pool), _politis_white_block_length(z_pool * z_pool))
+        block_length = max(
+            _politis_white_block_length(z_pool), _politis_white_block_length(z_pool * z_pool)
+        )
     z_indices = _stationary_bootstrap_indices(
         n=len(z_pool),
         block_length=int(max(1, block_length)),
@@ -664,9 +624,14 @@ def _simulate_bayesian_constrained_sbb(
         if np.ndim(mu_path) == 0:
             mu_schedule = np.where(use_sample_mu, float(fit["sample_mu"]), float(mu_path))[None, :]
         else:
-            mu_schedule = np.where(use_sample_mu[None, :], float(fit["sample_mu"]), np.asarray(mu_path, dtype=np.float64))
+            mu_schedule = np.where(
+                use_sample_mu[None, :],
+                float(fit["sample_mu"]),
+                np.asarray(mu_path, dtype=np.float64),
+            )
         mu_path = mu_schedule
     return np.clip(mu_path + float(fit["sigma"]) * z_draws, -1.0, 1.0)
+
 
 def _historical_sharpe_stats(values: np.ndarray) -> dict[str, float] | None:
     x = np.asarray(values, dtype=np.float64)
@@ -696,11 +661,13 @@ def _historical_sharpe_stats(values: np.ndarray) -> dict[str, float] | None:
         "mean_uncertainty_to_process_variance_ratio": float((se_mu / sigma) ** 2),
     }
 
+
 def _overlay_half_life_days(persistence: float) -> float | None:
     p = abs(float(persistence))
     if not np.isfinite(p) or p <= 0.0 or p >= 0.999999:
         return None
     return float(math.log(0.5) / math.log(p))
+
 
 def _overlay_vol_clip_bounds(vol_proxy_x: np.ndarray, long_sigma_x: float) -> tuple[float, float]:
     proxy = np.asarray(vol_proxy_x, dtype=np.float64)
@@ -714,6 +681,7 @@ def _overlay_vol_clip_bounds(vol_proxy_x: np.ndarray, long_sigma_x: float) -> tu
     floor = float(max(min(floor, base), 1e-6))
     ceiling = float(max(ceiling, base, floor * 1.01))
     return floor, ceiling
+
 
 def _fit_absolute_ewma_volatility(residuals: np.ndarray) -> dict[str, Any] | None:
     eps = np.asarray(residuals, dtype=np.float64)
@@ -735,7 +703,11 @@ def _fit_absolute_ewma_volatility(residuals: np.ndarray) -> dict[str, Any] | Non
         states = lambdas * states + (1.0 - lambdas) * float(abs_vol_x[idx])
         err = float(target[idx]) - np.log(np.maximum(states, 1e-8))
         losses += err * err
-    best_idx = int(np.argmin(losses)) if np.all(np.isfinite(losses)) else int(np.argmin(np.nan_to_num(losses, nan=np.inf)))
+    best_idx = (
+        int(np.argmin(losses))
+        if np.all(np.isfinite(losses))
+        else int(np.argmin(np.nan_to_num(losses, nan=np.inf)))
+    )
     best_lambda = float(lambdas[best_idx])
     state = level
     sigma_path = np.empty(abs_vol_x.size, dtype=np.float64)
@@ -750,7 +722,10 @@ def _fit_absolute_ewma_volatility(residuals: np.ndarray) -> dict[str, Any] | Non
         "objective": "one_step_log_absolute_return_volatility_mse",
     }
 
-def _fit_har_overlay(residuals: np.ndarray, mode: str, long_sigma_x: float) -> dict[str, Any] | None:
+
+def _fit_har_overlay(
+    residuals: np.ndarray, mode: str, long_sigma_x: float
+) -> dict[str, Any] | None:
     eps = np.asarray(residuals, dtype=np.float64)
     eps = eps[np.isfinite(eps)]
     if eps.size < 252:
@@ -776,7 +751,9 @@ def _fit_har_overlay(residuals: np.ndarray, mode: str, long_sigma_x: float) -> d
     x_rows = []
     y_rows = []
     for idx in range(22, len(d)):
-        x_rows.append([float(d[idx - 1]), float(np.mean(d[idx - 5 : idx])), float(np.mean(d[idx - 22 : idx]))])
+        x_rows.append(
+            [float(d[idx - 1]), float(np.mean(d[idx - 5 : idx])), float(np.mean(d[idx - 22 : idx]))]
+        )
         y_rows.append(float(d[idx]))
     if len(y_rows) < 80:
         return None
@@ -804,12 +781,13 @@ def _fit_har_overlay(residuals: np.ndarray, mode: str, long_sigma_x: float) -> d
         "fit_status": "complete",
     }
 
+
 def _fit_arch_forecast_overlay(residuals: np.ndarray, overlay_model: str) -> dict[str, Any] | None:
     eps = np.asarray(residuals, dtype=np.float64)
     eps = eps[np.isfinite(eps)]
     if eps.size < 252:
         return None
-    x = eps[-min(len(eps), 1260):] * 100.0
+    x = eps[-min(len(eps), 1260) :] * 100.0
     if x.size < 252 or float(np.std(x, ddof=1)) <= 1e-8:
         return None
     try:
@@ -834,18 +812,25 @@ def _fit_arch_forecast_overlay(residuals: np.ndarray, overlay_model: str) -> dic
         sigma = sigma[np.isfinite(sigma)]
         if sigma.size < 20:
             return None
-        params = {str(key): float(value) for key, value in result.params.items() if np.isfinite(value)}
+        params = {
+            str(key): float(value) for key, value in result.params.items() if np.isfinite(value)
+        }
         return {
             "result": result,
             "params": params,
             "sigma_x": np.maximum(sigma, 1e-8),
             "last_sigma_x": float(max(sigma[-1], 1e-8)),
-            "fit_status": "complete" if int(getattr(result, "convergence_flag", 0) or 0) == 0 else "optimizer_warning",
+            "fit_status": "complete"
+            if int(getattr(result, "convergence_flag", 0) or 0) == 0
+            else "optimizer_warning",
         }
     except _SOURCE_FALLBACK_ERRORS:
         return None
 
-def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str, Any]) -> dict[str, Any] | None:
+
+def _fit_bayesian_sbb_vol_overlay(
+    train_values: np.ndarray, candidate: dict[str, Any]
+) -> dict[str, Any] | None:
     x = np.asarray(train_values, dtype=np.float64)
     x = x[np.isfinite(x)]
     if x.size < 60:
@@ -867,9 +852,16 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
         base_fit = _fit_positive_sample_mean_sbb(x)
     elif str(candidate.get("mean_model", "")) == "merton_positive_hac_drift_uncertainty":
         base_fit = _fit_merton_positive_hac_drift_uncertainty_sbb(x)
-    elif str(candidate.get("mean_model", "")) == "evidence_estimated_sharpe_dlm_historical_cagr_anchor":
-        mu, residuals, mean_meta = SimfolioEngine._evidence_estimated_sharpe_dlm_historical_cagr_anchor_mean(x)
-        base_fit_override = mean_meta.get("_base_fit_override") if isinstance(mean_meta, dict) else None
+    elif (
+        str(candidate.get("mean_model", ""))
+        == "evidence_estimated_sharpe_dlm_historical_cagr_anchor"
+    ):
+        mu, residuals, mean_meta = (
+            SimfolioEngine._evidence_estimated_sharpe_dlm_historical_cagr_anchor_mean(x)
+        )
+        base_fit_override = (
+            mean_meta.get("_base_fit_override") if isinstance(mean_meta, dict) else None
+        )
         if isinstance(base_fit_override, dict):
             base_fit = dict(base_fit_override)
         else:
@@ -905,7 +897,10 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
                 base_fit["meta"]["prior_source"] = "portfolio_historical_realized_sharpe"
                 base_fit["meta"]["sample_sharpe_annualized"] = realized_sr
                 base_fit["meta"]["historical_realized_abs_sharpe_cap"] = realized_abs_sr
-    elif str(candidate.get("mean_model", "")) in {"horizon_sharpe_cap_schedule", "historical_sharpe_horizon_schedule"}:
+    elif str(candidate.get("mean_model", "")) in {
+        "horizon_sharpe_cap_schedule",
+        "historical_sharpe_horizon_schedule",
+    }:
         sharpe_stats = _historical_sharpe_stats(x)
         schedule_specs = candidate.get("sharpe_schedule") or []
         segment_fits: list[dict[str, Any]] = []
@@ -1046,9 +1041,13 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
         curve_fit = {
             "curve_type": "variance_decay",
             "persistence": float(np.clip(persistence, 0.0, 0.999)),
-            "last_variance_x": float(max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8)),
+            "last_variance_x": float(
+                max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8)
+            ),
             "long_variance_x": long_variance_x,
-            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(np.asarray(vol_fit.get("sigma_x", []), dtype=np.float64), long_sigma_x),
+            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(
+                np.asarray(vol_fit.get("sigma_x", []), dtype=np.float64), long_sigma_x
+            ),
             "fit_status": str(vol_fit.get("fit_status", "complete")),
         }
     elif overlay_model == "ewma_absolute":
@@ -1059,9 +1058,13 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
         curve_fit = {
             "curve_type": "variance_decay",
             "persistence": float(np.clip(persistence, 0.0, 0.999)),
-            "last_variance_x": float(max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8)),
+            "last_variance_x": float(
+                max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8)
+            ),
             "long_variance_x": long_variance_x,
-            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(np.asarray(vol_fit.get("sigma_x", []), dtype=np.float64), long_sigma_x),
+            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(
+                np.asarray(vol_fit.get("sigma_x", []), dtype=np.float64), long_sigma_x
+            ),
             "fit_status": str(vol_fit.get("fit_status", "complete")),
             "objective": str(vol_fit.get("objective", "")),
         }
@@ -1071,7 +1074,9 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
             "gjr_garch_1_1": "gjr_tarch_1_1_volatility",
             "egarch_1_1": "egarch_1_1_volatility",
         }[overlay_model]
-        vol_fit = SimfolioEngine._fit_arch_volatility(residuals, vol_name, "gaussian_iid_standardized_innovations")
+        vol_fit = SimfolioEngine._fit_arch_volatility(
+            residuals, vol_name, "gaussian_iid_standardized_innovations"
+        )
         if vol_fit is None:
             return None
         params = vol_fit.get("params", {}) or {}
@@ -1081,7 +1086,9 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
             curve_fit = {
                 "curve_type": "log_variance_decay",
                 "persistence": persistence,
-                "last_log_variance_x": float(math.log(max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8))),
+                "last_log_variance_x": float(
+                    math.log(max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8))
+                ),
                 "long_log_variance_x": float(math.log(long_variance_x)),
                 "sigma_clip_bounds_x": _overlay_vol_clip_bounds(sigma_x, long_sigma_x),
                 "fit_status": str(vol_fit.get("fit_status", "complete")),
@@ -1089,18 +1096,28 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
         else:
             alpha = float(np.clip(params.get("alpha[1]", 0.05), 0.0, 0.80))
             beta = float(np.clip(params.get("beta[1]", 0.90), 0.0, 0.999))
-            gamma = float(np.clip(params.get("gamma[1]", 0.0), -0.80, 1.20)) if overlay_model == "gjr_garch_1_1" else 0.0
+            gamma = (
+                float(np.clip(params.get("gamma[1]", 0.0), -0.80, 1.20))
+                if overlay_model == "gjr_garch_1_1"
+                else 0.0
+            )
             persistence = float(np.clip(alpha + beta + 0.5 * gamma, 0.0, 0.999))
             curve_fit = {
                 "curve_type": "variance_decay",
                 "persistence": persistence,
-                "last_variance_x": float(max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8)),
+                "last_variance_x": float(
+                    max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8)
+                ),
                 "long_variance_x": long_variance_x,
                 "sigma_clip_bounds_x": _overlay_vol_clip_bounds(sigma_x, long_sigma_x),
                 "fit_status": str(vol_fit.get("fit_status", "complete")),
                 "arch_params": params,
             }
-    elif overlay_model in {"sv_ar1_logvol", "sv_ar1_logvol_bias_corrected", "sv_no_ar_logvol_bias_corrected"}:
+    elif overlay_model in {
+        "sv_ar1_logvol",
+        "sv_ar1_logvol_bias_corrected",
+        "sv_no_ar_logvol_bias_corrected",
+    }:
         if overlay_model == "sv_no_ar_logvol_bias_corrected":
             sv_fit = _fit_sv_variant(
                 x,
@@ -1115,13 +1132,19 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
             sv_fit = _fit_sv_ar1(x)
         if sv_fit is None:
             return None
-        persistence = 0.0 if overlay_model == "sv_no_ar_logvol_bias_corrected" else float(np.clip(sv_fit.get("phi", 0.94), 0.0, 0.995))
+        persistence = (
+            0.0
+            if overlay_model == "sv_no_ar_logvol_bias_corrected"
+            else float(np.clip(sv_fit.get("phi", 0.94), 0.0, 0.995))
+        )
         curve_fit = {
             "curve_type": "log_variance_decay",
             "persistence": persistence,
             "last_log_variance_x": float(sv_fit.get("last_log_var", math.log(long_variance_x))),
             "long_log_variance_x": float(math.log(long_variance_x)),
-            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(np.sqrt(np.maximum((residuals * 100.0) ** 2, 1e-8)), long_sigma_x),
+            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(
+                np.sqrt(np.maximum((residuals * 100.0) ** 2, 1e-8)), long_sigma_x
+            ),
             "fit_status": "complete",
         }
         filtered_var = np.asarray(sv_fit.get("filtered_log_var_var", []), dtype=np.float64)
@@ -1129,7 +1152,9 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
         if filtered_var.size:
             curve_fit["last_log_variance_error_variance"] = float(max(filtered_var[-1], 1e-10))
         if "sv_measurement_bias_correction" in sv_fit:
-            curve_fit["sv_measurement_bias_correction"] = float(sv_fit["sv_measurement_bias_correction"])
+            curve_fit["sv_measurement_bias_correction"] = float(
+                sv_fit["sv_measurement_bias_correction"]
+            )
     elif overlay_model in {"har_log_variance", "har_absolute_volatility"}:
         mode = "log_variance" if overlay_model == "har_log_variance" else "absolute_volatility"
         har_fit = _fit_har_overlay(residuals, mode, long_sigma_x)
@@ -1146,7 +1171,9 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
             return None
         params = arch_fit.get("params", {}) or {}
         if overlay_model == "harch_1_5_22":
-            persistence = float(sum(value for key, value in params.items() if str(key).startswith("alpha[")))
+            persistence = float(
+                sum(value for key, value in params.items() if str(key).startswith("alpha["))
+            )
         else:
             persistence = float(params.get("beta", 0.0) + params.get("d", 0.0))
         persistence = float(np.clip(persistence, 0.0, 0.999))
@@ -1155,7 +1182,9 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
             "arch_result": arch_fit["result"],
             "arch_params": params,
             "persistence": persistence,
-            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(np.asarray(arch_fit.get("sigma_x", []), dtype=np.float64), long_sigma_x),
+            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(
+                np.asarray(arch_fit.get("sigma_x", []), dtype=np.float64), long_sigma_x
+            ),
             "fit_status": str(arch_fit.get("fit_status", "complete")),
         }
     else:
@@ -1168,6 +1197,7 @@ def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: dict[str,
         "curve_fit": curve_fit,
         "meta": meta,
     }
+
 
 def _overlay_vol_multiplier_curve(fit: dict[str, Any], total_days: int) -> np.ndarray:
     total_days = int(total_days)
@@ -1185,7 +1215,9 @@ def _overlay_vol_multiplier_curve(fit: dict[str, Any], total_days: int) -> np.nd
         sigma_x = np.sqrt(np.maximum(long_h + np.power(p, steps) * (last_h - long_h), 1e-8))
     elif curve_type == "log_variance_decay":
         p = float(curve_fit.get("persistence", 0.0))
-        long_log_h = float(curve_fit.get("long_log_variance_x", math.log(max(long_sigma_x * long_sigma_x, 1e-8))))
+        long_log_h = float(
+            curve_fit.get("long_log_variance_x", math.log(max(long_sigma_x * long_sigma_x, 1e-8)))
+        )
         last_log_h = float(curve_fit.get("last_log_variance_x", long_log_h))
         log_h = long_log_h + np.power(p, steps) * (last_log_h - long_log_h)
         sigma_x = np.exp(0.5 * np.clip(log_h, -18.0, 18.0))
@@ -1234,6 +1266,7 @@ def _overlay_vol_multiplier_curve(fit: dict[str, Any], total_days: int) -> np.nd
         return np.ones(total_days, dtype=np.float64)
     return np.clip(multiplier, 0.01, 100.0)
 
+
 def _simulate_bayesian_sbb_vol_overlay(
     fit: dict[str, Any],
     total_days: int,
@@ -1255,6 +1288,7 @@ def _simulate_bayesian_sbb_vol_overlay(
     paths = center + (base_paths - center) * multipliers[None, :]
     return np.clip(paths, -1.0, 1.0)
 
+
 def _factor_model_frame_config(
     engine: SimfolioEngine,
     factor_model: str,
@@ -1264,7 +1298,9 @@ def _factor_model_frame_config(
     if model in {"none", "not_applicable", ""}:
         return None
     if model == "ff6":
-        frame = factor_frame.copy() if factor_frame is not None else engine._load_french_factor_frame()
+        frame = (
+            factor_frame.copy() if factor_frame is not None else engine._load_french_factor_frame()
+        )
         return {
             "name": "ff6",
             "frame": frame,
@@ -1280,6 +1316,7 @@ def _factor_model_frame_config(
             "factor_cols": ["R_MKT", "R_ME", "R_IA", "R_ROE", "R_EG"],
         }
     return None
+
 
 def _ml_forecast_feature_panel(
     train: pd.Series,
@@ -1301,10 +1338,18 @@ def _ml_forecast_feature_panel(
     for window in (5, 21, 63, 126, 252):
         min_periods = max(3, min(window, window // 2))
         features[f"ret_mean_{window}d"] = r.rolling(window, min_periods=min_periods).mean()
-        features[f"abs_vol_{window}d_x"] = np.abs(r).rolling(window, min_periods=min_periods).mean() * math.sqrt(math.pi / 2.0) * 100.0
+        features[f"abs_vol_{window}d_x"] = (
+            np.abs(r).rolling(window, min_periods=min_periods).mean()
+            * math.sqrt(math.pi / 2.0)
+            * 100.0
+        )
         features[f"rv_{window}d_x"] = r.rolling(window, min_periods=min_periods).std(ddof=0) * 100.0
     for span in (10, 21, 63):
-        features[f"abs_vol_ewm_{span}d_x"] = np.abs(r).ewm(span=span, adjust=False, min_periods=max(5, span // 2)).mean() * math.sqrt(math.pi / 2.0) * 100.0
+        features[f"abs_vol_ewm_{span}d_x"] = (
+            np.abs(r).ewm(span=span, adjust=False, min_periods=max(5, span // 2)).mean()
+            * math.sqrt(math.pi / 2.0)
+            * 100.0
+        )
     wealth = np.exp(r.cumsum())
     drawdown = wealth / wealth.cummax() - 1.0
     features["drawdown"] = drawdown
@@ -1333,7 +1378,9 @@ def _ml_forecast_feature_panel(
             features[f"{factor_prefix}_{safe_col}_ret_1d"] = f
             features[f"{factor_prefix}_{safe_col}_mean_21d"] = f.rolling(21, min_periods=10).mean()
             features[f"{factor_prefix}_{safe_col}_mean_63d"] = f.rolling(63, min_periods=21).mean()
-            features[f"{factor_prefix}_{safe_col}_vol_21d"] = f.rolling(21, min_periods=10).std(ddof=0)
+            features[f"{factor_prefix}_{safe_col}_vol_21d"] = f.rolling(21, min_periods=10).std(
+                ddof=0
+            )
             cov = excess.rolling(252, min_periods=126).cov(f)
             var = f.rolling(252, min_periods=126).var(ddof=0)
             features[f"{factor_prefix}_beta_{safe_col}"] = cov / var.replace(0.0, np.nan)
@@ -1359,7 +1406,9 @@ def _ml_forecast_feature_panel(
     X = data[feature_names].to_numpy(dtype=np.float64)
     y_vol = data["y_log_abs_vol"].to_numpy(dtype=np.float64)
     y_return = data["y_return"].to_numpy(dtype=np.float64)
-    if not (np.all(np.isfinite(X)) and np.all(np.isfinite(y_vol)) and np.all(np.isfinite(y_return))):
+    if not (
+        np.all(np.isfinite(X)) and np.all(np.isfinite(y_vol)) and np.all(np.isfinite(y_return))
+    ):
         return None
     return {
         "X": X,
@@ -1374,6 +1423,7 @@ def _ml_forecast_feature_panel(
         "rf_col": rf_col,
     }
 
+
 def _recent_exponential_weights(n_obs: int, half_life: float = 504.0) -> np.ndarray:
     n = int(n_obs)
     if n <= 0:
@@ -1381,6 +1431,7 @@ def _recent_exponential_weights(n_obs: int, half_life: float = 504.0) -> np.ndar
     ages = np.arange(n - 1, -1, -1, dtype=np.float64)
     weights = np.power(0.5, ages / max(float(half_life), 1.0))
     return weights / max(float(np.mean(weights)), 1e-12)
+
 
 def _fit_sklearn_regressor(model_name: str, X: np.ndarray, y: np.ndarray, seed: int) -> Any | None:
     name = str(model_name or "ridge").lower()
@@ -1426,6 +1477,7 @@ def _fit_sklearn_regressor(model_name: str, X: np.ndarray, y: np.ndarray, seed: 
         return None
     return None
 
+
 def _target_persistence(values: np.ndarray) -> float:
     arr = np.asarray(values, dtype=np.float64)
     arr = arr[np.isfinite(arr)]
@@ -1439,6 +1491,7 @@ def _target_persistence(values: np.ndarray) -> float:
     if not np.isfinite(corr):
         return 0.0
     return float(np.clip(corr, 0.0, 0.995))
+
 
 def _fit_bayesian_sbb_ml_vol_overlay(
     train: pd.Series,
@@ -1461,7 +1514,9 @@ def _fit_bayesian_sbb_ml_vol_overlay(
     y = np.asarray(panel["y_log_abs_vol"], dtype=np.float64)
     if X.shape[0] < 120:
         return None
-    base_fit = _fit_bayesian_sbb_vol_overlay(clean.to_numpy(dtype=np.float64), {"overlay_model": "ewma_absolute"})
+    base_fit = _fit_bayesian_sbb_vol_overlay(
+        clean.to_numpy(dtype=np.float64), {"overlay_model": "ewma_absolute"}
+    )
     if base_fit is None:
         return None
     seed = SimfolioEngine._deterministic_seed("ml_vol_overlay", ml_model, len(clean), X.shape[1])
@@ -1470,7 +1525,9 @@ def _fit_bayesian_sbb_ml_vol_overlay(
         return None
     latest = np.asarray(panel["latest_x"], dtype=np.float64).reshape(1, -1)
     pred_log_sigma = float(model.predict(latest)[0])
-    base_long_sigma_x = float(max(float(base_fit.get("base_fit", {}).get("sigma", 0.0)) * 100.0, 1e-6))
+    base_long_sigma_x = float(
+        max(float(base_fit.get("base_fit", {}).get("sigma", 0.0)) * 100.0, 1e-6)
+    )
     predicted_sigma_x = float(np.exp(np.clip(pred_log_sigma, -18.0, 18.0)))
     sigma_proxy = np.exp(np.clip(y, -18.0, 18.0))
     floor, ceiling = _overlay_vol_clip_bounds(sigma_proxy, base_long_sigma_x)
@@ -1501,6 +1558,7 @@ def _fit_bayesian_sbb_ml_vol_overlay(
     }
     return fitted
 
+
 def _simulate_bayesian_sbb_ml_vol_overlay(
     fit: dict[str, Any],
     total_days: int,
@@ -1508,6 +1566,7 @@ def _simulate_bayesian_sbb_ml_vol_overlay(
     rng: np.random.Generator,
 ) -> np.ndarray:
     return _simulate_bayesian_sbb_vol_overlay(fit, int(total_days), int(n_paths), rng)
+
 
 def _fit_harx_ff6_current_log_variance_anchor(
     train: pd.Series | None,
@@ -1547,7 +1606,9 @@ def _fit_harx_ff6_current_log_variance_anchor(
     sigma_proxy = np.exp(np.clip(y, -18.0, 18.0))
     long_sigma_x = float(max(np.std(clean.to_numpy(dtype=np.float64), ddof=1) * 100.0, 1e-6))
     floor, ceiling = _overlay_vol_clip_bounds(sigma_proxy, long_sigma_x)
-    predicted_sigma_x = float(np.clip(np.exp(np.clip(predicted_log_sigma, -18.0, 18.0)), floor, ceiling))
+    predicted_sigma_x = float(
+        np.clip(np.exp(np.clip(predicted_log_sigma, -18.0, 18.0)), floor, ceiling)
+    )
     anchor_log_variance = float(2.0 * math.log(max(predicted_sigma_x, 1e-8)))
     anchor_var = float(4.0 * np.var(residual, ddof=1))
     if not np.isfinite(anchor_var) or anchor_var <= 1e-10:
@@ -1563,6 +1624,7 @@ def _fit_harx_ff6_current_log_variance_anchor(
         "factor_model": "ff6",
         "factor_cols": list(panel.get("factor_cols", [])),
     }
+
 
 def _apply_bayesian_sbb_vol_overlay_vol_anchor(
     fit: dict[str, Any],
@@ -1585,15 +1647,25 @@ def _apply_bayesian_sbb_vol_overlay_vol_anchor(
         state_var = float(curve.get("last_log_variance_error_variance", anchor_var))
         state_var = float(max(state_var, 1e-10)) if np.isfinite(state_var) else anchor_var
         anchor_weight = float(state_var / max(state_var + anchor_var, 1e-10))
-        curve["last_log_variance_x"] = float((1.0 - anchor_weight) * current_value + anchor_weight * anchor_value)
-        curve["last_log_variance_error_variance"] = float(1.0 / (1.0 / state_var + 1.0 / anchor_var))
+        curve["last_log_variance_x"] = float(
+            (1.0 - anchor_weight) * current_value + anchor_weight * anchor_value
+        )
+        curve["last_log_variance_error_variance"] = float(
+            1.0 / (1.0 / state_var + 1.0 / anchor_var)
+        )
     elif curve_type == "variance_decay":
-        current_value = float(math.log(max(float(curve.get("last_variance_x", math.exp(anchor_value))), 1e-8)))
+        current_value = float(
+            math.log(max(float(curve.get("last_variance_x", math.exp(anchor_value))), 1e-8))
+        )
         state_var = float(curve.get("last_log_variance_error_variance", anchor_var))
         state_var = float(max(state_var, 1e-10)) if np.isfinite(state_var) else anchor_var
         anchor_weight = float(state_var / max(state_var + anchor_var, 1e-10))
-        curve["last_variance_x"] = float(math.exp(float((1.0 - anchor_weight) * current_value + anchor_weight * anchor_value)))
-        curve["last_log_variance_error_variance"] = float(1.0 / (1.0 / state_var + 1.0 / anchor_var))
+        curve["last_variance_x"] = float(
+            math.exp(float((1.0 - anchor_weight) * current_value + anchor_weight * anchor_value))
+        )
+        curve["last_log_variance_error_variance"] = float(
+            1.0 / (1.0 / state_var + 1.0 / anchor_var)
+        )
     else:
         return None
     model = dict(fit)
@@ -1609,6 +1681,7 @@ def _apply_bayesian_sbb_vol_overlay_vol_anchor(
     model["meta"] = meta
     return model
 
+
 def _sv_log_chi_square_bias(standardized_residuals: np.ndarray) -> float:
     z = np.asarray(standardized_residuals, dtype=np.float64)
     z = z[np.isfinite(z)]
@@ -1619,23 +1692,36 @@ def _sv_log_chi_square_bias(standardized_residuals: np.ndarray) -> float:
         return -1.2703628454614782
     return float(np.clip(value, -3.0, 1.0))
 
+
 def _fit_sv_variant(train_values: np.ndarray, candidate: dict[str, Any]) -> dict[str, Any] | None:
     base = _fit_sv_ar1(train_values)
     if base is None:
         return None
     fit = dict(base)
-    if bool(candidate.get("bias_correct", False)) and str(fit.get("observation_model")) != "log_chi_square_bias_corrected_kalman":
-        bias = _sv_log_chi_square_bias(np.asarray(fit.get("standardized_residuals"), dtype=np.float64))
+    if (
+        bool(candidate.get("bias_correct", False))
+        and str(fit.get("observation_model")) != "log_chi_square_bias_corrected_kalman"
+    ):
+        bias = _sv_log_chi_square_bias(
+            np.asarray(fit.get("standardized_residuals"), dtype=np.float64)
+        )
         fit["level"] = float(fit["level"] - bias)
         fit["last_log_var"] = float(fit["last_log_var"] - bias)
         fit["last_state_mean"] = float(fit.get("last_state_mean", fit["last_log_var"]) - bias)
         fit["sv_measurement_bias_correction"] = float(bias)
     phi_cap = float(candidate.get("phi_cap", 0.995))
     fit["phi"] = float(np.clip(float(fit.get("phi", 0.94)), 0.0, phi_cap))
-    fit["eta_sd"] = float(np.clip(float(fit.get("eta_sd", 0.0)) * float(candidate.get("eta_scale", 1.0)), 0.0, 2.0))
+    fit["eta_sd"] = float(
+        np.clip(float(fit.get("eta_sd", 0.0)) * float(candidate.get("eta_scale", 1.0)), 0.0, 2.0)
+    )
     last_blend = float(np.clip(candidate.get("last_blend", 0.0), 0.0, 1.0))
-    fit["last_log_var"] = float((1.0 - last_blend) * float(fit["last_log_var"]) + last_blend * float(fit["level"]))
-    fit["last_state_mean"] = float((1.0 - last_blend) * float(fit.get("last_state_mean", fit["last_log_var"])) + last_blend * float(fit["level"]))
+    fit["last_log_var"] = float(
+        (1.0 - last_blend) * float(fit["last_log_var"]) + last_blend * float(fit["level"])
+    )
+    fit["last_state_mean"] = float(
+        (1.0 - last_blend) * float(fit.get("last_state_mean", fit["last_log_var"]))
+        + last_blend * float(fit["level"])
+    )
     return fit
 
 
@@ -1663,6 +1749,7 @@ def _moving_block_indices(
     offsets = np.arange(length, dtype=np.int64)[None, None, :]
     blocks = starts[:, :, None] + offsets
     return blocks.reshape(paths, -1)[:, :total]
+
 
 def _moving_block_bayesian_sbb_paths(
     fit: dict[str, Any],
@@ -1739,22 +1826,29 @@ def _moving_block_bayesian_sbb_paths(
     if multipliers.size != base_paths.shape[1]:
         return base_paths
     center_schedule = _mean_schedule_from_fit(base_fit, int(total_days))
-    center: Any = center_schedule[None, :] if center_schedule is not None else float(base_fit.get("posterior_mean", 0.0))
+    center: Any = (
+        center_schedule[None, :]
+        if center_schedule is not None
+        else float(base_fit.get("posterior_mean", 0.0))
+    )
     return np.clip(center + (base_paths - center) * multipliers[None, :], -1.0, 1.0)
 
-LEGACY_MOVING_BLOCK_SOURCE = MappingProxyType({
-    "path": "simfolio/tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py",
-    "sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465",
-    "function_names": ("_moving_block_indices", "_moving_block_bayesian_sbb_paths"),
-    "line_ranges": {
-        "_moving_block_indices": (641, 662),
-        "_moving_block_bayesian_sbb_paths": (665, 741),
-    },
-    "function_sha256": {
-        "_moving_block_indices": "e193f8ebf78fe52212a099e162d67f8e0e4ebd103f2aebd0c0b5383edec2ce98",
-        "_moving_block_bayesian_sbb_paths": "9d3a8972682118fb876e8d1483f23ca57fd2d116caf77329037304997bb54779",
-    },
-})
+
+LEGACY_MOVING_BLOCK_SOURCE = MappingProxyType(
+    {
+        "path": "simfolio/tmp/asset_level_full_panel_20260823/asset_level_full_exact_crps.py",
+        "sha256": "5beb318b918ea367f7048d71a4e53e1bcc9b343faccda2ef493ddcf81bf3d465",
+        "function_names": ("_moving_block_indices", "_moving_block_bayesian_sbb_paths"),
+        "line_ranges": {
+            "_moving_block_indices": (641, 662),
+            "_moving_block_bayesian_sbb_paths": (665, 741),
+        },
+        "function_sha256": {
+            "_moving_block_indices": "e193f8ebf78fe52212a099e162d67f8e0e4ebd103f2aebd0c0b5383edec2ce98",
+            "_moving_block_bayesian_sbb_paths": "9d3a8972682118fb876e8d1483f23ca57fd2d116caf77329037304997bb54779",
+        },
+    }
+)
 
 SOURCE_FUNCTION_NAMES: tuple[str, ...] = (
     "_fit_bayesian_constrained_sbb",
@@ -1783,38 +1877,42 @@ SOURCE_FUNCTION_NAMES: tuple[str, ...] = (
 )
 
 SOURCE_FUNCTIONS_SHA256 = "13951693868ba16eb6877e415c0b047b8c94f694dc409f209947cb56ef4e70dc"
-SOURCE_FUNCTION_LINE_RANGES: Mapping[str, tuple[int, int]] = MappingProxyType({
-    '_fit_bayesian_constrained_sbb': (3564, 3637),
-    '_mean_schedule_from_fit': (3640, 3681),
-    '_simulate_bayesian_constrained_sbb': (5388, 5446),
-    '_historical_sharpe_stats': (3921, 3947),
-    '_overlay_half_life_days': (5449, 5453),
-    '_overlay_vol_clip_bounds': (5456, 5467),
-    '_fit_absolute_ewma_volatility': (5470, 5503),
-    '_fit_har_overlay': (5506, 5558),
-    '_fit_arch_forecast_overlay': (5561, 5602),
-    '_fit_bayesian_sbb_vol_overlay': (5605, 5927),
-    '_overlay_vol_multiplier_curve': (5930, 5993),
-    '_simulate_bayesian_sbb_vol_overlay': (5996, 6015),
-    '_factor_model_frame_config': (6018, 6042),
-    '_ml_forecast_feature_panel': (6045, 6136),
-    '_recent_exponential_weights': (6139, 6145),
-    '_fit_sklearn_regressor': (6148, 6190),
-    '_target_persistence': (7220, 7232),
-    '_fit_bayesian_sbb_ml_vol_overlay': (7235, 7294),
-    '_simulate_bayesian_sbb_ml_vol_overlay': (7297, 7303),
-    '_fit_harx_ff6_current_log_variance_anchor': (13777, 13830),
-    '_apply_bayesian_sbb_vol_overlay_vol_anchor': (13866, 13909),
-    '_sv_log_chi_square_bias': (13185, 13193),
-    '_fit_sv_variant': (13196, 13213),
-})
+SOURCE_FUNCTION_LINE_RANGES: Mapping[str, tuple[int, int]] = MappingProxyType(
+    {
+        "_fit_bayesian_constrained_sbb": (3564, 3637),
+        "_mean_schedule_from_fit": (3640, 3681),
+        "_simulate_bayesian_constrained_sbb": (5388, 5446),
+        "_historical_sharpe_stats": (3921, 3947),
+        "_overlay_half_life_days": (5449, 5453),
+        "_overlay_vol_clip_bounds": (5456, 5467),
+        "_fit_absolute_ewma_volatility": (5470, 5503),
+        "_fit_har_overlay": (5506, 5558),
+        "_fit_arch_forecast_overlay": (5561, 5602),
+        "_fit_bayesian_sbb_vol_overlay": (5605, 5927),
+        "_overlay_vol_multiplier_curve": (5930, 5993),
+        "_simulate_bayesian_sbb_vol_overlay": (5996, 6015),
+        "_factor_model_frame_config": (6018, 6042),
+        "_ml_forecast_feature_panel": (6045, 6136),
+        "_recent_exponential_weights": (6139, 6145),
+        "_fit_sklearn_regressor": (6148, 6190),
+        "_target_persistence": (7220, 7232),
+        "_fit_bayesian_sbb_ml_vol_overlay": (7235, 7294),
+        "_simulate_bayesian_sbb_ml_vol_overlay": (7297, 7303),
+        "_fit_harx_ff6_current_log_variance_anchor": (13777, 13830),
+        "_apply_bayesian_sbb_vol_overlay_vol_anchor": (13866, 13909),
+        "_sv_log_chi_square_bias": (13185, 13193),
+        "_fit_sv_variant": (13196, 13213),
+    }
+)
 
 
 def _training_series(training: TrainingData) -> pd.Series:
     training.validate()
     if training.training_dates is None:
         raise ValueError("this Bayesian volatility model requires training_dates")
-    dates = pd.DatetimeIndex(np.asarray(training.training_dates, dtype="datetime64[ns]")).normalize()
+    dates = pd.DatetimeIndex(
+        np.asarray(training.training_dates, dtype="datetime64[ns]")
+    ).normalize()
     values = np.asarray(training.portfolio_log_returns, dtype=np.float64)
     if dates.size != values.size or dates.duplicated().any():
         raise ValueError("training_dates must be unique and aligned with returns")
@@ -1847,7 +1945,11 @@ class BayesianVolOverlayModel:
         spec = SOURCE_CANDIDATE_SPECS.get(str(self.model_id))
         if spec is None:
             raise ValueError(f"unknown Bayesian volatility model: {self.model_id!r}")
-        expected_type = "bayesian_sbb_ml_vol_overlay" if "ml_vol_overlay" in str(spec["type"]) else "bayesian_sbb_vol_overlay"
+        expected_type = (
+            "bayesian_sbb_ml_vol_overlay"
+            if "ml_vol_overlay" in str(spec["type"])
+            else "bayesian_sbb_vol_overlay"
+        )
         if str(spec["type"]) != expected_type:
             raise ValueError(f"invalid Bayesian volatility source type for {self.model_id!r}")
 
@@ -1884,7 +1986,11 @@ class BayesianVolOverlayModel:
         return SOURCE_SEED_CONTRACT
 
     def _source_rng(self, context: ForecastContext) -> np.random.Generator:
-        origin = str(context.origin_date) if context.origin_date is not None else str(context.origin_label)
+        origin = (
+            str(context.origin_date)
+            if context.origin_date is not None
+            else str(context.origin_label)
+        )
         available_horizons = tuple(range(1, int(context.horizon_days) + 1))
         seed = forecast_oos_candidate_seed(
             origin,
@@ -1953,7 +2059,10 @@ class BayesianVolOverlayModel:
 
 
 BAYESIAN_VOL_FACTORIES: Mapping[str, Any] = MappingProxyType(
-    {model_id: (lambda model_id=model_id: BayesianVolOverlayModel(model_id)) for model_id in BAYESIAN_VOL_MODEL_IDS}
+    {
+        model_id: (lambda model_id=model_id: BayesianVolOverlayModel(model_id))
+        for model_id in BAYESIAN_VOL_MODEL_IDS
+    }
 )
 
 
