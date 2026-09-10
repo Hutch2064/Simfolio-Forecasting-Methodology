@@ -1,0 +1,543 @@
+{
+  "method": {
+    "aligned_seed_contract": "HistoricalFrontierModel deterministic_seed(asset_level_current_engine,ticker,origin,FRONTIER_MARGINAL_ID,horizon,simulations) and copula_alternatives seed.",
+    "dependence_intermediates": [
+      "mean",
+      "observations",
+      "loading",
+      "residual_variance",
+      "phi",
+      "innovation_variance",
+      "initial_variance",
+      "kalman_terminal_state",
+      "kalman_terminal_covariance"
+    ],
+    "fit_intermediates": [
+      "posterior_center",
+      "bdes_multiscale_vol.b",
+      "mu",
+      "state_loglikelihood",
+      "state_path_variance_last"
+    ],
+    "panels": 3,
+    "path_outputs": [
+      "marginal_paths",
+      "gaussian_uniforms",
+      "mapped_asset_paths",
+      "rejoined_portfolio_log_paths"
+    ],
+    "production_precision": "Current source stores marginal/rejoined captured asset paths as float32 and performs rejoin arithmetic in float64; destination reference stores marginal paths as float64.",
+    "production_seed_contract": "simulate_frontier_fastmap_log_returns draws one root seed from the caller RNG, then deterministic_seed(frontier_fastmap_asset,ticker,horizon,n_paths,root_seed) per asset and consumes dependence RNG sequentially.",
+    "scope_limitations": [
+      "No full 80-row study rerun.",
+      "No live API/deployment write or authenticated deployed revision check.",
+      "Default production and historical adapter outputs intentionally use different seed contracts; differences are recorded rather than relabeled as arithmetic mismatches."
+    ],
+    "tolerances": {
+      "aligned_mapped_and_rejoined": "1e-8 absolute (observed maxima 3.56e-9; covers float32 source storage plus cross-platform arithmetic)",
+      "aligned_uniforms": "5e-14 absolute",
+      "fit_and_dependence": "2e-12 absolute"
+    }
+  },
+  "panels": [
+    {
+      "array_digests": {
+        "aligned_production_bdes_coefficients": "075a1894396c8a0886558f036344579e26f732fa43bab216de4f997b054fd9a2",
+        "aligned_production_dependence_seed": "299e661b279657608123377767c356c357e6a6ea1c0903223835d34cd103fe88",
+        "aligned_production_factor_initial_variance": "b14e6e0ab18c00e1e61ea06038116c211044538772ec76ab8f039ef907e42d25",
+        "aligned_production_factor_innovation_variance": "4c6f5d2870e26e0929662dd1f6e4a79cfbb9aaa396da1625583e709fa0f3a1b5",
+        "aligned_production_factor_loading": "52f7d48e8071bad547e06d251cd99d19f4cd939512425efa2a110df9ca9bbfb4",
+        "aligned_production_factor_mean": "59f4860a8997068dfef3f59c23d9ab73c8e8b0216e68da6cc33a68b733d75840",
+        "aligned_production_factor_observations": "d7e6b66ffab849bbc20ef3b7987c223634b942690b59395290ecdd08767c4f5f",
+        "aligned_production_factor_phi": "abad52994f1643294291fa316b9a39c8418bc713d87f3769c090b77826527f4c",
+        "aligned_production_factor_residual_variance": "af77751564c3c890cb744a06983866f3b1f1daa383a0a74c6e7d8bf8679f3f6c",
+        "aligned_production_kalman_covariance": "aa949da865397048506f3b5a59fb4307630ddffca997385a7749e018c264048b",
+        "aligned_production_kalman_state": "9b6b14904609a2a8a88b9bf475d60987aeb5bb9a0a36f35432409e6c56777934",
+        "aligned_production_mapped_paths": "0962fe93e5a7acc1aa27a7911434453209b7a6136268399d325eb90cb15650c2",
+        "aligned_production_marginal_paths": "971daf5078644aa5a9e1bc5d9123d797cbf81718770729da87fb9acbafd01341",
+        "aligned_production_marginal_seeds": "b80c499839a32a0a833dcca33ca0bda4b72ba7f0600f9caa314b2913c8bfb408",
+        "aligned_production_mu": "cc39047424f495e03969d0ff414a2a1653d3b339223fc0a042ad4bbdd771e0ed",
+        "aligned_production_posterior_centers": "9b5d9e6a7c273d9bfae842649cdc6823b28000184d6823b4ea6cb2743c6fbc9c",
+        "aligned_production_rebalance_mask": "b8b61214a3d88d029080cf9d37d0b9e8244eba93d922a95d68e8db00a45561ac",
+        "aligned_production_rejoined": "9fb0fc5a2184397b2734730ec3896053e36d37b23dea3178d67328f8e123f3f5",
+        "aligned_production_state_loglik": "917407da9d9ab213b06f8b87473c3ee0c8198cd641744cd77ebac9a57f4cf34e",
+        "aligned_production_state_path_var": "9d7913473b487ce91c91d5f800a8f8a622faf8fba9c4f8e0ada4ec1050424ace",
+        "aligned_production_uniforms": "1e851ad15ba7df5050ae5c74a18e31110ba747944652389a99996c955dd5dd7a",
+        "asset_log_returns": "40e882db0ff51137e1865bff71233973a0f21b7c36e8656e3f7399e7c2772bbf",
+        "future_dates": "8d5a5c22778e0ebc5ac22d7807c232c62633527c0582d5df6800e114e9dd4b07",
+        "production_default_mapped_paths": "6bffd2fefc36a0551b6de0441536ec2c138a25cdf0bafc14cf895437beddf762",
+        "production_default_output": "dd09f9a6b09c67436926cbe36cec7412b67dcc701654b1a8defb22c1bea37a06",
+        "production_default_raw_marginal_paths": "9bc087018e41c8a5ab7b2d8a0a7c9be9cbd8c428e65283b0263307035fda314d",
+        "production_default_rebalance_mask": "b8b61214a3d88d029080cf9d37d0b9e8244eba93d922a95d68e8db00a45561ac",
+        "production_default_uniforms": "7f39f831a87040dfc9776d429219ea0699b4d4ef3984228a4506b3777878ceeb",
+        "production_root_seed": "5834e91d9a4b7d6fd056cd0b1a3d060f5e166300c2f8f6b527388fd80a8b08aa",
+        "public_bdes_coefficients": "075a1894396c8a0886558f036344579e26f732fa43bab216de4f997b054fd9a2",
+        "public_dependence_seed": "299e661b279657608123377767c356c357e6a6ea1c0903223835d34cd103fe88",
+        "public_factor_initial_variance": "b14e6e0ab18c00e1e61ea06038116c211044538772ec76ab8f039ef907e42d25",
+        "public_factor_innovation_variance": "4c6f5d2870e26e0929662dd1f6e4a79cfbb9aaa396da1625583e709fa0f3a1b5",
+        "public_factor_loading": "52f7d48e8071bad547e06d251cd99d19f4cd939512425efa2a110df9ca9bbfb4",
+        "public_factor_mean": "59f4860a8997068dfef3f59c23d9ab73c8e8b0216e68da6cc33a68b733d75840",
+        "public_factor_observations": "d7e6b66ffab849bbc20ef3b7987c223634b942690b59395290ecdd08767c4f5f",
+        "public_factor_phi": "abad52994f1643294291fa316b9a39c8418bc713d87f3769c090b77826527f4c",
+        "public_factor_residual_variance": "af77751564c3c890cb744a06983866f3b1f1daa383a0a74c6e7d8bf8679f3f6c",
+        "public_kalman_covariance": "6bbeda316bb0fd57158a0a266686761bf19c4fc112f7a248d3ae1a6f898852db",
+        "public_kalman_state": "205a59f4615c9618b73b736ac76637efd6bc8dea3960a368a4b072728a3ad886",
+        "public_mapped_paths": "3273f4efe9c4badcfe9cc48b4eec98e58878735e2f70c141aa2d4a18a1167ab3",
+        "public_marginal_paths": "ed22c13c94a9b1e87a4559180214041ba081081f1031e3a380d52e44ba88f101",
+        "public_marginal_seeds": "b80c499839a32a0a833dcca33ca0bda4b72ba7f0600f9caa314b2913c8bfb408",
+        "public_mu": "cc39047424f495e03969d0ff414a2a1653d3b339223fc0a042ad4bbdd771e0ed",
+        "public_posterior_centers": "9b5d9e6a7c273d9bfae842649cdc6823b28000184d6823b4ea6cb2743c6fbc9c",
+        "public_rebalance_mask": "b8b61214a3d88d029080cf9d37d0b9e8244eba93d922a95d68e8db00a45561ac",
+        "public_rejoined": "6906e3a40e479de4654072cc04cf00ce502e5b5808b67aac103e2013707d6af0",
+        "public_state_loglik": "917407da9d9ab213b06f8b87473c3ee0c8198cd641744cd77ebac9a57f4cf34e",
+        "public_state_path_var": "9d7913473b487ce91c91d5f800a8f8a622faf8fba9c4f8e0ada4ec1050424ace",
+        "public_uniforms": "4bdb1c911f4fc09b85485a28ef63e1ca42f62235bbad0f1a10ccb1dc903c9a87",
+        "simple_returns": "88750587263e15c47dbff85bb38de0676ee90fcd08c8ef8158624e15975bd960",
+        "training_dates": "ecdbb06a41c7f0aac1c6306bf30bae99086b4ce7136c81ceeaaf8bdc74d13bab",
+        "weights": "c0faea93f222ef6a2767274e128928651a9222e6cc8906ea9d19aec499025df0"
+      },
+      "context_seed": 123,
+      "fixture": "resources/test_fixtures/frontier/current_production_synthetic_fixture4_monthly.npz",
+      "fixture_sha256": "01822421c2681b28b3c150f6173351f4a665ddc00cf16f5d342287f4368af56d",
+      "future_end": "2026-07-08",
+      "future_start": "2026-05-14",
+      "horizon_days": 40,
+      "metrics": {
+        "aligned_mapped_paths_max_abs": 1.5076170242767084e-09,
+        "aligned_raw_marginal_max_abs": 9.202835368760098e-10,
+        "aligned_rebalance_mask_equals_public": true,
+        "aligned_rejoined_max_abs": 5.65826647688783e-10,
+        "aligned_uniforms_max_abs": 7.771561172376096e-16,
+        "bdes_coefficients_max_abs": 0.0,
+        "factor_initial_variance_max_abs": 0.0,
+        "factor_innovation_variance_max_abs": 0.0,
+        "factor_loading_max_abs": 0.0,
+        "factor_mean_max_abs": 0.0,
+        "factor_observations_max_abs": 0.0,
+        "factor_phi_max_abs": 0.0,
+        "factor_residual_variance_max_abs": 0.0,
+        "first_default_marginal_difference": {
+          "abs_diff": 0.005130383849096264,
+          "asset": 0,
+          "day": 0,
+          "production": -0.0009615279850549996,
+          "public": -0.006091911834151264,
+          "simulation": 0,
+          "ticker": "ALPHA"
+        },
+        "kalman_covariance_max_abs": 2.275957200481571e-15,
+        "kalman_state_max_abs": 8.08242361927114e-14,
+        "mu_max_abs": 0.0,
+        "posterior_centers_max_abs": 0.0,
+        "production_default_mapped_vs_public_max_abs": 0.04313995076394934,
+        "production_default_output_equals_public": false,
+        "production_default_output_vs_public_max_abs": 0.020744719241644182,
+        "production_rebalance_mask_equals_public": true,
+        "rebalance_count": 2,
+        "source_current_production_metadata": {
+          "block_size_days": 512,
+          "cost_per_turnover_bps": 15.0,
+          "factor_count": 3,
+          "marginal_source_storage": "float32_memory",
+          "rebalancing": "monthly",
+          "source_precision": "float32; simulation and policy arithmetic float64"
+        },
+        "source_current_production_runtime": {
+          "dependence_fit_and_terminal_posterior": 0.00047391711268574,
+          "dependence_rejoin": 0.00021491595543920994,
+          "marginal_fit_and_paths": 0.034246542025357485,
+          "total": 0.0388511250494048
+        },
+        "state_loglik_max_abs": 0.0,
+        "state_path_var_max_abs": 0.0
+      },
+      "name": "synthetic_fixture4_monthly",
+      "rebalance": "monthly",
+      "simulations": 24,
+      "source": {
+        "kind": "existing_isolated_frontier_source_fixture",
+        "source_reference": "resources/test_fixtures/frontier/source_reference.npz"
+      },
+      "tickers": [
+        "ALPHA",
+        "BETA",
+        "GAMMA",
+        "DELTA"
+      ],
+      "training_end": "2026-05-13",
+      "training_observations": 600,
+      "training_start": "2024-01-25",
+      "weights": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "array_digests": {
+        "aligned_production_bdes_coefficients": "3ebb65e96b0cf984f5fa42df3de26dd0e533b66ac38756ab4210abbe856277bc",
+        "aligned_production_dependence_seed": "95e08efec66396e97857d077e64bf570d83ace2f29f59c9c543cae7479aeae91",
+        "aligned_production_factor_initial_variance": "408238db5975e28a2bba94d7d46eb7da5a681ad6ad8ac4677b28312e84a84fcd",
+        "aligned_production_factor_innovation_variance": "8f460a3edb3cdf1337957fb46da409cff4ee7f7a7997cda2ff726ff2f9c6171f",
+        "aligned_production_factor_loading": "8cf178e16cbd7e22800a3a1dc3b0d46c9d8318d358a6851bf990c4742b6df386",
+        "aligned_production_factor_mean": "15f7e0852ca2001eb3e046408581bd40570677a507279d7bcc5587d5fdc17283",
+        "aligned_production_factor_observations": "a5e8a30848f2e34bfc1c41216aa020f922245e593aaf12547e3f1b3d3f40ca12",
+        "aligned_production_factor_phi": "6c49bcfeef3d6eb31bb955fdc30f201d874c51c2e4d5385bddc39b97a8ad563e",
+        "aligned_production_factor_residual_variance": "bfb2ec1d075ef3f4ee796926769205e56db8f12222c9502d20d86af161cfe72c",
+        "aligned_production_kalman_covariance": "4f6caee38ab36a9aa6b529a4c5fb09d849cbe578dc773de42ee81ede51a9c4ab",
+        "aligned_production_kalman_state": "fe051db023fc6674f84be7b7c413f3fddc916e9bc4662a0a83a05337ae1db8b1",
+        "aligned_production_mapped_paths": "6c9ca5b07f7d57c1f8f6a16ec6d6d86b717e0c82e30216fc5a94350a17e2cb25",
+        "aligned_production_marginal_paths": "0a6d69b272b0b4eebf1c6a8cc00b6cec37cb5f095838d5c6db9a2d7a63d82201",
+        "aligned_production_marginal_seeds": "6016741ef40f0c71eb72f19c27dc99948862907f47d4ee483eeb440d433734bd",
+        "aligned_production_mu": "12eb4f0f4d0dcd3101ed704a854f308e81b4d40e52c12e77ec20c053a719523d",
+        "aligned_production_posterior_centers": "efed2a79c4bcf5b0643964c47d9db7500f329eaa8bdbd6a9948183f955357b8f",
+        "aligned_production_rebalance_mask": "6e57bd0a86d65b1583dc71bc419f04f96d273aefaa0abb7c38b4cb0b4045d084",
+        "aligned_production_rejoined": "ba73e396d696808e0f4e1e0373ba57ce1eab9f33f3d10c2ca0fe7c6815525060",
+        "aligned_production_state_loglik": "8c68f4d43ebdf5f2036305a28c365ae88b29ae95ff53e8acc817647da1e92bf5",
+        "aligned_production_state_path_var": "2682b25f5c1bfc84f363307cf48a80cd35e261e1068f795eb4acc2e9b73ecc2a",
+        "aligned_production_uniforms": "fd8647b917de4dccd1abdcf833f09d7e478048727f3897c7fef7044948a2a5dd",
+        "asset_log_returns": "298815bb4b3b13b3cfaaa4c70cd7e2445a04c121cdf422d56d1eb63876ec08fd",
+        "future_dates": "8b12f22f15c8e73ed3adfdf7b5c6667e37efa61832810838084c09c1d3ca4d3b",
+        "production_default_mapped_paths": "8db363fa84a2e62a5e4631c795fe10a917d30c53b80b05f2530b4b753328a9f2",
+        "production_default_output": "0a87ffde7aad1ccc85371a35ea1e6f90b7f2741a1e903c58819f6e6a31e378f7",
+        "production_default_raw_marginal_paths": "27e4e186f2f4e4f14eedc87660329d47bdd3aa0ce96f872e7a220ad21ef490fe",
+        "production_default_rebalance_mask": "6e57bd0a86d65b1583dc71bc419f04f96d273aefaa0abb7c38b4cb0b4045d084",
+        "production_default_uniforms": "f600c4336a9e77d2d916fbd26c419b82b1d7d76564611935a331e75824706547",
+        "production_root_seed": "c95759f9c56cdcba5168fa784fb74379c20ea88b3844e7a94a6f8f1a98c82c54",
+        "public_bdes_coefficients": "3ebb65e96b0cf984f5fa42df3de26dd0e533b66ac38756ab4210abbe856277bc",
+        "public_dependence_seed": "95e08efec66396e97857d077e64bf570d83ace2f29f59c9c543cae7479aeae91",
+        "public_factor_initial_variance": "408238db5975e28a2bba94d7d46eb7da5a681ad6ad8ac4677b28312e84a84fcd",
+        "public_factor_innovation_variance": "8f460a3edb3cdf1337957fb46da409cff4ee7f7a7997cda2ff726ff2f9c6171f",
+        "public_factor_loading": "8cf178e16cbd7e22800a3a1dc3b0d46c9d8318d358a6851bf990c4742b6df386",
+        "public_factor_mean": "15f7e0852ca2001eb3e046408581bd40570677a507279d7bcc5587d5fdc17283",
+        "public_factor_observations": "a5e8a30848f2e34bfc1c41216aa020f922245e593aaf12547e3f1b3d3f40ca12",
+        "public_factor_phi": "6c49bcfeef3d6eb31bb955fdc30f201d874c51c2e4d5385bddc39b97a8ad563e",
+        "public_factor_residual_variance": "bfb2ec1d075ef3f4ee796926769205e56db8f12222c9502d20d86af161cfe72c",
+        "public_kalman_covariance": "95727e437cb9a95a223c4d1ba86893057e9498a448094d06571ce76d2ca4cc4e",
+        "public_kalman_state": "18810f628f260f89f2fe71d43c6510d0f028a399f862ed1cc3007cf28635e05a",
+        "public_mapped_paths": "d872f4a00b90db1f731b5d6fe12ea5cae23c4374c1b54dcb10231c633e1c0bb9",
+        "public_marginal_paths": "0733c4a600387a70964bc7518567de7b26470217b3bd373053953790c2c8c92d",
+        "public_marginal_seeds": "6016741ef40f0c71eb72f19c27dc99948862907f47d4ee483eeb440d433734bd",
+        "public_mu": "12eb4f0f4d0dcd3101ed704a854f308e81b4d40e52c12e77ec20c053a719523d",
+        "public_posterior_centers": "efed2a79c4bcf5b0643964c47d9db7500f329eaa8bdbd6a9948183f955357b8f",
+        "public_rebalance_mask": "6e57bd0a86d65b1583dc71bc419f04f96d273aefaa0abb7c38b4cb0b4045d084",
+        "public_rejoined": "1038cd10a293eee04507d24672f064ff4b8c1be82059b32c244cfff6fecabfa4",
+        "public_state_loglik": "8c68f4d43ebdf5f2036305a28c365ae88b29ae95ff53e8acc817647da1e92bf5",
+        "public_state_path_var": "2682b25f5c1bfc84f363307cf48a80cd35e261e1068f795eb4acc2e9b73ecc2a",
+        "public_uniforms": "b7c272fd20fbbbf49aacbc281deab811865c777b32ac2930a1b2a852040dd0b9",
+        "simple_returns": "1f6bb99c9d808ee03ab11de53c8484cbbfd6fd5fc8b967afa361fc620f5f2064",
+        "training_dates": "764ce872547572853b576eb5c9db6b8f5e20d9f36865b4b9c22902d6886ef6b3",
+        "weights": "be8a266fcf0f2e6e7a558265777fcadf01b6a3aa167a09cc040468dccb0016a5"
+      },
+      "context_seed": 20260910,
+      "fixture": "resources/test_fixtures/frontier/current_production_canonical80_row001_annually.npz",
+      "fixture_sha256": "ee1de5ef6c713cdb80940907600caab93f8568f863eda574caf4cf72d898ee60",
+      "future_end": "2027-05-12",
+      "future_start": "2026-05-14",
+      "horizon_days": 260,
+      "metrics": {
+        "aligned_mapped_paths_max_abs": 3.55271792540357e-09,
+        "aligned_raw_marginal_max_abs": 3.4882474131414654e-09,
+        "aligned_rebalance_mask_equals_public": true,
+        "aligned_rejoined_max_abs": 7.064499922548872e-10,
+        "aligned_uniforms_max_abs": 2.220446049250313e-16,
+        "bdes_coefficients_max_abs": 0.0,
+        "factor_initial_variance_max_abs": 0.0,
+        "factor_innovation_variance_max_abs": 0.0,
+        "factor_loading_max_abs": 0.0,
+        "factor_mean_max_abs": 0.0,
+        "factor_observations_max_abs": 0.0,
+        "factor_phi_max_abs": 0.0,
+        "factor_residual_variance_max_abs": 0.0,
+        "first_default_marginal_difference": {
+          "abs_diff": 0.0026585945422099816,
+          "asset": 0,
+          "day": 0,
+          "production": -0.003856443101540208,
+          "public": -0.0011978485593302263,
+          "simulation": 0,
+          "ticker": "IWMSIM"
+        },
+        "kalman_covariance_max_abs": 5.551115123125783e-17,
+        "kalman_state_max_abs": 2.220446049250313e-16,
+        "mu_max_abs": 0.0,
+        "posterior_centers_max_abs": 0.0,
+        "production_default_mapped_vs_public_max_abs": 0.09751600416154138,
+        "production_default_output_equals_public": false,
+        "production_default_output_vs_public_max_abs": 0.03554757642867644,
+        "production_rebalance_mask_equals_public": true,
+        "rebalance_count": 1,
+        "source_current_production_metadata": {
+          "block_size_days": 512,
+          "cost_per_turnover_bps": 15.0,
+          "factor_count": 3,
+          "marginal_source_storage": "float32_memory",
+          "rebalancing": "annually",
+          "source_precision": "float32; simulation and policy arithmetic float64"
+        },
+        "source_current_production_runtime": {
+          "dependence_fit_and_terminal_posterior": 0.0005167089402675629,
+          "dependence_rejoin": 0.0012218329356983304,
+          "marginal_fit_and_paths": 0.048052791971713305,
+          "total": 0.051520499982871115
+        },
+        "state_loglik_max_abs": 0.0,
+        "state_path_var_max_abs": 0.0
+      },
+      "name": "canonical80_row001_annually",
+      "rebalance": "annually",
+      "simulations": 24,
+      "source": {
+        "canonical_portfolio_name": "equal_class_history_001",
+        "canonical_row_index": 1,
+        "kind": "frozen_canonical80_panel_row",
+        "panel_resource": "resources/panels/scored52_portfolio_panel.csv",
+        "panel_resource_sha256": "fc42d3a5b7b0272cab1b4fc5db998d059a3f8fed93f6275295331fdc744f2f36",
+        "panel_semantic_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+        "source_series": {
+          "GLDSIM": {
+            "resource": "simulated_data/series/GLDSIM.csv.gz",
+            "sha256": "e6dd8d72ca9d314e3b6e0fe9e44ffef5f400f1958c62b6d61b00575e912ac1ac"
+          },
+          "IEISIM": {
+            "resource": "simulated_data/series/IEISIM.csv.gz",
+            "sha256": "c62541f2d19d0fd686d42cf1f0ebe8314e5ab7d9fb7c9da2fdf79b96b3b504c5"
+          },
+          "IWMSIM": {
+            "resource": "simulated_data/series/IWMSIM.csv.gz",
+            "sha256": "0d709dd0807a89e0f247e9944ae73f3a2e91def5a14e33590d3c843c719fecea"
+          },
+          "REITSIM": {
+            "resource": "simulated_data/series/REITSIM.csv.gz",
+            "sha256": "7740716c2145006a00e6635d569db8679aea8866f92920b4738ef3a3a6ddc8e4"
+          },
+          "XLPSIM": {
+            "resource": "simulated_data/series/XLPSIM.csv.gz",
+            "sha256": "62cc3daa7fb7d9ad9289cc294dfd9ed4071ad1ab115ad1212baec44592b9cb85"
+          },
+          "ZROZSIM": {
+            "resource": "simulated_data/series/ZROZSIM.csv.gz",
+            "sha256": "26e475b8a890232318023459e6c2ee59cb5ea9760986d1baa35a3bdf0803da46"
+          }
+        }
+      },
+      "tickers": [
+        "IWMSIM",
+        "XLPSIM",
+        "IEISIM",
+        "ZROZSIM",
+        "GLDSIM",
+        "REITSIM"
+      ],
+      "training_end": "2026-05-13",
+      "training_observations": 600,
+      "training_start": "2023-12-20",
+      "weights": [
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669
+      ]
+    },
+    {
+      "array_digests": {
+        "aligned_production_bdes_coefficients": "bbb96f2c81447410c6ab70580466bd540817d9448815cdc3eacd935f082b524c",
+        "aligned_production_dependence_seed": "53159ba5be9be33e511a9ef423807da326f5cdfa169379e049513b557e25fd9d",
+        "aligned_production_factor_initial_variance": "3876b72f721b0fae850be3d0157afccd7109959d0f30fcca25381c0650b5e9e9",
+        "aligned_production_factor_innovation_variance": "4da72bddf55313c771e4da37204ad7a1a3a6e1626fb6b8b2e2c3a6c88f42931b",
+        "aligned_production_factor_loading": "45f2b2d6756056e6dcdb7c6dfa59598611de4752956f60a83037db50d044ee46",
+        "aligned_production_factor_mean": "7f2a5a0bff5b0c9f84d6ec2ab5d3830fab4e429cfbcf2532ec1e8af503f416e8",
+        "aligned_production_factor_observations": "01080c12639e33f817626fefba0bbb310fb24cac5dc33dd5d4e94fd792da8a8a",
+        "aligned_production_factor_phi": "fb9842b4d0e5e8819a687ad04bad12e4a98a9a4f939feb5d5a1f40bec91ab2c7",
+        "aligned_production_factor_residual_variance": "298c352597082cf5abb7300142ba78c101e6d9d7fdfb87ea6394e84c53735072",
+        "aligned_production_kalman_covariance": "c8dda35f7096a755c5b747ab5a3098dc4d9037cd8b75b480b7fa5fbaf5260a84",
+        "aligned_production_kalman_state": "dcbe0697603e46d48ce5e4c86a412a036f5f22e8adbb82bb93dbb7ecd4e0597f",
+        "aligned_production_mapped_paths": "1789a660fe212db224957c9dfbe0b9a1369d13c1a263b89a46dea1e04d56e2b5",
+        "aligned_production_marginal_paths": "d4e7e28e0c11f13d2af01f0579b44de215505c47b085544872e9a16f6fb2630a",
+        "aligned_production_marginal_seeds": "3ac4644521f9798cceeaf9e6b60f3513faf783736985c1a91f0ec75ba77e9a71",
+        "aligned_production_mu": "6a810ac98f0133c69c5fa789265d3f92c1f9281ce8859326de4223fc1eb91ef3",
+        "aligned_production_posterior_centers": "9f48bf7f2e4777fde4b2ea47a56a3bff8b8c87856a9d3de4f18ed6ed9fe71500",
+        "aligned_production_rebalance_mask": "3ae67fb8f37b60a6b84260a6262f7ca02353452cbde248b804cd0ab635780add",
+        "aligned_production_rejoined": "e5b2f7e375e0f3930c7d4c2d8e49f1364596e838818df7cf5a99c3a3f7c4adf2",
+        "aligned_production_state_loglik": "b3340efc7459e6416503c026f195bff3d7136f8b112a6d0a13e44b1a7c79f04a",
+        "aligned_production_state_path_var": "7475340b28729511e8970988ca519941e29d797d46f4a053d18e38e5658e4ec5",
+        "aligned_production_uniforms": "47e11984dab0478c239ef35b4a869b4a288b9b78301c6ca1d526c0f7c9076d03",
+        "asset_log_returns": "b7953bfbbe911442b0dff01f2ba1c8be065d4bf6cdfdccf71048b9437c4ed5eb",
+        "future_dates": "578812a74fa1954ffdbbf83d1e0aa1c39ce55b25eda3b8ed70d77632c6c99754",
+        "production_default_mapped_paths": "537375e0e1e06896149fbcf031bc0b0f0e534056fed82872b34c8e8fae40c76b",
+        "production_default_output": "e483b1b9bec0106bfe1dd582af8c1818bf247e3827a18bd0eca77dd53d829d99",
+        "production_default_raw_marginal_paths": "d750e6849b5ceb4571a815102665fc8aaee54031850d99c7ee34a34136bdeb3c",
+        "production_default_rebalance_mask": "3ae67fb8f37b60a6b84260a6262f7ca02353452cbde248b804cd0ab635780add",
+        "production_default_uniforms": "a6c183808c562305c2083e58ad508b1fd3c612f0b6400c06d65eb3d3164ae0cc",
+        "production_root_seed": "5973591a21eefab0ab1cfcc0ce110cd5533e88826f07453bfce97996a4d0333b",
+        "public_bdes_coefficients": "bbb96f2c81447410c6ab70580466bd540817d9448815cdc3eacd935f082b524c",
+        "public_dependence_seed": "53159ba5be9be33e511a9ef423807da326f5cdfa169379e049513b557e25fd9d",
+        "public_factor_initial_variance": "3876b72f721b0fae850be3d0157afccd7109959d0f30fcca25381c0650b5e9e9",
+        "public_factor_innovation_variance": "4da72bddf55313c771e4da37204ad7a1a3a6e1626fb6b8b2e2c3a6c88f42931b",
+        "public_factor_loading": "45f2b2d6756056e6dcdb7c6dfa59598611de4752956f60a83037db50d044ee46",
+        "public_factor_mean": "7f2a5a0bff5b0c9f84d6ec2ab5d3830fab4e429cfbcf2532ec1e8af503f416e8",
+        "public_factor_observations": "01080c12639e33f817626fefba0bbb310fb24cac5dc33dd5d4e94fd792da8a8a",
+        "public_factor_phi": "fb9842b4d0e5e8819a687ad04bad12e4a98a9a4f939feb5d5a1f40bec91ab2c7",
+        "public_factor_residual_variance": "298c352597082cf5abb7300142ba78c101e6d9d7fdfb87ea6394e84c53735072",
+        "public_kalman_covariance": "ad0509cf3e8f659c38f6c2c70eaa3f2ab8c1c1e4dda7e8fa4c3e287c9c3bd3d8",
+        "public_kalman_state": "54cd7fb93569ad1e1318e25302eca9f166e081e64001c37bf8918b6f7d9552d8",
+        "public_mapped_paths": "7aeab6d127fbaa7ce64bbe13a31b27a868db1228f2291679940e10195819a69d",
+        "public_marginal_paths": "cf4865a0f4cfe324a084edbd6543d8546ec27fc3c80dc6b3efc2ba6e3d6f8656",
+        "public_marginal_seeds": "3ac4644521f9798cceeaf9e6b60f3513faf783736985c1a91f0ec75ba77e9a71",
+        "public_mu": "6a810ac98f0133c69c5fa789265d3f92c1f9281ce8859326de4223fc1eb91ef3",
+        "public_posterior_centers": "9f48bf7f2e4777fde4b2ea47a56a3bff8b8c87856a9d3de4f18ed6ed9fe71500",
+        "public_rebalance_mask": "3ae67fb8f37b60a6b84260a6262f7ca02353452cbde248b804cd0ab635780add",
+        "public_rejoined": "2fc7300a4fa1075c1631763a23eacadb73b2b7da46cf57c83500f2944d6292a1",
+        "public_state_loglik": "b3340efc7459e6416503c026f195bff3d7136f8b112a6d0a13e44b1a7c79f04a",
+        "public_state_path_var": "7475340b28729511e8970988ca519941e29d797d46f4a053d18e38e5658e4ec5",
+        "public_uniforms": "5901ee7a46b64d3cd10d1c58e880d7040767057be98691d714e0984e4ea8b929",
+        "simple_returns": "4901e8304c852d1b737b3a6df7e8732385a957e09d8c8b1f102b3dfe68a897e6",
+        "training_dates": "e9dfa13bc39c946ab6d618a8710d10c5a5b62ebd102e9a7c93ef3bafa695ebfb",
+        "weights": "be8a266fcf0f2e6e7a558265777fcadf01b6a3aa167a09cc040468dccb0016a5"
+      },
+      "context_seed": 314159,
+      "fixture": "resources/test_fixtures/frontier/current_production_canonical80_row007_quarterly.npz",
+      "fixture_sha256": "e69951b5fe9fc3a9fb5ffdb45c67d568e7cc4e09b2ef561b217354bf71176c18",
+      "future_end": "2026-04-08",
+      "future_start": "2026-01-01",
+      "horizon_days": 70,
+      "metrics": {
+        "aligned_mapped_paths_max_abs": 2.8408055907647167e-09,
+        "aligned_raw_marginal_max_abs": 3.2514748810053007e-09,
+        "aligned_rebalance_mask_equals_public": true,
+        "aligned_rejoined_max_abs": 4.761904417874621e-10,
+        "aligned_uniforms_max_abs": 2.220446049250313e-16,
+        "bdes_coefficients_max_abs": 0.0,
+        "factor_initial_variance_max_abs": 0.0,
+        "factor_innovation_variance_max_abs": 0.0,
+        "factor_loading_max_abs": 0.0,
+        "factor_mean_max_abs": 0.0,
+        "factor_observations_max_abs": 0.0,
+        "factor_phi_max_abs": 0.0,
+        "factor_residual_variance_max_abs": 0.0,
+        "first_default_marginal_difference": {
+          "abs_diff": 0.008925714779902044,
+          "asset": 0,
+          "day": 0,
+          "production": 0.01062201987951994,
+          "public": 0.0016963050996178955,
+          "simulation": 0,
+          "ticker": "VOSIM"
+        },
+        "kalman_covariance_max_abs": 1.3877787807814457e-17,
+        "kalman_state_max_abs": 2.220446049250313e-16,
+        "mu_max_abs": 0.0,
+        "posterior_centers_max_abs": 0.0,
+        "production_default_mapped_vs_public_max_abs": 0.06868833378895664,
+        "production_default_output_equals_public": false,
+        "production_default_output_vs_public_max_abs": 0.022534557343624712,
+        "production_rebalance_mask_equals_public": true,
+        "rebalance_count": 1,
+        "source_current_production_metadata": {
+          "block_size_days": 512,
+          "cost_per_turnover_bps": 15.0,
+          "factor_count": 3,
+          "marginal_source_storage": "float32_memory",
+          "rebalancing": "quarterly",
+          "source_precision": "float32; simulation and policy arithmetic float64"
+        },
+        "source_current_production_runtime": {
+          "dependence_fit_and_terminal_posterior": 0.0005649169906973839,
+          "dependence_rejoin": 0.00043583300430327654,
+          "marginal_fit_and_paths": 0.043464125017635524,
+          "total": 0.04595816694200039
+        },
+        "state_loglik_max_abs": 0.0,
+        "state_path_var_max_abs": 0.0
+      },
+      "name": "canonical80_row007_quarterly",
+      "rebalance": "quarterly",
+      "simulations": 24,
+      "source": {
+        "canonical_portfolio_name": "equal_class_history_007",
+        "canonical_row_index": 7,
+        "kind": "frozen_canonical80_panel_row",
+        "panel_resource": "resources/panels/scored52_portfolio_panel.csv",
+        "panel_resource_sha256": "fc42d3a5b7b0272cab1b4fc5db998d059a3f8fed93f6275295331fdc744f2f36",
+        "panel_semantic_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+        "source_series": {
+          "GLDSIM": {
+            "resource": "simulated_data/series/GLDSIM.csv.gz",
+            "sha256": "e6dd8d72ca9d314e3b6e0fe9e44ffef5f400f1958c62b6d61b00575e912ac1ac"
+          },
+          "GSGSIM": {
+            "resource": "simulated_data/series/GSGSIM.csv.gz",
+            "sha256": "5948e9039e68c1f33a0ae8b56d31ea1f89771278b03fe1bd0d61125df436c441"
+          },
+          "IEFSIM": {
+            "resource": "simulated_data/series/IEFSIM.csv.gz",
+            "sha256": "087db1b61b29d912a5c447f32af11cde284ce675ccfba463609cfe6c588f40c1"
+          },
+          "TLTSIM": {
+            "resource": "simulated_data/series/TLTSIM.csv.gz",
+            "sha256": "b18016c27ef7713c1b8959405e106ec66f4218072503de3b77189e5acd55a4ff"
+          },
+          "VOSIM": {
+            "resource": "simulated_data/series/VOSIM.csv.gz",
+            "sha256": "b97fccd4bc4c593a836c433bad0730c0d54c89dd260cfc2798a91d7eac754bb9"
+          },
+          "VTSIM": {
+            "resource": "simulated_data/series/VTSIM.csv.gz",
+            "sha256": "20218f63a8257ee6b884d09ca175a737420733baef58c0cd74690672c5aef30a"
+          }
+        }
+      },
+      "tickers": [
+        "VOSIM",
+        "VTSIM",
+        "IEFSIM",
+        "TLTSIM",
+        "GLDSIM",
+        "GSGSIM"
+      ],
+      "training_end": "2025-12-31",
+      "training_observations": 600,
+      "training_start": "2023-08-11",
+      "weights": [
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669,
+        0.16666666666666669
+      ]
+    }
+  ],
+  "schema_version": "frontier-current-production-parity-v1",
+  "scope": "bounded_current_production_frontier_numerical_closure",
+  "source_identity": {
+    "current_production_checkout_label": "simfolio-nav-engine",
+    "current_production_engine_source": {
+      "path": "app/engine.py",
+      "sha256": "f16c49caca96cd6eec9f7620c7fb922bd3c64d4c1abc256f70032334f4b6545d"
+    },
+    "current_production_fastmap_source": {
+      "path": "app/fastmap_asset_forecast.py",
+      "sha256": "2cec016e89da604884d8bc90e6975b5964c87be7af0c29578563327410dd2b7f"
+    },
+    "current_production_revision": "1485d2088ccbee7fcbc7e81e358d253eef7b6058",
+    "deployment_note": "This audit verifies the checked-out current production implementation; no authenticated deployed API revision was available in the bounded read-only scope.",
+    "deployment_revision_verified": false,
+    "destination_bdes_closure": {
+      "path": "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py"
+    },
+    "destination_dynamic_closure": {
+      "path": "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py"
+    },
+    "destination_frontier_adapter": {
+      "path": "src/simfolio_forecasting_methodology/models/asset_level/frontier.py",
+      "revision": "d3523eac83ed31ee124c60ab094d30a71c8cacab"
+    },
+    "pinned_historical_engine_sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+    "pinned_historical_research_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+  },
+  "status": "completed_bounded_audit"
+}
