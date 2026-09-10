@@ -10,16 +10,16 @@ The canonical catalogue contains **175 admissible forecasting specifications**. 
 
 The dense evaluation protocol uses 80 deterministic multi-asset portfolios over the common 1979-12-31 through 2026-05-13 evaluation window. Each portfolio contributes 48 rolling origins selected across the full eligible history plus three temporal holdout origins, for 4,080 origin tasks. Each origin uses 240 forecast simulations. Every eligible daily horizon is scored using exact empirical CRPS on terminal log returns. Origin losses are averaged within portfolio–horizon cells before those cells receive equal weight.
 
-The protocol is encoded in `methodology/canonical_dense_oos.yaml`. The immutable ranked catalogue is in `catalogs/canonical_175_part1.csv` and `catalogs/canonical_175_part2.csv`.
+The authoritative membership and verification ledger is packaged at `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`. See the generated [canonical model reference](docs/canonical-model-reference.md) for row-level status.
 
 ## Reproducibility design
 
-Catalogue membership and evaluation methodology are separate objects. The canonical 175 catalogue answers **which models are evaluated**; the dense protocol answers **how they are evaluated**. The broader research catalogue can therefore use the same evaluation protocol without creating another incompatible harness.
+This repository implements only the 175 canonical white-paper identities. The ledger records model membership and evidence; the protocol defines their evaluation.
 
 Historical source identifiers remain attached to evidence and execution records. Shorter `M###` names are presentation aliases only; renaming a table row never changes the model's research identity.
 
 ## Current implementation status
 
-The repository currently contains the canonical ranking, deterministic 80-portfolio generator, dense-origin selection primitives, exact empirical CRPS scoring, experiment-protocol definitions, readable model naming, CI, and a fail-closed publication-safety scan. Statistical model implementations are promoted into this public tree only after standalone reconstruction and provenance checks in the private staging repository.
+Implementation and validation are in progress. Run `simfolio-oos coverage` for evidence-backed counts and `simfolio-oos scores --experiment canonical-whitepaper` to inspect imported retained results without forecasting. Unverified model mappings fail explicitly. A successful bounded smoke run does not establish reproduction of a retained white-paper score.
 
-See `README_REPRODUCIBILITY.md` for the reconstruction principles and `methodology/canonical_dense_oos.yaml` for the machine-readable protocol.
+See [reproducibility status](README_REPRODUCIBILITY.md) and [architecture](docs/architecture.md).
