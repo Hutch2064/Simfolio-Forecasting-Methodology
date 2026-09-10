@@ -1,13 +1,17 @@
-"""Model registry shared by canonical and master OOS harnesses."""
+"""Evidence-aware registry for the canonical-175 ledger.
+
+The code map is intentionally explicit.  A ledger record can advance its
+evidence flags without becoming executable; execution requires a matching
+verified factory in this module's map.
+"""
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
+from typing import Any
 
-from ..specifications import parse_compositional_spec
-from .frontier import FRONTIER_MODEL_ID
-from .frontier_calendar import CalendarFrontierModel
-from .generic import CompositionalModel, LegacyReferenceModel
+from ..catalogue import canonical_model
 
 
 @dataclass(frozen=True)
@@ -15,24 +19,44 @@ class ModelRegistration:
     model_id: str
     fidelity: str
     implementation: str
+    factory: Callable[[], Any] | None = None
+
+
+# Deliberately empty in Gate 1: the existing Frontier and compositional code
+# are not source-parity verified, and no partial generic fallback is allowed.
+_EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {}
 
 
 def registration(model_id: str) -> ModelRegistration:
-    if model_id == FRONTIER_MODEL_ID:
+    """Return evidence status for a known ID or reject unknown IDs."""
+
+    record = canonical_model(model_id)
+    factory = _EXPLICIT_FACTORIES.get(record["public_model_id"])
+    if factory is None:
         return ModelRegistration(
-            model_id, "production_method_reference", "CalendarFrontierModel"
+            model_id=model_id,
+            fidelity=record["verification_status"],
+            implementation="blocked",
+            factory=None,
         )
-    try:
-        parse_compositional_spec(model_id)
-    except ValueError:
-        return ModelRegistration(model_id, "legacy_reference", "LegacyReferenceModel")
-    return ModelRegistration(model_id, "component_reference", "CompositionalModel")
+    return ModelRegistration(
+        model_id=model_id,
+        fidelity="verified_explicit_factory",
+        implementation="explicit_factory",
+        factory=factory,
+    )
 
 
 def build_model(model_id: str):
+    """Build only a whitelisted, verified factory; fail closed otherwise."""
+
     item = registration(model_id)
-    if item.implementation == "CalendarFrontierModel":
-        return CalendarFrontierModel()
-    if item.implementation == "CompositionalModel":
-        return CompositionalModel(model_id=model_id)
-    return LegacyReferenceModel(model_id=model_id)
+    if item.factory is None:
+        raise ValueError(
+            f"canonical model '{model_id}' is not executable: no verified explicit factory is registered; "
+            f"ledger verification_status={item.fidelity!r}"
+        )
+    return item.factory()
+
+
+__all__ = ["ModelRegistration", "build_model", "registration"]

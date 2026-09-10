@@ -1,17 +1,22 @@
-"""Canonical catalogue loading and validation."""
+"""Compatibility loader backed solely by the canonical-175 ledger."""
 
 from __future__ import annotations
 
-import csv
 from dataclasses import dataclass
+from importlib.abc import Traversable
 from importlib.resources import files
-from importlib.resources.abc import Traversable
 from pathlib import Path
 
-FRONTIER_SOURCE_ID = "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced"
-EXPECTED_CANONICAL_COUNT = 175
-EXPECTED_SOURCE_RANKS = tuple(range(12, 187))
-EXPECTED_CELLS_PER_MODEL = 701280
+from .catalogue import (
+    EXPECTED_CANONICAL_COUNT,
+    EXPECTED_CELLS_PER_MODEL,
+    EXPECTED_SOURCE_RANKS,
+    frontier_model_id,
+    load_canonical_ledger,
+    load_canonical_models,
+)
+
+FRONTIER_SOURCE_ID = frontier_model_id()
 
 
 @dataclass(frozen=True)
@@ -21,33 +26,38 @@ class CanonicalRow:
     model_id: str
     exact_empirical_crps: float
     cells: int
+    exact_empirical_crps_text: str = ""
+    publication_empirical_crps_text: str = ""
 
 
 def _catalog_root() -> Traversable:
+    """Return the legacy-resource directory used by the master-ID loader."""
+
     return files("simfolio_forecasting_methodology").joinpath("resources/catalogs")
 
 
 def load_canonical_175(root: Path | None = None) -> list[CanonicalRow]:
-    catalog_root = Path(root) if root is not None else _catalog_root()
-    rows: list[CanonicalRow] = []
-    for filename in ("canonical_175_part1.csv", "canonical_175_part2.csv"):
-        with (catalog_root / filename).open(newline="", encoding="utf-8") as handle:
-            for item in csv.DictReader(handle):
-                rows.append(
-                    CanonicalRow(
-                        canonical_rank=int(item["canonical_rank"]),
-                        source_rank=int(item["source_rank"]),
-                        model_id=str(item["model_id"]),
-                        exact_empirical_crps=float(item["exact_empirical_crps"]),
-                        cells=int(item["cells"]),
-                    )
-                )
-    rows.sort(key=lambda row: row.canonical_rank)
-    validate_canonical_175(rows)
-    return rows
+    """Load canonical rows from the ledger; ``root`` is a ledger override."""
+
+    payload = load_canonical_ledger(root)
+    cells = payload["score_evidence"]["cells_per_model"]
+    return [
+        CanonicalRow(
+            canonical_rank=model["canonical_rank"],
+            source_rank=model["historical_rank"],
+            model_id=model["public_model_id"],
+            exact_empirical_crps=float(model["historical_score"]["exact_empirical_crps"]),
+            cells=cells,
+            exact_empirical_crps_text=model["historical_score"]["exact_empirical_crps"],
+            publication_empirical_crps_text=model["score_precision"]["publication_token"],
+        )
+        for model in load_canonical_models(root)
+    ]
 
 
 def validate_canonical_175(rows: list[CanonicalRow]) -> None:
+    """Preserve the old validation entry point for callers using ``CanonicalRow``."""
+
     if len(rows) != EXPECTED_CANONICAL_COUNT:
         raise ValueError(f"canonical catalogue must contain {EXPECTED_CANONICAL_COUNT} rows")
     if [row.canonical_rank for row in rows] != list(range(1, EXPECTED_CANONICAL_COUNT + 1)):
@@ -60,9 +70,21 @@ def validate_canonical_175(rows: list[CanonicalRow]) -> None:
     if any(row.cells != EXPECTED_CELLS_PER_MODEL for row in rows):
         raise ValueError("canonical catalogue cell count drifted")
     if rows[0].model_id != FRONTIER_SOURCE_ID:
-        raise ValueError("canonical rank 1 is not the Frontier source specification")
+        raise ValueError("canonical rank one is not the Frontier source specification")
     if any(
         rows[index].exact_empirical_crps > rows[index + 1].exact_empirical_crps
         for index in range(len(rows) - 1)
     ):
         raise ValueError("canonical scores are not monotonically nondecreasing")
+
+
+__all__ = [
+    "CanonicalRow",
+    "EXPECTED_CANONICAL_COUNT",
+    "EXPECTED_CELLS_PER_MODEL",
+    "EXPECTED_SOURCE_RANKS",
+    "FRONTIER_SOURCE_ID",
+    "_catalog_root",
+    "load_canonical_175",
+    "validate_canonical_175",
+]
