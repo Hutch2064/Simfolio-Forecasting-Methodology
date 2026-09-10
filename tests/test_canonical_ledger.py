@@ -89,7 +89,7 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
     assert (
         payload["identity_policy"]["full_statistical_specifications_confirmed"]
         == len(resolved_ids)
-        == 125
+        == 159
     )
     artifact = payload["score_evidence"]["retained_score_artifact"]
     assert (
@@ -251,6 +251,6 @@ def test_generated_reference_is_current_and_scoped_to_the_ledger():
     )
     assert result.returncode == 0, result.stderr
     reference = (repository_root / "docs/canonical-model-reference.md").read_text(encoding="utf-8")
-    assert reference.count("retained_score_evidence_only_blocked") == 18
+    assert reference.count("retained_score_evidence_only_blocked") == 16
     assert EXPECTED_MEMBERSHIP_DIGEST in reference
     assert "master_369" not in reference

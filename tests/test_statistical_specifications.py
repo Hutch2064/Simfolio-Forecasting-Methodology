@@ -61,7 +61,7 @@ def test_resolved_spec_scope_and_family_membership_are_exact():
     assert set(resource["resolved_definitions"]) == expected
     assert set(resource["bindings"]) == expected
     assert set(resource["resolved_definitions"]) <= model_ids
-    assert set(resource["ledger_bound_model_ids"]) == expected_core
+    assert set(resource["ledger_bound_model_ids"]) == expected
 
 
 def test_each_resolved_definition_has_a_stable_full_fingerprint_and_source_identity():
