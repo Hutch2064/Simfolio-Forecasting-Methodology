@@ -1,16 +1,13 @@
-"""Identity checks and preparation for the canonical 52-series snapshot.
+"""Identity checks and offline preparation for the canonical 52-series snapshot.
 
 The retained white-paper run used simulated return arrays from the pinned
-source repository. Those arrays are not redistributed by this package. The
-package carries only source-relative identities, schemas, hashes, and the
-common calendar. A caller with the required rights must provide a frozen
-source snapshot before preparation; local hash verification records whether
-the caller separately confirmed use rights.
+source repository. This package carries the exact, user-authorized snapshot
+files identified by the manifest, together with their source attribution and
+hashes. Verification and preparation are local operations; an explicitly
+supplied caller snapshot remains supported for independent re-verification.
 
 There is intentionally no network, proxy, refresh, or source-builder path in
-this module. A missing or inconsistent snapshot fails closed. Hash
-verification does not make a redistribution grant or require one to be
-asserted by the verifier.
+this module. A missing or inconsistent snapshot fails closed.
 """
 
 from __future__ import annotations
@@ -20,6 +17,7 @@ import hashlib
 import json
 import shutil
 from collections.abc import Mapping
+from contextlib import contextmanager
 from importlib import resources
 from pathlib import Path
 
@@ -57,6 +55,21 @@ class CanonicalDataUnavailable(RuntimeError):
 
 def _resource_path(*parts: str) -> resources.abc.Traversable:
     return resources.files("simfolio_forecasting_methodology").joinpath("resources", *parts)
+
+
+@contextmanager
+def _snapshot_root_context(snapshot_root: Path | None):
+    """Yield a filesystem path for an external or packaged snapshot.
+
+    ``importlib.resources.as_file`` also supports a wheel imported from a
+    zipped loader, so the verifier never assumes that package resources are
+    ordinary checkout paths.
+    """
+    if snapshot_root is not None:
+        yield Path(snapshot_root)
+        return
+    with resources.as_file(_resource_path("data", "canonical_snapshot")) as packaged:
+        yield Path(packaged)
 
 
 def canonical_snapshot_manifest() -> dict[str, object]:
@@ -189,12 +202,12 @@ def _factor_identity(path: Path, expected: Mapping[str, object]) -> None:
         raise CanonicalDataUnavailable(f"factor input schema mismatch for {factor_id}")
 
 
-def verify_canonical_snapshot(
+def _verify_canonical_snapshot_path(
     snapshot_root: Path,
     *,
     rights_confirmed: bool = False,
 ) -> dict[str, object]:
-    """Verify a caller-provided exact snapshot against the published identities."""
+    """Verify one exact snapshot path against the published identities."""
     manifest = canonical_snapshot_manifest()
     root = _snapshot_series_root(Path(snapshot_root))
     expected_series = {str(item["ticker"]): item for item in manifest["series"]}
@@ -238,7 +251,10 @@ def verify_canonical_snapshot(
         "rights_status": (
             "caller_authorized_local_use" if rights_confirmed else "local_use_unconfirmed"
         ),
-        "redistribution_status": "not_granted_by_this_verifier",
+        "redistribution_status": (
+            "user_authorized_exact_snapshot" if rights_confirmed
+            else "not_granted_by_this_verifier"
+        ),
         "dataset_id": str(manifest["dataset_id"]),
         "source_revision": str(manifest["source_revision"]),
         "series_count": len(frames),
@@ -249,6 +265,23 @@ def verify_canonical_snapshot(
         "supporting_series": supporting_verified,
         "factor_inputs": factor_verified,
     }
+
+
+def verify_canonical_snapshot(
+    snapshot_root: Path | None = None,
+    *,
+    rights_confirmed: bool | None = None,
+) -> dict[str, object]:
+    """Verify the packaged snapshot or an explicitly supplied snapshot.
+
+    Omitting ``snapshot_root`` selects the immutable package resource and
+    records the user-authorized distribution status. An external snapshot is
+    unconfirmed by default; callers may set ``rights_confirmed=True`` when
+    they have separately established the required rights.
+    """
+    confirmed = snapshot_root is None if rights_confirmed is None else bool(rights_confirmed)
+    with _snapshot_root_context(snapshot_root) as root:
+        return _verify_canonical_snapshot_path(root, rights_confirmed=confirmed)
 
 
 def _price_simple_returns(prices: pd.DataFrame) -> pd.DataFrame:
@@ -361,19 +394,21 @@ def _load_verified_source_frames(snapshot_root: Path) -> dict[str, pd.DataFrame]
     }
 
 
-def prepare_canonical_data(
+def _prepare_canonical_data_path(
     snapshot_root: Path,
     destination: Path,
     *,
     rights_confirmed: bool = False,
 ) -> Path:
-    """Write a deterministic local cache from a verified caller-owned snapshot.
+    """Write a deterministic local cache from one verified snapshot path.
 
     The source snapshot is retained only in the caller's cache.  Portfolio logs
     are constructed from the full source price histories before the canonical
     window is trimmed, matching the historical ``simulate_portfolio`` closure.
     """
-    verification = verify_canonical_snapshot(snapshot_root, rights_confirmed=rights_confirmed)
+    verification = _verify_canonical_snapshot_path(
+        snapshot_root, rights_confirmed=rights_confirmed
+    )
     source_root = _snapshot_series_root(Path(snapshot_root))
     frames = _load_verified_source_frames(Path(snapshot_root))
     common = canonical_calendar()
@@ -531,6 +566,28 @@ def prepare_canonical_data(
     manifest_path = destination / "canonical_data_manifest.json"
     manifest_path.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return manifest_path
+
+
+def prepare_canonical_data(
+    snapshot_root: Path | None = None,
+    destination: Path | None = None,
+    *,
+    rights_confirmed: bool | None = None,
+) -> Path:
+    """Prepare a deterministic local cache from the packaged snapshot by default.
+
+    ``snapshot_root`` may point to an independently held source export. When
+    omitted, the exact snapshot bundled under package resources is verified
+    and used without network access. ``destination`` is always explicit so a
+    caller controls where the generated cache is written.
+    """
+    if destination is None:
+        raise TypeError("prepare_canonical_data requires a destination path")
+    confirmed = snapshot_root is None if rights_confirmed is None else bool(rights_confirmed)
+    with _snapshot_root_context(snapshot_root) as root:
+        return _prepare_canonical_data_path(
+            root, Path(destination), rights_confirmed=confirmed
+        )
 
 
 def verify_prepared_canonical_data(cache: Path) -> dict[str, object]:
@@ -774,9 +831,10 @@ def load_canonical_returns(cache: Path) -> pd.DataFrame:
 
 
 def write_canonical_data(cache: Path, *, refresh: bool = False) -> Path:
-    """Compatibility entry point that deliberately refuses live/proxy builds."""
-    del cache, refresh
-    raise CanonicalDataUnavailable(
-        "live and public-proxy canonical builders were removed; prepare an authorized "
-        "frozen snapshot with prepare_canonical_data"
-    )
+    """Prepare the packaged frozen snapshot into ``cache`` offline.
+
+    ``refresh`` is retained for compatibility and cannot select a network or
+    proxy source; every invocation verifies the packaged bytes first.
+    """
+    del refresh
+    return prepare_canonical_data(destination=Path(cache), rights_confirmed=True)
