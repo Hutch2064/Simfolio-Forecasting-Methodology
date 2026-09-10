@@ -24,31 +24,56 @@ implicit annualization is allowed.
 ## Runtime and dependency matrix
 
 The installed runtime exposes the verified factories reported by
-`simfolio-oos coverage`. Factories are selected by exact
-canonical IDs. Unknown IDs and ledger rows without a verified factory fail
-closed rather than falling back to a generic model.
+`simfolio-oos coverage`. Factories are selected by exact canonical IDs. Unknown
+IDs and ledger rows without a verified factory fail closed rather than falling
+back to a generic model.
 
 CI validates Python 3.11 and 3.12 with the optional `all-models` dependency
 set. The lock file records the tested interpreter-specific scientific stack:
 Python 3.11 uses NumPy 2.4.6 and SciPy 1.17.1; Python 3.12 uses NumPy 2.5.3
-and SciPy 1.18.1. The three NIG MCMC paths can therefore have different
-environment-specific digest values. Each matrix leg must match its own
-source-local fixture; tolerances are not widened to hide a dependency change.
+and SciPy 1.18.1. The three NIG MCMC paths can therefore have
+environment-specific digest values. Each matrix leg is compared with its own
+source-local fixture, and source/resource digests remain exact.
 
-Strict fixture identity also includes the reference platform. The retained
-source replay used macOS 27 arm64 with Apple Accelerate BLAS/LAPACK; the
-recorded Ubuntu x64 run fails 18 strict parity/data tests in each Python leg.
-Cross-platform byte-exact equivalence is unsupported, and a local source
-replay or GitHub Actions wheel test does not establish live website, API, or
-deployed-server behavior. See [Numerical environment and cross-platform parity](docs/numerical-environment.md)
-for the measured differences and the pending explicit ARM64 reference-job
-policy. No tolerance widening is part of that policy.
+The retained source replay used macOS 27 arm64 with Apple Accelerate
+BLAS/LAPACK. The explicit hosted reference job uses the `macos-26` ARM64
+label. [Run 34455737291](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34455737291)
+was the preceding result: it reported 158 passing checks and three INLA
+hash-only failures in each macOS leg; all Frontier and factor checks passed,
+and its Linux frozen-data job passed nine checks. The follow-up with the
+source-derived INLA array fix from `192fc16`, [run 34456948385](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34456948385),
+completed successfully with 161 passing checks in each macOS leg and 9 passed
+Linux frozen-data checks at head
+`fefffecfaacdbe6177fb8c57f70c6bc86ac64061`. Full Linux numerical parity
+remains unsupported; the earlier Ubuntu result with 18 failures per leg is
+historical evidence, while
+the newer Linux result supersedes its frozen-data failure. See [Numerical
+environment and cross-platform parity](docs/numerical-environment.md) for the
+measured differences and platform policy.
+
+Numeric array checks use their predeclared contracts, including `rtol=0`,
+`atol=2e-12` for the relevant factor-source arrays. This is separate from
+source and resource integrity, whose hashes remain exact; no ad hoc tolerance
+widening is used to replace an identity check.
+
+Native Frontier factor fitting can vary in matrix-factor orientation and
+eigenvector sign across BLAS implementations. The bounded current-production
+replay has a narrower storage contract: it quantizes public marginals to
+float32, applies the recorded uniform/rank map, quantizes mapped paths to
+float32, and rejoins the public portfolio. The three frozen-panel replays were
+byte-identical under that aligned contract. This does not claim universal
+native Frontier byte identity or live production behavior. The evidence is
+from local source replay and frozen inputs; no live API call or website
+execution was performed.
 
 The wheel checks run outside the source checkout. They verify package-resource
 loading, the 60-file offline snapshot, the 80/4,080/701,280 protocol counts,
 the registered factory map, bounded family and Frontier parity, and public-safety
-scans before the complete test suite. Run `simfolio-oos coverage --json` for
-the current per-row counts; the coverage report is authoritative for what is
+scans before the complete test suite. The current root-side installed-wheel
+check reported 161 passing checks. A separate Python 3.11 check reported 160
+passing and one skipped check, and an isolated omitted-installation check
+passed with `SIMFOLIO_WHEEL_TEST=1`. Run `simfolio-oos coverage --json` for the
+current per-row counts; the coverage report is authoritative for what is
 executable and what remains evidence-only.
 
 ## Evidence status

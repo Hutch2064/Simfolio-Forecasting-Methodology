@@ -1,34 +1,48 @@
 # Numerical environment and cross-platform parity
 
-The strict numerical fixtures are reference-platform artifacts. Their source
-replay was performed on macOS 27 arm64 with Apple's Accelerate BLAS/LAPACK.
-The locked interpreter legs are:
+The strict numerical fixtures carry a source, data, and numerical-environment
+identity. Their retained source replay was performed on macOS 27 arm64 with
+Apple's Accelerate BLAS/LAPACK. The locked dependency legs are:
 
 | Interpreter | NumPy | SciPy |
 | --- | --- | --- |
 | Python 3.11 | 2.4.6 | 1.17.1 |
 | Python 3.12 | 2.5.3 | 1.18.1 |
 
-The pending hosted reference job is intended to pin CPython 3.11.15 and
-3.12.13 alongside this lock matrix; that is a target contract, not a hosted
-pass claim.
+The hosted reference job uses the explicit `macos-26` ARM64 label with CPython
+3.11.15 and 3.12.13. The hosted image and the original macOS 27 fixture image
+are different numerical environments, so a passing package or source replay
+does not by itself establish byte identity across them. A retained fixture or
+local source replay also does not establish live website, API, or deployed
+server behavior.
 
-These package versions identify the dependency matrix, but they do not make a
-Linux x64 execution byte identical to the macOS arm64 reference. The strict
-fixtures also need a matching operating system, architecture, numerical
-backend, and interpreter build. A retained fixture or a local source replay
-does not establish live website, API, or deployed-server behavior.
+## Current hosted evidence
 
-## Observed cross-platform failure
+[GitHub Actions run 34455737291](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34455737291)
+is the preceding macOS 26 ARM64 result. Each locked clean-wheel leg reported
+158 passing checks and three INLA hash-only failures; the Frontier and factor
+checks passed. Its separate Linux frozen-data job passed all nine portability
+checks.
 
-The Ubuntu clean-wheel run is recorded at [GitHub Actions run 34450295393](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34450295393).
-It uses `ubuntu-latest`; the log identifies Python 3.11.16/x64 and Python
-3.12.14/x64. Both matrix legs failed the same 18 strict parity/data tests and
-passed 133 tests. The failures cover the base, Bayesian volatility, exact
-Kalman, factor residual, Frontier, full-MCMC/INLA, GAS/GJR/SV, reference-family,
-and canonical-data checks.
+[Follow-up run 34456948385](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34456948385)
+completed successfully after the source-derived INLA array fix from `192fc16`.
+Both macOS 26 ARM64 clean-wheel legs reported 161 passing checks, and the
+Linux frozen-data job reported 9 passed. This is the current hosted CI result;
+it ran at head `fefffecfaacdbe6177fb8c57f70c6bc86ac64061`. It validates the
+locked package and fixture contract without certifying full
+Linux numerical parity or live production behavior.
 
-Representative strict differences from the run are:
+## Historical Linux comparison
+
+The earlier Ubuntu clean-wheel result remains useful as historical
+cross-platform evidence: [run 34450295393](https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/34450295393)
+reported 18 strict parity/data failures and 133 passes in each Python leg.
+Those failures included numerical parity checks as well as the then-unresolved
+canonical data fingerprint check. The later Linux frozen-data result above
+supersedes the old data-failure conclusion, while full Linux numerical parity
+remains unsupported.
+
+Representative strict differences recorded by the historical run were:
 
 | Matrix leg | Check | Maximum absolute difference |
 | --- | --- | ---: |
@@ -39,38 +53,47 @@ Representative strict differences from the run are:
 | Python 3.12 | Base standardized residuals | 0.24567462 |
 | Python 3.12 | Current-production Frontier paths | 8.84260058e-08 |
 
-The GAS case fails exact array equality even at the displayed sub-machine-epsilon
-scale; widening tolerances would hide the identity check. The data test also
-reports a canonical asset fingerprint mismatch. The supplied Ubuntu log does
-not report its BLAS/LAPACK provider, so it does not support naming a specific
-Linux backend as the cause. The package fingerprint path applies `np.log1p`
-and `.17g` serialization, so platform-dependent floating-point results can
-change the declared digest.
+The Ubuntu log does not identify its BLAS/LAPACK provider, so it does not
+support attributing those differences to a particular Linux backend. Where a
+check compares numeric arrays, it uses its predeclared contract (including
+`rtol=0`, `atol=2e-12` for the relevant factor-source arrays). Source and
+resource integrity digests remain exact; no ad hoc tolerance widening replaces
+an identity check.
 
-The same bounded source-replay checks pass in the local macOS arm64
-environments for both locked dependency legs, including the canonical data
-fingerprint check. This is evidence of the reference-platform result only; it
-is not a live-server test.
+## Native versus conditional production replay
+
+Native Frontier factor fitting is sensitive to matrix-factor orientation and
+eigenvector sign conventions. Those representations can differ across BLAS
+implementations even when the implied covariance and forecast values satisfy a
+declared numeric tolerance. Native float64 array bytes therefore are not a
+portable identity across numerical backends.
+
+The bounded current-production replay tests a narrower storage contract. It
+quantizes the public marginal paths to float32, runs the recorded uniforms and
+rank mapping, quantizes the mapped paths to float32, and performs the public
+portfolio rejoin. For the three frozen panels in the audit, the mapped arrays
+and rejoined portfolio arrays were byte-identical to the aligned production
+evidence. This is conditional production-storage parity, not a claim of
+universal native Frontier byte parity.
+
+The production comparison used local source replay and frozen inputs. No live
+API call or website execution was performed, and deployment behavior is not
+inferred from these files.
 
 ## Reference-platform policy
 
-The reference CI job should use an explicit `macos-26` arm64 label, exact
-Python versions selected for the fixture contract, and `requirements-lock.txt`.
-The hosted result is pending and is not claimed here. The job should print and
-retain `platform.uname()`, the exact interpreter version, NumPy/SciPy versions,
-`numpy.show_runtime()`, NumPy/SciPy build configuration, BLAS/LAPACK identity,
-and thread settings before running strict fixtures. The fixture manifest should
-carry those values together with the source and data digests.
+`macos-26` is the current explicit ARM64 CI reference label. Each strict job
+should retain `platform.uname()`, the exact interpreter build, NumPy/SciPy
+versions, BLAS/LAPACK identity, and relevant thread settings alongside source
+and data digests. Run 34456948385 is green for both locked macOS legs and the
+Linux frozen-data job; changing the reference image or numerical backend still
+creates a new fixture identity.
 
-GitHub documents `macos-26` as a standard public ARM64 macOS label in its
+GitHub documents `macos-26` in its
 [hosted-runner reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)
-and lists the image labels in the [runner-images repository](https://github.com/actions/runner-images).
+and lists image labels in the
+[runner-images repository](https://github.com/actions/runner-images).
 The `macos-latest` label can migrate between OS images, so it is unsuitable as
-an immutable numerical identity. The macOS 14 image is being retired; a new
-reference job should not depend on it.
-
-Until the explicit ARM64 reference job is validated, Ubuntu remains useful for
-wheel, import, lint, and portable-contract checks but cannot certify these
-macOS-generated byte-exact fixtures. Moving the reference image, interpreter
-build, or numerical backend creates a new fixture identity that must be
-regenerated or independently reconciled.
+an immutable numerical identity. Changing the reference image, interpreter
+build, or numerical backend creates a fixture identity that must be regenerated
+or independently reconciled.
