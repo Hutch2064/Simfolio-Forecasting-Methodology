@@ -958,8 +958,12 @@ def load_canonical_engine_inputs(
     )
     if not np.array_equal(frozen_dates, calendar.to_numpy(dtype="datetime64[D]")):
         raise CanonicalDataUnavailable("prepared frozen derived dates do not match canonical calendar")
+    # Preserve the source loader's column-oriented frame layout as well as
+    # its values; BLAS reductions can depend on array strides.
     asset_frame = pd.DataFrame(
-        frozen_assets.copy(), index=calendar, columns=list(frozen_tickers)
+        {ticker: frozen_assets[:, index].copy()
+         for index, ticker in enumerate(frozen_tickers)},
+        index=calendar,
     )
     portfolio_logs = {
         portfolio_id: pd.Series(

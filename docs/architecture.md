@@ -24,8 +24,8 @@ terminal returns; the evaluator cumulatively sums only daily increments. A univa
 the asset-level Frontier model. Frontier must fit asset marginals, construct
 joint dependence, and apply the ordered portfolio policy and calendar.
 
-The evaluator constructs terminal log returns by cumulative summation and
-computes empirical CRPS with the ensemble-size-squared pairwise denominator.
+For daily-path adapters, the evaluator constructs terminal log returns by
+cumulative summation. It computes empirical CRPS with the ensemble-size-squared pairwise denominator.
 Origin losses are averaged within portfolio-horizon cells before equal cell
 weighting. Missing tasks and nonfinite cells must remain visible and cannot
 reduce a successful result's denominator.
@@ -57,4 +57,16 @@ adapters must import verified shared functions rather than copy them. Data and
 protocol work owns canonical calendars, portfolio policies, task construction,
 fingerprints, and checkpoint identity. Family branches contribute explicit
 per-model evidence patches for integration; they do not modify the authoritative
-ledger concurrently or merge to main.
+ledger concurrently or merge to main. Files in `audit/` retain extraction-stage
+evidence; their historical staging flags do not override the integrated ledger
+or the current `coverage` command.
+
+## Optional source-fixture regeneration
+
+The narrowly scoped development tools under `tools/` can regenerate historical
+reference fixtures from an explicitly supplied, read-only original source
+checkout. Those tools verify source digests before importing the numerical
+reference. They are not shipped in the wheel or called by the research CLI.
+Installation, bounded tests, data preparation, and forecasting use only the
+public package and its bundled resources; they require no original source
+checkout or private service.

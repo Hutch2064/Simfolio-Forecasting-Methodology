@@ -111,6 +111,8 @@ def test_prepared_engine_load_uses_frozen_matrices(prepared_cache, monkeypatch):
         _load_frozen_derived_snapshot()
     )
     assert tuple(assets.columns) == tickers
+    assert assets.to_numpy().flags.f_contiguous
+    assert all(series.to_numpy().flags.c_contiguous for series in portfolios.values())
     assert np.array_equal(assets.to_numpy(dtype="<f8"), expected_assets)
     assert tuple(portfolios) == portfolio_ids
     assert all(
