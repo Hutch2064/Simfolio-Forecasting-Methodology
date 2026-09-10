@@ -10,7 +10,7 @@ The ledger is the sole membership authority for this public set.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
 - Confirmed full statistical specifications: **159**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
-- Protocol, data, and panel fingerprints remain unresolved until a source-backed digest is added. The retained-artifact Frontier candidate context is row-local evidence and is not a global alias.
+- Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
 | Canonical | Historical | Public model ID | Display name | Family | Retained score token | Publication score token | Specification recovered | Status |
 | ---: | ---: | --- | --- | --- | ---: | ---: | --- | --- |
@@ -57,7 +57,7 @@ The ledger is the sole membership authority for this public set.
 | 41 | 52 | bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor | M041 — Bayesian SBB + mcmc sv no ar leverage transformed raw innovations hac drift uncertainty Adapt... | bayesian_sbb_full_mcmc_sv_overlay | 0.3413709610745333 | 0.341370961 | true | source_parity_verified_bounded_historical_score_linkage_qualified |
 | 42 | 53 | bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean | M042 — Bayesian SBB + mcmc sv ar1 merton positive sample mean | bayesian_sbb_full_mcmc_sv_overlay | 0.34242298162647733 | 0.342422982 | true | source_parity_verified_bounded_historical_score_linkage_qualified |
 | 43 | 54 | bayesian_mcmc_stochastic_volatility_sbb | M043 — Bayesian MCMC SV + Stationary Bootstrap | sv_mcmc_sbb | 0.34268977488684255 | 0.342689775 | true | source_parity_verified_bounded_historical_score_linkage_qualified |
-| 44 | 55 | stochastic_volatility_ar1_student_t | M044 — AR(1) SV + Student-t | sv | 0.3443044584558404 | 0.344304458 | false | retained_score_evidence_only_blocked |
+| 44 | 55 | stochastic_volatility_ar1_student_t | M044 — AR(1) SV + Student-t | sv | 0.3443044584558404 | 0.344304458 | false | source_terminal_path_parity_verified_historical_score_linkage_qualified |
 | 45 | 56 | bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean | M045 — Bayesian SBB + GJR-GARCH(1,1) merton positive sample mean | bayesian_sbb_vol_overlay | 0.34682911565929203 | 0.346829116 | true | source_parity_verified_bounded_historical_score_linkage_qualified |
 | 46 | 57 | bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc | M046 — Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations hac drift uncertainty Adaptiv... | bayesian_sbb_full_mcmc_sv_overlay | 0.3475703250670482 | 0.347570325 | true | source_parity_verified_bounded_historical_score_linkage_qualified |
 | 47 | 58 | bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor | M047 — Bayesian SBB + Bias-Corrected SV-AR1 hac drift uncertainty harx ff6 vol anchor | bayesian_sbb_vol_overlay | 0.3482726309856858 | 0.348272631 | true | source_parity_verified_bounded_historical_score_linkage_qualified |

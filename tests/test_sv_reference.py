@@ -6,9 +6,9 @@ import pytest
 
 from simfolio_forecasting_methodology.models.portfolio.sv_reference import (
     REFERENCE_MODEL_IDS,
+    SOURCE_CANDIDATE_SPECS,
     SOURCE_FUNCTION_NAMES,
     SOURCE_FUNCTIONS_SHA256,
-    SOURCE_CANDIDATE_SPECS,
     SVReferenceModel,
     make_sv_reference_model,
 )

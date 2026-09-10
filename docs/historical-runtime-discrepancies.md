@@ -44,6 +44,4 @@ The raw descriptor for `stochastic_volatility_ar1_student_t` contains only its
 ID and `type="sv"`. The recovered dispatcher defaults a missing `innovation`
 to `empirical`. A later Student-t implementation differs from that historical
 branch: the bounded comparison observed a maximum terminal-array difference
-of `0.019680524468041617`. That row remains blocked pending an evidence-backed
-resolution; the public package does not silently substitute a model based on
-its name.
+of `0.019680524468041617`. The public mapping now preserves the raw descriptor and source-default empirical branch. An independent bounded original-dispatcher replay matched all 35 terminal values exactly. This establishes source-dispatch agreement, while the conflict with the Student-t label remains documented.

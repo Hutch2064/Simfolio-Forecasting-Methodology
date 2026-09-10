@@ -47,6 +47,7 @@ _EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {
        for model_id in canonical_full_mcmc_sv_ids()
 },
     **SV_EXTENSION_FACTORIES,
+    "stochastic_volatility_ar1_student_t": partial(SVReferenceModel, "stochastic_volatility_ar1_student_t"),
     "stochastic_volatility_ar1_empirical": partial(SVReferenceModel, "stochastic_volatility_ar1_empirical"),
     "stochastic_volatility_ar1_empirical_sbb": partial(SVReferenceModel, "stochastic_volatility_ar1_empirical_sbb"),
     **{

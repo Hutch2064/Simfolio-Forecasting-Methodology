@@ -251,6 +251,6 @@ def test_generated_reference_is_current_and_scoped_to_the_ledger():
     )
     assert result.returncode == 0, result.stderr
     reference = (repository_root / "docs/canonical-model-reference.md").read_text(encoding="utf-8")
-    assert reference.count("retained_score_evidence_only_blocked") == 16
+    assert reference.count("retained_score_evidence_only_blocked") == 15
     assert EXPECTED_MEMBERSHIP_DIGEST in reference
     assert "master_369" not in reference

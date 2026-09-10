@@ -918,6 +918,10 @@
       "factory_name": "simfolio_forecasting_methodology.models.portfolio.factor_residual:FactorResidualSBBModel",
       "status": "verified_explicit_factory",
       "seed_contract": "origin_task.seed_to_forecast_context.seed.v1"
+    },
+    "stochastic_volatility_ar1_student_t": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
+      "status": "verified_explicit_factory"
     }
   },
   "validation_policy": {
@@ -10049,9 +10053,10 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "extracted_functions_sha256": "dc7fd492f019b154c4c00e9f608de257440dde3a31429f56ffaa0cc03f0272a7",
+          "path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "source_kernel_closure_verified; retained score identity unresolved"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -10067,14 +10072,21 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=44]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
+        "callable": true,
+        "status": "verified_explicit_factory"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "constraints": [
+          "numpy>=2.0,<3",
+          "scipy>=1.13,<2"
+        ],
+        "items": [
+          "numpy",
+          "scipy"
+        ],
+        "status": "imports and bounded source-kernel parity recorded in family audit",
+        "verified": true
       },
       "historical_rank": 55,
       "canonical_rank": 44,
@@ -10117,17 +10129,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_terminal_path_parity_verified_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Original retained raw descriptor contains only id and type=sv; the source dispatcher defaults omitted innovation to empirical. The public Student-t label does not change source dispatch.",
+        "Root original-dispatcher replay matched all 7-by-5 terminal forecast values exactly; the full historical score has not been rerun."
       ]
     },
     {

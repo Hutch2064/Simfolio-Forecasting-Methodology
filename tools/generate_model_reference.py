@@ -46,7 +46,7 @@ def render_reference(payload: dict) -> str:
         f"- Publication score token: `{precision['publication_score_policy']}`.",
         f"- Confirmed full statistical specifications: **{identity['full_statistical_specifications_confirmed']}**.",
         "- Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.",
-        "- Protocol, data, and panel fingerprints remain unresolved until a source-backed digest is added. The retained-artifact Frontier candidate context is row-local evidence and is not a global alias.",
+        "- Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.",
         "",
         "| Canonical | Historical | Public model ID | Display name | Family | Retained score token | Publication score token | Specification recovered | Status |",
         "| ---: | ---: | --- | --- | --- | ---: | ---: | --- | --- |",
