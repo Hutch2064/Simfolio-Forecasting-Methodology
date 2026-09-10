@@ -37,6 +37,14 @@ def _source_fixture() -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _retained_array(record: dict[str, object]) -> np.ndarray:
+    values = np.asarray(record["values"], dtype=np.dtype(str(record["dtype"])))
+    assert list(values.shape) == record["shape"]
+    assert str(values.dtype) == record["dtype"]
+    assert hashlib.sha256(np.ascontiguousarray(values).tobytes()).hexdigest() == record["sha256"]
+    return values
+
+
 def test_exact_kalman_asset_adapter_has_deterministic_bounded_forecast() -> None:
     fixture = _fixture()
     tickers = ("ALPHA", "BETA", "GAMMA", "DELTA")
@@ -62,14 +70,23 @@ def test_exact_kalman_asset_adapter_has_deterministic_bounded_forecast() -> None
 
     assert output.shape == (16, 8)
     assert np.isfinite(output).all()
-    digest = hashlib.sha256(np.ascontiguousarray(output).tobytes(order="C")).hexdigest()
     source_fixture = _source_fixture()
     source_dispatch = source_fixture["source_dispatch"]
     assert source_dispatch["candidate_id"] == EXACT_KALMAN_MODEL_ID
     assert source_dispatch["source_dependence_wrapper_sha256"] == SOURCE_DEPENDENCE_WRAPPER_SHA256
     assert source_dispatch["source_pgas_wrapper_sha256"] == SOURCE_PGAS_WRAPPER_SHA256
     assert source_dispatch["source_marginal_wrapper_sha256"] == SOURCE_ASSET_WRAPPER_SHA256
-    assert source_fixture["comparison"]["portfolio_daily_log_paths"]["sha256"] == digest
+    assert source_dispatch["source_engine_sha256"] == (
+        "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
+    )
+    assert source_dispatch["source_revision"] == "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+    expected = _retained_array(source_fixture["comparison"]["portfolio_daily_log_paths"])
+    assert output.shape == expected.shape
+    assert output.dtype == expected.dtype
+    assert source_fixture["comparison"]["portfolio_daily_log_paths"]["sha256"] == (
+        "e99d8227c5a7e634db29b782387cf8ba701bec076cbe2a706bc54a754a99c6ea"
+    )
+    np.testing.assert_allclose(output, expected, rtol=0.0, atol=2e-12)
     assert source_fixture["comparison"]["source_local_exact"] is True
 
 

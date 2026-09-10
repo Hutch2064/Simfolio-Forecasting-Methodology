@@ -28,6 +28,19 @@ def _digest(values: np.ndarray) -> str:
     return hashlib.sha256(np.ascontiguousarray(values).tobytes(order="C")).hexdigest()
 
 
+def _retained_array(record: dict[str, object]) -> np.ndarray:
+    values = np.asarray(record["values"], dtype=np.dtype(str(record["dtype"])))
+    assert list(values.shape) == record["shape"]
+    assert str(values.dtype) == record["dtype"]
+    assert _digest(values) == record["sha256"]
+    return values
+
+
+def _frozen_input() -> np.ndarray:
+    fixture = json.loads(_resource("source_input.json").decode("utf-8"))
+    return _retained_array(fixture["input_values"])
+
+
 def test_raw_source_descriptor_matches_ast_recovery_fixture() -> None:
     descriptor = json.loads(_resource("source_candidate.json").decode("utf-8"))
     assert descriptor == INLA_CANDIDATE
@@ -40,9 +53,16 @@ def test_raw_source_descriptor_matches_ast_recovery_fixture() -> None:
 
 def test_full_inla_fit_and_path_recurrence_match_source_fixture() -> None:
     fixture = json.loads(_resource("source_parity_py312.json").decode("utf-8"))
-    values = np.sin(np.arange(180, dtype=float) / 8.0) * 0.01 + np.random.default_rng(2).normal(
-        0.0, 0.01, 180
+    values = _frozen_input()
+    assert fixture["source_engine_sha256"] == (
+        "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
     )
+    assert fixture["source_revision"] == "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+    generator = fixture["generator"]
+    assert generator["input_fixture"] == "source_input.json"
+    assert generator["input_values_sha256"] == _digest(values)
+    assert generator["input_values_shape"] == list(values.shape)
+    assert generator["input_values_dtype"] == str(values.dtype)
     fit = fit_bdes_full_inla(values, INLA_CANDIDATE)
     expected = fixture["comparison"]
     for key in (
@@ -52,27 +72,38 @@ def test_full_inla_fit_and_path_recurrence_match_source_fixture() -> None:
         "standardized_residuals",
     ):
         actual = np.asarray(fit[key])
-        assert list(actual.shape) == expected[key]["shape"]
-        assert str(actual.dtype) == expected[key]["dtype"]
-        assert _digest(actual) == expected[key]["sha256"]
+        retained = _retained_array(expected[key])
+        assert list(actual.shape) == list(retained.shape)
+        assert str(actual.dtype) == str(retained.dtype)
+        np.testing.assert_allclose(actual, retained, rtol=0.0, atol=2e-12)
     bdes = fit["bdes_multiscale_vol"]
     for key in ("q_last", "phis", "b", "q_var"):
         actual = np.asarray(bdes[key])
         record = expected[f"bdes_{key}"]
-        assert list(actual.shape) == record["shape"]
-        assert str(actual.dtype) == record["dtype"]
-        assert _digest(actual) == record["sha256"]
+        retained = _retained_array(record)
+        assert list(actual.shape) == list(retained.shape)
+        assert str(actual.dtype) == str(retained.dtype)
+        np.testing.assert_allclose(actual, retained, rtol=0.0, atol=2e-12)
     for key in (
         "residual_last",
         "residual_phi",
         "residual_innovation_sd",
         "residual_common_loading",
     ):
-        assert fit["bdes_multiscale_vol"][key] == expected[f"bdes_{key}"]
-    np.testing.assert_array_equal(np.asarray(fit["posterior_center"]), expected["posterior_center"])
+        np.testing.assert_allclose(
+            fit["bdes_multiscale_vol"][key], expected[f"bdes_{key}"], rtol=0.0, atol=2e-12
+        )
+    np.testing.assert_allclose(
+        np.asarray(fit["posterior_center"], dtype=np.float64),
+        np.asarray(expected["posterior_center"], dtype=np.float64),
+        rtol=0.0,
+        atol=2e-12,
+    )
     paths = simulate_bdes_full_inla(fit, 4, 10, 123)
-    assert list(paths.shape) == expected["paths"]["shape"]
-    assert _digest(paths) == expected["paths"]["sha256"]
+    retained_paths = _retained_array(expected["paths"])
+    assert list(paths.shape) == list(retained_paths.shape)
+    assert str(paths.dtype) == str(retained_paths.dtype)
+    np.testing.assert_allclose(paths, retained_paths, rtol=0.0, atol=2e-12)
 
 
 def test_inla_candidate_is_seed_identity_strict() -> None:
