@@ -2,6 +2,8 @@
 
 Generated from `resources/specifications/canonical_statistical_specifications.json`.
 The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.
+The resource contains the 34-model source-backed portfolio batch in addition to the previously ledger-bound definitions. `ledger_bound_model_ids` records the rows already applied to the canonical ledger; `audit/statistical-specifications-34-ledger-patch.json` is the narrow generated update for the staged batch.
+Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.
 
 ## 001. `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`
 
@@ -15,7 +17,684 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Dependence component: `frontier.dependence_parameterization`.
 - Portfolio rejoin: `frontier.portfolio_rejoin`.
 
-## 002. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean`
+## 002. `bayesian_mcmc_stochastic_volatility_sbb`
+
+- Family: `sv_mcmc_sbb`
+- Resolved-definition SHA-256: `bdde8fe0c49b381914c32805be0ecd8ef8a265b90980533038d7bbcbf48d2e5b`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_sample_mean_near_zero_shrinkage`, `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sv_mcmc_log_posterior`, `_fit_sv_mcmc_from_base`, `_fit_sv_mcmc`, `_sv_initial_log_var`, `_politis_white_block_length`, `_stationary_bootstrap_indices_from_draws_fast`, `_stationary_bootstrap_indices_from_draws`, `_stationary_bootstrap_indices`, `_simulate_sv_mcmc_sbb`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation, type`.
+- Resolved defaults:
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `fit_seed_arguments` = `["sv_mcmc_fit", "finite_observation_count", "round(finite_observation_mean, 10)"]`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_mcmc_stochastic_volatility_sbb"`
+  - `innovation` = `"empirical"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `measurement_equation` = `{"log_variance_clip": [-18.0, 18.0], "mean": -1.2703628454614782, "variance": "pi^2 / 2"}`
+  - `minimum_finite_training_observations` = `504`
+  - `output_semantics` = `"cumulative terminal samples from source daily MCMC-SV paths"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `sampler` = `{"burn": 120, "eta_bounds": [0.0001, 5.0], "iterations": 420, "phi_bounds": [0.001, 0.994], "proposal": "bounded random walk over level, phi, eta", "thin": 4}`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stationary_bootstrap` = `"_politis_white_block_length plus source index kernel"`
+  - `type` = `"sv_mcmc_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 003. `bayesian_sbb_ml_vol_overlay_rf_harx_ff6`
+
+- Family: `bayesian_sbb_ml_vol_overlay`
+- Resolved-definition SHA-256: `83319a89bd9a7de3eb7afb5e88df503b8a5257016a5bad7b8d14f02593f199eb`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_ml_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_ml_vol_overlay_rf_harx_ff6"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"base_candidate": {"overlay_model": "ewma_absolute"}, "branch": "source ML wrapper base fit", "fit_function": "_fit_bayesian_sbb_vol_overlay", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `180`
+  - `ml_descriptor` = `{"factor_model": "none", "model": "ridge_harx", "parameter_source": "source function default because raw descriptor omits ml_model"}`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"factor_model": "none", "factor_parameter_source": "source function default because raw descriptor omits ml_model", "fit_function": "_fit_bayesian_sbb_ml_vol_overlay", "model": "ridge_harx", "random_forest": {"bootstrap": true, "max_depth": 5, "max_features": 0.75, "min_samples_leaf": 25, "n_estimators": 64, "n_jobs": 1}, "recent_weight_half_life_days": 504.0}`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_ml_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 004. `bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `6e76f14a33c7f5d8aef159a2858ab45c3a0f5a0a0090ebe778c6a4a58ec6e4dc`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "empirical_bayes_hac_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "egarch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "egarch_1_1_volatility"}`
+  - `overlay_model` = `"egarch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `prior_source` = `"data_driven_sharpe_shrinkage"`
+  - `residual_resampling` = `"stationary_bootstrap"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"egarch_1_1_volatility_overlay"`
+
+## 005. `bayesian_sbb_overlay_ewma_absolute`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `b68bdd7c640f3fcd85a97eb939931f213e63c48ae8bf45cc6c725e0e3b75b12d`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 006. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `427eb8fc329edd2f222978a20e86b40adac4dc3d32db79b0289150c71ae7eea2`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"arguments": {"nonnegative_sharpe": true, "posterior_mu_draws": false}, "branch": "empirical_bayes_hac_positive_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_positive_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 007. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `4aca7e5cd57f3ebca29533054348e5fbb27926976c2ae4f10e5bf739f95506e9`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"arguments": {"nonnegative_sharpe": true, "posterior_mu_draws": false}, "branch": "empirical_bayes_hac_positive_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_positive_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 008. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `ae9749118d08f2535bebfb9b9e3fdf859ca83b9a8331a93cc1aaf4f0805d430e`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "empirical_bayes_hac_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 009. `bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `332a969130c146a4dad63d2a9a7bf412d182d074adecd55b1ae2738145835e71`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "historical_realized_sharpe", "fit_function": "_fit_historical_realized_sharpe_sbb"}`
+  - `mean_model` = `"historical_realized_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 010. `bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `693c6a9b083ed4545500990da9573939e39940095b2338f3a8544a4f7b943f27`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "positive_sample_mean", "fit_function": "_fit_positive_sample_mean_sbb"}`
+  - `mean_model` = `"positive_sample_mean"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"absolute_return_ewma_volatility_overlay"`
+
+## 011. `bayesian_sbb_overlay_ewma_absolute_zero_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `78e9e358d66ce83ab08bf96497f03cead0ff9431b702ee40b61ce2415ceaad8a`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_ewma_absolute_zero_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "zero_sharpe", "fit_function": "_fit_zero_sharpe_sbb"}`
+  - `mean_model` = `"zero_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_absolute_ewma_volatility", "lambda_grid": [0.8, 0.995, 80], "minimum_residual_observations": 60, "model": "ewma_absolute", "objective": "one_step_log_absolute_return_volatility_mse"}`
+  - `overlay_model` = `"ewma_absolute"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 012. `bayesian_sbb_overlay_figarch_1_d_1`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `1484d67b7fa45ee540b6104d884479e3ec6bb05c2f5c94f0873a75b1a7dcc75d`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_figarch_1_d_1"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"arch_specification": {"p": 1, "q": 1, "vol": "FIGARCH"}, "fit_function": "_fit_arch_forecast_overlay", "max_fit_observations": 1260, "model": "figarch_1_d_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `overlay_model` = `"figarch_1_d_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 013. `bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `b3707c2023af8597c0c71b161d356293a52da7ff276d50bb4ff6de71bb4cccba`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "empirical_bayes_hac_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "garch_1_1_volatility"}`
+  - `overlay_model` = `"garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 014. `bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `2e958106514966d352117679c52ecc1161dc4a5bb79d17e5878910f5e16fe908`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "hierarchical_empirical_bayes_sharpe", "fit_function": "_fit_hierarchical_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"hierarchical_empirical_bayes_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "garch_1_1_volatility"}`
+  - `overlay_model` = `"garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 015. `bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `cbbfef2a9c22ba683b64f127777044246bf76dae74196311ec4593c42bf92660`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "positive_sample_mean", "fit_function": "_fit_positive_sample_mean_sbb"}`
+  - `mean_model` = `"positive_sample_mean"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "garch_1_1_volatility"}`
+  - `overlay_model` = `"garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `validation_status` = `"previous_live_garch_incumbent_promoted_from_strict_rank10_baseline"`
+  - `vol_model` = `"garch_1_1_volatility_overlay"`
+
+## 016. `bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `89328311e604dafa64c14678b86d725980943d30ad4b5a87ee1c5e7668f6ad2c`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "prequential_crps_shrinkage", "fit_function": "_fit_prequential_crps_shrinkage_sbb"}`
+  - `mean_model` = `"prequential_crps_shrinkage"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "garch_1_1_volatility"}`
+  - `overlay_model` = `"garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 017. `bayesian_sbb_overlay_gjr_garch_1_1`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `edb26b9666c6931dabcbfdce58079e9f69f30306a561716c816d96869c533106`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_gjr_garch_1_1"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "gjr_garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "gjr_tarch_1_1_volatility"}`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 018. `bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `4cd5ffb8f30814c882704225da8e5aa23659e7bbfe6957bb68904a4a7dccfdee`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "empirical_bayes_hac_sharpe", "fit_function": "_fit_empirical_bayes_sharpe_sbb"}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "gjr_garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "gjr_tarch_1_1_volatility"}`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `prior_source` = `"data_driven_sharpe_shrinkage"`
+  - `residual_resampling` = `"stationary_bootstrap"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
+
+## 019. `bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `2b92b1b2a8ad3803c231bbb8c195dac02860a18dbc7b3e7e90549e92ae109518`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "positive_sample_mean", "fit_function": "_fit_positive_sample_mean_sbb"}`
+  - `mean_model` = `"positive_sample_mean"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_arch_volatility", "innovation_method": "gaussian_iid_standardized_innovations", "max_fit_observations": 1260, "model": "gjr_garch_1_1", "optimizer": {"ftol": 1e-06, "maxiter": 80}, "vol_model": "gjr_tarch_1_1_volatility"}`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `validation_status` = `"focused_80_portfolio_validation_candidate"`
+  - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
+
+## 020. `bayesian_sbb_overlay_harch_1_5_22`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `83e1dcb612507ce2f8deb6506fe45e01184f91b6407f07f50d2044c4ae9063e2`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_harch_1_5_22"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"arch_specification": {"p": [1, 5, 22], "vol": "HARCH"}, "fit_function": "_fit_arch_forecast_overlay", "max_fit_observations": 1260, "model": "harch_1_5_22", "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `overlay_model` = `"harch_1_5_22"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 021. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `e9d167af687b48588521a0aa1cbbe99c30df74823dd645c9174e627a3a41bdd7`
@@ -84,7 +763,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 003. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty`
+## 022. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `c0107e0a8d357fb8f114b534ec76b67a983fcb148b25782563f3dab3d65c0fe7`
@@ -154,7 +833,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 004. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc`
+## 023. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `6ce8f86c06286e53b6540bbbb7569d8aed4b57c2b012eec1f9bc87ca05dda73e`
@@ -224,7 +903,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 005. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc`
+## 024. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `d8eda726171ef406b9aef2b7c53edb8c098c42924f7242bdb1ae8f9e2b2466f5`
@@ -294,7 +973,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 006. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean`
+## 025. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `34c63990f78c9abaf3b846f276a22474104a272aaea4f1767a354a4c98e3aa04`
@@ -364,7 +1043,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 007. `bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean`
+## 026. `bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `c97b9056f6c277cd7f3300a51155f49d3f43415b3e0d9f76c7b5a87dff754ae9`
@@ -433,7 +1112,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 008. `bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor`
+## 027. `bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `4c2d130e7588639109c78f3a4e5e460d8a4d13db80c77fb9ee8ebfb8f3a881f7`
@@ -503,7 +1182,80 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 009. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 028. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `d4596c07d43060b33e71acb44355aa4b1ed6202198bb492b3fcb3a6f0fb67428`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, overlay_model, type`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "source else branch", "fit_function": "default_bayesian_constrained_sbb", "wrapper_defaults": {"nonnegative_drift": false, "posterior_mu_draws": false, "posterior_sd_scale": 0.0, "prior_source": "zero", "prior_sr": 0.75, "sample_mean_blend": 0.0, "sample_mu_days": 0, "sr_cap": 0.75}}`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_sv_variant", "model": "sv_ar1_logvol_bias_corrected", "variant": {"bias_correct": true, "eta_scale": 0.0, "last_blend": 0.0, "phi_cap": 0.995}}`
+  - `overlay_model` = `"sv_ar1_logvol_bias_corrected"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 029. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor`
+
+- Family: `bayesian_sbb_vol_overlay`
+- Resolved-definition SHA-256: `1f7a7657559334ec2d8e61e1d5964f5130b8e2e4bd9d5f64739d8a7a4915a988`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_bayesian_constrained_sbb`, `_mean_schedule_from_fit`, `_simulate_bayesian_constrained_sbb`, `_historical_sharpe_stats`, `_overlay_half_life_days`, `_overlay_vol_clip_bounds`, `_fit_absolute_ewma_volatility`, `_fit_har_overlay`, `_fit_arch_forecast_overlay`, `_fit_bayesian_sbb_vol_overlay`, `_overlay_vol_multiplier_curve`, `_simulate_bayesian_sbb_vol_overlay`, `_factor_model_frame_config`, `_ml_forecast_feature_panel`, `_recent_exponential_weights`, `_fit_sklearn_regressor`, `_target_persistence`, `_fit_bayesian_sbb_ml_vol_overlay`, `_simulate_bayesian_sbb_ml_vol_overlay`, `_fit_harx_ff6_current_log_variance_anchor`, `_apply_bayesian_sbb_vol_overlay_vol_anchor`, `_sv_log_chi_square_bias`, `_fit_sv_variant`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, mean_model, overlay_model, path_generator, tail_method, type, validation_status, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "optimizer": {"ftol": 1e-06, "maxiter": 80}}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `family` = `"bayesian_sbb_vol_overlay"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor"`
+  - `innovation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "resampling": "stationary_bootstrap", "residual_scale": 100.0, "standardized_clip": [-20.0, 20.0]}`
+  - `innovation_and_simulation` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "block_length_floor": 1, "index_kernel": "_stationary_bootstrap_indices", "overlay_multiplier_clip": [0.01, 100.0], "resampling": "stationary_bootstrap", "residual_scale": 100.0, "simulated_return_clip": [-1.0, 1.0], "standardized_residual_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_dispatch` = `{"branch": "merton_positive_hac_drift_uncertainty", "fit_function": "_fit_merton_positive_hac_drift_uncertainty_sbb"}`
+  - `mean_model` = `"merton_positive_hac_drift_uncertainty"`
+  - `minimum_finite_training_observations` = `60`
+  - `ml_factor_policy` = `"raw descriptor controls branch; frozen dated FF6 frame only"`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_dispatch` = `{"fit_function": "_fit_sv_variant", "model": "sv_ar1_logvol_bias_corrected", "variant": {"bias_correct": true, "eta_scale": 0.0, "last_blend": 0.0, "phi_cap": 0.995}}`
+  - `overlay_model` = `"sv_ar1_logvol_bias_corrected"`
+  - `overlay_multiplier_clip` = `[0.01, 100.0]`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `shared_mean_fit` = `"_fit_bayesian_constrained_sbb and explicit source mean branches"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `validation_status` = `"clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate"`
+  - `vol_model` = `"sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor"`
+
+## 030. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `ec75732d7f3a2f90de4b84754a6a8743e0fae94ea70e5d1e918bfba87ea9d5bf`
@@ -516,7 +1268,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 010. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+## 031. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `70ee67447e4bbfe2d9a7d27bd1bb37cdb53f6f97861024d7b2a7b8d9b2745071`
@@ -529,7 +1281,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 011. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 032. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `6e7cdc78ef858a5854f53d1308270e900ef770392f8d3cafcfba714b30d519a0`
@@ -542,7 +1294,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 012. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 033. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `f43eb552383195a5dfaaf07dd4224c8a5ec4680e2f8275f9eaaa3e9601f5c730`
@@ -555,7 +1307,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 013. `bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+## 034. `bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `dab38af6ede94687471b660f1191bbbab3e5fdbeb4d5918aff598791a14d3913`
@@ -568,7 +1320,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 014. `bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+## 035. `bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `3101c6c76c72eb7c2f9acf2b455a0d568c9d4b51c5d9582286f7441aaea27058`
@@ -581,7 +1333,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 015. `bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+## 036. `bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `758f9d5c8d0145759184e47cf073728266a418f58ae52e14be6df75b3f7ddcc0`
@@ -594,7 +1346,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 016. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 037. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `3a16442ecaef51f16b84fb6c3ee3ef16c92b533ba866c155647b2f6dd737b277`
@@ -607,7 +1359,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 017. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 038. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `40d03a9a3a8ce656f97eac3b0777fcdce308dc389e7b192b10dbd53725c93a51`
@@ -620,7 +1372,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 018. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 039. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `a062e79ed07515595f6d8610852379d8e5780fe3a8e2c084367c30b21f9fa913`
@@ -633,7 +1385,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 019. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 040. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `45e77b6dc28515af264bf05442f361cb9ab0ee8224958cdd95ec6f7046b3996a`
@@ -646,7 +1398,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 020. `bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 041. `bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e5709ba7d31fb97214361f4c222c90715643baf64b8e8df9de73a8570998e4f2`
@@ -659,7 +1411,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 021. `bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 042. `bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `d8ef249034a7a2318b2e052cedbdc579384305b21ce88f09315a45c43c843f89`
@@ -672,7 +1424,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 022. `bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 043. `bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `0c03c1dc8e2dcdae95a166b1203cde20afebd489b0c5d1ccd08eef4b2814a632`
@@ -685,7 +1437,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 023. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 044. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e795173b676b751101b76f3e12c14dee4330297220bddb63526f80eb50d9f892`
@@ -698,7 +1450,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 024. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 045. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `21033a5ed5ce4987a94563abc8ae8178c3dfb3e16c1236c3bae6da5b7cbd268e`
@@ -711,7 +1463,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 025. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 046. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `06d9ed076a638d35755ebff83963a00952c3bbdf4252bb236fe2e14fa0db2146`
@@ -724,7 +1476,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 026. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 047. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `86747dec91dfa30943342c98220a713f9255609bba057c2da5216d81a9029ebb`
@@ -737,7 +1489,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 027. `bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 048. `bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `28eff5451f35e32e535de0364434bfe5ea62dae4912f906f64f0c6feeaafa317`
@@ -750,7 +1502,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 028. `bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 049. `bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `be334fd115a33c177f5e12f53822a5ba25751267e4c390c1fd465cc81ef7202a`
@@ -763,7 +1515,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 029. `bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 050. `bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `618c9f93b1a08172625e51a19dee3eb564a68dca28665cb9564f6ec30f665e33`
@@ -776,7 +1528,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 030. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 051. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `731a1ca219b1ec5ca10855f88341885c55438ef23af4cf4b46a153834d7ccc64`
@@ -789,7 +1541,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 031. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 052. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e74089b2a867adb404b91a87eb297b07f635cafac10aa830240b8fa258675fa0`
@@ -802,7 +1554,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 032. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 053. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `6af435bc7e0e51ff476e650279491a9ff154d316bf3f9f68c485fd8ff19a239c`
@@ -815,7 +1567,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 033. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 054. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `2b37dabca426b7760db907e681a7274c3af638eb3f46e12b88fafa1facef7999`
@@ -828,7 +1580,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 034. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 055. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `cf503d0d575e2c6dcb55fa4a49b8887553285ff8bc5d542dfadc9338d2430c6d`
@@ -841,7 +1593,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 035. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 056. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e5b1278e1de05ae72df55b4e93fa88a5c5662c9f16c4b6df1b503ae33d8dca61`
@@ -854,7 +1606,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 036. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 057. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `623e2df6372a74ac731c40b7098efb09db910a6e976436524b7566b108ed85c0`
@@ -867,7 +1619,115 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 037. `expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 058. `constant_mean_gaussian`
+
+- Family: `gaussian`
+- Resolved-definition SHA-256: `6ca3796f3df4ba4a6920bc9e925b92097003b3465b4e8e7869b5888c2b0fbdf1`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"gaussian_shrinkage_component"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
+  - `id` = `"constant_mean_gaussian"`
+  - `innovation_method` = `"gaussian_iid_standardized_innovations"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"constant_mean_gaussian_log_returns"`
+  - `minimum_finite_training_observations` = `{"constant_mean_gaussian": 30, "constant_mean_student_t": 30, "naive_iid_historical_portfolio_bootstrap": 1, "zero_mean_gaussian_vol_only": 1}`
+  - `naive` = `{"index_sampling": "iid uniform integer over finite history"}`
+  - `output_semantics` = `"direct terminal log-return samples by dense horizon"`
+  - `path_generator` = `"parametric_monte_carlo"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `student_t` = `{"df": "clip(4 + 6 / excess_kurtosis, 4, 30); default 30", "innovation_scale": "sigma / sqrt(df / (df - 2))"}`
+  - `tail_method` = `"native_distribution_tail"`
+  - `type` = `"gaussian"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"constant_sample_volatility"`
+  - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
+
+## 059. `constant_mean_student_t`
+
+- Family: `student_t`
+- Resolved-definition SHA-256: `17a1124b6d4049b694ee55d9bf9ed4951e9799b13e1254036613d82a5b46b123`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"heavy_tailed_shrinkage_component"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
+  - `id` = `"constant_mean_student_t"`
+  - `innovation_method` = `"student_t_iid_standardized_innovations"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"constant_mean_student_t_log_returns"`
+  - `minimum_finite_training_observations` = `{"constant_mean_gaussian": 30, "constant_mean_student_t": 30, "naive_iid_historical_portfolio_bootstrap": 1, "zero_mean_gaussian_vol_only": 1}`
+  - `naive` = `{"index_sampling": "iid uniform integer over finite history"}`
+  - `output_semantics` = `"direct terminal log-return samples by dense horizon"`
+  - `path_generator` = `"parametric_student_t_monte_carlo"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `student_t` = `{"df": "clip(4 + 6 / excess_kurtosis, 4, 30); default 30", "innovation_scale": "sigma / sqrt(df / (df - 2))"}`
+  - `tail_method` = `"native_student_t_tail"`
+  - `type` = `"student_t"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"constant_sample_volatility"`
+  - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
+
+## 060. `dp_mixture_sv_sbb`
+
+- Family: `sv_extension`
+- Resolved-definition SHA-256: `d47f059da3ca540c352cc204dd04695f64593c71fc58424681cb199660de5f0f`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_categorical_next_states`, `_fit_observable_markov_state_sbb`, `_simulate_observable_markov_state_sbb`, `_fit_dp_mixture_sv_sbb`, `_simulate_dp_mixture_sv_sbb`, `_sample_mean_near_zero_shrinkage`, `_deterministic_seed`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, max_components, max_fit_obs, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"stochastic_volatility_extension"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `dp_mixture` = `{"max_components": 6, "max_fit_observations": 5000, "mixture_max_iter": 120, "rolling_windows": {"absolute_return_mean": 21, "trend_sum": 63}, "transition_prior_alpha": 0.5, "weight_concentration_prior": 0.5}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"dp_mixture_sv_sbb"`
+  - `innovation_method` = `"state_conditioned_empirical_standardized_residuals"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `max_components` = `6`
+  - `max_fit_obs` = `5000`
+  - `mean_model` = `"sample_mean_near_zero_shrinkage"`
+  - `minimum_finite_training_observations` = `504`
+  - `observable_markov` = `{"rolling_windows": {"trend": [63, 21], "volatility": [21, 10]}, "state_count": 12, "transition_prior_alpha": 0.5}`
+  - `output_semantics` = `"cumulative terminal samples from source daily extension paths"`
+  - `path_generator` = `"dirichlet_process_mixture_stochastic_volatility_stationary_bootstrap"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"state_conditioned_empirical_tail"`
+  - `type` = `"dp_mixture_sv_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"truncated_dirichlet_process_mixture_stochastic_volatility_proxy"`
+
+## 061. `expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `57e6290a7a2bc0d738c1e3eb630b5ac14c623550f0b9a36c3a39cbe6a46540ff`
@@ -880,7 +1740,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 038. `expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+## 062. `expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `8a36024322def91c83931453c29541562a51500b13dd73c224abf8736a88722e`
@@ -893,7 +1753,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 039. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 063. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `82dd149f68accfb20d5e99feee9eed346124e99c5e9e91ca303477a355f78a82`
@@ -906,7 +1766,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 040. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 064. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `bd194bffc71f76572379416b27ea5d373218bf843fbe35d22aa91781a27e1a4d`
@@ -919,7 +1779,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 041. `expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+## 065. `expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `c6541bdf6d98f48d1c81f6c52a8d7f67ada2c28b05c6f25959bf35c9a7b826cd`
@@ -932,7 +1792,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 042. `expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+## 066. `expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `b3198f8f2f08d437d9576727f14dc6453205ad3bf782c03e838e7d5e1d9eb965`
@@ -945,7 +1805,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 043. `expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+## 067. `expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `beae26c078b931b701f209d977cbd0d0a31fd82f5cd663b2f5b59ab7148edbf2`
@@ -958,7 +1818,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 044. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 068. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `98ff855ecb14c52d0b707ef4f2987414c2877702631da8aef4076fc5a307dde7`
@@ -971,7 +1831,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 045. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 069. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e741eec61c51cec473a662b03dc7f6477a258d639f1e73148f37792b7f56d314`
@@ -984,7 +1844,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 046. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 070. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `a11f47e6bbd390481df077b70010d9de01257d6c9d36747baef4387b4909fa6f`
@@ -997,7 +1857,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 047. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 071. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `35b547ecfd4040e3328eb10004b5321590a791503023783c040568baeace8b91`
@@ -1010,7 +1870,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 048. `expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 072. `expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `0dba6899c8b94beea1c462e3678c154f9f42b7b9fca7c4766034683d09e8f61e`
@@ -1023,7 +1883,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 049. `expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 073. `expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `368498f1cd84cfdc74d09ded9cb9161a9851e17ad345fb4717c376d73df4f1ab`
@@ -1036,7 +1896,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 050. `expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 074. `expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `0d2eb56e7744d9c40b58f52d9a8897e4ed1352fe05d0a6b71a8e22d5817cc0d6`
@@ -1049,7 +1909,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 051. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 075. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `cc4a81732f93ab13905b32fa97361a621b5e087c6a8feeeae03177700c30b5aa`
@@ -1062,7 +1922,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 052. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 076. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `f29e27aa9a83177d1276ff31a431b1434be30dd3794cca1778b8b3a0950447ec`
@@ -1075,7 +1935,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 053. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 077. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `c3308ab4347950b20d8fc3a40c31104d7fed6dc1450070d9ceb950e1a1713f4c`
@@ -1088,7 +1948,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 054. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 078. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `020f180be89543af6334bcadce6e954ee2fa009062aaec006de2177821e3d13c`
@@ -1101,7 +1961,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 055. `expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 079. `expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `8875505d016fe596092c83aac021b9e89d871b7d9a5570b9247ccacbe3fb2916`
@@ -1114,7 +1974,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 056. `expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 080. `expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `ce4bf5e3faf2786a72a2cabf7e359b355cc441ded9f2872032a4b32de58f4659`
@@ -1127,7 +1987,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 057. `expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 081. `expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `462ec8930e16dec616a659f1238b8a4cc309cbc584c77e98f2f6d1ee34d9672e`
@@ -1140,7 +2000,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 058. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 082. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `54333833ebb945eb85491f1b9ab1d5dc945681299ad12af3ce0bf4a091a03248`
@@ -1153,7 +2013,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 059. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 083. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `cd74f7697ce890cdf789f96c7c365dc3910ea2d4c662116316bc962d3bcf67a6`
@@ -1166,7 +2026,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 060. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 084. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `9aba56f1701112ce098c1928e06eef6675bb1be3f214172df2b86288e3922cff`
@@ -1179,7 +2039,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 061. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 085. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `f4f7ed969e67cf2e5c06c4c9e6df85f7700e592f81994f4a566b196ccd0460d4`
@@ -1192,7 +2052,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 062. `expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 086. `expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `a481f1ad8b1ad652f29bdda3967063972330a40d0e518e67bee8c17a79e0ae05`
@@ -1205,7 +2065,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 063. `expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 087. `expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `eb7f58b51ae499e15d4e66f108db9378feafc105a71c74b65e4440fbb5e6d57e`
@@ -1218,7 +2078,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 064. `expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 088. `expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `3ef6ef3ece3f9af8d06871c3f3342cbfc837964ca453a863ea6961cc94a34c25`
@@ -1231,7 +2091,91 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 065. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 089. `factor_ff6_ridge_residual_sbb_absolute_ewma`
+
+- Family: `factor_residual_sbb`
+- Resolved-definition SHA-256: `82a940564cf345ba6f6eae62ae1ca88b63d9ac286960346ad9351d98a2d12b2d`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_factor_residual_sbb`, `_simulate_factor_residual_sbb`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `alignment` = `"normalize dates, concat portfolio and factor frame, dropna, require final aligned date equals final training date"`
+  - `block_length` = `"max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))"`
+  - `block_length_floor` = `1`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_columns` = `["Mkt_RF", "SMB", "HML", "RMW", "CMA", "UMD"]`
+  - `factor_model` = `"ff6"`
+  - `factor_model_parameter_source` = `"source function default because raw descriptor omits factor_model"`
+  - `family` = `"factor_residual_sbb"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `fit_function` = `"_fit_factor_residual_sbb"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"factor_ff6_ridge_residual_sbb_absolute_ewma"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `180`
+  - `output_semantics` = `"daily log-return increments"`
+  - `path_definition` = `"risk_free_draw + factor_prediction_draw + residual_draw, clipped to [-1, 1]"`
+  - `regressor` = `{"alpha": 10.0, "half_life_days": 504.0, "kind": "ridge", "pipeline": ["StandardScaler", "Ridge"], "sample_weight": "recent_exponential_weights"}`
+  - `resampling` = `"stationary_bootstrap"`
+  - `residual_definition` = `"portfolio_return - risk_free - ridge_factor_prediction"`
+  - `residual_overlay` = `"none"`
+  - `residual_overlay_parameter_source` = `"source function default because raw descriptor omits residual_overlay"`
+  - `risk_free_column` = `"RF"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `seed` = `{"fit": ["factor_residual_sbb", "factor_model", "len(combined)", "len(factor_cols)"], "forecast": ["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]}`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stationary_bootstrap` = `"max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))"`
+  - `stationary_kernel` = `"_stationary_bootstrap_indices"`
+  - `type` = `"factor_residual_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 090. `factor_ff6_ridge_residual_sbb_none`
+
+- Family: `factor_residual_sbb`
+- Resolved-definition SHA-256: `df6159e1fe35a05e980249cf662be007fa192f6794b5e8640959103d03c8135f`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_fit_factor_residual_sbb`, `_simulate_factor_residual_sbb`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, type`.
+- Resolved defaults:
+  - `alignment` = `"normalize dates, concat portfolio and factor frame, dropna, require final aligned date equals final training date"`
+  - `block_length` = `"max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))"`
+  - `block_length_floor` = `1`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `factor_columns` = `["Mkt_RF", "SMB", "HML", "RMW", "CMA", "UMD"]`
+  - `factor_model` = `"ff6"`
+  - `factor_model_parameter_source` = `"source function default because raw descriptor omits factor_model"`
+  - `family` = `"factor_residual_sbb"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `fit_function` = `"_fit_factor_residual_sbb"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"factor_ff6_ridge_residual_sbb_none"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `minimum_finite_training_observations` = `180`
+  - `output_semantics` = `"daily log-return increments"`
+  - `path_definition` = `"risk_free_draw + factor_prediction_draw + residual_draw, clipped to [-1, 1]"`
+  - `regressor` = `{"alpha": 10.0, "half_life_days": 504.0, "kind": "ridge", "pipeline": ["StandardScaler", "Ridge"], "sample_weight": "recent_exponential_weights"}`
+  - `resampling` = `"stationary_bootstrap"`
+  - `residual_definition` = `"portfolio_return - risk_free - ridge_factor_prediction"`
+  - `residual_overlay` = `"none"`
+  - `residual_overlay_parameter_source` = `"source function default because raw descriptor omits residual_overlay"`
+  - `risk_free_column` = `"RF"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `seed` = `{"fit": ["factor_residual_sbb", "factor_model", "len(combined)", "len(factor_cols)"], "forecast": ["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]}`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `stationary_bootstrap` = `"max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))"`
+  - `stationary_kernel` = `"_stationary_bootstrap_indices"`
+  - `type` = `"factor_residual_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 091. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `8c044a303d5c695a37e9b8f1ed6622873634fa766a4a0b97d2d864c9ae191ee2`
@@ -1244,7 +2188,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 066. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+## 092. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `ed60a82dafc511b38d1d935da9dd8fca0c72cbcd08a3ab8cd3f3527a02f3e311`
@@ -1257,7 +2201,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 067. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 093. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `bcbaf087c811d8f27ae4a06395208a4fe6d857fd3a11ea3717f83a0bc716d1b2`
@@ -1270,7 +2214,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 068. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 094. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `3eb6bf104b1fcf8d38c5007a8411cf81360d4cf9460a471177db44fedb6d3bce`
@@ -1283,7 +2227,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 069. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+## 095. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `7fc4de4db0d76d45b8a7eba3e57c312c9b2965d0caeec64946fc9cd84f7d8ca8`
@@ -1296,7 +2240,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 070. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+## 096. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `da2701b23acace81ce69ca393f08fc41f0cb2e069c025c56d51342fe71cf6abc`
@@ -1309,7 +2253,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 071. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric`
+## 097. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `269c69142570ff9cc874e7c8b26796eb49bbe551611fdf7c9f982bb917721efa`
@@ -1322,7 +2266,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 072. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 098. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `ecfa67e27d262a1061b8a12a53d9583759a94b4a17887248d87f256c1aa85084`
@@ -1335,7 +2279,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 073. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 099. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `49d4dadb2a3c9300be0de0d14d8191e2a3e3e5521c713ec0b9ea0f59d1edcf2c`
@@ -1348,7 +2292,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 074. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 100. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e5215a257b38fd31f63b738296f5b62ee3b8a4f740d07f0ac93d47e7402264f8`
@@ -1361,7 +2305,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 075. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 101. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `2bebe5b3d0b1f0737e7db069046512b5db204920980974080fba778f1b77f78b`
@@ -1374,7 +2318,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 076. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 102. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `275398bae175d909ea1b0af6e1e6ec534a6eabdf8707cc150632357e61f94669`
@@ -1387,7 +2331,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 077. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 103. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `136be4a2c53857ca45721bb748f9b2f21fd46b042363169474fd195510286acf`
@@ -1400,7 +2344,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 078. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 104. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `9660016305561dc52474855ad2814f88a37ab9883445e8244cf866d14cce23f5`
@@ -1413,7 +2357,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 079. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 105. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `149e16b867d798d2d41ec51dc5518b94f10f90509e10c50cba5af02e850a6c32`
@@ -1426,7 +2370,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 080. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 106. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `56fc883d147262d950e61b4e82efb697c1cf1e7e7956e93e93c98fcb2bce2ffc`
@@ -1439,7 +2383,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 081. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 107. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `6cae7ecb625e12d9f1935f80f286e49b239490efeb72768030bfb3f501638d68`
@@ -1452,7 +2396,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 082. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 108. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `12a86a86c3aa3fb19e80cc60aa8f0b5270ecf3eff0552f06f67ba48766f30511`
@@ -1465,7 +2409,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 083. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 109. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `d6d6ed1133eeed7420082d8bc355563bdbd0e2897663269f76d631885f5bcbcc`
@@ -1478,7 +2422,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 084. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 110. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `ec16ad456b779b16e5d335da0b45ecd24a6498d13477d6c8530ed95b75cd1a9f`
@@ -1491,7 +2435,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 085. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 111. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `c0b5857ac08fd700ba0ce17cb539436a26b9b4ed5e857dfeafc75a91eaf0cc5f`
@@ -1504,7 +2448,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 086. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 112. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `7936a778c35d258bd19993a982aa013dd5e1219f3278bd5684817384bba9cceb`
@@ -1517,7 +2461,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 087. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 113. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `62a5c1cd175837b441ab65f12133ba76d85828f5ba0ecdbd07559450f2c12e08`
@@ -1530,7 +2474,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 088. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 114. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `22605c1a297030ba336e9c5515058b4d4cb6874e443d42d80d555f7e58d141bd`
@@ -1543,7 +2487,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 089. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 115. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `5eb4f988c00626e526181471ec91fd389569c41d6f1ce62b3c4263ac57725c41`
@@ -1556,7 +2500,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 090. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 116. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `b4c731675e5ebaeeb88ba54b933daa5888845763878001b98a2d19b8063c7ee3`
@@ -1569,7 +2513,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 091. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 117. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `6a23731e310ba857071fe93a7b43e3f4f6cfbcc355e144ee420a1d9df26e6372`
@@ -1582,7 +2526,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 092. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 118. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `19254585d83185b81f0035ba29ee1fa4e42dbf7bc3e1305f7d0e2f150fd9fd67`
@@ -1595,7 +2539,252 @@ The machine-readable resource contains the complete definitions; this file keeps
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 093. `sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 119. `gas_score_driven_skewt`
+
+- Family: `gas_score_driven_skewt`
+- Resolved-definition SHA-256: `1bdeb2faaf004a6dc62b62f880327ad69e45f5a39fe756e8e0c7f15272457351`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_sample_mean_near_zero_shrinkage`, `_gas_t_score`, `_fit_gas_score_driven_skewt`, `_simulate_gas_score_driven_skewt`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `feature_family, id, mean_component, state_inference, type`.
+- Resolved defaults:
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `df_bounds` = `[4.0, 30.0]`
+  - `feature_family` = `"gas_distributional_baseline"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `grid` = `{"alpha": [0.03, 0.06, 0.1, 0.16], "beta": [0.85, 0.93, 0.97, 0.985]}`
+  - `id` = `"gas_score_driven_skewt"`
+  - `innovation` = `"Jones-Faddy skew-t when fit succeeds; source empirical pool on fit failure"`
+  - `innovation_clip` = `[-20.0, 20.0]`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `log_variance_clip` = `[-18.0, 18.0]`
+  - `max_fit_observations` = `5000`
+  - `mean_component` = `"near_zero_shrinkage_existing_candidate"`
+  - `minimum_finite_training_observations` = `504`
+  - `output_semantics` = `"cumulative terminal samples from source daily GAS paths"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_inference` = `"score_driven_observed_volatility"`
+  - `type` = `"gas_score_driven_skewt"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+
+## 120. `naive_iid_historical_portfolio_bootstrap`
+
+- Family: `naive_iid_historical_portfolio_bootstrap`
+- Resolved-definition SHA-256: `846310892632e0cc214177d6fad2638767602f0290f0e1206600827a584d37bc`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"naive_benchmark_candidate"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
+  - `id` = `"naive_iid_historical_portfolio_bootstrap"`
+  - `innovation_method` = `"iid_resampled_historical_portfolio_returns"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"none"`
+  - `minimum_finite_training_observations` = `{"constant_mean_gaussian": 30, "constant_mean_student_t": 30, "naive_iid_historical_portfolio_bootstrap": 1, "zero_mean_gaussian_vol_only": 1}`
+  - `naive` = `{"index_sampling": "iid uniform integer over finite history"}`
+  - `output_semantics` = `"direct terminal log-return samples by dense horizon"`
+  - `path_generator` = `"iid_historical_portfolio_return_bootstrap"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `student_t` = `{"df": "clip(4 + 6 / excess_kurtosis, 4, 30); default 30", "innovation_scale": "sigma / sqrt(df / (df - 2))"}`
+  - `tail_method` = `"empirical_historical_tail"`
+  - `type` = `"naive_iid_historical_portfolio_bootstrap"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"none"`
+  - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
+
+## 121. `observable_markov_state_sbb`
+
+- Family: `sv_extension`
+- Resolved-definition SHA-256: `54c7a63311cf970a1008a64681d77f8c472245e18af7c66f1d2766c839f90835`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_categorical_next_states`, `_fit_observable_markov_state_sbb`, `_simulate_observable_markov_state_sbb`, `_fit_dp_mixture_sv_sbb`, `_simulate_dp_mixture_sv_sbb`, `_sample_mean_near_zero_shrinkage`, `_deterministic_seed`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, state_alpha, state_count, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"state_transition_volatility_extension"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `dp_mixture` = `{"max_components": 6, "max_fit_observations": 5000, "mixture_max_iter": 120, "rolling_windows": {"absolute_return_mean": 21, "trend_sum": 63}, "transition_prior_alpha": 0.5, "weight_concentration_prior": 0.5}`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"observable_markov_state_sbb"`
+  - `innovation_method` = `"state_conditioned_empirical_residuals"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"state_conditioned_observable_markov_bootstrap"`
+  - `minimum_finite_training_observations` = `504`
+  - `observable_markov` = `{"rolling_windows": {"trend": [63, 21], "volatility": [21, 10]}, "state_count": 12, "transition_prior_alpha": 0.5}`
+  - `output_semantics` = `"cumulative terminal samples from source daily extension paths"`
+  - `path_generator` = `"observable_markov_chain_state_specific_bootstrap"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_alpha` = `0.5`
+  - `state_count` = `12`
+  - `tail_method` = `"state_conditioned_empirical_tail"`
+  - `type` = `"observable_markov_state_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"observable_rolling_volatility_tertiles"`
+
+## 122. `portfolio_gjr_garch_eb_sampler_moving_block_optimal`
+
+- Family: `portfolio_volatility_extension`
+- Resolved-definition SHA-256: `87ea4305e82942df9039cb8f22df47cc80acf0097719ee933eee7033f82b1508`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `_hac_mean_standard_error`, `_fit_empirical_bayes_sharpe_sbb`, `_simulate_bayesian_constrained_sbb`, `_overlay_vol_clip_bounds`, `_fit_bayesian_sbb_vol_overlay[GJR branch]`, `_overlay_vol_multiplier_curve[variance_decay branch]`, `_simulate_bayesian_sbb_vol_overlay`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_arch_volatility`, `_moving_block_indices`, `_moving_block_bayesian_sbb_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "o": 1, "optimizer": {"ftol": 1e-06, "maxiter": 80}, "p": 1, "power": 2.0, "q": 1, "vol": "GARCH"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"portfolio_gjr_garch_eb_sampler_moving_block_optimal"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovations` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "moving_block": "non-circular Kunsch blocks from recovery wrapper", "standardized_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_fit` = `{"model": "empirical_bayes_hac_sharpe", "posterior_mu_draws": false, "prior_sr": 0.75, "sr_cap": 0.75}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `path_generator` = `"moving_block_bootstrap_standardized_residuals"`
+  - `prior_source` = `"data_driven_empirical_bayes_hac_sharpe"`
+  - `residual_resampling` = `"moving_block_bootstrap"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
+
+## 123. `portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal`
+
+- Family: `portfolio_volatility_extension`
+- Resolved-definition SHA-256: `482352fb1866898f69d4ca7cdb7f4133457726c34696963e8203af1e7845038a`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `SimfolioEngine._deterministic_seed`, `_hac_mean_standard_error`, `_fit_empirical_bayes_sharpe_sbb`, `_simulate_bayesian_constrained_sbb`, `_overlay_vol_clip_bounds`, `_fit_bayesian_sbb_vol_overlay[GJR branch]`, `_overlay_vol_multiplier_curve[variance_decay branch]`, `_simulate_bayesian_sbb_vol_overlay`, `_politis_white_block_length`, `_stationary_bootstrap_indices`, `SimfolioEngine._fit_arch_volatility`, `_moving_block_indices`, `_moving_block_bayesian_sbb_paths`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `id, innovation_method, mean_model, overlay_model, path_generator, prior_source, residual_resampling, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `arch_fit` = `{"max_fit_observations": 1260, "o": 1, "optimizer": {"ftol": 1e-06, "maxiter": 80}, "p": 1, "power": 2.0, "q": 1, "vol": "GARCH"}`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal"`
+  - `innovation_method` = `"empirical_standardized_residuals"`
+  - `innovations` = `{"block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))", "moving_block": "non-circular Kunsch blocks from recovery wrapper", "standardized_clip": [-20.0, 20.0]}`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_fit` = `{"model": "empirical_bayes_hac_sharpe", "posterior_mu_draws": false, "prior_sr": 0.75, "sr_cap": 0.75}`
+  - `mean_model` = `"empirical_bayes_hac_sharpe"`
+  - `minimum_finite_training_observations` = `60`
+  - `output_semantics` = `"daily log-return increments"`
+  - `overlay_model` = `"gjr_garch_1_1"`
+  - `path_generator` = `"stationary_bootstrap_standardized_residuals"`
+  - `prior_source` = `"data_driven_empirical_bayes_hac_sharpe"`
+  - `residual_resampling` = `"stationary_bootstrap"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `tail_method` = `"filtered_empirical_tail"`
+  - `type` = `"bayesian_sbb_vol_overlay"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
+
+## 124. `stochastic_volatility_ar1_empirical`
+
+- Family: `sv`
+- Resolved-definition SHA-256: `9aab1c506bfea564b978f04954c6722e7b20da80627306e0b95c33df70c02c77`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sample_mean_near_zero_shrinkage`, `_sv_initial_log_var`, `_simulate_sv_ar1`, `_simulate_sv_ar1_sbb`, `_politis_white_block_length`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"stochastic_volatility_reference"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"stochastic_volatility_ar1_empirical"`
+  - `innovation` = `{"empirical_clip": [-12.0, 12.0], "stationary_bootstrap": "max(_politis_white_block_length(z), 1)", "student_t_df_bounds": [4.0, 30.0]}`
+  - `innovation_method` = `"empirical_standardized_residuals_iid"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"sample_mean_near_zero_shrinkage"`
+  - `measurement_equation` = `{"log_variance_clip": [-18.0, 18.0], "mean": -1.2703628454614782, "variance": "pi^2 / 2", "winsorize": "5th and 95th percentile only when observed count >= 80"}`
+  - `minimum_finite_training_observations` = `252`
+  - `output_semantics` = `"cumulative terminal samples from source daily SV paths"`
+  - `path_generator` = `"stochastic_volatility_ar1"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_space_fit` = `{"eta_bounds": [0.02, 2.5], "optimizer": "L-BFGS-B", "phi_bounds": [0.001, 0.995], "starts": 4}`
+  - `tail_method` = `"empirical_standardized_residual_tail"`
+  - `type` = `"sv"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"stochastic_volatility_ar1_log_variance"`
+
+## 125. `stochastic_volatility_ar1_empirical_sbb`
+
+- Family: `sv_sbb`
+- Resolved-definition SHA-256: `cdce75cc9072bed3dbe8e47900f54fb7c49edd052b517175aa0ac156a2de59fd`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_sv_observed_log_variance`, `_sv_observed_log_variance_from_residuals`, `_sv_kalman_filter`, `_initial_sv_state_space_params`, `_fit_sv_state_space_params`, `_fit_sv_ar1_with_mean`, `_fit_sv_ar1`, `_sample_mean_near_zero_shrinkage`, `_sv_initial_log_var`, `_simulate_sv_ar1`, `_simulate_sv_ar1_sbb`, `_politis_white_block_length`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"stochastic_volatility_stationary_bootstrap_reference"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `id` = `"stochastic_volatility_ar1_empirical_sbb"`
+  - `innovation` = `{"empirical_clip": [-12.0, 12.0], "stationary_bootstrap": "max(_politis_white_block_length(z), 1)", "student_t_df_bounds": [4.0, 30.0]}`
+  - `innovation_method` = `"empirical_standardized_residuals_stationary_bootstrap"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"sample_mean_near_zero_shrinkage"`
+  - `measurement_equation` = `{"log_variance_clip": [-18.0, 18.0], "mean": -1.2703628454614782, "variance": "pi^2 / 2", "winsorize": "5th and 95th percentile only when observed count >= 80"}`
+  - `minimum_finite_training_observations` = `252`
+  - `output_semantics` = `"cumulative terminal samples from source daily SV paths"`
+  - `path_generator` = `"stochastic_volatility_ar1_stationary_bootstrap"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `state_space_fit` = `{"eta_bounds": [0.02, 2.5], "optimizer": "L-BFGS-B", "phi_bounds": [0.001, 0.995], "starts": 4}`
+  - `tail_method` = `"empirical_standardized_residual_tail"`
+  - `type` = `"sv_sbb"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"stochastic_volatility_ar1_log_variance"`
+
+## 126. `sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `242540d7a01b0ab2b1542c4f7df873170f703af5944da091cf0746f8704bacee`
@@ -1669,7 +2858,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 094. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 127. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `69fa1eadf64b6dc18e11849d2b3236fb22d7bb7e08ab473998bf207bb99f517e`
@@ -1743,7 +2932,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 095. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 128. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `79a66c88a4079a57f8d0a14a71d03560738604c348be0c7e144520c38d66a1e1`
@@ -1817,7 +3006,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 096. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 129. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `462c2eec9f5ea7b2641f8cf061831e5b2298f728c7f6d77cb7bda2bbe2a937ab`
@@ -1891,7 +3080,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 097. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 130. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `08087f7c948500f011abb2dba8b37ce9e4934307d7a63003c21781a870ae5905`
@@ -1965,7 +3154,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 098. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 131. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `17785421f63937eee656389c8c8bf43d1b342125243f6bcb8b7223abf4e27aad`
@@ -2039,7 +3228,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 099. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 132. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `24a33296983f7a584a915b8447729b738a97ab1c79ba4d82f3ffb90ec226461e`
@@ -2113,7 +3302,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 100. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 133. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `64dc79728ed5116bf5efcdaae73712420c0b5d0da05849a7350b36ceef9d9b33`
@@ -2187,7 +3376,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 101. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 134. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `257fa2b73747d87e6e461ad22a57345aa72f69072925157ea3da452e99f3a8ab`
@@ -2261,7 +3450,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 102. `sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc`
+## 135. `sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `c08160f05e881318d9fe12b5cfc657d638cc70907d5981ff9d61b7f181fe5b30`
@@ -2335,7 +3524,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 103. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc`
+## 136. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `63fe035c8bc7078214d699335fd574b4b99ccc68a55a61cb491443d3c441c8e1`
@@ -2409,7 +3598,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 104. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc`
+## 137. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `b59d777c8c473fdcb2956466bf978755ff1e0a2d1fc0fe0caf002938140552cc`
@@ -2483,7 +3672,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 105. `sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc`
+## 138. `sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `b6dac4624b77d1802cdb1306b6acbda00873006c9b6223a7a6eb71dec796bfcd`
@@ -2557,7 +3746,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 106. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc`
+## 139. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `cbf127f648fa074c1b425a297cd2bbaeb381f8b6a34f7abe4a2e36552946699c`
@@ -2631,7 +3820,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 107. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 140. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `ddfa2f978ab858c2250cede9572afe86675a441f6c255bbece2a8f77985b4593`
@@ -2705,7 +3894,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 108. `sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc`
+## 141. `sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `f85e73a3bb2d96d2e91f032a6c1e548aaa29946d3590db9541b730f55599b46a`
@@ -2779,7 +3968,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 109. `sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 142. `sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `6305806bb36a564fd02f5df6b203151eefd9f796f8dfe8c8f41d20a1e475de66`
@@ -2853,7 +4042,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 110. `sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 143. `sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `deb845ef3b8e506b5f52ec24ddae9978138ec20d64ff0b77ac02a067f74f1963`
@@ -2927,7 +4116,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 111. `sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc`
+## 144. `sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `f38238b07dff8024636ee0c9ad492a645851e111c9f8cb4aa6e46579c7a7cfd6`
@@ -3001,7 +4190,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 112. `sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 145. `sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `aa065f71a367c82776d26b660e29d0f29ee52fb60419be33832c1f5b4ba2b682`
@@ -3075,7 +4264,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 113. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 146. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `2cf8e7d98786f91ba091a8f14456c503dd1a5ca83cbcd0e89956b9aba054800f`
@@ -3149,7 +4338,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 114. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 147. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `679c5caedc6884080eab49289d2afdae648424f664711eba6915cca6307ca393`
@@ -3223,7 +4412,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 115. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 148. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `99be3cd05ba1d32737ae982f85134c94d4bbfe9e35a035a3a8a9c4258d7cfd84`
@@ -3297,7 +4486,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 116. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 149. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `964d323f89558b788317ac33632d2d4ca902dea7f78cfd72a937be6e631de499`
@@ -3371,7 +4560,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 117. `sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 150. `sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `13995e11884ae17282c7914c462ffd4bd62cf4426eee7e5e50c969cf5f9a413b`
@@ -3445,7 +4634,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 118. `sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 151. `sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `ed157d90c7f324d5002c1495c0e9cff33ad825e28a0589cd810f6fc420c0670e`
@@ -3519,7 +4708,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 119. `sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 152. `sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `abe82df60ef565a76876bd3000ad9836b96e190c2c7e0967fc0e837ce24207f2`
@@ -3593,7 +4782,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 120. `sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 153. `sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `56b1e3183fd6d908343af1f8a0e41b49aa50dc9261606c80270cb667c0134a89`
@@ -3667,7 +4856,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 121. `sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 154. `sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `b339facf75a9281422f3ea739f7bd919178ba2dea0e010d2da278781a59d08e0`
@@ -3741,7 +4930,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 122. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 155. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `b14abe76219bab5e601c95d38d0f3e7d33c1a0a599882f10d0fc04758c13cda9`
@@ -3815,7 +5004,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 123. `sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 156. `sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `1f1f0eca46e5dee8f9d46bc2685883efc092204ee23de12ec2de97adef63e13c`
@@ -3889,7 +5078,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 124. `sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc`
+## 157. `sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `7ec791094a838db18153575315cc1a1f688664d3916d1ebbe33fc312281fede4`
@@ -3959,7 +5148,7 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 125. `sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 158. `sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `99e1bd695635e2b7dfaefbc39930f615a262fad7e0a4bbb72c71f074b3b96555`
@@ -4032,3 +5221,39 @@ The machine-readable resource contains the complete definitions; this file keeps
   - `vol_model` = `"full_latent_mcmc_stochastic_log_volatility_overlay"`
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
+
+## 159. `zero_mean_gaussian_vol_only`
+
+- Family: `zero_gaussian`
+- Resolved-definition SHA-256: `681ff3a34ad0f1a22550d57dc6444a6c41e80f59384280351fd34532d0abdc94`
+- Source: `source-research/scripts/forecast_oos_research_gate.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
+- Source entrypoints: `_deterministic_seed`, `_constant_mean_gaussian_log_terminal_samples`, `_iid_historical_bootstrap_log_terminal_samples`, `_fit_constant_mean_student_t_log_params`, `_constant_mean_student_t_log_paths`, `_constant_mean_student_t_log_terminal_samples`.
+- Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `portfolio.seed_identity`.
+- Source descriptor policy: exact recovered historical candidate fields below; resolved defaults are kept in a separate object and are not passed to the seed-bearing source descriptor.
+- Exact source descriptor fields: `candidate_role, forecast_level, id, innovation_method, mean_model, path_generator, return_target, tail_method, type, vol_model`.
+- Resolved defaults:
+  - `candidate_role` = `"zero_mean_volatility_reference"`
+  - `dense_horizon_tuple` = `"tuple(range(1, horizon_days + 1))"`
+  - `finite_observation_policy` = `"drop nonfinite observations before fitting"`
+  - `fit_failure_policy` = `"raise source-specific error; no generic fallback"`
+  - `forecast_level` = `"portfolio_return"`
+  - `forecast_seed_arguments` = `["forecast_oos_candidate", "origin_date", "dense_horizon_tuple", "public_model_id", "simulations"]`
+  - `gaussian` = `{"mean": "arithmetic sample mean", "scale": "sample standard deviation, ddof=1", "terminal_scale": "sigma * sqrt(horizon)"}`
+  - `id` = `"zero_mean_gaussian_vol_only"`
+  - `innovation_method` = `"gaussian_iid_standardized_innovations"`
+  - `input_unit` = `"portfolio_daily_log_return"`
+  - `mean_model` = `"zero"`
+  - `minimum_finite_training_observations` = `{"constant_mean_gaussian": 30, "constant_mean_student_t": 30, "naive_iid_historical_portfolio_bootstrap": 1, "zero_mean_gaussian_vol_only": 1}`
+  - `naive` = `{"index_sampling": "iid uniform integer over finite history"}`
+  - `output_semantics` = `"direct terminal log-return samples by dense horizon"`
+  - `path_generator` = `"parametric_monte_carlo"`
+  - `return_target` = `"portfolio_daily_log_return"`
+  - `rng` = `"numpy.random.default_rng"`
+  - `simulated_return_clip` = `[-1.0, 1.0]`
+  - `student_t` = `{"df": "clip(4 + 6 / excess_kurtosis, 4, 30); default 30", "innovation_scale": "sigma / sqrt(df / (df - 2))"}`
+  - `tail_method` = `"native_distribution_tail"`
+  - `type` = `"zero_gaussian"`
+  - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
+  - `vol_model` = `"constant_sample_volatility"`
+  - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`

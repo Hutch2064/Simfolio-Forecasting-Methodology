@@ -29,7 +29,10 @@ def _resolved_specification_ids() -> set[str]:
     resource = files("simfolio_forecasting_methodology").joinpath(
         "resources/specifications/canonical_statistical_specifications.json"
     )
-    return set(json.loads(resource.read_text(encoding="utf-8"))["accepted_model_ids"])
+    payload = json.loads(resource.read_text(encoding="utf-8"))
+    # The portfolio batch is staged in the shared resource until its narrow
+    # generated ledger patch is applied by the integration owner.
+    return set(payload.get("ledger_bound_model_ids", payload["accepted_model_ids"]))
 
 
 def test_membership_is_exact_and_digest_is_immutable():

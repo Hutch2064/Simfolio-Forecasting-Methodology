@@ -1,13 +1,16 @@
-"""Generate the resolved statistical-definition resource and ledger patch.
+"""Generate the resolved statistical-definition resource and ledger patches.
 
 The canonical score catalogue remains the membership authority.  This utility
-only resolves numerical defaults for the accepted base, Frontier, and full
-MCMC-SV rows, computes a digest over each complete definition, and updates the
-corresponding specification fields in ``canonical_175/ledger.json``.
+resolves numerical defaults for the accepted base, Frontier, and full MCMC-SV
+rows and records the additional source-backed portfolio families that have a
+complete local numerical closure.  It never infers parameters from a model ID:
+the raw seed-bearing descriptor is kept beside a separately resolved object.
 
 The source manifest is intentionally kept separate from this resource.  It is
-the row-level historical candidate identity; this file adds the defaults and
-failure semantics needed to execute that candidate without changing its ID.
+the row-level historical candidate identity; this file adds defaults and
+failure semantics needed to execute a candidate without changing its ID.  The
+main entry point writes a narrow 34-row ledger patch rather than mutating the
+canonical ledger in place.  The latter remains an integration-owned artifact.
 """
 
 from __future__ import annotations
@@ -15,11 +18,36 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
 from simfolio_forecasting_methodology.models.numerical.bdes_fastmap import (
     FRONTIER_CANDIDATE,
+)
+from simfolio_forecasting_methodology.models.portfolio import (
+    bayesian_vol as _bayesian_vol,
+)
+from simfolio_forecasting_methodology.models.portfolio import (
+    factor_residual as _factor_residual,
+)
+from simfolio_forecasting_methodology.models.portfolio import (
+    gas_reference as _gas_reference,
+)
+from simfolio_forecasting_methodology.models.portfolio import (
+    gjr_reference as _gjr_reference,
+)
+from simfolio_forecasting_methodology.models.portfolio import (
+    reference_families as _reference_families,
+)
+from simfolio_forecasting_methodology.models.portfolio import (
+    sv_extensions as _sv_extensions,
+)
+from simfolio_forecasting_methodology.models.portfolio import (
+    sv_mcmc_reference as _sv_mcmc_reference,
+)
+from simfolio_forecasting_methodology.models.portfolio import (
+    sv_reference as _sv_reference,
 )
 from simfolio_forecasting_methodology.specifications import parse_compositional_spec
 
@@ -34,11 +62,45 @@ RESOURCE_PATH = (
     / "src/simfolio_forecasting_methodology/resources/specifications/canonical_statistical_specifications.json"
 )
 READABLE_PATH = ROOT / "docs/canonical-statistical-specifications.md"
+PORTFOLIO_LEDGER_PATCH_PATH = ROOT / "audit/statistical-specifications-34-ledger-patch.json"
 
 BASE_SOURCE_REVISION = "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
 BASE_SOURCE_SHA256 = "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
 MCMC_SOURCE_REVISION = "511fb82c0be43564b79df3694ee570677f3137ed"
 MCMC_SOURCE_SHA256 = "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+
+PORTFOLIO_FACTORY_SEED_CONTRACT = "origin_task.seed_to_forecast_context.seed.v1"
+PORTFOLIO_SOURCE_SEED_CONTEXT_REF = "portfolio.seed_identity"
+
+# The student-t SV candidate is source-extracted but remains blocked in the
+# registry because its factory is not available.  The other twelve entries
+# below have explicit factories and are the requested reference/GJR batch.
+_PORTFOLIO_SOURCES: tuple[tuple[str, Any, tuple[str, ...]], ...] = (
+    ("reference_families", _reference_families, _reference_families.REFERENCE_MODEL_IDS),
+    (
+        "sv_reference",
+        _sv_reference,
+        ("stochastic_volatility_ar1_empirical", "stochastic_volatility_ar1_empirical_sbb"),
+    ),
+    ("sv_extensions", _sv_extensions, _sv_extensions.REFERENCE_MODEL_IDS),
+    ("sv_mcmc_reference", _sv_mcmc_reference, _sv_mcmc_reference.REFERENCE_MODEL_IDS),
+    ("gas_reference", _gas_reference, _gas_reference.REFERENCE_MODEL_IDS),
+    ("gjr_reference", _gjr_reference, _gjr_reference.REFERENCE_MODEL_IDS),
+    ("bayesian_vol", _bayesian_vol, _bayesian_vol.BAYESIAN_VOL_MODEL_IDS),
+    ("factor_residual", _factor_residual, _factor_residual.FACTOR_RESIDUAL_MODEL_IDS),
+)
+
+_PORTFOLIO_SOURCE_BY_ID: dict[str, tuple[str, Any]] = {
+    model_id: (module_name, module)
+    for module_name, module, model_ids in _PORTFOLIO_SOURCES
+    for model_id in model_ids
+}
+
+_PORTFOLIO_MODEL_IDS: tuple[str, ...] = tuple(
+    model_id
+    for module_name, module, model_ids in _PORTFOLIO_SOURCES
+    for model_id in model_ids
+)
 
 
 def _digest(value: Any) -> str:
@@ -95,6 +157,28 @@ def _shared_component_refs(definition: dict[str, Any]) -> list[str]:
         )
     elif family == "full_mcmc_sv":
         refs.extend(["full_mcmc_sv.contract", "full_mcmc_sv.contract.failure"])
+    elif family in {
+        "bayesian_sbb_vol_overlay",
+        "bayesian_sbb_ml_vol_overlay",
+        "factor_residual_sbb",
+        "gaussian",
+        "student_t",
+        "naive_iid_historical_portfolio_bootstrap",
+        "zero_gaussian",
+        "sv",
+        "sv_sbb",
+        "sv_extension",
+        "sv_mcmc_sbb",
+        "gas_score_driven_skewt",
+        "portfolio_volatility_extension",
+    }:
+        refs.extend(
+            [
+                "portfolio.contract",
+                "portfolio.seed_identity",
+                str(definition["source_component_ref"]),
+            ]
+        )
     else:
         raise ValueError(f"cannot bind shared components for family {family!r}")
 
@@ -451,6 +535,443 @@ def _seed_identity() -> dict[str, Any]:
     }
 
 
+def _plain(value: Any) -> Any:
+    """Convert module-level mapping proxies and tuples to JSON values."""
+
+    if isinstance(value, Mapping):
+        return {str(key): _plain(item) for key, item in value.items()}
+    if isinstance(value, tuple):
+        return [_plain(item) for item in value]
+    if isinstance(value, list):
+        return [_plain(item) for item in value]
+    return value
+
+
+def _portfolio_parameter_contract(module_name: str) -> dict[str, Any]:
+    """Return the resolved numerical defaults for one extracted module."""
+
+    common = {
+        "input_unit": "portfolio_daily_log_return",
+        "finite_observation_policy": "drop nonfinite observations before fitting",
+        "simulated_return_clip": [-1.0, 1.0],
+        "unknown_model_policy": "exact ID map; unknown IDs raise ValueError",
+        "fit_failure_policy": "raise source-specific error; no generic fallback",
+        "rng": "numpy.random.default_rng",
+        "forecast_seed_arguments": [
+            "forecast_oos_candidate",
+            "origin_date",
+            "dense_horizon_tuple",
+            "public_model_id",
+            "simulations",
+        ],
+        "dense_horizon_tuple": "tuple(range(1, horizon_days + 1))",
+    }
+    contracts: dict[str, dict[str, Any]] = {
+        "reference_families": {
+            **common,
+            "output_semantics": "direct terminal log-return samples by dense horizon",
+            "minimum_finite_training_observations": {
+                "constant_mean_gaussian": 30,
+                "constant_mean_student_t": 30,
+                "naive_iid_historical_portfolio_bootstrap": 1,
+                "zero_mean_gaussian_vol_only": 1,
+            },
+            "gaussian": {
+                "mean": "arithmetic sample mean",
+                "scale": "sample standard deviation, ddof=1",
+                "terminal_scale": "sigma * sqrt(horizon)",
+            },
+            "student_t": {
+                "df": "clip(4 + 6 / excess_kurtosis, 4, 30); default 30",
+                "innovation_scale": "sigma / sqrt(df / (df - 2))",
+            },
+            "naive": {"index_sampling": "iid uniform integer over finite history"},
+            "zero_mean": {"mean": 0.0, "scale": "sample standard deviation, ddof=1"},
+        },
+        "sv_reference": {
+            **common,
+            "output_semantics": "cumulative terminal samples from source daily SV paths",
+            "minimum_finite_training_observations": 252,
+            "measurement_equation": {
+                "mean": -1.2703628454614782,
+                "variance": "pi^2 / 2",
+                "winsorize": "5th and 95th percentile only when observed count >= 80",
+                "log_variance_clip": [-18.0, 18.0],
+            },
+            "state_space_fit": {
+                "phi_bounds": [0.001, 0.995],
+                "eta_bounds": [0.02, 2.5],
+                "optimizer": "L-BFGS-B",
+                "starts": 4,
+            },
+            "innovation": {
+                "empirical_clip": [-12.0, 12.0],
+                "student_t_df_bounds": [4.0, 30.0],
+                "stationary_bootstrap": "max(_politis_white_block_length(z), 1)",
+            },
+        },
+        "sv_extensions": {
+            **common,
+            "output_semantics": "cumulative terminal samples from source daily extension paths",
+            "minimum_finite_training_observations": 504,
+            "dp_mixture": {
+                "max_components": 6,
+                "max_fit_observations": 5000,
+                "weight_concentration_prior": 0.5,
+                "mixture_max_iter": 120,
+                "transition_prior_alpha": 0.5,
+                "rolling_windows": {"absolute_return_mean": 21, "trend_sum": 63},
+            },
+            "observable_markov": {
+                "state_count": 12,
+                "transition_prior_alpha": 0.5,
+                "rolling_windows": {"volatility": [21, 10], "trend": [63, 21]},
+            },
+        },
+        "sv_mcmc_reference": {
+            **common,
+            "output_semantics": "cumulative terminal samples from source daily MCMC-SV paths",
+            "minimum_finite_training_observations": 504,
+            "fit_seed_arguments": [
+                "sv_mcmc_fit",
+                "finite_observation_count",
+                "round(finite_observation_mean, 10)",
+            ],
+            "measurement_equation": {
+                "mean": -1.2703628454614782,
+                "variance": "pi^2 / 2",
+                "log_variance_clip": [-18.0, 18.0],
+            },
+            "sampler": {
+                "iterations": 420,
+                "burn": 120,
+                "thin": 4,
+                "proposal": "bounded random walk over level, phi, eta",
+                "phi_bounds": [0.001, 0.994],
+                "eta_bounds": [1.0e-4, 5.0],
+            },
+            "stationary_bootstrap": "_politis_white_block_length plus source index kernel",
+        },
+        "gas_reference": {
+            **common,
+            "output_semantics": "cumulative terminal samples from source daily GAS paths",
+            "minimum_finite_training_observations": 504,
+            "max_fit_observations": 5000,
+            "grid": {"alpha": [0.03, 0.06, 0.10, 0.16], "beta": [0.85, 0.93, 0.97, 0.985]},
+            "df_bounds": [4.0, 30.0],
+            "innovation": "Jones-Faddy skew-t when fit succeeds; source empirical pool on fit failure",
+            "log_variance_clip": [-18.0, 18.0],
+            "innovation_clip": [-20.0, 20.0],
+        },
+        "gjr_reference": {
+            **common,
+            "output_semantics": "daily log-return increments",
+            "minimum_finite_training_observations": 60,
+            "mean_fit": {
+                "model": "empirical_bayes_hac_sharpe",
+                "prior_sr": 0.75,
+                "sr_cap": 0.75,
+                "posterior_mu_draws": False,
+            },
+            "arch_fit": {
+                "vol": "GARCH",
+                "p": 1,
+                "o": 1,
+                "q": 1,
+                "power": 2.0,
+                "max_fit_observations": 1260,
+                "optimizer": {"maxiter": 80, "ftol": 1.0e-6},
+            },
+            "innovations": {
+                "standardized_clip": [-20.0, 20.0],
+                "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+                "moving_block": "non-circular Kunsch blocks from recovery wrapper",
+            },
+        },
+        "bayesian_vol": {
+            **common,
+            "output_semantics": "daily log-return increments",
+            "minimum_finite_training_observations": 60,
+            "shared_mean_fit": "_fit_bayesian_constrained_sbb and explicit source mean branches",
+            "innovation": {
+                "residual_scale": 100.0,
+                "standardized_clip": [-20.0, 20.0],
+                "block_length": "max(_politis_white_block_length(z), _politis_white_block_length(z*z))",
+                "resampling": "stationary_bootstrap",
+            },
+            "overlay_multiplier_clip": [0.01, 100.0],
+            "arch_fit": {"max_fit_observations": 1260, "optimizer": {"maxiter": 80, "ftol": 1.0e-6}},
+            "ml_factor_policy": "raw descriptor controls branch; frozen dated FF6 frame only",
+        },
+        "factor_residual": {
+            **common,
+            "output_semantics": "daily log-return increments",
+            "minimum_finite_training_observations": 180,
+            "factor_model": "ff6 source default because raw descriptors omit factor_model",
+            "factor_columns": ["Mkt_RF", "SMB", "HML", "RMW", "CMA", "UMD"],
+            "risk_free_column": "RF",
+            "alignment": "normalize dates, align and drop missing factors, require final date equality",
+            "regressor": {
+                "pipeline": ["StandardScaler", "Ridge"],
+                "alpha": 10.0,
+                "sample_weight": "recent_exponential_weights",
+                "half_life_days": 504.0,
+            },
+            "residual_overlay": "none source default because raw descriptors omit residual_overlay",
+            "stationary_bootstrap": "max(_politis_white_block_length(y_excess), _politis_white_block_length(residuals*residuals))",
+        },
+    }
+    return contracts[module_name]
+
+
+def _portfolio_runtime_dependencies(module_name: str) -> dict[str, Any]:
+    dependencies: dict[str, dict[str, Any]] = {
+        "reference_families": {
+            "items": ["numpy", "scipy"],
+            "constraints": ["numpy>=2.0,<3", "scipy>=1.13,<2"],
+        },
+        "sv_reference": {
+            "items": ["numpy", "scipy"],
+            "constraints": ["numpy>=2.0,<3", "scipy>=1.13,<2"],
+        },
+        "sv_extensions": {
+            "items": ["numpy", "pandas", "scikit-learn"],
+            "constraints": ["numpy>=2.0,<3", "pandas>=2.2,<3", "scikit-learn>=1.9,<2"],
+        },
+        "sv_mcmc_reference": {
+            "items": ["numpy", "scipy"],
+            "constraints": ["numpy>=2.0,<3", "scipy>=1.13,<2"],
+        },
+        "gas_reference": {
+            "items": ["numpy", "scipy"],
+            "constraints": ["numpy>=2.0,<3", "scipy>=1.13,<2"],
+        },
+        "gjr_reference": {
+            "items": ["numpy", "arch"],
+            "constraints": ["numpy>=2.0,<3", "arch version pin unresolved in source"],
+        },
+        "bayesian_vol": {
+            "items": ["numpy", "pandas", "scipy", "scikit-learn", "arch"],
+            "constraints": [
+                "numpy>=2.0,<3",
+                "pandas>=2.2,<3",
+                "scipy>=1.13,<2",
+                "scikit-learn>=1.9,<2",
+                "arch>=8,<9",
+            ],
+        },
+        "factor_residual": {
+            "items": ["numpy", "pandas", "scikit-learn", "scipy"],
+            "constraints": [
+                "numpy>=2.0,<3",
+                "pandas>=2.2,<3",
+                "scikit-learn>=1.9,<2",
+                "scipy>=1.13,<2",
+            ],
+        },
+    }
+    result = copy.deepcopy(dependencies[module_name])
+    result.update(
+        {
+            "verified": True,
+            "status": "imports and bounded source-kernel parity recorded in family audit",
+        }
+    )
+    return result
+
+
+def _portfolio_source_closure(module_name: str, module: Any) -> dict[str, Any]:
+    artifacts = _plain(getattr(module, "SOURCE_ARTIFACTS", {}))
+    source_revision = BASE_SOURCE_REVISION
+    revision_entry = artifacts.get("source_revision")
+    if isinstance(revision_entry, dict) and revision_entry.get("revision"):
+        source_revision = str(revision_entry["revision"])
+    primary_label = "research_gate" if "research_gate" in artifacts else "engine"
+    primary = artifacts.get(primary_label, {})
+    if not isinstance(primary, dict) or not primary.get("path") or not primary.get("sha256"):
+        raise ValueError(f"portfolio source module has no hashed primary artifact: {module_name}")
+    dependency_artifacts = []
+    for label, artifact in artifacts.items():
+        if label == primary_label or not isinstance(artifact, dict) or not artifact.get("path"):
+            continue
+        dependency_artifacts.append(
+            {
+                "label": label,
+                "path": artifact["path"],
+                "sha256": artifact.get("sha256"),
+                **({"status": artifact["status"]} if artifact.get("status") else {}),
+            }
+        )
+    line_ranges = getattr(module, "SOURCE_FUNCTION_LINE_RANGES", None)
+    closure = {
+        "module": f"simfolio_forecasting_methodology.models.portfolio.{module_name}",
+        "source_revision": source_revision,
+        "primary_artifact": {
+            "label": primary_label,
+            "path": primary["path"],
+            "sha256": primary["sha256"],
+        },
+        "dependency_artifacts": dependency_artifacts,
+        "source_function_names": list(getattr(module, "SOURCE_FUNCTION_NAMES", ())),
+        "source_functions_sha256": str(getattr(module, "SOURCE_FUNCTIONS_SHA256", "")),
+        "source_function_line_ranges": _plain(line_ranges) if line_ranges else None,
+        "runtime_dependencies": _portfolio_runtime_dependencies(module_name),
+        "resolved_parameter_contract": _portfolio_parameter_contract(module_name),
+    }
+    if len(closure["source_functions_sha256"]) != 64:
+        raise ValueError(f"portfolio source function digest is not SHA-256: {module_name}")
+    return closure
+
+
+def _portfolio_shared_components() -> dict[str, Any]:
+    source_closures = {
+        module_name: _portfolio_source_closure(module_name, module)
+        for module_name, module, _ in _PORTFOLIO_SOURCES
+    }
+    return {
+        "contract": {
+            "raw_descriptor_policy": "exact recovered source fields are immutable and seed-bearing",
+            "resolved_descriptor_policy": "source defaults are added in resolved_candidate only",
+            "daily_path_output": "shape (simulations, horizon_days) for increment adapters",
+            "terminal_output": "shape (simulations, horizon_days) for terminal adapters",
+            "failure_policy": "unknown IDs, missing dependencies, fit failures, bad dates, and nonfinite output raise",
+            "historical_score_policy": "source-kernel parity does not claim retained score reproduction",
+        },
+        "seed_identity": {
+            "forecast_contract": "forecast_oos_candidate_seed(origin_date, tuple(range(1, horizon_days + 1)), model_id, simulations)",
+            "forecast_parts": [
+                "forecast_oos_candidate",
+                "origin_date",
+                "dense_horizon_tuple",
+                "public_model_id",
+                "simulations",
+            ],
+            "fit_contract_exceptions": {
+                "sv_mcmc_reference": "deterministic_seed('sv_mcmc_fit', finite_observation_count, round(finite_observation_mean, 10))",
+                "factor_residual": "deterministic_seed('factor_residual_sbb', factor_model, len(combined), len(factor_cols))",
+            },
+            "historical_panel_seed": 20260528,
+            "panel_seed_status": "source-declared seed retained separately; exact experiment schedule unresolved",
+        },
+        "source_closures": source_closures,
+    }
+
+
+def _portfolio_source_candidate(module_name: str, module: Any, model_id: str) -> dict[str, Any]:
+    if module_name == "factor_residual":
+        source_map = module.RAW_FACTOR_RESIDUAL_SPECS
+    elif module_name == "bayesian_vol":
+        source_map = module.RAW_CANDIDATE_SPECS
+    else:
+        source_map = module.SOURCE_CANDIDATE_SPECS
+    candidate = source_map.get(model_id)
+    if candidate is None:
+        raise ValueError(f"portfolio source descriptor missing for {model_id!r}")
+    return _plain(candidate)
+
+
+def _portfolio_resolved_candidate(
+    module_name: str, module: Any, model_id: str, source_candidate: dict[str, Any]
+) -> dict[str, Any]:
+    resolved = copy.deepcopy(source_candidate)
+    resolved.update(_portfolio_parameter_contract(module_name))
+    if module_name == "bayesian_vol":
+        resolved.update(_plain(module.RESOLVED_STATISTICAL_SPECS[model_id]))
+    elif module_name == "factor_residual":
+        resolved.update(_plain(module.RESOLVED_FACTOR_RESIDUAL_SPECS[model_id]))
+    # The source candidate remains unchanged above.  The module contract and,
+    # where available, the extracted family specification are resolved fields
+    # only; neither object is passed to the source seed call.
+    resolved["id"] = model_id
+    return resolved
+
+
+def _portfolio_seed_descriptor(module_name: str, module: Any, model_id: str) -> dict[str, Any]:
+    descriptor = {
+        "source_model_key": model_id,
+        "forecast_seed_contract": str(module.SOURCE_SEED_CONTRACT),
+        "forecast_seed_arguments": [
+            "forecast_oos_candidate",
+            "origin_date",
+            "dense_horizon_tuple",
+            "public_model_id",
+            "simulations",
+        ],
+        "status": "source seed arguments retained separately from resolved defaults",
+    }
+    if module_name == "bayesian_vol":
+        descriptor.update(_plain(module.RAW_SEED_DESCRIPTORS[model_id]))
+    elif module_name == "gjr_reference":
+        descriptor["panel_seed"] = 20260528
+        descriptor["panel_seed_status"] = "source-declared; exact experiment schedule unresolved"
+    if module_name == "sv_mcmc_reference":
+        descriptor["fit_seed_contract"] = (
+            "deterministic_seed('sv_mcmc_fit', finite_observation_count, round(finite_observation_mean, 10))"
+        )
+    if module_name == "factor_residual":
+        descriptor["fit_seed_contract"] = (
+            "deterministic_seed('factor_residual_sbb', factor_model, len(combined), len(factor_cols))"
+        )
+    return descriptor
+
+
+_PORTFOLIO_FACTORY_MAPS = {
+    "reference_families": ("REFERENCE_FACTORIES", "ReferencePortfolioModel"),
+    "sv_reference": ("REFERENCE_FACTORIES", "SVReferenceModel"),
+    "sv_extensions": ("REFERENCE_FACTORIES", "SuffixSVExtensionModel"),
+    "sv_mcmc_reference": ("REFERENCE_FACTORIES", "BayesianMCMCSVModel"),
+    "gas_reference": ("REFERENCE_FACTORIES", "GasScoreDrivenSkewTModel"),
+    "gjr_reference": ("REFERENCE_FACTORIES", "PortfolioGJRGARCHModel"),
+    "bayesian_vol": ("BAYESIAN_VOL_FACTORIES", "BayesianVolOverlayModel"),
+    "factor_residual": ("FACTOR_RESIDUAL_FACTORIES", "FactorResidualSBBModel"),
+}
+
+
+def _resolve_portfolio_model(
+    row: dict[str, Any], shared_components: dict[str, Any]
+) -> dict[str, Any]:
+    model_id = str(row["public_model_id"])
+    module_name, module = _PORTFOLIO_SOURCE_BY_ID[model_id]
+    source_candidate = _portfolio_source_candidate(module_name, module, model_id)
+    resolved_candidate = _portfolio_resolved_candidate(
+        module_name, module, model_id, source_candidate
+    )
+    closure = _shared_component(shared_components, f"portfolio.source_closures.{module_name}")
+    source_reference = {
+        "path": closure["primary_artifact"]["path"],
+        "revision": closure["source_revision"],
+        "sha256": closure["primary_artifact"]["sha256"],
+        "entrypoints": closure["source_function_names"],
+        "dependency_artifacts": closure["dependency_artifacts"],
+    }
+    factory_map, class_name = _PORTFOLIO_FACTORY_MAPS[module_name]
+    definition = {
+        "family": str(row["model_family"]),
+        "source_id": model_id,
+        "source_candidate": source_candidate,
+        "resolved_candidate": resolved_candidate,
+        "source_seed_descriptor": _portfolio_seed_descriptor(module_name, module, model_id),
+        "source_seed_contract": str(module.SOURCE_SEED_CONTRACT),
+        "source_reference": source_reference,
+        "source_component_ref": f"portfolio.source_closures.{module_name}",
+        "factory": {
+            "module": f"simfolio_forecasting_methodology.models.portfolio.{module_name}",
+            "map": factory_map,
+            "class": class_name,
+            "exact_id_dispatch": True,
+        },
+        "factory_seed_contract": PORTFOLIO_FACTORY_SEED_CONTRACT,
+        "source_seed_context_ref": PORTFOLIO_SOURCE_SEED_CONTEXT_REF,
+        "failure_semantics": {
+            "unknown_model": "raise ValueError",
+            "fit_failure": "raise source-specific ValueError or RuntimeError",
+            "nonfinite_output": "raise ValueError",
+            "historical_score": "not verified by this resolved specification",
+        },
+    }
+    return _bind_shared_component_digests(definition, shared_components)
+
+
 def _resolve_mcmc_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
     """Apply the source loop's documented defaults to one candidate row."""
 
@@ -636,6 +1157,7 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
         "frontier": _frontier_definition(),
         "full_mcmc_sv": {"contract": _mcmc_contract()},
         "seed_identity": _seed_identity(),
+        "portfolio": _portfolio_shared_components(),
     }
     rows = ledger["models"]
     base_rows = [row for row in rows if row["model_family"] == "base"]
@@ -715,9 +1237,41 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
             "definition_fingerprint": _digest(definition),
         }
         resolved[model_id] = definition
+    portfolio_rows = {
+        str(row["public_model_id"]): row
+        for row in rows
+        if str(row["public_model_id"]) in _PORTFOLIO_MODEL_IDS
+    }
+    if set(portfolio_rows) != set(_PORTFOLIO_MODEL_IDS):
+        missing = sorted(set(_PORTFOLIO_MODEL_IDS) - set(portfolio_rows))
+        raise ValueError(f"portfolio source rows missing from canonical ledger: {missing}")
+    for model_id in _PORTFOLIO_MODEL_IDS:
+        row = portfolio_rows[model_id]
+        definition = _resolve_portfolio_model(row, shared_components)
+        bindings[model_id] = {
+            "family": definition["family"],
+            "component_refs": definition["shared_component_refs"],
+            "seed_contract": definition["factory_seed_contract"],
+            "source_seed_contract": definition["source_seed_contract"],
+            "source_reference": definition["source_reference"],
+            "factory": definition["factory"],
+            "definition_fingerprint": _digest(definition),
+        }
+        resolved[model_id] = definition
+    ledger_bound_ids = sorted(
+        model_id
+        for model_id in resolved
+        if any(
+            str(row["public_model_id"]) == model_id and row.get("specification_recovered")
+            for row in rows
+        )
+    )
     resource = {
         "schema_version": 1,
-        "scope": "canonical_125_resolved_statistical_definitions",
+        "scope": "canonical_159_resolved_statistical_definitions_with_staged_portfolio_batch",
+        "portfolio_model_ids": sorted(_PORTFOLIO_MODEL_IDS),
+        "ledger_bound_model_ids": ledger_bound_ids,
+        "staged_model_ids": sorted(set(_PORTFOLIO_MODEL_IDS) - set(ledger_bound_ids)),
         "fingerprint": {
             "algorithm": "sha256(canonical JSON sorted keys, compact separators, UTF-8; includes shared_component_digests)",
             "shared_component_digest_algorithm": "sha256(canonical JSON sorted keys, compact separators, UTF-8) per dotted reference",
@@ -762,7 +1316,7 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
                     "owned_descriptor_count": 40,
                     "exact_row_match_verified": True,
                 },
-                "current_source_core_catalog": {
+            "current_source_core_catalog": {
                     "path": "scripts/forecast_oos_research_gate.py::_core_catalog(include_slow=True)",
                     "source_revision": MCMC_SOURCE_REVISION,
                     "source_script_sha256": MCMC_SOURCE_SHA256,
@@ -770,6 +1324,14 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
                     "comparison": "The 39 shared MCMC IDs have different fit-seed signatures from the retained historical descriptors; the historical MCMC baseline is absent from the current core catalog.",
                 },
                 "runtime_binding_status": "The retained result metadata records the catalog path; that file matches the retained snapshot byte-for-byte, and all 40 owned descriptors exact-match its full_current_catalog rows. The current source _core_catalog output is separate evidence and is not used by the retained historical wrapper.",
+                "portfolio_source_modules": {
+                    module_name: {
+                        "module": closure["module"],
+                        "source_revision": closure["source_revision"],
+                        "source_functions_sha256": closure["source_functions_sha256"],
+                    }
+                    for module_name, closure in shared_components["portfolio"]["source_closures"].items()
+                },
             },
         },
         "shared_components": shared_components,
@@ -822,6 +1384,109 @@ def patch_ledger(resolved: dict[str, dict[str, Any]]) -> None:
     LEDGER_PATH.write_text(json.dumps(ledger, indent=2) + "\n", encoding="utf-8")
 
 
+def build_portfolio_ledger_patch(
+    resource: dict[str, Any], ledger: dict[str, Any]
+) -> dict[str, Any]:
+    """Build the staged 34-row update without mutating the canonical ledger.
+
+    The ledger owns membership, score, protocol, and dataset identity.  This
+    patch contains only the resolved-specification and implementation metadata
+    required to apply the already-audited portfolio rows.  A coordinator can
+    apply it after registry wiring without risking a rewrite of unrelated
+    canonical fields.
+    """
+
+    rows = {str(row["public_model_id"]): row for row in ledger["models"]}
+    records: list[dict[str, Any]] = []
+    for model_id in sorted(_PORTFOLIO_MODEL_IDS, key=lambda value: rows[value]["canonical_rank"]):
+        row = rows[model_id]
+        definition = resource["resolved_definitions"][model_id]
+        binding = resource["bindings"][model_id]
+        source = definition["source_reference"]
+        closure = _shared_component(
+            resource["shared_components"], definition["source_component_ref"]
+        )
+        existing_factory = row.get("implementation_factory")
+        factory_name = (
+            existing_factory.get("name")
+            if isinstance(existing_factory, dict) and existing_factory.get("name")
+            else f"{definition['factory']['module']}:{definition['factory']['class']}"
+        )
+        records.append(
+            {
+                "public_model_id": model_id,
+                "canonical_rank": row["canonical_rank"],
+                "historical_rank": row["historical_rank"],
+                "model_family": row["model_family"],
+                "structured_specification": {
+                    "schema_version": 1,
+                    "resource": "resources/specifications/canonical_statistical_specifications.json",
+                    "resolved_definition": definition,
+                },
+                "specification_fingerprint": {
+                    "value": binding["definition_fingerprint"],
+                    "kind": "resolved_statistical_definition_sha256",
+                    "status": "full resolved source-backed portfolio definition",
+                },
+                "specification_recovered": True,
+                "source_reference_verified": True,
+                "source_artifact_digest_update": {
+                    "source_code": {
+                        "path": source["path"],
+                        "sha256": source["sha256"],
+                        "extracted_functions_sha256": closure["source_functions_sha256"],
+                        "status": "source_kernel_closure_verified; retained score identity unresolved",
+                    },
+                    "parameter_dictionary": {
+                        "ledger_root_reference": "source_provenance.parameter_dictionary",
+                        "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+                        "status": "dictionary_only; full experiment closure unresolved",
+                    },
+                },
+                "implementation_factory": {
+                    "name": factory_name,
+                    "callable": True,
+                    "status": "source_kernel_parity_verified_pending_coordinator_registry_wiring",
+                    "seed_contract": PORTFOLIO_FACTORY_SEED_CONTRACT,
+                },
+                "required_dependencies": closure["runtime_dependencies"],
+                "seed_identity": definition["source_seed_descriptor"],
+                "verification_status": (
+                    "source_daily_path_parity_verified_experiment_identity_unresolved"
+                    if definition["resolved_candidate"].get("output_semantics")
+                    == "daily log-return increments"
+                    else "source_terminal_path_parity_verified_experiment_identity_unresolved"
+                ),
+                "notes": [
+                    "Resolved defaults are complete for the extracted source closure and are kept separate from the exact raw descriptor.",
+                    "Unknown IDs and numerical failures fail closed; no generic family fallback is permitted.",
+                    "Historical score, protocol, dataset, and panel identity remain unresolved and are not changed by this patch.",
+                ],
+            }
+        )
+    return {
+        "schema_version": "canonical-175-statistical-specifications-34-patch-v1",
+        "scope": "exact 34 source-backed portfolio models: Bayesian 20, FF6 factor residual 2, executable reference/GJR 12",
+        "base_ledger_membership_digest": ledger["membership"]["membership_digest"],
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resource_scope": resource["scope"],
+        "source_artifact_policy": "all paths are repository-relative; no private or temporary paths are serialized",
+        "raw_descriptor_policy": "source_candidate and source_seed_descriptor are immutable seed-bearing fields; resolved_candidate is separate",
+        "preserved_ledger_fields": [
+            "public_model_id",
+            "canonical_rank",
+            "historical_rank",
+            "historical_score",
+            "score_precision",
+            "protocol_fingerprint",
+            "dataset_fingerprint",
+            "panel_fingerprint",
+            "membership",
+        ],
+        "records": records,
+    }
+
+
 def render_readable(resource: dict[str, Any]) -> str:
     """Render one concise, source-linked section for every resolved model."""
 
@@ -830,6 +1495,8 @@ def render_readable(resource: dict[str, Any]) -> str:
         "",
         "Generated from `resources/specifications/canonical_statistical_specifications.json`.",
         "The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.",
+        "The resource contains the 34-model source-backed portfolio batch in addition to the previously ledger-bound definitions. `ledger_bound_model_ids` records the rows already applied to the canonical ledger; `audit/statistical-specifications-34-ledger-patch.json` is the narrow generated update for the staged batch.",
+        "Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.",
         "",
     ]
     bindings = resource["bindings"]
@@ -886,15 +1553,25 @@ def render_readable(resource: dict[str, Any]) -> str:
 
 
 def main() -> int:
-    resource, resolved = build_resource()
+    resource, _resolved = build_resource()
     RESOURCE_PATH.parent.mkdir(parents=True, exist_ok=True)
     RESOURCE_PATH.write_text(
         json.dumps(resource, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
     READABLE_PATH.parent.mkdir(parents=True, exist_ok=True)
     READABLE_PATH.write_text(render_readable(resource), encoding="utf-8")
-    patch_ledger(resolved)
-    print(f"wrote {len(resolved)} resolved definitions")
+    ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
+    portfolio_patch = build_portfolio_ledger_patch(resource, ledger)
+    portfolio_patch["resource_sha256"] = _file_digest(RESOURCE_PATH)
+    portfolio_patch["generator_sha256"] = _file_digest(Path(__file__))
+    PORTFOLIO_LEDGER_PATCH_PATH.parent.mkdir(parents=True, exist_ok=True)
+    PORTFOLIO_LEDGER_PATCH_PATH.write_text(
+        json.dumps(portfolio_patch, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    print(
+        f"wrote {len(resource['resolved_definitions'])} resolved definitions and "
+        f"{len(portfolio_patch['records'])} staged ledger updates"
+    )
     return 0
 
 

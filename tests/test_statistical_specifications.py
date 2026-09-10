@@ -50,15 +50,18 @@ def test_resolved_spec_scope_and_family_membership_are_exact():
         if row["model_family"] == "bayesian_sbb_full_mcmc_sv_overlay"
     }
     frontier_id = "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced"
-    expected = expected_base | expected_mcmc | {frontier_id}
+    expected_core = expected_base | expected_mcmc | {frontier_id}
+    expected = expected_core | set(resource["portfolio_model_ids"])
 
     assert len(expected_base) == 84
     assert len(expected_mcmc) == 40
-    assert len(resource["accepted_model_ids"]) == 125
+    assert len(resource["portfolio_model_ids"]) == 34
+    assert len(expected) == 159
     assert set(resource["accepted_model_ids"]) == expected
     assert set(resource["resolved_definitions"]) == expected
     assert set(resource["bindings"]) == expected
     assert set(resource["resolved_definitions"]) <= model_ids
+    assert set(resource["ledger_bound_model_ids"]) == expected_core
 
 
 def test_each_resolved_definition_has_a_stable_full_fingerprint_and_source_identity():
@@ -76,13 +79,22 @@ def test_each_resolved_definition_has_a_stable_full_fingerprint_and_source_ident
         binding = resource["bindings"][model_id]
         row = rows[model_id]
         assert binding["definition_fingerprint"] == _digest(definition)
-        assert row["specification_fingerprint"]["value"] == _digest(definition)
-        assert row["specification_fingerprint"]["kind"] == "resolved_statistical_definition_sha256"
         assert binding["component_refs"] == definition["shared_component_refs"]
         assert set(definition["shared_component_digests"]) == set(
             definition["shared_component_refs"]
         )
-        assert row["structured_specification"]["resolved_definition"] == definition
+        if model_id in resource["ledger_bound_model_ids"]:
+            assert row["specification_fingerprint"]["value"] == _digest(definition)
+            assert row["specification_fingerprint"]["kind"] == (
+                "resolved_statistical_definition_sha256"
+            )
+            assert row["structured_specification"]["resolved_definition"] == definition
+        else:
+            assert model_id in resource["staged_model_ids"]
+            assert row["specification_recovered"] is False
+            assert row["specification_fingerprint"]["kind"] != (
+                "resolved_statistical_definition_sha256"
+            )
         source = definition["source_reference"]
         assert not source["path"].startswith(("/", "~"))
         assert len(source["revision"]) == 40
@@ -178,7 +190,7 @@ def test_mcmc_uses_exact_source_descriptor_and_separate_resolved_defaults():
 
 def test_unaccepted_rows_remain_unresolved():
     ledger = load_canonical_ledger()
-    accepted = set(_load_json(RESOURCE)["accepted_model_ids"])
+    accepted = set(_load_json(RESOURCE)["ledger_bound_model_ids"])
     for row in ledger["models"]:
         if row["public_model_id"] in accepted:
             assert row["specification_recovered"] is True
