@@ -44,15 +44,18 @@ def _sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _array_record(values: Any) -> dict[str, Any] | None:
+def _array_record(values: Any, *, include_values: bool = False) -> dict[str, Any] | None:
     if values is None:
         return None
     array = np.ascontiguousarray(np.asarray(values))
-    return {
+    record: dict[str, Any] = {
         "dtype": str(array.dtype),
         "shape": list(array.shape),
         "sha256": hashlib.sha256(array.tobytes(order="C")).hexdigest(),
     }
+    if include_values:
+        record["values"] = array.tolist()
+    return record
 
 
 def _plain(value: Any) -> Any:
@@ -65,7 +68,9 @@ def _plain(value: Any) -> Any:
     return value
 
 
-def _nested_fit_summary(fit: Mapping[str, Any] | None) -> dict[str, Any] | None:
+def _nested_fit_summary(
+    fit: Mapping[str, Any] | None, *, include_values: bool = False
+) -> dict[str, Any] | None:
     if fit is None:
         return None
     base = dict(fit.get("base_fit", {}) or {})
@@ -107,10 +112,14 @@ def _nested_fit_summary(fit: Mapping[str, Any] | None) -> dict[str, Any] | None:
         "base": {key: _plain(base[key]) for key in base_keys if key in base},
         "curve": {key: _plain(curve[key]) for key in curve_keys if key in curve},
         "meta": {key: _plain(meta[key]) for key in meta_keys if key in meta},
-        "standardized_residuals": _array_record(base.get("standardized_residuals")),
+        "standardized_residuals": _array_record(
+            base.get("standardized_residuals"), include_values=include_values
+        ),
     }
     if "sigma_x" in curve:
-        summary["curve_sigma_x"] = _array_record(curve.get("sigma_x"))
+        summary["curve_sigma_x"] = _array_record(
+            curve.get("sigma_x"), include_values=include_values
+        )
     if "arch_params" in curve:
         summary["arch_params"] = {
             str(key): float(value) for key, value in dict(curve["arch_params"]).items()
@@ -120,25 +129,33 @@ def _nested_fit_summary(fit: Mapping[str, Any] | None) -> dict[str, Any] | None:
     return summary
 
 
-def _fit_summary(fit: Mapping[str, Any]) -> dict[str, Any]:
+def _fit_summary(fit: Mapping[str, Any], *, include_values: bool = False) -> dict[str, Any]:
     model = fit.get("model")
     steps = getattr(model, "named_steps", {})
     scaler = steps.get("standardscaler")
     ridge = steps.get("ridge")
     return {
-        "factor_values": _array_record(fit.get("factor_values")),
-        "rf_values": _array_record(fit.get("rf_values")),
-        "residuals": _array_record(fit.get("residuals")),
+        "factor_values": _array_record(fit.get("factor_values"), include_values=include_values),
+        "rf_values": _array_record(fit.get("rf_values"), include_values=include_values),
+        "residuals": _array_record(fit.get("residuals"), include_values=include_values),
         "block_length": int(fit.get("block_length", 0)),
         "meta": _plain(fit.get("meta", {})),
         "model": {
             "steps": list(steps),
-            "scaler_mean": _array_record(getattr(scaler, "mean_", None)),
-            "scaler_scale": _array_record(getattr(scaler, "scale_", None)),
-            "ridge_coef": _array_record(getattr(ridge, "coef_", None)),
+            "scaler_mean": _array_record(
+                getattr(scaler, "mean_", None), include_values=include_values
+            ),
+            "scaler_scale": _array_record(
+                getattr(scaler, "scale_", None), include_values=include_values
+            ),
+            "ridge_coef": _array_record(
+                getattr(ridge, "coef_", None), include_values=include_values
+            ),
             "ridge_intercept": _plain(getattr(ridge, "intercept_", None)),
         },
-        "residual_overlay_fit": _nested_fit_summary(fit.get("residual_overlay_fit")),
+        "residual_overlay_fit": _nested_fit_summary(
+            fit.get("residual_overlay_fit"), include_values=include_values
+        ),
     }
 
 
@@ -263,14 +280,14 @@ def main() -> int:
         cases.append(
             {
                 "dispatcher": {
-                    "fit": _fit_summary(dispatcher_fit),
+                    "fit": _fit_summary(dispatcher_fit, include_values=True),
                     "horizons": list(dispatcher_horizons),
                     "terminals": dispatcher_terminal_records,
                 },
                 "model_id": model_id,
                 "source_specification": candidate,
                 "source_forecast_seed": int(source_seed),
-                "fit": _fit_summary(source_fit),
+                "fit": _fit_summary(source_fit, include_values=True),
                 "paths": np.asarray(paths, dtype=np.float64).tolist(),
                 "paths_array": _array_record(paths),
             }

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 from collections.abc import Mapping
@@ -26,6 +27,8 @@ from simfolio_forecasting_methodology.seeds import forecast_oos_candidate_seed
 _FIXTURE_RESOURCE = resources.files("simfolio_forecasting_methodology").joinpath(
     "resources", "test_fixtures", "portfolio", "factor_residual_source_parity.json"
 )
+FIT_NUMERIC_RTOL = 0.0
+FIT_NUMERIC_ATOL = 2e-12
 
 
 def _load_fixture() -> dict[str, Any]:
@@ -33,15 +36,18 @@ def _load_fixture() -> dict[str, Any]:
         return json.load(handle)
 
 
-def _array_record(values: Any) -> dict[str, Any] | None:
+def _array_record(values: Any, *, include_values: bool = False) -> dict[str, Any] | None:
     if values is None:
         return None
     array = np.ascontiguousarray(np.asarray(values))
-    return {
+    record: dict[str, Any] = {
         "dtype": str(array.dtype),
         "shape": list(array.shape),
         "sha256": hashlib.sha256(array.tobytes(order="C")).hexdigest(),
     }
+    if include_values:
+        record["values"] = array.tolist()
+    return record
 
 
 def _plain(value: Any) -> Any:
@@ -54,7 +60,9 @@ def _plain(value: Any) -> Any:
     return value
 
 
-def _nested_fit_summary(fit: Mapping[str, Any] | None) -> dict[str, Any] | None:
+def _nested_fit_summary(
+    fit: Mapping[str, Any] | None, *, include_values: bool = False
+) -> dict[str, Any] | None:
     if fit is None:
         return None
     base = dict(fit.get("base_fit", {}) or {})
@@ -96,10 +104,14 @@ def _nested_fit_summary(fit: Mapping[str, Any] | None) -> dict[str, Any] | None:
         "base": {key: _plain(base[key]) for key in base_keys if key in base},
         "curve": {key: _plain(curve[key]) for key in curve_keys if key in curve},
         "meta": {key: _plain(meta[key]) for key in meta_keys if key in meta},
-        "standardized_residuals": _array_record(base.get("standardized_residuals")),
+        "standardized_residuals": _array_record(
+            base.get("standardized_residuals"), include_values=include_values
+        ),
     }
     if "sigma_x" in curve:
-        summary["curve_sigma_x"] = _array_record(curve.get("sigma_x"))
+        summary["curve_sigma_x"] = _array_record(
+            curve.get("sigma_x"), include_values=include_values
+        )
     if "arch_params" in curve:
         summary["arch_params"] = {
             str(key): float(value) for key, value in dict(curve["arch_params"]).items()
@@ -109,26 +121,108 @@ def _nested_fit_summary(fit: Mapping[str, Any] | None) -> dict[str, Any] | None:
     return summary
 
 
-def _fit_summary(fit: Mapping[str, Any]) -> dict[str, Any]:
+def _fit_summary(fit: Mapping[str, Any], *, include_values: bool = False) -> dict[str, Any]:
     model = fit.get("model")
     steps = getattr(model, "named_steps", {})
     scaler = steps.get("standardscaler")
     ridge = steps.get("ridge")
     return {
-        "factor_values": _array_record(fit.get("factor_values")),
-        "rf_values": _array_record(fit.get("rf_values")),
-        "residuals": _array_record(fit.get("residuals")),
+        "factor_values": _array_record(fit.get("factor_values"), include_values=include_values),
+        "rf_values": _array_record(fit.get("rf_values"), include_values=include_values),
+        "residuals": _array_record(fit.get("residuals"), include_values=include_values),
         "block_length": int(fit.get("block_length", 0)),
         "meta": _plain(fit.get("meta", {})),
         "model": {
             "steps": list(steps),
-            "scaler_mean": _array_record(getattr(scaler, "mean_", None)),
-            "scaler_scale": _array_record(getattr(scaler, "scale_", None)),
-            "ridge_coef": _array_record(getattr(ridge, "coef_", None)),
+            "scaler_mean": _array_record(
+                getattr(scaler, "mean_", None), include_values=include_values
+            ),
+            "scaler_scale": _array_record(
+                getattr(scaler, "scale_", None), include_values=include_values
+            ),
+            "ridge_coef": _array_record(
+                getattr(ridge, "coef_", None), include_values=include_values
+            ),
             "ridge_intercept": _plain(getattr(ridge, "intercept_", None)),
         },
-        "residual_overlay_fit": _nested_fit_summary(fit.get("residual_overlay_fit")),
+        "residual_overlay_fit": _nested_fit_summary(
+            fit.get("residual_overlay_fit"), include_values=include_values
+        ),
     }
+
+
+def _is_array_record(value: Any) -> bool:
+    return isinstance(value, Mapping) and {"dtype", "shape", "sha256", "values"}.issubset(value)
+
+
+def _assert_array_record_equal(
+    actual: Mapping[str, Any], expected: Mapping[str, Any], path: str
+) -> None:
+    required = {"dtype", "shape", "sha256", "values"}
+    assert set(actual) == required, f"{path}: unexpected actual array record fields"
+    assert set(expected) == required, f"{path}: source array values are missing"
+    assert actual["dtype"] == expected["dtype"], f"{path}: dtype changed"
+    assert actual["shape"] == expected["shape"], f"{path}: shape changed"
+    expected_dtype = np.dtype(expected["dtype"])
+    actual_dtype = np.dtype(actual["dtype"])
+    expected_values = np.asarray(expected["values"], dtype=expected_dtype)
+    actual_values = np.asarray(actual["values"], dtype=actual_dtype)
+    assert list(expected_values.shape) == expected["shape"], f"{path}: invalid source shape"
+    assert list(actual_values.shape) == actual["shape"], f"{path}: invalid actual shape"
+    source_digest = _array_record(expected_values)
+    assert source_digest == {
+        "dtype": expected["dtype"],
+        "shape": expected["shape"],
+        "sha256": expected["sha256"],
+    }, f"{path}: stored source array digest does not match its values"
+    actual_digest = _array_record(actual_values)
+    assert actual_digest == {
+        "dtype": actual["dtype"],
+        "shape": actual["shape"],
+        "sha256": actual["sha256"],
+    }, f"{path}: actual array digest does not match its values"
+    if np.issubdtype(expected_dtype, np.number):
+        np.testing.assert_allclose(
+            actual_values,
+            expected_values,
+            rtol=FIT_NUMERIC_RTOL,
+            atol=FIT_NUMERIC_ATOL,
+            err_msg=f"{path}: numeric fit state differs from pinned source",
+        )
+    else:
+        np.testing.assert_array_equal(actual_values, expected_values, err_msg=path)
+
+
+def _assert_fit_value_equal(actual: Any, expected: Any, path: str) -> None:
+    if _is_array_record(expected):
+        assert isinstance(actual, Mapping), f"{path}: actual fit state is not an array record"
+        _assert_array_record_equal(actual, expected, path)
+    elif isinstance(expected, Mapping):
+        assert isinstance(actual, Mapping), f"{path}: actual fit state is not a mapping"
+        assert actual.keys() == expected.keys(), f"{path}: fit metadata keys changed"
+        for key in expected:
+            _assert_fit_value_equal(actual[key], expected[key], f"{path}.{key}")
+    elif isinstance(expected, list):
+        assert isinstance(actual, list), f"{path}: fit metadata list changed type"
+        assert len(actual) == len(expected), f"{path}: fit metadata list length changed"
+        for index, expected_item in enumerate(expected):
+            _assert_fit_value_equal(actual[index], expected_item, f"{path}[{index}]")
+    elif isinstance(expected, float):
+        np.testing.assert_allclose(
+            actual,
+            expected,
+            rtol=FIT_NUMERIC_RTOL,
+            atol=FIT_NUMERIC_ATOL,
+            err_msg=f"{path}: scalar fit state differs from pinned source",
+        )
+    else:
+        assert actual == expected, f"{path}: non-numeric fit metadata changed"
+
+
+def _assert_fit_summary_equal(actual: Mapping[str, Any], expected: Mapping[str, Any]) -> None:
+    assert actual.keys() == expected.keys(), "fit summary fields changed"
+    for key in expected:
+        _assert_fit_value_equal(actual[key], expected[key], f"fit.{key}")
 
 
 def test_factor_residual_factory_domain_and_specification() -> None:
@@ -201,7 +295,7 @@ def test_both_factor_paths_match_source_fit_states_and_daily_paths() -> None:
         model_id = case["model_id"]
         model = make_factor_residual_model(model_id)
         fit = model.fit(training)
-        assert _fit_summary(fit) == case["fit"]
+        _assert_fit_summary_equal(_fit_summary(fit, include_values=True), case["fit"])
         context = ForecastContext(
             model_id=model_id,
             portfolio_id="fixture",
@@ -216,7 +310,7 @@ def test_both_factor_paths_match_source_fit_states_and_daily_paths() -> None:
         np.testing.assert_allclose(paths, expected, rtol=2e-10, atol=2e-12)
         assert _array_record(paths) == case["paths_array"]
         dispatcher = case["dispatcher"]
-        assert dispatcher["fit"] == case["fit"]
+        _assert_fit_summary_equal(dispatcher["fit"], case["fit"])
         for horizon_key, terminal_record in dispatcher["terminals"].items():
             horizon = int(horizon_key)
             terminal = np.cumsum(paths, axis=1, dtype=np.float64)[:, horizon - 1]
@@ -232,6 +326,15 @@ def test_both_factor_paths_match_source_fit_states_and_daily_paths() -> None:
             )
             == case["source_forecast_seed"]
         )
+
+
+def test_factor_fit_fixture_rejects_numeric_perturbation() -> None:
+    fixture = _load_fixture()
+    expected = fixture["cases"][0]["fit"]
+    perturbed = copy.deepcopy(expected)
+    perturbed["model"]["scaler_mean"]["values"][0] += 1e-6
+    with pytest.raises(AssertionError, match="actual array digest"):
+        _assert_fit_summary_equal(perturbed, expected)
 
 
 def test_factor_adapter_requires_real_training_dates() -> None:
