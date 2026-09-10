@@ -120,7 +120,7 @@
     "fixture_metadata_sha256": "05881a17eec3e5bf0ecb66c39bc9f95807ca630217edb3fe209c91d2848502af",
     "fixture_sha256": "b641625bef54f578d223c5a08d7f66c6a7b53535fe80e5b6734480f9980df683",
     "module": "src/simfolio_forecasting_methodology/models/numerical/base_models.py",
-    "module_sha256": "066bea65fe5d91f931c1e4dc1465c04595f1e91e115075ba255daede10e52c39",
+    "module_sha256": "7554e9c60843678261c65cf705d25ebd2f71b2303b6a73708dfd0480bd9bdc64",
     "parity_metrics": {
       "all_84_rows_fit_and_paths": "0.0 max abs difference under py311 source/extracted generation environment",
       "fit_mu_max_abs": 0.0,
@@ -134,6 +134,7 @@
     "tests": "tests/parity/test_base_source.py (28-row and all-84 source fixtures)"
   },
   "implementation_plan": {
+    "arch_failure_policy": "strict canonical adapters require exact arch fit by default; source EWMA fallback is opt-in only for explicit source replay",
     "cache_policy": "source generation must set NUMBA_CACHE_DIR to temporary directory within own clone before importing numba/source and set PYTHONDONTWRITEBYTECODE=1",
     "daily_output": "(simulations,horizon_days) float64 increments; runner owns cumulative terminal transformation",
     "factory_domain": "exact canonical base84 public IDs only",

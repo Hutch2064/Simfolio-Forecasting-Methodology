@@ -684,7 +684,7 @@ def fit_base_model(
     log_returns: np.ndarray,
     spec: CompositionalSpec,
     *,
-    allow_source_arch_fallback: bool = True,
+    allow_source_arch_fallback: bool = False,
 ) -> dict[str, Any]:
     """Fit one canonical base specification using the extracted source path."""
 
@@ -715,7 +715,8 @@ def fit_base_model(
                     f"exact {spec.volatility_model} fit unavailable; install pinned arch dependency"
                 )
             # This is the pinned source engine's explicit failure path.  It is
-            # retained only as source semantics and is recorded in vol_fit.
+            # retained only as an opt-in source replay mode and is recorded in
+            # vol_fit; canonical model adapters stay strict by default.
             vol_fit = _fit_ewma_volatility(residuals)
             vol_fit["requested_vol_model"] = spec.volatility_model
             vol_fit["vol_model"] = spec.volatility_model
