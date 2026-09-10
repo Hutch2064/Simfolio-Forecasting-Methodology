@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import csv
 from dataclasses import dataclass
+from importlib.resources import files
+from importlib.resources.abc import Traversable
 from pathlib import Path
 
 FRONTIER_SOURCE_ID = "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced"
@@ -21,8 +23,8 @@ class CanonicalRow:
     cells: int
 
 
-def _catalog_root() -> Path:
-    return Path(__file__).resolve().parents[2] / "catalogs"
+def _catalog_root() -> Traversable:
+    return files("simfolio_forecasting_methodology").joinpath("resources/catalogs")
 
 
 def load_canonical_175(root: Path | None = None) -> list[CanonicalRow]:

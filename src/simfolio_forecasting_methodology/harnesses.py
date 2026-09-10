@@ -10,9 +10,10 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 from dataclasses import dataclass
+from importlib.resources.abc import Traversable
 from pathlib import Path
 
-from .catalog import CanonicalRow, load_canonical_175
+from .catalog import CanonicalRow, _catalog_root, load_canonical_175
 from .protocol import CANONICAL_DENSE_PROTOCOL, DenseDailyProtocol
 
 CANONICAL_HARNESS_ID = "canonical-175"
@@ -44,10 +45,10 @@ def canonical_plan(rows: Iterable[CanonicalRow] | None = None) -> HarnessPlan:
     )
 
 
-def _master_catalog_path(root: Path | None = None) -> Path:
+def _master_catalog_path(root: Path | None = None) -> Traversable:
     if root is not None:
         return Path(root) / "master_369_ids.txt"
-    return Path(__file__).resolve().parents[2] / "catalogs" / "master_369_ids.txt"
+    return _catalog_root() / "master_369_ids.txt"
 
 
 def load_historical_master_ids(root: Path | None = None) -> tuple[str, ...]:
