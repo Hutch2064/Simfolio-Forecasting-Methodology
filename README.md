@@ -20,9 +20,9 @@ Historical score tokens are retained as evidence. Historical score linkage has
 not been verified, and no retained score is presented as a newly reproduced
 result. The ledger's full statistical specification gate remains open.
 
-The packaged canonical data snapshot contains 55 manifest-whitelisted files:
-52 asset series, the `EFFRX` supporting series, and the French daily and Q5
-factor inputs. Verification is offline and hash based. The frozen common
+The packaged canonical data snapshot contains 60 manifest-whitelisted files:
+52 asset series, `EFFRX`, five additional canonical drift-proxy series,
+and the French daily and Q5 factor inputs. Verification is offline and hash based. The frozen common
 window is 1979-12-31 through 2026-05-13 with 11,687 dates. The protocol
 constructs 80 portfolios, 4,080 origin tasks, and 701,280 scored cells per
 model, with 240 simulations per origin.

@@ -741,6 +741,34 @@
   "status": "packaged_under_user_redistribution_approval",
   "supporting_series": [
     {
+      "ticker": "BNDSIM",
+      "path": "app/simulated_data/series/BNDSIM.csv.gz",
+      "sha256": "c5a194fcb557be01c3bab80c3eea655f7be7a8b7032f3205e0f3cb181f899563",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "1986-12-12",
+      "last_date": "2026-05-13",
+      "row_count": 9929,
+      "role": "canonical_drift_proxy_input"
+    },
+    {
+      "ticker": "CASHX",
+      "path": "app/simulated_data/series/CASHX.csv.gz",
+      "sha256": "9facce293da12bc9cec0b7f99327d87e2a4d19cefcef499db97b96d2093598bb",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "1885-03-23",
+      "last_date": "2026-05-15",
+      "row_count": 35353,
+      "role": "canonical_drift_proxy_input"
+    },
+    {
       "first_date": "1885-03-23",
       "last_date": "2026-05-15",
       "path": "app/simulated_data/series/EFFRX.csv.gz",
@@ -752,6 +780,48 @@
       ],
       "sha256": "4aa13c0966edab3fa0d75d5b8bf0307de45cd214ad543a4fc3e888d41bb89398",
       "ticker": "EFFRX"
+    },
+    {
+      "ticker": "KMLMSIM",
+      "path": "app/simulated_data/series/KMLMSIM.csv.gz",
+      "sha256": "e5bb1d333ec599b82bcf77992c3b91ac3bc6f270eebcb734a6418392cb97361c",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "1988-01-04",
+      "last_date": "2026-05-13",
+      "row_count": 9663,
+      "role": "canonical_drift_proxy_input"
+    },
+    {
+      "ticker": "TIPSIM",
+      "path": "app/simulated_data/series/TIPSIM.csv.gz",
+      "sha256": "0b784e011dd89d8d09b41be053126016d514e498b6e922ba21ac68b4724ebae8",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "2000-06-30",
+      "last_date": "2026-05-13",
+      "row_count": 6505,
+      "role": "canonical_drift_proxy_input"
+    },
+    {
+      "ticker": "UUPSIM",
+      "path": "app/simulated_data/series/UUPSIM.csv.gz",
+      "sha256": "ad8e85a0f34016784246d05fc0302fbaaafbff64317eac239f10f7a641214855",
+      "schema": [
+        "date",
+        "daily_return",
+        "price"
+      ],
+      "first_date": "1971-01-05",
+      "last_date": "2026-05-13",
+      "row_count": 13957,
+      "role": "canonical_drift_proxy_input"
     }
   ],
   "ticker_order": [

@@ -1820,7 +1820,7 @@
     "simulations": 4
   },
   "environment": {
-    "numba_cache_dir": "/tmp/c175-bayesian-vol/.numba-cache",
+    "numba_cache_policy": "task-owned external cache; no source writes",
     "numpy": "2.5.3",
     "pandas": "2.3.3",
     "python": "3.12.13"

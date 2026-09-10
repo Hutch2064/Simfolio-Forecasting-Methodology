@@ -8,7 +8,7 @@ SHA-256 and byte size.
 
 The installed-wheel checks cover:
 
-- package-resource access to the frozen 55-file data snapshot;
+- package-resource access to the frozen 60-file data snapshot;
 - exact data verification and offline preparation identities;
 - 80 portfolios, 4,080 origin tasks, and 701,280 scored cells;
 - all 175 ledger rows and every registered factory instantiation;

@@ -15,6 +15,7 @@ path parity therefore does not mark the retained scalar score as reproduced.
 from __future__ import annotations
 
 import hashlib
+import logging
 import math
 import warnings
 from collections.abc import Mapping
@@ -177,8 +178,9 @@ def _hac_mean_standard_error(values: np.ndarray) -> tuple[float, int, float]:
                 _politis_white_block_length(centered * centered),
             )
         )
-    except Exception:  # pragma: no cover - source fallback
-        bandwidth = int(round(float(x.size) ** (1.0 / 3.0)))
+    except Exception:
+        logging.getLogger(__name__).warning("Using retained source bandwidth fallback", exc_info=True)
+        bandwidth = round(float(x.size) ** (1.0 / 3.0))
     bandwidth = int(max(0, min(bandwidth, x.size - 1)))
     long_run_var = float(np.dot(centered, centered) / x.size)
     for lag in range(1, bandwidth + 1):
@@ -331,6 +333,7 @@ def _fit_arch_volatility(
             ),
         }
     except Exception:
+        logging.getLogger(__name__).warning("Source GJR fit failed", exc_info=True)
         return None
 
 
@@ -464,14 +467,18 @@ def _dlm_mu_draw_paths(*args: Any, **kwargs: Any) -> np.ndarray | None:
     """The exact GJR base fit does not enable DLM drift paths."""
 
     fit = args[0] if args else kwargs.get("fit", {})
-    return None if not bool(fit.get("dlm_drift_paths", False)) else None
+    if fit.get("dlm_drift_paths", False):
+        raise ValueError("DLM drift paths are outside the verified GJR specification")
+    return None
 
 
 def _posterior_decay_mu_draw_paths(*args: Any, **kwargs: Any) -> np.ndarray | None:
     """The exact GJR base fit does not enable decaying posterior draws."""
 
     fit = args[0] if args else kwargs.get("fit", {})
-    return None if not bool(fit.get("posterior_mu_draws_with_horizon_decay", False)) else None
+    if fit.get("posterior_mu_draws_with_horizon_decay", False):
+        raise ValueError("Posterior decay is outside the verified GJR specification")
+    return None
 
 
 STATIONARY_BOOTSTRAP_ROW_ASSEMBLY_MIN_DAYS = 128
@@ -636,7 +643,7 @@ def _moving_block_indices(
     paths = int(n_paths)
     if n <= 0 or total <= 0 or paths <= 0:
         return np.empty((paths, total), dtype=np.int64)
-    starts = rng.integers(0, max(1, n - length + 1), size=(paths, int(math.ceil(total / length))))
+    starts = rng.integers(0, max(1, n - length + 1), size=(paths, math.ceil(total / length)))
     offsets = np.arange(length, dtype=np.int64)[None, None, :]
     blocks = starts[:, :, None] + offsets
     return blocks.reshape(paths, -1)[:, :total]
@@ -801,7 +808,6 @@ def make_gjr_reference_model(model_id: str) -> PortfolioGJRGARCHModel:
 
 
 __all__ = [
-    "PortfolioGJRGARCHModel",
     "REFERENCE_FACTORIES",
     "REFERENCE_MODEL_IDS",
     "SOURCE_ARTIFACTS",
@@ -809,8 +815,9 @@ __all__ = [
     "SOURCE_FUNCTIONS_SHA256",
     "SOURCE_FUNCTION_NAMES",
     "SOURCE_SEED_CONTRACT",
-    "make_gjr_reference_model",
+    "PortfolioGJRGARCHModel",
     "_fit_gjr_bayesian_sbb_vol_overlay",
     "_moving_block_bayesian_sbb_paths",
     "_simulate_bayesian_sbb_vol_overlay",
+    "make_gjr_reference_model",
 ]

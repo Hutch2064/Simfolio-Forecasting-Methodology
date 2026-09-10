@@ -36,7 +36,7 @@ def test_packaged_snapshot_verifies_without_external_source():
     assert result["rights_status"] == "caller_authorized_local_use"
     assert result["redistribution_status"] == "user_authorized_exact_snapshot"
     assert result["series_count"] == 52
-    assert result["supporting_series"] == ["EFFRX"]
+    assert result["supporting_series"] == ["BNDSIM", "CASHX", "EFFRX", "KMLMSIM", "TIPSIM", "UUPSIM"]
     assert result["factor_inputs"] == ["french_daily", "q5_daily"]
 
 
@@ -60,7 +60,7 @@ def test_default_preparation_is_offline_and_reconstructs_fingerprints(tmp_path):
     assert manifest == cache / "canonical_data_manifest.json"
     result = verify_prepared_canonical_data(cache)
     assert result["source_series_count"] == 52
-    assert result["supporting_series_count"] == 1
+    assert result["supporting_series_count"] == 6
     assert result["factor_input_count"] == 2
     assert result["portfolio_series_count"] == 80
     assert result["asset_log_matrix_sha256"] == (

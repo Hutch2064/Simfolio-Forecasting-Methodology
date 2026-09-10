@@ -36,7 +36,7 @@ environment-specific digest values. Each matrix leg must match its own
 source-local fixture; tolerances are not widened to hide a dependency change.
 
 The wheel checks run outside the source checkout. They verify package-resource
-loading, the 55-file offline snapshot, the 80/4,080/701,280 protocol counts,
+loading, the 60-file offline snapshot, the 80/4,080/701,280 protocol counts,
 all registered factory instantiations, bounded family and Frontier parity, and public-safety
 scans before the complete test suite.
 

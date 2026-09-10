@@ -355,7 +355,7 @@
         "scipy": "1.17.1"
       },
       {
-        "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache /Users/aidanhutchison/forecast-consolidation-20260909/.venv/bin/pytest -q tests/parity/test_bayesian_vol_source.py",
+        "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 NUMBA_CACHE_DIR=$PWD/.numba-cache python -m pytest -q tests/parity/test_bayesian_vol_source.py",
         "numpy": "2.5.3",
         "python": "3.12.13",
         "result": "4 passed, 1 warning in 1.66s",

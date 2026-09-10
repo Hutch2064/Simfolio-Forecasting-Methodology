@@ -227,7 +227,7 @@ def _implementation_digest(model, record: dict[str, object]) -> str | None:
         source_files.update(package_root.rglob("*.py"))
         source_files.update(
             path for path in (package_root / "resources").rglob("*")
-            if path.is_file() and path.suffix in {".json", ".yaml", ".yml", ".csv"}
+            if path.is_file() and path.suffix in {".json", ".yaml", ".yml", ".csv", ".gz"}
         )
     try:
         source_file = inspect.getsourcefile(type(model))

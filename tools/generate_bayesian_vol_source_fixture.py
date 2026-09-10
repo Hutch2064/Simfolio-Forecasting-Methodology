@@ -235,7 +235,7 @@ def main() -> int:
             "python": platform.python_version(),
             "numpy": np.__version__,
             "pandas": pd.__version__,
-            "numba_cache_dir": os.environ.get("NUMBA_CACHE_DIR"),
+            "numba_cache_policy": "task-owned external cache; no source writes",
         },
         "training": {
             "n_obs": n_obs,

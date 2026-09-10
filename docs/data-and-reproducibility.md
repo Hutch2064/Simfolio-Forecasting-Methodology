@@ -9,7 +9,7 @@ matrix identity is:
 
 The source revision is `773bc1c325559e6bf57a567f1d8bf473a3427fbc`. The package
 publishes the manifest, source-relative paths, schemas, raw file hashes,
-common calendar, and all 55 whitelisted compressed source files. Aidan
+common calendar, and all 60 whitelisted compressed source files. Aidan
 Hutchison confirmed redistribution approval for this exact research snapshot.
 The package records that authorization and preserves the source attribution
 in `resources/protocols/canonical_snapshot_attribution.json`; it does not

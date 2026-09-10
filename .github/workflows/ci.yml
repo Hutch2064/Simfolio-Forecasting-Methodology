@@ -89,7 +89,7 @@ jobs:
           assert "all-models" in extras
           verified = verify_canonical_snapshot()
           assert verified["series_count"] == 52
-          assert verified["supporting_series"] == ["EFFRX"]
+          assert verified["supporting_series"] == ["BNDSIM", "CASHX", "EFFRX", "KMLMSIM", "TIPSIM", "UUPSIM"]
           assert verified["factor_inputs"] == ["french_daily", "q5_daily"]
           assert verified["redistribution_status"] == "user_authorized_exact_snapshot"
           schedule = build_experiment_schedule()

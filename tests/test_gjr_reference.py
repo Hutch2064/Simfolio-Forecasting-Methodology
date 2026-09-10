@@ -1,5 +1,5 @@
 import json
-from pathlib import Path
+from importlib.resources import files
 
 import numpy as np
 import pytest
@@ -18,7 +18,7 @@ from simfolio_forecasting_methodology.runner import (
     evaluate_origin_task,
 )
 
-FIXTURE = Path(__file__).parent / "fixtures" / "gjr_reference_source_parity.json"
+FIXTURE = files("simfolio_forecasting_methodology").joinpath("resources/test_fixtures/portfolio/gjr_reference_source_parity.json")
 
 
 def _fixture_context(model_id: str, horizon_days: int = 5, simulations: int = 7) -> ForecastContext:

@@ -25,7 +25,7 @@ def test_installed_package_contains_the_offline_canonical_snapshot():
 
     verification = verify_canonical_snapshot()
     assert verification["series_count"] == 52
-    assert verification["supporting_series"] == ["EFFRX"]
+    assert verification["supporting_series"] == ["BNDSIM", "CASHX", "EFFRX", "KMLMSIM", "TIPSIM", "UUPSIM"]
     assert verification["factor_inputs"] == ["french_daily", "q5_daily"]
     assert verification["redistribution_status"] == "user_authorized_exact_snapshot"
 
