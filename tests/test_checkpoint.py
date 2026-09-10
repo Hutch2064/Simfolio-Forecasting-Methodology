@@ -272,3 +272,14 @@ def test_changed_specification_or_implementation_cannot_resume(tmp_path: Path):
             checkpoint_dir=checkpoint,
             resume=True,
         )
+def test_checkpoint_implementation_identity_includes_numerical_helpers(tmp_path, monkeypatch):
+    from simfolio_forecasting_methodology import runner
+    from simfolio_forecasting_methodology.models.asset_level.frontier import HistoricalFrontierModel
+
+    helper = tmp_path / "numerical_helper.py"
+    helper.write_text("BOUND = 1\n")
+    monkeypatch.setattr(runner, "__file__", str(tmp_path / "runner.py"))
+    before = runner._implementation_digest(HistoricalFrontierModel(), {})
+    helper.write_text("BOUND = 2\n")
+    after = runner._implementation_digest(HistoricalFrontierModel(), {})
+    assert before != after

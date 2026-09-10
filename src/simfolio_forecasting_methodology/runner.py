@@ -218,6 +218,11 @@ def _implementation_digest(model, record: dict[str, object]) -> str | None:
     if isinstance(explicit, str) and explicit:
         return explicit
     source_files: set[Path] = set()
+    if type(model).__module__.startswith("simfolio_forecasting_methodology."):
+        # A model adapter delegates to numerical helpers in other modules.
+        # Bind the installed executable closure, including scoring and seeds,
+        # so changing a helper cannot silently reuse old task losses.
+        source_files.update(Path(__file__).resolve().parent.rglob("*.py"))
     try:
         source_file = inspect.getsourcefile(type(model))
         if source_file is not None:
@@ -262,7 +267,7 @@ def _dependency_identity(model, record: dict[str, object]) -> dict[str, object]:
         identity = {}
     identity["python"] = platform.python_version()
     identity["numpy"] = np.__version__
-    for package in ("pandas", "scipy"):
+    for package in ("pandas", "scipy", "numba", "arch", "statsmodels", "scikit-learn"):
         try:
             identity[package] = importlib.metadata.version(package)
         except importlib.metadata.PackageNotFoundError:
