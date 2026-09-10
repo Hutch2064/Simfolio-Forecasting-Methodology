@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_dispatch": {
+    "candidate_id": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+    "dispatcher": "tmp/asset_level_full_panel_20260823/simfolio_oos_copula_alternatives.py::_coupled_asset_paths (lines 919-956)",
+    "rejoin": "tmp/asset_level_full_panel_20260823/simfolio_oos_copula_alternatives.py::_exact_kalman_rejoined_portfolio_paths (lines 989-1156)",
+    "pgas_helper": "tmp/asset_level_full_panel_20260823/simfolio_adaptive_pgas.py::adaptive_pgas_uniform_paths (lines 1048-1170)",
+    "marginal_helper": "tmp/oos_all_daily_exact_crps.py::_asset_terminal_matrix (lines 183-230)",
+    "student_scale_mixture": false,
+    "inference": "exact Kalman terminal-state posterior sampling",
+    "source_dependence_wrapper_sha256": "413d2ca7f74cda13dd228c8974f822ce23e690cc56e098babf3fd2c121fbf95e",
+    "source_pgas_wrapper_sha256": "f7988a6cfbdf674c1efeb1ca6836b34e5f34c1ee241e97ef44551ded7ba87c69",
+    "source_marginal_wrapper_sha256": "88aaa532d8a0a63e24964305a26ee6fa45d0d9099dd5da800ab691afad583ea7"
+  },
+  "fixture_input": {
+    "resource": "resources/test_fixtures/frontier/source_reference.npz",
+    "asset_count": 4,
+    "history_length": 600,
+    "horizon_days": 8,
+    "simulations": 16,
+    "origin_date": "2026-05-13",
+    "tickers": ["ALPHA", "BETA", "GAMMA", "DELTA"],
+    "rebalance": "monthly"
+  },
+  "comparison": {
+    "portfolio_daily_log_paths": {
+      "shape": [16, 8],
+      "dtype": "float64",
+      "sha256": "e99d8227c5a7e634db29b782387cf8ba701bec076cbe2a706bc54a754a99c6ea"
+    },
+    "source_local_exact": true
+  }
+}

@@ -1,0 +1,1597 @@
+{
+  "patch_schema_version": "canonical_175_family_patch_v1",
+  "target_membership_digest": "c93ea4fca270f7343924a11ec6c3574d1693c07592d9f203b650915548b1d9b5",
+  "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+  "source_artifacts": {
+    "engine": {
+      "relative_path": "source-research/app/engine.py",
+      "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
+    },
+    "research_gate": {
+      "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+      "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+    },
+    "fragment_digest": "dced757f302a023eb2b2d0dba40c143330a8b9a33d3d38b16d73ce0e021cb9d5",
+    "stack_component_fragment_digest": "a76c48963e9bc8fcc3375e15542f38bb079f76d9df4b01b287d71594bf0b86a6",
+    "canonical_proxy_snapshot_manifest": {
+      "relative_path": "resources/data/canonical_snapshot_manifest.json",
+      "sha256": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "status": "manifest_whitelisted_frozen_source_snapshot"
+    }
+  },
+  "models": [
+    {
+      "public_model_id": "canonical",
+      "display_name": "M010 \u2014 Canonical Gaussian Baseline",
+      "historical_model_ids": [
+        "canonical"
+      ],
+      "seed_identity": {
+        "source_model_key": "canonical",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "canonical",
+      "structured_specification": {
+        "id": "canonical",
+        "type": "canonical"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/app/engine.py#SimfolioEngine._fit_canonical_forecast_model",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=10",
+        "recovery_registry_anchor": "models[canonical_rank=10]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=10]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 21,
+      "canonical_rank": 10,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.007590706426489537",
+          "0.03879911623105214"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.006",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; canonical execution uses the complete nine-series manifest-whitelisted proxy factor closure bundled by the data workstream."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_gaussian_w0.60",
+      "display_name": "M011 \u2014 Canonical Distribution Stack (gaussian w0.60)",
+      "historical_model_ids": [
+        "stack_canonical_gaussian_w0.60"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_gaussian_w0.60",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_gaussian_w0.60",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=11",
+        "recovery_registry_anchor": "models[canonical_rank=11]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=11]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 22,
+      "canonical_rank": 11,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.008307381811397271",
+          "0.038929516211123484"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.007",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_gaussian_w0.50",
+      "display_name": "M012 \u2014 Canonical Distribution Stack (gaussian w0.50)",
+      "historical_model_ids": [
+        "stack_canonical_gaussian_w0.50"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_gaussian_w0.50",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_gaussian_w0.50",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=12",
+        "recovery_registry_anchor": "models[canonical_rank=12]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=12]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 23,
+      "canonical_rank": 12,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.005831498303355393",
+          "0.03907788979167802"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.02",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_student_t_w0.60",
+      "display_name": "M013 \u2014 Canonical Distribution Stack (student t w0.60)",
+      "historical_model_ids": [
+        "stack_canonical_student_t_w0.60"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_student_t_w0.60",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_student_t_w0.60",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=13",
+        "recovery_registry_anchor": "models[canonical_rank=13]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=13]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 24,
+      "canonical_rank": 13,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.007153787855053327",
+          "0.0382223267345308"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.016",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_student_t_w0.50",
+      "display_name": "M014 \u2014 Canonical Distribution Stack (student t w0.50)",
+      "historical_model_ids": [
+        "stack_canonical_student_t_w0.50"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_student_t_w0.50",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_student_t_w0.50",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=14",
+        "recovery_registry_anchor": "models[canonical_rank=14]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=14]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 25,
+      "canonical_rank": 14,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.006373024713593844",
+          "0.03944064411396452"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.013",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_gaussian_w0.70",
+      "display_name": "M015 \u2014 Canonical Distribution Stack (gaussian w0.70)",
+      "historical_model_ids": [
+        "stack_canonical_gaussian_w0.70"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_gaussian_w0.70",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_gaussian_w0.70",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=15",
+        "recovery_registry_anchor": "models[canonical_rank=15]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=15]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 26,
+      "canonical_rank": 15,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.006496036757706026",
+          "0.03820265112448813"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.011",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_student_t_w0.70",
+      "display_name": "M016 \u2014 Canonical Distribution Stack (student t w0.70)",
+      "historical_model_ids": [
+        "stack_canonical_student_t_w0.70"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_student_t_w0.70",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_student_t_w0.70",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=16",
+        "recovery_registry_anchor": "models[canonical_rank=16]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=16]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 27,
+      "canonical_rank": 16,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.006999690554340503",
+          "0.03862306077112292"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.009",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_gaussian_w0.80",
+      "display_name": "M017 \u2014 Canonical Distribution Stack (gaussian w0.80)",
+      "historical_model_ids": [
+        "stack_canonical_gaussian_w0.80"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_gaussian_w0.80",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_gaussian_w0.80",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=17",
+        "recovery_registry_anchor": "models[canonical_rank=17]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=17]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 28,
+      "canonical_rank": 17,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.00574996136679681",
+          "0.03977037758257273"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.015",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_student_t_w0.80",
+      "display_name": "M018 \u2014 Canonical Distribution Stack (student t w0.80)",
+      "historical_model_ids": [
+        "stack_canonical_student_t_w0.80"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_student_t_w0.80",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_student_t_w0.80",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=18",
+        "recovery_registry_anchor": "models[canonical_rank=18]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=18]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 29,
+      "canonical_rank": 18,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.006029759431012567",
+          "0.03884970508493483"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.013",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_student_t_w0.90",
+      "display_name": "M019 \u2014 Canonical Distribution Stack (student t w0.90)",
+      "historical_model_ids": [
+        "stack_canonical_student_t_w0.90"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_student_t_w0.90",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_student_t_w0.90",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=19",
+        "recovery_registry_anchor": "models[canonical_rank=19]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=19]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 30,
+      "canonical_rank": 19,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.006680315543270894",
+          "0.03828673302916031"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.009",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_gaussian_w0.90",
+      "display_name": "M020 \u2014 Canonical Distribution Stack (gaussian w0.90)",
+      "historical_model_ids": [
+        "stack_canonical_gaussian_w0.90"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_gaussian_w0.90",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_gaussian_w0.90",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=20",
+        "recovery_registry_anchor": "models[canonical_rank=20]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=20]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 31,
+      "canonical_rank": 20,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.00636009409618764",
+          "0.03856876686466052"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.009",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_gaussian_w1.00",
+      "display_name": "M021 \u2014 Canonical Distribution Stack (gaussian w1.00)",
+      "historical_model_ids": [
+        "stack_canonical_gaussian_w1.00"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_gaussian_w1.00",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_gaussian_w1.00",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=21",
+        "recovery_registry_anchor": "models[canonical_rank=21]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=21]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 32,
+      "canonical_rank": 21,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.005937711230174179",
+          "0.03799827000421149"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.012",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    },
+    {
+      "public_model_id": "stack_canonical_student_t_w1.00",
+      "display_name": "M022 \u2014 Canonical Distribution Stack (student t w1.00)",
+      "historical_model_ids": [
+        "stack_canonical_student_t_w1.00"
+      ],
+      "seed_identity": {
+        "source_model_key": "stack_canonical_student_t_w1.00",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": null,
+        "status": "source-declared panel seed; per-model RNG schedule and exact call identity unresolved"
+      },
+      "model_family": "stack",
+      "structured_specification": {
+        "id": "stack_canonical_student_t_w1.00",
+        "type": "stack"
+      },
+      "specification_fingerprint": {
+        "value": null,
+        "kind": "full_statistical_kernel_sha256",
+        "status": "unresolved_factor_proxy_and_dependency_closure"
+      },
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "source_artifact_digest": {
+        "source_code": {
+          "relative_path": "source-research/app/engine.py",
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "pinned_source_artifact"
+        },
+        "research_gate": {
+          "relative_path": "source-research/scripts/forecast_oos_research_gate.py",
+          "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+          "status": "pinned_source_artifact"
+        },
+        "parameter_dictionary": {
+          "root_reference": "source_provenance.parameter_dictionary",
+          "sha256": "6364818645b005e6bbab981b69bcbd9d91023f69732ac8e862ffefbcd87d3574",
+          "status": "dictionary_only; canonical factor/dependency closure unresolved"
+        },
+        "retained_score_artifact": {
+          "root_reference": "score_evidence.retained_score_artifact",
+          "status": "shared_root_digest_mismatch"
+        }
+      },
+      "source_location_reference": {
+        "source_engine": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate[stack]",
+        "source_research_gate": "source-research/scripts/forecast_oos_research_gate.py#_terminal_logs_for_candidate",
+        "public_catalogue_anchor": "canonical_rank=22",
+        "recovery_registry_anchor": "models[canonical_rank=22]",
+        "row_source_description": "canonical_175_registry.json#models[canonical_rank=22]"
+      },
+      "implementation_factory": {
+        "name": "make_canonical_stack_model",
+        "module": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference",
+        "status": "source-backed explicit factory",
+        "callable": true
+      },
+      "required_dependencies": {
+        "items": [
+          "numpy>=2.0,<3",
+          "pandas>=2.2,<3",
+          "scipy>=1.13,<2"
+        ],
+        "verified": true,
+        "status": "runtime package constraints verified; source factor-loader closure unresolved"
+      },
+      "historical_rank": 33,
+      "canonical_rank": 22,
+      "historical_score": {
+        "exact_empirical_crps": "0.3157153599618289",
+        "relative_to_naive": "0.9326742621993328",
+        "skill_vs_naive": "0.0673257378006672",
+        "paired_improvement_vs_current": "-0.0780285380451149",
+        "paired_mean_diff_vs_current": "0.02285172155171439",
+        "paired_portfolio_cluster_diff_ci_90": [
+          "0.007078967746705198",
+          "0.0385066991587276"
+        ],
+        "paired_portfolio_cluster_probability_better": "0.014",
+        "portfolio_losses_vs_current": 58,
+        "portfolio_wins_vs_current": 22
+      },
+      "score_precision": {
+        "retained_source_token": "0.3157153599618289",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.31571536",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 8
+        },
+        "public_minus_retained_text": "0.0000000000381711",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source token preserved; publication token reconciles row-by-row"
+      },
+      "experiment_id": "canonical-dense-oos-2026-08-23",
+      "protocol_fingerprint": null,
+      "dataset_fingerprint": null,
+      "panel_fingerprint": null,
+      "identity_recovered": true,
+      "specification_recovered": false,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": false,
+      "verification_status": "source_parity_qualified_score_unverified",
+      "notes": [
+        "Source candidate identity and explicit RNG candidate IDs recovered from the pinned research dispatcher.",
+        "Terminal ensemble semantics preserved; no daily increment reconstruction is claimed.",
+        "Source-engine and research-gate fragment parity is validated by the sanitized fixture; retained scalar score is not rerun.",
+        "Full specification remains unresolved because the historical factor-proxy loader and numerical dependency closure are not packaged in this family batch.",
+        "Historical source descriptor is sparse {id, type}; stack execution resolves shrinkage=student_t and canonical_weight=1.0 from the source dispatcher defaults, independent of later catalogue labels."
+      ]
+    }
+  ]
+}

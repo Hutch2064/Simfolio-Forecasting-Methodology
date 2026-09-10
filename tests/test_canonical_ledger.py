@@ -148,11 +148,14 @@ def test_packaged_resource_load_is_independent_of_cwd(tmp_path, monkeypatch):
     assert canonical_model(models[0]["public_model_id"])["canonical_rank"] == 1
 
 
-def test_registry_is_fail_closed_for_known_and_unknown_ids():
-    first_id = next(row["public_model_id"] for row in load_canonical_models() if not row["implementation_available"])
+def test_registry_is_fail_closed_for_known_and_unknown_ids(monkeypatch):
+    from simfolio_forecasting_methodology.models import registry
+
+    first_id = load_canonical_models()[0]["public_model_id"]
+    monkeypatch.delitem(registry._EXPLICIT_FACTORIES, first_id)
     item = registration(first_id)
     assert item.model_id == first_id
-    assert item.fidelity == "retained_score_evidence_only_blocked"
+    assert item.fidelity == canonical_model(first_id)["verification_status"]
     assert item.implementation == "blocked"
     assert item.factory is None
     with pytest.raises(ValueError, match="not executable: no verified explicit factory"):
@@ -165,7 +168,8 @@ def test_registry_is_fail_closed_for_known_and_unknown_ids():
 
 def test_future_verified_specification_record_can_validate_without_factory_claim():
     payload = deepcopy(load_canonical_ledger())
-    model = next(item for item in payload["models"] if not item["specification_recovered"])
+    model = payload["models"][0]
+    was_recovered = model["specification_recovered"]
     model["specification_recovered"] = True
     model["structured_specification"]["verified_numerical_defaults"] = "source-backed-test-fixture"
     model["specification_fingerprint"] = {
@@ -183,13 +187,14 @@ def test_future_verified_specification_record_can_validate_without_factory_claim
     model["dataset_fingerprint"] = "d" * 64
     model["panel_fingerprint"] = "e" * 64
     model["verification_status"] = "specification_evidence_verified"
-    payload["identity_policy"]["full_statistical_specifications_confirmed"] += 1
+    payload["identity_policy"]["full_statistical_specifications_confirmed"] += int(not was_recovered)
     validate_canonical_ledger(payload)
 
 
 def test_partially_verified_record_can_remain_blocked():
     payload = deepcopy(load_canonical_ledger())
-    model = next(item for item in payload["models"] if not item["specification_recovered"])
+    model = payload["models"][0]
+    was_recovered = model["specification_recovered"]
     model["specification_recovered"] = True
     model["specification_fingerprint"] = {
         "value": "a" * 64,
@@ -197,7 +202,7 @@ def test_partially_verified_record_can_remain_blocked():
         "status": "partially_verified",
     }
     model["verification_status"] = "specification_partially_verified_blocked"
-    payload["identity_policy"]["full_statistical_specifications_confirmed"] += 1
+    payload["identity_policy"]["full_statistical_specifications_confirmed"] += int(not was_recovered)
     validate_canonical_ledger(payload)
 
 
@@ -251,6 +256,6 @@ def test_generated_reference_is_current_and_scoped_to_the_ledger():
     )
     assert result.returncode == 0, result.stderr
     reference = (repository_root / "docs/canonical-model-reference.md").read_text(encoding="utf-8")
-    assert reference.count("retained_score_evidence_only_blocked") == 15
+    assert reference.count("retained_score_evidence_only_blocked") == 0
     assert EXPECTED_MEMBERSHIP_DIGEST in reference
     assert "master_369" not in reference

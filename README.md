@@ -10,11 +10,10 @@ private datastore, or operational API.
 ## Current release state
 
 The canonical ledger contains **175 exact model identities**. The public
-runtime currently has **160 explicit executable factories**: 84 canonical base models,
-40 full MCMC SV models, 35 portfolio reference models, and Frontier. Those 160
-factories have passed package instantiation and bounded forecast/source-parity
-checks. The other ledger rows remain registered evidence identities and fail
-closed when execution is requested.
+runtime has **175 explicit executable factories**. Every model has passed
+instantiation and bounded forecasting/source-parity checks. The numerical
+implementations reuse the recovered statistical methods and their source
+parameter defaults; no model was dropped or replaced with a generic baseline.
 
 Historical score tokens are retained as evidence. Historical score linkage has
 not been verified, and no retained score is presented as a newly reproduced
@@ -49,6 +48,16 @@ starting a forecast run.
 The bounded implementation surface can be exercised with an exact model ID or
 the Frontier rank-one selector. A full canonical run requires the preserved
 240 simulations per origin and is not implied by a smoke run.
+
+## Frontier production validation
+
+The leading asset-level Frontier method matches the verified live numerical
+source on three bounded cases. With identical random streams and production
+storage precision, joint asset paths and rejoined portfolio paths match
+exactly. The historical and production default seed schedules differ; the
+[production parity report](docs/frontier-production-parity.md) records both
+contracts, intermediate comparisons, and source hashes. This is bounded
+numerical validation, not a rerun of the retained white-paper score.
 
 ## Reproducibility
 

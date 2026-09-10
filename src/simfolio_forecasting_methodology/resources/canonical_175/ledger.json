@@ -922,6 +922,81 @@
     "stochastic_volatility_ar1_student_t": {
       "factory_name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
       "status": "verified_explicit_factory"
+    },
+    "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced": {
+      "factory_name": "simfolio_forecasting_methodology.models.asset_level.exact_kalman:ExactKalmanDynamicGaussianFactorModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "historical_asset_marginals_and_copula_alternatives"
+    },
+    "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.inla:FullINLABDESModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "deterministic_seed('forecast_final_fixed',selected_model_id,horizon,simulations)"
+    },
+    "canonical": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_gaussian_w0.60": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_gaussian_w0.50": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_student_t_w0.60": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_student_t_w0.50": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_gaussian_w0.70": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_student_t_w0.70": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_gaussian_w0.80": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_student_t_w0.80": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_student_t_w0.90": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_gaussian_w0.90": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_gaussian_w1.00": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
+    },
+    "stack_canonical_student_t_w1.00": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+      "status": "verified_explicit_factory",
+      "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
     }
   },
   "validation_policy": {
@@ -3105,9 +3180,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3123,14 +3197,20 @@
         "row_source_description": "canonical-175 retained extension evidence#asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.asset_level.exact_kalman:ExactKalmanDynamicGaussianFactorModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "historical_asset_marginals_and_copula_alternatives"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy",
+          "numba"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 19,
       "canonical_rank": 8,
@@ -3173,17 +3253,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original asset dispatcher replay matched marginals, dependence uniforms, mapped asset paths, rejoined daily paths and terminal paths exactly for 4 assets, 600 observations, 16 simulations and 8 horizons.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -3215,9 +3295,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3233,14 +3312,20 @@
         "row_source_description": "canonical-175 retained extension evidence#sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.inla:FullINLABDESModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "deterministic_seed('forecast_final_fixed',selected_model_id,horizon,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy",
+          "numba"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 20,
       "canonical_rank": 9,
@@ -3280,17 +3365,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root replay of the original current-control dispatcher matched all 16-by-8 terminal values exactly. Source simple-return normalization and historical control seed are preserved.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -3319,9 +3404,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3337,14 +3421,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=10]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 21,
       "canonical_rank": 10,
@@ -3387,17 +3476,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -3426,9 +3515,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3444,14 +3532,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=11]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 22,
       "canonical_rank": 11,
@@ -3494,17 +3587,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -3533,9 +3626,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3551,14 +3643,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=12]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 23,
       "canonical_rank": 12,
@@ -3601,17 +3698,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -3640,9 +3737,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3658,14 +3754,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=13]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 24,
       "canonical_rank": 13,
@@ -3708,17 +3809,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -3747,9 +3848,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3765,14 +3865,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=14]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 25,
       "canonical_rank": 14,
@@ -3815,17 +3920,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -3854,9 +3959,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3872,14 +3976,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=15]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 26,
       "canonical_rank": 15,
@@ -3922,17 +4031,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -3961,9 +4070,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -3979,14 +4087,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=16]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 27,
       "canonical_rank": 16,
@@ -4029,17 +4142,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -4068,9 +4181,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -4086,14 +4198,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=17]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 28,
       "canonical_rank": 17,
@@ -4136,17 +4253,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -4175,9 +4292,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -4193,14 +4309,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=18]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 29,
       "canonical_rank": 18,
@@ -4243,17 +4364,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -4282,9 +4403,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -4300,14 +4420,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=19]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 30,
       "canonical_rank": 19,
@@ -4350,17 +4475,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -4389,9 +4514,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -4407,14 +4531,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=20]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 31,
       "canonical_rank": 20,
@@ -4457,17 +4586,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -4496,9 +4625,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -4514,14 +4642,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=21]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 32,
       "canonical_rank": 21,
@@ -4564,17 +4697,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {
@@ -4603,9 +4736,8 @@
           "status": "shared_root_digest_mismatch"
         },
         "source_code": {
-          "root_reference": "source_provenance.source_code",
-          "sha256": null,
-          "status": "unresolved"
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+          "status": "source_dispatcher_replay_verified_bounded"
         },
         "parameter_dictionary": {
           "root_reference": "source_provenance.parameter_dictionary",
@@ -4621,14 +4753,19 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=22]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
+        "callable": true,
+        "status": "source_parity_verified_bounded",
+        "seed_contract": "forecast_oos_candidate(origin_date,dense_horizon_tuple,component_candidate_id,simulations)"
       },
       "required_dependencies": {
-        "items": null,
-        "verified": false,
-        "status": "source_dependency_closure_unresolved"
+        "items": [
+          "numpy",
+          "pandas",
+          "scipy"
+        ],
+        "verified": true,
+        "status": "installed source-independent bounded runtime verified"
       },
       "historical_rank": 33,
       "canonical_rank": 22,
@@ -4671,17 +4808,17 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "source_parity_verified_bounded_historical_score_linkage_qualified",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
-        "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
-        "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root original source dispatcher matched terminal arrays byte-for-byte for all 13 canonical/stack IDs, with 720 training observations, 9 frozen proxy factors, 7 simulations and 5 horizons. Original proxy normalization and factor-prior fit also matched exactly.",
+        "Retained scores remain imported evidence; no full experiment was run."
       ]
     },
     {

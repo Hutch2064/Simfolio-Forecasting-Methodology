@@ -1,0 +1,269 @@
+{
+  "comparisons": {
+    "asset_marginals_source_vs_local_direct_logs": {
+      "equal": false,
+      "left_sha256": "baf8dc99eba4ba6370b2079bf91a31eefb897f46ec06c8f277386bc485e1f2f7",
+      "max_abs_diff": 0.0001931984159812359,
+      "mean_abs_diff": 1.307738232580126e-05,
+      "right_sha256": "6c3cd532b664d2f8759e3af53736cd20f148818c9aecdd24316b25ca522ad2f5",
+      "shape": [
+        16,
+        8,
+        4
+      ]
+    },
+    "asset_marginals_source_vs_local_roundtrip_logs": {
+      "equal": true,
+      "left_sha256": "baf8dc99eba4ba6370b2079bf91a31eefb897f46ec06c8f277386bc485e1f2f7",
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "right_sha256": "baf8dc99eba4ba6370b2079bf91a31eefb897f46ec06c8f277386bc485e1f2f7",
+      "shape": [
+        16,
+        8,
+        4
+      ]
+    },
+    "asset_terminal_source_vs_local_logs": {
+      "equal": true,
+      "left_sha256": "0f16cc13d257629ada6d392e5724a0ebb47b4e007360c08011bf9a69bbdf11b3",
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "right_sha256": "0f16cc13d257629ada6d392e5724a0ebb47b4e007360c08011bf9a69bbdf11b3",
+      "shape": [
+        16,
+        8
+      ]
+    },
+    "current_control_terminal_logs": {
+      "equal": true,
+      "left_sha256": "937a74a9756165e69e5ea51c2ba1b8b3c7d66393d410769d12c4d4c0f5fcf0d2",
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "right_sha256": "937a74a9756165e69e5ea51c2ba1b8b3c7d66393d410769d12c4d4c0f5fcf0d2",
+      "shape": [
+        16,
+        8
+      ]
+    },
+    "dependence_uniforms_source_vs_local": {
+      "equal": true,
+      "left_sha256": "720dd37e26c8883bb23777a1478698dd905685a2dd734afb541ac157c99e8baf",
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "right_sha256": "720dd37e26c8883bb23777a1478698dd905685a2dd734afb541ac157c99e8baf",
+      "shape": [
+        16,
+        8,
+        4
+      ]
+    },
+    "mapped_asset_paths_source_vs_local": {
+      "equal": true,
+      "left_sha256": "6a66e098c9a4aa5155c13c73eda7581cc4acb75e5710391fe1b7ac5971f3d088",
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "right_sha256": "6a66e098c9a4aa5155c13c73eda7581cc4acb75e5710391fe1b7ac5971f3d088",
+      "shape": [
+        16,
+        8,
+        4
+      ]
+    },
+    "rejoined_daily_logs_source_vs_local": {
+      "equal": true,
+      "left_sha256": "e99d8227c5a7e634db29b782387cf8ba701bec076cbe2a706bc54a754a99c6ea",
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "right_sha256": "e99d8227c5a7e634db29b782387cf8ba701bec076cbe2a706bc54a754a99c6ea",
+      "shape": [
+        16,
+        8
+      ]
+    }
+  },
+  "fixture": {
+    "asset_shape": [
+      600,
+      4
+    ],
+    "horizon": 8,
+    "origin_date": "2026-05-13",
+    "path": "resources/test_fixtures/frontier/source_reference.npz",
+    "rebalance": "monthly",
+    "simulations": 16,
+    "tickers": [
+      "ALPHA",
+      "BETA",
+      "GAMMA",
+      "DELTA"
+    ]
+  },
+  "local_dependence_meta": {
+    "asset_count": 4,
+    "copula": "adaptive dynamic Gaussian factor dependence",
+    "degrees_of_freedom": null,
+    "ess_fraction": 0.5,
+    "factor_count": 3,
+    "inference": "exact Kalman terminal-state posterior sampling",
+    "observation_count": 600,
+    "pgas_burn_in": 0,
+    "pgas_diagnostics": [],
+    "pgas_iterations": 0,
+    "pilot": null,
+    "selected_particles": null,
+    "student_scale_mixture": false,
+    "terminal_state_draws": 16
+  },
+  "local_hashes": {
+    "asset_marginal_direct_cube_logs": "6c3cd532b664d2f8759e3af53736cd20f148818c9aecdd24316b25ca522ad2f5",
+    "asset_marginal_roundtrip_cube_logs": "baf8dc99eba4ba6370b2079bf91a31eefb897f46ec06c8f277386bc485e1f2f7",
+    "asset_terminal_logs": "0f16cc13d257629ada6d392e5724a0ebb47b4e007360c08011bf9a69bbdf11b3",
+    "current_control_terminal_logs": "937a74a9756165e69e5ea51c2ba1b8b3c7d66393d410769d12c4d4c0f5fcf0d2",
+    "dependence_uniforms": "720dd37e26c8883bb23777a1478698dd905685a2dd734afb541ac157c99e8baf",
+    "mapped_asset_paths": "6a66e098c9a4aa5155c13c73eda7581cc4acb75e5710391fe1b7ac5971f3d088",
+    "rejoined_daily_logs": "e99d8227c5a7e634db29b782387cf8ba701bec076cbe2a706bc54a754a99c6ea"
+  },
+  "source_asset_meta": {
+    "asset_count": 4,
+    "copula": "adaptive dynamic Gaussian factor dependence",
+    "degrees_of_freedom": null,
+    "ess_fraction": 0.5,
+    "factor_count": 3,
+    "fit_and_asset_forecast_seconds": 0.9143938749330118,
+    "inference": "exact Kalman terminal-state posterior sampling",
+    "observation_count": 600,
+    "pgas_burn_in": 0,
+    "pgas_diagnostics": [],
+    "pgas_iterations": 0,
+    "pilot": null,
+    "selected_particles": null,
+    "student_scale_mixture": false,
+    "terminal_state_draws": 16,
+    "total_seconds": 0.9144239160232246
+  },
+  "source_candidate": {
+    "id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+    "key_count": 82,
+    "keys": [
+      "ablation_family",
+      "bdes_multiscale_component_count",
+      "bdes_multiscale_scale_grid",
+      "bdes_multiscale_shock_coupling",
+      "clip_simulated_returns",
+      "comparison_target",
+      "external_factors",
+      "factor_model",
+      "feature_family",
+      "forecast_level",
+      "id",
+      "inla_hyperparameter_quadrature_order",
+      "inla_latent_terminal_quadrature_order",
+      "innovation_component",
+      "innovation_conditioning",
+      "innovation_method",
+      "innovation_pool_source",
+      "innovation_resampling",
+      "innovation_standardization",
+      "innovation_tail_splice",
+      "latent_vol_persistence",
+      "leverage",
+      "leverage_alignment",
+      "leverage_correlation_method",
+      "leverage_correlation_scope",
+      "map_maxiter",
+      "map_start_count",
+      "mcmc_adaptation_iterations",
+      "mcmc_adaptation_target_acceptance",
+      "mcmc_burn",
+      "mcmc_chains",
+      "mcmc_check_interval",
+      "mcmc_extend_iterations",
+      "mcmc_forecast_stability_tolerance",
+      "mcmc_initial_iterations",
+      "mcmc_iterations",
+      "mcmc_max_iterations",
+      "mcmc_min_ess",
+      "mcmc_min_iterations",
+      "mcmc_proposal_adaptation",
+      "mcmc_rhat_threshold",
+      "mcmc_stopping",
+      "mcmc_thin",
+      "mean_component",
+      "mean_model",
+      "mean_model_ablation_of",
+      "mean_state_scaling",
+      "measurement_equation",
+      "overlay_model",
+      "parameter_sampler",
+      "path_generator",
+      "previous_incumbent_id",
+      "production_status",
+      "regime_model",
+      "research_rationale",
+      "residual_tail_method",
+      "return_target",
+      "rollback_env_var",
+      "selection_method",
+      "simulation_method",
+      "state_inference",
+      "state_inference_model",
+      "state_innovation_coupling",
+      "state_innovation_distribution",
+      "state_innovation_resampling",
+      "state_innovation_source",
+      "state_innovation_standardization",
+      "sv_measurement_bias",
+      "sv_research_baseline",
+      "sv_sigma_scale_method",
+      "tail_method",
+      "transformed_parameter_mcmc",
+      "type",
+      "unclipped_empirical_innovations",
+      "unclipped_sv_measurement",
+      "validation_status",
+      "vol_anchor_model",
+      "vol_anchor_target",
+      "vol_model",
+      "vol_overlay_model",
+      "vol_path_blend",
+      "vol_path_model"
+    ],
+    "local_candidate_sha256": "472d8bac243f3b1b123071a21a52d96394e775e8c4accb8d5fa18fd676451034",
+    "sha256": "472d8bac243f3b1b123071a21a52d96394e775e8c4accb8d5fa18fd676451034",
+    "source_equals_local": true
+  },
+  "source_dependence_meta": {
+    "asset_count": 4,
+    "copula": "adaptive dynamic Gaussian factor dependence",
+    "degrees_of_freedom": null,
+    "ess_fraction": 0.5,
+    "factor_count": 3,
+    "inference": "exact Kalman terminal-state posterior sampling",
+    "observation_count": 600,
+    "pgas_burn_in": 0,
+    "pgas_diagnostics": [],
+    "pgas_iterations": 0,
+    "pilot": null,
+    "selected_particles": null,
+    "student_scale_mixture": false,
+    "terminal_state_draws": 16
+  },
+  "source_files": {
+    "sha256": {
+      "app/engine.py": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
+      "tmp/asset_level_full_panel_20260823/simfolio_adaptive_pgas.py": "f7988a6cfbdf674c1efeb1ca6836b34e5f34c1ee241e97ef44551ded7ba87c69",
+      "tmp/asset_level_full_panel_20260823/simfolio_oos_copula_alternatives.py": "413d2ca7f74cda13dd228c8974f822ce23e690cc56e098babf3fd2c121fbf95e",
+      "tmp/asset_level_full_panel_20260823/simfolio_oos_two_candidates.py": "0577e79abee09d09735ee76f85941e007f995cc6a370ee375a0743cf440a23c2",
+      "tmp/oos_all_daily_exact_crps.py": "88aaa532d8a0a63e24964305a26ee6fa45d0d9099dd5da800ab691afad583ea7"
+    }
+  },
+  "source_hashes": {
+    "asset_marginal_cube_logs": "baf8dc99eba4ba6370b2079bf91a31eefb897f46ec06c8f277386bc485e1f2f7",
+    "asset_terminal_logs": "0f16cc13d257629ada6d392e5724a0ebb47b4e007360c08011bf9a69bbdf11b3",
+    "current_control_terminal_logs": "937a74a9756165e69e5ea51c2ba1b8b3c7d66393d410769d12c4d4c0f5fcf0d2",
+    "dependence_uniforms": "720dd37e26c8883bb23777a1478698dd905685a2dd734afb541ac157c99e8baf",
+    "mapped_asset_paths": "6a66e098c9a4aa5155c13c73eda7581cc4acb75e5710391fe1b7ac5971f3d088",
+    "rejoined_daily_logs": "e99d8227c5a7e634db29b782387cf8ba701bec076cbe2a706bc54a754a99c6ea"
+  }
+}

@@ -13,14 +13,17 @@ from functools import partial
 from typing import Any
 
 from ..catalogue import canonical_model, load_canonical_models
+from .asset_level.exact_kalman import EXACT_KALMAN_MODEL_ID, ExactKalmanDynamicGaussianFactorModel
 from .asset_level.frontier import FRONTIER_MODEL_ID, HistoricalFrontierModel
 from .numerical.base_models import CanonicalBaseModel
 from .numerical.mcmc_sv import canonical_full_mcmc_sv_ids
 from .portfolio.bayesian_vol import BAYESIAN_VOL_FACTORIES
+from .portfolio.canonical_stack_reference import REFERENCE_FACTORIES as CANONICAL_STACK_FACTORIES
 from .portfolio.factor_residual import FACTOR_RESIDUAL_FACTORIES
 from .portfolio.full_mcmc import FullMCMCSVModel
 from .portfolio.gas_reference import REFERENCE_FACTORIES as GAS_FACTORIES
 from .portfolio.gjr_reference import REFERENCE_FACTORIES as GJR_FACTORIES
+from .portfolio.inla import INLA_MODEL_ID, FullINLABDESModel
 from .portfolio.reference_families import REFERENCE_FACTORIES
 from .portfolio.sv_extensions import REFERENCE_FACTORIES as SV_EXTENSION_FACTORIES
 from .portfolio.sv_mcmc_reference import REFERENCE_FACTORIES as MCMC_REFERENCE_FACTORIES
@@ -37,6 +40,9 @@ class ModelRegistration:
 
 _EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {
     FRONTIER_MODEL_ID: HistoricalFrontierModel,
+    EXACT_KALMAN_MODEL_ID: ExactKalmanDynamicGaussianFactorModel,
+    INLA_MODEL_ID: FullINLABDESModel,
+    **CANONICAL_STACK_FACTORIES,
     **REFERENCE_FACTORIES,
     **GAS_FACTORIES,
     **GJR_FACTORIES,

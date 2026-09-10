@@ -1,0 +1,63 @@
+{
+  "factor_count": 9,
+  "models": [
+    {
+      "model_id": "canonical",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_gaussian_w0.60",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_gaussian_w0.50",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_student_t_w0.60",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_student_t_w0.50",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_gaussian_w0.70",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_student_t_w0.70",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_gaussian_w0.80",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_student_t_w0.80",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_student_t_w0.90",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_gaussian_w0.90",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_gaussian_w1.00",
+      "max_abs_difference": 0.0
+    },
+    {
+      "model_id": "stack_canonical_student_t_w1.00",
+      "max_abs_difference": 0.0
+    }
+  ],
+  "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+  "training_observations": 720,
+  "simulations": 7,
+  "horizons": 5,
+  "original_proxy_loader_array_equal": true,
+  "original_factor_fit_all_fields_equal": true
+}
