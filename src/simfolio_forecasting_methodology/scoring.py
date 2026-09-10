@@ -31,8 +31,16 @@ def empirical_crps(samples: Sequence[float] | np.ndarray, realized: float) -> fl
     return observation_term - half_pairwise_term
 
 
-def aggregate_equal_portfolio_horizon(rows: Iterable[ScoredOrigin]) -> float:
-    """Average origins within cells, then equally weight portfolio-horizon cells."""
+def aggregate_equal_portfolio_horizon(
+    rows: Iterable[ScoredOrigin],
+    *,
+    expected_cells: int | None = None,
+) -> float:
+    """Average origins within cells, then equally weight portfolio-horizon cells.
+
+    ``expected_cells`` activates the canonical fixed-denominator gate. A
+    missing cell is an invalid study result rather than a denominator change.
+    """
     cells: dict[tuple[Hashable, int], list[float]] = defaultdict(list)
     for row in rows:
         if row.horizon_days <= 0 or not np.isfinite(row.crps):
@@ -40,4 +48,8 @@ def aggregate_equal_portfolio_horizon(rows: Iterable[ScoredOrigin]) -> float:
         cells[(row.portfolio_id, int(row.horizon_days))].append(float(row.crps))
     if not cells:
         raise ValueError("at least one scored origin is required")
+    if expected_cells is not None and len(cells) != int(expected_cells):
+        raise ValueError(
+            f"fixed denominator requires {int(expected_cells)} cells; observed {len(cells)}"
+        )
     return float(np.mean([np.mean(values) for values in cells.values()]))

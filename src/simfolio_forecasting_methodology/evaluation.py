@@ -11,6 +11,8 @@ import numpy as np
 def empirical_crps_by_horizon(
     terminal_samples: np.ndarray,
     realized_terminal: np.ndarray,
+    *,
+    strict: bool = False,
 ) -> np.ndarray:
     """Exact empirical CRPS independently at every daily horizon.
 
@@ -33,6 +35,8 @@ def empirical_crps_by_horizon(
         raise ValueError("at least one simulation is required")
 
     valid = np.isfinite(realized) & np.all(np.isfinite(samples), axis=0)
+    if strict and not np.all(valid):
+        raise ValueError("fixed-denominator CRPS requires finite samples at every horizon")
     output = np.full(realized.shape, np.nan, dtype=np.float64)
     if not np.any(valid):
         return output
@@ -87,6 +91,44 @@ class CellAccumulator:
         if not means:
             raise ValueError("no finite portfolio-horizon cells were accumulated")
         return float(np.mean(np.fromiter(means.values(), dtype=np.float64)))
+
+    def assert_complete(
+        self,
+        *,
+        expected_cells: int,
+        expected_tasks: int,
+        completed_tasks: int,
+        failed_tasks: int = 0,
+    ) -> None:
+        """Apply the canonical fail-closed task and cell denominator gates."""
+        if int(failed_tasks) != 0:
+            raise ValueError(f"fixed-denominator evaluation has {int(failed_tasks)} failed tasks")
+        if int(completed_tasks) != int(expected_tasks):
+            raise ValueError(
+                f"fixed-denominator evaluation requires {int(expected_tasks)} tasks; "
+                f"observed {int(completed_tasks)}"
+            )
+        if self.cell_count != int(expected_cells):
+            raise ValueError(
+                f"fixed-denominator evaluation requires {int(expected_cells)} cells; "
+                f"observed {self.cell_count}"
+            )
+
+    def fixed_denominator_score(
+        self,
+        *,
+        expected_cells: int,
+        expected_tasks: int,
+        completed_tasks: int,
+        failed_tasks: int = 0,
+    ) -> float:
+        self.assert_complete(
+            expected_cells=expected_cells,
+            expected_tasks=expected_tasks,
+            completed_tasks=completed_tasks,
+            failed_tasks=failed_tasks,
+        )
+        return self.aggregate_score()
 
     @property
     def cell_count(self) -> int:

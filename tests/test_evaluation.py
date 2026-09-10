@@ -38,3 +38,30 @@ def test_streaming_accumulator_is_cell_first_not_origin_pooled():
     }
     assert accumulator.aggregate_score() == 16.0 / 3.0
     assert accumulator.cell_count == 3
+
+
+def test_strict_daily_crps_rejects_nonfinite_horizon():
+    samples = np.array([[0.0, np.nan], [0.1, 0.2]])
+    realized = np.array([0.0, 0.1])
+    try:
+        empirical_crps_by_horizon(samples, realized, strict=True)
+    except ValueError as exc:
+        assert "finite samples" in str(exc)
+    else:
+        raise AssertionError("nonfinite strict CRPS inputs must fail closed")
+
+
+def test_fixed_denominator_accumulator_gate_rejects_failed_task():
+    accumulator = CellAccumulator()
+    accumulator.add_vector("p", np.array([1.0]))
+    try:
+        accumulator.fixed_denominator_score(
+            expected_cells=1,
+            expected_tasks=1,
+            completed_tasks=1,
+            failed_tasks=1,
+        )
+    except ValueError as exc:
+        assert "failed tasks" in str(exc)
+    else:
+        raise AssertionError("failed tasks must fail closed")

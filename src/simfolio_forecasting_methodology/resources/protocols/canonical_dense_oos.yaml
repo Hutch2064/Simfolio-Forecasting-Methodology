@@ -1,49 +1,83 @@
-schema_version: 1
-protocol_id: canonical_dense_daily_2026_08_23
-status: reconstructed_from_retained_evidence
+schema_version: 2
+protocol_id: canonical-whitepaper-dense-daily-v1
+status: verified_against_retained_dense_20260823_artifact
+
+identity:
+  protocol_fingerprint: 24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3
+  dataset_id: simfolio-canonical-simulated-returns-2026-05-13
+  source_revision: 773bc1c325559e6bf57a567f1d8bf473a3427fbc
+  normalized_return_matrix_sha256: 52c5bdd96b39762183ef0c204fa8165c2dfd5a4864e7198662615daddb8d6a49
+
+data:
+  source_manifest_path: resources/data/canonical_snapshot_manifest.json
+  source_manifest_sha256: 28dd1abaeb9763c0094f731318a092efccf59ec45feaf4b22482709b95a63c1d
+  calendar_path: resources/data/canonical_calendar.csv
+  calendar_sha256: 8204fbf08e1664a8f254d935052b34c2b4ec9f088ee91f414e7e72c95fb32e04
+  canonical_input_window: {start: '1979-12-31', end: '2026-05-13', observations: 11687}
+  preparation_requires_caller_rights: true
+  source_price_portfolio_construction:
+    method: source_price_simulate_portfolio_no_flows
+    initial_capital: 10000.0
+    turnover_cost_bps: 15.0
+    construct_before_common_window_trim: true
+  required_risk_free_series:
+    ticker: EFFRX
+    path: app/simulated_data/series/EFFRX.csv.gz
+    sha256: 4aa13c0966edab3fa0d75d5b8bf0307de45cd214ad543a4fc3e888d41bb89398
+    schema: [date, daily_return, price]
+    convention: daily_return field is retained as supplied; no proxy refresh or implicit annualization
+  factor_inputs:
+    - {id: french_daily, path: app/factor_data/french_daily.csv.gz, sha256: 9ec302fa1f2ac1c630e0019cfb3fcabb97a91255a1543e737aa60beea72ff192, rf_column: RF}
+    - {id: q5_daily, path: app/factor_data/q5_daily.csv.gz, sha256: 915434fba2c8c425a6c3b5930f3a6d05bec0f7717adab5eb35c1348ddacbc45a, rf_column: R_F}
+  redistribution: financial_value_arrays_not_packaged
 
 panel:
   portfolio_count: 80
+  panel_id: scored52-dense-whitepaper-20260823
+  panel_fingerprint: c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3
+  panel_resource_sha256: fc42d3a5b7b0272cab1b4fc5db998d059a3f8fed93f6275295331fdc744f2f36
   common_start: '1979-12-31'
   common_end: '2026-05-13'
   common_return_count: 11687
   panel_seed: 20260528
   holdings_per_asset_class: 2
-  target_asset_class_weights:
-    equity: 0.3333333333333333
-    fixed_income: 0.3333333333333333
-    alternatives: 0.3333333333333333
-  rebalance_options: [none, monthly, quarterly, annually]
-  unique_tickers: 38
+  unique_tickers: 52
+  rebalance_counts: {annually: 19, monthly: 26, none: 18, quarterly: 17}
 
 origins:
   rolling_origins_per_portfolio: 48
+  rolling_min_training_observations: 504
   rolling_policy: full_history_even
+  rolling_horizon_rule: daily_1_to_min_forward_and_floor_training_over_4
   selection_horizons_days: [21, 42, 63, 126, 189, 252, 378, 504, 756, 1008, 1260, 1512, 1764, 2016, 2268, 2520, 3780, 5040, 7560]
   temporal_splits:
     - {name: train_first_quarter_test_remaining, train_fraction: 0.25}
     - {name: train_first_half_test_remaining, train_fraction: 0.50}
     - {name: train_first_three_quarters_test_final_quarter, train_fraction: 0.75}
+  temporal_position_rule: floor(n_times_train_fraction)-1_clipped_to_79_through_n-2
   total_origin_tasks: 4080
 
 simulation:
   simulations_per_origin: 240
   horizon_policy: every_daily_horizon_eligible_under_preserved_origin_rule
-  horizon_cap: 0
+  max_temporal_horizon: 8766
   bootstrap_reps: 1000
 
 score:
   name: exact_empirical_crps
   target: terminal_log_return
+  pairwise_denominator: n_squared
   direction: lower_is_better
   aggregation:
     - mean_origin_losses_within_each_portfolio_horizon_cell
     - equal_mean_across_portfolio_horizon_cells
   expected_scored_cells_per_model: 701280
+  failure_policy: fail_closed_nonfinite_or_missing_cells
 
 provenance:
-  source_date: '2026-08-23'
-  note: >-
-    This manifest encodes the dense daily-horizon evaluation generation. It must
-    not be conflated with the older 33-origin, 300-simulation, 15-fixed-horizon
-    publication experiment.
+  source_harness_path: source-research/scripts/forecast_oos_research_gate.py
+  source_harness_sha256: e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997
+  historical_appendix_status: provenance_only_not_executable
+  historical_appendix_normalized_lf_sha256: 6691eb1daf38cc2aae6708fe1d155aab7975f29ebc6ada197f46bd8d9a8ecf70
+  historical_appendix_original_crlf_sha256: 847946335fea3473e987af23f528483d66ab265e85596f5d226216091fb476b4
+  historical_terminal_adapter_parity: unresolved

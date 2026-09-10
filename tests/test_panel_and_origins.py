@@ -1,40 +1,53 @@
+import numpy as np
+import pandas as pd
+
+from simfolio_forecasting_methodology.experiment import build_experiment_schedule
 from simfolio_forecasting_methodology.origins import (
+    expected_dense_cell_count,
     expected_origin_tasks,
+    origin_schedule,
+    rolling_horizon_cap,
     temporal_holdouts,
 )
 from simfolio_forecasting_methodology.panel import (
+    appendix_panel_provenance,
     generate_equal_class_history_panel,
+    load_scored52_portfolio_panel,
+    panel_semantic_fingerprint,
     rebalance_counts,
 )
 
 
 def test_canonical_panel_shape_and_rebalance_counts():
-    panel = generate_equal_class_history_panel()
+    panel = load_scored52_portfolio_panel()
     assert len(panel) == 80
-    assert len({ticker for p in panel for ticker in p.tickers}) == 38
+    assert len({ticker for p in panel for ticker in p.tickers}) == 52
     assert rebalance_counts(panel) == {
-        "annually": 18,
-        "monthly": 20,
-        "none": 24,
-        "quarterly": 18,
+        "annually": 19,
+        "monthly": 26,
+        "none": 18,
+        "quarterly": 17,
     }
+    assert panel_semantic_fingerprint(panel) == (
+        "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3"
+    )
 
 
-def test_first_canonical_portfolios_are_stable():
+def test_canonical_default_is_frozen_scored_panel():
     panel = generate_equal_class_history_panel()
     assert panel[0].name == "equal_class_history_001"
     assert panel[0].rebalance == "annually"
     assert panel[0].tickers == (
-        "URTHSIM",
-        "VXUSSIM",
+        "IWMSIM",
+        "XLPSIM",
         "IEISIM",
         "ZROZSIM",
         "GLDSIM",
         "REITSIM",
     )
     assert panel[1].tickers == (
-        "VOOSIM",
-        "VVSIM",
+        "SPXUSIM",
+        "TNASIM",
         "SHYSIM",
         "TLTSIM",
         "GSGSIM",
@@ -42,8 +55,43 @@ def test_first_canonical_portfolios_are_stable():
     )
 
 
+def test_appendix_panel_is_provenance_only():
+    assert appendix_panel_provenance() == {
+        "status": "provenance_only_not_executable",
+        "row_count": 80,
+        "ticker_count": 38,
+        "rebalance_counts": {"annually": 18, "monthly": 20, "none": 24, "quarterly": 18},
+        "normalized_lf_sha256": "6691eb1daf38cc2aae6708fe1d155aab7975f29ebc6ada197f46bd8d9a8ecf70",
+        "original_crlf_sha256": "847946335fea3473e987af23f528483d66ab265e85596f5d226216091fb476b4",
+    }
+
+
 def test_dense_origin_contract():
     assert expected_origin_tasks() == 4080
     holdouts = temporal_holdouts(11687)
     assert len(holdouts) == 3
     assert [h.train_fraction for h in holdouts] == [0.25, 0.50, 0.75]
+    assert [h.position for h in holdouts] == [2920, 5842, 8764]
+    assert [h.max_horizon for h in holdouts] == [8766, 5844, 2922]
+    assert expected_dense_cell_count(11687) == 701280
+
+
+def test_source_equivalent_rolling_selection_and_masks():
+    dates = pd.bdate_range("1979-12-31", periods=11687)
+    descriptors = origin_schedule(dates)
+    assert len(descriptors) == 51
+    assert descriptors[0].position >= 504
+    assert descriptors[0].evaluation_split == "rolling_origin"
+    assert descriptors[0].max_horizon == rolling_horizon_cap(descriptors[0].position, len(dates))
+    mask = descriptors[-1].horizon_mask(len(dates))
+    assert mask.dtype == np.bool_
+    assert mask.sum() == descriptors[-1].max_horizon
+
+
+def test_value_free_canonical_schedule_has_fixed_counts():
+    schedule = build_experiment_schedule()
+    assert schedule.task_count == 4080
+    assert schedule.cell_capacity == 701280
+    assert len(schedule.common_dates) == 11687
+    assert sum(task.descriptor.evaluation_split == "rolling_origin" for task in schedule.tasks) == 3840
+    assert sum(task.descriptor.evaluation_split != "rolling_origin" for task in schedule.tasks) == 240
