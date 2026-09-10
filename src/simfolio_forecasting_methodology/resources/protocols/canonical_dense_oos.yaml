@@ -10,7 +10,7 @@ identity:
 
 data:
   source_manifest_path: resources/data/canonical_snapshot_manifest.json
-  source_manifest_sha256: 28dd1abaeb9763c0094f731318a092efccf59ec45feaf4b22482709b95a63c1d
+  source_manifest_sha256: 38250bc2166f93c6a693360d31012e12247a15bc18afca06ad078d5ded77f631
   calendar_path: resources/data/canonical_calendar.csv
   calendar_sha256: 8204fbf08e1664a8f254d935052b34c2b4ec9f088ee91f414e7e72c95fb32e04
   derived_fingerprints_path: resources/data/canonical_derived_fingerprints.json
@@ -18,7 +18,7 @@ data:
   derived_portfolio_log_matrix_sha256: cc685b4f6f4570b48bbac1a92be9e91659e14cf84dd2d6703efaa84530e2927f
   source_loader_price_frame: {start: '1979-12-28', end: '2026-05-14', observations: 11689}
   canonical_input_window: {start: '1979-12-31', end: '2026-05-13', observations: 11687}
-  preparation_requires_caller_rights: true
+  preparation_requires_caller_rights: false
   source_price_portfolio_construction:
     method: source_price_simulate_portfolio_no_flows
     initial_capital: 10000.0
@@ -33,7 +33,8 @@ data:
   factor_inputs:
     - {id: french_daily, path: app/factor_data/french_daily.csv.gz, sha256: 9ec302fa1f2ac1c630e0019cfb3fcabb97a91255a1543e737aa60beea72ff192, rf_column: RF}
     - {id: q5_daily, path: app/factor_data/q5_daily.csv.gz, sha256: 915434fba2c8c425a6c3b5930f3a6d05bec0f7717adab5eb35c1348ddacbc45a, rf_column: R_F}
-  redistribution: financial_value_arrays_not_packaged
+  redistribution: packaged_exact_user_authorized_snapshot
+  attribution_path: resources/protocols/canonical_snapshot_attribution.json
 
 panel:
   portfolio_count: 80

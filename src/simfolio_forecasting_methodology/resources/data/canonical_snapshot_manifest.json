@@ -42,7 +42,7 @@
     "normalized_return_matrix_sha256": "52c5bdd96b39762183ef0c204fa8165c2dfd5a4864e7198662615daddb8d6a49"
   },
   "price_column_role": "source_portfolio_construction",
-  "reproduction_note": "Prepare a caller-provided frozen copy from the pinned source revision, then run the package verifier. The source price column is required to reconstruct portfolio histories. The package publishes identities and checksums, never third-party arrays; any use or redistribution authorization remains external to the verifier.",
+  "reproduction_note": "The package bundles the exact manifest-whitelisted source snapshot from the pinned source revision. Verification and preparation are offline and hash every packaged price, supporting, and factor file; no proxy refresh or implicit transformation is used.",
   "required_risk_free_series": [
     "EFFRX"
   ],
@@ -735,10 +735,10 @@
     "app/simulated_data/README.md",
     "app/simulated_data/series/<ticker>.csv.gz"
   ],
-  "source_policy": "Pinned source README prohibits third-party simulated arrays unless the project has permission to use and redistribute that export.",
+  "source_policy": "Pinned source README provenance is retained. The user authorized this exact standalone redistribution of the manifest-whitelisted files; no upstream license is inferred by this package.",
   "source_policy_sha256": "0e66d22a6c3ded001735278cdac3b5183e743d0519e04cbac06c87a14d49839a",
   "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
-  "status": "identified_but_redistribution_blocked",
+  "status": "packaged_under_user_redistribution_approval",
   "supporting_series": [
     {
       "first_date": "1885-03-23",
@@ -808,5 +808,11 @@
     "XLYSIM",
     "ZROZSIM"
   ],
-  "unfiltered_common_date_count": 11688
+  "unfiltered_common_date_count": 11688,
+  "distribution": {
+    "status": "user_authorized_exact_snapshot",
+    "attribution_resource": "resources/protocols/canonical_snapshot_attribution.json",
+    "source_root": "evidence/sources/source-research",
+    "license_status": "not_asserted"
+  }
 }
