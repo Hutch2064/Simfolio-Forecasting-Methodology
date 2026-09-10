@@ -64,9 +64,9 @@ rows have complete statistical specifications, and zero historical scores are
 verified. These counts are status fields from `simfolio-oos coverage --json`,
 not evidence that the retained score ranking has been rerun.
 
-The checkout has no `LICENSE` file at present. Add the administrative license
-file before public distribution; no license terms are inferred here from the
-source or the data snapshot.
+The checkout has no `LICENSE` file at present. License selection remains an
+administrative handoff item; no license terms are invented for the source or
+the data snapshot.
 
 For the exact file hashes, attribution statement, protocol fingerprint, and
 prepared-cache checks, see

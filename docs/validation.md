@@ -50,6 +50,6 @@ CI passing proves packaging, public safety, protocol/data identity, and the
 bounded numerical checks that it names; it does not prove reproduction of the
 complete retained white-paper ranking.
 
-The checkout currently has no `LICENSE` file. That is an administrative release
-item to resolve before public distribution; this documentation does not infer
-license terms for the source or data.
+The checkout currently has no `LICENSE` file. License selection remains an
+administrative handoff item; this documentation does not invent license terms
+for the source or data.
