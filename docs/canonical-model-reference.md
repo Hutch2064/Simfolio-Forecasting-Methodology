@@ -14,7 +14,7 @@ The ledger is the sole membership authority for this public set.
 
 | Canonical | Historical | Public model ID | Display name | Family | Retained score token | Publication score token | Specification recovered | Status |
 | ---: | ---: | --- | --- | --- | ---: | ---: | --- | --- |
-| 1 | 12 | asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced | M001 — Asset FastMAP + Dynamic Gaussian Factor | asset_level_extension | 0.2557255171048505 | 0.255725517 | false | retained_score_evidence_only_blocked |
+| 1 | 12 | asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced | M001 — Asset FastMAP + Dynamic Gaussian Factor | asset_level_extension | 0.2557255171048505 | 0.255725517 | false | bounded_source_parity_verified_historical_linkage_blocked |
 | 2 | 13 | bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected | M002 — Bayesian SBB + Bias-Corrected SV-AR1 | bayesian_sbb_vol_overlay | 0.25582280588825473 | 0.255822806 | false | retained_score_evidence_only_blocked |
 | 3 | 14 | bayesian_sbb_ml_vol_overlay_rf_harx_ff6 | M003 — bayesian sbb ml vol overlay rf harx ff6 | bayesian_sbb_ml_vol_overlay | 0.2558767877509775 | 0.255876788 | false | retained_score_evidence_only_blocked |
 | 4 | 15 | bayesian_sbb_overlay_harch_1_5_22 | M004 — Bayesian SBB + HARCH(1,5,22) | bayesian_sbb_vol_overlay | 0.2568880640642086 | 0.256888064 | false | retained_score_evidence_only_blocked |

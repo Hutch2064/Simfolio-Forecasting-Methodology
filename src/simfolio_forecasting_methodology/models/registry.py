@@ -12,6 +12,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from ..catalogue import canonical_model
+from .asset_level.frontier import FRONTIER_MODEL_ID, HistoricalFrontierModel
 
 
 @dataclass(frozen=True)
@@ -22,9 +23,9 @@ class ModelRegistration:
     factory: Callable[[], Any] | None = None
 
 
-# Deliberately empty in Gate 1: the existing Frontier and compositional code
-# are not source-parity verified, and no partial generic fallback is allowed.
-_EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {}
+_EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {
+    FRONTIER_MODEL_ID: HistoricalFrontierModel,
+}
 
 
 def registration(model_id: str) -> ModelRegistration:

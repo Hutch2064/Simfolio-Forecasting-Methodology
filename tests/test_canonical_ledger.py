@@ -37,7 +37,11 @@ def test_membership_is_exact_and_digest_is_immutable():
 
 def test_rehashing_a_mutated_id_is_rejected():
     payload = deepcopy(load_canonical_ledger())
+    original_id = payload["models"][0]["public_model_id"]
     payload["models"][0]["public_model_id"] += "_tampered"
+    payload["implementation_factory_map"][payload["models"][0]["public_model_id"]] = (
+        payload["implementation_factory_map"].pop(original_id)
+    )
     payload["models"][0]["historical_model_ids"] = [payload["models"][0]["public_model_id"]]
     payload["membership"]["membership_digest"] = canonical_membership_digest(payload["models"])
 
@@ -52,22 +56,23 @@ def test_each_row_uses_the_exact_flat_contract_and_initial_flags_are_conservativ
     for model in payload["models"]:
         assert set(model) == set(REQUIRED_MODEL_FIELDS) | {"canonical_rank"}
         assert model["historical_model_ids"] == [model["public_model_id"]]
-        assert model["identity_recovered"] is False
+        assert model["identity_recovered"] is True
         assert model["specification_recovered"] is False
         assert model["source_reference_verified"] is True
-        assert model["implementation_available"] is False
-        assert model["instantiation_validated"] is False
-        assert model["forecast_smoke_tested"] is False
-        assert model["source_parity_checked"] is False
+        executable = model["canonical_rank"] == 1
+        assert model["implementation_available"] is executable
+        assert model["instantiation_validated"] is executable
+        assert model["forecast_smoke_tested"] is executable
+        assert model["source_parity_checked"] is executable
         assert model["historical_score_verified"] is False
         assert model["protocol_fingerprint"] is None
         assert model["dataset_fingerprint"] is None
         assert model["panel_fingerprint"] is None
-        assert model["implementation_factory"] == {
-            "name": None,
-            "status": "unavailable_unverified",
-            "callable": False,
-        }
+        assert model["implementation_factory"]["callable"] is executable
+        if executable:
+            assert build_model(model["public_model_id"]).model_id == model["public_model_id"]
+        else:
+            assert model["implementation_factory"]["name"] is None
 
     assert payload["identity_policy"]["full_statistical_specifications_confirmed"] == 0
     artifact = payload["score_evidence"]["retained_score_artifact"]
@@ -120,7 +125,7 @@ def test_packaged_resource_load_is_independent_of_cwd(tmp_path, monkeypatch):
 
 
 def test_registry_is_fail_closed_for_known_and_unknown_ids():
-    first_id = load_canonical_models()[0]["public_model_id"]
+    first_id = load_canonical_models()[1]["public_model_id"]
     item = registration(first_id)
     assert item.model_id == first_id
     assert item.fidelity == "retained_score_evidence_only_blocked"
@@ -136,7 +141,7 @@ def test_registry_is_fail_closed_for_known_and_unknown_ids():
 
 def test_future_verified_specification_record_can_validate_without_factory_claim():
     payload = deepcopy(load_canonical_ledger())
-    model = payload["models"][0]
+    model = payload["models"][1]
     model["specification_recovered"] = True
     model["structured_specification"]["verified_numerical_defaults"] = "source-backed-test-fixture"
     model["specification_fingerprint"] = {
@@ -201,7 +206,7 @@ def test_source_parity_requires_implementation_smoke_and_source_but_not_score_re
 
 def test_factory_claim_without_explicit_map_is_rejected():
     payload = deepcopy(load_canonical_ledger())
-    payload["models"][0]["implementation_factory"] = {
+    payload["models"][1]["implementation_factory"] = {
         "name": "simfolio_forecasting_methodology.models.future:factory",
         "status": "verified_explicit_factory",
         "callable": True,
@@ -221,6 +226,6 @@ def test_generated_reference_is_current_and_scoped_to_the_ledger():
     )
     assert result.returncode == 0, result.stderr
     reference = (repository_root / "docs/canonical-model-reference.md").read_text(encoding="utf-8")
-    assert reference.count("retained_score_evidence_only_blocked") == 175
+    assert reference.count("retained_score_evidence_only_blocked") == 174
     assert EXPECTED_MEMBERSHIP_DIGEST in reference
     assert "master_369" not in reference
