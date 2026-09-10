@@ -364,7 +364,7 @@
       "id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
       "mcmc_acceptance_rate": 0.875,
       "mcmc_retained_samples": 10,
-      "paths_sha256": "22601da8db2e535404536f6bf8002c24f632065bd67826ee59e883d79c4b0152",
+      "paths_sha256": "c78a97ddd5fe87905fac6b2aa7a74fd89d38d540108a0945a31930bcc6c10cef",
       "paths_shape": [
         9,
         17
@@ -379,7 +379,7 @@
       "id": "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc",
       "mcmc_acceptance_rate": 0.875,
       "mcmc_retained_samples": 10,
-      "paths_sha256": "22601da8db2e535404536f6bf8002c24f632065bd67826ee59e883d79c4b0152",
+      "paths_sha256": "c78a97ddd5fe87905fac6b2aa7a74fd89d38d540108a0945a31930bcc6c10cef",
       "paths_shape": [
         9,
         17
@@ -394,7 +394,7 @@
       "id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc",
       "mcmc_acceptance_rate": 0.81875,
       "mcmc_retained_samples": 10,
-      "paths_sha256": "5780eb7a50097b1578883daf785f65976bf6fc1370cd0fe496848053db306a31",
+      "paths_sha256": "b619166a4a57cc9d04ca8b18a81d2abffb596f22650af196dc14f00182c34291",
       "paths_shape": [
         9,
         17
@@ -611,15 +611,15 @@
     "n_paths": 9,
     "seed": 9841
   },
-  "source_revision": "511fb82c0be43564b79df3694ee570677f3137ed",
+  "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
   "source_script": "scripts/forecast_oos_research_gate.py",
   "source_script_sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
   "source_candidate_manifest": "src/simfolio_forecasting_methodology/resources/catalogs/canonical_40_full_mcmc_sv_specs.json",
   "source_candidate_manifest_sha256": "30d868665f277ecf2494ad6256c60aa1a8fd9a8fce006ab384d667e02e32c078",
   "execution_environment": {
-    "label": "python3.12-numpy2.5.3-scipy1.18.1",
-    "python": "3.12",
-    "numpy": "2.5.3",
-    "scipy": "1.18.1"
+    "label": "python3.11-numpy2.4.6-scipy1.17.1",
+    "python": "3.11",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
   }
 }

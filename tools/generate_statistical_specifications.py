@@ -52,6 +52,78 @@ def _file_digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _shared_component(shared_components: dict[str, Any], reference: str) -> Any:
+    """Resolve one dotted shared-component reference."""
+
+    value: Any = shared_components
+    for part in reference.split("."):
+        if not isinstance(value, dict) or part not in value:
+            raise KeyError(f"unknown shared-component reference: {reference}")
+        value = value[part]
+    return value
+
+
+def _shared_component_refs(definition: dict[str, Any]) -> list[str]:
+    """Return every shared component that can change this definition's behavior."""
+
+    family = str(definition.get("family", ""))
+    refs: list[str] = []
+    if family == "base":
+        refs.extend(
+            [
+                "base.contract",
+                str(definition["mean"]["ref"]),
+                str(definition["volatility"]["ref"]),
+                "base.innovations.standardization",
+            ]
+        )
+        innovation = definition.get("innovation", {})
+        if innovation.get("model") == "empirical_standardized_residuals":
+            if innovation.get("resampling") == "stationary_bootstrap":
+                refs.append(f"base.innovations.{innovation['resampling']}")
+            if innovation.get("tail") == "automated_evt_pot_gpd_tail":
+                refs.append(f"base.innovations.{innovation['tail']}")
+        else:
+            refs.append(f"base.innovations.{innovation['model']}")
+    elif family == "frontier":
+        refs.extend(
+            [
+                "frontier.marginal_parameterization",
+                "frontier.dependence_parameterization",
+                "frontier.portfolio_rejoin",
+            ]
+        )
+    elif family == "full_mcmc_sv":
+        refs.extend(["full_mcmc_sv.contract", "full_mcmc_sv.contract.failure"])
+    else:
+        raise ValueError(f"cannot bind shared components for family {family!r}")
+
+    seed_context = str(definition.get("source_seed_context_ref", ""))
+    if seed_context:
+        refs.append(seed_context)
+    return sorted(set(refs))
+
+
+def _bind_shared_component_digests(
+    definition: dict[str, Any], shared_components: dict[str, Any]
+) -> dict[str, Any]:
+    """Add immutable dependency references and values to a definition copy.
+
+    A string ``ref`` alone does not participate in the definition digest.  The
+    digest map makes a change to a shared mean, volatility, sampler, or seed
+    contract change every affected model fingerprint while keeping the full
+    shared objects in one authoritative resource section.
+    """
+
+    bound = copy.deepcopy(definition)
+    refs = _shared_component_refs(bound)
+    bound["shared_component_refs"] = refs
+    bound["shared_component_digests"] = {
+        reference: _digest(_shared_component(shared_components, reference)) for reference in refs
+    }
+    return bound
+
+
 def _base_components() -> dict[str, Any]:
     return {
         "contract": {
@@ -542,6 +614,12 @@ def _resolve_frontier_model(model_id: str) -> dict[str, Any]:
 def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     manifest = json.loads(MCMC_MANIFEST_PATH.read_text(encoding="utf-8"))
+    shared_components = {
+        "base": _base_components(),
+        "frontier": _frontier_definition(),
+        "full_mcmc_sv": {"contract": _mcmc_contract()},
+        "seed_identity": _seed_identity(),
+    }
     rows = ledger["models"]
     base_rows = [row for row in rows if row["model_family"] == "base"]
     mcmc_rows = [row for row in rows if row["model_family"] == "bayesian_sbb_full_mcmc_sv_overlay"]
@@ -561,10 +639,12 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
     resolved: dict[str, dict[str, Any]] = {}
     for row in base_rows:
         model_id = str(row["public_model_id"])
-        definition = _resolve_base_model(model_id)
+        definition = _bind_shared_component_digests(
+            _resolve_base_model(model_id), shared_components
+        )
         bindings[model_id] = {
             "family": "base",
-            "component_refs": [definition["mean"]["ref"], definition["volatility"]["ref"]],
+            "component_refs": definition["shared_component_refs"],
             "seed_contract": definition["factory_seed_contract"],
             "source_reference": definition["source_reference"],
             "definition_fingerprint": _digest(definition),
@@ -572,14 +652,12 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
         resolved[model_id] = definition
     for row in frontier_rows:
         model_id = str(row["public_model_id"])
-        definition = _resolve_frontier_model(model_id)
+        definition = _bind_shared_component_digests(
+            _resolve_frontier_model(model_id), shared_components
+        )
         bindings[model_id] = {
             "family": "frontier",
-            "component_refs": [
-                "frontier.marginal_parameterization",
-                "frontier.dependence_parameterization",
-                "frontier.portfolio_rejoin",
-            ],
+            "component_refs": definition["shared_component_refs"],
             "seed_contract": definition["factory_seed_contract"],
             "source_reference": definition["source_reference"],
             "definition_fingerprint": _digest(definition),
@@ -610,10 +688,11 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
             "fit_contract": {"ref": "full_mcmc_sv.contract"},
             "failure_semantics": {"ref": "full_mcmc_sv.contract.failure"},
         }
+        definition = _bind_shared_component_digests(definition, shared_components)
         bindings[model_id] = {
             "family": "full_mcmc_sv",
             "source_manifest_ref": "resources/catalogs/canonical_40_full_mcmc_sv_specs.json",
-            "component_refs": ["full_mcmc_sv.contract"],
+            "component_refs": definition["shared_component_refs"],
             "seed_contract": definition["factory_seed_contract"],
             "source_reference": definition["source_reference"],
             "definition_fingerprint": _digest(definition),
@@ -623,7 +702,8 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
         "schema_version": 1,
         "scope": "canonical_125_resolved_statistical_definitions",
         "fingerprint": {
-            "algorithm": "sha256(canonical JSON sorted keys, compact separators, UTF-8)",
+            "algorithm": "sha256(canonical JSON sorted keys, compact separators, UTF-8; includes shared_component_digests)",
+            "shared_component_digest_algorithm": "sha256(canonical JSON sorted keys, compact separators, UTF-8) per dotted reference",
             "definition_excludes": [
                 "historical_score",
                 "rank",
@@ -675,12 +755,7 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
                 "runtime_binding_status": "The retained result metadata records the catalog path; that file matches the retained snapshot byte-for-byte, and all 40 owned descriptors exact-match its full_current_catalog rows. The current source _core_catalog output is separate evidence and is not used by the retained historical wrapper.",
             },
         },
-        "shared_components": {
-            "base": _base_components(),
-            "frontier": _frontier_definition(),
-            "full_mcmc_sv": {"contract": _mcmc_contract()},
-            "seed_identity": _seed_identity(),
-        },
+        "shared_components": shared_components,
         "resolved_definitions": resolved,
         "bindings": bindings,
         "accepted_model_ids": sorted(resolved),

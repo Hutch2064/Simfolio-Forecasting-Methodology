@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata
 import importlib.util
 import json
 import os
@@ -46,6 +47,20 @@ def _sha256(path: Path) -> str:
 
 def _array_digest(value: np.ndarray) -> str:
     return hashlib.sha256(np.asarray(value, dtype=np.float64).tobytes()).hexdigest()
+
+
+def _execution_environment() -> dict[str, str]:
+    """Record versions because SciPy can change stochastic path bytes."""
+
+    python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
+    numpy_version = str(np.__version__)
+    scipy_version = importlib.metadata.version("scipy")
+    return {
+        "label": f"python{python_version}-numpy{numpy_version}-scipy{scipy_version}",
+        "python": python_version,
+        "numpy": numpy_version,
+        "scipy": scipy_version,
+    }
 
 
 def _load_source_module(source_root: Path, source_script: Path) -> Any:
@@ -169,6 +184,7 @@ def main() -> int:
 
     payload = {
         "entries": rows,
+        "execution_environment": _execution_environment(),
         "fixture_input": {
             "generator": "np.random.default_rng(173).normal(0.0002,0.01,420).astype(np.float64)",
             "length": int(values.size),

@@ -6,7 +6,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 001. `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`
 
 - Family: `frontier`
-- Resolved-definition SHA-256: `9a9e73485c60e8ddf2a38678909d87b9d3c02414995cafbacac3675ef4bf89f4`
+- Resolved-definition SHA-256: `3e80d41d88d53f0b0852794a623c498f62ed21f5b6206b409a30519f9a9925e5`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `asset_level_current_engine marginal seed context`, `copula_alternatives dependence seed context`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -18,7 +18,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 002. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `b7c49ed9cd8567d6e3bd9e475bcc4779d9f3fe39bdcce0f97bbf2d8521cdc5af`
+- Resolved-definition SHA-256: `e9d167af687b48588521a0aa1cbbe99c30df74823dd645c9174e627a3a41bdd7`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -87,7 +87,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 003. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `b85b8ffc4618f8075a224734b0ea64b70f4032cc99d1969c6564845f4406354c`
+- Resolved-definition SHA-256: `c0107e0a8d357fb8f114b534ec76b67a983fcb148b25782563f3dab3d65c0fe7`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -157,7 +157,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 004. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `73f8bdd725dc4d9f6240440b19ca469f43219308d80622e1f4c306cc36ec3ad5`
+- Resolved-definition SHA-256: `6ce8f86c06286e53b6540bbbb7569d8aed4b57c2b012eec1f9bc87ca05dda73e`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -227,7 +227,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 005. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `406fc6fe6041b95600f1ea87fe59065f64a82111fd6ccfebe07a48e9e60d77d0`
+- Resolved-definition SHA-256: `d8eda726171ef406b9aef2b7c53edb8c098c42924f7242bdb1ae8f9e2b2466f5`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -297,7 +297,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 006. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `2f6931475160626899a81ef0f1236a69ccc15c650c98593357684b119b65f80c`
+- Resolved-definition SHA-256: `34c63990f78c9abaf3b846f276a22474104a272aaea4f1767a354a4c98e3aa04`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -367,7 +367,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 007. `bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `d2d595ef83ff3a5106df027f669f92c37b2efa8dbeef864dbb16b1a322a2e210`
+- Resolved-definition SHA-256: `c97b9056f6c277cd7f3300a51155f49d3f43415b3e0d9f76c7b5a87dff754ae9`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -436,7 +436,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 008. `bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `bcd5955f6638c4ba31c8b0d8178a4410181486112e4189407e645f170dd99424`
+- Resolved-definition SHA-256: `4c2d130e7588639109c78f3a4e5e460d8a4d13db80c77fb9ee8ebfb8f3a881f7`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -506,7 +506,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 009. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `4a90d18eea047b1885db566d82cdfae864d5f22b7b27380323b04d33a07fdc1e`
+- Resolved-definition SHA-256: `ec75732d7f3a2f90de4b84754a6a8743e0fae94ea70e5d1e918bfba87ea9d5bf`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -519,7 +519,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 010. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `5fe33d053e43783f81283cd7db3a09108267f706107a68b57bfaec617689f81c`
+- Resolved-definition SHA-256: `70ee67447e4bbfe2d9a7d27bd1bb37cdb53f6f97861024d7b2a7b8d9b2745071`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -532,7 +532,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 011. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `933a15b4cc0b689f3f14701cb636dcbf4c4855c4e81126f3791322de2bda48a4`
+- Resolved-definition SHA-256: `6e7cdc78ef858a5854f53d1308270e900ef770392f8d3cafcfba714b30d519a0`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -545,7 +545,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 012. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `278f240ce7f53b4d808f64974dbe69d293b68d2c85c246d8aabfcabf9d1ee599`
+- Resolved-definition SHA-256: `f43eb552383195a5dfaaf07dd4224c8a5ec4680e2f8275f9eaaa3e9601f5c730`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -558,7 +558,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 013. `bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `1132289125bf5cc3c5518d4fc8bb91547365024731931b2a8c8a2f68606e444b`
+- Resolved-definition SHA-256: `dab38af6ede94687471b660f1191bbbab3e5fdbeb4d5918aff598791a14d3913`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -571,7 +571,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 014. `bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `4c3094cc5b11d3319aa4914011eafc2c0d918b9350ea36036c67823888b4d237`
+- Resolved-definition SHA-256: `3101c6c76c72eb7c2f9acf2b455a0d568c9d4b51c5d9582286f7441aaea27058`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -584,7 +584,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 015. `bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `c07b14911d9927fc52faf1e64df3184b2eff468f08f78c52e01842d7b52e8a3c`
+- Resolved-definition SHA-256: `758f9d5c8d0145759184e47cf073728266a418f58ae52e14be6df75b3f7ddcc0`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -597,7 +597,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 016. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `76868bad156401c6640a8d91869c92242d321c85501ee76805a10dac738c5eaa`
+- Resolved-definition SHA-256: `3a16442ecaef51f16b84fb6c3ee3ef16c92b533ba866c155647b2f6dd737b277`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -610,7 +610,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 017. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `12d64ba459ed9575abeec464d621831664a89fd8528ce6d6438d86a4cc6ac587`
+- Resolved-definition SHA-256: `40d03a9a3a8ce656f97eac3b0777fcdce308dc389e7b192b10dbd53725c93a51`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -623,7 +623,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 018. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `5ca01dcd99ec7d865f10829cfb848d38c8cdb836887e49ee506286bd97d9d295`
+- Resolved-definition SHA-256: `a062e79ed07515595f6d8610852379d8e5780fe3a8e2c084367c30b21f9fa913`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -636,7 +636,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 019. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `4d8539da29fe2a5de9ed7e4a62d0147edb4b7f373bd2b94a90e34e2d007db11d`
+- Resolved-definition SHA-256: `45e77b6dc28515af264bf05442f361cb9ab0ee8224958cdd95ec6f7046b3996a`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -649,7 +649,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 020. `bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `623d315d92d69399c6f80f096b10e9de0793d36df8dc4ca3a646f2d8f42524b0`
+- Resolved-definition SHA-256: `e5709ba7d31fb97214361f4c222c90715643baf64b8e8df9de73a8570998e4f2`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -662,7 +662,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 021. `bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `2e0242452b1bfb241fee5597e764c68e3fa97c35585c834c3bb74cf61cd9c65a`
+- Resolved-definition SHA-256: `d8ef249034a7a2318b2e052cedbdc579384305b21ce88f09315a45c43c843f89`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -675,7 +675,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 022. `bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `4ebb89e0a48a2a4bbf58870cdcbdb3d96c004e1f4727da77279f7dd17be87a11`
+- Resolved-definition SHA-256: `0c03c1dc8e2dcdae95a166b1203cde20afebd489b0c5d1ccd08eef4b2814a632`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -688,7 +688,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 023. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `ae66078c5bf84be4733b2e507cd18ba07b4629cf6b1a2279c051ae4c985c9eb1`
+- Resolved-definition SHA-256: `e795173b676b751101b76f3e12c14dee4330297220bddb63526f80eb50d9f892`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -701,7 +701,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 024. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `92482d52a8aef4deb8490052b42da66bc37291d119ab011780eff6056a6257b3`
+- Resolved-definition SHA-256: `21033a5ed5ce4987a94563abc8ae8178c3dfb3e16c1236c3bae6da5b7cbd268e`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -714,7 +714,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 025. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `d3b4190c8d2545a6ec1c3d01b7ad74d0847e7c3d9a4cde66a72e16e806712164`
+- Resolved-definition SHA-256: `06d9ed076a638d35755ebff83963a00952c3bbdf4252bb236fe2e14fa0db2146`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -727,7 +727,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 026. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `bc1c0a3eda5978344744dfcb292db5408be513da7a585b415feaffba008971af`
+- Resolved-definition SHA-256: `86747dec91dfa30943342c98220a713f9255609bba057c2da5216d81a9029ebb`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -740,7 +740,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 027. `bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `37cbb3443328a155ebbd02dccb3ae642a8cfa3c2715d9130a199e0ef1ab9905b`
+- Resolved-definition SHA-256: `28eff5451f35e32e535de0364434bfe5ea62dae4912f906f64f0c6feeaafa317`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -753,7 +753,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 028. `bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `75892b53a56ff4ee75c0aba44862745d5944d2518637d7f0812887534c22b191`
+- Resolved-definition SHA-256: `be334fd115a33c177f5e12f53822a5ba25751267e4c390c1fd465cc81ef7202a`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -766,7 +766,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 029. `bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `51233606500ac9fc9ca540b1caefdebe07aab8620204593f5cc4764225554f87`
+- Resolved-definition SHA-256: `618c9f93b1a08172625e51a19dee3eb564a68dca28665cb9564f6ec30f665e33`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -779,7 +779,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 030. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `d9f1e69eae893d8c3358354468fe61d0b107a84348f045324f20d1098c28ea54`
+- Resolved-definition SHA-256: `731a1ca219b1ec5ca10855f88341885c55438ef23af4cf4b46a153834d7ccc64`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -792,7 +792,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 031. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `630b99470058e9f579ce53ea961d36e21eba90790a551926c156d84d3b41ef52`
+- Resolved-definition SHA-256: `e74089b2a867adb404b91a87eb297b07f635cafac10aa830240b8fa258675fa0`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -805,7 +805,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 032. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `5adad85ad42a9a05fc46a94586a1de7bd76d751cdf22a036d9e607b516cd62e2`
+- Resolved-definition SHA-256: `6af435bc7e0e51ff476e650279491a9ff154d316bf3f9f68c485fd8ff19a239c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -818,7 +818,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 033. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `5e1bc415a22fd918648cc440864d735512d3224e1337048332064ccbe296856f`
+- Resolved-definition SHA-256: `2b37dabca426b7760db907e681a7274c3af638eb3f46e12b88fafa1facef7999`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -831,7 +831,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 034. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `7ddaf78af986660d2d4aec110bd101bcac436a13cab3c553710f7e7930261103`
+- Resolved-definition SHA-256: `cf503d0d575e2c6dcb55fa4a49b8887553285ff8bc5d542dfadc9338d2430c6d`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -844,7 +844,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 035. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `8ddd318493be62b51c9c90f7916680aca69277f87fff7d2571a4f50e120a83e1`
+- Resolved-definition SHA-256: `e5b1278e1de05ae72df55b4e93fa88a5c5662c9f16c4b6df1b503ae33d8dca61`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -857,7 +857,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 036. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `5812d276648a5fa4b353bea7b95710b34c9714a47e8e3b4961991bd032514caf`
+- Resolved-definition SHA-256: `623e2df6372a74ac731c40b7098efb09db910a6e976436524b7566b108ed85c0`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -870,7 +870,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 037. `expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `09cf8fb8f59abc3ec1d7a74713cb99bf033a425a5ead94272b73a1e06118effd`
+- Resolved-definition SHA-256: `57e6290a7a2bc0d738c1e3eb630b5ac14c623550f0b9a36c3a39cbe6a46540ff`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -883,7 +883,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 038. `expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `84ea88cdf11e27c2634ee20cda69f57a19a116f90c842ebd48f0d95f0339a29c`
+- Resolved-definition SHA-256: `8a36024322def91c83931453c29541562a51500b13dd73c224abf8736a88722e`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -896,7 +896,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 039. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `daeb9f482f114b92445ea6597d9db021bd190721bc6e810e6ce0798276534047`
+- Resolved-definition SHA-256: `82dd149f68accfb20d5e99feee9eed346124e99c5e9e91ca303477a355f78a82`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -909,7 +909,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 040. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `5684a5229c02adff5a40e89186e8e8482b96955fdad4470b95a2b85299cc6cd0`
+- Resolved-definition SHA-256: `bd194bffc71f76572379416b27ea5d373218bf843fbe35d22aa91781a27e1a4d`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -922,7 +922,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 041. `expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `508b483f4bcff64f40b5d34bcb49ef5c46a778e0984d56ab373082d937762573`
+- Resolved-definition SHA-256: `c6541bdf6d98f48d1c81f6c52a8d7f67ada2c28b05c6f25959bf35c9a7b826cd`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -935,7 +935,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 042. `expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `1ee1e2b0702569a31f3f231fdcef1af81fb076812d24666faa718927039d8085`
+- Resolved-definition SHA-256: `b3198f8f2f08d437d9576727f14dc6453205ad3bf782c03e838e7d5e1d9eb965`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -948,7 +948,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 043. `expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `f112471a04597f14361d9bdb81494a1312ee57a19ea2888097440d1120f1a5e3`
+- Resolved-definition SHA-256: `beae26c078b931b701f209d977cbd0d0a31fd82f5cd663b2f5b59ab7148edbf2`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -961,7 +961,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 044. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `3c5f346ba9252b0236e32bdd75ab5da5d41ce6c190b651ca380496cfc21f74a9`
+- Resolved-definition SHA-256: `98ff855ecb14c52d0b707ef4f2987414c2877702631da8aef4076fc5a307dde7`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -974,7 +974,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 045. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `642525071ecc559d974d0b968def7855deb335e296cfdee751624656a5285441`
+- Resolved-definition SHA-256: `e741eec61c51cec473a662b03dc7f6477a258d639f1e73148f37792b7f56d314`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -987,7 +987,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 046. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `4afd49b00fedcb21c635bbbd67519ef1bec1183f299577bfa0cda10e2c9f495a`
+- Resolved-definition SHA-256: `a11f47e6bbd390481df077b70010d9de01257d6c9d36747baef4387b4909fa6f`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1000,7 +1000,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 047. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `f0ed77753a5406c8a1a8a8f66fc7783851228c3e2e9e367a99dd087a949b57bb`
+- Resolved-definition SHA-256: `35b547ecfd4040e3328eb10004b5321590a791503023783c040568baeace8b91`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1013,7 +1013,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 048. `expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `c570df8d2234831d6938897a51f687c2787490becc081a1e1d0fb80f0ecf9504`
+- Resolved-definition SHA-256: `0dba6899c8b94beea1c462e3678c154f9f42b7b9fca7c4766034683d09e8f61e`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1026,7 +1026,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 049. `expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `ac2c9c50c1c37b454cd4dd063efeb0017d574c6039e9c50dfe9afedb5c70cc2d`
+- Resolved-definition SHA-256: `368498f1cd84cfdc74d09ded9cb9161a9851e17ad345fb4717c376d73df4f1ab`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1039,7 +1039,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 050. `expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `bd6f731004ebcd3d50dc9f88f5ada2d3643a1c3bd3400278981592879a82ae87`
+- Resolved-definition SHA-256: `0d2eb56e7744d9c40b58f52d9a8897e4ed1352fe05d0a6b71a8e22d5817cc0d6`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1052,7 +1052,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 051. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `91d21b635502adb8fd98cd3d2b2b83af1d4ec7d6efdf8c71a32ee66ab22dded1`
+- Resolved-definition SHA-256: `cc4a81732f93ab13905b32fa97361a621b5e087c6a8feeeae03177700c30b5aa`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1065,7 +1065,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 052. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `9d573e36b27b508cd1a55ed262cdc75e60a6da12e14d4cef0f545aa3f55e1f07`
+- Resolved-definition SHA-256: `f29e27aa9a83177d1276ff31a431b1434be30dd3794cca1778b8b3a0950447ec`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1078,7 +1078,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 053. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `de6a88647e785f42d40f2eea7630e8ec3d2ae40cb1429d67d3a6c20441b80115`
+- Resolved-definition SHA-256: `c3308ab4347950b20d8fc3a40c31104d7fed6dc1450070d9ceb950e1a1713f4c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1091,7 +1091,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 054. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `6d9a08828a4727bc631358b29c01ba86c2e551288695c13363365d67432ebd92`
+- Resolved-definition SHA-256: `020f180be89543af6334bcadce6e954ee2fa009062aaec006de2177821e3d13c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1104,7 +1104,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 055. `expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `33cba713d80105bd5eb1c14f5202ba739c4fca2f765cceb8e0ddb5452cdeb89b`
+- Resolved-definition SHA-256: `8875505d016fe596092c83aac021b9e89d871b7d9a5570b9247ccacbe3fb2916`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1117,7 +1117,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 056. `expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `f1d4d22fae3253d4e92838ab37b84952e26903fb3a2e156d6fc5539c026405a5`
+- Resolved-definition SHA-256: `ce4bf5e3faf2786a72a2cabf7e359b355cc441ded9f2872032a4b32de58f4659`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1130,7 +1130,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 057. `expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `d4e7679186339061125ce5c7ca4af105597a9ecc8d18118882273f91d11bf8c2`
+- Resolved-definition SHA-256: `462ec8930e16dec616a659f1238b8a4cc309cbc584c77e98f2f6d1ee34d9672e`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1143,7 +1143,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 058. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `bea2046522a55fbc9d11799553444383229e2442aa8130df3f9b34025b888f59`
+- Resolved-definition SHA-256: `54333833ebb945eb85491f1b9ab1d5dc945681299ad12af3ce0bf4a091a03248`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1156,7 +1156,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 059. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `cc28eb46b779fcbcd53e0c738485170b5791f065640a2890fc384c3afecb3430`
+- Resolved-definition SHA-256: `cd74f7697ce890cdf789f96c7c365dc3910ea2d4c662116316bc962d3bcf67a6`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1169,7 +1169,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 060. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `5f935fe00003735d9566354c1270803c02d7f14139e0d7152ea79bf7d079936c`
+- Resolved-definition SHA-256: `9aba56f1701112ce098c1928e06eef6675bb1be3f214172df2b86288e3922cff`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1182,7 +1182,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 061. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `d527a7f58f01a91219f97a406a6c90a4f4aefef84a95e87657b0d1d47af10f8e`
+- Resolved-definition SHA-256: `f4f7ed969e67cf2e5c06c4c9e6df85f7700e592f81994f4a566b196ccd0460d4`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1195,7 +1195,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 062. `expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `587996804fedf8157f41c3ceb16937746e29b6b1a4ae3a0dc0d536b5385fd71c`
+- Resolved-definition SHA-256: `a481f1ad8b1ad652f29bdda3967063972330a40d0e518e67bee8c17a79e0ae05`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1208,7 +1208,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 063. `expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `ad2fdefe269006eb102c879c241ca93bfe54b529bd914f25e97b14ef07833aa7`
+- Resolved-definition SHA-256: `eb7f58b51ae499e15d4e66f108db9378feafc105a71c74b65e4440fbb5e6d57e`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1221,7 +1221,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 064. `expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `bd4e2dc86cce71f069477a64c3588144ec74a68d00350b08f5b4fd752c73d8f0`
+- Resolved-definition SHA-256: `3ef6ef3ece3f9af8d06871c3f3342cbfc837964ca453a863ea6961cc94a34c25`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1234,7 +1234,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 065. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `27515d110f053a73fb639ed50eaca2ec07c8f034b10e7d42cedbddf88eb1767e`
+- Resolved-definition SHA-256: `8c044a303d5c695a37e9b8f1ed6622873634fa766a4a0b97d2d864c9ae191ee2`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1247,7 +1247,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 066. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `3dc2fc271702904beb93fad2254e55e4bb5c994916a44376af3f8a054c79dcd1`
+- Resolved-definition SHA-256: `ed60a82dafc511b38d1d935da9dd8fca0c72cbcd08a3ab8cd3f3527a02f3e311`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1260,7 +1260,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 067. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `afbe9ca76226ff45d239ee8808d34dfe75e1ffd8bf7b8e44ed903a18c4f9b027`
+- Resolved-definition SHA-256: `bcbaf087c811d8f27ae4a06395208a4fe6d857fd3a11ea3717f83a0bc716d1b2`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1273,7 +1273,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 068. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `3dd91aa806cc05a46b34aac475b3a16c287c34616ffcb86b58446bc9beb3b8c9`
+- Resolved-definition SHA-256: `3eb6bf104b1fcf8d38c5007a8411cf81360d4cf9460a471177db44fedb6d3bce`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1286,7 +1286,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 069. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `2b3a333c2d6acd10b232bca555e651264c9eaaec61be76b323f8ec007d9cb807`
+- Resolved-definition SHA-256: `7fc4de4db0d76d45b8a7eba3e57c312c9b2965d0caeec64946fc9cd84f7d8ca8`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1299,7 +1299,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 070. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `894a3ec6d3567abc4bae51ba9463ded7ace744bc6d03c62a40d67c134aedf268`
+- Resolved-definition SHA-256: `da2701b23acace81ce69ca393f08fc41f0cb2e069c025c56d51342fe71cf6abc`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1312,7 +1312,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 071. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `44d7ccb0e2daa203f295c57c7a37ef9b657fd9ff792283b2b0fe7162c543dcca`
+- Resolved-definition SHA-256: `269c69142570ff9cc874e7c8b26796eb49bbe551611fdf7c9f982bb917721efa`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1325,7 +1325,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 072. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `9adb904e5bb452b797fa801954dc91779a4e1ae0bf22bab2e0b7d5a8a680b71c`
+- Resolved-definition SHA-256: `ecfa67e27d262a1061b8a12a53d9583759a94b4a17887248d87f256c1aa85084`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1338,7 +1338,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 073. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `f38ded05747b9900accbca5e558e6c50d2b071e7296d4aba7f13ac5dc9d97804`
+- Resolved-definition SHA-256: `49d4dadb2a3c9300be0de0d14d8191e2a3e3e5521c713ec0b9ea0f59d1edcf2c`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1351,7 +1351,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 074. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `37e4b5a77b77f3f6743025f7df03291d7d22160e9b0ad6a9e212de102e0323d6`
+- Resolved-definition SHA-256: `e5215a257b38fd31f63b738296f5b62ee3b8a4f740d07f0ac93d47e7402264f8`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1364,7 +1364,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 075. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `0e4c64a1de8453f7206a12a55ad2c3b43855b2bae6557f29c4b601a244472da2`
+- Resolved-definition SHA-256: `2bebe5b3d0b1f0737e7db069046512b5db204920980974080fba778f1b77f78b`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1377,7 +1377,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 076. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `80378a61997e6d1d09ad2bad331116ce6c7d626f10c02c4193689a7f14dcd30d`
+- Resolved-definition SHA-256: `275398bae175d909ea1b0af6e1e6ec534a6eabdf8707cc150632357e61f94669`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1390,7 +1390,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 077. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `11028b0f15e7562d6f856c6f720506234e1ca67bbd273e1635eae6f95b4914f6`
+- Resolved-definition SHA-256: `136be4a2c53857ca45721bb748f9b2f21fd46b042363169474fd195510286acf`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1403,7 +1403,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 078. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `2c9a410254cfddabd5978fd8ac6640a9c9e9c17a664e1edce72858a3099ad879`
+- Resolved-definition SHA-256: `9660016305561dc52474855ad2814f88a37ab9883445e8244cf866d14cce23f5`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1416,7 +1416,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 079. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `1a94507f7f7c1f629faf8b3eaf2f3d278a88734d2f8fcc0f1b6d787652851844`
+- Resolved-definition SHA-256: `149e16b867d798d2d41ec51dc5518b94f10f90509e10c50cba5af02e850a6c32`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1429,7 +1429,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 080. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `2baabbacc85ee7f915140573fb11b0b701fbbab8a80cfd4c343c34ee17fb9ec6`
+- Resolved-definition SHA-256: `56fc883d147262d950e61b4e82efb697c1cf1e7e7956e93e93c98fcb2bce2ffc`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1442,7 +1442,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 081. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `93296bce4e84219d5063f9c4cade07283e22034449512658cc416ac005c2cb21`
+- Resolved-definition SHA-256: `6cae7ecb625e12d9f1935f80f286e49b239490efeb72768030bfb3f501638d68`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1455,7 +1455,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 082. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `1145027c2cbe3aaf978a6e2c2acb1d31f43a39a963d3cae3b218b2d7c9f4c7b7`
+- Resolved-definition SHA-256: `12a86a86c3aa3fb19e80cc60aa8f0b5270ecf3eff0552f06f67ba48766f30511`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1468,7 +1468,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 083. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `1fec09c8d74764df9949dfa282ce8f0e08787fcd4876500591eb6689af0f2634`
+- Resolved-definition SHA-256: `d6d6ed1133eeed7420082d8bc355563bdbd0e2897663269f76d631885f5bcbcc`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1481,7 +1481,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 084. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `139fc290508f69841e2b2776fc49465efee515b7a1e3b0072d1173addec9d0a5`
+- Resolved-definition SHA-256: `ec16ad456b779b16e5d335da0b45ecd24a6498d13477d6c8530ed95b75cd1a9f`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1494,7 +1494,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 085. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `36a1fca3d9a782b0b499bf3c6e68c96328e0af28a16798af7b1b2776844241f2`
+- Resolved-definition SHA-256: `c0b5857ac08fd700ba0ce17cb539436a26b9b4ed5e857dfeafc75a91eaf0cc5f`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1507,7 +1507,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 086. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `1a4a92fe53088851f7ef44f38207cd1055f82faa6363440594015061d6138bc5`
+- Resolved-definition SHA-256: `7936a778c35d258bd19993a982aa013dd5e1219f3278bd5684817384bba9cceb`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1520,7 +1520,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 087. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `a1f1f37ca67e09a1ce5111b951253a5cffa3c6c31b2e5b3a8001cf4053c35c6d`
+- Resolved-definition SHA-256: `62a5c1cd175837b441ab65f12133ba76d85828f5ba0ecdbd07559450f2c12e08`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1533,7 +1533,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 088. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `f0f8ccd42a32198d61c4befcb27203d36b19671b2727e6149875858b873fe227`
+- Resolved-definition SHA-256: `22605c1a297030ba336e9c5515058b4d4cb6874e443d42d80d555f7e58d141bd`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1546,7 +1546,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 089. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
-- Resolved-definition SHA-256: `364ff5784c80e3db98e16378ba9bedf595847f7095efbb671e6726ed4ebe01e6`
+- Resolved-definition SHA-256: `5eb4f988c00626e526181471ec91fd389569c41d6f1ce62b3c4263ac57725c41`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1559,7 +1559,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 090. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `170092ab06e5b1799d22dfd766219745c5c777e770a78bbf53dc3e43b6828d25`
+- Resolved-definition SHA-256: `b4c731675e5ebaeeb88ba54b933daa5888845763878001b98a2d19b8063c7ee3`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1572,7 +1572,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 091. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `d4d68aa444198796b8601bababfdeff0ddfece88446e642e7ccb745b0f0f6573`
+- Resolved-definition SHA-256: `6a23731e310ba857071fe93a7b43e3f4f6cfbcc355e144ee420a1d9df26e6372`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1585,7 +1585,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 092. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
-- Resolved-definition SHA-256: `ab9668528908247e5f3015d18f7e8199ce36e937fbb3a4117796840f2d497685`
+- Resolved-definition SHA-256: `19254585d83185b81f0035ba29ee1fa4e42dbf7bc3e1305f7d0e2f150fd9fd67`
 - Source: `app/engine.py` at `773bc1c325559e6bf57a567f1d8bf473a3427fbc` (SHA-256 `702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665`).
 - Source entrypoints: `SimfolioEngine._fit_auto_forecast_mean`, `SimfolioEngine._fit_auto_forecast_base`, `SimfolioEngine._simulate_candidate_log_paths`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1598,7 +1598,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 093. `sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `b67ddbbb1f3b7fa789d55eeef1db08679ae9ae17c4a7dc805c8cc9a23f72a96e`
+- Resolved-definition SHA-256: `242540d7a01b0ab2b1542c4f7df873170f703af5944da091cf0746f8704bacee`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1672,7 +1672,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 094. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `45dacf84c344626e0ba6c9660381e0511aa6fbbc79f3a6630dfc0c3945e649c1`
+- Resolved-definition SHA-256: `69fa1eadf64b6dc18e11849d2b3236fb22d7bb7e08ab473998bf207bb99f517e`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1746,7 +1746,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 095. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `2550e0d4bd92c9381ebdd70d8f98136c4ca0c1d89d9039c79cbcebed1d5be705`
+- Resolved-definition SHA-256: `79a66c88a4079a57f8d0a14a71d03560738604c348be0c7e144520c38d66a1e1`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1820,7 +1820,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 096. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `98022ac010b69c222cf8b353449de6eb5661f0f9da248b9abad1c526f8034d45`
+- Resolved-definition SHA-256: `462c2eec9f5ea7b2641f8cf061831e5b2298f728c7f6d77cb7bda2bbe2a937ab`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1894,7 +1894,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 097. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `29cfc83c28384efdde46f0b89947fa8a7dfa90e1ea4558b1967d81b0e1b187c5`
+- Resolved-definition SHA-256: `08087f7c948500f011abb2dba8b37ce9e4934307d7a63003c21781a870ae5905`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -1968,7 +1968,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 098. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `51ac06ceee56f03fb70b0a20608bc9f9d5cb5517ad95c61ba33036b9a2d32424`
+- Resolved-definition SHA-256: `17785421f63937eee656389c8c8bf43d1b342125243f6bcb8b7223abf4e27aad`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2042,7 +2042,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 099. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `375f81649078319063ef86aa971f7b4a373d21888d4340168a3a6a6b2b9e2c45`
+- Resolved-definition SHA-256: `24a33296983f7a584a915b8447729b738a97ab1c79ba4d82f3ffb90ec226461e`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2116,7 +2116,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 100. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `0ed768b5d3f8cf80ba240cf512893dbe14e1aab0a4a12d423dd1a983cda23846`
+- Resolved-definition SHA-256: `64dc79728ed5116bf5efcdaae73712420c0b5d0da05849a7350b36ceef9d9b33`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2190,7 +2190,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 101. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `00238d6a0b9bebecc516b988a5cc5ee8215c740d26cada7eb0b34651bca3a03e`
+- Resolved-definition SHA-256: `257fa2b73747d87e6e461ad22a57345aa72f69072925157ea3da452e99f3a8ab`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2264,7 +2264,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 102. `sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `eb35b1f5a70aaf65a91ac70ea4c44c97b1827253c4995581d9bfabd7e7b8197e`
+- Resolved-definition SHA-256: `c08160f05e881318d9fe12b5cfc657d638cc70907d5981ff9d61b7f181fe5b30`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2338,7 +2338,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 103. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `bbea1dd8e2d233e62184c4e2480800027f7a50a8766b3e1ab42d61e4241caf3d`
+- Resolved-definition SHA-256: `63fe035c8bc7078214d699335fd574b4b99ccc68a55a61cb491443d3c441c8e1`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2412,7 +2412,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 104. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `d097c5e901f8333b8bc619389df39910c2c7a28a93f60e52fe0ca744c11adbea`
+- Resolved-definition SHA-256: `b59d777c8c473fdcb2956466bf978755ff1e0a2d1fc0fe0caf002938140552cc`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2486,7 +2486,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 105. `sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `c91d8009b579789265273ca33519d7eae1e3414418f6c10391b046520ac71127`
+- Resolved-definition SHA-256: `b6dac4624b77d1802cdb1306b6acbda00873006c9b6223a7a6eb71dec796bfcd`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2560,7 +2560,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 106. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `b89c0b08afe848cb69934e3d54d95c3b1f168804971575c066bc6bb6bfd1cce9`
+- Resolved-definition SHA-256: `cbf127f648fa074c1b425a297cd2bbaeb381f8b6a34f7abe4a2e36552946699c`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2634,7 +2634,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 107. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `0c83b477fd0fe9ec7f4f39b4af89c9a8ebbb0470413b5afb0ad4f628aecae0ae`
+- Resolved-definition SHA-256: `ddfa2f978ab858c2250cede9572afe86675a441f6c255bbece2a8f77985b4593`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2708,7 +2708,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 108. `sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `2de95d65e5f1aadf5eae0ce93e57ad698fb4752954eba564ed274adaa8e49d7a`
+- Resolved-definition SHA-256: `f85e73a3bb2d96d2e91f032a6c1e548aaa29946d3590db9541b730f55599b46a`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2782,7 +2782,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 109. `sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `381de0912e511592c8cec4eaf6f8c228bd4aa89be548d1cda716c63bb518b639`
+- Resolved-definition SHA-256: `6305806bb36a564fd02f5df6b203151eefd9f796f8dfe8c8f41d20a1e475de66`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2856,7 +2856,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 110. `sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `8e6f5f74373117d49dea9eb23438a08dd59da66f3d0b5798fed4e972f86bf37c`
+- Resolved-definition SHA-256: `deb845ef3b8e506b5f52ec24ddae9978138ec20d64ff0b77ac02a067f74f1963`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -2930,7 +2930,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 111. `sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `ebdc1bebcc7404aff6db7f893d77ce7d566483131d8c70164f608d56ae69d699`
+- Resolved-definition SHA-256: `f38238b07dff8024636ee0c9ad492a645851e111c9f8cb4aa6e46579c7a7cfd6`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3004,7 +3004,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 112. `sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `b8fdf7d5991757cf795770abece04ee5f1a051f21737dece1f7e4965b4964304`
+- Resolved-definition SHA-256: `aa065f71a367c82776d26b660e29d0f29ee52fb60419be33832c1f5b4ba2b682`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3078,7 +3078,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 113. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `0691e146ae0a4e6d7c8ef75aa3a44e20eff5a6bd06839ee73fe68784ba2f95b3`
+- Resolved-definition SHA-256: `2cf8e7d98786f91ba091a8f14456c503dd1a5ca83cbcd0e89956b9aba054800f`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3152,7 +3152,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 114. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `52dfadcdf01b39ac9b5eda6a13ba28c431fe3cdef193a232351944366c3ef785`
+- Resolved-definition SHA-256: `679c5caedc6884080eab49289d2afdae648424f664711eba6915cca6307ca393`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3226,7 +3226,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 115. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `6714f7cefc0e50b5a44cbc6195ee0efbde36740867b0a0fb26109bca6c8011a5`
+- Resolved-definition SHA-256: `99be3cd05ba1d32737ae982f85134c94d4bbfe9e35a035a3a8a9c4258d7cfd84`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3300,7 +3300,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 116. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `46cad32dfc281163c9b0db47f6f136e9b3179914c9449ac1fb8c6ccdff5f5c7d`
+- Resolved-definition SHA-256: `964d323f89558b788317ac33632d2d4ca902dea7f78cfd72a937be6e631de499`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3374,7 +3374,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 117. `sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `cf80a38d04bf23d590978a53fd4e52573b0a86b7d9d6473c56c20e1f104ad98c`
+- Resolved-definition SHA-256: `13995e11884ae17282c7914c462ffd4bd62cf4426eee7e5e50c969cf5f9a413b`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3448,7 +3448,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 118. `sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `14b76b556e741f14409ef45aa0b0a380a8577a977adf2f787382578add1d51bd`
+- Resolved-definition SHA-256: `ed157d90c7f324d5002c1495c0e9cff33ad825e28a0589cd810f6fc420c0670e`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3522,7 +3522,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 119. `sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `04c2aa9404a934f6dc8aa2da6b5150631bd497c85abb6c51b0fb8be6153add92`
+- Resolved-definition SHA-256: `abe82df60ef565a76876bd3000ad9836b96e190c2c7e0967fc0e837ce24207f2`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3596,7 +3596,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 120. `sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `4e727d58295fbc89162877032ad387e5113227a5d891c776900f5b2403e3392b`
+- Resolved-definition SHA-256: `56b1e3183fd6d908343af1f8a0e41b49aa50dc9261606c80270cb667c0134a89`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3670,7 +3670,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 121. `sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `a0834b677d3b2e8923a357f7862e70fd27ab71c2d6626498cab9c5d023907f53`
+- Resolved-definition SHA-256: `b339facf75a9281422f3ea739f7bd919178ba2dea0e010d2da278781a59d08e0`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3744,7 +3744,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 122. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `01723e6b6e45544b61f0eae7c584f6111097de2e998572825d919b04217e60cc`
+- Resolved-definition SHA-256: `b14abe76219bab5e601c95d38d0f3e7d33c1a0a599882f10d0fc04758c13cda9`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3818,7 +3818,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 123. `sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `60a9fda4f3cf142711c1ba5b44491715a78029ecb4e1523b9c0986cbfe739084`
+- Resolved-definition SHA-256: `1f1f0eca46e5dee8f9d46bc2685883efc092204ee23de12ec2de97adef63e13c`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3892,7 +3892,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 124. `sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `fb2ba562d65eb6a7d6013054b40eaa7de6d7ccfd9cddd61c499d5399115e7610`
+- Resolved-definition SHA-256: `7ec791094a838db18153575315cc1a1f688664d3916d1ebbe33fc312281fede4`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -3962,7 +3962,7 @@ The machine-readable resource contains the complete definitions; this file keeps
 ## 125. `sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
-- Resolved-definition SHA-256: `40dc8ed1cac655e80a261b569914ede8ed7298b5ce552341c5b094245a43b19c`
+- Resolved-definition SHA-256: `99e1bd695635e2b7dfaefbc39930f615a262fad7e0a4bbb72c71f074b3b96555`
 - Source: `source-research/scripts/forecast_oos_research_gate.py` at `511fb82c0be43564b79df3694ee570677f3137ed` (SHA-256 `e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997`).
 - Source entrypoints: `_fit_bayesian_sbb_full_mcmc_sv_overlay`, `_apply_full_mcmc_sv_simulation_options`, `_simulate_bayesian_sbb_full_mcmc_sv_overlay`.
 - Factory/checkpoint seed contract: `origin_task.seed_to_forecast_context.seed.v1`.

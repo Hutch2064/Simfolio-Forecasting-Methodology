@@ -1,5 +1,39 @@
 {
   "bounded_source_fixture": {
+    "environment_variants": [
+      {
+        "execution_environment": {
+          "label": "python3.12-numpy2.5.3-scipy1.18.1",
+          "numpy": "2.5.3",
+          "python": "3.12",
+          "scipy": "1.18.1"
+        },
+        "nig_paths_sha256": {
+          "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc": "22601da8db2e535404536f6bf8002c24f632065bd67826ee59e883d79c4b0152",
+          "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc": "5780eb7a50097b1578883daf785f65976bf6fc1370cd0fe496848053db306a31",
+          "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc": "22601da8db2e535404536f6bf8002c24f632065bd67826ee59e883d79c4b0152"
+        },
+        "path": "src/simfolio_forecasting_methodology/resources/test_fixtures/mcmc/full_mcmc_sv_source_parity.json",
+        "sha256": "6b234afad5b7dc7980e148e130eecc04beb79522e091925ad185b900e86650d5",
+        "source_revision": "511fb82c0be43564b79df3694ee570677f3137ed"
+      },
+      {
+        "execution_environment": {
+          "label": "python3.11-numpy2.4.6-scipy1.17.1",
+          "numpy": "2.4.6",
+          "python": "3.11",
+          "scipy": "1.17.1"
+        },
+        "nig_paths_sha256": {
+          "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc": "c78a97ddd5fe87905fac6b2aa7a74fd89d38d540108a0945a31930bcc6c10cef",
+          "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc": "b619166a4a57cc9d04ca8b18a81d2abffb596f22650af196dc14f00182c34291",
+          "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc": "c78a97ddd5fe87905fac6b2aa7a74fd89d38d540108a0945a31930bcc6c10cef"
+        },
+        "path": "src/simfolio_forecasting_methodology/resources/test_fixtures/mcmc/full_mcmc_sv_source_parity_py311_numpy246_scipy1171.json",
+        "sha256": "3c87c2388b52a801a38feae41e3243e55f315f0cd3125e277e8a815ab0f27708",
+        "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc"
+      }
+    ],
     "fixture_input": {
       "generator": "np.random.default_rng(173).normal(0.0002,0.01,420).astype(np.float64)",
       "length": 420
@@ -78,7 +112,7 @@
     ],
     "posterior_duplicate_row_count": 15,
     "posterior_unique_groups": 25,
-    "sha256": "d7fddfc93b35045d826a7d4e6a4fa715da3e5c27999252050253c60f780c11a6",
+    "sha256": "6b234afad5b7dc7980e148e130eecc04beb79522e091925ad185b900e86650d5",
     "simulation": {
       "horizon_days": 17,
       "n_paths": 9,

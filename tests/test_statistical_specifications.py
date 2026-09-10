@@ -20,6 +20,23 @@ def _digest(value: object) -> str:
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
+def _resolve(shared_components: dict, reference: str) -> object:
+    value: object = shared_components
+    for part in reference.split("."):
+        assert isinstance(value, dict)
+        value = value[part]
+    return value
+
+
+def _rebind_shared_component_digests(definition: dict, shared_components: dict) -> dict:
+    rebound = deepcopy(definition)
+    rebound["shared_component_digests"] = {
+        reference: _digest(_resolve(shared_components, reference))
+        for reference in rebound["shared_component_refs"]
+    }
+    return rebound
+
+
 def test_resolved_spec_scope_and_family_membership_are_exact():
     ledger = load_canonical_ledger()
     resource = _load_json(RESOURCE)
@@ -61,6 +78,10 @@ def test_each_resolved_definition_has_a_stable_full_fingerprint_and_source_ident
         assert binding["definition_fingerprint"] == _digest(definition)
         assert row["specification_fingerprint"]["value"] == _digest(definition)
         assert row["specification_fingerprint"]["kind"] == "resolved_statistical_definition_sha256"
+        assert binding["component_refs"] == definition["shared_component_refs"]
+        assert set(definition["shared_component_digests"]) == set(
+            definition["shared_component_refs"]
+        )
         assert row["structured_specification"]["resolved_definition"] == definition
         source = definition["source_reference"]
         assert not source["path"].startswith(("/", "~"))
@@ -81,6 +102,51 @@ def test_definition_digest_covers_nested_parameterization():
     else:
         definition["failure_semantics"]["mutation_test"] = True
     assert _digest(definition) != original
+
+
+def test_definition_digest_covers_mutated_shared_mean_volatility_and_mcmc_defaults():
+    resource = _load_json(RESOURCE)
+    shared = deepcopy(resource["shared_components"])
+    definitions = resource["resolved_definitions"]
+
+    cases = (
+        (
+            "base.mean_models.bic_auto_arma_mean.history_window",
+            next(
+                definition
+                for definition in definitions.values()
+                if definition["family"] == "base"
+                and definition["mean"]["ref"] == "base.mean_models.bic_auto_arma_mean"
+            ),
+        ),
+        (
+            "base.volatility_models.constant_sample_volatility.ddof",
+            next(
+                definition
+                for definition in definitions.values()
+                if definition["family"] == "base"
+                and definition["volatility"]["ref"]
+                == "base.volatility_models.constant_sample_volatility"
+            ),
+        ),
+        (
+            "full_mcmc_sv.contract.sampler.fixed_defaults.iterations",
+            next(
+                definition
+                for definition in definitions.values()
+                if definition["family"] == "full_mcmc_sv"
+            ),
+        ),
+    )
+    for reference, definition in cases:
+        original = _digest(definition)
+        parts = reference.split(".")
+        node = shared
+        for part in parts[:-1]:
+            node = node[part]
+        node[parts[-1]] += 1
+        rebound = _rebind_shared_component_digests(definition, shared)
+        assert _digest(rebound) != original, reference
 
 
 def test_mcmc_uses_exact_source_descriptor_and_separate_resolved_defaults():
