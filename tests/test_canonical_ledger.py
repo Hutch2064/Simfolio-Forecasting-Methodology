@@ -73,6 +73,7 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
         assert model["specification_recovered"] is (model["public_model_id"] in resolved_ids)
         assert model["source_reference_verified"] is True
         executable = (model["canonical_rank"] == 1 or model["model_family"] == "base"
+                      or (model["model_family"] == "bayesian_sbb_full_mcmc_sv_overlay" and "harx_ff6_vol_anchor" not in model["public_model_id"])
                       or model["public_model_id"] in {'dp_mixture_sv_sbb', 'observable_markov_state_sbb', 'stochastic_volatility_ar1_empirical', 'stochastic_volatility_ar1_empirical_sbb', 'zero_mean_gaussian_vol_only', 'constant_mean_gaussian', 'naive_iid_historical_portfolio_bootstrap', 'constant_mean_student_t'})
         assert model["implementation_available"] is executable
         assert model["instantiation_validated"] is executable
@@ -252,6 +253,6 @@ def test_generated_reference_is_current_and_scoped_to_the_ledger():
     )
     assert result.returncode == 0, result.stderr
     reference = (repository_root / "docs/canonical-model-reference.md").read_text(encoding="utf-8")
-    assert reference.count("retained_score_evidence_only_blocked") == 82
+    assert reference.count("retained_score_evidence_only_blocked") == 43
     assert EXPECTED_MEMBERSHIP_DIGEST in reference
     assert "master_369" not in reference

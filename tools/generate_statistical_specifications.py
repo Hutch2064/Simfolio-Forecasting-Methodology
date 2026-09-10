@@ -719,9 +719,7 @@ def patch_ledger(resolved: dict[str, dict[str, Any]]) -> None:
         elif row["model_family"] == "bayesian_sbb_full_mcmc_sv_overlay":
             source_code["sha256"] = MCMC_SOURCE_SHA256
         else:
-            source_code["sha256"] = _file_digest(
-                ROOT / "src/simfolio_forecasting_methodology/models/asset_level/frontier.py"
-            )
+            source_code["sha256"] = BASE_SOURCE_SHA256
         factory = row.get("implementation_factory")
         if isinstance(factory, dict) and factory.get("callable"):
             factory["seed_contract"] = "origin_task.seed_to_forecast_context.seed.v1"

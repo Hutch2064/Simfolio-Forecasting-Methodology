@@ -7,6 +7,7 @@ import importlib.metadata
 import inspect
 import json
 import platform
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol, runtime_checkable
@@ -265,9 +266,9 @@ def _implementation_digest(model, record: dict[str, object]) -> str | None:
 def _dependency_identity(model, record: dict[str, object]) -> dict[str, object]:
     explicit = getattr(model, "dependency_identity", None)
     if explicit is not None:
-        if not isinstance(explicit, dict):
+        if not isinstance(explicit, Mapping):
             raise ValueError("model dependency_identity must be a mapping")
-        identity = json.loads(json.dumps(explicit, sort_keys=True))
+        identity = json.loads(json.dumps(dict(explicit), sort_keys=True))
     else:
         identity = {}
     identity["python"] = platform.python_version()

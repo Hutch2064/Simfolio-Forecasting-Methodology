@@ -1,0 +1,207 @@
+{
+  "source_script_sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997",
+  "fixture": {
+    "length": 420,
+    "input_rng_seed": 404,
+    "origin": "2026-05-13",
+    "horizon": 3,
+    "simulations": 2
+  },
+  "comparisons": [
+    {
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    },
+    {
+      "model_id": "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc",
+      "max_abs_difference": 0.0,
+      "source_terminal_parity": true
+    }
+  ]
+}

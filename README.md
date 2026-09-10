@@ -10,8 +10,8 @@ private datastore, or operational API.
 ## Current release state
 
 The canonical ledger contains **175 exact model identities**. The public
-runtime currently has **85 explicit executable factories**: the 84 canonical
-base specifications and the rank-one asset-level Frontier model. Those 85
+runtime currently has **132 explicit executable factories**: 84 canonical base models,
+39 full MCMC SV models, eight portfolio reference models, and Frontier. Those 132
 factories have passed package instantiation and bounded forecast/source-parity
 checks. The other ledger rows remain registered evidence identities and fail
 closed when execution is requested.
@@ -33,7 +33,7 @@ The optional `all-models` extra installs the numerical dependencies used by the
 validated source-derived paths:
 
 ```bash
-python -m pip install 'simfolio-forecasting-methodology[all-models]'
+python -m pip install '.[all-models]'
 simfolio-oos data verify --json
 simfolio-oos data prepare --destination .simfolio-oos-data --json
 simfolio-oos coverage --json

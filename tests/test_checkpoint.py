@@ -323,3 +323,20 @@ def test_numerical_parameter_resource_changes_implementation_identity():
         assert original != first != second
     finally:
         path.unlink(missing_ok=True)
+
+
+def test_registered_model_dependency_manifests_accept_immutable_mappings():
+    from simfolio_forecasting_methodology.catalogue import load_canonical_ledger
+    from simfolio_forecasting_methodology.models.registry import build_model
+
+    ledger = load_canonical_ledger()
+    for record in ledger["models"]:
+        if not record["implementation_available"]:
+            continue
+        model_id = record["public_model_id"]
+        model = build_model(model_id)
+        manifest = build_execution_manifest(
+            model_id, _tasks(), simulations=4, model=model, execution_variant="smoke"
+        )
+        assert manifest.dependency_identity["numpy"] == np.__version__, model_id
+        assert manifest.model_id == model_id
