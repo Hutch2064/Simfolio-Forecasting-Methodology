@@ -88,6 +88,7 @@ class OriginTask:
     realized_future_daily_log_returns: np.ndarray
     seed: int
     future_dates: np.ndarray | None = None
+    origin_date: str | None = None
 
     @property
     def horizon_days(self) -> int:
@@ -118,6 +119,7 @@ def evaluate_origin_task(
         simulations=int(simulations),
         seed=int(task.seed),
         future_dates=None if task.future_dates is None else np.asarray(task.future_dates),
+        origin_date=task.origin_date,
     )
     daily_paths = np.asarray(model.simulate_daily_log_returns(task.training, context), dtype=np.float64)
     expected_shape = (int(simulations), task.horizon_days)
