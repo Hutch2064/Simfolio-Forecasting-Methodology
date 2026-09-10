@@ -37,17 +37,36 @@ source-local fixture; tolerances are not widened to hide a dependency change.
 
 The wheel checks run outside the source checkout. They verify package-resource
 loading, the 60-file offline snapshot, the 80/4,080/701,280 protocol counts,
-all registered factory instantiations, bounded family and Frontier parity, and public-safety
-scans before the complete test suite.
+the registered factory map, bounded family and Frontier parity, and public-safety
+scans before the complete test suite. Run `simfolio-oos coverage --json` for
+the current per-row counts; the coverage report is authoritative for what is
+executable and what remains evidence-only.
 
 ## Evidence status
 
-Source-derived implementations have bounded fit-state, simulation, and
-rejoin parity fixtures where the ledger marks them executable. The retained
-historical score artifact remains evidence-only: its historical score linkage
-is qualified by the [runtime discrepancies](docs/historical-runtime-discrepancies.md).
-Complete specification coverage remains an open gate. A successful installation, plan, or bounded smoke run does
-not establish reproduction of the retained white-paper ranking.
+Source-derived implementations have bounded fit-state, simulation, and rejoin
+parity fixtures where the ledger marks them executable. The Frontier report and
+the retained-wrapper replay are bounded method checks; they do not rerun the
+retained score artifact. The historical score artifact remains evidence-only,
+and its linkage is qualified by the [runtime discrepancies](docs/historical-runtime-discrepancies.md).
+
+The ledger records 175 recovered identities and 175 protocol, dataset, and
+panel fingerprints. It separately records the currently executable factory
+coverage and complete statistical-specification coverage. A successful
+installation, plan, factory smoke run, or bounded source replay does not
+establish reproduction of the retained white-paper ranking. No score is
+relabelled as reproduced until its historical execution and score linkage are
+verified.
+
+The latest canonical-only coverage reports 175 registered factories,
+instantiations, forecast smoke checks, and bounded source-parity checks; 159
+rows have complete statistical specifications, and zero historical scores are
+verified. These counts are status fields from `simfolio-oos coverage --json`,
+not evidence that the retained score ranking has been rerun.
+
+The checkout has no `LICENSE` file at present. Add the administrative license
+file before public distribution; no license terms are inferred here from the
+source or the data snapshot.
 
 For the exact file hashes, attribution statement, protocol fingerprint, and
 prepared-cache checks, see
