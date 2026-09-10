@@ -471,6 +471,30 @@
     "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail": {
       "factory_name": "simfolio_forecasting_methodology.models.numerical.base_models:CanonicalBaseModel",
       "status": "verified_explicit_factory"
+    },
+    "constant_mean_gaussian": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
+      "status": "verified_explicit_factory"
+    },
+    "constant_mean_student_t": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
+      "status": "verified_explicit_factory"
+    },
+    "naive_iid_historical_portfolio_bootstrap": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
+      "status": "verified_explicit_factory"
+    },
+    "stochastic_volatility_ar1_empirical": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
+      "status": "verified_explicit_factory"
+    },
+    "stochastic_volatility_ar1_empirical_sbb": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
+      "status": "verified_explicit_factory"
+    },
+    "zero_mean_gaussian_vol_only": {
+      "factory_name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
+      "status": "verified_explicit_factory"
     }
   },
   "validation_policy": {
@@ -4192,7 +4216,7 @@
         },
         "source_code": {
           "root_reference": "source_provenance.source_code",
-          "sha256": null,
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
           "status": "unresolved"
         },
         "parameter_dictionary": {
@@ -4209,9 +4233,9 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=34]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
+        "callable": true,
+        "status": "verified_explicit_factory"
       },
       "required_dependencies": {
         "items": null,
@@ -4259,17 +4283,18 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "bounded_source_parity_verified_historical_linkage_blocked",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
         "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root verified pinned source numerical function identity and bounded source adapter parity. Canonical naive uses the coherent daily bootstrap and its historical benchmark seed; other reference ensembles follow the exact source per-horizon contract. Retained score linkage remains separately qualified."
       ]
     },
     {
@@ -4299,7 +4324,7 @@
         },
         "source_code": {
           "root_reference": "source_provenance.source_code",
-          "sha256": null,
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
           "status": "unresolved"
         },
         "parameter_dictionary": {
@@ -4316,9 +4341,9 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=35]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
+        "callable": true,
+        "status": "verified_explicit_factory"
       },
       "required_dependencies": {
         "items": null,
@@ -4366,17 +4391,18 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "bounded_source_parity_verified_historical_linkage_blocked",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
         "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root verified pinned source numerical function identity and bounded source adapter parity. Canonical naive uses the coherent daily bootstrap and its historical benchmark seed; other reference ensembles follow the exact source per-horizon contract. Retained score linkage remains separately qualified."
       ]
     },
     {
@@ -4406,7 +4432,7 @@
         },
         "source_code": {
           "root_reference": "source_provenance.source_code",
-          "sha256": null,
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
           "status": "unresolved"
         },
         "parameter_dictionary": {
@@ -4423,9 +4449,9 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=36]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
+        "callable": true,
+        "status": "verified_explicit_factory"
       },
       "required_dependencies": {
         "items": null,
@@ -4473,17 +4499,18 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "bounded_source_parity_verified_historical_linkage_blocked",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
         "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root verified pinned source numerical function identity and bounded source adapter parity. Canonical naive uses the coherent daily bootstrap and its historical benchmark seed; other reference ensembles follow the exact source per-horizon contract. Retained score linkage remains separately qualified."
       ]
     },
     {
@@ -4513,7 +4540,7 @@
         },
         "source_code": {
           "root_reference": "source_provenance.source_code",
-          "sha256": null,
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
           "status": "unresolved"
         },
         "parameter_dictionary": {
@@ -4530,9 +4557,9 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=37]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
+        "callable": true,
+        "status": "verified_explicit_factory"
       },
       "required_dependencies": {
         "items": null,
@@ -4580,17 +4607,18 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "bounded_source_parity_verified_historical_linkage_blocked",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
         "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root verified pinned source numerical function identity and bounded source adapter parity. Canonical naive uses the coherent daily bootstrap and its historical benchmark seed; other reference ensembles follow the exact source per-horizon contract. Retained score linkage remains separately qualified."
       ]
     },
     {
@@ -4862,7 +4890,7 @@
         },
         "source_code": {
           "root_reference": "source_provenance.source_code",
-          "sha256": null,
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
           "status": "unresolved"
         },
         "parameter_dictionary": {
@@ -4879,9 +4907,9 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=40]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.sv_reference:SVReferenceModel",
+        "callable": true,
+        "status": "verified_explicit_factory"
       },
       "required_dependencies": {
         "items": null,
@@ -4929,17 +4957,18 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "bounded_source_parity_verified_historical_linkage_blocked",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
         "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root verified pinned source numerical function identity and bounded source adapter parity. Canonical naive uses the coherent daily bootstrap and its historical benchmark seed; other reference ensembles follow the exact source per-horizon contract. Retained score linkage remains separately qualified."
       ]
     },
     {
@@ -10679,7 +10708,7 @@
         },
         "source_code": {
           "root_reference": "source_provenance.source_code",
-          "sha256": null,
+          "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665",
           "status": "unresolved"
         },
         "parameter_dictionary": {
@@ -10696,9 +10725,9 @@
         "row_source_description": "canonical_175_registry.json#models[canonical_rank=89]"
       },
       "implementation_factory": {
-        "name": null,
-        "status": "unavailable_unverified",
-        "callable": false
+        "name": "simfolio_forecasting_methodology.models.portfolio.reference_families:ReferencePortfolioModel",
+        "callable": true,
+        "status": "verified_explicit_factory"
       },
       "required_dependencies": {
         "items": null,
@@ -10746,17 +10775,18 @@
       "identity_recovered": true,
       "specification_recovered": false,
       "source_reference_verified": true,
-      "implementation_available": false,
-      "instantiation_validated": false,
-      "forecast_smoke_tested": false,
-      "source_parity_checked": false,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
       "historical_score_verified": false,
-      "verification_status": "retained_score_evidence_only_blocked",
+      "verification_status": "bounded_source_parity_verified_historical_linkage_blocked",
       "notes": [
         "Retained historical exact empirical CRPS source token is available from the observed dense score artifact.",
         "Full numerical defaults and dependency closure remain unresolved; specification_recovered is false.",
         "No verified executable factory is registered; implementation, instantiation, smoke, and parity flags remain false.",
-        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root."
+        "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
+        "Root verified pinned source numerical function identity and bounded source adapter parity. Canonical naive uses the coherent daily bootstrap and its historical benchmark seed; other reference ensembles follow the exact source per-horizon contract. Retained score linkage remains separately qualified."
       ]
     },
     {
