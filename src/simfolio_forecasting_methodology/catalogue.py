@@ -240,8 +240,12 @@ def _validate_flags(model: Mapping[str, Any], payload: Mapping[str, Any]) -> Non
     if model["forecast_smoke_tested"] and not model["instantiation_validated"]:
         raise ValueError(f"{model['public_model_id']}: smoke test lacks validated instantiation")
     if model["source_parity_checked"]:
-        if not model["implementation_available"] or not model["historical_score_verified"]:
-            raise ValueError(f"{model['public_model_id']}: source parity lacks implementation and score evidence")
+        if (
+            not model["implementation_available"]
+            or not model["forecast_smoke_tested"]
+            or not model["source_reference_verified"]
+        ):
+            raise ValueError(f"{model['public_model_id']}: source parity lacks implementation, smoke, or source evidence")
     if model["historical_score_verified"] and not model["source_reference_verified"]:
         raise ValueError(f"{model['public_model_id']}: verified score lacks a verified source reference")
 
@@ -249,15 +253,6 @@ def _validate_flags(model: Mapping[str, Any], payload: Mapping[str, Any]) -> Non
     if not isinstance(status, str) or not status.strip():
         raise ValueError(f"{model['public_model_id']}: verification_status must be a non-empty string")
     normalized_status = status.lower()
-    advanced = (
-        model["specification_recovered"]
-        or model["implementation_available"]
-        or model["instantiation_validated"]
-        or model["forecast_smoke_tested"]
-        or model["source_parity_checked"]
-    )
-    if advanced and "blocked" in normalized_status:
-        raise ValueError(f"{model['public_model_id']}: advanced evidence cannot retain a blocked status")
     if "verified" in normalized_status and "unverified" not in normalized_status:
         if not (model["source_reference_verified"] or model["historical_score_verified"]):
             raise ValueError(f"{model['public_model_id']}: verified status lacks evidence flags")

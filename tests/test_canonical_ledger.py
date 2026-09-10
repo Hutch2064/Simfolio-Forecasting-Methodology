@@ -158,6 +158,47 @@ def test_future_verified_specification_record_can_validate_without_factory_claim
     validate_canonical_ledger(payload)
 
 
+def test_partially_verified_record_can_remain_blocked():
+    payload = deepcopy(load_canonical_ledger())
+    model = payload["models"][0]
+    model["specification_recovered"] = True
+    model["specification_fingerprint"] = {
+        "value": "a" * 64,
+        "kind": "verified_partial_statistical_kernel",
+        "status": "partially_verified",
+    }
+    model["verification_status"] = "specification_partially_verified_blocked"
+    payload["identity_policy"]["full_statistical_specifications_confirmed"] = 1
+    validate_canonical_ledger(payload)
+
+
+def test_source_parity_requires_implementation_smoke_and_source_but_not_score_reproduction():
+    payload = deepcopy(load_canonical_ledger())
+    model = payload["models"][0]
+    factory_name = "simfolio_forecasting_methodology.future:factory"
+    model["implementation_factory"] = {
+        "name": factory_name,
+        "status": "verified_explicit_factory",
+        "callable": True,
+    }
+    payload["implementation_factory_map"][model["public_model_id"]] = {
+        "factory_name": factory_name,
+        "status": "verified_explicit_factory",
+    }
+    model["implementation_available"] = True
+    model["source_artifact_digest"]["source_code"] = {
+        "root_reference": "source_provenance.source_code",
+        "sha256": "b" * 64,
+        "status": "verified",
+    }
+    model["instantiation_validated"] = True
+    model["forecast_smoke_tested"] = True
+    model["source_parity_checked"] = True
+    model["verification_status"] = "source_parity_verified_blocked"
+    assert model["historical_score_verified"] is False
+    validate_canonical_ledger(payload)
+
+
 def test_factory_claim_without_explicit_map_is_rejected():
     payload = deepcopy(load_canonical_ledger())
     payload["models"][0]["implementation_factory"] = {
