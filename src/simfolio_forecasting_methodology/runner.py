@@ -2,16 +2,18 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import hashlib
+import importlib.metadata
+import inspect
 import json
+import platform
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol, runtime_checkable
 
 import numpy as np
 
 from .evaluation import CellAccumulator, empirical_crps_by_horizon
-
 
 CANONICAL_EXPERIMENT_ID = "canonical-dense-oos-2026-08-23"
 CANONICAL_PROTOCOL_ID = "dense-daily-crps-v1"
@@ -211,6 +213,66 @@ def _training_digest(training: TrainingData) -> str:
     ).hexdigest()
 
 
+def _implementation_digest(model, record: dict[str, object]) -> str | None:
+    explicit = getattr(model, "implementation_digest", None)
+    if isinstance(explicit, str) and explicit:
+        return explicit
+    source_files: set[Path] = set()
+    try:
+        source_file = inspect.getsourcefile(type(model))
+        if source_file is not None:
+            source_files.add(Path(source_file))
+    except (OSError, TypeError):
+        pass
+    process_factory = getattr(model, "process_worker_factory", None)
+    if callable(process_factory):
+        try:
+            source_file = inspect.getsourcefile(process_factory)
+            if source_file is not None:
+                source_files.add(Path(source_file))
+        except (OSError, TypeError):
+            pass
+    if source_files:
+        digests: list[str] = []
+        for source_file in sorted(source_files, key=lambda item: item.as_posix()):
+            try:
+                with source_file.open("rb") as handle:
+                    digests.append(hashlib.sha256(handle.read()).hexdigest())
+            except OSError:
+                continue
+        if len(digests) == 1:
+            return digests[0]
+        if digests:
+            return hashlib.sha256("".join(sorted(digests)).encode("ascii")).hexdigest()
+    source_digest = record.get("source_artifact_digest", {})
+    if isinstance(source_digest, dict):
+        code = source_digest.get("source_code", {})
+        if isinstance(code, dict) and isinstance(code.get("sha256"), str):
+            return code["sha256"]
+    return None
+
+
+def _dependency_identity(model, record: dict[str, object]) -> dict[str, object]:
+    explicit = getattr(model, "dependency_identity", None)
+    if explicit is not None:
+        if not isinstance(explicit, dict):
+            raise ValueError("model dependency_identity must be a mapping")
+        identity = json.loads(json.dumps(explicit, sort_keys=True))
+    else:
+        identity = {}
+    identity["python"] = platform.python_version()
+    identity["numpy"] = np.__version__
+    for package in ("pandas", "scipy"):
+        try:
+            identity[package] = importlib.metadata.version(package)
+        except importlib.metadata.PackageNotFoundError:
+            identity[package] = None
+    required = record.get("required_dependencies")
+    if required is not None:
+        identity["ledger_required_dependencies"] = required
+    return identity
+
+
 def task_identity(task: OriginTask, model_id: str, simulations: int):
     """Return the durable identity of one constructed forecast task."""
 
@@ -249,6 +311,8 @@ def build_execution_manifest(
     tasks: list[OriginTask] | tuple[OriginTask, ...],
     *,
     simulations: int,
+    model: ForecastModel | None = None,
+    execution_variant: str = "canonical",
 ):
     """Build a source-linked manifest from the canonical task constructor."""
 
@@ -260,25 +324,56 @@ def build_execution_manifest(
     identities = tuple(task_identity(task, model_id, int(simulations)) for task in tasks)
     if not identities:
         raise ValueError("an execution manifest requires at least one origin task")
-    expected_cells = tuple(
-        sorted(
-            {
-                (identity.portfolio_id, horizon)
-                for identity in identities
-                for horizon in range(1, identity.horizon_days + 1)
-            }
+    expected_caps: list[tuple[str, int]] = []
+    cap_positions: dict[str, int] = {}
+    for identity in identities:
+        position = cap_positions.get(identity.portfolio_id)
+        if position is None:
+            cap_positions[identity.portfolio_id] = len(expected_caps)
+            expected_caps.append((identity.portfolio_id, identity.horizon_days))
+        else:
+            portfolio, cap = expected_caps[position]
+            expected_caps[position] = (portfolio, max(cap, identity.horizon_days))
+    identity_policy = ledger.get("identity_policy", {})
+    explicit_specification = getattr(model, "specification_fingerprint", None)
+    specification = record.get("specification_fingerprint")
+    specification_fingerprint = (
+        explicit_specification
+        if isinstance(explicit_specification, str) and explicit_specification
+        else (
+            specification.get("value")
+            if isinstance(specification, dict)
+            and isinstance(specification.get("value"), str)
+            else None
         )
     )
-    identity_policy = ledger.get("identity_policy", {})
+    dependencies = _dependency_identity(model, record) if model is not None else {
+        "ledger_required_dependencies": record.get("required_dependencies")
+    }
+    implementation_digest = _implementation_digest(model, record) if model is not None else None
+    default_seed_contract = "origin_task.seed_to_forecast_context.seed.v1"
+    requested_seed_contract = getattr(model, "seed_contract", default_seed_contract)
+    seed_contract = str(requested_seed_contract or default_seed_contract)
+    if execution_variant == "canonical":
+        manifest_experiment_id = str(record["experiment_id"])
+        manifest_protocol_id = CANONICAL_PROTOCOL_ID
+    else:
+        manifest_experiment_id = f"{record['experiment_id']}::{execution_variant}"
+        manifest_protocol_id = f"{CANONICAL_PROTOCOL_ID}::{execution_variant}"
     return ExecutionManifest.create(
         model_id=model_id,
-        experiment_id=str(record["experiment_id"]),
-        protocol_id=CANONICAL_PROTOCOL_ID,
+        experiment_id=manifest_experiment_id,
+        protocol_id=manifest_protocol_id,
+        execution_variant=execution_variant,
         membership_digest=EXPECTED_MEMBERSHIP_DIGEST,
         source_revision=str(record["source_revision"]),
         simulations=int(simulations),
         tasks=identities,
-        expected_cells=expected_cells,
+        expected_cell_caps=tuple(expected_caps),
+        specification_fingerprint=specification_fingerprint,
+        implementation_digest=implementation_digest,
+        dependency_identity=dependencies,
+        seed_contract=seed_contract,
         protocol_fingerprint=record.get("protocol_fingerprint")
         or identity_policy.get("protocol_fingerprint"),
         dataset_fingerprint=record.get("dataset_fingerprint")
@@ -296,12 +391,20 @@ def execute_model_checkpointed(
     checkpoint_dir: Path,
     workers: int = 1,
     resume: bool = False,
+    execution_variant: str = "canonical",
+    progress_callback=None,
 ):
     """Execute a canonical model with durable task checkpoints."""
 
     from .results.executor import execute_checkpointed
 
-    manifest = build_execution_manifest(model.model_id, tasks, simulations=int(simulations))
+    manifest = build_execution_manifest(
+        model.model_id,
+        tasks,
+        simulations=int(simulations),
+        model=model,
+        execution_variant=execution_variant,
+    )
     return execute_checkpointed(
         model,
         tasks,
@@ -310,6 +413,7 @@ def execute_model_checkpointed(
         simulations=int(simulations),
         workers=int(workers),
         resume=bool(resume),
+        progress_callback=progress_callback,
     )
 
 

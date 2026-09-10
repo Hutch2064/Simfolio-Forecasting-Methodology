@@ -3,32 +3,71 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import asdict
+import hashlib
 import json
+import sys
+from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
 from .catalogue import (
     EXPECTED_CANONICAL_COUNT,
-    EXPECTED_CELLS_PER_MODEL,
     EXPECTED_MEMBERSHIP_DIGEST,
     canonical_model,
     frontier_model_id,
     load_canonical_ledger,
     load_canonical_models,
 )
-from .data import write_canonical_data
 from .experiment import build_experiment_plan, iter_smoke_tasks
 from .models.registry import build_model, registration
 from .protocol import CANONICAL_DENSE_PROTOCOL
-from .runner import execute_model_checkpointed
 from .results.retained import retained_score_report
-
+from .runner import execute_model_checkpointed
 
 CANONICAL_COMMAND = "canonical-175"
 
 
 def _plan_payload() -> dict[str, Any]:
+    try:
+        from .experiment import build_experiment_schedule
+    except ImportError as exc:
+        raise RuntimeError(
+            "canonical schedule API is unavailable; install the verified protocol integration"
+        ) from exc
+    schedule = build_experiment_schedule()
+    schedule_tasks = []
+    for task in schedule.tasks:
+        descriptor = task.descriptor
+        horizon_mask = descriptor.horizon_mask(len(schedule.common_dates))
+        schedule_tasks.append(
+            {
+                "portfolio_id": task.portfolio_id,
+                "portfolio_index": int(task.portfolio_index),
+                "origin_label": str(descriptor.origin_label),
+                "evaluation_split": str(descriptor.evaluation_split),
+                "position": int(descriptor.position),
+                "origin_date": str(descriptor.origin_date),
+                "max_horizon": int(descriptor.max_horizon),
+                "train_fraction": (
+                    None
+                    if descriptor.train_fraction is None
+                    else float(descriptor.train_fraction)
+                ),
+                "horizon_mask_digest": hashlib.sha256(
+                    bytes(int(value) for value in horizon_mask)
+                ).hexdigest(),
+            }
+        )
+    schedule_identity = {
+        "dates": [str(date.date()) for date in schedule.common_dates],
+        "portfolios": [spec.name for spec in schedule.portfolios],
+        "tasks": schedule_tasks,
+    }
+    schedule_fingerprint = hashlib.sha256(
+        json.dumps(schedule_identity, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode(
+            "utf-8"
+        )
+    ).hexdigest()
     protocol = asdict(CANONICAL_DENSE_PROTOCOL)
     return {
         "scope": "canonical_175_only",
@@ -36,8 +75,12 @@ def _plan_payload() -> dict[str, Any]:
         "model_count": EXPECTED_CANONICAL_COUNT,
         "model_ids": [row["public_model_id"] for row in load_canonical_models()],
         "protocol": protocol,
-        "origin_tasks_per_model": CANONICAL_DENSE_PROTOCOL.total_origin_tasks,
-        "scored_cells_per_model": EXPECTED_CELLS_PER_MODEL,
+        "origin_tasks_per_model": schedule.task_count,
+        "scored_cells_per_model": schedule.cell_capacity,
+        "schedule_fingerprint": schedule_fingerprint,
+        "schedule_date_count": len(schedule.common_dates),
+        "schedule_first_date": str(schedule.common_dates.min().date()),
+        "schedule_last_date": str(schedule.common_dates.max().date()),
         "executor": {
             "task_identity": "SHA-256 of model, simulation, data, origin, and seed inputs",
             "checkpoint_resume": "manifest fingerprint must match exactly",
@@ -123,7 +166,13 @@ def _add_execution_arguments(
     selection.add_argument("--frontier", action="store_true", help="Select canonical rank one.")
     selection.add_argument("--all", action="store_true", help="Select all 175 canonical IDs.")
     command.add_argument("--smoke", action="store_true", help="Use bounded smoke tasks.")
-    command.add_argument("--simulations", type=int, default=32 if smoke_default else 240)
+    del smoke_default
+    command.add_argument(
+        "--simulations",
+        type=int,
+        default=None,
+        help="Canonical runs require 240; smoke runs default to 32 and cap at 32.",
+    )
     command.add_argument("--workers", type=int, default=1)
     command.add_argument(
         "--checkpoint",
@@ -148,11 +197,21 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
-    data = sub.add_parser("data", help="Build public-source canonical research inputs.")
+    data = sub.add_parser(
+        "data", help="Verify or prepare a caller-owned canonical data snapshot."
+    )
     data_sub = data.add_subparsers(dest="data_command", required=True)
-    build = data_sub.add_parser("build")
-    build.add_argument("--cache", type=Path, default=Path(".simfolio-oos-data"))
-    build.add_argument("--refresh", action="store_true")
+    verify = data_sub.add_parser("verify", help="Verify a frozen source snapshot against its identity.")
+    verify.add_argument("--snapshot", type=Path, required=True)
+    verify.add_argument("--rights-confirmed", action="store_true")
+    verify.add_argument("--json", action="store_true")
+    prepare = data_sub.add_parser(
+        "prepare", help="Prepare a verified caller-owned snapshot into an execution cache."
+    )
+    prepare.add_argument("--snapshot", type=Path, required=True)
+    prepare.add_argument("--destination", type=Path, required=True)
+    prepare.add_argument("--rights-confirmed", action="store_true")
+    prepare.add_argument("--json", action="store_true")
 
     canonical = sub.add_parser(
         CANONICAL_COMMAND, help="Execute the canonical-175 task constructor."
@@ -170,22 +229,32 @@ def build_parser() -> argparse.ArgumentParser:
     plan.add_argument("--json", action="store_true")
     scores = sub.add_parser("scores", help="Inspect retained historical score evidence.")
     scores.add_argument("--model", default="", help="Inspect one exact canonical model ID.")
+    scores.add_argument(
+        "--experiment",
+        default="canonical-whitepaper",
+        choices=("canonical-whitepaper", "canonical-dense-oos-2026-08-23"),
+    )
     scores.add_argument("--json", action="store_true")
+    validate = sub.add_parser("validate", help="Run bounded canonical release checks.")
+    validate.add_argument("--quick", action="store_true", help="Validate ledger/protocol identity only.")
+    validate.add_argument("--json", action="store_true")
     return parser
 
 
 def _selected_models(args: argparse.Namespace, *, command: str) -> tuple[str, ...]:
     canonical_ids = tuple(row["public_model_id"] for row in load_canonical_models())
     if args.all:
-        if command == "smoke":
+        if command == "smoke" or args.smoke:
             raise SystemExit("smoke accepts one model; remove --all")
         return canonical_ids
     if args.model:
         if args.model not in canonical_ids:
             raise SystemExit(f"unknown canonical model ID: {args.model}")
         return (args.model,)
-    if args.frontier or args.smoke or command == "smoke" or command == CANONICAL_COMMAND:
+    if args.frontier or args.smoke or command == "smoke":
         return (frontier_model_id(),)
+    if command == CANONICAL_COMMAND:
+        return canonical_ids
     raise SystemExit("canonical execution requires --model, --frontier, --smoke, or --all")
 
 
@@ -193,13 +262,35 @@ def _safe_model_path(model_id: str) -> str:
     return model_id.replace("|", "__")
 
 
+def _progress_callback(args: argparse.Namespace):
+    def callback(event) -> None:
+        payload = {"result_kind": "progress", **event.to_dict()}
+        if args.json:
+            print(json.dumps(payload, sort_keys=True), file=sys.stderr, flush=True)
+        else:
+            print(
+                f"progress {event.processed_count}/{event.task_count} "
+                f"status={event.status} task={event.task_id}",
+                flush=True,
+            )
+
+    return callback
+
+
 def _execute(args: argparse.Namespace, *, command: str, smoke: bool) -> int:
     if args.plan:
         payload = _plan_payload()
         print(json.dumps(payload, indent=2, sort_keys=True))
         return 0
-    if int(args.simulations) < 1:
+    simulations = int(args.simulations) if args.simulations is not None else (32 if smoke else 240)
+    if simulations < 1:
         raise SystemExit("--simulations must be positive")
+    if smoke and simulations > 32:
+        raise SystemExit("smoke runs require --simulations <= 32")
+    if not smoke and simulations != CANONICAL_DENSE_PROTOCOL.simulations_per_origin:
+        raise SystemExit(
+            "canonical runs require --simulations 240; use smoke for bounded noncanonical runs"
+        )
     if int(args.workers) < 1:
         raise SystemExit("--workers must be positive")
     model_ids = _selected_models(args, command=command)
@@ -207,12 +298,21 @@ def _execute(args: argparse.Namespace, *, command: str, smoke: bool) -> int:
     # Preflight every requested factory before reading data or creating a
     # checkpoint.  A --all run therefore cannot silently shrink to available
     # models after one canonical ID is unavailable.
-    models = [(model_id, build_model(model_id), registration(model_id)) for model_id in model_ids]
-    plan = build_experiment_plan(
-        args.data,
-        portfolio_limit=1 if smoke else None,
-        rolling_origins=1 if smoke else 48,
-    )
+    try:
+        models = [
+            (model_id, build_model(model_id), registration(model_id))
+            for model_id in model_ids
+        ]
+    except (RuntimeError, ValueError, OSError) as exc:
+        raise SystemExit(str(exc)) from exc
+    try:
+        plan = build_experiment_plan(
+            args.data,
+            portfolio_limit=1 if smoke else None,
+            rolling_origins=1 if smoke else 48,
+        )
+    except (RuntimeError, ValueError, OSError) as exc:
+        raise SystemExit(f"canonical data/protocol unavailable: {exc}") from exc
     tasks = list(
         iter_smoke_tasks(plan, count=int(args.task_count), horizon=int(args.horizon))
         if smoke
@@ -227,10 +327,12 @@ def _execute(args: argparse.Namespace, *, command: str, smoke: bool) -> int:
         summary = execute_model_checkpointed(
             model,
             tasks,
-            simulations=int(args.simulations),
+            simulations=simulations,
             checkpoint_dir=checkpoint_dir,
             workers=int(args.workers),
             resume=bool(args.resume),
+            progress_callback=_progress_callback(args),
+            execution_variant="smoke_noncanonical" if smoke else "canonical",
         )
         result = summary.to_dict()
         result.update(
@@ -271,11 +373,57 @@ def _print_inspection(payload: dict[str, Any], *, as_json: bool) -> None:
     print(json.dumps(payload, indent=2, sort_keys=True))
 
 
+def _data_function(name: str):
+    try:
+        from . import data
+
+        function = getattr(data, name)
+    except (ImportError, AttributeError) as exc:
+        raise SystemExit(
+            f"canonical data {name} API is unavailable; install the verified data integration"
+        ) from exc
+    return function
+
+
+def _quick_validation_payload() -> dict[str, Any]:
+    ledger = load_canonical_ledger()
+    CANONICAL_DENSE_PROTOCOL.validate()
+    return {
+        "scope": "canonical_175_only",
+        "status": "passed",
+        "checks": {
+            "ledger": "passed",
+            "protocol": "passed",
+            "membership_digest": ledger["membership"]["membership_digest"],
+            "model_count": ledger["membership"]["count"],
+            "implementation_release_gate": "blocked_until_explicit_factories",
+        },
+    }
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "data":
-        manifest = write_canonical_data(args.cache, refresh=bool(args.refresh))
-        print(manifest)
+        if args.data_command == "verify":
+            result = _data_function("verify_canonical_snapshot")(
+                args.snapshot, rights_confirmed=bool(args.rights_confirmed)
+            )
+            _print_inspection(dict(result), as_json=bool(args.json))
+            return 0
+        if args.data_command == "prepare":
+            manifest = _data_function("prepare_canonical_data")(
+                args.snapshot,
+                args.destination,
+                rights_confirmed=bool(args.rights_confirmed),
+            )
+            payload = {"status": "prepared", "manifest": str(manifest)}
+            _print_inspection(payload, as_json=bool(args.json))
+            return 0
+        raise SystemExit(f"unsupported data command: {args.data_command}")
+    if args.command == "validate":
+        if not args.quick:
+            raise SystemExit("validate requires --quick; full forecast execution is a separate command")
+        _print_inspection(_quick_validation_payload(), as_json=bool(args.json))
         return 0
     if args.command == "catalogue":
         _print_inspection(_catalogue_payload(), as_json=bool(args.json))
@@ -292,7 +440,9 @@ def main(argv: list[str] | None = None) -> int:
             row["public_model_id"] for row in load_canonical_models()
         }:
             raise SystemExit(f"unknown canonical model ID: {model_id}")
-        _print_inspection(retained_score_report(model_id), as_json=bool(args.json))
+        payload = retained_score_report(model_id)
+        payload["requested_experiment"] = args.experiment
+        _print_inspection(payload, as_json=bool(args.json))
         return 0
     if args.command == "smoke":
         return _execute(args, command="smoke", smoke=True)

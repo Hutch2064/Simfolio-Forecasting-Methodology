@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import math
-from typing import Mapping
+from collections.abc import Mapping
+from dataclasses import dataclass
+
+import numpy as np
 
 from .checkpoint import ExecutionManifest, TaskResult
 
@@ -33,21 +35,25 @@ def aggregate_fixed_denominator(
         raise IncompleteExecutionError(
             f"execution is incomplete: missing task results={missing[:3]} extra={extra[:3]}"
         )
-    failed = [record for record in records.values() if record.status != "completed"]
+    failed = [
+        records[item.task_id]
+        for item in manifest.tasks
+        if records[item.task_id].status != "completed"
+    ]
     if failed:
         details = "; ".join(
             (
                 f"{record.task_id}: {record.error_type or 'failure'}: "
                 f"{record.error_message or ''}"
             ).strip()
-            for record in sorted(failed, key=lambda item: item.task_id)
+            for record in failed
         )
         raise IncompleteExecutionError(f"execution contains failed tasks: {details}")
 
-    identities = {item.task_id: item for item in manifest.tasks}
     sums: dict[tuple[str, int], list[float | int]] = {}
-    for task_id in sorted(expected_task_ids):
-        identity = identities[task_id]
+    cell_order: list[tuple[str, int]] = []
+    for identity in manifest.tasks:
+        task_id = identity.task_id
         result = records[task_id]
         if len(result.losses) != identity.horizon_days:
             raise IncompleteExecutionError(
@@ -58,23 +64,30 @@ def aggregate_fixed_denominator(
             if not math.isfinite(float(loss)):
                 raise IncompleteExecutionError(f"task {task_id} returned a nonfinite loss")
             key = (identity.portfolio_id, offset)
+            if key not in sums:
+                cell_order.append(key)
             current = sums.setdefault(key, [0.0, 0])
             current[0] = float(current[0]) + float(loss)
             current[1] = int(current[1]) + 1
 
-    actual_cells = set(sums)
-    expected_cells = set(manifest.expected_cells)
-    if actual_cells != expected_cells:
-        missing = sorted(expected_cells - actual_cells)
-        extra = sorted(actual_cells - expected_cells)
+    actual_caps: dict[str, int] = {}
+    for portfolio, horizon in sums:
+        actual_caps[portfolio] = max(actual_caps.get(portfolio, 0), horizon)
+    expected_caps = dict(manifest.expected_cell_caps)
+    if actual_caps != expected_caps:
+        missing = sorted(set(expected_caps) - set(actual_caps))
+        extra = sorted(set(actual_caps) - set(expected_caps))
         raise IncompleteExecutionError(
-            f"fixed cell denominator changed: missing={missing[:3]} extra={extra[:3]}"
+            f"fixed cell caps changed: missing={missing[:3]} extra={extra[:3]}"
         )
-    means = [float(total) / int(count) for total, count in (sums[key] for key in sorted(sums))]
+    means = [float(sums[key][0]) / int(sums[key][1]) for key in cell_order]
     if not means:
         raise IncompleteExecutionError("execution produced no expected cells")
     return AggregatedScore(
-        score=math.fsum(means) / len(means),
+        # The source aggregation is arithmetic cell means followed by the
+        # ordinary NumPy mean in manifest/task order. Keep that order and
+        # operation explicit so a resume has the same floating-point path.
+        score=float(np.mean(np.asarray(means, dtype=np.float64))),
         cell_count=len(means),
         task_count=len(manifest.tasks),
     )

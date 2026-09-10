@@ -14,7 +14,7 @@ from .checkpoint import (
     TaskIdentity,
     TaskResult,
 )
-from .executor import ExecutionSummary, execute_checkpointed
+from .executor import ExecutionSummary, ProgressEvent, execute_checkpointed
 from .retained import retained_score_report
 
 __all__ = [
@@ -24,6 +24,7 @@ __all__ = [
     "ExecutionManifest",
     "ExecutionSummary",
     "IncompleteExecutionError",
+    "ProgressEvent",
     "TaskIdentity",
     "TaskResult",
     "aggregate_fixed_denominator",
