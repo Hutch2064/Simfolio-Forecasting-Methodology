@@ -8,11 +8,12 @@ matrix identity is:
 `52c5bdd96b39762183ef0c204fa8165c2dfd5a4864e7198662615daddb8d6a49`
 
 The source revision is `773bc1c325559e6bf57a567f1d8bf473a3427fbc`. The package
-publishes the manifest, source-relative paths, schemas, raw file hashes, and the
-common calendar. It does not publish financial value arrays. The source policy
-requires the caller to establish any rights needed for its intended local use
-or redistribution of a frozen copy; the verifier records those claims but
-does not grant them.
+publishes the manifest, source-relative paths, schemas, raw file hashes,
+common calendar, and all 55 whitelisted compressed source files. Aidan
+Hutchison confirmed redistribution approval for this exact research snapshot.
+The package records that authorization and preserves the source attribution
+in `resources/protocols/canonical_snapshot_attribution.json`; it does not
+invent an upstream license.
 
 The frozen calendar is `resources/data/canonical_calendar.csv`, covering the
 11687 observed dates in the canonical window. Its SHA-256 is
@@ -30,16 +31,11 @@ proxy, annualize, or convert a risk-free series while preparing the canonical
 snapshot; a model that transforms RF must declare that transformation in its
 own model contract.
 
-A permitted caller prepares a local cache with:
+Prepare the bundled snapshot entirely offline:
 
-```python
-from simfolio_forecasting_methodology.data import prepare_canonical_data
-
-prepare_canonical_data(
-    snapshot_root="path/to/authorized/source/snapshot",
-    destination="path/to/local/cache",
-    rights_confirmed=True,
-)
+```bash
+simfolio-oos data verify
+simfolio-oos data prepare --destination .simfolio-oos-data
 ```
 
 Preparation verifies every required series, the supporting `EFFRX` series, both
@@ -57,12 +53,10 @@ its local manifest hash is rewritten.
 `load_canonical_returns` reads the normalized raw return identity.
 `load_canonical_engine_inputs` reads the verified source-price-derived asset
 logs and portfolio logs used by the canonical task constructor. A prepared
-manifest may record `caller_authorized_local_use` or
-`local_use_unconfirmed`; both still require all exact source and derived-value
-checks to pass. `redistribution_status` is kept separate and is never inferred
+manifest records the packaged snapshot authorization and requires all exact
+source and derived-value checks to pass. `redistribution_status` is kept separate and is never inferred
 from a hash. The loaders never download, refresh, proxy, or import private
-arrays. The compatibility CLI data-build entry point fails closed because a
-public proxy is not the canonical dataset.
+arrays. No public-provider proxy is accepted as the canonical dataset.
 
 `resources/data/canonical_calendar.csv` is calendar metadata rather than a
 financial dataset. Its SHA-256 is
