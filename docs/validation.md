@@ -11,7 +11,7 @@ The installed-wheel checks cover:
 - package-resource access to the frozen 55-file data snapshot;
 - exact data verification and offline preparation identities;
 - 80 portfolios, 4,080 origin tasks, and 701,280 scored cells;
-- all 175 ledger rows and all 85 explicit factory instantiations;
+- all 175 ledger rows and every registered factory instantiation;
 - bounded Frontier and base-family source-parity fixtures; and
 - public-safety and canonical-ledger checks.
 
@@ -29,8 +29,8 @@ implementation matches its corresponding source fixture exactly. A digest
 mismatch is investigated as a source or dependency identity issue; tolerances
 are not widened to make the matrix green.
 
-The current release is deliberately incomplete. Eighty-five executable
-factories are validated, while 90 catalogue rows remain fail-closed. The
+The current release is incomplete. `simfolio-oos coverage` reports exact
+verified counts and remaining fail-closed identities. The
 historical score artifact is retained for inspection, but historical score
 linkage and the full statistical-specification gate remain unresolved. CI
 passing therefore proves packaging, public safety, bounded numerical parity,

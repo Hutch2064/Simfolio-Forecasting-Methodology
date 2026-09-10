@@ -23,8 +23,8 @@ implicit annualization is allowed.
 
 ## Runtime and dependency matrix
 
-The installed runtime exposes 85 explicit factories: 84 parameterized base
-models and the asset-level Frontier model. Factories are selected by exact
+The installed runtime exposes the verified factories reported by
+`simfolio-oos coverage`. Factories are selected by exact
 canonical IDs. Unknown IDs and ledger rows without a verified factory fail
 closed rather than falling back to a generic model.
 
@@ -37,7 +37,7 @@ source-local fixture; tolerances are not widened to hide a dependency change.
 
 The wheel checks run outside the source checkout. They verify package-resource
 loading, the 55-file offline snapshot, the 80/4,080/701,280 protocol counts,
-all 85 factory instantiations, bounded Frontier/base parity, and public-safety
+all registered factory instantiations, bounded family and Frontier parity, and public-safety
 scans before the complete test suite.
 
 ## Evidence status
@@ -45,8 +45,8 @@ scans before the complete test suite.
 Source-derived implementations have bounded fit-state, simulation, and
 rejoin parity fixtures where the ledger marks them executable. The retained
 historical score artifact remains evidence-only: its historical score linkage
-is unresolved, and the ledger currently confirms zero full statistical
-specifications. A successful installation, plan, or bounded smoke run does
+is qualified by the [runtime discrepancies](docs/historical-runtime-discrepancies.md).
+Complete specification coverage remains an open gate. A successful installation, plan, or bounded smoke run does
 not establish reproduction of the retained white-paper ranking.
 
 For the exact file hashes, attribution statement, protocol fingerprint, and
