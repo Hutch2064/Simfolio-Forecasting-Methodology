@@ -40,7 +40,9 @@ them. Separately, all 52 assets at three actual origins each had exact
 filtered-pool, multiscale-field, 25,200-day mean/standard-deviation curve, and
 37,440 empirical-quantile-node parity across the recorded Python/NumPy
 environments. Only a sanitized summary and receipt hash are packaged; no fit
-pickle or data payload is included.
+pickle or data payload is included. These checks cover the candidate's
+intermediate numerical kernels; they do not establish byte equality for full
+native portfolio paths or production storage and policy outputs.
 
 ## Interpretation
 
