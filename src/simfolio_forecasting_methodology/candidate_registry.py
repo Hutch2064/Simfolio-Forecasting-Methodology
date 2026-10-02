@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Callable
 from dataclasses import dataclass
 from importlib.resources import files
-from typing import Any, Callable
+from typing import Any
 
 from .catalogue import load_canonical_ledger
 from .models.asset_level.filtered_innovation_moment_sv import (

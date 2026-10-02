@@ -6,9 +6,9 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from .frontier import _historical_rebalance_dates, _validate_calendar
 from ..numerical import bdes_fastmap as bd
 from ..numerical import dynamic_gaussian as dg
+from .frontier import _historical_rebalance_dates, _validate_calendar
 from .sv_moment_functions import moment_return_curves
 
 FILTERED_INNOVATION_FIXED_MEAN_MODEL_ID = (

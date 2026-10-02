@@ -10,6 +10,12 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
+from .candidate_registry import (
+    build_candidate_model,
+    candidate_execution_record,
+    candidate_ids,
+    candidate_registration,
+)
 from .catalogue import (
     EXPECTED_CANONICAL_COUNT,
     EXPECTED_MEMBERSHIP_DIGEST,
@@ -17,12 +23,6 @@ from .catalogue import (
     frontier_model_id,
     load_canonical_ledger,
     load_canonical_models,
-)
-from .candidate_registry import (
-    build_candidate_model,
-    candidate_execution_record,
-    candidate_ids,
-    candidate_registration,
 )
 from .experiment import build_experiment_plan, iter_smoke_tasks
 from .models.registry import build_model, registration
