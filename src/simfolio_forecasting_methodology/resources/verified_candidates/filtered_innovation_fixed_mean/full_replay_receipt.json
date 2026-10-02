@@ -1,0 +1,118 @@
+{
+  "candidate_model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+  "cells_per_model": 701280,
+  "cross_runtime_marginal_parity": {
+    "all_checked_fields_exact": true,
+    "assets": 52,
+    "cases": 156,
+    "empirical_quantile_node_values": 37440,
+    "empirical_quantile_nodes_exact": true,
+    "empirical_quantile_nodes_max_abs": 0.0,
+    "horizon_days": 25200,
+    "max_abs_difference": 0.0,
+    "native_runtime": {
+      "numpy": "2.4.4",
+      "python": "3.13.15"
+    },
+    "origins_per_asset": 3,
+    "privacy_note": "Only this summary and the source receipt hash are packaged; no fit pickle or data payload is included.",
+    "public_runtime": {
+      "numpy": "2.5.3",
+      "python": "3.12.13"
+    },
+    "scope": "all52canonical_assets_three_origins_each_25200_day_marginal_moments",
+    "source_receipt_sha256": "e1c777379a66062c617b9cfcebb6d5119ed12cc091eacf289bbffa5e572a86a3"
+  },
+  "elapsed_seconds": 501.9000861644745,
+  "every_loss_vector_byte_equal": true,
+  "exact_empirical_crps": "0.25439860867855635",
+  "execution_context": {
+    "timing_qualification": "Observed full-run diagnostic; not a pure CLI or cross-machine performance claim.",
+    "workers": 4
+  },
+  "public_source_sha256": {
+    "src/simfolio_forecasting_methodology/__init__.py": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621",
+    "src/simfolio_forecasting_methodology/candidate_registry.py": "3e95991c12bdce38635d113d423a09016c8ff1a74ee4b0318af253992c5c4052",
+    "src/simfolio_forecasting_methodology/catalog.py": "f022b44327d881b6047fd3307f91e28e1f0194c62615d8f11ed3d22109fda8fb",
+    "src/simfolio_forecasting_methodology/catalogue.py": "665b4e56ac755c58a55bc0e2c983bf2d6c0fc7cb0b25df80c9865e017c365056",
+    "src/simfolio_forecasting_methodology/cli.py": "3b2e3490acbf4f17d54c07acfb97759941b02a1b9a6aa9b8fa737c5b8aea07d5",
+    "src/simfolio_forecasting_methodology/data.py": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0",
+    "src/simfolio_forecasting_methodology/evaluation.py": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8",
+    "src/simfolio_forecasting_methodology/experiment.py": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa",
+    "src/simfolio_forecasting_methodology/models/__init__.py": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b",
+    "src/simfolio_forecasting_methodology/models/asset_level/__init__.py": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4",
+    "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+    "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py": "1879504a55015b98fcc4c73336a1e470842cc961ae0d932833af79762f54f0b0",
+    "src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+    "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997",
+    "src/simfolio_forecasting_methodology/models/numerical/__init__.py": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1",
+    "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7",
+    "src/simfolio_forecasting_methodology/models/numerical/base_models.py": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31",
+    "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa",
+    "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+    "src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b",
+    "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+    "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+    "src/simfolio_forecasting_methodology/models/portfolio/__init__.py": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4",
+    "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952",
+    "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1",
+    "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d",
+    "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+    "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f",
+    "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d",
+    "src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+    "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3",
+    "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0",
+    "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040",
+    "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab",
+    "src/simfolio_forecasting_methodology/models/registry.py": "b73fa2db59954c03390fe2e098c7dc4c5a5eaf1d1de0499f6faa9d794b12aa64",
+    "src/simfolio_forecasting_methodology/naming.py": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e",
+    "src/simfolio_forecasting_methodology/origins.py": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8",
+    "src/simfolio_forecasting_methodology/panel.py": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b",
+    "src/simfolio_forecasting_methodology/protocol.py": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d",
+    "src/simfolio_forecasting_methodology/results/__init__.py": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd",
+    "src/simfolio_forecasting_methodology/results/aggregate.py": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f",
+    "src/simfolio_forecasting_methodology/results/checkpoint.py": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228",
+    "src/simfolio_forecasting_methodology/results/executor.py": "c8d9ea263ac056d0ee459c76154d36e67e20403664c0e078a12f85268c155649",
+    "src/simfolio_forecasting_methodology/results/retained.py": "5ae4a77f90df5a72201a448ba6d69a765c91f59dfc6dc5dae21a149830bd7970",
+    "src/simfolio_forecasting_methodology/runner.py": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac",
+    "src/simfolio_forecasting_methodology/safety_scan.py": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e",
+    "src/simfolio_forecasting_methodology/scores.py": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9",
+    "src/simfolio_forecasting_methodology/scoring.py": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487",
+    "src/simfolio_forecasting_methodology/seeds.py": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e",
+    "src/simfolio_forecasting_methodology/smoke.py": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c",
+    "src/simfolio_forecasting_methodology/specifications.py": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+  },
+  "replay_driver": {
+    "cli_qualification": "The recorded CLI source hash predates the candidate selector and score-report wrapper. The wrapper is covered by focused plan and report tests; the 4,080-task numerical replay did not invoke that wrapper.",
+    "execution_path": "Direct instantiation of the published candidate class and direct call to the canonical origin-task evaluator."
+  },
+  "schema_version": "verified_candidate_replay_receipt_v1",
+  "scope": "full4080_published_code_loss_byte_parity",
+  "simulations_per_origin": 240,
+  "tasks": 4080,
+  "validated_numerical_kernels": {
+    "all_native_candidate_rank_source_values": "all_302400000_native_candidate_rank_source_values",
+    "all_native_candidate_rank_source_values_equal": true,
+    "native_candidate_rank_value_count": 302400000,
+    "native_candidate_rank_value_shape": [
+      50,
+      240,
+      25200
+    ],
+    "native_candidate_rank_values_sha256": "7c4f45ae4afd16e1a78586d57b36ce31ae49876ff594fb3a5fdb1b7765d4d0e8",
+    "native_moment_function_ast_equal": {
+      "moment_return_curves": true,
+      "predictive_state_moments": true
+    },
+    "native_moment_source_sha256": "81bf2a39cf6f74f188e9f25c945e6839c9bf314a55a45a2c7689a375f12ac87f",
+    "public_moment_source_sha256": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997",
+    "source_sha256": {
+      "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py": "1879504a55015b98fcc4c73336a1e470842cc961ae0d932833af79762f54f0b0",
+      "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997",
+      "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa",
+      "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+      "src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b"
+    }
+  }
+}

@@ -7,6 +7,29 @@ implementations that have passed bounded parity checks, and an offline frozen
 data snapshot. It has no dependency on a production website, customer system,
 private datastore, or operational API.
 
+## Current combined score ranking
+
+The current public ranking is the combined 176-row numeric sort available from
+`simfolio-oos candidate-scores --json`. It keeps historical evidence status
+visible and adds the one independently audited new execution:
+
+| Display rank | Model | Exact empirical CRPS | Evidence |
+| ---: | --- | ---: | --- |
+| 1 | Filtered-Innovation Moment-Matched SV with Fixed Historical Mean | 0.25439860867855635 | New, full canonical paired execution; independently audited |
+| 2 | M001 — Asset FastMAP + Dynamic Gaussian Factor | 0.2557255171048505 | Retained historical evidence; not newly rerun |
+| 3 | M002 — Bayesian SBB + Bias-Corrected SV-AR1 | 0.25582280588825473 | Retained historical evidence; not newly rerun |
+
+The candidate's full paired run scored 4,080 tasks and 701,280 cells with 240
+simulations per origin. Its score is lower than the separately audited Frontier
+reference score of 0.25554347087969403, whose loss vectors were reused in that
+paired report. Historical rank values remain in the immutable 175-model ledger;
+the added candidate has no canonical rank. The mixed sort is descriptive and
+does not mean all 176 rows were freshly run. See
+[the candidate evidence report](docs/verified-candidate-results.md) for the
+paired-run statuses, replay receipt, and selection qualification.
+The [complete 176-row ranked JSON](docs/results/combined-176-score-ranking.json)
+is available for inspection without installing the CLI.
+
 ## Current release state
 
 The canonical ledger contains **175 exact model identities**. The public
@@ -44,11 +67,18 @@ The data commands use the packaged snapshot by default. Preparation writes a
 caller-local execution cache after rechecking every source hash and derived
 fingerprint; it never downloads or refreshes data. Use
 `simfolio-oos scores --json` to inspect retained score evidence without
-starting a forecast run.
+starting a forecast run. That command remains scoped to the original 175
+historical records; use `simfolio-oos candidate-scores --json` for the current
+combined ranking.
 
 The bounded implementation surface can be exercised with an exact model ID or
 the Frontier rank-one selector. A full canonical run requires the preserved
 240 simulations per origin and is not implied by a smoke run.
+
+Inspect the new candidate's task plan with
+`simfolio-oos candidate --model experimental_filtered_innovation_moment_sv_fixed_mean --plan --json`.
+The same exact selector runs it on the canonical dense plan when `--plan` is
+omitted.
 
 ## Frontier production validation
 

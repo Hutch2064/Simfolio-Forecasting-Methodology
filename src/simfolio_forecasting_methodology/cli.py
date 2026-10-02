@@ -18,10 +18,17 @@ from .catalogue import (
     load_canonical_ledger,
     load_canonical_models,
 )
+from .candidate_registry import (
+    build_candidate_model,
+    candidate_execution_record,
+    candidate_ids,
+    candidate_registration,
+)
 from .experiment import build_experiment_plan, iter_smoke_tasks
 from .models.registry import build_model, registration
 from .protocol import CANONICAL_DENSE_PROTOCOL
 from .results.retained import retained_score_report
+from .results.verified_candidate_scores import verified_candidate_score_report
 from .runner import execute_model_checkpointed
 
 CANONICAL_COMMAND = "canonical-175"
@@ -221,6 +228,30 @@ def build_parser() -> argparse.ArgumentParser:
     )
     _add_execution_arguments(canonical)
 
+    candidate = sub.add_parser(
+        "candidate",
+        help="Execute one separately verified candidate on the canonical dense task plan.",
+    )
+    candidate.add_argument("--model", choices=candidate_ids(), required=True)
+    candidate.add_argument("--plan", action="store_true")
+    candidate.add_argument("--data", type=Path, default=None)
+    candidate.add_argument("--simulations", type=int, default=240)
+    candidate.add_argument("--workers", type=int, default=1)
+    candidate.add_argument(
+        "--checkpoint",
+        "--output",
+        dest="checkpoint",
+        type=Path,
+        default=Path("results/verified-candidates"),
+    )
+    candidate.add_argument("--resume", action="store_true")
+    candidate.add_argument("--json", action="store_true")
+    candidate_scores = sub.add_parser(
+        "candidate-scores",
+        help="Inspect the combined historical and independently audited score ranking.",
+    )
+    candidate_scores.add_argument("--json", action="store_true")
+
     smoke = sub.add_parser("smoke", help="Execute bounded canonical smoke tasks.")
     _add_execution_arguments(smoke, smoke_default=True)
 
@@ -242,6 +273,81 @@ def build_parser() -> argparse.ArgumentParser:
     validate.add_argument("--quick", action="store_true", help="Validate ledger/protocol identity only.")
     validate.add_argument("--json", action="store_true")
     return parser
+
+
+def _candidate_plan_payload(model_id: str) -> dict[str, Any]:
+    payload = _plan_payload()
+    record = candidate_execution_record(model_id)
+    payload.update(
+        {
+            "scope": "verified_candidate_same_canonical_dense_protocol",
+            "model_count": 1,
+            "model_ids": [model_id],
+            "membership_digest": record["membership_digest"],
+            "candidate_status": candidate_registration(model_id).evidence_status,
+        }
+    )
+    return payload
+
+
+def _execute_candidate(args: argparse.Namespace) -> int:
+    if args.plan:
+        print(json.dumps(_candidate_plan_payload(args.model), indent=2, sort_keys=True))
+        return 0
+    if int(args.simulations) != CANONICAL_DENSE_PROTOCOL.simulations_per_origin:
+        raise SystemExit(
+            f"verified candidate runs require --simulations "
+            f"{CANONICAL_DENSE_PROTOCOL.simulations_per_origin}"
+        )
+    if int(args.workers) < 1:
+        raise SystemExit("--workers must be positive")
+    try:
+        model = build_candidate_model(args.model)
+        registration = candidate_registration(args.model)
+        record = candidate_execution_record(args.model)
+    except (RuntimeError, ValueError, OSError) as exc:
+        raise SystemExit(str(exc)) from exc
+    try:
+        cache = args.data or Path(".simfolio-oos-data")
+        if args.data is None and not cache.exists():
+            _data_function("prepare_canonical_data")(destination=cache)
+        plan = build_experiment_plan(
+            cache,
+            portfolio_limit=None,
+            rolling_origins=48,
+        )
+    except (RuntimeError, ValueError, OSError) as exc:
+        raise SystemExit(f"canonical data/protocol unavailable: {exc}") from exc
+    if not plan.tasks:
+        raise SystemExit("canonical task constructor returned no tasks")
+    summary = execute_model_checkpointed(
+        model,
+        plan.tasks,
+        simulations=int(args.simulations),
+        checkpoint_dir=Path(args.checkpoint) / _safe_model_path(args.model),
+        workers=int(args.workers),
+        resume=bool(args.resume),
+        progress_callback=_progress_callback(args),
+        execution_variant="verified_candidate",
+        model_record=record,
+    )
+    result = summary.to_dict()
+    result.update(
+        {
+            "display_name": record["display_name"],
+            "implementation_fidelity": registration.evidence_status,
+            "score_evidence_origin": "new_execution",
+            "canonical_ledger_member": False,
+        }
+    )
+    if args.json:
+        print(json.dumps(result, sort_keys=True))
+    else:
+        print(
+            f"{args.model}: status={summary.status} tasks={summary.completed_count}/"
+            f"{summary.task_count} failed={summary.failed_count} score={summary.score}"
+        )
+    return 0 if summary.status == "completed" else 1
 
 
 def _selected_models(args: argparse.Namespace, *, command: str) -> tuple[str, ...]:
@@ -463,6 +569,11 @@ def main(argv: list[str] | None = None) -> int:
         payload["requested_experiment"] = args.experiment
         _print_inspection(payload, as_json=bool(args.json))
         return 0
+    if args.command == "candidate-scores":
+        _print_inspection(verified_candidate_score_report(), as_json=bool(args.json))
+        return 0
+    if args.command == "candidate":
+        return _execute_candidate(args)
     if args.command == "smoke":
         return _execute(args, command="smoke", smoke=True)
     if args.command == CANONICAL_COMMAND:

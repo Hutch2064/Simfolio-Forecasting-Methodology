@@ -298,6 +298,31 @@ def _kalman_ar1_drift_filter(
     }
 
 
+def _fixed_historical_mean_filter(
+    y: np.ndarray,
+    *,
+    obs_var: float,
+    phi: float,
+    state_var_ratio: float,
+) -> dict[str, Any]:
+    """Return the point-mass zero-deviation filter used by the fixed-mean candidate."""
+
+    del phi, state_var_ratio
+    values = np.asarray(y, dtype=np.float64)
+    obs = float(obs_var)
+    loglik = -0.5 * (
+        values.size * math.log(2.0 * math.pi * obs)
+        + float(np.dot(values, values)) / obs
+    )
+    return {
+        "loglik": float(loglik),
+        "predicted_mean": np.zeros(values.size, dtype=np.float64),
+        "state_noise_var": 0.0,
+        "final_mean": 0.0,
+        "final_var": 0.0,
+    }
+
+
 def _estimate_evidence_dlm_drift_params(
     centered_returns: np.ndarray,
     *,
@@ -616,7 +641,13 @@ def _bdes_multiscale_components(h_path: np.ndarray, k_star: int, scale_grid: str
     return {"ell": ell, "phis": phis, "b": b, "q_last": q[-1, :].copy(), "q_var": q_var, "half_lives": half_lives.copy(), "scale_count": int(half_lives.size), "hbar": float(np.nanmean(h)), "h_low": float(h_q005 - h_iqr), "h_high": float(h_q995 + h_iqr), "component_low": float(np.quantile(component, 0.01)), "component_high": float(np.quantile(component, 0.99)), "resid_var": resid_var, "residual_last": float(residual[-1]), "residual_phi": residual_phi, "residual_innovation_sd": residual_innovation_sd, "residual_common_loading": residual_common_loading, "component_var": component_var, "reliability_weight": reliability_weight, "inverse_mse_weight": inverse_mse_weight, "dominant_half_life_days": dominant_half_life, "max_half_life_days": float(np.max(half_lives))}
 
 
-def fit_bdes_fastmap(log_returns: np.ndarray, candidate: Mapping[str, Any] | None = None) -> dict[str, Any]:
+def fit_bdes_fastmap(
+    log_returns: np.ndarray,
+    candidate: Mapping[str, Any] | None = None,
+    *,
+    filtered_innovations: bool = False,
+    fixed_mean: bool = False,
+) -> dict[str, Any]:
     """Fit the exact promoted historical FastMAP candidate for one asset."""
     settings = dict(FRONTIER_CANDIDATE if candidate is None else candidate)
     if settings != FRONTIER_CANDIDATE:
@@ -630,7 +661,26 @@ def fit_bdes_fastmap(log_returns: np.ndarray, candidate: Mapping[str, Any] | Non
     if not np.isfinite(sample_sigma) or sample_sigma <= 1e-10:
         raise ValueError("frontier_fastmap_degenerate_history")
     daily_to_annual_sharpe = math.sqrt(252.0) / sample_sigma; annual_sharpe_to_daily_mu = sample_sigma / math.sqrt(252.0); anchor_sharpe = sample_mu * daily_to_annual_sharpe; observed_sharpe = x * daily_to_annual_sharpe; centered_sharpe = observed_sharpe - anchor_sharpe; obs_var = float(np.var(centered_sharpe, ddof=1)); obs_var = obs_var if np.isfinite(obs_var) and obs_var > 1e-16 else 252.0
-    se_mu, bandwidth, long_run_var = _hac_mean_standard_error(x); se_mu = se_mu if np.isfinite(se_mu) and se_mu > 0.0 else sample_sigma / math.sqrt(float(x.size)); se_sharpe = se_mu * daily_to_annual_sharpe; params = _estimate_evidence_dlm_drift_params(centered_sharpe, obs_var=obs_var, signal_ratio_start=(se_sharpe / max(math.sqrt(obs_var), np.finfo(np.float64).tiny)) ** 2); phi_dlm = float(params["phi"]); ratio = float(params["state_var_ratio"]); filtered = _kalman_ar1_drift_filter(centered_sharpe, obs_var=obs_var, phi=phi_dlm, state_var_ratio=ratio)
+    se_mu, bandwidth, long_run_var = _hac_mean_standard_error(x); se_mu = se_mu if np.isfinite(se_mu) and se_mu > 0.0 else sample_sigma / math.sqrt(float(x.size)); se_sharpe = se_mu * daily_to_annual_sharpe
+    params = (
+        {"phi": 0.0, "state_var_ratio": 1e-10}
+        if fixed_mean
+        else _estimate_evidence_dlm_drift_params(
+            centered_sharpe,
+            obs_var=obs_var,
+            signal_ratio_start=(se_sharpe / max(math.sqrt(obs_var), np.finfo(np.float64).tiny)) ** 2,
+        )
+    )
+    phi_dlm = float(params["phi"]); ratio = float(params["state_var_ratio"])
+    filtered = (
+        _fixed_historical_mean_filter(
+            centered_sharpe, obs_var=obs_var, phi=phi_dlm, state_var_ratio=ratio
+        )
+        if fixed_mean
+        else _kalman_ar1_drift_filter(
+            centered_sharpe, obs_var=obs_var, phi=phi_dlm, state_var_ratio=ratio
+        )
+    )
     if not np.isfinite(float(filtered.get("loglik", -math.inf))):
         raise ValueError("frontier_fastmap_dlm_fit_failed")
     predicted_daily_mean = (anchor_sharpe + np.asarray(filtered["predicted_mean"], dtype=np.float64)) * annual_sharpe_to_daily_mu; residuals = x - predicted_daily_mean; z = residuals / sample_sigma; z = z[np.isfinite(z)]; z -= float(np.mean(z)); z_sd = float(np.std(z, ddof=1)) if z.size > 1 else 1.0; z = z / z_sd if np.isfinite(z_sd) and z_sd > 1e-12 else z
@@ -640,11 +690,12 @@ def fit_bdes_fastmap(log_returns: np.ndarray, candidate: Mapping[str, Any] | Non
     level, phi, eta = _fit_sv_map_state_space_params(observed_log_var, start_count=1, maxiter=60); loglik, filtered_log_var, filtered_var = _sv_kalman_filter(observed_log_var, level, phi, eta, return_path=True)
     if not np.isfinite(loglik) or filtered_log_var.size < FULL_MCMC_SV_MIN_OBS: raise ValueError("frontier_fastmap_sv_fit_failed")
     smoother_loglik, smoother_path, smoother_var = _sv_kalman_rts_smoother_mean(observed_log_var, level, phi, eta); state_path, state_var_path, state_loglik = (smoother_path, smoother_var, smoother_loglik) if np.isfinite(smoother_loglik) and smoother_path.size >= FULL_MCMC_SV_MIN_OBS else (filtered_log_var, filtered_var, loglik)
-    z_pool = _standardized_empirical_innovation_pool(eps_x, clip=None, method="mean_std")
+    innovation_values = eps_x * np.exp(-0.5 * state_path) if filtered_innovations else eps_x
+    z_pool = _standardized_empirical_innovation_pool(innovation_values, clip=None, method="mean_std")
     if z_pool is None or z_pool.size < FULL_MCMC_SV_MIN_OBS: raise ValueError("frontier_fastmap_invalid_innovation_pool")
     state_innov = (state_path[1:] - level - phi * (state_path[:-1] - level)) / max(eta, 1e-8); rho = _finite_correlation(z_pool[: state_innov.size], state_innov) if state_innov.size >= 4 else 0.0; rho = float(rho if np.isfinite(rho) and abs(rho) < 1.0 else np.clip(rho if np.isfinite(rho) else 0.0, -0.95, 0.95))
     posterior_samples = _fast_bdes_delta_method_sigma_samples(state_level=level, state_phi=phi, state_eta=eta, last_log_var=float(state_path[-1]), rho=rho, h_path=state_path); bdes = _bdes_multiscale_components(state_path, 4, BDES_MULTISCALE_GRID_FIXED)
-    return {**settings, "mu": posterior_mean, "residuals": (x - sample_mu).astype(np.float64), "base_fit": {"sample_mu": sample_mu, "sigma": sample_sigma, "posterior_mean": posterior_mean, "posterior_sd": posterior_sd, "posterior_mu_draws": False, "dlm_drift_paths": True, "dlm_long_run_anchor_mean": sample_mu, "dlm_state_transition_phi": phi_dlm, "dlm_state_noise_var": float(filtered["state_noise_var"]) * annual_sharpe_to_daily_mu**2, "dlm_state_posterior_deviation_mean": float(filtered["final_mean"]) * annual_sharpe_to_daily_mu, "dlm_state_posterior_deviation_var": float(filtered["final_var"]) * annual_sharpe_to_daily_mu**2, "standardized_residuals": np.clip(z, -20.0, 20.0), "sample_mean": sample_mu}, "innovation_pool": z_pool, "posterior_samples": posterior_samples, "posterior_center": (float(level), float(phi), float(eta), float(state_path[-1]), float(rho)), "bdes_multiscale_vol": bdes, "unclipped_empirical_innovations": True, "leverage": True, "leverage_alignment": "lagged_return", "sv_sigma_scale": 1.0, "state_loglikelihood": float(state_loglik), "state_path_variance_last": float(state_var_path[-1]), "n_obs": int(x.size), "mean_meta": {"method": "evidence_estimated_ar1_latent_sharpe_dlm_with_historical_cagr_anchor", "sample_mean": sample_mu, "sample_sigma": sample_sigma, "hac_bandwidth": int(bandwidth), "hac_long_run_variance": float(long_run_var), "historical_cagr_anchor": True}}
+    return {**settings, "mu": posterior_mean, "residuals": (x - sample_mu).astype(np.float64), "base_fit": {"sample_mu": sample_mu, "sigma": sample_sigma, "posterior_mean": posterior_mean, "posterior_sd": posterior_sd, "posterior_mu_draws": False, "dlm_drift_paths": True, "dlm_long_run_anchor_mean": sample_mu, "dlm_state_transition_phi": phi_dlm, "dlm_state_noise_var": float(filtered["state_noise_var"]) * annual_sharpe_to_daily_mu**2, "dlm_state_posterior_deviation_mean": float(filtered["final_mean"]) * annual_sharpe_to_daily_mu, "dlm_state_posterior_deviation_var": float(filtered["final_var"]) * annual_sharpe_to_daily_mu**2, "standardized_residuals": np.clip(z, -20.0, 20.0), "sample_mean": sample_mu}, "innovation_pool": z_pool, "posterior_samples": posterior_samples, "posterior_center": (float(level), float(phi), float(eta), float(state_path[-1]), float(rho)), "bdes_multiscale_vol": bdes, "unclipped_empirical_innovations": True, "leverage": True, "leverage_alignment": "lagged_return", "sv_sigma_scale": 1.0, "state_loglikelihood": float(state_loglik), "state_path_variance_last": float(state_var_path[-1]), "n_obs": int(x.size), "mean_meta": {"method": "historical_mean_without_latent_mean_dlm" if fixed_mean else "evidence_estimated_ar1_latent_sharpe_dlm_with_historical_cagr_anchor", "sample_mean": sample_mu, "sample_sigma": sample_sigma, "hac_bandwidth": int(bandwidth), "hac_long_run_variance": float(long_run_var), "historical_cagr_anchor": True}}
 
 
 @_numba_njit(cache=False)

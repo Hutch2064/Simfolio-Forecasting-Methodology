@@ -462,13 +462,16 @@ def build_execution_manifest(
     simulations: int,
     model: ForecastModel | None = None,
     execution_variant: str = "canonical",
+    model_record: Mapping[str, object] | None = None,
 ):
     """Build a source-linked manifest from the canonical task constructor."""
 
     from .catalogue import EXPECTED_MEMBERSHIP_DIGEST, canonical_model, load_canonical_ledger
     from .results.checkpoint import ExecutionManifest, stable_digest
 
-    record = canonical_model(model_id)
+    record = canonical_model(model_id) if model_record is None else dict(model_record)
+    if record.get("public_model_id") != model_id:
+        raise ValueError("execution model record does not match the requested model ID")
     ledger = load_canonical_ledger()
     identities = tuple(task_identity(task, model_id, int(simulations)) for task in tasks)
     if not identities:
@@ -503,7 +506,8 @@ def build_execution_manifest(
     default_seed_contract = "origin_task.seed_to_forecast_context.seed.v1"
     requested_seed_contract = getattr(model, "seed_contract", default_seed_contract)
     seed_contract = str(requested_seed_contract or default_seed_contract)
-    if execution_variant == "canonical":
+    canonical_task_scope = execution_variant in {"canonical", "verified_candidate"}
+    if canonical_task_scope:
         manifest_experiment_id = str(record["experiment_id"])
         manifest_protocol_id = CANONICAL_PROTOCOL_ID
     else:
@@ -511,7 +515,7 @@ def build_execution_manifest(
         manifest_protocol_id = f"{CANONICAL_PROTOCOL_ID}::{execution_variant}"
     dataset_fingerprint = record.get("dataset_fingerprint") or identity_policy.get("dataset_fingerprint")
     panel_fingerprint = record.get("panel_fingerprint") or identity_policy.get("panel_fingerprint")
-    if execution_variant != "canonical":
+    if not canonical_task_scope:
         dataset_fingerprint = stable_digest({
             "kind": "noncanonical_task_inputs",
             "inputs": [(item.training_digest, item.realized_digest) for item in identities],
@@ -526,7 +530,7 @@ def build_execution_manifest(
         experiment_id=manifest_experiment_id,
         protocol_id=manifest_protocol_id,
         execution_variant=execution_variant,
-        membership_digest=EXPECTED_MEMBERSHIP_DIGEST,
+        membership_digest=str(record.get("membership_digest") or EXPECTED_MEMBERSHIP_DIGEST),
         source_revision=str(record["source_revision"]),
         simulations=int(simulations),
         tasks=identities,
@@ -552,6 +556,7 @@ def execute_model_checkpointed(
     resume: bool = False,
     execution_variant: str = "canonical",
     progress_callback=None,
+    model_record: Mapping[str, object] | None = None,
 ):
     """Execute a canonical model with durable task checkpoints."""
 
@@ -563,6 +568,7 @@ def execute_model_checkpointed(
         simulations=int(simulations),
         model=model,
         execution_variant=execution_variant,
+        model_record=model_record,
     )
     return execute_checkpointed(
         model,

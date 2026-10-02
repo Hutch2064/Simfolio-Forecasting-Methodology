@@ -1,0 +1,193 @@
+{
+  "model_order_in_cell_loss_archive": [
+    "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+    "experimental_filtered_innovation_moment_sv_dlm",
+    "experimental_filtered_innovation_moment_sv_fixed_mean"
+  ],
+  "packaged_evidence": {
+    "candidate_tasks.json": "f52a0041b117c860ac90bbcb5c5b18c09fad85ce1336b646cada8c9606ef65e2",
+    "full_replay_receipt.json": "75df656b7bcae1d8bfe0a4a7d8204511bc8e24b93102002f18f2886bce867885",
+    "independent_final_audit.json": "fe1ae8127c4794344738bac77e383678cadc63f863a6792417e70fd2473f0d98",
+    "paired_cell_losses.npz": "56561c52aac2736ecaef03887d55ef3d747610b003daa74a5f7620ce99a9a301"
+  },
+  "paired_run": {
+    "cells_per_model": 701280,
+    "historical_whitepaper_ranking_reproduced": false,
+    "independent_audit_passed": true,
+    "model_rankings": [
+      {
+        "cell_count": 701280,
+        "evidence_origin": "newly_executed_in_filtered_candidate_run",
+        "exact_empirical_crps": "0.25439860867855635",
+        "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+        "paired_run_rank": 1,
+        "task_count": 4080
+      },
+      {
+        "cell_count": 701280,
+        "evidence_origin": "newly_executed_in_filtered_candidate_run",
+        "exact_empirical_crps": "0.2547972662964723",
+        "model_id": "experimental_filtered_innovation_moment_sv_dlm",
+        "paired_run_rank": 2,
+        "task_count": 4080
+      },
+      {
+        "cell_count": 701280,
+        "evidence_origin": "reused_independently_audited_incumbent_reference",
+        "exact_empirical_crps": "0.25554347087969403",
+        "model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+        "paired_run_rank": 3,
+        "task_count": 4080
+      }
+    ],
+    "scope": "full_canonical_paired",
+    "simulations": 240,
+    "tasks_per_model": 4080
+  },
+  "published_candidate": {
+    "canonical_ledger_member": false,
+    "display_name": "Filtered-Innovation Moment-Matched SV with Fixed Historical Mean",
+    "display_rank": 1,
+    "exact_empirical_crps": "0.25439860867855635",
+    "historical_retained_score": false,
+    "is_new_execution": true,
+    "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+    "rank_scope": "numeric sort position in the combined 176-row report; historical scores retain their own evidence status"
+  },
+  "replay": {
+    "cells_per_model": 701280,
+    "elapsed_seconds": 501.9000861644745,
+    "every_loss_vector_byte_equal": true,
+    "receipt": "full_replay_receipt.json",
+    "scope": "full4080_published_code_loss_byte_parity",
+    "simulations_per_origin": 240,
+    "tasks": 4080,
+    "timing_qualification": "Observed full-run diagnostic; not a pure CLI or cross-machine performance claim.",
+    "workers": 4
+  },
+  "schema_version": "verified_candidate_score_evidence_v1",
+  "selection_and_inference": {
+    "candidate_search_family_size": 23,
+    "inference_status": "descriptive_after_adaptive_selection",
+    "qualification": "The full paired score verifies this selected candidate on the canonical tasks. Ordinary single-comparison HAC or bootstrap inference does not account for the 23-candidate search; confirmatory claims require search-aware multiplicity control or an independent holdout.",
+    "selected_adaptively": true
+  },
+  "source_run": {
+    "candidate_source_artifacts_sha256": {
+      "artifacts/filtered_innovation_sv_candidates.py": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150",
+      "artifacts/fixed_mean_sv_candidates.py": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c",
+      "artifacts/moment_sv_candidates.py": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686",
+      "artifacts/predictive_sv_candidates.py": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816",
+      "artifacts/verify_paired_oos_artifacts.py": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511",
+      "research/../artifacts/full_filtered_oos.py": "cbcff2c15c8fcea3b8a05f8e73834036a29a97d55500b1eb82837854a05b7fff"
+    },
+    "environment": {
+      "arch": "8.0.0",
+      "numba": "0.67.0",
+      "numerical_environment": {
+        "interpreter": {
+          "build": [
+            "main",
+            "Apr 14 2026 14:33:40"
+          ],
+          "cache_tag": "cpython-312",
+          "compiler": "Clang 22.1.3",
+          "implementation": "CPython",
+          "version": "3.12.13"
+        },
+        "packages": {
+          "numpy": {
+            "blas_lapack": {
+              "blas": {
+                "detection method": "system",
+                "found": true,
+                "name": "accelerate",
+                "openblas configuration": "unknown",
+                "version": "unknown"
+              },
+              "lapack": {
+                "detection method": "system",
+                "found": true,
+                "name": "accelerate",
+                "openblas configuration": "unknown",
+                "version": "unknown"
+              }
+            },
+            "version": "2.5.3"
+          },
+          "scipy": {
+            "blas_lapack": {
+              "blas": {
+                "cython blas ilp64": false,
+                "detection method": "extraframeworks",
+                "found": true,
+                "has ilp64": false,
+                "name": "Accelerate",
+                "openblas configuration": "unknown",
+                "version": "unknown"
+              },
+              "lapack": {
+                "detection method": "extraframeworks",
+                "found": true,
+                "has ilp64": false,
+                "name": "Accelerate",
+                "openblas configuration": "unknown",
+                "version": "unknown"
+              }
+            },
+            "version": "1.18.1"
+          }
+        },
+        "platform": {
+          "machine": "arm64",
+          "release": "27.0.0",
+          "system": "Darwin",
+          "version": "<redacted>"
+        },
+        "thread_settings": {
+          "environment": {
+            "BLIS_NUM_THREADS": null,
+            "GOTO_NUM_THREADS": null,
+            "MKL_DYNAMIC": null,
+            "MKL_NUM_THREADS": "1",
+            "NUMBA_NUM_THREADS": "1",
+            "NUMBA_THREADING_LAYER": null,
+            "NUMEXPR_NUM_THREADS": "1",
+            "OMP_DYNAMIC": null,
+            "OMP_NUM_THREADS": "1",
+            "OMP_PLACES": null,
+            "OMP_PROC_BIND": null,
+            "OPENBLAS_NUM_THREADS": "1",
+            "VECLIB_MAXIMUM_THREADS": null
+          },
+          "numpy_seterr": {
+            "divide": "warn",
+            "invalid": "warn",
+            "over": "warn",
+            "under": "ignore"
+          }
+        }
+      },
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "python": "3.12.13",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0"
+    },
+    "incumbent_reference": {
+      "audit_sha256": "f95135b8979fe3c8977132c6925d2c9a22af88444570545798cf972d1816dd5c",
+      "cell_losses_sha256": "fdbedd05fe653fd224ad042bf85a755da15cbc774d13bcd87982a6c1510b656f",
+      "manifest_sha256": "63056a1c052da834cbf59ba453d6daf1e11792314cde22e61d9e5b0a85b0a095",
+      "qualification": "all canonical task identities, complete source closure, data, environment, seeds, scoring and byte-exact accelerator validation match",
+      "results_sha256": "ad5f3c0379cbc19926a0994a59d3d641437d2896260e9208eaef9f1de0171d93",
+      "score": 0.25554347087969403
+    },
+    "independent_audit_script_sha256": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511",
+    "original_audit_sha256": "fe1ae8127c4794344738bac77e383678cadc63f863a6792417e70fd2473f0d98",
+    "original_manifest_sha256": "97e8a7769fdad508de5a242b4e2325c20c29d3197e2fdd91fc588ad685e3ae4f",
+    "original_results_sha256": "5965df1ebdd4538d08684fac27f19d03e51dfe1de5c155bed93bf4057a63be58",
+    "paired_cell_losses_sha256": "56561c52aac2736ecaef03887d55ef3d747610b003daa74a5f7620ce99a9a301",
+    "research_repository_revision": "6666be3597b986aff945b985f11c6419284d0f2c"
+  }
+}

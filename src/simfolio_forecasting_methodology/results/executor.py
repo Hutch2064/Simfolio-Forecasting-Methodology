@@ -42,7 +42,11 @@ class ExecutionSummary:
             "result_kind": (
                 "new_execution"
                 if self.execution_variant == "canonical"
-                else "new_execution_noncanonical"
+                else (
+                    "new_execution_verified_candidate"
+                    if self.execution_variant == "verified_candidate"
+                    else "new_execution_noncanonical"
+                )
             ),
             "model_id": self.model_id,
             "execution_variant": self.execution_variant,
