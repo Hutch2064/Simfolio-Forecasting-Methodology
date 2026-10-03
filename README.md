@@ -7,6 +7,13 @@ implementations that have passed bounded parity checks, and an offline frozen
 data snapshot. It has no dependency on a production website, customer system,
 private datastore, or operational API.
 
+## Additional parameter-MCMC research
+
+The [asset-level parameter-MCMC optimization report](docs/mcmc-runtime-optimization.md)
+records a separate full-panel candidate, exact complete-output replay, matched
+local runtime measurements, and reproducible experimental tools. It is not
+registered in the combined catalogue or deployed as a production model.
+
 ## Current combined score ranking
 
 The current public ranking is the combined 176-row numeric sort available from

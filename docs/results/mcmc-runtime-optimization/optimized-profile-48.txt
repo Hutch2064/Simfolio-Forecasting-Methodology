@@ -1,0 +1,31 @@
+         192608 function calls (192475 primitive calls) in 0.718 seconds
+
+   Ordered by: cumulative time
+   List reduced from 653 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.021    0.021    0.718    0.718 tools/mcmc_runtime/optimized_mcmc.py:117(simulate_daily_log_returns)
+        6    0.005    0.001    0.474    0.079 tools/mcmc_runtime/parameter_mcmc_tuned.py:39(parameter_fit)
+       12    0.000    0.000    0.399    0.033 tools/mcmc_runtime/optimized_mcmc.py:59(checked)
+       12    0.386    0.032    0.399    0.033 tools/mcmc_runtime/compiled_chain.py:9(chain)
+        1    0.000    0.000    0.081    0.081 tools/mcmc_runtime/optimized_mcmc.py:96(uniforms)
+        1    0.000    0.000    0.081    0.081 tools/mcmc_runtime/streamed_paths.py:30(uniforms)
+        1    0.000    0.000    0.069    0.069 stdlib/concurrent/futures/_base.py:646(__exit__)
+        1    0.000    0.000    0.069    0.069 stdlib/concurrent/futures/thread.py:220(shutdown)
+        1    0.000    0.000    0.069    0.069 stdlib/threading.py:1117(join)
+        1    0.000    0.000    0.068    0.068 stdlib/threading.py:1155(_wait_for_tstate_lock)
+        9    0.043    0.005    0.060    0.007 {method 'get' of '_queue.SimpleQueue' objects}
+      102    0.000    0.000    0.058    0.001 tools/mcmc_runtime/optimized_mcmc.py:81(multiscale)
+      102    0.000    0.000    0.058    0.001 tools/mcmc_runtime/finite_multiscale.py:39(result)
+      102    0.020    0.000    0.057    0.001 tools/mcmc_runtime/finite_multiscale.py:1(_bdes_multiscale_components)
+        1    0.052    0.052    0.055    0.055 tools/mcmc_runtime/streamed_paths.py:61(rejoin)
+        6    0.001    0.000    0.052    0.009 tools/mcmc_runtime/optimized_mcmc.py:43(mixture_curves)
+       96    0.006    0.000    0.050    0.001 tools/mcmc_runtime/cached_moments.py:1(moment_return_curves)
+       96    0.019    0.000    0.044    0.000 tools/mcmc_runtime/cached_moments.py:1(predictive_state_moments)
+        1    0.000    0.000    0.022    0.022 src/simfolio_forecasting_methodology/models/asset_level/frontier.py:61(_validate_calendar)
+        2    0.000    0.000    0.022    0.011 site-packages/pandas/core/indexes/datetimes.py:821(date_range)
+        2    0.001    0.000    0.022    0.011 site-packages/pandas/core/arrays/datetimes.py:399(_generate_range)
+        1    0.000    0.000    0.022    0.022 site-packages/pandas/core/indexes/datetimes.py:1022(bdate_range)
+      591    0.020    0.000    0.021    0.000 tools/mcmc_runtime/cached_moments.py:10(power)
+     8814    0.021    0.000    0.021    0.000 site-packages/pandas/core/arrays/datetimes.py:2729(_generate_range)
+        9    0.021    0.002    0.021    0.002 stdlib/concurrent/futures/thread.py:54(run)

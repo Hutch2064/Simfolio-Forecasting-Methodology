@@ -1,0 +1,20 @@
+{
+  "all_denominator_gates_passed": true,
+  "elapsed_seconds": 1537.451471458,
+  "manifest_sha256": "370ff3fbf797e76e658ebae046e55adad8bf9cd6c3676340940306b9d324a831",
+  "scope": "full_canonical",
+  "scores": {
+    "experimental_filtered_innovation_moment_sv_fixed_mean": {
+      "cells": 701280,
+      "crps": 0.25439860867855635,
+      "summed_worker_seconds": 1179.1645912519816,
+      "tasks": 4080
+    },
+    "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture": {
+      "cells": 701280,
+      "crps": 0.25246784959071183,
+      "summed_worker_seconds": 3386.4930744372105,
+      "tasks": 4080
+    }
+  }
+}

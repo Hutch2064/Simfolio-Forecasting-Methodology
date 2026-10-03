@@ -1,0 +1,57 @@
+{
+  "portfolio_wins": 52,
+  "portfolios": 80,
+  "horizon_mean_wins": 7907,
+  "horizons": 8766,
+  "horizon_buckets": [
+    {
+      "from_day": 1,
+      "to_day": 21,
+      "baseline": 0.01314127570527739,
+      "candidate": 0.013088880213894018,
+      "relative_gain_percent": 0.39870932288811406
+    },
+    {
+      "from_day": 22,
+      "to_day": 63,
+      "baseline": 0.024664780197065826,
+      "candidate": 0.024576142591504375,
+      "relative_gain_percent": 0.3593691281789539
+    },
+    {
+      "from_day": 64,
+      "to_day": 252,
+      "baseline": 0.04818638460005463,
+      "candidate": 0.0480740062021677,
+      "relative_gain_percent": 0.23321608130525867
+    },
+    {
+      "from_day": 253,
+      "to_day": 1260,
+      "baseline": 0.09978467474336125,
+      "candidate": 0.0992477316377875,
+      "relative_gain_percent": 0.5381017746008931
+    },
+    {
+      "from_day": 1261,
+      "to_day": 2520,
+      "baseline": 0.15042721423021163,
+      "candidate": 0.14965636561917703,
+      "relative_gain_percent": 0.5124395974354128
+    },
+    {
+      "from_day": 2521,
+      "to_day": 5040,
+      "baseline": 0.21682686375726246,
+      "candidate": 0.2137683991337814,
+      "relative_gain_percent": 1.4105561324287772
+    },
+    {
+      "from_day": 5041,
+      "to_day": 8766,
+      "baseline": 0.3712061596052204,
+      "candidate": 0.3691452007188549,
+      "relative_gain_percent": 0.5552060042746388
+    }
+  ]
+}

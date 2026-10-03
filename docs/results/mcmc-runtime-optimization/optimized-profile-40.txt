@@ -1,0 +1,31 @@
+         238479 function calls (238353 primitive calls) in 1.499 seconds
+
+   Ordered by: cumulative time
+   List reduced from 653 to 25 due to restriction <25>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.004    0.004    1.499    1.499 tools/mcmc_runtime/optimized_mcmc.py:117(simulate_daily_log_returns)
+        6    0.015    0.002    1.368    0.228 tools/mcmc_runtime/parameter_mcmc_tuned.py:39(parameter_fit)
+       12    0.000    0.000    1.216    0.101 tools/mcmc_runtime/optimized_mcmc.py:59(checked)
+       12    1.201    0.100    1.216    0.101 tools/mcmc_runtime/compiled_chain.py:9(chain)
+      102    0.000    0.000    0.119    0.001 tools/mcmc_runtime/optimized_mcmc.py:81(multiscale)
+      102    0.000    0.000    0.119    0.001 tools/mcmc_runtime/finite_multiscale.py:39(result)
+      102    0.050    0.000    0.119    0.001 tools/mcmc_runtime/finite_multiscale.py:1(_bdes_multiscale_components)
+        1    0.000    0.000    0.061    0.061 tools/mcmc_runtime/optimized_mcmc.py:96(uniforms)
+        1    0.000    0.000    0.061    0.061 tools/mcmc_runtime/streamed_paths.py:30(uniforms)
+  462/360    0.000    0.000    0.045    0.000 site-packages/numpy/lib/_function_base_impl.py:3827(_ureduce)
+      252    0.000    0.000    0.043    0.000 site-packages/numpy/lib/_function_base_impl.py:4267(quantile)
+        1    0.000    0.000    0.043    0.043 tools/mcmc_runtime/optimized_mcmc.py:89(terminal)
+        1    0.034    0.034    0.043    0.043 tools/mcmc_runtime/cached_dependence.py:1(kalman_terminal_posterior)
+      252    0.000    0.000    0.043    0.000 site-packages/numpy/lib/_function_base_impl.py:4512(_quantile_unchecked)
+      252    0.000    0.000    0.043    0.000 site-packages/numpy/lib/_function_base_impl.py:4651(_quantile_ureduce_func)
+      252    0.001    0.000    0.042    0.000 site-packages/numpy/lib/_function_base_impl.py:4726(_quantile)
+     1269    0.015    0.000    0.041    0.000 site-packages/numpy/_core/_methods.py:148(_var)
+      360    0.036    0.000    0.036    0.000 {method 'partition' of 'numpy.ndarray' objects}
+     6559    0.034    0.000    0.034    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+      534    0.000    0.000    0.033    0.000 site-packages/numpy/_core/fromnumeric.py:3871(std)
+      534    0.000    0.000    0.033    0.000 site-packages/numpy/_core/_methods.py:217(_std)
+        6    0.000    0.000    0.028    0.005 tools/mcmc_runtime/optimized_mcmc.py:36(nodes)
+        6    0.000    0.000    0.021    0.004 tools/mcmc_runtime/runtime_setup.py:33(fit)
+        6    0.000    0.000    0.021    0.004 tools/mcmc_runtime/runtime_setup.py:31(cached)
+        6    0.001    0.000    0.021    0.004 src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py:644(fit_bdes_fastmap)

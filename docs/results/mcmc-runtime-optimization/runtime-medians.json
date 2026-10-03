@@ -1,0 +1,126 @@
+{
+  "matched-model-cases.json": {
+    "0": {
+      "reference": {
+        "seconds": 0.4178507915021328,
+        "cpu_seconds": 0.41756750000000054
+      },
+      "optimized": {
+        "seconds": 0.1067635000035807,
+        "cpu_seconds": 0.17059300000000022
+      },
+      "frontier": {
+        "seconds": 0.030780208500800654,
+        "cpu_seconds": 0.030762499999999804
+      }
+    },
+    "40": {
+      "reference": {
+        "seconds": 3.1034359994955594,
+        "cpu_seconds": 3.101435499999999
+      },
+      "optimized": {
+        "seconds": 0.3328100624967192,
+        "cpu_seconds": 1.7242930000000012
+      },
+      "frontier": {
+        "seconds": 0.32030589599889936,
+        "cpu_seconds": 0.32002749999999835
+      }
+    },
+    "48": {
+      "reference": {
+        "seconds": 2.379629353999917,
+        "cpu_seconds": 2.3781389999999973
+      },
+      "optimized": {
+        "seconds": 0.3900644584973634,
+        "cpu_seconds": 1.039625000000001
+      },
+      "frontier": {
+        "seconds": 1.2619267500012938,
+        "cpu_seconds": 1.260818000000004
+      }
+    }
+  },
+  "scaling-benchmark-final.json": {
+    "6": {
+      "reference": {
+        "seconds": 3.227595479002048,
+        "cpu_seconds": 3.225713000000001
+      },
+      "optimized1": {
+        "seconds": 0.9086806045015692,
+        "cpu_seconds": 1.5907795
+      },
+      "optimized2": {
+        "seconds": 0.5558863119986199,
+        "cpu_seconds": 1.6098665000000008
+      },
+      "optimized4": {
+        "seconds": 0.4530449169978965,
+        "cpu_seconds": 1.6820584999999992
+      },
+      "optimized6": {
+        "seconds": 0.3575487915004487,
+        "cpu_seconds": 1.7841070000000006
+      },
+      "frontier": {
+        "seconds": 0.43763183299961383,
+        "cpu_seconds": 0.4372395000000022
+      }
+    },
+    "25": {
+      "reference": {
+        "seconds": 13.06496060399877,
+        "cpu_seconds": 13.056922499999994
+      },
+      "optimized1": {
+        "seconds": 3.7226904585004377,
+        "cpu_seconds": 6.486980499999998
+      },
+      "optimized2": {
+        "seconds": 2.2266267080012767,
+        "cpu_seconds": 6.558587499999998
+      },
+      "optimized4": {
+        "seconds": 1.5228248334969976,
+        "cpu_seconds": 6.860433000000004
+      },
+      "optimized6": {
+        "seconds": 1.3787307709972083,
+        "cpu_seconds": 7.2156275
+      },
+      "frontier": {
+        "seconds": 1.3206488329960848,
+        "cpu_seconds": 1.3193839999999994
+      }
+    },
+    "50": {
+      "reference": {
+        "seconds": 26.10805831250036,
+        "cpu_seconds": 26.089838999999998
+      },
+      "optimized1": {
+        "seconds": 7.418705874999432,
+        "cpu_seconds": 12.921172499999997
+      },
+      "optimized2": {
+        "seconds": 4.314414916501846,
+        "cpu_seconds": 13.044118999999995
+      },
+      "optimized4": {
+        "seconds": 2.8955613335019734,
+        "cpu_seconds": 13.615397500000014
+      },
+      "optimized6": {
+        "seconds": 2.6011126459998195,
+        "cpu_seconds": 14.24710499999999
+      },
+      "frontier": {
+        "seconds": 2.653675374996965,
+        "cpu_seconds": 2.651778499999992
+      }
+    }
+  }
+}

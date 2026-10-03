@@ -1,0 +1,19 @@
+{
+  "suite": "complete repository pytest suite against an installed clean wheel, outside checkout",
+  "passed": 185,
+  "skipped": 0,
+  "warnings": 18,
+  "elapsed_seconds": 101.15,
+  "ruff": "src tests tools: all checks passed",
+  "additional_source_sha256": {
+    "tests/test_mcmc_runtime_optimization.py": "a1f88ee61b60638c5f6b7a7a51eafa123d95aee833739e4bdc073f0988faa381",
+    "tools/generate_mcmc_reference.py": "bff4ad3476c656729c1d78a95cec14b32ce44219b68ea1a13104bf06c3c4d2d2"
+  },
+  "wheel_sha256": "7d86c87ad9fedabb0c9b34d9a933519a9b39ec3d13356e0567e760e3e6da7cd4",
+  "final_publication_checks": {
+    "publication_safety_and_runtime_tests": 26,
+    "elapsed_seconds": 2.42,
+    "ruff": "all checks passed",
+    "git_diff_check": "passed"
+  }
+}

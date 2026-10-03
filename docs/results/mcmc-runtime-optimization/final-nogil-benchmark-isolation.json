@@ -1,0 +1,26 @@
+{
+  "replay_parent": 19846,
+  "worker_pids": [
+    19852,
+    19853,
+    19854,
+    19855
+  ],
+  "paused_start_unix": 1791002932.8811038,
+  "pause_seconds": 333.9310483932495,
+  "events": [
+    {
+      "script": "benchmark_model_cases.py",
+      "elapsed_seconds": 52.68807116699463
+    },
+    {
+      "script": "benchmark_scaling.py",
+      "elapsed_seconds": 157.13623987499886
+    },
+    {
+      "script": "profile_runtime.py",
+      "elapsed_seconds": 21.56608566599607
+    }
+  ],
+  "scope": "only own research replay workers paused; production untouched"
+}
