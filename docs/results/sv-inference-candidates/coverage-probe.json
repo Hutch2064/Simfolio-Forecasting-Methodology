@@ -1,0 +1,206 @@
+[
+  {
+    "method": "laplace_mixture_is",
+    "training_sha256": "c412e5c3e9a1ae14da205506286274d6fdeef35e88f2e762128b53cb1ea9f213",
+    "observations": 8765,
+    "laplace_optimizer_success": true,
+    "laplace_iterations": 11,
+    "laplace_gradient_max": 0.0001937205058004654,
+    "laplace_min_hessian_eigenvalue": 52.99246884570152,
+    "importance_draws": 4096,
+    "importance_ess": 1274.8002305418845,
+    "max_normalized_weight": 0.0015224755556228849,
+    "pareto_k": -0.2711930977633418,
+    "proposal_components": 4,
+    "mode_search": [
+      {
+        "laplace_optimizer_success": true,
+        "laplace_iterations": 11,
+        "laplace_gradient_max": 0.0001937205058004654,
+        "laplace_min_hessian_eigenvalue": 52.99246884570152
+      },
+      {
+        "laplace_optimizer_success": true,
+        "laplace_iterations": 21,
+        "laplace_gradient_max": 0.0011306054757860284,
+        "laplace_min_hessian_eigenvalue": 41.60751256986656
+      }
+    ]
+  },
+  {
+    "method": "hmc_long",
+    "training_sha256": "c412e5c3e9a1ae14da205506286274d6fdeef35e88f2e762128b53cb1ea9f213",
+    "observations": 8765,
+    "laplace_optimizer_success": true,
+    "laplace_iterations": 11,
+    "laplace_gradient_max": 0.0001937205058004654,
+    "laplace_min_hessian_eigenvalue": 52.99246884570152,
+    "rhat": {
+      "level": 1.0017991386999046,
+      "phi_logit": 1.0003075949094724,
+      "log_eta": 1.0000379144048088
+    },
+    "bulk_ess": {
+      "level": 10378.843622502061,
+      "phi_logit": 8553.745276593341,
+      "log_eta": 6951.999041758004
+    },
+    "tail_ess": {
+      "level": 4545.981747498466,
+      "phi_logit": 4073.751090014955,
+      "log_eta": 5109.073976477087
+    },
+    "acceptance": [
+      0.91064453125,
+      0.900390625,
+      0.91162109375,
+      0.90380859375
+    ],
+    "energy_error_count": 0,
+    "step_size": [
+      0.9999998159688301,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "burn": 1024,
+    "kept": 2048,
+    "chains": 4
+  },
+  {
+    "method": "laplace_mixture_is",
+    "training_sha256": "2893e73c582bb0d82db1e28450958ac7f7cea405bd5531976a689f6182d97ecd",
+    "observations": 2403,
+    "laplace_optimizer_success": true,
+    "laplace_iterations": 9,
+    "laplace_gradient_max": 4.632740941046265e-05,
+    "laplace_min_hessian_eigenvalue": 34.30470781015494,
+    "importance_draws": 4096,
+    "importance_ess": 1155.2722238416138,
+    "max_normalized_weight": 0.0030031001165957347,
+    "pareto_k": 0.056199007216581554,
+    "proposal_components": 4,
+    "mode_search": [
+      {
+        "laplace_optimizer_success": true,
+        "laplace_iterations": 9,
+        "laplace_gradient_max": 4.632740941046265e-05,
+        "laplace_min_hessian_eigenvalue": 34.30470781015494
+      },
+      {
+        "laplace_optimizer_success": true,
+        "laplace_iterations": 20,
+        "laplace_gradient_max": 9.364031067438106e-06,
+        "laplace_min_hessian_eigenvalue": 19.929532073989446
+      }
+    ]
+  },
+  {
+    "method": "hmc_long",
+    "training_sha256": "2893e73c582bb0d82db1e28450958ac7f7cea405bd5531976a689f6182d97ecd",
+    "observations": 2403,
+    "laplace_optimizer_success": true,
+    "laplace_iterations": 9,
+    "laplace_gradient_max": 4.632740941046265e-05,
+    "laplace_min_hessian_eigenvalue": 34.30470781015494,
+    "rhat": {
+      "level": 1.0009405505838083,
+      "phi_logit": 1.0014410369820184,
+      "log_eta": 1.0007520051503833
+    },
+    "bulk_ess": {
+      "level": 8652.046878590185,
+      "phi_logit": 3164.604611483901,
+      "log_eta": 4552.72621773961
+    },
+    "tail_ess": {
+      "level": 3994.550855442915,
+      "phi_logit": 2755.9011618513973,
+      "log_eta": 3260.425504118935
+    },
+    "acceptance": [
+      0.81787109375,
+      0.79541015625,
+      0.8056640625,
+      0.84619140625
+    ],
+    "energy_error_count": 0,
+    "step_size": [
+      0.9630156781530171,
+      0.9716312845180697,
+      0.9730082776121614,
+      0.9482213742092866
+    ],
+    "burn": 1024,
+    "kept": 2048,
+    "chains": 4
+  },
+  {
+    "method": "laplace_mixture_is",
+    "training_sha256": "518279287509b803d1ec3a19b6b374ad56829369e0c100dc59756a0c9b853abf",
+    "observations": 7128,
+    "laplace_optimizer_success": true,
+    "laplace_iterations": 15,
+    "laplace_gradient_max": 0.0013335729708925381,
+    "laplace_min_hessian_eigenvalue": 13.235595264695684,
+    "importance_draws": 4096,
+    "importance_ess": 1291.2947426473022,
+    "max_normalized_weight": 0.0014399589216351194,
+    "pareto_k": -0.2711332552408008,
+    "proposal_components": 4,
+    "mode_search": [
+      {
+        "laplace_optimizer_success": true,
+        "laplace_iterations": 15,
+        "laplace_gradient_max": 0.0013335729708925381,
+        "laplace_min_hessian_eigenvalue": 13.235595264695684
+      },
+      {
+        "laplace_optimizer_success": true,
+        "laplace_iterations": 21,
+        "laplace_gradient_max": 0.003472765033710301,
+        "laplace_min_hessian_eigenvalue": 35.47403681025799
+      }
+    ]
+  },
+  {
+    "method": "hmc_long",
+    "training_sha256": "518279287509b803d1ec3a19b6b374ad56829369e0c100dc59756a0c9b853abf",
+    "observations": 7128,
+    "laplace_optimizer_success": true,
+    "laplace_iterations": 15,
+    "laplace_gradient_max": 0.0013335729708925381,
+    "laplace_min_hessian_eigenvalue": 13.235595264695684,
+    "rhat": {
+      "level": 1.0004608590130577,
+      "phi_logit": 1.0011436873761275,
+      "log_eta": 1.0005169306126807
+    },
+    "bulk_ess": {
+      "level": 5366.775449424593,
+      "phi_logit": 2495.5696424284815,
+      "log_eta": 3403.9793149286343
+    },
+    "tail_ess": {
+      "level": 3910.1797684943876,
+      "phi_logit": 2053.1040134434306,
+      "log_eta": 3459.9166503289657
+    },
+    "acceptance": [
+      0.85302734375,
+      0.8828125,
+      0.86328125,
+      0.87060546875
+    ],
+    "energy_error_count": 0,
+    "step_size": [
+      0.5160678007090459,
+      0.5062511623144802,
+      0.5118118250448205,
+      0.5024470449902207
+    ],
+    "burn": 1024,
+    "kept": 2048,
+    "chains": 4
+  }
+]

@@ -15,6 +15,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  inference-candidates:
+    name: Experimental inference numerical contracts
+    runs-on: macos-26
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      NUMBA_NUM_THREADS: "4"
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: "0.12.5"
+      - name: Install reference environment and inference diagnostics
+        run: |
+          reference_env="${RUNNER_TEMP}/inference-python"
+          uv venv --managed-python --python 3.12.13 --seed "$reference_env"
+          "$reference_env/bin/python" -m pip install -r requirements-lock.txt
+          "$reference_env/bin/python" -m pip install -r tools/inference_candidates/requirements.txt
+          echo "$reference_env/bin" >> "$GITHUB_PATH"
+      - name: Check target, gradients, and complete mixture density
+        run: |
+          python -c "import numba, arviz"
+          python tools/inference_candidates/validate.py
+          python -m pytest tests/test_inference_candidates.py -q
+
   clean-wheel:
     name: Python ${{ matrix.python-version }} clean wheel
     runs-on: macos-26

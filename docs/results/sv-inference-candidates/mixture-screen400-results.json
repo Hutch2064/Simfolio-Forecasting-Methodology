@@ -1,0 +1,72 @@
+{
+  "scope": "screen_not_full_canonical",
+  "scores": {
+    "frontier": {
+      "crps": 0.2558861226485342,
+      "seconds": 186.0217920388386,
+      "cpu_seconds": 218.1056010000018,
+      "cells": 701280,
+      "tasks": 400
+    },
+    "mcmc": {
+      "crps": 0.2538154340980102,
+      "seconds": 137.15028749394696,
+      "cpu_seconds": 465.734945999999,
+      "cells": 701280,
+      "tasks": 400
+    },
+    "laplace_mixture_is": {
+      "crps": 0.25736549661342245,
+      "seconds": 145.55983404404833,
+      "cpu_seconds": 441.4144259999998,
+      "cells": 701280,
+      "tasks": 400
+    }
+  },
+  "all_denominator_gates_passed": true,
+  "baseline_loss_vectors_byte_exact": 800,
+  "split_scores": {
+    "rolling_origin": {
+      "frontier": 0.09438355911102274,
+      "mcmc": 0.0961901215870435,
+      "laplace_mixture_is": 0.09568936549573662
+    },
+    "train_first_quarter_test_remaining": {
+      "frontier": 0.24724610266385583,
+      "mcmc": 0.24681796188954458,
+      "laplace_mixture_is": 0.25098420595598325
+    },
+    "train_first_half_test_remaining": {
+      "frontier": 0.21438319460158262,
+      "mcmc": 0.20955905874356506,
+      "laplace_mixture_is": 0.21439374739041153
+    },
+    "train_first_three_quarters_test_final_quarter": {
+      "frontier": 0.10567009941498362,
+      "mcmc": 0.102738784196895,
+      "laplace_mixture_is": 0.10248409138354594
+    }
+  },
+  "diagnostics": {
+    "laplace_mixture_is": {
+      "asset_fits": 2400,
+      "laplace_optimizer_failures": 8,
+      "unique_training_histories": 249,
+      "min_importance_ess": 97.0684931248005,
+      "max_pareto_k": 0.7919791632034019,
+      "fits_pareto_k_above_0_7": 36,
+      "fits_importance_ess_below_400": 51,
+      "max_normalized_weight": 0.09495887906477735,
+      "conservative_diagnostic_gate_passed": false,
+      "failed_asset_fit_calls": 134,
+      "failed_unique_training_histories": 18,
+      "diagnostic_failure_reasons": {
+        "concentrated_weight": 126,
+        "importance_ess": 51,
+        "pareto_k": 36,
+        "proposal_stationarity": 8
+      }
+    }
+  },
+  "manifest_file_sha256": "0e4cd8cb139c1241a048d16d66625658c88c58cbe4561c223f2cff1034104af6"
+}

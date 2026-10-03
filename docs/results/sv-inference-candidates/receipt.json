@@ -1,0 +1,125 @@
+{
+  "base_commit": "4c711d917b2a7bbe2a82d05dca88edde7a9c4a0b",
+  "scope": "exploratory_inference_screens_not_full_canonical",
+  "host": "macOS-27.0-arm64-arm-64bit",
+  "python": "3.12.13",
+  "validation": {
+    "focused_tests_passed": 8,
+    "complete_tests_passed": 192,
+    "complete_tests_skipped": 1,
+    "skip_reason": "distribution metadata runs in clean-wheel CI"
+  },
+  "stages": {
+    "screen25": {
+      "archives": [
+        "screen25-part-00.zip"
+      ],
+      "model_tasks": 150,
+      "origin_tasks_per_arm": 25,
+      "baseline_loss_vectors_byte_exact": 50,
+      "manifest_sha256": "3f674e1d8a7a2e6e07f8b73f2f4084c3b77885576f5ed8c049d903e4a3234e2b",
+      "diagnostic_gates_passed": {
+        "laplace_is": false,
+        "full_rank_vi": false,
+        "vi_importance": false,
+        "hmc": false
+      }
+    },
+    "tuned-screen25": {
+      "archives": [
+        "tuned-screen25-part-00.zip"
+      ],
+      "model_tasks": 100,
+      "origin_tasks_per_arm": 25,
+      "baseline_loss_vectors_byte_exact": 50,
+      "manifest_sha256": "25c7505004ac166adfaa4a1f7f59218207194995fc6d6022137f875dd47abde8",
+      "diagnostic_gates_passed": {
+        "laplace_mixture_is": false,
+        "hmc_long": false
+      }
+    },
+    "mixture-screen400": {
+      "archives": [
+        "mixture-screen400-part-00.zip",
+        "mixture-screen400-part-01.zip",
+        "mixture-screen400-part-02.zip",
+        "mixture-screen400-part-03.zip"
+      ],
+      "model_tasks": 1200,
+      "origin_tasks_per_arm": 400,
+      "baseline_loss_vectors_byte_exact": 800,
+      "manifest_sha256": "0e4cd8cb139c1241a048d16d66625658c88c58cbe4561c223f2cff1034104af6",
+      "diagnostic_gates_passed": {
+        "laplace_mixture_is": false
+      }
+    }
+  },
+  "published_source_replay": {
+    "canonical_task": 8,
+    "arms": [
+      "frontier",
+      "mcmc",
+      "laplace_mixture_is"
+    ],
+    "all_loss_vectors_byte_exact": true,
+    "scope": "one_task_after_import_sort_only; inference_numeric_source_unchanged"
+  },
+  "files": {
+    "coverage-probe.json": {
+      "sha256": "cd1a789a7a44c95f3fa933ec455eef9959fed475b28176fcf5edce0db390ccbd",
+      "bytes": 6009
+    },
+    "environment.txt": {
+      "sha256": "7b3fecf13d5de310cffcf2652d576bda2cfd52ddff64ea7f637394fc26ca460b",
+      "bytes": 1122
+    },
+    "initial-executed-inference-overlay.zip": {
+      "sha256": "6e289957e352c5929bc936530d730149dec7c25c5079b83341797c4e9bce44da",
+      "bytes": 8679
+    },
+    "mixture-screen400-part-00.zip": {
+      "sha256": "6f94651cd2849f1d61e3f5506818cf14ecb42b61322d941db79c817e55c0ac62",
+      "bytes": 9509360
+    },
+    "mixture-screen400-part-01.zip": {
+      "sha256": "166d235917ad3d0bf768ca8a4501f7c654dbdd864147b78355bb226f4c2ef542",
+      "bytes": 8986780
+    },
+    "mixture-screen400-part-02.zip": {
+      "sha256": "afa9a39d786f50c0cd70e784e33081bfda5bb89c9813462955c8520589f49400",
+      "bytes": 8996565
+    },
+    "mixture-screen400-part-03.zip": {
+      "sha256": "9cfbae5d18e6de61d4058f259e6b765317122c3acee81580dc57cd3430551561",
+      "bytes": 8981313
+    },
+    "mixture-screen400-results.json": {
+      "sha256": "d3c7f21561154043755cd113264abb65cf173a00d6ce79228bb31d6034bf17fa",
+      "bytes": 2167
+    },
+    "numerical-validation.json": {
+      "sha256": "f0087c983e9283dd6cb8bd8e0721e02f7f50344dcb1cd7f6b4fe956f120cc2b3",
+      "bytes": 284
+    },
+    "screen25-part-00.zip": {
+      "sha256": "394364ca555544f6032418cd31b80331a0a5a731af81cfb9f43a56a6eb8d8579",
+      "bytes": 4584696
+    },
+    "screen25-results.json": {
+      "sha256": "12b957f10012ef5cdfaf2f46a0a64bbde1827e649e8eb0693b7c269cc1daf589",
+      "bytes": 5183
+    },
+    "tuned-executed-source.zip": {
+      "sha256": "8a64131599208053960c01cfd109ce389c4483f08ea8082a1f1558ed4088f02b",
+      "bytes": 270646
+    },
+    "tuned-screen25-part-00.zip": {
+      "sha256": "a668cac392dc4967054833b03a115379b1156fe09621342f23eebe8fdfcb79a0",
+      "bytes": 3069302
+    },
+    "tuned-screen25-results.json": {
+      "sha256": "8dc2b12ad2172fc6e6e7b817ecdb64c9175c9bb87253dab4160f2f916d9e8e10",
+      "bytes": 3085
+    }
+  }
+}

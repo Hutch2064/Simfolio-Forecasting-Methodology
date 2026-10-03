@@ -14,6 +14,11 @@ records a separate full-panel candidate, exact complete-output replay, matched
 local runtime measurements, and reproducible experimental tools. It is not
 registered in the combined catalogue or deployed as a production model.
 
+The [alternative SV inference experiments](docs/sv-inference-candidates.md)
+test Hamiltonian Monte Carlo, full-rank variational inference, and defensive
+Laplace importance sampling against the same forecasting components. Their
+screening scores remain separate from the canonical ranking.
+
 ## Current combined score ranking
 
 The current public ranking is the combined 176-row numeric sort available from
