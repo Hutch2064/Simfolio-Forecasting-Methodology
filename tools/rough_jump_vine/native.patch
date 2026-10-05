@@ -1,0 +1,112 @@
+diff --git a/include/vinecopulib/bicop/implementation/student.ipp b/include/vinecopulib/bicop/implementation/student.ipp
+index d0ec161..45be1e7 100644
+--- a/include/vinecopulib/bicop/implementation/student.ipp
++++ b/include/vinecopulib/bicop/implementation/student.ipp
+@@ -5,6 +5,8 @@
+ // vinecopulib or https://vinecopulib.github.io/vinecopulib/.
+ 
+ #include <vinecopulib/misc/tools_stats.hpp>
++#include <cstring>
++#include <limits>
+ 
+ namespace vinecopulib {
+ inline StudentBicop::StudentBicop()
+@@ -24,14 +26,30 @@ StudentBicop::pdf_raw(const Eigen::MatrixXd& u)
+   double rho = double(this->parameters_(0));
+   double nu = double(this->parameters_(1));
+   Eigen::VectorXd f = Eigen::VectorXd::Ones(u.rows());
+-  Eigen::MatrixXd tmp = tools_stats::qt(u, nu);
++  // Exact last-input cache: rho changes do not alter Student marginal laws.
++  // Thread-local storage also permits concurrent evaluation of the same vine.
++  struct Marginals {
++    double nu = std::numeric_limits<double>::quiet_NaN();
++    Eigen::MatrixXd u, quantiles;
++    Eigen::VectorXd density_product;
++  };
++  static thread_local Marginals cached;
++  if (cached.nu != nu || cached.u.rows() != u.rows() ||
++      cached.u.cols() != u.cols() ||
++      std::memcmp(cached.u.data(), u.data(), u.size() * sizeof(double)) != 0) {
++    cached.nu = nu;
++    cached.u = u;
++    cached.quantiles = tools_stats::qt(u, nu);
++    cached.density_product = tools_stats::dt(cached.quantiles, nu).rowwise().prod();
++  }
++  const Eigen::MatrixXd& tmp = cached.quantiles;
+ 
+   f = tmp.col(0).cwiseAbs2() + tmp.col(1).cwiseAbs2() -
+       (2 * rho) * tmp.rowwise().prod();
+   f /= nu * (1.0 - pow(rho, 2.0));
+   f = f + Eigen::VectorXd::Ones(u.rows());
+   f = f.array().pow(-(nu + 2.0) / 2.0);
+-  f = f.cwiseQuotient(tools_stats::dt(tmp, nu).rowwise().prod());
++  f = f.cwiseQuotient(cached.density_product);
+   f *= boost::math::tgamma_ratio((nu + 2.0) / 2.0, nu / 2.0);
+   f /= (nu * constant::pi * sqrt(1.0 - pow(rho, 2.0)));
+ 
+diff --git a/include/vinecopulib/misc/tools_stats.hpp b/include/vinecopulib/misc/tools_stats.hpp
+index 0faa5c2..7669e31 100644
+--- a/include/vinecopulib/misc/tools_stats.hpp
++++ b/include/vinecopulib/misc/tools_stats.hpp
+@@ -60,6 +60,23 @@ qnorm(const Eigen::MatrixXd& x)
+ inline Eigen::MatrixXd
+ dt(const Eigen::MatrixXd& x, double nu)
+ {
++  if (nu >= 2.0 && nu <= 50.0) {
++    // Boost 1.84's identical per-observation arithmetic with its invariant
++    // normalizer evaluated once. The general distribution fallback remains.
++    const double normalizer = std::sqrt(nu) * boost::math::beta(nu / 2, 0.5);
++    auto f = [nu, normalizer](double y) {
++      if (std::isinf(y)) return 0.0;
++      const double basem1 = y * y / nu;
++      double result;
++      if (basem1 < 0.125) {
++        result = std::exp(-boost::math::log1p(basem1) * (1 + nu) / 2);
++      } else {
++        result = std::pow(1 / (1 + basem1), (nu + 1) / 2);
++      }
++      return result / normalizer;
++    };
++    return tools_eigen::unaryExpr_or_nan(x, f);
++  }
+   boost::math::students_t dist(nu);
+   auto f = [&dist](double y) { return boost::math::pdf(dist, y); };
+   return tools_eigen::unaryExpr_or_nan(x, f);
+@@ -89,6 +106,37 @@ inline Eigen::MatrixXd
+ qt(const Eigen::MatrixXd& x, double nu)
+ {
+   boost::math::students_t dist(nu);
++  // Two empirical-rank columns contain the same exact probability grid.
++  // Evaluate each distinct argument once; conditional/non-grid data use the
++  // original Boost evaluator without approximations or interpolation.
++  if (x.cols() == 2 && x.rows() >= 128) {
++    const double denominator = static_cast<double>(x.rows()) + 1.0;
++    Eigen::Matrix<Eigen::Index, Eigen::Dynamic, Eigen::Dynamic> ranks(x.rows(), 2);
++    bool on_grid = true;
++    for (Eigen::Index i = 0; i < x.size(); ++i) {
++      const double value = x.data()[i];
++      if (!std::isfinite(value) || value <= 0.0 || value >= 1.0) {
++        on_grid = false;
++        break;
++      }
++      const auto rank = static_cast<Eigen::Index>(std::round(value * denominator));
++      if (rank < 1 || rank > x.rows() ||
++          value != static_cast<double>(rank) / denominator) {
++        on_grid = false;
++        break;
++      }
++      ranks.data()[i] = rank - 1;
++    }
++    if (on_grid) {
++      Eigen::VectorXd grid(x.rows());
++      for (Eigen::Index i = 0; i < x.rows(); ++i) {
++        grid(i) = boost::math::quantile(dist, (static_cast<double>(i) + 1.0) / denominator);
++      }
++      Eigen::MatrixXd result(x.rows(), 2);
++      for (Eigen::Index i = 0; i < x.size(); ++i) result.data()[i] = grid(ranks.data()[i]);
++      return result;
++    }
++  }
+   auto f = [&dist](double y) { return boost::math::quantile(dist, y); };
+   return tools_eigen::unaryExpr_or_nan(x, f);
+ }
