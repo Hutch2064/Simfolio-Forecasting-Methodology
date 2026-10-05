@@ -36,4 +36,5 @@ def load_filter():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     address = get_cython_function_address('scipy.linalg.cython_blas', 'ddot')
-    return module, address
+    gemv = get_cython_function_address('scipy.linalg.cython_blas', 'dgemv')
+    return module, address, gemv

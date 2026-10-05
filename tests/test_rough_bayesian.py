@@ -243,3 +243,41 @@ def test_native_overlay_filter_is_byte_exact(overlay_shell, adaptive):
         native = overlay.filter_rough(y, *configuration, .1)
         for expected, actual in zip(original, native):
             assert np.asarray(expected).tobytes() == np.asarray(actual).tobytes()
+
+
+@pytest.mark.parametrize('adaptive', [False, True])
+def test_native_terminal_filter_preserves_reference_bits(overlay_shell, adaptive):
+    import overlay
+    rng = np.random.default_rng(1261)
+    for length in (1, 507, 11657):
+        y = rng.normal(size=length)
+        for h, k in ((.031, 1 / 2520), (.1, 1 / 63), (.48, .3)):
+            configuration = overlay.configuration(np.array([h, math.log(k), math.log(.7)]), adaptive)
+            original = overlay_shell.controls.filter_rough(y, *configuration, .1)[1:3]
+            optimized = overlay.terminal_filter(y, *configuration, .1)
+            for expected, actual in zip(original, optimized):
+                assert expected.tobytes() == actual.tobytes()
+
+
+def test_repeated_posterior_draws_reuse_preparation_without_removing_paths(overlay_shell, monkeypatch):
+    import overlay
+    monkeypatch.setattr(overlay_shell.controls, 'cache', lambda namespace, identity, build: build())
+    original = overlay.terminal_filter
+    calls = []
+    def counted(*args):
+        calls.append(1)
+        return original(*args)
+    monkeypatch.setattr(overlay, 'terminal_filter', counted)
+    parameters = np.array([[.1, math.log(1 / 63), math.log(.7)],
+                           [.12, math.log(1 / 70), math.log(.8)]])
+    parameters = parameters[[0, 1, 0, 1, 0]]
+    arguments = (np.random.default_rng(157).normal(size=64).tobytes(), False,
+                 parameters.tobytes(), .1, 'duplicate-preparation-test')
+    overlay.predictive_states.cache_clear()
+    overlay.predictive_normalizers.cache_clear()
+    prepared = overlay.predictive_states(*arguments)
+    normalizers = overlay.predictive_normalizers(*arguments, 126)
+    assert len(calls) == 2
+    assert len(prepared) == len(normalizers) == len(parameters)
+    assert prepared[0] is prepared[2] is prepared[4]
+    assert normalizers[0] is normalizers[2] is normalizers[4]

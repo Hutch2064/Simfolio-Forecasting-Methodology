@@ -32,16 +32,23 @@ def exact_covariance(hurst, kappa, lags):
     return out
 
 
-def lifted_covariance(hurst, kappa, bins):
-    alpha = hurst + .5
+@lru_cache(maxsize=8)
+def lift_geometry(bins):
     edges = np.linspace(math.log(1e-11), math.log(1e9), bins + 1)
     widths = np.diff(edges) / 2
     locations = (edges[:-1] + edges[1:]) / 2
     rates = np.exp((locations[:, None] + widths[:, None] * NODES).ravel())
-    mass = (widths[:, None] * GAUSS * rates.reshape(-1, 3) ** (1 - alpha)).ravel()
+    return rates, widths[:, None] * GAUSS
+
+
+def lifted_covariance(hurst, kappa, bins):
+    alpha = hurst + .5
+    rates, base_mass = lift_geometry(bins)
+    mass = (base_mass * rates.reshape(-1, 3) ** (1 - alpha)).ravel()
     mass /= gamma(alpha) * gamma(1 - alpha)
     low = 1e-11 ** (1 - alpha) / (1 - alpha) / (gamma(alpha) * gamma(1 - alpha))
-    mass, rates = np.r_[low, mass], np.r_[.5e-11, rates] + kappa
+    mass = np.concatenate((np.array([low]), mass))
+    rates = np.concatenate((np.array([.5e-11]), rates)) + kappa
     covariance = np.outer(mass, mass) / (rates[:, None] + rates[None, :])
     zero = gamma(2 * hurst) / (2 * kappa) ** (2 * hurst) / gamma(alpha) ** 2
     raw_zero = covariance.sum()
@@ -57,14 +64,14 @@ def lifted_covariance(hurst, kappa, bins):
         combined[:count, count] = cross
         combined[count, :count] = cross
         combined[count, count] = covariance[np.ix_(fast, fast)].sum()
-        covariance, phi = combined, np.r_[phi[slow], 0.]
+        covariance, phi = combined, np.concatenate((phi[slow], np.zeros(1)))
     # The exact diagonal retains sub-daily rough variance omitted by the
     # finite Laplace range. Nonzero lag error is tested independently below.
     remainder = max(0., 1 - covariance.sum())
     enlarged = np.zeros((phi.size + 1, phi.size + 1))
     enlarged[:-1, :-1] = covariance
     enlarged[-1, -1] = remainder
-    return np.r_[phi, 0.], enlarged
+    return np.concatenate((phi, np.zeros(1))), enlarged
 
 
 @lru_cache(maxsize=4)
@@ -85,10 +92,30 @@ def accuracy_grid(tolerance=.001):
     raise ValueError('tempered fractional covariance did not meet error budget')
 
 
+@lru_cache(maxsize=1)
+def eight_factor_geometry():
+    edges = np.geomspace(1.0 / (252.0 * 50), 4.0, 9)
+    return edges, np.sqrt(edges[:-1] * edges[1:])
+
+
+def eight_factor_configuration(theta):
+    hurst, kappa, scale = theta[0], math.exp(theta[1]), math.exp(theta[2])
+    edges, base_rates = eight_factor_geometry()
+    rates = base_rates + kappa
+    weights = (edges[1:]**(0.5-hurst)-edges[:-1]**(0.5-hurst))/(0.5-hurst)
+    phi = np.exp(-rates)
+    sums = rates[:, None] + rates[None, :]
+    raw = -np.expm1(-sums) / sums
+    stationary = 1 / sums
+    normalizer = np.sqrt(weights @ stationary @ weights)
+    weights /= normalizer
+    covariance = scale**2 * raw
+    return phi, weights, covariance
+
+
 def configuration(theta, adaptive):
-    import models as shell
     if not adaptive:
-        return shell.controls.rough_parameters(theta)
+        return eight_factor_configuration(theta)
     bins, _ = accuracy_grid()
     phi, stationary = lifted_covariance(theta[0], math.exp(theta[1]), bins)
     covariance = math.exp(2 * theta[2]) * stationary * (1 - phi[:, None] * phi[None, :])
@@ -153,8 +180,18 @@ def filter_rough(y, phi, weights, covariance, level):
     native = native_filter()
     if native is None:
         return filter_rough_numba(y, phi, weights, covariance, level)
-    module, address = native
+    module, address, _ = native
     return module.filter(y, phi, weights, covariance, level, address)
+
+
+def terminal_filter(y, phi, weights, covariance, level):
+    """Preserve the original BLAS reductions and exact covariance stopping."""
+    native = native_filter()
+    if native is None:
+        import models as shell
+        return shell.controls.filter_rough(y, phi, weights, covariance, level)[1:3]
+    module, dot, gemv = native
+    return module.terminal(y, phi, weights, covariance, level, dot, gemv)
 
 
 def parameter_chain(y, level, adaptive, seed, burn, kept, resume=None):
@@ -185,7 +222,8 @@ def parameter_chain(y, level, adaptive, seed, burn, kept, resume=None):
             if iteration >= 63 and (iteration + 1) % 32 == 0:
                 root = np.linalg.cholesky(2.38 ** 2 / 3 * (m2 / iteration + np.eye(3) * 1e-6))
         else:
-            draws[iteration - burn] = np.r_[theta, value]
+            draws[iteration - burn, :3] = theta
+            draws[iteration - burn, 3] = value
     return draws, {'theta': theta.copy(), 'root': root.copy(), 'rng_state': rng.bit_generator.state}
 
 
@@ -261,16 +299,21 @@ def predictive_states(data, adaptive, parameter_bytes, level, contract):
     def build():
         x = np.frombuffer(data, np.float64)
         y, _ = shell.bd._sv_observed_log_variance(x, float(x.mean()))
-        prepared = []
+        prepared, unique = [], {}
         for theta in np.frombuffer(parameter_bytes, np.float64).reshape(-1, 3):
+            key = theta.tobytes()
+            if key in unique:
+                prepared.append(unique[key])
+                continue
             phi, weights, covariance = configuration(theta, adaptive)
-            _, state, p, _ = shell.controls.filter_rough(y, phi, weights, covariance, level)
+            state, p = terminal_filter(y, phi, weights, covariance, level)
             values, vectors = np.linalg.eigh((p + p.T) / 2)
             initial_root = vectors * np.sqrt(np.maximum(values, 0))
             values, vectors = np.linalg.eigh((covariance + covariance.T) / 2)
             root = vectors * np.sqrt(np.maximum(values, 0))
             p = p * phi[:, None] * phi[None, :] + covariance
-            prepared.append((phi, weights, state, initial_root, root, p, phi * state))
+            unique[key] = (phi, weights, state, initial_root, root, p, phi * state)
+            prepared.append(unique[key])
         return prepared
     return shell.controls.cache('rough_overlay_predictive_states', identity, build)
 
@@ -293,9 +336,15 @@ def predictive_normalizers(data, adaptive, parameter_bytes, level, contract, hor
     import models as shell
     identity = hashlib.sha256(data + parameter_bytes + repr((adaptive, level, contract, horizon)).encode()).hexdigest()
     def build():
-        return [path_normalizers(phi, weights, root, p, mean, horizon)
-                for phi, weights, state, initial_root, root, p, mean
-                in predictive_states(data, adaptive, parameter_bytes, level, contract)]
+        prepared = predictive_states(data, adaptive, parameter_bytes, level, contract)
+        result, unique = [], {}
+        parameters = np.frombuffer(parameter_bytes, np.float64).reshape(-1, 3)
+        for theta, (phi, weights, state, initial_root, root, p, mean) in zip(parameters, prepared):
+            key = theta.tobytes()
+            if key not in unique:
+                unique[key] = path_normalizers(phi, weights, root, p, mean, horizon)
+            result.append(unique[key])
+        return result
     return shell.controls.cache('rough_overlay_normalizers', identity, build)
 
 
@@ -303,10 +352,13 @@ def predictive_normalizers(data, adaptive, parameter_bytes, level, contract, hor
 def multiplier_prepared(phi, weights, root, initial, normals, means, variances):
     state = initial.copy()
     result = np.empty(means.size)
+    innovation = np.empty(phi.size)
     for t in range(result.size):
         h = np.dot(weights, state)
         result[t] = math.exp(.5 * (h - means[t]) - .25 * variances[t])
-        state = phi * state + root @ normals[t + 1]
+        np.dot(root, normals[t + 1], innovation)
+        for i in range(phi.size):
+            state[i] = phi[i] * state[i] + innovation[i]
     return result
 
 

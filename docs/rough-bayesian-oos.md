@@ -186,11 +186,15 @@ approximate division is introduced. Other platforms retain the Numba filter.
 The native module is built once into a content-addressed temporary cache using
 Clang and `pybind11==3.1.0`; its source and binary hashes enter the run manifest.
 
-Prediction retains the original terminal filter and eigensystem rounding. Their
+Prediction retains the original BLAS reductions, terminal covariance and
+eigensystem rounding. A separate native terminal-state filter omits unused
+likelihood and history-path outputs while preserving those bits. Its
 results are cached by asset history, selected posterior draws and implementation
 contract, with individual matrix memory layouts preserved. Conditional means
 and variances are likewise computed once per asset fit and forecast horizon.
-The stochastic path loop reuses those exact scalars, preserving all random
+Repeated posterior parameter draws share preparation without removing any
+predictive paths. Constant kernel grids are cached once. The stochastic path loop
+reuses exact scalars and a matrix-vector output buffer, preserving all random
 calls, their order, the multiplier's arithmetic, and every posterior draw.
 Both candidates share one twelve-worker queue rather than separate fixed queues.
 No history, chain budget, kernel accuracy, path count or scoring rule is reduced.
