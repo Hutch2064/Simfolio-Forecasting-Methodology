@@ -244,6 +244,9 @@ def terminal_pgas(y, config_phi, innovation, weights, start_state, reference,
             suffix = 0.
             for k in range(t, length):
                 h = level + scale * np.dot(weights, candidate)
+                if not -60 < h < 60:
+                    suffix = -np.inf
+                    break
                 suffix -= .5 * (h + y[k] * y[k] * math.exp(-h))
                 for j in range(candidate.size):
                     candidate[j] = config_phi[j] * candidate[j] + innovation[j] * reference[k]
@@ -258,7 +261,8 @@ def terminal_pgas(y, config_phi, innovation, weights, start_state, reference,
             ancestry[t, p] = a
             history[t, p] = z
             h = level + scale * np.dot(weights, states[a])
-            logw[p] = -.5 * (h + y[t] * y[t] * math.exp(-h))
+            logw[p] = (-.5 * (h + y[t] * y[t] * math.exp(-h))
+                       if -60 < h < 60 else -np.inf)
             for j in range(start_state.size):
                 next_states[p, j] = config_phi[j] * states[a, j] + innovation[j] * z
         states, next_states = next_states, states
