@@ -1,0 +1,3517 @@
+{
+  "scope": "implementation_validation_and_local_sampler_screen_not_full_OOS_scores",
+  "catalogue_status": "additions_held_until_panel_evaluation",
+  "official_panel_scores": {
+    "asset_rough_volterra_sv_dynamic_standalone_bayesian": null,
+    "asset_rough_volterra_sv_dynamic_exact_mixture_overlay": null,
+    "asset_rough_volterra_sv_dynamic_exact_mixture_standalone": null
+  },
+  "source_code_commit": "a0b6273db3bd2b0b7ee6e5a0eeca6bfb116c45d3",
+  "source_hashes": {
+    "tools/rough_bayesian/dynamic.py": "e28d49088dc669a1a8c38daac3f218b9404190303d57102753be0eacffd83e9c",
+    "tools/rough_bayesian/inference.py": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199",
+    "tools/rough_bayesian/kernels.py": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b",
+    "tools/rough_bayesian/mixture.py": "fb26b0d25d96350f9232ea3df14179022dd63bfe0c6da818601f85a589d4f484",
+    "tools/rough_bayesian/mixture_kernels.py": "517a7572924a10becf7f7c439302149434f9ffa71097d4372f460f13c2fff5aa",
+    "tools/rough_bayesian/models.py": "d3658d74d84c67afb3a63d037eaa942eb181bfeb92f25cb41a7f21c9387c7de0",
+    "tools/rough_bayesian/native.py": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315",
+    "tools/rough_bayesian/overlay.py": "9f1697ca82840cf13b83c7522220295541818af302317613c0030db248f8b63b",
+    "tools/rough_bayesian/run_panel.py": "8296eab120468620b6de68d2fe34cceb0c486679254fcd6d8aa71cc98c4d27b3",
+    "tools/rough_bayesian/smoke.py": "bce72207eae8a2094abd8e249321d214825af99d733f356fbed6a32a47ccf9df",
+    "tools/rough_bayesian/standalone.py": "4314a52d711929e35f5c5b2d9946690c33db6939238941450467e932141b9c8d"
+  },
+  "scoring_contract": {
+    "portfolios": 80,
+    "rolling_origins_per_portfolio": 48,
+    "temporal_holdouts_per_portfolio": 3,
+    "required_origin_tasks": 4080,
+    "required_portfolio_horizon_cells": 701280,
+    "simulations": 240,
+    "common_history_start": "1979-12-31",
+    "mean_terminal_log_return_empirical_CRPS": "unchanged CellAccumulator equal portfolio-horizon cells"
+  },
+  "completed_best_reference": {
+    "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+    "adjusted_crps": 0.25074679212444156
+  },
+  "numerical_and_posterior_tests": {
+    "rough_and_publication_tests_passed": 73,
+    "independent_checks": [
+      "dense Gaussian marginal likelihood and smoothing",
+      "latent conditional moments",
+      "scalar exact posterior",
+      "joint parameter-history exact posterior",
+      "truncated Gaussian level integration",
+      "direct level-history posterior",
+      "zero residual likelihood",
+      "chain and reservoir continuation",
+      "serial parallel cached loss vectors"
+    ]
+  },
+  "standalone_qml_smoke": {
+    "scope": "smoke_validation_not_official_panel_scores",
+    "history_days": 256,
+    "horizons": 63,
+    "paths": 240,
+    "warmup": 64,
+    "kept": 128,
+    "asset_count": 6,
+    "serial_parallel_cached_loss_vectors_byte_exact": true,
+    "no_conventional_asset_fit": true,
+    "records": [
+      {
+        "arm": "serial",
+        "workers": 1,
+        "seconds": 1.1687458750093356,
+        "crps": 0.035172844346622885,
+        "loss_sha256": "6ff031516cf83a4f9b357f47365969eb10282f85fab5b3354ab98724bc70c498",
+        "timings": {
+          "rough_standalone_fit_phase_wall": 0.9084450419759378,
+          "rough_standalone_predictive_paths": 0.24973650003084913
+        },
+        "flagged_asset_fits": 6
+      },
+      {
+        "arm": "parallel",
+        "workers": 3,
+        "seconds": 2.895769124967046,
+        "crps": 0.035172844346622885,
+        "loss_sha256": "6ff031516cf83a4f9b357f47365969eb10282f85fab5b3354ab98724bc70c498",
+        "timings": {
+          "rough_standalone_fit_phase_wall": 2.7728924580151215,
+          "rough_standalone_predictive_paths": 0.11694558401359245
+        },
+        "flagged_asset_fits": 6
+      },
+      {
+        "arm": "cached",
+        "workers": 3,
+        "seconds": 0.01867541699903086,
+        "crps": 0.035172844346622885,
+        "loss_sha256": "6ff031516cf83a4f9b357f47365969eb10282f85fab5b3354ab98724bc70c498",
+        "timings": {
+          "rough_standalone_fit_phase_wall": 6.375019438564777e-06,
+          "rough_standalone_predictive_paths": 0.011869959067553282
+        },
+        "flagged_asset_fits": 6
+      }
+    ]
+  },
+  "standalone_qml_full_inference_origin": {
+    "scope": "one_origin_full_inference_budget_not_official_panel",
+    "task_index": 0,
+    "history_days": 507,
+    "horizons": 126,
+    "paths": 240,
+    "asset_count": 6,
+    "warmup_per_chain": 2048,
+    "initial_kept_per_chain": 8192,
+    "maximum_kept_per_chain": 65536,
+    "fresh_cached_loss_vectors_byte_exact": true,
+    "records": [
+      {
+        "arm": "fresh",
+        "seconds": 9.365399583010003,
+        "origin_smoke_crps": 0.03643159734108589,
+        "loss_sha256": "bb16568bd994fd6ff189ba12e70202c3f7735b4034c570e1c500f96984e07b6f",
+        "timings": {
+          "rough_standalone_fit_phase_wall": 8.548579166003037,
+          "rough_standalone_predictive_paths": 0.804431917029433
+        },
+        "asset_diagnostics": [
+          {
+            "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0110240635706844,
+                "bulk_ess": 550.1123262965866
+              },
+              {
+                "rank_split_rhat": 1.012250267349985,
+                "bulk_ess": 582.7992792241844
+              },
+              {
+                "rank_split_rhat": 1.0050802178332245,
+                "bulk_ess": 571.0645173827959
+              },
+              {
+                "rank_split_rhat": 1.0045800252222719,
+                "bulk_ess": 669.1971565148061
+              },
+              {
+                "rank_split_rhat": 1.0190710605541693,
+                "bulk_ess": 403.18983097728795
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 5.632746791001409,
+            "ess_per_second": 71.57961221005063,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.0009998679568658274,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0025054797174755,
+                "bulk_ess": 693.4145550452422
+              },
+              {
+                "rank_split_rhat": 1.0035030402190928,
+                "bulk_ess": 614.3522989017857
+              },
+              {
+                "rank_split_rhat": 1.0017194610437057,
+                "bulk_ess": 704.8151902199476
+              },
+              {
+                "rank_split_rhat": 1.0037155381210754,
+                "bulk_ess": 549.2851038278515
+              },
+              {
+                "rank_split_rhat": 1.001471903114891,
+                "bulk_ess": 484.1014003044124
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 5.233075916010421,
+            "ess_per_second": 92.50800257327059,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.000999910097605314,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0086032591484562,
+                "bulk_ess": 661.8296689121872
+              },
+              {
+                "rank_split_rhat": 1.0101446899154265,
+                "bulk_ess": 659.5827976514335
+              },
+              {
+                "rank_split_rhat": 1.0044337195823507,
+                "bulk_ess": 673.6235037473215
+              },
+              {
+                "rank_split_rhat": 1.004323669888717,
+                "bulk_ess": 880.3979155244323
+              },
+              {
+                "rank_split_rhat": 1.0162909126125999,
+                "bulk_ess": 608.3028062619912
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 4.2325882079894654,
+            "ess_per_second": 143.7188727960245,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.000999794785628968,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0022359593915555,
+                "bulk_ess": 261.46570171447274
+              },
+              {
+                "rank_split_rhat": 1.003112683959525,
+                "bulk_ess": 263.62565025158113
+              },
+              {
+                "rank_split_rhat": 1.0028174003567796,
+                "bulk_ess": 261.3825865272847
+              },
+              {
+                "rank_split_rhat": 1.0035203865512998,
+                "bulk_ess": 378.947983927782
+              },
+              {
+                "rank_split_rhat": 1.0047513186623878,
+                "bulk_ess": 124.23756036484362
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 3.824946374981664,
+            "ess_per_second": 32.48086330764289,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999277339431734,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0029559659240157,
+                "bulk_ess": 727.0767011199201
+              },
+              {
+                "rank_split_rhat": 1.0042705175912563,
+                "bulk_ess": 680.302295654601
+              },
+              {
+                "rank_split_rhat": 1.0042065490876506,
+                "bulk_ess": 790.5581962938182
+              },
+              {
+                "rank_split_rhat": 1.0039910989416405,
+                "bulk_ess": 754.4557711816939
+              },
+              {
+                "rank_split_rhat": 1.001995858926227,
+                "bulk_ess": 436.40832882750925
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 6.174916582996957,
+            "ess_per_second": 70.67436830307774,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.000999896993786776,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.00117154566494,
+                "bulk_ess": 890.2131103742604
+              },
+              {
+                "rank_split_rhat": 1.0049104740656896,
+                "bulk_ess": 705.62721687753
+              },
+              {
+                "rank_split_rhat": 1.0084556943175857,
+                "bulk_ess": 427.70325861146176
+              },
+              {
+                "rank_split_rhat": 1.0031760113936101,
+                "bulk_ess": 508.09207056099575
+              },
+              {
+                "rank_split_rhat": 1.0030791892153452,
+                "bulk_ess": 478.7049343033014
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 5.513394999958109,
+            "ess_per_second": 77.57529772757285,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999844392287126,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          }
+        ]
+      },
+      {
+        "arm": "cached",
+        "seconds": 0.021253957995213568,
+        "origin_smoke_crps": 0.03643159734108589,
+        "loss_sha256": "bb16568bd994fd6ff189ba12e70202c3f7735b4034c570e1c500f96984e07b6f",
+        "timings": {
+          "rough_standalone_fit_phase_wall": 7.707974873483181e-06,
+          "rough_standalone_predictive_paths": 0.012474126066081226
+        },
+        "asset_diagnostics": [
+          {
+            "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0110240635706844,
+                "bulk_ess": 550.1123262965866
+              },
+              {
+                "rank_split_rhat": 1.012250267349985,
+                "bulk_ess": 582.7992792241844
+              },
+              {
+                "rank_split_rhat": 1.0050802178332245,
+                "bulk_ess": 571.0645173827959
+              },
+              {
+                "rank_split_rhat": 1.0045800252222719,
+                "bulk_ess": 669.1971565148061
+              },
+              {
+                "rank_split_rhat": 1.0190710605541693,
+                "bulk_ess": 403.18983097728795
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 5.632746791001409,
+            "ess_per_second": 71.57961221005063,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.0009998679568658274,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0025054797174755,
+                "bulk_ess": 693.4145550452422
+              },
+              {
+                "rank_split_rhat": 1.0035030402190928,
+                "bulk_ess": 614.3522989017857
+              },
+              {
+                "rank_split_rhat": 1.0017194610437057,
+                "bulk_ess": 704.8151902199476
+              },
+              {
+                "rank_split_rhat": 1.0037155381210754,
+                "bulk_ess": 549.2851038278515
+              },
+              {
+                "rank_split_rhat": 1.001471903114891,
+                "bulk_ess": 484.1014003044124
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 5.233075916010421,
+            "ess_per_second": 92.50800257327059,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.000999910097605314,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0086032591484562,
+                "bulk_ess": 661.8296689121872
+              },
+              {
+                "rank_split_rhat": 1.0101446899154265,
+                "bulk_ess": 659.5827976514335
+              },
+              {
+                "rank_split_rhat": 1.0044337195823507,
+                "bulk_ess": 673.6235037473215
+              },
+              {
+                "rank_split_rhat": 1.004323669888717,
+                "bulk_ess": 880.3979155244323
+              },
+              {
+                "rank_split_rhat": 1.0162909126125999,
+                "bulk_ess": 608.3028062619912
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 4.2325882079894654,
+            "ess_per_second": 143.7188727960245,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.000999794785628968,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0022359593915555,
+                "bulk_ess": 261.46570171447274
+              },
+              {
+                "rank_split_rhat": 1.003112683959525,
+                "bulk_ess": 263.62565025158113
+              },
+              {
+                "rank_split_rhat": 1.0028174003567796,
+                "bulk_ess": 261.3825865272847
+              },
+              {
+                "rank_split_rhat": 1.0035203865512998,
+                "bulk_ess": 378.947983927782
+              },
+              {
+                "rank_split_rhat": 1.0047513186623878,
+                "bulk_ess": 124.23756036484362
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 3.824946374981664,
+            "ess_per_second": 32.48086330764289,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999277339431734,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0029559659240157,
+                "bulk_ess": 727.0767011199201
+              },
+              {
+                "rank_split_rhat": 1.0042705175912563,
+                "bulk_ess": 680.302295654601
+              },
+              {
+                "rank_split_rhat": 1.0042065490876506,
+                "bulk_ess": 790.5581962938182
+              },
+              {
+                "rank_split_rhat": 1.0039910989416405,
+                "bulk_ess": 754.4557711816939
+              },
+              {
+                "rank_split_rhat": 1.001995858926227,
+                "bulk_ess": 436.40832882750925
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 6.174916582996957,
+            "ess_per_second": 70.67436830307774,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.000999896993786776,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.00117154566494,
+                "bulk_ess": 890.2131103742604
+              },
+              {
+                "rank_split_rhat": 1.0049104740656896,
+                "bulk_ess": 705.62721687753
+              },
+              {
+                "rank_split_rhat": 1.0084556943175857,
+                "bulk_ess": 427.70325861146176
+              },
+              {
+                "rank_split_rhat": 1.0031760113936101,
+                "bulk_ess": 508.09207056099575
+              },
+              {
+                "rank_split_rhat": 1.0030791892153452,
+                "bulk_ess": 478.7049343033014
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_posterior"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 5.513394999958109,
+            "ess_per_second": 77.57529772757285,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999844392287126,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "model_id": "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+            "burn_per_chain": 2048
+          }
+        ]
+      }
+    ]
+  },
+  "corrected_mixture_smoke": {
+    "scope": "smoke_and_sampler_profile_not_official_panel",
+    "smoke_history_days": 256,
+    "horizons": 63,
+    "paths": 240,
+    "burn": 64,
+    "kept": 128,
+    "serial_parallel_cached_byte_exact": true,
+    "records": [
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+        "arm": "serial",
+        "workers": 1,
+        "seconds": 2.900581833033357,
+        "smoke_crps": 0.0342975687228635,
+        "loss_sha256": "22c37e774e57c8a5f9b7a16dcf1b3f117bf082d9b4c444fa8989932b54e7de72",
+        "flagged_asset_fits": 6
+      },
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+        "arm": "parallel",
+        "workers": 3,
+        "seconds": 2.6275973329902627,
+        "smoke_crps": 0.0342975687228635,
+        "loss_sha256": "22c37e774e57c8a5f9b7a16dcf1b3f117bf082d9b4c444fa8989932b54e7de72",
+        "flagged_asset_fits": 6
+      },
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+        "arm": "cached",
+        "workers": 3,
+        "seconds": 0.03496545896632597,
+        "smoke_crps": 0.0342975687228635,
+        "loss_sha256": "22c37e774e57c8a5f9b7a16dcf1b3f117bf082d9b4c444fa8989932b54e7de72",
+        "flagged_asset_fits": 6
+      },
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+        "arm": "serial",
+        "workers": 1,
+        "seconds": 0.8658003329765052,
+        "smoke_crps": 0.03366065500061225,
+        "loss_sha256": "019cce4f52f2d866ec41f90caed4904ad57281d26c8f6252aab5b3204537d2fc",
+        "flagged_asset_fits": 6
+      },
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+        "arm": "parallel",
+        "workers": 3,
+        "seconds": 2.2795902090147138,
+        "smoke_crps": 0.03366065500061225,
+        "loss_sha256": "019cce4f52f2d866ec41f90caed4904ad57281d26c8f6252aab5b3204537d2fc",
+        "flagged_asset_fits": 6
+      },
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+        "arm": "cached",
+        "workers": 3,
+        "seconds": 0.01614349998999387,
+        "smoke_crps": 0.03366065500061225,
+        "loss_sha256": "019cce4f52f2d866ec41f90caed4904ad57281d26c8f6252aab5b3204537d2fc",
+        "flagged_asset_fits": 6
+      }
+    ],
+    "long_history_sampler": {
+      "scope": "long_history_sampler_profile",
+      "history_days": 10213,
+      "burn": 256,
+      "kept": 256,
+      "seconds": 2.2111932919942774,
+      "latent_acceptance": 0.7265625,
+      "parameter_acceptance": 0.177734375,
+      "trace_sha256": "2dea7208d170c0b951a5b095be0a10c4e24ea30d0561932bbf31b5948f768dff"
+    }
+  },
+  "corrected_mixture_full_inference_origin": {
+    "scope": "one_origin_adaptive_inference_budget_not_official_panel",
+    "history_days": 507,
+    "horizons": 126,
+    "paths": 240,
+    "asset_count": 6,
+    "warmup_per_chain": 2048,
+    "first_retained_precision_check_per_chain": 256,
+    "maximum_retained_per_chain": 65536,
+    "fresh_cached_loss_vectors_byte_exact": true,
+    "records": [
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+        "arm": "fresh",
+        "seconds": 35.88751295802649,
+        "origin_smoke_crps": 0.03563165890372545,
+        "loss_sha256": "88436bdac2f2914ce2b5b182e2bd512d40e7b577084ae6229d89365c6254c4d5",
+        "asset_diagnostics": [
+          {
+            "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0048602296132794,
+                "bulk_ess": 530.9284402643982
+              },
+              {
+                "rank_split_rhat": 1.0009904440063442,
+                "bulk_ess": 547.0091105349612
+              },
+              {
+                "rank_split_rhat": 1.0015947582654683,
+                "bulk_ess": 604.5414043294571
+              },
+              {
+                "rank_split_rhat": 1.0048994928308725,
+                "bulk_ess": 944.8465764596253
+              },
+              {
+                "rank_split_rhat": 1.001886658904481,
+                "bulk_ess": 1971.562877259654
+              },
+              {
+                "rank_split_rhat": 1.0001965077564507,
+                "bulk_ess": 7563.3462871347265
+              },
+              {
+                "rank_split_rhat": 1.001399698327688,
+                "bulk_ess": 604.5414043294571
+              },
+              {
+                "rank_split_rhat": 1.0001965077564507,
+                "bulk_ess": 7563.3462871347265
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 19.03700520901475,
+            "ess_per_second": 27.889283762604805,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999384217065225,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9573025173611112,
+                "parameter_accepts": 0.20762803819444445
+              },
+              {
+                "latent_accepts": 0.9536675347222222,
+                "parameter_accepts": 0.2681749131944444
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06730674783635035,
+              0.07733726133045363,
+              0.07648997983687698,
+              0.05772626104482213,
+              0.043418479090206456,
+              0.022396182544996073,
+              0.0809617462419083,
+              0.021286242701770944
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.005146684719241,
+                "bulk_ess": 746.885824239675
+              },
+              {
+                "rank_split_rhat": 1.0014378596436404,
+                "bulk_ess": 851.6145261976512
+              },
+              {
+                "rank_split_rhat": 1.0043015390190593,
+                "bulk_ess": 966.4082805300499
+              },
+              {
+                "rank_split_rhat": 1.0054475394881013,
+                "bulk_ess": 1068.3017542566824
+              },
+              {
+                "rank_split_rhat": 1.0014845325878021,
+                "bulk_ess": 2686.0608265505552
+              },
+              {
+                "rank_split_rhat": 1.0003760540351958,
+                "bulk_ess": 4939.708834475371
+              },
+              {
+                "rank_split_rhat": 1.0043015390190593,
+                "bulk_ess": 966.4082805300499
+              },
+              {
+                "rank_split_rhat": 1.0003482909866592,
+                "bulk_ess": 4939.708834475371
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 18.47752924996894,
+            "ess_per_second": 40.42130385159209,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999866411972184,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9671766493055556,
+                "parameter_accepts": 0.23763020833333334
+              },
+              {
+                "latent_accepts": 0.9683159722222222,
+                "parameter_accepts": 0.2426215277777778
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.059404243702609875,
+              0.061197015635056896,
+              0.05860132540612736,
+              0.052898794651636556,
+              0.035827859761845576,
+              0.02645129791766631,
+              0.050454099267366985,
+              0.024031129681491598
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.009986177783965,
+                "bulk_ess": 570.8805968167311
+              },
+              {
+                "rank_split_rhat": 1.0063874810065319,
+                "bulk_ess": 915.2938608802831
+              },
+              {
+                "rank_split_rhat": 1.003169079804825,
+                "bulk_ess": 1155.6531267757823
+              },
+              {
+                "rank_split_rhat": 1.0012694733402527,
+                "bulk_ess": 1654.1841907015707
+              },
+              {
+                "rank_split_rhat": 1.0010502232012022,
+                "bulk_ess": 3092.3975195840408
+              },
+              {
+                "rank_split_rhat": 1.0004294757727434,
+                "bulk_ess": 16912.458005119886
+              },
+              {
+                "rank_split_rhat": 1.003169079804825,
+                "bulk_ess": 1155.6531267757823
+              },
+              {
+                "rank_split_rhat": 1.0004294757727434,
+                "bulk_ess": 16912.458005119886
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 32768,
+            "fit_seconds": 29.884285083971918,
+            "ess_per_second": 19.103036770416708,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999345969249345,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9377872242647058,
+                "parameter_accepts": 0.2747012867647059
+              },
+              {
+                "latent_accepts": 0.9374712775735294,
+                "parameter_accepts": 0.22096162683823528
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.07406542666000632,
+              0.056377420853537266,
+              0.05314291634766811,
+              0.044361553955325116,
+              0.032721112636621925,
+              0.015342313587313564,
+              0.05204801929098154,
+              0.012578168883072584
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0004392335797652,
+                "bulk_ess": 419.7477569266782
+              },
+              {
+                "rank_split_rhat": 1.001660194291989,
+                "bulk_ess": 1173.4753361501757
+              },
+              {
+                "rank_split_rhat": 1.0006391539609374,
+                "bulk_ess": 843.5175480051826
+              },
+              {
+                "rank_split_rhat": 1.0006264444293866,
+                "bulk_ess": 559.9971235920319
+              },
+              {
+                "rank_split_rhat": 1.0008165164427907,
+                "bulk_ess": 1042.7621482415439
+              },
+              {
+                "rank_split_rhat": 1.0001045124501788,
+                "bulk_ess": 18828.571100562436
+              },
+              {
+                "rank_split_rhat": 1.0005522016440056,
+                "bulk_ess": 843.5175480051826
+              },
+              {
+                "rank_split_rhat": 1.0001045124501788,
+                "bulk_ess": 18828.571100562436
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 32768,
+            "fit_seconds": 33.32007725001313,
+            "ess_per_second": 12.597442490218501,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999416559346994,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.93896484375,
+                "parameter_accepts": 0.3021024816176471
+              },
+              {
+                "latent_accepts": 0.9339958639705882,
+                "parameter_accepts": 0.2693014705882353
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.07642024307652315,
+              0.05204978032577227,
+              0.05916638455111252,
+              0.06272299887335257,
+              0.047643569838033674,
+              0.01442501615326201,
+              0.05640851405784363,
+              0.01501574640799905
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0057813536605293,
+                "bulk_ess": 401.5403064625748
+              },
+              {
+                "rank_split_rhat": 1.0016660255381238,
+                "bulk_ess": 658.3355069189562
+              },
+              {
+                "rank_split_rhat": 1.0023197425223667,
+                "bulk_ess": 697.7943731999325
+              },
+              {
+                "rank_split_rhat": 1.0029473587825948,
+                "bulk_ess": 625.9575441087244
+              },
+              {
+                "rank_split_rhat": 1.0027960576354107,
+                "bulk_ess": 1602.2768998557967
+              },
+              {
+                "rank_split_rhat": 1.0004451074636906,
+                "bulk_ess": 3686.9568618837798
+              },
+              {
+                "rank_split_rhat": 1.0023197425223667,
+                "bulk_ess": 697.7943731999325
+              },
+              {
+                "rank_split_rhat": 1.0002963114127112,
+                "bulk_ess": 3686.9568618837798
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 10.501646124990657,
+            "ess_per_second": 38.235939554945915,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 5,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.000999994628003108,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.95009765625,
+                "parameter_accepts": 0.2330078125
+              },
+              {
+                "latent_accepts": 0.95107421875,
+                "parameter_accepts": 0.21630859375
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.07154187995112758,
+              0.07316924720218443,
+              0.07237193698163272,
+              0.06686871937537932,
+              0.04719455485505281,
+              0.03059407331379673,
+              0.06571333062740978,
+              0.027508305867924465
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.002979065531055,
+                "bulk_ess": 671.215879444231
+              },
+              {
+                "rank_split_rhat": 1.0016928779028471,
+                "bulk_ess": 707.6576064257148
+              },
+              {
+                "rank_split_rhat": 1.0020916294386113,
+                "bulk_ess": 853.9121425959156
+              },
+              {
+                "rank_split_rhat": 1.0017663744741097,
+                "bulk_ess": 1207.0353721001916
+              },
+              {
+                "rank_split_rhat": 1.001515019998335,
+                "bulk_ess": 2367.3523118534986
+              },
+              {
+                "rank_split_rhat": 0.9999942542017094,
+                "bulk_ess": 7103.708625977069
+              },
+              {
+                "rank_split_rhat": 1.0020916294386113,
+                "bulk_ess": 853.9121425959156
+              },
+              {
+                "rank_split_rhat": 0.9999942542017094,
+                "bulk_ess": 7103.708625977069
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 18.659917290962767,
+            "ess_per_second": 35.97099970905601,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999738062915699,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9492730034722222,
+                "parameter_accepts": 0.27978515625
+              },
+              {
+                "latent_accepts": 0.9498155381944444,
+                "parameter_accepts": 0.2620442708333333
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06697173644255598,
+              0.07304591923352427,
+              0.0578801320454077,
+              0.05009194235256067,
+              0.03891382877964914,
+              0.022666819249906496,
+              0.05813418577863433,
+              0.020926901853369723
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          }
+        ]
+      },
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+        "arm": "cached",
+        "seconds": 0.051306999986991286,
+        "origin_smoke_crps": 0.03563165890372545,
+        "loss_sha256": "88436bdac2f2914ce2b5b182e2bd512d40e7b577084ae6229d89365c6254c4d5",
+        "asset_diagnostics": [
+          {
+            "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0048602296132794,
+                "bulk_ess": 530.9284402643982
+              },
+              {
+                "rank_split_rhat": 1.0009904440063442,
+                "bulk_ess": 547.0091105349612
+              },
+              {
+                "rank_split_rhat": 1.0015947582654683,
+                "bulk_ess": 604.5414043294571
+              },
+              {
+                "rank_split_rhat": 1.0048994928308725,
+                "bulk_ess": 944.8465764596253
+              },
+              {
+                "rank_split_rhat": 1.001886658904481,
+                "bulk_ess": 1971.562877259654
+              },
+              {
+                "rank_split_rhat": 1.0001965077564507,
+                "bulk_ess": 7563.3462871347265
+              },
+              {
+                "rank_split_rhat": 1.001399698327688,
+                "bulk_ess": 604.5414043294571
+              },
+              {
+                "rank_split_rhat": 1.0001965077564507,
+                "bulk_ess": 7563.3462871347265
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 19.03700520901475,
+            "ess_per_second": 27.889283762604805,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999384217065225,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9573025173611112,
+                "parameter_accepts": 0.20762803819444445
+              },
+              {
+                "latent_accepts": 0.9536675347222222,
+                "parameter_accepts": 0.2681749131944444
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06730674783635035,
+              0.07733726133045363,
+              0.07648997983687698,
+              0.05772626104482213,
+              0.043418479090206456,
+              0.022396182544996073,
+              0.0809617462419083,
+              0.021286242701770944
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.005146684719241,
+                "bulk_ess": 746.885824239675
+              },
+              {
+                "rank_split_rhat": 1.0014378596436404,
+                "bulk_ess": 851.6145261976512
+              },
+              {
+                "rank_split_rhat": 1.0043015390190593,
+                "bulk_ess": 966.4082805300499
+              },
+              {
+                "rank_split_rhat": 1.0054475394881013,
+                "bulk_ess": 1068.3017542566824
+              },
+              {
+                "rank_split_rhat": 1.0014845325878021,
+                "bulk_ess": 2686.0608265505552
+              },
+              {
+                "rank_split_rhat": 1.0003760540351958,
+                "bulk_ess": 4939.708834475371
+              },
+              {
+                "rank_split_rhat": 1.0043015390190593,
+                "bulk_ess": 966.4082805300499
+              },
+              {
+                "rank_split_rhat": 1.0003482909866592,
+                "bulk_ess": 4939.708834475371
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 18.47752924996894,
+            "ess_per_second": 40.42130385159209,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999866411972184,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9671766493055556,
+                "parameter_accepts": 0.23763020833333334
+              },
+              {
+                "latent_accepts": 0.9683159722222222,
+                "parameter_accepts": 0.2426215277777778
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.059404243702609875,
+              0.061197015635056896,
+              0.05860132540612736,
+              0.052898794651636556,
+              0.035827859761845576,
+              0.02645129791766631,
+              0.050454099267366985,
+              0.024031129681491598
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.009986177783965,
+                "bulk_ess": 570.8805968167311
+              },
+              {
+                "rank_split_rhat": 1.0063874810065319,
+                "bulk_ess": 915.2938608802831
+              },
+              {
+                "rank_split_rhat": 1.003169079804825,
+                "bulk_ess": 1155.6531267757823
+              },
+              {
+                "rank_split_rhat": 1.0012694733402527,
+                "bulk_ess": 1654.1841907015707
+              },
+              {
+                "rank_split_rhat": 1.0010502232012022,
+                "bulk_ess": 3092.3975195840408
+              },
+              {
+                "rank_split_rhat": 1.0004294757727434,
+                "bulk_ess": 16912.458005119886
+              },
+              {
+                "rank_split_rhat": 1.003169079804825,
+                "bulk_ess": 1155.6531267757823
+              },
+              {
+                "rank_split_rhat": 1.0004294757727434,
+                "bulk_ess": 16912.458005119886
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 32768,
+            "fit_seconds": 29.884285083971918,
+            "ess_per_second": 19.103036770416708,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999345969249345,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9377872242647058,
+                "parameter_accepts": 0.2747012867647059
+              },
+              {
+                "latent_accepts": 0.9374712775735294,
+                "parameter_accepts": 0.22096162683823528
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.07406542666000632,
+              0.056377420853537266,
+              0.05314291634766811,
+              0.044361553955325116,
+              0.032721112636621925,
+              0.015342313587313564,
+              0.05204801929098154,
+              0.012578168883072584
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0004392335797652,
+                "bulk_ess": 419.7477569266782
+              },
+              {
+                "rank_split_rhat": 1.001660194291989,
+                "bulk_ess": 1173.4753361501757
+              },
+              {
+                "rank_split_rhat": 1.0006391539609374,
+                "bulk_ess": 843.5175480051826
+              },
+              {
+                "rank_split_rhat": 1.0006264444293866,
+                "bulk_ess": 559.9971235920319
+              },
+              {
+                "rank_split_rhat": 1.0008165164427907,
+                "bulk_ess": 1042.7621482415439
+              },
+              {
+                "rank_split_rhat": 1.0001045124501788,
+                "bulk_ess": 18828.571100562436
+              },
+              {
+                "rank_split_rhat": 1.0005522016440056,
+                "bulk_ess": 843.5175480051826
+              },
+              {
+                "rank_split_rhat": 1.0001045124501788,
+                "bulk_ess": 18828.571100562436
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 32768,
+            "fit_seconds": 33.32007725001313,
+            "ess_per_second": 12.597442490218501,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999416559346994,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.93896484375,
+                "parameter_accepts": 0.3021024816176471
+              },
+              {
+                "latent_accepts": 0.9339958639705882,
+                "parameter_accepts": 0.2693014705882353
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.07642024307652315,
+              0.05204978032577227,
+              0.05916638455111252,
+              0.06272299887335257,
+              0.047643569838033674,
+              0.01442501615326201,
+              0.05640851405784363,
+              0.01501574640799905
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0057813536605293,
+                "bulk_ess": 401.5403064625748
+              },
+              {
+                "rank_split_rhat": 1.0016660255381238,
+                "bulk_ess": 658.3355069189562
+              },
+              {
+                "rank_split_rhat": 1.0023197425223667,
+                "bulk_ess": 697.7943731999325
+              },
+              {
+                "rank_split_rhat": 1.0029473587825948,
+                "bulk_ess": 625.9575441087244
+              },
+              {
+                "rank_split_rhat": 1.0027960576354107,
+                "bulk_ess": 1602.2768998557967
+              },
+              {
+                "rank_split_rhat": 1.0004451074636906,
+                "bulk_ess": 3686.9568618837798
+              },
+              {
+                "rank_split_rhat": 1.0023197425223667,
+                "bulk_ess": 697.7943731999325
+              },
+              {
+                "rank_split_rhat": 1.0002963114127112,
+                "bulk_ess": 3686.9568618837798
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 10.501646124990657,
+            "ess_per_second": 38.235939554945915,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 5,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.000999994628003108,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.95009765625,
+                "parameter_accepts": 0.2330078125
+              },
+              {
+                "latent_accepts": 0.95107421875,
+                "parameter_accepts": 0.21630859375
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.07154187995112758,
+              0.07316924720218443,
+              0.07237193698163272,
+              0.06686871937537932,
+              0.04719455485505281,
+              0.03059407331379673,
+              0.06571333062740978,
+              0.027508305867924465
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.002979065531055,
+                "bulk_ess": 671.215879444231
+              },
+              {
+                "rank_split_rhat": 1.0016928779028471,
+                "bulk_ess": 707.6576064257148
+              },
+              {
+                "rank_split_rhat": 1.0020916294386113,
+                "bulk_ess": 853.9121425959156
+              },
+              {
+                "rank_split_rhat": 1.0017663744741097,
+                "bulk_ess": 1207.0353721001916
+              },
+              {
+                "rank_split_rhat": 1.001515019998335,
+                "bulk_ess": 2367.3523118534986
+              },
+              {
+                "rank_split_rhat": 0.9999942542017094,
+                "bulk_ess": 7103.708625977069
+              },
+              {
+                "rank_split_rhat": 1.0020916294386113,
+                "bulk_ess": 853.9121425959156
+              },
+              {
+                "rank_split_rhat": 0.9999942542017094,
+                "bulk_ess": 7103.708625977069
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 18.659917290962767,
+            "ess_per_second": 35.97099970905601,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999738062915699,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9492730034722222,
+                "parameter_accepts": 0.27978515625
+              },
+              {
+                "latent_accepts": 0.9498155381944444,
+                "parameter_accepts": 0.2620442708333333
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06697173644255598,
+              0.07304591923352427,
+              0.0578801320454077,
+              0.05009194235256067,
+              0.03891382877964914,
+              0.022666819249906496,
+              0.05813418577863433,
+              0.020926901853369723
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+            "burn_per_chain": 2048
+          }
+        ]
+      },
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+        "arm": "fresh",
+        "seconds": 36.049474540981464,
+        "origin_smoke_crps": 0.03730946507719091,
+        "loss_sha256": "b7a0e81063e2d73710a95e6a726bf430e55d473f296aa32daffd49f0c0405219",
+        "asset_diagnostics": [
+          {
+            "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.002533102990201,
+                "bulk_ess": 725.0965640860761
+              },
+              {
+                "rank_split_rhat": 1.0024996841763794,
+                "bulk_ess": 860.6685411838955
+              },
+              {
+                "rank_split_rhat": 1.0011281258309352,
+                "bulk_ess": 981.291239328671
+              },
+              {
+                "rank_split_rhat": 1.0001230418787759,
+                "bulk_ess": 16511.060709212794
+              },
+              {
+                "rank_split_rhat": 1.0024775164326176,
+                "bulk_ess": 881.382668369752
+              },
+              {
+                "rank_split_rhat": 1.0019772702141314,
+                "bulk_ess": 1585.7755205198184
+              },
+              {
+                "rank_split_rhat": 1.0002002751987722,
+                "bulk_ess": 8269.415503469856
+              },
+              {
+                "rank_split_rhat": 1.0000269513025566,
+                "bulk_ess": 4524.901622522815
+              },
+              {
+                "rank_split_rhat": 1.0002002751987722,
+                "bulk_ess": 8269.415503469856
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 21.855307959020138,
+            "ess_per_second": 33.17713781227291,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999747960939736,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9600151909722222,
+                "parameter_accepts": 0.22444661458333334
+              },
+              {
+                "latent_accepts": 0.9595269097222222,
+                "parameter_accepts": 0.24452039930555555
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06733049538748559,
+              0.0654640775377832,
+              0.06011002125458266,
+              0.014557253136131654,
+              0.05702559461867048,
+              0.04338043701677646,
+              0.020388297474325728,
+              0.013604500267954693,
+              0.01909720759389034
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0014752247578154,
+                "bulk_ess": 691.3685291874391
+              },
+              {
+                "rank_split_rhat": 1.001595937543754,
+                "bulk_ess": 858.8511550134492
+              },
+              {
+                "rank_split_rhat": 1.0016108368695003,
+                "bulk_ess": 1000.5582966569863
+              },
+              {
+                "rank_split_rhat": 1.0010274037457196,
+                "bulk_ess": 18930.300977409253
+              },
+              {
+                "rank_split_rhat": 1.0006790763857996,
+                "bulk_ess": 916.5175185932471
+              },
+              {
+                "rank_split_rhat": 1.0006507241289777,
+                "bulk_ess": 2062.499809093573
+              },
+              {
+                "rank_split_rhat": 1.0002378046038447,
+                "bulk_ess": 4327.467371587093
+              },
+              {
+                "rank_split_rhat": 1.0008683905082152,
+                "bulk_ess": 6476.458731723508
+              },
+              {
+                "rank_split_rhat": 1.0002378046038447,
+                "bulk_ess": 4327.467371587093
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 21.330774250032846,
+            "ess_per_second": 32.41178782745659,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.0009998927821753764,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.96826171875,
+                "parameter_accepts": 0.2708875868055556
+              },
+              {
+                "latent_accepts": 0.9684244791666666,
+                "parameter_accepts": 0.23307291666666666
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06416606912251584,
+              0.060198436983408585,
+              0.05828887907442932,
+              0.01250970049062101,
+              0.05923424598974344,
+              0.04171129697025633,
+              0.030312787295348104,
+              0.012596309082655782,
+              0.02617874296269915
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0051738400308403,
+                "bulk_ess": 536.8965328595979
+              },
+              {
+                "rank_split_rhat": 1.0084070001373278,
+                "bulk_ess": 464.5948904417587
+              },
+              {
+                "rank_split_rhat": 1.002415270568047,
+                "bulk_ess": 408.7766229608948
+              },
+              {
+                "rank_split_rhat": 1.001205055058317,
+                "bulk_ess": 3824.2081468717765
+              },
+              {
+                "rank_split_rhat": 1.0011071986153273,
+                "bulk_ess": 486.544455919853
+              },
+              {
+                "rank_split_rhat": 1.0005818544780545,
+                "bulk_ess": 809.8631138449165
+              },
+              {
+                "rank_split_rhat": 1.0003319320934514,
+                "bulk_ess": 8388.323185070085
+              },
+              {
+                "rank_split_rhat": 1.0011442090346476,
+                "bulk_ess": 3326.8450677180917
+              },
+              {
+                "rank_split_rhat": 1.0003319320934514,
+                "bulk_ess": 8388.323185070085
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 18.208544916997198,
+            "ess_per_second": 22.449713847223048,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999555446405244,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9361436631944444,
+                "parameter_accepts": 0.21495225694444445
+              },
+              {
+                "latent_accepts": 0.9352756076388888,
+                "parameter_accepts": 0.1926540798611111
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.08688001508194278,
+              0.07699078154159933,
+              0.08082871957320545,
+              0.026913259727703025,
+              0.0698328388786766,
+              0.05656683304122204,
+              0.021693623835295977,
+              0.03195021073247259,
+              0.017781516915733164
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0029450907573312,
+                "bulk_ess": 524.6786791280656
+              },
+              {
+                "rank_split_rhat": 1.0017756608906725,
+                "bulk_ess": 1315.4279412929764
+              },
+              {
+                "rank_split_rhat": 1.001596347578035,
+                "bulk_ess": 779.7882203904545
+              },
+              {
+                "rank_split_rhat": 1.0001787620360378,
+                "bulk_ess": 7489.985882211983
+              },
+              {
+                "rank_split_rhat": 1.0023055550163629,
+                "bulk_ess": 620.1124660035977
+              },
+              {
+                "rank_split_rhat": 1.0012543535925267,
+                "bulk_ess": 1342.8310582708814
+              },
+              {
+                "rank_split_rhat": 1.000206505383358,
+                "bulk_ess": 18957.146215818993
+              },
+              {
+                "rank_split_rhat": 1.0002273416486829,
+                "bulk_ess": 15188.056620020105
+              },
+              {
+                "rank_split_rhat": 1.000206505383358,
+                "bulk_ess": 18957.146215818993
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 32768,
+            "fit_seconds": 33.75194779096637,
+            "ess_per_second": 15.545137791084597,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.0009997931896665703,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9422392003676471,
+                "parameter_accepts": 0.19077435661764705
+              },
+              {
+                "latent_accepts": 0.9389935661764706,
+                "parameter_accepts": 0.18882123161764705
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06979755143220039,
+              0.04870274020573338,
+              0.0638674127644705,
+              0.01651716778097513,
+              0.06535845684342202,
+              0.04534385059287733,
+              0.013830639764931763,
+              0.022095961607172473,
+              0.015259092637057846
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0024139989905965,
+                "bulk_ess": 568.0106427506806
+              },
+              {
+                "rank_split_rhat": 1.003835282192793,
+                "bulk_ess": 858.4074706498782
+              },
+              {
+                "rank_split_rhat": 1.0019176371407115,
+                "bulk_ess": 788.4449543625439
+              },
+              {
+                "rank_split_rhat": 1.0002612508327855,
+                "bulk_ess": 13631.73769686365
+              },
+              {
+                "rank_split_rhat": 1.0029126822632615,
+                "bulk_ess": 606.7781570721781
+              },
+              {
+                "rank_split_rhat": 1.0006500007667156,
+                "bulk_ess": 1387.0364444134066
+              },
+              {
+                "rank_split_rhat": 1.0000834447130524,
+                "bulk_ess": 2779.7369515504947
+              },
+              {
+                "rank_split_rhat": 1.0006229511649487,
+                "bulk_ess": 2838.4881122963684
+              },
+              {
+                "rank_split_rhat": 1.0000834447130524,
+                "bulk_ess": 2779.7369515504947
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 11.353128499991726,
+            "ess_per_second": 50.03120001249828,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 5,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.000999931412560116,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.95263671875,
+                "parameter_accepts": 0.2509765625
+              },
+              {
+                "latent_accepts": 0.95234375,
+                "parameter_accepts": 0.1955078125
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.07528874882178997,
+              0.0642754450801178,
+              0.06394108627656807,
+              0.015006168156744708,
+              0.07256599505908817,
+              0.050968964439458815,
+              0.03722097717215635,
+              0.020230364788429836,
+              0.03357211909867243
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.00192892327621,
+                "bulk_ess": 569.6981656081151
+              },
+              {
+                "rank_split_rhat": 1.0016464187089067,
+                "bulk_ess": 696.4590027191005
+              },
+              {
+                "rank_split_rhat": 1.0029945475699895,
+                "bulk_ess": 674.9778010055091
+              },
+              {
+                "rank_split_rhat": 1.000371020721664,
+                "bulk_ess": 16313.161900541203
+              },
+              {
+                "rank_split_rhat": 1.0010804384282843,
+                "bulk_ess": 863.2218205209994
+              },
+              {
+                "rank_split_rhat": 1.0004111545877148,
+                "bulk_ess": 1667.9174024855529
+              },
+              {
+                "rank_split_rhat": 1.0001630039588885,
+                "bulk_ess": 7759.099845952406
+              },
+              {
+                "rank_split_rhat": 1.000564845411276,
+                "bulk_ess": 3167.8427801190337
+              },
+              {
+                "rank_split_rhat": 1.0001630039588885,
+                "bulk_ess": 7759.099845952406
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 21.291614666988607,
+            "ess_per_second": 26.75692635427028,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999644399079411,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9510091145833334,
+                "parameter_accepts": 0.21402994791666666
+              },
+              {
+                "latent_accepts": 0.9518771701388888,
+                "parameter_accepts": 0.21788194444444445
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06781635967076266,
+              0.07065737972639385,
+              0.06744510918314925,
+              0.015221216601002405,
+              0.056306950821106865,
+              0.04451816411288569,
+              0.021943601864909224,
+              0.025769906131042845,
+              0.0202907003660403
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          }
+        ]
+      },
+      {
+        "model": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+        "arm": "cached",
+        "seconds": 0.022511416987981647,
+        "origin_smoke_crps": 0.03730946507719091,
+        "loss_sha256": "b7a0e81063e2d73710a95e6a726bf430e55d473f296aa32daffd49f0c0405219",
+        "asset_diagnostics": [
+          {
+            "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.002533102990201,
+                "bulk_ess": 725.0965640860761
+              },
+              {
+                "rank_split_rhat": 1.0024996841763794,
+                "bulk_ess": 860.6685411838955
+              },
+              {
+                "rank_split_rhat": 1.0011281258309352,
+                "bulk_ess": 981.291239328671
+              },
+              {
+                "rank_split_rhat": 1.0001230418787759,
+                "bulk_ess": 16511.060709212794
+              },
+              {
+                "rank_split_rhat": 1.0024775164326176,
+                "bulk_ess": 881.382668369752
+              },
+              {
+                "rank_split_rhat": 1.0019772702141314,
+                "bulk_ess": 1585.7755205198184
+              },
+              {
+                "rank_split_rhat": 1.0002002751987722,
+                "bulk_ess": 8269.415503469856
+              },
+              {
+                "rank_split_rhat": 1.0000269513025566,
+                "bulk_ess": 4524.901622522815
+              },
+              {
+                "rank_split_rhat": 1.0002002751987722,
+                "bulk_ess": 8269.415503469856
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 21.855307959020138,
+            "ess_per_second": 33.17713781227291,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999747960939736,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9600151909722222,
+                "parameter_accepts": 0.22444661458333334
+              },
+              {
+                "latent_accepts": 0.9595269097222222,
+                "parameter_accepts": 0.24452039930555555
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06733049538748559,
+              0.0654640775377832,
+              0.06011002125458266,
+              0.014557253136131654,
+              0.05702559461867048,
+              0.04338043701677646,
+              0.020388297474325728,
+              0.013604500267954693,
+              0.01909720759389034
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0014752247578154,
+                "bulk_ess": 691.3685291874391
+              },
+              {
+                "rank_split_rhat": 1.001595937543754,
+                "bulk_ess": 858.8511550134492
+              },
+              {
+                "rank_split_rhat": 1.0016108368695003,
+                "bulk_ess": 1000.5582966569863
+              },
+              {
+                "rank_split_rhat": 1.0010274037457196,
+                "bulk_ess": 18930.300977409253
+              },
+              {
+                "rank_split_rhat": 1.0006790763857996,
+                "bulk_ess": 916.5175185932471
+              },
+              {
+                "rank_split_rhat": 1.0006507241289777,
+                "bulk_ess": 2062.499809093573
+              },
+              {
+                "rank_split_rhat": 1.0002378046038447,
+                "bulk_ess": 4327.467371587093
+              },
+              {
+                "rank_split_rhat": 1.0008683905082152,
+                "bulk_ess": 6476.458731723508
+              },
+              {
+                "rank_split_rhat": 1.0002378046038447,
+                "bulk_ess": 4327.467371587093
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 21.330774250032846,
+            "ess_per_second": 32.41178782745659,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.0009998927821753764,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.96826171875,
+                "parameter_accepts": 0.2708875868055556
+              },
+              {
+                "latent_accepts": 0.9684244791666666,
+                "parameter_accepts": 0.23307291666666666
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06416606912251584,
+              0.060198436983408585,
+              0.05828887907442932,
+              0.01250970049062101,
+              0.05923424598974344,
+              0.04171129697025633,
+              0.030312787295348104,
+              0.012596309082655782,
+              0.02617874296269915
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0051738400308403,
+                "bulk_ess": 536.8965328595979
+              },
+              {
+                "rank_split_rhat": 1.0084070001373278,
+                "bulk_ess": 464.5948904417587
+              },
+              {
+                "rank_split_rhat": 1.002415270568047,
+                "bulk_ess": 408.7766229608948
+              },
+              {
+                "rank_split_rhat": 1.001205055058317,
+                "bulk_ess": 3824.2081468717765
+              },
+              {
+                "rank_split_rhat": 1.0011071986153273,
+                "bulk_ess": 486.544455919853
+              },
+              {
+                "rank_split_rhat": 1.0005818544780545,
+                "bulk_ess": 809.8631138449165
+              },
+              {
+                "rank_split_rhat": 1.0003319320934514,
+                "bulk_ess": 8388.323185070085
+              },
+              {
+                "rank_split_rhat": 1.0011442090346476,
+                "bulk_ess": 3326.8450677180917
+              },
+              {
+                "rank_split_rhat": 1.0003319320934514,
+                "bulk_ess": 8388.323185070085
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 18.208544916997198,
+            "ess_per_second": 22.449713847223048,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999555446405244,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9361436631944444,
+                "parameter_accepts": 0.21495225694444445
+              },
+              {
+                "latent_accepts": 0.9352756076388888,
+                "parameter_accepts": 0.1926540798611111
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.08688001508194278,
+              0.07699078154159933,
+              0.08082871957320545,
+              0.026913259727703025,
+              0.0698328388786766,
+              0.05656683304122204,
+              0.021693623835295977,
+              0.03195021073247259,
+              0.017781516915733164
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0029450907573312,
+                "bulk_ess": 524.6786791280656
+              },
+              {
+                "rank_split_rhat": 1.0017756608906725,
+                "bulk_ess": 1315.4279412929764
+              },
+              {
+                "rank_split_rhat": 1.001596347578035,
+                "bulk_ess": 779.7882203904545
+              },
+              {
+                "rank_split_rhat": 1.0001787620360378,
+                "bulk_ess": 7489.985882211983
+              },
+              {
+                "rank_split_rhat": 1.0023055550163629,
+                "bulk_ess": 620.1124660035977
+              },
+              {
+                "rank_split_rhat": 1.0012543535925267,
+                "bulk_ess": 1342.8310582708814
+              },
+              {
+                "rank_split_rhat": 1.000206505383358,
+                "bulk_ess": 18957.146215818993
+              },
+              {
+                "rank_split_rhat": 1.0002273416486829,
+                "bulk_ess": 15188.056620020105
+              },
+              {
+                "rank_split_rhat": 1.000206505383358,
+                "bulk_ess": 18957.146215818993
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 32768,
+            "fit_seconds": 33.75194779096637,
+            "ess_per_second": 15.545137791084597,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 10,
+              "maximum_autocorrelation_error_upper_bound": 0.0009997931896665703,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9422392003676471,
+                "parameter_accepts": 0.19077435661764705
+              },
+              {
+                "latent_accepts": 0.9389935661764706,
+                "parameter_accepts": 0.18882123161764705
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06979755143220039,
+              0.04870274020573338,
+              0.0638674127644705,
+              0.01651716778097513,
+              0.06535845684342202,
+              0.04534385059287733,
+              0.013830639764931763,
+              0.022095961607172473,
+              0.015259092637057846
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.0024139989905965,
+                "bulk_ess": 568.0106427506806
+              },
+              {
+                "rank_split_rhat": 1.003835282192793,
+                "bulk_ess": 858.4074706498782
+              },
+              {
+                "rank_split_rhat": 1.0019176371407115,
+                "bulk_ess": 788.4449543625439
+              },
+              {
+                "rank_split_rhat": 1.0002612508327855,
+                "bulk_ess": 13631.73769686365
+              },
+              {
+                "rank_split_rhat": 1.0029126822632615,
+                "bulk_ess": 606.7781570721781
+              },
+              {
+                "rank_split_rhat": 1.0006500007667156,
+                "bulk_ess": 1387.0364444134066
+              },
+              {
+                "rank_split_rhat": 1.0000834447130524,
+                "bulk_ess": 2779.7369515504947
+              },
+              {
+                "rank_split_rhat": 1.0006229511649487,
+                "bulk_ess": 2838.4881122963684
+              },
+              {
+                "rank_split_rhat": 1.0000834447130524,
+                "bulk_ess": 2779.7369515504947
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 8192,
+            "fit_seconds": 11.353128499991726,
+            "ess_per_second": 50.03120001249828,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 5,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.000999931412560116,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.95263671875,
+                "parameter_accepts": 0.2509765625
+              },
+              {
+                "latent_accepts": 0.95234375,
+                "parameter_accepts": 0.1955078125
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.07528874882178997,
+              0.0642754450801178,
+              0.06394108627656807,
+              0.015006168156744708,
+              0.07256599505908817,
+              0.050968964439458815,
+              0.03722097717215635,
+              0.020230364788429836,
+              0.03357211909867243
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          },
+          {
+            "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+            "diagnostics": [
+              {
+                "rank_split_rhat": 1.00192892327621,
+                "bulk_ess": 569.6981656081151
+              },
+              {
+                "rank_split_rhat": 1.0016464187089067,
+                "bulk_ess": 696.4590027191005
+              },
+              {
+                "rank_split_rhat": 1.0029945475699895,
+                "bulk_ess": 674.9778010055091
+              },
+              {
+                "rank_split_rhat": 1.000371020721664,
+                "bulk_ess": 16313.161900541203
+              },
+              {
+                "rank_split_rhat": 1.0010804384282843,
+                "bulk_ess": 863.2218205209994
+              },
+              {
+                "rank_split_rhat": 1.0004111545877148,
+                "bulk_ess": 1667.9174024855529
+              },
+              {
+                "rank_split_rhat": 1.0001630039588885,
+                "bulk_ess": 7759.099845952406
+              },
+              {
+                "rank_split_rhat": 1.000564845411276,
+                "bulk_ess": 3167.8427801190337
+              },
+              {
+                "rank_split_rhat": 1.0001630039588885,
+                "bulk_ess": 7759.099845952406
+              }
+            ],
+            "diagnostic_columns": [
+              "H",
+              "log_kappa",
+              "log_eta",
+              "level",
+              "log_likelihood_plus_parameter_prior",
+              "latent_mean",
+              "latent_terminal",
+              "stationary_variance",
+              "terminal_variance"
+            ],
+            "convergence_flag": true,
+            "kept_per_chain": 16384,
+            "fit_seconds": 21.291614666988607,
+            "ess_per_second": 26.75692635427028,
+            "kernel": {
+              "selection": "per_parameter_dynamic_positive_integer_order",
+              "minimum_factors": 4,
+              "maximum_factors": 9,
+              "maximum_autocorrelation_error_upper_bound": 0.0009999644399079411,
+              "tolerance": 0.001,
+              "maximum_daily_lag": 632
+            },
+            "sampler_acceptance": [
+              {
+                "latent_accepts": 0.9510091145833334,
+                "parameter_accepts": 0.21402994791666666
+              },
+              {
+                "latent_accepts": 0.9518771701388888,
+                "parameter_accepts": 0.21788194444444445
+              }
+            ],
+            "relative_95_percent_mc_halfwidth": [
+              0.06781635967076266,
+              0.07065737972639385,
+              0.06744510918314925,
+              0.015221216601002405,
+              0.056306950821106865,
+              0.04451816411288569,
+              0.021943601864909224,
+              0.025769906131042845,
+              0.0202907003660403
+            ],
+            "model_id": "asset_rough_volterra_sv_dynamic_exact_mixture_standalone",
+            "burn_per_chain": 2048
+          }
+        ]
+      }
+    ]
+  },
+  "corrected_mixture_long_history": {
+    "overlay": {
+      "convergence_flag": true,
+      "diagnostics": [
+        {
+          "rank_split_rhat": 1.0075366613551937,
+          "bulk_ess": 488.06412626178417
+        },
+        {
+          "rank_split_rhat": 1.0053882344163372,
+          "bulk_ess": 590.1681622464027
+        },
+        {
+          "rank_split_rhat": 1.0036346014642181,
+          "bulk_ess": 787.992147277147
+        },
+        {
+          "rank_split_rhat": 1.0051016474024987,
+          "bulk_ess": 759.0558542249881
+        },
+        {
+          "rank_split_rhat": 1.001958344795449,
+          "bulk_ess": 1419.6204012911462
+        },
+        {
+          "rank_split_rhat": 1.0001729322189903,
+          "bulk_ess": 5984.606376582539
+        },
+        {
+          "rank_split_rhat": 1.0036346014642181,
+          "bulk_ess": 787.992147277147
+        },
+        {
+          "rank_split_rhat": 1.0001729322189903,
+          "bulk_ess": 5984.606376582539
+        }
+      ],
+      "diagnostic_columns": [
+        "H",
+        "log_kappa",
+        "log_eta",
+        "log_likelihood_plus_parameter_prior",
+        "latent_mean",
+        "latent_terminal",
+        "stationary_variance",
+        "terminal_variance"
+      ],
+      "kept_per_chain": 16384,
+      "relative_95_percent_mc_halfwidth": [
+        0.07539416314038455,
+        0.06894168562921464,
+        0.06388179661365324,
+        0.06068372479041089,
+        0.0479133699763941,
+        0.02440433645566612,
+        0.06572377241230182,
+        0.02320233771014644
+      ],
+      "kernel": {
+        "selection": "per_parameter_dynamic_positive_integer_order",
+        "minimum_factors": 7,
+        "maximum_factors": 9,
+        "maximum_autocorrelation_error_upper_bound": 0.0009999585721259295,
+        "tolerance": 0.001,
+        "maximum_daily_lag": 11686
+      },
+      "sampler_acceptance": [
+        {
+          "latent_accepts": 0.7394205729166666,
+          "parameter_accepts": 0.21251085069444445
+        },
+        {
+          "latent_accepts": 0.7293836805555556,
+          "parameter_accepts": 0.2033420138888889
+        }
+      ],
+      "ess_per_second": 3.4428808792075567,
+      "free_level": false,
+      "seconds": 141.76071537501412,
+      "trace_sha256": "6543ab406826c0e25b50657e583e11ad76e9f60712d7c6d6e8f25c2d19501b75"
+    },
+    "standalone": {
+      "convergence_flag": true,
+      "diagnostics": [
+        {
+          "rank_split_rhat": 1.0035679826134143,
+          "bulk_ess": 550.0820963317802
+        },
+        {
+          "rank_split_rhat": 1.0007408879317423,
+          "bulk_ess": 998.3376491270255
+        },
+        {
+          "rank_split_rhat": 1.0007061007726565,
+          "bulk_ess": 1278.1250568304624
+        },
+        {
+          "rank_split_rhat": 1.000213617228177,
+          "bulk_ess": 15890.163080337703
+        },
+        {
+          "rank_split_rhat": 1.0036410265281062,
+          "bulk_ess": 665.1963678207208
+        },
+        {
+          "rank_split_rhat": 1.0013237743737238,
+          "bulk_ess": 1295.7611467051554
+        },
+        {
+          "rank_split_rhat": 1.0003790095161356,
+          "bulk_ess": 6157.2936270401815
+        },
+        {
+          "rank_split_rhat": 1.0001843395426107,
+          "bulk_ess": 3638.3388068706154
+        },
+        {
+          "rank_split_rhat": 1.0003790095161356,
+          "bulk_ess": 6157.2936270401815
+        }
+      ],
+      "diagnostic_columns": [
+        "H",
+        "log_kappa",
+        "log_eta",
+        "level",
+        "log_likelihood_plus_parameter_prior",
+        "latent_mean",
+        "latent_terminal",
+        "stationary_variance",
+        "terminal_variance"
+      ],
+      "kept_per_chain": 16384,
+      "relative_95_percent_mc_halfwidth": [
+        0.0723789047922383,
+        0.05714226649852693,
+        0.052340944345868765,
+        0.01695463225905464,
+        0.06429085604769312,
+        0.046453655465001416,
+        0.025502065366863058,
+        0.033551421247887486,
+        0.023559054217726628
+      ],
+      "kernel": {
+        "selection": "per_parameter_dynamic_positive_integer_order",
+        "minimum_factors": 7,
+        "maximum_factors": 9,
+        "maximum_autocorrelation_error_upper_bound": 0.000999987986984409,
+        "tolerance": 0.001,
+        "maximum_daily_lag": 11686
+      },
+      "sampler_acceptance": [
+        {
+          "latent_accepts": 0.7373589409722222,
+          "parameter_accepts": 0.2409396701388889
+        },
+        {
+          "latent_accepts": 0.7376844618055556,
+          "parameter_accepts": 0.23985460069444445
+        }
+      ],
+      "ess_per_second": 3.5566429416061056,
+      "free_level": true,
+      "seconds": 154.6636053340044,
+      "trace_sha256": "0b2cdd751e46752957db9419f5925780b6998ff196035669d57685a10ec70a30"
+    }
+  },
+  "sampler_optimization_screens": {
+    "slice_sampler_rejected": [
+      {
+        "asset": 0,
+        "free_level": false,
+        "seconds": 37.17703579203226,
+        "burn": 256,
+        "kept": 2048,
+        "rhat": [
+          1.0078071395391868,
+          1.0233962802079215,
+          1.0191719917111028,
+          1.0051999967553686,
+          1.002926346492074,
+          1.0013593379344008,
+          1.0191719917111028,
+          1.0010314823202577
+        ],
+        "ess": [
+          188.58072703557022,
+          159.6018602204889,
+          280.11178019895215,
+          345.78270177435786,
+          479.0235663906137,
+          1321.8220687194066,
+          280.11178019895215,
+          1321.8220687194066
+        ],
+        "min_ess_per_second": 4.293022744290297,
+        "halfwidth": [
+          0.12079618672638903,
+          0.1248744381020484,
+          0.10315407496346875,
+          0.09377686343445057,
+          0.08254084963060906,
+          0.05247090021508686,
+          0.10761922810150297,
+          0.048060679158923904
+        ]
+      },
+      {
+        "asset": 4,
+        "free_level": true,
+        "seconds": 43.75082524999743,
+        "burn": 256,
+        "kept": 2048,
+        "rhat": [
+          1.0116698184193627,
+          1.0068401273576146,
+          1.0177427990802528,
+          1.0018178785424443,
+          1.0043065271769265,
+          1.0009555261960807,
+          1.0032789297882285,
+          1.0047421495778406,
+          1.0032789297882285
+        ],
+        "ess": [
+          182.7976679820348,
+          87.71382776585956,
+          75.37243676237064,
+          3507.903989038273,
+          232.93095165345738,
+          1598.3258609694647,
+          951.696472871568,
+          280.5963814991187,
+          951.696472871568
+        ],
+        "min_ess_per_second": 1.722766058278525,
+        "halfwidth": [
+          0.12700776801296185,
+          0.1603362885087468,
+          0.16758717162548162,
+          0.03556043747976279,
+          0.1048778139003397,
+          0.046257131706980335,
+          0.06220076033742174,
+          0.039845607753170455,
+          0.0544008775130319
+        ]
+      }
+    ],
+    "collapsed_sampler_screen": [
+      {
+        "asset": 0,
+        "free_level": false,
+        "seconds": 2.549798624997493,
+        "burn": 256,
+        "kept": 2048,
+        "rhat": [
+          1.0185108148083557,
+          1.0168997296792242,
+          1.0324515394413583,
+          1.0211463719190825,
+          1.004076202873984,
+          1.0009306536845544,
+          1.0324515394413583,
+          1.0009306536845544
+        ],
+        "ess": [
+          79.08778222947474,
+          101.83408016850238,
+          136.52834435734184,
+          156.93743061952227,
+          263.91386530564296,
+          980.491856471881,
+          136.52834435734184,
+          980.491856471881
+        ],
+        "min_ess_per_second": 31.01726601235127,
+        "halfwidth": [
+          0.1656585180857238,
+          0.15711718711183745,
+          0.13224208599541526,
+          0.11857050336866334,
+          0.11031459845848125,
+          0.0580607808769411,
+          0.12339848202413749,
+          0.048875542484131895
+        ]
+      },
+      {
+        "asset": 4,
+        "free_level": true,
+        "seconds": 1.8912515419651754,
+        "burn": 256,
+        "kept": 2048,
+        "rhat": [
+          1.012898400857282,
+          1.0097359458160244,
+          1.003931794924679,
+          1.0797991926389283,
+          1.009071268144136,
+          1.0018926428327661,
+          1.004365525819625,
+          1.0536055366956762,
+          1.004365525819625
+        ],
+        "ess": [
+          95.60979632247953,
+          141.05201809581578,
+          154.21665942995338,
+          37.115851983217844,
+          197.99811790035722,
+          490.86731462192785,
+          811.0875186241555,
+          51.55211465507864,
+          811.0875186241555
+        ],
+        "min_ess_per_second": 19.625021399665975,
+        "halfwidth": [
+          0.1433935063869346,
+          0.13351219087076255,
+          0.13136406402303352,
+          0.14194688437161934,
+          0.11941606650821604,
+          0.08315242454520146,
+          0.062202791572109624,
+          0.10789100751922277,
+          0.059133086984201125
+        ]
+      }
+    ],
+    "standalone_exact_random_walk_level_reference": {
+      "convergence_flag": true,
+      "diagnostics": [
+        {
+          "rank_split_rhat": 1.0006352329879316,
+          "bulk_ess": 1581.0334154275147
+        },
+        {
+          "rank_split_rhat": 1.004086585732949,
+          "bulk_ess": 820.4375575693963
+        },
+        {
+          "rank_split_rhat": 1.0037026008983303,
+          "bulk_ess": 920.4214932092068
+        },
+        {
+          "rank_split_rhat": 1.007840721871394,
+          "bulk_ess": 481.96263244339497
+        },
+        {
+          "rank_split_rhat": 1.0000500819926093,
+          "bulk_ess": 3316.6264701325185
+        },
+        {
+          "rank_split_rhat": 1.0001087116826257,
+          "bulk_ess": 5668.769286836734
+        },
+        {
+          "rank_split_rhat": 1.0000590098880124,
+          "bulk_ess": 25845.540962230014
+        },
+        {
+          "rank_split_rhat": 1.0053550518896766,
+          "bulk_ess": 587.6631577601775
+        },
+        {
+          "rank_split_rhat": 1.0000590098880124,
+          "bulk_ess": 25845.540962230014
+        }
+      ],
+      "diagnostic_columns": [
+        "H",
+        "log_kappa",
+        "log_eta",
+        "level",
+        "log_likelihood_plus_parameter_prior",
+        "latent_mean",
+        "latent_terminal",
+        "stationary_variance",
+        "terminal_variance"
+      ],
+      "kept_per_chain": 65536,
+      "relative_95_percent_mc_halfwidth": [
+        0.04098246555621024,
+        0.04632962725621777,
+        0.047732101926426136,
+        0.06635736001649989,
+        0.031972151390299734,
+        0.025211338577132723,
+        0.011735295973883925,
+        0.06333257992256108,
+        0.011348405341961824
+      ],
+      "kernel": {
+        "selection": "per_parameter_dynamic_positive_integer_order",
+        "minimum_factors": 7,
+        "maximum_factors": 9,
+        "maximum_autocorrelation_error_upper_bound": 0.0009999934354198024,
+        "tolerance": 0.001,
+        "maximum_daily_lag": 11686
+      },
+      "sampler_acceptance": [
+        {
+          "latent_accepts": 0.7352923768939394,
+          "parameter_accepts": 0.23523319128787878
+        },
+        {
+          "latent_accepts": 0.7311049952651515,
+          "parameter_accepts": 0.24803207859848486
+        }
+      ],
+      "ess_per_second": 0.9853439780255238,
+      "free_level": true,
+      "seconds": 489.1359150829958,
+      "trace_sha256": "817662bc5c75abdc8d046a0365c723515d1ae0564181a2da60ac40661fdb8766"
+    },
+    "QML_direct_level_rejected": {
+      "scope": "same_QML_target_sampler_screen",
+      "history_days": 10213,
+      "warmup_per_chain": 2048,
+      "retained_per_chain": 8192,
+      "records": [
+        {
+          "arm": "random_walk_level",
+          "seconds": 13.333275458018761,
+          "min_ess_per_second": 59.571350327175765,
+          "diagnostics": [
+            {
+              "rank_split_rhat": 1.0037686815766225,
+              "bulk_ess": 911.9749356700614
+            },
+            {
+              "rank_split_rhat": 1.0008184587438764,
+              "bulk_ess": 981.3535742760897
+            },
+            {
+              "rank_split_rhat": 1.001660081289033,
+              "bulk_ess": 997.4504744298247
+            },
+            {
+              "rank_split_rhat": 1.0047808900325048,
+              "bulk_ess": 794.2812233183705
+            },
+            {
+              "rank_split_rhat": 1.002282927900422,
+              "bulk_ess": 969.5968601465328
+            }
+          ]
+        },
+        {
+          "arm": "collapsed_direct_level",
+          "seconds": 22.521553957951255,
+          "min_ess_per_second": 45.241234602324226,
+          "diagnostics": [
+            {
+              "rank_split_rhat": 1.0051522624332454,
+              "bulk_ess": 1018.9029062205765
+            },
+            {
+              "rank_split_rhat": 1.0014416144911849,
+              "bulk_ess": 1220.7574394531155
+            },
+            {
+              "rank_split_rhat": 1.0030881939305711,
+              "bulk_ess": 1288.9975951241413
+            },
+            {
+              "rank_split_rhat": 0.9999737474175382,
+              "bulk_ess": 15672.244477950378
+            },
+            {
+              "rank_split_rhat": 1.0034665698788687,
+              "bulk_ess": 1690.6766736874324
+            }
+          ]
+        }
+      ]
+    },
+    "geometry_implementation_parity": {
+      "scope": "local_Kalman_geometry_benchmark",
+      "history_days": 10213,
+      "factors": 24,
+      "repetitions": 40,
+      "complete_geometry_arrays_byte_exact": true,
+      "records": [
+        {
+          "arm": "reference",
+          "seconds": 0.17127258301479742
+        },
+        {
+          "arm": "optimized",
+          "seconds": 0.06493129202863201
+        },
+        {
+          "arm": "reference",
+          "seconds": 0.16888862499035895
+        },
+        {
+          "arm": "optimized",
+          "seconds": 0.06499675003578886
+        }
+      ]
+    },
+    "overlay_complete_origin_loss_vector_after_geometry_optimization_byte_exact": true,
+    "QML_complete_origin_loss_vector_after_final_implementation_byte_exact": true,
+    "sampler_changes": "Alternative transition kernels target the same posterior; changed sampler trajectories are not claimed to have output parity. Kernel-implementation changes and execution/cache modes are separately checked for complete loss-vector equality."
+  },
+  "conventional_representative_count_exploration": {
+    "scope": "count_only_predictive_compression_screen_not_full_oos_panel",
+    "assets": [
+      {
+        "asset": "IWMSIM",
+        "history_days": 507,
+        "horizon_days": 252,
+        "posterior_draws": 4096,
+        "chain_draw_sha256": "ccce3301db7c2b475d9b2ae5b77521506e1383cbfa9b49880427c074133e574e",
+        "reference": "all 4096 retained conventional posterior draws, unchanged chains and scoring model",
+        "records": [
+          {
+            "representatives": 4,
+            "max_relative_sd_error": 0.019939298428538366,
+            "max_mean_error_in_reference_sd_units": 0.0013260073297147615,
+            "max_standardized_quantile_error": 0.08751485060541109,
+            "child_preparation_seconds": 0.0017897920333780348
+          },
+          {
+            "representatives": 8,
+            "max_relative_sd_error": 0.014699264254773081,
+            "max_mean_error_in_reference_sd_units": 0.0010048524962897355,
+            "max_standardized_quantile_error": 0.11445367451168753,
+            "child_preparation_seconds": 0.003073376079555601
+          },
+          {
+            "representatives": 16,
+            "max_relative_sd_error": 0.01830926497088403,
+            "max_mean_error_in_reference_sd_units": 0.0011971459454807173,
+            "max_standardized_quantile_error": 0.05781935559729323,
+            "child_preparation_seconds": 0.006317460152786225
+          },
+          {
+            "representatives": 32,
+            "max_relative_sd_error": 0.007950289708627434,
+            "max_mean_error_in_reference_sd_units": 0.0006488524632953312,
+            "max_standardized_quantile_error": 0.048250388748369843,
+            "child_preparation_seconds": 0.012348334130365402
+          },
+          {
+            "representatives": 64,
+            "max_relative_sd_error": 0.005690574528381509,
+            "max_mean_error_in_reference_sd_units": 0.000451555411029671,
+            "max_standardized_quantile_error": 0.03651643043310493,
+            "child_preparation_seconds": 0.022839707729872316
+          },
+          {
+            "representatives": 128,
+            "max_relative_sd_error": 0.0016439306301617718,
+            "max_mean_error_in_reference_sd_units": 9.576049547708179e-05,
+            "max_standardized_quantile_error": 0.009798142243349961,
+            "child_preparation_seconds": 0.04381033475510776
+          },
+          {
+            "representatives": 256,
+            "max_relative_sd_error": 0.0014626256314906882,
+            "max_mean_error_in_reference_sd_units": 9.642474993070815e-05,
+            "max_standardized_quantile_error": 0.011193920117690492,
+            "child_preparation_seconds": 0.08818705193698406
+          },
+          {
+            "representatives": 512,
+            "max_relative_sd_error": 0.0011080858038740038,
+            "max_mean_error_in_reference_sd_units": 7.145523475987655e-05,
+            "max_standardized_quantile_error": 0.005858006452684972,
+            "child_preparation_seconds": 0.17668500245781615
+          },
+          {
+            "representatives": 1024,
+            "max_relative_sd_error": 0.00019037462934368143,
+            "max_mean_error_in_reference_sd_units": 1.5491934050321427e-05,
+            "max_standardized_quantile_error": 0.0026958771914640245,
+            "child_preparation_seconds": 0.3526902535231784
+          },
+          {
+            "representatives": 4096,
+            "max_relative_sd_error": 0.0,
+            "max_mean_error_in_reference_sd_units": 0.0,
+            "max_standardized_quantile_error": 0.0,
+            "child_preparation_seconds": 1.4019898466067389
+          }
+        ]
+      },
+      {
+        "asset": "ZROZSIM",
+        "history_days": 507,
+        "horizon_days": 252,
+        "posterior_draws": 4096,
+        "chain_draw_sha256": "f31471ce2540e4ab746a62d95dd421d1bf7bdf811c8e6405939096065feb29e3",
+        "reference": "all 4096 retained conventional posterior draws, unchanged chains and scoring model",
+        "records": [
+          {
+            "representatives": 4,
+            "max_relative_sd_error": 0.004499584465350925,
+            "max_mean_error_in_reference_sd_units": 0.0001375926521653643,
+            "max_standardized_quantile_error": 0.07590784558244401,
+            "child_preparation_seconds": 0.0015930829686112702
+          },
+          {
+            "representatives": 8,
+            "max_relative_sd_error": 0.0039671716740048435,
+            "max_mean_error_in_reference_sd_units": 0.00020202118076812395,
+            "max_standardized_quantile_error": 0.10571313903698121,
+            "child_preparation_seconds": 0.00275970995426178
+          },
+          {
+            "representatives": 16,
+            "max_relative_sd_error": 0.010815485599184438,
+            "max_mean_error_in_reference_sd_units": 0.00037985183910021396,
+            "max_standardized_quantile_error": 0.045086104825344364,
+            "child_preparation_seconds": 0.005239414924290031
+          },
+          {
+            "representatives": 32,
+            "max_relative_sd_error": 0.005764047660667737,
+            "max_mean_error_in_reference_sd_units": 0.00013047132622555935,
+            "max_standardized_quantile_error": 0.03375152560094685,
+            "child_preparation_seconds": 0.00989791884785518
+          },
+          {
+            "representatives": 64,
+            "max_relative_sd_error": 0.006844355807740787,
+            "max_mean_error_in_reference_sd_units": 0.0001931922951736494,
+            "max_standardized_quantile_error": 0.014664477425575528,
+            "child_preparation_seconds": 0.019556874758563936
+          },
+          {
+            "representatives": 128,
+            "max_relative_sd_error": 0.005026026127070149,
+            "max_mean_error_in_reference_sd_units": 0.00017887384029576195,
+            "max_standardized_quantile_error": 0.031045457017480516,
+            "child_preparation_seconds": 0.039799290301743895
+          },
+          {
+            "representatives": 256,
+            "max_relative_sd_error": 0.00085791331395213,
+            "max_mean_error_in_reference_sd_units": 2.895205297844539e-05,
+            "max_standardized_quantile_error": 0.013114045945755493,
+            "child_preparation_seconds": 0.07774424692615867
+          },
+          {
+            "representatives": 512,
+            "max_relative_sd_error": 0.00035744420779981745,
+            "max_mean_error_in_reference_sd_units": 1.3949261500642847e-05,
+            "max_standardized_quantile_error": 0.015382077356560941,
+            "child_preparation_seconds": 0.1560795452678576
+          },
+          {
+            "representatives": 1024,
+            "max_relative_sd_error": 0.0007314801875615284,
+            "max_mean_error_in_reference_sd_units": 2.7026327042578987e-05,
+            "max_standardized_quantile_error": 0.004406136694218077,
+            "child_preparation_seconds": 0.31294221710413694
+          },
+          {
+            "representatives": 4096,
+            "max_relative_sd_error": 0.0,
+            "max_mean_error_in_reference_sd_units": 0.0,
+            "max_standardized_quantile_error": 0.0,
+            "child_preparation_seconds": 1.2481531592202373
+          }
+        ]
+      }
+    ]
+  },
+  "same_origin_smoke_comparison": {
+    "scope": "task_0_only_not_full_panel",
+    "history_days": 507,
+    "forecast_horizon_days": 126,
+    "simulations": 240,
+    "scores": {
+      "asset_rough_volterra_sv_dynamic_standalone_bayesian": 0.03643159734108589,
+      "asset_rough_volterra_sv_dynamic_exact_mixture_overlay": 0.03563165890372545,
+      "asset_rough_volterra_sv_dynamic_exact_mixture_standalone": 0.03730946507719091,
+      "best_completed_dynamic_rough": 0.03648683138754879,
+      "production_frontier": 0.03601224657144694,
+      "production_default": 0.04001637986020641
+    }
+  }
+}
