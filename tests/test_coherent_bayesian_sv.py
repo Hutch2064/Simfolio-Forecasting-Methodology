@@ -49,6 +49,46 @@ def test_gamma_augmentation_integrates_to_student_likelihood():
     assert rates[1] == pytest.approx(2/(nu+value*value*math.exp(-h)*nu/(nu-2)))
 
 
+@pytest.mark.parametrize('factors',[1,8,24])
+def test_all_optimized_gaussian_proposal_arrays_and_correction_are_byte_exact(factors):
+    import coherent_kernels as optimized
+    import mixture_kernels as reference
+    rng = np.random.default_rng(48)
+    phi = np.exp(-np.geomspace(.001,1,factors))
+    q = (1-phi*phi)/factors
+    for length in [1,507,10213]:
+        noise,observations = rng.uniform(.1,3,length),rng.normal(size=length)
+        noise[::13] = np.inf
+        pws,inv,logs = reference.measurement_geometry(phi,q,noise)
+        a = reference.marginalized_level(observations,phi,pws,inv,logs,16.)
+        b = optimized.marginalized_level(observations,phi,pws,inv,logs,16.)
+        assert np.asarray(a).tobytes() == np.asarray(b).tobytes()
+        normals,measurement = rng.normal(size=(length,factors)),rng.normal(size=length)
+        a = reference.cached_simulation_smoother(observations,phi,q,noise,pws,inv,normals,measurement)
+        b = optimized.cached_simulation_smoother(observations,phi,q,noise,pws,inv,normals,measurement)
+        assert a.tobytes() == b.tobytes()
+        active,h = rng.random(length)>.1,rng.normal(size=length)
+        a = reference.mixture_terms(observations,h,active,np.zeros(length))[2]
+        b = optimized.correction_only(observations,h,active)
+        assert np.asarray(a).tobytes() == np.asarray(b).tobytes()
+
+
+@pytest.mark.parametrize('factors',[1,8,24])
+def test_streamed_terminal_state_and_covariance_are_byte_exact(factors):
+    import coherent_kernels as optimized
+    import mixture_kernels as reference
+    rng = np.random.default_rng(49)
+    phi = np.exp(-np.geomspace(.001,1,factors))
+    q = (1-phi*phi)/factors
+    for length in [1,507,10213,11657]:
+        h = rng.normal(size=length)
+        gains,sd,p = reference.gaussian_geometry(phi,q,length)
+        _,state = reference.whiten(h,phi,gains,sd,.3)
+        actual,covariance = optimized.conditional_terminal(h,phi,q,.3)
+        assert actual.tobytes() == state.tobytes()
+        assert covariance.tobytes() == p.tobytes()
+
+
 @pytest.mark.parametrize('kind,student',[('ar1',False),('ar1',True),('rough',True)])
 def test_chain_resume_preserves_complete_trace_history_reservoir_and_rng(kind,student):
     data = (np.random.default_rng(29).normal(size=25)*.01).tobytes()

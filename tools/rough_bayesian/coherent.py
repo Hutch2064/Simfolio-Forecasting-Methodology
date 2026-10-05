@@ -19,8 +19,9 @@ import mixture
 import overlay
 import standalone
 from dynamic import configuration as rough_configuration, selected_kernel
-from mixture_kernels import (exact_return_loglik, mixture_terms, measurement_geometry,
-    marginalized_level, cached_simulation_smoother, gaussian_geometry, whiten)
+from mixture_kernels import exact_return_loglik, mixture_terms, measurement_geometry
+from coherent_kernels import (marginalized_level, cached_simulation_smoother,
+    correction_only, conditional_terminal)
 
 
 def configuration(theta, kind, maximum_lag):
@@ -130,7 +131,7 @@ def parameter_chain(data, maximum_lag, kind, student, seed, burn, kept, simulati
         next_level = standalone.truncated_normal(level_mean,level_sd,lower,upper,rng.random())
         proposed_h = next_level+cached_simulation_smoother(observations-offset-next_level,phi,q,r,
             pws,inverse_f,rng.normal(size=(len(y),len(phi))),rng.normal(size=len(y)))
-        proposal_ratio = mixture_terms(observations,proposed_h,active,np.zeros(len(y)))[2]
+        proposal_ratio = correction_only(observations,proposed_h,active)
         accepted_joint = math.log(rng.random()) < proposal_ratio-current_ratio
         moved = accepted_joint and accepted_parameter
         if accepted_joint:
@@ -172,7 +173,7 @@ def fit(data,maximum_lag,kind,student,simulations,burn,kept,maximum):
     identity = hashlib.sha256(data).hexdigest()
     settings = f'coherent-v1:{maximum_lag}:{kind}:{student}:{simulations}:{burn}:{kept}:{maximum}'
     source = hashlib.sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in
-        ('coherent.py','mixture.py','mixture_kernels.py','dynamic.py','overlay.py','standalone.py'))
+        ('coherent.py','coherent_kernels.py','mixture.py','mixture_kernels.py','dynamic.py','overlay.py','standalone.py'))
         + Path(shell.bd.__file__).read_bytes()).hexdigest()
     contract = source+':'+settings
     key = hashlib.sha256((identity+contract).encode()).hexdigest()
@@ -206,9 +207,8 @@ def fit(data,maximum_lag,kind,student,simulations,burn,kept,maximum):
         for theta,h in zip(parameters,histories):
             phi,weights,covariance = configuration(theta[:dimensions],kind,maximum_lag)
             q = np.diag(covariance).copy()
-            gains,sd,p = gaussian_geometry(phi,q,len(h))
             level = theta[dimensions]
-            _,state = whiten(h,phi,gains,sd,level)
+            state,p = conditional_terminal(h,phi,q,level)
             values,vectors = np.linalg.eigh((p+p.T)/2)
             if values.min() < -1e-10:
                 raise ValueError('invalid conditional volatility covariance')

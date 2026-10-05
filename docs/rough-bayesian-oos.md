@@ -544,6 +544,21 @@ had one fit with minimum ESS 352.6 at 65,536, despite passing Rhat and relative
 precision checks. The ESS requirement remains 400; no gate is relaxed. This
 ceiling limits resources, not model parameters or the adaptive stopping length.
 
+The optimized implementation compiles strict-floating-point state updates,
+reuses measurement geometry and avoids per-observation temporary state arrays.
+It evaluates the proposed path's correction without drawing unused mixture
+indicators. Terminal preparation streams the filter rather than storing unused
+whitened histories and gains. Random-call order, full latent histories, priors,
+posterior draws and accuracy gates are preserved. Complete sampler traces and
+full pilot loss vectors are byte-identical to the unoptimized implementation;
+the production control is byte-identical to its saved promotion vectors.
+All 18 pilot asset fits and three 10,213-observation asset checks passed the
+declared inference gates. The retained
+[validation receipt](results/rough-bayesian/coherent-sv-validation.json) records
+panel identity, independent likelihood/posterior checks, parity and profiling.
+Interleaved local long-history chain screens measured roughly one-third less
+sampling time; this is not a full-panel or deployed runtime claim.
+
 References: [Hosszejni and Kastner, conventional and Student Bayesian SV with
 compiled implementations](https://www.jstatsoft.org/article/view/v100i12),
 [Abanto-Valle et al., Bayesian heavy-tailed SV and scale augmentation](https://pmc.ncbi.nlm.nih.gov/articles/PMC2923593/),
