@@ -481,3 +481,70 @@ Academic bases: [Kim, Shephard and Chib](https://shephard.scholars.harvard.edu/p
 [Omori mixture coefficients and MH correction](https://arxiv.org/html/2404.13986v2),
 [Markovian multifactor approximation](https://arxiv.org/abs/1801.10359), and
 [relative fixed-width Monte Carlo stopping](https://arxiv.org/abs/1303.0238).
+
+## Matched conventional and heavy-tailed Bayesian SV counterparts
+
+These research adapters complete a two-by-two comparison around the existing
+standalone Gaussian rough candidate. They use the **existing canonical runner**,
+not another panel: identical snapshot, common 1979 start, 80 portfolios, 48
+rolling origins plus three temporal holdouts each, 240 simulations, all eligible
+daily horizons, 4,080 origin tasks and 701,280 equally weighted portfolio/horizon
+cells. Production is rerun and every control loss vector is checked byte-for-byte
+against its production-promotion reference. All new inference is per asset.
+
+| Adapter | Single volatility process | Raw return likelihood | Estimated parameters |
+| --- | --- | --- | --- |
+| `asset_bayesian_ar1_sv_raw_gaussian` | Stationary Gaussian AR(1) log variance | Gaussian | level, persistence, stationary log-volatility SD |
+| `asset_bayesian_ar1_sv_raw_student` | The same AR(1) process | Variance-standardized Student-t | the same three plus degrees of freedom |
+| `asset_bayesian_dynamic_rough_sv_raw_student` | The incumbent's dynamically resolved tempered rough covariance | Variance-standardized Student-t | level, H, kappa, eta, degrees of freedom |
+
+The Gaussian rough cell is the already implemented
+`asset_rough_volterra_sv_dynamic_exact_mixture_standalone`. The three new models
+retain its historical sample-mean forecast, Gaussian dependence uniforms,
+calendar, costs, rebalancing, clipping and scorer. The Student inverse CDF acts
+on those same dependence uniforms, with unit conditional variance. No production
+SV anchor, separate fixed-window multiscale component, 16 representatives, jumps,
+leverage, HMM or vine is added. Relative to production, the historical mean
+estimator is preserved but the numerical mean curve and conditional shock law
+are different. The completed rough hybrid remains an overall benchmark, not a
+claim of a pure volatility ablation against production.
+
+In AR(1), h[t+1] = level + phi*(h[t]-level) + sigma*Z, with |phi|<1 and
+sigma = eta*sqrt(1-phi**2). The initial distribution is stationary. We sample
+atanh(phi) with (phi+1)/2 ~ Beta(20,1.5), including its transformation Jacobian.
+Log eta has the same normal center log(.7), SD 1.5 and .05-to-3 bounds as the
+rough comparison. Level retains the existing training-centered, truncated normal
+prior. These are declared prior choices, not universal academic constants.
+Rough priors and the .001 complete-daily-lag covariance accuracy policy remain
+unchanged. One AR(1) state is its structural specification, not a quadrature cap.
+
+Student degrees of freedom are inferred via log(nu-2), with nu-2 ~ Exponential
+(rate .1) and its Jacobian. There is no fixed tail thickness or finite upper cap.
+For each observation, tau|nu ~ Gamma(nu/2,nu/2) and
+e|h,tau,nu ~ Normal(0,exp(h)*(nu-2)/(nu*tau)). The sampler first proposes nu
+against the exact Student likelihood with tau marginalized, then refreshes all
+tau from their exact Gamma conditionals **before** the volatility block. That
+ordering is necessary for the partially collapsed update to preserve the joint
+posterior. Adjusted log-square observations supply the published normal-mixture
+proposal; the final exact observation-density correction remains in place.
+Both calibration and future shocks follow the same standardized Student law.
+Zero returns are retained without a log offset or winsorization.
+
+All parameters and the whole latent volatility history are inferred jointly.
+Conditional level is integrated in hyperparameter proposals and drawn directly.
+Two chains use the existing retained-draw precision checks and resource ceiling;
+each future path uses an actual joint parameter/history draw. This is an
+academically grounded extension of the current research implementation, not a
+reproduction of a published canonical RFSV model. New full-panel scores remain
+blank until evaluated; validated catalogue additions await evidence.
+
+The conventional counterparts retain the 65,536-per-chain ceiling. The rough
+Student candidate allows 131,072 per chain because its initial six-asset pilot
+had one fit with minimum ESS 352.6 at 65,536, despite passing Rhat and relative
+precision checks. The ESS requirement remains 400; no gate is relaxed. This
+ceiling limits resources, not model parameters or the adaptive stopping length.
+
+References: [Hosszejni and Kastner, conventional and Student Bayesian SV with
+compiled implementations](https://www.jstatsoft.org/article/view/v100i12),
+[Abanto-Valle et al., Bayesian heavy-tailed SV and scale augmentation](https://pmc.ncbi.nlm.nih.gov/articles/PMC2923593/),
+and the mixture/correction and precision references above.

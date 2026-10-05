@@ -50,6 +50,9 @@ MODEL_IDS = (
     'asset_rough_volterra_sv_dynamic_standalone_bayesian',
     'asset_rough_volterra_sv_dynamic_exact_mixture_overlay',
     'asset_rough_volterra_sv_dynamic_exact_mixture_standalone',
+    'asset_bayesian_ar1_sv_raw_gaussian',
+    'asset_bayesian_ar1_sv_raw_student',
+    'asset_bayesian_dynamic_rough_sv_raw_student',
 )
 
 
@@ -258,6 +261,7 @@ from overlay import Candidate as OverlayCandidate
 from dynamic import DynamicCandidate
 from standalone import StandaloneCandidate
 from mixture import MixtureCandidate
+from coherent import CoherentCandidate
 
 CANDIDATES = (
     controls.Candidate(MODEL_IDS[0]), controls.Candidate(MODEL_IDS[1], rough=True),
@@ -269,4 +273,6 @@ CANDIDATES = (
     DynamicCandidate(MODEL_IDS[10], adaptive=True),
     StandaloneCandidate(MODEL_IDS[11]),
     MixtureCandidate(MODEL_IDS[12]), MixtureCandidate(MODEL_IDS[13], standalone=True),
+    CoherentCandidate(MODEL_IDS[14]), CoherentCandidate(MODEL_IDS[15], student=True),
+    CoherentCandidate(MODEL_IDS[16], kind='rough', student=True, max_kept=131072),
 )
