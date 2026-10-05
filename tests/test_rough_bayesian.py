@@ -11,7 +11,7 @@ from scipy.stats import norm, t
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools/rough_bayesian'))
 from kernels import coefficients, fou_cells, fractional_cells, grid, quadrature
-from inference import gaussian_path, heston_path, heston_gradient, log_likelihood, student_likelihood, terminal_pgas
+from inference import chain, gaussian_path, gaussian_gradient, heston_path, heston_gradient, log_likelihood, student_likelihood, terminal_pgas
 
 
 @pytest.mark.parametrize('tolerance', [.01, .001])
@@ -98,6 +98,21 @@ def test_heston_adjoint_matches_finite_differences():
         assert gradient[j] == pytest.approx((upper - lower) / 2e-5, abs=2e-8)
 
 
+@pytest.mark.parametrize('rho,nu', [(-.4, 0.), (0., 7.5)])
+def test_fractional_gaussian_adjoint_matches_finite_differences(rho, nu):
+    phi, innovation, weights, root, _ = coefficients(.11, 1 / 63, .01)
+    y = np.random.default_rng(821).normal(size=32)
+    white = np.random.default_rng(291).normal(size=phi.size + y.size) * .2
+    target, gradient = gaussian_gradient(y, phi, innovation, weights, root, white, -.2, .6, rho, nu)
+    for j in range(white.size):
+        plus, minus = white.copy(), white.copy()
+        plus[j] += 1e-5
+        minus[j] -= 1e-5
+        upper = gaussian_gradient(y, phi, innovation, weights, root, plus, -.2, .6, rho, nu)[0]
+        lower = gaussian_gradient(y, phi, innovation, weights, root, minus, -.2, .6, rho, nu)[0]
+        assert gradient[j] == pytest.approx((upper - lower) / 2e-5, abs=2e-8)
+
+
 def test_pgas_preserves_nonmarkovian_innovation_posterior():
     # The second return informs W0 through its volatility, while W1 remains
     # independent N(0,1). Quadrature gives the exact conditional target.
@@ -119,3 +134,12 @@ def test_pgas_preserves_nonmarkovian_innovation_posterior():
     assert draws[:, 0].mean() == pytest.approx(expected, abs=.04)
     assert abs(draws[:, 1].mean()) < .04
     assert draws[:, 1].var() == pytest.approx(1., abs=.06)
+
+
+def test_sampling_resume_keeps_exact_rng_and_frozen_adaptation():
+    y = np.random.default_rng(38).normal(size=64)
+    whole = chain(y, 92, .01, 'fou', burn=64, kept=40)
+    first = chain(y, 92, .01, 'fou', burn=64, kept=20)
+    second = chain(y, 0, .01, 'fou', burn=0, kept=20, resume=first['state'])
+    for name in ('parameters', 'terminal', 'diagnostic_trace'):
+        np.testing.assert_array_equal(whole[name], np.concatenate([first[name], second[name]]))

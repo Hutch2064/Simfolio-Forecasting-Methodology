@@ -119,6 +119,51 @@ def heston_hmc(y, phi, weights, step, noise, level, kappa, eta, rho, epsilon, mo
     return noise, False
 
 
+@njit(cache=True, nogil=True)
+def gaussian_gradient(y, phi, innovation, weights, root, white, level, scale, rho, nu):
+    dimension = phi.size
+    noise = white[dimension:]
+    h, terminal = gaussian_path(phi, innovation, weights, root @ white[:dimension], noise, level, scale)
+    ll = student_likelihood(y, h, nu) if nu > 0 else log_likelihood(y, h, noise, rho)
+    gradient = np.empty(white.size)
+    adjoint = np.zeros(dimension)
+    conditional = 1 - rho * rho
+    for t in range(noise.size - 1, -1, -1):
+        standardized = y[t] * math.exp(-h[t] / 2)
+        if nu > 0:
+            square = standardized * standardized
+            likelihood_h = -.5 + .5 * (nu + 1) * square / (nu - 2 + square)
+            likelihood_w = 0.
+        else:
+            residual = standardized - rho * noise[t]
+            likelihood_h = -.5 + .5 * residual * standardized / conditional
+            likelihood_w = rho * residual / conditional
+        gradient[dimension + t] = np.dot(innovation, adjoint) + likelihood_w - noise[t]
+        for j in range(dimension):
+            adjoint[j] = phi[j] * adjoint[j] + scale * weights[j] * likelihood_h
+    gradient[:dimension] = root.T @ adjoint - white[:dimension]
+    return ll - .5 * np.dot(white, white), gradient
+
+
+@njit(cache=True, nogil=True)
+def gaussian_hmc(y, phi, innovation, weights, root, white, level, scale, rho, nu,
+                 epsilon, momentum, uniform):
+    current, gradient = gaussian_gradient(y, phi, innovation, weights, root, white, level, scale, rho, nu)
+    proposed = white.copy()
+    velocity = momentum + .5 * epsilon * gradient
+    target = -np.inf
+    for leapfrog in range(4):
+        proposed += epsilon * velocity
+        target, gradient = gaussian_gradient(y, phi, innovation, weights, root, proposed, level, scale, rho, nu)
+        if not np.isfinite(target) or not np.all(np.isfinite(gradient)):
+            return white, False
+        velocity += epsilon * (.5 if leapfrog == 3 else 1.) * gradient
+    difference = target - current + .5 * (np.dot(momentum, momentum) - np.dot(velocity, velocity))
+    if math.log(uniform) < difference:
+        return proposed, True
+    return white, False
+
+
 def configuration(theta, tolerance, kind, with_root=True):
     hurst, kappa, scale, level = theta[0], math.exp(theta[1]), math.exp(theta[2]), theta[3]
     if kind.startswith('fou'):
@@ -225,7 +270,7 @@ def terminal_pgas(y, config_phi, innovation, weights, start_state, reference,
     return result
 
 
-def chain(y, seed, tolerance, kind, leverage=False, pgas=False, burn=512, kept=1024):
+def chain(y, seed, tolerance, kind, leverage=False, pgas=False, burn=512, kept=1024, resume=None):
     rng = np.random.default_rng(seed)
     level_anchor = float(np.log(np.mean(y * y)))
     theta = np.array([.12, math.log(1 / 63), math.log(.5), level_anchor, -.25])
@@ -238,6 +283,12 @@ def chain(y, seed, tolerance, kind, leverage=False, pgas=False, burn=512, kept=1
     config, evidence = configuration(theta, tolerance, kind)
     initial = np.zeros(config[0].size)
     noise = np.zeros(y.size)
+    if resume is not None:
+        if burn:
+            raise ValueError('resumed sampling cannot readapt warmup')
+        rng.bit_generator.state = resume['rng_state']
+        theta, initial, noise = resume['theta'].copy(), resume['initial'].copy(), resume['noise'].copy()
+        config, evidence = configuration(theta, tolerance, kind)
     h, terminal = trajectory(config, initial, noise, kind)
     rho = math.tanh(theta[4]) if leverage else 0.
     def likelihood(path, driving, parameter, correlation):
@@ -251,9 +302,18 @@ def chain(y, seed, tolerance, kind, leverage=False, pgas=False, burn=512, kept=1
     terminal_draws = np.empty((kept, config[0].size))
     parameters = np.empty((kept, theta.size))
     evaluations = 0
-    hmc_step = .005
+    hmc_step = .005 if kind == 'heston' else .03
     hmc_accepted = 0
     hmc_total = 0
+    parameter_columns = list(range(5 if leverage else 4)) + ([5] if student else [])
+    joint_dimension = len(parameter_columns)
+    joint_mean = np.zeros(joint_dimension)
+    joint_m2 = np.zeros((joint_dimension, joint_dimension))
+    joint_root = np.diag(steps[parameter_columns])
+    if resume is not None:
+        steps = resume['steps'].copy()
+        joint_root = resume['joint_root'].copy()
+        hmc_step = resume['hmc_step']
     for iteration in range(burn + kept):
         # Noncentered elliptical slice over both stationary initial Gaussian
         # states and all daily Brownian innovations; no latent path plug-in.
@@ -295,9 +355,24 @@ def chain(y, seed, tolerance, kind, leverage=False, pgas=False, burn=512, kept=1
                 angle = rng.uniform(lower, upper)
             else:
                 raise ValueError('ESS bracket failed')
+            # Native-gradient rejuvenation prevents the global ellipse angle
+            # from becoming the sole high-dimensional latent-path bottleneck.
+            # Both invariant updates target the same joint Gaussian prior.
+            white_vector = np.r_[initial, noise]
+            nu = 2 + math.exp(theta[5]) if student else 0.
+            white_vector, hmc_accept = gaussian_hmc(y, *config[:4], white_vector, *config[4:], rho, nu,
+                hmc_step, rng.normal(size=white_vector.size), rng.random())
+            hmc_accepted += int(hmc_accept)
+            hmc_total += int(hmc_accept)
+            if iteration < burn and (iteration + 1) % 32 == 0:
+                hmc_step *= math.exp(np.clip(hmc_accepted / 32 - .65, -.15, .15))
+                hmc_step = min(.2, max(1e-6, hmc_step))
+                hmc_accepted = 0
+            initial, noise = white_vector[:initial.size], white_vector[initial.size:]
+            h, terminal = trajectory(config, initial, noise, kind)
+            ll = likelihood(h, noise, theta, rho)
         # Componentwise parameter proposals: expensive kernel rebuilding only
         # when H/kappa change. Level/scale/rho re-use the current latent path.
-        parameter_columns = list(range(5 if leverage else 4)) + ([5] if student else [])
         for j in parameter_columns:
             proposed = theta.copy()
             proposed[j] += steps[j] * rng.normal()
@@ -334,6 +409,28 @@ def chain(y, seed, tolerance, kind, leverage=False, pgas=False, burn=512, kept=1
                                                      proposed_terminal, proposed_ll, proposed_rho)
                 accepted[j] += 1
                 total_accepted[j] += 1
+        proposed = theta.copy()
+        proposed[parameter_columns] += joint_root @ rng.normal(size=joint_dimension)
+        prior_difference = prior(proposed, level_anchor, leverage) - prior(theta, level_anchor, leverage)
+        if np.isfinite(prior_difference):
+            try:
+                proposed_config, _ = configuration(proposed, tolerance, kind)
+                proposed_h, proposed_terminal = trajectory(proposed_config, initial, noise, kind)
+                proposed_rho = math.tanh(proposed[4]) if leverage else 0.
+                proposed_ll = likelihood(proposed_h, noise, proposed, proposed_rho)
+                if math.log(rng.random()) < proposed_ll - ll + prior_difference:
+                    theta, config, h, terminal, ll, rho = (proposed, proposed_config, proposed_h,
+                                                         proposed_terminal, proposed_ll, proposed_rho)
+            except ValueError:
+                pass
+        if iteration < burn:
+            current_parameters = theta[parameter_columns]
+            delta = current_parameters - joint_mean
+            joint_mean += delta / (iteration + 1)
+            joint_m2 += np.outer(delta, current_parameters - joint_mean)
+            if iteration >= 63 and (iteration + 1) % 32 == 0:
+                covariance = (2.38 ** 2 / joint_dimension) * (joint_m2 / iteration + np.eye(joint_dimension) * 1e-6)
+                joint_root = np.linalg.cholesky(covariance)
         if iteration < burn and (iteration + 1) % 32 == 0:
             steps *= np.exp(np.clip(accepted / 32 - .3, -.2, .2))
             accepted[:] = 0
@@ -354,5 +451,8 @@ def chain(y, seed, tolerance, kind, leverage=False, pgas=False, burn=512, kept=1
     return {'parameters': parameters, 'terminal': terminal_draws, 'diagnostic_trace': draws,
             'parameter_acceptance': total_accepted / (burn + kept),
             'likelihood_evaluations': evaluations, 'kernel': evidence,
-            'hmc_step_size': hmc_step, 'hmc_acceptance': hmc_total / (burn + kept) if kind == 'heston' else None,
+            'hmc_step_size': hmc_step, 'hmc_acceptance': hmc_total / (burn + kept),
+            'state': {'theta': theta.copy(), 'initial': initial.copy(), 'noise': noise.copy(),
+                      'rng_state': rng.bit_generator.state, 'steps': steps.copy(),
+                      'joint_root': joint_root.copy(), 'hmc_step': hmc_step},
             'burn': burn, 'kept': kept}

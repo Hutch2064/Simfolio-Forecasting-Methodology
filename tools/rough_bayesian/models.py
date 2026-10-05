@@ -99,37 +99,59 @@ def diagnostics(traces):
 
 
 @lru_cache(maxsize=16)
-def fit(data, kind, tolerance, leverage, pgas, burn=2048, kept=8192):
+def fit(data, kind, tolerance, leverage, pgas, burn=2048, kept=8192, max_kept=65536, simulations=240):
     identity = hashlib.sha256(data).hexdigest()
-    contract = f'v1:{FIT_SOURCE_SHA}:{kind}:{tolerance}:{leverage}:{pgas}:{burn}:{kept}'
+    sampling_contract = f'v2:{kind}:{tolerance}:{leverage}:{pgas}:{burn}:{kept}:{max_kept}:{simulations}'
+    contract = f'{FIT_SOURCE_SHA}:{sampling_contract}'
     key = hashlib.sha256((identity + contract).encode()).hexdigest()
     def build():
         started = time.perf_counter()
         x = np.frombuffer(data, np.float64)
         y = (x - float(x.mean())) * 100
-        chains = [chain(y, bd.deterministic_seed('rough_bayesian_fit', identity, contract, j),
+        chains = [chain(y, bd.deterministic_seed('rough_bayesian_fit', identity, sampling_contract, j),
                         tolerance, kind, leverage, pgas, burn, kept) for j in range(2)]
-        trace = np.array([c['diagnostic_trace'] for c in chains])
         # rho is constant for non-leverage models, and is not a sampled
         # parameter. Exclude it from convergence diagnostics in that case.
         columns = [0, 1, 2, 3] + ([4] if leverage else []) + [5, 6]
         if kind == 'fou_t':
             columns.append(7)
-        diagnostic = diagnostics(trace[:, :, columns])
+        while True:
+            trace = np.array([c['diagnostic_trace'] for c in chains])
+            diagnostic = diagnostics(trace[:, :, columns])
+            converged = all(d['rank_split_rhat'] < 1.05 and d['bulk_ess'] >= 100 for d in diagnostic)
+            actual_kept = trace.shape[1]
+            if converged or actual_kept >= max_kept:
+                break
+            extension = min(actual_kept, max_kept - actual_kept)
+            for j, current in enumerate(chains):
+                extra = chain(y, 0, tolerance, kind, leverage, pgas, 0, extension, resume=current['state'])
+                for name in ('parameters', 'terminal', 'diagnostic_trace'):
+                    current[name] = np.concatenate([current[name], extra[name]])
+                current['parameter_acceptance'] = (
+                    current['parameter_acceptance'] * (burn + actual_kept)
+                    + extra['parameter_acceptance'] * extension) / (burn + actual_kept + extension)
+                current['likelihood_evaluations'] += extra['likelihood_evaluations']
+                current['state'] = extra['state']
         parameters = np.concatenate([c['parameters'] for c in chains])
         terminal = np.concatenate([c['terminal'] for c in chains])
+        # Select the actual joint draw for every predictive path from ALL
+        # retained draws. Storing those selected states is an exact cache
+        # compression for the configured ensemble, not posterior node fitting.
+        rng = np.random.default_rng(bd.deterministic_seed('rough_joint_draw_selection', identity, sampling_contract))
+        indices = rng.integers(0, parameters.shape[0], size=simulations)
+        predictive_parameters, predictive_terminal = parameters[indices], terminal[indices]
         # Keep all posterior draws. Prediction samples a draw per path, rather
         # than substituting posterior means or sixteen parameter nodes.
         seconds = time.perf_counter() - started
-        return {'parameters': parameters, 'terminal': terminal, 'trace': trace,
+        return {'parameters': predictive_parameters, 'terminal': predictive_terminal, 'trace': trace,
                 'diagnostics': diagnostic,
                 'diagnostic_columns': columns,
-                'convergence_flag': all(d['rank_split_rhat'] < 1.05 and d['bulk_ess'] >= 100
-                                        for d in diagnostic),
+                'convergence_flag': converged,
                 'fit_seconds': seconds, 'ess_per_second': min(d['bulk_ess'] for d in diagnostic) / seconds,
                 'parameter_acceptance': [c['parameter_acceptance'] for c in chains],
                 'likelihood_evaluations': [c['likelihood_evaluations'] for c in chains],
-                'kernel': chains[0]['kernel'], 'burn_per_chain': burn, 'kept_per_chain': kept,
+                'kernel': chains[0]['kernel'], 'burn_per_chain': burn, 'kept_per_chain': actual_kept,
+                'predictive_draw_indices': indices, 'total_retained_draws': 2 * actual_kept,
                 'data_sha256': identity, 'contract': contract}
     started = time.perf_counter()
     result = controls.cache('bayesian_rough_asset', key, build)
@@ -167,6 +189,7 @@ class Candidate:
     pgas: bool = False
     burn: int = 2048
     kept: int = 8192
+    max_kept: int = 65536
 
     def simulate_daily_log_returns(self, training, context):
         training.validate()
@@ -182,13 +205,15 @@ class Candidate:
         controls.timed('dependence_paths', started)
         for a in range(assets.shape[1]):
             data = assets[:, a].tobytes()
-            posterior = fit(data, self.kind, self.tolerance, self.leverage, self.pgas, self.burn, self.kept)
+            posterior = fit(data, self.kind, self.tolerance, self.leverage, self.pgas, self.burn, self.kept,
+                            self.max_kept, sims)
             FIT_DIAGNOSTICS[(self.model_id, posterior['data_sha256'])] = {
                 'model_id': self.model_id, 'data_sha256': posterior['data_sha256'],
                 'convergence_flag': posterior['convergence_flag'],
                 'diagnostics': posterior['diagnostics'], 'diagnostic_columns': posterior['diagnostic_columns'],
                 'fit_seconds': posterior['fit_seconds'], 'ess_per_second': posterior['ess_per_second'],
-                'kernel': posterior['kernel'], 'burn_per_chain': self.burn, 'kept_per_chain': self.kept}
+                'kernel': posterior['kernel'], 'burn_per_chain': self.burn,
+                'kept_per_chain': posterior['kept_per_chain']}
             started = time.perf_counter()
             production = controls.asset_fit(data)
             mean, _ = opt.mixture_curves(production, horizon)
@@ -196,9 +221,8 @@ class Candidate:
             # arms, independently of the draw count and kernel factor count.
             rng = np.random.default_rng(bd.deterministic_seed('rough_bayesian_predictive',
                 hashlib.sha256(data).hexdigest(), str(context.origin_date), horizon, sims))
-            indices = rng.integers(0, posterior['parameters'].shape[0], size=sims)
             private_noise = rng.normal(size=(sims, horizon))
-            for s, index in enumerate(indices):
+            for s, index in enumerate(range(sims)):
                 theta = posterior['parameters'][index]
                 config, _ = configuration(theta, self.tolerance, self.kind, with_root=False)
                 rho = math.tanh(theta[4]) if self.leverage else 0.

@@ -70,7 +70,7 @@ def main():
                  models.predictive_fou, models.predictive_heston)
     cases = []
     for candidate in models.CANDIDATES[2:]:
-        candidate = replace(candidate, burn=32, kept=64)
+        candidate = replace(candidate, burn=32, kept=64, max_kept=64)
         models.fit.cache_clear()
         start = time.perf_counter()
         fast = evaluate_origin_task(candidate, task, simulations=240)
