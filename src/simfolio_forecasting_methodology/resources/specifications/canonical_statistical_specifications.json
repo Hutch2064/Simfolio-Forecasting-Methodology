@@ -12,6 +12,7 @@
     "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
     "asset_rough_jump_hmm_rvine_sv",
     "asset_rough_volterra_sv_accuracy_lift_bayesian",
+    "asset_rough_volterra_sv_dynamic_lift_bayesian",
     "asset_rough_volterra_sv_eight_factor",
     "asset_rough_volterra_sv_eight_factor_bayesian",
     "bayesian_mcmc_stochastic_volatility_sbb",
@@ -832,6 +833,52 @@
         "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847"
       }
     },
+    "asset_rough_volterra_sv_dynamic_lift_bayesian": {
+      "component_refs": [],
+      "definition_fingerprint": "07bd9c0681ad09d0666d5c52387b00cc129abd8aa2976663b7bcdfa0d981c936",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG; dynamic fit settings include full requested lag domain",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/overlay.py",
+            "sha256": "99653cd5383fb92583a256a800152876cf29c30926415ca7c305c9375f206d23"
+          },
+          {
+            "path": "tools/rough_bayesian/models.py",
+            "sha256": "3eb7fd3331e407d7cfcb62a3c6e07c1956bb567f3d1f8133c0ed91fcee8f1306"
+          },
+          {
+            "path": "tools/rough_jump_vine/models.py",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "1f404d91277de3ec490de5d8d9c212a9bcdb8a5dafffea92d711db77ebc9bf14"
+          },
+          {
+            "path": "tools/rough_bayesian/native.py",
+            "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay_filter.cpp",
+            "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
+          }
+        ],
+        "entrypoints": [
+          "DynamicCandidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/dynamic.py",
+        "revision": "0c9df730e99171117690135de644c1985ef0eca0",
+        "sha256": "3d8938b4450fd2cd6c56057016709f1dbca297b355db3624d69ddc05adcc36f5"
+      }
+    },
     "asset_rough_volterra_sv_eight_factor": {
       "component_refs": [],
       "definition_fingerprint": "bd893fa2b5ff3f5fb56d51c8550d059cd8dcde7fda196c9ab0c779398ed26463",
@@ -940,7 +987,7 @@
     },
     "asset_rough_volterra_sv_eight_factor_bayesian": {
       "component_refs": [],
-      "definition_fingerprint": "080bc5f024edca15f91eca488fff2b7df93413f1b011615df3cccc6f3b1b296e",
+      "definition_fingerprint": "b33933ba59cfcd8502e84232f876d756bbf5f6b08a11912c1ba47c64b09b7eb7",
       "factory": {
         "class": null,
         "method": "simulate_daily_log_returns",
@@ -8576,6 +8623,151 @@
         "replacement": false
       }
     },
+    "asset_rough_volterra_sv_dynamic_lift_bayesian": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG; dynamic fit settings include full requested lag domain",
+      "failure_semantics": {
+        "kernel": "require finite positive quadrature and complete daily-lag error enclosure; no silent tolerance relaxation",
+        "paths": "reject nonfinite outputs",
+        "posterior": "training-only diagnostic extension to maximum with explicit flags"
+      },
+      "family": "asset_level_rough_volterra_overlay_upgrade",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "burn_per_chain": 2048,
+        "cache_compression": "240 actual parameter draws sampled from all retained draws; retain full diagnostic trace",
+        "chains": 2,
+        "convergence_diagnostics": "rank/folded split Rhat and initial-positive-sequence bulk ESS on parameters and log posterior",
+        "diagnostic_flag_gate": {
+          "max_rhat": 1.05,
+          "min_bulk_ess": 100
+        },
+        "effective_sample_runtime": "minimum bulk ESS per fit second",
+        "flagged_fits": "retained and explicitly counted; no convergence claim",
+        "kept_per_chain": 8192,
+        "kept_per_chain_maximum": 65536,
+        "parameter_adaptation": "warmup only, Welford covariance every 32 after iteration 64; 2.38**2/3 scaling",
+        "parameter_updates": "symmetric joint Gaussian random-walk Metropolis-Hastings",
+        "posterior_extension": "double retained draws without re-adaptation until diagnostic gates or 65536 per chain",
+        "target": "Gaussian log-square quasi-likelihood with measurement variance pi**2/2; fixed training proxy level; exact Gaussian latent-state marginalization",
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1,
+          1
+        ],
+        "innovations": "unchanged production centered empirical standardized nodes",
+        "method": "one actual posterior parameter draw per predictive path, with its Gaussian terminal state",
+        "posterior_multiplier": "production_mean+production_sd*empirical_shock*rough_multiplier"
+      },
+      "production_role": "unscored_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/overlay.py",
+            "sha256": "99653cd5383fb92583a256a800152876cf29c30926415ca7c305c9375f206d23"
+          },
+          {
+            "path": "tools/rough_bayesian/models.py",
+            "sha256": "3eb7fd3331e407d7cfcb62a3c6e07c1956bb567f3d1f8133c0ed91fcee8f1306"
+          },
+          {
+            "path": "tools/rough_jump_vine/models.py",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "1f404d91277de3ec490de5d8d9c212a9bcdb8a5dafffea92d711db77ebc9bf14"
+          },
+          {
+            "path": "tools/rough_bayesian/native.py",
+            "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay_filter.cpp",
+            "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
+          }
+        ],
+        "entrypoints": [
+          "DynamicCandidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/dynamic.py",
+        "revision": "0c9df730e99171117690135de644c1985ef0eca0",
+        "sha256": "3d8938b4450fd2cd6c56057016709f1dbca297b355db3624d69ddc05adcc36f5"
+      },
+      "source_seed_context_ref": "asset_level_rough_volterra_overlay_upgrade",
+      "source_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG; dynamic fit settings include full requested lag domain",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.03,
+            0.49
+          ],
+          "distribution": "uniform"
+        },
+        "daily_discretization": "exact exponential transitions of independent OU spectral factors",
+        "first_forecast_state": "one OU transition after final filtered observation",
+        "kernel": {
+          "certificate": "monotonic interval enclosure and C-second-derivative <=4*exp(-2)/t**2; recursively bisect unresolved integer-lag intervals",
+          "continuous_target": "exp(-kappa*t)*t**(H-.5)/Gamma(H+.5)",
+          "error_metric": "normalized absolute stationary autocorrelation difference over every requested integer daily lag",
+          "error_tolerance": 0.001,
+          "factor_selection": "first passing positive integer quadrature order per (H,kappa); no fixed factor count, preset list or factor cap",
+          "fast_rate_threshold": "-log(tolerance/2)",
+          "lag_domain": "1 through training_days+requested_horizon_days-1",
+          "lift": "positive Gauss-Jacobi spectral quadrature on logarithmic rates",
+          "normalized_stationary_covariance": "E[exp(-kappa*(1+Z)/(1-Z)*t)], Z~Beta(.5-H,2*H)",
+          "reference_numerics": "Tricomi U closed form; independent weighted Beta integration fallback for invalid special-function evaluations",
+          "white_tail_error_bound": "tolerance/2 for every positive daily lag",
+          "zero_lag_variance": "analytic exact unit variance with Beta tail mass retained as independent white component"
+        },
+        "latent_states": "analytically marginalized Gaussian states; terminal filtering posterior sampled per predictive path",
+        "level": "training mean of unchanged winsorized log-square proxy",
+        "log_kappa_prior": {
+          "bounds": [
+            "log(1/2520)",
+            "log(.5)"
+          ],
+          "distribution": "truncated_normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "bounds": [
+            "log(.05)",
+            "log(3)"
+          ],
+          "distribution": "truncated_normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "model": "tempered_fractional_Volterra_log_variance_overlay",
+        "normalization": "conditional E[multiplier**2]=1 preserves production daily expected variance",
+        "parameter_uncertainty": "Bayesian posterior over H, log_kappa, log_scale",
+        "predictive_multiplier": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)",
+        "production_mean_anchor": true,
+        "production_variance_anchor": true,
+        "replacement": false
+      }
+    },
     "asset_rough_volterra_sv_eight_factor": {
       "ablation_flags": {
         "jumps": false,
@@ -8844,7 +9036,7 @@
         "method": "one actual posterior parameter draw per predictive path, with its Gaussian terminal state",
         "posterior_multiplier": "production_mean+production_sd*empirical_shock*rough_multiplier"
       },
-      "production_role": "unscored_research_candidate",
+      "production_role": "validated_research_candidate",
       "shared_component_digests": {},
       "shared_component_refs": [],
       "source_id": "asset_rough_volterra_sv_eight_factor_bayesian",

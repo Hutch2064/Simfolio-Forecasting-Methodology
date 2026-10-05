@@ -1,0 +1,35 @@
+{
+  "all_denominator_gates_passed": true,
+  "baseline_every_loss_vector_byte_exact": false,
+  "elapsed_seconds": 884.4099905419862,
+  "inference_diagnostics": {
+    "asset_rough_volterra_sv_eight_factor_bayesian": {
+      "flagged_asset_fits": 25,
+      "maximum_rank_split_rhat": 1.7212623234780646,
+      "minimum_bulk_ess": 8.80188776022903,
+      "minimum_ess_per_second": 1.293070558850914,
+      "unique_asset_fits": 2549
+    }
+  },
+  "manifest_sha256": "c0dbc84279cc912d8dc1fcdd8626f50d89a3e61b738817538b146a4fcdc889b2",
+  "paired_cells_sha256": "8ce0a3d71a5ddaa6bbfc4f7422bcae31c0085b7173978cc4d7d3fd3f13aefd1d",
+  "portfolios": 80,
+  "rolling_origins_per_portfolio": 48,
+  "scope": "full_canonical_asset_level_ablations",
+  "scores": {
+    "asset_rough_volterra_sv_eight_factor_bayesian": {
+      "cells": 701280,
+      "exact_empirical_crps": 0.2522081419138852,
+      "relative_improvement_vs_production": 0.0010286762344103861,
+      "summed_worker_seconds": 12856.926534614642,
+      "tasks": 4080,
+      "timings": {
+        "asset_predictive_paths": 2506.684616197017,
+        "bayesian_overlay_fit": 9531.282745266391,
+        "production_asset_fit": 91.25102225871524
+      }
+    }
+  },
+  "simulations": 240,
+  "temporal_holdouts_per_portfolio": 3
+}

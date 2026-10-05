@@ -1,9 +1,11 @@
 # Joint Bayesian rough volatility candidates
 
 Nine new asset-level candidates are implemented in `tools/rough_bayesian` and
-included in both public catalogues. The canonical catalogue now has 191 entries;
-the broader active research catalogue has 383. Their official scores are blank
-until the complete canonical panel finishes. The existing production Frontier
+included in both public catalogues. The canonical catalogue now has 192 entries;
+the broader active research catalogue has 384. The eight-factor Bayesian upgrade
+completed its full panel; the fixed-resolution lift retains its stopped partial
+results. Other aggregate scores remain blank until their complete panels finish.
+The existing production Frontier
 and the completed eight-factor rough model are included as unchanged controls.
 
 | Candidate | Question | Volatility inference |

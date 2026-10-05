@@ -1,14 +1,14 @@
-# Canonical model reference (191 models including the original 175)
+# Canonical model reference (192 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **191** rows, canonical ranks **1–191**.
+- Membership: **192** rows, canonical ranks **1–192**.
 - Retained source ranks: **12–186**.
-- Membership digest: `54fbd29d4a871a2daeb4ea546a1ef51ff0f36df67aab54b618f778e1ffc67cb4`.
+- Membership digest: `53305c6ea080d50d4554329aa9e2b5273a4dbad42881963280c0323281f3775d`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **191**.
+- Confirmed full statistical specifications: **192**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -203,5 +203,6 @@ The ledger is the sole membership authority for this public set.
 | 187 | None | asset_bayesian_lifted_rfsv_leverage_ess | M187 — Bayesian Lifted RFSV — Leverage ESS/HMC | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
 | 188 | None | asset_bayesian_lifted_rough_heston_hmc | M188 — Bayesian Lifted Rough Heston — HMC | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
 | 189 | None | asset_bayesian_lifted_rfsv_student_ess | M189 — Bayesian Lifted RFSV — Inferred Student-t ESS/HMC | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
-| 190 | None | asset_rough_volterra_sv_eight_factor_bayesian | M190 — Asset Rough Volterra SV — Eight Factors + Bayesian Parameters | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
-| 191 | None | asset_rough_volterra_sv_accuracy_lift_bayesian | M191 — Asset Rough Volterra SV — Accuracy-Controlled Lift + Bayesian Parameters | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
+| 190 | None | asset_rough_volterra_sv_eight_factor_bayesian | M190 — Asset Rough Volterra SV — Eight Factors + Bayesian Parameters | asset_level_extension | 0.2522081419138852 | 0.252208142 | true | validated_full_canonical_score |
+| 191 | None | asset_rough_volterra_sv_accuracy_lift_bayesian | M191 — Asset Rough Volterra SV — Accuracy-Controlled Lift + Bayesian Parameters | asset_level_extension | — | — | true | partial_canonical_score_stopped |
+| 192 | None | asset_rough_volterra_sv_dynamic_lift_bayesian | M192 — Asset Rough Volterra SV — Dynamic Resolution + Bayesian Parameters | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |

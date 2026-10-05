@@ -34,16 +34,16 @@
     "notes"
   ],
   "membership": {
-    "count": 191,
+    "count": 192,
     "canonical_rank_range": [
       1,
-      191
+      192
     ],
     "source_rank_range": [
       12,
       186
     ],
-    "membership_digest": "54fbd29d4a871a2daeb4ea546a1ef51ff0f36df67aab54b618f778e1ffc67cb4",
+    "membership_digest": "53305c6ea080d50d4554329aa9e2b5273a4dbad42881963280c0323281f3775d",
     "membership_digest_algorithm": "sha256(UTF-8 of canonical_rank|historical_rank|public_model_id lines in canonical order, final newline)"
   },
   "score_evidence": {
@@ -98,8 +98,8 @@
       },
       {
         "relative_path": "src/simfolio_forecasting_methodology/resources/catalogs/canonical_175_part2.csv",
-        "sha256": "443f993142d961a45b1a76b5e1dc984bc3b61c8a02aad23ecf3025b84e93bb2b",
-        "rows": 102
+        "sha256": "dbebf96f1c14b2aa80a95fdf2e7f8e31f0317ac92e052ef6b31538830abdbeec",
+        "rows": 103
       }
     ],
     "protocol_identity": {
@@ -124,7 +124,7 @@
     }
   },
   "identity_policy": {
-    "full_statistical_specifications_confirmed": 191,
+    "full_statistical_specifications_confirmed": 192,
     "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
     "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
     "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
@@ -49868,7 +49868,7 @@
           "family": "asset_level_rough_volterra_overlay_upgrade",
           "source_id": "asset_rough_volterra_sv_eight_factor_bayesian",
           "forecast_level": "asset_daily_log_return",
-          "production_role": "unscored_research_candidate",
+          "production_role": "validated_research_candidate",
           "mean": {
             "method": "historical_sample_mean",
             "fixed_mean": true,
@@ -50000,37 +50000,37 @@
         }
       },
       "specification_fingerprint": {
-        "value": "080bc5f024edca15f91eca488fff2b7df93413f1b011615df3cccc6f3b1b296e",
+        "value": "b33933ba59cfcd8502e84232f876d756bbf5f6b08a11912c1ba47c64b09b7eb7",
         "kind": "resolved_statistical_definition_sha256",
         "status": "full resolved statistical definition"
       },
       "source_revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
       "source_artifact_digest": {
         "retained_score_artifact": {
-          "relative_path": "docs/results/rough-bayesian/candidate-panel.json",
-          "sha256": "e76403a43f6833472ab3c4df0d7ea15fcbb50599097a947ad6c7a1518401bcaa",
-          "manifest_sha256": "d850d5d58bb279c4f92f7aa2d23776e0d0084a78e9ba2c371e0346e3aa06ca45",
-          "scope": "unscored_canonical",
-          "tasks_per_model": 0,
-          "cells_per_model": 0,
-          "complete_portfolios": 0,
-          "required_tasks_per_model": 4080,
-          "required_cells_per_model": 701280,
+          "relative_path": "docs/results/rough-bayesian/eight-upgrade-full-results.json",
+          "sha256": "d791f953fa05e69f098094e8afe6ab1799c5931a3791f49957ce45fa39e7a8e2",
+          "manifest_sha256": "c0dbc84279cc912d8dc1fcdd8626f50d89a3e61b738817538b146a4fcdc889b2",
+          "scope": "full_canonical",
+          "tasks_per_model": 4080,
+          "cells_per_model": 701280,
+          "complete_portfolios": 80,
           "simulations": 240,
-          "all_denominator_gates_passed": false
+          "all_denominator_gates_passed": true,
+          "independent_audit": "docs/results/rough-bayesian/eight-upgrade-full-audit.json",
+          "source_score_field": "scores.asset_rough_volterra_sv_eight_factor_bayesian.exact_empirical_crps"
         },
         "source_code": {
           "relative_path": "tools/rough_bayesian/overlay.py",
           "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847"
         },
         "parameter_dictionary": {
-          "sha256": "080bc5f024edca15f91eca488fff2b7df93413f1b011615df3cccc6f3b1b296e"
+          "sha256": "b33933ba59cfcd8502e84232f876d756bbf5f6b08a11912c1ba47c64b09b7eb7"
         }
       },
       "source_location_reference": {
         "implementation": "tools/rough_bayesian/overlay.py",
         "entrypoint": "Candidate.simulate_daily_log_returns",
-        "score": "docs/results/rough-bayesian/candidate-panel.json"
+        "score": "docs/results/rough-bayesian/eight-upgrade-full-results.json"
       },
       "implementation_factory": {
         "name": null,
@@ -50049,508 +50049,678 @@
       "historical_rank": null,
       "canonical_rank": 190,
       "historical_score": {
-        "exact_empirical_crps": null,
+        "exact_empirical_crps": "0.2522081419138852",
         "relative_to_naive": null,
         "skill_vs_naive": null,
-        "paired_improvement_vs_current": null,
-        "paired_mean_diff_vs_current": null,
-        "paired_portfolio_cluster_diff_ci_90": null,
-        "paired_portfolio_cluster_probability_better": null,
-        "portfolio_losses_vs_current": null,
-        "portfolio_wins_vs_current": null,
+        "paired_improvement_vs_current": 0.0010286762344103861,
+        "paired_mean_diff_vs_current": -0.00025970767682666153,
+        "paired_portfolio_cluster_diff_ci_90": [
+          -0.0015087280688646201,
+          0.000979223422973313
+        ],
+        "paired_portfolio_cluster_probability_better": 0.64,
+        "portfolio_losses_vs_current": 38,
+        "portfolio_wins_vs_current": 42,
         "portfolio_scores": [
           {
             "portfolio_id": "equal_class_history_001",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.13276415047033271,
+            "production_crps": 0.13692861192916725,
+            "prior_rough_crps": 0.1347267701347792
           },
           {
             "portfolio_id": "equal_class_history_002",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.17342630242010204,
+            "production_crps": 0.18210326705315186,
+            "prior_rough_crps": 0.1740082696368073
           },
           {
             "portfolio_id": "equal_class_history_003",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.18548664299357576,
+            "production_crps": 0.17940669975770654,
+            "prior_rough_crps": 0.17893237740129095
           },
           {
             "portfolio_id": "equal_class_history_004",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.1927234982511283,
+            "production_crps": 0.19151994697757785,
+            "prior_rough_crps": 0.19532389229249592
           },
           {
             "portfolio_id": "equal_class_history_005",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.5745504971241708,
+            "production_crps": 0.5801295627537837,
+            "prior_rough_crps": 0.5840184047496606
           },
           {
             "portfolio_id": "equal_class_history_006",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.1706986170125446,
+            "production_crps": 0.17091746182121298,
+            "prior_rough_crps": 0.16902641189245673
           },
           {
             "portfolio_id": "equal_class_history_007",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.16244710275881336,
+            "production_crps": 0.15757109108119666,
+            "prior_rough_crps": 0.15399652153055746
           },
           {
             "portfolio_id": "equal_class_history_008",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.20451145329170237,
+            "production_crps": 0.2086790023139991,
+            "prior_rough_crps": 0.20371148032375877
           },
           {
             "portfolio_id": "equal_class_history_009",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.14157060740672966,
+            "production_crps": 0.1432172870945484,
+            "prior_rough_crps": 0.14400430292499064
           },
           {
             "portfolio_id": "equal_class_history_010",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.14379928042006807,
+            "production_crps": 0.14778866436861343,
+            "prior_rough_crps": 0.1492233444284428
           },
           {
             "portfolio_id": "equal_class_history_011",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.15122490994468993,
+            "production_crps": 0.149349876434976,
+            "prior_rough_crps": 0.1490026814069355
           },
           {
             "portfolio_id": "equal_class_history_012",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.5676864283898546,
+            "production_crps": 0.5583055458692253,
+            "prior_rough_crps": 0.560303445820674
           },
           {
             "portfolio_id": "equal_class_history_013",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.2456951259117803,
+            "production_crps": 0.24716433216084618,
+            "prior_rough_crps": 0.2371564361334028
           },
           {
             "portfolio_id": "equal_class_history_014",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.11417206029681981,
+            "production_crps": 0.11505865180612508,
+            "prior_rough_crps": 0.11355200999856499
           },
           {
             "portfolio_id": "equal_class_history_015",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.21176643456361152,
+            "production_crps": 0.2297085007816517,
+            "prior_rough_crps": 0.21132350876322717
           },
           {
             "portfolio_id": "equal_class_history_016",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.4173512231894137,
+            "production_crps": 0.4137786542186413,
+            "prior_rough_crps": 0.4143816418690115
           },
           {
             "portfolio_id": "equal_class_history_017",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.2638560505780187,
+            "production_crps": 0.2771578011494442,
+            "prior_rough_crps": 0.2664743575650697
           },
           {
             "portfolio_id": "equal_class_history_018",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.10098548475759758,
+            "production_crps": 0.10570130356357016,
+            "prior_rough_crps": 0.10295668394548124
           },
           {
             "portfolio_id": "equal_class_history_019",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.18269453650518283,
+            "production_crps": 0.19423795706027952,
+            "prior_rough_crps": 0.19189846277908845
           },
           {
             "portfolio_id": "equal_class_history_020",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.12257393904041285,
+            "production_crps": 0.1240810439818612,
+            "prior_rough_crps": 0.12697757610462862
           },
           {
             "portfolio_id": "equal_class_history_021",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.271566385544934,
+            "production_crps": 0.27294915006093595,
+            "prior_rough_crps": 0.27752598233484443
           },
           {
             "portfolio_id": "equal_class_history_022",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.4080017506539588,
+            "production_crps": 0.4116328231767407,
+            "prior_rough_crps": 0.40726853011318015
           },
           {
             "portfolio_id": "equal_class_history_023",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.17393076183601847,
+            "production_crps": 0.1814497707796791,
+            "prior_rough_crps": 0.17078224986449955
           },
           {
             "portfolio_id": "equal_class_history_024",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.572226058727064,
+            "production_crps": 0.5750777024321244,
+            "prior_rough_crps": 0.558988235102791
           },
           {
             "portfolio_id": "equal_class_history_025",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.22253633145096863,
+            "production_crps": 0.20581531949443352,
+            "prior_rough_crps": 0.2118039448452424
           },
           {
             "portfolio_id": "equal_class_history_026",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.15925667187151385,
+            "production_crps": 0.15926269483261796,
+            "prior_rough_crps": 0.15706700281484715
           },
           {
             "portfolio_id": "equal_class_history_027",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.1871223490517024,
+            "production_crps": 0.1895610443158516,
+            "prior_rough_crps": 0.18661187109997385
           },
           {
             "portfolio_id": "equal_class_history_028",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.20659931014515012,
+            "production_crps": 0.2065677613185226,
+            "prior_rough_crps": 0.20575264848830074
           },
           {
             "portfolio_id": "equal_class_history_029",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.10710999516473546,
+            "production_crps": 0.10588676741944811,
+            "prior_rough_crps": 0.10527066946531785
           },
           {
             "portfolio_id": "equal_class_history_030",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.14593726309987687,
+            "production_crps": 0.1521590450236302,
+            "prior_rough_crps": 0.14864636585860996
           },
           {
             "portfolio_id": "equal_class_history_031",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.30389875641864517,
+            "production_crps": 0.2991548017444606,
+            "prior_rough_crps": 0.3026757863574722
           },
           {
             "portfolio_id": "equal_class_history_032",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.2676331890205594,
+            "production_crps": 0.29178763582931655,
+            "prior_rough_crps": 0.25685730432000464
           },
           {
             "portfolio_id": "equal_class_history_033",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.2201717230643042,
+            "production_crps": 0.22270861843600037,
+            "prior_rough_crps": 0.2178365648989415
           },
           {
             "portfolio_id": "equal_class_history_034",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.24275397213643082,
+            "production_crps": 0.2391400184423772,
+            "prior_rough_crps": 0.24399970654110792
           },
           {
             "portfolio_id": "equal_class_history_035",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.15916143780840064,
+            "production_crps": 0.16339764766909715,
+            "prior_rough_crps": 0.16428316122458336
           },
           {
             "portfolio_id": "equal_class_history_036",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.5211260458844219,
+            "production_crps": 0.5194585995775822,
+            "prior_rough_crps": 0.5165314122153652
           },
           {
             "portfolio_id": "equal_class_history_037",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.5173096647110708,
+            "production_crps": 0.5144016972466452,
+            "prior_rough_crps": 0.5313686799757775
           },
           {
             "portfolio_id": "equal_class_history_038",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.7052919149781774,
+            "production_crps": 0.7048204832138899,
+            "prior_rough_crps": 0.7075397638962642
           },
           {
             "portfolio_id": "equal_class_history_039",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.09279174360940266,
+            "production_crps": 0.09465358394493942,
+            "prior_rough_crps": 0.09196493388397699
           },
           {
             "portfolio_id": "equal_class_history_040",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.20745371715599886,
+            "production_crps": 0.216844255220124,
+            "prior_rough_crps": 0.20162735698044257
           },
           {
             "portfolio_id": "equal_class_history_041",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.1520349618163045,
+            "production_crps": 0.15231720835400975,
+            "prior_rough_crps": 0.1508207641878296
           },
           {
             "portfolio_id": "equal_class_history_042",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.5562656145738705,
+            "production_crps": 0.5604081176600196,
+            "prior_rough_crps": 0.5545025550592898
           },
           {
             "portfolio_id": "equal_class_history_043",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.12603278172481575,
+            "production_crps": 0.12333131636946874,
+            "prior_rough_crps": 0.12397876379190048
           },
           {
             "portfolio_id": "equal_class_history_044",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.14819645876766893,
+            "production_crps": 0.14613509310189063,
+            "prior_rough_crps": 0.15114761591143636
           },
           {
             "portfolio_id": "equal_class_history_045",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.42282489702830134,
+            "production_crps": 0.41140714619200935,
+            "prior_rough_crps": 0.4091075246907039
           },
           {
             "portfolio_id": "equal_class_history_046",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.19290406013881722,
+            "production_crps": 0.19133524364789747,
+            "prior_rough_crps": 0.19375318963912
           },
           {
             "portfolio_id": "equal_class_history_047",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.17905464137864624,
+            "production_crps": 0.1812242705865473,
+            "prior_rough_crps": 0.18448822377103574
           },
           {
             "portfolio_id": "equal_class_history_048",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.13180212806636837,
+            "production_crps": 0.13309629052808142,
+            "prior_rough_crps": 0.13186140805535246
           },
           {
             "portfolio_id": "equal_class_history_049",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.2392932069348958,
+            "production_crps": 0.2332614326967579,
+            "prior_rough_crps": 0.23188060020012766
           },
           {
             "portfolio_id": "equal_class_history_050",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.3193812683341451,
+            "production_crps": 0.30093956547947426,
+            "prior_rough_crps": 0.31434333633357026
           },
           {
             "portfolio_id": "equal_class_history_051",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.16081609960373053,
+            "production_crps": 0.16075651428275822,
+            "prior_rough_crps": 0.16296082141681187
           },
           {
             "portfolio_id": "equal_class_history_052",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.19767891658223213,
+            "production_crps": 0.19959624661715264,
+            "prior_rough_crps": 0.19135727455940135
           },
           {
             "portfolio_id": "equal_class_history_053",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.5946162608176297,
+            "production_crps": 0.5851812027976948,
+            "prior_rough_crps": 0.5820421371224604
           },
           {
             "portfolio_id": "equal_class_history_054",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.3175174543635484,
+            "production_crps": 0.30292635315844135,
+            "prior_rough_crps": 0.31094099438842593
           },
           {
             "portfolio_id": "equal_class_history_055",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.321799999268715,
+            "production_crps": 0.31499410832005137,
+            "prior_rough_crps": 0.3122587134139924
           },
           {
             "portfolio_id": "equal_class_history_056",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.10375063454068575,
+            "production_crps": 0.10579273816209658,
+            "prior_rough_crps": 0.10241465904208732
           },
           {
             "portfolio_id": "equal_class_history_057",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.26660449053388563,
+            "production_crps": 0.27606536960765066,
+            "prior_rough_crps": 0.2670312080797128
           },
           {
             "portfolio_id": "equal_class_history_058",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.13347633058019828,
+            "production_crps": 0.13074934208226843,
+            "prior_rough_crps": 0.1310009075266662
           },
           {
             "portfolio_id": "equal_class_history_059",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.10610500444107913,
+            "production_crps": 0.10536997279305081,
+            "prior_rough_crps": 0.1055638989169834
           },
           {
             "portfolio_id": "equal_class_history_060",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.23568361048689143,
+            "production_crps": 0.22678084623452005,
+            "prior_rough_crps": 0.23611644665144635
           },
           {
             "portfolio_id": "equal_class_history_061",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.14406134021300768,
+            "production_crps": 0.13977593246030542,
+            "prior_rough_crps": 0.14261961000049658
           },
           {
             "portfolio_id": "equal_class_history_062",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.35728608561024594,
+            "production_crps": 0.3497760555593967,
+            "prior_rough_crps": 0.36527250332612293
           },
           {
             "portfolio_id": "equal_class_history_063",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.40504814058179767,
+            "production_crps": 0.3975221239698735,
+            "prior_rough_crps": 0.40084014187449996
           },
           {
             "portfolio_id": "equal_class_history_064",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.11944225128084353,
+            "production_crps": 0.12355386889484134,
+            "prior_rough_crps": 0.11949926822463788
           },
           {
             "portfolio_id": "equal_class_history_065",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.2613808992431929,
+            "production_crps": 0.2671706805946338,
+            "prior_rough_crps": 0.2697568880747541
           },
           {
             "portfolio_id": "equal_class_history_066",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.18379401890866637,
+            "production_crps": 0.18605027746588515,
+            "prior_rough_crps": 0.1849960341145877
           },
           {
             "portfolio_id": "equal_class_history_067",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.15318433585284622,
+            "production_crps": 0.15442978215680442,
+            "prior_rough_crps": 0.15549439571446239
           },
           {
             "portfolio_id": "equal_class_history_068",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.2319732484846775,
+            "production_crps": 0.23948319231005183,
+            "prior_rough_crps": 0.24836364751001883
           },
           {
             "portfolio_id": "equal_class_history_069",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.2256406629542097,
+            "production_crps": 0.22151681060126396,
+            "prior_rough_crps": 0.22164968786382433
           },
           {
             "portfolio_id": "equal_class_history_070",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.41371715477974486,
+            "production_crps": 0.40628420276847893,
+            "prior_rough_crps": 0.4073991082968904
           },
           {
             "portfolio_id": "equal_class_history_071",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.10841232648860458,
+            "production_crps": 0.10834899009612656,
+            "prior_rough_crps": 0.10689386260607658
           },
           {
             "portfolio_id": "equal_class_history_072",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.20321647488216107,
+            "production_crps": 0.2013383356968206,
+            "prior_rough_crps": 0.20934854385724852
           },
           {
             "portfolio_id": "equal_class_history_073",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.12469490282926897,
+            "production_crps": 0.12657913896546047,
+            "prior_rough_crps": 0.12180909288406012
           },
           {
             "portfolio_id": "equal_class_history_074",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.26617354283424227,
+            "production_crps": 0.2641032041347755,
+            "prior_rough_crps": 0.25939739347166524
           },
           {
             "portfolio_id": "equal_class_history_075",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.8976845881638125,
+            "production_crps": 0.8934215348223465,
+            "prior_rough_crps": 0.8814528150421231
           },
           {
             "portfolio_id": "equal_class_history_076",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.21884926477184083,
+            "production_crps": 0.21609995338095334,
+            "prior_rough_crps": 0.2189623785341197
           },
           {
             "portfolio_id": "equal_class_history_077",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.3943151530709894,
+            "production_crps": 0.4052972456168236,
+            "prior_rough_crps": 0.3946294443116774
           },
           {
             "portfolio_id": "equal_class_history_078",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.17504209377656155,
+            "production_crps": 0.17496074658449054,
+            "prior_rough_crps": 0.17853449102222363
           },
           {
             "portfolio_id": "equal_class_history_079",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.09190535176919461,
+            "production_crps": 0.09322585508835989,
+            "prior_rough_crps": 0.09171399244510937
           },
           {
             "portfolio_id": "equal_class_history_080",
-            "completed_origins": 0,
+            "completed_origins": 51,
             "required_origins": 51,
-            "exact_empirical_crps": null
+            "exact_empirical_crps": 0.14312730897259288,
+            "production_crps": 0.14728697506141894,
+            "prior_rough_crps": 0.14438338499065273
           }
         ]
       },
       "score_precision": {
-        "retained_source_token": null,
-        "publication_token": null,
-        "publication_precision": {
-          "kind": "unscored_full_panel"
-        },
+        "retained_source_token": "0.2522081419138852",
         "retained_source_precision": {
-          "kind": "unscored_full_panel"
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
         },
-        "status": "official_full_panel_score_pending"
+        "publication_token": "0.252208142",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "8.61148E-11",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source_token_preserved"
       },
       "experiment_id": "rough-jump-vine-20261005",
       "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
@@ -50563,14 +50733,14 @@
       "instantiation_validated": false,
       "forecast_smoke_tested": false,
       "source_parity_checked": false,
-      "historical_score_verified": false,
-      "verification_status": "unscored_canonical_candidate_wired_smoke_parity_passed",
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score",
       "notes": [
         "Asset-level incremental upgrade of the validated rough winner; preserve production mean, variance anchor, empirical innovations, dependence and scoring shell.",
         "Gaussian log-square quasi-likelihood is retained deliberately to isolate changes to parameter uncertainty and kernel accuracy.",
         "Independent full 240-path smoke loss-vector parity: docs/results/rough-bayesian/speed-parity.json.",
-        "All 80 portfolio scores and aggregate score stay blank until the full canonical panel completes.",
-        "Exact-output speed implementation caches asset posterior states and horizon normalizers; strict C++ Kalman likelihood; unchanged inference and simulation budgets."
+        "Exact-output speed implementation caches asset posterior states and horizon normalizers; strict C++ Kalman likelihood; unchanged inference and simulation budgets.",
+        "Complete 80-portfolio canonical panel independently reconstructed; 51 origins per portfolio, 240 paths, 701280 cells; saved production and prior rough control panels aligned exactly."
       ]
     },
     {
@@ -50746,13 +50916,13 @@
       "source_revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
       "source_artifact_digest": {
         "retained_score_artifact": {
-          "relative_path": "docs/results/rough-bayesian/candidate-panel.json",
-          "sha256": "e76403a43f6833472ab3c4df0d7ea15fcbb50599097a947ad6c7a1518401bcaa",
-          "manifest_sha256": "d850d5d58bb279c4f92f7aa2d23776e0d0084a78e9ba2c371e0346e3aa06ca45",
-          "scope": "unscored_canonical",
-          "tasks_per_model": 0,
-          "cells_per_model": 0,
-          "complete_portfolios": 0,
+          "relative_path": "docs/results/rough-bayesian/fixed-lift-partial-results.json",
+          "sha256": "98b44fb62e950d7908c5512d0202848c2755735a0092bfe38bcac83068c835ac",
+          "manifest_sha256": "84dacee1538edd5c00ed767db5fc052dab8f08da313fd64bed3a50881a8819fc",
+          "scope": "partial_canonical",
+          "tasks_per_model": 180,
+          "cells_per_model": 26298,
+          "complete_portfolios": 3,
           "required_tasks_per_model": 4080,
           "required_cells_per_model": 701280,
           "simulations": 240,
@@ -50769,7 +50939,7 @@
       "source_location_reference": {
         "implementation": "tools/rough_bayesian/overlay.py",
         "entrypoint": "Candidate.simulate_daily_log_returns",
-        "score": "docs/results/rough-bayesian/candidate-panel.json"
+        "score": "docs/results/rough-bayesian/fixed-lift-partial-results.json"
       },
       "implementation_factory": {
         "name": null,
@@ -50787,6 +50957,743 @@
       ],
       "historical_rank": null,
       "canonical_rank": 191,
+      "historical_score": {
+        "exact_empirical_crps": null,
+        "relative_to_naive": null,
+        "skill_vs_naive": null,
+        "paired_improvement_vs_current": null,
+        "paired_mean_diff_vs_current": null,
+        "paired_portfolio_cluster_diff_ci_90": null,
+        "paired_portfolio_cluster_probability_better": null,
+        "portfolio_losses_vs_current": null,
+        "portfolio_wins_vs_current": null,
+        "portfolio_scores": [
+          {
+            "portfolio_id": "equal_class_history_001",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13319186058059912
+          },
+          {
+            "portfolio_id": "equal_class_history_002",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16782064836833513
+          },
+          {
+            "portfolio_id": "equal_class_history_003",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18472993327356468
+          },
+          {
+            "portfolio_id": "equal_class_history_004",
+            "completed_origins": 27,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_005",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_006",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_007",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_008",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_009",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_010",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_011",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_012",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_013",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_014",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_015",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_016",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_017",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_018",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_019",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_020",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_021",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_022",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_023",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_024",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_025",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_026",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_027",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_028",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_029",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_030",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_031",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_032",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_033",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_034",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_035",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_036",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_037",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_038",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_039",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_040",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_041",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_042",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_043",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_044",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_045",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_046",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_047",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_048",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_049",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_050",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_051",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_052",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_053",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_054",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_055",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_056",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_057",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_058",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_059",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_060",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_061",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_062",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_063",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_064",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_065",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_066",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_067",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_068",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_069",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_070",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_071",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_072",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_073",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_074",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_075",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_076",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_077",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_078",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_079",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_080",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          }
+        ]
+      },
+      "score_precision": {
+        "retained_source_token": null,
+        "publication_token": null,
+        "publication_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "retained_source_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "status": "partial_portfolio_scores_aggregate_pending"
+      },
+      "experiment_id": "rough-jump-vine-20261005",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": false,
+      "verification_status": "partial_canonical_score_stopped",
+      "notes": [
+        "Asset-level incremental upgrade of the validated rough winner; preserve production mean, variance anchor, empirical innovations, dependence and scoring shell.",
+        "Gaussian log-square quasi-likelihood is retained deliberately to isolate changes to parameter uncertainty and kernel accuracy.",
+        "Independent full 240-path smoke loss-vector parity: docs/results/rough-bayesian/speed-parity.json.",
+        "All 80 portfolio scores and aggregate score stay blank until the full canonical panel completes.",
+        "Exact-output speed implementation caches asset posterior states and horizon normalizers; strict C++ Kalman likelihood; unchanged inference and simulation budgets.",
+        "Fixed-resolution run intentionally stopped for a separate dynamic candidate; only complete 51-origin portfolio scores are retained, and unfinished portfolio scores remain blank."
+      ]
+    },
+    {
+      "public_model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+      "display_name": "M192 \u2014 Asset Rough Volterra SV \u2014 Dynamic Resolution + Bayesian Parameters",
+      "historical_model_ids": [
+        "asset_rough_volterra_sv_dynamic_lift_bayesian"
+      ],
+      "seed_identity": {
+        "source_model_key": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG; dynamic fit settings include full requested lag domain",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_rough_volterra_overlay_upgrade",
+          "source_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "unscored_research_candidate",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "model": "tempered_fractional_Volterra_log_variance_overlay",
+            "replacement": false,
+            "production_variance_anchor": true,
+            "production_mean_anchor": true,
+            "level": "training mean of unchanged winsorized log-square proxy",
+            "parameter_uncertainty": "Bayesian posterior over H, log_kappa, log_scale",
+            "latent_states": "analytically marginalized Gaussian states; terminal filtering posterior sampled per predictive path",
+            "H_prior": {
+              "distribution": "uniform",
+              "bounds": [
+                0.03,
+                0.49
+              ]
+            },
+            "log_kappa_prior": {
+              "distribution": "truncated_normal",
+              "mean": "log(1/63)",
+              "sd": 2,
+              "bounds": [
+                "log(1/2520)",
+                "log(.5)"
+              ]
+            },
+            "log_scale_prior": {
+              "distribution": "truncated_normal",
+              "mean": "log(.7)",
+              "sd": 1.5,
+              "bounds": [
+                "log(.05)",
+                "log(3)"
+              ]
+            },
+            "kernel": {
+              "continuous_target": "exp(-kappa*t)*t**(H-.5)/Gamma(H+.5)",
+              "normalized_stationary_covariance": "E[exp(-kappa*(1+Z)/(1-Z)*t)], Z~Beta(.5-H,2*H)",
+              "lift": "positive Gauss-Jacobi spectral quadrature on logarithmic rates",
+              "error_metric": "normalized absolute stationary autocorrelation difference over every requested integer daily lag",
+              "error_tolerance": 0.001,
+              "factor_selection": "first passing positive integer quadrature order per (H,kappa); no fixed factor count, preset list or factor cap",
+              "lag_domain": "1 through training_days+requested_horizon_days-1",
+              "certificate": "monotonic interval enclosure and C-second-derivative <=4*exp(-2)/t**2; recursively bisect unresolved integer-lag intervals",
+              "fast_rate_threshold": "-log(tolerance/2)",
+              "white_tail_error_bound": "tolerance/2 for every positive daily lag",
+              "zero_lag_variance": "analytic exact unit variance with Beta tail mass retained as independent white component",
+              "reference_numerics": "Tricomi U closed form; independent weighted Beta integration fallback for invalid special-function evaluations"
+            },
+            "daily_discretization": "exact exponential transitions of independent OU spectral factors",
+            "predictive_multiplier": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)",
+            "normalization": "conditional E[multiplier**2]=1 preserves production daily expected variance",
+            "first_forecast_state": "one OU transition after final filtered observation"
+          },
+          "predictive_marginal": {
+            "method": "one actual posterior parameter draw per predictive path, with its Gaussian terminal state",
+            "innovations": "unchanged production centered empirical standardized nodes",
+            "daily_log_return_clip": [
+              -1,
+              1
+            ],
+            "posterior_multiplier": "production_mean+production_sd*empirical_shock*rough_multiplier"
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "parameter_mcmc": {
+            "target": "Gaussian log-square quasi-likelihood with measurement variance pi**2/2; fixed training proxy level; exact Gaussian latent-state marginalization",
+            "chains": 2,
+            "burn_per_chain": 2048,
+            "kept_per_chain": 8192,
+            "kept_per_chain_maximum": 65536,
+            "thin": 1,
+            "parameter_updates": "symmetric joint Gaussian random-walk Metropolis-Hastings",
+            "parameter_adaptation": "warmup only, Welford covariance every 32 after iteration 64; 2.38**2/3 scaling",
+            "posterior_extension": "double retained draws without re-adaptation until diagnostic gates or 65536 per chain",
+            "diagnostic_flag_gate": {
+              "max_rhat": 1.05,
+              "min_bulk_ess": 100
+            },
+            "convergence_diagnostics": "rank/folded split Rhat and initial-positive-sequence bulk ESS on parameters and log posterior",
+            "cache_compression": "240 actual parameter draws sampled from all retained draws; retain full diagnostic trace",
+            "effective_sample_runtime": "minimum bulk ESS per fit second",
+            "flagged_fits": "retained and explicitly counted; no convergence claim"
+          },
+          "source_reference": {
+            "path": "tools/rough_bayesian/dynamic.py",
+            "revision": "0c9df730e99171117690135de644c1985ef0eca0",
+            "sha256": "3d8938b4450fd2cd6c56057016709f1dbca297b355db3624d69ddc05adcc36f5",
+            "entrypoints": [
+              "DynamicCandidate.simulate_daily_log_returns"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "tools/rough_bayesian/overlay.py",
+                "sha256": "99653cd5383fb92583a256a800152876cf29c30926415ca7c305c9375f206d23"
+              },
+              {
+                "path": "tools/rough_bayesian/models.py",
+                "sha256": "3eb7fd3331e407d7cfcb62a3c6e07c1956bb567f3d1f8133c0ed91fcee8f1306"
+              },
+              {
+                "path": "tools/rough_jump_vine/models.py",
+                "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+              },
+              {
+                "path": "tools/rough_bayesian/run_panel.py",
+                "sha256": "1f404d91277de3ec490de5d8d9c212a9bcdb8a5dafffea92d711db77ebc9bf14"
+              },
+              {
+                "path": "tools/rough_bayesian/native.py",
+                "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+              },
+              {
+                "path": "tools/rough_bayesian/overlay_filter.cpp",
+                "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG; dynamic fit settings include full requested lag domain",
+          "source_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG; dynamic fit settings include full requested lag domain",
+          "failure_semantics": {
+            "paths": "reject nonfinite outputs",
+            "kernel": "require finite positive quadrature and complete daily-lag error enclosure; no silent tolerance relaxation",
+            "posterior": "training-only diagnostic extension to maximum with explicit flags"
+          },
+          "source_seed_context_ref": "asset_level_rough_volterra_overlay_upgrade"
+        }
+      },
+      "specification_fingerprint": {
+        "value": "07bd9c0681ad09d0666d5c52387b00cc129abd8aa2976663b7bcdfa0d981c936",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "0c9df730e99171117690135de644c1985ef0eca0",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "docs/results/rough-bayesian/dynamic-panel.json",
+          "sha256": "962545356b71c80c7a0aef4b49870f131329ab38617f27ad9c9a9639a6c34a99",
+          "manifest_sha256": "f4cd165da0c86d076cb5362745bac1a23f76645a57616ea829203f3530dd22df",
+          "scope": "unscored_canonical",
+          "tasks_per_model": 0,
+          "cells_per_model": 0,
+          "complete_portfolios": 0,
+          "required_tasks_per_model": 4080,
+          "required_cells_per_model": 701280,
+          "simulations": 240,
+          "all_denominator_gates_passed": false
+        },
+        "source_code": {
+          "relative_path": "tools/rough_bayesian/dynamic.py",
+          "sha256": "3d8938b4450fd2cd6c56057016709f1dbca297b355db3624d69ddc05adcc36f5"
+        },
+        "parameter_dictionary": {
+          "sha256": "07bd9c0681ad09d0666d5c52387b00cc129abd8aa2976663b7bcdfa0d981c936"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tools/rough_bayesian/dynamic.py",
+        "entrypoint": "DynamicCandidate.simulate_daily_log_returns",
+        "score": "docs/results/rough-bayesian/dynamic-panel.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "research_runner_entrypoint",
+        "research_entrypoint": "tools/rough_bayesian/dynamic.py:DynamicCandidate.simulate_daily_log_returns"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba",
+        "pyvinecopulib==0.7.5",
+        "pybind11==3.1.0"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 192,
       "historical_score": {
         "exact_empirical_crps": null,
         "relative_to_naive": null,
@@ -51305,11 +52212,10 @@
       "historical_score_verified": false,
       "verification_status": "unscored_canonical_candidate_wired_smoke_parity_passed",
       "notes": [
-        "Asset-level incremental upgrade of the validated rough winner; preserve production mean, variance anchor, empirical innovations, dependence and scoring shell.",
-        "Gaussian log-square quasi-likelihood is retained deliberately to isolate changes to parameter uncertainty and kernel accuracy.",
-        "Independent full 240-path smoke loss-vector parity: docs/results/rough-bayesian/speed-parity.json.",
-        "All 80 portfolio scores and aggregate score stay blank until the full canonical panel completes.",
-        "Exact-output speed implementation caches asset posterior states and horizon normalizers; strict C++ Kalman likelihood; unchanged inference and simulation budgets."
+        "Asset-level dynamic numerical approximation; unchanged production mean, variance anchor, return innovations, dependence and scoring shell.",
+        "Every positive integer quadrature order is eligible; no OOS scores or future observations select resolution.",
+        "Independent Beta integral, dense Gaussian likelihood, full-budget chain and exact smoke-score checks: docs/results/rough-bayesian/dynamic-speed-parity.json.",
+        "Aggregate and remaining portfolio scores are blank until the canonical run completes."
       ]
     }
   ]
