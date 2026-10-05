@@ -44,6 +44,8 @@ MODEL_IDS = (
     'asset_bayesian_lifted_rfsv_leverage_ess',
     'asset_bayesian_lifted_rough_heston_hmc',
     'asset_bayesian_lifted_rfsv_student_ess',
+    'asset_rough_volterra_sv_eight_factor_bayesian',
+    'asset_rough_volterra_sv_accuracy_lift_bayesian',
 )
 
 
@@ -248,10 +250,13 @@ class Candidate:
         return result
 
 
+from overlay import Candidate as OverlayCandidate
+
 CANDIDATES = (
     controls.Candidate(MODEL_IDS[0]), controls.Candidate(MODEL_IDS[1], rough=True),
     Candidate(MODEL_IDS[2]), Candidate(MODEL_IDS[3], tolerance=.001),
     Candidate(MODEL_IDS[4], pgas=True), Candidate(MODEL_IDS[5], leverage=True),
     Candidate(MODEL_IDS[6], kind='heston', leverage=True),
     Candidate(MODEL_IDS[7], kind='fou_t'),
+    OverlayCandidate(MODEL_IDS[8]), OverlayCandidate(MODEL_IDS[9], adaptive=True),
 )

@@ -143,3 +143,71 @@ def test_sampling_resume_keeps_exact_rng_and_frozen_adaptation():
     second = chain(y, 0, .01, 'fou', burn=0, kept=20, resume=first['state'])
     for name in ('parameters', 'terminal', 'diagnostic_trace'):
         np.testing.assert_array_equal(whole[name], np.concatenate([first[name], second[name]]))
+
+
+@pytest.fixture
+def overlay_shell(monkeypatch):
+    import importlib.util
+    directory = Path(__file__).resolve().parents[1] / 'tools/rough_bayesian'
+    spec = importlib.util.spec_from_file_location('models', directory / 'models.py')
+    shell = importlib.util.module_from_spec(spec)
+    monkeypatch.setitem(sys.modules, 'models', shell)
+    spec.loader.exec_module(shell)
+    return shell
+
+
+def test_tempered_overlay_covariance_and_original_eight_factor_target(overlay_shell):
+    import overlay
+    models = overlay_shell
+    bins, evidence = overlay.accuracy_grid()
+    assert evidence['maximum_absolute_autocorrelation_error'] < .001
+    lags = np.arange(25201)
+    for h, k in [(.031, 1 / 2500), (.1, 1 / 63), (.3, .49), (.489, .004)]:
+        phi, covariance = overlay.lifted_covariance(h, k, bins)
+        assert covariance.sum() == pytest.approx(1, abs=2e-15)
+        assert np.linalg.eigvalsh(covariance).min() > -1e-12
+        actual = phi[None, :] ** lags[:, None] @ covariance.sum(axis=1)
+        assert np.max(np.abs(actual - overlay.exact_covariance(h, k, lags))) < .001
+        point = np.array([h, math.log(k), math.log(.7)])
+        for actual, expected in zip(overlay.configuration(point, False), models.controls.rough_parameters(point)):
+            np.testing.assert_array_equal(actual, expected)
+
+
+def test_overlay_multiplier_and_resume_against_independent_reference(overlay_shell):
+    import overlay
+    models = overlay_shell
+    def reference_multiplier(phi, weights, root, state, variance, normals):
+        state, variance, mean = state.copy(), variance.copy(), normals[0].copy()
+        out = []
+        for noise in normals[1:]:
+            out.append(np.exp(.5 * (weights @ state - weights @ mean) - .25 * (weights @ variance @ weights)))
+            state = phi * state + root @ noise
+            mean = phi * mean
+            variance = variance * np.outer(phi, phi) + root @ root.T
+        return np.array(out)
+    phi, weights, covariance = models.controls.rough_parameters(np.array([.1, math.log(1 / 63), math.log(.7)]))
+    values, vectors = np.linalg.eigh(covariance)
+    root = vectors * np.sqrt(np.maximum(values, 0))
+    posterior = covariance / (1 - np.outer(phi, phi))
+    rng = np.random.default_rng(98)
+    normals = rng.normal(size=(33, len(phi)))
+    initial = rng.normal(size=len(phi))
+    np.testing.assert_allclose(overlay.multiplier_path(phi, weights, root, initial, posterior, normals),
+                               reference_multiplier(phi, weights, root, initial, posterior, normals), atol=2e-14, rtol=0)
+    y = rng.normal(size=64)
+    whole, _ = overlay.parameter_chain(y, 0., False, 42, 32, 128)
+    first, state = overlay.parameter_chain(y, 0., False, 42, 32, 64)
+    last, _ = overlay.parameter_chain(y, 0., False, 0, 0, 64, state)
+    np.testing.assert_array_equal(whole, np.concatenate([first, last]))
+
+
+def test_collapsed_overlay_filter_against_original_reference(overlay_shell):
+    import overlay
+    rng = np.random.default_rng(839)
+    y = rng.normal(size=507)
+    for adaptive in (False, True):
+        phi, weights, covariance = overlay.configuration(np.array([.1, math.log(1 / 63), math.log(.7)]), adaptive)
+        fast = overlay.filter_rough(y, phi, weights, covariance, .1)
+        reference = overlay_shell.controls.filter_rough(y, phi, weights, covariance, .1)
+        for actual, expected in zip(fast, reference):
+            np.testing.assert_allclose(actual, expected, atol=2e-11, rtol=0)

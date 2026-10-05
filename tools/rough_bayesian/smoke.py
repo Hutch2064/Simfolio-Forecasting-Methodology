@@ -10,6 +10,7 @@ import numpy as np
 from scipy.signal import lfilter
 import inference
 import models
+import overlay
 from simfolio_forecasting_methodology.experiment import build_experiment_plan
 from simfolio_forecasting_methodology.runner import evaluate_origin_task
 
@@ -51,6 +52,20 @@ def reference_predictive_heston(phi, weights, step, terminal, noise, shock, mean
     return np.clip(mean + np.exp(h / 2) / 100 * shock, -1, 1)
 
 
+def reference_multiplier(phi, weights, root, initial, posterior, normals):
+    state = initial.copy()
+    mean = normals[0].copy()
+    variance = posterior.copy()
+    out = np.empty(normals.shape[0] - 1)
+    q = root @ root.T
+    for t in range(out.size):
+        out[t] = np.exp(.5 * (weights @ state - weights @ mean) - .25 * (weights @ variance @ weights))
+        state = phi * state + root @ normals[t + 1]
+        mean = phi * mean
+        variance = variance * np.outer(phi, phi) + q
+    return out
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--data', type=Path, required=True)
@@ -67,11 +82,12 @@ def main():
         realized_future_daily_log_returns=task.realized_future_daily_log_returns[:63],
         future_dates=task.future_dates[:63])
     originals = (inference.gaussian_path, inference.heston_path,
-                 models.predictive_fou, models.predictive_heston)
+                 models.predictive_fou, models.predictive_heston, overlay.multiplier_path, overlay.filter_rough)
     cases = []
     for candidate in models.CANDIDATES[2:]:
         candidate = replace(candidate, burn=32, kept=64, max_kept=64)
         models.fit.cache_clear()
+        overlay.fit.cache_clear()
         start = time.perf_counter()
         fast = evaluate_origin_task(candidate, task, simulations=240)
         fast_seconds = time.perf_counter() - start
@@ -79,12 +95,15 @@ def main():
         inference.heston_path = reference_heston
         models.predictive_fou = reference_predictive_fou
         models.predictive_heston = reference_predictive_heston
+        overlay.multiplier_path = reference_multiplier
+        overlay.filter_rough = lambda *args: models.controls.filter_rough(*args)[:3]
         models.fit.cache_clear()
+        overlay.fit.cache_clear()
         start = time.perf_counter()
         reference = evaluate_origin_task(candidate, task, simulations=240)
         reference_seconds = time.perf_counter() - start
         (inference.gaussian_path, inference.heston_path,
-         models.predictive_fou, models.predictive_heston) = originals
+         models.predictive_fou, models.predictive_heston, overlay.multiplier_path, overlay.filter_rough) = originals
         difference = float(np.max(np.abs(fast - reference)))
         np.testing.assert_allclose(fast, reference, rtol=0, atol=1e-12)
         record = {'model_id': candidate.model_id, 'optimized_seconds': fast_seconds,
