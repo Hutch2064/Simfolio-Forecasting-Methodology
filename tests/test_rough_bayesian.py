@@ -376,3 +376,59 @@ def test_repeated_posterior_draws_reuse_preparation_without_removing_paths(overl
     assert len(prepared) == len(normalizers) == len(parameters)
     assert prepared[0] is prepared[2] is prepared[4]
     assert normalizers[0] is normalizers[2] is normalizers[4]
+
+
+def test_standalone_joint_level_target_against_dense_gaussian(overlay_shell):
+    from scipy.linalg import toeplitz, cho_factor, cho_solve
+    import standalone, overlay
+    y = np.random.default_rng(846).normal(size=64)
+    point = np.array([.11, math.log(1/63), math.log(.7), .3])
+    phi, weights, q = overlay.configuration(point[:3], 'dynamic:126')
+    stationary = np.diag(q) / (1 - phi * phi)
+    covariance = toeplitz(phi[None, :] ** np.arange(len(y))[:, None] @ stationary)
+    covariance += np.eye(len(y)) * math.pi**2/2
+    residual = y - point[3]
+    factor = cho_factor(covariance, lower=True)
+    expected = (-.5 * (len(y)*math.log(2*math.pi) + 2*np.log(np.diag(factor[0])).sum()
+                + residual @ cho_solve(factor, residual))
+                + overlay.log_prior(point[:3]) - .5*((point[3]-y.mean())/4)**2)
+    assert standalone.log_target(y, point, 126) == pytest.approx(expected, abs=2e-11)
+    point[3] = y.max() + 10
+    assert standalone.log_target(y, point, 126) == -np.inf
+
+
+def test_standalone_joint_chain_resume_preserves_trace_and_rng(overlay_shell):
+    import standalone
+    y = np.random.default_rng(936).normal(size=64)
+    whole, whole_state = standalone.parameter_chain(y, 126, 42, 64, 128)
+    first, state = standalone.parameter_chain(y, 126, 42, 64, 64)
+    last, final_state = standalone.parameter_chain(y, 126, 0, 0, 64, state)
+    assert whole.tobytes() == np.concatenate([first, last]).tobytes()
+    assert whole_state['rng_state'] == final_state['rng_state']
+    assert np.ptp(whole[:, 3]) > 0
+
+
+def test_standalone_volatility_has_its_own_scale_and_exact_daily_transitions():
+    import standalone
+    phi, weights, sd = np.array([.9, .3]), np.ones(2), np.array([.1, .4])
+    initial = np.array([.7, -.3])
+    normals = np.random.default_rng(138).normal(size=(126, 2))
+    expected, state = [], initial.copy()
+    for z in normals:
+        state = phi*state + sd*z
+        expected.append(math.exp(.5*(.3 + weights @ state))/100)
+    actual = standalone.volatility_path(phi, weights, sd, initial, normals, .3)
+    np.testing.assert_allclose(actual, expected, rtol=1e-14, atol=0)
+    twice = standalone.volatility_path(phi, weights, sd, initial, normals, .3+2*math.log(2))
+    np.testing.assert_allclose(twice, 2*actual, rtol=1e-14, atol=0)
+
+
+def test_standalone_conditional_innovation_mapping_preserves_all_quantiles(overlay_shell):
+    import standalone
+    uniforms = np.random.default_rng(438).uniform(size=(240, 63))
+    nodes = np.linspace(-3, 4, 240)
+    expected = uniforms.copy()
+    overlay_shell.controls.interpolate_nodes(expected, nodes)
+    actual = np.vstack([standalone.map_shocks(row, nodes) for row in uniforms])
+    assert expected.tobytes() == actual.tobytes()
+    assert standalone.map_shocks(np.array([0., 1.]), nodes).tolist() == [-3., 4.]

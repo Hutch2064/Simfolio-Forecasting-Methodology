@@ -47,6 +47,7 @@ MODEL_IDS = (
     'asset_rough_volterra_sv_eight_factor_bayesian',
     'asset_rough_volterra_sv_accuracy_lift_bayesian',
     'asset_rough_volterra_sv_dynamic_lift_bayesian',
+    'asset_rough_volterra_sv_dynamic_standalone_bayesian',
 )
 
 
@@ -253,6 +254,7 @@ class Candidate:
 
 from overlay import Candidate as OverlayCandidate
 from dynamic import DynamicCandidate
+from standalone import StandaloneCandidate
 
 CANDIDATES = (
     controls.Candidate(MODEL_IDS[0]), controls.Candidate(MODEL_IDS[1], rough=True),
@@ -262,4 +264,5 @@ CANDIDATES = (
     Candidate(MODEL_IDS[7], kind='fou_t'),
     OverlayCandidate(MODEL_IDS[8]), OverlayCandidate(MODEL_IDS[9], adaptive=True),
     DynamicCandidate(MODEL_IDS[10], adaptive=True),
+    StandaloneCandidate(MODEL_IDS[11]),
 )
