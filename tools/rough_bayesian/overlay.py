@@ -274,7 +274,9 @@ class Candidate:
                   posterior['data_sha256'], str(context.origin_date), horizon, sims))
             for s, theta in enumerate(posterior['parameters']):
                 phi, weights, covariance = configuration(theta, self.adaptive)
-                _, state, p = filter_rough(y, phi, weights, covariance, posterior['level'])
+                # Keep the reference covariance rounding for the eigen-based random
+                # initial-state draw; tiny null-space rotations change seeded paths.
+                _, state, p, _ = shell.controls.filter_rough(y, phi, weights, covariance, posterior['level'])
                 values, vectors = np.linalg.eigh((p + p.T) / 2)
                 initial = state + (vectors * np.sqrt(np.maximum(values, 0))) @ rng.normal(size=phi.size)
                 values, vectors = np.linalg.eigh((covariance + covariance.T) / 2)
