@@ -339,3 +339,32 @@ flows, taxes, metrics, serialization, transfer and browser rendering; they do
 not establish deployed click-to-visible times. The exact case, source pins,
 timing components and output hashes are retained with the existing
 [speed-validation receipt](results/rough-bayesian/dynamic-speed-parity.json).
+
+## Output-preserving execution optimization after panel completion
+
+The winning dynamic candidate retains the same priors, two-chain budgets,
+convergence extensions, parameter draws, tolerance, eligible factor orders,
+production anchor, dependence, random streams and scorer. Its factor-resolution
+calculation now reuses Jacobi recurrence coefficients between orders. The
+pinned SciPy root refinement and weight normalization are unchanged. Independent
+asset fits can use spawn processes inside the existing `state_workers` budget;
+a cached fitted bundle avoids process startup on repeat requests. Panel workers
+already parallelized across origins and retain their existing CPU allocation.
+The independent-OU forecast square root uses its exact sparse structure rather
+than a dense matrix-vector call on every simulated day.
+
+For the six-asset 100-year case above, with six asset-fit workers, a fresh run
+took **35.3260 seconds**, compared with **96.5301 seconds** in the retained
+serial reference. Two cached repetitions took **2.7512 and 2.7586 seconds**,
+compared with **3.6508 and 3.6864 seconds**. Every float64 forecast path was
+byte-identical to the pre-optimization reference. The reduced-budget 63-horizon
+smoke also preserved every loss vector exactly, CRPS **0.03516121238116601**,
+in serial and process execution. Full-budget short- and long-history chain
+traces/RNG states and 6,400 complete quadrature factor arrays were byte-identical.
+
+The source hashes, case and timing components are appended to the existing
+[speed-validation receipt](results/rough-bayesian/dynamic-speed-parity.json).
+Short reduced-budget fits can be slower when process startup dominates; their
+checks use a single lane for timing comparisons. These measurements concern
+local model computation. The validated full-panel score remains the retained
+execution result; the full panel was not rerun after this optimization.

@@ -121,5 +121,120 @@
       }
     ],
     "driver_sha256": "39dd6a2596c930972390baa6211a9da09d694415ce34f8c47c18e0a18182bdb7"
+  },
+  "post_panel_output_preserving_optimization": {
+    "reference_revision": "5d0710d29b8b3e1b3a37cc702d247218e3257869",
+    "scope": "research execution optimization; no statistical settings or scoring changes; local model compute, not deployed CTV",
+    "optimized_source_sha256": {
+      "tools/rough_bayesian/dynamic.py": "e28d49088dc669a1a8c38daac3f218b9404190303d57102753be0eacffd83e9c",
+      "tools/rough_bayesian/overlay.py": "9f1697ca82840cf13b83c7522220295541818af302317613c0030db248f8b63b"
+    },
+    "geometry": {
+      "quadrature_cases_byte_exact": 6400,
+      "chains": [
+        {
+          "task": 0,
+          "observations": 507,
+          "forecast_horizon": 25200,
+          "warmup": 2048,
+          "kept": 8192,
+          "reference_seconds": 2.5909128340426832,
+          "optimized_seconds": 2.4547240000101738,
+          "complete_trace_and_rng_byte_exact": true,
+          "trace_sha256": "1762d0e0fc327e73165538b771f1d9f3a10f966fa6e1d8545c31fba45d182297"
+        },
+        {
+          "task": 47,
+          "observations": 11657,
+          "forecast_horizon": 25200,
+          "warmup": 2048,
+          "kept": 8192,
+          "reference_seconds": 6.933399417030159,
+          "optimized_seconds": 6.7028951669926755,
+          "complete_trace_and_rng_byte_exact": true,
+          "trace_sha256": "36bec8ec6b6892e883ea8b064ebc7dd302a5a7605bb1254772eef85aa2a595ad"
+        }
+      ]
+    },
+    "smoke": {
+      "all_loss_vectors_byte_exact": true,
+      "paths": 240,
+      "horizons": 63,
+      "history": 256,
+      "warmup": 64,
+      "kept": 128,
+      "records": [
+        {
+          "arm": "reference",
+          "workers": 1,
+          "seconds": 1.0430991670000367,
+          "crps": 0.03516121238116601,
+          "loss_vector_sha256": "bd4882f159a0138b8088865af4011db04b7bd2f2f8898f2649d1be10a1697227"
+        },
+        {
+          "arm": "optimized_serial",
+          "workers": 1,
+          "seconds": 0.7462423749966547,
+          "crps": 0.03516121238116601,
+          "loss_vector_sha256": "bd4882f159a0138b8088865af4011db04b7bd2f2f8898f2649d1be10a1697227"
+        },
+        {
+          "arm": "optimized_parallel",
+          "workers": 3,
+          "seconds": 2.4573101669666357,
+          "crps": 0.03516121238116601,
+          "loss_vector_sha256": "bd4882f159a0138b8088865af4011db04b7bd2f2f8898f2649d1be10a1697227"
+        }
+      ]
+    },
+    "hundred_year_case": {
+      "scope": "local_matched_100year_optimization",
+      "asset_count": 6,
+      "observations": 11657,
+      "horizon": 25200,
+      "simulations": 240,
+      "records": [
+        {
+          "asset_fit_workers": 6,
+          "repetition": 0,
+          "seconds": 35.32597845897544,
+          "timings": {
+            "rough_fit_phase_wall": 26.39253708301112,
+            "production_asset_fit": 1.0053327909554355,
+            "asset_predictive_paths": 8.030795667145867
+          },
+          "all_paths_byte_exact_to_pre_optimization": true,
+          "paths_sha256": "96a8b47012ea05922a15881fb5dc50ef834a74db214b1f4956f633ec00e657d9"
+        },
+        {
+          "asset_fit_workers": 6,
+          "repetition": 1,
+          "seconds": 2.7511547079775482,
+          "timings": {
+            "rough_fit_phase_wall": 0.00011383299715816975,
+            "asset_predictive_paths": 1.8860012490767986
+          },
+          "all_paths_byte_exact_to_pre_optimization": true,
+          "paths_sha256": "96a8b47012ea05922a15881fb5dc50ef834a74db214b1f4956f633ec00e657d9"
+        },
+        {
+          "asset_fit_workers": 6,
+          "repetition": 2,
+          "seconds": 2.758589208999183,
+          "timings": {
+            "rough_fit_phase_wall": 0.00011045800056308508,
+            "asset_predictive_paths": 1.9137373329722323
+          },
+          "all_paths_byte_exact_to_pre_optimization": true,
+          "paths_sha256": "96a8b47012ea05922a15881fb5dc50ef834a74db214b1f4956f633ec00e657d9"
+        }
+      ]
+    },
+    "backend_changes": [
+      "reuse Jacobi recurrence geometry across quadrature orders using pinned SciPy refinement",
+      "independent asset fits in spawn processes within existing state-worker budget; cache completed bundles",
+      "sparse independent-OU innovation square root instead of daily dense matrix-vector product"
+    ],
+    "limitations": "Short reduced-budget fits can be slower with process startup; origin-parallel panel workers keep their existing per-worker CPU budget. The entire OOS panel was not rerun after these output-preserving changes."
   }
 }

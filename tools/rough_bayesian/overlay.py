@@ -7,9 +7,11 @@ Both retain the original Gaussian log-square quasi likelihood and empirical
 return innovations, rather than changing the production variance anchor.
 """
 from dataclasses import dataclass
+from concurrent.futures import ProcessPoolExecutor
 from functools import lru_cache
 import hashlib
 import math
+import multiprocessing
 from pathlib import Path
 import time
 
@@ -385,6 +387,53 @@ def multiplier_prepared(phi, weights, root, initial, normals, means, variances):
     return result
 
 
+@njit(cache=True, nogil=True)
+def multiplier_independent_prepared(phi, weights, root, initial, normals, means, variances):
+    """Apply the unchanged sparse square root without a daily dense BLAS call."""
+    indices = np.full(phi.size, -1, np.int64)
+    for i in range(phi.size):
+        for j in range(phi.size):
+            if root[i, j] != 0.:
+                if indices[i] != -1:
+                    return multiplier_prepared(phi, weights, root, initial, normals, means, variances)
+                indices[i] = j
+    state = initial.copy()
+    result = np.empty(means.size)
+    for t in range(result.size):
+        h = np.dot(weights, state)
+        result[t] = math.exp(.5*(h-means[t])-.25*variances[t])
+        for i in range(phi.size):
+            j = indices[i]
+            innovation = root[i, j]*normals[t+1, j] if j != -1 else 0.
+            state[i] = phi[i]*state[i]+innovation
+    return result
+
+
+def _initialize_asset_fit_worker(cache_root):
+    import models as shell
+    shell.initialize(cache_root, 1, 1)
+
+
+def _fit_asset(arguments):
+    return fit(*arguments)
+
+
+@lru_cache(maxsize=2)
+def fitted_assets(data, adaptive, simulations, burn, kept, maximum, workers, cache_root):
+    """Independent asset fits retain their existing per-asset random streams.
+
+    Use the runner's existing CPU budget. Origin-parallel runs with one lane
+    retain serial fitting; cached bundles avoid spawning workers on repeat use.
+    """
+    arguments = [(x, adaptive, simulations, burn, kept, maximum) for x in data]
+    if workers == 1:
+        return tuple(_fit_asset(a) for a in arguments)
+    with ProcessPoolExecutor(max_workers=workers,
+            mp_context=multiprocessing.get_context('spawn'),
+            initializer=_initialize_asset_fit_worker, initargs=(cache_root,)) as pool:
+        return tuple(pool.map(_fit_asset, arguments))
+
+
 @dataclass(frozen=True)
 class Candidate:
     model_id: str
@@ -399,12 +448,18 @@ class Candidate:
         past, future = shell._validate_calendar(training, context)
         assets = np.asarray(training.asset_log_returns, np.float64)
         sims, horizon = context.simulations, context.horizon_days
+        data = tuple(assets[:, a].tobytes() for a in range(assets.shape[1]))
+        workers = min(assets.shape[1], max(1, shell.controls.STATE_WORKERS))
+        started = time.perf_counter()
+        posteriors = fitted_assets(data, self.adaptive, sims, self.burn, self.kept,
+            self.max_kept, workers, shell.controls.CACHE_ROOT)
+        shell.controls.timed('rough_fit_phase_wall', started)
         seed = shell.bd.deterministic_seed('copula_alternatives', shell.bd.FRONTIER_DEPENDENCE_ID,
                                           str(context.origin_date), horizon, sims)
         uniforms = shell.controls.gaussian_uniforms(assets.shape, assets.tobytes(), sims, horizon, seed).copy()
         for a in range(assets.shape[1]):
-            data = assets[:, a].tobytes()
-            posterior = fit(data, self.adaptive, sims, self.burn, self.kept, self.max_kept)
+            asset_data = data[a]
+            posterior = posteriors[a]
             shell.FIT_DIAGNOSTICS[(self.model_id, posterior['data_sha256'])] = {
                 'model_id': self.model_id, 'data_sha256': posterior['data_sha256'],
                 'convergence_flag': posterior['convergence_flag'], 'diagnostics': posterior['diagnostics'],
@@ -412,11 +467,11 @@ class Candidate:
                 'kernel': posterior['kernel'], 'burn_per_chain': self.burn,
                 'kept_per_chain': posterior['kept_per_chain']}
             started = time.perf_counter()
-            production = shell.controls.asset_fit(data)
+            production = shell.controls.asset_fit(asset_data)
             mean, sd = shell.opt.mixture_curves(production, horizon)
-            nodes = shell.controls.asset_nodes(data, sims, False)
+            nodes = shell.controls.asset_nodes(asset_data, sims, False)
             shell.controls.interpolate_nodes(uniforms[:, :, a], nodes)
-            arguments = (data, self.adaptive, posterior['parameters'].tobytes(),
+            arguments = (asset_data, self.adaptive, posterior['parameters'].tobytes(),
                          posterior['level'], posterior['contract'])
             prepared = predictive_states(*arguments)
             normalizers = predictive_normalizers(*arguments, horizon)
@@ -429,7 +484,9 @@ class Candidate:
                 normals[0] = mean_state
                 normals[1:] = rng.normal(size=(horizon, phi.size))
                 means, variances = normalizers[s]
-                uniforms[s, :, a] *= multiplier_prepared(
+                multiplier = (multiplier_independent_prepared
+                              if isinstance(self.adaptive, str) else multiplier_prepared)
+                uniforms[s, :, a] *= multiplier(
                     phi, weights, root, initial, normals, means, variances)
             uniforms[:, :, a] = np.clip(mean[None, :] + sd[None, :] * uniforms[:, :, a], -1, 1)
             shell.controls.timed('asset_predictive_paths', started)

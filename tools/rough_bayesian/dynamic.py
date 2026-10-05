@@ -11,18 +11,50 @@ from functools import lru_cache
 import math
 
 import numpy as np
-from scipy.special import betainc, roots_jacobi
+from scipy.special import beta, betainc, eval_jacobi, roots_jacobi
+from scipy.special._orthogonal import _gen_roots_and_weights
 
 from overlay import Candidate, exact_covariance
 
 
-def quadrature(hurst, kappa, order, tolerance):
+class JacobiGeometry:
+    """Reuse recurrence coefficients across orders for one parameter proposal.
+
+    The pinned SciPy root refinement and weight normalization remain unchanged.
+    Allocation grows geometrically; it does not restrict eligible factor counts.
+    """
+    def __init__(self, hurst):
+        self.b = -(hurst + .5)
+        self.mass = 2. ** (self.b + 1) * beta(1., self.b + 1)
+        self.size = 0
+
+    def roots(self, order):
+        a, b = 0., self.b
+        if order > self.size:
+            self.size = 1 << (order - 1).bit_length()
+            k = np.arange(self.size, dtype='d')
+            self.diagonal = np.where(k == 0, (b-a)/(2+a+b),
+                (b*b-a*a)/((2.*k+a+b)*(2.*k+a+b+2)))
+            k = k[1:]
+            self.off_diagonal = (2./(2.*k+a+b)
+                * np.sqrt((k+a)*(k+b)/(2*k+a+b+1))
+                * np.where(k == 1, 1., np.sqrt(k*(k+a+b)/(2.*k+a+b-1))))
+        return _gen_roots_and_weights(order, self.mass,
+            lambda k: self.diagonal[:k.size],
+            lambda k: self.off_diagonal[:k.size],
+            lambda n, x: eval_jacobi(n, a, b, x),
+            lambda n, x: .5*(n+a+b+1)*eval_jacobi(n-1, a+1, b+1, x),
+            False, False)
+
+
+def quadrature(hurst, kappa, order, tolerance, geometry=None):
     alpha = hurst + .5
     # Split the numerical error budget equally. At positive daily lags,
     # replacing rates >= upper by white noise costs at most tolerance/2.
     upper = -math.log(tolerance / 2)
     extent = math.log(upper / kappa)
-    nodes, mass = roots_jacobi(order, 0., -alpha)
+    nodes, mass = (roots_jacobi(order, 0., -alpha) if geometry is None
+                   else geometry.roots(order))
     v = extent * (nodes + 1) / 2
     rates = kappa * np.exp(v)
     log_density = (np.log(rates) - alpha * np.log(kappa * np.expm1(v) / v)
@@ -109,9 +141,10 @@ class CovarianceCheck:
 @lru_cache(maxsize=4096)
 def selected_kernel(hurst, kappa, maximum_lag, tolerance=.001):
     check = CovarianceCheck(hurst, kappa, maximum_lag, tolerance)
+    geometry = JacobiGeometry(hurst)
     order = 1
     while True:
-        phi, mass = quadrature(hurst, kappa, order, tolerance)
+        phi, mass = quadrature(hurst, kappa, order, tolerance, geometry)
         passed, error_bound = check.passes(phi, mass)
         if passed:
             return phi, mass, {'factors': phi.size, 'quadrature_order': order,

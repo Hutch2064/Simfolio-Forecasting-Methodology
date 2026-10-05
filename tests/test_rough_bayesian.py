@@ -267,6 +267,47 @@ def test_dynamic_sampling_resume_preserves_trace_and_rng(overlay_shell):
     assert whole_state['rng_state'] == final_state['rng_state']
 
 
+def test_reused_jacobi_geometry_preserves_complete_factor_arrays():
+    from dynamic import JacobiGeometry, quadrature as spectral_quadrature
+    for hurst in [.0301, .1, .3, .4899]:
+        geometry = JacobiGeometry(hurst)
+        for order in range(1, 34):
+            reference = spectral_quadrature(hurst, 1/63, order, .001)
+            actual = spectral_quadrature(hurst, 1/63, order, .001, geometry)
+            assert all(a.tobytes() == b.tobytes() for a, b in zip(actual, reference))
+
+
+@pytest.mark.parametrize('root_kind', ['permuted_diagonal', 'zero_row', 'dense'])
+def test_independent_multiplier_preserves_complete_path(root_kind):
+    import overlay
+    rng = np.random.default_rng(948)
+    root = np.diag([.1, .4, .2, .3])[:, [2, 0, 3, 1]]
+    if root_kind == 'zero_row':
+        root[2] = 0.
+    elif root_kind == 'dense':
+        root = rng.normal(size=(4, 4))
+    args = (np.array([.1, .6, .8, .99]), np.ones(4), root,
+            rng.normal(size=4), rng.normal(size=(25201, 4)),
+            rng.normal(size=25200), rng.uniform(size=25200))
+    expected = overlay.multiplier_prepared(*args)
+    actual = overlay.multiplier_independent_prepared(*args)
+    assert actual.tobytes() == expected.tobytes()
+
+
+def test_asset_fit_process_lanes_preserve_trace_and_prediction_draws(overlay_shell):
+    import overlay
+    overlay_shell.initialize(None, 1, 1)
+    rng = np.random.default_rng(195)
+    data = tuple(rng.normal(0, .01, size=128).tobytes() for _ in range(2))
+    args = (data, 'dynamic:191', 24, 32, 64, 64)
+    serial = overlay.fitted_assets(*args, 1, None)
+    parallel = overlay.fitted_assets(*args, 2, None)
+    for expected, actual in zip(serial, parallel):
+        assert actual['trace'].tobytes() == expected['trace'].tobytes()
+        assert actual['parameters'].tobytes() == expected['parameters'].tobytes()
+        assert actual['kernel'] == expected['kernel']
+
+
 @pytest.mark.parametrize('adaptive', [False, True])
 def test_prepared_overlay_paths_are_byte_exact(overlay_shell, adaptive):
     import overlay
