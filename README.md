@@ -9,9 +9,9 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **183 models**: the original 175 plus four
-asset-level models with validated full-panel scores and four partially scored
-rough, jump, and HMM-vine candidates. The current production
+The canonical catalogue contains **183 models**: the original 175 plus five
+asset-level models with validated full-panel scores and three partially scored
+jump and HMM-vine candidates. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
 indices 176–183 and no historical source rank.
@@ -25,13 +25,14 @@ Existing command names and catalogue filenames remain compatible.
 
 | Model | Exact empirical CRPS | Role |
 | --- | ---: | --- |
+| Asset Rough Volterra SV — Eight Factors | 0.2511998559613309 | Validated research candidate |
 | Asset Parameter MCMC + Filtered Moment SV | 0.25246784959071183 | Current production Frontier |
 | Asset Filtered Innovation Moment SV + Fixed Mean | 0.25439860867855635 | Previous production Frontier |
 | Asset Filtered Innovation Moment SV + DLM | 0.2547972662964723 | Validated candidate |
 | Asset FastMAP + Dynamic Gaussian Factor | 0.2557255171048505 | Earlier production Frontier; retained historical score |
 | Asset Gaussian Moment SV + Fixed Mean | 0.2588375710788695 | Validated candidate |
 
-Each added model was scored on 4,080 origin tasks, 701,280 cells and 240
+Each fully scored addition was evaluated on 4,080 origin tasks, 701,280 cells and 240
 simulations per origin using the whitepaper's exact empirical CRPS and equal
 portfolio-horizon cell weighting. Complete statistical specifications, source
 hashes, run manifests and validation references are recorded per model.

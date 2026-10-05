@@ -122,6 +122,25 @@ completed origins from unfinished portfolios. The frozen manifest, checkpoint
 hashes, executed source archive, numerical smoke evidence, and native build
 receipt are saved alongside these results.
 
+## Completed rough-volatility result
+
+The rough-only continuation completed all **4,080 origin tasks**, **80
+portfolios**, **701,280 cells**, and **240 simulations per origin**. Its exact
+empirical CRPS is **0.2511998559613309**, versus the production reference's
+**0.25246784959071183**: a **0.5022396442% improvement**. Rough volatility
+scored better on **45 of 80 portfolios**. Every cell's origin count and all
+checkpoint hashes passed an independent reconstruction audit. All 2,769 reused
+rough loss vectors were byte-identical to the stopped run; the remaining 1,311
+origins evaluated only rough volatility.
+
+[Full results](results/rough-jump-vine/rough-full-results.json),
+[independent audit and all 80 portfolio scores](results/rough-jump-vine/rough-full-audit.json),
+and [full horizon losses](results/rough-jump-vine/rough-full-cell-losses.npz)
+are retained. The 46.4286-second evaluation continuation used cached training
+fits and prior checkpoints; it is not a fresh full-panel or production latency
+comparison. Jumps, HMM-vine, and combined remain partially scored with blank
+unfinished portfolios and full-panel scores.
+
 ## Reproduction
 
 Install the project with its `all-models,rough-jump-vine` extras, build the

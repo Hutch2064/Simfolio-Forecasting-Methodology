@@ -292,7 +292,7 @@ def test_validated_asset_level_additions_include_all_frontier_generations():
 
 def test_partial_candidates_keep_full_and_unfinished_portfolio_scores_blank():
     payload = load_canonical_ledger()
-    partial = payload['models'][-4:]
+    partial = payload['models'][-3:]
     for model in partial:
         assert model['historical_score']['exact_empirical_crps'] is None
         assert model['historical_score_verified'] is False
@@ -309,3 +309,12 @@ def test_partial_candidates_keep_full_and_unfinished_portfolio_scores_blank():
     altered['models'][-1]['historical_score_verified'] = True
     with pytest.raises(ValueError, match='blank score requires'):
         validate_canonical_ledger(altered)
+
+
+def test_rough_candidate_completed_panel_score_and_portfolio_coverage():
+    row = canonical_model('asset_rough_volterra_sv_eight_factor')
+    assert row['historical_score_verified'] is True
+    assert row['historical_score']['exact_empirical_crps'] == '0.2511998559613309'
+    assert len(row['historical_score']['portfolio_scores']) == 80
+    assert all(r['completed_origins'] == 51 for r in row['historical_score']['portfolio_scores'])
+    assert row['source_artifact_digest']['retained_score_artifact']['all_denominator_gates_passed'] is True

@@ -2,8 +2,8 @@
 
 `simfolio-oos candidate-scores --json` reports the expanded 183-model canonical
 catalogue, sorted by exact empirical CRPS. The filtered fixed-mean candidate
-is canonical index 177 and display rank 2; the current parameter-MCMC Frontier
-is display rank 1. The dynamic-mean candidate is also included (index 178).
+is canonical index 177 and display rank 3; the current parameter-MCMC Frontier
+is display rank 2. The completed rough-volatility candidate is display rank 1. The dynamic-mean candidate is also included (index 178).
 The paired-run evidence below retains its original run identities and ranks.
 
 | Paired-run rank | Model | Exact empirical CRPS | Paired-run evidence |
@@ -47,7 +47,7 @@ native portfolio paths or production storage and policy outputs.
 ## Interpretation
 
 The expanded 183-row display contains the original 175 historical score tokens
-and four validated full-panel additions. The historical M001 score
+and five validated full-panel additions, plus three partial entries with blank scores. The historical M001 score
 (0.2557255171048505) and the paired reference score (0.25554347087969403)
 remain distinct records. All original model IDs, historical ranks and score
 tokens are preserved. Each addition records its own scored-source and
@@ -79,10 +79,14 @@ simfolio-oos candidate --model experimental_filtered_innovation_moment_sv_fixed_
 The candidate uses the existing Frontier dependence seed schedule so its paired
 random streams match the incumbent reference. `simfolio-oos scores --json`
 continues to inspect only the retained 175-row historical score evidence.
-The [complete 176-row ranked JSON](results/combined-176-score-ranking.json)
+The [complete 183-row ranked JSON](results/combined-176-score-ranking.json)
 contains every row with its `display_rank`, preserved `canonical_rank`, exact
 score token, and evidence status.
 
-Four partially scored asset candidates are included with blank full-panel
+Three partially scored asset candidates are included with blank full-panel
 scores and no display rank. Their completed portfolio results are preserved
 in [the rough/jump/HMM-vine experiment](rough-jump-vine-oos.md).
+
+Rough volatility completed the full canonical panel with exact empirical CRPS
+`0.2511998559613309`; its full result and 80 portfolio scores are retained in
+the experiment report.

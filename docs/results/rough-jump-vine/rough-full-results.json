@@ -1,0 +1,28 @@
+{
+  "all_denominator_gates_passed": true,
+  "baseline_every_loss_vector_byte_exact": false,
+  "elapsed_seconds": 46.42860895799822,
+  "manifest_sha256": "9a8b3e089c2cf36ae281b41fd8c397cff13abec5fecf2f0dc5b9b69c98264bf1",
+  "paired_cells_sha256": "7c42210cb884aa7264f90480f10db565c8b3134540950f5f60a0f65e5c77f863",
+  "portfolios": 80,
+  "rolling_origins_per_portfolio": 48,
+  "scope": "full_canonical_asset_level_ablations",
+  "scores": {
+    "asset_rough_volterra_sv_eight_factor": {
+      "cells": 701280,
+      "exact_empirical_crps": 0.2511998559613309,
+      "relative_improvement_vs_production": 0.005022396441513477,
+      "summed_worker_seconds": 1413.8526218057377,
+      "tasks": 4080,
+      "timings": {
+        "asset_predictive_paths": 1107.5742136292683,
+        "dependence_paths": 141.44048428873066,
+        "portfolio_rejoin": 87.9878193019249,
+        "production_asset_fit": 16.604261024273,
+        "rough_asset_fit": 286.95445830002427
+      }
+    }
+  },
+  "simulations": 240,
+  "temporal_holdouts_per_portfolio": 3
+}

@@ -29,14 +29,14 @@ def test_combined_candidate_ranking_preserves_ledger_and_evidence_origins():
     assert report["row_count"] == 183
     assert report["retained_historical_row_count"] == 175
     assert report["independently_audited_new_execution_row_count"] == 0
-    assert report["validated_full_panel_row_count"] == 4
+    assert report["validated_full_panel_row_count"] == 5
     assert report["full_176_model_reproduction"] is False
     assert report["canonical_membership_unchanged"] is True
     assert report["canonical_membership_digest"] == ledger["membership"]["membership_digest"]
 
     rows = report["rows"]
-    assert [row["display_rank"] for row in rows] == list(range(1, 180)) + [None] * 4
-    assert report["partial_panel_row_count"] == 4
+    assert [row["display_rank"] for row in rows] == list(range(1, 181)) + [None] * 3
+    assert report["partial_panel_row_count"] == 3
     candidate = next(row for row in rows if row["public_model_id"] == _CANDIDATE_ID)
     assert candidate["public_model_id"] == _CANDIDATE_ID
     assert candidate["exact_empirical_crps"] == "0.25439860867855635"
@@ -127,9 +127,9 @@ def test_candidate_plan_selector_is_separate_and_keeps_canonical_task_counts(cap
 def test_public_combined_command_and_historical_score_command_keep_distinct_scopes(capsys):
     assert cli.main(["candidate-scores", "--json"]) == 0
     combined = json.loads(capsys.readouterr().out)
-    assert combined["rows"][0]["public_model_id"] == "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture"
+    assert combined["rows"][0]["public_model_id"] == "asset_rough_volterra_sv_eight_factor"
     assert combined["rows"][0]["display_rank"] == 1
-    assert combined["rows"][1]["canonical_rank"] == 177
+    assert combined["rows"][1]["canonical_rank"] == 176
 
     assert cli.main(["scores", "--json"]) == 0
     retained = json.loads(capsys.readouterr().out)

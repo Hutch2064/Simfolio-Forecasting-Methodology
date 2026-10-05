@@ -34,7 +34,7 @@ def render_reference(payload: dict) -> str:
     models = payload["models"]
 
     lines = [
-        "# Canonical model reference (175 historical + 4 validated + 4 partial additions)",
+        "# Canonical model reference (175 historical + 5 validated + 3 partial additions)",
         "",
         "This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.",
         "The ledger is the sole membership authority for this public set.",
