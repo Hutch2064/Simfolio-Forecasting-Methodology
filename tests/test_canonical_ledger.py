@@ -303,12 +303,12 @@ def test_partial_candidates_keep_full_and_unfinished_portfolio_scores_blank():
         assert sum(r['exact_empirical_crps'] is not None for r in rows) == completed
         assert sum(r['completed_origins'] for r in rows) == origins
     altered = deepcopy(payload)
-    rows = altered['models'][-1]['historical_score']['portfolio_scores']
+    rows = altered['models'][-2]['historical_score']['portfolio_scores']
     next(r for r in rows if r['completed_origins'] < 51)['exact_empirical_crps'] = 0.1
     with pytest.raises(ValueError, match='unfinished portfolio score must be blank'):
         validate_canonical_ledger(altered)
     altered = deepcopy(payload)
-    altered['models'][-1]['historical_score_verified'] = True
+    altered['models'][-2]['historical_score_verified'] = True
     with pytest.raises(ValueError, match='blank score requires'):
         validate_canonical_ledger(altered)
 
@@ -326,7 +326,7 @@ def test_new_bayesian_candidates_are_wired_without_fabricated_scores():
     payload = load_canonical_ledger()
     candidates = [m for m in payload['models']
                   if m['verification_status'].startswith('unscored_canonical_candidate_')]
-    assert len(candidates) == 7
+    assert len(candidates) == 6
     for model in candidates:
         definition = model['structured_specification']['resolved_definition']
         assert definition['forecast_level'] == 'asset_daily_log_return'
@@ -337,3 +337,16 @@ def test_new_bayesian_candidates_are_wired_without_fabricated_scores():
                    for row in model['historical_score']['portfolio_scores'])
         assert model['historical_score_verified'] is False
         assert model['source_artifact_digest']['retained_score_artifact']['scope'] == 'unscored_canonical'
+
+
+def test_dynamic_rough_completed_panel_score_and_diagnostics_are_retained():
+    row = canonical_model('asset_rough_volterra_sv_dynamic_lift_bayesian')
+    assert row['historical_score_verified'] is True
+    assert row['historical_score']['exact_empirical_crps'] == '0.25074679212444156'
+    assert len(row['historical_score']['portfolio_scores']) == 80
+    assert all(p['completed_origins'] == 51 for p in row['historical_score']['portfolio_scores'])
+    root = Path(__file__).resolve().parents[1]
+    audit = json.loads((root / 'docs/results/rough-bayesian/dynamic-full-audit.json').read_text())
+    assert audit['all_cell_vectors_independently_reconstructed_byte_exact'] is True
+    assert audit['kernel_validation']['all_daily_lag_certificates_passed'] is True
+    assert len(audit['kernel_validation']['flagged_asset_fits']) == 6

@@ -835,7 +835,7 @@
     },
     "asset_rough_volterra_sv_dynamic_lift_bayesian": {
       "component_refs": [],
-      "definition_fingerprint": "07bd9c0681ad09d0666d5c52387b00cc129abd8aa2976663b7bcdfa0d981c936",
+      "definition_fingerprint": "61188c61093c8820472aaf5b4866c9266cd94bfcd51fc251ea31a882e0826376",
       "factory": {
         "class": null,
         "method": "simulate_daily_log_returns",
@@ -8675,7 +8675,7 @@
         "method": "one actual posterior parameter draw per predictive path, with its Gaussian terminal state",
         "posterior_multiplier": "production_mean+production_sd*empirical_shock*rough_multiplier"
       },
-      "production_role": "unscored_research_candidate",
+      "production_role": "validated_research_candidate",
       "shared_component_digests": {},
       "shared_component_refs": [],
       "source_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",

@@ -3,7 +3,7 @@
 Nine new asset-level candidates are implemented in `tools/rough_bayesian` and
 included in both public catalogues. The canonical catalogue now has 192 entries;
 the broader active research catalogue has 384. The eight-factor Bayesian upgrade
-completed its full panel; the fixed-resolution lift retains its stopped partial
+and dynamic-resolution candidate completed their full panels; the fixed-resolution lift retains its stopped partial
 results. Other aggregate scores remain blank until their complete panels finish.
 The existing production Frontier
 and the completed eight-factor rough model are included as unchanged controls.
@@ -216,25 +216,41 @@ pairwise CRPS denominator remains n squared. No score-based early stopping or
 selective origins are used.
 
 The immutable run manifest binds source hashes, data identity, every task and
-runtime versions. The restarted run selects only the two direct overlay upgrades. The six full
-latent-state alternatives remain stopped and unscored. Saved production and old
-rough control panels remain the comparison references. Each origin saves both
-upgrade loss vectors, timings and asset inference diagnostics. Progress prints at 25%, 50%, 75% and 100%. Final results
-require all denominator gates and exact production-reference parity.
+runtime versions. The eight-factor upgrade and the separate dynamic-resolution candidate have
+completed their full panels. The fixed-resolution lift was stopped and retains
+only its completed portfolio scores. The six full latent-state alternatives
+remain stopped and unscored. Saved control panels use matching portfolios,
+origins, horizons and scoring weights.
 
 ```sh
 OPENBLAS_NUM_THREADS=1 NUMBA_NUM_THREADS=1 python tools/rough_bayesian/run_panel.py \
-  --output outputs/rough-bayesian-full \
+  --output outputs/dynamic-rough-full \
   --reference outputs/parameter-mcmc-tuned-full \
   --workers 12 \
-  --model-ids asset_rough_volterra_sv_eight_factor_bayesian \
-    asset_rough_volterra_sv_accuracy_lift_bayesian
+  --model-ids asset_rough_volterra_sv_dynamic_lift_bayesian
 ```
 
-The saved full-panel controls are production CRPS **0.25246784959071183** and
-old eight-factor rough CRPS **0.2511998559613309**. Their existing public evidence
-and source implementations remain preserved. New full-panel scores will replace
-the blank catalogue fields only after completion and validation.
+| Full-panel model | Exact empirical CRPS |
+|---|---:|
+| Dynamic-resolution rough | 0.25074679212444156 |
+| Previous eight-factor rough (MAP rough parameters) | 0.2511998559613309 |
+| Eight-factor Bayesian upgrade | 0.2522081419138852 |
+| Production Frontier | 0.25246784959071183 |
+| Production Default, matching saved cell replay | 0.292821259593872 |
+
+The [dynamic results](results/rough-bayesian/dynamic-panel.json) and
+[independent audit](results/rough-bayesian/dynamic-full-audit.json) preserve all
+80 portfolio scores, exact reconstruction of 4,080 checkpoint vectors and
+701,280 cells, unchanged source closure and daily-lag approximation certificates.
+Dynamic CRPS is 0.18036% lower than previous rough and 0.68169% lower than
+production Frontier. It wins 40 of 80 portfolios against previous rough and
+43 against production. The descriptive paired-portfolio bootstrap 90% interval
+for its mean difference versus production is [-0.00337581, 0.000024319].
+Six of 2,549 unique asset fits missed the sampler convergence targets at the
+maximum draw budget; their diagnostics remain visible in the results and audit.
+The score validation does not establish complete posterior convergence or
+production suitability. The archived Default full-panel score is
+0.2928212617494334; its matching replay differs by 2.16e-9.
 
 ## Sources
 
@@ -301,3 +317,25 @@ parameter- and horizon-dependent quadrature error analysis](https://www.wias-ber
 The Beta representation and daily-lag interval certificate above are the
 implementation-specific construction tested here; the cited papers do not
 establish its forecasting score or runtime.
+
+## Matched 100-year model-computation diagnostic
+
+The runtime comparison retained six assets, 11,657 daily history observations,
+240 paths, a 25,200-day forecast and the same investor-policy rejoin. It used
+the current production asset-source implementation at engine revision
+`5041ae65ad5cfd8f25e69ce0d1da6809fa7e7f23`, with warmed numerical compilers on
+the same Apple M5 Pro. Production used its automatic asset/chain workers; the
+rough implementation retained its current sequential asset fitting.
+
+| Model | Fresh fits | Cached fits/prepared calculations, two repetitions |
+|---|---:|---:|
+| Production Frontier | 1.3808 s | 1.0197–1.0319 s |
+| Dynamic rough | 96.5301 s | 3.6508–3.6864 s |
+
+The rough-parameter fitting contribution was 87.3014 seconds. Each model's
+complete path array was byte-identical between its fresh and cached executions.
+These are local model-computation timings, excluding data retrieval, queueing,
+flows, taxes, metrics, serialization, transfer and browser rendering; they do
+not establish deployed click-to-visible times. The exact case, source pins,
+timing components and output hashes are retained with the existing
+[speed-validation receipt](results/rough-bayesian/dynamic-speed-parity.json).

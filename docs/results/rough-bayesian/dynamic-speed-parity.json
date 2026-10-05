@@ -29,5 +29,97 @@
     "every_loss_byte_exact": true,
     "crps": 0.03460803782110832,
     "loss_sha256": "a40e7eef4683e639f89586b8e90e6875c69caaca9364f8306f939cc9970924e3"
+  },
+  "hundred_year_runtime_comparison": {
+    "scope": "local_forecast_model_compute_diagnostic_not_deployed_CTV",
+    "engine_revision": "5041ae65ad5cfd8f25e69ce0d1da6809fa7e7f23",
+    "dynamic_source_revision": "474869aa248d9ecd57d75c0094e9107763a35d6e",
+    "hardware": "Apple M5 Pro; one BLAS and Numba thread; existing production automatic asset/chain workers",
+    "asset_count": 6,
+    "tickers": [
+      "IWMSIM",
+      "XLPSIM",
+      "IEISIM",
+      "ZROZSIM",
+      "GLDSIM",
+      "REITSIM"
+    ],
+    "history_observations": 11657,
+    "origin_date": "2026-03-31",
+    "horizon_days": 25200,
+    "horizon_years_at_252_days": 100,
+    "simulations": 240,
+    "rebalance": "annually",
+    "same_public_policy_rejoin": true,
+    "compiled_kernels_warmed": true,
+    "excluded": "market data, queue, flows, taxes, metrics, serialization, transfer and browser rendering",
+    "records": [
+      {
+        "arm": "production",
+        "repetition": 0,
+        "model_fit_cache": "miss",
+        "seconds": 1.3807748749968596,
+        "timings": {
+          "asset_source": 1.007584000006318,
+          "policy_rejoin": 0.22839941701386124
+        },
+        "paths_sha256": "39a64d42e55d82a25428387da644c246cb861678983629d651484be0c237fbd8"
+      },
+      {
+        "arm": "dynamic",
+        "repetition": 0,
+        "model_fit_cache": "miss",
+        "seconds": 96.53008200001204,
+        "timings": {
+          "bayesian_overlay_fit": 87.30138137488393,
+          "production_asset_fit": 0.9144195829867385,
+          "asset_predictive_paths": 8.301908085064497
+        },
+        "paths_sha256": "96a8b47012ea05922a15881fb5dc50ef834a74db214b1f4956f633ec00e657d9"
+      },
+      {
+        "arm": "dynamic",
+        "repetition": 1,
+        "model_fit_cache": "hit",
+        "seconds": 3.6864121669786982,
+        "timings": {
+          "asset_predictive_paths": 2.810900916112587
+        },
+        "paths_sha256": "96a8b47012ea05922a15881fb5dc50ef834a74db214b1f4956f633ec00e657d9"
+      },
+      {
+        "arm": "production",
+        "repetition": 1,
+        "model_fit_cache": "hit",
+        "seconds": 1.0197386249783449,
+        "timings": {
+          "asset_source": 0.7360100829973817,
+          "policy_rejoin": 0.2105308329919353
+        },
+        "paths_sha256": "39a64d42e55d82a25428387da644c246cb861678983629d651484be0c237fbd8"
+      },
+      {
+        "arm": "production",
+        "repetition": 2,
+        "model_fit_cache": "hit",
+        "seconds": 1.031905582989566,
+        "timings": {
+          "asset_source": 0.7500928749796003,
+          "policy_rejoin": 0.21032045898027718
+        },
+        "paths_sha256": "39a64d42e55d82a25428387da644c246cb861678983629d651484be0c237fbd8"
+      },
+      {
+        "arm": "dynamic",
+        "repetition": 2,
+        "model_fit_cache": "hit",
+        "seconds": 3.6508131669834256,
+        "timings": {
+          "asset_predictive_paths": 2.814175830921158
+        },
+        "paths_sha256": "96a8b47012ea05922a15881fb5dc50ef834a74db214b1f4956f633ec00e657d9"
+      }
+    ],
+    "driver_sha256": "39dd6a2596c930972390baa6211a9da09d694415ce34f8c47c18e0a18182bdb7"
   }
 }

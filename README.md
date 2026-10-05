@@ -9,13 +9,12 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **192 models**: the original 175 plus six
+The canonical catalogue contains **192 models**: the original 175 plus seven
 asset-level models with validated full-panel scores, four partially scored
-candidates, and seven unscored asset-level rough-volatility candidates. The
-dynamic-resolution candidate extends the winning rough overlay; six compare
-canonical rough-volatility alternatives.
-Their [implementations and test methodology](docs/rough-bayesian-oos.md) are saved,
-and their official scores remain blank until the full panel completes. The current production
+candidates, and six unscored asset-level rough-volatility candidates. The
+dynamic-resolution candidate completed the full panel with CRPS
+**0.25074679212444156**, the lowest catalogue score. Six canonical rough-volatility
+alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
 indices 176–192 and no historical source rank.
