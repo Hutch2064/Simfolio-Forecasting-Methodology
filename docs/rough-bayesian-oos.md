@@ -176,6 +176,25 @@ candidates. These are numerical parity checks with a short smoke inference
 budget, not official OOS scores. A full-budget canonical-origin pilot additionally
 checks the unchanged production loss vector against the saved production run.
 
+### Exact-output optimization of the direct upgrades
+
+The ARM research backend uses a C++ Kalman likelihood loop with strict floating
+point operations (`-ffp-contract=off`) and the same SciPy BLAS dot product as the
+Numba reference. Covariance matrices use alternating buffers and exact equality
+checks for the existing steady-state condition; no convergence tolerance or
+approximate division is introduced. Other platforms retain the Numba filter.
+The native module is built once into a content-addressed temporary cache using
+Clang and `pybind11==3.1.0`; its source and binary hashes enter the run manifest.
+
+Prediction retains the original terminal filter and eigensystem rounding. Their
+results are cached by asset history, selected posterior draws and implementation
+contract, with individual matrix memory layouts preserved. Conditional means
+and variances are likewise computed once per asset fit and forecast horizon.
+The stochastic path loop reuses those exact scalars, preserving all random
+calls, their order, the multiplier's arithmetic, and every posterior draw.
+Both candidates share one twelve-worker queue rather than separate fixed queues.
+No history, chain budget, kernel accuracy, path count or scoring rule is reduced.
+
 ## Official panel
 
 The runner reuses `tools/rough_jump_vine/run_panel.py` and its public evaluator.
@@ -187,15 +206,19 @@ pairwise CRPS denominator remains n squared. No score-based early stopping or
 selective origins are used.
 
 The immutable run manifest binds source hashes, data identity, every task and
-runtime versions. Each origin saves all ten loss vectors, timings and asset
-inference diagnostics. Progress prints at 25%, 50%, 75% and 100%. Final results
+runtime versions. The restarted run selects only the two direct overlay upgrades. The six full
+latent-state alternatives remain stopped and unscored. Saved production and old
+rough control panels remain the comparison references. Each origin saves both
+upgrade loss vectors, timings and asset inference diagnostics. Progress prints at 25%, 50%, 75% and 100%. Final results
 require all denominator gates and exact production-reference parity.
 
 ```sh
 OPENBLAS_NUM_THREADS=1 NUMBA_NUM_THREADS=1 python tools/rough_bayesian/run_panel.py \
   --output outputs/rough-bayesian-full \
   --reference outputs/parameter-mcmc-tuned-full \
-  --workers 12
+  --workers 12 \
+  --model-ids asset_rough_volterra_sv_eight_factor_bayesian \
+    asset_rough_volterra_sv_accuracy_lift_bayesian
 ```
 
 The saved full-panel controls are production CRPS **0.25246784959071183** and

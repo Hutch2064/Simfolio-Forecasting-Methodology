@@ -66,6 +66,15 @@ def reference_multiplier(phi, weights, root, initial, posterior, normals):
     return out
 
 
+def reference_prepared_multiplier(phi, weights, root, initial, normals, means, variances):
+    state = initial.copy()
+    out = np.empty(means.size)
+    for t in range(out.size):
+        out[t] = np.exp(.5 * (weights @ state - means[t]) - .25 * variances[t])
+        state = phi * state + root @ normals[t + 1]
+    return out
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--data', type=Path, required=True)
@@ -82,7 +91,7 @@ def main():
         realized_future_daily_log_returns=task.realized_future_daily_log_returns[:63],
         future_dates=task.future_dates[:63])
     originals = (inference.gaussian_path, inference.heston_path,
-                 models.predictive_fou, models.predictive_heston, overlay.multiplier_path, overlay.filter_rough)
+                 models.predictive_fou, models.predictive_heston, overlay.multiplier_path, overlay.filter_rough, overlay.multiplier_prepared)
     cases = []
     for candidate in models.CANDIDATES[2:]:
         candidate = replace(candidate, burn=32, kept=64, max_kept=64)
@@ -95,6 +104,7 @@ def main():
         inference.heston_path = reference_heston
         models.predictive_fou = reference_predictive_fou
         models.predictive_heston = reference_predictive_heston
+        overlay.multiplier_prepared = reference_prepared_multiplier
         overlay.multiplier_path = reference_multiplier
         overlay.filter_rough = lambda *args: models.controls.filter_rough(*args)[:3]
         models.fit.cache_clear()
@@ -103,7 +113,7 @@ def main():
         reference = evaluate_origin_task(candidate, task, simulations=240)
         reference_seconds = time.perf_counter() - start
         (inference.gaussian_path, inference.heston_path,
-         models.predictive_fou, models.predictive_heston, overlay.multiplier_path, overlay.filter_rough) = originals
+         models.predictive_fou, models.predictive_heston, overlay.multiplier_path, overlay.filter_rough, overlay.multiplier_prepared) = originals
         difference = float(np.max(np.abs(fast - reference)))
         np.testing.assert_allclose(fast, reference, rtol=0, atol=1e-12)
         record = {'model_id': candidate.model_id, 'optimized_seconds': fast_seconds,

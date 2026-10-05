@@ -28,7 +28,7 @@ all-models = [
   "scikit-learn==1.9.0",
   "statsmodels==0.15.0",
 ]
-rough-jump-vine = ["pyvinecopulib==0.7.5"]
+rough-jump-vine = ["pyvinecopulib==0.7.5", "pybind11==3.1.0"]
 dev = ["pytest>=8.3,<9", "ruff>=0.8,<1"]
 
 [tool.setuptools.packages.find]

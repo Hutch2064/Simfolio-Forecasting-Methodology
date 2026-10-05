@@ -22,8 +22,12 @@ original_score = runner.score_completed
 
 def source_hashes():
     hashes = original_hashes()
-    for path in sorted(HERE.glob('*.py')):
+    for path in sorted(list(HERE.glob('*.py')) + list(HERE.glob('*.cpp'))):
         hashes[str(path.relative_to(ROOT))] = hashlib.sha256(path.read_bytes()).hexdigest()
+    import overlay
+    backend = overlay.native_filter()
+    if backend is not None:
+        hashes['rough_overlay_native_binary'] = hashlib.sha256(Path(backend[0].__file__).read_bytes()).hexdigest()
     return hashes
 
 runner.models = models
@@ -68,6 +72,11 @@ runner.score_completed = score_completed
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument('--output', required=True)
-    known, _ = parser.parse_known_args()
+    parser.add_argument('--model-ids', nargs='+', choices=models.MODEL_IDS)
+    known, remaining = parser.parse_known_args()
+    if known.model_ids:
+        models.CANDIDATES = tuple(c for c in models.CANDIDATES if c.model_id in known.model_ids)
+        runner.CANDIDATES = models.CANDIDATES
+    sys.argv = [sys.argv[0], '--output', known.output, *remaining]
     os.environ['BAYESIAN_PANEL_OUTPUT'] = str(Path(known.output).resolve())
     runner.main()

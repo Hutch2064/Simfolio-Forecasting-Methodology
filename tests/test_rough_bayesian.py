@@ -211,3 +211,35 @@ def test_collapsed_overlay_filter_against_original_reference(overlay_shell):
         reference = overlay_shell.controls.filter_rough(y, phi, weights, covariance, .1)
         for actual, expected in zip(fast, reference):
             np.testing.assert_allclose(actual, expected, atol=2e-11, rtol=0)
+
+
+@pytest.mark.parametrize('adaptive', [False, True])
+def test_prepared_overlay_paths_are_byte_exact(overlay_shell, adaptive):
+    import overlay
+    rng = np.random.default_rng(817)
+    phi, weights, covariance = overlay.configuration(
+        np.array([.11, math.log(1 / 63), math.log(.7)]), adaptive)
+    values, vectors = np.linalg.eigh(covariance)
+    root = vectors * np.sqrt(np.maximum(values, 0))
+    posterior = covariance / (1 - phi[:, None] * phi[None, :])
+    initial = rng.normal(size=phi.size)
+    for horizon in (1, 126, 8766):
+        normals = rng.normal(size=(horizon + 1, phi.size))
+        means, variances = overlay.path_normalizers(
+            phi, weights, root, posterior, normals[0], horizon)
+        original = overlay.multiplier_path(phi, weights, root, initial, posterior, normals)
+        prepared = overlay.multiplier_prepared(phi, weights, root, initial, normals, means, variances)
+        assert prepared.tobytes() == original.tobytes()
+
+
+@pytest.mark.parametrize('adaptive', [False, True])
+def test_native_overlay_filter_is_byte_exact(overlay_shell, adaptive):
+    import overlay
+    rng = np.random.default_rng(721)
+    y = rng.normal(size=11657)
+    for h, k in ((.031, 1 / 2520), (.1, 1 / 63), (.48, .3)):
+        configuration = overlay.configuration(np.array([h, math.log(k), math.log(.7)]), adaptive)
+        original = overlay.filter_rough_numba(y, *configuration, .1)
+        native = overlay.filter_rough(y, *configuration, .1)
+        for expected, actual in zip(original, native):
+            assert np.asarray(expected).tobytes() == np.asarray(actual).tobytes()

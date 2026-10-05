@@ -104,7 +104,7 @@ def log_prior(theta):
 
 
 @njit(cache=True, nogil=True)
-def filter_rough(y, phi, weights, covariance, level):
+def filter_rough_numba(y, phi, weights, covariance, level):
     """Collapsed Gaussian filter without allocations inside the history loop."""
     n = phi.size
     state = np.zeros(n)
@@ -141,6 +141,20 @@ def filter_rough(y, phi, weights, covariance, level):
                     posterior[i, j] = value
         loglik -= .5 * (log_variance + innovation ** 2 / variance)
     return loglik, state, posterior
+
+
+@lru_cache(maxsize=1)
+def native_filter():
+    from native import load_filter
+    return load_filter()
+
+
+def filter_rough(y, phi, weights, covariance, level):
+    native = native_filter()
+    if native is None:
+        return filter_rough_numba(y, phi, weights, covariance, level)
+    module, address = native
+    return module.filter(y, phi, weights, covariance, level, address)
 
 
 def parameter_chain(y, level, adaptive, seed, burn, kept, resume=None):
@@ -180,7 +194,8 @@ def fit(data, adaptive, simulations, burn=2048, kept=8192, maximum=65536):
     import models as shell
     identity = hashlib.sha256(data).hexdigest()
     settings = f'overlay-v1:{adaptive}:{simulations}:{burn}:{kept}:{maximum}'
-    source = hashlib.sha256(Path(__file__).read_bytes() + Path(shell.controls.__file__).read_bytes()).hexdigest()
+    source = hashlib.sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in
+        ('overlay.py', 'native.py', 'overlay_filter.cpp')) + Path(shell.controls.__file__).read_bytes()).hexdigest()
     contract = source + ':' + settings
     key = hashlib.sha256((identity + contract).encode()).hexdigest()
     def build():
@@ -238,6 +253,63 @@ def multiplier_path(phi, weights, covariance, initial, posterior, normals):
     return result
 
 
+@lru_cache(maxsize=16)
+def predictive_states(data, adaptive, parameter_bytes, level, contract):
+    """Reuse the reference filter and eigensystems for identical asset fits."""
+    import models as shell
+    identity = hashlib.sha256(data + parameter_bytes + repr((adaptive, level, contract)).encode()).hexdigest()
+    def build():
+        x = np.frombuffer(data, np.float64)
+        y, _ = shell.bd._sv_observed_log_variance(x, float(x.mean()))
+        prepared = []
+        for theta in np.frombuffer(parameter_bytes, np.float64).reshape(-1, 3):
+            phi, weights, covariance = configuration(theta, adaptive)
+            _, state, p, _ = shell.controls.filter_rough(y, phi, weights, covariance, level)
+            values, vectors = np.linalg.eigh((p + p.T) / 2)
+            initial_root = vectors * np.sqrt(np.maximum(values, 0))
+            values, vectors = np.linalg.eigh((covariance + covariance.T) / 2)
+            root = vectors * np.sqrt(np.maximum(values, 0))
+            p = p * phi[:, None] * phi[None, :] + covariance
+            prepared.append((phi, weights, state, initial_root, root, p, phi * state))
+        return prepared
+    return shell.controls.cache('rough_overlay_predictive_states', identity, build)
+
+
+@njit(cache=True, nogil=True)
+def path_normalizers(phi, weights, root, posterior, mean_state, horizon):
+    mean_state, variance = mean_state.copy(), posterior.copy()
+    q = root @ root.T
+    means, variances = np.empty(horizon), np.empty(horizon)
+    for t in range(horizon):
+        means[t] = np.dot(weights, mean_state)
+        variances[t] = np.dot(weights, variance @ weights)
+        mean_state *= phi
+        variance = variance * phi[:, None] * phi[None, :] + q
+    return means, variances
+
+
+@lru_cache(maxsize=6)
+def predictive_normalizers(data, adaptive, parameter_bytes, level, contract, horizon):
+    import models as shell
+    identity = hashlib.sha256(data + parameter_bytes + repr((adaptive, level, contract, horizon)).encode()).hexdigest()
+    def build():
+        return [path_normalizers(phi, weights, root, p, mean, horizon)
+                for phi, weights, state, initial_root, root, p, mean
+                in predictive_states(data, adaptive, parameter_bytes, level, contract)]
+    return shell.controls.cache('rough_overlay_normalizers', identity, build)
+
+
+@njit(cache=True, nogil=True)
+def multiplier_prepared(phi, weights, root, initial, normals, means, variances):
+    state = initial.copy()
+    result = np.empty(means.size)
+    for t in range(result.size):
+        h = np.dot(weights, state)
+        result[t] = math.exp(.5 * (h - means[t]) - .25 * variances[t])
+        state = phi * state + root @ normals[t + 1]
+    return result
+
+
 @dataclass(frozen=True)
 class Candidate:
     model_id: str
@@ -269,24 +341,21 @@ class Candidate:
             mean, sd = shell.opt.mixture_curves(production, horizon)
             nodes = shell.controls.asset_nodes(data, sims, False)
             shell.controls.interpolate_nodes(uniforms[:, :, a], nodes)
-            y, _ = shell.bd._sv_observed_log_variance(assets[:, a], float(assets[:, a].mean()))
+            arguments = (data, self.adaptive, posterior['parameters'].tobytes(),
+                         posterior['level'], posterior['contract'])
+            prepared = predictive_states(*arguments)
+            normalizers = predictive_normalizers(*arguments, horizon)
             rng = np.random.default_rng(shell.bd.deterministic_seed('rough_overlay_prediction',
                   posterior['data_sha256'], str(context.origin_date), horizon, sims))
-            for s, theta in enumerate(posterior['parameters']):
-                phi, weights, covariance = configuration(theta, self.adaptive)
-                # Keep the reference covariance rounding for the eigen-based random
-                # initial-state draw; tiny null-space rotations change seeded paths.
-                _, state, p, _ = shell.controls.filter_rough(y, phi, weights, covariance, posterior['level'])
-                values, vectors = np.linalg.eigh((p + p.T) / 2)
-                initial = state + (vectors * np.sqrt(np.maximum(values, 0))) @ rng.normal(size=phi.size)
-                values, vectors = np.linalg.eigh((covariance + covariance.T) / 2)
-                root = vectors * np.sqrt(np.maximum(values, 0))
+            for s, (phi, weights, state, initial_root, root, p, mean_state) in enumerate(prepared):
+                initial = state + initial_root @ rng.normal(size=phi.size)
                 normals = np.empty((horizon + 1, phi.size))
                 initial = phi * initial + root @ rng.normal(size=phi.size)
-                p = p * phi[:, None] * phi[None, :] + covariance
-                normals[0] = phi * state
+                normals[0] = mean_state
                 normals[1:] = rng.normal(size=(horizon, phi.size))
-                uniforms[s, :, a] *= multiplier_path(phi, weights, root, initial, p, normals)
+                means, variances = normalizers[s]
+                uniforms[s, :, a] *= multiplier_prepared(
+                    phi, weights, root, initial, normals, means, variances)
             uniforms[:, :, a] = np.clip(mean[None, :] + sd[None, :] * uniforms[:, :, a], -1, 1)
             shell.controls.timed('asset_predictive_paths', started)
         dates = shell._historical_rebalance_dates(past.append(future), training.policy.rebalance)
