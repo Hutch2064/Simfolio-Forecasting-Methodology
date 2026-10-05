@@ -368,3 +368,116 @@ Short reduced-budget fits can be slower when process startup dominates; their
 checks use a single lane for timing comparisons. These measurements concern
 local model computation. The validated full-panel score remains the retained
 execution result; the full panel was not rerun after this optimization.
+
+## New standalone and corrected-likelihood experiments
+
+These three adapters are implemented for research testing. They have no complete
+80-portfolio scores and are not added to the validated catalogue during smoke
+validation. The completed dynamic rough result remains the incumbent. All fits
+are per asset, with the same canonical data, rolling origins, return copula,
+policy rebalancing, costs, daily clipping, simulation count and CRPS scorer.
+
+| Research adapter | Volatility model and inference | Conventional 16-draw compression |
+| --- | --- | --- |
+| `asset_rough_volterra_sv_dynamic_standalone_bayesian` | The dynamic tempered rough Volterra process supplies the full volatility scale. Two collapsed parameter chains jointly infer H, log kappa, log eta and level under the existing Gaussian log-square quasi-likelihood. Each path uses its parameter draw, conditional terminal rough state and rough-filtered empirical innovation nodes. | Removed; no conventional SV fit is called. |
+| `asset_rough_volterra_sv_dynamic_exact_mixture_overlay` | Retains the incumbent's production mean/variance curves and empirical innovations. Joint parameter/history MCMC calibrates its rough process to the Gaussian return likelihood, with the rough level fixed as in the incumbent. | Retained in the conventional anchor; the separate rough sampler has adaptive precision stopping. |
+| `asset_rough_volterra_sv_dynamic_exact_mixture_standalone` | Rough volatility supplies the entire scale; H, log kappa, log eta, level and the full latent log-variance history are inferred jointly. Gaussian predictive shocks match its Gaussian calibration likelihood. | Removed; no conventional SV fit is called. |
+
+Each standalone arm has one rough posterior sampled by two chains. The overlay
+retains a conventional two-chain fit and a separate rough two-chain fit. These
+are separate calibrations, not nested MCMC or a joint conventional/rough posterior.
+
+The standalone arms use the historical sample mean directly in predictive log
+returns. The production overlay's numerical mean curve depends on its volatility
+calculation. Removing that anchor therefore changes the numerical mean forecast
+as well as the variance forecast, while preserving the historical mean estimate.
+The Gaussian standalone arm also changes the empirical innovation distribution;
+its score cannot be attributed to likelihood accuracy alone. No leverage, jumps,
+HMM, vine copula or separate portfolio-level volatility model is introduced.
+
+For the corrected arms, let e be 100 times the asset return minus its training
+mean. The likelihood is `e_t | h_t ~ Normal(0, exp(h_t))`. Positive squared
+residuals are logged without winsorization or an offset floor. Exactly zero
+residuals remain in the raw Gaussian return likelihood. The published Omori
+10-normal log-chi-square mixture supplies auxiliary indicators and a Gaussian
+proposal only. Its fixed ten components are published numerical coefficients,
+not rough factors or a selected number of posterior draws. A final joint
+Metropolis-Hastings correction targets the actual Gaussian return likelihood of
+the controlled numerical rough lift, rather than leaving the mixture error in
+the target. The overlay subsequently retains empirical predictive shocks: this
+is Gaussian calibration followed by a semiparametric overlay forecast, not a
+claim that its empirical predictive law has a Gaussian likelihood.
+
+Given the indicators, rough states are integrated out during a reversible
+parameter Metropolis proposal. In the standalone corrected arm, volatility
+level is also integrated analytically with its truncated Gaussian prior; its
+conditional level draw is direct rather than a random walk. The whole scalar
+volatility history is then sampled conditionally by a simulation smoother. The joint proposal is accepted
+with the exact-to-mixture observation-density ratio. Working with the scalar
+history keeps its dimension equal to the observed history length while numerical
+OU factor counts change with H and kappa; reversible-jump parameter sampling is
+not needed. This is a research implementation assembled from published mixture,
+smoothing and correction methods, not a reproduction of a published RFSV model.
+
+Rough covariance uses the incumbent's positive spectral quadrature. Every
+positive integer order is eligible, and the first passing order is selected
+for each parameter value, with maximum normalized autocorrelation error at most
+0.001 over every daily lag through history plus forecast horizon minus one.
+This remains a numerical approximation of a tempered rough Volterra process,
+not exact continuous-time RFSV or rough Heston. Eta is stationary log-volatility
+standard deviation. Priors retain H uniform on (0.03, 0.49), log kappa normal
+with center log(1/63), SD 2 and bounds log(1/2520) to log(0.5), and log eta normal
+with center log(0.7), SD 1.5 and bounds log(0.05) to log(3). In standalone arms,
+level has a training-centered normal prior with SD 4 and training log-square
+1%/99% quantile bounds expanded by 4. This is data-centered regularization;
+adaptive numerical resolution does not eliminate prior or accuracy choices.
+
+The corrected samplers warm up two chains for 2,048 iterations each, freeze
+proposal adaptation, and check retained samples first at 256 per chain. They
+double retained samples until all monitored quantities have rank split Rhat
+below 1.01, bulk ESS at least 400, and batch-means estimated 95% Monte Carlo
+halfwidth at most 10% of posterior SD. Monitored quantities cover parameters,
+log likelihood plus parameter prior, latent mean/terminal log variance and
+stationary/terminal variance. A 65,536-per-chain resource ceiling leaves a
+failed precision flag if unmet. These thresholds are declared numerical accuracy
+policies, not universally mandated academic constants or CRPS error guarantees.
+The quasi-likelihood standalone retains the incumbent's two-chain 2,048 warmup,
+8,192 initial retained samples, Rhat below 1.05, ESS at least 100 and the same
+ceiling. Neither standalone arm compresses its posterior into 16 representatives:
+actual parameter draws and conditional latent uncertainty drive predictive paths.
+
+The corrected arms keep a uniform reservoir of joint parameter/history draws
+per chain, select joint predictive draws across chains, then retain only their
+conditional terminal state distributions. This avoids storing every historical
+path from every retained iteration. Compiled strict-floating-point Kalman and
+mixture kernels reuse the same measurement geometry for marginal likelihood and
+simulation smoothing. Work is O(T*k^2), with O(T*k) smoother storage; no dense
+T-by-T covariance factorization is used. Source-addressed asset fit caches,
+predictive preparation reuse and the existing fixed CPU budget are preserved.
+Direct conditional level sampling was also tested in the Gaussian quasi-likelihood
+standalone arm. It was slower and delivered fewer effective samples per second
+on the long-history screen, so that arm retains its faster four-parameter native
+Kalman implementation.
+
+The conventional 16 representatives were explored separately against all 4,096
+retained conventional draws on two training assets. At 16 representatives,
+maximum relative forecast-SD discrepancies were 1.831% and 1.082%, with
+standardized empirical-node discrepancies of 0.05782 and 0.04509. Increasing
+the evenly spaced representative count did not improve every error monotonically.
+A defensible adaptive compression would need to control both forecast moments
+and innovation quantiles; relative Monte Carlo stopping for posterior estimation
+does not itself certify that compression. The production control remains
+unchanged, and the standalone experiments remove this stage entirely.
+
+Independent checks cover dense Gaussian marginal likelihoods and smoothing,
+conditional latent moments, an exact scalar posterior, a joint parameter/history
+posterior calculated by numerical quadrature, zero residuals, resumable chains
+and reservoirs, and serial/parallel/cached score-vector parity. The retained
+smoke and local benchmark evidence is in
+[`standalone-mixture-validation.json`](results/rough-bayesian/standalone-mixture-validation.json).
+Smoke scores are not canonical full-panel scores.
+
+Academic bases: [Kim, Shephard and Chib](https://shephard.scholars.harvard.edu/publications/stochastic-volatility-likelihood-inference-and-comparison-arch-models),
+[Omori mixture coefficients and MH correction](https://arxiv.org/html/2404.13986v2),
+[Markovian multifactor approximation](https://arxiv.org/abs/1801.10359), and
+[relative fixed-width Monte Carlo stopping](https://arxiv.org/abs/1303.0238).

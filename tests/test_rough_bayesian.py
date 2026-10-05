@@ -432,3 +432,231 @@ def test_standalone_conditional_innovation_mapping_preserves_all_quantiles(overl
     actual = np.vstack([standalone.map_shocks(row, nodes) for row in uniforms])
     assert expected.tobytes() == actual.tobytes()
     assert standalone.map_shocks(np.array([0., 1.]), nodes).tolist() == [-3., 4.]
+
+
+def test_exact_mixture_return_likelihood_includes_zero_returns():
+    from mixture_kernels import exact_return_loglik
+    residual = np.array([0.,-.4,1.2,2.5])
+    h = np.array([.2,-.5,.4,1.])
+    expected = norm.logpdf(residual,scale=np.exp(h/2)).sum()
+    assert exact_return_loglik(residual**2,h) == pytest.approx(expected,abs=2e-14)
+
+
+def test_scalar_rough_whitening_and_smoother_against_dense_gaussian():
+    from scipy.linalg import toeplitz, cholesky, cho_factor, cho_solve
+    from mixture_kernels import gaussian_geometry,whiten,unwhiten,smooth_mean
+    rng = np.random.default_rng(279)
+    phi,q = np.array([.95,.5,0.]),np.array([.02,.2,.1])
+    length = 64
+    covariance = toeplitz(phi[None,:]**np.arange(length)[:,None]@(q/(1-phi**2)))
+    gains,sd,p = gaussian_geometry(phi,q,length)
+    root = np.tril(cholesky(covariance,lower=True))
+    white = rng.normal(size=length)
+    h = unwhiten(white,phi,gains,sd,.3)
+    np.testing.assert_allclose(h,.3+root@white,rtol=0,atol=2e-14)
+    actual,state = whiten(h,phi,gains,sd,.3)
+    np.testing.assert_allclose(actual,white,rtol=0,atol=2e-14)
+    variance = rng.uniform(.1,2,size=length)
+    observations = rng.normal(size=length)
+    expected = covariance@cho_solve(cho_factor(covariance+np.diag(variance)),observations)
+    np.testing.assert_allclose(smooth_mean(observations,phi,q,variance),expected,rtol=0,atol=2e-14)
+    # Conditional terminal OU distribution given the entire scalar path.
+    cross = (q/(1-phi**2))[:,None]*phi[:,None]**np.arange(length-1,-1,-1)[None,:]
+    np.testing.assert_allclose(state,cross@cho_solve(cho_factor(covariance),h-.3),atol=2e-13,rtol=0)
+    np.testing.assert_allclose(p,np.diag(q/(1-phi**2))-cross@cho_solve(cho_factor(covariance),cross.T),atol=2e-13,rtol=0)
+
+
+def test_simulation_smoother_conditional_moments():
+    from scipy.linalg import toeplitz,cho_factor,cho_solve
+    from mixture_kernels import simulation_smoother
+    phi,q = np.array([.9,.2]),np.array([.1,.3])
+    length = 8
+    covariance = toeplitz(phi[None,:]**np.arange(length)[:,None]@(q/(1-phi**2)))
+    variance = np.linspace(.2,1.5,length)
+    y = np.linspace(-1,1,length)
+    factor = cho_factor(covariance+np.diag(variance))
+    expected_mean = covariance@cho_solve(factor,y)
+    expected_covariance = covariance-covariance@cho_solve(factor,covariance)
+    rng = np.random.default_rng(593)
+    draws = np.array([simulation_smoother(y,phi,q,variance,rng.normal(size=(length,2)),rng.normal(size=length)) for _ in range(12000)])
+    np.testing.assert_allclose(draws.mean(axis=0),expected_mean,atol=.02,rtol=0)
+    np.testing.assert_allclose(np.cov(draws,rowvar=False),expected_covariance,atol=.015,rtol=0)
+
+
+def test_corrected_mixture_sampler_matches_exact_scalar_posterior():
+    from mixture_kernels import mixture_terms,simulation_smoother
+    y,level,q = np.array([math.log(1.7**2)]),.3,np.array([.7**2])
+    phi,active = np.array([0.]),np.array([True])
+    def target(h):
+        return math.exp(-.5*((h-level)**2/q[0]+h+math.exp(y[0]-h)))
+    normalizer = quad(target,-12,12,epsabs=1e-11)[0]
+    expected = quad(lambda h:h*target(h),-12,12,epsabs=1e-11)[0]/normalizer
+    rng = np.random.default_rng(719)
+    h,draws = np.array([level]),[]
+    for iteration in range(21000):
+        offset,r,current = mixture_terms(y,h,active,rng.random(1))
+        proposed = level+simulation_smoother(y-offset-level,phi,q,r,rng.normal(size=(1,1)),rng.normal(size=1))
+        proposed_ratio = mixture_terms(y,proposed,active,np.zeros(1))[2]
+        if math.log(rng.random()) < proposed_ratio-current:
+            h = proposed
+        if iteration >= 1000:
+            draws.append(h[0])
+    assert np.mean(draws) == pytest.approx(expected,abs=.015)
+
+
+@pytest.mark.parametrize('free_level',[False,True])
+def test_exact_mixture_resume_preserves_joint_path_and_reservoir(overlay_shell,free_level):
+    import mixture
+    data = np.random.default_rng(48).normal(0,.01,size=32).tobytes()
+    whole,whole_state = mixture.parameter_chain(data,63,free_level,42,64,64,24)
+    first,state = mixture.parameter_chain(data,63,free_level,42,64,32,24)
+    last,final_state = mixture.parameter_chain(data,63,free_level,0,0,32,24,state)
+    assert whole.tobytes() == np.concatenate([first,last]).tobytes()
+    assert whole_state['h'].tobytes() == final_state['h'].tobytes()
+    assert whole_state['rng_state'] == final_state['rng_state']
+    assert whole_state['reservoir_rng_state'] == final_state['reservoir_rng_state']
+    for key in ('parameters','histories'):
+        assert whole_state['reservoir'][key].tobytes() == final_state['reservoir'][key].tobytes()
+
+
+def test_precision_measure_shrinks_with_independent_draws():
+    from mixture import posterior_precision
+    trace = np.random.default_rng(52).normal(size=(2,16384,3))
+    short = np.asarray(posterior_precision(trace[:,:1024]))
+    long = np.asarray(posterior_precision(trace))
+    assert (long < short/2).all()
+    assert (long < .03).all()
+
+
+@pytest.mark.parametrize('missing',[False,True])
+def test_cached_mixture_geometry_preserves_smoothing_and_dense_likelihood(missing):
+    from scipy.linalg import toeplitz,cho_factor,cho_solve
+    from mixture_kernels import (measurement_geometry,marginal_likelihood,
+        simulation_smoother,cached_simulation_smoother)
+    rng = np.random.default_rng(731)
+    phi,q = np.array([.96,.4,0.]),np.array([.02,.12,.1])
+    length = 64
+    variance = rng.uniform(.1,2,size=length)
+    if missing:
+        variance[::7] = np.inf
+    y = rng.normal(size=length)
+    state_normals,measurement_normals = rng.normal(size=(length,3)),rng.normal(size=length)
+    pws,inverse_f,log_f = measurement_geometry(phi,q,variance)
+    reference = simulation_smoother(y,phi,q,variance,state_normals,measurement_normals)
+    cached = cached_simulation_smoother(y,phi,q,variance,pws,inverse_f,state_normals,measurement_normals)
+    assert cached.tobytes() == reference.tobytes()
+    active = np.isfinite(variance)
+    covariance = toeplitz(phi[None,:]**np.arange(length)[:,None]@(q/(1-phi**2)))
+    covariance = covariance[np.ix_(active,active)]+np.diag(variance[active])
+    root = cho_factor(covariance)
+    expected = -.5*(active.sum()*math.log(2*math.pi)+2*np.log(np.diag(root[0])).sum()
+                      +y[active]@cho_solve(root,y[active]))
+    assert marginal_likelihood(y,phi,pws,inverse_f,log_f) == pytest.approx(expected,abs=4e-14)
+
+
+def test_corrected_joint_parameter_history_sampler_against_quadrature():
+    from mixture_kernels import (mixture_terms,measurement_geometry,marginal_likelihood,
+        cached_simulation_smoother)
+    # Two possible level parameters allow independent integration of both their
+    # posterior probability and the latent mean; correction must cover both.
+    levels,phi,q = np.array([-.6,.8]),np.array([0.]),np.array([.49])
+    y,active = np.array([math.log(1.7**2)]),np.array([True])
+    def density(h,level):
+        return math.exp(-.5*((h-level)**2/q[0]+h+math.exp(y[0]-h)))
+    masses = np.array([quad(lambda h:density(h,level),-12,12,epsabs=1e-11)[0] for level in levels])
+    expected_probability = masses[1]/masses.sum()
+    expected_mean = sum(quad(lambda h:h*density(h,level),-12,12,epsabs=1e-11)[0] for level in levels)/masses.sum()
+    rng = np.random.default_rng(180)
+    index,h = 0,np.array([levels[0]])
+    draws = []
+    for iteration in range(41000):
+        offset,r,current_ratio = mixture_terms(y,h,active,rng.random(1))
+        pws,inv,logf = measurement_geometry(phi,q,r)
+        proposal = 1-index
+        current = marginal_likelihood(y-offset-levels[index],phi,pws,inv,logf)
+        candidate = marginal_likelihood(y-offset-levels[proposal],phi,pws,inv,logf)
+        next_index = proposal if math.log(rng.random()) < candidate-current else index
+        proposed_h = levels[next_index]+cached_simulation_smoother(y-offset-levels[next_index],phi,q,r,
+            pws,inv,rng.normal(size=(1,1)),rng.normal(size=1))
+        proposed_ratio = mixture_terms(y,proposed_h,active,np.zeros(1))[2]
+        if math.log(rng.random()) < proposed_ratio-current_ratio:
+            index,h = next_index,proposed_h
+        if iteration >= 1000:
+            draws.append((index,h[0]))
+    assert np.mean(draws,axis=0)[0] == pytest.approx(expected_probability,abs=.015)
+    assert np.mean(draws,axis=0)[1] == pytest.approx(expected_mean,abs=.015)
+
+
+@pytest.mark.parametrize('missing',[False,True])
+def test_marginalized_level_matches_dense_truncated_prior_integral(missing):
+    from scipy.linalg import toeplitz,cho_factor,cho_solve
+    from mixture import normal_interval_logmass
+    from mixture_kernels import measurement_geometry,marginalized_level
+    rng = np.random.default_rng(848)
+    phi,q = np.array([.93,.3]),np.array([.08,.3])
+    length = 8
+    y,variance = rng.normal(size=length),rng.uniform(.2,1,size=length)
+    if missing:
+        variance[::3] = np.inf
+    active = np.isfinite(variance)
+    covariance = toeplitz(phi[None,:]**np.arange(length)[:,None]@(q/(1-phi**2)))
+    covariance = covariance[np.ix_(active,active)]+np.diag(variance[active])
+    factor = cho_factor(covariance)
+    constant = -.5*(active.sum()*math.log(2*math.pi)+2*np.log(np.diag(factor[0])).sum())
+    prior_variance,lower,upper = 16.,-.2,.5
+    prior_mass = norm.cdf(upper/4)-norm.cdf(lower/4)
+    def density(level):
+        residual = y[active]-level
+        return math.exp(constant-.5*(residual@cho_solve(factor,residual)))*norm.pdf(level,scale=4)/prior_mass
+    integral = quad(density,lower,upper,epsabs=1e-12)[0]
+    pws,inv,logf = measurement_geometry(phi,q,variance)
+    value,mean,sd = marginalized_level(y,phi,pws,inv,logf,prior_variance)
+    actual = value+normal_interval_logmass(mean,sd,lower,upper)-normal_interval_logmass(0,4,lower,upper)
+    assert actual == pytest.approx(math.log(integral),abs=3e-13)
+    expected_mean = quad(lambda level:level*density(level),lower,upper,epsabs=1e-12)[0]/integral
+    from scipy.stats import truncnorm
+    assert truncnorm.mean((lower-mean)/sd,(upper-mean)/sd,loc=mean,scale=sd) == pytest.approx(expected_mean,abs=2e-13)
+
+
+def test_direct_level_draw_matches_truncated_normal_quantiles():
+    from scipy.stats import truncnorm
+    from mixture import truncated_normal
+    for lower,upper in [(-2,3),(12,13),(-13,-12)]:
+        for uniform in [.0001,.2,.5,.9999]:
+            assert truncated_normal(0,1,lower,upper,uniform) == pytest.approx(truncnorm.ppf(uniform,lower,upper),abs=3e-12)
+
+
+def test_corrected_direct_level_history_draws_match_joint_posterior():
+    from scipy.stats import truncnorm
+    from mixture import truncated_normal
+    from mixture_kernels import (mixture_terms,measurement_geometry,marginalized_level,
+        cached_simulation_smoother)
+    y,active = np.array([math.log(1.7**2)]),np.array([True])
+    phi,q = np.array([0.]),np.array([.49])
+    center,prior_sd,lower,upper = .3,.8,-1.,1.
+    prior_mass = norm.cdf((upper-center)/prior_sd)-norm.cdf((lower-center)/prior_sd)
+    # Integrate over h and level independently of the filtering implementation.
+    def joint(h,level):
+        return (norm.pdf(h,loc=level,scale=math.sqrt(q[0]))
+                *norm.pdf(level,loc=center,scale=prior_sd)/prior_mass
+                *math.exp(-.5*(h+math.exp(y[0]-h))))
+    def integrated(level,power):
+        return quad(lambda h:(h if power=='h' else level if power=='level' else 1)*joint(h,level),
+                    -12,12,epsabs=1e-10)[0]
+    mass = quad(lambda level:integrated(level,'mass'),lower,upper,epsabs=1e-10)[0]
+    expected = [quad(lambda level:integrated(level,key),lower,upper,epsabs=1e-10)[0]/mass for key in ('level','h')]
+    rng = np.random.default_rng(280)
+    level,h,draws = center,np.array([center]),[]
+    for iteration in range(31000):
+        offset,r,current_ratio = mixture_terms(y,h,active,rng.random(1))
+        pws,inv,logf = measurement_geometry(phi,q,r)
+        _,level_mean,level_sd = marginalized_level(y-offset-center,phi,pws,inv,logf,prior_sd**2)
+        next_level = truncated_normal(center+level_mean,level_sd,lower,upper,rng.random())
+        proposed_h = next_level+cached_simulation_smoother(y-offset-next_level,phi,q,r,pws,inv,
+            rng.normal(size=(1,1)),rng.normal(size=1))
+        proposal_ratio = mixture_terms(y,proposed_h,active,np.zeros(1))[2]
+        if math.log(rng.random()) < proposal_ratio-current_ratio:
+            level,h = next_level,proposed_h
+        if iteration >= 1000:
+            draws.append((level,h[0]))
+    np.testing.assert_allclose(np.mean(draws,axis=0),expected,atol=.015,rtol=0)

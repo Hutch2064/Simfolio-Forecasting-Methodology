@@ -16,6 +16,7 @@ import time
 
 import numpy as np
 from numba import njit
+from scipy.special import log_ndtr, ndtri_exp
 
 import overlay
 from dynamic import selected_kernel
@@ -29,6 +30,25 @@ def log_target(y, theta, maximum_lag):
     prior -= .5 * ((theta[3] - y.mean()) / 4) ** 2
     phi, weights, covariance = overlay.configuration(theta[:3], f'dynamic:{maximum_lag}')
     return prior + overlay.filter_rough(y, phi, weights, covariance, theta[3])[0]
+
+
+def normal_interval_logmass(mean, sd, lower, upper):
+    a,b = (lower-mean)/sd,(upper-mean)/sd
+    if a >= 0:
+        a,b = -b,-a
+    lo,hi = float(log_ndtr(a)),float(log_ndtr(b))
+    return hi+math.log1p(-math.exp(lo-hi))
+
+
+def truncated_normal(mean, sd, lower, upper, uniform):
+    a,b = (lower-mean)/sd,(upper-mean)/sd
+    reflect = a >= 0
+    if reflect:
+        a,b,uniform = -b,-a,1-uniform
+    lo,hi = float(log_ndtr(a)),float(log_ndtr(b))
+    probability = lo if uniform == 0 else hi+math.log(uniform+(1-uniform)*math.exp(lo-hi))
+    draw = float(ndtri_exp(probability))
+    return mean+sd*(-draw if reflect else draw)
 
 
 def parameter_chain(y, maximum_lag, seed, burn, kept, resume=None):
