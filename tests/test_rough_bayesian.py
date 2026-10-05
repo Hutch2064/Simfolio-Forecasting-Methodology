@@ -213,6 +213,60 @@ def test_collapsed_overlay_filter_against_original_reference(overlay_shell):
             np.testing.assert_allclose(actual, expected, atol=2e-11, rtol=0)
 
 
+@pytest.mark.parametrize('hurst,kappa', [(.031, 1/2500), (.1, 1/63), (.3, .49), (.489, .004)])
+def test_dynamic_spectral_measure_matches_independent_beta_integral(hurst, kappa):
+    from scipy.special import beta
+    from overlay import exact_covariance
+    a, b = .5 - hurst, 2 * hurst
+    for lag in (1, 12, 126, 2520):
+        def integrand(z):
+            return math.exp(-kappa * (1 + z) / (1 - z) * lag) if z < 1 else 0.
+        expected = quad(integrand, 0, 1, weight='alg', wvar=(a-1, b-1),
+                        epsabs=1e-11, epsrel=1e-11)[0] / beta(a, b)
+        assert exact_covariance(hurst, kappa, np.array([lag]))[0] == pytest.approx(expected, abs=2e-10)
+
+
+@pytest.mark.parametrize('hurst,kappa', [(.031, 1/2500), (.1, 1/63), (.3, .49), (.489, .004)])
+def test_dynamic_resolution_covers_every_requested_daily_lag(hurst, kappa):
+    from dynamic import selected_kernel
+    from overlay import exact_covariance
+    lags = np.arange(25201)
+    phi, mass, evidence = selected_kernel(hurst, kappa, int(lags[-1]))
+    actual = phi[None, :] ** lags[:, None] @ mass
+    assert (mass >= 0).all() and (phi >= 0).all() and (phi < 1).all()
+    assert mass.sum() == pytest.approx(1., abs=2e-15)
+    error = float(np.max(np.abs(actual - exact_covariance(hurst, kappa, lags))))
+    assert error <= evidence['autocorrelation_error_upper_bound'] + 2e-14
+    assert evidence['autocorrelation_error_upper_bound'] <= .001
+    assert evidence['factors'] == len(phi)
+
+
+def test_dynamic_filter_matches_dense_gaussian_likelihood(overlay_shell):
+    from scipy.linalg import toeplitz, cho_factor, cho_solve
+    from dynamic import configuration
+    import overlay
+    point = np.array([.11, math.log(1/63), math.log(.7)])
+    phi, weights, q = configuration(point, 63)
+    mass = np.diag(q) / (1 - phi * phi)
+    covariance = toeplitz(phi[None, :] ** np.arange(64)[:, None] @ mass)
+    covariance += np.eye(64) * math.pi**2/2
+    y = np.random.default_rng(947).normal(size=64)
+    factor = cho_factor(covariance, lower=True)
+    expected = -.5 * (64*math.log(2*math.pi) + 2*np.log(np.diag(factor[0])).sum()
+                       + y @ cho_solve(factor, y))
+    assert overlay.filter_rough(y, phi, weights, q, 0.)[0] == pytest.approx(expected, abs=2e-11)
+
+
+def test_dynamic_sampling_resume_preserves_trace_and_rng(overlay_shell):
+    import overlay
+    y = np.random.default_rng(38).normal(size=64)
+    whole, whole_state = overlay.parameter_chain(y, 0., 'dynamic:126', 42, 32, 64)
+    first, state = overlay.parameter_chain(y, 0., 'dynamic:126', 42, 32, 32)
+    last, final_state = overlay.parameter_chain(y, 0., 'dynamic:126', 0, 0, 32, state)
+    np.testing.assert_array_equal(whole, np.concatenate([first, last]))
+    assert whole_state['rng_state'] == final_state['rng_state']
+
+
 @pytest.mark.parametrize('adaptive', [False, True])
 def test_prepared_overlay_paths_are_byte_exact(overlay_shell, adaptive):
     import overlay

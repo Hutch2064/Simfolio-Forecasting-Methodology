@@ -15,7 +15,8 @@ import time
 
 import numpy as np
 from numba import njit
-from scipy.special import gamma, hyperu
+from scipy.special import beta, gamma, hyperu
+from scipy.integrate import quad
 
 NODES, GAUSS = np.polynomial.legendre.leggauss(3)
 
@@ -29,6 +30,14 @@ def exact_covariance(hurst, kappa, lags):
     t = lags[positive]
     out[positive] = (np.exp(-kappa * t) * t ** (2 * hurst)
                     * hyperu(alpha, 1 + 2 * hurst, 2 * kappa * t) / gamma(alpha) / zero)
+    invalid = ~np.isfinite(out) | (out < 0) | (out > 1)
+    for index in np.flatnonzero(invalid):
+        lag = lags[index]
+        a, b = .5 - hurst, 2 * hurst
+        def integrand(z):
+            return math.exp(-kappa * (1 + z) / (1 - z) * lag) if z < 1 else 0.
+        out[index] = quad(integrand, 0., 1., weight='alg', wvar=(a-1, b-1),
+                          epsabs=1e-12, epsrel=1e-12)[0] / beta(a, b)
     return out
 
 
@@ -114,6 +123,9 @@ def eight_factor_configuration(theta):
 
 
 def configuration(theta, adaptive):
+    if isinstance(adaptive, str) and adaptive.startswith('dynamic:'):
+        from dynamic import configuration as dynamic_configuration
+        return dynamic_configuration(theta, int(adaptive.split(':')[1]))
     if not adaptive:
         return eight_factor_configuration(theta)
     bins, _ = accuracy_grid()
@@ -233,7 +245,7 @@ def fit(data, adaptive, simulations, burn=2048, kept=8192, maximum=65536):
     identity = hashlib.sha256(data).hexdigest()
     settings = f'overlay-v1:{adaptive}:{simulations}:{burn}:{kept}:{maximum}'
     source = hashlib.sha256(b''.join(Path(__file__).with_name(name).read_bytes() for name in
-        ('overlay.py', 'native.py', 'overlay_filter.cpp')) + Path(shell.controls.__file__).read_bytes()).hexdigest()
+        ('overlay.py', 'native.py', 'overlay_filter.cpp', 'dynamic.py')) + Path(shell.controls.__file__).read_bytes()).hexdigest()
     contract = source + ':' + settings
     key = hashlib.sha256((identity + contract).encode()).hexdigest()
     def build():
@@ -258,13 +270,24 @@ def fit(data, adaptive, simulations, burn=2048, kept=8192, maximum=65536):
         all_draws = np.concatenate([c[0][:, :3] for c in chains])
         rng = np.random.default_rng(shell.bd.deterministic_seed('rough_overlay_joint_draws', identity, settings))
         selected = rng.integers(0, len(all_draws), size=simulations)
+        if isinstance(adaptive, str):
+            from dynamic import selected_kernel
+            records = [selected_kernel(float(t[0]), math.exp(t[1]), int(adaptive.split(':')[1]))[2]
+                       for t in all_draws[selected]]
+            kernel = {'selection': 'per_parameter_dynamic_positive_integer_order',
+                      'minimum_factors': min(r['factors'] for r in records),
+                      'maximum_factors': max(r['factors'] for r in records),
+                      'maximum_autocorrelation_error_upper_bound': max(r['autocorrelation_error_upper_bound'] for r in records),
+                      'tolerance': .001, 'maximum_daily_lag': int(adaptive.split(':')[1])}
+        else:
+            kernel = accuracy_grid()[1] if adaptive else {'factors': 8, 'baseline_kernel_unchanged': True}
         seconds = time.perf_counter() - started
         return {'parameters': all_draws[selected], 'trace': trace, 'level': level,
                 'diagnostics': diagnostics, 'convergence_flag': converged,
                 'kept_per_chain': actual, 'fit_seconds': seconds,
                 'ess_per_second': min(d['bulk_ess'] for d in diagnostics) / seconds,
                 'data_sha256': identity, 'contract': contract,
-                'kernel': accuracy_grid()[1] if adaptive else {'factors': 8, 'baseline_kernel_unchanged': True}}
+                'kernel': kernel}
     started = time.perf_counter()
     result = shell.controls.cache('bayesian_overlay_asset', key, build)
     shell.controls.timed('bayesian_overlay_fit', started)

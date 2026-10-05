@@ -1,0 +1,33 @@
+{
+  "scope": "dynamic_selector_optimization_parity_not_official_oos_scores",
+  "full_budget_chain_comparisons": [
+    {
+      "task": 0,
+      "history_days": 507,
+      "warmup": 2048,
+      "kept": 8192,
+      "trace_and_rng_byte_exact": true,
+      "reference_seconds": 8.411193249979988,
+      "optimized_seconds": 5.299094084009994
+    },
+    {
+      "task": 41,
+      "history_days": 10213,
+      "warmup": 2048,
+      "kept": 8192,
+      "trace_and_rng_byte_exact": true,
+      "reference_seconds": 21.738354000030085,
+      "optimized_seconds": 13.770920917042531
+    }
+  ],
+  "smoke": {
+    "history_days": 256,
+    "horizons": 63,
+    "paths": 240,
+    "warmup": 32,
+    "kept": 64,
+    "every_loss_byte_exact": true,
+    "crps": 0.03460803782110832,
+    "loss_sha256": "a40e7eef4683e639f89586b8e90e6875c69caaca9364f8306f939cc9970924e3"
+  }
+}

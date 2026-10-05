@@ -1,6 +1,6 @@
 # Joint Bayesian rough volatility candidates
 
-Eight new asset-level candidates are implemented in `tools/rough_bayesian` and
+Nine new asset-level candidates are implemented in `tools/rough_bayesian` and
 included in both public catalogues. The canonical catalogue now has 191 entries;
 the broader active research catalogue has 383. Their official scores are blank
 until the complete canonical panel finishes. The existing production Frontier
@@ -10,6 +10,7 @@ and the completed eight-factor rough model are included as unchanged controls.
 | --- | --- | --- |
 | `asset_rough_volterra_sv_eight_factor_bayesian` | Does parameter uncertainty improve the winning rough overlay? | Unchanged eight-factor kernel; collapsed Gaussian filtering + parameter MCMC |
 | `asset_rough_volterra_sv_accuracy_lift_bayesian` | Does an accuracy-controlled kernel improve that winner further? | Tempered fractional Volterra covariance; adaptive lift + parameter MCMC |
+| `asset_rough_volterra_sv_dynamic_lift_bayesian` | Can parameter-specific resolution approximate rough covariance efficiently? | Positive Gaussian spectral quadrature; every positive integer order is eligible; complete daily-lag error control + parameter MCMC |
 | `asset_bayesian_lifted_rfsv_ess` | Does jointly inferred fractional OU log volatility improve forecasts? | Full latent Gaussian innovations and parameters; ESS/HMC + MH |
 | `asset_bayesian_lifted_rfsv_tight_ess` | Is the nominal kernel resolution sufficient? | Same target family, tenfold tighter kernel tolerance |
 | `asset_bayesian_lifted_rfsv_ess_terminal_pgas` | Does particle ancestor sampling improve inference efficiency? | Full-path ESS/HMC plus exact terminal-block PGAS, same posterior as nominal arm |
@@ -241,3 +242,60 @@ the blank catalogue fields only after completion and validation.
 - [Bayer and Breneis, Weak Markovian approximations of rough Heston](https://arxiv.org/abs/2309.07023).
 - [Murray, Adams and MacKay, Elliptical slice sampling](https://proceedings.mlr.press/v9/murray10a.html).
 - [Lindsten, Jordan and Schön, Particle Gibbs with ancestor sampling](https://www.jmlr.org/beta/papers/v15/lindsten14a.html).
+
+## Dynamic resolution of the tempered rough covariance
+
+The dynamic candidate preserves the production mean, variance anchor, empirical
+return innovations, cross-asset dependence, calendar, costs and CRPS scorer. It
+changes the finite-dimensional approximation of the asset's stationary Gaussian
+rough-volatility covariance. It remains a three-parameter collapsed Bayesian
+model with the original priors and two-chain sampling budgets.
+
+For `alpha = H + 1/2`, the normalized covariance of the tempered Volterra kernel
+`exp(-kappa*t)*t**(alpha-1)/Gamma(alpha)` has the exact representation
+
+```text
+C(t) = E[exp(-kappa*(1+Z)/(1-Z)*t)], Z ~ Beta(1-alpha, 2*H).
+```
+
+This follows by integrating one of the two Laplace measures in the stationary
+kernel convolution, then substituting `Z = r/(r+2*kappa)`. Positive spectral
+quadrature weights produce independent OU factors with that approximate scalar
+Gaussian covariance. This is a numerical representation of the same stationary
+Gaussian process, rather than a new economic factor model. The covariance and
+likelihood are checked independently against Beta integration and a dense
+Gaussian covariance matrix.
+
+The positive-rate integral is transformed to logarithmic rates and evaluated by
+Gauss-Jacobi quadrature, matching its integrable endpoint singularity. Rates
+above `-log(tolerance/2)` are aggregated into independent white variance. Their
+omitted positive daily-lag covariance is bounded by `tolerance/2`; total zero-lag
+variance is retained analytically. The sole approximation tolerance remains
+`0.001` in normalized absolute autocorrelation units.
+
+For each `(H,kappa)` proposal, orders `1,2,3,...` are eligible, with no preset
+factor list or fixed maximum. The first passing order is selected. The factor
+count includes the retained white-variance component. The error check covers
+all integer lags from one through `training_days + requested_horizon_days - 1`.
+Monotonic endpoint enclosures and the positive-mixture curvature bound
+`C''(t) <= 4*exp(-2)/t**2` certify intervals; unresolved intervals are bisected
+until certified or their daily endpoints are exhausted. Reference covariance
+evaluations are reused across proposed quadrature orders. Geometry and already
+selected parameter settings are cached without quantizing parameters.
+
+The selection rule is deterministic and frozen before the run. Because latent
+states are integrated out, varying the state dimension does not change the
+three-dimensional parameter space or require reversible-jump MCMC. MH evaluates
+the corresponding deterministic approximate likelihood at each proposal. The
+requested horizon is known at the origin and enters the fit cache contract;
+future returns and OOS scores never determine resolution. Covariance tolerance
+does not assert a bound on posterior or CRPS error. The candidate has its own
+identity and scores; the earlier fixed-resolution candidate's partial results
+are preserved separately.
+
+The approximation family is supported by [Abi Jaber and El Euch's multifactor
+construction](https://arxiv.org/abs/1801.10359) and [Bayer and Breneis's
+parameter- and horizon-dependent quadrature error analysis](https://www.wias-berlin.de/people/bayerc/files/breneis_21.pdf).
+The Beta representation and daily-lag interval certificate above are the
+implementation-specific construction tested here; the cited papers do not
+establish its forecasting score or runtime.
