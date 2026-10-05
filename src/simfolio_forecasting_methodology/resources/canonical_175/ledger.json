@@ -49959,8 +49959,8 @@
           },
           "source_reference": {
             "path": "tools/rough_bayesian/overlay.py",
-            "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
-            "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598",
+            "revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
+            "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847",
             "entrypoints": [
               "Candidate.simulate_daily_log_returns"
             ],
@@ -49975,7 +49975,15 @@
               },
               {
                 "path": "tools/rough_bayesian/run_panel.py",
-                "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+                "sha256": "1f404d91277de3ec490de5d8d9c212a9bcdb8a5dafffea92d711db77ebc9bf14"
+              },
+              {
+                "path": "tools/rough_bayesian/native.py",
+                "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+              },
+              {
+                "path": "tools/rough_bayesian/overlay_filter.cpp",
+                "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
               }
             ]
           },
@@ -49992,11 +50000,11 @@
         }
       },
       "specification_fingerprint": {
-        "value": "94a9bf7a92158fe4e0904111c791c04bcf0a0e9a970aa384428b9f3b055e653d",
+        "value": "080bc5f024edca15f91eca488fff2b7df93413f1b011615df3cccc6f3b1b296e",
         "kind": "resolved_statistical_definition_sha256",
         "status": "full resolved statistical definition"
       },
-      "source_revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+      "source_revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
       "source_artifact_digest": {
         "retained_score_artifact": {
           "relative_path": "docs/results/rough-bayesian/candidate-panel.json",
@@ -50013,10 +50021,10 @@
         },
         "source_code": {
           "relative_path": "tools/rough_bayesian/overlay.py",
-          "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
+          "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847"
         },
         "parameter_dictionary": {
-          "sha256": "94a9bf7a92158fe4e0904111c791c04bcf0a0e9a970aa384428b9f3b055e653d"
+          "sha256": "080bc5f024edca15f91eca488fff2b7df93413f1b011615df3cccc6f3b1b296e"
         }
       },
       "source_location_reference": {
@@ -50035,7 +50043,8 @@
         "scipy",
         "pandas",
         "numba",
-        "pyvinecopulib==0.7.5"
+        "pyvinecopulib==0.7.5",
+        "pybind11==3.1.0"
       ],
       "historical_rank": null,
       "canonical_rank": 190,
@@ -50560,7 +50569,8 @@
         "Asset-level incremental upgrade of the validated rough winner; preserve production mean, variance anchor, empirical innovations, dependence and scoring shell.",
         "Gaussian log-square quasi-likelihood is retained deliberately to isolate changes to parameter uncertainty and kernel accuracy.",
         "Independent full 240-path smoke loss-vector parity: docs/results/rough-bayesian/speed-parity.json.",
-        "All 80 portfolio scores and aggregate score stay blank until the full canonical panel completes."
+        "All 80 portfolio scores and aggregate score stay blank until the full canonical panel completes.",
+        "Exact-output speed implementation caches asset posterior states and horizon normalizers; strict C++ Kalman likelihood; unchanged inference and simulation budgets."
       ]
     },
     {
@@ -50688,8 +50698,8 @@
           },
           "source_reference": {
             "path": "tools/rough_bayesian/overlay.py",
-            "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
-            "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598",
+            "revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
+            "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847",
             "entrypoints": [
               "Candidate.simulate_daily_log_returns"
             ],
@@ -50704,7 +50714,15 @@
               },
               {
                 "path": "tools/rough_bayesian/run_panel.py",
-                "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+                "sha256": "1f404d91277de3ec490de5d8d9c212a9bcdb8a5dafffea92d711db77ebc9bf14"
+              },
+              {
+                "path": "tools/rough_bayesian/native.py",
+                "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+              },
+              {
+                "path": "tools/rough_bayesian/overlay_filter.cpp",
+                "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
               }
             ]
           },
@@ -50721,11 +50739,11 @@
         }
       },
       "specification_fingerprint": {
-        "value": "5c4248c7afa7b475a8355030b44c9e957b6d54e76328db2c1a2bccc62c1c6f73",
+        "value": "467591119613c3561e994cf0ee7d5d139ea2c3d65b926fe44044e733b94fa93d",
         "kind": "resolved_statistical_definition_sha256",
         "status": "full resolved statistical definition"
       },
-      "source_revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+      "source_revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
       "source_artifact_digest": {
         "retained_score_artifact": {
           "relative_path": "docs/results/rough-bayesian/candidate-panel.json",
@@ -50742,10 +50760,10 @@
         },
         "source_code": {
           "relative_path": "tools/rough_bayesian/overlay.py",
-          "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
+          "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847"
         },
         "parameter_dictionary": {
-          "sha256": "5c4248c7afa7b475a8355030b44c9e957b6d54e76328db2c1a2bccc62c1c6f73"
+          "sha256": "467591119613c3561e994cf0ee7d5d139ea2c3d65b926fe44044e733b94fa93d"
         }
       },
       "source_location_reference": {
@@ -50764,7 +50782,8 @@
         "scipy",
         "pandas",
         "numba",
-        "pyvinecopulib==0.7.5"
+        "pyvinecopulib==0.7.5",
+        "pybind11==3.1.0"
       ],
       "historical_rank": null,
       "canonical_rank": 191,
@@ -51289,7 +51308,8 @@
         "Asset-level incremental upgrade of the validated rough winner; preserve production mean, variance anchor, empirical innovations, dependence and scoring shell.",
         "Gaussian log-square quasi-likelihood is retained deliberately to isolate changes to parameter uncertainty and kernel accuracy.",
         "Independent full 240-path smoke loss-vector parity: docs/results/rough-bayesian/speed-parity.json.",
-        "All 80 portfolio scores and aggregate score stay blank until the full canonical panel completes."
+        "All 80 portfolio scores and aggregate score stay blank until the full canonical panel completes.",
+        "Exact-output speed implementation caches asset posterior states and horizon normalizers; strict C++ Kalman likelihood; unchanged inference and simulation budgets."
       ]
     }
   ]

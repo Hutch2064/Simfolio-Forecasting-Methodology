@@ -198,6 +198,9 @@ reuses exact scalars and a matrix-vector output buffer, preserving all random
 calls, their order, the multiplier's arithmetic, and every posterior draw.
 Both candidates share one twelve-worker queue rather than separate fixed queues.
 No history, chain budget, kernel accuracy, path count or scoring rule is reduced.
+The [optimization receipt](results/rough-bayesian/upgrade-speed-parity.json)
+records the repeated profile review, complete retained-checkpoint parity,
+full-budget chain parity and separate cold/warm prediction timings.
 
 ## Official panel
 

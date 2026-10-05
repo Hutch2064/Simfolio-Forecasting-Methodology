@@ -792,7 +792,7 @@
     },
     "asset_rough_volterra_sv_accuracy_lift_bayesian": {
       "component_refs": [],
-      "definition_fingerprint": "5c4248c7afa7b475a8355030b44c9e957b6d54e76328db2c1a2bccc62c1c6f73",
+      "definition_fingerprint": "467591119613c3561e994cf0ee7d5d139ea2c3d65b926fe44044e733b94fa93d",
       "factory": {
         "class": null,
         "method": "simulate_daily_log_returns",
@@ -813,15 +813,23 @@
           },
           {
             "path": "tools/rough_bayesian/run_panel.py",
-            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+            "sha256": "1f404d91277de3ec490de5d8d9c212a9bcdb8a5dafffea92d711db77ebc9bf14"
+          },
+          {
+            "path": "tools/rough_bayesian/native.py",
+            "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay_filter.cpp",
+            "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
           }
         ],
         "entrypoints": [
           "Candidate.simulate_daily_log_returns"
         ],
         "path": "tools/rough_bayesian/overlay.py",
-        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
-        "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
+        "revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
+        "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847"
       }
     },
     "asset_rough_volterra_sv_eight_factor": {
@@ -932,7 +940,7 @@
     },
     "asset_rough_volterra_sv_eight_factor_bayesian": {
       "component_refs": [],
-      "definition_fingerprint": "94a9bf7a92158fe4e0904111c791c04bcf0a0e9a970aa384428b9f3b055e653d",
+      "definition_fingerprint": "080bc5f024edca15f91eca488fff2b7df93413f1b011615df3cccc6f3b1b296e",
       "factory": {
         "class": null,
         "method": "simulate_daily_log_returns",
@@ -953,15 +961,23 @@
           },
           {
             "path": "tools/rough_bayesian/run_panel.py",
-            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+            "sha256": "1f404d91277de3ec490de5d8d9c212a9bcdb8a5dafffea92d711db77ebc9bf14"
+          },
+          {
+            "path": "tools/rough_bayesian/native.py",
+            "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay_filter.cpp",
+            "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
           }
         ],
         "entrypoints": [
           "Candidate.simulate_daily_log_returns"
         ],
         "path": "tools/rough_bayesian/overlay.py",
-        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
-        "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
+        "revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
+        "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847"
       }
     },
     "bayesian_mcmc_stochastic_volatility_sbb": {
@@ -8480,15 +8496,23 @@
           },
           {
             "path": "tools/rough_bayesian/run_panel.py",
-            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+            "sha256": "1f404d91277de3ec490de5d8d9c212a9bcdb8a5dafffea92d711db77ebc9bf14"
+          },
+          {
+            "path": "tools/rough_bayesian/native.py",
+            "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay_filter.cpp",
+            "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
           }
         ],
         "entrypoints": [
           "Candidate.simulate_daily_log_returns"
         ],
         "path": "tools/rough_bayesian/overlay.py",
-        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
-        "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
+        "revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
+        "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847"
       },
       "source_seed_context_ref": "asset_level_rough_volterra_overlay_upgrade",
       "source_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG",
@@ -8836,15 +8860,23 @@
           },
           {
             "path": "tools/rough_bayesian/run_panel.py",
-            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+            "sha256": "1f404d91277de3ec490de5d8d9c212a9bcdb8a5dafffea92d711db77ebc9bf14"
+          },
+          {
+            "path": "tools/rough_bayesian/native.py",
+            "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay_filter.cpp",
+            "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
           }
         ],
         "entrypoints": [
           "Candidate.simulate_daily_log_returns"
         ],
         "path": "tools/rough_bayesian/overlay.py",
-        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
-        "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
+        "revision": "30a84e0bbafe6d8bc4f284818a2f751dc607e2f1",
+        "sha256": "0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847"
       },
       "source_seed_context_ref": "asset_level_rough_volterra_overlay_upgrade",
       "source_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG",

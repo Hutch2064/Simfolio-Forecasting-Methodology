@@ -202,8 +202,8 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 ## 012. `asset_rough_volterra_sv_accuracy_lift_bayesian`
 
 - Family: `asset_level_rough_volterra_overlay_upgrade`
-- Resolved-definition SHA-256: `5c4248c7afa7b475a8355030b44c9e957b6d54e76328db2c1a2bccc62c1c6f73`
-- Source: `tools/rough_bayesian/overlay.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598`).
+- Resolved-definition SHA-256: `467591119613c3561e994cf0ee7d5d139ea2c3d65b926fe44044e733b94fa93d`
+- Source: `tools/rough_bayesian/overlay.py` at `30a84e0bbafe6d8bc4f284818a2f751dc607e2f1` (SHA-256 `0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847`).
 - Source entrypoints: `Candidate.simulate_daily_log_returns`.
 - Factory seed contract: `production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG`.
 - Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
@@ -238,8 +238,8 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 ## 014. `asset_rough_volterra_sv_eight_factor_bayesian`
 
 - Family: `asset_level_rough_volterra_overlay_upgrade`
-- Resolved-definition SHA-256: `94a9bf7a92158fe4e0904111c791c04bcf0a0e9a970aa384428b9f3b055e653d`
-- Source: `tools/rough_bayesian/overlay.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598`).
+- Resolved-definition SHA-256: `080bc5f024edca15f91eca488fff2b7df93413f1b011615df3cccc6f3b1b296e`
+- Source: `tools/rough_bayesian/overlay.py` at `30a84e0bbafe6d8bc4f284818a2f751dc607e2f1` (SHA-256 `0c199e1e8cc55d2f06f02e53b013bd94c5d0e9e58bfea1e5fb61ade615203847`).
 - Source entrypoints: `Candidate.simulate_daily_log_returns`.
 - Factory seed contract: `production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG`.
 - Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
