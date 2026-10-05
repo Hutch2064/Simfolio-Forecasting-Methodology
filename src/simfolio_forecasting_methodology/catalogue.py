@@ -21,10 +21,10 @@ from pathlib import Path
 from typing import Any
 
 LEDGER_RESOURCE = "resources/canonical_175/ledger.json"
-EXPECTED_CANONICAL_COUNT = 183
-EXPECTED_SOURCE_RANKS = tuple(range(12, 187)) + (None,) * 8
+EXPECTED_CANONICAL_COUNT = 191
+EXPECTED_SOURCE_RANKS = tuple(range(12, 187)) + (None,) * 16
 EXPECTED_CELLS_PER_MODEL = 701_280
-EXPECTED_MEMBERSHIP_DIGEST = "5ce317e0f6c996714063f2c0bbfcb0291dbe97391762e0ccba30ac29d903d511"
+EXPECTED_MEMBERSHIP_DIGEST = "54fbd29d4a871a2daeb4ea546a1ef51ff0f36df67aab54b618f778e1ffc67cb4"
 
 REQUIRED_MODEL_FIELDS = (
     "public_model_id",
@@ -140,7 +140,7 @@ def _validate_score(model: Mapping[str, Any], root_score: Mapping[str, Any]) -> 
         raise TypeError(f"{model['public_model_id']}: historical score metadata is malformed")
     retained = score["exact_empirical_crps"]
     if retained is None:
-        if (not model['verification_status'].startswith('partial_canonical_score_')
+        if (not model['verification_status'].startswith(('partial_canonical_score_', 'unscored_canonical_candidate_'))
                 or model['historical_rank'] is not None
                 or model['historical_score_verified']
                 or precision.get('retained_source_token') is not None
@@ -159,6 +159,9 @@ def _validate_score(model: Mapping[str, Any], root_score: Mapping[str, Any]) -> 
                 raise ValueError('unfinished portfolio score must be blank')
             if n == 51 and (value is None or not math.isfinite(float(value))):
                 raise ValueError('completed portfolio must retain a finite score')
+        if model['verification_status'].startswith('unscored_canonical_candidate_') and any(
+                row['completed_origins'] != 0 for row in rows):
+            raise ValueError('unscored candidate must have no canonical origin scores')
         return
     retained_decimal = _as_decimal(retained, "historical_score.exact_empirical_crps")
     publication = precision["publication_token"]
@@ -185,7 +188,7 @@ def _validate_artifacts(model: Mapping[str, Any], payload: Mapping[str, Any]) ->
         for field in ("sha256", "manifest_sha256"):
             if not _is_sha256(score_artifact.get(field)):
                 raise ValueError(f"validated score artifact {field} is not SHA-256")
-        if score_artifact.get('scope') == 'partial_canonical':
+        if score_artifact.get('scope') in ('partial_canonical', 'unscored_canonical'):
             rows = model['historical_score']['portfolio_scores']
             if (score_artifact.get('all_denominator_gates_passed') is not False
                     or score_artifact.get('required_tasks_per_model') != 4080
@@ -195,6 +198,8 @@ def _validate_artifacts(model: Mapping[str, Any], payload: Mapping[str, Any]) ->
                     or score_artifact.get('complete_portfolios') != sum(r['completed_origins'] == 51 for r in rows)
                     or score_artifact.get('cells_per_model') != score_artifact['complete_portfolios'] * 8766):
                 raise ValueError('partial score artifact coverage differs from portfolio evidence')
+            if score_artifact['scope'] == 'unscored_canonical' and score_artifact['tasks_per_model'] != 0:
+                raise ValueError('unscored artifact cannot claim completed tasks')
             for name in ('source_code', 'parameter_dictionary'):
                 _validate_optional_sha(digest[name].get('sha256'), f'{name}.sha256')
             return
@@ -356,7 +361,7 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
     canonical_ranks = [model["canonical_rank"] for model in models]
     historical_ranks = [model["historical_rank"] for model in models]
     if canonical_ranks != list(range(1, EXPECTED_CANONICAL_COUNT + 1)):
-        raise ValueError("canonical ranks must be exactly 1..183")
+        raise ValueError(f"canonical ranks must be exactly 1..{EXPECTED_CANONICAL_COUNT}")
     if historical_ranks != list(EXPECTED_SOURCE_RANKS):
         raise ValueError("original historical ranks must be 12..186; added models have null ranks")
     digest = canonical_membership_digest(models)

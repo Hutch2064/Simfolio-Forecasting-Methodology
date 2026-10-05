@@ -82,7 +82,8 @@ def verified_candidate_score_report() -> dict[str, Any]:
                 "display_rank": None,
                 "score_evidence_origin": (
                     "retained_historical_evidence" if model["historical_rank"] is not None
-                    else ("partial_canonical_execution" if model["historical_score"]["exact_empirical_crps"] is None
+                    else ("unscored_canonical_candidate" if model["verification_status"].startswith('unscored_canonical_candidate_')
+                          else "partial_canonical_execution" if model["historical_score"]["exact_empirical_crps"] is None
                           else "validated_full_canonical_execution")
                 ),
                 "is_new_execution": False,
@@ -122,7 +123,8 @@ def verified_candidate_score_report() -> dict[str, Any]:
         "row_count": len(rows),
         "retained_historical_row_count": 175,
         "validated_full_panel_row_count": sum(m["historical_score_verified"] for m in ledger["models"]),
-        "partial_panel_row_count": sum(m["historical_score"]["exact_empirical_crps"] is None for m in ledger["models"]),
+        "partial_panel_row_count": sum(m["verification_status"].startswith('partial_canonical_score_') for m in ledger["models"]),
+        "unscored_candidate_row_count": sum(m["verification_status"].startswith('unscored_canonical_candidate_') for m in ledger["models"]),
         "independently_audited_new_execution_row_count": 0,
         "canonical_membership_digest": ledger["membership"]["membership_digest"],
         "canonical_membership_unchanged": True,

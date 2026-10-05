@@ -1,0 +1,122 @@
+{
+  "scope": "unscored_canonical_candidates",
+  "experiment_id": "bayesian-rough-full-canonical-20261005",
+  "portfolios": 80,
+  "rolling_origins_per_portfolio": 48,
+  "temporal_holdouts_per_portfolio": 3,
+  "origins_per_model": 4080,
+  "cells_per_model": 701280,
+  "simulations": 240,
+  "common_start": "1979-12-31",
+  "scoring": "unchanged public empirical_crps_by_horizon and CellAccumulator; terminal log returns; n squared pairwise denominator; equal portfolio-horizon cell aggregation",
+  "source_revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+  "source_hashes": {
+    "tools/rough_bayesian/inference.py": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199",
+    "tools/rough_bayesian/kernels.py": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b",
+    "tools/rough_bayesian/models.py": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731",
+    "tools/rough_bayesian/overlay.py": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598",
+    "tools/rough_bayesian/run_panel.py": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0",
+    "tools/rough_bayesian/smoke.py": "60fbb67e08924537a7e252c5a0190278382d13b80e96f6ba4e26782fb09cb866"
+  },
+  "models": [
+    {
+      "model_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+      "rough": false,
+      "jumps": false,
+      "vine": false
+    },
+    {
+      "model_id": "asset_rough_volterra_sv_eight_factor",
+      "rough": true,
+      "jumps": false,
+      "vine": false
+    },
+    {
+      "model_id": "asset_bayesian_lifted_rfsv_ess",
+      "kind": "fou",
+      "tolerance": 0.01,
+      "leverage": false,
+      "pgas": false,
+      "burn": 2048,
+      "kept": 8192,
+      "max_kept": 65536
+    },
+    {
+      "model_id": "asset_bayesian_lifted_rfsv_tight_ess",
+      "kind": "fou",
+      "tolerance": 0.001,
+      "leverage": false,
+      "pgas": false,
+      "burn": 2048,
+      "kept": 8192,
+      "max_kept": 65536
+    },
+    {
+      "model_id": "asset_bayesian_lifted_rfsv_ess_terminal_pgas",
+      "kind": "fou",
+      "tolerance": 0.01,
+      "leverage": false,
+      "pgas": true,
+      "burn": 2048,
+      "kept": 8192,
+      "max_kept": 65536
+    },
+    {
+      "model_id": "asset_bayesian_lifted_rfsv_leverage_ess",
+      "kind": "fou",
+      "tolerance": 0.01,
+      "leverage": true,
+      "pgas": false,
+      "burn": 2048,
+      "kept": 8192,
+      "max_kept": 65536
+    },
+    {
+      "model_id": "asset_bayesian_lifted_rough_heston_hmc",
+      "kind": "heston",
+      "tolerance": 0.01,
+      "leverage": true,
+      "pgas": false,
+      "burn": 2048,
+      "kept": 8192,
+      "max_kept": 65536
+    },
+    {
+      "model_id": "asset_bayesian_lifted_rfsv_student_ess",
+      "kind": "fou_t",
+      "tolerance": 0.01,
+      "leverage": false,
+      "pgas": false,
+      "burn": 2048,
+      "kept": 8192,
+      "max_kept": 65536
+    },
+    {
+      "model_id": "asset_rough_volterra_sv_eight_factor_bayesian",
+      "adaptive": false,
+      "burn": 2048,
+      "kept": 8192,
+      "max_kept": 65536
+    },
+    {
+      "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+      "adaptive": true,
+      "burn": 2048,
+      "kept": 8192,
+      "max_kept": 65536
+    }
+  ],
+  "controls": {
+    "production": {
+      "model_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+      "saved_full_panel_crps": "0.25246784959071183",
+      "evidence": "tmp/frontier-complex-20261002/artifacts/parameter-mcmc-tuned-full/results.json"
+    },
+    "prior_rough": {
+      "model_id": "asset_rough_volterra_sv_eight_factor",
+      "saved_full_panel_crps": "0.2511998559613309",
+      "evidence": "docs/results/rough-jump-vine/rough-full-results.json"
+    }
+  },
+  "canonical_scores_pending": true
+}

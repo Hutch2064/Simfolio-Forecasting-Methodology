@@ -2,10 +2,149 @@
 
 Generated from `resources/specifications/canonical_statistical_specifications.json`.
 The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.
-The resource contains all 183 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.
+The resource contains all 191 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.
 Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.
 
-## 001. `asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced`
+## 001. `asset_bayesian_lifted_rfsv_ess`
+
+- Family: `asset_level_bayesian_rough_volatility`
+- Resolved-definition SHA-256: `29936146e0fccfb21527b8cb24834239a1b13cbc03a8f7cb780c625ba7f4d3c5`
+- Source: `tools/rough_bayesian/models.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_bayesian_rough_volatility`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `unscored_research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"H_prior": {"bounds": [0.03, 0.49], "distribution": "truncated_normal", "mean": 0.15, "sd": 0.15}, "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver", "initial_state": "joint_stationary_Gaussian_factor_prior", "kernel": {"alpha": "H+.5", "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)", "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)", "error_tolerance": 0.01, "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)", "factor_count": 33, "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200", "machine_precision_white_aggregation": 1e-15, "numerical_comparison": "nominal_vs_tight_same_underlying_model", "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral", "rate_domain": [1e-11, 1000000000.0]}, "latent_innovations": "all_training_daily_Brownian_innovations", "level_prior": {"bounds": "training_anchor +/- 5", "distribution": "normal", "mean": "log(mean((100*(return-historical_mean))**2))", "sd": 2}, "leverage": false, "log_kappa_prior": {"bounds": ["log(1/2520)", "log(.5)"], "distribution": "normal", "mean": "log(1/63)", "sd": 2}, "log_scale_prior": {"bounds": ["log(.02)", "log(3)"], "distribution": "normal", "mean": "log(.7)", "sd": 1.5}, "model": "daily_cell_projected_fractional_OU_log_variance_RFSV", "production_variance_anchor": false, "replacement": true, "rho_prior": null, "scale_parameter": "stationary_log_variance_sd", "variance_floor": null}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "innovations": "Gaussian_likelihood_matched", "mean_shrink": 0.0, "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path", "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"burn_per_chain": 2048, "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained", "chains": 2, "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS", "diagnostic_flag_gate": {"max_rhat": 1.05, "min_bulk_ess": 100}, "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second", "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim", "hmc_adaptation": {"bounds": [1e-06, 0.2], "initial_step": 0.03, "leapfrog_steps": 4, "target": 0.65, "warmup_only": true}, "kept_per_chain": 8192, "kept_per_chain_maximum": 65536, "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC", "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension", "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH", "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum", "posterior_nodes": null, "retained_draws": 16384, "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension", "retained_draws_maximum": 131072, "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior", "terminal_pgas": null, "thin": 1}`.
+
+## 002. `asset_bayesian_lifted_rfsv_ess_terminal_pgas`
+
+- Family: `asset_level_bayesian_rough_volatility`
+- Resolved-definition SHA-256: `bead82b95118231d65218244ad297d393e703c00bf28d01488394ce7e18a67e6`
+- Source: `tools/rough_bayesian/models.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_bayesian_rough_volatility`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `unscored_research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"H_prior": {"bounds": [0.03, 0.49], "distribution": "truncated_normal", "mean": 0.15, "sd": 0.15}, "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver", "initial_state": "joint_stationary_Gaussian_factor_prior", "kernel": {"alpha": "H+.5", "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)", "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)", "error_tolerance": 0.01, "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)", "factor_count": 33, "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200", "machine_precision_white_aggregation": 1e-15, "numerical_comparison": null, "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral", "rate_domain": [1e-11, 1000000000.0]}, "latent_innovations": "all_training_daily_Brownian_innovations", "level_prior": {"bounds": "training_anchor +/- 5", "distribution": "normal", "mean": "log(mean((100*(return-historical_mean))**2))", "sd": 2}, "leverage": false, "log_kappa_prior": {"bounds": ["log(1/2520)", "log(.5)"], "distribution": "normal", "mean": "log(1/63)", "sd": 2}, "log_scale_prior": {"bounds": ["log(.02)", "log(3)"], "distribution": "normal", "mean": "log(.7)", "sd": 1.5}, "model": "daily_cell_projected_fractional_OU_log_variance_RFSV", "production_variance_anchor": false, "replacement": true, "rho_prior": null, "scale_parameter": "stationary_log_variance_sd", "variance_floor": null}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "innovations": "Gaussian_likelihood_matched", "mean_shrink": 0.0, "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path", "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"burn_per_chain": 2048, "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained", "chains": 2, "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS", "diagnostic_flag_gate": {"max_rhat": 1.05, "min_bulk_ess": 100}, "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second", "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim", "hmc_adaptation": {"bounds": [1e-06, 0.2], "initial_step": 0.03, "leapfrog_steps": 4, "target": 0.65, "warmup_only": true}, "kept_per_chain": 8192, "kept_per_chain_maximum": 65536, "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC", "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension", "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH", "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum", "posterior_nodes": null, "retained_draws": 16384, "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension", "retained_draws_maximum": 131072, "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior", "terminal_pgas": {"ancestor_weights": "exact_all_remaining_block_return_likelihood", "block_days": 32, "global_ESS_update_every_iteration": true, "particles": 8}, "thin": 1}`.
+
+## 003. `asset_bayesian_lifted_rfsv_leverage_ess`
+
+- Family: `asset_level_bayesian_rough_volatility`
+- Resolved-definition SHA-256: `eea1676bad430bccecec381b5e432ac3a5d5556922786b4e46b2fa7a4cef5667`
+- Source: `tools/rough_bayesian/models.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_bayesian_rough_volatility`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `unscored_research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"H_prior": {"bounds": [0.03, 0.49], "distribution": "truncated_normal", "mean": 0.15, "sd": 0.15}, "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver", "initial_state": "joint_stationary_Gaussian_factor_prior", "kernel": {"alpha": "H+.5", "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)", "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)", "error_tolerance": 0.01, "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)", "factor_count": 33, "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200", "machine_precision_white_aggregation": 1e-15, "numerical_comparison": null, "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral", "rate_domain": [1e-11, 1000000000.0]}, "latent_innovations": "all_training_daily_Brownian_innovations", "level_prior": {"bounds": "training_anchor +/- 5", "distribution": "normal", "mean": "log(mean((100*(return-historical_mean))**2))", "sd": 2}, "leverage": true, "log_kappa_prior": {"bounds": ["log(1/2520)", "log(.5)"], "distribution": "normal", "mean": "log(1/63)", "sd": 2}, "log_scale_prior": {"bounds": ["log(.02)", "log(3)"], "distribution": "normal", "mean": "log(.7)", "sd": 1.5}, "model": "daily_cell_projected_fractional_OU_log_variance_RFSV", "production_variance_anchor": false, "replacement": true, "rho_prior": {"bounds": [-2.65, 2.65], "distribution": "normal_on_atanh_rho", "mean": 0, "sd": 1.2}, "scale_parameter": "stationary_log_variance_sd", "variance_floor": null}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "innovations": "Gaussian_likelihood_matched", "mean_shrink": 0.0, "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path", "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"burn_per_chain": 2048, "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained", "chains": 2, "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS", "diagnostic_flag_gate": {"max_rhat": 1.05, "min_bulk_ess": 100}, "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second", "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim", "hmc_adaptation": {"bounds": [1e-06, 0.2], "initial_step": 0.03, "leapfrog_steps": 4, "target": 0.65, "warmup_only": true}, "kept_per_chain": 8192, "kept_per_chain_maximum": 65536, "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC", "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension", "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH", "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum", "posterior_nodes": null, "retained_draws": 16384, "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension", "retained_draws_maximum": 131072, "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior", "terminal_pgas": null, "thin": 1}`.
+
+## 004. `asset_bayesian_lifted_rfsv_student_ess`
+
+- Family: `asset_level_bayesian_rough_volatility`
+- Resolved-definition SHA-256: `e6c873cf66f9b642dde0f0bbf50f93d81e69317abc9c4d6114ec803b0ebdb68a`
+- Source: `tools/rough_bayesian/models.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_bayesian_rough_volatility`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `unscored_research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"H_prior": {"bounds": [0.03, 0.49], "distribution": "truncated_normal", "mean": 0.15, "sd": 0.15}, "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver", "initial_state": "joint_stationary_Gaussian_factor_prior", "kernel": {"alpha": "H+.5", "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)", "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)", "error_tolerance": 0.01, "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)", "factor_count": 33, "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200", "machine_precision_white_aggregation": 1e-15, "numerical_comparison": null, "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral", "rate_domain": [1e-11, 1000000000.0]}, "latent_innovations": "all_training_daily_Brownian_innovations", "level_prior": {"bounds": "training_anchor +/- 5", "distribution": "normal", "mean": "log(mean((100*(return-historical_mean))**2))", "sd": 2}, "leverage": false, "log_kappa_prior": {"bounds": ["log(1/2520)", "log(.5)"], "distribution": "normal", "mean": "log(1/63)", "sd": 2}, "log_scale_prior": {"bounds": ["log(.02)", "log(3)"], "distribution": "normal", "mean": "log(.7)", "sd": 1.5}, "model": "daily_cell_projected_fractional_OU_log_variance_RFSV", "nu_prior": {"bounds": ["log(.05)", "log(98)"], "distribution": "normal_on_log_nu_minus_2", "mean": "log(8)", "sd": 1.2}, "production_variance_anchor": false, "replacement": true, "rho_prior": null, "scale_parameter": "stationary_log_variance_sd", "variance_floor": null}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "innovations": "variance_standardized_Student_t_with_inferred_nu", "mean_shrink": 0.0, "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path", "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"burn_per_chain": 2048, "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained", "chains": 2, "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS", "diagnostic_flag_gate": {"max_rhat": 1.05, "min_bulk_ess": 100}, "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second", "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim", "hmc_adaptation": {"bounds": [1e-06, 0.2], "initial_step": 0.03, "leapfrog_steps": 4, "target": 0.65, "warmup_only": true}, "kept_per_chain": 8192, "kept_per_chain_maximum": 65536, "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC", "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension", "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH", "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum", "posterior_nodes": null, "retained_draws": 16384, "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension", "retained_draws_maximum": 131072, "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior", "terminal_pgas": null, "thin": 1}`.
+
+## 005. `asset_bayesian_lifted_rfsv_tight_ess`
+
+- Family: `asset_level_bayesian_rough_volatility`
+- Resolved-definition SHA-256: `a2cd00970e3e3ad9f89f36efc0b605e52cf8b4cf2ebb6319b704c040e7db543c`
+- Source: `tools/rough_bayesian/models.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_bayesian_rough_volatility`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `unscored_research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"H_prior": {"bounds": [0.03, 0.49], "distribution": "truncated_normal", "mean": 0.15, "sd": 0.15}, "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver", "initial_state": "joint_stationary_Gaussian_factor_prior", "kernel": {"alpha": "H+.5", "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)", "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)", "error_tolerance": 0.001, "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)", "factor_count": 48, "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200", "machine_precision_white_aggregation": 1e-15, "numerical_comparison": "nominal_vs_tight_same_underlying_model", "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral", "rate_domain": [1e-11, 1000000000.0]}, "latent_innovations": "all_training_daily_Brownian_innovations", "level_prior": {"bounds": "training_anchor +/- 5", "distribution": "normal", "mean": "log(mean((100*(return-historical_mean))**2))", "sd": 2}, "leverage": false, "log_kappa_prior": {"bounds": ["log(1/2520)", "log(.5)"], "distribution": "normal", "mean": "log(1/63)", "sd": 2}, "log_scale_prior": {"bounds": ["log(.02)", "log(3)"], "distribution": "normal", "mean": "log(.7)", "sd": 1.5}, "model": "daily_cell_projected_fractional_OU_log_variance_RFSV", "production_variance_anchor": false, "replacement": true, "rho_prior": null, "scale_parameter": "stationary_log_variance_sd", "variance_floor": null}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "innovations": "Gaussian_likelihood_matched", "mean_shrink": 0.0, "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path", "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"burn_per_chain": 2048, "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained", "chains": 2, "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS", "diagnostic_flag_gate": {"max_rhat": 1.05, "min_bulk_ess": 100}, "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second", "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim", "hmc_adaptation": {"bounds": [1e-06, 0.2], "initial_step": 0.03, "leapfrog_steps": 4, "target": 0.65, "warmup_only": true}, "kept_per_chain": 8192, "kept_per_chain_maximum": 65536, "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC", "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension", "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH", "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum", "posterior_nodes": null, "retained_draws": 16384, "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension", "retained_draws_maximum": 131072, "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior", "terminal_pgas": null, "thin": 1}`.
+
+## 006. `asset_bayesian_lifted_rough_heston_hmc`
+
+- Family: `asset_level_bayesian_rough_volatility`
+- Resolved-definition SHA-256: `3ee06569059673a031ad715e050da515b98b25ba91ddeb7045de6c2b90f0b104`
+- Source: `tools/rough_bayesian/models.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_bayesian_rough_volatility`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `unscored_research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"H_prior": {"bounds": [0.03, 0.49], "distribution": "truncated_normal", "mean": 0.15, "sd": 0.15}, "daily_discretization": "drift_implicit_full_truncation_exponential_factor_step", "initial_state": "V0=theta", "kernel": {"alpha": "H+.5", "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)", "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)", "error_tolerance": 0.01, "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)", "factor_count": 32, "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200", "machine_precision_white_aggregation": 1e-15, "numerical_comparison": null, "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral", "rate_domain": [1e-11, 1000000000.0]}, "latent_innovations": "all_training_daily_Brownian_innovations", "level_prior": {"bounds": "training_anchor +/- 5", "distribution": "normal", "mean": "log(mean((100*(return-historical_mean))**2))", "sd": 2}, "leverage": true, "log_kappa_prior": {"bounds": ["log(1/2520)", "log(.5)"], "distribution": "normal", "mean": "log(1/63)", "sd": 2}, "log_scale_prior": {"bounds": ["log(.02)", "log(3)"], "distribution": "normal", "mean": "log(.7)", "sd": 1.5}, "model": "lifted_rough_heston", "production_variance_anchor": false, "replacement": true, "rho_prior": {"bounds": [-2.65, 2.65], "distribution": "normal_on_atanh_rho", "mean": 0, "sd": 1.2}, "scale_parameter": "eta/sqrt(theta)", "variance_floor": 1e-10}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "innovations": "Gaussian_likelihood_matched", "mean_shrink": 0.0, "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path", "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"burn_per_chain": 2048, "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained", "chains": 2, "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS", "diagnostic_flag_gate": {"max_rhat": 1.05, "min_bulk_ess": 100}, "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second", "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim", "hmc_adaptation": {"bounds": [1e-06, 0.05], "initial_step": 0.005, "leapfrog_steps": 8, "target": 0.65, "warmup_only": true}, "kept_per_chain": 8192, "kept_per_chain_maximum": 65536, "latent_updates": "eight_step_analytic_adjoint_HMC", "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension", "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH", "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum", "posterior_nodes": null, "retained_draws": 16384, "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension", "retained_draws_maximum": 131072, "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior", "terminal_pgas": null, "thin": 1}`.
+
+## 007. `asset_compensated_poisson_jump_sv`
+
+- Family: `asset_level_rough_jump_vine_ablation`
+- Resolved-definition SHA-256: `d1bf33e15fa5a01e150a02018c38b5e16ae6010adcbdd7e4aa54aa85d7765f27`
+- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+- ablation_flags: `{"jumps": true, "model_id": "asset_compensated_poisson_jump_sv", "rough": false, "vine": false}`.
+- jumps: `{"compensation": "lambda*mark_mean", "count_dependence": "separate_correlated_uniform_stream", "counts": "exact_Poisson_inverse_CDF", "diffusion_body": "exclude_events_then_center_and_population_variance_normalize", "event_definition": "absolute_filtered_innovation_gt_threshold", "event_prior": [1, 99], "event_sequence": "average_across_sixteen_parameter_nodes", "event_threshold": 3.0, "future_rate": "long_run_rate+(terminal_rate-long_run_rate)*exp(-day/21)", "jump_marks": "Gaussian_tail_pool_mean_and_variance; fallback_mean_0_variance_16", "mark_dependence": "independent_seeded_Gaussian_marks", "terminal_rate": "21_day_EWMA", "variance_normalizer": "sqrt(1+lambda*(mark_variance+mark_mean_squared))"}`.
+
+## 008. `asset_hmm_three_state_full_rvine_sv`
+
+- Family: `asset_level_rough_jump_vine_ablation`
+- Resolved-definition SHA-256: `ba0cd651323c9175e2e77213c81c4d834a86ed141ed3a9e40319cf8c6756a900`
+- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"Gaussian_initialization_iterations": 20, "allow_rotations": true, "chunk_rows": 65536, "correlation_regularization": ".95*weighted_correlation+.05*I", "families": ["independence", "Gaussian", "Student", "Clayton", "Gumbel", "Frank"], "first_future_state": "terminal_filtered_probability @ transition", "initial_transition": "diagonal_.95_off_diagonal_.025", "maximum_HMM_vine_updates": 12, "method": "three_state_HMM_full_regular_vines", "relative_likelihood_tolerance": 1e-05, "selection": "weighted_BIC_full_15_pair_R_vine_each_state", "shared_regime_path_for_two_streams": true, "states": 3, "subsequent_fit": "weighted_parameters_fixed_structures_and_families", "training_input": "rank_PIT_of_posterior_averaged_asset_filtered_innovations", "transition_pseudocount": 0.5, "truncation": null}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+- ablation_flags: `{"jumps": false, "model_id": "asset_hmm_three_state_full_rvine_sv", "rough": false, "vine": true}`.
+
+## 009. `asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced`
 
 - Family: `asset_level_extension`
 - Resolved-definition SHA-256: `550446485804a94de71427d7db10ec6f4d1b9bfbd92efde5c00e294cfb77279e`
@@ -27,7 +166,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `student_scale_mixture` = `false`
   - `turnover_cost_bps` = `15.0`
 
-## 002. `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`
+## 010. `asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced`
 
 - Family: `frontier`
 - Resolved-definition SHA-256: `25760d1badb1ff6f5e37a947a92b84140dc7967b2b20d4a9ac37d7ce4fd41aa6`
@@ -40,7 +179,80 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Dependence component: `frontier.dependence_parameterization`.
 - Portfolio rejoin: `frontier.portfolio_rejoin`.
 
-## 003. `bayesian_mcmc_stochastic_volatility_sbb`
+## 011. `asset_rough_jump_hmm_rvine_sv`
+
+- Family: `asset_level_rough_jump_vine_ablation`
+- Resolved-definition SHA-256: `6e6a80677bd907e1e8506fa2a45feb5c247960f9d1b954e0f11d9ab808953fc0`
+- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"Gaussian_initialization_iterations": 20, "allow_rotations": true, "chunk_rows": 65536, "correlation_regularization": ".95*weighted_correlation+.05*I", "families": ["independence", "Gaussian", "Student", "Clayton", "Gumbel", "Frank"], "first_future_state": "terminal_filtered_probability @ transition", "initial_transition": "diagonal_.95_off_diagonal_.025", "maximum_HMM_vine_updates": 12, "method": "three_state_HMM_full_regular_vines", "relative_likelihood_tolerance": 1e-05, "selection": "weighted_BIC_full_15_pair_R_vine_each_state", "shared_regime_path_for_two_streams": true, "states": 3, "subsequent_fit": "weighted_parameters_fixed_structures_and_families", "training_input": "rank_PIT_of_posterior_averaged_asset_filtered_innovations", "transition_pseudocount": 0.5, "truncation": null}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+- ablation_flags: `{"jumps": true, "model_id": "asset_rough_jump_hmm_rvine_sv", "rough": true, "vine": true}`.
+- rough_volatility: `{"H_bounds": [0.03, 0.49], "approximation": "eight_factor_daily_Gaussian_Volterra", "conditional_state": "eight_dimensional_Gaussian_filter_terminal_posterior", "factor_count": 8, "factor_rate_edges": "geomspace(1/(252*50),4,9)", "ftol": 1e-09, "gtol": 1e-05, "initial_theta": [0.1, "log(1/63)", "log(.7)"], "kappa_bounds": [0.0003968253968253968, 0.5], "level": "training_log_square_sample_mean", "leverage": false, "maxiter": 80, "objective": "Gaussian_log_square_likelihood_plus_weak_log_kappa_and_log_scale_priors", "observation_variance": 4.934802200544679, "optimizer": "L-BFGS-B", "path_transition": "exact_daily_OU_covariance_with_common_driver", "scale_bounds": [0.05, 3.0], "variance_normalizer": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)"}`.
+- jumps: `{"compensation": "lambda*mark_mean", "count_dependence": "separate_correlated_uniform_stream", "counts": "exact_Poisson_inverse_CDF", "diffusion_body": "exclude_events_then_center_and_population_variance_normalize", "event_definition": "absolute_filtered_innovation_gt_threshold", "event_prior": [1, 99], "event_sequence": "average_across_sixteen_parameter_nodes", "event_threshold": 3.0, "future_rate": "long_run_rate+(terminal_rate-long_run_rate)*exp(-day/21)", "jump_marks": "Gaussian_tail_pool_mean_and_variance; fallback_mean_0_variance_16", "mark_dependence": "independent_seeded_Gaussian_marks", "terminal_rate": "21_day_EWMA", "variance_normalizer": "sqrt(1+lambda*(mark_variance+mark_mean_squared))"}`.
+
+## 012. `asset_rough_volterra_sv_accuracy_lift_bayesian`
+
+- Family: `asset_level_rough_volterra_overlay_upgrade`
+- Resolved-definition SHA-256: `5c4248c7afa7b475a8355030b44c9e957b6d54e76328db2c1a2bccc62c1c6f73`
+- Source: `tools/rough_bayesian/overlay.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_rough_volterra_overlay_upgrade`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `unscored_research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"H_prior": {"bounds": [0.03, 0.49], "distribution": "uniform"}, "daily_discretization": "exact exponential OU transition with common continuous Brownian factor covariance", "first_forecast_state": "one OU transition after final filtered observation", "kernel": {"continuous_target": "exp(-kappa*t)*t**(H-.5)/Gamma(H+.5)", "error_metric": "absolute stationary autocorrelation difference", "error_tolerance": 0.001, "factor_selection": "smallest checked log-rate grid meeting .001 on 17 H values, three kappa values and daily-lag mesh through 25200; not optimized to OOS scores", "fast_state_aggregation": "phi <= 1e-15; retain fast-slow and fast-fast covariance", "grid_evidence": {"diagonal_variance": "analytic_exact_with_unresolved_white_remainder", "factors": 33, "log_rate_bins": 16, "maximum_absolute_autocorrelation_error": 0.00031965075874224036, "tolerance": 0.001}, "lift": "three-point log-rate Gauss-Legendre masses; shifted rates x+kappa", "quadrature_rate_domain": [1e-11, 1000000000.0], "stationary_covariance": "C(0)=Gamma(2H)/(2*kappa)**(2H)/Gamma(H+.5)**2; C(t)=exp(-kappa*t)*t**(2H)*U(H+.5,1+2H,2*kappa*t)/Gamma(H+.5)", "unresolved_zero_lag_variance": "analytically sized independent white component; stationary diagonal remains exact"}, "latent_states": "analytically marginalized Gaussian states; terminal filtering posterior sampled per predictive path", "level": "training mean of unchanged winsorized log-square proxy", "log_kappa_prior": {"bounds": ["log(1/2520)", "log(.5)"], "distribution": "truncated_normal", "mean": "log(1/63)", "sd": 2}, "log_scale_prior": {"bounds": ["log(.05)", "log(3)"], "distribution": "truncated_normal", "mean": "log(.7)", "sd": 1.5}, "model": "tempered_fractional_Volterra_log_variance_overlay", "normalization": "conditional E[multiplier**2]=1 preserves production daily expected variance", "parameter_uncertainty": "Bayesian posterior over H, log_kappa, log_scale", "predictive_multiplier": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)", "production_mean_anchor": true, "production_variance_anchor": true, "replacement": false}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1, 1], "innovations": "unchanged production centered empirical standardized nodes", "method": "one actual posterior parameter draw per predictive path, with its Gaussian terminal state", "posterior_multiplier": "production_mean+production_sd*empirical_shock*rough_multiplier"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"burn_per_chain": 2048, "cache_compression": "240 actual parameter draws sampled from all retained draws; retain full diagnostic trace", "chains": 2, "convergence_diagnostics": "rank/folded split Rhat and initial-positive-sequence bulk ESS on parameters and log posterior", "diagnostic_flag_gate": {"max_rhat": 1.05, "min_bulk_ess": 100}, "effective_sample_runtime": "minimum bulk ESS per fit second", "flagged_fits": "retained and explicitly counted; no convergence claim", "kept_per_chain": 8192, "kept_per_chain_maximum": 65536, "parameter_adaptation": "warmup only, Welford covariance every 32 after iteration 64; 2.38**2/3 scaling", "parameter_updates": "symmetric joint Gaussian random-walk Metropolis-Hastings", "posterior_extension": "double retained draws without re-adaptation until diagnostic gates or 65536 per chain", "target": "Gaussian log-square quasi-likelihood with measurement variance pi**2/2; fixed training proxy level; exact Gaussian latent-state marginalization", "thin": 1}`.
+
+## 013. `asset_rough_volterra_sv_eight_factor`
+
+- Family: `asset_level_rough_jump_vine_ablation`
+- Resolved-definition SHA-256: `bd893fa2b5ff3f5fb56d51c8550d059cd8dcde7fda196c9ab0c779398ed26463`
+- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+- ablation_flags: `{"jumps": false, "model_id": "asset_rough_volterra_sv_eight_factor", "rough": true, "vine": false}`.
+- rough_volatility: `{"H_bounds": [0.03, 0.49], "approximation": "eight_factor_daily_Gaussian_Volterra", "conditional_state": "eight_dimensional_Gaussian_filter_terminal_posterior", "factor_count": 8, "factor_rate_edges": "geomspace(1/(252*50),4,9)", "ftol": 1e-09, "gtol": 1e-05, "initial_theta": [0.1, "log(1/63)", "log(.7)"], "kappa_bounds": [0.0003968253968253968, 0.5], "level": "training_log_square_sample_mean", "leverage": false, "maxiter": 80, "objective": "Gaussian_log_square_likelihood_plus_weak_log_kappa_and_log_scale_priors", "observation_variance": 4.934802200544679, "optimizer": "L-BFGS-B", "path_transition": "exact_daily_OU_covariance_with_common_driver", "scale_bounds": [0.05, 3.0], "variance_normalizer": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)"}`.
+
+## 014. `asset_rough_volterra_sv_eight_factor_bayesian`
+
+- Family: `asset_level_rough_volterra_overlay_upgrade`
+- Resolved-definition SHA-256: `94a9bf7a92158fe4e0904111c791c04bcf0a0e9a970aa384428b9f3b055e653d`
+- Source: `tools/rough_bayesian/overlay.py` at `87e6d75e6063cafac30eac127d9e56f3f6f939f7` (SHA-256 `c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_rough_volterra_overlay_upgrade`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `unscored_research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"H_prior": {"bounds": [0.03, 0.49], "distribution": "uniform"}, "daily_discretization": "exact exponential OU transition with common continuous Brownian factor covariance", "first_forecast_state": "one OU transition after final filtered observation", "kernel": {"factor_rates": "geometric_bin_midpoints+kappa", "factor_weights": "integrated x**(-H-.5) bin masses normalized by stationary variance", "factors": 8, "implementation": "unchanged original rough_parameters", "rate_bin_edges": "geomspace(1/(252*50),4,9)"}, "latent_states": "analytically marginalized Gaussian states; terminal filtering posterior sampled per predictive path", "level": "training mean of unchanged winsorized log-square proxy", "log_kappa_prior": {"bounds": ["log(1/2520)", "log(.5)"], "distribution": "truncated_normal", "mean": "log(1/63)", "sd": 2}, "log_scale_prior": {"bounds": ["log(.05)", "log(3)"], "distribution": "truncated_normal", "mean": "log(.7)", "sd": 1.5}, "model": "tempered_fractional_Volterra_log_variance_overlay", "normalization": "conditional E[multiplier**2]=1 preserves production daily expected variance", "parameter_uncertainty": "Bayesian posterior over H, log_kappa, log_scale", "predictive_multiplier": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)", "production_mean_anchor": true, "production_variance_anchor": true, "replacement": false}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1, 1], "innovations": "unchanged production centered empirical standardized nodes", "method": "one actual posterior parameter draw per predictive path, with its Gaussian terminal state", "posterior_multiplier": "production_mean+production_sd*empirical_shock*rough_multiplier"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"burn_per_chain": 2048, "cache_compression": "240 actual parameter draws sampled from all retained draws; retain full diagnostic trace", "chains": 2, "convergence_diagnostics": "rank/folded split Rhat and initial-positive-sequence bulk ESS on parameters and log posterior", "diagnostic_flag_gate": {"max_rhat": 1.05, "min_bulk_ess": 100}, "effective_sample_runtime": "minimum bulk ESS per fit second", "flagged_fits": "retained and explicitly counted; no convergence claim", "kept_per_chain": 8192, "kept_per_chain_maximum": 65536, "parameter_adaptation": "warmup only, Welford covariance every 32 after iteration 64; 2.38**2/3 scaling", "parameter_updates": "symmetric joint Gaussian random-walk Metropolis-Hastings", "posterior_extension": "double retained draws without re-adaptation until diagnostic gates or 65536 per chain", "target": "Gaussian log-square quasi-likelihood with measurement variance pi**2/2; fixed training proxy level; exact Gaussian latent-state marginalization", "thin": 1}`.
+
+## 015. `bayesian_mcmc_stochastic_volatility_sbb`
 
 - Family: `sv_mcmc_sbb`
 - Resolved-definition SHA-256: `3b51bb3c6c3976d9d4438d20ac2f122445580cffe0426699d5793f9bb59e92fc`
@@ -71,7 +283,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"sv_mcmc_sbb"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 004. `bayesian_sbb_ml_vol_overlay_rf_harx_ff6`
+## 016. `bayesian_sbb_ml_vol_overlay_rf_harx_ff6`
 
 - Family: `bayesian_sbb_ml_vol_overlay`
 - Resolved-definition SHA-256: `7eee4dce3cd4a4ff89cc5b0652a47186b81f9e7620a23a5fa436987bec6419ee`
@@ -107,7 +319,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_ml_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 005. `bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe`
+## 017. `bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `821005670aa3bbfd96121dd9221af649852312e1a8c6fdd93a5a1935ce8c7f9b`
@@ -150,7 +362,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"egarch_1_1_volatility_overlay"`
 
-## 006. `bayesian_sbb_overlay_ewma_absolute`
+## 018. `bayesian_sbb_overlay_ewma_absolute`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `fa16bea85396e474ae3551d5591a8a327457992546192d439ee7a88319cb06c1`
@@ -186,7 +398,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 007. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe`
+## 019. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `8986cfc249e0f2c26c368c393c113edfac36d123c136fe16bf3a93864bed17ad`
@@ -223,7 +435,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 008. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty`
+## 020. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `78b52afbf8f2c8b6bd8507b8fcfa39fb17a5d4aa8b725dbb19659fd2dbbec68c`
@@ -260,7 +472,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 009. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe`
+## 021. `bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `8f270b7521ffdebe598a9277d3827be302f28711a683ab513428689bcfbce3bb`
@@ -297,7 +509,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 010. `bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe`
+## 022. `bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `540dc7859351fd17f350af83f6f1ef7bbcdb7e37da5bee63474f87c94d1b3ea2`
@@ -334,7 +546,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 011. `bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean`
+## 023. `bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `a5f28f385b682cbabda23d2f0951897a8250ce648e005d749e23a5b3a7201a02`
@@ -374,7 +586,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"absolute_return_ewma_volatility_overlay"`
 
-## 012. `bayesian_sbb_overlay_ewma_absolute_zero_sharpe`
+## 024. `bayesian_sbb_overlay_ewma_absolute_zero_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `0fb07ea82833f9a45ce0ec99c1aad92ac34e8813234f0a8bdec49d60c45828a2`
@@ -411,7 +623,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 013. `bayesian_sbb_overlay_figarch_1_d_1`
+## 025. `bayesian_sbb_overlay_figarch_1_d_1`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `375a01606da7ca404a86683801c209ad21af1dbb4bb2f04c405a812472b611c8`
@@ -447,7 +659,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 014. `bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe`
+## 026. `bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `9bdf786a8cddc8f5be390abfc077b7614156b5f988776c2a748dfb6547dbe30d`
@@ -484,7 +696,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 015. `bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe`
+## 027. `bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `5d8891bdeec5b7211f30672710f56bb729e1388d9f9e7b4a8e6e8ea9b8adaa5c`
@@ -521,7 +733,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 016. `bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean`
+## 028. `bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `8eef3bccac894f6cfaad8acea1ee7de342794ecc77d27e2405dc42d905bfd57d`
@@ -562,7 +774,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `validation_status` = `"previous_live_garch_incumbent_promoted_from_strict_rank10_baseline"`
   - `vol_model` = `"garch_1_1_volatility_overlay"`
 
-## 017. `bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage`
+## 029. `bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `18812e5db7be62abd241c9805a9fdd1c043d54b807520b838e550e8b04f7e93a`
@@ -599,7 +811,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 018. `bayesian_sbb_overlay_gjr_garch_1_1`
+## 030. `bayesian_sbb_overlay_gjr_garch_1_1`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `d1a64137bc500e66f90d8f0424e01706b2a08c185114863b24443a0a04e5e125`
@@ -635,7 +847,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 019. `bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe`
+## 031. `bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `32ca94941ae6ac54fdb76ce196ef2b8b6e95db4c7ef1b0b67dd2b686a1d94b8e`
@@ -678,7 +890,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
 
-## 020. `bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean`
+## 032. `bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `9f53bdf3383be13e3e671c817fb89a63ee4b3deff414015a7741144e32c878cf`
@@ -719,7 +931,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `validation_status` = `"focused_80_portfolio_validation_candidate"`
   - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
 
-## 021. `bayesian_sbb_overlay_harch_1_5_22`
+## 033. `bayesian_sbb_overlay_harch_1_5_22`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `606ad0f4cf016bcd3dd47924739257a1ee81f37ab2d08482e38025aa7741d163`
@@ -755,7 +967,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 022. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean`
+## 034. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `6bcc12f4a76e5909b70879cbc08bcfbbd4516c0d29114086c9c2ccb1d1d2dc91`
@@ -825,7 +1037,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 023. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty`
+## 035. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `85a4204134fa8b5516ed943f7dece2fdde8c495394fbd6d4af21a98da933bbd6`
@@ -896,7 +1108,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 024. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc`
+## 036. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `a95e5e0a4e3214a07f2de04d7e36f2d8fbb105879b3739e361bf1c686c8c2aca`
@@ -967,7 +1179,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 025. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc`
+## 037. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `2dc202c2dd3c940df29a2334a1b92f41749892d92a609142a5b89dc58de5f68f`
@@ -1038,7 +1250,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 026. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean`
+## 038. `bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `93d90da52839de834149f7e341f018655f9c8b27f9e18bad297f86191379e74e`
@@ -1109,7 +1321,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 027. `bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean`
+## 039. `bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `585ea29c7cb9bc2b04ead09e47fe94aecf66c3485703c145ac09938d59106d4e`
@@ -1179,7 +1391,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 028. `bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor`
+## 040. `bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `b237004a16f4a5bf033824f0cc3fc2b6a4e541031fe9bc86d66d737d7d122c27`
@@ -1250,7 +1462,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 029. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected`
+## 041. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `ab59656280a1eba4af8f1de68bfa8d52b826de88ab250ef42b691c76a215af4d`
@@ -1286,7 +1498,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"bayesian_sbb_vol_overlay"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 030. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor`
+## 042. `bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor`
 
 - Family: `bayesian_sbb_vol_overlay`
 - Resolved-definition SHA-256: `a165a431a2398dd9fcd3f98bf1bac25870d60f810d0147d54536d522afecf4de`
@@ -1327,7 +1539,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `validation_status` = `"clean_rank33_sv_overlay_with_hac_drift_uncertainty_and_harx_ff6_current_vol_anchor_candidate"`
   - `vol_model` = `"sv_ar1_logvol_bias_corrected_volatility_overlay_with_harx_ff6_current_vol_anchor"`
 
-## 031. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 043. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `7d4a1784be8c3a04363930026847f770d10b51835025c0f9107a45c862745c46`
@@ -1341,7 +1553,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 032. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+## 044. `bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `f546752f6900dc0aa47a72b51eaa594eea737f4980b494f145abb8b1cf84b9d0`
@@ -1355,7 +1567,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 033. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 045. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `483138b806a642fe8387784e44479ff20de9de9777c11a94b2692c2ed9a37236`
@@ -1369,7 +1581,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 034. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 046. `bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `4f4029a366115b12a3e548f2b6b9fb6b37ef9ef4a0fbab8e6fb61b37a5a9d560`
@@ -1383,7 +1595,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 035. `bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+## 047. `bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `a6d63d89c9f9500c52c069232a0ed77b8bfce3138dbdf1e2cb201e3eb1f18cb7`
@@ -1397,7 +1609,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 036. `bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+## 048. `bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `80f5ef6e17b1264e713576894fded7f57b26fff93fdc074f9541087b81994bfd`
@@ -1411,7 +1623,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 037. `bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+## 049. `bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `fe8f6ebd8fbb4a2db89b99415292bd202e9234d04b5eba43b5f708078a420848`
@@ -1425,7 +1637,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 038. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 050. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `ec1f9a6158e097eef70c7210fed02dbabeeeb47b609d21fe46f85b44fd67a377`
@@ -1439,7 +1651,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 039. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 051. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `b475d9ba1bb4371ee09d2b7d39e8fc989dbbf6cf9e88f264298798012373c1f1`
@@ -1453,7 +1665,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 040. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 052. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `1616127ad7faa63150d2bfbc13e9411615c1fc623a18e5c655c0651df5f83299`
@@ -1467,7 +1679,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 041. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 053. `bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `8339cae6e0e4a5333430ca5419ae18d6a4553b77885a54312ea0794b2644858a`
@@ -1481,7 +1693,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 042. `bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 054. `bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `3a90a148bbb9f5796fa7fce8ad2808aec68e1d4087dbcecb278664d36a0a14f6`
@@ -1495,7 +1707,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 043. `bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 055. `bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `6ba811e3646c8fa9d050018a4307409740d98ddea4eef2f19ed7d384f9a744d2`
@@ -1509,7 +1721,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 044. `bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 056. `bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `c04e685559c93d056f465627f355df220eb319705f92686ad2ccd59c7ac827a6`
@@ -1523,7 +1735,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 045. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 057. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `4b2a8f155e94300892320af549bc7cedeb3037b9ba2262d23d9350934ecd9f73`
@@ -1537,7 +1749,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 046. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 058. `bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `f8f6a297813307bbb2b093bf4c283bc37e89a1541661cdb3501adc56beb10a44`
@@ -1551,7 +1763,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 047. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 059. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `7e94f000dfeabef0be6533ecf79768de442c9391f3e34d3c8a630c3d8124b970`
@@ -1565,7 +1777,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 048. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 060. `bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e4eb12e44f957b10ba7a9721171544223ac9a3af1f2c5ef0a0b0c9ec106dd81e`
@@ -1579,7 +1791,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 049. `bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 061. `bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `72a5974d775ec7a5690779dd939be21143b9dac318b12f2cf261b942f74e5a29`
@@ -1593,7 +1805,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 050. `bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 062. `bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `b5a294307e4db7c809045213ed7143f931740430353c2d9a08348cb4cb3eab85`
@@ -1607,7 +1819,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 051. `bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 063. `bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `85d16d358a557f494a839267fd6f70d3038013f322f76a9eb14b5f3098a86204`
@@ -1621,7 +1833,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 052. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 064. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `0d75e6169634b933a2ee49b2c06324fdb567e61e765ef74a847b21447cc00dd9`
@@ -1635,7 +1847,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 053. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 065. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `6cfa5d5d3d16f973d7b7e0f989a28bfd579458ea33252ed2806a2b3830540d4c`
@@ -1649,7 +1861,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 054. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 066. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `6750c271ff7bc29b13e305bfa7415cdeb0c5efa0d5150aa3d5e71db2850ee0bd`
@@ -1663,7 +1875,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 055. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 067. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `0888a48f3e95a248824a2e3cf3acbda674554af17da10ecb5a6e8d4dc9c36fcb`
@@ -1677,7 +1889,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 056. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 068. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `9a66e38f7150fdae120aadb45dbd7aaae657c7626f3a805911dfebd2c00a4c91`
@@ -1691,7 +1903,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 057. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 069. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e76930e2a626b50b51221c1bdb0b9f5f0ec4ef1edab339ec7a932f536fff7490`
@@ -1705,7 +1917,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 058. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 070. `bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `5cd63bb4129e878111d9c906bd52750a1cdc76ab67040ceef11f9b69410e995e`
@@ -1719,7 +1931,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 059. `canonical`
+## 071. `canonical`
 
 - Family: `canonical`
 - Resolved-definition SHA-256: `bd99202fbc010a543d7462691777934050f30c2381edd8170e5d86f686a00169`
@@ -1750,7 +1962,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"canonical"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 060. `constant_mean_gaussian`
+## 072. `constant_mean_gaussian`
 
 - Family: `gaussian`
 - Resolved-definition SHA-256: `23892feeca26afefa0b36c6c284423d75da9312538367de61e23bf92a3ce6e3a`
@@ -1788,7 +2000,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_model` = `"constant_sample_volatility"`
   - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
 
-## 061. `constant_mean_student_t`
+## 073. `constant_mean_student_t`
 
 - Family: `student_t`
 - Resolved-definition SHA-256: `1afd1e298f9d5fb017062cebe7b079ccd2314ed53c53d2ae8abab536a2c46d5e`
@@ -1826,7 +2038,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_model` = `"constant_sample_volatility"`
   - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
 
-## 062. `dp_mixture_sv_sbb`
+## 074. `dp_mixture_sv_sbb`
 
 - Family: `sv_extension`
 - Resolved-definition SHA-256: `3ab71f9c9c25b39fefcff2aa7a7cac95991742620fa2e3e331329aff5c792d47`
@@ -1864,7 +2076,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"truncated_dirichlet_process_mixture_stochastic_volatility_proxy"`
 
-## 063. `expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 075. `expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e32e294c2b298e3e60330d7d051206d9099e1b405cf40afcd00dee81adecddcc`
@@ -1878,7 +2090,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 064. `expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+## 076. `expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `d37718f2332792bbb5c42993779f7fab0a32384f643de9d37159450e40a8dca9`
@@ -1892,7 +2104,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 065. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 077. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `7ea39da3251c7c422728f22888a0153f49e4bd81b7ef8721dbb6854b766647e1`
@@ -1906,7 +2118,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 066. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 078. `expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `b9eed43d92676df2576a56847fb80829dbb78bbc1b1b61d42245c8e63a8d1933`
@@ -1920,7 +2132,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 067. `expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+## 079. `expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `8a07736c373bd978a2a2ae2fbd2b8a927485d801c2854b54d46a503b9623ba58`
@@ -1934,7 +2146,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 068. `expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+## 080. `expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `26c5984acf52ccce2202ebfb3b9193156b7f0e67b2490e2ad1b5192167006908`
@@ -1948,7 +2160,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 069. `expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
+## 081. `expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `97013282966bc432e0842990d16f44d343435cdb7ea4c791733cedc274bb7e5f`
@@ -1962,7 +2174,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 070. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 082. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `5f1ee79d494e398d2c495947f67525eb0eb7439d3162b022054e905e0845763e`
@@ -1976,7 +2188,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 071. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 083. `expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `674c570ed189a3d2c277280c68b1610e60046a981d137c499896bbea72870ca2`
@@ -1990,7 +2202,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 072. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 084. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `7a571364452246e17aef2434176634374b2cf4e78e385f2b9c36f50d7d1d8635`
@@ -2004,7 +2216,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 073. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 085. `expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `de1513d5e8406b8c4d865466bdf2619ac39e7a42e78aad5defca5c5323b0829c`
@@ -2018,7 +2230,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 074. `expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 086. `expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `b8c33d9ef113d42629ab7c60abbf599e85e4111a61486fb23c835263d8b7b752`
@@ -2032,7 +2244,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 075. `expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 087. `expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `83f767b727ee16fdf6db8204abaeac56180913f2c3078cf663a496587987429c`
@@ -2046,7 +2258,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 076. `expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 088. `expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `685a6c016ed117b058e168176781dc59c91b0f01eba9b9539558508e22d92994`
@@ -2060,7 +2272,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 077. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 089. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `17b101de6584ba5af6223269ef9fa1ae824411e4a9ad666f4dd2f1ff79f3cb3f`
@@ -2074,7 +2286,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 078. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 090. `expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `b84c45a49441f6e8d3b889c073544ee663cad62b7f867186c4533d9d7020b074`
@@ -2088,7 +2300,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 079. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 091. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `0c8c1b82c0dcb12d9aa70a84dcd25d17b906a51e7cc214f608e6d8e9dc25b9cc`
@@ -2102,7 +2314,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 080. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 092. `expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `27495298400f143381733fe8cf4b0e59f3dff13c0cfad720c6a76b1a952aab05`
@@ -2116,7 +2328,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 081. `expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 093. `expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `304f02194097af07b8537a5095c6d06e62279afcc25295bdf1f9544e95c235d0`
@@ -2130,7 +2342,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 082. `expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 094. `expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `0de91a4cc15aed0562fbd57dbef0066d1f82f286fe3c1e2c04a5f8f7d449f4f5`
@@ -2144,7 +2356,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 083. `expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 095. `expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `9887ae35e246ebfca57e86a93880eebbe647a51173ca74b3287030b3d68d0d18`
@@ -2158,7 +2370,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 084. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 096. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `568d6c656d128697e0eeea1ef20e1b59804f237ada162c2b95383e0dbb5e1178`
@@ -2172,7 +2384,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 085. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 097. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `9f243108dec4f6c8af86b50338705bd5663e610f99d19319aca6777ead3ce034`
@@ -2186,7 +2398,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 086. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 098. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `ab32a1756f374dde65d788e21914ce2008e7e555cc30ed9d72c3ab3a863bea8d`
@@ -2200,7 +2412,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 087. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 099. `expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `a44d4d5ded4f7927ffb8f3315e7d861438ee4e9243a78b5073ca9542503401e8`
@@ -2214,7 +2426,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 088. `expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 100. `expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `19fffc57463ba6c2a3ee159c3e581f1dcbeb811188a4c93b7bec4b071f0ffb5a`
@@ -2228,7 +2440,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 089. `expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 101. `expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `9cfeadadc537b5689e23240a49eb200d8b771c1d33ec98f59a1999811fe90b1f`
@@ -2242,7 +2454,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 090. `expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 102. `expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `143676667a8a7584a4e1a1009f276d03fa1c8d9bd15197c0df5de4ccfa453131`
@@ -2256,7 +2468,55 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 091. `factor_ff6_ridge_residual_sbb_absolute_ewma`
+## 103. `experimental_filtered_innovation_moment_sv_dlm`
+
+- Family: `asset_level_moment_sv`
+- Resolved-definition SHA-256: `00211975c281bb0753f5e4c277a9da6c68c0f4e626c9610d340e0e4c14e62e29`
+- Source: `tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py` at `6666be3597b986aff945b985f11c6419284d0f2c` (SHA-256 `6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150`).
+- Source entrypoints: `FilteredInnovationSV(fixed_mean=False)`.
+- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `validated_full_panel_candidate`.
+- Mean: `{"fixed_mean": false, "latent_mean_state": true, "method": "evidence_estimated_sharpe_dlm_historical_cagr_anchor"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+
+## 104. `experimental_filtered_innovation_moment_sv_fixed_mean`
+
+- Family: `asset_level_moment_sv`
+- Resolved-definition SHA-256: `26bf4be46c35d63792cd6e4d110b346c83e9b13da05efe1f5e1446a0d0532f76`
+- Source: `tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py` at `6666be3597b986aff945b985f11c6419284d0f2c` (SHA-256 `6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150`).
+- Source entrypoints: `FilteredInnovationSV(fixed_mean=True)`.
+- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `previous_production_frontier`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+
+## 105. `experimental_gaussian_moment_matched_sv_empirical_fixed_mean`
+
+- Family: `asset_level_moment_sv`
+- Resolved-definition SHA-256: `03a6e478c77177098f7077dcd6a789a0a188ab5ddd773102ffb1c7ff245fe388`
+- Source: `tmp/frontier-research-20261002/artifacts/fixed_mean_sv_candidates.py` at `6666be3597b986aff945b985f11c6419284d0f2c` (SHA-256 `fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c`).
+- Source entrypoints: `FixedMeanMomentSV`.
+- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `validated_full_panel_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "raw_standardized_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+
+## 106. `factor_ff6_ridge_residual_sbb_absolute_ewma`
 
 - Family: `factor_residual_sbb`
 - Resolved-definition SHA-256: `9fce9ab7b259ccdca460cbd8dd3b9ae9606fb24f6255f01c2003cb0c0c51a04f`
@@ -2300,7 +2560,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"factor_residual_sbb"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 092. `factor_ff6_ridge_residual_sbb_none`
+## 107. `factor_ff6_ridge_residual_sbb_none`
 
 - Family: `factor_residual_sbb`
 - Resolved-definition SHA-256: `0d4d530a6727e3f6f17af6b32ae4df24b199ef8500c0ec42a77110c7b9feb5c3`
@@ -2344,7 +2604,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"factor_residual_sbb"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 093. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 108. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `d7ee9e6d662b303499adaf8e0803327a018b684f1a2c1d39e04e67c9e55ff1e4`
@@ -2358,7 +2618,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 094. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
+## 109. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `3dd44adfbb16474bd576a4067ab0f5221b496e1711d892d2fb165a2983fe84f1`
@@ -2372,7 +2632,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 095. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 110. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `1780dd9c48fc45ed9a5ff7d3c79bd769622a80c6f486db2fe47d7cd4d0f01c7f`
@@ -2386,7 +2646,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 096. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 111. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `086a7843cb5f6d6b938f542208bb797e7291e907a7581fbdd831aca5cd7ce15b`
@@ -2400,7 +2660,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 097. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
+## 112. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `27f70d1f0f9f07594488156198a4e9b11599a278939578e70a0e10a2c57b142c`
@@ -2414,7 +2674,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 098. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric`
+## 113. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `8eea5bbb6e7ba35206962dff4039f4f70f254cd069854311646bfe3486ddd172`
@@ -2428,7 +2688,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 099. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric`
+## 114. `factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `f8d4823ec52f8b8423842d7d9a6ccb75abe1d2be7e8f46881e6e91807533a7af`
@@ -2442,7 +2702,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 100. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 115. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e5c432325e3a7b99a4f48efbf8e84c6e5410d3bc5a7a046087e39a59b1bfc524`
@@ -2456,7 +2716,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 101. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 116. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `66be80a8af69e6d422488a0f08edf0493a2478f19dfba4df7db6811cb7e0001b`
@@ -2470,7 +2730,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 102. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 117. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `7981c8164d9c634af67442c4289ef8f556b1be0dc5222c1757d70cc05c50c184`
@@ -2484,7 +2744,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 103. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 118. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `0608c7f878ce6b4c937d0007285f5cfa02447e8065976a999b1b8f4af51dddfc`
@@ -2498,7 +2758,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 104. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 119. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `12d24e6091a626e4e0b2a5c0067224caec2f4deeef39230cca418c654d3c44d2`
@@ -2512,7 +2772,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 105. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 120. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `e9a3b6be96831a5a34b1686c494d7bcbef7a92056aeee52ecbdaebd969db963b`
@@ -2526,7 +2786,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 106. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 121. `factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `06ba0578413f9a53643f5555453c540e8e20d572efdde6d900b471dfff581b39`
@@ -2540,7 +2800,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 107. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 122. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `ccda944127a6b7e5da40f29bf851ffbd8f66729efadbd7065da0c9f25fc7d6ae`
@@ -2554,7 +2814,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 108. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 123. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `8146e0a83036032591a4b14ea23806ad4ac46741cb027de6c5c0a445d972131c`
@@ -2568,7 +2828,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 109. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 124. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `cc2dce71f73167e791c30e1c550f1b82aa9d37d230032f7d9a146f86fdc1279a`
@@ -2582,7 +2842,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 110. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 125. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `57636119a13ad11fbd06f6e10f689a30988c736d3d3d1dcabff31b7ddeb2a91a`
@@ -2596,7 +2856,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 111. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 126. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `954ff640cb9e2fabc6a1a2edc396018c93ed671089b7de7e00535c278634648e`
@@ -2610,7 +2870,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 112. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 127. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `810ad540768b1a462de73ae9e33694a03e413ae919fea71f5119bcfb3b6da87a`
@@ -2624,7 +2884,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 113. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 128. `factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `11f833ea0eac34da9a459d0e58245d44c00d5c2052259f10a8df4b507a60f6ae`
@@ -2638,7 +2898,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 114. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
+## 129. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `c3b8828f955a90c5f113bfb90a84b13ee0c488c1ff44ed1ef4e5e4ffb053f353`
@@ -2652,7 +2912,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 115. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
+## 130. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `898d2cb84a2d1e3492abe679f54fc3bb0b379648ce2071931fd6688d1f5cc576`
@@ -2666,7 +2926,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "iid", "tail": "filtered_empirical_tail"}`.
 - Path generator: `filtered_historical_simulation`.
 
-## 116. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
+## 131. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `d8e86ec9e242aba177c0736a0dfd5d15d4d863061b9ba15057a4980c94c5452f`
@@ -2680,7 +2940,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "automated_evt_pot_gpd_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 117. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
+## 132. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail`
 
 - Family: `base`
 - Resolved-definition SHA-256: `4a7530ac4c184ebed74ca4aa27383e5ac8d3bbca2606142776c18a07ddb6b51c`
@@ -2694,7 +2954,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "empirical_standardized_residuals", "resampling": "stationary_bootstrap", "tail": "filtered_empirical_tail"}`.
 - Path generator: `stationary_bootstrap_standardized_residuals`.
 
-## 118. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
+## 133. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `603a23053053172ddd97ca15e70e72958a3065d8b1f93f6f5b0cccc3c98f28b3`
@@ -2708,7 +2968,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "gaussian_iid_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 119. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
+## 134. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `c0c31a17d94de1bea54963cd865693246e3a9748a63463dc30eaf2b8bf5523e9`
@@ -2722,7 +2982,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "skew_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 120. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
+## 135. `factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric`
 
 - Family: `base`
 - Resolved-definition SHA-256: `263fbc18897f9f3b2080facb45d30998a0ce6b4e57c20def9b5434eaec2d4832`
@@ -2736,7 +2996,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Innovation: `{"model": "student_t_standardized_innovations", "resampling": null, "tail": "parametric"}`.
 - Path generator: `parametric_monte_carlo`.
 
-## 121. `gas_score_driven_skewt`
+## 136. `gas_score_driven_skewt`
 
 - Family: `gas_score_driven_skewt`
 - Resolved-definition SHA-256: `c2385b130a4c6b7b0dfd1b8d573654679efc9903c25d9227da1a7f6bb54aa653`
@@ -2771,7 +3031,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"gas_score_driven_skewt"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 122. `naive_iid_historical_portfolio_bootstrap`
+## 137. `naive_iid_historical_portfolio_bootstrap`
 
 - Family: `naive_iid_historical_portfolio_bootstrap`
 - Resolved-definition SHA-256: `576cd2dd4124b01d4097d1bcc9b802c1f573ecd39ea6329b5c475421b48fa774`
@@ -2809,7 +3069,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_model` = `"none"`
   - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
 
-## 123. `observable_markov_state_sbb`
+## 138. `observable_markov_state_sbb`
 
 - Family: `sv_extension`
 - Resolved-definition SHA-256: `39dadd258b970db419ca1992956594ca10ed2c6468659d3335b336add8d9420c`
@@ -2847,7 +3107,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"observable_rolling_volatility_tertiles"`
 
-## 124. `portfolio_gjr_garch_eb_sampler_moving_block_optimal`
+## 139. `portfolio_gjr_garch_eb_sampler_moving_block_optimal`
 
 - Family: `portfolio_volatility_extension`
 - Resolved-definition SHA-256: `ed6f507eeebf6a90372fad7993c54746f7c1d550ea0e1f20a8b292681952b5c4`
@@ -2884,7 +3144,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
 
-## 125. `portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal`
+## 140. `portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal`
 
 - Family: `portfolio_volatility_extension`
 - Resolved-definition SHA-256: `f449ceb26dbc63748c3bdc230d282814f4488808e083f05387e9dc2a526dcbf5`
@@ -2921,7 +3181,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"gjr_garch_1_1_volatility_overlay"`
 
-## 126. `stack_canonical_gaussian_w0.50`
+## 141. `stack_canonical_gaussian_w0.50`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `17fe35b19d53a9d3d076f84487472e54e652edffe8a18876078bfe770434f4cd`
@@ -2952,7 +3212,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 127. `stack_canonical_gaussian_w0.60`
+## 142. `stack_canonical_gaussian_w0.60`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `8ede4febbb262caa80ca8eafa4bd0ffe02716efba94d2313e6523502a9e3e2fc`
@@ -2983,7 +3243,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 128. `stack_canonical_gaussian_w0.70`
+## 143. `stack_canonical_gaussian_w0.70`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `502501c0e70a414a4b5c51392ba2e961d062de74fc69bca38712a1b755e41944`
@@ -3014,7 +3274,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 129. `stack_canonical_gaussian_w0.80`
+## 144. `stack_canonical_gaussian_w0.80`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `a28b7caf470768638646e2d66b8e9f0dba73b314ddf337592040e08dad3e73f8`
@@ -3045,7 +3305,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 130. `stack_canonical_gaussian_w0.90`
+## 145. `stack_canonical_gaussian_w0.90`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `e0079f3c731c7facf82f89429cad24f450778dee3250a623b1c810ec0a9728d6`
@@ -3076,7 +3336,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 131. `stack_canonical_gaussian_w1.00`
+## 146. `stack_canonical_gaussian_w1.00`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `7a10f3da30bfb9d84f715ffd96fc484552bb421352b6da45c2cc60b7ae764376`
@@ -3107,7 +3367,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 132. `stack_canonical_student_t_w0.50`
+## 147. `stack_canonical_student_t_w0.50`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `eb7f4f4d5570f70d9f6f178bf30b777358c14ba26350a16ef039b1b0e32453f8`
@@ -3138,7 +3398,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 133. `stack_canonical_student_t_w0.60`
+## 148. `stack_canonical_student_t_w0.60`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `e467cf5b47c34050a113f5501b953124c225c03442db45ff715ae4344e11c61e`
@@ -3169,7 +3429,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 134. `stack_canonical_student_t_w0.70`
+## 149. `stack_canonical_student_t_w0.70`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `bad956d21fb77f985c343a30521c389007be393892d97c93deffbd83613d1e80`
@@ -3200,7 +3460,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 135. `stack_canonical_student_t_w0.80`
+## 150. `stack_canonical_student_t_w0.80`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `e4047e6f50e14fefe72168e8d311d1c7c35f994a4a100f3ac2d4023ad8724dbb`
@@ -3231,7 +3491,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 136. `stack_canonical_student_t_w0.90`
+## 151. `stack_canonical_student_t_w0.90`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `927b8aa81f42081ac5d3a91d5ad8feacd1886008e1ea0ff84f34e4412873bb81`
@@ -3262,7 +3522,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 137. `stack_canonical_student_t_w1.00`
+## 152. `stack_canonical_student_t_w1.00`
 
 - Family: `stack`
 - Resolved-definition SHA-256: `c31df8e1d830a0117abe8adb6e6bef57ae490002a8062a151417cccd6e8ea17b`
@@ -3293,7 +3553,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"stack"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 138. `stochastic_volatility_ar1_empirical`
+## 153. `stochastic_volatility_ar1_empirical`
 
 - Family: `sv`
 - Resolved-definition SHA-256: `9d7c0c344aa9fc471ab5ce85756a98c173359a63b991edd23f361c8b7e1a6682`
@@ -3330,7 +3590,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"stochastic_volatility_ar1_log_variance"`
 
-## 139. `stochastic_volatility_ar1_empirical_sbb`
+## 154. `stochastic_volatility_ar1_empirical_sbb`
 
 - Family: `sv_sbb`
 - Resolved-definition SHA-256: `5fe8571c6c34d6beb59838e310f00a484bf72b10c16db54914032536352b8bea`
@@ -3367,7 +3627,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"stochastic_volatility_ar1_log_variance"`
 
-## 140. `stochastic_volatility_ar1_student_t`
+## 155. `stochastic_volatility_ar1_student_t`
 
 - Family: `sv`
 - Resolved-definition SHA-256: `dc734fb98977385df42d0e2c093cfd8addd039b6af42e0a5b25d74c2a4e92699`
@@ -3397,7 +3657,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `type` = `"sv"`
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
 
-## 141. `sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 156. `sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `e5f855be1b307c86f8a2b07ad6fa24cdb4513fcf08f59314726065ec8e31d9f6`
@@ -3472,7 +3732,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 142. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 157. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `7081170c825cf83df1e987f90b24b99b9c8344a409ab064a7f858a58e107cc80`
@@ -3547,7 +3807,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 143. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 158. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `3fee049637e0cce664b8b7adeb6db129aeb468287693bef0a25f6e739b0ffaec`
@@ -3622,7 +3882,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 144. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 159. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `dbb29503d2a51ffdcb5be3cbb531649033bc83728f74a37fddd48066f58da0ca`
@@ -3697,7 +3957,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 145. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 160. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `d16e7d5cff526fadcac5168b2aef0fc838fbf6415ac35e0eed4d04bd83127697`
@@ -3772,7 +4032,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 146. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 161. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `c9ba72de6f247524c9caa8c105b47a58aa8768f25e47a70224dc2b7abb377a93`
@@ -3847,7 +4107,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 147. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 162. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `86ec554bc58ab4bad0c065b1349ed4db8a0bf63e19ba86ec205d255b8b805bb3`
@@ -3922,7 +4182,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 148. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 163. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `2139fb01b61dfcff1f1fe831aaa1e30538f86b921038e30b703ee9490b421aca`
@@ -3997,7 +4257,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 149. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 164. `sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `fd9abe28c9a6797a7220b48426b053cd32b706384f7d8777b5544d7d6de266a5`
@@ -4072,7 +4332,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 150. `sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc`
+## 165. `sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `89fc6fa01d01d2e56c7e40670b8825145eba012bebaa3d7a93fd5cc6a2c91700`
@@ -4147,7 +4407,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 151. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc`
+## 166. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `7bf1b07592069955df398127ab2ddc23fbbd119f9892caece3dce2d39b498596`
@@ -4222,7 +4482,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 152. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc`
+## 167. `sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `9f714f81bc2e4c94542c6e7eacc75ffe8d32022060125ab03d5cab3368f63f6c`
@@ -4297,7 +4557,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 153. `sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc`
+## 168. `sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `abf971ad156007be2fc2eaecc7105bf25d4e955becc5405118ff6788fc0b5efc`
@@ -4372,7 +4632,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 154. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc`
+## 169. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `6776744e5e3e10a78617d99a4ed10dc0bc5cfae823912dd0a8066d2b58d778a5`
@@ -4447,7 +4707,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 155. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 170. `sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `eae37dab44b567b9d8d2960bab69054e022d3551377d581f71a793bfb81ca0cb`
@@ -4522,7 +4782,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 156. `sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc`
+## 171. `sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `7773967af287d0c301e66320a759d6ef535fd69f876ef6a0a8f7d64926abe17f`
@@ -4597,7 +4857,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 157. `sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 172. `sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `7bad75eeead75c23b7985e8b5045b9d7791744da8bafd0398ab79bcfe85bb351`
@@ -4672,7 +4932,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 158. `sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 173. `sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `c04c05b9f4b6d3991c6ce0b55fddda565b6fa965190241ff3832602514ba5c6a`
@@ -4747,7 +5007,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 159. `sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc`
+## 174. `sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `be4b454ac3db6ce5ff55aa52a15078706bc416a7e7de9f9f43bf3c9b89b0133a`
@@ -4822,7 +5082,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 160. `sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 175. `sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `5b81974fa1d0bbbf71027b7537249f0bcb415fe6813e664c43771e0c999edb66`
@@ -4897,7 +5157,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 161. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 176. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `cc154a00139eba8c81a332ffbcb13974e78bbda42e27e8b48fa47c721ade9878`
@@ -4972,7 +5232,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 162. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 177. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `4da61754d513ea3180f7e127e632e9f38fab8126d8741072ff69ef0ddda9b3c0`
@@ -5047,7 +5307,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 163. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 178. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `956d38f0c6a9930bfed401deec64ebc3be8ef695b1a013717847a1d3af2964a5`
@@ -5122,7 +5382,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 164. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 179. `sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `f7387e1e67f4e6a5761400c6b4fc7605ee08e704598c5e1a4b1743d01674a30c`
@@ -5197,7 +5457,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 165. `sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 180. `sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `37403f7f68e58228626aac526d2f38e52f07a89b32f4fe8be7231c7f2afa8a99`
@@ -5272,7 +5532,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 166. `sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 181. `sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `e059845dca4a32513838672aeb1186405b293c3ec70a079fd59c0763171b3016`
@@ -5347,7 +5607,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 167. `sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 182. `sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `188c50729f7bc95aa4629a0396b06a15309a23217ba2d72cc23a17f94018de80`
@@ -5422,7 +5682,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 168. `sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 183. `sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `34c99100f5df90b1d21c7e81cae8cf93d4953cda5e0c6edc46e0c781e16e4041`
@@ -5497,7 +5757,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 169. `sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 184. `sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `4e5d0e17a17b27528284eeb078751537ec264b5db74f64e53d2e211c550f598c`
@@ -5572,7 +5832,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 170. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale`
+## 185. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale`
 
 - Family: `bdes_non_mcmc_sv_overlay`
 - Resolved-definition SHA-256: `4ae9a3a569b5e24bb4c44337520a0719bf0bb7de4546e48a8236059ba7fe2b65`
@@ -5593,7 +5853,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `student_scale_mixture` = `false`
   - `uses_mcmc` = `false`
 
-## 171. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 186. `sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `c35035ff3161c6ac9e3057f639535092cd1def0ad7bd7edeef732811082050e0`
@@ -5668,7 +5928,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 172. `sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 187. `sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `3a7c9e6461f48b95aef8c04bd97a0afc6ab44ba3924f911cc34fee1308aace33`
@@ -5743,7 +6003,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 173. `sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc`
+## 188. `sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `492e1873eb05cac4a0570891d240c9e9ae4544c059ec1febb00cf68ea68c4dd5`
@@ -5814,7 +6074,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 174. `sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
+## 189. `sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc`
 
 - Family: `full_mcmc_sv`
 - Resolved-definition SHA-256: `de2004c6ccd1fdc2e6d580a80b7abe3ba8feedf48ac4f73da0262c86fc1b4af8`
@@ -5889,7 +6149,24 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `vol_path_blend` = `"none"`
   - `vol_path_model` = `"none"`
 
-## 175. `zero_mean_gaussian_vol_only`
+## 190. `sv_parameter_mcmc_twochain_sixteen_node_moment_mixture`
+
+- Family: `asset_level_moment_sv`
+- Resolved-definition SHA-256: `0101d1a2d39e1b6be1326da4458d8b50b57747a4efea068cb526bb5c8062aec0`
+- Source: `tmp/frontier-complex-20261002/artifacts/parameter_mcmc_tuned.py` at `40928c1364630dc736e8681b508766a0f0a631a2` (SHA-256 `4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377`).
+- Source entrypoints: `ComplexSV + parameter_mcmc_tuned.install`.
+- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `current_production_frontier`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+
+## 191. `zero_mean_gaussian_vol_only`
 
 - Family: `zero_gaussian`
 - Resolved-definition SHA-256: `040ac48c5b0a59a7de4c6b13a535a7eaf843581249cd7846a48348be5e72366c`
@@ -5926,144 +6203,3 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"constant_sample_volatility"`
   - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
-
-## 176. `sv_parameter_mcmc_twochain_sixteen_node_moment_mixture`
-
-- Family: `asset_level_moment_sv`
-- Resolved-definition SHA-256: `0101d1a2d39e1b6be1326da4458d8b50b57747a4efea068cb526bb5c8062aec0`
-- Source: `tmp/frontier-complex-20261002/artifacts/parameter_mcmc_tuned.py` at `40928c1364630dc736e8681b508766a0f0a631a2` (SHA-256 `4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377`).
-- Source entrypoints: `ComplexSV + parameter_mcmc_tuned.install`.
-- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
-- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
-- Source seed context: `asset_level_moment_sv`.
-- Forecast level: `asset_daily_log_return`.
-- Production role: `current_production_frontier`.
-- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
-- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
-- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
-- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
-- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
-
-## 177. `experimental_filtered_innovation_moment_sv_fixed_mean`
-
-- Family: `asset_level_moment_sv`
-- Resolved-definition SHA-256: `26bf4be46c35d63792cd6e4d110b346c83e9b13da05efe1f5e1446a0d0532f76`
-- Source: `tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py` at `6666be3597b986aff945b985f11c6419284d0f2c` (SHA-256 `6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150`).
-- Source entrypoints: `FilteredInnovationSV(fixed_mean=True)`.
-- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
-- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
-- Source seed context: `asset_level_moment_sv`.
-- Forecast level: `asset_daily_log_return`.
-- Production role: `previous_production_frontier`.
-- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
-- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
-- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
-- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
-
-## 178. `experimental_filtered_innovation_moment_sv_dlm`
-
-- Family: `asset_level_moment_sv`
-- Resolved-definition SHA-256: `00211975c281bb0753f5e4c277a9da6c68c0f4e626c9610d340e0e4c14e62e29`
-- Source: `tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py` at `6666be3597b986aff945b985f11c6419284d0f2c` (SHA-256 `6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150`).
-- Source entrypoints: `FilteredInnovationSV(fixed_mean=False)`.
-- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
-- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
-- Source seed context: `asset_level_moment_sv`.
-- Forecast level: `asset_daily_log_return`.
-- Production role: `validated_full_panel_candidate`.
-- Mean: `{"fixed_mean": false, "latent_mean_state": true, "method": "evidence_estimated_sharpe_dlm_historical_cagr_anchor"}`.
-- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
-- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
-- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
-
-## 179. `experimental_gaussian_moment_matched_sv_empirical_fixed_mean`
-
-- Family: `asset_level_moment_sv`
-- Resolved-definition SHA-256: `03a6e478c77177098f7077dcd6a789a0a188ab5ddd773102ffb1c7ff245fe388`
-- Source: `tmp/frontier-research-20261002/artifacts/fixed_mean_sv_candidates.py` at `6666be3597b986aff945b985f11c6419284d0f2c` (SHA-256 `fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c`).
-- Source entrypoints: `FixedMeanMomentSV`.
-- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
-- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
-- Source seed context: `asset_level_moment_sv`.
-- Forecast level: `asset_daily_log_return`.
-- Production role: `validated_full_panel_candidate`.
-- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
-- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
-- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "raw_standardized_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
-- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
-
-## 180. `asset_rough_volterra_sv_eight_factor`
-
-- Family: `asset_level_rough_jump_vine_ablation`
-- Resolved-definition SHA-256: `bd893fa2b5ff3f5fb56d51c8550d059cd8dcde7fda196c9ab0c779398ed26463`
-- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
-- Source entrypoints: `Candidate.simulate_daily_log_returns`.
-- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
-- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
-- Source seed context: `asset_level_moment_sv`.
-- Forecast level: `asset_daily_log_return`.
-- Production role: `research_candidate`.
-- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
-- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
-- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
-- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
-- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
-- ablation_flags: `{"jumps": false, "model_id": "asset_rough_volterra_sv_eight_factor", "rough": true, "vine": false}`.
-- rough_volatility: `{"H_bounds": [0.03, 0.49], "approximation": "eight_factor_daily_Gaussian_Volterra", "conditional_state": "eight_dimensional_Gaussian_filter_terminal_posterior", "factor_count": 8, "factor_rate_edges": "geomspace(1/(252*50),4,9)", "ftol": 1e-09, "gtol": 1e-05, "initial_theta": [0.1, "log(1/63)", "log(.7)"], "kappa_bounds": [0.0003968253968253968, 0.5], "level": "training_log_square_sample_mean", "leverage": false, "maxiter": 80, "objective": "Gaussian_log_square_likelihood_plus_weak_log_kappa_and_log_scale_priors", "observation_variance": 4.934802200544679, "optimizer": "L-BFGS-B", "path_transition": "exact_daily_OU_covariance_with_common_driver", "scale_bounds": [0.05, 3.0], "variance_normalizer": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)"}`.
-
-## 181. `asset_compensated_poisson_jump_sv`
-
-- Family: `asset_level_rough_jump_vine_ablation`
-- Resolved-definition SHA-256: `d1bf33e15fa5a01e150a02018c38b5e16ae6010adcbdd7e4aa54aa85d7765f27`
-- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
-- Source entrypoints: `Candidate.simulate_daily_log_returns`.
-- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
-- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
-- Source seed context: `asset_level_moment_sv`.
-- Forecast level: `asset_daily_log_return`.
-- Production role: `research_candidate`.
-- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
-- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
-- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
-- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
-- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
-- ablation_flags: `{"jumps": true, "model_id": "asset_compensated_poisson_jump_sv", "rough": false, "vine": false}`.
-- jumps: `{"compensation": "lambda*mark_mean", "count_dependence": "separate_correlated_uniform_stream", "counts": "exact_Poisson_inverse_CDF", "diffusion_body": "exclude_events_then_center_and_population_variance_normalize", "event_definition": "absolute_filtered_innovation_gt_threshold", "event_prior": [1, 99], "event_sequence": "average_across_sixteen_parameter_nodes", "event_threshold": 3.0, "future_rate": "long_run_rate+(terminal_rate-long_run_rate)*exp(-day/21)", "jump_marks": "Gaussian_tail_pool_mean_and_variance; fallback_mean_0_variance_16", "mark_dependence": "independent_seeded_Gaussian_marks", "terminal_rate": "21_day_EWMA", "variance_normalizer": "sqrt(1+lambda*(mark_variance+mark_mean_squared))"}`.
-
-## 182. `asset_hmm_three_state_full_rvine_sv`
-
-- Family: `asset_level_rough_jump_vine_ablation`
-- Resolved-definition SHA-256: `ba0cd651323c9175e2e77213c81c4d834a86ed141ed3a9e40319cf8c6756a900`
-- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
-- Source entrypoints: `Candidate.simulate_daily_log_returns`.
-- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
-- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
-- Source seed context: `asset_level_moment_sv`.
-- Forecast level: `asset_daily_log_return`.
-- Production role: `research_candidate`.
-- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
-- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
-- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
-- Dependence: `{"Gaussian_initialization_iterations": 20, "allow_rotations": true, "chunk_rows": 65536, "correlation_regularization": ".95*weighted_correlation+.05*I", "families": ["independence", "Gaussian", "Student", "Clayton", "Gumbel", "Frank"], "first_future_state": "terminal_filtered_probability @ transition", "initial_transition": "diagonal_.95_off_diagonal_.025", "maximum_HMM_vine_updates": 12, "method": "three_state_HMM_full_regular_vines", "relative_likelihood_tolerance": 1e-05, "selection": "weighted_BIC_full_15_pair_R_vine_each_state", "shared_regime_path_for_two_streams": true, "states": 3, "subsequent_fit": "weighted_parameters_fixed_structures_and_families", "training_input": "rank_PIT_of_posterior_averaged_asset_filtered_innovations", "transition_pseudocount": 0.5, "truncation": null}`.
-- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
-- ablation_flags: `{"jumps": false, "model_id": "asset_hmm_three_state_full_rvine_sv", "rough": false, "vine": true}`.
-
-## 183. `asset_rough_jump_hmm_rvine_sv`
-
-- Family: `asset_level_rough_jump_vine_ablation`
-- Resolved-definition SHA-256: `6e6a80677bd907e1e8506fa2a45feb5c247960f9d1b954e0f11d9ab808953fc0`
-- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
-- Source entrypoints: `Candidate.simulate_daily_log_returns`.
-- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
-- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
-- Source seed context: `asset_level_moment_sv`.
-- Forecast level: `asset_daily_log_return`.
-- Production role: `research_candidate`.
-- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
-- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
-- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
-- Dependence: `{"Gaussian_initialization_iterations": 20, "allow_rotations": true, "chunk_rows": 65536, "correlation_regularization": ".95*weighted_correlation+.05*I", "families": ["independence", "Gaussian", "Student", "Clayton", "Gumbel", "Frank"], "first_future_state": "terminal_filtered_probability @ transition", "initial_transition": "diagonal_.95_off_diagonal_.025", "maximum_HMM_vine_updates": 12, "method": "three_state_HMM_full_regular_vines", "relative_likelihood_tolerance": 1e-05, "selection": "weighted_BIC_full_15_pair_R_vine_each_state", "shared_regime_path_for_two_streams": true, "states": 3, "subsequent_fit": "weighted_parameters_fixed_structures_and_families", "training_input": "rank_PIT_of_posterior_averaged_asset_filtered_innovations", "transition_pseudocount": 0.5, "truncation": null}`.
-- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
-- ablation_flags: `{"jumps": true, "model_id": "asset_rough_jump_hmm_rvine_sv", "rough": true, "vine": true}`.
-- rough_volatility: `{"H_bounds": [0.03, 0.49], "approximation": "eight_factor_daily_Gaussian_Volterra", "conditional_state": "eight_dimensional_Gaussian_filter_terminal_posterior", "factor_count": 8, "factor_rate_edges": "geomspace(1/(252*50),4,9)", "ftol": 1e-09, "gtol": 1e-05, "initial_theta": [0.1, "log(1/63)", "log(.7)"], "kappa_bounds": [0.0003968253968253968, 0.5], "level": "training_log_square_sample_mean", "leverage": false, "maxiter": 80, "objective": "Gaussian_log_square_likelihood_plus_weak_log_kappa_and_log_scale_priors", "observation_variance": 4.934802200544679, "optimizer": "L-BFGS-B", "path_transition": "exact_daily_OU_covariance_with_common_driver", "scale_bounds": [0.05, 3.0], "variance_normalizer": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)"}`.
-- jumps: `{"compensation": "lambda*mark_mean", "count_dependence": "separate_correlated_uniform_stream", "counts": "exact_Poisson_inverse_CDF", "diffusion_body": "exclude_events_then_center_and_population_variance_normalize", "event_definition": "absolute_filtered_innovation_gt_threshold", "event_prior": [1, 99], "event_sequence": "average_across_sixteen_parameter_nodes", "event_threshold": 3.0, "future_rate": "long_run_rate+(terminal_rate-long_run_rate)*exp(-day/21)", "jump_marks": "Gaussian_tail_pool_mean_and_variance; fallback_mean_0_variance_16", "mark_dependence": "independent_seeded_Gaussian_marks", "terminal_rate": "21_day_EWMA", "variance_normalizer": "sqrt(1+lambda*(mark_variance+mark_mean_squared))"}`.

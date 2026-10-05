@@ -9,14 +9,17 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **183 models**: the original 175 plus five
+The canonical catalogue contains **191 models**: the original 175 plus five
 asset-level models with validated full-panel scores and three partially scored
-jump and HMM-vine candidates. The current production
+jump and HMM-vine candidates, plus eight new asset-level rough-volatility candidates. Two upgrade the winning
+rough overlay; six compare canonical rough-volatility alternatives.
+Their [implementations and test methodology](docs/rough-bayesian-oos.md) are saved,
+and their official scores remain blank until the full panel completes. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–183 and no historical source rank.
+indices 176–191 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 183 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 191 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -37,8 +40,8 @@ simulations per origin using the whitepaper's exact empirical CRPS and equal
 portfolio-horizon cell weighting. Complete statistical specifications, source
 hashes, run manifests and validation references are recorded per model.
 
-The public package has **176 explicit executable factories**. The remaining
-three additions retain their scored research entrypoints and source details.
+The public package has **176 explicit executable factories**. Other entries
+retain their standalone research entrypoints and source details.
 The [parameter-MCMC report](docs/mcmc-runtime-optimization.md) includes the
 current Frontier's complete-output replay and optimized numerical sources.
 The [alternative SV inference experiments](docs/sv-inference-candidates.md)

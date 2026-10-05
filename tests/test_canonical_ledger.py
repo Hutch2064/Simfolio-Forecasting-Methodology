@@ -36,8 +36,8 @@ def test_membership_is_exact_and_digest_is_immutable():
     payload = load_canonical_ledger()
     models = list(load_canonical_models())
 
-    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 183
-    assert [model["canonical_rank"] for model in models] == list(range(1, 184))
+    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 191
+    assert [model["canonical_rank"] for model in models] == list(range(1, 192))
     assert [model["historical_rank"] for model in models] == list(EXPECTED_SOURCE_RANKS)
     assert canonical_membership_digest(models) == EXPECTED_MEMBERSHIP_DIGEST
     assert payload["membership"]["membership_digest"] == EXPECTED_MEMBERSHIP_DIGEST
@@ -61,7 +61,7 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
     payload = load_canonical_ledger()
     assert tuple(payload["required_model_fields"]) == REQUIRED_MODEL_FIELDS
     resolved_ids = _resolved_specification_ids()
-    assert len(resolved_ids) == 183
+    assert len(resolved_ids) == 191
 
     for model in payload["models"]:
         assert set(model) == set(REQUIRED_MODEL_FIELDS) | {"canonical_rank"}
@@ -133,7 +133,7 @@ def test_retained_lexical_scores_and_public_precision_reconcile():
 def test_compatibility_loader_reads_the_same_ledger_rows():
     payload = load_canonical_ledger()
     rows = load_canonical_175()
-    assert len(rows) == len(payload["models"]) == 183
+    assert len(rows) == len(payload["models"]) == 191
     for row, model in zip(rows, payload["models"]):
         assert row.canonical_rank == model["canonical_rank"]
         assert row.source_rank == model["historical_rank"]
@@ -146,7 +146,7 @@ def test_compatibility_loader_reads_the_same_ledger_rows():
 def test_packaged_resource_load_is_independent_of_cwd(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     models = load_canonical_models()
-    assert len(models) == 183
+    assert len(models) == 191
     assert canonical_model(models[0]["public_model_id"])["canonical_rank"] == 1
 
 
@@ -292,7 +292,7 @@ def test_validated_asset_level_additions_include_all_frontier_generations():
 
 def test_partial_candidates_keep_full_and_unfinished_portfolio_scores_blank():
     payload = load_canonical_ledger()
-    partial = payload['models'][-3:]
+    partial = [m for m in payload['models'] if m['verification_status'].startswith('partial_canonical_score_')]
     for model in partial:
         assert model['historical_score']['exact_empirical_crps'] is None
         assert model['historical_score_verified'] is False
@@ -318,3 +318,20 @@ def test_rough_candidate_completed_panel_score_and_portfolio_coverage():
     assert len(row['historical_score']['portfolio_scores']) == 80
     assert all(r['completed_origins'] == 51 for r in row['historical_score']['portfolio_scores'])
     assert row['source_artifact_digest']['retained_score_artifact']['all_denominator_gates_passed'] is True
+
+
+def test_new_bayesian_candidates_are_wired_without_fabricated_scores():
+    payload = load_canonical_ledger()
+    candidates = [m for m in payload['models']
+                  if m['verification_status'].startswith('unscored_canonical_candidate_')]
+    assert len(candidates) == 8
+    for model in candidates:
+        definition = model['structured_specification']['resolved_definition']
+        assert definition['forecast_level'] == 'asset_daily_log_return'
+        assert definition['parameter_mcmc']['kept_per_chain'] == 8192
+        assert definition['volatility']['production_variance_anchor'] is (definition['family'] == 'asset_level_rough_volterra_overlay_upgrade')
+        assert model['historical_score']['exact_empirical_crps'] is None
+        assert all(row['completed_origins'] == 0 and row['exact_empirical_crps'] is None
+                   for row in model['historical_score']['portfolio_scores'])
+        assert model['historical_score_verified'] is False
+        assert model['source_artifact_digest']['retained_score_artifact']['scope'] == 'unscored_canonical'

@@ -1,14 +1,14 @@
-# Canonical model reference (175 historical + 5 validated + 3 partial additions)
+# Canonical model reference (191 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **183** rows, canonical ranks **1–183**.
+- Membership: **191** rows, canonical ranks **1–191**.
 - Retained source ranks: **12–186**.
-- Membership digest: `5ce317e0f6c996714063f2c0bbfcb0291dbe97391762e0ccba30ac29d903d511`.
+- Membership digest: `54fbd29d4a871a2daeb4ea546a1ef51ff0f36df67aab54b618f778e1ffc67cb4`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **183**.
+- Confirmed full statistical specifications: **191**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -197,3 +197,11 @@ The ledger is the sole membership authority for this public set.
 | 181 | None | asset_compensated_poisson_jump_sv | M181 — Asset Compensated Poisson Jump SV | asset_level_extension | — | — | true | partial_canonical_score_stopped |
 | 182 | None | asset_hmm_three_state_full_rvine_sv | M182 — Asset Three-State HMM + Full R-Vine SV | asset_level_extension | — | — | true | partial_canonical_score_stopped |
 | 183 | None | asset_rough_jump_hmm_rvine_sv | M183 — Asset Rough + Jump + HMM R-Vine SV | asset_level_extension | — | — | true | partial_canonical_score_stopped |
+| 184 | None | asset_bayesian_lifted_rfsv_ess | M184 — Bayesian Lifted RFSV — ESS/HMC | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
+| 185 | None | asset_bayesian_lifted_rfsv_tight_ess | M185 — Bayesian Lifted RFSV — Tight Kernel ESS/HMC | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
+| 186 | None | asset_bayesian_lifted_rfsv_ess_terminal_pgas | M186 — Bayesian Lifted RFSV — ESS/HMC + Terminal PGAS | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
+| 187 | None | asset_bayesian_lifted_rfsv_leverage_ess | M187 — Bayesian Lifted RFSV — Leverage ESS/HMC | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
+| 188 | None | asset_bayesian_lifted_rough_heston_hmc | M188 — Bayesian Lifted Rough Heston — HMC | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
+| 189 | None | asset_bayesian_lifted_rfsv_student_ess | M189 — Bayesian Lifted RFSV — Inferred Student-t ESS/HMC | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
+| 190 | None | asset_rough_volterra_sv_eight_factor_bayesian | M190 — Asset Rough Volterra SV — Eight Factors + Bayesian Parameters | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |
+| 191 | None | asset_rough_volterra_sv_accuracy_lift_bayesian | M191 — Asset Rough Volterra SV — Accuracy-Controlled Lift + Bayesian Parameters | asset_level_extension | — | — | true | unscored_canonical_candidate_wired_smoke_parity_passed |

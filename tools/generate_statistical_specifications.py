@@ -1793,7 +1793,7 @@ def render_readable(resource: dict[str, Any]) -> str:
                     f"- Portfolio rejoin: `{definition['portfolio_rejoin']['ref']}`.",
                 ]
             )
-        elif definition["family"] in {"asset_level_moment_sv", "asset_level_rough_jump_vine_ablation"}:
+        elif definition["family"] in {"asset_level_moment_sv", "asset_level_rough_jump_vine_ablation", "asset_level_bayesian_rough_volatility", "asset_level_rough_volterra_overlay_upgrade"}:
             lines.extend([
                 f"- Forecast level: `{definition['forecast_level']}`.",
                 f"- Production role: `{definition['production_role']}`.",

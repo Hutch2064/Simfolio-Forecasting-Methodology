@@ -1,7 +1,19 @@
 {
   "accepted_model_ids": [
+    "asset_bayesian_lifted_rfsv_ess",
+    "asset_bayesian_lifted_rfsv_ess_terminal_pgas",
+    "asset_bayesian_lifted_rfsv_leverage_ess",
+    "asset_bayesian_lifted_rfsv_student_ess",
+    "asset_bayesian_lifted_rfsv_tight_ess",
+    "asset_bayesian_lifted_rough_heston_hmc",
+    "asset_compensated_poisson_jump_sv",
+    "asset_hmm_three_state_full_rvine_sv",
     "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
     "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+    "asset_rough_jump_hmm_rvine_sv",
+    "asset_rough_volterra_sv_accuracy_lift_bayesian",
+    "asset_rough_volterra_sv_eight_factor",
+    "asset_rough_volterra_sv_eight_factor_bayesian",
     "bayesian_mcmc_stochastic_volatility_sbb",
     "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
     "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
@@ -90,6 +102,9 @@
     "expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
     "expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
     "expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+    "experimental_filtered_innovation_moment_sv_dlm",
+    "experimental_filtered_innovation_moment_sv_fixed_mean",
+    "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
     "factor_ff6_ridge_residual_sbb_absolute_ewma",
     "factor_ff6_ridge_residual_sbb_none",
     "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
@@ -174,17 +189,214 @@
     "sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
     "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc",
     "sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
-    "zero_mean_gaussian_vol_only",
     "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
-    "experimental_filtered_innovation_moment_sv_fixed_mean",
-    "experimental_filtered_innovation_moment_sv_dlm",
-    "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
-    "asset_rough_volterra_sv_eight_factor",
-    "asset_compensated_poisson_jump_sv",
-    "asset_hmm_three_state_full_rvine_sv",
-    "asset_rough_jump_hmm_rvine_sv"
+    "zero_mean_gaussian_vol_only"
   ],
   "bindings": {
+    "asset_bayesian_lifted_rfsv_ess": {
+      "component_refs": [],
+      "definition_fingerprint": "29936146e0fccfb21527b8cb24834239a1b13cbc03a8f7cb780c625ba7f4d3c5",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      }
+    },
+    "asset_bayesian_lifted_rfsv_ess_terminal_pgas": {
+      "component_refs": [],
+      "definition_fingerprint": "bead82b95118231d65218244ad297d393e703c00bf28d01488394ce7e18a67e6",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      }
+    },
+    "asset_bayesian_lifted_rfsv_leverage_ess": {
+      "component_refs": [],
+      "definition_fingerprint": "eea1676bad430bccecec381b5e432ac3a5d5556922786b4e46b2fa7a4cef5667",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      }
+    },
+    "asset_bayesian_lifted_rfsv_student_ess": {
+      "component_refs": [],
+      "definition_fingerprint": "e6c873cf66f9b642dde0f0bbf50f93d81e69317abc9c4d6114ec803b0ebdb68a",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      }
+    },
+    "asset_bayesian_lifted_rfsv_tight_ess": {
+      "component_refs": [],
+      "definition_fingerprint": "a2cd00970e3e3ad9f89f36efc0b605e52cf8b4cf2ebb6319b704c040e7db543c",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      }
+    },
+    "asset_bayesian_lifted_rough_heston_hmc": {
+      "component_refs": [],
+      "definition_fingerprint": "3ee06569059673a031ad715e050da515b98b25ba91ddeb7045de6c2b90f0b104",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      }
+    },
     "asset_compensated_poisson_jump_sv": {
       "component_refs": [],
       "definition_fingerprint": "d1bf33e15fa5a01e150a02018c38b5e16ae6010adcbdd7e4aa54aa85d7765f27",
@@ -578,6 +790,40 @@
         "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
       }
     },
+    "asset_rough_volterra_sv_accuracy_lift_bayesian": {
+      "component_refs": [],
+      "definition_fingerprint": "5c4248c7afa7b475a8355030b44c9e957b6d54e76328db2c1a2bccc62c1c6f73",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/models.py",
+            "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+          },
+          {
+            "path": "tools/rough_jump_vine/models.py",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/overlay.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
+      }
+    },
     "asset_rough_volterra_sv_eight_factor": {
       "component_refs": [],
       "definition_fingerprint": "bd893fa2b5ff3f5fb56d51c8550d059cd8dcde7fda196c9ab0c779398ed26463",
@@ -682,6 +928,40 @@
         "path": "tools/rough_jump_vine/models.py",
         "revision": "f50351a9245c6fb337e7ae8baea728e5a9a72c6d",
         "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+      }
+    },
+    "asset_rough_volterra_sv_eight_factor_bayesian": {
+      "component_refs": [],
+      "definition_fingerprint": "94a9bf7a92158fe4e0904111c791c04bcf0a0e9a970aa384428b9f3b055e653d",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/models.py",
+            "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+          },
+          {
+            "path": "tools/rough_jump_vine/models.py",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/overlay.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
       }
     },
     "bayesian_mcmc_stochastic_volatility_sbb": {
@@ -6232,6 +6512,996 @@
     "zero_mean_gaussian_vol_only"
   ],
   "resolved_definitions": {
+    "asset_bayesian_lifted_rfsv_ess": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "kernel": "fail_if_error_budget_not_met",
+        "paths": "reject_nonfinite_output",
+        "posterior": "training-only diagnostic extension to maximum with explicit flags"
+      },
+      "family": "asset_level_bayesian_rough_volatility",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "burn_per_chain": 2048,
+        "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained",
+        "chains": 2,
+        "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS",
+        "diagnostic_flag_gate": {
+          "max_rhat": 1.05,
+          "min_bulk_ess": 100
+        },
+        "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second",
+        "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim",
+        "hmc_adaptation": {
+          "bounds": [
+            1e-06,
+            0.2
+          ],
+          "initial_step": 0.03,
+          "leapfrog_steps": 4,
+          "target": 0.65,
+          "warmup_only": true
+        },
+        "kept_per_chain": 8192,
+        "kept_per_chain_maximum": 65536,
+        "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC",
+        "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension",
+        "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH",
+        "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum",
+        "posterior_nodes": null,
+        "retained_draws": 16384,
+        "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension",
+        "retained_draws_maximum": 131072,
+        "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior",
+        "terminal_pgas": null,
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "innovations": "Gaussian_likelihood_matched",
+        "mean_shrink": 0.0,
+        "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path",
+        "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"
+      },
+      "production_role": "unscored_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_bayesian_lifted_rfsv_ess",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      },
+      "source_seed_context_ref": "asset_level_bayesian_rough_volatility",
+      "source_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.03,
+            0.49
+          ],
+          "distribution": "truncated_normal",
+          "mean": 0.15,
+          "sd": 0.15
+        },
+        "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver",
+        "initial_state": "joint_stationary_Gaussian_factor_prior",
+        "kernel": {
+          "alpha": "H+.5",
+          "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)",
+          "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)",
+          "error_tolerance": 0.01,
+          "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)",
+          "factor_count": 33,
+          "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200",
+          "machine_precision_white_aggregation": 1e-15,
+          "numerical_comparison": "nominal_vs_tight_same_underlying_model",
+          "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral",
+          "rate_domain": [
+            1e-11,
+            1000000000.0
+          ]
+        },
+        "latent_innovations": "all_training_daily_Brownian_innovations",
+        "level_prior": {
+          "bounds": "training_anchor +/- 5",
+          "distribution": "normal",
+          "mean": "log(mean((100*(return-historical_mean))**2))",
+          "sd": 2
+        },
+        "leverage": false,
+        "log_kappa_prior": {
+          "bounds": [
+            "log(1/2520)",
+            "log(.5)"
+          ],
+          "distribution": "normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "bounds": [
+            "log(.02)",
+            "log(3)"
+          ],
+          "distribution": "normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "model": "daily_cell_projected_fractional_OU_log_variance_RFSV",
+        "production_variance_anchor": false,
+        "replacement": true,
+        "rho_prior": null,
+        "scale_parameter": "stationary_log_variance_sd",
+        "variance_floor": null
+      }
+    },
+    "asset_bayesian_lifted_rfsv_ess_terminal_pgas": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "kernel": "fail_if_error_budget_not_met",
+        "paths": "reject_nonfinite_output",
+        "posterior": "training-only diagnostic extension to maximum with explicit flags"
+      },
+      "family": "asset_level_bayesian_rough_volatility",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "burn_per_chain": 2048,
+        "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained",
+        "chains": 2,
+        "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS",
+        "diagnostic_flag_gate": {
+          "max_rhat": 1.05,
+          "min_bulk_ess": 100
+        },
+        "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second",
+        "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim",
+        "hmc_adaptation": {
+          "bounds": [
+            1e-06,
+            0.2
+          ],
+          "initial_step": 0.03,
+          "leapfrog_steps": 4,
+          "target": 0.65,
+          "warmup_only": true
+        },
+        "kept_per_chain": 8192,
+        "kept_per_chain_maximum": 65536,
+        "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC",
+        "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension",
+        "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH",
+        "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum",
+        "posterior_nodes": null,
+        "retained_draws": 16384,
+        "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension",
+        "retained_draws_maximum": 131072,
+        "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior",
+        "terminal_pgas": {
+          "ancestor_weights": "exact_all_remaining_block_return_likelihood",
+          "block_days": 32,
+          "global_ESS_update_every_iteration": true,
+          "particles": 8
+        },
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "innovations": "Gaussian_likelihood_matched",
+        "mean_shrink": 0.0,
+        "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path",
+        "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"
+      },
+      "production_role": "unscored_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_bayesian_lifted_rfsv_ess_terminal_pgas",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      },
+      "source_seed_context_ref": "asset_level_bayesian_rough_volatility",
+      "source_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.03,
+            0.49
+          ],
+          "distribution": "truncated_normal",
+          "mean": 0.15,
+          "sd": 0.15
+        },
+        "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver",
+        "initial_state": "joint_stationary_Gaussian_factor_prior",
+        "kernel": {
+          "alpha": "H+.5",
+          "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)",
+          "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)",
+          "error_tolerance": 0.01,
+          "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)",
+          "factor_count": 33,
+          "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200",
+          "machine_precision_white_aggregation": 1e-15,
+          "numerical_comparison": null,
+          "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral",
+          "rate_domain": [
+            1e-11,
+            1000000000.0
+          ]
+        },
+        "latent_innovations": "all_training_daily_Brownian_innovations",
+        "level_prior": {
+          "bounds": "training_anchor +/- 5",
+          "distribution": "normal",
+          "mean": "log(mean((100*(return-historical_mean))**2))",
+          "sd": 2
+        },
+        "leverage": false,
+        "log_kappa_prior": {
+          "bounds": [
+            "log(1/2520)",
+            "log(.5)"
+          ],
+          "distribution": "normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "bounds": [
+            "log(.02)",
+            "log(3)"
+          ],
+          "distribution": "normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "model": "daily_cell_projected_fractional_OU_log_variance_RFSV",
+        "production_variance_anchor": false,
+        "replacement": true,
+        "rho_prior": null,
+        "scale_parameter": "stationary_log_variance_sd",
+        "variance_floor": null
+      }
+    },
+    "asset_bayesian_lifted_rfsv_leverage_ess": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "kernel": "fail_if_error_budget_not_met",
+        "paths": "reject_nonfinite_output",
+        "posterior": "training-only diagnostic extension to maximum with explicit flags"
+      },
+      "family": "asset_level_bayesian_rough_volatility",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "burn_per_chain": 2048,
+        "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained",
+        "chains": 2,
+        "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS",
+        "diagnostic_flag_gate": {
+          "max_rhat": 1.05,
+          "min_bulk_ess": 100
+        },
+        "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second",
+        "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim",
+        "hmc_adaptation": {
+          "bounds": [
+            1e-06,
+            0.2
+          ],
+          "initial_step": 0.03,
+          "leapfrog_steps": 4,
+          "target": 0.65,
+          "warmup_only": true
+        },
+        "kept_per_chain": 8192,
+        "kept_per_chain_maximum": 65536,
+        "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC",
+        "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension",
+        "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH",
+        "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum",
+        "posterior_nodes": null,
+        "retained_draws": 16384,
+        "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension",
+        "retained_draws_maximum": 131072,
+        "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior",
+        "terminal_pgas": null,
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "innovations": "Gaussian_likelihood_matched",
+        "mean_shrink": 0.0,
+        "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path",
+        "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"
+      },
+      "production_role": "unscored_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_bayesian_lifted_rfsv_leverage_ess",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      },
+      "source_seed_context_ref": "asset_level_bayesian_rough_volatility",
+      "source_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.03,
+            0.49
+          ],
+          "distribution": "truncated_normal",
+          "mean": 0.15,
+          "sd": 0.15
+        },
+        "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver",
+        "initial_state": "joint_stationary_Gaussian_factor_prior",
+        "kernel": {
+          "alpha": "H+.5",
+          "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)",
+          "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)",
+          "error_tolerance": 0.01,
+          "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)",
+          "factor_count": 33,
+          "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200",
+          "machine_precision_white_aggregation": 1e-15,
+          "numerical_comparison": null,
+          "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral",
+          "rate_domain": [
+            1e-11,
+            1000000000.0
+          ]
+        },
+        "latent_innovations": "all_training_daily_Brownian_innovations",
+        "level_prior": {
+          "bounds": "training_anchor +/- 5",
+          "distribution": "normal",
+          "mean": "log(mean((100*(return-historical_mean))**2))",
+          "sd": 2
+        },
+        "leverage": true,
+        "log_kappa_prior": {
+          "bounds": [
+            "log(1/2520)",
+            "log(.5)"
+          ],
+          "distribution": "normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "bounds": [
+            "log(.02)",
+            "log(3)"
+          ],
+          "distribution": "normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "model": "daily_cell_projected_fractional_OU_log_variance_RFSV",
+        "production_variance_anchor": false,
+        "replacement": true,
+        "rho_prior": {
+          "bounds": [
+            -2.65,
+            2.65
+          ],
+          "distribution": "normal_on_atanh_rho",
+          "mean": 0,
+          "sd": 1.2
+        },
+        "scale_parameter": "stationary_log_variance_sd",
+        "variance_floor": null
+      }
+    },
+    "asset_bayesian_lifted_rfsv_student_ess": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "kernel": "fail_if_error_budget_not_met",
+        "paths": "reject_nonfinite_output",
+        "posterior": "training-only diagnostic extension to maximum with explicit flags"
+      },
+      "family": "asset_level_bayesian_rough_volatility",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "burn_per_chain": 2048,
+        "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained",
+        "chains": 2,
+        "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS",
+        "diagnostic_flag_gate": {
+          "max_rhat": 1.05,
+          "min_bulk_ess": 100
+        },
+        "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second",
+        "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim",
+        "hmc_adaptation": {
+          "bounds": [
+            1e-06,
+            0.2
+          ],
+          "initial_step": 0.03,
+          "leapfrog_steps": 4,
+          "target": 0.65,
+          "warmup_only": true
+        },
+        "kept_per_chain": 8192,
+        "kept_per_chain_maximum": 65536,
+        "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC",
+        "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension",
+        "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH",
+        "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum",
+        "posterior_nodes": null,
+        "retained_draws": 16384,
+        "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension",
+        "retained_draws_maximum": 131072,
+        "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior",
+        "terminal_pgas": null,
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "innovations": "variance_standardized_Student_t_with_inferred_nu",
+        "mean_shrink": 0.0,
+        "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path",
+        "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"
+      },
+      "production_role": "unscored_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_bayesian_lifted_rfsv_student_ess",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      },
+      "source_seed_context_ref": "asset_level_bayesian_rough_volatility",
+      "source_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.03,
+            0.49
+          ],
+          "distribution": "truncated_normal",
+          "mean": 0.15,
+          "sd": 0.15
+        },
+        "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver",
+        "initial_state": "joint_stationary_Gaussian_factor_prior",
+        "kernel": {
+          "alpha": "H+.5",
+          "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)",
+          "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)",
+          "error_tolerance": 0.01,
+          "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)",
+          "factor_count": 33,
+          "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200",
+          "machine_precision_white_aggregation": 1e-15,
+          "numerical_comparison": null,
+          "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral",
+          "rate_domain": [
+            1e-11,
+            1000000000.0
+          ]
+        },
+        "latent_innovations": "all_training_daily_Brownian_innovations",
+        "level_prior": {
+          "bounds": "training_anchor +/- 5",
+          "distribution": "normal",
+          "mean": "log(mean((100*(return-historical_mean))**2))",
+          "sd": 2
+        },
+        "leverage": false,
+        "log_kappa_prior": {
+          "bounds": [
+            "log(1/2520)",
+            "log(.5)"
+          ],
+          "distribution": "normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "bounds": [
+            "log(.02)",
+            "log(3)"
+          ],
+          "distribution": "normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "model": "daily_cell_projected_fractional_OU_log_variance_RFSV",
+        "nu_prior": {
+          "bounds": [
+            "log(.05)",
+            "log(98)"
+          ],
+          "distribution": "normal_on_log_nu_minus_2",
+          "mean": "log(8)",
+          "sd": 1.2
+        },
+        "production_variance_anchor": false,
+        "replacement": true,
+        "rho_prior": null,
+        "scale_parameter": "stationary_log_variance_sd",
+        "variance_floor": null
+      }
+    },
+    "asset_bayesian_lifted_rfsv_tight_ess": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "kernel": "fail_if_error_budget_not_met",
+        "paths": "reject_nonfinite_output",
+        "posterior": "training-only diagnostic extension to maximum with explicit flags"
+      },
+      "family": "asset_level_bayesian_rough_volatility",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "burn_per_chain": 2048,
+        "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained",
+        "chains": 2,
+        "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS",
+        "diagnostic_flag_gate": {
+          "max_rhat": 1.05,
+          "min_bulk_ess": 100
+        },
+        "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second",
+        "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim",
+        "hmc_adaptation": {
+          "bounds": [
+            1e-06,
+            0.2
+          ],
+          "initial_step": 0.03,
+          "leapfrog_steps": 4,
+          "target": 0.65,
+          "warmup_only": true
+        },
+        "kept_per_chain": 8192,
+        "kept_per_chain_maximum": 65536,
+        "latent_updates": "noncentered_elliptical_slice_plus_four_step_analytic_adjoint_HMC",
+        "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension",
+        "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH",
+        "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum",
+        "posterior_nodes": null,
+        "retained_draws": 16384,
+        "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension",
+        "retained_draws_maximum": 131072,
+        "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior",
+        "terminal_pgas": null,
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "innovations": "Gaussian_likelihood_matched",
+        "mean_shrink": 0.0,
+        "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path",
+        "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"
+      },
+      "production_role": "unscored_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_bayesian_lifted_rfsv_tight_ess",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      },
+      "source_seed_context_ref": "asset_level_bayesian_rough_volatility",
+      "source_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.03,
+            0.49
+          ],
+          "distribution": "truncated_normal",
+          "mean": 0.15,
+          "sd": 0.15
+        },
+        "daily_discretization": "cell_averaged_fractional_OU_kernel_shared_daily_Gaussian_driver",
+        "initial_state": "joint_stationary_Gaussian_factor_prior",
+        "kernel": {
+          "alpha": "H+.5",
+          "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)",
+          "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)",
+          "error_tolerance": 0.001,
+          "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)",
+          "factor_count": 48,
+          "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200",
+          "machine_precision_white_aggregation": 1e-15,
+          "numerical_comparison": "nominal_vs_tight_same_underlying_model",
+          "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral",
+          "rate_domain": [
+            1e-11,
+            1000000000.0
+          ]
+        },
+        "latent_innovations": "all_training_daily_Brownian_innovations",
+        "level_prior": {
+          "bounds": "training_anchor +/- 5",
+          "distribution": "normal",
+          "mean": "log(mean((100*(return-historical_mean))**2))",
+          "sd": 2
+        },
+        "leverage": false,
+        "log_kappa_prior": {
+          "bounds": [
+            "log(1/2520)",
+            "log(.5)"
+          ],
+          "distribution": "normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "bounds": [
+            "log(.02)",
+            "log(3)"
+          ],
+          "distribution": "normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "model": "daily_cell_projected_fractional_OU_log_variance_RFSV",
+        "production_variance_anchor": false,
+        "replacement": true,
+        "rho_prior": null,
+        "scale_parameter": "stationary_log_variance_sd",
+        "variance_floor": null
+      }
+    },
+    "asset_bayesian_lifted_rough_heston_hmc": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "kernel": "fail_if_error_budget_not_met",
+        "paths": "reject_nonfinite_output",
+        "posterior": "training-only diagnostic extension to maximum with explicit flags"
+      },
+      "family": "asset_level_bayesian_rough_volatility",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "burn_per_chain": 2048,
+        "cache_compression": "exact_joint_draws_selected_for_configured_240_paths_from_all_retained_draws; full_diagnostic_trace_retained",
+        "chains": 2,
+        "convergence_diagnostics": "rank_and_folded_split_Rhat_and_initial_positive_sequence_bulk_ESS",
+        "diagnostic_flag_gate": {
+          "max_rhat": 1.05,
+          "min_bulk_ess": 100
+        },
+        "effective_sample_runtime": "minimum_bulk_ESS_per_fit_second",
+        "flagged_fits": "retained_and_explicitly_counted_no_convergence_claim",
+        "hmc_adaptation": {
+          "bounds": [
+            1e-06,
+            0.05
+          ],
+          "initial_step": 0.005,
+          "leapfrog_steps": 8,
+          "target": 0.65,
+          "warmup_only": true
+        },
+        "kept_per_chain": 8192,
+        "kept_per_chain_maximum": 65536,
+        "latent_updates": "eight_step_analytic_adjoint_HMC",
+        "parameter_adaptation": "warmup_only; component_scales_every_32_target_.3; Welford_joint_covariance_every_32_after_64; 2.38_squared_over_dimension",
+        "parameter_updates": "componentwise_symmetric_MH_plus_joint_covariance_MH",
+        "posterior_extension": "double_retained_draws_without_restarting_or_readapting_until_Rhat_and_ESS_gates_pass_or_maximum",
+        "posterior_nodes": null,
+        "retained_draws": 16384,
+        "retained_draws_interpretation": "minimum_before_training_only_diagnostic_extension",
+        "retained_draws_maximum": 131072,
+        "target": "joint_raw_return_likelihood_parameter_and_latent_innovation_posterior",
+        "terminal_pgas": null,
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "innovations": "Gaussian_likelihood_matched",
+        "mean_shrink": 0.0,
+        "method": "one_retained_joint_parameter_and_terminal_state_draw_per_path",
+        "variance_units": "percent_squared_in_inference_divide_price_shock_by_100"
+      },
+      "production_role": "unscored_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_bayesian_lifted_rough_heston_hmc",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/models.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+      },
+      "source_seed_context_ref": "asset_level_bayesian_rough_volatility",
+      "source_seed_contract": "production dependence seed; training SHA256 + statistical inference settings + chain index for MCMC; source digest binds fit cache without changing RNG; training SHA256 + inference settings select one posterior draw per predictive path; training SHA256 + origin + horizon + simulations for predictive noise",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.03,
+            0.49
+          ],
+          "distribution": "truncated_normal",
+          "mean": 0.15,
+          "sd": 0.15
+        },
+        "daily_discretization": "drift_implicit_full_truncation_exponential_factor_step",
+        "initial_state": "V0=theta",
+        "kernel": {
+          "alpha": "H+.5",
+          "continuous_fractional_integral": "t**(alpha-1)/Gamma(alpha)",
+          "daily_cell_integral": "((j+1)**alpha-j**alpha)/Gamma(alpha+1)",
+          "error_tolerance": 0.01,
+          "fOU_transform": "x/(x-kappa)*exp(-x*t)-kappa/(x-kappa)*exp(-kappa*t)",
+          "factor_count": 32,
+          "factor_selection": "minimal_grid_meeting_error_budget_over_17_H_values_and_selected_integer_daily_lags_up_to_25200",
+          "machine_precision_white_aggregation": 1e-15,
+          "numerical_comparison": null,
+          "quadrature": "three_point_Gauss_Legendre_in_log_rate_intervals_plus_low_frequency_integral",
+          "rate_domain": [
+            1e-11,
+            1000000000.0
+          ]
+        },
+        "latent_innovations": "all_training_daily_Brownian_innovations",
+        "level_prior": {
+          "bounds": "training_anchor +/- 5",
+          "distribution": "normal",
+          "mean": "log(mean((100*(return-historical_mean))**2))",
+          "sd": 2
+        },
+        "leverage": true,
+        "log_kappa_prior": {
+          "bounds": [
+            "log(1/2520)",
+            "log(.5)"
+          ],
+          "distribution": "normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "bounds": [
+            "log(.02)",
+            "log(3)"
+          ],
+          "distribution": "normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "model": "lifted_rough_heston",
+        "production_variance_anchor": false,
+        "replacement": true,
+        "rho_prior": {
+          "bounds": [
+            -2.65,
+            2.65
+          ],
+          "distribution": "normal_on_atanh_rho",
+          "mean": 0,
+          "sd": 1.2
+        },
+        "scale_parameter": "eta/sqrt(theta)",
+        "variance_floor": 1e-10
+      }
+    },
     "asset_compensated_poisson_jump_sv": {
       "ablation_flags": {
         "jumps": true,
@@ -7142,6 +8412,146 @@
         "parameter_inference": "two_chain_adaptive_metropolis"
       }
     },
+    "asset_rough_volterra_sv_accuracy_lift_bayesian": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG",
+      "failure_semantics": {
+        "kernel": "fail if tested covariance budget is not met",
+        "paths": "reject nonfinite outputs",
+        "posterior": "training-only diagnostic extension to maximum with explicit flags"
+      },
+      "family": "asset_level_rough_volterra_overlay_upgrade",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "burn_per_chain": 2048,
+        "cache_compression": "240 actual parameter draws sampled from all retained draws; retain full diagnostic trace",
+        "chains": 2,
+        "convergence_diagnostics": "rank/folded split Rhat and initial-positive-sequence bulk ESS on parameters and log posterior",
+        "diagnostic_flag_gate": {
+          "max_rhat": 1.05,
+          "min_bulk_ess": 100
+        },
+        "effective_sample_runtime": "minimum bulk ESS per fit second",
+        "flagged_fits": "retained and explicitly counted; no convergence claim",
+        "kept_per_chain": 8192,
+        "kept_per_chain_maximum": 65536,
+        "parameter_adaptation": "warmup only, Welford covariance every 32 after iteration 64; 2.38**2/3 scaling",
+        "parameter_updates": "symmetric joint Gaussian random-walk Metropolis-Hastings",
+        "posterior_extension": "double retained draws without re-adaptation until diagnostic gates or 65536 per chain",
+        "target": "Gaussian log-square quasi-likelihood with measurement variance pi**2/2; fixed training proxy level; exact Gaussian latent-state marginalization",
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1,
+          1
+        ],
+        "innovations": "unchanged production centered empirical standardized nodes",
+        "method": "one actual posterior parameter draw per predictive path, with its Gaussian terminal state",
+        "posterior_multiplier": "production_mean+production_sd*empirical_shock*rough_multiplier"
+      },
+      "production_role": "unscored_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/models.py",
+            "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+          },
+          {
+            "path": "tools/rough_jump_vine/models.py",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/overlay.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
+      },
+      "source_seed_context_ref": "asset_level_rough_volterra_overlay_upgrade",
+      "source_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.03,
+            0.49
+          ],
+          "distribution": "uniform"
+        },
+        "daily_discretization": "exact exponential OU transition with common continuous Brownian factor covariance",
+        "first_forecast_state": "one OU transition after final filtered observation",
+        "kernel": {
+          "continuous_target": "exp(-kappa*t)*t**(H-.5)/Gamma(H+.5)",
+          "error_metric": "absolute stationary autocorrelation difference",
+          "error_tolerance": 0.001,
+          "factor_selection": "smallest checked log-rate grid meeting .001 on 17 H values, three kappa values and daily-lag mesh through 25200; not optimized to OOS scores",
+          "fast_state_aggregation": "phi <= 1e-15; retain fast-slow and fast-fast covariance",
+          "grid_evidence": {
+            "diagonal_variance": "analytic_exact_with_unresolved_white_remainder",
+            "factors": 33,
+            "log_rate_bins": 16,
+            "maximum_absolute_autocorrelation_error": 0.00031965075874224036,
+            "tolerance": 0.001
+          },
+          "lift": "three-point log-rate Gauss-Legendre masses; shifted rates x+kappa",
+          "quadrature_rate_domain": [
+            1e-11,
+            1000000000.0
+          ],
+          "stationary_covariance": "C(0)=Gamma(2H)/(2*kappa)**(2H)/Gamma(H+.5)**2; C(t)=exp(-kappa*t)*t**(2H)*U(H+.5,1+2H,2*kappa*t)/Gamma(H+.5)",
+          "unresolved_zero_lag_variance": "analytically sized independent white component; stationary diagonal remains exact"
+        },
+        "latent_states": "analytically marginalized Gaussian states; terminal filtering posterior sampled per predictive path",
+        "level": "training mean of unchanged winsorized log-square proxy",
+        "log_kappa_prior": {
+          "bounds": [
+            "log(1/2520)",
+            "log(.5)"
+          ],
+          "distribution": "truncated_normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "bounds": [
+            "log(.05)",
+            "log(3)"
+          ],
+          "distribution": "truncated_normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "model": "tempered_fractional_Volterra_log_variance_overlay",
+        "normalization": "conditional E[multiplier**2]=1 preserves production daily expected variance",
+        "parameter_uncertainty": "Bayesian posterior over H, log_kappa, log_scale",
+        "predictive_multiplier": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)",
+        "production_mean_anchor": true,
+        "production_variance_anchor": true,
+        "replacement": false
+      }
+    },
     "asset_rough_volterra_sv_eight_factor": {
       "ablation_flags": {
         "jumps": false,
@@ -7356,6 +8766,132 @@
           252
         ],
         "parameter_inference": "two_chain_adaptive_metropolis"
+      }
+    },
+    "asset_rough_volterra_sv_eight_factor_bayesian": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG",
+      "failure_semantics": {
+        "kernel": "fail if tested covariance budget is not met",
+        "paths": "reject nonfinite outputs",
+        "posterior": "training-only diagnostic extension to maximum with explicit flags"
+      },
+      "family": "asset_level_rough_volterra_overlay_upgrade",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "burn_per_chain": 2048,
+        "cache_compression": "240 actual parameter draws sampled from all retained draws; retain full diagnostic trace",
+        "chains": 2,
+        "convergence_diagnostics": "rank/folded split Rhat and initial-positive-sequence bulk ESS on parameters and log posterior",
+        "diagnostic_flag_gate": {
+          "max_rhat": 1.05,
+          "min_bulk_ess": 100
+        },
+        "effective_sample_runtime": "minimum bulk ESS per fit second",
+        "flagged_fits": "retained and explicitly counted; no convergence claim",
+        "kept_per_chain": 8192,
+        "kept_per_chain_maximum": 65536,
+        "parameter_adaptation": "warmup only, Welford covariance every 32 after iteration 64; 2.38**2/3 scaling",
+        "parameter_updates": "symmetric joint Gaussian random-walk Metropolis-Hastings",
+        "posterior_extension": "double retained draws without re-adaptation until diagnostic gates or 65536 per chain",
+        "target": "Gaussian log-square quasi-likelihood with measurement variance pi**2/2; fixed training proxy level; exact Gaussian latent-state marginalization",
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1,
+          1
+        ],
+        "innovations": "unchanged production centered empirical standardized nodes",
+        "method": "one actual posterior parameter draw per predictive path, with its Gaussian terminal state",
+        "posterior_multiplier": "production_mean+production_sd*empirical_shock*rough_multiplier"
+      },
+      "production_role": "unscored_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_rough_volterra_sv_eight_factor_bayesian",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "tools/rough_bayesian/models.py",
+            "sha256": "6916a1b491aaaddc840ee55f07075f7cf295e2dac89ef55322a6963c5884f731"
+          },
+          {
+            "path": "tools/rough_jump_vine/models.py",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "4001ca046ed1a7ad916942c7921b296ec36dc99840ba149444f90b8ef9de84b0"
+          }
+        ],
+        "entrypoints": [
+          "Candidate.simulate_daily_log_returns"
+        ],
+        "path": "tools/rough_bayesian/overlay.py",
+        "revision": "87e6d75e6063cafac30eac127d9e56f3f6f939f7",
+        "sha256": "c8b5b61aed470a525ba20048b3bf559369c8a5b134afcc6cea3b17a36c7a5598"
+      },
+      "source_seed_context_ref": "asset_level_rough_volterra_overlay_upgrade",
+      "source_seed_contract": "production dependence seed; training SHA256 + overlay settings + chain index for parameter MCMC; training SHA256 + overlay settings selects posterior parameters; training SHA256 + origin + horizon + simulations drives asset rough multipliers; source hashes bind cache without changing RNG",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.03,
+            0.49
+          ],
+          "distribution": "uniform"
+        },
+        "daily_discretization": "exact exponential OU transition with common continuous Brownian factor covariance",
+        "first_forecast_state": "one OU transition after final filtered observation",
+        "kernel": {
+          "factor_rates": "geometric_bin_midpoints+kappa",
+          "factor_weights": "integrated x**(-H-.5) bin masses normalized by stationary variance",
+          "factors": 8,
+          "implementation": "unchanged original rough_parameters",
+          "rate_bin_edges": "geomspace(1/(252*50),4,9)"
+        },
+        "latent_states": "analytically marginalized Gaussian states; terminal filtering posterior sampled per predictive path",
+        "level": "training mean of unchanged winsorized log-square proxy",
+        "log_kappa_prior": {
+          "bounds": [
+            "log(1/2520)",
+            "log(.5)"
+          ],
+          "distribution": "truncated_normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "bounds": [
+            "log(.05)",
+            "log(3)"
+          ],
+          "distribution": "truncated_normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "model": "tempered_fractional_Volterra_log_variance_overlay",
+        "normalization": "conditional E[multiplier**2]=1 preserves production daily expected variance",
+        "parameter_uncertainty": "Bayesian posterior over H, log_kappa, log_scale",
+        "predictive_multiplier": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)",
+        "production_mean_anchor": true,
+        "production_variance_anchor": true,
+        "replacement": false
       }
     },
     "bayesian_mcmc_stochastic_volatility_sbb": {

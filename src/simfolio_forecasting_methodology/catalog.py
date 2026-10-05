@@ -54,7 +54,7 @@ def validate_canonical_175(rows: list[CanonicalRow]) -> None:
     if len(rows) != EXPECTED_CANONICAL_COUNT:
         raise ValueError(f"canonical catalogue must contain {EXPECTED_CANONICAL_COUNT} rows")
     if [row.canonical_rank for row in rows] != list(range(1, EXPECTED_CANONICAL_COUNT + 1)):
-        raise ValueError("canonical ranks must be exactly 1..183")
+        raise ValueError(f"canonical ranks must be exactly 1..{EXPECTED_CANONICAL_COUNT}")
     if tuple(row.source_rank for row in rows) != EXPECTED_SOURCE_RANKS:
         raise ValueError("source ranks must be exactly 12..186")
     ids = [row.model_id for row in rows]
