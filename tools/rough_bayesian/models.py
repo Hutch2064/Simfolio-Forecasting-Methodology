@@ -24,7 +24,7 @@ sys.modules[spec.name] = controls
 spec.loader.exec_module(controls)
 
 import optimized_mcmc as opt
-from inference import chain, configuration, gaussian_path, heston_path
+from inference import chain, configuration, heston_path
 from kernels import grid
 from streamed_paths import rejoin
 from simfolio_forecasting_methodology.models.asset_level.frontier import (

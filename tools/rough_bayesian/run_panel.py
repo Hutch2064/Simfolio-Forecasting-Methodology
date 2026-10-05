@@ -14,6 +14,7 @@ import models
 
 spec = importlib.util.spec_from_file_location('canonical_rough_runner', ROOT / 'tools/rough_jump_vine/run_panel.py')
 runner = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = runner
 spec.loader.exec_module(runner)
 original_hashes = runner.source_hashes
 original_evaluate = runner.evaluate
