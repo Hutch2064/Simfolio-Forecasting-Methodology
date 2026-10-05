@@ -3513,5 +3513,25 @@
       "production_frontier": 0.03601224657144694,
       "production_default": 0.04001637986020641
     }
+  },
+  "unchanged_harness_pilot": {
+    "scope": "one_origin_pilot_not_full_panel",
+    "models": [
+      "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+      "asset_rough_volterra_sv_dynamic_standalone_bayesian",
+      "asset_rough_volterra_sv_dynamic_exact_mixture_overlay",
+      "asset_rough_volterra_sv_dynamic_exact_mixture_standalone"
+    ],
+    "manifest_sha256": "9c78a185037a93d1dbe4a471a65e3786bcd73e98d41efa193630ab44435a769a",
+    "production_control_complete_loss_vector_byte_exact": true,
+    "best_reference_snapshot_tasks_and_scoring_dimensions_match": true,
+    "converged_asset_fits": 18,
+    "total_candidate_asset_fits": 18,
+    "loss_sha256": {
+      "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture": "2bbe936c31036a0104bc3b78c8271eb9d812e4347d07a063db72259e2cfcbcb8",
+      "asset_rough_volterra_sv_dynamic_standalone_bayesian": "bb16568bd994fd6ff189ba12e70202c3f7735b4034c570e1c500f96984e07b6f",
+      "asset_rough_volterra_sv_dynamic_exact_mixture_overlay": "88436bdac2f2914ce2b5b182e2bd512d40e7b577084ae6229d89365c6254c4d5",
+      "asset_rough_volterra_sv_dynamic_exact_mixture_standalone": "b7a0e81063e2d73710a95e6a726bf430e55d473f296aa32daffd49f0c0405219"
+    }
   }
 }
