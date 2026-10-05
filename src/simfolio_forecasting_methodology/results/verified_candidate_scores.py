@@ -82,7 +82,8 @@ def verified_candidate_score_report() -> dict[str, Any]:
                 "display_rank": None,
                 "score_evidence_origin": (
                     "retained_historical_evidence" if model["historical_rank"] is not None
-                    else "validated_full_canonical_execution"
+                    else ("partial_canonical_execution" if model["historical_score"]["exact_empirical_crps"] is None
+                          else "validated_full_canonical_execution")
                 ),
                 "is_new_execution": False,
                 "historical_score_verified": model["historical_score_verified"],
@@ -91,14 +92,15 @@ def verified_candidate_score_report() -> dict[str, Any]:
         )
     rows.sort(
         key=lambda row: (
-            Decimal(row["exact_empirical_crps"]),
+            Decimal(row["exact_empirical_crps"]) if row["exact_empirical_crps"] is not None
+            else Decimal("Infinity"),
             row["canonical_rank"] is None,
             row["canonical_rank"] or 0,
             row["public_model_id"],
         )
     )
     for rank, row in enumerate(rows, start=1):
-        row["display_rank"] = rank
+        row["display_rank"] = rank if row["exact_empirical_crps"] is not None else None
 
     paired_rows = [
         {
@@ -119,7 +121,8 @@ def verified_candidate_score_report() -> dict[str, Any]:
         "ranking_rule": "one-based numeric sort position by exact empirical CRPS across mixed evidence origins",
         "row_count": len(rows),
         "retained_historical_row_count": 175,
-        "validated_full_panel_row_count": len(ledger["models"]) - 175,
+        "validated_full_panel_row_count": sum(m["historical_score_verified"] for m in ledger["models"]),
+        "partial_panel_row_count": sum(m["historical_score"]["exact_empirical_crps"] is None for m in ledger["models"]),
         "independently_audited_new_execution_row_count": 0,
         "canonical_membership_digest": ledger["membership"]["membership_digest"],
         "canonical_membership_unchanged": True,

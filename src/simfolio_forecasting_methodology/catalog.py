@@ -22,10 +22,10 @@ class CanonicalRow:
     canonical_rank: int
     source_rank: int | None
     model_id: str
-    exact_empirical_crps: float
+    exact_empirical_crps: float | None
     cells: int
-    exact_empirical_crps_text: str = ""
-    publication_empirical_crps_text: str = ""
+    exact_empirical_crps_text: str | None = ""
+    publication_empirical_crps_text: str | None = ""
 
 
 def load_canonical_175(root: Path | None = None) -> list[CanonicalRow]:
@@ -38,7 +38,8 @@ def load_canonical_175(root: Path | None = None) -> list[CanonicalRow]:
             canonical_rank=model["canonical_rank"],
             source_rank=model["historical_rank"],
             model_id=model["public_model_id"],
-            exact_empirical_crps=float(model["historical_score"]["exact_empirical_crps"]),
+            exact_empirical_crps=(None if model["historical_score"]["exact_empirical_crps"] is None
+                                  else float(model["historical_score"]["exact_empirical_crps"])),
             cells=cells,
             exact_empirical_crps_text=model["historical_score"]["exact_empirical_crps"],
             publication_empirical_crps_text=model["score_precision"]["publication_token"],
@@ -53,7 +54,7 @@ def validate_canonical_175(rows: list[CanonicalRow]) -> None:
     if len(rows) != EXPECTED_CANONICAL_COUNT:
         raise ValueError(f"canonical catalogue must contain {EXPECTED_CANONICAL_COUNT} rows")
     if [row.canonical_rank for row in rows] != list(range(1, EXPECTED_CANONICAL_COUNT + 1)):
-        raise ValueError("canonical ranks must be exactly 1..179")
+        raise ValueError("canonical ranks must be exactly 1..183")
     if tuple(row.source_rank for row in rows) != EXPECTED_SOURCE_RANKS:
         raise ValueError("source ranks must be exactly 12..186")
     ids = [row.model_id for row in rows]

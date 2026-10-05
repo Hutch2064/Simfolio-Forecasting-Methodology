@@ -1,14 +1,14 @@
-# Canonical model reference (175 historical + 4 validated additions)
+# Canonical model reference (175 historical + 4 validated + 4 partial additions)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **179** rows, canonical ranks **1–179**.
+- Membership: **183** rows, canonical ranks **1–183**.
 - Retained source ranks: **12–186**.
-- Membership digest: `de9b8baf119a50d1b2093823731e88dcd8ae835e7b9c720259507d789c61ec0b`.
+- Membership digest: `5ce317e0f6c996714063f2c0bbfcb0291dbe97391762e0ccba30ac29d903d511`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **179**.
+- Confirmed full statistical specifications: **183**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -193,3 +193,7 @@ The ledger is the sole membership authority for this public set.
 | 177 | None | experimental_filtered_innovation_moment_sv_fixed_mean | M177 — Asset Filtered Innovation Moment SV + Fixed Mean | asset_level_extension | 0.25439860867855635 | 0.254398609 | true | validated_full_canonical_score |
 | 178 | None | experimental_filtered_innovation_moment_sv_dlm | M178 — Asset Filtered Innovation Moment SV + DLM | asset_level_extension | 0.2547972662964723 | 0.254797266 | true | validated_full_canonical_score |
 | 179 | None | experimental_gaussian_moment_matched_sv_empirical_fixed_mean | M179 — Asset Gaussian Moment SV + Fixed Mean | asset_level_extension | 0.2588375710788695 | 0.258837571 | true | validated_full_canonical_score |
+| 180 | None | asset_rough_volterra_sv_eight_factor | M180 — Asset Rough Volterra SV — Eight Factors | asset_level_extension | — | — | true | partial_canonical_score_rough_continuing |
+| 181 | None | asset_compensated_poisson_jump_sv | M181 — Asset Compensated Poisson Jump SV | asset_level_extension | — | — | true | partial_canonical_score_stopped |
+| 182 | None | asset_hmm_three_state_full_rvine_sv | M182 — Asset Three-State HMM + Full R-Vine SV | asset_level_extension | — | — | true | partial_canonical_score_stopped |
+| 183 | None | asset_rough_jump_hmm_rvine_sv | M183 — Asset Rough + Jump + HMM R-Vine SV | asset_level_extension | — | — | true | partial_canonical_score_stopped |

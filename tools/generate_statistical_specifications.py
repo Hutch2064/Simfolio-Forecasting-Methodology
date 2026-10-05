@@ -1753,7 +1753,7 @@ def render_readable(resource: dict[str, Any]) -> str:
         "",
         "Generated from `resources/specifications/canonical_statistical_specifications.json`.",
         "The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.",
-        "The resource contains all 179 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.",
+        f"The resource contains all {len(resource['accepted_model_ids'])} canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.",
         "Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.",
         "",
     ]
@@ -1793,7 +1793,7 @@ def render_readable(resource: dict[str, Any]) -> str:
                     f"- Portfolio rejoin: `{definition['portfolio_rejoin']['ref']}`.",
                 ]
             )
-        elif definition["family"] == "asset_level_moment_sv":
+        elif definition["family"] in {"asset_level_moment_sv", "asset_level_rough_jump_vine_ablation"}:
             lines.extend([
                 f"- Forecast level: `{definition['forecast_level']}`.",
                 f"- Production role: `{definition['production_role']}`.",
@@ -1804,6 +1804,9 @@ def render_readable(resource: dict[str, Any]) -> str:
             ])
             if "parameter_mcmc" in definition:
                 lines.append(f"- Parameter MCMC: `{json.dumps(definition['parameter_mcmc'], sort_keys=True)}`.")
+            for key in ("ablation_flags", "rough_volatility", "jumps"):
+                if key in definition:
+                    lines.append(f"- {key}: `{json.dumps(definition[key], sort_keys=True)}`.")
         else:
             source_candidate = definition["source_candidate"]
             resolved_candidate = definition.get("resolved_candidate", definition.get("resolved_defaults"))

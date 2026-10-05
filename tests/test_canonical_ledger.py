@@ -36,8 +36,8 @@ def test_membership_is_exact_and_digest_is_immutable():
     payload = load_canonical_ledger()
     models = list(load_canonical_models())
 
-    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 179
-    assert [model["canonical_rank"] for model in models] == list(range(1, 180))
+    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 183
+    assert [model["canonical_rank"] for model in models] == list(range(1, 184))
     assert [model["historical_rank"] for model in models] == list(EXPECTED_SOURCE_RANKS)
     assert canonical_membership_digest(models) == EXPECTED_MEMBERSHIP_DIGEST
     assert payload["membership"]["membership_digest"] == EXPECTED_MEMBERSHIP_DIGEST
@@ -61,7 +61,7 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
     payload = load_canonical_ledger()
     assert tuple(payload["required_model_fields"]) == REQUIRED_MODEL_FIELDS
     resolved_ids = _resolved_specification_ids()
-    assert len(resolved_ids) == 179
+    assert len(resolved_ids) == 183
 
     for model in payload["models"]:
         assert set(model) == set(REQUIRED_MODEL_FIELDS) | {"canonical_rank"}
@@ -74,7 +74,8 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
         assert model["instantiation_validated"] is executable
         assert model["forecast_smoke_tested"] is executable
         assert model["source_parity_checked"] is executable
-        assert model["historical_score_verified"] is (model["historical_rank"] is None)
+        assert model["historical_score_verified"] is (model["historical_rank"] is None
+                and model["historical_score"]["exact_empirical_crps"] is not None)
         assert model["protocol_fingerprint"] == payload["identity_policy"]["protocol_fingerprint"]
         assert model["dataset_fingerprint"] == payload["identity_policy"]["dataset_fingerprint"]
         assert model["panel_fingerprint"] == payload["identity_policy"]["panel_fingerprint"]
@@ -108,7 +109,8 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
 
 
 def test_retained_lexical_scores_and_public_precision_reconcile():
-    models = load_canonical_models()
+    models = [m for m in load_canonical_models()
+              if m["historical_score"]["exact_empirical_crps"] is not None]
     assert all(
         isinstance(model["historical_score"]["exact_empirical_crps"], str) for model in models
     )
@@ -131,7 +133,7 @@ def test_retained_lexical_scores_and_public_precision_reconcile():
 def test_compatibility_loader_reads_the_same_ledger_rows():
     payload = load_canonical_ledger()
     rows = load_canonical_175()
-    assert len(rows) == len(payload["models"]) == 179
+    assert len(rows) == len(payload["models"]) == 183
     for row, model in zip(rows, payload["models"]):
         assert row.canonical_rank == model["canonical_rank"]
         assert row.source_rank == model["historical_rank"]
@@ -144,7 +146,7 @@ def test_compatibility_loader_reads_the_same_ledger_rows():
 def test_packaged_resource_load_is_independent_of_cwd(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     models = load_canonical_models()
-    assert len(models) == 179
+    assert len(models) == 183
     assert canonical_model(models[0]["public_model_id"])["canonical_rank"] == 1
 
 
@@ -286,3 +288,24 @@ def test_validated_asset_level_additions_include_all_frontier_generations():
     assert sampler["chains"] == 2
     assert sampler["retained_draws"] == 4096
     assert sampler["posterior_nodes"] == 16
+
+
+def test_partial_candidates_keep_full_and_unfinished_portfolio_scores_blank():
+    payload = load_canonical_ledger()
+    partial = payload['models'][-4:]
+    for model in partial:
+        assert model['historical_score']['exact_empirical_crps'] is None
+        assert model['historical_score_verified'] is False
+        rows = model['historical_score']['portfolio_scores']
+        assert len(rows) == 80
+        assert sum(r['exact_empirical_crps'] is not None for r in rows) == 53
+        assert sum(r['completed_origins'] for r in rows) == 2769
+    altered = deepcopy(payload)
+    rows = altered['models'][-1]['historical_score']['portfolio_scores']
+    next(r for r in rows if r['completed_origins'] < 51)['exact_empirical_crps'] = 0.1
+    with pytest.raises(ValueError, match='unfinished portfolio score must be blank'):
+        validate_canonical_ledger(altered)
+    altered = deepcopy(payload)
+    altered['models'][-1]['historical_score_verified'] = True
+    with pytest.raises(ValueError, match='blank score requires'):
+        validate_canonical_ledger(altered)

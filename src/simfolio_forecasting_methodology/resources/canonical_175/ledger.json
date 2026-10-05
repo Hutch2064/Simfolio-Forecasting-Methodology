@@ -34,16 +34,16 @@
     "notes"
   ],
   "membership": {
-    "count": 179,
+    "count": 183,
     "canonical_rank_range": [
       1,
-      179
+      183
     ],
     "source_rank_range": [
       12,
       186
     ],
-    "membership_digest": "de9b8baf119a50d1b2093823731e88dcd8ae835e7b9c720259507d789c61ec0b",
+    "membership_digest": "5ce317e0f6c996714063f2c0bbfcb0291dbe97391762e0ccba30ac29d903d511",
     "membership_digest_algorithm": "sha256(UTF-8 of canonical_rank|historical_rank|public_model_id lines in canonical order, final newline)"
   },
   "score_evidence": {
@@ -124,7 +124,7 @@
     }
   },
   "identity_policy": {
-    "full_statistical_specifications_confirmed": 179,
+    "full_statistical_specifications_confirmed": 183,
     "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
     "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
     "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
@@ -42002,6 +42002,3242 @@
       "notes": [
         "Asset-level model; validated_full_panel_candidate.",
         "Validated 4080 origin tasks, 701280 equally weighted portfolio-horizon cells, 240 simulations per origin."
+      ]
+    },
+    {
+      "public_model_id": "asset_rough_volterra_sv_eight_factor",
+      "display_name": "M180 \u2014 Asset Rough Volterra SV \u2014 Eight Factors",
+      "historical_model_ids": [
+        "asset_rough_volterra_sv_eight_factor"
+      ],
+      "seed_identity": {
+        "source_model_key": "asset_rough_volterra_sv_eight_factor",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_rough_jump_vine_ablation",
+          "source_id": "asset_rough_volterra_sv_eight_factor",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "research_candidate",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "measurement": "mean-corrected winsorized log-square returns",
+            "latent_state": "Gaussian AR(1) log variance",
+            "parameter_inference": "two_chain_adaptive_metropolis",
+            "conditional_state_inference": "Kalman filter and RTS smoother",
+            "multiscale_windows": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "multiscale_components": 4,
+            "coupling": "convex_state_independent_mix"
+          },
+          "predictive_marginal": {
+            "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+            "innovations": "historical_SV_filtered_empirical",
+            "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+            "quantile_normalization": "zero_mean_unit_population_variance",
+            "daily_log_return_clip": [
+              -1.0,
+              1.0
+            ],
+            "mean_shrink": 0.0
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_sorted_asset_marginals"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tools/rough_jump_vine/models.py",
+            "revision": "f50351a9245c6fb337e7ae8baea728e5a9a72c6d",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620",
+            "entrypoints": [
+              "Candidate.simulate_daily_log_returns"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "tools/mcmc_runtime/benchmark_model_cases.py",
+                "sha256": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_scaling.py",
+                "sha256": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_dependence.py",
+                "sha256": "a76ae12e87c5c0802b935d9de12d4d42009a88d030758bf01bfd2a0d78c9b7aa"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_moments.py",
+                "sha256": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_chain.py",
+                "sha256": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_map.py",
+                "sha256": "afd0371d9264e40fd95fb591d04467408d7c58b1876fb5dde7ddad54d5acd844"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_postburn.py",
+                "sha256": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_smoothers.py",
+                "sha256": "65c1f8dfeca0501105c2fdd1b08158c98e91f2b024cd12ad6b05020673641d91"
+              },
+              {
+                "path": "tools/mcmc_runtime/complex_sv.py",
+                "sha256": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71"
+              },
+              {
+                "path": "tools/mcmc_runtime/exact_path_kernels.py",
+                "sha256": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5"
+              },
+              {
+                "path": "tools/mcmc_runtime/finite_multiscale.py",
+                "sha256": "268ab6ed592a3ccca808ed0cba83fa3d39243d39ac7b0778ffd18374510b397e"
+              },
+              {
+                "path": "tools/mcmc_runtime/optimized_mcmc.py",
+                "sha256": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df"
+              },
+              {
+                "path": "tools/mcmc_runtime/parallel_chains.py",
+                "sha256": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3"
+              },
+              {
+                "path": "tools/mcmc_runtime/parameter_mcmc_tuned.py",
+                "sha256": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a"
+              },
+              {
+                "path": "tools/mcmc_runtime/predictive_sv_candidates.py",
+                "sha256": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309"
+              },
+              {
+                "path": "tools/mcmc_runtime/profile_runtime.py",
+                "sha256": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4"
+              },
+              {
+                "path": "tools/mcmc_runtime/replay_full_panel.py",
+                "sha256": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca"
+              },
+              {
+                "path": "tools/mcmc_runtime/research_jit_pilot.py",
+                "sha256": "5d60c5e61990da292d02ebf89a3eeb1fdee788115551a9d881ed26ddc2f9c1b5"
+              },
+              {
+                "path": "tools/mcmc_runtime/runtime_setup.py",
+                "sha256": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665"
+              },
+              {
+                "path": "tools/mcmc_runtime/steady_kalman_target.py",
+                "sha256": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394"
+              },
+              {
+                "path": "tools/mcmc_runtime/streamed_paths.py",
+                "sha256": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+          "source_seed_contract": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+          "failure_semantics": {
+            "paths": "reject_nonfinite_output",
+            "calendar": "strict_business_day_rejoin"
+          },
+          "parameter_mcmc": {
+            "parameters": [
+              "long_run_log_variance",
+              "logit_persistence",
+              "log_state_innovation_sd"
+            ],
+            "posterior": "Gaussian_log_square_SV_quasi_posterior",
+            "chains": 2,
+            "burn_per_chain": 1024,
+            "kept_per_chain": 2048,
+            "thin": 1,
+            "retained_draws": 4096,
+            "posterior_nodes": 16,
+            "node_selection": "linspace(0,4095,16,dtype=int)",
+            "node_weights": "equal",
+            "adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)",
+            "initial_proposal_sd": [
+              0.01,
+              0.05,
+              0.03
+            ],
+            "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32",
+            "parameter_bounds": [
+              "[q01(log_square)-4,q99(log_square)+4]",
+              "[-7,7]",
+              "[log(0.02),log(2.5)]"
+            ],
+            "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations"
+          },
+          "ablation_flags": {
+            "jumps": false,
+            "model_id": "asset_rough_volterra_sv_eight_factor",
+            "rough": true,
+            "vine": false
+          },
+          "rough_volatility": {
+            "approximation": "eight_factor_daily_Gaussian_Volterra",
+            "factor_count": 8,
+            "H_bounds": [
+              0.03,
+              0.49
+            ],
+            "kappa_bounds": [
+              0.0003968253968253968,
+              0.5
+            ],
+            "scale_bounds": [
+              0.05,
+              3.0
+            ],
+            "factor_rate_edges": "geomspace(1/(252*50),4,9)",
+            "observation_variance": 4.934802200544679,
+            "objective": "Gaussian_log_square_likelihood_plus_weak_log_kappa_and_log_scale_priors",
+            "level": "training_log_square_sample_mean",
+            "optimizer": "L-BFGS-B",
+            "maxiter": 80,
+            "ftol": 1e-09,
+            "gtol": 1e-05,
+            "initial_theta": [
+              0.1,
+              "log(1/63)",
+              "log(.7)"
+            ],
+            "conditional_state": "eight_dimensional_Gaussian_filter_terminal_posterior",
+            "path_transition": "exact_daily_OU_covariance_with_common_driver",
+            "variance_normalizer": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)",
+            "leverage": false
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "bd893fa2b5ff3f5fb56d51c8550d059cd8dcde7fda196c9ab0c779398ed26463",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "f50351a9245c6fb337e7ae8baea728e5a9a72c6d",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "docs/results/rough-jump-vine/partial-panel.json",
+          "sha256": "53b79f913fcf77ef67feacf43fa645d37006a950020757879606238795d19a1f",
+          "manifest_sha256": "a096ad5f6eea70c64c2b9fd1be0b140c16736de0820a23d19b8fd1d385a3cb4e",
+          "scope": "partial_canonical",
+          "tasks_per_model": 2769,
+          "required_tasks_per_model": 4080,
+          "cells_per_model": 464598,
+          "required_cells_per_model": 701280,
+          "complete_portfolios": 53,
+          "simulations": 240,
+          "all_denominator_gates_passed": false,
+          "source_score_field": "models[1].portfolio_scores"
+        },
+        "source_code": {
+          "relative_path": "tools/rough_jump_vine/models.py",
+          "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+        },
+        "parameter_dictionary": {
+          "sha256": "bd893fa2b5ff3f5fb56d51c8550d059cd8dcde7fda196c9ab0c779398ed26463"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tools/rough_jump_vine/models.py",
+        "entrypoint": "Candidate.simulate_daily_log_returns",
+        "score": "docs/results/rough-jump-vine/partial-panel.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "scored_research_entrypoint",
+        "research_entrypoint": "tools/rough_jump_vine/models.py:Candidate.simulate_daily_log_returns"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba",
+        "pyvinecopulib==0.7.5"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 180,
+      "historical_score": {
+        "exact_empirical_crps": null,
+        "relative_to_naive": null,
+        "skill_vs_naive": null,
+        "paired_improvement_vs_current": null,
+        "paired_mean_diff_vs_current": null,
+        "paired_portfolio_cluster_diff_ci_90": null,
+        "paired_portfolio_cluster_probability_better": null,
+        "portfolio_losses_vs_current": null,
+        "portfolio_wins_vs_current": null,
+        "completed_portfolio_mean_crps": "0.25486122574946996",
+        "portfolio_scores": [
+          {
+            "portfolio_id": "equal_class_history_001",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1347267701347792
+          },
+          {
+            "portfolio_id": "equal_class_history_002",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1740082696368073
+          },
+          {
+            "portfolio_id": "equal_class_history_003",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17893237740129095
+          },
+          {
+            "portfolio_id": "equal_class_history_004",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19532389229249592
+          },
+          {
+            "portfolio_id": "equal_class_history_005",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5840184047496606
+          },
+          {
+            "portfolio_id": "equal_class_history_006",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16902641189245673
+          },
+          {
+            "portfolio_id": "equal_class_history_007",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15399652153055746
+          },
+          {
+            "portfolio_id": "equal_class_history_008",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20371148032375877
+          },
+          {
+            "portfolio_id": "equal_class_history_009",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14400430292499064
+          },
+          {
+            "portfolio_id": "equal_class_history_010",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1492233444284428
+          },
+          {
+            "portfolio_id": "equal_class_history_011",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1490026814069355
+          },
+          {
+            "portfolio_id": "equal_class_history_012",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.560303445820674
+          },
+          {
+            "portfolio_id": "equal_class_history_013",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2371564361334028
+          },
+          {
+            "portfolio_id": "equal_class_history_014",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.11355200999856499
+          },
+          {
+            "portfolio_id": "equal_class_history_015",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21132350876322717
+          },
+          {
+            "portfolio_id": "equal_class_history_016",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4143816418690115
+          },
+          {
+            "portfolio_id": "equal_class_history_017",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2664743575650697
+          },
+          {
+            "portfolio_id": "equal_class_history_018",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10295668394548124
+          },
+          {
+            "portfolio_id": "equal_class_history_019",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19189846277908845
+          },
+          {
+            "portfolio_id": "equal_class_history_020",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12697757610462862
+          },
+          {
+            "portfolio_id": "equal_class_history_021",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.27752598233484443
+          },
+          {
+            "portfolio_id": "equal_class_history_022",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.40726853011318015
+          },
+          {
+            "portfolio_id": "equal_class_history_023",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17078224986449955
+          },
+          {
+            "portfolio_id": "equal_class_history_024",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.558988235102791
+          },
+          {
+            "portfolio_id": "equal_class_history_025",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2118039448452424
+          },
+          {
+            "portfolio_id": "equal_class_history_026",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15706700281484715
+          },
+          {
+            "portfolio_id": "equal_class_history_027",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18661187109997385
+          },
+          {
+            "portfolio_id": "equal_class_history_028",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20575264848830074
+          },
+          {
+            "portfolio_id": "equal_class_history_029",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10527066946531785
+          },
+          {
+            "portfolio_id": "equal_class_history_030",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14864636585860996
+          },
+          {
+            "portfolio_id": "equal_class_history_031",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3026757863574722
+          },
+          {
+            "portfolio_id": "equal_class_history_032",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.25685730432000464
+          },
+          {
+            "portfolio_id": "equal_class_history_033",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2178365648989415
+          },
+          {
+            "portfolio_id": "equal_class_history_034",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.24399970654110792
+          },
+          {
+            "portfolio_id": "equal_class_history_035",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16428316122458336
+          },
+          {
+            "portfolio_id": "equal_class_history_036",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5165314122153652
+          },
+          {
+            "portfolio_id": "equal_class_history_037",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5313686799757775
+          },
+          {
+            "portfolio_id": "equal_class_history_038",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.7075397638962642
+          },
+          {
+            "portfolio_id": "equal_class_history_039",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09196493388397699
+          },
+          {
+            "portfolio_id": "equal_class_history_040",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20162735698044257
+          },
+          {
+            "portfolio_id": "equal_class_history_041",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1508207641878296
+          },
+          {
+            "portfolio_id": "equal_class_history_042",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5545025550592898
+          },
+          {
+            "portfolio_id": "equal_class_history_043",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12397876379190048
+          },
+          {
+            "portfolio_id": "equal_class_history_044",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15114761591143636
+          },
+          {
+            "portfolio_id": "equal_class_history_045",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4091075246907039
+          },
+          {
+            "portfolio_id": "equal_class_history_046",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19375318963912
+          },
+          {
+            "portfolio_id": "equal_class_history_047",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18448822377103574
+          },
+          {
+            "portfolio_id": "equal_class_history_048",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13186140805535246
+          },
+          {
+            "portfolio_id": "equal_class_history_049",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23188060020012766
+          },
+          {
+            "portfolio_id": "equal_class_history_050",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.31434333633357026
+          },
+          {
+            "portfolio_id": "equal_class_history_051",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16296082141681187
+          },
+          {
+            "portfolio_id": "equal_class_history_052",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19135727455940135
+          },
+          {
+            "portfolio_id": "equal_class_history_053",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5820421371224604
+          },
+          {
+            "portfolio_id": "equal_class_history_054",
+            "completed_origins": 49,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_055",
+            "completed_origins": 17,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_056",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_057",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_058",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_059",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_060",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_061",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_062",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_063",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_064",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_065",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_066",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_067",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_068",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_069",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_070",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_071",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_072",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_073",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_074",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_075",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_076",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_077",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_078",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_079",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_080",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          }
+        ]
+      },
+      "score_precision": {
+        "retained_source_token": null,
+        "publication_token": null,
+        "publication_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "retained_source_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "status": "full_panel_score_blank"
+      },
+      "experiment_id": "rough-jump-vine-20261005",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": false,
+      "verification_status": "partial_canonical_score_rough_continuing",
+      "notes": [
+        "Asset-level simulation; production MCMC mean and variance anchors, policy rejoin, and canonical scoring retained.",
+        "2769 completed origins; 53 complete portfolios. Unfinished portfolio scores and full-panel CRPS are null.",
+        "Original versus optimized five-model smoke: 44610 loss values byte-identical; see docs/results/rough-jump-vine/smoke-parity.json."
+      ]
+    },
+    {
+      "public_model_id": "asset_compensated_poisson_jump_sv",
+      "display_name": "M181 \u2014 Asset Compensated Poisson Jump SV",
+      "historical_model_ids": [
+        "asset_compensated_poisson_jump_sv"
+      ],
+      "seed_identity": {
+        "source_model_key": "asset_compensated_poisson_jump_sv",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_rough_jump_vine_ablation",
+          "source_id": "asset_compensated_poisson_jump_sv",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "research_candidate",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "measurement": "mean-corrected winsorized log-square returns",
+            "latent_state": "Gaussian AR(1) log variance",
+            "parameter_inference": "two_chain_adaptive_metropolis",
+            "conditional_state_inference": "Kalman filter and RTS smoother",
+            "multiscale_windows": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "multiscale_components": 4,
+            "coupling": "convex_state_independent_mix"
+          },
+          "predictive_marginal": {
+            "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+            "innovations": "historical_SV_filtered_empirical",
+            "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+            "quantile_normalization": "zero_mean_unit_population_variance",
+            "daily_log_return_clip": [
+              -1.0,
+              1.0
+            ],
+            "mean_shrink": 0.0
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_sorted_asset_marginals"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tools/rough_jump_vine/models.py",
+            "revision": "f50351a9245c6fb337e7ae8baea728e5a9a72c6d",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620",
+            "entrypoints": [
+              "Candidate.simulate_daily_log_returns"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "tools/mcmc_runtime/benchmark_model_cases.py",
+                "sha256": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_scaling.py",
+                "sha256": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_dependence.py",
+                "sha256": "a76ae12e87c5c0802b935d9de12d4d42009a88d030758bf01bfd2a0d78c9b7aa"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_moments.py",
+                "sha256": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_chain.py",
+                "sha256": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_map.py",
+                "sha256": "afd0371d9264e40fd95fb591d04467408d7c58b1876fb5dde7ddad54d5acd844"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_postburn.py",
+                "sha256": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_smoothers.py",
+                "sha256": "65c1f8dfeca0501105c2fdd1b08158c98e91f2b024cd12ad6b05020673641d91"
+              },
+              {
+                "path": "tools/mcmc_runtime/complex_sv.py",
+                "sha256": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71"
+              },
+              {
+                "path": "tools/mcmc_runtime/exact_path_kernels.py",
+                "sha256": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5"
+              },
+              {
+                "path": "tools/mcmc_runtime/finite_multiscale.py",
+                "sha256": "268ab6ed592a3ccca808ed0cba83fa3d39243d39ac7b0778ffd18374510b397e"
+              },
+              {
+                "path": "tools/mcmc_runtime/optimized_mcmc.py",
+                "sha256": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df"
+              },
+              {
+                "path": "tools/mcmc_runtime/parallel_chains.py",
+                "sha256": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3"
+              },
+              {
+                "path": "tools/mcmc_runtime/parameter_mcmc_tuned.py",
+                "sha256": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a"
+              },
+              {
+                "path": "tools/mcmc_runtime/predictive_sv_candidates.py",
+                "sha256": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309"
+              },
+              {
+                "path": "tools/mcmc_runtime/profile_runtime.py",
+                "sha256": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4"
+              },
+              {
+                "path": "tools/mcmc_runtime/replay_full_panel.py",
+                "sha256": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca"
+              },
+              {
+                "path": "tools/mcmc_runtime/research_jit_pilot.py",
+                "sha256": "5d60c5e61990da292d02ebf89a3eeb1fdee788115551a9d881ed26ddc2f9c1b5"
+              },
+              {
+                "path": "tools/mcmc_runtime/runtime_setup.py",
+                "sha256": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665"
+              },
+              {
+                "path": "tools/mcmc_runtime/steady_kalman_target.py",
+                "sha256": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394"
+              },
+              {
+                "path": "tools/mcmc_runtime/streamed_paths.py",
+                "sha256": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+          "source_seed_contract": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+          "failure_semantics": {
+            "paths": "reject_nonfinite_output",
+            "calendar": "strict_business_day_rejoin"
+          },
+          "parameter_mcmc": {
+            "parameters": [
+              "long_run_log_variance",
+              "logit_persistence",
+              "log_state_innovation_sd"
+            ],
+            "posterior": "Gaussian_log_square_SV_quasi_posterior",
+            "chains": 2,
+            "burn_per_chain": 1024,
+            "kept_per_chain": 2048,
+            "thin": 1,
+            "retained_draws": 4096,
+            "posterior_nodes": 16,
+            "node_selection": "linspace(0,4095,16,dtype=int)",
+            "node_weights": "equal",
+            "adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)",
+            "initial_proposal_sd": [
+              0.01,
+              0.05,
+              0.03
+            ],
+            "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32",
+            "parameter_bounds": [
+              "[q01(log_square)-4,q99(log_square)+4]",
+              "[-7,7]",
+              "[log(0.02),log(2.5)]"
+            ],
+            "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations"
+          },
+          "ablation_flags": {
+            "jumps": true,
+            "model_id": "asset_compensated_poisson_jump_sv",
+            "rough": false,
+            "vine": false
+          },
+          "jumps": {
+            "event_threshold": 3.0,
+            "event_definition": "absolute_filtered_innovation_gt_threshold",
+            "diffusion_body": "exclude_events_then_center_and_population_variance_normalize",
+            "event_prior": [
+              1,
+              99
+            ],
+            "event_sequence": "average_across_sixteen_parameter_nodes",
+            "terminal_rate": "21_day_EWMA",
+            "future_rate": "long_run_rate+(terminal_rate-long_run_rate)*exp(-day/21)",
+            "jump_marks": "Gaussian_tail_pool_mean_and_variance; fallback_mean_0_variance_16",
+            "counts": "exact_Poisson_inverse_CDF",
+            "compensation": "lambda*mark_mean",
+            "variance_normalizer": "sqrt(1+lambda*(mark_variance+mark_mean_squared))",
+            "count_dependence": "separate_correlated_uniform_stream",
+            "mark_dependence": "independent_seeded_Gaussian_marks"
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "d1bf33e15fa5a01e150a02018c38b5e16ae6010adcbdd7e4aa54aa85d7765f27",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "f50351a9245c6fb337e7ae8baea728e5a9a72c6d",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "docs/results/rough-jump-vine/partial-panel.json",
+          "sha256": "53b79f913fcf77ef67feacf43fa645d37006a950020757879606238795d19a1f",
+          "manifest_sha256": "a096ad5f6eea70c64c2b9fd1be0b140c16736de0820a23d19b8fd1d385a3cb4e",
+          "scope": "partial_canonical",
+          "tasks_per_model": 2769,
+          "required_tasks_per_model": 4080,
+          "cells_per_model": 464598,
+          "required_cells_per_model": 701280,
+          "complete_portfolios": 53,
+          "simulations": 240,
+          "all_denominator_gates_passed": false,
+          "source_score_field": "models[2].portfolio_scores"
+        },
+        "source_code": {
+          "relative_path": "tools/rough_jump_vine/models.py",
+          "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+        },
+        "parameter_dictionary": {
+          "sha256": "d1bf33e15fa5a01e150a02018c38b5e16ae6010adcbdd7e4aa54aa85d7765f27"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tools/rough_jump_vine/models.py",
+        "entrypoint": "Candidate.simulate_daily_log_returns",
+        "score": "docs/results/rough-jump-vine/partial-panel.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "scored_research_entrypoint",
+        "research_entrypoint": "tools/rough_jump_vine/models.py:Candidate.simulate_daily_log_returns"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba",
+        "pyvinecopulib==0.7.5"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 181,
+      "historical_score": {
+        "exact_empirical_crps": null,
+        "relative_to_naive": null,
+        "skill_vs_naive": null,
+        "paired_improvement_vs_current": null,
+        "paired_mean_diff_vs_current": null,
+        "paired_portfolio_cluster_diff_ci_90": null,
+        "paired_portfolio_cluster_probability_better": null,
+        "portfolio_losses_vs_current": null,
+        "portfolio_wins_vs_current": null,
+        "completed_portfolio_mean_crps": "0.2611898224528257",
+        "portfolio_scores": [
+          {
+            "portfolio_id": "equal_class_history_001",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13990334368541224
+          },
+          {
+            "portfolio_id": "equal_class_history_002",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16914953947065098
+          },
+          {
+            "portfolio_id": "equal_class_history_003",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1721095582286455
+          },
+          {
+            "portfolio_id": "equal_class_history_004",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1786363477992891
+          },
+          {
+            "portfolio_id": "equal_class_history_005",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.556937075235535
+          },
+          {
+            "portfolio_id": "equal_class_history_006",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16525941236519232
+          },
+          {
+            "portfolio_id": "equal_class_history_007",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15706842746228622
+          },
+          {
+            "portfolio_id": "equal_class_history_008",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2003146057021316
+          },
+          {
+            "portfolio_id": "equal_class_history_009",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1404887886982906
+          },
+          {
+            "portfolio_id": "equal_class_history_010",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15152715966677072
+          },
+          {
+            "portfolio_id": "equal_class_history_011",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14225686430027953
+          },
+          {
+            "portfolio_id": "equal_class_history_012",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5936406077181858
+          },
+          {
+            "portfolio_id": "equal_class_history_013",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2455870555315664
+          },
+          {
+            "portfolio_id": "equal_class_history_014",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.11350037752939277
+          },
+          {
+            "portfolio_id": "equal_class_history_015",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.22887843986390305
+          },
+          {
+            "portfolio_id": "equal_class_history_016",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4233975273587849
+          },
+          {
+            "portfolio_id": "equal_class_history_017",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2746116514835884
+          },
+          {
+            "portfolio_id": "equal_class_history_018",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10527210364247759
+          },
+          {
+            "portfolio_id": "equal_class_history_019",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20336446655393717
+          },
+          {
+            "portfolio_id": "equal_class_history_020",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1257142483174404
+          },
+          {
+            "portfolio_id": "equal_class_history_021",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.27513248933725615
+          },
+          {
+            "portfolio_id": "equal_class_history_022",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4406038520525367
+          },
+          {
+            "portfolio_id": "equal_class_history_023",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1744867789650516
+          },
+          {
+            "portfolio_id": "equal_class_history_024",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.559975247213245
+          },
+          {
+            "portfolio_id": "equal_class_history_025",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2254856071994302
+          },
+          {
+            "portfolio_id": "equal_class_history_026",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16549852020817188
+          },
+          {
+            "portfolio_id": "equal_class_history_027",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19152483020350933
+          },
+          {
+            "portfolio_id": "equal_class_history_028",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21685488281782905
+          },
+          {
+            "portfolio_id": "equal_class_history_029",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10822335574489592
+          },
+          {
+            "portfolio_id": "equal_class_history_030",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1514665886671443
+          },
+          {
+            "portfolio_id": "equal_class_history_031",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.31348539239219386
+          },
+          {
+            "portfolio_id": "equal_class_history_032",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.27206668155291364
+          },
+          {
+            "portfolio_id": "equal_class_history_033",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23666456058764448
+          },
+          {
+            "portfolio_id": "equal_class_history_034",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2423590911550828
+          },
+          {
+            "portfolio_id": "equal_class_history_035",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16379270279715252
+          },
+          {
+            "portfolio_id": "equal_class_history_036",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5455819446754611
+          },
+          {
+            "portfolio_id": "equal_class_history_037",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5162769527789531
+          },
+          {
+            "portfolio_id": "equal_class_history_038",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.7244640754293051
+          },
+          {
+            "portfolio_id": "equal_class_history_039",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09179561548592113
+          },
+          {
+            "portfolio_id": "equal_class_history_040",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21868254836404744
+          },
+          {
+            "portfolio_id": "equal_class_history_041",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15231990593593517
+          },
+          {
+            "portfolio_id": "equal_class_history_042",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6062428847579486
+          },
+          {
+            "portfolio_id": "equal_class_history_043",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12011983578701917
+          },
+          {
+            "portfolio_id": "equal_class_history_044",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15365825911166964
+          },
+          {
+            "portfolio_id": "equal_class_history_045",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4313758379801365
+          },
+          {
+            "portfolio_id": "equal_class_history_046",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1969790795171637
+          },
+          {
+            "portfolio_id": "equal_class_history_047",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1859613075923897
+          },
+          {
+            "portfolio_id": "equal_class_history_048",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12674486047320996
+          },
+          {
+            "portfolio_id": "equal_class_history_049",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2518558808311476
+          },
+          {
+            "portfolio_id": "equal_class_history_050",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3240579018358193
+          },
+          {
+            "portfolio_id": "equal_class_history_051",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.148786632942285
+          },
+          {
+            "portfolio_id": "equal_class_history_052",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19256493719484366
+          },
+          {
+            "portfolio_id": "equal_class_history_053",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.630353947798687
+          },
+          {
+            "portfolio_id": "equal_class_history_054",
+            "completed_origins": 49,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_055",
+            "completed_origins": 17,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_056",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_057",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_058",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_059",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_060",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_061",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_062",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_063",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_064",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_065",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_066",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_067",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_068",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_069",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_070",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_071",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_072",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_073",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_074",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_075",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_076",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_077",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_078",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_079",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_080",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          }
+        ]
+      },
+      "score_precision": {
+        "retained_source_token": null,
+        "publication_token": null,
+        "publication_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "retained_source_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "status": "full_panel_score_blank"
+      },
+      "experiment_id": "rough-jump-vine-20261005",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": false,
+      "verification_status": "partial_canonical_score_stopped",
+      "notes": [
+        "Asset-level simulation; production MCMC mean and variance anchors, policy rejoin, and canonical scoring retained.",
+        "2769 completed origins; 53 complete portfolios. Unfinished portfolio scores and full-panel CRPS are null.",
+        "Original versus optimized five-model smoke: 44610 loss values byte-identical; see docs/results/rough-jump-vine/smoke-parity.json."
+      ]
+    },
+    {
+      "public_model_id": "asset_hmm_three_state_full_rvine_sv",
+      "display_name": "M182 \u2014 Asset Three-State HMM + Full R-Vine SV",
+      "historical_model_ids": [
+        "asset_hmm_three_state_full_rvine_sv"
+      ],
+      "seed_identity": {
+        "source_model_key": "asset_hmm_three_state_full_rvine_sv",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_rough_jump_vine_ablation",
+          "source_id": "asset_hmm_three_state_full_rvine_sv",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "research_candidate",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "measurement": "mean-corrected winsorized log-square returns",
+            "latent_state": "Gaussian AR(1) log variance",
+            "parameter_inference": "two_chain_adaptive_metropolis",
+            "conditional_state_inference": "Kalman filter and RTS smoother",
+            "multiscale_windows": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "multiscale_components": 4,
+            "coupling": "convex_state_independent_mix"
+          },
+          "predictive_marginal": {
+            "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+            "innovations": "historical_SV_filtered_empirical",
+            "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+            "quantile_normalization": "zero_mean_unit_population_variance",
+            "daily_log_return_clip": [
+              -1.0,
+              1.0
+            ],
+            "mean_shrink": 0.0
+          },
+          "dependence": {
+            "method": "three_state_HMM_full_regular_vines",
+            "training_input": "rank_PIT_of_posterior_averaged_asset_filtered_innovations",
+            "states": 3,
+            "initial_transition": "diagonal_.95_off_diagonal_.025",
+            "Gaussian_initialization_iterations": 20,
+            "correlation_regularization": ".95*weighted_correlation+.05*I",
+            "transition_pseudocount": 0.5,
+            "families": [
+              "independence",
+              "Gaussian",
+              "Student",
+              "Clayton",
+              "Gumbel",
+              "Frank"
+            ],
+            "allow_rotations": true,
+            "selection": "weighted_BIC_full_15_pair_R_vine_each_state",
+            "truncation": null,
+            "subsequent_fit": "weighted_parameters_fixed_structures_and_families",
+            "maximum_HMM_vine_updates": 12,
+            "relative_likelihood_tolerance": 1e-05,
+            "first_future_state": "terminal_filtered_probability @ transition",
+            "chunk_rows": 65536,
+            "shared_regime_path_for_two_streams": true
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tools/rough_jump_vine/models.py",
+            "revision": "f50351a9245c6fb337e7ae8baea728e5a9a72c6d",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620",
+            "entrypoints": [
+              "Candidate.simulate_daily_log_returns"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "tools/mcmc_runtime/benchmark_model_cases.py",
+                "sha256": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_scaling.py",
+                "sha256": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_dependence.py",
+                "sha256": "a76ae12e87c5c0802b935d9de12d4d42009a88d030758bf01bfd2a0d78c9b7aa"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_moments.py",
+                "sha256": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_chain.py",
+                "sha256": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_map.py",
+                "sha256": "afd0371d9264e40fd95fb591d04467408d7c58b1876fb5dde7ddad54d5acd844"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_postburn.py",
+                "sha256": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_smoothers.py",
+                "sha256": "65c1f8dfeca0501105c2fdd1b08158c98e91f2b024cd12ad6b05020673641d91"
+              },
+              {
+                "path": "tools/mcmc_runtime/complex_sv.py",
+                "sha256": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71"
+              },
+              {
+                "path": "tools/mcmc_runtime/exact_path_kernels.py",
+                "sha256": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5"
+              },
+              {
+                "path": "tools/mcmc_runtime/finite_multiscale.py",
+                "sha256": "268ab6ed592a3ccca808ed0cba83fa3d39243d39ac7b0778ffd18374510b397e"
+              },
+              {
+                "path": "tools/mcmc_runtime/optimized_mcmc.py",
+                "sha256": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df"
+              },
+              {
+                "path": "tools/mcmc_runtime/parallel_chains.py",
+                "sha256": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3"
+              },
+              {
+                "path": "tools/mcmc_runtime/parameter_mcmc_tuned.py",
+                "sha256": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a"
+              },
+              {
+                "path": "tools/mcmc_runtime/predictive_sv_candidates.py",
+                "sha256": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309"
+              },
+              {
+                "path": "tools/mcmc_runtime/profile_runtime.py",
+                "sha256": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4"
+              },
+              {
+                "path": "tools/mcmc_runtime/replay_full_panel.py",
+                "sha256": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca"
+              },
+              {
+                "path": "tools/mcmc_runtime/research_jit_pilot.py",
+                "sha256": "5d60c5e61990da292d02ebf89a3eeb1fdee788115551a9d881ed26ddc2f9c1b5"
+              },
+              {
+                "path": "tools/mcmc_runtime/runtime_setup.py",
+                "sha256": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665"
+              },
+              {
+                "path": "tools/mcmc_runtime/steady_kalman_target.py",
+                "sha256": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394"
+              },
+              {
+                "path": "tools/mcmc_runtime/streamed_paths.py",
+                "sha256": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+          "source_seed_contract": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+          "failure_semantics": {
+            "paths": "reject_nonfinite_output",
+            "calendar": "strict_business_day_rejoin"
+          },
+          "parameter_mcmc": {
+            "parameters": [
+              "long_run_log_variance",
+              "logit_persistence",
+              "log_state_innovation_sd"
+            ],
+            "posterior": "Gaussian_log_square_SV_quasi_posterior",
+            "chains": 2,
+            "burn_per_chain": 1024,
+            "kept_per_chain": 2048,
+            "thin": 1,
+            "retained_draws": 4096,
+            "posterior_nodes": 16,
+            "node_selection": "linspace(0,4095,16,dtype=int)",
+            "node_weights": "equal",
+            "adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)",
+            "initial_proposal_sd": [
+              0.01,
+              0.05,
+              0.03
+            ],
+            "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32",
+            "parameter_bounds": [
+              "[q01(log_square)-4,q99(log_square)+4]",
+              "[-7,7]",
+              "[log(0.02),log(2.5)]"
+            ],
+            "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations"
+          },
+          "ablation_flags": {
+            "jumps": false,
+            "model_id": "asset_hmm_three_state_full_rvine_sv",
+            "rough": false,
+            "vine": true
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "ba0cd651323c9175e2e77213c81c4d834a86ed141ed3a9e40319cf8c6756a900",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "f50351a9245c6fb337e7ae8baea728e5a9a72c6d",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "docs/results/rough-jump-vine/partial-panel.json",
+          "sha256": "53b79f913fcf77ef67feacf43fa645d37006a950020757879606238795d19a1f",
+          "manifest_sha256": "a096ad5f6eea70c64c2b9fd1be0b140c16736de0820a23d19b8fd1d385a3cb4e",
+          "scope": "partial_canonical",
+          "tasks_per_model": 2769,
+          "required_tasks_per_model": 4080,
+          "cells_per_model": 464598,
+          "required_cells_per_model": 701280,
+          "complete_portfolios": 53,
+          "simulations": 240,
+          "all_denominator_gates_passed": false,
+          "source_score_field": "models[3].portfolio_scores"
+        },
+        "source_code": {
+          "relative_path": "tools/rough_jump_vine/models.py",
+          "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+        },
+        "parameter_dictionary": {
+          "sha256": "ba0cd651323c9175e2e77213c81c4d834a86ed141ed3a9e40319cf8c6756a900"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tools/rough_jump_vine/models.py",
+        "entrypoint": "Candidate.simulate_daily_log_returns",
+        "score": "docs/results/rough-jump-vine/partial-panel.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "scored_research_entrypoint",
+        "research_entrypoint": "tools/rough_jump_vine/models.py:Candidate.simulate_daily_log_returns"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba",
+        "pyvinecopulib==0.7.5"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 182,
+      "historical_score": {
+        "exact_empirical_crps": null,
+        "relative_to_naive": null,
+        "skill_vs_naive": null,
+        "paired_improvement_vs_current": null,
+        "paired_mean_diff_vs_current": null,
+        "paired_portfolio_cluster_diff_ci_90": null,
+        "paired_portfolio_cluster_probability_better": null,
+        "portfolio_losses_vs_current": null,
+        "portfolio_wins_vs_current": null,
+        "completed_portfolio_mean_crps": "0.2614838786326608",
+        "portfolio_scores": [
+          {
+            "portfolio_id": "equal_class_history_001",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12465052548701003
+          },
+          {
+            "portfolio_id": "equal_class_history_002",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15257331323602
+          },
+          {
+            "portfolio_id": "equal_class_history_003",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1767184276952849
+          },
+          {
+            "portfolio_id": "equal_class_history_004",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18778647684353264
+          },
+          {
+            "portfolio_id": "equal_class_history_005",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.663149377752583
+          },
+          {
+            "portfolio_id": "equal_class_history_006",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16467690368544805
+          },
+          {
+            "portfolio_id": "equal_class_history_007",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1582472697271729
+          },
+          {
+            "portfolio_id": "equal_class_history_008",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2261116605132019
+          },
+          {
+            "portfolio_id": "equal_class_history_009",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13465640059307832
+          },
+          {
+            "portfolio_id": "equal_class_history_010",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14062863950288912
+          },
+          {
+            "portfolio_id": "equal_class_history_011",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14366430743637987
+          },
+          {
+            "portfolio_id": "equal_class_history_012",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5875868560124995
+          },
+          {
+            "portfolio_id": "equal_class_history_013",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.27200478393763183
+          },
+          {
+            "portfolio_id": "equal_class_history_014",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10793729851604329
+          },
+          {
+            "portfolio_id": "equal_class_history_015",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21526852199341856
+          },
+          {
+            "portfolio_id": "equal_class_history_016",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.43499817641947985
+          },
+          {
+            "portfolio_id": "equal_class_history_017",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.28798993449204663
+          },
+          {
+            "portfolio_id": "equal_class_history_018",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09981606685820929
+          },
+          {
+            "portfolio_id": "equal_class_history_019",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.184063780814729
+          },
+          {
+            "portfolio_id": "equal_class_history_020",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1201006439022875
+          },
+          {
+            "portfolio_id": "equal_class_history_021",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2724005600046698
+          },
+          {
+            "portfolio_id": "equal_class_history_022",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.43068226997686565
+          },
+          {
+            "portfolio_id": "equal_class_history_023",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1809335724844666
+          },
+          {
+            "portfolio_id": "equal_class_history_024",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5281307872891468
+          },
+          {
+            "portfolio_id": "equal_class_history_025",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19959169660614529
+          },
+          {
+            "portfolio_id": "equal_class_history_026",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15048721394377004
+          },
+          {
+            "portfolio_id": "equal_class_history_027",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18314266709750524
+          },
+          {
+            "portfolio_id": "equal_class_history_028",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19349506924690552
+          },
+          {
+            "portfolio_id": "equal_class_history_029",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.11005494728389184
+          },
+          {
+            "portfolio_id": "equal_class_history_030",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15198927295416317
+          },
+          {
+            "portfolio_id": "equal_class_history_031",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.31412746972643235
+          },
+          {
+            "portfolio_id": "equal_class_history_032",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3224452198370022
+          },
+          {
+            "portfolio_id": "equal_class_history_033",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2271076947522685
+          },
+          {
+            "portfolio_id": "equal_class_history_034",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23875326978647293
+          },
+          {
+            "portfolio_id": "equal_class_history_035",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1463356756159435
+          },
+          {
+            "portfolio_id": "equal_class_history_036",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.530832439561651
+          },
+          {
+            "portfolio_id": "equal_class_history_037",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5202557233043
+          },
+          {
+            "portfolio_id": "equal_class_history_038",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.7935182039215158
+          },
+          {
+            "portfolio_id": "equal_class_history_039",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.08902997896644525
+          },
+          {
+            "portfolio_id": "equal_class_history_040",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1990771614747922
+          },
+          {
+            "portfolio_id": "equal_class_history_041",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14981064523226884
+          },
+          {
+            "portfolio_id": "equal_class_history_042",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.610115698585146
+          },
+          {
+            "portfolio_id": "equal_class_history_043",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.11655363113487219
+          },
+          {
+            "portfolio_id": "equal_class_history_044",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1388553394229269
+          },
+          {
+            "portfolio_id": "equal_class_history_045",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4419615214544795
+          },
+          {
+            "portfolio_id": "equal_class_history_046",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18153485553357077
+          },
+          {
+            "portfolio_id": "equal_class_history_047",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.179659705136043
+          },
+          {
+            "portfolio_id": "equal_class_history_048",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1268123873357474
+          },
+          {
+            "portfolio_id": "equal_class_history_049",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.24134188920015845
+          },
+          {
+            "portfolio_id": "equal_class_history_050",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3040404548990977
+          },
+          {
+            "portfolio_id": "equal_class_history_051",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14340512667120048
+          },
+          {
+            "portfolio_id": "equal_class_history_052",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21032820187395496
+          },
+          {
+            "portfolio_id": "equal_class_history_053",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6492058517982588
+          },
+          {
+            "portfolio_id": "equal_class_history_054",
+            "completed_origins": 49,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_055",
+            "completed_origins": 17,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_056",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_057",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_058",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_059",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_060",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_061",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_062",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_063",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_064",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_065",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_066",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_067",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_068",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_069",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_070",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_071",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_072",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_073",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_074",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_075",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_076",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_077",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_078",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_079",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_080",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          }
+        ]
+      },
+      "score_precision": {
+        "retained_source_token": null,
+        "publication_token": null,
+        "publication_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "retained_source_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "status": "full_panel_score_blank"
+      },
+      "experiment_id": "rough-jump-vine-20261005",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": false,
+      "verification_status": "partial_canonical_score_stopped",
+      "notes": [
+        "Asset-level simulation; production MCMC mean and variance anchors, policy rejoin, and canonical scoring retained.",
+        "2769 completed origins; 53 complete portfolios. Unfinished portfolio scores and full-panel CRPS are null.",
+        "Original versus optimized five-model smoke: 44610 loss values byte-identical; see docs/results/rough-jump-vine/smoke-parity.json."
+      ]
+    },
+    {
+      "public_model_id": "asset_rough_jump_hmm_rvine_sv",
+      "display_name": "M183 \u2014 Asset Rough + Jump + HMM R-Vine SV",
+      "historical_model_ids": [
+        "asset_rough_jump_hmm_rvine_sv"
+      ],
+      "seed_identity": {
+        "source_model_key": "asset_rough_jump_hmm_rvine_sv",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_rough_jump_vine_ablation",
+          "source_id": "asset_rough_jump_hmm_rvine_sv",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "research_candidate",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "measurement": "mean-corrected winsorized log-square returns",
+            "latent_state": "Gaussian AR(1) log variance",
+            "parameter_inference": "two_chain_adaptive_metropolis",
+            "conditional_state_inference": "Kalman filter and RTS smoother",
+            "multiscale_windows": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "multiscale_components": 4,
+            "coupling": "convex_state_independent_mix"
+          },
+          "predictive_marginal": {
+            "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+            "innovations": "historical_SV_filtered_empirical",
+            "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+            "quantile_normalization": "zero_mean_unit_population_variance",
+            "daily_log_return_clip": [
+              -1.0,
+              1.0
+            ],
+            "mean_shrink": 0.0
+          },
+          "dependence": {
+            "method": "three_state_HMM_full_regular_vines",
+            "training_input": "rank_PIT_of_posterior_averaged_asset_filtered_innovations",
+            "states": 3,
+            "initial_transition": "diagonal_.95_off_diagonal_.025",
+            "Gaussian_initialization_iterations": 20,
+            "correlation_regularization": ".95*weighted_correlation+.05*I",
+            "transition_pseudocount": 0.5,
+            "families": [
+              "independence",
+              "Gaussian",
+              "Student",
+              "Clayton",
+              "Gumbel",
+              "Frank"
+            ],
+            "allow_rotations": true,
+            "selection": "weighted_BIC_full_15_pair_R_vine_each_state",
+            "truncation": null,
+            "subsequent_fit": "weighted_parameters_fixed_structures_and_families",
+            "maximum_HMM_vine_updates": 12,
+            "relative_likelihood_tolerance": 1e-05,
+            "first_future_state": "terminal_filtered_probability @ transition",
+            "chunk_rows": 65536,
+            "shared_regime_path_for_two_streams": true
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tools/rough_jump_vine/models.py",
+            "revision": "f50351a9245c6fb337e7ae8baea728e5a9a72c6d",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620",
+            "entrypoints": [
+              "Candidate.simulate_daily_log_returns"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "tools/mcmc_runtime/benchmark_model_cases.py",
+                "sha256": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_scaling.py",
+                "sha256": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_dependence.py",
+                "sha256": "a76ae12e87c5c0802b935d9de12d4d42009a88d030758bf01bfd2a0d78c9b7aa"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_moments.py",
+                "sha256": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_chain.py",
+                "sha256": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_map.py",
+                "sha256": "afd0371d9264e40fd95fb591d04467408d7c58b1876fb5dde7ddad54d5acd844"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_postburn.py",
+                "sha256": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_smoothers.py",
+                "sha256": "65c1f8dfeca0501105c2fdd1b08158c98e91f2b024cd12ad6b05020673641d91"
+              },
+              {
+                "path": "tools/mcmc_runtime/complex_sv.py",
+                "sha256": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71"
+              },
+              {
+                "path": "tools/mcmc_runtime/exact_path_kernels.py",
+                "sha256": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5"
+              },
+              {
+                "path": "tools/mcmc_runtime/finite_multiscale.py",
+                "sha256": "268ab6ed592a3ccca808ed0cba83fa3d39243d39ac7b0778ffd18374510b397e"
+              },
+              {
+                "path": "tools/mcmc_runtime/optimized_mcmc.py",
+                "sha256": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df"
+              },
+              {
+                "path": "tools/mcmc_runtime/parallel_chains.py",
+                "sha256": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3"
+              },
+              {
+                "path": "tools/mcmc_runtime/parameter_mcmc_tuned.py",
+                "sha256": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a"
+              },
+              {
+                "path": "tools/mcmc_runtime/predictive_sv_candidates.py",
+                "sha256": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309"
+              },
+              {
+                "path": "tools/mcmc_runtime/profile_runtime.py",
+                "sha256": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4"
+              },
+              {
+                "path": "tools/mcmc_runtime/replay_full_panel.py",
+                "sha256": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca"
+              },
+              {
+                "path": "tools/mcmc_runtime/research_jit_pilot.py",
+                "sha256": "5d60c5e61990da292d02ebf89a3eeb1fdee788115551a9d881ed26ddc2f9c1b5"
+              },
+              {
+                "path": "tools/mcmc_runtime/runtime_setup.py",
+                "sha256": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665"
+              },
+              {
+                "path": "tools/mcmc_runtime/steady_kalman_target.py",
+                "sha256": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394"
+              },
+              {
+                "path": "tools/mcmc_runtime/streamed_paths.py",
+                "sha256": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+          "source_seed_contract": "production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32",
+          "failure_semantics": {
+            "paths": "reject_nonfinite_output",
+            "calendar": "strict_business_day_rejoin"
+          },
+          "parameter_mcmc": {
+            "parameters": [
+              "long_run_log_variance",
+              "logit_persistence",
+              "log_state_innovation_sd"
+            ],
+            "posterior": "Gaussian_log_square_SV_quasi_posterior",
+            "chains": 2,
+            "burn_per_chain": 1024,
+            "kept_per_chain": 2048,
+            "thin": 1,
+            "retained_draws": 4096,
+            "posterior_nodes": 16,
+            "node_selection": "linspace(0,4095,16,dtype=int)",
+            "node_weights": "equal",
+            "adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)",
+            "initial_proposal_sd": [
+              0.01,
+              0.05,
+              0.03
+            ],
+            "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32",
+            "parameter_bounds": [
+              "[q01(log_square)-4,q99(log_square)+4]",
+              "[-7,7]",
+              "[log(0.02),log(2.5)]"
+            ],
+            "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations"
+          },
+          "ablation_flags": {
+            "jumps": true,
+            "model_id": "asset_rough_jump_hmm_rvine_sv",
+            "rough": true,
+            "vine": true
+          },
+          "rough_volatility": {
+            "approximation": "eight_factor_daily_Gaussian_Volterra",
+            "factor_count": 8,
+            "H_bounds": [
+              0.03,
+              0.49
+            ],
+            "kappa_bounds": [
+              0.0003968253968253968,
+              0.5
+            ],
+            "scale_bounds": [
+              0.05,
+              3.0
+            ],
+            "factor_rate_edges": "geomspace(1/(252*50),4,9)",
+            "observation_variance": 4.934802200544679,
+            "objective": "Gaussian_log_square_likelihood_plus_weak_log_kappa_and_log_scale_priors",
+            "level": "training_log_square_sample_mean",
+            "optimizer": "L-BFGS-B",
+            "maxiter": 80,
+            "ftol": 1e-09,
+            "gtol": 1e-05,
+            "initial_theta": [
+              0.1,
+              "log(1/63)",
+              "log(.7)"
+            ],
+            "conditional_state": "eight_dimensional_Gaussian_filter_terminal_posterior",
+            "path_transition": "exact_daily_OU_covariance_with_common_driver",
+            "variance_normalizer": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)",
+            "leverage": false
+          },
+          "jumps": {
+            "event_threshold": 3.0,
+            "event_definition": "absolute_filtered_innovation_gt_threshold",
+            "diffusion_body": "exclude_events_then_center_and_population_variance_normalize",
+            "event_prior": [
+              1,
+              99
+            ],
+            "event_sequence": "average_across_sixteen_parameter_nodes",
+            "terminal_rate": "21_day_EWMA",
+            "future_rate": "long_run_rate+(terminal_rate-long_run_rate)*exp(-day/21)",
+            "jump_marks": "Gaussian_tail_pool_mean_and_variance; fallback_mean_0_variance_16",
+            "counts": "exact_Poisson_inverse_CDF",
+            "compensation": "lambda*mark_mean",
+            "variance_normalizer": "sqrt(1+lambda*(mark_variance+mark_mean_squared))",
+            "count_dependence": "separate_correlated_uniform_stream",
+            "mark_dependence": "independent_seeded_Gaussian_marks"
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "6e6a80677bd907e1e8506fa2a45feb5c247960f9d1b954e0f11d9ab808953fc0",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "f50351a9245c6fb337e7ae8baea728e5a9a72c6d",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "docs/results/rough-jump-vine/partial-panel.json",
+          "sha256": "53b79f913fcf77ef67feacf43fa645d37006a950020757879606238795d19a1f",
+          "manifest_sha256": "a096ad5f6eea70c64c2b9fd1be0b140c16736de0820a23d19b8fd1d385a3cb4e",
+          "scope": "partial_canonical",
+          "tasks_per_model": 2769,
+          "required_tasks_per_model": 4080,
+          "cells_per_model": 464598,
+          "required_cells_per_model": 701280,
+          "complete_portfolios": 53,
+          "simulations": 240,
+          "all_denominator_gates_passed": false,
+          "source_score_field": "models[4].portfolio_scores"
+        },
+        "source_code": {
+          "relative_path": "tools/rough_jump_vine/models.py",
+          "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+        },
+        "parameter_dictionary": {
+          "sha256": "6e6a80677bd907e1e8506fa2a45feb5c247960f9d1b954e0f11d9ab808953fc0"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tools/rough_jump_vine/models.py",
+        "entrypoint": "Candidate.simulate_daily_log_returns",
+        "score": "docs/results/rough-jump-vine/partial-panel.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "scored_research_entrypoint",
+        "research_entrypoint": "tools/rough_jump_vine/models.py:Candidate.simulate_daily_log_returns"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba",
+        "pyvinecopulib==0.7.5"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 183,
+      "historical_score": {
+        "exact_empirical_crps": null,
+        "relative_to_naive": null,
+        "skill_vs_naive": null,
+        "paired_improvement_vs_current": null,
+        "paired_mean_diff_vs_current": null,
+        "paired_portfolio_cluster_diff_ci_90": null,
+        "paired_portfolio_cluster_probability_better": null,
+        "portfolio_losses_vs_current": null,
+        "portfolio_wins_vs_current": null,
+        "completed_portfolio_mean_crps": "0.2650413584516528",
+        "portfolio_scores": [
+          {
+            "portfolio_id": "equal_class_history_001",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.11923915112304334
+          },
+          {
+            "portfolio_id": "equal_class_history_002",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1445616191821576
+          },
+          {
+            "portfolio_id": "equal_class_history_003",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1716469193457232
+          },
+          {
+            "portfolio_id": "equal_class_history_004",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17404842202252546
+          },
+          {
+            "portfolio_id": "equal_class_history_005",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6315066321142118
+          },
+          {
+            "portfolio_id": "equal_class_history_006",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16046056142858864
+          },
+          {
+            "portfolio_id": "equal_class_history_007",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1539699001461748
+          },
+          {
+            "portfolio_id": "equal_class_history_008",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.22394149766899993
+          },
+          {
+            "portfolio_id": "equal_class_history_009",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13159157063839638
+          },
+          {
+            "portfolio_id": "equal_class_history_010",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14254517348102042
+          },
+          {
+            "portfolio_id": "equal_class_history_011",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14002496294745573
+          },
+          {
+            "portfolio_id": "equal_class_history_012",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6286943039193619
+          },
+          {
+            "portfolio_id": "equal_class_history_013",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2702607209141287
+          },
+          {
+            "portfolio_id": "equal_class_history_014",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.109821709993769
+          },
+          {
+            "portfolio_id": "equal_class_history_015",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1977619754374268
+          },
+          {
+            "portfolio_id": "equal_class_history_016",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4472015228605535
+          },
+          {
+            "portfolio_id": "equal_class_history_017",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2892926137516358
+          },
+          {
+            "portfolio_id": "equal_class_history_018",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09531260429640588
+          },
+          {
+            "portfolio_id": "equal_class_history_019",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1853890875175428
+          },
+          {
+            "portfolio_id": "equal_class_history_020",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1266161274036869
+          },
+          {
+            "portfolio_id": "equal_class_history_021",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2764251228940856
+          },
+          {
+            "portfolio_id": "equal_class_history_022",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.46628984527937967
+          },
+          {
+            "portfolio_id": "equal_class_history_023",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17042154810439664
+          },
+          {
+            "portfolio_id": "equal_class_history_024",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5051925362185723
+          },
+          {
+            "portfolio_id": "equal_class_history_025",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23270404274160922
+          },
+          {
+            "portfolio_id": "equal_class_history_026",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1569356512273859
+          },
+          {
+            "portfolio_id": "equal_class_history_027",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19010683691296307
+          },
+          {
+            "portfolio_id": "equal_class_history_028",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21097383426357585
+          },
+          {
+            "portfolio_id": "equal_class_history_029",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10923162263458866
+          },
+          {
+            "portfolio_id": "equal_class_history_030",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14846284807434149
+          },
+          {
+            "portfolio_id": "equal_class_history_031",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.33135745317708415
+          },
+          {
+            "portfolio_id": "equal_class_history_032",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2716944248630211
+          },
+          {
+            "portfolio_id": "equal_class_history_033",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2486495386824643
+          },
+          {
+            "portfolio_id": "equal_class_history_034",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.25027773774577067
+          },
+          {
+            "portfolio_id": "equal_class_history_035",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14389467324970676
+          },
+          {
+            "portfolio_id": "equal_class_history_036",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.548861460940387
+          },
+          {
+            "portfolio_id": "equal_class_history_037",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5288807312639745
+          },
+          {
+            "portfolio_id": "equal_class_history_038",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.7946543282023346
+          },
+          {
+            "portfolio_id": "equal_class_history_039",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.08549039760492468
+          },
+          {
+            "portfolio_id": "equal_class_history_040",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19151534937831885
+          },
+          {
+            "portfolio_id": "equal_class_history_041",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1532968188219755
+          },
+          {
+            "portfolio_id": "equal_class_history_042",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6533384036098523
+          },
+          {
+            "portfolio_id": "equal_class_history_043",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.11080123183503818
+          },
+          {
+            "portfolio_id": "equal_class_history_044",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13854328649123476
+          },
+          {
+            "portfolio_id": "equal_class_history_045",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4630523597561721
+          },
+          {
+            "portfolio_id": "equal_class_history_046",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1803566119876893
+          },
+          {
+            "portfolio_id": "equal_class_history_047",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1779240812323838
+          },
+          {
+            "portfolio_id": "equal_class_history_048",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.123462976938762
+          },
+          {
+            "portfolio_id": "equal_class_history_049",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.27193450225900884
+          },
+          {
+            "portfolio_id": "equal_class_history_050",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3329817547927607
+          },
+          {
+            "portfolio_id": "equal_class_history_051",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13601045530598296
+          },
+          {
+            "portfolio_id": "equal_class_history_052",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20594090163979475
+          },
+          {
+            "portfolio_id": "equal_class_history_053",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6936415536152476
+          },
+          {
+            "portfolio_id": "equal_class_history_054",
+            "completed_origins": 49,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_055",
+            "completed_origins": 17,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_056",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_057",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_058",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_059",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_060",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_061",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_062",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_063",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_064",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_065",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_066",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_067",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_068",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_069",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_070",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_071",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_072",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_073",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_074",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_075",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_076",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_077",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_078",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_079",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          },
+          {
+            "portfolio_id": "equal_class_history_080",
+            "completed_origins": 0,
+            "required_origins": 51,
+            "exact_empirical_crps": null
+          }
+        ]
+      },
+      "score_precision": {
+        "retained_source_token": null,
+        "publication_token": null,
+        "publication_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "retained_source_precision": {
+          "kind": "unscored_full_panel"
+        },
+        "status": "full_panel_score_blank"
+      },
+      "experiment_id": "rough-jump-vine-20261005",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": false,
+      "verification_status": "partial_canonical_score_stopped",
+      "notes": [
+        "Asset-level simulation; production MCMC mean and variance anchors, policy rejoin, and canonical scoring retained.",
+        "2769 completed origins; 53 complete portfolios. Unfinished portfolio scores and full-panel CRPS are null.",
+        "Original versus optimized five-model smoke: 44610 loss values byte-identical; see docs/results/rough-jump-vine/smoke-parity.json."
       ]
     }
   ]

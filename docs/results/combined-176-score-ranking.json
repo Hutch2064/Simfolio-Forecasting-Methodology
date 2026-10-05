@@ -1,5 +1,5 @@
 {
-  "canonical_membership_digest": "de9b8baf119a50d1b2093823731e88dcd8ae835e7b9c720259507d789c61ec0b",
+  "canonical_membership_digest": "5ce317e0f6c996714063f2c0bbfcb0291dbe97391762e0ccba30ac29d903d511",
   "canonical_membership_unchanged": true,
   "full_176_model_reproduction": false,
   "full_candidate_replay": {
@@ -95,11 +95,12 @@
       "task_count": 4080
     }
   ],
+  "partial_panel_row_count": 4,
   "ranking_rule": "one-based numeric sort position by exact empirical CRPS across mixed evidence origins",
   "result_kind": "combined_ranked_score_evidence",
   "retained_historical_row_count": 175,
   "retained_historical_score_linkage": "mismatch_observed_vs_declared",
-  "row_count": 179,
+  "row_count": 183,
   "rows": [
     {
       "canonical_rank": 176,
@@ -2248,6 +2249,54 @@
       "public_model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
       "score_evidence_origin": "retained_historical_evidence",
       "verification_status": "source_parity_checked_score_linkage_unverified"
+    },
+    {
+      "canonical_rank": 180,
+      "display_name": "M180 \u2014 Asset Rough Volterra SV \u2014 Eight Factors",
+      "display_rank": null,
+      "exact_empirical_crps": null,
+      "historical_rank": null,
+      "historical_score_verified": false,
+      "is_new_execution": false,
+      "public_model_id": "asset_rough_volterra_sv_eight_factor",
+      "score_evidence_origin": "partial_canonical_execution",
+      "verification_status": "partial_canonical_score_rough_continuing"
+    },
+    {
+      "canonical_rank": 181,
+      "display_name": "M181 \u2014 Asset Compensated Poisson Jump SV",
+      "display_rank": null,
+      "exact_empirical_crps": null,
+      "historical_rank": null,
+      "historical_score_verified": false,
+      "is_new_execution": false,
+      "public_model_id": "asset_compensated_poisson_jump_sv",
+      "score_evidence_origin": "partial_canonical_execution",
+      "verification_status": "partial_canonical_score_stopped"
+    },
+    {
+      "canonical_rank": 182,
+      "display_name": "M182 \u2014 Asset Three-State HMM + Full R-Vine SV",
+      "display_rank": null,
+      "exact_empirical_crps": null,
+      "historical_rank": null,
+      "historical_score_verified": false,
+      "is_new_execution": false,
+      "public_model_id": "asset_hmm_three_state_full_rvine_sv",
+      "score_evidence_origin": "partial_canonical_execution",
+      "verification_status": "partial_canonical_score_stopped"
+    },
+    {
+      "canonical_rank": 183,
+      "display_name": "M183 \u2014 Asset Rough + Jump + HMM R-Vine SV",
+      "display_rank": null,
+      "exact_empirical_crps": null,
+      "historical_rank": null,
+      "historical_score_verified": false,
+      "is_new_execution": false,
+      "public_model_id": "asset_rough_jump_hmm_rvine_sv",
+      "score_evidence_origin": "partial_canonical_execution",
+      "verification_status": "partial_canonical_score_stopped"
     }
   ],
   "selection_and_inference": {

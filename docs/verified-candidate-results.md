@@ -1,6 +1,6 @@
 # Independently Audited Candidate Results
 
-`simfolio-oos candidate-scores --json` reports the expanded 179-model canonical
+`simfolio-oos candidate-scores --json` reports the expanded 183-model canonical
 catalogue, sorted by exact empirical CRPS. The filtered fixed-mean candidate
 is canonical index 177 and display rank 2; the current parameter-MCMC Frontier
 is display rank 1. The dynamic-mean candidate is also included (index 178).
@@ -46,7 +46,7 @@ native portfolio paths or production storage and policy outputs.
 
 ## Interpretation
 
-The expanded 179-row display contains the original 175 historical score tokens
+The expanded 183-row display contains the original 175 historical score tokens
 and four validated full-panel additions. The historical M001 score
 (0.2557255171048505) and the paired reference score (0.25554347087969403)
 remain distinct records. All original model IDs, historical ranks and score
@@ -82,3 +82,7 @@ continues to inspect only the retained 175-row historical score evidence.
 The [complete 176-row ranked JSON](results/combined-176-score-ranking.json)
 contains every row with its `display_rank`, preserved `canonical_rank`, exact
 score token, and evidence status.
+
+Four partially scored asset candidates are included with blank full-panel
+scores and no display rank. Their completed portfolio results are preserved
+in [the rough/jump/HMM-vine experiment](rough-jump-vine-oos.md).

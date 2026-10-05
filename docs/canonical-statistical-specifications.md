@@ -2,7 +2,7 @@
 
 Generated from `resources/specifications/canonical_statistical_specifications.json`.
 The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.
-The resource contains all 179 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.
+The resource contains all 183 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.
 Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.
 
 ## 001. `asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced`
@@ -5991,3 +5991,79 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 - Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
 - Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "raw_standardized_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
 - Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+
+## 180. `asset_rough_volterra_sv_eight_factor`
+
+- Family: `asset_level_rough_jump_vine_ablation`
+- Resolved-definition SHA-256: `bd893fa2b5ff3f5fb56d51c8550d059cd8dcde7fda196c9ab0c779398ed26463`
+- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+- ablation_flags: `{"jumps": false, "model_id": "asset_rough_volterra_sv_eight_factor", "rough": true, "vine": false}`.
+- rough_volatility: `{"H_bounds": [0.03, 0.49], "approximation": "eight_factor_daily_Gaussian_Volterra", "conditional_state": "eight_dimensional_Gaussian_filter_terminal_posterior", "factor_count": 8, "factor_rate_edges": "geomspace(1/(252*50),4,9)", "ftol": 1e-09, "gtol": 1e-05, "initial_theta": [0.1, "log(1/63)", "log(.7)"], "kappa_bounds": [0.0003968253968253968, 0.5], "level": "training_log_square_sample_mean", "leverage": false, "maxiter": 80, "objective": "Gaussian_log_square_likelihood_plus_weak_log_kappa_and_log_scale_priors", "observation_variance": 4.934802200544679, "optimizer": "L-BFGS-B", "path_transition": "exact_daily_OU_covariance_with_common_driver", "scale_bounds": [0.05, 3.0], "variance_normalizer": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)"}`.
+
+## 181. `asset_compensated_poisson_jump_sv`
+
+- Family: `asset_level_rough_jump_vine_ablation`
+- Resolved-definition SHA-256: `d1bf33e15fa5a01e150a02018c38b5e16ae6010adcbdd7e4aa54aa85d7765f27`
+- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+- ablation_flags: `{"jumps": true, "model_id": "asset_compensated_poisson_jump_sv", "rough": false, "vine": false}`.
+- jumps: `{"compensation": "lambda*mark_mean", "count_dependence": "separate_correlated_uniform_stream", "counts": "exact_Poisson_inverse_CDF", "diffusion_body": "exclude_events_then_center_and_population_variance_normalize", "event_definition": "absolute_filtered_innovation_gt_threshold", "event_prior": [1, 99], "event_sequence": "average_across_sixteen_parameter_nodes", "event_threshold": 3.0, "future_rate": "long_run_rate+(terminal_rate-long_run_rate)*exp(-day/21)", "jump_marks": "Gaussian_tail_pool_mean_and_variance; fallback_mean_0_variance_16", "mark_dependence": "independent_seeded_Gaussian_marks", "terminal_rate": "21_day_EWMA", "variance_normalizer": "sqrt(1+lambda*(mark_variance+mark_mean_squared))"}`.
+
+## 182. `asset_hmm_three_state_full_rvine_sv`
+
+- Family: `asset_level_rough_jump_vine_ablation`
+- Resolved-definition SHA-256: `ba0cd651323c9175e2e77213c81c4d834a86ed141ed3a9e40319cf8c6756a900`
+- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"Gaussian_initialization_iterations": 20, "allow_rotations": true, "chunk_rows": 65536, "correlation_regularization": ".95*weighted_correlation+.05*I", "families": ["independence", "Gaussian", "Student", "Clayton", "Gumbel", "Frank"], "first_future_state": "terminal_filtered_probability @ transition", "initial_transition": "diagonal_.95_off_diagonal_.025", "maximum_HMM_vine_updates": 12, "method": "three_state_HMM_full_regular_vines", "relative_likelihood_tolerance": 1e-05, "selection": "weighted_BIC_full_15_pair_R_vine_each_state", "shared_regime_path_for_two_streams": true, "states": 3, "subsequent_fit": "weighted_parameters_fixed_structures_and_families", "training_input": "rank_PIT_of_posterior_averaged_asset_filtered_innovations", "transition_pseudocount": 0.5, "truncation": null}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+- ablation_flags: `{"jumps": false, "model_id": "asset_hmm_three_state_full_rvine_sv", "rough": false, "vine": true}`.
+
+## 183. `asset_rough_jump_hmm_rvine_sv`
+
+- Family: `asset_level_rough_jump_vine_ablation`
+- Resolved-definition SHA-256: `6e6a80677bd907e1e8506fa2a45feb5c247960f9d1b954e0f11d9ab808953fc0`
+- Source: `tools/rough_jump_vine/models.py` at `f50351a9245c6fb337e7ae8baea728e5a9a72c6d` (SHA-256 `69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620`).
+- Source entrypoints: `Candidate.simulate_daily_log_returns`.
+- Factory seed contract: `production copula_alternatives seed; rough_paths and jump_marks: SHA256 training bytes + origin + horizon + simulations; Gaussian jump count seed=(dependence_seed+71237)%2**32`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `research_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"Gaussian_initialization_iterations": 20, "allow_rotations": true, "chunk_rows": 65536, "correlation_regularization": ".95*weighted_correlation+.05*I", "families": ["independence", "Gaussian", "Student", "Clayton", "Gumbel", "Frank"], "first_future_state": "terminal_filtered_probability @ transition", "initial_transition": "diagonal_.95_off_diagonal_.025", "maximum_HMM_vine_updates": 12, "method": "three_state_HMM_full_regular_vines", "relative_likelihood_tolerance": 1e-05, "selection": "weighted_BIC_full_15_pair_R_vine_each_state", "shared_regime_path_for_two_streams": true, "states": 3, "subsequent_fit": "weighted_parameters_fixed_structures_and_families", "training_input": "rank_PIT_of_posterior_averaged_asset_filtered_innovations", "transition_pseudocount": 0.5, "truncation": null}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+- ablation_flags: `{"jumps": true, "model_id": "asset_rough_jump_hmm_rvine_sv", "rough": true, "vine": true}`.
+- rough_volatility: `{"H_bounds": [0.03, 0.49], "approximation": "eight_factor_daily_Gaussian_Volterra", "conditional_state": "eight_dimensional_Gaussian_filter_terminal_posterior", "factor_count": 8, "factor_rate_edges": "geomspace(1/(252*50),4,9)", "ftol": 1e-09, "gtol": 1e-05, "initial_theta": [0.1, "log(1/63)", "log(.7)"], "kappa_bounds": [0.0003968253968253968, 0.5], "level": "training_log_square_sample_mean", "leverage": false, "maxiter": 80, "objective": "Gaussian_log_square_likelihood_plus_weak_log_kappa_and_log_scale_priors", "observation_variance": 4.934802200544679, "optimizer": "L-BFGS-B", "path_transition": "exact_daily_OU_covariance_with_common_driver", "scale_bounds": [0.05, 3.0], "variance_normalizer": "exp(.5*(latent-predictive_mean)-.25*predictive_variance)"}`.
+- jumps: `{"compensation": "lambda*mark_mean", "count_dependence": "separate_correlated_uniform_stream", "counts": "exact_Poisson_inverse_CDF", "diffusion_body": "exclude_events_then_center_and_population_variance_normalize", "event_definition": "absolute_filtered_innovation_gt_threshold", "event_prior": [1, 99], "event_sequence": "average_across_sixteen_parameter_nodes", "event_threshold": 3.0, "future_rate": "long_run_rate+(terminal_rate-long_run_rate)*exp(-day/21)", "jump_marks": "Gaussian_tail_pool_mean_and_variance; fallback_mean_0_variance_16", "mark_dependence": "independent_seeded_Gaussian_marks", "terminal_rate": "21_day_EWMA", "variance_normalizer": "sqrt(1+lambda*(mark_variance+mark_mean_squared))"}`.

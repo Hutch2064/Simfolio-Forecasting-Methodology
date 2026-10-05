@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 from collections.abc import Mapping
 from copy import deepcopy
@@ -20,10 +21,10 @@ from pathlib import Path
 from typing import Any
 
 LEDGER_RESOURCE = "resources/canonical_175/ledger.json"
-EXPECTED_CANONICAL_COUNT = 179
-EXPECTED_SOURCE_RANKS = tuple(range(12, 187)) + (None,) * 4
+EXPECTED_CANONICAL_COUNT = 183
+EXPECTED_SOURCE_RANKS = tuple(range(12, 187)) + (None,) * 8
 EXPECTED_CELLS_PER_MODEL = 701_280
-EXPECTED_MEMBERSHIP_DIGEST = "de9b8baf119a50d1b2093823731e88dcd8ae835e7b9c720259507d789c61ec0b"
+EXPECTED_MEMBERSHIP_DIGEST = "5ce317e0f6c996714063f2c0bbfcb0291dbe97391762e0ccba30ac29d903d511"
 
 REQUIRED_MODEL_FIELDS = (
     "public_model_id",
@@ -138,6 +139,27 @@ def _validate_score(model: Mapping[str, Any], root_score: Mapping[str, Any]) -> 
     if not isinstance(score, Mapping) or not isinstance(precision, Mapping):
         raise TypeError(f"{model['public_model_id']}: historical score metadata is malformed")
     retained = score["exact_empirical_crps"]
+    if retained is None:
+        if (not model['verification_status'].startswith('partial_canonical_score_')
+                or model['historical_rank'] is not None
+                or model['historical_score_verified']
+                or precision.get('retained_source_token') is not None
+                or precision.get('publication_token') is not None
+                or precision['publication_precision']['kind'] != 'unscored_full_panel'):
+            raise ValueError('blank score requires an explicitly partial canonical model')
+        rows = score.get('portfolio_scores', [])
+        if len(rows) != 80 or len({r['portfolio_id'] for r in rows}) != 80:
+            raise ValueError('partial score must retain all 80 portfolio rows')
+        for row in rows:
+            n = row['completed_origins']
+            value = row['exact_empirical_crps']
+            if row['required_origins'] != 51 or not isinstance(n, int) or not 0 <= n <= 51:
+                raise ValueError('partial portfolio origin counts are invalid')
+            if n < 51 and value is not None:
+                raise ValueError('unfinished portfolio score must be blank')
+            if n == 51 and (value is None or not math.isfinite(float(value))):
+                raise ValueError('completed portfolio must retain a finite score')
+        return
     retained_decimal = _as_decimal(retained, "historical_score.exact_empirical_crps")
     publication = precision["publication_token"]
     _as_decimal(publication, "score_precision.publication_token")
@@ -163,6 +185,19 @@ def _validate_artifacts(model: Mapping[str, Any], payload: Mapping[str, Any]) ->
         for field in ("sha256", "manifest_sha256"):
             if not _is_sha256(score_artifact.get(field)):
                 raise ValueError(f"validated score artifact {field} is not SHA-256")
+        if score_artifact.get('scope') == 'partial_canonical':
+            rows = model['historical_score']['portfolio_scores']
+            if (score_artifact.get('all_denominator_gates_passed') is not False
+                    or score_artifact.get('required_tasks_per_model') != 4080
+                    or score_artifact.get('required_cells_per_model') != EXPECTED_CELLS_PER_MODEL
+                    or score_artifact.get('simulations') != 240
+                    or score_artifact.get('tasks_per_model') != sum(r['completed_origins'] for r in rows)
+                    or score_artifact.get('complete_portfolios') != sum(r['completed_origins'] == 51 for r in rows)
+                    or score_artifact.get('cells_per_model') != score_artifact['complete_portfolios'] * 8766):
+                raise ValueError('partial score artifact coverage differs from portfolio evidence')
+            for name in ('source_code', 'parameter_dictionary'):
+                _validate_optional_sha(digest[name].get('sha256'), f'{name}.sha256')
+            return
         if (
             score_artifact.get("tasks_per_model") != 4080
             or score_artifact.get("cells_per_model") != EXPECTED_CELLS_PER_MODEL
@@ -321,7 +356,7 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
     canonical_ranks = [model["canonical_rank"] for model in models]
     historical_ranks = [model["historical_rank"] for model in models]
     if canonical_ranks != list(range(1, EXPECTED_CANONICAL_COUNT + 1)):
-        raise ValueError("canonical ranks must be exactly 1..179")
+        raise ValueError("canonical ranks must be exactly 1..183")
     if historical_ranks != list(EXPECTED_SOURCE_RANKS):
         raise ValueError("original historical ranks must be 12..186; added models have null ranks")
     digest = canonical_membership_digest(models)
@@ -379,7 +414,8 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
         _validate_flags(model, payload)
         for field in ("protocol_fingerprint", "dataset_fingerprint", "panel_fingerprint"):
             _validate_optional_sha(model[field], f"{model['public_model_id']}.{field}")
-        score = _as_decimal(model["historical_score"]["exact_empirical_crps"], "historical_score")
+        retained = model["historical_score"]["exact_empirical_crps"]
+        score = None if retained is None else _as_decimal(retained, "historical_score")
         if model["historical_rank"] is not None and previous_score is not None and score < previous_score:
             raise ValueError("historical scores are not monotonically nondecreasing")
         if model["historical_rank"] is not None:
