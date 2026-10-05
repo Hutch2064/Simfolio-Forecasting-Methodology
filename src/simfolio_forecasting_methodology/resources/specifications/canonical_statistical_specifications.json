@@ -174,7 +174,11 @@
     "sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
     "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc",
     "sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
-    "zero_mean_gaussian_vol_only"
+    "zero_mean_gaussian_vol_only",
+    "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+    "experimental_filtered_innovation_moment_sv_fixed_mean",
+    "experimental_filtered_innovation_moment_sv_dlm",
+    "experimental_gaussian_moment_matched_sv_empirical_fixed_mean"
   ],
   "bindings": {
     "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced": {
@@ -2984,6 +2988,156 @@
         "sha256": "702dda6c2a51111724634a5b45d258889a3a411a0b5419f2b5c87066078b0665"
       }
     },
+    "experimental_filtered_innovation_moment_sv_dlm": {
+      "component_refs": [],
+      "definition_fingerprint": "00211975c281bb0753f5e4c277a9da6c68c0f4e626c9610d340e0e4c14e62e29",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "artifacts/filtered_innovation_sv_candidates.py",
+            "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+          },
+          {
+            "path": "artifacts/fixed_mean_sv_candidates.py",
+            "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+          },
+          {
+            "path": "artifacts/full_fixed_mean_oos.py",
+            "sha256": "ed94857f0ec3d8605b5ebb3847fbe9d23bf0706d5cc8b3a9e9a6cb516816385e"
+          },
+          {
+            "path": "artifacts/moment_sv_candidates.py",
+            "sha256": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686"
+          },
+          {
+            "path": "artifacts/predictive_sv_candidates.py",
+            "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+          },
+          {
+            "path": "artifacts/predictive_sv_screen.py",
+            "sha256": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede"
+          },
+          {
+            "path": "artifacts/research_jit_pilot.py",
+            "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+          },
+          {
+            "path": "artifacts/verify_paired_oos_artifacts.py",
+            "sha256": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511"
+          }
+        ],
+        "entrypoints": [
+          "FilteredInnovationSV(fixed_mean=False)"
+        ],
+        "path": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+        "revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+        "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+      }
+    },
+    "experimental_filtered_innovation_moment_sv_fixed_mean": {
+      "component_refs": [],
+      "definition_fingerprint": "26bf4be46c35d63792cd6e4d110b346c83e9b13da05efe1f5e1446a0d0532f76",
+      "factory": {
+        "class": "simfolio_forecasting_methodology.models.asset_level.filtered_innovation_moment_sv:FilteredInnovationFixedMeanMomentSV",
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "artifacts/filtered_innovation_sv_candidates.py",
+            "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+          },
+          {
+            "path": "artifacts/fixed_mean_sv_candidates.py",
+            "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+          },
+          {
+            "path": "artifacts/full_fixed_mean_oos.py",
+            "sha256": "ed94857f0ec3d8605b5ebb3847fbe9d23bf0706d5cc8b3a9e9a6cb516816385e"
+          },
+          {
+            "path": "artifacts/moment_sv_candidates.py",
+            "sha256": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686"
+          },
+          {
+            "path": "artifacts/predictive_sv_candidates.py",
+            "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+          },
+          {
+            "path": "artifacts/predictive_sv_screen.py",
+            "sha256": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede"
+          },
+          {
+            "path": "artifacts/research_jit_pilot.py",
+            "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+          },
+          {
+            "path": "artifacts/verify_paired_oos_artifacts.py",
+            "sha256": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511"
+          }
+        ],
+        "entrypoints": [
+          "FilteredInnovationSV(fixed_mean=True)"
+        ],
+        "path": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+        "revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+        "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+      }
+    },
+    "experimental_gaussian_moment_matched_sv_empirical_fixed_mean": {
+      "component_refs": [],
+      "definition_fingerprint": "03a6e478c77177098f7077dcd6a789a0a188ab5ddd773102ffb1c7ff245fe388",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "artifacts/fixed_mean_sv_candidates.py",
+            "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+          },
+          {
+            "path": "artifacts/moment_sv_candidates.py",
+            "sha256": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686"
+          },
+          {
+            "path": "artifacts/predictive_sv_candidates.py",
+            "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+          },
+          {
+            "path": "artifacts/predictive_sv_screen.py",
+            "sha256": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede"
+          },
+          {
+            "path": "artifacts/research_jit_pilot.py",
+            "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+          }
+        ],
+        "entrypoints": [
+          "FixedMeanMomentSV"
+        ],
+        "path": "tmp/frontier-research-20261002/artifacts/fixed_mean_sv_candidates.py",
+        "revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+        "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+      }
+    },
     "factor_ff6_ridge_residual_sbb_absolute_ewma": {
       "component_refs": [
         "portfolio.contract",
@@ -5424,6 +5578,128 @@
         "path": "source-research/scripts/forecast_oos_research_gate.py",
         "revision": "511fb82c0be43564b79df3694ee570677f3137ed",
         "sha256": "e061aba8ed259339f75a98e9ea8e0a1a275c99980ed649b92efe652d7271f997"
+      }
+    },
+    "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture": {
+      "component_refs": [],
+      "definition_fingerprint": "0101d1a2d39e1b6be1326da4458d8b50b57747a4efea068cb526bb5c8062aec0",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "artifacts/audit_incumbent_replay.py",
+            "sha256": "384c7e5a55be84aeba2e5e290780ce6ff18b33ba14bb64c67a35bba39df52d07"
+          },
+          {
+            "path": "artifacts/blocked_chain_diagnostics.py",
+            "sha256": "60d2a886ef3a4d6d454a66ef91d36f0353978cbf7f17b10142cdf0be22e1e78e"
+          },
+          {
+            "path": "artifacts/blocked_ess.py",
+            "sha256": "97464f6317c5e136dd35baad3010f22b509c54c00eb2849e536abf96ec29ea4a"
+          },
+          {
+            "path": "artifacts/chain_diagnostics.py",
+            "sha256": "31fe743797016add782dd2556f664f60fe3b211e10d72da0bd13892dc6818617"
+          },
+          {
+            "path": "artifacts/compiled_smoothers.py",
+            "sha256": "716e8a530a7038c5c3b601561a9631a5f1cf9a7100eaa3bbfda1944506413126"
+          },
+          {
+            "path": "artifacts/complex_sv.py",
+            "sha256": "8893a29ac924bf3af68560beb97ce0d37a2e2a3c7a6a72c2a771b99b18c8f4fb"
+          },
+          {
+            "path": "artifacts/fast_asset_models.py",
+            "sha256": "a9cdf515762134a1c63d4967ae086c8aa349fb300a82b348733a58a61860f861"
+          },
+          {
+            "path": "artifacts/fast_pgas.py",
+            "sha256": "c510d6ee0fe8e6804ac790a9b232fb1f8ac9d87382365a6269a831d1659d99ef"
+          },
+          {
+            "path": "artifacts/parameter_chain_diagnostics.py",
+            "sha256": "e06f3074645c78f283d9b58e011caec7fb25b647e5fb52948f7cb059d8fb949e"
+          },
+          {
+            "path": "artifacts/parameter_mcmc.py",
+            "sha256": "0113f2057f974ee1f1237cfeabe35d3714b4beb980be6d79c351da23a3d95aca"
+          },
+          {
+            "path": "artifacts/parameter_mcmc_tuned.py",
+            "sha256": "4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377"
+          },
+          {
+            "path": "artifacts/predictive_sv_candidates.py",
+            "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+          },
+          {
+            "path": "artifacts/research_jit_pilot.py",
+            "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+          },
+          {
+            "path": "artifacts/run_full_parameter.py",
+            "sha256": "df8edc5730984c1417c6a3d3c2d19315cbb4c20ce4cdafc94e4c4a6414d38661"
+          },
+          {
+            "path": "artifacts/run_full_parameter_compiled.py",
+            "sha256": "a94dbc32348b39265e068a41059343c10ff6478c03d4a1ac75f2e0230b6da81e"
+          },
+          {
+            "path": "artifacts/run_parameter_study.py",
+            "sha256": "9522bbf8a41e02749d1e154e3cacf23936b9ad5fe439dc263abd1cf8c6605c11"
+          },
+          {
+            "path": "artifacts/run_parameter_tuned_study.py",
+            "sha256": "f3ad14b27f3f3d363d7f5a030a15f7065e66eee559ab27824f7f0a8865f18fa0"
+          },
+          {
+            "path": "artifacts/run_speed_study.py",
+            "sha256": "6555b7d19f55a3aea0144074bbbb790f0d97f18555294ef8fffa25b7f89020fd"
+          },
+          {
+            "path": "artifacts/run_study.py",
+            "sha256": "ceb6c74a81b13dc1ffe87e8a627c8791afc1c29dc7bc7d222253d2d085807c7a"
+          },
+          {
+            "path": "artifacts/run_tuned_study.py",
+            "sha256": "af0ba25963e3f0db6083a96fa2b6cd11e467ccf234a6389293d61f511f50b622"
+          },
+          {
+            "path": "artifacts/validate_blocked_sampler.py",
+            "sha256": "c2561cb307be68a0f0e7b9d8694d5bd2ce4855860712d6564d96f8f36aa1caa0"
+          },
+          {
+            "path": "artifacts/validate_fast_models.py",
+            "sha256": "a657083c2df3d005fc9dd845d408dbd7977c4deb74b61d6f04f97dcde57b08ef"
+          },
+          {
+            "path": "artifacts/validate_fast_pgas.py",
+            "sha256": "6b71ef2da15ab0bb0d4c46081d74451f5e98a55c7830e86e24abca23d703adf2"
+          },
+          {
+            "path": "artifacts/validate_samplers.py",
+            "sha256": "874834700299d7ca40f74acc9bb4bd54ec026628f3e9f97851ac1e6655095a28"
+          },
+          {
+            "path": "artifacts/validate_smoother_compilation.py",
+            "sha256": "197ac054520a42400ee22d9a1f396234e311a2d2d72be7b00243b25c7ec23028"
+          }
+        ],
+        "entrypoints": [
+          "ComplexSV + parameter_mcmc_tuned.install"
+        ],
+        "path": "tmp/frontier-complex-20261002/artifacts/parameter_mcmc_tuned.py",
+        "revision": "40928c1364630dc736e8681b508766a0f0a631a2",
+        "sha256": "4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377"
       }
     },
     "zero_mean_gaussian_vol_only": {
@@ -13601,6 +13877,283 @@
       "source_seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)",
       "volatility": {
         "ref": "base.volatility_models.gjr_tarch_1_1_volatility"
+      }
+    },
+    "experimental_filtered_innovation_moment_sv_dlm": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_sorted_asset_marginals",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "paths": "reject_nonfinite_output"
+      },
+      "family": "asset_level_moment_sv",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": false,
+        "latent_mean_state": true,
+        "method": "evidence_estimated_sharpe_dlm_historical_cagr_anchor"
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+        "innovations": "historical_SV_filtered_empirical",
+        "mean_shrink": 0.0,
+        "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+        "quantile_normalization": "zero_mean_unit_population_variance"
+      },
+      "production_role": "validated_full_panel_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "experimental_filtered_innovation_moment_sv_dlm",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "artifacts/filtered_innovation_sv_candidates.py",
+            "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+          },
+          {
+            "path": "artifacts/fixed_mean_sv_candidates.py",
+            "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+          },
+          {
+            "path": "artifacts/full_fixed_mean_oos.py",
+            "sha256": "ed94857f0ec3d8605b5ebb3847fbe9d23bf0706d5cc8b3a9e9a6cb516816385e"
+          },
+          {
+            "path": "artifacts/moment_sv_candidates.py",
+            "sha256": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686"
+          },
+          {
+            "path": "artifacts/predictive_sv_candidates.py",
+            "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+          },
+          {
+            "path": "artifacts/predictive_sv_screen.py",
+            "sha256": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede"
+          },
+          {
+            "path": "artifacts/research_jit_pilot.py",
+            "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+          },
+          {
+            "path": "artifacts/verify_paired_oos_artifacts.py",
+            "sha256": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511"
+          }
+        ],
+        "entrypoints": [
+          "FilteredInnovationSV(fixed_mean=False)"
+        ],
+        "path": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+        "revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+        "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+      },
+      "source_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "volatility": {
+        "conditional_state_inference": "Kalman filter and RTS smoother",
+        "coupling": "convex_state_independent_mix",
+        "latent_state": "Gaussian AR(1) log variance",
+        "measurement": "mean-corrected winsorized log-square returns",
+        "multiscale_components": 4,
+        "multiscale_windows": [
+          5,
+          21,
+          63,
+          252
+        ],
+        "parameter_inference": "MAP/Laplace sigma points"
+      }
+    },
+    "experimental_filtered_innovation_moment_sv_fixed_mean": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_sorted_asset_marginals",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "paths": "reject_nonfinite_output"
+      },
+      "family": "asset_level_moment_sv",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+        "innovations": "historical_SV_filtered_empirical",
+        "mean_shrink": 0.0,
+        "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+        "quantile_normalization": "zero_mean_unit_population_variance"
+      },
+      "production_alias": "asset_level_filtered_fixed_moment_sv_kalman_dynamic_gaussian_factor_rebalanced",
+      "production_role": "previous_production_frontier",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "artifacts/filtered_innovation_sv_candidates.py",
+            "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+          },
+          {
+            "path": "artifacts/fixed_mean_sv_candidates.py",
+            "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+          },
+          {
+            "path": "artifacts/full_fixed_mean_oos.py",
+            "sha256": "ed94857f0ec3d8605b5ebb3847fbe9d23bf0706d5cc8b3a9e9a6cb516816385e"
+          },
+          {
+            "path": "artifacts/moment_sv_candidates.py",
+            "sha256": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686"
+          },
+          {
+            "path": "artifacts/predictive_sv_candidates.py",
+            "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+          },
+          {
+            "path": "artifacts/predictive_sv_screen.py",
+            "sha256": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede"
+          },
+          {
+            "path": "artifacts/research_jit_pilot.py",
+            "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+          },
+          {
+            "path": "artifacts/verify_paired_oos_artifacts.py",
+            "sha256": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511"
+          }
+        ],
+        "entrypoints": [
+          "FilteredInnovationSV(fixed_mean=True)"
+        ],
+        "path": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+        "revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+        "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+      },
+      "source_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "volatility": {
+        "conditional_state_inference": "Kalman filter and RTS smoother",
+        "coupling": "convex_state_independent_mix",
+        "latent_state": "Gaussian AR(1) log variance",
+        "measurement": "mean-corrected winsorized log-square returns",
+        "multiscale_components": 4,
+        "multiscale_windows": [
+          5,
+          21,
+          63,
+          252
+        ],
+        "parameter_inference": "MAP/Laplace sigma points"
+      }
+    },
+    "experimental_gaussian_moment_matched_sv_empirical_fixed_mean": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_sorted_asset_marginals",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "paths": "reject_nonfinite_output"
+      },
+      "family": "asset_level_moment_sv",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+        "innovations": "raw_standardized_empirical",
+        "mean_shrink": 0.0,
+        "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+        "quantile_normalization": "zero_mean_unit_population_variance"
+      },
+      "production_role": "validated_full_panel_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "artifacts/fixed_mean_sv_candidates.py",
+            "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+          },
+          {
+            "path": "artifacts/moment_sv_candidates.py",
+            "sha256": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686"
+          },
+          {
+            "path": "artifacts/predictive_sv_candidates.py",
+            "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+          },
+          {
+            "path": "artifacts/predictive_sv_screen.py",
+            "sha256": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede"
+          },
+          {
+            "path": "artifacts/research_jit_pilot.py",
+            "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+          }
+        ],
+        "entrypoints": [
+          "FixedMeanMomentSV"
+        ],
+        "path": "tmp/frontier-research-20261002/artifacts/fixed_mean_sv_candidates.py",
+        "revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+        "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+      },
+      "source_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "volatility": {
+        "conditional_state_inference": "Kalman filter and RTS smoother",
+        "coupling": "convex_state_independent_mix",
+        "latent_state": "Gaussian AR(1) log variance",
+        "measurement": "mean-corrected winsorized log-square returns",
+        "multiscale_components": 4,
+        "multiscale_windows": [
+          5,
+          21,
+          63,
+          252
+        ],
+        "parameter_inference": "MAP/Laplace sigma points"
       }
     },
     "factor_ff6_ridge_residual_sbb_absolute_ewma": {
@@ -23668,6 +24221,206 @@
       },
       "source_seed_context_ref": "seed_identity.base_and_full_mcmc",
       "source_seed_contract": "fit: deterministic_seed('full_mcmc_sv_overlay_fit', repr(full_mcmc_sv_overlay_fit_signature(candidate)), finite_observation_count, round(finite_observation_mean, 10)); forecast: blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, model_id, simulations)"
+    },
+    "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture": {
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "mapping": "Gaussian_uniforms_to_sorted_asset_marginals",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "failure_semantics": {
+        "calendar": "strict_business_day_rejoin",
+        "paths": "reject_nonfinite_output"
+      },
+      "family": "asset_level_moment_sv",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_mcmc": {
+        "adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)",
+        "burn_per_chain": 1024,
+        "chains": 2,
+        "initial_proposal_sd": [
+          0.01,
+          0.05,
+          0.03
+        ],
+        "kept_per_chain": 2048,
+        "node_selection": "linspace(0,4095,16,dtype=int)",
+        "node_weights": "equal",
+        "parameter_bounds": [
+          "[q01(log_square)-4,q99(log_square)+4]",
+          "[-7,7]",
+          "[log(0.02),log(2.5)]"
+        ],
+        "parameters": [
+          "long_run_log_variance",
+          "logit_persistence",
+          "log_state_innovation_sd"
+        ],
+        "posterior": "Gaussian_log_square_SV_quasi_posterior",
+        "posterior_nodes": 16,
+        "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations",
+        "retained_draws": 4096,
+        "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32",
+        "thin": 1
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1.0,
+          1.0
+        ],
+        "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+        "innovations": "historical_SV_filtered_empirical",
+        "mean_shrink": 0.0,
+        "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+        "quantile_normalization": "zero_mean_unit_population_variance"
+      },
+      "production_implementation": {
+        "block_size": 1024,
+        "dtype": "float64",
+        "numerical_replay": "docs/results/mcmc-runtime-optimization/final-full-panel-receipt.json",
+        "path": "app/mcmc_asset_forecast.py",
+        "revision": "8cdc9209bea0b23c533e28ceb7c296448378a622"
+      },
+      "production_role": "current_production_frontier",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "artifacts/audit_incumbent_replay.py",
+            "sha256": "384c7e5a55be84aeba2e5e290780ce6ff18b33ba14bb64c67a35bba39df52d07"
+          },
+          {
+            "path": "artifacts/blocked_chain_diagnostics.py",
+            "sha256": "60d2a886ef3a4d6d454a66ef91d36f0353978cbf7f17b10142cdf0be22e1e78e"
+          },
+          {
+            "path": "artifacts/blocked_ess.py",
+            "sha256": "97464f6317c5e136dd35baad3010f22b509c54c00eb2849e536abf96ec29ea4a"
+          },
+          {
+            "path": "artifacts/chain_diagnostics.py",
+            "sha256": "31fe743797016add782dd2556f664f60fe3b211e10d72da0bd13892dc6818617"
+          },
+          {
+            "path": "artifacts/compiled_smoothers.py",
+            "sha256": "716e8a530a7038c5c3b601561a9631a5f1cf9a7100eaa3bbfda1944506413126"
+          },
+          {
+            "path": "artifacts/complex_sv.py",
+            "sha256": "8893a29ac924bf3af68560beb97ce0d37a2e2a3c7a6a72c2a771b99b18c8f4fb"
+          },
+          {
+            "path": "artifacts/fast_asset_models.py",
+            "sha256": "a9cdf515762134a1c63d4967ae086c8aa349fb300a82b348733a58a61860f861"
+          },
+          {
+            "path": "artifacts/fast_pgas.py",
+            "sha256": "c510d6ee0fe8e6804ac790a9b232fb1f8ac9d87382365a6269a831d1659d99ef"
+          },
+          {
+            "path": "artifacts/parameter_chain_diagnostics.py",
+            "sha256": "e06f3074645c78f283d9b58e011caec7fb25b647e5fb52948f7cb059d8fb949e"
+          },
+          {
+            "path": "artifacts/parameter_mcmc.py",
+            "sha256": "0113f2057f974ee1f1237cfeabe35d3714b4beb980be6d79c351da23a3d95aca"
+          },
+          {
+            "path": "artifacts/parameter_mcmc_tuned.py",
+            "sha256": "4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377"
+          },
+          {
+            "path": "artifacts/predictive_sv_candidates.py",
+            "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+          },
+          {
+            "path": "artifacts/research_jit_pilot.py",
+            "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+          },
+          {
+            "path": "artifacts/run_full_parameter.py",
+            "sha256": "df8edc5730984c1417c6a3d3c2d19315cbb4c20ce4cdafc94e4c4a6414d38661"
+          },
+          {
+            "path": "artifacts/run_full_parameter_compiled.py",
+            "sha256": "a94dbc32348b39265e068a41059343c10ff6478c03d4a1ac75f2e0230b6da81e"
+          },
+          {
+            "path": "artifacts/run_parameter_study.py",
+            "sha256": "9522bbf8a41e02749d1e154e3cacf23936b9ad5fe439dc263abd1cf8c6605c11"
+          },
+          {
+            "path": "artifacts/run_parameter_tuned_study.py",
+            "sha256": "f3ad14b27f3f3d363d7f5a030a15f7065e66eee559ab27824f7f0a8865f18fa0"
+          },
+          {
+            "path": "artifacts/run_speed_study.py",
+            "sha256": "6555b7d19f55a3aea0144074bbbb790f0d97f18555294ef8fffa25b7f89020fd"
+          },
+          {
+            "path": "artifacts/run_study.py",
+            "sha256": "ceb6c74a81b13dc1ffe87e8a627c8791afc1c29dc7bc7d222253d2d085807c7a"
+          },
+          {
+            "path": "artifacts/run_tuned_study.py",
+            "sha256": "af0ba25963e3f0db6083a96fa2b6cd11e467ccf234a6389293d61f511f50b622"
+          },
+          {
+            "path": "artifacts/validate_blocked_sampler.py",
+            "sha256": "c2561cb307be68a0f0e7b9d8694d5bd2ce4855860712d6564d96f8f36aa1caa0"
+          },
+          {
+            "path": "artifacts/validate_fast_models.py",
+            "sha256": "a657083c2df3d005fc9dd845d408dbd7977c4deb74b61d6f04f97dcde57b08ef"
+          },
+          {
+            "path": "artifacts/validate_fast_pgas.py",
+            "sha256": "6b71ef2da15ab0bb0d4c46081d74451f5e98a55c7830e86e24abca23d703adf2"
+          },
+          {
+            "path": "artifacts/validate_samplers.py",
+            "sha256": "874834700299d7ca40f74acc9bb4bd54ec026628f3e9f97851ac1e6655095a28"
+          },
+          {
+            "path": "artifacts/validate_smoother_compilation.py",
+            "sha256": "197ac054520a42400ee22d9a1f396234e311a2d2d72be7b00243b25c7ec23028"
+          }
+        ],
+        "entrypoints": [
+          "ComplexSV + parameter_mcmc_tuned.install"
+        ],
+        "path": "tmp/frontier-complex-20261002/artifacts/parameter_mcmc_tuned.py",
+        "revision": "40928c1364630dc736e8681b508766a0f0a631a2",
+        "sha256": "4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377"
+      },
+      "source_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+      "volatility": {
+        "conditional_state_inference": "Kalman filter and RTS smoother",
+        "coupling": "convex_state_independent_mix",
+        "latent_state": "Gaussian AR(1) log variance",
+        "measurement": "mean-corrected winsorized log-square returns",
+        "multiscale_components": 4,
+        "multiscale_windows": [
+          5,
+          21,
+          63,
+          252
+        ],
+        "parameter_inference": "two_chain_adaptive_metropolis"
+      }
     },
     "zero_mean_gaussian_vol_only": {
       "factory": {

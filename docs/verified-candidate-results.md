@@ -1,15 +1,15 @@
 # Independently Audited Candidate Results
 
-`simfolio-oos candidate-scores --json` reports a 176-row numeric sort: the 175
-retained canonical score rows plus one separately registered candidate. Lower
-exact empirical CRPS is better. The report preserves each historical
-`canonical_rank` and assigns a separate `display_rank`; the new candidate has
-`canonical_rank: null` and `display_rank: 1`.
+`simfolio-oos candidate-scores --json` reports the expanded 179-model canonical
+catalogue, sorted by exact empirical CRPS. The filtered fixed-mean candidate
+is canonical index 177 and display rank 2; the current parameter-MCMC Frontier
+is display rank 1. The dynamic-mean candidate is also included (index 178).
+The paired-run evidence below retains its original run identities and ranks.
 
 | Paired-run rank | Model | Exact empirical CRPS | Paired-run evidence |
 | ---: | --- | ---: | --- |
 | 1 | Filtered-Innovation Moment-Matched SV with Fixed Historical Mean | 0.25439860867855635 | Newly executed; independently audited |
-| 2 | Filtered-Innovation Moment-Matched SV with Dynamic Mean | 0.2547972662964723 | Newly executed in the same run; not added to the 176-row report |
+| 2 | Filtered-Innovation Moment-Matched SV with Dynamic Mean | 0.2547972662964723 | Newly executed in the same run; now canonical index 178 |
 | 3 | M001 — Asset FastMAP + Dynamic Gaussian Factor | 0.25554347087969403 | Reused independently audited incumbent reference |
 
 The paired run used the canonical dense task constructor: 80 portfolios, 4,080
@@ -46,14 +46,12 @@ native portfolio paths or production storage and policy outputs.
 
 ## Interpretation
 
-The 176-row display combines different evidence origins. Its new candidate row
-is a full canonical execution; the other 175 rows retain their historical
-tokens, ranks, and verification statuses. The historical M001 score in the
-combined display (0.2557255171048505) is not the 0.25554347087969403 reused
-reference from the new paired run. Those values belong to distinct evidence
-records. The original 175-row ledger and membership digest are unchanged, and
-the result does not claim a fresh execution of all 176 methods or a reproduction
-of the historical white-paper ranking.
+The expanded 179-row display contains the original 175 historical score tokens
+and four validated full-panel additions. The historical M001 score
+(0.2557255171048505) and the paired reference score (0.25554347087969403)
+remain distinct records. All original model IDs, historical ranks and score
+tokens are preserved. Each addition records its own scored-source and
+validation evidence in the canonical ledger.
 
 The candidate was selected adaptively from a search family of 23 candidates.
 Accordingly, the reported rank and score are descriptive conditional on that

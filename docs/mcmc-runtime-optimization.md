@@ -3,9 +3,9 @@
 The scored two-chain, sixteen-node stochastic-volatility parameter-MCMC
 candidate has been optimized without reducing its inference or forecast
 workload. Its full canonical score is **0.25246784959071183**, compared with
-**0.25439860867855635** for the current Frontier: a **0.7589503330515897%**
-reduction in CRPS. Lower is better. This is a research implementation; neither
-production model is replaced by these tools.
+**0.25439860867855635** for the previous Frontier: a **0.7589503330515897%**
+reduction in CRPS. Lower is better. This is the current production Frontier specification, now included in the
+canonical catalogue alongside both earlier production Frontiers.
 
 ## Statistical contract
 

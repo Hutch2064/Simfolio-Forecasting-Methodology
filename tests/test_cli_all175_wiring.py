@@ -40,8 +40,11 @@ class _StubSummary:
         }
 
 
-def test_canonical_cli_default_wires_all_175_real_factories(monkeypatch, tmp_path: Path):
-    expected_ids = tuple(row["public_model_id"] for row in load_canonical_models())
+def test_canonical_cli_default_wires_all_registered_real_factories(monkeypatch, tmp_path: Path):
+    expected_ids = tuple(
+        row["public_model_id"] for row in load_canonical_models()
+        if row["implementation_factory"]["callable"]
+    )
     built_ids: list[str] = []
     plan_calls: list[dict[str, object]] = []
     execution_calls: list[dict[str, object]] = []
@@ -125,7 +128,7 @@ def test_canonical_cli_default_wires_all_175_real_factories(monkeypatch, tmp_pat
     )
 
     assert tuple(built_ids) == expected_ids
-    assert len(execution_calls) == len(expected_ids) == 175
+    assert len(execution_calls) == len(expected_ids) == 176
     assert plan_calls == [
         {
             "data_root": data_root,

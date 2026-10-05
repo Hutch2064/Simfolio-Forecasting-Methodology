@@ -26,24 +26,25 @@ def test_combined_candidate_ranking_preserves_ledger_and_evidence_origins():
     assert json.loads(artifact_text) == report
     assert all(path not in artifact_text for path in ("/Users/", "/private/", "/tmp/"))
 
-    assert report["row_count"] == 176
+    assert report["row_count"] == 179
     assert report["retained_historical_row_count"] == 175
-    assert report["independently_audited_new_execution_row_count"] == 1
+    assert report["independently_audited_new_execution_row_count"] == 0
+    assert report["validated_full_panel_row_count"] == 4
     assert report["full_176_model_reproduction"] is False
     assert report["canonical_membership_unchanged"] is True
     assert report["canonical_membership_digest"] == ledger["membership"]["membership_digest"]
 
     rows = report["rows"]
-    assert [row["display_rank"] for row in rows] == list(range(1, 177))
-    candidate = rows[0]
+    assert [row["display_rank"] for row in rows] == list(range(1, 180))
+    candidate = next(row for row in rows if row["public_model_id"] == _CANDIDATE_ID)
     assert candidate["public_model_id"] == _CANDIDATE_ID
     assert candidate["exact_empirical_crps"] == "0.25439860867855635"
-    assert candidate["canonical_rank"] is None
-    assert candidate["is_new_execution"] is True
-    assert candidate["score_evidence_origin"] == "independently_audited_new_execution"
+    assert candidate["canonical_rank"] == 177
+    assert candidate["is_new_execution"] is False
+    assert candidate["score_evidence_origin"] == "validated_full_canonical_execution"
 
     historical_rows = {row["public_model_id"]: row for row in rows if not row["is_new_execution"]}
-    assert len(historical_rows) == 175
+    assert len(historical_rows) == 179
     for model in ledger["models"]:
         row = historical_rows[model["public_model_id"]]
         assert row["canonical_rank"] == model["canonical_rank"]
@@ -125,12 +126,12 @@ def test_candidate_plan_selector_is_separate_and_keeps_canonical_task_counts(cap
 def test_public_combined_command_and_historical_score_command_keep_distinct_scopes(capsys):
     assert cli.main(["candidate-scores", "--json"]) == 0
     combined = json.loads(capsys.readouterr().out)
-    assert combined["rows"][0]["public_model_id"] == _CANDIDATE_ID
+    assert combined["rows"][0]["public_model_id"] == "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture"
     assert combined["rows"][0]["display_rank"] == 1
-    assert combined["rows"][1]["canonical_rank"] == 1
+    assert combined["rows"][1]["canonical_rank"] == 177
 
     assert cli.main(["scores", "--json"]) == 0
     retained = json.loads(capsys.readouterr().out)
     assert retained["result_kind"] == "retained_score_evidence"
     assert retained["is_new_execution"] is False
-    assert len(retained["rows"]) == 175
+    assert len(retained["rows"]) == 179

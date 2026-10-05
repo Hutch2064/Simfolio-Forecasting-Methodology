@@ -7,52 +7,38 @@ implementations that have passed bounded parity checks, and an offline frozen
 data snapshot. It has no dependency on a production website, customer system,
 private datastore, or operational API.
 
-## Additional parameter-MCMC research
+## Current catalogue and score ranking
 
-The [asset-level parameter-MCMC optimization report](docs/mcmc-runtime-optimization.md)
-records a separate full-panel candidate, exact complete-output replay, matched
-local runtime measurements, and reproducible experimental tools. It is not
-registered in the combined catalogue or deployed as a production model.
+The canonical catalogue contains **179 models**: the original 175 plus four
+asset-level models with validated full-panel scores. The current production
+Frontier and both previous Frontiers are included. The original model IDs,
+historical ranks and score tokens are preserved; additions have canonical
+indices 176–179 and no historical source rank.
 
+`simfolio-oos candidate-scores --json` returns all 179 models once, sorted by
+exact empirical CRPS. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
+and [model reference](docs/canonical-model-reference.md) are also available.
+Existing command names and catalogue filenames remain compatible.
+
+| Model | Exact empirical CRPS | Role |
+| --- | ---: | --- |
+| Asset Parameter MCMC + Filtered Moment SV | 0.25246784959071183 | Current production Frontier |
+| Asset Filtered Innovation Moment SV + Fixed Mean | 0.25439860867855635 | Previous production Frontier |
+| Asset Filtered Innovation Moment SV + DLM | 0.2547972662964723 | Validated candidate |
+| Asset FastMAP + Dynamic Gaussian Factor | 0.2557255171048505 | Earlier production Frontier; retained historical score |
+| Asset Gaussian Moment SV + Fixed Mean | 0.2588375710788695 | Validated candidate |
+
+Each added model was scored on 4,080 origin tasks, 701,280 cells and 240
+simulations per origin using the whitepaper's exact empirical CRPS and equal
+portfolio-horizon cell weighting. Complete statistical specifications, source
+hashes, run manifests and validation references are recorded per model.
+
+The public package has **176 explicit executable factories**. The remaining
+three additions retain their scored research entrypoints and source details.
+The [parameter-MCMC report](docs/mcmc-runtime-optimization.md) includes the
+current Frontier's complete-output replay and optimized numerical sources.
 The [alternative SV inference experiments](docs/sv-inference-candidates.md)
-test Hamiltonian Monte Carlo, full-rank variational inference, and defensive
-Laplace importance sampling against the same forecasting components. Their
-screening scores remain separate from the canonical ranking.
-
-## Current combined score ranking
-
-The current public ranking is the combined 176-row numeric sort available from
-`simfolio-oos candidate-scores --json`. It keeps historical evidence status
-visible and adds the one independently audited new execution:
-
-| Display rank | Model | Exact empirical CRPS | Evidence |
-| ---: | --- | ---: | --- |
-| 1 | Filtered-Innovation Moment-Matched SV with Fixed Historical Mean | 0.25439860867855635 | New, full canonical paired execution; independently audited |
-| 2 | M001 — Asset FastMAP + Dynamic Gaussian Factor | 0.2557255171048505 | Retained historical evidence; not newly rerun |
-| 3 | M002 — Bayesian SBB + Bias-Corrected SV-AR1 | 0.25582280588825473 | Retained historical evidence; not newly rerun |
-
-The candidate's full paired run scored 4,080 tasks and 701,280 cells with 240
-simulations per origin. Its score is lower than the separately audited Frontier
-reference score of 0.25554347087969403, whose loss vectors were reused in that
-paired report. Historical rank values remain in the immutable 175-model ledger;
-the added candidate has no canonical rank. The mixed sort is descriptive and
-does not mean all 176 rows were freshly run. See
-[the candidate evidence report](docs/verified-candidate-results.md) for the
-paired-run statuses, replay receipt, and selection qualification.
-The [complete 176-row ranked JSON](docs/results/combined-176-score-ranking.json)
-is available for inspection without installing the CLI.
-
-## Current release state
-
-The canonical ledger contains **175 exact model identities**. The public
-runtime has **175 explicit executable factories**. Every model has passed
-instantiation and bounded forecasting/source-parity checks. The numerical
-implementations reuse the recovered statistical methods and their source
-parameter defaults; no model was dropped or replaced with a generic baseline.
-
-Historical score tokens are retained as evidence. Historical score linkage has
-not been verified, and no retained score is presented as a newly reproduced
-result. All 175 ledger entries have complete, fingerprinted statistical specifications.
+retain their screening results separately.
 
 The packaged canonical data snapshot contains 60 manifest-whitelisted files:
 52 asset series, `EFFRX`, five additional canonical drift-proxy series,
@@ -79,8 +65,7 @@ The data commands use the packaged snapshot by default. Preparation writes a
 caller-local execution cache after rechecking every source hash and derived
 fingerprint; it never downloads or refreshes data. Use
 `simfolio-oos scores --json` to inspect retained score evidence without
-starting a forecast run. That command remains scoped to the original 175
-historical records; use `simfolio-oos candidate-scores --json` for the current
+starting a forecast run. That command includes the expanded canonical records; use `simfolio-oos candidate-scores --json` for the current
 combined ranking.
 
 The bounded implementation surface can be exercised with an exact model ID or

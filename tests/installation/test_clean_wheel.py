@@ -38,8 +38,8 @@ def test_installed_package_contains_the_offline_canonical_snapshot():
 def test_every_registered_factory_instantiates_from_the_installed_package():
     rows = load_canonical_models()
     executable = [row for row in rows if row["implementation_factory"]["callable"]]
-    assert len(rows) == 175
-    assert len(executable) == 175
+    assert len(rows) == 179
+    assert len(executable) == 176
 
     for row in executable:
         model = build_model(row["public_model_id"])

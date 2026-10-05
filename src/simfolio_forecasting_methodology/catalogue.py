@@ -20,10 +20,10 @@ from pathlib import Path
 from typing import Any
 
 LEDGER_RESOURCE = "resources/canonical_175/ledger.json"
-EXPECTED_CANONICAL_COUNT = 175
-EXPECTED_SOURCE_RANKS = tuple(range(12, 187))
+EXPECTED_CANONICAL_COUNT = 179
+EXPECTED_SOURCE_RANKS = tuple(range(12, 187)) + (None,) * 4
 EXPECTED_CELLS_PER_MODEL = 701_280
-EXPECTED_MEMBERSHIP_DIGEST = "c93ea4fca270f7343924a11ec6c3574d1693c07592d9f203b650915548b1d9b5"
+EXPECTED_MEMBERSHIP_DIGEST = "de9b8baf119a50d1b2093823731e88dcd8ae835e7b9c720259507d789c61ec0b"
 
 REQUIRED_MODEL_FIELDS = (
     "public_model_id",
@@ -158,6 +158,21 @@ def _validate_artifacts(model: Mapping[str, Any], payload: Mapping[str, Any]) ->
     for name in ("retained_score_artifact", "source_code", "parameter_dictionary"):
         if not isinstance(digest.get(name), Mapping):
             raise TypeError(f"{model['public_model_id']}: {name} artifact digest is malformed")
+    if model["historical_rank"] is None:
+        score_artifact = digest["retained_score_artifact"]
+        for field in ("sha256", "manifest_sha256"):
+            if not _is_sha256(score_artifact.get(field)):
+                raise ValueError(f"validated score artifact {field} is not SHA-256")
+        if (
+            score_artifact.get("tasks_per_model") != 4080
+            or score_artifact.get("cells_per_model") != EXPECTED_CELLS_PER_MODEL
+            or score_artifact.get("simulations") != 240
+            or score_artifact.get("all_denominator_gates_passed") is not True
+        ):
+            raise ValueError("validated score artifact denominator gates drifted")
+        for name in ("source_code", "parameter_dictionary"):
+            _validate_optional_sha(digest[name].get("sha256"), f"{name}.sha256")
+        return
     if digest["retained_score_artifact"].get("root_reference") != (
         "score_evidence.retained_score_artifact"
     ):
@@ -306,9 +321,9 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
     canonical_ranks = [model["canonical_rank"] for model in models]
     historical_ranks = [model["historical_rank"] for model in models]
     if canonical_ranks != list(range(1, EXPECTED_CANONICAL_COUNT + 1)):
-        raise ValueError("canonical ranks must be exactly 1..175")
+        raise ValueError("canonical ranks must be exactly 1..179")
     if historical_ranks != list(EXPECTED_SOURCE_RANKS):
-        raise ValueError("historical ranks must be exactly 12..186")
+        raise ValueError("original historical ranks must be 12..186; added models have null ranks")
     digest = canonical_membership_digest(models)
     if digest != EXPECTED_MEMBERSHIP_DIGEST:
         raise ValueError("canonical membership digest does not match the immutable expected digest")
@@ -356,7 +371,7 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
         score_precision = model["score_precision"]
         if not isinstance(score_precision, Mapping):
             raise TypeError(f"{model['public_model_id']}: score precision metadata is malformed")
-        if model["historical_rank"] != model["canonical_rank"] + 11:
+        if model["historical_rank"] is not None and model["historical_rank"] != model["canonical_rank"] + 11:
             raise ValueError(f"{model['public_model_id']}: rank mapping drifted")
         _validate_score(model, score_evidence)
         _validate_artifacts(model, payload)
@@ -365,9 +380,10 @@ def validate_canonical_ledger(payload: Mapping[str, Any]) -> None:
         for field in ("protocol_fingerprint", "dataset_fingerprint", "panel_fingerprint"):
             _validate_optional_sha(model[field], f"{model['public_model_id']}.{field}")
         score = _as_decimal(model["historical_score"]["exact_empirical_crps"], "historical_score")
-        if previous_score is not None and score < previous_score:
+        if model["historical_rank"] is not None and previous_score is not None and score < previous_score:
             raise ValueError("historical scores are not monotonically nondecreasing")
-        previous_score = score
+        if model["historical_rank"] is not None:
+            previous_score = score
 
     full_specs = sum(model["specification_recovered"] for model in models)
     if payload.get("identity_policy", {}).get("full_statistical_specifications_confirmed") != full_specs:

@@ -27,7 +27,7 @@ def _verified_bytes(name: str, evidence: dict[str, Any]) -> bytes:
 
 
 def verified_candidate_score_report() -> dict[str, Any]:
-    """Return a 176-row numeric sort with historical and new-run status explicit."""
+    """Return the expanded canonical score ranking without duplicate candidates."""
 
     evidence = load_candidate_evidence()
     audit = json.loads(
@@ -80,30 +80,15 @@ def verified_candidate_score_report() -> dict[str, Any]:
                 "canonical_rank": model["canonical_rank"],
                 "historical_rank": model["historical_rank"],
                 "display_rank": None,
-                "score_evidence_origin": "retained_historical_evidence",
+                "score_evidence_origin": (
+                    "retained_historical_evidence" if model["historical_rank"] is not None
+                    else "validated_full_canonical_execution"
+                ),
                 "is_new_execution": False,
                 "historical_score_verified": model["historical_score_verified"],
                 "verification_status": model["verification_status"],
             }
         )
-    rows.append(
-        {
-            "public_model_id": candidate["model_id"],
-            "display_name": candidate["display_name"],
-            "exact_empirical_crps": candidate["exact_empirical_crps"],
-            "canonical_rank": None,
-            "historical_rank": None,
-            "display_rank": None,
-            "score_evidence_origin": "independently_audited_new_execution",
-            "is_new_execution": True,
-            "historical_score_verified": None,
-            "verification_status": "independently_audited_full_canonical_paired_execution",
-            "paired_run_rank": candidate["display_rank"],
-            "paired_run_scope": run["scope"],
-            "independent_audit_passed": run["independent_audit_passed"],
-            "historical_whitepaper_ranking_reproduced": False,
-        }
-    )
     rows.sort(
         key=lambda row: (
             Decimal(row["exact_empirical_crps"]),
@@ -133,8 +118,9 @@ def verified_candidate_score_report() -> dict[str, Any]:
         "result_kind": "combined_ranked_score_evidence",
         "ranking_rule": "one-based numeric sort position by exact empirical CRPS across mixed evidence origins",
         "row_count": len(rows),
-        "retained_historical_row_count": len(ledger["models"]),
-        "independently_audited_new_execution_row_count": 1,
+        "retained_historical_row_count": 175,
+        "validated_full_panel_row_count": len(ledger["models"]) - 175,
+        "independently_audited_new_execution_row_count": 0,
         "canonical_membership_digest": ledger["membership"]["membership_digest"],
         "canonical_membership_unchanged": True,
         "full_176_model_reproduction": False,

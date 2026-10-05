@@ -36,8 +36,8 @@ def test_membership_is_exact_and_digest_is_immutable():
     payload = load_canonical_ledger()
     models = list(load_canonical_models())
 
-    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 175
-    assert [model["canonical_rank"] for model in models] == list(range(1, 176))
+    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 179
+    assert [model["canonical_rank"] for model in models] == list(range(1, 180))
     assert [model["historical_rank"] for model in models] == list(EXPECTED_SOURCE_RANKS)
     assert canonical_membership_digest(models) == EXPECTED_MEMBERSHIP_DIGEST
     assert payload["membership"]["membership_digest"] == EXPECTED_MEMBERSHIP_DIGEST
@@ -61,7 +61,7 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
     payload = load_canonical_ledger()
     assert tuple(payload["required_model_fields"]) == REQUIRED_MODEL_FIELDS
     resolved_ids = _resolved_specification_ids()
-    assert len(resolved_ids) == 175
+    assert len(resolved_ids) == 179
 
     for model in payload["models"]:
         assert set(model) == set(REQUIRED_MODEL_FIELDS) | {"canonical_rank"}
@@ -70,11 +70,11 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
         assert model["specification_recovered"] is (model["public_model_id"] in resolved_ids)
         assert model["source_reference_verified"] is True
         executable = registration(model["public_model_id"]).factory is not None
-        assert model["implementation_available"] is executable
+        assert model["implementation_available"] is True
         assert model["instantiation_validated"] is executable
         assert model["forecast_smoke_tested"] is executable
         assert model["source_parity_checked"] is executable
-        assert model["historical_score_verified"] is False
+        assert model["historical_score_verified"] is (model["historical_rank"] is None)
         assert model["protocol_fingerprint"] == payload["identity_policy"]["protocol_fingerprint"]
         assert model["dataset_fingerprint"] == payload["identity_policy"]["dataset_fingerprint"]
         assert model["panel_fingerprint"] == payload["identity_policy"]["panel_fingerprint"]
@@ -131,7 +131,7 @@ def test_retained_lexical_scores_and_public_precision_reconcile():
 def test_compatibility_loader_reads_the_same_ledger_rows():
     payload = load_canonical_ledger()
     rows = load_canonical_175()
-    assert len(rows) == len(payload["models"]) == 175
+    assert len(rows) == len(payload["models"]) == 179
     for row, model in zip(rows, payload["models"]):
         assert row.canonical_rank == model["canonical_rank"]
         assert row.source_rank == model["historical_rank"]
@@ -144,7 +144,7 @@ def test_compatibility_loader_reads_the_same_ledger_rows():
 def test_packaged_resource_load_is_independent_of_cwd(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     models = load_canonical_models()
-    assert len(models) == 175
+    assert len(models) == 179
     assert canonical_model(models[0]["public_model_id"])["canonical_rank"] == 1
 
 
@@ -259,3 +259,30 @@ def test_generated_reference_is_current_and_scoped_to_the_ledger():
     assert reference.count("retained_score_evidence_only_blocked") == 0
     assert EXPECTED_MEMBERSHIP_DIGEST in reference
     assert "master_369" not in reference
+
+
+def test_validated_asset_level_additions_include_all_frontier_generations():
+    ledger = load_canonical_ledger()
+    by_id = {row["public_model_id"]: row for row in ledger["models"]}
+    assert "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced" in by_id
+    expected = {
+        "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture": "0.25246784959071183",
+        "experimental_filtered_innovation_moment_sv_fixed_mean": "0.25439860867855635",
+        "experimental_filtered_innovation_moment_sv_dlm": "0.2547972662964723",
+        "experimental_gaussian_moment_matched_sv_empirical_fixed_mean": "0.2588375710788695",
+    }
+    for model_id, score in expected.items():
+        row = by_id[model_id]
+        assert row["historical_score"]["exact_empirical_crps"] == score
+        assert row["historical_rank"] is None
+        assert row["historical_score_verified"] is True
+        assert row["structured_specification"]["resolved_definition"]["forecast_level"] == "asset_daily_log_return"
+        evidence = row["source_artifact_digest"]["retained_score_artifact"]
+        assert evidence["tasks_per_model"] == 4080
+        assert evidence["cells_per_model"] == 701280
+        assert evidence["simulations"] == 240
+    current = by_id["sv_parameter_mcmc_twochain_sixteen_node_moment_mixture"]
+    sampler = current["structured_specification"]["resolved_definition"]["parameter_mcmc"]
+    assert sampler["chains"] == 2
+    assert sampler["retained_draws"] == 4096
+    assert sampler["posterior_nodes"] == 16

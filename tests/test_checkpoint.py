@@ -370,7 +370,7 @@ def test_registered_model_dependency_manifests_accept_immutable_mappings():
 
     ledger = load_canonical_ledger()
     for record in ledger["models"]:
-        if not record["implementation_available"]:
+        if not record["implementation_factory"]["callable"]:
             continue
         model_id = record["public_model_id"]
         model = build_model(model_id)

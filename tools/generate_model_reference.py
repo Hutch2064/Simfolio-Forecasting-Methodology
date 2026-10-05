@@ -25,7 +25,7 @@ def _cell(value: object) -> str:
 
 
 def render_reference(payload: dict) -> str:
-    """Render only the 175 records present in the validated ledger."""
+    """Render only the records present in the validated ledger."""
 
     validate_canonical_ledger(payload)
     membership = payload["membership"]
@@ -34,7 +34,7 @@ def render_reference(payload: dict) -> str:
     models = payload["models"]
 
     lines = [
-        "# Canonical 175 model reference",
+        "# Canonical model reference (175 historical + 4 validated additions)",
         "",
         "This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.",
         "The ledger is the sole membership authority for this public set.",

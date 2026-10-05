@@ -1536,6 +1536,26 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
         }
         resolved[model_id] = definition
 
+    for row in rows:
+        if row["historical_rank"] is not None:
+            continue
+        model_id = row["public_model_id"]
+        definition = copy.deepcopy(row["structured_specification"]["resolved_definition"])
+        resolved[model_id] = definition
+        bindings[model_id] = {
+            "family": "asset_level_extension",
+            "component_refs": definition["shared_component_refs"],
+            "definition_fingerprint": _digest(definition),
+            "source_reference": definition["source_reference"],
+            "seed_contract": definition["factory_seed_contract"],
+            "factory": {
+                "class": row["implementation_factory"]["name"],
+                "method": "simulate_daily_log_returns",
+                "output": "daily_log_return_increments",
+                "strict_model_id": True,
+            },
+        }
+
     ledger_model_ids = {str(row["public_model_id"]) for row in rows}
     if set(resolved) != ledger_model_ids:
         missing = sorted(ledger_model_ids - set(resolved))
@@ -1733,7 +1753,7 @@ def render_readable(resource: dict[str, Any]) -> str:
         "",
         "Generated from `resources/specifications/canonical_statistical_specifications.json`.",
         "The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.",
-        "The resource contains all 175 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.",
+        "The resource contains all 179 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.",
         "Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.",
         "",
     ]
@@ -1753,7 +1773,7 @@ def render_readable(resource: dict[str, Any]) -> str:
                 f"- Source entrypoints: {', '.join(f'`{item}`' for item in source['entrypoints'])}.",
                 f"- Factory seed contract: `{definition['factory_seed_contract']}`.",
                 "- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.",
-                f"- Source seed context: `{definition['source_seed_context_ref']}`.",
+                f"- Source seed context: `{definition.get('source_seed_context_ref', 'asset_level_moment_sv')}`.",
             ]
         )
         if definition["family"] == "base":
@@ -1773,6 +1793,17 @@ def render_readable(resource: dict[str, Any]) -> str:
                     f"- Portfolio rejoin: `{definition['portfolio_rejoin']['ref']}`.",
                 ]
             )
+        elif definition["family"] == "asset_level_moment_sv":
+            lines.extend([
+                f"- Forecast level: `{definition['forecast_level']}`.",
+                f"- Production role: `{definition['production_role']}`.",
+                f"- Mean: `{json.dumps(definition['mean'], sort_keys=True)}`.",
+                f"- Volatility: `{json.dumps(definition['volatility'], sort_keys=True)}`.",
+                f"- Predictive marginal: `{json.dumps(definition['predictive_marginal'], sort_keys=True)}`.",
+                f"- Dependence: `{json.dumps(definition['dependence'], sort_keys=True)}`.",
+            ])
+            if "parameter_mcmc" in definition:
+                lines.append(f"- Parameter MCMC: `{json.dumps(definition['parameter_mcmc'], sort_keys=True)}`.")
         else:
             source_candidate = definition["source_candidate"]
             resolved_candidate = definition.get("resolved_candidate", definition.get("resolved_defaults"))

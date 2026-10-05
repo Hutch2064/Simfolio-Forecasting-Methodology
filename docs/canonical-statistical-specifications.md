@@ -2,7 +2,7 @@
 
 Generated from `resources/specifications/canonical_statistical_specifications.json`.
 The machine-readable resource contains the complete definitions; this file keeps each accepted model's source identity, seed contract, and resolved component references visible to reviewers.
-The resource contains all 175 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.
+The resource contains all 179 canonical definitions, with source-backed portfolio and asset extensions merged into the same fingerprinted component graph. `audit/statistical-specifications-portfolio-ledger-patch.json` is the generated extension metadata patch; canonical membership, scores, and protocol identity remain ledger-owned.
 Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descriptor`; resolved defaults are separate and never replace those fields.
 
 ## 001. `asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced`
@@ -5926,3 +5926,68 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
   - `unknown_model_policy` = `"exact ID map; unknown IDs raise ValueError"`
   - `vol_model` = `"constant_sample_volatility"`
   - `zero_mean` = `{"mean": 0.0, "scale": "sample standard deviation, ddof=1"}`
+
+## 176. `sv_parameter_mcmc_twochain_sixteen_node_moment_mixture`
+
+- Family: `asset_level_moment_sv`
+- Resolved-definition SHA-256: `0101d1a2d39e1b6be1326da4458d8b50b57747a4efea068cb526bb5c8062aec0`
+- Source: `tmp/frontier-complex-20261002/artifacts/parameter_mcmc_tuned.py` at `40928c1364630dc736e8681b508766a0f0a631a2` (SHA-256 `4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377`).
+- Source entrypoints: `ComplexSV + parameter_mcmc_tuned.install`.
+- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `current_production_frontier`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "two_chain_adaptive_metropolis"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+- Parameter MCMC: `{"adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)", "burn_per_chain": 1024, "chains": 2, "initial_proposal_sd": [0.01, 0.05, 0.03], "kept_per_chain": 2048, "node_selection": "linspace(0,4095,16,dtype=int)", "node_weights": "equal", "parameter_bounds": ["[q01(log_square)-4,q99(log_square)+4]", "[-7,7]", "[log(0.02),log(2.5)]"], "parameters": ["long_run_log_variance", "logit_persistence", "log_state_innovation_sd"], "posterior": "Gaussian_log_square_SV_quasi_posterior", "posterior_nodes": 16, "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations", "retained_draws": 4096, "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32", "thin": 1}`.
+
+## 177. `experimental_filtered_innovation_moment_sv_fixed_mean`
+
+- Family: `asset_level_moment_sv`
+- Resolved-definition SHA-256: `26bf4be46c35d63792cd6e4d110b346c83e9b13da05efe1f5e1446a0d0532f76`
+- Source: `tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py` at `6666be3597b986aff945b985f11c6419284d0f2c` (SHA-256 `6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150`).
+- Source entrypoints: `FilteredInnovationSV(fixed_mean=True)`.
+- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `previous_production_frontier`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+
+## 178. `experimental_filtered_innovation_moment_sv_dlm`
+
+- Family: `asset_level_moment_sv`
+- Resolved-definition SHA-256: `00211975c281bb0753f5e4c277a9da6c68c0f4e626c9610d340e0e4c14e62e29`
+- Source: `tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py` at `6666be3597b986aff945b985f11c6419284d0f2c` (SHA-256 `6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150`).
+- Source entrypoints: `FilteredInnovationSV(fixed_mean=False)`.
+- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `validated_full_panel_candidate`.
+- Mean: `{"fixed_mean": false, "latent_mean_state": true, "method": "evidence_estimated_sharpe_dlm_historical_cagr_anchor"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "historical_SV_filtered_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.
+
+## 179. `experimental_gaussian_moment_matched_sv_empirical_fixed_mean`
+
+- Family: `asset_level_moment_sv`
+- Resolved-definition SHA-256: `03a6e478c77177098f7077dcd6a789a0a188ab5ddd773102ffb1c7ff245fe388`
+- Source: `tmp/frontier-research-20261002/artifacts/fixed_mean_sv_candidates.py` at `6666be3597b986aff945b985f11c6419284d0f2c` (SHA-256 `fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c`).
+- Source entrypoints: `FixedMeanMomentSV`.
+- Factory seed contract: `deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)`.
+- Runner checkpoint contract: `origin_task.seed_to_forecast_context.seed.v1`.
+- Source seed context: `asset_level_moment_sv`.
+- Forecast level: `asset_daily_log_return`.
+- Production role: `validated_full_panel_candidate`.
+- Mean: `{"fixed_mean": true, "latent_mean_state": false, "method": "historical_sample_mean"}`.
+- Volatility: `{"conditional_state_inference": "Kalman filter and RTS smoother", "coupling": "convex_state_independent_mix", "latent_state": "Gaussian AR(1) log variance", "measurement": "mean-corrected winsorized log-square returns", "multiscale_components": 4, "multiscale_windows": [5, 21, 63, 252], "parameter_inference": "MAP/Laplace sigma points"}`.
+- Predictive marginal: `{"daily_log_return_clip": [-1.0, 1.0], "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)", "innovations": "raw_standardized_empirical", "mean_shrink": 0.0, "method": "first_two_return_moments_including_Jensen_and_mean_state_variance", "quantile_normalization": "zero_mean_unit_population_variance"}`.
+- Dependence: `{"input": "asset_daily_log_returns", "mapping": "Gaussian_uniforms_to_sorted_asset_marginals", "method": "exact_Kalman_dynamic_Gaussian_factor"}`.

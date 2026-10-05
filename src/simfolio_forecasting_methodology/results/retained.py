@@ -38,7 +38,10 @@ def retained_score_report(model_id: str | None = None) -> dict[str, Any]:
                 "origin_count": 4080,
                 "cell_count": ledger["score_evidence"]["cells_per_model"],
                 "simulation_count": 240,
-                "source_artifact_digest": artifact["observed_sha256"],
+                "source_artifact_digest": (
+                    row["source_artifact_digest"]["retained_score_artifact"]["sha256"]
+                    if row["historical_rank"] is None else artifact["observed_sha256"]
+                ),
                 "source_revision": row["source_revision"],
                 "result_type": "imported_retained_result",
                 "canonical_rank": row["canonical_rank"],

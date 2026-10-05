@@ -1,14 +1,14 @@
-# Canonical 175 model reference
+# Canonical model reference (175 historical + 4 validated additions)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **175** rows, canonical ranks **1–175**.
+- Membership: **179** rows, canonical ranks **1–179**.
 - Retained source ranks: **12–186**.
-- Membership digest: `c93ea4fca270f7343924a11ec6c3574d1693c07592d9f203b650915548b1d9b5`.
+- Membership digest: `de9b8baf119a50d1b2093823731e88dcd8ae835e7b9c720259507d789c61ec0b`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **175**.
+- Confirmed full statistical specifications: **179**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -189,3 +189,7 @@ The ledger is the sole membership authority for this public set.
 | 173 | 184 | bic_auto_arma_mean\|garch_1_1_volatility\|empirical\|iid\|automated_evt_pot_gpd_tail | M173 — BIC ARMA Mean · GARCH(1,1) · Empirical Innovations · IID Resampling · EVT POT/GPD Tail | base | 1.3989654738758714 | 1.39896547 | true | source_parity_checked_score_linkage_unverified |
 | 174 | 185 | bic_auto_arma_mean\|egarch_1_1_volatility\|empirical\|stationary_bootstrap\|automated_evt_pot_gpd_tail | M174 — BIC ARMA Mean · EGARCH(1,1) · Empirical Innovations · Stationary Bootstrap · EVT POT/GPD Tail | base | 1.3993406424482673 | 1.39934064 | true | source_parity_checked_score_linkage_unverified |
 | 175 | 186 | bic_auto_arma_mean\|egarch_1_1_volatility\|empirical\|stationary_bootstrap\|filtered_empirical_tail | M175 — BIC ARMA Mean · EGARCH(1,1) · Empirical Innovations · Stationary Bootstrap · Filtered Empirical Tail | base | 1.3998860914387188 | 1.39988609 | true | source_parity_checked_score_linkage_unverified |
+| 176 | None | sv_parameter_mcmc_twochain_sixteen_node_moment_mixture | M176 — Asset Parameter MCMC + Filtered Moment SV | asset_level_extension | 0.25246784959071183 | 0.25246785 | true | validated_full_canonical_score |
+| 177 | None | experimental_filtered_innovation_moment_sv_fixed_mean | M177 — Asset Filtered Innovation Moment SV + Fixed Mean | asset_level_extension | 0.25439860867855635 | 0.254398609 | true | validated_full_canonical_score |
+| 178 | None | experimental_filtered_innovation_moment_sv_dlm | M178 — Asset Filtered Innovation Moment SV + DLM | asset_level_extension | 0.2547972662964723 | 0.254797266 | true | validated_full_canonical_score |
+| 179 | None | experimental_gaussian_moment_matched_sv_empirical_fixed_mean | M179 — Asset Gaussian Moment SV + Fixed Mean | asset_level_extension | 0.2588375710788695 | 0.258837571 | true | validated_full_canonical_score |

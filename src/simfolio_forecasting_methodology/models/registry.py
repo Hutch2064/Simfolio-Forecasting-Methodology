@@ -14,6 +14,9 @@ from typing import Any
 
 from ..catalogue import canonical_model, load_canonical_models
 from .asset_level.exact_kalman import EXACT_KALMAN_MODEL_ID, ExactKalmanDynamicGaussianFactorModel
+from .asset_level.filtered_innovation_moment_sv import (
+    FilteredInnovationFixedMeanMomentSV,
+)
 from .asset_level.frontier import FRONTIER_MODEL_ID, HistoricalFrontierModel
 from .numerical.base_models import CanonicalBaseModel
 from .numerical.mcmc_sv import canonical_full_mcmc_sv_ids
@@ -40,6 +43,7 @@ class ModelRegistration:
 
 _EXPLICIT_FACTORIES: dict[str, Callable[[], Any]] = {
     FRONTIER_MODEL_ID: HistoricalFrontierModel,
+    "experimental_filtered_innovation_moment_sv_fixed_mean": FilteredInnovationFixedMeanMomentSV,
     EXACT_KALMAN_MODEL_ID: ExactKalmanDynamicGaussianFactorModel,
     INLA_MODEL_ID: FullINLABDESModel,
     **CANONICAL_STACK_FACTORIES,

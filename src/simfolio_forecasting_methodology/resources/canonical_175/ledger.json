@@ -34,16 +34,16 @@
     "notes"
   ],
   "membership": {
-    "count": 175,
+    "count": 179,
     "canonical_rank_range": [
       1,
-      175
+      179
     ],
     "source_rank_range": [
       12,
       186
     ],
-    "membership_digest": "c93ea4fca270f7343924a11ec6c3574d1693c07592d9f203b650915548b1d9b5",
+    "membership_digest": "de9b8baf119a50d1b2093823731e88dcd8ae835e7b9c720259507d789c61ec0b",
     "membership_digest_algorithm": "sha256(UTF-8 of canonical_rank|historical_rank|public_model_id lines in canonical order, final newline)"
   },
   "score_evidence": {
@@ -98,8 +98,8 @@
       },
       {
         "relative_path": "src/simfolio_forecasting_methodology/resources/catalogs/canonical_175_part2.csv",
-        "sha256": "275274ed16f7eae3fd94baca50b94dca44e890d8381b30d476337e909aea978b",
-        "rows": 86
+        "sha256": "75229c317be94eee58eeae1a22c65ce0cc4d61754dade9c6ff7fd16af40615bd",
+        "rows": 90
       }
     ],
     "protocol_identity": {
@@ -124,7 +124,7 @@
     }
   },
   "identity_policy": {
-    "full_statistical_specifications_confirmed": 175,
+    "full_statistical_specifications_confirmed": 179,
     "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
     "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
     "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
@@ -1006,10 +1006,14 @@
       "factory_name": "simfolio_forecasting_methodology.models.portfolio.canonical_stack_reference:CanonicalStackModel",
       "status": "verified_explicit_factory",
       "seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, candidate_id, simulations)"
+    },
+    "experimental_filtered_innovation_moment_sv_fixed_mean": {
+      "factory_name": "simfolio_forecasting_methodology.models.asset_level.filtered_innovation_moment_sv:FilteredInnovationFixedMeanMomentSV",
+      "status": "verified_explicit_factory"
     }
   },
   "validation_policy": {
-    "membership_digest_required": "c93ea4fca270f7343924a11ec6c3574d1693c07592d9f203b650915548b1d9b5",
+    "membership_digest_required": "de9b8baf119a50d1b2093823731e88dcd8ae835e7b9c720259507d789c61ec0b",
     "future_updates": "verified fields may advance when evidence consistency rules pass; unknown IDs and unmapped callable factories remain rejected",
     "factory_claim_rule": "implementation_factory.callable=true requires an explicit implementation_factory_map entry for the same public_model_id",
     "status_rule": "verification_status is descriptive; advancement is accepted only when the associated evidence and dependent flags are consistent"
@@ -40404,6 +40408,1600 @@
         "The explicit canonical factory passed instantiation, bounded execution, and source parity on the documented local reference environment.",
         "Historical scalar score has not been reproduced in this audit; the declared-versus-observed score artifact mismatch is retained at ledger root.",
         "Root regenerated all-84 source fixture byte-identically (a7b4210860029f47bb6ac34eaad7f6dc059a66336532b7223537b4181d89d585). Kernel fit and path parity verified; historical terminal-wrapper linkage remains unresolved. ARCH failure raises explicitly instead of source EWMA substitution."
+      ]
+    },
+    {
+      "public_model_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+      "display_name": "M176 \u2014 Asset Parameter MCMC + Filtered Moment SV",
+      "historical_model_ids": [
+        "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture"
+      ],
+      "seed_identity": {
+        "source_model_key": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_moment_sv",
+          "source_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "current_production_frontier",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "measurement": "mean-corrected winsorized log-square returns",
+            "latent_state": "Gaussian AR(1) log variance",
+            "parameter_inference": "two_chain_adaptive_metropolis",
+            "conditional_state_inference": "Kalman filter and RTS smoother",
+            "multiscale_windows": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "multiscale_components": 4,
+            "coupling": "convex_state_independent_mix"
+          },
+          "predictive_marginal": {
+            "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+            "innovations": "historical_SV_filtered_empirical",
+            "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+            "quantile_normalization": "zero_mean_unit_population_variance",
+            "daily_log_return_clip": [
+              -1.0,
+              1.0
+            ],
+            "mean_shrink": 0.0
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_sorted_asset_marginals"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tmp/frontier-complex-20261002/artifacts/parameter_mcmc_tuned.py",
+            "revision": "40928c1364630dc736e8681b508766a0f0a631a2",
+            "sha256": "4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377",
+            "entrypoints": [
+              "ComplexSV + parameter_mcmc_tuned.install"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "artifacts/audit_incumbent_replay.py",
+                "sha256": "384c7e5a55be84aeba2e5e290780ce6ff18b33ba14bb64c67a35bba39df52d07"
+              },
+              {
+                "path": "artifacts/blocked_chain_diagnostics.py",
+                "sha256": "60d2a886ef3a4d6d454a66ef91d36f0353978cbf7f17b10142cdf0be22e1e78e"
+              },
+              {
+                "path": "artifacts/blocked_ess.py",
+                "sha256": "97464f6317c5e136dd35baad3010f22b509c54c00eb2849e536abf96ec29ea4a"
+              },
+              {
+                "path": "artifacts/chain_diagnostics.py",
+                "sha256": "31fe743797016add782dd2556f664f60fe3b211e10d72da0bd13892dc6818617"
+              },
+              {
+                "path": "artifacts/compiled_smoothers.py",
+                "sha256": "716e8a530a7038c5c3b601561a9631a5f1cf9a7100eaa3bbfda1944506413126"
+              },
+              {
+                "path": "artifacts/complex_sv.py",
+                "sha256": "8893a29ac924bf3af68560beb97ce0d37a2e2a3c7a6a72c2a771b99b18c8f4fb"
+              },
+              {
+                "path": "artifacts/fast_asset_models.py",
+                "sha256": "a9cdf515762134a1c63d4967ae086c8aa349fb300a82b348733a58a61860f861"
+              },
+              {
+                "path": "artifacts/fast_pgas.py",
+                "sha256": "c510d6ee0fe8e6804ac790a9b232fb1f8ac9d87382365a6269a831d1659d99ef"
+              },
+              {
+                "path": "artifacts/parameter_chain_diagnostics.py",
+                "sha256": "e06f3074645c78f283d9b58e011caec7fb25b647e5fb52948f7cb059d8fb949e"
+              },
+              {
+                "path": "artifacts/parameter_mcmc.py",
+                "sha256": "0113f2057f974ee1f1237cfeabe35d3714b4beb980be6d79c351da23a3d95aca"
+              },
+              {
+                "path": "artifacts/parameter_mcmc_tuned.py",
+                "sha256": "4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377"
+              },
+              {
+                "path": "artifacts/predictive_sv_candidates.py",
+                "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+              },
+              {
+                "path": "artifacts/research_jit_pilot.py",
+                "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+              },
+              {
+                "path": "artifacts/run_full_parameter.py",
+                "sha256": "df8edc5730984c1417c6a3d3c2d19315cbb4c20ce4cdafc94e4c4a6414d38661"
+              },
+              {
+                "path": "artifacts/run_full_parameter_compiled.py",
+                "sha256": "a94dbc32348b39265e068a41059343c10ff6478c03d4a1ac75f2e0230b6da81e"
+              },
+              {
+                "path": "artifacts/run_parameter_study.py",
+                "sha256": "9522bbf8a41e02749d1e154e3cacf23936b9ad5fe439dc263abd1cf8c6605c11"
+              },
+              {
+                "path": "artifacts/run_parameter_tuned_study.py",
+                "sha256": "f3ad14b27f3f3d363d7f5a030a15f7065e66eee559ab27824f7f0a8865f18fa0"
+              },
+              {
+                "path": "artifacts/run_speed_study.py",
+                "sha256": "6555b7d19f55a3aea0144074bbbb790f0d97f18555294ef8fffa25b7f89020fd"
+              },
+              {
+                "path": "artifacts/run_study.py",
+                "sha256": "ceb6c74a81b13dc1ffe87e8a627c8791afc1c29dc7bc7d222253d2d085807c7a"
+              },
+              {
+                "path": "artifacts/run_tuned_study.py",
+                "sha256": "af0ba25963e3f0db6083a96fa2b6cd11e467ccf234a6389293d61f511f50b622"
+              },
+              {
+                "path": "artifacts/validate_blocked_sampler.py",
+                "sha256": "c2561cb307be68a0f0e7b9d8694d5bd2ce4855860712d6564d96f8f36aa1caa0"
+              },
+              {
+                "path": "artifacts/validate_fast_models.py",
+                "sha256": "a657083c2df3d005fc9dd845d408dbd7977c4deb74b61d6f04f97dcde57b08ef"
+              },
+              {
+                "path": "artifacts/validate_fast_pgas.py",
+                "sha256": "6b71ef2da15ab0bb0d4c46081d74451f5e98a55c7830e86e24abca23d703adf2"
+              },
+              {
+                "path": "artifacts/validate_samplers.py",
+                "sha256": "874834700299d7ca40f74acc9bb4bd54ec026628f3e9f97851ac1e6655095a28"
+              },
+              {
+                "path": "artifacts/validate_smoother_compilation.py",
+                "sha256": "197ac054520a42400ee22d9a1f396234e311a2d2d72be7b00243b25c7ec23028"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+          "source_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+          "failure_semantics": {
+            "paths": "reject_nonfinite_output",
+            "calendar": "strict_business_day_rejoin"
+          },
+          "parameter_mcmc": {
+            "parameters": [
+              "long_run_log_variance",
+              "logit_persistence",
+              "log_state_innovation_sd"
+            ],
+            "posterior": "Gaussian_log_square_SV_quasi_posterior",
+            "chains": 2,
+            "burn_per_chain": 1024,
+            "kept_per_chain": 2048,
+            "thin": 1,
+            "retained_draws": 4096,
+            "posterior_nodes": 16,
+            "node_selection": "linspace(0,4095,16,dtype=int)",
+            "node_weights": "equal",
+            "adaptation": "burn_only; first64; every32; covariance=(2.38**2/3)*(sample_covariance+I*1e-6)",
+            "initial_proposal_sd": [
+              0.01,
+              0.05,
+              0.03
+            ],
+            "seed": "first_four_SHA256_training_float64_bytes_little_endian; second_chain=(seed+99173)%2**32",
+            "parameter_bounds": [
+              "[q01(log_square)-4,q99(log_square)+4]",
+              "[-7,7]",
+              "[log(0.02),log(2.5)]"
+            ],
+            "posterior_prediction": "average first and second moments across 16 conditional smoothers; pooled empirical innovations"
+          },
+          "production_implementation": {
+            "path": "app/mcmc_asset_forecast.py",
+            "revision": "8cdc9209bea0b23c533e28ceb7c296448378a622",
+            "numerical_replay": "docs/results/mcmc-runtime-optimization/final-full-panel-receipt.json",
+            "block_size": 1024,
+            "dtype": "float64"
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "0101d1a2d39e1b6be1326da4458d8b50b57747a4efea068cb526bb5c8062aec0",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "40928c1364630dc736e8681b508766a0f0a631a2",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "tmp/frontier-complex-20261002/artifacts/parameter-mcmc-tuned-full/results.json",
+          "sha256": "95bd90280e66e92599d16d249b0fa700db1b282073b670503b71c92785b84cb2",
+          "manifest_sha256": "370ff3fbf797e76e658ebae046e55adad8bf9cd6c3676340940306b9d324a831",
+          "scope": "full_canonical",
+          "tasks_per_model": 4080,
+          "cells_per_model": 701280,
+          "simulations": 240,
+          "all_denominator_gates_passed": true,
+          "metric": "exact_empirical_crps",
+          "target": "terminal_log_return",
+          "pairwise_denominator": "n_squared",
+          "aggregation": "mean origins within each portfolio-horizon cell, then equal mean across portfolio-horizon cells",
+          "source_score_field": "scores.sv_parameter_mcmc_twochain_sixteen_node_moment_mixture.crps",
+          "source_closure": {
+            "artifacts/audit_incumbent_replay.py": "384c7e5a55be84aeba2e5e290780ce6ff18b33ba14bb64c67a35bba39df52d07",
+            "artifacts/blocked_chain_diagnostics.py": "60d2a886ef3a4d6d454a66ef91d36f0353978cbf7f17b10142cdf0be22e1e78e",
+            "artifacts/blocked_ess.py": "97464f6317c5e136dd35baad3010f22b509c54c00eb2849e536abf96ec29ea4a",
+            "artifacts/chain_diagnostics.py": "31fe743797016add782dd2556f664f60fe3b211e10d72da0bd13892dc6818617",
+            "artifacts/compiled_smoothers.py": "716e8a530a7038c5c3b601561a9631a5f1cf9a7100eaa3bbfda1944506413126",
+            "artifacts/complex_sv.py": "8893a29ac924bf3af68560beb97ce0d37a2e2a3c7a6a72c2a771b99b18c8f4fb",
+            "artifacts/fast_asset_models.py": "a9cdf515762134a1c63d4967ae086c8aa349fb300a82b348733a58a61860f861",
+            "artifacts/fast_pgas.py": "c510d6ee0fe8e6804ac790a9b232fb1f8ac9d87382365a6269a831d1659d99ef",
+            "artifacts/parameter_chain_diagnostics.py": "e06f3074645c78f283d9b58e011caec7fb25b647e5fb52948f7cb059d8fb949e",
+            "artifacts/parameter_mcmc.py": "0113f2057f974ee1f1237cfeabe35d3714b4beb980be6d79c351da23a3d95aca",
+            "artifacts/parameter_mcmc_tuned.py": "4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377",
+            "artifacts/predictive_sv_candidates.py": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816",
+            "artifacts/research_jit_pilot.py": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005",
+            "artifacts/run_full_parameter.py": "df8edc5730984c1417c6a3d3c2d19315cbb4c20ce4cdafc94e4c4a6414d38661",
+            "artifacts/run_full_parameter_compiled.py": "a94dbc32348b39265e068a41059343c10ff6478c03d4a1ac75f2e0230b6da81e",
+            "artifacts/run_parameter_study.py": "9522bbf8a41e02749d1e154e3cacf23936b9ad5fe439dc263abd1cf8c6605c11",
+            "artifacts/run_parameter_tuned_study.py": "f3ad14b27f3f3d363d7f5a030a15f7065e66eee559ab27824f7f0a8865f18fa0",
+            "artifacts/run_speed_study.py": "6555b7d19f55a3aea0144074bbbb790f0d97f18555294ef8fffa25b7f89020fd",
+            "artifacts/run_study.py": "ceb6c74a81b13dc1ffe87e8a627c8791afc1c29dc7bc7d222253d2d085807c7a",
+            "artifacts/run_tuned_study.py": "af0ba25963e3f0db6083a96fa2b6cd11e467ccf234a6389293d61f511f50b622",
+            "artifacts/validate_blocked_sampler.py": "c2561cb307be68a0f0e7b9d8694d5bd2ce4855860712d6564d96f8f36aa1caa0",
+            "artifacts/validate_fast_models.py": "a657083c2df3d005fc9dd845d408dbd7977c4deb74b61d6f04f97dcde57b08ef",
+            "artifacts/validate_fast_pgas.py": "6b71ef2da15ab0bb0d4c46081d74451f5e98a55c7830e86e24abca23d703adf2",
+            "artifacts/validate_samplers.py": "874834700299d7ca40f74acc9bb4bd54ec026628f3e9f97851ac1e6655095a28",
+            "artifacts/validate_smoother_compilation.py": "197ac054520a42400ee22d9a1f396234e311a2d2d72be7b00243b25c7ec23028",
+            "research/src/simfolio_forecasting_methodology/__init__.py": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621",
+            "research/src/simfolio_forecasting_methodology/candidate_registry.py": "535d55b3b8878e429b9400319c0d67a9cbfd28b1a37c927b29b9a70301d80c01",
+            "research/src/simfolio_forecasting_methodology/catalog.py": "f022b44327d881b6047fd3307f91e28e1f0194c62615d8f11ed3d22109fda8fb",
+            "research/src/simfolio_forecasting_methodology/catalogue.py": "665b4e56ac755c58a55bc0e2c983bf2d6c0fc7cb0b25df80c9865e017c365056",
+            "research/src/simfolio_forecasting_methodology/cli.py": "b828ffa18a71196c0ac8c2bc74fcc94fe053e98a836c39facd20ab38669ef9d1",
+            "research/src/simfolio_forecasting_methodology/data.py": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0",
+            "research/src/simfolio_forecasting_methodology/evaluation.py": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8",
+            "research/src/simfolio_forecasting_methodology/experiment.py": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa",
+            "research/src/simfolio_forecasting_methodology/models/__init__.py": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/__init__.py": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997",
+            "research/src/simfolio_forecasting_methodology/models/numerical/__init__.py": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1",
+            "research/src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7",
+            "research/src/simfolio_forecasting_methodology/models/numerical/base_models.py": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31",
+            "research/src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa",
+            "research/src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+            "research/src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b",
+            "research/src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+            "research/src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/__init__.py": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/reference_families.py": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab",
+            "research/src/simfolio_forecasting_methodology/models/registry.py": "b73fa2db59954c03390fe2e098c7dc4c5a5eaf1d1de0499f6faa9d794b12aa64",
+            "research/src/simfolio_forecasting_methodology/naming.py": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e",
+            "research/src/simfolio_forecasting_methodology/origins.py": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8",
+            "research/src/simfolio_forecasting_methodology/panel.py": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b",
+            "research/src/simfolio_forecasting_methodology/protocol.py": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d",
+            "research/src/simfolio_forecasting_methodology/results/__init__.py": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd",
+            "research/src/simfolio_forecasting_methodology/results/aggregate.py": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f",
+            "research/src/simfolio_forecasting_methodology/results/checkpoint.py": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228",
+            "research/src/simfolio_forecasting_methodology/results/executor.py": "c8d9ea263ac056d0ee459c76154d36e67e20403664c0e078a12f85268c155649",
+            "research/src/simfolio_forecasting_methodology/results/retained.py": "5ae4a77f90df5a72201a448ba6d69a765c91f59dfc6dc5dae21a149830bd7970",
+            "research/src/simfolio_forecasting_methodology/results/verified_candidate_scores.py": "d38d53a5a5144722dfcdec84200e8535ad80161cdbf09cca515809d732ddf948",
+            "research/src/simfolio_forecasting_methodology/runner.py": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac",
+            "research/src/simfolio_forecasting_methodology/safety_scan.py": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e",
+            "research/src/simfolio_forecasting_methodology/scores.py": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9",
+            "research/src/simfolio_forecasting_methodology/scoring.py": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487",
+            "research/src/simfolio_forecasting_methodology/seeds.py": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e",
+            "research/src/simfolio_forecasting_methodology/smoke.py": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c",
+            "research/src/simfolio_forecasting_methodology/specifications.py": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+          },
+          "numerical_environment": {
+            "python": "3.12.13",
+            "numpy": "2.5.3"
+          },
+          "full_panel_byte_exact_replay": {
+            "relative_path": "docs/results/mcmc-runtime-optimization/final-full-panel-receipt.json",
+            "sha256": "7475c5872bdba408a467e2ed049a6bd8c6eeb47a78c3709b2d75020c0e392e49"
+          }
+        },
+        "source_code": {
+          "sha256": "4ca3dad8e74b2ce0826950a053119c7cdc581d46ac9d5c01b5dd0fd603355377",
+          "relative_path": "tmp/frontier-complex-20261002/artifacts/parameter_mcmc_tuned.py",
+          "status": "scored_source_verified"
+        },
+        "parameter_dictionary": {
+          "sha256": "0101d1a2d39e1b6be1326da4458d8b50b57747a4efea068cb526bb5c8062aec0",
+          "status": "resolved_statistical_definition"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tmp/frontier-complex-20261002/artifacts/parameter_mcmc_tuned.py",
+        "entrypoint": "ComplexSV + parameter_mcmc_tuned.install",
+        "score": "tmp/frontier-complex-20261002/artifacts/parameter-mcmc-tuned-full/results.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "scored_research_entrypoint",
+        "research_entrypoint": "ComplexSV + parameter_mcmc_tuned.install"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 176,
+      "historical_score": {
+        "exact_empirical_crps": "0.25246784959071183",
+        "relative_to_naive": null,
+        "skill_vs_naive": null,
+        "paired_improvement_vs_current": null,
+        "paired_mean_diff_vs_current": null,
+        "paired_portfolio_cluster_diff_ci_90": null,
+        "paired_portfolio_cluster_probability_better": null,
+        "portfolio_losses_vs_current": null,
+        "portfolio_wins_vs_current": null
+      },
+      "score_precision": {
+        "retained_source_token": "0.25246784959071183",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 17,
+          "significant_digits": 17
+        },
+        "publication_token": "0.25246785",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 8,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "4.0928817E-10",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source_token_preserved"
+      },
+      "experiment_id": "parameter-mcmc-tuned-full",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score",
+      "notes": [
+        "Asset-level model; current_production_frontier.",
+        "Validated 4080 origin tasks, 701280 equally weighted portfolio-horizon cells, 240 simulations per origin."
+      ]
+    },
+    {
+      "public_model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+      "display_name": "M177 \u2014 Asset Filtered Innovation Moment SV + Fixed Mean",
+      "historical_model_ids": [
+        "experimental_filtered_innovation_moment_sv_fixed_mean"
+      ],
+      "seed_identity": {
+        "source_model_key": "experimental_filtered_innovation_moment_sv_fixed_mean",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_moment_sv",
+          "source_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "previous_production_frontier",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "measurement": "mean-corrected winsorized log-square returns",
+            "latent_state": "Gaussian AR(1) log variance",
+            "parameter_inference": "MAP/Laplace sigma points",
+            "conditional_state_inference": "Kalman filter and RTS smoother",
+            "multiscale_windows": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "multiscale_components": 4,
+            "coupling": "convex_state_independent_mix"
+          },
+          "predictive_marginal": {
+            "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+            "innovations": "historical_SV_filtered_empirical",
+            "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+            "quantile_normalization": "zero_mean_unit_population_variance",
+            "daily_log_return_clip": [
+              -1.0,
+              1.0
+            ],
+            "mean_shrink": 0.0
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_sorted_asset_marginals"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+            "revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+            "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150",
+            "entrypoints": [
+              "FilteredInnovationSV(fixed_mean=True)"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "artifacts/filtered_innovation_sv_candidates.py",
+                "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+              },
+              {
+                "path": "artifacts/fixed_mean_sv_candidates.py",
+                "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+              },
+              {
+                "path": "artifacts/full_fixed_mean_oos.py",
+                "sha256": "ed94857f0ec3d8605b5ebb3847fbe9d23bf0706d5cc8b3a9e9a6cb516816385e"
+              },
+              {
+                "path": "artifacts/moment_sv_candidates.py",
+                "sha256": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686"
+              },
+              {
+                "path": "artifacts/predictive_sv_candidates.py",
+                "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+              },
+              {
+                "path": "artifacts/predictive_sv_screen.py",
+                "sha256": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede"
+              },
+              {
+                "path": "artifacts/research_jit_pilot.py",
+                "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+              },
+              {
+                "path": "artifacts/verify_paired_oos_artifacts.py",
+                "sha256": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+          "source_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+          "failure_semantics": {
+            "paths": "reject_nonfinite_output",
+            "calendar": "strict_business_day_rejoin"
+          },
+          "production_alias": "asset_level_filtered_fixed_moment_sv_kalman_dynamic_gaussian_factor_rebalanced"
+        }
+      },
+      "specification_fingerprint": {
+        "value": "26bf4be46c35d63792cd6e4d110b346c83e9b13da05efe1f5e1446a0d0532f76",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "tmp/frontier-research-20261002/artifacts/full-filtered-sv-oos/results.json",
+          "sha256": "5965df1ebdd4538d08684fac27f19d03e51dfe1de5c155bed93bf4057a63be58",
+          "manifest_sha256": "97e8a7769fdad508de5a242b4e2325c20c29d3197e2fdd91fc588ad685e3ae4f",
+          "scope": "full_canonical_paired",
+          "tasks_per_model": 4080,
+          "cells_per_model": 701280,
+          "simulations": 240,
+          "all_denominator_gates_passed": true,
+          "metric": "exact_empirical_crps",
+          "target": "terminal_log_return",
+          "pairwise_denominator": "n_squared",
+          "aggregation": "mean origins within each portfolio-horizon cell, then equal mean across portfolio-horizon cells",
+          "source_score_field": "scores.experimental_filtered_innovation_moment_sv_fixed_mean.exact_empirical_crps",
+          "source_closure": {
+            "artifacts/filtered_innovation_sv_candidates.py": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150",
+            "artifacts/fixed_mean_sv_candidates.py": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c",
+            "artifacts/full_fixed_mean_oos.py": "ed94857f0ec3d8605b5ebb3847fbe9d23bf0706d5cc8b3a9e9a6cb516816385e",
+            "artifacts/moment_sv_candidates.py": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686",
+            "artifacts/predictive_sv_candidates.py": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816",
+            "artifacts/predictive_sv_screen.py": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede",
+            "artifacts/research_jit_pilot.py": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005",
+            "artifacts/verify_paired_oos_artifacts.py": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511",
+            "research/../artifacts/full_filtered_oos.py": "cbcff2c15c8fcea3b8a05f8e73834036a29a97d55500b1eb82837854a05b7fff",
+            "research/src/simfolio_forecasting_methodology/__init__.py": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621",
+            "research/src/simfolio_forecasting_methodology/catalog.py": "f022b44327d881b6047fd3307f91e28e1f0194c62615d8f11ed3d22109fda8fb",
+            "research/src/simfolio_forecasting_methodology/catalogue.py": "665b4e56ac755c58a55bc0e2c983bf2d6c0fc7cb0b25df80c9865e017c365056",
+            "research/src/simfolio_forecasting_methodology/cli.py": "3b2e3490acbf4f17d54c07acfb97759941b02a1b9a6aa9b8fa737c5b8aea07d5",
+            "research/src/simfolio_forecasting_methodology/data.py": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0",
+            "research/src/simfolio_forecasting_methodology/evaluation.py": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8",
+            "research/src/simfolio_forecasting_methodology/experiment.py": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa",
+            "research/src/simfolio_forecasting_methodology/models/__init__.py": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/__init__.py": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+            "research/src/simfolio_forecasting_methodology/models/numerical/__init__.py": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1",
+            "research/src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7",
+            "research/src/simfolio_forecasting_methodology/models/numerical/base_models.py": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31",
+            "research/src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "b8875c24accb205c8dd04bdfb859d7df9f643d19343098d25e20e3c64d9abdfc",
+            "research/src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+            "research/src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b",
+            "research/src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+            "research/src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/__init__.py": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/reference_families.py": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab",
+            "research/src/simfolio_forecasting_methodology/models/registry.py": "b73fa2db59954c03390fe2e098c7dc4c5a5eaf1d1de0499f6faa9d794b12aa64",
+            "research/src/simfolio_forecasting_methodology/naming.py": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e",
+            "research/src/simfolio_forecasting_methodology/origins.py": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8",
+            "research/src/simfolio_forecasting_methodology/panel.py": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b",
+            "research/src/simfolio_forecasting_methodology/protocol.py": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d",
+            "research/src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json": "3bfb42ea0a8020a021bd36a5ccb966848a20302bfec692511ec0db1b9ddf2d61",
+            "research/src/simfolio_forecasting_methodology/resources/catalogs/canonical_40_full_mcmc_sv_specs.json": "30d868665f277ecf2494ad6256c60aa1a8fd9a8fce006ab384d667e02e32c078",
+            "research/src/simfolio_forecasting_methodology/resources/data/canonical_calendar_manifest.json": "2bfa4fba436af0099f4c458fcc8a3448876dafd4c38228730df3c1e1d07b73cb",
+            "research/src/simfolio_forecasting_methodology/resources/data/canonical_derived_fingerprints.json": "eccca0203707da04c1c465ed9f7339b06eb930d8b144d3d2a3fdddf19f602054",
+            "research/src/simfolio_forecasting_methodology/resources/data/canonical_snapshot_manifest.json": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+            "research/src/simfolio_forecasting_methodology/resources/panels/scored52_generation_provenance.json": "07dd06888c56af711bfd5ef204d862c2750a148aa4f23941814551b5c5f65c3c",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/canonical_protocol_identity.json": "742ad71ee40cc27a4a816d0ea161d742984d5c3449ad4567bcd971b196b1115e",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/canonical_snapshot_attribution.json": "d0059e640c4ee6f12ba169ced0cf494bb1c5e70dcd1229415210dc72ea6d9d19",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/origin_reference_digests.json": "b0534bbf0b1bbd16b0f64fd6368bb58e810d23b81da55f872c1ffe5fa41ce59e",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/source_harness_identity.json": "999c34d764014d95871d827c33566004e04d44a6e5b3351f56ae583497ff111d",
+            "research/src/simfolio_forecasting_methodology/resources/specifications/canonical_inla_asset_spec_fragment.json": "c3937ddccdfc4ac603f94f8da6f51878a909d76eb98db66d538df9bd98e19a7d",
+            "research/src/simfolio_forecasting_methodology/resources/specifications/canonical_statistical_specifications.json": "f8e9f5b0b2b837e1021b4cc07781bde0d19f7c5fc7e55ad64fa1c1ad393f3136",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference.json": "02329e02cb75a95241d36c6cf7e58300aad90ebfcd0cd94d98e79ad5c64a223e",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference_all_means.json": "2eb431ca2b4538b49396ec589983b73c4fdcdeefbceb04e15eaffea283be168d",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/frontier/current_production_parity_report.json": "e9ccc59ab362d9e7b8b497d6250dee7521d0bfcba3168f6cf17d1844de5c2e7e",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/exact_asset_source_parity.json": "2e92166fbcb620c4ee0a31246aae8524e3057585679b94a3a2e95a29c6ffe0a3",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_candidate.json": "048f89e9f032201097b6924aee6d13fd1752162853214328dff784f074a5e49d",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_dispatcher_parity_report.json": "7ba0e5fb2842d65391898a202bf8eb195f2c07f876c6be21c1a6420fc92df704",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_input.json": "15be1d271b7318c0a5767dbfa3478092004eeb80acb10b4183c3694b2aa6ea4a",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_parity_py312.json": "d5560400ec9c76a1cd56449aa8a1324dd7af2927d48084fbd1f932577d4b504c",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/mcmc/full_mcmc_sv_source_parity.json": "6b234afad5b7dc7980e148e130eecc04beb79522e091925ad185b900e86650d5",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/mcmc/full_mcmc_sv_source_parity_py311_numpy246_scipy1171.json": "3c87c2388b52a801a38feae41e3243e55f315f0cd3125e277e8a815ab0f27708",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/bayesian_vol_source_parity.json": "baee8ba76986b119fff4fbbea105547380c809f4582b4952ed8db8db9fbeb13a",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/canonical_stack_dispatcher_parity_report.json": "a76b4b5db383d2051c370369710e52693b13661a19253779fec8df1eaa1a2651",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/canonical_stack_source_parity.json": "2ad97e201a80f6bc35ea0dfd1d3a850e0881a38ba2bb89953d37a364fabfed39",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/factor_residual_source_parity.json": "ba824f21648276590ddef67a5b0f9a0c13da4b71408552b22f1dca5d830f55a6",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/gas_reference_source_parity.json": "87eeeace0f36d57c1a8c4d1591cf76a5d003c260d96f563fed8f3092f58ade18",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/gjr_reference_source_parity.json": "3544abd82abacc781946f31e5712cc9a68a27e06ffebf32bb96ac46a69416053",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/reference_family_source_parity.json": "fb5d48b7594e1e05a66f29fb395c9a99359d3f26043fde0171e2fe0991c1a433",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/sv_extension_source_parity.json": "1cd31445e132e29907ec7c284cfa0e82ec79595eb90a817d0199f6f291d1f75e",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/sv_mcmc_reference_source_parity.json": "9046ac64e64a3c8154bd7e3622a7d5ffb8c6ce21513fd3cd8866efaeb2518f30",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/sv_reference_source_parity.json": "5780a2b021a25c1c9b6dc7443f1017db6fe2b8c30b651751fd9293ba226a9571",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/protocol/synthetic_fixture_manifest.json": "37c93ba7d315e80eef6d45e0e12a10d4758469fa13590f72319a67d8451b6718",
+            "research/src/simfolio_forecasting_methodology/results/__init__.py": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd",
+            "research/src/simfolio_forecasting_methodology/results/aggregate.py": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f",
+            "research/src/simfolio_forecasting_methodology/results/checkpoint.py": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228",
+            "research/src/simfolio_forecasting_methodology/results/executor.py": "5e00a95d2682dc298fcb1bd8732ebab6b51685c77cedd439df04467eeb751b8a",
+            "research/src/simfolio_forecasting_methodology/results/retained.py": "5ae4a77f90df5a72201a448ba6d69a765c91f59dfc6dc5dae21a149830bd7970",
+            "research/src/simfolio_forecasting_methodology/runner.py": "7fd7e3e7f95b9139d63ed9cdc3d173f16b8b14e7bd52f1ed86bc1f9fdbfc676e",
+            "research/src/simfolio_forecasting_methodology/safety_scan.py": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e",
+            "research/src/simfolio_forecasting_methodology/scores.py": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9",
+            "research/src/simfolio_forecasting_methodology/scoring.py": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487",
+            "research/src/simfolio_forecasting_methodology/seeds.py": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e",
+            "research/src/simfolio_forecasting_methodology/smoke.py": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c",
+            "research/src/simfolio_forecasting_methodology/specifications.py": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+          },
+          "numerical_environment": {
+            "arch": "8.0.0",
+            "numba": "0.67.0",
+            "numerical_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": null
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "numpy": "2.5.3",
+            "pandas": "2.3.3",
+            "python": "3.12.13",
+            "scikit-learn": "1.9.0",
+            "scipy": "1.18.1",
+            "statsmodels": "0.15.0"
+          },
+          "independent_audit": {
+            "relative_path": "tmp/frontier-research-20261002/artifacts/full-filtered-sv-oos/independent_final_audit.json",
+            "sha256": "fe1ae8127c4794344738bac77e383678cadc63f863a6792417e70fd2473f0d98",
+            "passed": true
+          }
+        },
+        "source_code": {
+          "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150",
+          "relative_path": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+          "status": "scored_source_verified"
+        },
+        "parameter_dictionary": {
+          "sha256": "26bf4be46c35d63792cd6e4d110b346c83e9b13da05efe1f5e1446a0d0532f76",
+          "status": "resolved_statistical_definition"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+        "entrypoint": "FilteredInnovationSV(fixed_mean=True)",
+        "score": "tmp/frontier-research-20261002/artifacts/full-filtered-sv-oos/results.json"
+      },
+      "implementation_factory": {
+        "name": "simfolio_forecasting_methodology.models.asset_level.filtered_innovation_moment_sv:FilteredInnovationFixedMeanMomentSV",
+        "callable": true,
+        "status": "verified_explicit_factory",
+        "seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 177,
+      "historical_score": {
+        "exact_empirical_crps": "0.25439860867855635",
+        "relative_to_naive": null,
+        "skill_vs_naive": null,
+        "paired_improvement_vs_current": null,
+        "paired_mean_diff_vs_current": null,
+        "paired_portfolio_cluster_diff_ci_90": null,
+        "paired_portfolio_cluster_probability_better": null,
+        "portfolio_losses_vs_current": null,
+        "portfolio_wins_vs_current": null
+      },
+      "score_precision": {
+        "retained_source_token": "0.25439860867855635",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 17,
+          "significant_digits": 17
+        },
+        "publication_token": "0.254398609",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "3.2144365E-10",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source_token_preserved"
+      },
+      "experiment_id": "full-filtered-sv-oos",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": true,
+      "forecast_smoke_tested": true,
+      "source_parity_checked": true,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score",
+      "notes": [
+        "Asset-level model; previous_production_frontier.",
+        "Validated 4080 origin tasks, 701280 equally weighted portfolio-horizon cells, 240 simulations per origin."
+      ]
+    },
+    {
+      "public_model_id": "experimental_filtered_innovation_moment_sv_dlm",
+      "display_name": "M178 \u2014 Asset Filtered Innovation Moment SV + DLM",
+      "historical_model_ids": [
+        "experimental_filtered_innovation_moment_sv_dlm"
+      ],
+      "seed_identity": {
+        "source_model_key": "experimental_filtered_innovation_moment_sv_dlm",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_moment_sv",
+          "source_id": "experimental_filtered_innovation_moment_sv_dlm",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "validated_full_panel_candidate",
+          "mean": {
+            "method": "evidence_estimated_sharpe_dlm_historical_cagr_anchor",
+            "fixed_mean": false,
+            "latent_mean_state": true
+          },
+          "volatility": {
+            "measurement": "mean-corrected winsorized log-square returns",
+            "latent_state": "Gaussian AR(1) log variance",
+            "parameter_inference": "MAP/Laplace sigma points",
+            "conditional_state_inference": "Kalman filter and RTS smoother",
+            "multiscale_windows": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "multiscale_components": 4,
+            "coupling": "convex_state_independent_mix"
+          },
+          "predictive_marginal": {
+            "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+            "innovations": "historical_SV_filtered_empirical",
+            "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+            "quantile_normalization": "zero_mean_unit_population_variance",
+            "daily_log_return_clip": [
+              -1.0,
+              1.0
+            ],
+            "mean_shrink": 0.0
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_sorted_asset_marginals"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+            "revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+            "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150",
+            "entrypoints": [
+              "FilteredInnovationSV(fixed_mean=False)"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "artifacts/filtered_innovation_sv_candidates.py",
+                "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150"
+              },
+              {
+                "path": "artifacts/fixed_mean_sv_candidates.py",
+                "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+              },
+              {
+                "path": "artifacts/full_fixed_mean_oos.py",
+                "sha256": "ed94857f0ec3d8605b5ebb3847fbe9d23bf0706d5cc8b3a9e9a6cb516816385e"
+              },
+              {
+                "path": "artifacts/moment_sv_candidates.py",
+                "sha256": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686"
+              },
+              {
+                "path": "artifacts/predictive_sv_candidates.py",
+                "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+              },
+              {
+                "path": "artifacts/predictive_sv_screen.py",
+                "sha256": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede"
+              },
+              {
+                "path": "artifacts/research_jit_pilot.py",
+                "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+              },
+              {
+                "path": "artifacts/verify_paired_oos_artifacts.py",
+                "sha256": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+          "source_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+          "failure_semantics": {
+            "paths": "reject_nonfinite_output",
+            "calendar": "strict_business_day_rejoin"
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "00211975c281bb0753f5e4c277a9da6c68c0f4e626c9610d340e0e4c14e62e29",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "tmp/frontier-research-20261002/artifacts/full-filtered-sv-oos/results.json",
+          "sha256": "5965df1ebdd4538d08684fac27f19d03e51dfe1de5c155bed93bf4057a63be58",
+          "manifest_sha256": "97e8a7769fdad508de5a242b4e2325c20c29d3197e2fdd91fc588ad685e3ae4f",
+          "scope": "full_canonical_paired",
+          "tasks_per_model": 4080,
+          "cells_per_model": 701280,
+          "simulations": 240,
+          "all_denominator_gates_passed": true,
+          "metric": "exact_empirical_crps",
+          "target": "terminal_log_return",
+          "pairwise_denominator": "n_squared",
+          "aggregation": "mean origins within each portfolio-horizon cell, then equal mean across portfolio-horizon cells",
+          "source_score_field": "scores.experimental_filtered_innovation_moment_sv_dlm.exact_empirical_crps",
+          "source_closure": {
+            "artifacts/filtered_innovation_sv_candidates.py": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150",
+            "artifacts/fixed_mean_sv_candidates.py": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c",
+            "artifacts/full_fixed_mean_oos.py": "ed94857f0ec3d8605b5ebb3847fbe9d23bf0706d5cc8b3a9e9a6cb516816385e",
+            "artifacts/moment_sv_candidates.py": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686",
+            "artifacts/predictive_sv_candidates.py": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816",
+            "artifacts/predictive_sv_screen.py": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede",
+            "artifacts/research_jit_pilot.py": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005",
+            "artifacts/verify_paired_oos_artifacts.py": "f2c538fcfbef8684a63717794646892742a09158ec7a1da1be185e4c7555d511",
+            "research/../artifacts/full_filtered_oos.py": "cbcff2c15c8fcea3b8a05f8e73834036a29a97d55500b1eb82837854a05b7fff",
+            "research/src/simfolio_forecasting_methodology/__init__.py": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621",
+            "research/src/simfolio_forecasting_methodology/catalog.py": "f022b44327d881b6047fd3307f91e28e1f0194c62615d8f11ed3d22109fda8fb",
+            "research/src/simfolio_forecasting_methodology/catalogue.py": "665b4e56ac755c58a55bc0e2c983bf2d6c0fc7cb0b25df80c9865e017c365056",
+            "research/src/simfolio_forecasting_methodology/cli.py": "3b2e3490acbf4f17d54c07acfb97759941b02a1b9a6aa9b8fa737c5b8aea07d5",
+            "research/src/simfolio_forecasting_methodology/data.py": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0",
+            "research/src/simfolio_forecasting_methodology/evaluation.py": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8",
+            "research/src/simfolio_forecasting_methodology/experiment.py": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa",
+            "research/src/simfolio_forecasting_methodology/models/__init__.py": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/__init__.py": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+            "research/src/simfolio_forecasting_methodology/models/numerical/__init__.py": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1",
+            "research/src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7",
+            "research/src/simfolio_forecasting_methodology/models/numerical/base_models.py": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31",
+            "research/src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "b8875c24accb205c8dd04bdfb859d7df9f643d19343098d25e20e3c64d9abdfc",
+            "research/src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+            "research/src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b",
+            "research/src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+            "research/src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/__init__.py": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/reference_families.py": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab",
+            "research/src/simfolio_forecasting_methodology/models/registry.py": "b73fa2db59954c03390fe2e098c7dc4c5a5eaf1d1de0499f6faa9d794b12aa64",
+            "research/src/simfolio_forecasting_methodology/naming.py": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e",
+            "research/src/simfolio_forecasting_methodology/origins.py": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8",
+            "research/src/simfolio_forecasting_methodology/panel.py": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b",
+            "research/src/simfolio_forecasting_methodology/protocol.py": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d",
+            "research/src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json": "3bfb42ea0a8020a021bd36a5ccb966848a20302bfec692511ec0db1b9ddf2d61",
+            "research/src/simfolio_forecasting_methodology/resources/catalogs/canonical_40_full_mcmc_sv_specs.json": "30d868665f277ecf2494ad6256c60aa1a8fd9a8fce006ab384d667e02e32c078",
+            "research/src/simfolio_forecasting_methodology/resources/data/canonical_calendar_manifest.json": "2bfa4fba436af0099f4c458fcc8a3448876dafd4c38228730df3c1e1d07b73cb",
+            "research/src/simfolio_forecasting_methodology/resources/data/canonical_derived_fingerprints.json": "eccca0203707da04c1c465ed9f7339b06eb930d8b144d3d2a3fdddf19f602054",
+            "research/src/simfolio_forecasting_methodology/resources/data/canonical_snapshot_manifest.json": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+            "research/src/simfolio_forecasting_methodology/resources/panels/scored52_generation_provenance.json": "07dd06888c56af711bfd5ef204d862c2750a148aa4f23941814551b5c5f65c3c",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/canonical_protocol_identity.json": "742ad71ee40cc27a4a816d0ea161d742984d5c3449ad4567bcd971b196b1115e",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/canonical_snapshot_attribution.json": "d0059e640c4ee6f12ba169ced0cf494bb1c5e70dcd1229415210dc72ea6d9d19",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/origin_reference_digests.json": "b0534bbf0b1bbd16b0f64fd6368bb58e810d23b81da55f872c1ffe5fa41ce59e",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/source_harness_identity.json": "999c34d764014d95871d827c33566004e04d44a6e5b3351f56ae583497ff111d",
+            "research/src/simfolio_forecasting_methodology/resources/specifications/canonical_inla_asset_spec_fragment.json": "c3937ddccdfc4ac603f94f8da6f51878a909d76eb98db66d538df9bd98e19a7d",
+            "research/src/simfolio_forecasting_methodology/resources/specifications/canonical_statistical_specifications.json": "f8e9f5b0b2b837e1021b4cc07781bde0d19f7c5fc7e55ad64fa1c1ad393f3136",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference.json": "02329e02cb75a95241d36c6cf7e58300aad90ebfcd0cd94d98e79ad5c64a223e",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference_all_means.json": "2eb431ca2b4538b49396ec589983b73c4fdcdeefbceb04e15eaffea283be168d",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/frontier/current_production_parity_report.json": "e9ccc59ab362d9e7b8b497d6250dee7521d0bfcba3168f6cf17d1844de5c2e7e",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/exact_asset_source_parity.json": "2e92166fbcb620c4ee0a31246aae8524e3057585679b94a3a2e95a29c6ffe0a3",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_candidate.json": "048f89e9f032201097b6924aee6d13fd1752162853214328dff784f074a5e49d",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_dispatcher_parity_report.json": "7ba0e5fb2842d65391898a202bf8eb195f2c07f876c6be21c1a6420fc92df704",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_input.json": "15be1d271b7318c0a5767dbfa3478092004eeb80acb10b4183c3694b2aa6ea4a",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_parity_py312.json": "d5560400ec9c76a1cd56449aa8a1324dd7af2927d48084fbd1f932577d4b504c",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/mcmc/full_mcmc_sv_source_parity.json": "6b234afad5b7dc7980e148e130eecc04beb79522e091925ad185b900e86650d5",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/mcmc/full_mcmc_sv_source_parity_py311_numpy246_scipy1171.json": "3c87c2388b52a801a38feae41e3243e55f315f0cd3125e277e8a815ab0f27708",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/bayesian_vol_source_parity.json": "baee8ba76986b119fff4fbbea105547380c809f4582b4952ed8db8db9fbeb13a",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/canonical_stack_dispatcher_parity_report.json": "a76b4b5db383d2051c370369710e52693b13661a19253779fec8df1eaa1a2651",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/canonical_stack_source_parity.json": "2ad97e201a80f6bc35ea0dfd1d3a850e0881a38ba2bb89953d37a364fabfed39",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/factor_residual_source_parity.json": "ba824f21648276590ddef67a5b0f9a0c13da4b71408552b22f1dca5d830f55a6",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/gas_reference_source_parity.json": "87eeeace0f36d57c1a8c4d1591cf76a5d003c260d96f563fed8f3092f58ade18",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/gjr_reference_source_parity.json": "3544abd82abacc781946f31e5712cc9a68a27e06ffebf32bb96ac46a69416053",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/reference_family_source_parity.json": "fb5d48b7594e1e05a66f29fb395c9a99359d3f26043fde0171e2fe0991c1a433",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/sv_extension_source_parity.json": "1cd31445e132e29907ec7c284cfa0e82ec79595eb90a817d0199f6f291d1f75e",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/sv_mcmc_reference_source_parity.json": "9046ac64e64a3c8154bd7e3622a7d5ffb8c6ce21513fd3cd8866efaeb2518f30",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/sv_reference_source_parity.json": "5780a2b021a25c1c9b6dc7443f1017db6fe2b8c30b651751fd9293ba226a9571",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/protocol/synthetic_fixture_manifest.json": "37c93ba7d315e80eef6d45e0e12a10d4758469fa13590f72319a67d8451b6718",
+            "research/src/simfolio_forecasting_methodology/results/__init__.py": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd",
+            "research/src/simfolio_forecasting_methodology/results/aggregate.py": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f",
+            "research/src/simfolio_forecasting_methodology/results/checkpoint.py": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228",
+            "research/src/simfolio_forecasting_methodology/results/executor.py": "5e00a95d2682dc298fcb1bd8732ebab6b51685c77cedd439df04467eeb751b8a",
+            "research/src/simfolio_forecasting_methodology/results/retained.py": "5ae4a77f90df5a72201a448ba6d69a765c91f59dfc6dc5dae21a149830bd7970",
+            "research/src/simfolio_forecasting_methodology/runner.py": "7fd7e3e7f95b9139d63ed9cdc3d173f16b8b14e7bd52f1ed86bc1f9fdbfc676e",
+            "research/src/simfolio_forecasting_methodology/safety_scan.py": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e",
+            "research/src/simfolio_forecasting_methodology/scores.py": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9",
+            "research/src/simfolio_forecasting_methodology/scoring.py": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487",
+            "research/src/simfolio_forecasting_methodology/seeds.py": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e",
+            "research/src/simfolio_forecasting_methodology/smoke.py": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c",
+            "research/src/simfolio_forecasting_methodology/specifications.py": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+          },
+          "numerical_environment": {
+            "arch": "8.0.0",
+            "numba": "0.67.0",
+            "numerical_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": null
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "numpy": "2.5.3",
+            "pandas": "2.3.3",
+            "python": "3.12.13",
+            "scikit-learn": "1.9.0",
+            "scipy": "1.18.1",
+            "statsmodels": "0.15.0"
+          },
+          "independent_audit": {
+            "relative_path": "tmp/frontier-research-20261002/artifacts/full-filtered-sv-oos/independent_final_audit.json",
+            "sha256": "fe1ae8127c4794344738bac77e383678cadc63f863a6792417e70fd2473f0d98",
+            "passed": true
+          }
+        },
+        "source_code": {
+          "sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150",
+          "relative_path": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+          "status": "scored_source_verified"
+        },
+        "parameter_dictionary": {
+          "sha256": "00211975c281bb0753f5e4c277a9da6c68c0f4e626c9610d340e0e4c14e62e29",
+          "status": "resolved_statistical_definition"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tmp/frontier-research-20261002/artifacts/filtered_innovation_sv_candidates.py",
+        "entrypoint": "FilteredInnovationSV(fixed_mean=False)",
+        "score": "tmp/frontier-research-20261002/artifacts/full-filtered-sv-oos/results.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "scored_research_entrypoint",
+        "research_entrypoint": "FilteredInnovationSV(fixed_mean=False)"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 178,
+      "historical_score": {
+        "exact_empirical_crps": "0.2547972662964723",
+        "relative_to_naive": null,
+        "skill_vs_naive": null,
+        "paired_improvement_vs_current": null,
+        "paired_mean_diff_vs_current": null,
+        "paired_portfolio_cluster_diff_ci_90": null,
+        "paired_portfolio_cluster_probability_better": null,
+        "portfolio_losses_vs_current": null,
+        "portfolio_wins_vs_current": null
+      },
+      "score_precision": {
+        "retained_source_token": "0.2547972662964723",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.254797266",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "-2.964723E-10",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source_token_preserved"
+      },
+      "experiment_id": "full-filtered-sv-oos",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score",
+      "notes": [
+        "Asset-level model; validated_full_panel_candidate.",
+        "Validated 4080 origin tasks, 701280 equally weighted portfolio-horizon cells, 240 simulations per origin."
+      ]
+    },
+    {
+      "public_model_id": "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
+      "display_name": "M179 \u2014 Asset Gaussian Moment SV + Fixed Mean",
+      "historical_model_ids": [
+        "experimental_gaussian_moment_matched_sv_empirical_fixed_mean"
+      ],
+      "seed_identity": {
+        "source_model_key": "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_moment_sv",
+          "source_id": "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "validated_full_panel_candidate",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "measurement": "mean-corrected winsorized log-square returns",
+            "latent_state": "Gaussian AR(1) log variance",
+            "parameter_inference": "MAP/Laplace sigma points",
+            "conditional_state_inference": "Kalman filter and RTS smoother",
+            "multiscale_windows": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "multiscale_components": 4,
+            "coupling": "convex_state_independent_mix"
+          },
+          "predictive_marginal": {
+            "method": "first_two_return_moments_including_Jensen_and_mean_state_variance",
+            "innovations": "raw_standardized_empirical",
+            "empirical_quantiles": "linspace(0.5/simulations, 1-0.5/simulations, simulations)",
+            "quantile_normalization": "zero_mean_unit_population_variance",
+            "daily_log_return_clip": [
+              -1.0,
+              1.0
+            ],
+            "mean_shrink": 0.0
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_sorted_asset_marginals"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tmp/frontier-research-20261002/artifacts/fixed_mean_sv_candidates.py",
+            "revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+            "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c",
+            "entrypoints": [
+              "FixedMeanMomentSV"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "artifacts/fixed_mean_sv_candidates.py",
+                "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c"
+              },
+              {
+                "path": "artifacts/moment_sv_candidates.py",
+                "sha256": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686"
+              },
+              {
+                "path": "artifacts/predictive_sv_candidates.py",
+                "sha256": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816"
+              },
+              {
+                "path": "artifacts/predictive_sv_screen.py",
+                "sha256": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede"
+              },
+              {
+                "path": "artifacts/research_jit_pilot.py",
+                "sha256": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+          "source_seed_contract": "deterministic_seed('copula_alternatives', FRONTIER_DEPENDENCE_ID, origin_date, horizon_days, simulations); single asset: deterministic_seed('moment_sv_single_asset', origin_date, horizon_days, simulations)",
+          "failure_semantics": {
+            "paths": "reject_nonfinite_output",
+            "calendar": "strict_business_day_rejoin"
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "03a6e478c77177098f7077dcd6a789a0a188ab5ddd773102ffb1c7ff245fe388",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "6666be3597b986aff945b985f11c6419284d0f2c",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "tmp/frontier-research-20261002/artifacts/full-fixed-mean-oos/results.json",
+          "sha256": "ad5f3c0379cbc19926a0994a59d3d641437d2896260e9208eaef9f1de0171d93",
+          "manifest_sha256": "63056a1c052da834cbf59ba453d6daf1e11792314cde22e61d9e5b0a85b0a095",
+          "scope": "full_canonical_paired",
+          "tasks_per_model": 4080,
+          "cells_per_model": 701280,
+          "simulations": 240,
+          "all_denominator_gates_passed": true,
+          "metric": "exact_empirical_crps",
+          "target": "terminal_log_return",
+          "pairwise_denominator": "n_squared",
+          "aggregation": "mean origins within each portfolio-horizon cell, then equal mean across portfolio-horizon cells",
+          "source_score_field": "scores.experimental_gaussian_moment_matched_sv_empirical_fixed_mean.exact_empirical_crps",
+          "source_closure": {
+            "artifacts/fixed_mean_sv_candidates.py": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c",
+            "artifacts/moment_sv_candidates.py": "048daa79ed69481dcc94c6461835164e338a764563819e5f37237c12bca24686",
+            "artifacts/predictive_sv_candidates.py": "c7a3520bd325e3c8e12e21d2c97ccd663807d1cb055201fbaa717ef92ca7e816",
+            "artifacts/predictive_sv_screen.py": "66f24760a8f405d5f9cbde744f686d2dea4638e83d41af36d3b9a3475f78bede",
+            "artifacts/research_jit_pilot.py": "7529244ddd72978e5f9aab314171b7d6fa0ee6b0962255d2f356303799983005",
+            "research/../artifacts/full_fixed_mean_oos.py": "ed94857f0ec3d8605b5ebb3847fbe9d23bf0706d5cc8b3a9e9a6cb516816385e",
+            "research/src/simfolio_forecasting_methodology/__init__.py": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621",
+            "research/src/simfolio_forecasting_methodology/catalog.py": "f022b44327d881b6047fd3307f91e28e1f0194c62615d8f11ed3d22109fda8fb",
+            "research/src/simfolio_forecasting_methodology/catalogue.py": "665b4e56ac755c58a55bc0e2c983bf2d6c0fc7cb0b25df80c9865e017c365056",
+            "research/src/simfolio_forecasting_methodology/cli.py": "3b2e3490acbf4f17d54c07acfb97759941b02a1b9a6aa9b8fa737c5b8aea07d5",
+            "research/src/simfolio_forecasting_methodology/data.py": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0",
+            "research/src/simfolio_forecasting_methodology/evaluation.py": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8",
+            "research/src/simfolio_forecasting_methodology/experiment.py": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa",
+            "research/src/simfolio_forecasting_methodology/models/__init__.py": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/__init__.py": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+            "research/src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+            "research/src/simfolio_forecasting_methodology/models/numerical/__init__.py": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1",
+            "research/src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7",
+            "research/src/simfolio_forecasting_methodology/models/numerical/base_models.py": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31",
+            "research/src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "b8875c24accb205c8dd04bdfb859d7df9f643d19343098d25e20e3c64d9abdfc",
+            "research/src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+            "research/src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b",
+            "research/src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+            "research/src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/__init__.py": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/reference_families.py": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040",
+            "research/src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab",
+            "research/src/simfolio_forecasting_methodology/models/registry.py": "b73fa2db59954c03390fe2e098c7dc4c5a5eaf1d1de0499f6faa9d794b12aa64",
+            "research/src/simfolio_forecasting_methodology/naming.py": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e",
+            "research/src/simfolio_forecasting_methodology/origins.py": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8",
+            "research/src/simfolio_forecasting_methodology/panel.py": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b",
+            "research/src/simfolio_forecasting_methodology/protocol.py": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d",
+            "research/src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json": "3bfb42ea0a8020a021bd36a5ccb966848a20302bfec692511ec0db1b9ddf2d61",
+            "research/src/simfolio_forecasting_methodology/resources/catalogs/canonical_40_full_mcmc_sv_specs.json": "30d868665f277ecf2494ad6256c60aa1a8fd9a8fce006ab384d667e02e32c078",
+            "research/src/simfolio_forecasting_methodology/resources/data/canonical_calendar_manifest.json": "2bfa4fba436af0099f4c458fcc8a3448876dafd4c38228730df3c1e1d07b73cb",
+            "research/src/simfolio_forecasting_methodology/resources/data/canonical_derived_fingerprints.json": "eccca0203707da04c1c465ed9f7339b06eb930d8b144d3d2a3fdddf19f602054",
+            "research/src/simfolio_forecasting_methodology/resources/data/canonical_snapshot_manifest.json": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+            "research/src/simfolio_forecasting_methodology/resources/panels/scored52_generation_provenance.json": "07dd06888c56af711bfd5ef204d862c2750a148aa4f23941814551b5c5f65c3c",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/canonical_protocol_identity.json": "742ad71ee40cc27a4a816d0ea161d742984d5c3449ad4567bcd971b196b1115e",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/canonical_snapshot_attribution.json": "d0059e640c4ee6f12ba169ced0cf494bb1c5e70dcd1229415210dc72ea6d9d19",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/origin_reference_digests.json": "b0534bbf0b1bbd16b0f64fd6368bb58e810d23b81da55f872c1ffe5fa41ce59e",
+            "research/src/simfolio_forecasting_methodology/resources/protocols/source_harness_identity.json": "999c34d764014d95871d827c33566004e04d44a6e5b3351f56ae583497ff111d",
+            "research/src/simfolio_forecasting_methodology/resources/specifications/canonical_inla_asset_spec_fragment.json": "c3937ddccdfc4ac603f94f8da6f51878a909d76eb98db66d538df9bd98e19a7d",
+            "research/src/simfolio_forecasting_methodology/resources/specifications/canonical_statistical_specifications.json": "f8e9f5b0b2b837e1021b4cc07781bde0d19f7c5fc7e55ad64fa1c1ad393f3136",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference.json": "02329e02cb75a95241d36c6cf7e58300aad90ebfcd0cd94d98e79ad5c64a223e",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/base/source_reference_all_means.json": "2eb431ca2b4538b49396ec589983b73c4fdcdeefbceb04e15eaffea283be168d",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/frontier/current_production_parity_report.json": "e9ccc59ab362d9e7b8b497d6250dee7521d0bfcba3168f6cf17d1844de5c2e7e",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/exact_asset_source_parity.json": "2e92166fbcb620c4ee0a31246aae8524e3057585679b94a3a2e95a29c6ffe0a3",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_candidate.json": "048f89e9f032201097b6924aee6d13fd1752162853214328dff784f074a5e49d",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_dispatcher_parity_report.json": "7ba0e5fb2842d65391898a202bf8eb195f2c07f876c6be21c1a6420fc92df704",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_input.json": "15be1d271b7318c0a5767dbfa3478092004eeb80acb10b4183c3694b2aa6ea4a",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/inla/source_parity_py312.json": "d5560400ec9c76a1cd56449aa8a1324dd7af2927d48084fbd1f932577d4b504c",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/mcmc/full_mcmc_sv_source_parity.json": "6b234afad5b7dc7980e148e130eecc04beb79522e091925ad185b900e86650d5",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/mcmc/full_mcmc_sv_source_parity_py311_numpy246_scipy1171.json": "3c87c2388b52a801a38feae41e3243e55f315f0cd3125e277e8a815ab0f27708",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/bayesian_vol_source_parity.json": "baee8ba76986b119fff4fbbea105547380c809f4582b4952ed8db8db9fbeb13a",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/canonical_stack_dispatcher_parity_report.json": "a76b4b5db383d2051c370369710e52693b13661a19253779fec8df1eaa1a2651",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/canonical_stack_source_parity.json": "2ad97e201a80f6bc35ea0dfd1d3a850e0881a38ba2bb89953d37a364fabfed39",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/factor_residual_source_parity.json": "ba824f21648276590ddef67a5b0f9a0c13da4b71408552b22f1dca5d830f55a6",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/gas_reference_source_parity.json": "87eeeace0f36d57c1a8c4d1591cf76a5d003c260d96f563fed8f3092f58ade18",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/gjr_reference_source_parity.json": "3544abd82abacc781946f31e5712cc9a68a27e06ffebf32bb96ac46a69416053",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/reference_family_source_parity.json": "fb5d48b7594e1e05a66f29fb395c9a99359d3f26043fde0171e2fe0991c1a433",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/sv_extension_source_parity.json": "1cd31445e132e29907ec7c284cfa0e82ec79595eb90a817d0199f6f291d1f75e",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/sv_mcmc_reference_source_parity.json": "9046ac64e64a3c8154bd7e3622a7d5ffb8c6ce21513fd3cd8866efaeb2518f30",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/portfolio/sv_reference_source_parity.json": "5780a2b021a25c1c9b6dc7443f1017db6fe2b8c30b651751fd9293ba226a9571",
+            "research/src/simfolio_forecasting_methodology/resources/test_fixtures/protocol/synthetic_fixture_manifest.json": "37c93ba7d315e80eef6d45e0e12a10d4758469fa13590f72319a67d8451b6718",
+            "research/src/simfolio_forecasting_methodology/results/__init__.py": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd",
+            "research/src/simfolio_forecasting_methodology/results/aggregate.py": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f",
+            "research/src/simfolio_forecasting_methodology/results/checkpoint.py": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228",
+            "research/src/simfolio_forecasting_methodology/results/executor.py": "5e00a95d2682dc298fcb1bd8732ebab6b51685c77cedd439df04467eeb751b8a",
+            "research/src/simfolio_forecasting_methodology/results/retained.py": "5ae4a77f90df5a72201a448ba6d69a765c91f59dfc6dc5dae21a149830bd7970",
+            "research/src/simfolio_forecasting_methodology/runner.py": "7fd7e3e7f95b9139d63ed9cdc3d173f16b8b14e7bd52f1ed86bc1f9fdbfc676e",
+            "research/src/simfolio_forecasting_methodology/safety_scan.py": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e",
+            "research/src/simfolio_forecasting_methodology/scores.py": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9",
+            "research/src/simfolio_forecasting_methodology/scoring.py": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487",
+            "research/src/simfolio_forecasting_methodology/seeds.py": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e",
+            "research/src/simfolio_forecasting_methodology/smoke.py": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c",
+            "research/src/simfolio_forecasting_methodology/specifications.py": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+          },
+          "numerical_environment": {
+            "arch": "8.0.0",
+            "numba": "0.67.0",
+            "numerical_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": null
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "numpy": "2.5.3",
+            "pandas": "2.3.3",
+            "python": "3.12.13",
+            "scikit-learn": "1.9.0",
+            "scipy": "1.18.1",
+            "statsmodels": "0.15.0"
+          },
+          "independent_audit": {
+            "relative_path": "tmp/frontier-research-20261002/artifacts/full-fixed-mean-oos/independent_final_audit.json",
+            "sha256": "f95135b8979fe3c8977132c6925d2c9a22af88444570545798cf972d1816dd5c",
+            "passed": true
+          }
+        },
+        "source_code": {
+          "sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c",
+          "relative_path": "tmp/frontier-research-20261002/artifacts/fixed_mean_sv_candidates.py",
+          "status": "scored_source_verified"
+        },
+        "parameter_dictionary": {
+          "sha256": "03a6e478c77177098f7077dcd6a789a0a188ab5ddd773102ffb1c7ff245fe388",
+          "status": "resolved_statistical_definition"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tmp/frontier-research-20261002/artifacts/fixed_mean_sv_candidates.py",
+        "entrypoint": "FixedMeanMomentSV",
+        "score": "tmp/frontier-research-20261002/artifacts/full-fixed-mean-oos/results.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "scored_research_entrypoint",
+        "research_entrypoint": "FixedMeanMomentSV"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 179,
+      "historical_score": {
+        "exact_empirical_crps": "0.2588375710788695",
+        "relative_to_naive": null,
+        "skill_vs_naive": null,
+        "paired_improvement_vs_current": null,
+        "paired_mean_diff_vs_current": null,
+        "paired_portfolio_cluster_diff_ci_90": null,
+        "paired_portfolio_cluster_probability_better": null,
+        "portfolio_losses_vs_current": null,
+        "portfolio_wins_vs_current": null
+      },
+      "score_precision": {
+        "retained_source_token": "0.2588375710788695",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.258837571",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "-7.88695E-11",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source_token_preserved"
+      },
+      "experiment_id": "full-fixed-mean-oos",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score",
+      "notes": [
+        "Asset-level model; validated_full_panel_candidate.",
+        "Validated 4080 origin tasks, 701280 equally weighted portfolio-horizon cells, 240 simulations per origin."
       ]
     }
   ]

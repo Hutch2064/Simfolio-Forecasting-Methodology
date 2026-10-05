@@ -174,7 +174,7 @@ def _add_execution_arguments(
     selection = command.add_mutually_exclusive_group()
     selection.add_argument("--model", default="", help="Run one exact canonical model ID.")
     selection.add_argument("--frontier", action="store_true", help="Select canonical rank one.")
-    selection.add_argument("--all", action="store_true", help="Select all 175 canonical IDs.")
+    selection.add_argument("--all", action="store_true", help="Select all canonical models with registered executable factories.")
     command.add_argument("--smoke", action="store_true", help="Use bounded smoke tasks.")
     del smoke_default
     command.add_argument(
@@ -351,11 +351,15 @@ def _execute_candidate(args: argparse.Namespace) -> int:
 
 
 def _selected_models(args: argparse.Namespace, *, command: str) -> tuple[str, ...]:
-    canonical_ids = tuple(row["public_model_id"] for row in load_canonical_models())
+    models = load_canonical_models()
+    canonical_ids = tuple(row["public_model_id"] for row in models)
+    executable_ids = tuple(
+        row["public_model_id"] for row in models if row["implementation_factory"]["callable"]
+    )
     if args.all:
         if command == "smoke" or args.smoke:
             raise SystemExit("smoke accepts one model; remove --all")
-        return canonical_ids
+        return executable_ids
     if args.model:
         if args.model not in canonical_ids:
             raise SystemExit(f"unknown canonical model ID: {args.model}")
@@ -363,7 +367,7 @@ def _selected_models(args: argparse.Namespace, *, command: str) -> tuple[str, ..
     if args.frontier or args.smoke or command == "smoke":
         return (frontier_model_id(),)
     if command == CANONICAL_COMMAND:
-        return canonical_ids
+        return executable_ids
     raise SystemExit("canonical execution requires --model, --frontier, --smoke, or --all")
 
 
