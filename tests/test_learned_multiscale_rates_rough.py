@@ -178,3 +178,18 @@ def test_unclipped_rough_observations_match_untransformed_log_square():
     assert np.array_equal(y,expected)
     assert np.array_equal(eps,(x-x.mean())*100)
     assert raw.max()>np.quantile(raw,.995)
+
+
+def test_unclipped_optimizer_rejects_only_invalid_spectral_trials(monkeypatch):
+    p=Path(__file__).resolve().parents[1]/'tools/learned_loading_unclipped_rough/models.py'
+    spec=importlib.util.spec_from_file_location('test_unclipped_spectral_rejection',p)
+    m=importlib.util.module_from_spec(spec);sys.modules[spec.name]=m;spec.loader.exec_module(m)
+    def invalid(*args):
+        raise ArithmeticError('invalid analytic-covariance expected periodogram')
+    monkeypatch.setattr(m,'original_target',invalid)
+    assert m.whittle_target(None,None,None,None)==-np.inf
+    def unrelated(*args):
+        raise ArithmeticError('unrelated numerical contract failure')
+    monkeypatch.setattr(m,'original_target',unrelated)
+    with pytest.raises(ArithmeticError,match='unrelated'):
+        m.whittle_target(None,None,None,None)

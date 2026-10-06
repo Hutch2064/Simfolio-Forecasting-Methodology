@@ -34,6 +34,19 @@ def observed(data):
     return y-causal_predictor(y,level,phi,eta,noise),eps
 
 
+original_target=rough.whittle_target
+
+
+def whittle_target(theta,periodogram,n,noise_variance):
+    try:
+        return original_target(theta,periodogram,n,noise_variance)
+    except ArithmeticError as error:
+        if str(error)!='invalid analytic-covariance expected periodogram':
+            raise
+        return -np.inf
+
+
+rough.whittle_target=whittle_target
 rough.backend.base.base.observed=observed
 rough.backend.base.noise.observed=observed
 digest=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
