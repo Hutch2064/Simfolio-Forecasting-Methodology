@@ -1,0 +1,3510 @@
+{
+  "scope": "bounded_smokes_not_full_panel",
+  "cases": [
+    {
+      "scope": "bounded_local_smoke_not_full_panel",
+      "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+      "task_index": 0,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "1981-12-31",
+      "training_rows": 507,
+      "assets": 6,
+      "horizon": 126,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "failure": null,
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 0.16015916696051136,
+          "timings": {
+            "rough_fit_worker": 0.03651716705644503,
+            "fit_phase_wall": 0.13611570798093453,
+            "dependence_paths": 0.006017040985170752,
+            "asset_predictive_paths": 0.014624415955040604
+          },
+          "smoke_crps": 0.03785101950210393,
+          "horizons": 126,
+          "loss_sha256": "0c232b768894487f1aeead68bddb552fd3bd61fafabb35031d7c6c211fd35cc0",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.0876960233563121,
+                -4.003048177257604,
+                -0.21437262755739006
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009685289679730644,
+                "exact_covariance_evaluations": 71,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 36,
+                "seconds": 0.004665915970690548,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 7,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+                "measurement_noise_variance": 3.931818276183796,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.01607613781570388,
+                -4.129178968235923,
+                -0.17254649531106914
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009986411248407553,
+                "exact_covariance_evaluations": 62,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 44,
+                "seconds": 0.004698833043221384,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 9,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+                "measurement_noise_variance": 4.344369983982713,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.094284413953744,
+                -0.6443877331420262
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009822251872467465,
+                "exact_covariance_evaluations": 63,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 44,
+                "seconds": 0.004978500015567988,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 9,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+                "measurement_noise_variance": 5.1504491183855174,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.085666103267509,
+                -0.4433094388002554
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009982643565022084,
+                "exact_covariance_evaluations": 61,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 52,
+                "seconds": 0.00575920898700133,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 9,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+                "measurement_noise_variance": 5.305304418711693,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.09296421869027378,
+                -2.5800963427846852,
+                0.17351270000046348
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.000975204103419072,
+                "exact_covariance_evaluations": 44,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 76,
+                "seconds": 0.007449625001754612,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 14,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+                "measurement_noise_variance": 4.718879333047418,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.08123041592600264,
+                -2.990409809727799,
+                0.15606041015279537
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009814127677612338,
+                "exact_covariance_evaluations": 52,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 60,
+                "seconds": 0.005902790988329798,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 12,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+                "measurement_noise_variance": 4.408060642563586,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.014063625014387071,
+          "timings": {
+            "fit_phase_wall": 1.0457995813339949e-05,
+            "dependence_paths": 1.0624993592500687e-05,
+            "asset_predictive_paths": 0.011609292007051408
+          },
+          "smoke_crps": 0.03785101950210393,
+          "horizons": 126,
+          "loss_sha256": "0c232b768894487f1aeead68bddb552fd3bd61fafabb35031d7c6c211fd35cc0",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.0876960233563121,
+                -4.003048177257604,
+                -0.21437262755739006
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009685289679730644,
+                "exact_covariance_evaluations": 71,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 36,
+                "seconds": 0.004665915970690548,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 7,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "27331d69de229d8c1621138b7a0ddf04d9d20abc384d0a0e733321166509442a",
+                "measurement_noise_variance": 3.931818276183796,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.01607613781570388,
+                -4.129178968235923,
+                -0.17254649531106914
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009986411248407553,
+                "exact_covariance_evaluations": 62,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 44,
+                "seconds": 0.004698833043221384,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 9,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "765d3c86129d8c4c27beb5abc6dbf3e8dc6ee12e5c859b437cdcc032a6eed5c1",
+                "measurement_noise_variance": 4.344369983982713,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.094284413953744,
+                -0.6443877331420262
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009822251872467465,
+                "exact_covariance_evaluations": 63,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 44,
+                "seconds": 0.004978500015567988,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 9,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "4fc1b5c7ae17a34ad6f9dd23103ee200688628c457bddfab489d8ffac0c1cbee",
+                "measurement_noise_variance": 5.1504491183855174,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.085666103267509,
+                -0.4433094388002554
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009982643565022084,
+                "exact_covariance_evaluations": 61,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 52,
+                "seconds": 0.00575920898700133,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 9,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "5200f0b0de1e780b8408db9806ad8b84e5311687435580b37af07e0cd06641cf",
+                "measurement_noise_variance": 5.305304418711693,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.09296421869027378,
+                -2.5800963427846852,
+                0.17351270000046348
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.000975204103419072,
+                "exact_covariance_evaluations": 44,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 76,
+                "seconds": 0.007449625001754612,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 14,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "7416254dcffc49a34254812858d1c33369c7f872bce622715cf1811012d33aee",
+                "measurement_noise_variance": 4.718879333047418,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.08123041592600264,
+                -2.990409809727799,
+                0.15606041015279537
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 632,
+                "autocorrelation_error_upper_bound": 0.0009814127677612338,
+                "exact_covariance_evaluations": 52,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 60,
+                "seconds": 0.005902790988329798,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 12,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:632",
+                "data_sha256": "0ae5c7e5c200d13c7ef8e3cba03bf9bb6c48b55bb211bf700186116508e992b5",
+                "measurement_noise_variance": 4.408060642563586,
+                "frequency_count": 254,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        }
+      ],
+      "source_hashes": {
+        "tools/standalone_spectral_rough/models.py": "38ecf1627af2aa380aad5b212a4cb52eaa77d03fa74c408c237878e2141a5fc4",
+        "tools/standalone_spectral_rough/run_panel.py": "2cdd86b9b6545be2fafce1e5cfb85ad4619f667a18810a1e3676a09870e2d59d",
+        "tools/standalone_spectral_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      }
+    },
+    {
+      "scope": "bounded_local_smoke_not_full_panel",
+      "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+      "task_index": 1,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "1993-03-31",
+      "training_rows": 3351,
+      "assets": 6,
+      "horizon": 837,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "failure": null,
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 0.38613308302592486,
+          "timings": {
+            "rough_fit_worker": 0.18747254193294793,
+            "fit_phase_wall": 0.29047491698293015,
+            "dependence_paths": 0.035931582970079035,
+            "asset_predictive_paths": 0.045785666967276484
+          },
+          "smoke_crps": 0.04813110253590847,
+          "horizons": 837,
+          "loss_sha256": "24cb7ad993edcec5efbfa5454ce8590bdbf16286dd0db94f4c457c7b0ee3b7f1",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "2bf9591cd3ff7e53b31ae0ece6c4a81f48b5706b6ecd5b5544564ef132d81fa3",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.14141306938181109,
+                -3.17226521029537,
+                -0.06567165082590298
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009836224358966887,
+                "exact_covariance_evaluations": 62,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 48,
+                "seconds": 0.01883595803519711,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+                  "iterations": 10,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "2bf9591cd3ff7e53b31ae0ece6c4a81f48b5706b6ecd5b5544564ef132d81fa3",
+                "measurement_noise_variance": 4.524732730918133,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "1e0af653dde292f3f7a097caf640d969d03cbcb534e72ad9ac4f0491f07cdcb8",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.012536548316180002,
+                -3.907581802491979,
+                0.2616051139507234
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009914526987779607,
+                "exact_covariance_evaluations": 64,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 72,
+                "seconds": 0.025382791995070875,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 13,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "1e0af653dde292f3f7a097caf640d969d03cbcb534e72ad9ac4f0491f07cdcb8",
+                "measurement_noise_variance": 3.980482581607999,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "86395cc40216f439ff4ac0584ef4d703143eefad52def19cd68f6e8e0d602fa3",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -3.921997519590625,
+                0.3678149400688189
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.000998007015265433,
+                "exact_covariance_evaluations": 60,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 96,
+                "seconds": 0.033481416990980506,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 11,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "86395cc40216f439ff4ac0584ef4d703143eefad52def19cd68f6e8e0d602fa3",
+                "measurement_noise_variance": 3.8156510982135647,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "360d5cef9ffeab3577df23273d5f6ab90eecd7d2d6c09a7e150d380efd426b87",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -3.723304065047559,
+                0.573465733811434
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009992030121053447,
+                "exact_covariance_evaluations": 54,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 104,
+                "seconds": 0.03577937500085682,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 12,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "360d5cef9ffeab3577df23273d5f6ab90eecd7d2d6c09a7e150d380efd426b87",
+                "measurement_noise_variance": 3.3460955158519283,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "1ab5d168fbdcf4c992174fbdef351be4f0fdbb234d3e518828f4decfbd6a31da",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.07437491444149971,
+                -6.890786640538276,
+                0.9386244821940966
+              ],
+              "kernel": {
+                "factors": 9,
+                "quadrature_order": 8,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009988492774202404,
+                "exact_covariance_evaluations": 133,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 84,
+                "seconds": 0.04773587500676513,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 16,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "1ab5d168fbdcf4c992174fbdef351be4f0fdbb234d3e518828f4decfbd6a31da",
+                "measurement_noise_variance": 3.522690224781378,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "a4a7d4bdd4e5de741c3dd25d8fd149af9fe155fcb77400b618111647923360f1",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.1536202740321238,
+                -3.830279078920139,
+                -0.4482391714208296
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009722201213922299,
+                "exact_covariance_evaluations": 71,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 52,
+                "seconds": 0.022331666958052665,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 10,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "a4a7d4bdd4e5de741c3dd25d8fd149af9fe155fcb77400b618111647923360f1",
+                "measurement_noise_variance": 4.877163614349909,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.0548549999948591,
+          "timings": {
+            "fit_phase_wall": 4.095898475497961e-05,
+            "dependence_paths": 3.991596167907119e-05,
+            "asset_predictive_paths": 0.04176508297678083
+          },
+          "smoke_crps": 0.04813110253590847,
+          "horizons": 837,
+          "loss_sha256": "24cb7ad993edcec5efbfa5454ce8590bdbf16286dd0db94f4c457c7b0ee3b7f1",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "2bf9591cd3ff7e53b31ae0ece6c4a81f48b5706b6ecd5b5544564ef132d81fa3",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.14141306938181109,
+                -3.17226521029537,
+                -0.06567165082590298
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009836224358966887,
+                "exact_covariance_evaluations": 62,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 48,
+                "seconds": 0.01883595803519711,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+                  "iterations": 10,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "2bf9591cd3ff7e53b31ae0ece6c4a81f48b5706b6ecd5b5544564ef132d81fa3",
+                "measurement_noise_variance": 4.524732730918133,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "1e0af653dde292f3f7a097caf640d969d03cbcb534e72ad9ac4f0491f07cdcb8",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.012536548316180002,
+                -3.907581802491979,
+                0.2616051139507234
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009914526987779607,
+                "exact_covariance_evaluations": 64,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 72,
+                "seconds": 0.025382791995070875,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 13,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "1e0af653dde292f3f7a097caf640d969d03cbcb534e72ad9ac4f0491f07cdcb8",
+                "measurement_noise_variance": 3.980482581607999,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "86395cc40216f439ff4ac0584ef4d703143eefad52def19cd68f6e8e0d602fa3",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -3.921997519590625,
+                0.3678149400688189
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.000998007015265433,
+                "exact_covariance_evaluations": 60,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 96,
+                "seconds": 0.033481416990980506,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 11,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "86395cc40216f439ff4ac0584ef4d703143eefad52def19cd68f6e8e0d602fa3",
+                "measurement_noise_variance": 3.8156510982135647,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "360d5cef9ffeab3577df23273d5f6ab90eecd7d2d6c09a7e150d380efd426b87",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -3.723304065047559,
+                0.573465733811434
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009992030121053447,
+                "exact_covariance_evaluations": 54,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 104,
+                "seconds": 0.03577937500085682,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 12,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "360d5cef9ffeab3577df23273d5f6ab90eecd7d2d6c09a7e150d380efd426b87",
+                "measurement_noise_variance": 3.3460955158519283,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "1ab5d168fbdcf4c992174fbdef351be4f0fdbb234d3e518828f4decfbd6a31da",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.07437491444149971,
+                -6.890786640538276,
+                0.9386244821940966
+              ],
+              "kernel": {
+                "factors": 9,
+                "quadrature_order": 8,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009988492774202404,
+                "exact_covariance_evaluations": 133,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 84,
+                "seconds": 0.04773587500676513,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 16,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "1ab5d168fbdcf4c992174fbdef351be4f0fdbb234d3e518828f4decfbd6a31da",
+                "measurement_noise_variance": 3.522690224781378,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "a4a7d4bdd4e5de741c3dd25d8fd149af9fe155fcb77400b618111647923360f1",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.1536202740321238,
+                -3.830279078920139,
+                -0.4482391714208296
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 4187,
+                "autocorrelation_error_upper_bound": 0.0009722201213922299,
+                "exact_covariance_evaluations": 71,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 52,
+                "seconds": 0.022331666958052665,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 10,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:4187",
+                "data_sha256": "a4a7d4bdd4e5de741c3dd25d8fd149af9fe155fcb77400b618111647923360f1",
+                "measurement_noise_variance": 4.877163614349909,
+                "frequency_count": 1676,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        }
+      ],
+      "source_hashes": {
+        "tools/standalone_spectral_rough/models.py": "38ecf1627af2aa380aad5b212a4cb52eaa77d03fa74c408c237878e2141a5fc4",
+        "tools/standalone_spectral_rough/run_panel.py": "2cdd86b9b6545be2fafce1e5cfb85ad4619f667a18810a1e3676a09870e2d59d",
+        "tools/standalone_spectral_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      }
+    },
+    {
+      "scope": "bounded_local_smoke_not_full_panel",
+      "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+      "task_index": 2,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "2020-06-30",
+      "training_rows": 10213,
+      "assets": 6,
+      "horizon": 1474,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "failure": null,
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 0.8323763749795035,
+          "timings": {
+            "rough_fit_worker": 0.5306072509847581,
+            "fit_phase_wall": 0.6413497499888763,
+            "dependence_paths": 0.0786292910343036,
+            "asset_predictive_paths": 0.08633575000567362
+          },
+          "smoke_crps": 0.08580898431163385,
+          "horizons": 1474,
+          "loss_sha256": "57d5e9523079fcc6e90845372d9ecb2d061f23b3521e06f3c70069c40912b2a7",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "f026226e3a19c0410924d084c2f2daba6e6486cb486656b0b7b4a594d22e3713",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.15743270639508244,
+                -4.063617434164216,
+                -0.12042244473836128
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009784582177848982,
+                "exact_covariance_evaluations": 80,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 76,
+                "seconds": 0.08829512499505654,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 13,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "f026226e3a19c0410924d084c2f2daba6e6486cb486656b0b7b4a594d22e3713",
+                "measurement_noise_variance": 4.572812216160673,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "04e6506e1beaf427e6920c9330cd8d09760b87970155926e1c35ef056e148933",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.06046132290475705,
+                -5.800069846362451,
+                0.10599010055885838
+              ],
+              "kernel": {
+                "factors": 8,
+                "quadrature_order": 7,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009994691293462531,
+                "exact_covariance_evaluations": 109,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 76,
+                "seconds": 0.09174666600301862,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 14,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "04e6506e1beaf427e6920c9330cd8d09760b87970155926e1c35ef056e148933",
+                "measurement_noise_variance": 4.34554537177638,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "219bc9f3a5d71f06faa4e249c32f01c462fd5de33cd70a2d184c929717d31e80",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.023098851264625297,
+                -5.017568061756856,
+                0.008531327029547064
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009842040964814507,
+                "exact_covariance_evaluations": 87,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 64,
+                "seconds": 0.06227091699838638,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 12,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "219bc9f3a5d71f06faa4e249c32f01c462fd5de33cd70a2d184c929717d31e80",
+                "measurement_noise_variance": 4.295323302849029,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "262fb0cc040b6f202d3e79846b032c6d888c594f2ab9adc29b1549c339dfc8d5",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.310414054991087,
+                0.5394252329612055
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009719545171379706,
+                "exact_covariance_evaluations": 63,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 72,
+                "seconds": 0.0532928750035353,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 14,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "262fb0cc040b6f202d3e79846b032c6d888c594f2ab9adc29b1549c339dfc8d5",
+                "measurement_noise_variance": 3.5152117427449006,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "a8434014fe9a854330035d1820167740cd356720cbedbf3b5e4856bb3f57f326",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.03862447509006749,
+                -7.432377745423862,
+                0.6277789837366905
+              ],
+              "kernel": {
+                "factors": 9,
+                "quadrature_order": 8,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009833867801064449,
+                "exact_covariance_evaluations": 142,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 76,
+                "seconds": 0.12225249997572973,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 14,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "a8434014fe9a854330035d1820167740cd356720cbedbf3b5e4856bb3f57f326",
+                "measurement_noise_variance": 3.6625898937811407,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "efdabb2f70f24d8cd8409ab75c73e10b9a18591c83ea17f442dded080ee635a1",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.1753384388575079,
+                -5.581650715038427,
+                -0.05625843673339803
+              ],
+              "kernel": {
+                "factors": 8,
+                "quadrature_order": 7,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.000999055028914401,
+                "exact_covariance_evaluations": 110,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 68,
+                "seconds": 0.09830091701587662,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 15,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "efdabb2f70f24d8cd8409ab75c73e10b9a18591c83ea17f442dded080ee635a1",
+                "measurement_noise_variance": 4.385823770194017,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.10673620802117512,
+          "timings": {
+            "fit_phase_wall": 0.00011312495917081833,
+            "dependence_paths": 0.00012379104737192392,
+            "asset_predictive_paths": 0.08128262497484684
+          },
+          "smoke_crps": 0.08580898431163385,
+          "horizons": 1474,
+          "loss_sha256": "57d5e9523079fcc6e90845372d9ecb2d061f23b3521e06f3c70069c40912b2a7",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "f026226e3a19c0410924d084c2f2daba6e6486cb486656b0b7b4a594d22e3713",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.15743270639508244,
+                -4.063617434164216,
+                -0.12042244473836128
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009784582177848982,
+                "exact_covariance_evaluations": 80,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 76,
+                "seconds": 0.08829512499505654,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 13,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "f026226e3a19c0410924d084c2f2daba6e6486cb486656b0b7b4a594d22e3713",
+                "measurement_noise_variance": 4.572812216160673,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "04e6506e1beaf427e6920c9330cd8d09760b87970155926e1c35ef056e148933",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.06046132290475705,
+                -5.800069846362451,
+                0.10599010055885838
+              ],
+              "kernel": {
+                "factors": 8,
+                "quadrature_order": 7,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009994691293462531,
+                "exact_covariance_evaluations": 109,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 76,
+                "seconds": 0.09174666600301862,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 14,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "04e6506e1beaf427e6920c9330cd8d09760b87970155926e1c35ef056e148933",
+                "measurement_noise_variance": 4.34554537177638,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "219bc9f3a5d71f06faa4e249c32f01c462fd5de33cd70a2d184c929717d31e80",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.023098851264625297,
+                -5.017568061756856,
+                0.008531327029547064
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009842040964814507,
+                "exact_covariance_evaluations": 87,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 64,
+                "seconds": 0.06227091699838638,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 12,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "219bc9f3a5d71f06faa4e249c32f01c462fd5de33cd70a2d184c929717d31e80",
+                "measurement_noise_variance": 4.295323302849029,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "262fb0cc040b6f202d3e79846b032c6d888c594f2ab9adc29b1549c339dfc8d5",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.310414054991087,
+                0.5394252329612055
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009719545171379706,
+                "exact_covariance_evaluations": 63,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 72,
+                "seconds": 0.0532928750035353,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 14,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "262fb0cc040b6f202d3e79846b032c6d888c594f2ab9adc29b1549c339dfc8d5",
+                "measurement_noise_variance": 3.5152117427449006,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "a8434014fe9a854330035d1820167740cd356720cbedbf3b5e4856bb3f57f326",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.03862447509006749,
+                -7.432377745423862,
+                0.6277789837366905
+              ],
+              "kernel": {
+                "factors": 9,
+                "quadrature_order": 8,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009833867801064449,
+                "exact_covariance_evaluations": 142,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 76,
+                "seconds": 0.12225249997572973,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 14,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "a8434014fe9a854330035d1820167740cd356720cbedbf3b5e4856bb3f57f326",
+                "measurement_noise_variance": 3.6625898937811407,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "efdabb2f70f24d8cd8409ab75c73e10b9a18591c83ea17f442dded080ee635a1",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.1753384388575079,
+                -5.581650715038427,
+                -0.05625843673339803
+              ],
+              "kernel": {
+                "factors": 8,
+                "quadrature_order": 7,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.000999055028914401,
+                "exact_covariance_evaluations": 110,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 68,
+                "seconds": 0.09830091701587662,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 15,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "efdabb2f70f24d8cd8409ab75c73e10b9a18591c83ea17f442dded080ee635a1",
+                "measurement_noise_variance": 4.385823770194017,
+                "frequency_count": 5107,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        }
+      ],
+      "source_hashes": {
+        "tools/standalone_spectral_rough/models.py": "38ecf1627af2aa380aad5b212a4cb52eaa77d03fa74c408c237878e2141a5fc4",
+        "tools/standalone_spectral_rough/run_panel.py": "2cdd86b9b6545be2fafce1e5cfb85ad4619f667a18810a1e3676a09870e2d59d",
+        "tools/standalone_spectral_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      }
+    },
+    {
+      "scope": "bounded_local_smoke_not_full_panel",
+      "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+      "task_index": 3,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "2026-03-31",
+      "training_rows": 11657,
+      "assets": 6,
+      "horizon": 30,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "failure": null,
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 0.774532083014492,
+          "timings": {
+            "rough_fit_worker": 0.5978820010786876,
+            "fit_phase_wall": 0.7118978750077076,
+            "dependence_paths": 0.04571662499802187,
+            "asset_predictive_paths": 0.01465587504208088
+          },
+          "smoke_crps": 0.01517698304842705,
+          "horizons": 30,
+          "loss_sha256": "b25a62033a2608db5e95297dd76e7ea0cbe4d38d403ccdc0e11aeb5964ebd5be",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "6db40f851c1e30a5959d43ba9b2747906a65f6f5aa7a398a8de4d5fe79520fa2",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.14237122641098335,
+                -4.515407311286381,
+                -0.06827536682862068
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009911377276951966,
+                "exact_covariance_evaluations": 93,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 68,
+                "seconds": 0.09684658300830051,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 12,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "6db40f851c1e30a5959d43ba9b2747906a65f6f5aa7a398a8de4d5fe79520fa2",
+                "measurement_noise_variance": 4.566711806525583,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "39e1852f333e8853e4b61069f8d245e986b1af29b1e77d85825c1728ae00f148",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.049734348933657704,
+                -4.843501641738609,
+                0.06550565117289109
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009647127456430168,
+                "exact_covariance_evaluations": 93,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 52,
+                "seconds": 0.05721804202767089,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 10,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "39e1852f333e8853e4b61069f8d245e986b1af29b1e77d85825c1728ae00f148",
+                "measurement_noise_variance": 4.296214279450376,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "e6fa161a4a5b2c2c61e19c05343e92d6b14be3dfc4ee06cb7980da9342ca1823",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.014183207530317527,
+                -5.933307377719195,
+                0.21767288977765187
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009860186877213022,
+                "exact_covariance_evaluations": 103,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 88,
+                "seconds": 0.10678716702386737,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 16,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "e6fa161a4a5b2c2c61e19c05343e92d6b14be3dfc4ee06cb7980da9342ca1823",
+                "measurement_noise_variance": 4.080113939075291,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "7814d8cb40258ed9c812d65052fe4ef7f323129f487535c3baa085a4afc4f2d0",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.058380859537808,
+                0.7024778965523155
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009763271722537928,
+                "exact_covariance_evaluations": 65,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 88,
+                "seconds": 0.06262108398368582,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 15,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "7814d8cb40258ed9c812d65052fe4ef7f323129f487535c3baa085a4afc4f2d0",
+                "measurement_noise_variance": 3.120981479746885,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "33918c6a7241db0bbeb46a6bd7799750825a229865a1eff0f4e6f73da4c8609e",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.051407062343082906,
+                -7.8320141797915825,
+                0.6510407988514126
+              ],
+              "kernel": {
+                "factors": 9,
+                "quadrature_order": 8,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009952382049460361,
+                "exact_covariance_evaluations": 181,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 92,
+                "seconds": 0.1644316249876283,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 17,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "33918c6a7241db0bbeb46a6bd7799750825a229865a1eff0f4e6f73da4c8609e",
+                "measurement_noise_variance": 3.7776611429509472,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "293c8032998241e0a136e44fbb16a1ed1a2f7fa76dfd6fc036fd4ca3b5d1218e",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.1955212870793827,
+                -5.425087494877271,
+                -0.058775397119745776
+              ],
+              "kernel": {
+                "factors": 8,
+                "quadrature_order": 7,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009890264343378869,
+                "exact_covariance_evaluations": 110,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 60,
+                "seconds": 0.1015456669847481,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 13,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "293c8032998241e0a136e44fbb16a1ed1a2f7fa76dfd6fc036fd4ca3b5d1218e",
+                "measurement_noise_variance": 4.432445498898786,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.01066416600951925,
+          "timings": {
+            "fit_phase_wall": 0.00011529197217896581,
+            "dependence_paths": 0.0001111250021494925,
+            "asset_predictive_paths": 0.009296749951317906
+          },
+          "smoke_crps": 0.01517698304842705,
+          "horizons": 30,
+          "loss_sha256": "b25a62033a2608db5e95297dd76e7ea0cbe4d38d403ccdc0e11aeb5964ebd5be",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "6db40f851c1e30a5959d43ba9b2747906a65f6f5aa7a398a8de4d5fe79520fa2",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.14237122641098335,
+                -4.515407311286381,
+                -0.06827536682862068
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009911377276951966,
+                "exact_covariance_evaluations": 93,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 68,
+                "seconds": 0.09684658300830051,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 12,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "6db40f851c1e30a5959d43ba9b2747906a65f6f5aa7a398a8de4d5fe79520fa2",
+                "measurement_noise_variance": 4.566711806525583,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "39e1852f333e8853e4b61069f8d245e986b1af29b1e77d85825c1728ae00f148",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.049734348933657704,
+                -4.843501641738609,
+                0.06550565117289109
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009647127456430168,
+                "exact_covariance_evaluations": 93,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 52,
+                "seconds": 0.05721804202767089,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 10,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "39e1852f333e8853e4b61069f8d245e986b1af29b1e77d85825c1728ae00f148",
+                "measurement_noise_variance": 4.296214279450376,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "e6fa161a4a5b2c2c61e19c05343e92d6b14be3dfc4ee06cb7980da9342ca1823",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.014183207530317527,
+                -5.933307377719195,
+                0.21767288977765187
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009860186877213022,
+                "exact_covariance_evaluations": 103,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 88,
+                "seconds": 0.10678716702386737,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 16,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "e6fa161a4a5b2c2c61e19c05343e92d6b14be3dfc4ee06cb7980da9342ca1823",
+                "measurement_noise_variance": 4.080113939075291,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "7814d8cb40258ed9c812d65052fe4ef7f323129f487535c3baa085a4afc4f2d0",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.058380859537808,
+                0.7024778965523155
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009763271722537928,
+                "exact_covariance_evaluations": 65,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 88,
+                "seconds": 0.06262108398368582,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 15,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "7814d8cb40258ed9c812d65052fe4ef7f323129f487535c3baa085a4afc4f2d0",
+                "measurement_noise_variance": 3.120981479746885,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "33918c6a7241db0bbeb46a6bd7799750825a229865a1eff0f4e6f73da4c8609e",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.051407062343082906,
+                -7.8320141797915825,
+                0.6510407988514126
+              ],
+              "kernel": {
+                "factors": 9,
+                "quadrature_order": 8,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009952382049460361,
+                "exact_covariance_evaluations": 181,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 92,
+                "seconds": 0.1644316249876283,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 17,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "33918c6a7241db0bbeb46a6bd7799750825a229865a1eff0f4e6f73da4c8609e",
+                "measurement_noise_variance": 3.7776611429509472,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "293c8032998241e0a136e44fbb16a1ed1a2f7fa76dfd6fc036fd4ca3b5d1218e",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.1955212870793827,
+                -5.425087494877271,
+                -0.058775397119745776
+              ],
+              "kernel": {
+                "factors": 8,
+                "quadrature_order": 7,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009890264343378869,
+                "exact_covariance_evaluations": 110,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 60,
+                "seconds": 0.1015456669847481,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 13,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "293c8032998241e0a136e44fbb16a1ed1a2f7fa76dfd6fc036fd4ca3b5d1218e",
+                "measurement_noise_variance": 4.432445498898786,
+                "frequency_count": 5829,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        }
+      ],
+      "source_hashes": {
+        "tools/standalone_spectral_rough/models.py": "38ecf1627af2aa380aad5b212a4cb52eaa77d03fa74c408c237878e2141a5fc4",
+        "tools/standalone_spectral_rough/run_panel.py": "2cdd86b9b6545be2fafce1e5cfb85ad4619f667a18810a1e3676a09870e2d59d",
+        "tools/standalone_spectral_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      }
+    },
+    {
+      "scope": "bounded_local_smoke_not_full_panel",
+      "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+      "task_index": 4,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "1991-07-19",
+      "training_rows": 2921,
+      "assets": 6,
+      "horizon": 8766,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "failure": null,
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 1.0019073329749517,
+          "timings": {
+            "rough_fit_worker": 0.17733604001114145,
+            "fit_phase_wall": 0.277520541974809,
+            "dependence_paths": 0.20122479199199006,
+            "asset_predictive_paths": 0.39158133300952613
+          },
+          "smoke_crps": 0.15389255623229403,
+          "horizons": 8766,
+          "loss_sha256": "015e834ae26f757adb1a26cb39759f56d7158e1d4210be9a985bf6cf5ea07716",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "d2ead046d0c777e0a9ca049c05424127c2e66d76beb3f58dcadae5c36c4382b6",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.1674780760573505,
+                -3.068150101206161,
+                -0.06395651450557027
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009967207856435988,
+                "exact_covariance_evaluations": 61,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 48,
+                "seconds": 0.016389750002417713,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 10,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "d2ead046d0c777e0a9ca049c05424127c2e66d76beb3f58dcadae5c36c4382b6",
+                "measurement_noise_variance": 4.539067397061005,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "e299291a99b5f5ac3cbe6a3a4ce0f64992a94cdd07f7484d3e5f5840e55b8736",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.04766035643893763,
+                -5.108054306614683,
+                0.08246279080358798
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009968216938098366,
+                "exact_covariance_evaluations": 101,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 56,
+                "seconds": 0.02443195803789422,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 11,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "e299291a99b5f5ac3cbe6a3a4ce0f64992a94cdd07f7484d3e5f5840e55b8736",
+                "measurement_noise_variance": 4.5947931995036635,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "20169f37a25472faeebbd1bb7ec561c635667f396591f06edbad5d6d705ae3bc",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.149814979875579,
+                0.3671401130436833
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009901289519526036,
+                "exact_covariance_evaluations": 68,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 80,
+                "seconds": 0.025650415976997465,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 11,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "20169f37a25472faeebbd1bb7ec561c635667f396591f06edbad5d6d705ae3bc",
+                "measurement_noise_variance": 3.7756961166200598,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "99f8428df67eac8940f31d14a8ad6e2e3dc0593110b44f4940b7bde59647672d",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -3.4911659018411534,
+                0.67995355048286
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009697693380565551,
+                "exact_covariance_evaluations": 50,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 116,
+                "seconds": 0.032089499989524484,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 18,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "99f8428df67eac8940f31d14a8ad6e2e3dc0593110b44f4940b7bde59647672d",
+                "measurement_noise_variance": 3.2911955440226506,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "ba8f78ee623b60df088ef54180d8192bb6ff6b6992a324e635ab985ec4de6526",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.05989558872057172,
+                -6.3326567576742985,
+                0.8346875030415339
+              ],
+              "kernel": {
+                "factors": 8,
+                "quadrature_order": 7,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009995941981187926,
+                "exact_covariance_evaluations": 139,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 96,
+                "seconds": 0.044772749999538064,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 17,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "ba8f78ee623b60df088ef54180d8192bb6ff6b6992a324e635ab985ec4de6526",
+                "measurement_noise_variance": 3.5516294342137784,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "aa03a4e5f491c89fb295f0d94bf506f3b011751f17aca5f84bb13b59a2a41fc0",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.24924230705310588,
+                -4.318067795138824,
+                -0.28939568493204515
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.000962391285609704,
+                "exact_covariance_evaluations": 89,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 64,
+                "seconds": 0.031049749988596886,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 13,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "aa03a4e5f491c89fb295f0d94bf506f3b011751f17aca5f84bb13b59a2a41fc0",
+                "measurement_noise_variance": 4.7061657401358765,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.5093573339981958,
+          "timings": {
+            "fit_phase_wall": 3.9000005926936865e-05,
+            "dependence_paths": 3.595894668251276e-05,
+            "asset_predictive_paths": 0.3812654169742018
+          },
+          "smoke_crps": 0.15389255623229403,
+          "horizons": 8766,
+          "loss_sha256": "015e834ae26f757adb1a26cb39759f56d7158e1d4210be9a985bf6cf5ea07716",
+          "diagnostics": [
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "d2ead046d0c777e0a9ca049c05424127c2e66d76beb3f58dcadae5c36c4382b6",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.1674780760573505,
+                -3.068150101206161,
+                -0.06395651450557027
+              ],
+              "kernel": {
+                "factors": 6,
+                "quadrature_order": 5,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009967207856435988,
+                "exact_covariance_evaluations": 61,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 48,
+                "seconds": 0.016389750002417713,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 10,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "d2ead046d0c777e0a9ca049c05424127c2e66d76beb3f58dcadae5c36c4382b6",
+                "measurement_noise_variance": 4.539067397061005,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "e299291a99b5f5ac3cbe6a3a4ce0f64992a94cdd07f7484d3e5f5840e55b8736",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.04766035643893763,
+                -5.108054306614683,
+                0.08246279080358798
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009968216938098366,
+                "exact_covariance_evaluations": 101,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 56,
+                "seconds": 0.02443195803789422,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 11,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "e299291a99b5f5ac3cbe6a3a4ce0f64992a94cdd07f7484d3e5f5840e55b8736",
+                "measurement_noise_variance": 4.5947931995036635,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "20169f37a25472faeebbd1bb7ec561c635667f396591f06edbad5d6d705ae3bc",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -4.149814979875579,
+                0.3671401130436833
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009901289519526036,
+                "exact_covariance_evaluations": 68,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 80,
+                "seconds": 0.025650415976997465,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 11,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "20169f37a25472faeebbd1bb7ec561c635667f396591f06edbad5d6d705ae3bc",
+                "measurement_noise_variance": 3.7756961166200598,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "99f8428df67eac8940f31d14a8ad6e2e3dc0593110b44f4940b7bde59647672d",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.010000000048,
+                -3.4911659018411534,
+                0.67995355048286
+              ],
+              "kernel": {
+                "factors": 5,
+                "quadrature_order": 4,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009697693380565551,
+                "exact_covariance_evaluations": 50,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 116,
+                "seconds": 0.032089499989524484,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 18,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "99f8428df67eac8940f31d14a8ad6e2e3dc0593110b44f4940b7bde59647672d",
+                "measurement_noise_variance": 3.2911955440226506,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "ba8f78ee623b60df088ef54180d8192bb6ff6b6992a324e635ab985ec4de6526",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.05989558872057172,
+                -6.3326567576742985,
+                0.8346875030415339
+              ],
+              "kernel": {
+                "factors": 8,
+                "quadrature_order": 7,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.0009995941981187926,
+                "exact_covariance_evaluations": 139,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 96,
+                "seconds": 0.044772749999538064,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 17,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "ba8f78ee623b60df088ef54180d8192bb6ff6b6992a324e635ab985ec4de6526",
+                "measurement_noise_variance": 3.5516294342137784,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            },
+            {
+              "model_id": "asset_map_standalone_variance_targeted_spectral_dynamic_rough",
+              "data_sha256": "aa03a4e5f491c89fb295f0d94bf506f3b011751f17aca5f84bb13b59a2a41fc0",
+              "conventional_estimator": "original_predecessor_MAP",
+              "rough_estimator": "MAP_point_conditional_on_causal_SV_prediction",
+              "normalization": "stationary_second_moment_one",
+              "posterior_parameter_uncertainty": false,
+              "rough_parameters": [
+                0.24924230705310588,
+                -4.318067795138824,
+                -0.28939568493204515
+              ],
+              "kernel": {
+                "factors": 7,
+                "quadrature_order": 6,
+                "tolerance": 0.001,
+                "maximum_daily_lag": 11686,
+                "autocorrelation_error_upper_bound": 0.000962391285609704,
+                "exact_covariance_evaluations": 89,
+                "selection": "first_passing_positive_integer_order",
+                "white_tail_error_upper_bound": 0.0005
+              },
+              "rough_fit": {
+                "estimator": "MAP_analytic_covariance_differenced_debiased_Whittle_quasi_likelihood",
+                "posterior_uncertainty": false,
+                "evaluations": 64,
+                "seconds": 0.031049749988596886,
+                "optimizer": {
+                  "success": true,
+                  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+                  "iterations": 13,
+                  "ftol": 1e-10,
+                  "gtol": 1e-05,
+                  "maximum_iterations": 200,
+                  "attempts": [
+                    {
+                      "method": "L-BFGS-B",
+                      "success": true,
+                      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+                    }
+                  ]
+                },
+                "contract": "relaxed_H_floor_analytic_differenced_debiased_Whittle_MAP_v1:11686",
+                "data_sha256": "aa03a4e5f491c89fb295f0d94bf506f3b011751f17aca5f84bb13b59a2a41fc0",
+                "measurement_noise_variance": 4.7061657401358765,
+                "frequency_count": 1461,
+                "zero_frequency": "included_known_zero_difference_mean"
+              },
+              "conventional_offset_noise": "no conventional offset",
+              "conventional_parameter_fit": "unchanged original Gaussian-noise MAP; two-stage plug-in offset only",
+              "volatility_forecast": "stationary_variance_targeted_pure_rough_no_conventional_multiscale_variance_curve",
+              "rough_observations": "raw log-square return proxy",
+              "return_mean_curve": "unchanged predecessor; its conventional fit retained for mean/innovation/noise inputs only"
+            }
+          ]
+        }
+      ],
+      "source_hashes": {
+        "tools/standalone_spectral_rough/models.py": "38ecf1627af2aa380aad5b212a4cb52eaa77d03fa74c408c237878e2141a5fc4",
+        "tools/standalone_spectral_rough/run_panel.py": "2cdd86b9b6545be2fafce1e5cfb85ad4619f667a18810a1e3676a09870e2d59d",
+        "tools/standalone_spectral_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      }
+    }
+  ]
+}

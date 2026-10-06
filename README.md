@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **215 models**: the original 175 plus thirty
+The canonical catalogue contains **216 models**: the original 175 plus thirty-one
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–215 and no historical source rank.
+indices 176–216 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 215 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 216 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -110,8 +110,10 @@ M210 relaxes the Hurst lower bound to 0.01 in M209, scoring **0.2486320250090667
 
 M211 permits the full theoretical Hurst domain in the differenced estimator. Its full-panel score is **0.2495417609939298** and fresh-cache time **99.4612 seconds**; M210 led before the M212 refinement.
 
-M212 uses the empirical log-square innovation noise variance for the causal conventional-volatility offset, keeping its fitted parameters unchanged. It scored **0.2484924596795188** in **97.2791 seconds** on the complete panel, the current recorded score leader. This two-stage plug-in quasi-likelihood refinement does not complete the research goal.
+M212 uses the empirical log-square innovation noise variance for the causal conventional-volatility offset, keeping its fitted parameters unchanged. It scored **0.2484924596795188** in **97.2791 seconds** on the complete panel, the score leader before M216. This two-stage plug-in quasi-likelihood refinement does not complete the research goal.
 
 M213 and M214 retain M212 but learn Student-t and Hansen skew-t forecast innovation distributions, respectively. Full-panel CRPS is **0.25305232973579417** and **0.24975351800017143**, with isolated fresh-cache run times **98.9646** and **101.8385 seconds**. Neither beats M212; both audited full-panel results are retained.
 
-M215 replaces only the forecast innovation quantile nodes with standard Gaussian nodes, with no fitted tail or skew parameters. It scored **0.25198127331647685** in **99.2198 seconds**; M212 remains the leader.
+M215 replaces only the forecast innovation quantile nodes with standard Gaussian nodes, with no fitted tail or skew parameters. It scored **0.25198127331647685** in **99.2198 seconds**; it did not beat M212.
+
+M216 learns observation noise jointly with conventional SV parameters, then uses the same value in its dynamic rough layer. It scored **0.24648440999477378** in **101.5047 seconds**, becoming the current recorded score leader.
