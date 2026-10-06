@@ -1,14 +1,14 @@
-# Canonical model reference (193 models including the original 175)
+# Canonical model reference (199 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **193** rows, canonical ranks **1–193**.
+- Membership: **199** rows, canonical ranks **1–199**.
 - Retained source ranks: **12–186**.
-- Membership digest: `ee0650368e31d1ccd9b920a7d7093c15d9a899b5608d546a8cb513b6ee0a2d82`.
+- Membership digest: `c0600e687ed40e39c510952412b5bef1807b7f2e42f3fe11263a06bbee10aaa4`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **193**.
+- Confirmed full statistical specifications: **199**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -207,3 +207,9 @@ The ledger is the sole membership authority for this public set.
 | 191 | None | asset_rough_volterra_sv_accuracy_lift_bayesian | M191 — Asset Rough Volterra SV — Accuracy-Controlled Lift + Bayesian Parameters | asset_level_extension | — | — | true | partial_canonical_score_stopped |
 | 192 | None | asset_rough_volterra_sv_dynamic_lift_bayesian | M192 — Asset Rough Volterra SV — Dynamic Resolution + Bayesian Parameters | asset_level_extension | 0.25074679212444156 | 0.250746792 | true | validated_full_canonical_score |
 | 193 | None | asset_map_predecessor_dynamic_rough_map | M193 — Asset MAP Multiscale + Dynamic Rough Volatility | asset_level_extension | 0.2518812750312293 | 0.251881275 | true | validated_full_canonical_score |
+| 194 | None | asset_map_multiscale_causal_residual_dynamic_rough_map | M194 — Asset MAP Multiscale + Causal residual rough fit | asset_level_extension | 0.25281487701385613 | 0.252814877 | true | validated_full_canonical_score |
+| 195 | None | asset_map_multiscale_empirical_noise_dynamic_rough_map | M195 — Asset MAP Multiscale + Empirical log-square measurement noise | asset_level_extension | 0.2509457012962614 | 0.250945701 | true | validated_full_canonical_score |
+| 196 | None | asset_map_multiscale_conditional_residual_dynamic_rough_map | M196 — Asset MAP Multiscale + Conditional residual rough forecasts | asset_level_extension | 0.25238690162994976 | 0.252386902 | true | validated_full_canonical_score |
+| 197 | None | asset_map_multiscale_conditional_residual_empirical_noise_dynamic_rough_map | M197 — Asset MAP Multiscale + Conditional residual rough + empirical noise | asset_level_extension | 0.2497332684165023 | 0.249733268 | true | validated_full_canonical_score |
+| 198 | None | asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map | M198 — Asset MAP Multiscale + Untrimmed conditional residual rough + empirical noise | asset_level_extension | 0.2498921919286796 | 0.249892192 | true | validated_full_canonical_score |
+| 199 | None | asset_map_multiscale_profile_noise_conditional_residual_dynamic_rough_map | M199 — Asset MAP Multiscale + Jointly estimated measurement noise | asset_level_extension | 0.2532711708690856 | 0.253271171 | true | validated_full_canonical_score |

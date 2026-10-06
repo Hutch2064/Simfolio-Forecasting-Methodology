@@ -9,17 +9,17 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **193 models**: the original 175 plus eight
+The canonical catalogue contains **199 models**: the original 175 plus fourteen
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
-**0.25074679212444156**, the lowest catalogue score. Six canonical rough-volatility
+**0.25074679212444156**. The new conditional residual rough model with empirical measurement noise scored **0.2497332684165023**, the lowest catalogue score. Six canonical rough-volatility
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–193 and no historical source rank.
+indices 176–199 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 193 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 199 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)

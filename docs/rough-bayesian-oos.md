@@ -1,8 +1,8 @@
 # Joint Bayesian rough volatility candidates
 
 Nine new asset-level candidates are implemented in `tools/rough_bayesian` and
-included in both public catalogues. The canonical catalogue now has 192 entries;
-the broader active research catalogue has 384. The eight-factor Bayesian upgrade
+included in both public catalogues. The canonical catalogue now has 199 entries;
+the broader active research catalogue has 391. The eight-factor Bayesian upgrade
 and dynamic-resolution candidate completed their full panels; the fixed-resolution lift retains its stopped partial
 results. Other aggregate scores remain blank until their complete panels finish.
 The existing production Frontier
@@ -637,7 +637,7 @@ dependencies. `screen.py` exercises bounded canonical origins;
 ## Volatility-only research against the MAP multiscale dynamic rough baseline
 
 The frozen baseline is canonical M193, `asset_map_predecessor_dynamic_rough_map`,
-with full-panel CRPS 0.2518812750312293. The following completed experiments
+with full-panel CRPS 0.2518812750312293. The following six completed experiments
 retain its mean, empirical innovations, Gaussian dependence, random streams,
 calendar, rebalancing, transaction costs, clipping, simulations and scorer.
 Every volatility fit is asset-level. The evidence and complete paired cells are
@@ -654,6 +654,7 @@ These are research candidates; the frozen baseline has not been replaced.
 | Causal residual fit with conditional rough forecasts | 0.25238690162994976 | -0.201% | 1408.45 |
 | Conditional residual fit plus empirical measurement variance | 0.2497332684165023 | 0.853% | 1332.11 |
 | Same combination with untrimmed rough observations | 0.2498921919286796 | 0.790% | 1343.75 |
+| Jointly estimated rough measurement variance | 0.2532711708690856 | -0.552% | 2106.03 |
 
 The causal residual arms subtract the conventional model's one-step prediction
 from the rough observation series. Parameters of that conventional offset are
@@ -687,8 +688,17 @@ These variants combine established Gaussian SV quasi-likelihood, state filtering
 and accuracy-controlled rough covariance approximation in custom research
 adapters. They are not presented as canonical implementations of a named
 published full Bayesian rough-return model. Relevant primary foundations are
-[Harvey's SV review](https://www.nuffield.ox.ac.uk/economics/papers/2005/w17/palgrave.pdf)
+[SV review](https://www.nuffield.ox.ac.uk/economics/papers/2005/w17/palgrave.pdf)
 and [Abi Jaber and El Euch's multifactor approximation](https://arxiv.org/abs/1801.10359).
 The observed speed differences are local research timings, not website latency
 proof. None yet satisfies the requested minimum 1% score breakthrough; the best
 recorded worker-time reduction is about 15%, awaiting a matched timing comparison.
+
+
+Canonical M194–M199 retain all six completed volatility ablations in both catalogues.
+The joint-noise arm estimates log measurement variance as an unpenalized Gaussian
+quasi-likelihood nuisance parameter alongside the three rough MAP parameters.
+It includes the observation-scaling likelihood Jacobian. Bounds of initial
+empirical log variance plus/minus 20 are numerical guards. Its forecast uses the
+fitted noise variance in the terminal filter. It was slower and less accurate,
+so the additional fitted parameter is rejected for this research direction.

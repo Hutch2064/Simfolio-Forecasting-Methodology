@@ -4,6 +4,8 @@ import hashlib
 import json
 from pathlib import Path
 
+import numpy as np
+
 from simfolio_forecasting_methodology import cli
 from simfolio_forecasting_methodology.candidate_registry import candidate_execution_record
 from simfolio_forecasting_methodology.catalogue import load_canonical_ledger
@@ -13,6 +15,27 @@ from simfolio_forecasting_methodology.results.verified_candidate_scores import (
 )
 
 _CANDIDATE_ID = "experimental_filtered_innovation_moment_sv_fixed_mean"
+
+
+def test_six_volatility_ablation_scores_bind_to_complete_paired_cells():
+    root = Path(__file__).resolve().parents[1]
+    receipt = json.loads((root / "docs/results/rough-bayesian/volatility-frontier-ablations.json").read_text())
+    evidence = root / receipt["paired_cells"]["path"]
+    assert hashlib.sha256(evidence.read_bytes()).hexdigest() == receipt["paired_cells"]["sha256"]
+    assert receipt["audit"]["passed"] is True
+    assert receipt["audit"]["origin_vectors"] == 24480
+    ledger = {row["public_model_id"]: row for row in load_canonical_ledger()["models"]}
+    with np.load(evidence) as cells:
+        assert len(cells["portfolio"]) == 701280
+        assert len(np.unique(cells["portfolio"])) == 80
+        assert float(cells["baseline"].mean()) == receipt["baseline_crps"]
+        for candidate in receipt["candidates"]:
+            model_id = candidate["model_id"]
+            score = float(cells[candidate["cell_array"]].mean())
+            assert np.isfinite(cells[candidate["cell_array"]]).all()
+            assert score == receipt["scores"][model_id]["exact_empirical_crps"]
+            assert str(score) == ledger[model_id]["historical_score"]["exact_empirical_crps"]
+            assert ledger[model_id]["historical_score_verified"] is True
 
 
 def test_combined_candidate_ranking_preserves_ledger_and_evidence_origins():
@@ -26,16 +49,16 @@ def test_combined_candidate_ranking_preserves_ledger_and_evidence_origins():
     assert json.loads(artifact_text) == report
     assert all(path not in artifact_text for path in ("/Users/", "/private/", "/tmp/"))
 
-    assert report["row_count"] == 193
+    assert report["row_count"] == 199
     assert report["retained_historical_row_count"] == 175
     assert report["independently_audited_new_execution_row_count"] == 0
-    assert report["validated_full_panel_row_count"] == 8
+    assert report["validated_full_panel_row_count"] == 14
     assert report["full_176_model_reproduction"] is False
     assert report["canonical_membership_unchanged"] is True
     assert report["canonical_membership_digest"] == ledger["membership"]["membership_digest"]
 
     rows = report["rows"]
-    assert [row["display_rank"] for row in rows] == list(range(1, 184)) + [None] * 10
+    assert [row["display_rank"] for row in rows] == list(range(1, 190)) + [None] * 10
     assert report["partial_panel_row_count"] == 4
     assert report["unscored_candidate_row_count"] == 6
     candidate = next(row for row in rows if row["public_model_id"] == _CANDIDATE_ID)
@@ -46,7 +69,7 @@ def test_combined_candidate_ranking_preserves_ledger_and_evidence_origins():
     assert candidate["score_evidence_origin"] == "validated_full_canonical_execution"
 
     historical_rows = {row["public_model_id"]: row for row in rows if not row["is_new_execution"]}
-    assert len(historical_rows) == 193
+    assert len(historical_rows) == 199
     for model in ledger["models"]:
         row = historical_rows[model["public_model_id"]]
         assert row["canonical_rank"] == model["canonical_rank"]
@@ -128,12 +151,12 @@ def test_candidate_plan_selector_is_separate_and_keeps_canonical_task_counts(cap
 def test_public_combined_command_and_historical_score_command_keep_distinct_scopes(capsys):
     assert cli.main(["candidate-scores", "--json"]) == 0
     combined = json.loads(capsys.readouterr().out)
-    assert combined["rows"][0]["public_model_id"] == "asset_rough_volterra_sv_dynamic_lift_bayesian"
+    assert combined["rows"][0]["public_model_id"] == "asset_map_multiscale_conditional_residual_empirical_noise_dynamic_rough_map"
     assert combined["rows"][0]["display_rank"] == 1
-    assert combined["rows"][1]["canonical_rank"] == 180
+    assert combined["rows"][1]["canonical_rank"] == 198
 
     assert cli.main(["scores", "--json"]) == 0
     retained = json.loads(capsys.readouterr().out)
     assert retained["result_kind"] == "retained_score_evidence"
     assert retained["is_new_execution"] is False
-    assert len(retained["rows"]) == 193
+    assert len(retained["rows"]) == 199
