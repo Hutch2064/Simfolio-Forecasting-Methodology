@@ -23,7 +23,7 @@ def ewma(x, alpha):
 
 
 @njit(cache=True, nogil=True)
-def residual_innovations(centered, phis, shrink_loadings=True, loading_scale=np.nan):
+def residual_innovations(centered, phis, shrink_loadings=True, loading_scale=np.nan, predictive_rho=False):
     n = len(centered); k = len(phis)
     q = np.empty((n, k))
     for j in range(k):
@@ -42,7 +42,8 @@ def residual_innovations(centered, phis, shrink_loadings=True, loading_scale=np.
     residual = centered - q @ b
     residual -= np.mean(residual)
     denominator = np.dot(residual[:-1], residual[:-1])
-    rho = np.dot(residual[:-1], residual[1:]) / denominator if denominator > np.finfo(np.float64).tiny else 0.
+    target = centered[1:] - (q[:-1] * phis) @ b if predictive_rho else residual[1:]
+    rho = np.dot(residual[:-1], target) / denominator if denominator > np.finfo(np.float64).tiny else 0.
     rho = min(.999999, max(-.999999, rho))
     error = centered[1:] - (q[:-1] * phis) @ b - rho * residual[:-1]
     return error

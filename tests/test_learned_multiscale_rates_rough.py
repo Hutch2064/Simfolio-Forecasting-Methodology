@@ -193,3 +193,45 @@ def test_unclipped_optimizer_rejects_only_invalid_spectral_trials(monkeypatch):
     monkeypatch.setattr(m,'original_target',unrelated)
     with pytest.raises(ArithmeticError,match='unrelated'):
         m.whittle_target(None,None,None,None)
+
+
+@pytest.mark.parametrize('phis',[[.85],[.3,.95],[.1,.5,.9]])
+def test_predictive_residual_persistence_minimizes_forecast_error(model,phis):
+    h=np.random.default_rng(745).normal(size=400);h-=h.mean();phis=np.array(phis)
+    q=np.column_stack([model.rate_fit.ewma(h,1-p) for p in phis]);q-=q.mean(axis=0)
+    b=np.linalg.solve(q.T@q+.05*h.var()*np.eye(len(phis)),q.T@h)*.3
+    residual=h-q@b;residual-=residual.mean()
+    target=h[1:]-(q[:-1]*phis)@b
+    rho=np.clip(residual[:-1]@target/(residual[:-1]@residual[:-1]),-.999999,.999999)
+    errors=target-rho*residual[:-1]
+    actual=model.rate_fit.residual_innovations(h,phis,False,.3,True)
+    np.testing.assert_allclose(actual,errors,rtol=1e-12,atol=1e-12)
+    old=model.rate_fit.residual_innovations(h,phis,False,.3,False)
+    assert actual@actual<=old@old+1e-10
+    construction=model.components(h,phis,loading_scale=.3,predictive_rho=True)
+    assert construction['residual_phi']==pytest.approx(rho,rel=1e-12,abs=1e-12)
+    expected_innov=residual[1:]-rho*residual[:-1]
+    assert construction['residual_innovation_sd']==pytest.approx(expected_innov.std(ddof=1),rel=1e-12)
+
+
+def test_learned_multiscale_offset_matches_dense_gaussian_conditioning(monkeypatch):
+    p=Path(__file__).resolve().parents[1]/'tools/multiscale_offset_rough/ms_causal.py'
+    monkeypatch.syspath_prepend(str(p.parent))
+    m=importlib.import_module('ms_causal')
+    phi=np.array([.3,.88,-.2]);loading=np.array([.4,.2,1.])
+    common=np.array([.1,.3,.2]);independent=np.array([0.,0.,.15])
+    covariance=np.outer(common,common)+np.outer(independent,independent)
+    stationary=covariance/(1-phi[:,None]*phi[None,:]);level=-1.;noise=5.5
+    y=np.random.default_rng(43).normal(-1.,2.,10)
+    dense=np.empty((len(y),len(y)))
+    for i in range(len(y)):
+        for j in range(len(y)):
+            dense[i,j]=loading@(np.diag(phi**abs(i-j))@stationary)@loading
+    dense+=noise*np.eye(len(y))
+    expected=np.full(len(y),level)
+    for t in range(1,len(y)):
+        expected[t]+=dense[t,:t]@np.linalg.solve(dense[:t,:t],y[:t]-level)
+    actual=m.predict(y,level,phi,loading,covariance,noise)
+    np.testing.assert_allclose(actual,expected,rtol=1e-12,atol=1e-12)
+    changed=y.copy();changed[5:]+=100
+    assert np.array_equal(actual[:6],m.predict(changed,level,phi,loading,covariance,noise)[:6])
