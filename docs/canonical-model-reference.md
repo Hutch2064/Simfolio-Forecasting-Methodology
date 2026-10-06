@@ -1,14 +1,14 @@
-# Canonical model reference (228 models including the original 175)
+# Canonical model reference (229 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **228** rows, canonical ranks **1–228**.
+- Membership: **229** rows, canonical ranks **1–229**.
 - Retained source ranks: **12–186**.
-- Membership digest: `afadb80e078cf38af571702bb6c3c379c7e6d6e137b31c2ebd37d94258a28faf`.
+- Membership digest: `f60e5407edf9dd4a5c90aee94cfb9b23ed15639b65434148140c2316f83eb067`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **228**.
+- Confirmed full statistical specifications: **229**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -242,3 +242,4 @@ The ledger is the sole membership authority for this public set.
 | 226 | None | asset_map_eb_ar1_multiscale_pathwise_dynamic_rough | M226 — Asset MAP Empirical Bayes AR1 Multiscale + Pathwise Dynamic Rough | asset_level_extension | 0.7479695843647364 | 0.747969584 | true | validated_full_canonical_score |
 | 227 | None | asset_map_student_implied_noise_pathwise_multiscale_untruncated_rough_priors | M227 — Asset MAP Pathwise Multiscale + Dynamic Rough with Untruncated Priors | asset_level_extension | 0.24398463100872367 | 0.243984631 | true | validated_full_canonical_score |
 | 228 | None | asset_map_multiscale_predictor_offset_untruncated_dynamic_rough | M228 — Asset MAP Multiscale Predictor Offset + Untruncated Dynamic Rough | asset_level_extension | 0.2452184293792364 | 0.245218429 | true | validated_full_canonical_score |
+| 229 | None | asset_map_unclipped_log_proxy_untruncated_dynamic_rough | M229 — Asset MAP Unclipped Log Proxy + Untruncated Dynamic Rough | asset_level_extension | 0.24425777495214046 | 0.244257775 | true | validated_full_canonical_score |
