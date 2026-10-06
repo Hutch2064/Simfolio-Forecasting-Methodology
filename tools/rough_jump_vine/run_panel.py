@@ -128,6 +128,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--reference', type=Path, required=True)
     parser.add_argument('--workers', type=int, default=12)
+    parser.add_argument('--state-workers', type=int, help='Asset-fit threads per panel worker')
     parser.add_argument('--pilot-indices', default='')
     parser.add_argument('--model-id', choices=models.MODEL_IDS)
     parser.add_argument('--reuse', type=Path, help='Reuse identical model checkpoints from a stopped run')
@@ -136,6 +137,10 @@ def main():
     model_ids = tuple(c.model_id for c in candidates)
     budget = max(1, 12//args.workers)
     state_workers = min(3, budget)
+    if args.state_workers is not None:
+        if args.state_workers < 1:
+            parser.error('--state-workers must be positive')
+        state_workers = args.state_workers
     vine_threads = max(1, budget//state_workers)
     global REFERENCE
     REFERENCE = args.reference.resolve()
