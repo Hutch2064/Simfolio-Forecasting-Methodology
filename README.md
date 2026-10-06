@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **241 models**: the original 175 plus fifty-six
+The canonical catalogue contains **242 models**: the original 175 plus fifty-seven
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–241 and no historical source rank.
+indices 176–242 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 241 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 242 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -175,3 +175,5 @@ M239 learns multiscale decay rates without percentile clipping of the rough obse
 M240 learns multiscale decay rates with a causal learned-multiscale rough observation offset. Full-panel CRPS: **0.24269856328739714**, cold research elapsed time **149.45633587497286 seconds**.
 
 M241 learns multiscale decay rates in a joint Gaussian conventional/rough state model with retained stationary normalization. Full-panel CRPS: **0.24296927753915046**, cold research elapsed time **158.02270416601095 seconds**.
+
+M242 learns multiscale decay rates with a positive stable coupled conditional volatility recursion and data-selected memories. Full-panel CRPS: **0.24131773884753774**, cold research elapsed time **548.6378150000237 seconds**.
