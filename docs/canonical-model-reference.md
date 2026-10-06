@@ -1,14 +1,14 @@
-# Canonical model reference (229 models including the original 175)
+# Canonical model reference (230 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **229** rows, canonical ranks **1–229**.
+- Membership: **230** rows, canonical ranks **1–230**.
 - Retained source ranks: **12–186**.
-- Membership digest: `f60e5407edf9dd4a5c90aee94cfb9b23ed15639b65434148140c2316f83eb067`.
+- Membership digest: `ad36ba7a217988bc8d8ffcc96b64b88fe3418ff0fe20531f9d42f0eded52cc06`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **229**.
+- Confirmed full statistical specifications: **230**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -243,3 +243,4 @@ The ledger is the sole membership authority for this public set.
 | 227 | None | asset_map_student_implied_noise_pathwise_multiscale_untruncated_rough_priors | M227 — Asset MAP Pathwise Multiscale + Dynamic Rough with Untruncated Priors | asset_level_extension | 0.24398463100872367 | 0.243984631 | true | validated_full_canonical_score |
 | 228 | None | asset_map_multiscale_predictor_offset_untruncated_dynamic_rough | M228 — Asset MAP Multiscale Predictor Offset + Untruncated Dynamic Rough | asset_level_extension | 0.2452184293792364 | 0.245218429 | true | validated_full_canonical_score |
 | 229 | None | asset_map_unclipped_log_proxy_untruncated_dynamic_rough | M229 — Asset MAP Unclipped Log Proxy + Untruncated Dynamic Rough | asset_level_extension | 0.24425777495214046 | 0.244257775 | true | validated_full_canonical_score |
+| 230 | None | asset_map_student_continuous_quantile_untruncated_dynamic_rough | M230 — Asset MAP Student Continuous Quantile + Untruncated Dynamic Rough | asset_level_extension | 0.24838433757645187 | 0.248384338 | true | validated_full_canonical_score |
