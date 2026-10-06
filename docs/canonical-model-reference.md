@@ -1,14 +1,14 @@
-# Canonical model reference (226 models including the original 175)
+# Canonical model reference (227 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **226** rows, canonical ranks **1–226**.
+- Membership: **227** rows, canonical ranks **1–227**.
 - Retained source ranks: **12–186**.
-- Membership digest: `2bceaa1f4206b8a4b77074e036039ed10525e9767dbd53851f18ccad7f110723`.
+- Membership digest: `db707927159dad9d07cc32a279377292e93a703a34d22063e407b672137c92d6`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **226**.
+- Confirmed full statistical specifications: **227**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -240,3 +240,4 @@ The ledger is the sole membership authority for this public set.
 | 224 | None | asset_map_student_pathwise_joint_rough_noise_dynamic_rough | M224 — Asset MAP Student + Pathwise Multiscale + Estimated-Noise Dynamic Rough | asset_level_extension | 0.24559602973028682 | 0.24559603 | true | validated_full_canonical_score |
 | 225 | None | asset_map_matched_student_innovations_pathwise_multiscale_dynamic_rough | M225 — Asset MAP Matched Student Innovations + Pathwise Multiscale + Dynamic Rough | asset_level_extension | 0.25121073766012286 | 0.251210738 | true | validated_full_canonical_score |
 | 226 | None | asset_map_eb_ar1_multiscale_pathwise_dynamic_rough | M226 — Asset MAP Empirical Bayes AR1 Multiscale + Pathwise Dynamic Rough | asset_level_extension | 0.7479695843647364 | 0.747969584 | true | validated_full_canonical_score |
+| 227 | None | asset_map_student_implied_noise_pathwise_multiscale_untruncated_rough_priors | M227 — Asset MAP Pathwise Multiscale + Dynamic Rough with Untruncated Priors | asset_level_extension | 0.24398463100872367 | 0.243984631 | true | validated_full_canonical_score |
