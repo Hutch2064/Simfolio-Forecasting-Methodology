@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **210 models**: the original 175 plus twenty-five
+The canonical catalogue contains **211 models**: the original 175 plus twenty-six
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–210 and no historical source rank.
+indices 176–211 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 210 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 211 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -107,3 +107,5 @@ M206 integrates uncertainty in the rough observation level analytically (CRPS 0.
 M209 combines analytic rough covariance with differenced debiased Whittle MAP fitting. It scored **0.2493515254197939** on the complete 80-portfolio panel, versus baseline **0.2518812750312293** and previous leader M207 **0.2495833333032549**. An isolated fresh-cache run took **99.2803 seconds**, versus the controlled baseline **125.7270 seconds**. The return mean and forecast shell are unchanged. Full specifications and independent cell reconstruction are retained in the catalogue.
 
 M210 relaxes the Hurst lower bound to 0.01 in M209, scoring **0.24863202500906678** on all 80 portfolios in **97.9834 seconds** with a fresh cache. It improves baseline CRPS by 1.29% and retains the mean model.
+
+M211 permits the full theoretical Hurst domain in the differenced estimator. Its full-panel score is **0.2495417609939298** and fresh-cache time **99.4612 seconds**; M210 remains the score leader.

@@ -18,15 +18,15 @@ def test_canonical_cli_inspection_is_ledger_scoped(capsys):
     assert cli.main(["coverage", "--json"]) == 0
     coverage = json.loads(capsys.readouterr().out)
     assert coverage["scope"] == "canonical_175_only"
-    assert coverage["model_count"] == 210
-    assert coverage["counts"]["full_statistical_specifications_confirmed"] == 210
+    assert coverage["model_count"] == 211
+    assert coverage["counts"]["full_statistical_specifications_confirmed"] == 211
 
     assert cli.main(["scores", "--json"]) == 0
     scores = json.loads(capsys.readouterr().out)
     assert scores["result_kind"] == "retained_score_evidence"
     assert scores["is_new_execution"] is False
     assert scores["reproduced"] is False
-    assert len(scores["rows"]) == 210
+    assert len(scores["rows"]) == 211
     assert scores["retained_score_artifact"]["digest_status"] == "mismatch_observed_vs_declared"
     assert isinstance(scores["rows"][0]["retained_score_token"], str)
 
@@ -91,4 +91,4 @@ def test_plan_fingerprint_is_derived_from_schedule_masks(monkeypatch):
     assert payload["origin_tasks_per_model"] == 1
     assert payload["scored_cells_per_model"] == 2
     assert len(payload["schedule_fingerprint"]) == 64
-    assert len(payload["model_ids"]) == 210
+    assert len(payload["model_ids"]) == 211

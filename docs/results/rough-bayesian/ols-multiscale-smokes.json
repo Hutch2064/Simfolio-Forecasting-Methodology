@@ -1,0 +1,134 @@
+{
+  "scope": "five_bounded_smokes_not_full_panel",
+  "model_id": "asset_map_multiscale_ols_loadings_analytic_differenced_rough_map",
+  "change": "unregularized least-squares multiscale projection; fixed ridge and median-signal shrink removed; mean forecast and M210 rough component unchanged",
+  "full_panel_launched": false,
+  "reason": "four of five smoke scores worse than M210; no persuasive score evidence for a full-panel run",
+  "cases": [
+    {
+      "task_index": 0,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "1981-12-31",
+      "training_rows": 507,
+      "assets": 6,
+      "horizon": 126,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/ols_multiscale_rough/models.py": "21b748f9151631548869e62c7971467bbd5d9e373160f5a2c1b9b5b50c0db7a5",
+        "tools/ols_multiscale_rough/run_panel.py": "bd4c510d8fff6ca88ff79952db238cd7671c4ed881bfe70ee6759170618b571e",
+        "tools/ols_multiscale_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      },
+      "candidate_crps": 0.03562888303753396,
+      "M210_crps": 0.035333006203447336,
+      "fresh_seconds": 0.16869254200719297,
+      "cached_seconds": 0.013772832986433059,
+      "cached_loss_vector_byte_equal": true,
+      "loss_sha256": "aa1d1a7669b2fa6975d1f21e7fbeccc0658909009c0f57a04b565f6a5ae2adb8"
+    },
+    {
+      "task_index": 1,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "1993-03-31",
+      "training_rows": 3351,
+      "assets": 6,
+      "horizon": 837,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/ols_multiscale_rough/models.py": "21b748f9151631548869e62c7971467bbd5d9e373160f5a2c1b9b5b50c0db7a5",
+        "tools/ols_multiscale_rough/run_panel.py": "bd4c510d8fff6ca88ff79952db238cd7671c4ed881bfe70ee6759170618b571e",
+        "tools/ols_multiscale_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      },
+      "candidate_crps": 0.04206750610972103,
+      "M210_crps": 0.04142963006218821,
+      "fresh_seconds": 0.34711050003534183,
+      "cached_seconds": 0.05132641602540389,
+      "cached_loss_vector_byte_equal": true,
+      "loss_sha256": "685dbc72501db371b078449aeac11a4cacc55a9156b4f5107432c95b227593c1"
+    },
+    {
+      "task_index": 2,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "2020-06-30",
+      "training_rows": 10213,
+      "assets": 6,
+      "horizon": 1474,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/ols_multiscale_rough/models.py": "21b748f9151631548869e62c7971467bbd5d9e373160f5a2c1b9b5b50c0db7a5",
+        "tools/ols_multiscale_rough/run_panel.py": "bd4c510d8fff6ca88ff79952db238cd7671c4ed881bfe70ee6759170618b571e",
+        "tools/ols_multiscale_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      },
+      "candidate_crps": 0.07911116595230129,
+      "M210_crps": 0.0793819645328504,
+      "fresh_seconds": 0.8155157499713823,
+      "cached_seconds": 0.09325095900567248,
+      "cached_loss_vector_byte_equal": true,
+      "loss_sha256": "1ab405ca882e3e37a79c9cc07c513987cccc95ad2993f506d0cdf08ab23cdf36"
+    },
+    {
+      "task_index": 3,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "2026-03-31",
+      "training_rows": 11657,
+      "assets": 6,
+      "horizon": 30,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/ols_multiscale_rough/models.py": "21b748f9151631548869e62c7971467bbd5d9e373160f5a2c1b9b5b50c0db7a5",
+        "tools/ols_multiscale_rough/run_panel.py": "bd4c510d8fff6ca88ff79952db238cd7671c4ed881bfe70ee6759170618b571e",
+        "tools/ols_multiscale_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      },
+      "candidate_crps": 0.016229474425390588,
+      "M210_crps": 0.016175165492854485,
+      "fresh_seconds": 0.7172036250121891,
+      "cached_seconds": 0.011048499960452318,
+      "cached_loss_vector_byte_equal": true,
+      "loss_sha256": "02c4da2257ceaf5a0e820f03aef6f5f38444939252c9b856457137130be7876e"
+    },
+    {
+      "task_index": 4,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "1991-07-19",
+      "training_rows": 2921,
+      "assets": 6,
+      "horizon": 8766,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/ols_multiscale_rough/models.py": "21b748f9151631548869e62c7971467bbd5d9e373160f5a2c1b9b5b50c0db7a5",
+        "tools/ols_multiscale_rough/run_panel.py": "bd4c510d8fff6ca88ff79952db238cd7671c4ed881bfe70ee6759170618b571e",
+        "tools/ols_multiscale_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+      },
+      "candidate_crps": 0.11320366693633938,
+      "M210_crps": 0.11056221329198065,
+      "fresh_seconds": 0.9280564999789931,
+      "cached_seconds": 0.4737685410073027,
+      "cached_loss_vector_byte_equal": true,
+      "loss_sha256": "6d62ee223ba5fb56665eebbfebc1ae24b94b23d9ca5c30613246dedcd1c6e90b"
+    }
+  ]
+}

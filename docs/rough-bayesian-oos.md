@@ -748,3 +748,11 @@ The isolated fresh-cache run took **99.28025445801904 seconds**, compared with t
 ## Relaxed Hurst lower support (M210)
 
 M210 changes only the Hurst support lower bound in M209, from 0.03 to 0.01; the 0.49 upper bound, other priors and estimator remain unchanged. All five smoke repeats are byte-identical. Full-panel CRPS is **0.24863202500906678**, and isolated fresh-cache elapsed time is **97.98336741694948 seconds**. All 4,080 task vectors reconstruct the retained 701,280 cells byte-for-byte. The unchanged mean model means this experiment does not modify long-horizon CAGR methodology. [Audited receipt](results/rough-bayesian/relaxed-hurst-differenced-rough-panel.json).
+
+## Full theoretical Hurst support in differenced inference (M211)
+
+M211 changes M210's H support to the strict mathematical rough domain (0, 0.5). All other priors, mean forecasts and numerical accuracy controls remain unchanged. It scored **0.2495417609939298** on the full 80-portfolio panel in **99.46118345798459 seconds** with a fresh isolated cache, trailing M210. All raw task vectors independently reconstruct the retained scored cells. [Audited receipt](results/rough-bayesian/full-hurst-differenced-rough-panel.json).
+
+## Unregularized multiscale projection smoke screen
+
+A further M210 ablation removes the fixed ridge and median-signal coefficient shrinkage from the multiscale projection, using SVD least squares. Every other fitted component and the original return mean curve remain unchanged; the latter is independently verified through 100 years. This is an ordinary least-squares projection of the filtered latent log-volatility proxy, not an exact raw-return likelihood or an intraday realized-volatility HAR implementation. Four of five smoke scores worsened against M210, so no full panel was launched and no official catalogue score was assigned. All cached repeats matched exactly. [Bounded smoke receipt](results/rough-bayesian/ols-multiscale-smokes.json).
