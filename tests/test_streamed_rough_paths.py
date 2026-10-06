@@ -30,6 +30,17 @@ def test_entire_multiplier_and_rng_state_byte_exact(model,n,horizon):
         actual=model.stream_multiplier(phi,w,root,initial,means,variance,stream_rng.bit_generator.capsule)
         assert actual.tobytes()==reference.tobytes()
         assert stream_rng.bit_generator.state==reference_rng.bit_generator.state
+        mapped_rng=np.random.default_rng(seed)
+        return_mean=np.linspace(-.1,.1,horizon)
+        base_path=np.linspace(-1,1,horizon)
+        destination=np.zeros((horizon,3))
+        module,dot=model.load_paths()
+        module.map_path(phi,w,root,initial,means,variance,mapped_rng.bit_generator.capsule,
+                        dot,return_mean,base_path,destination[:,1])
+        expected=np.clip(return_mean+(base_path-return_mean)*reference,-1,1)
+        assert destination[:,1].tobytes()==expected.tobytes()
+        assert mapped_rng.bit_generator.state==reference_rng.bit_generator.state
+        assert not destination[:,0].any() and not destination[:,2].any()
 
 
 def test_dense_root_rejected_without_consuming_rng(model):

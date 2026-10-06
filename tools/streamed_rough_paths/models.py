@@ -74,8 +74,9 @@ class Candidate(parent.Candidate):
             for s in range(sims):
                 initial=state+initial_root@rng.normal(size=phi.size)
                 initial=phi*initial+root@rng.normal(size=phi.size)
-                multiplier=stream_multiplier(phi,w,root,initial,means,variances,rng.bit_generator.capsule)
-                paths[s,:,a]=np.clip(mean+(base_paths[s]-mean)*multiplier,-1,1)
+                module,dot=load_paths()
+                module.map_path(phi,w,root,initial,means,variances,rng.bit_generator.capsule,
+                                dot,mean,base_paths[s],paths[s,:,a])
         shell.controls.timed('asset_predictive_paths',started)
         dates=shell._historical_rebalance_dates(past.append(future),training.policy.rebalance)
         mask=np.asarray([date in dates for date in future])
