@@ -37,7 +37,9 @@ def refit(data):
         h = np.clip(h, -18., 18.)
         phis, diagnostics = fit_rates(h, original['bdes_multiscale_vol']['phis'])
         fitted = original.copy()
-        fitted['bdes_multiscale_vol'] = components(h, phis, loading_scale=diagnostics.get("loading_scale"))
+        component_arguments = {'loading_scale': diagnostics.get('loading_scale')}
+        if 'loading_coefficients' in diagnostics: component_arguments['loading_coefficients'] = diagnostics['loading_coefficients']
+        fitted['bdes_multiscale_vol'] = components(h, phis, **component_arguments)
         fitted['learned_decay_fit'] = diagnostics
         return fitted
     return parent.shell.controls.cache('M227_learned_multiscale_rates', hashlib.sha256(data + SOURCE.encode()).hexdigest(), build)

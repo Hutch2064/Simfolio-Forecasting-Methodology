@@ -5,7 +5,7 @@ import numpy as np
 from rate_fit import ewma as _bdes_ewma
 
 
-def components(h_path: np.ndarray, phis: np.ndarray, half_lives=None, shrink_loadings=True, loading_scale=None, predictive_rho=False) -> dict[str, Any]:
+def components(h_path: np.ndarray, phis: np.ndarray, half_lives=None, shrink_loadings=True, loading_scale=None, predictive_rho=False, loading_coefficients=None) -> dict[str, Any]:
     h = np.asarray(h_path, dtype=float); finite = h[np.isfinite(h)]; fill = float(np.nanmedian(finite)) if finite.size else 0.0
     h = np.clip(np.nan_to_num(h, nan=fill, posinf=fill, neginf=fill), -18.0, 18.0); n = h.size; ell = float(np.nanmean(h)); centered = h - ell
     half_lives = -np.log(2.0) / np.log(phis) if half_lives is None else np.asarray(half_lives); q = np.empty((n, phis.size), dtype=float)
@@ -14,6 +14,9 @@ def components(h_path: np.ndarray, phis: np.ndarray, half_lives=None, shrink_loa
     ridge = 0.05 * max(float(np.nanvar(centered)), 1e-8) * np.eye(phis.size)
     try: b = np.linalg.solve(q.T @ q + ridge, q.T @ centered); b = b if np.all(np.isfinite(b)) and float(np.max(np.abs(b))) <= 1e6 else np.zeros(phis.size)
     except np.linalg.LinAlgError: b = np.zeros(phis.size)
+    if loading_coefficients is not None:
+        b = np.asarray(loading_coefficients, dtype=float).copy()
+        if b.shape != phis.shape or not np.isfinite(b).all(): raise ArithmeticError('invalid supplied multiscale loadings')
     with np.errstate(all="ignore"):
         component = q @ b
     component = component if np.all(np.isfinite(component)) else np.zeros_like(centered); resid = centered - component
