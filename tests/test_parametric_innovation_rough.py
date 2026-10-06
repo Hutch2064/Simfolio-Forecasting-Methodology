@@ -39,3 +39,9 @@ def test_both_innovation_arms_preserve_mean_and_ensemble_moments(model):
         assert abs(nodes.mean())<1e-14;assert abs(np.mean(nodes*nodes)-1)<1e-14
         mean,paths=model.asset_paths(data,np.full((2,25200),.5),kind=kind)
         assert mean.tobytes()==expected.tobytes();assert np.isfinite(paths).all()
+
+
+def test_candidate_registry_retains_production_reference_identity(model):
+    assert model.MODEL_IDS[0]==model.parent.MODEL_IDS[0]
+    assert model.MODEL_IDS[0] not in {c.model_id for c in model.CANDIDATES}
+    assert set(model.MODEL_IDS[1:])=={c.model_id for c in model.CANDIDATES}
