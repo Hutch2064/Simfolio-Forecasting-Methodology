@@ -1,14 +1,14 @@
-# Canonical model reference (221 models including the original 175)
+# Canonical model reference (222 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **221** rows, canonical ranks **1–221**.
+- Membership: **222** rows, canonical ranks **1–222**.
 - Retained source ranks: **12–186**.
-- Membership digest: `2acc4fb243d59d762b5d6859ae94c958daa9d6ce64210ef07e134f7c02fb2253`.
+- Membership digest: `129c9f8dcd53ec0b5e151947fcdccf6c837c2deb582f570d704989280bab2e29`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **221**.
+- Confirmed full statistical specifications: **222**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -235,3 +235,4 @@ The ledger is the sole membership authority for this public set.
 | 219 | None | asset_map_student_return_laplace_multiscale_dynamic_rough | M219 — Asset MAP Multiscale + Student-return sparse Laplace conventional SV with multiscale and dynamic rough | asset_level_extension | 0.24548488040352726 | 0.24548488 | true | validated_full_canonical_score |
 | 220 | None | asset_map_student_return_laplace_implied_noise_dynamic_rough | M220 — Asset MAP Multiscale + Student-return sparse Laplace SV with analytically implied log-square noise and dynamic rough | asset_level_extension | 0.24423173688367905 | 0.244231737 | true | validated_full_canonical_score |
 | 221 | None | asset_map_student_implied_noise_pathwise_multiscale_dynamic_rough | M221 — Asset MAP Student-Implied Noise + Pathwise Multiscale + Dynamic Rough | asset_level_extension | 0.24400259165672855 | 0.244002592 | true | validated_full_canonical_score |
+| 222 | None | asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough | M222 — Asset MAP Joint Student Copula Leverage + Pathwise Multiscale + Dynamic Rough | asset_level_extension | 0.2537399472056091 | 0.253739947 | true | validated_full_canonical_score |

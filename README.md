@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **221 models**: the original 175 plus thirty-six
+The canonical catalogue contains **222 models**: the original 175 plus thirty-seven
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–221 and no historical source rank.
+indices 176–222 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 221 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 222 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -129,3 +129,5 @@ M220 uses analytically implied Student log-square noise moments on M219, preserv
 M221 simulates the existing multiscale Gaussian states pathwise on M220, with no additional fitted parameters and second-moment-one normalization. Full-panel CRPS: **0.24400259165672855**. The original mean and M220 parameter fitting remain unchanged.
 
 M221 completed in **147.7899 seconds**: **3.1279%** better CRPS than fixed baseline M193 at **1.1755 times** its runtime, and **0.0938%** better than M220. It wins on 55/80 portfolios against M193 and 48/80 against M220. The research goal remains active; production is unchanged by this publication.
+
+M222 adds jointly fitted Student/Gaussian-copula leverage to M221. Full-panel CRPS: **0.2537399472056091**. The original mean and rough methodology remain; the first future volatility innovation conditions on the last observed return rank.
