@@ -5,7 +5,7 @@ import numpy as np
 from rate_fit import ewma as _bdes_ewma
 
 
-def components(h_path: np.ndarray, phis: np.ndarray, half_lives=None) -> dict[str, Any]:
+def components(h_path: np.ndarray, phis: np.ndarray, half_lives=None, shrink_loadings=True) -> dict[str, Any]:
     h = np.asarray(h_path, dtype=float); finite = h[np.isfinite(h)]; fill = float(np.nanmedian(finite)) if finite.size else 0.0
     h = np.clip(np.nan_to_num(h, nan=fill, posinf=fill, neginf=fill), -18.0, 18.0); n = h.size; ell = float(np.nanmean(h)); centered = h - ell
     half_lives = -np.log(2.0) / np.log(phis) if half_lives is None else np.asarray(half_lives); q = np.empty((n, phis.size), dtype=float)
@@ -18,7 +18,7 @@ def components(h_path: np.ndarray, phis: np.ndarray, half_lives=None) -> dict[st
         component = q @ b
     component = component if np.all(np.isfinite(component)) else np.zeros_like(centered); resid = centered - component
     signal = np.abs(b) * np.nanstd(q, axis=0)
-    if np.sum(signal) > 0.0:
+    if shrink_loadings and np.sum(signal) > 0.0:
         shrink = signal / (signal + np.nanmedian(signal[signal > 0.0]) + 1e-8); b = b * shrink
         with np.errstate(all="ignore"):
             component = q @ b

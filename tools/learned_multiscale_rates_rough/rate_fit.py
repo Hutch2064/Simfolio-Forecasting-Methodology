@@ -23,7 +23,7 @@ def ewma(x, alpha):
 
 
 @njit(cache=True, nogil=True)
-def residual_innovations(centered, phis):
+def residual_innovations(centered, phis, shrink_loadings=True):
     n = len(centered); k = len(phis)
     q = np.empty((n, k))
     for j in range(k):
@@ -35,7 +35,7 @@ def residual_innovations(centered, phis):
     for j in range(k):
         signal[j] = abs(b[j]) * np.std(q[:, j])
     positive = signal[signal > 0.]
-    if positive.size:
+    if shrink_loadings and positive.size:
         b *= signal / (signal + np.median(positive) + 1e-8)
     residual = centered - q @ b
     residual -= np.mean(residual)
@@ -46,28 +46,28 @@ def residual_innovations(centered, phis):
     return error
 
 
-def objective(z, centered):
+def objective(z, centered, shrink_loadings=True):
     phis = np.clip(expit(z), np.nextafter(0., 1.), np.nextafter(1., 0.))
     if not np.all((phis > 0.) & (phis < 1.)):
         return np.inf
-    error = residual_innovations(centered, phis)
+    error = residual_innovations(centered, phis, shrink_loadings)
     variance = float(np.mean(error * error))
     if not np.isfinite(variance) or variance <= 0.:
         raise ArithmeticError('degenerate conditional multiscale variance')
     return .5 * len(error) * (np.log(2. * np.pi * variance) + 1.)
 
 
-def fit(h, initial_phis):
+def fit(h, initial_phis, shrink_loadings=True):
     h = np.asarray(h, float)
     centered = h - np.mean(h)
     z = logit(initial_phis)
-    initial = objective(z, centered)
-    result = minimize(objective, z, args=(centered,), method='L-BFGS-B',
+    initial = objective(z, centered, shrink_loadings)
+    result = minimize(objective, z, args=(centered, shrink_loadings), method='L-BFGS-B',
                       options={'maxiter': 200, 'ftol': 1e-10, 'gtol': 1e-5})
     solver = 'L-BFGS-B'
     if not result.success or not np.isfinite(result.fun):
         start = result.x if np.isfinite(result.x).all() else z
-        result = minimize(objective, start, args=(centered,), method='Powell',
+        result = minimize(objective, start, args=(centered, shrink_loadings), method='Powell',
                           options={'maxiter': 200, 'xtol': 1e-7, 'ftol': 1e-10})
         solver = 'Powell_after_gradient_line_search_failure'
     if not result.success or not np.isfinite(result.fun):
@@ -84,7 +84,7 @@ def fit(h, initial_phis):
                   'optimizer_message': str(result.message), 'solver': solver}
 
 
-def fit_adaptive(h, initial_phis):
+def fit_adaptive(h, initial_phis, shrink_loadings=True):
     """Forward component-order selection by conditional BIC, not exact evidence.
 
 Fit one component, then add a rate initialized in the largest log-timescale
@@ -94,7 +94,7 @@ local forward search, not a global guarantee over all possible orders.
     h = np.asarray(h, float); centered = h - np.mean(h)
     rho = float(np.dot(centered[:-1], centered[1:]) / np.dot(centered[:-1], centered[:-1]))
     first = np.array([np.clip(rho, np.finfo(float).eps, 1. - np.finfo(float).eps)])
-    rates, record = fit(h, first)
+    rates, record = fit(h, first, shrink_loadings)
     def bic(receipt):
         return 2. * receipt['negative_loglikelihood'] + (2 * receipt['component_count'] + 3) * np.log(len(h) - 1)
     selected_bic = bic(record)
@@ -105,7 +105,7 @@ local forward search, not a global guarantee over all possible orders.
         gap = int(np.argmax(np.diff(grid)))
         extra_half = np.exp(.5 * (grid[gap] + grid[gap + 1]))
         extra_phi = np.exp(-np.log(2.) / extra_half)
-        proposal, receipt = fit(h, np.r_[rates, extra_phi])
+        proposal, receipt = fit(h, np.r_[rates, extra_phi], shrink_loadings)
         score = bic(receipt)
         tested.append({'count': len(proposal), 'bic': float(score)})
         if score >= selected_bic:
@@ -118,11 +118,11 @@ local forward search, not a global guarantee over all possible orders.
     return rates, record
 
 
-def fit_one(h, initial_phis):
+def fit_one(h, initial_phis, shrink_loadings=True):
     """Matched one-component control using the adaptive search's initial fit."""
     h = np.asarray(h, float); centered = h - np.mean(h)
     rho = float(np.dot(centered[:-1], centered[1:]) / np.dot(centered[:-1], centered[:-1]))
     first = np.array([np.clip(rho, np.finfo(float).eps, 1. - np.finfo(float).eps)])
-    rates, record = fit(h, first)
+    rates, record = fit(h, first, shrink_loadings)
     record['count_selection'] = 'fixed_one_learned_decay_control'
     return rates, record
