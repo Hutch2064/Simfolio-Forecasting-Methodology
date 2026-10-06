@@ -1,8 +1,8 @@
 # Joint Bayesian rough volatility candidates
 
 Nine new asset-level candidates are implemented in `tools/rough_bayesian` and
-included in both public catalogues. The canonical catalogue now has 203 entries;
-the broader active research catalogue has 395. The eight-factor Bayesian upgrade
+included in both public catalogues. The canonical catalogue now has 205 entries;
+the broader active research catalogue has 397. The eight-factor Bayesian upgrade
 and dynamic-resolution candidate completed their full panels; the fixed-resolution lift retains its stopped partial
 results. Other aggregate scores remain blank until their complete panels finish.
 The existing production Frontier
@@ -720,3 +720,8 @@ The preliminary exact Gaussian quasi-likelihood implementation was screened out 
 
 
 M203 keeps M197's rough covariance and return forecasting backbone but analytically integrates the constant rough-observation level under a flat prior. The covariance parameters maximize the restricted Gaussian quasi likelihood plus unchanged priors; their full posterior is not integrated. A single compiled filter computes the GLS level, its posterior variance, and the terminal latent-state posterior, including the uncertainty from that nuisance level. Four independent dense Gaussian reference tests verify likelihood, level, covariance and shift invariance. All five fresh/cached smoke vectors agree byte-for-byte. Full canonical CRPS is **0.2504647898614585**, a **0.562%** improvement versus M193; wall time is **148.75 seconds**, above M193's recorded 136.82 seconds. The full 4,080-vector reconstruction and parameter-source audit are bound in `docs/results/rough-bayesian/reml-rough-panel.json`. It does not beat M197/M200/M201 and does not satisfy the breakthrough target. Restricted likelihood follows [Patterson and Thompson (1971)](https://doi.org/10.1093/biomet/58.3.545), applied here to the existing Gaussian log-square quasi observation model. The return-mean estimator remains unchanged.
+
+
+M204 keeps M200 covariance inference exactly and estimates the rough residual observation level by Gaussian GLS at terminal conditioning. Its covariance is conditional on the level point, with no nuisance-level variance addition. Five dense-reference/inheritance tests and five fresh/cached smoke comparisons passed. All 4,080 origin vectors reconstruct its saved 701,280 score cells byte-for-byte. Full CRPS is **0.24986970449578597**, a **0.799%** improvement versus M193; recorded wall time is **122.04 seconds**. It trails M200. GLS follows the constant regression formula in [Zimmermann, equation (2.10)](https://doi.org/10.1155/2010/494070); the covariance fit remains the existing frequency-domain quasi likelihood. Evidence: `docs/results/rough-bayesian/whittle-gls-rough-panel.json`.
+
+M205 keeps M200 predictions and numerical rules, replacing its covariance MAP target with bounded unpenalized debiased Whittle quasi maximum likelihood. Hurst already has a uniform interior prior; this removes only Gaussian log-timescale/amplitude penalties. Original support bounds remain. Three target/isolation tests and five exact fresh/cached smoke comparisons passed. The full raw-vector reconstruction passed. CRPS is **0.24998100070682613**, a **0.754%** improvement versus M193, with recorded wall time **119.60 seconds**. It also trails M200, so removing regularization does not establish a better model. Evidence: `docs/results/rough-bayesian/whittle-mle-rough-panel.json`. Neither is a full Bayesian raw-return fit; the return-mean model, empirical innovations, dependence, seeds and scoring remain unchanged.

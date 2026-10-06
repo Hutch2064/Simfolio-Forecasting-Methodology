@@ -15,7 +15,7 @@ def test_dense_protocol_invariants():
     assert p.rolling_origins_per_portfolio == 48
     assert p.temporal_origins_per_portfolio == 3
     assert p.simulations_per_origin == 240
-    assert p.panel_seed == 20360528
+    assert p.panel_seed == 20260528
     assert p.origin_policy == "full_history_even"
     assert p.scored_cells_per_model == 701280
     assert p.rolling_min_training_observations == 504
