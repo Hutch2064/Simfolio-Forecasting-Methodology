@@ -36,8 +36,8 @@ def test_membership_is_exact_and_digest_is_immutable():
     payload = load_canonical_ledger()
     models = list(load_canonical_models())
 
-    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 214
-    assert [model["canonical_rank"] for model in models] == list(range(1, 215))
+    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 215
+    assert [model["canonical_rank"] for model in models] == list(range(1, 216))
     assert [model["historical_rank"] for model in models] == list(EXPECTED_SOURCE_RANKS)
     assert canonical_membership_digest(models) == EXPECTED_MEMBERSHIP_DIGEST
     assert payload["membership"]["membership_digest"] == EXPECTED_MEMBERSHIP_DIGEST
@@ -86,7 +86,7 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
     payload = load_canonical_ledger()
     assert tuple(payload["required_model_fields"]) == REQUIRED_MODEL_FIELDS
     resolved_ids = _resolved_specification_ids()
-    assert len(resolved_ids) == 214
+    assert len(resolved_ids) == 215
 
     for model in payload["models"]:
         assert set(model) == set(REQUIRED_MODEL_FIELDS) | {"canonical_rank"}
@@ -158,7 +158,7 @@ def test_retained_lexical_scores_and_public_precision_reconcile():
 def test_compatibility_loader_reads_the_same_ledger_rows():
     payload = load_canonical_ledger()
     rows = load_canonical_175()
-    assert len(rows) == len(payload["models"]) == 214
+    assert len(rows) == len(payload["models"]) == 215
     for row, model in zip(rows, payload["models"]):
         assert row.canonical_rank == model["canonical_rank"]
         assert row.source_rank == model["historical_rank"]
@@ -171,7 +171,7 @@ def test_compatibility_loader_reads_the_same_ledger_rows():
 def test_packaged_resource_load_is_independent_of_cwd(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     models = load_canonical_models()
-    assert len(models) == 214
+    assert len(models) == 215
     assert canonical_model(models[0]["public_model_id"])["canonical_rank"] == 1
 
 
