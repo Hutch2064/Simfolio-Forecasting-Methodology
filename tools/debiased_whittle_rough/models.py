@@ -12,12 +12,12 @@ from pathlib import Path
 import time
 
 import numpy as np
-from numba import njit
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 import importlib.util
 import sys
+sys.path.insert(0, str(HERE))
 spec = importlib.util.spec_from_file_location('whittle_private_conditional_empirical', ROOT / 'tools/conditional_empirical_rough/models.py')
 base = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = base
@@ -27,21 +27,7 @@ SOURCE = hashlib.sha256(b''.join(p.read_bytes() for directory in
     for p in sorted(directory.glob('*.py')))).hexdigest()
 
 
-@njit(cache=True, nogil=True)
-def expected_periodogram(phi, stationary_mass, n):
-    """Exact triangular-window covariance transform at positive DFT frequencies.
-
-    Sum (1-l/n)*z**l analytically for each OU factor, z=phi*exp(-iw).
-    At DFT frequencies z**n=phi**n. No frequency subsampling or factor cap.
-    """
-    result = np.zeros(n//2)
-    for j in range(1, n//2+1):
-        omega = 2*math.pi*j/n
-        for k in range(phi.size):
-            z = phi[k]*complex(math.cos(omega), -math.sin(omega))
-            triangle = z/(1-z) - z*(1-phi[k]**n)/(n*(1-z)**2)
-            result[j-1] += stationary_mass[k]*(1+2*triangle.real)
-    return result
+from debiased_whittle_kernel import expected_periodogram
 
 
 def whittle_target(theta, periodogram, n, lag, noise_variance):
