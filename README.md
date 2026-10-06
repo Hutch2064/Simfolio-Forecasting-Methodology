@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **245 models**: the original 175 plus sixty
+The canonical catalogue contains **246 models**: the original 175 plus sixty-one
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–245 and no historical source rank.
+indices 176–246 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 245 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 246 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -183,3 +183,5 @@ M243 uses stationary Gaussian AR(1) proxy likelihood with profiled volatility le
 M244 retains the M243 conventional proxy and return shell, replacing its fractional residual overlay with exact OU volatility whose decay and amplitude are learned by MAP. Full-panel CRPS: **0.2339750944781271**; paired audit and measured runtime are retained.
 
 M245 retains every M243 asset marginal and correlates conventional future volatility shocks using Ledoit-Wolf shrinkage learned from aligned historical proxy innovations. Full-panel CRPS: **0.23309067734805294**; paired audit and measured runtime are retained.
+
+M246 retains M243 conventional fitting and future paths and matches the historical rough offset to the same scalar AR1 law. Full-panel CRPS: **0.2329897727973052**; paired audit and measured runtime are retained.
