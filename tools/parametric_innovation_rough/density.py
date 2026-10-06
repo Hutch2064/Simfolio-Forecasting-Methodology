@@ -34,7 +34,10 @@ def ppf(probability,inverse_df,skew):
 
 
 def fit(values,kind):
-    z=np.asarray(values,float);eps=np.sqrt(np.finfo(float).eps);upper=.5-eps
+    z=np.asarray(values,float)
+    if kind=='gaussian':
+        return {'inverse_df':0.,'skew':0.,'degrees_of_freedom':None,'normal_tail_limit':True,'estimator':'standard_normal_no_shape_parameter_fit','success':True,'evaluations':0,'negative_mean_log_likelihood':-float(logpdf(z,0.,0.).mean())}
+    eps=np.sqrt(np.finfo(float).eps);upper=.5-eps
     def target(u,skew):return -float(logpdf(z,u,skew).mean())
     symmetric=minimize_scalar(lambda u:target(u,0.),bounds=(0.,upper),method='bounded',options={'xatol':1e-8})
     if not symmetric.success:raise ArithmeticError('Student tail MLE did not converge')

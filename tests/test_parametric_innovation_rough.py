@@ -34,7 +34,7 @@ def test_both_innovation_arms_preserve_mean_and_ensemble_moments(model):
     from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
     data=np.random.default_rng(10).normal(.0005,.01,600).tobytes()
     expected,_=moment_return_curves(model.streamed.predecessor_fit(data),25200)
-    for kind in ['student','skew_student']:
+    for kind in ['student','skew_student','gaussian']:
         nodes=model.nodes(data,kind,240)
         assert abs(nodes.mean())<1e-14;assert abs(np.mean(nodes*nodes)-1)<1e-14
         mean,paths=model.asset_paths(data,np.full((2,25200),.5),kind=kind)

@@ -55,7 +55,7 @@ class Candidate(parent.Candidate):
         return result
 
 initialize=parent.initialize
-CANDIDATES=(Candidate(model_id='asset_map_multiscale_consistent_noise_student_innovations_rough_map'),Candidate(model_id='asset_map_multiscale_consistent_noise_hansen_skew_t_rough_map',kind='skew_student'))
+CANDIDATES=(Candidate(model_id='asset_map_multiscale_consistent_noise_student_innovations_rough_map'),Candidate(model_id='asset_map_multiscale_consistent_noise_hansen_skew_t_rough_map',kind='skew_student'),Candidate(model_id='asset_map_multiscale_consistent_noise_gaussian_innovations_rough_map',kind='gaussian'))
 MODEL_IDS=(parent.MODEL_IDS[0],)+tuple(c.model_id for c in CANDIDATES)
 clear_path_cache=parent.clear_path_cache
 TIMINGS=parent.TIMINGS
