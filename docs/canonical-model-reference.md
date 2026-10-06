@@ -1,14 +1,14 @@
-# Canonical model reference (211 models including the original 175)
+# Canonical model reference (212 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **211** rows, canonical ranks **1–211**.
+- Membership: **212** rows, canonical ranks **1–212**.
 - Retained source ranks: **12–186**.
-- Membership digest: `3b35733f8c8d65c79cde1395ab975f398e77dda28ae70bb9af92f95e2d1bccbc`.
+- Membership digest: `b94c2360d49de83e5bfd05c0aeae4d8749006427993407c22b0d2a7036601932`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **211**.
+- Confirmed full statistical specifications: **212**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -225,3 +225,4 @@ The ledger is the sole membership authority for this public set.
 | 209 | None | asset_map_multiscale_conditional_empirical_analytic_differenced_whittle_rough_map | M209 — Asset MAP Multiscale + Analytic covariance differenced debiased Whittle rough MAP | asset_level_extension | 0.2493515254197939 | 0.249351525 | true | validated_full_canonical_score |
 | 210 | None | asset_map_multiscale_conditional_empirical_relaxed_hurst_differenced_rough_map | M210 — Asset MAP Multiscale + Relaxed Hurst lower support analytic differenced rough MAP | asset_level_extension | 0.24863202500906678 | 0.248632025 | true | validated_full_canonical_score |
 | 211 | None | asset_map_multiscale_conditional_empirical_full_hurst_differenced_rough_map | M211 — Asset MAP Multiscale + Full theoretical Hurst support analytic differenced rough MAP | asset_level_extension | 0.2495417609939298 | 0.249541761 | true | validated_full_canonical_score |
+| 212 | None | asset_map_multiscale_consistent_empirical_noise_differenced_rough_map | M212 — Asset MAP Multiscale + Empirical-noise consistent conventional offset rough MAP | asset_level_extension | 0.2484924596795188 | 0.24849246 | true | validated_full_canonical_score |

@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **211 models**: the original 175 plus twenty-six
+The canonical catalogue contains **212 models**: the original 175 plus twenty-seven
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–211 and no historical source rank.
+indices 176–212 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 211 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 212 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -108,4 +108,6 @@ M209 combines analytic rough covariance with differenced debiased Whittle MAP fi
 
 M210 relaxes the Hurst lower bound to 0.01 in M209, scoring **0.24863202500906678** on all 80 portfolios in **97.9834 seconds** with a fresh cache. It improves baseline CRPS by 1.29% and retains the mean model.
 
-M211 permits the full theoretical Hurst domain in the differenced estimator. Its full-panel score is **0.2495417609939298** and fresh-cache time **99.4612 seconds**; M210 remains the score leader.
+M211 permits the full theoretical Hurst domain in the differenced estimator. Its full-panel score is **0.2495417609939298** and fresh-cache time **99.4612 seconds**; M210 led before the M212 refinement.
+
+M212 uses the empirical log-square innovation noise variance for the causal conventional-volatility offset, keeping its fitted parameters unchanged. It scored **0.2484924596795188** in **97.2791 seconds** on the complete panel, the current recorded score leader. This two-stage plug-in quasi-likelihood refinement does not complete the research goal.
