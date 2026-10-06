@@ -39,7 +39,7 @@ def test_six_volatility_ablation_scores_bind_to_complete_paired_cells():
             assert ledger[model_id]["historical_score_verified"] is True
 
 
-@pytest.mark.parametrize("filename,origins", [("spectral-rough-panels", 8160), ("gamma-supou-panel", 4080), ("reml-rough-panel", 4080), ("whittle-gls-rough-panel", 4080), ("whittle-mle-rough-panel", 4080), ("whittle-integrated-level-rough-panel", 4080), ("exact-covariance-whittle-rough-panel", 4080), ("full-hurst-domain-rough-panel", 4080), ("analytic-differenced-rough-panel", 4080), ("relaxed-hurst-differenced-rough-panel", 4080), ("full-hurst-differenced-rough-panel", 4080), ("consistent-noise-rough-panel", 4080), ("parametric-innovation-panels", 8160), ("gaussian-innovation-panel", 4080), ("joint-noise-sv-panel", 4080), ("continuous-quantile-panel", 4080), ("raw-return-laplace-panel", 4080), ("student-return-laplace-panel", 4080), ("student-implied-noise-panel", 4080), ("pathwise-multiscale-panel", 4080), ("joint-leverage-panel", 4080)])
+@pytest.mark.parametrize("filename,origins", [("spectral-rough-panels", 8160), ("gamma-supou-panel", 4080), ("reml-rough-panel", 4080), ("whittle-gls-rough-panel", 4080), ("whittle-mle-rough-panel", 4080), ("whittle-integrated-level-rough-panel", 4080), ("exact-covariance-whittle-rough-panel", 4080), ("full-hurst-domain-rough-panel", 4080), ("analytic-differenced-rough-panel", 4080), ("relaxed-hurst-differenced-rough-panel", 4080), ("full-hurst-differenced-rough-panel", 4080), ("consistent-noise-rough-panel", 4080), ("parametric-innovation-panels", 8160), ("gaussian-innovation-panel", 4080), ("joint-noise-sv-panel", 4080), ("continuous-quantile-panel", 4080), ("raw-return-laplace-panel", 4080), ("student-return-laplace-panel", 4080), ("student-implied-noise-panel", 4080), ("pathwise-multiscale-panel", 4080), ("joint-leverage-panel", 4080), ("student-full-hurst-panel", 4080)])
 def test_spectral_scores_bind_to_complete_paired_cells(filename, origins):
     root = Path(__file__).resolve().parents[1]
     receipt = json.loads((root / f"docs/results/rough-bayesian/{filename}.json").read_text())
@@ -71,16 +71,16 @@ def test_combined_candidate_ranking_preserves_ledger_and_evidence_origins():
     assert json.loads(artifact_text) == report
     assert all(path not in artifact_text for path in ("/Users/", "/private/", "/tmp/"))
 
-    assert report["row_count"] == 222
+    assert report["row_count"] == 223
     assert report["retained_historical_row_count"] == 175
     assert report["independently_audited_new_execution_row_count"] == 0
-    assert report["validated_full_panel_row_count"] == 37
+    assert report["validated_full_panel_row_count"] == 38
     assert report["full_176_model_reproduction"] is False
     assert report["canonical_membership_unchanged"] is True
     assert report["canonical_membership_digest"] == ledger["membership"]["membership_digest"]
 
     rows = report["rows"]
-    assert [row["display_rank"] for row in rows] == list(range(1, 213)) + [None] * 10
+    assert [row["display_rank"] for row in rows] == list(range(1, 214)) + [None] * 10
     assert report["partial_panel_row_count"] == 4
     assert report["unscored_candidate_row_count"] == 6
     candidate = next(row for row in rows if row["public_model_id"] == _CANDIDATE_ID)
@@ -91,7 +91,7 @@ def test_combined_candidate_ranking_preserves_ledger_and_evidence_origins():
     assert candidate["score_evidence_origin"] == "validated_full_canonical_execution"
 
     historical_rows = {row["public_model_id"]: row for row in rows if not row["is_new_execution"]}
-    assert len(historical_rows) == 222
+    assert len(historical_rows) == 223
     for model in ledger["models"]:
         row = historical_rows[model["public_model_id"]]
         assert row["canonical_rank"] == model["canonical_rank"]
@@ -181,4 +181,4 @@ def test_public_combined_command_and_historical_score_command_keep_distinct_scop
     retained = json.loads(capsys.readouterr().out)
     assert retained["result_kind"] == "retained_score_evidence"
     assert retained["is_new_execution"] is False
-    assert len(retained["rows"]) == 222
+    assert len(retained["rows"]) == 223
