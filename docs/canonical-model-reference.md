@@ -1,14 +1,14 @@
-# Canonical model reference (219 models including the original 175)
+# Canonical model reference (220 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **219** rows, canonical ranks **1–219**.
+- Membership: **220** rows, canonical ranks **1–220**.
 - Retained source ranks: **12–186**.
-- Membership digest: `c607fe8254bd2d80f8568fedf4e61462acce3b0e31c54ee4830edefe3c0bcd36`.
+- Membership digest: `83aea46dc6cee425bd12817f2d2ea540b72899c089e34af206712bd256ac35ae`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **219**.
+- Confirmed full statistical specifications: **220**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -233,3 +233,4 @@ The ledger is the sole membership authority for this public set.
 | 217 | None | asset_map_joint_noise_continuous_quantile_normalized_dynamic_rough | M217 — Asset MAP Multiscale + Exact interpolated innovation quantile normalization on M216 | asset_level_extension | 0.2475449989529358 | 0.247544999 | true | validated_full_canonical_score |
 | 218 | None | asset_map_raw_return_laplace_multiscale_dynamic_rough | M218 — Asset MAP Multiscale + Raw-return sparse Laplace conventional SV with multiscale and dynamic rough | asset_level_extension | 0.2525845890080237 | 0.252584589 | true | validated_full_canonical_score |
 | 219 | None | asset_map_student_return_laplace_multiscale_dynamic_rough | M219 — Asset MAP Multiscale + Student-return sparse Laplace conventional SV with multiscale and dynamic rough | asset_level_extension | 0.24548488040352726 | 0.24548488 | true | validated_full_canonical_score |
+| 220 | None | asset_map_student_return_laplace_implied_noise_dynamic_rough | M220 — Asset MAP Multiscale + Student-return sparse Laplace SV with analytically implied log-square noise and dynamic rough | asset_level_extension | 0.24423173688367905 | 0.244231737 | true | validated_full_canonical_score |
