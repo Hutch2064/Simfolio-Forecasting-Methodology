@@ -2,7 +2,7 @@
 
 Nine new asset-level candidates are implemented in `tools/rough_bayesian` and
 included in both public catalogues. The canonical catalogue now has 201 entries;
-the broader active research catalogue has 393. The eight-factor Bayesian upgrade
+the broader active research catalogue has 394. The eight-factor Bayesian upgrade
 and dynamic-resolution candidate completed their full panels; the fixed-resolution lift retains its stopped partial
 results. Other aggregate scores remain blank until their complete panels finish.
 The existing production Frontier
@@ -612,7 +612,7 @@ Optimization reused exact compiled marginal mapping and policy rejoin, removed
 a redundant sort and duplicated volatility-moment calculation, and cached
 asset/lag fits across portfolios. All five reference smoke loss vectors remained
 byte-identical. The longest smoke changed from 2.009 to 1.221 seconds with fresh
-fits and from 1.393 to 0.734 seconds with cached fits, excluding compiler startup.
+fits and from 1.394 to 0.734 seconds with cached fits, excluding compiler startup.
 All 2,549 distinct asset/lag fits converged; 52 needed an extended L-BFGS-B
 line search with the same likelihood, priors and accuracy tolerances. No Powell
 fallback was needed. Selected rough factor counts ranged from 4 to 10.
@@ -712,3 +712,8 @@ The subsequent spectral-inference tests retain M197’s causal conventional-SV r
 | M201: differenced debiased Whittle | 0.24972187973628046 | 0.857% | 103.78 s |
 
 All 8,160 origin vectors independently reconstruct the two 701,280-cell score vectors byte-for-byte; source revisions, cell arrays, fit diagnostics, and portfolio results are bound in `docs/results/rough-bayesian/spectral-rough-panels.json`. Local recorded worker times compare against M193’s 136.82-second panel and do not establish website latency. Neither candidate reaches a 1% score improvement versus M193.
+
+
+M202 tests a Gaussian Gamma-mixed OU log-volatility overlay in place of the tempered rough covariance, keeping M197's conventional multiscale backbone, empirical measurement variance, residual observations, and stationary normalization. Its covariance is `scale**2*(1+kappa*lag)**(-shape)`, corresponding to Gamma-distributed stationary variance rates and the Gaussian specialization of [Barndorff-Nielsen and Stelzer (2011), example 3.4](https://arxiv.org/abs/1101.0068). Shape, timescale and amplitude are learned per asset; log-shape has a weak truncated Gaussian prior with mean zero, standard deviation 1.5 and shape bounds [.03,10]. The other priors remain unchanged. This Gaussian log-volatility construction differs from the positive Levy-driven matrix-volatility model.
+
+The preliminary exact Gaussian quasi-likelihood implementation was screened out for runtime (fresh smokes 0.28-5.66 seconds). The full M202 candidate instead fits the exact analytic covariance using debiased Whittle inference, resolving numerical OU factors only for terminal filtering and prediction. Five fresh/cached smoke vectors matched exactly, and all 4,080 full-panel origin vectors reconstruct the retained score cells byte-for-byte. Full CRPS is **0.25087597152824515**, 0.399% better than M193 but worse than M197/M200/M201. Recorded wall time is **159.10 seconds**: inference is cheap, but larger predictive factor sets increase path-generation cost. This direction is rejected for the requested speed/score breakthrough. Evidence is retained in `docs/results/rough-bayesian/gamma-supou-panel.json`.

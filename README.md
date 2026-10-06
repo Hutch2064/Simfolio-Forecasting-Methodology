@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **201 models**: the original 175 plus fourteen
+The canonical catalogue contains **202 models**: the original 175 plus fourteen
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–201 and no historical source rank.
+indices 176–202 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 201 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 202 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -29,7 +29,7 @@ Existing command names and catalogue filenames remain compatible.
 | Model | Exact empirical CRPS | Role |
 | --- | ---: | --- |
 | Asset MAP Multiscale + Dynamic Rough Volatility | 0.2518812750312293 | Validated fast research candidate |
-| Asset Rough Volterra SV — Eight Factors | 0.2512018559613309 | Validated research candidate |
+| Asset Rough Volterra SV — Eight Factors | 0.2512028559613309 | Validated research candidate |
 | Asset Parameter MCMC + Filtered Moment SV | 0.25246784959071183 | Current production Frontier |
 | Asset Filtered Innovation Moment SV + Fixed Mean | 0.25439860867855635 | Previous production Frontier |
 | Asset Filtered Innovation Moment SV + DLM | 0.2547972662964723 | Validated candidate |
