@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **218 models**: the original 175 plus thirty-three
+The canonical catalogue contains **219 models**: the original 175 plus thirty-four
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–218 and no historical source rank.
+indices 176–219 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 218 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 219 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -116,8 +116,10 @@ M213 and M214 retain M212 but learn Student-t and Hansen skew-t forecast innovat
 
 M215 replaces only the forecast innovation quantile nodes with standard Gaussian nodes, with no fitted tail or skew parameters. It scored **0.25198127331647685** in **99.2198 seconds**; it did not beat M212.
 
-M216 learns observation noise jointly with conventional SV parameters, then uses the same value in its dynamic rough layer. It scored **0.24648440999477378** in **101.5047 seconds**, becoming the current recorded score leader.
+M216 learns observation noise jointly with conventional SV parameters, then uses the same value in its dynamic rough layer. It scored **0.24648440999477378** in **101.5047 seconds**, becoming the recorded score leader at that stage.
 
 M217 uses exact uniform-probability moments of the interpolated empirical quantile function on M216. It scored **0.2475449989529358** in **110.8024 seconds**, trailing M216.
 
 M218 replaces the conventional log-square quasi likelihood with sparse raw-return Laplace SV inference, retaining multiscale and dynamic rough forecasting. It scored **0.2525845890080237** in **117.8753 seconds**, trailing M216 and the goal baseline.
+
+M219 learns Student return tails while using sparse Laplace conventional SV inference, retaining multiscale and dynamic rough forecasting. It scored **0.24548488040352726** in **128.6077 seconds**, beating M216 but short of the goal score/runtime tradeoff.
