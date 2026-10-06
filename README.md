@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **224 models**: the original 175 plus thirty-nine
+The canonical catalogue contains **225 models**: the original 175 plus forty
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–224 and no historical source rank.
+indices 176–225 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 224 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 225 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -139,3 +139,7 @@ M223 completed in **133.7196 seconds**, about **9.52% faster** than M221 but **0
 M224 estimates effective rough observation variance on M221. Full-panel CRPS: **0.24559602973028682**. Original mean and other methodology are unchanged.
 
 M224 completed in **159.8414 seconds**: **2.4953%** better CRPS than fixed baseline M193, but **0.6530% worse** and **8.1544% slower** than M221. It does not meet the breakthrough criteria; M221 remains the completed leader and the research goal remains active.
+
+M225 uses M221 with forecast innovation nodes matched to its learned Student tail shape, without another tail fit. Full-panel CRPS: **0.25121073766012286**. Original mean and all volatility fitting remain unchanged.
+
+M225 completed in **142.1430 seconds**: **0.2662%** better CRPS than fixed baseline M193, but **2.9541% worse** than M221 for only a **3.8209% runtime saving**. It fails the breakthrough criteria. Both volatility fits and observation moments match M221 across every origin; the difference isolates forecast innovation nodes. M221 remains the completed leader and the research goal remains active.
