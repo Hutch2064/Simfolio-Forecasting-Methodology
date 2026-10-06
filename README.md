@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **220 models**: the original 175 plus thirty-five
+The canonical catalogue contains **221 models**: the original 175 plus thirty-six
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–220 and no historical source rank.
+indices 176–221 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 220 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 221 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -125,3 +125,7 @@ M218 replaces the conventional log-square quasi likelihood with sparse raw-retur
 M219 learns Student return tails while using sparse Laplace conventional SV inference, retaining multiscale and dynamic rough forecasting. It scored **0.24548488040352726** in **128.6077 seconds**, beating M216 but short of the goal score/runtime tradeoff.
 
 M220 uses analytically implied Student log-square noise moments on M219, preserving the mean, multiscale construction, empirical forecast innovations and dynamic rough overlay. It scored **0.24423173688367905** in **126.5747 seconds**: 3.037% below M193 at 1.0067 times its runtime, meeting the full-panel breakthrough threshold.
+
+M221 simulates the existing multiscale Gaussian states pathwise on M220, with no additional fitted parameters and second-moment-one normalization. Full-panel CRPS: **0.24400259165672855**. The original mean and M220 parameter fitting remain unchanged.
+
+M221 completed in **147.7899 seconds**: **3.1279%** better CRPS than fixed baseline M193 at **1.1755 times** its runtime, and **0.0938%** better than M220. It wins on 55/80 portfolios against M193 and 48/80 against M220. The research goal remains active; production is unchanged by this publication.

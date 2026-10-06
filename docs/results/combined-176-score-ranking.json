@@ -1,5 +1,5 @@
 {
-  "canonical_membership_digest": "83aea46dc6cee425bd12817f2d2ea540b72899c089e34af206712bd256ac35ae",
+  "canonical_membership_digest": "2acc4fb243d59d762b5d6859ae94c958daa9d6ce64210ef07e134f7c02fb2253",
   "canonical_membership_unchanged": true,
   "full_176_model_reproduction": false,
   "full_candidate_replay": {
@@ -100,12 +100,24 @@
   "result_kind": "combined_ranked_score_evidence",
   "retained_historical_row_count": 175,
   "retained_historical_score_linkage": "mismatch_observed_vs_declared",
-  "row_count": 220,
+  "row_count": 221,
   "rows": [
+    {
+      "canonical_rank": 221,
+      "display_name": "M221 \u2014 Asset MAP Student-Implied Noise + Pathwise Multiscale + Dynamic Rough",
+      "display_rank": 1,
+      "exact_empirical_crps": "0.24400259165672855",
+      "historical_rank": null,
+      "historical_score_verified": true,
+      "is_new_execution": false,
+      "public_model_id": "asset_map_student_implied_noise_pathwise_multiscale_dynamic_rough",
+      "score_evidence_origin": "validated_full_canonical_execution",
+      "verification_status": "validated_full_canonical_score"
+    },
     {
       "canonical_rank": 220,
       "display_name": "M220 \u2014 Asset MAP Multiscale + Student-return sparse Laplace SV with analytically implied log-square noise and dynamic rough",
-      "display_rank": 1,
+      "display_rank": 2,
       "exact_empirical_crps": "0.24423173688367905",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -117,7 +129,7 @@
     {
       "canonical_rank": 219,
       "display_name": "M219 \u2014 Asset MAP Multiscale + Student-return sparse Laplace conventional SV with multiscale and dynamic rough",
-      "display_rank": 2,
+      "display_rank": 3,
       "exact_empirical_crps": "0.24548488040352726",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -129,7 +141,7 @@
     {
       "canonical_rank": 216,
       "display_name": "M216 \u2014 Asset MAP Multiscale + Joint conventional SV observation-noise MAP with dynamic rough overlay",
-      "display_rank": 3,
+      "display_rank": 4,
       "exact_empirical_crps": "0.24648440999477378",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -141,7 +153,7 @@
     {
       "canonical_rank": 217,
       "display_name": "M217 \u2014 Asset MAP Multiscale + Exact interpolated innovation quantile normalization on M216",
-      "display_rank": 4,
+      "display_rank": 5,
       "exact_empirical_crps": "0.2475449989529358",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -153,7 +165,7 @@
     {
       "canonical_rank": 212,
       "display_name": "M212 \u2014 Asset MAP Multiscale + Empirical-noise consistent conventional offset rough MAP",
-      "display_rank": 5,
+      "display_rank": 6,
       "exact_empirical_crps": "0.2484924596795188",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -165,7 +177,7 @@
     {
       "canonical_rank": 210,
       "display_name": "M210 \u2014 Asset MAP Multiscale + Relaxed Hurst lower support analytic differenced rough MAP",
-      "display_rank": 6,
+      "display_rank": 7,
       "exact_empirical_crps": "0.24863202500906678",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -177,7 +189,7 @@
     {
       "canonical_rank": 209,
       "display_name": "M209 \u2014 Asset MAP Multiscale + Analytic covariance differenced debiased Whittle rough MAP",
-      "display_rank": 7,
+      "display_rank": 8,
       "exact_empirical_crps": "0.2493515254197939",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -189,7 +201,7 @@
     {
       "canonical_rank": 211,
       "display_name": "M211 \u2014 Asset MAP Multiscale + Full theoretical Hurst support analytic differenced rough MAP",
-      "display_rank": 8,
+      "display_rank": 9,
       "exact_empirical_crps": "0.2495417609939298",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -201,7 +213,7 @@
     {
       "canonical_rank": 207,
       "display_name": "M207 \u2014 Asset MAP Multiscale + Analytic tempered fractional covariance debiased Whittle rough MAP",
-      "display_rank": 9,
+      "display_rank": 10,
       "exact_empirical_crps": "0.2495833333032549",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -213,7 +225,7 @@
     {
       "canonical_rank": 200,
       "display_name": "M200 \u2014 Asset MAP Multiscale + Debiased Whittle conditional residual rough + empirical noise",
-      "display_rank": 10,
+      "display_rank": 11,
       "exact_empirical_crps": "0.249657155081818",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -225,7 +237,7 @@
     {
       "canonical_rank": 201,
       "display_name": "M201 \u2014 Asset MAP Multiscale + Differenced debiased Whittle conditional residual rough + empirical noise",
-      "display_rank": 11,
+      "display_rank": 12,
       "exact_empirical_crps": "0.24972187973628046",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -237,7 +249,7 @@
     {
       "canonical_rank": 197,
       "display_name": "M197 \u2014 Asset MAP Multiscale + Conditional residual rough + empirical noise",
-      "display_rank": 12,
+      "display_rank": 13,
       "exact_empirical_crps": "0.2497332684165023",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -249,7 +261,7 @@
     {
       "canonical_rank": 214,
       "display_name": "M214 \u2014 Asset MAP Multiscale + Learned Hansen skew-t forecast innovations",
-      "display_rank": 13,
+      "display_rank": 14,
       "exact_empirical_crps": "0.24975351800017143",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -261,7 +273,7 @@
     {
       "canonical_rank": 206,
       "display_name": "M206 \u2014 Asset MAP Multiscale + Debiased Whittle rough covariance with analytically integrated observation level",
-      "display_rank": 14,
+      "display_rank": 15,
       "exact_empirical_crps": "0.24984428792635055",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -273,7 +285,7 @@
     {
       "canonical_rank": 204,
       "display_name": "M204 \u2014 Asset MAP Multiscale + Debiased Whittle rough covariance with GLS observation-level point estimate",
-      "display_rank": 15,
+      "display_rank": 16,
       "exact_empirical_crps": "0.24986970449578597",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -285,7 +297,7 @@
     {
       "canonical_rank": 198,
       "display_name": "M198 \u2014 Asset MAP Multiscale + Untrimmed conditional residual rough + empirical noise",
-      "display_rank": 16,
+      "display_rank": 17,
       "exact_empirical_crps": "0.2498921919286796",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -297,7 +309,7 @@
     {
       "canonical_rank": 205,
       "display_name": "M205 \u2014 Asset MAP Multiscale + Unpenalized debiased Whittle rough covariance inference",
-      "display_rank": 17,
+      "display_rank": 18,
       "exact_empirical_crps": "0.24998100070682613",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -309,7 +321,7 @@
     {
       "canonical_rank": 203,
       "display_name": "M203 \u2014 Asset MAP Multiscale + Restricted Gaussian rough inference with integrated observation level",
-      "display_rank": 18,
+      "display_rank": 19,
       "exact_empirical_crps": "0.2504647898614585",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -321,7 +333,7 @@
     {
       "canonical_rank": 208,
       "display_name": "M208 \u2014 Asset MAP Multiscale + Full theoretical Hurst support analytic covariance rough MAP",
-      "display_rank": 19,
+      "display_rank": 20,
       "exact_empirical_crps": "0.2505737023816167",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -333,7 +345,7 @@
     {
       "canonical_rank": 192,
       "display_name": "M192 \u2014 Asset Rough Volterra SV \u2014 Dynamic Resolution + Bayesian Parameters",
-      "display_rank": 20,
+      "display_rank": 21,
       "exact_empirical_crps": "0.25074679212444156",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -345,7 +357,7 @@
     {
       "canonical_rank": 202,
       "display_name": "M202 \u2014 Asset MAP Multiscale + Gaussian Gamma-mixed OU covariance with direct debiased Whittle inference",
-      "display_rank": 21,
+      "display_rank": 22,
       "exact_empirical_crps": "0.25087597152824515",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -357,7 +369,7 @@
     {
       "canonical_rank": 195,
       "display_name": "M195 \u2014 Asset MAP Multiscale + Empirical log-square measurement noise",
-      "display_rank": 22,
+      "display_rank": 23,
       "exact_empirical_crps": "0.2509457012962614",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -369,7 +381,7 @@
     {
       "canonical_rank": 180,
       "display_name": "M180 \u2014 Asset Rough Volterra SV \u2014 Eight Factors",
-      "display_rank": 23,
+      "display_rank": 24,
       "exact_empirical_crps": "0.2511998559613309",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -381,7 +393,7 @@
     {
       "canonical_rank": 193,
       "display_name": "M193 \u2014 Asset MAP Multiscale + Dynamic Rough Volatility",
-      "display_rank": 24,
+      "display_rank": 25,
       "exact_empirical_crps": "0.2518812750312293",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -393,7 +405,7 @@
     {
       "canonical_rank": 215,
       "display_name": "M215 \u2014 Asset MAP Multiscale + Standard Gaussian forecast innovation control",
-      "display_rank": 25,
+      "display_rank": 26,
       "exact_empirical_crps": "0.25198127331647685",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -405,7 +417,7 @@
     {
       "canonical_rank": 190,
       "display_name": "M190 \u2014 Asset Rough Volterra SV \u2014 Eight Factors + Bayesian Parameters",
-      "display_rank": 26,
+      "display_rank": 27,
       "exact_empirical_crps": "0.2522081419138852",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -417,7 +429,7 @@
     {
       "canonical_rank": 196,
       "display_name": "M196 \u2014 Asset MAP Multiscale + Conditional residual rough forecasts",
-      "display_rank": 27,
+      "display_rank": 28,
       "exact_empirical_crps": "0.25238690162994976",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -429,7 +441,7 @@
     {
       "canonical_rank": 176,
       "display_name": "M176 \u2014 Asset Parameter MCMC + Filtered Moment SV",
-      "display_rank": 28,
+      "display_rank": 29,
       "exact_empirical_crps": "0.25246784959071183",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -441,7 +453,7 @@
     {
       "canonical_rank": 218,
       "display_name": "M218 \u2014 Asset MAP Multiscale + Raw-return sparse Laplace conventional SV with multiscale and dynamic rough",
-      "display_rank": 29,
+      "display_rank": 30,
       "exact_empirical_crps": "0.2525845890080237",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -453,7 +465,7 @@
     {
       "canonical_rank": 194,
       "display_name": "M194 \u2014 Asset MAP Multiscale + Causal residual rough fit",
-      "display_rank": 30,
+      "display_rank": 31,
       "exact_empirical_crps": "0.25281487701385613",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -465,7 +477,7 @@
     {
       "canonical_rank": 213,
       "display_name": "M213 \u2014 Asset MAP Multiscale + Learned standardized Student-t forecast innovations",
-      "display_rank": 31,
+      "display_rank": 32,
       "exact_empirical_crps": "0.25305232973579417",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -477,7 +489,7 @@
     {
       "canonical_rank": 199,
       "display_name": "M199 \u2014 Asset MAP Multiscale + Jointly estimated measurement noise",
-      "display_rank": 32,
+      "display_rank": 33,
       "exact_empirical_crps": "0.2532711708690856",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -489,7 +501,7 @@
     {
       "canonical_rank": 177,
       "display_name": "M177 \u2014 Asset Filtered Innovation Moment SV + Fixed Mean",
-      "display_rank": 33,
+      "display_rank": 34,
       "exact_empirical_crps": "0.25439860867855635",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -501,7 +513,7 @@
     {
       "canonical_rank": 178,
       "display_name": "M178 \u2014 Asset Filtered Innovation Moment SV + DLM",
-      "display_rank": 34,
+      "display_rank": 35,
       "exact_empirical_crps": "0.2547972662964723",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -513,7 +525,7 @@
     {
       "canonical_rank": 1,
       "display_name": "M001 \u2014 Asset FastMAP + Dynamic Gaussian Factor",
-      "display_rank": 35,
+      "display_rank": 36,
       "exact_empirical_crps": "0.2557255171048505",
       "historical_rank": 12,
       "historical_score_verified": false,
@@ -525,7 +537,7 @@
     {
       "canonical_rank": 2,
       "display_name": "M002 \u2014 Bayesian SBB + Bias-Corrected SV-AR1",
-      "display_rank": 36,
+      "display_rank": 37,
       "exact_empirical_crps": "0.25582280588825473",
       "historical_rank": 13,
       "historical_score_verified": false,
@@ -537,7 +549,7 @@
     {
       "canonical_rank": 3,
       "display_name": "M003 \u2014 bayesian sbb ml vol overlay rf harx ff6",
-      "display_rank": 37,
+      "display_rank": 38,
       "exact_empirical_crps": "0.2558767877509775",
       "historical_rank": 14,
       "historical_score_verified": false,
@@ -549,7 +561,7 @@
     {
       "canonical_rank": 4,
       "display_name": "M004 \u2014 Bayesian SBB + HARCH(1,5,22)",
-      "display_rank": 38,
+      "display_rank": 39,
       "exact_empirical_crps": "0.2568880640642086",
       "historical_rank": 15,
       "historical_score_verified": false,
@@ -561,7 +573,7 @@
     {
       "canonical_rank": 5,
       "display_name": "M005 \u2014 Bayesian SBB + Absolute-EWMA",
-      "display_rank": 39,
+      "display_rank": 40,
       "exact_empirical_crps": "0.25801165086966715",
       "historical_rank": 16,
       "historical_score_verified": false,
@@ -573,7 +585,7 @@
     {
       "canonical_rank": 179,
       "display_name": "M179 \u2014 Asset Gaussian Moment SV + Fixed Mean",
-      "display_rank": 40,
+      "display_rank": 41,
       "exact_empirical_crps": "0.2588375710788695",
       "historical_rank": null,
       "historical_score_verified": true,
@@ -585,7 +597,7 @@
     {
       "canonical_rank": 6,
       "display_name": "M006 \u2014 Bayesian SBB + GJR-GARCH(1,1)",
-      "display_rank": 41,
+      "display_rank": 42,
       "exact_empirical_crps": "0.26224498248121614",
       "historical_rank": 17,
       "historical_score_verified": false,
@@ -597,7 +609,7 @@
     {
       "canonical_rank": 7,
       "display_name": "M007 \u2014 Bayesian SBB + FIGARCH(1,d,1)",
-      "display_rank": 42,
+      "display_rank": 43,
       "exact_empirical_crps": "0.2624589516546082",
       "historical_rank": 18,
       "historical_score_verified": false,
@@ -609,7 +621,7 @@
     {
       "canonical_rank": 8,
       "display_name": "M008 \u2014 Asset Exact-Kalman + Dynamic Gaussian Factor",
-      "display_rank": 43,
+      "display_rank": 44,
       "exact_empirical_crps": "0.2771641415051672",
       "historical_rank": 19,
       "historical_score_verified": false,
@@ -621,7 +633,7 @@
     {
       "canonical_rank": 9,
       "display_name": "M009 \u2014 SV Baseline: sharpe dlm historical cagr anchor bdes multiscale vol conditional sharpe full in...",
-      "display_rank": 44,
+      "display_rank": 45,
       "exact_empirical_crps": "0.2928636384101145",
       "historical_rank": 20,
       "historical_score_verified": false,
@@ -633,7 +645,7 @@
     {
       "canonical_rank": 10,
       "display_name": "M010 \u2014 Canonical Gaussian Baseline",
-      "display_rank": 45,
+      "display_rank": 46,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 21,
       "historical_score_verified": false,
@@ -645,7 +657,7 @@
     {
       "canonical_rank": 11,
       "display_name": "M011 \u2014 Canonical Distribution Stack (gaussian w0.60)",
-      "display_rank": 46,
+      "display_rank": 47,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 22,
       "historical_score_verified": false,
@@ -657,7 +669,7 @@
     {
       "canonical_rank": 12,
       "display_name": "M012 \u2014 Canonical Distribution Stack (gaussian w0.50)",
-      "display_rank": 47,
+      "display_rank": 48,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 23,
       "historical_score_verified": false,
@@ -669,7 +681,7 @@
     {
       "canonical_rank": 13,
       "display_name": "M013 \u2014 Canonical Distribution Stack (student t w0.60)",
-      "display_rank": 48,
+      "display_rank": 49,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 24,
       "historical_score_verified": false,
@@ -681,7 +693,7 @@
     {
       "canonical_rank": 14,
       "display_name": "M014 \u2014 Canonical Distribution Stack (student t w0.50)",
-      "display_rank": 49,
+      "display_rank": 50,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 25,
       "historical_score_verified": false,
@@ -693,7 +705,7 @@
     {
       "canonical_rank": 15,
       "display_name": "M015 \u2014 Canonical Distribution Stack (gaussian w0.70)",
-      "display_rank": 50,
+      "display_rank": 51,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 26,
       "historical_score_verified": false,
@@ -705,7 +717,7 @@
     {
       "canonical_rank": 16,
       "display_name": "M016 \u2014 Canonical Distribution Stack (student t w0.70)",
-      "display_rank": 51,
+      "display_rank": 52,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 27,
       "historical_score_verified": false,
@@ -717,7 +729,7 @@
     {
       "canonical_rank": 17,
       "display_name": "M017 \u2014 Canonical Distribution Stack (gaussian w0.80)",
-      "display_rank": 52,
+      "display_rank": 53,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 28,
       "historical_score_verified": false,
@@ -729,7 +741,7 @@
     {
       "canonical_rank": 18,
       "display_name": "M018 \u2014 Canonical Distribution Stack (student t w0.80)",
-      "display_rank": 53,
+      "display_rank": 54,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 29,
       "historical_score_verified": false,
@@ -741,7 +753,7 @@
     {
       "canonical_rank": 19,
       "display_name": "M019 \u2014 Canonical Distribution Stack (student t w0.90)",
-      "display_rank": 54,
+      "display_rank": 55,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 30,
       "historical_score_verified": false,
@@ -753,7 +765,7 @@
     {
       "canonical_rank": 20,
       "display_name": "M020 \u2014 Canonical Distribution Stack (gaussian w0.90)",
-      "display_rank": 55,
+      "display_rank": 56,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 31,
       "historical_score_verified": false,
@@ -765,7 +777,7 @@
     {
       "canonical_rank": 21,
       "display_name": "M021 \u2014 Canonical Distribution Stack (gaussian w1.00)",
-      "display_rank": 56,
+      "display_rank": 57,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 32,
       "historical_score_verified": false,
@@ -777,7 +789,7 @@
     {
       "canonical_rank": 22,
       "display_name": "M022 \u2014 Canonical Distribution Stack (student t w1.00)",
-      "display_rank": 57,
+      "display_rank": 58,
       "exact_empirical_crps": "0.3157153599618289",
       "historical_rank": 33,
       "historical_score_verified": false,
@@ -789,7 +801,7 @@
     {
       "canonical_rank": 23,
       "display_name": "M023 \u2014 DP-Mixture SV + Stationary Bootstrap",
-      "display_rank": 58,
+      "display_rank": 59,
       "exact_empirical_crps": "0.3302581015632387",
       "historical_rank": 34,
       "historical_score_verified": false,
@@ -801,7 +813,7 @@
     {
       "canonical_rank": 24,
       "display_name": "M024 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations hac drift uncertainty",
-      "display_rank": 59,
+      "display_rank": 60,
       "exact_empirical_crps": "0.3312694054697261",
       "historical_rank": 35,
       "historical_score_verified": false,
@@ -813,7 +825,7 @@
     {
       "canonical_rank": 25,
       "display_name": "M025 \u2014 Observable Markov State + Stationary Bootstrap",
-      "display_rank": 60,
+      "display_rank": 61,
       "exact_empirical_crps": "0.33135186581975373",
       "historical_rank": 36,
       "historical_score_verified": false,
@@ -825,7 +837,7 @@
     {
       "canonical_rank": 26,
       "display_name": "M026 \u2014 Bayesian SBB + Absolute-EWMA historical realized sharpe",
-      "display_rank": 61,
+      "display_rank": 62,
       "exact_empirical_crps": "0.33149111043923274",
       "historical_rank": 37,
       "historical_score_verified": false,
@@ -837,7 +849,7 @@
     {
       "canonical_rank": 27,
       "display_name": "M027 \u2014 factor ff6 ridge residual sbb none",
-      "display_rank": 62,
+      "display_rank": 63,
       "exact_empirical_crps": "0.3320269111881849",
       "historical_rank": 38,
       "historical_score_verified": false,
@@ -849,7 +861,7 @@
     {
       "canonical_rank": 28,
       "display_name": "M028 \u2014 factor ff6 ridge residual sbb absolute ewma",
-      "display_rank": 63,
+      "display_rank": 64,
       "exact_empirical_crps": "0.33212615506899845",
       "historical_rank": 39,
       "historical_score_verified": false,
@@ -861,7 +873,7 @@
     {
       "canonical_rank": 29,
       "display_name": "M029 \u2014 SV Baseline: sharpe dlm historical cagr anchor bdes multiscale vol conditional sharpe Optimal...",
-      "display_rank": 64,
+      "display_rank": 65,
       "exact_empirical_crps": "0.3322162975771911",
       "historical_rank": 40,
       "historical_score_verified": false,
@@ -873,7 +885,7 @@
     {
       "canonical_rank": 30,
       "display_name": "M030 \u2014 Bayesian SBB + Absolute-EWMA merton positive sample mean",
-      "display_rank": 65,
+      "display_rank": 66,
       "exact_empirical_crps": "0.3327114261103348",
       "historical_rank": 41,
       "historical_score_verified": false,
@@ -885,7 +897,7 @@
     {
       "canonical_rank": 31,
       "display_name": "M031 \u2014 Bayesian SBB + GARCH(1,1) merton positive sample mean",
-      "display_rank": 66,
+      "display_rank": 67,
       "exact_empirical_crps": "0.3348019743327118",
       "historical_rank": 42,
       "historical_score_verified": false,
@@ -897,7 +909,7 @@
     {
       "canonical_rank": 32,
       "display_name": "M032 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage merton positive sample mean",
-      "display_rank": 67,
+      "display_rank": 68,
       "exact_empirical_crps": "0.3352012663875",
       "historical_rank": 43,
       "historical_score_verified": false,
@@ -909,7 +921,7 @@
     {
       "canonical_rank": 33,
       "display_name": "M033 \u2014 Score-Driven Skew-t",
-      "display_rank": 68,
+      "display_rank": 69,
       "exact_empirical_crps": "0.3352221751557045",
       "historical_rank": 44,
       "historical_score_verified": false,
@@ -921,7 +933,7 @@
     {
       "canonical_rank": 34,
       "display_name": "M034 \u2014 Constant-Mean Gaussian",
-      "display_rank": 69,
+      "display_rank": 70,
       "exact_empirical_crps": "0.33541860381061706",
       "historical_rank": 45,
       "historical_score_verified": false,
@@ -933,7 +945,7 @@
     {
       "canonical_rank": 35,
       "display_name": "M035 \u2014 Constant-Mean Student-t",
-      "display_rank": 70,
+      "display_rank": 71,
       "exact_empirical_crps": "0.3362227403076284",
       "historical_rank": 46,
       "historical_score_verified": false,
@@ -945,7 +957,7 @@
     {
       "canonical_rank": 36,
       "display_name": "M036 \u2014 IID Historical Bootstrap",
-      "display_rank": 71,
+      "display_rank": 72,
       "exact_empirical_crps": "0.3385054919574415",
       "historical_rank": 47,
       "historical_score_verified": false,
@@ -957,7 +969,7 @@
     {
       "canonical_rank": 37,
       "display_name": "M037 \u2014 AR(1) SV + Empirical Innovations",
-      "display_rank": 72,
+      "display_rank": 73,
       "exact_empirical_crps": "0.3388380552038399",
       "historical_rank": 48,
       "historical_score_verified": false,
@@ -969,7 +981,7 @@
     {
       "canonical_rank": 38,
       "display_name": "M038 \u2014 SV Baseline: sample mean sample standardized sbb Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 73,
+      "display_rank": 74,
       "exact_empirical_crps": "0.3391560521141931",
       "historical_rank": 49,
       "historical_score_verified": false,
@@ -981,7 +993,7 @@
     {
       "canonical_rank": 39,
       "display_name": "M039 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations merton positive sample mean",
-      "display_rank": 74,
+      "display_rank": 75,
       "exact_empirical_crps": "0.33951638475302726",
       "historical_rank": 50,
       "historical_score_verified": false,
@@ -993,7 +1005,7 @@
     {
       "canonical_rank": 40,
       "display_name": "M040 \u2014 AR(1) SV + Stationary Bootstrap",
-      "display_rank": 75,
+      "display_rank": 76,
       "exact_empirical_crps": "0.340856561954319",
       "historical_rank": 51,
       "historical_score_verified": false,
@@ -1005,7 +1017,7 @@
     {
       "canonical_rank": 41,
       "display_name": "M041 \u2014 Bayesian SBB + mcmc sv no ar leverage transformed raw innovations hac drift uncertainty Adapt...",
-      "display_rank": 76,
+      "display_rank": 77,
       "exact_empirical_crps": "0.3413709610745333",
       "historical_rank": 52,
       "historical_score_verified": false,
@@ -1017,7 +1029,7 @@
     {
       "canonical_rank": 42,
       "display_name": "M042 \u2014 Bayesian SBB + mcmc sv ar1 merton positive sample mean",
-      "display_rank": 77,
+      "display_rank": 78,
       "exact_empirical_crps": "0.34242298162647733",
       "historical_rank": 53,
       "historical_score_verified": false,
@@ -1029,7 +1041,7 @@
     {
       "canonical_rank": 43,
       "display_name": "M043 \u2014 Bayesian MCMC SV + Stationary Bootstrap",
-      "display_rank": 78,
+      "display_rank": 79,
       "exact_empirical_crps": "0.34268977488684255",
       "historical_rank": 54,
       "historical_score_verified": false,
@@ -1041,7 +1053,7 @@
     {
       "canonical_rank": 44,
       "display_name": "M044 \u2014 AR(1) SV + Student-t",
-      "display_rank": 79,
+      "display_rank": 80,
       "exact_empirical_crps": "0.3443044584558404",
       "historical_rank": 55,
       "historical_score_verified": false,
@@ -1053,7 +1065,7 @@
     {
       "canonical_rank": 45,
       "display_name": "M045 \u2014 Bayesian SBB + GJR-GARCH(1,1) merton positive sample mean",
-      "display_rank": 80,
+      "display_rank": 81,
       "exact_empirical_crps": "0.34682911565929203",
       "historical_rank": 56,
       "historical_score_verified": false,
@@ -1065,7 +1077,7 @@
     {
       "canonical_rank": 46,
       "display_name": "M046 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations hac drift uncertainty Adaptiv...",
-      "display_rank": 81,
+      "display_rank": 82,
       "exact_empirical_crps": "0.3475703250670482",
       "historical_rank": 57,
       "historical_score_verified": false,
@@ -1077,7 +1089,7 @@
     {
       "canonical_rank": 47,
       "display_name": "M047 \u2014 Bayesian SBB + Bias-Corrected SV-AR1 hac drift uncertainty harx ff6 vol anchor",
-      "display_rank": 82,
+      "display_rank": 83,
       "exact_empirical_crps": "0.3482726309856858",
       "historical_rank": 58,
       "historical_score_verified": false,
@@ -1089,7 +1101,7 @@
     {
       "canonical_rank": 48,
       "display_name": "M048 \u2014 SV Baseline: robust Horizon-Credibility mean sample standardized sbb Optimal Block Adaptive-M...",
-      "display_rank": 83,
+      "display_rank": 84,
       "exact_empirical_crps": "0.3573941599619772",
       "historical_rank": 59,
       "historical_score_verified": false,
@@ -1101,7 +1113,7 @@
     {
       "canonical_rank": 49,
       "display_name": "M049 \u2014 SV Baseline: positive hac mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 84,
+      "display_rank": 85,
       "exact_empirical_crps": "0.36634655340793526",
       "historical_rank": 60,
       "historical_score_verified": false,
@@ -1113,7 +1125,7 @@
     {
       "canonical_rank": 50,
       "display_name": "M050 \u2014 Bayesian SBB + Absolute-EWMA Empirical-Bayes positive sharpe",
-      "display_rank": 85,
+      "display_rank": 86,
       "exact_empirical_crps": "0.37847481674120853",
       "historical_rank": 61,
       "historical_score_verified": false,
@@ -1125,7 +1137,7 @@
     {
       "canonical_rank": 51,
       "display_name": "M051 \u2014 SV Baseline: positive eb mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 86,
+      "display_rank": 87,
       "exact_empirical_crps": "0.3793905618187365",
       "historical_rank": 62,
       "historical_score_verified": false,
@@ -1137,7 +1149,7 @@
     {
       "canonical_rank": 52,
       "display_name": "M052 \u2014 portfolio gjr garch eb sampler stationary sbb optimal",
-      "display_rank": 87,
+      "display_rank": 88,
       "exact_empirical_crps": "0.3798494733159625",
       "historical_rank": 63,
       "historical_score_verified": false,
@@ -1149,7 +1161,7 @@
     {
       "canonical_rank": 53,
       "display_name": "M053 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB mad standardized Optimal Block Adaptive-Metrop...",
-      "display_rank": 88,
+      "display_rank": 89,
       "exact_empirical_crps": "0.3807584465384899",
       "historical_rank": 64,
       "historical_score_verified": false,
@@ -1161,7 +1173,7 @@
     {
       "canonical_rank": 54,
       "display_name": "M054 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB vol conditioned residuals Optimal Block Adapti...",
-      "display_rank": 89,
+      "display_rank": 90,
       "exact_empirical_crps": "0.38183436690755324",
       "historical_rank": 65,
       "historical_score_verified": false,
@@ -1173,7 +1185,7 @@
     {
       "canonical_rank": 55,
       "display_name": "M055 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB paired state shocks Optimal Block Adaptive-Met...",
-      "display_rank": 90,
+      "display_rank": 91,
       "exact_empirical_crps": "0.38243126450298737",
       "historical_rank": 66,
       "historical_score_verified": false,
@@ -1185,7 +1197,7 @@
     {
       "canonical_rank": 56,
       "display_name": "M056 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB empirical state shocks Optimal Block Adaptive-...",
-      "display_rank": 91,
+      "display_rank": 92,
       "exact_empirical_crps": "0.3828855536988357",
       "historical_rank": 67,
       "historical_score_verified": false,
@@ -1197,7 +1209,7 @@
     {
       "canonical_rank": 57,
       "display_name": "M057 \u2014 Bayesian SBB + Absolute-EWMA Empirical-Bayes positive sharpe mu uncertainty",
-      "display_rank": 92,
+      "display_rank": 93,
       "exact_empirical_crps": "0.3831296611965536",
       "historical_rank": 68,
       "historical_score_verified": false,
@@ -1209,7 +1221,7 @@
     {
       "canonical_rank": 58,
       "display_name": "M058 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 93,
+      "display_rank": 94,
       "exact_empirical_crps": "0.38313384783992005",
       "historical_rank": 69,
       "historical_score_verified": false,
@@ -1221,7 +1233,7 @@
     {
       "canonical_rank": 59,
       "display_name": "M059 \u2014 Bayesian SBB + GARCH(1,1) Empirical-Bayes sharpe",
-      "display_rank": 94,
+      "display_rank": 95,
       "exact_empirical_crps": "0.38337095386265385",
       "historical_rank": 70,
       "historical_score_verified": false,
@@ -1233,7 +1245,7 @@
     {
       "canonical_rank": 60,
       "display_name": "M060 \u2014 SV Baseline: Empirical-Bayes mean sbb Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 95,
+      "display_rank": 96,
       "exact_empirical_crps": "0.3843392028120067",
       "historical_rank": 71,
       "historical_score_verified": false,
@@ -1245,7 +1257,7 @@
     {
       "canonical_rank": 61,
       "display_name": "M061 \u2014 Bayesian SBB + GJR-GARCH(1,1) Empirical-Bayes sharpe",
-      "display_rank": 96,
+      "display_rank": 97,
       "exact_empirical_crps": "0.3844813506559836",
       "historical_rank": 72,
       "historical_score_verified": false,
@@ -1257,7 +1269,7 @@
     {
       "canonical_rank": 62,
       "display_name": "M062 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB empirical sv measurement bias Optimal Block Ad...",
-      "display_rank": 97,
+      "display_rank": 98,
       "exact_empirical_crps": "0.38464682822369256",
       "historical_rank": 73,
       "historical_score_verified": false,
@@ -1269,7 +1281,7 @@
     {
       "canonical_rank": 63,
       "display_name": "M063 \u2014 SV Baseline: Empirical-Bayes mean filtered circular block Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 98,
+      "display_rank": 99,
       "exact_empirical_crps": "0.3848125335596507",
       "historical_rank": 74,
       "historical_score_verified": false,
@@ -1281,7 +1293,7 @@
     {
       "canonical_rank": 64,
       "display_name": "M064 \u2014 Bayesian SBB + eGARCH(1,1) Empirical-Bayes sharpe",
-      "display_rank": 99,
+      "display_rank": 100,
       "exact_empirical_crps": "0.38577049997542984",
       "historical_rank": 75,
       "historical_score_verified": false,
@@ -1293,7 +1305,7 @@
     {
       "canonical_rank": 65,
       "display_name": "M065 \u2014 Bayesian SBB + GARCH(1,1) hierarchical Empirical-Bayes sharpe",
-      "display_rank": 100,
+      "display_rank": 101,
       "exact_empirical_crps": "0.3860441014290593",
       "historical_rank": 76,
       "historical_score_verified": false,
@@ -1305,7 +1317,7 @@
     {
       "canonical_rank": 66,
       "display_name": "M066 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB evt tail splice Optimal Block Adaptive-Metropo...",
-      "display_rank": 101,
+      "display_rank": 102,
       "exact_empirical_crps": "0.38606647149016815",
       "historical_rank": 77,
       "historical_score_verified": false,
@@ -1317,7 +1329,7 @@
     {
       "canonical_rank": 67,
       "display_name": "M067 \u2014 SV Baseline: Empirical-Bayes mean sbb Optimal Block Adaptive MCMC",
-      "display_rank": 102,
+      "display_rank": 103,
       "exact_empirical_crps": "0.3869626512816115",
       "historical_rank": 78,
       "historical_score_verified": false,
@@ -1329,7 +1341,7 @@
     {
       "canonical_rank": 68,
       "display_name": "M068 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB student t state shocks Optimal Block Adaptive-...",
-      "display_rank": 103,
+      "display_rank": 104,
       "exact_empirical_crps": "0.3879244490446556",
       "historical_rank": 79,
       "historical_score_verified": false,
@@ -1341,7 +1353,7 @@
     {
       "canonical_rank": 69,
       "display_name": "M069 \u2014 Bayesian SBB + Absolute-EWMA Empirical-Bayes sharpe",
-      "display_rank": 104,
+      "display_rank": 105,
       "exact_empirical_crps": "0.38850312530930486",
       "historical_rank": 80,
       "historical_score_verified": false,
@@ -1353,7 +1365,7 @@
     {
       "canonical_rank": 70,
       "display_name": "M070 \u2014 SV Baseline: evidence dlm drift mean sample standardized sbb Optimal Block Adaptive-Metropoli...",
-      "display_rank": 105,
+      "display_rank": 106,
       "exact_empirical_crps": "0.3891739447684333",
       "historical_rank": 81,
       "historical_score_verified": false,
@@ -1365,7 +1377,7 @@
     {
       "canonical_rank": 71,
       "display_name": "M071 \u2014 SV Baseline: Hierarchical-EB mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 106,
+      "display_rank": 107,
       "exact_empirical_crps": "0.3898099538841829",
       "historical_rank": 82,
       "historical_score_verified": false,
@@ -1377,7 +1389,7 @@
     {
       "canonical_rank": 72,
       "display_name": "M072 \u2014 SV Baseline: Empirical-Bayes mean nig Adaptive MCMC",
-      "display_rank": 107,
+      "display_rank": 108,
       "exact_empirical_crps": "0.3923155329488059",
       "historical_rank": 83,
       "historical_score_verified": false,
@@ -1389,7 +1401,7 @@
     {
       "canonical_rank": 73,
       "display_name": "M073 \u2014 SV Baseline: Empirical-Bayes mean nig student t state shocks Adaptive MCMC",
-      "display_rank": 108,
+      "display_rank": 109,
       "exact_empirical_crps": "0.39292756730670897",
       "historical_rank": 84,
       "historical_score_verified": false,
@@ -1401,7 +1413,7 @@
     {
       "canonical_rank": 74,
       "display_name": "M074 \u2014 SV Baseline: Empirical-Bayes mean nig Adaptive-Metropolis MCMC",
-      "display_rank": 109,
+      "display_rank": 110,
       "exact_empirical_crps": "0.3931277463080625",
       "historical_rank": 85,
       "historical_score_verified": false,
@@ -1413,7 +1425,7 @@
     {
       "canonical_rank": 75,
       "display_name": "M075 \u2014 SV Baseline: Horizon-Credibility mean sample standardized sbb Optimal Block Adaptive-Metropol...",
-      "display_rank": 110,
+      "display_rank": 111,
       "exact_empirical_crps": "0.40631078588212816",
       "historical_rank": 86,
       "historical_score_verified": false,
@@ -1425,7 +1437,7 @@
     {
       "canonical_rank": 76,
       "display_name": "M076 \u2014 SV Baseline: Empirical-Bayes mean student t state shocks Adaptive MCMC",
-      "display_rank": 111,
+      "display_rank": 112,
       "exact_empirical_crps": "0.41143759642167155",
       "historical_rank": 87,
       "historical_score_verified": false,
@@ -1437,7 +1449,7 @@
     {
       "canonical_rank": 77,
       "display_name": "M077 \u2014 SV Baseline: Empirical-Bayes mean jf skewt Adaptive MCMC",
-      "display_rank": 112,
+      "display_rank": 113,
       "exact_empirical_crps": "0.41272901623106945",
       "historical_rank": 88,
       "historical_score_verified": false,
@@ -1449,7 +1461,7 @@
     {
       "canonical_rank": 78,
       "display_name": "M078 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations Horizon-Credibility hac drift...",
-      "display_rank": 113,
+      "display_rank": 114,
       "exact_empirical_crps": "0.4153038237330848",
       "historical_rank": 89,
       "historical_score_verified": false,
@@ -1461,7 +1473,7 @@
     {
       "canonical_rank": 79,
       "display_name": "M079 \u2014 SV Baseline: Hierarchical-EB mean jf skewt Adaptive MCMC",
-      "display_rank": 114,
+      "display_rank": 115,
       "exact_empirical_crps": "0.417681575032732",
       "historical_rank": 90,
       "historical_score_verified": false,
@@ -1473,7 +1485,7 @@
     {
       "canonical_rank": 80,
       "display_name": "M080 \u2014 SV Baseline: Horizon-Credibility mean sample standardized sbb vol conditioned residuals Optim...",
-      "display_rank": 115,
+      "display_rank": 116,
       "exact_empirical_crps": "0.44232459874807317",
       "historical_rank": 91,
       "historical_score_verified": false,
@@ -1485,7 +1497,7 @@
     {
       "canonical_rank": 81,
       "display_name": "M081 \u2014 SV Baseline: Horizon-Credibility mean sample standardized sbb evt tail splice Optimal Block A...",
-      "display_rank": 116,
+      "display_rank": 117,
       "exact_empirical_crps": "0.45313112457354865",
       "historical_rank": 92,
       "historical_score_verified": false,
@@ -1497,7 +1509,7 @@
     {
       "canonical_rank": 82,
       "display_name": "M082 \u2014 SV Baseline: Horizon-Credibility mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 117,
+      "display_rank": 118,
       "exact_empirical_crps": "0.46072597728848813",
       "historical_rank": 93,
       "historical_score_verified": false,
@@ -1509,7 +1521,7 @@
     {
       "canonical_rank": 83,
       "display_name": "M083 \u2014 Bayesian SBB + GARCH(1,1) prequential crps shrinkage",
-      "display_rank": 118,
+      "display_rank": 119,
       "exact_empirical_crps": "0.6497253325075882",
       "historical_rank": 94,
       "historical_score_verified": false,
@@ -1521,7 +1533,7 @@
     {
       "canonical_rank": 84,
       "display_name": "M084 \u2014 SV Baseline: prequential crps mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 119,
+      "display_rank": 120,
       "exact_empirical_crps": "0.6537412961766191",
       "historical_rank": 95,
       "historical_score_verified": false,
@@ -1533,7 +1545,7 @@
     {
       "canonical_rank": 85,
       "display_name": "M085 \u2014 SV Baseline: Horizon-Credibility mean sample standardized sbb drift instability Optimal Block...",
-      "display_rank": 120,
+      "display_rank": 121,
       "exact_empirical_crps": "0.9114882381254186",
       "historical_rank": 96,
       "historical_score_verified": false,
@@ -1545,7 +1557,7 @@
     {
       "canonical_rank": 86,
       "display_name": "M086 \u2014 Bayesian SBB + Absolute-EWMA zero sharpe",
-      "display_rank": 121,
+      "display_rank": 122,
       "exact_empirical_crps": "1.093514037744399",
       "historical_rank": 97,
       "historical_score_verified": false,
@@ -1557,7 +1569,7 @@
     {
       "canonical_rank": 87,
       "display_name": "M087 \u2014 SV Baseline: zero mean sample standardized sbb Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 122,
+      "display_rank": 123,
       "exact_empirical_crps": "1.1006859236794992",
       "historical_rank": 98,
       "historical_score_verified": false,
@@ -1569,7 +1581,7 @@
     {
       "canonical_rank": 88,
       "display_name": "M088 \u2014 SV Baseline: zero mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
-      "display_rank": 123,
+      "display_rank": 124,
       "exact_empirical_crps": "1.1195173396315592",
       "historical_rank": 99,
       "historical_score_verified": false,
@@ -1581,7 +1593,7 @@
     {
       "canonical_rank": 89,
       "display_name": "M089 \u2014 Zero-Mean Gaussian Volatility",
-      "display_rank": 124,
+      "display_rank": 125,
       "exact_empirical_crps": "1.1384137425967467",
       "historical_rank": 100,
       "historical_score_verified": false,
@@ -1593,7 +1605,7 @@
     {
       "canonical_rank": 90,
       "display_name": "M090 \u2014 SV Baseline: zero mean jf skewt Adaptive MCMC",
-      "display_rank": 125,
+      "display_rank": 126,
       "exact_empirical_crps": "1.1590721785508036",
       "historical_rank": 101,
       "historical_score_verified": false,
@@ -1605,7 +1617,7 @@
     {
       "canonical_rank": 91,
       "display_name": "M091 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 126,
+      "display_rank": 127,
       "exact_empirical_crps": "1.3939609935924318",
       "historical_rank": 102,
       "historical_score_verified": false,
@@ -1617,7 +1629,7 @@
     {
       "canonical_rank": 92,
       "display_name": "M092 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 127,
+      "display_rank": 128,
       "exact_empirical_crps": "1.394454539868827",
       "historical_rank": 103,
       "historical_score_verified": false,
@@ -1629,7 +1641,7 @@
     {
       "canonical_rank": 93,
       "display_name": "M093 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 128,
+      "display_rank": 129,
       "exact_empirical_crps": "1.3959400274760703",
       "historical_rank": 104,
       "historical_score_verified": false,
@@ -1641,7 +1653,7 @@
     {
       "canonical_rank": 94,
       "display_name": "M094 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 129,
+      "display_rank": 130,
       "exact_empirical_crps": "1.397733076381085",
       "historical_rank": 105,
       "historical_score_verified": false,
@@ -1653,7 +1665,7 @@
     {
       "canonical_rank": 95,
       "display_name": "M095 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 130,
+      "display_rank": 131,
       "exact_empirical_crps": "1.397740595391729",
       "historical_rank": 106,
       "historical_score_verified": false,
@@ -1665,7 +1677,7 @@
     {
       "canonical_rank": 96,
       "display_name": "M096 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 131,
+      "display_rank": 132,
       "exact_empirical_crps": "1.3977790649480575",
       "historical_rank": 107,
       "historical_score_verified": false,
@@ -1677,7 +1689,7 @@
     {
       "canonical_rank": 97,
       "display_name": "M097 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 132,
+      "display_rank": 133,
       "exact_empirical_crps": "1.3978269684392717",
       "historical_rank": 108,
       "historical_score_verified": false,
@@ -1689,7 +1701,7 @@
     {
       "canonical_rank": 98,
       "display_name": "M098 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 133,
+      "display_rank": 134,
       "exact_empirical_crps": "1.3978415828852144",
       "historical_rank": 109,
       "historical_score_verified": false,
@@ -1701,7 +1713,7 @@
     {
       "canonical_rank": 99,
       "display_name": "M099 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 134,
+      "display_rank": 135,
       "exact_empirical_crps": "1.3978465653988592",
       "historical_rank": 110,
       "historical_score_verified": false,
@@ -1713,7 +1725,7 @@
     {
       "canonical_rank": 100,
       "display_name": "M100 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 135,
+      "display_rank": 136,
       "exact_empirical_crps": "1.3978634801910863",
       "historical_rank": 111,
       "historical_score_verified": false,
@@ -1725,7 +1737,7 @@
     {
       "canonical_rank": 101,
       "display_name": "M101 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 136,
+      "display_rank": 137,
       "exact_empirical_crps": "1.3978809348718848",
       "historical_rank": 112,
       "historical_score_verified": false,
@@ -1737,7 +1749,7 @@
     {
       "canonical_rank": 102,
       "display_name": "M102 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 137,
+      "display_rank": 138,
       "exact_empirical_crps": "1.3978849647790441",
       "historical_rank": 113,
       "historical_score_verified": false,
@@ -1749,7 +1761,7 @@
     {
       "canonical_rank": 103,
       "display_name": "M103 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 138,
+      "display_rank": 139,
       "exact_empirical_crps": "1.3980037569014498",
       "historical_rank": 114,
       "historical_score_verified": false,
@@ -1761,7 +1773,7 @@
     {
       "canonical_rank": 104,
       "display_name": "M104 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 139,
+      "display_rank": 140,
       "exact_empirical_crps": "1.3981354253541685",
       "historical_rank": 115,
       "historical_score_verified": false,
@@ -1773,7 +1785,7 @@
     {
       "canonical_rank": 105,
       "display_name": "M105 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 140,
+      "display_rank": 141,
       "exact_empirical_crps": "1.39814212854375",
       "historical_rank": 116,
       "historical_score_verified": false,
@@ -1785,7 +1797,7 @@
     {
       "canonical_rank": 106,
       "display_name": "M106 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 141,
+      "display_rank": 142,
       "exact_empirical_crps": "1.3981489248304872",
       "historical_rank": 117,
       "historical_score_verified": false,
@@ -1797,7 +1809,7 @@
     {
       "canonical_rank": 107,
       "display_name": "M107 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 142,
+      "display_rank": 143,
       "exact_empirical_crps": "1.3981600885994794",
       "historical_rank": 118,
       "historical_score_verified": false,
@@ -1809,7 +1821,7 @@
     {
       "canonical_rank": 108,
       "display_name": "M108 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 143,
+      "display_rank": 144,
       "exact_empirical_crps": "1.3981704584929355",
       "historical_rank": 119,
       "historical_score_verified": false,
@@ -1821,7 +1833,7 @@
     {
       "canonical_rank": 109,
       "display_name": "M109 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 144,
+      "display_rank": 145,
       "exact_empirical_crps": "1.3981779099815352",
       "historical_rank": 120,
       "historical_score_verified": false,
@@ -1833,7 +1845,7 @@
     {
       "canonical_rank": 110,
       "display_name": "M110 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 145,
+      "display_rank": 146,
       "exact_empirical_crps": "1.3981814692527004",
       "historical_rank": 121,
       "historical_score_verified": false,
@@ -1845,7 +1857,7 @@
     {
       "canonical_rank": 111,
       "display_name": "M111 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 146,
+      "display_rank": 147,
       "exact_empirical_crps": "1.3981856518380056",
       "historical_rank": 122,
       "historical_score_verified": false,
@@ -1857,7 +1869,7 @@
     {
       "canonical_rank": 112,
       "display_name": "M112 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 147,
+      "display_rank": 148,
       "exact_empirical_crps": "1.3982628220055802",
       "historical_rank": 123,
       "historical_score_verified": false,
@@ -1869,7 +1881,7 @@
     {
       "canonical_rank": 113,
       "display_name": "M113 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 148,
+      "display_rank": 149,
       "exact_empirical_crps": "1.3982697639262922",
       "historical_rank": 124,
       "historical_score_verified": false,
@@ -1881,7 +1893,7 @@
     {
       "canonical_rank": 114,
       "display_name": "M114 \u2014 portfolio gjr garch eb sampler moving block optimal",
-      "display_rank": 149,
+      "display_rank": 150,
       "exact_empirical_crps": "1.3983255959648557",
       "historical_rank": 125,
       "historical_score_verified": false,
@@ -1893,7 +1905,7 @@
     {
       "canonical_rank": 115,
       "display_name": "M115 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 150,
+      "display_rank": 151,
       "exact_empirical_crps": "1.3983353010541828",
       "historical_rank": 126,
       "historical_score_verified": false,
@@ -1905,7 +1917,7 @@
     {
       "canonical_rank": 116,
       "display_name": "M116 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 151,
+      "display_rank": 152,
       "exact_empirical_crps": "1.3983470820963604",
       "historical_rank": 127,
       "historical_score_verified": false,
@@ -1917,7 +1929,7 @@
     {
       "canonical_rank": 117,
       "display_name": "M117 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 152,
+      "display_rank": 153,
       "exact_empirical_crps": "1.398378701915861",
       "historical_rank": 128,
       "historical_score_verified": false,
@@ -1929,7 +1941,7 @@
     {
       "canonical_rank": 118,
       "display_name": "M118 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 153,
+      "display_rank": 154,
       "exact_empirical_crps": "1.3983867606761249",
       "historical_rank": 129,
       "historical_score_verified": false,
@@ -1941,7 +1953,7 @@
     {
       "canonical_rank": 119,
       "display_name": "M119 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 154,
+      "display_rank": 155,
       "exact_empirical_crps": "1.3984390031453264",
       "historical_rank": 130,
       "historical_score_verified": false,
@@ -1953,7 +1965,7 @@
     {
       "canonical_rank": 120,
       "display_name": "M120 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 155,
+      "display_rank": 156,
       "exact_empirical_crps": "1.3984562744087308",
       "historical_rank": 131,
       "historical_score_verified": false,
@@ -1965,7 +1977,7 @@
     {
       "canonical_rank": 121,
       "display_name": "M121 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 156,
+      "display_rank": 157,
       "exact_empirical_crps": "1.3984745100501388",
       "historical_rank": 132,
       "historical_score_verified": false,
@@ -1977,7 +1989,7 @@
     {
       "canonical_rank": 122,
       "display_name": "M122 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 157,
+      "display_rank": 158,
       "exact_empirical_crps": "1.398498926301088",
       "historical_rank": 133,
       "historical_score_verified": false,
@@ -1989,7 +2001,7 @@
     {
       "canonical_rank": 123,
       "display_name": "M123 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 158,
+      "display_rank": 159,
       "exact_empirical_crps": "1.3985322599509085",
       "historical_rank": 134,
       "historical_score_verified": false,
@@ -2001,7 +2013,7 @@
     {
       "canonical_rank": 124,
       "display_name": "M124 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 159,
+      "display_rank": 160,
       "exact_empirical_crps": "1.3985541861382234",
       "historical_rank": 135,
       "historical_score_verified": false,
@@ -2013,7 +2025,7 @@
     {
       "canonical_rank": 125,
       "display_name": "M125 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 160,
+      "display_rank": 161,
       "exact_empirical_crps": "1.3985558885548401",
       "historical_rank": 136,
       "historical_score_verified": false,
@@ -2025,7 +2037,7 @@
     {
       "canonical_rank": 126,
       "display_name": "M126 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 161,
+      "display_rank": 162,
       "exact_empirical_crps": "1.3985659646758963",
       "historical_rank": 137,
       "historical_score_verified": false,
@@ -2037,7 +2049,7 @@
     {
       "canonical_rank": 127,
       "display_name": "M127 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 162,
+      "display_rank": 163,
       "exact_empirical_crps": "1.3985857992055661",
       "historical_rank": 138,
       "historical_score_verified": false,
@@ -2049,7 +2061,7 @@
     {
       "canonical_rank": 128,
       "display_name": "M128 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 163,
+      "display_rank": 164,
       "exact_empirical_crps": "1.3985913191091186",
       "historical_rank": 139,
       "historical_score_verified": false,
@@ -2061,7 +2073,7 @@
     {
       "canonical_rank": 129,
       "display_name": "M129 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 164,
+      "display_rank": 165,
       "exact_empirical_crps": "1.398595599264063",
       "historical_rank": 140,
       "historical_score_verified": false,
@@ -2073,7 +2085,7 @@
     {
       "canonical_rank": 130,
       "display_name": "M130 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 165,
+      "display_rank": 166,
       "exact_empirical_crps": "1.3986000659702869",
       "historical_rank": 141,
       "historical_score_verified": false,
@@ -2085,7 +2097,7 @@
     {
       "canonical_rank": 131,
       "display_name": "M131 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 166,
+      "display_rank": 167,
       "exact_empirical_crps": "1.398603920343929",
       "historical_rank": 142,
       "historical_score_verified": false,
@@ -2097,7 +2109,7 @@
     {
       "canonical_rank": 132,
       "display_name": "M132 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 167,
+      "display_rank": 168,
       "exact_empirical_crps": "1.3986087873428916",
       "historical_rank": 143,
       "historical_score_verified": false,
@@ -2109,7 +2121,7 @@
     {
       "canonical_rank": 133,
       "display_name": "M133 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 168,
+      "display_rank": 169,
       "exact_empirical_crps": "1.398614594265329",
       "historical_rank": 144,
       "historical_score_verified": false,
@@ -2121,7 +2133,7 @@
     {
       "canonical_rank": 134,
       "display_name": "M134 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 169,
+      "display_rank": 170,
       "exact_empirical_crps": "1.3986283667681205",
       "historical_rank": 145,
       "historical_score_verified": false,
@@ -2133,7 +2145,7 @@
     {
       "canonical_rank": 135,
       "display_name": "M135 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 170,
+      "display_rank": 171,
       "exact_empirical_crps": "1.3986305030060047",
       "historical_rank": 146,
       "historical_score_verified": false,
@@ -2145,7 +2157,7 @@
     {
       "canonical_rank": 136,
       "display_name": "M136 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 171,
+      "display_rank": 172,
       "exact_empirical_crps": "1.398634285011964",
       "historical_rank": 147,
       "historical_score_verified": false,
@@ -2157,7 +2169,7 @@
     {
       "canonical_rank": 137,
       "display_name": "M137 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 172,
+      "display_rank": 173,
       "exact_empirical_crps": "1.398638231629147",
       "historical_rank": 148,
       "historical_score_verified": false,
@@ -2169,7 +2181,7 @@
     {
       "canonical_rank": 138,
       "display_name": "M138 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 173,
+      "display_rank": 174,
       "exact_empirical_crps": "1.3986412698798691",
       "historical_rank": 149,
       "historical_score_verified": false,
@@ -2181,7 +2193,7 @@
     {
       "canonical_rank": 139,
       "display_name": "M139 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 174,
+      "display_rank": 175,
       "exact_empirical_crps": "1.3986477259290357",
       "historical_rank": 150,
       "historical_score_verified": false,
@@ -2193,7 +2205,7 @@
     {
       "canonical_rank": 140,
       "display_name": "M140 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 175,
+      "display_rank": 176,
       "exact_empirical_crps": "1.398653909754928",
       "historical_rank": 151,
       "historical_score_verified": false,
@@ -2205,7 +2217,7 @@
     {
       "canonical_rank": 141,
       "display_name": "M141 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 176,
+      "display_rank": 177,
       "exact_empirical_crps": "1.398654970415207",
       "historical_rank": 152,
       "historical_score_verified": false,
@@ -2217,7 +2229,7 @@
     {
       "canonical_rank": 142,
       "display_name": "M142 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 177,
+      "display_rank": 178,
       "exact_empirical_crps": "1.39865526641972",
       "historical_rank": 153,
       "historical_score_verified": false,
@@ -2229,7 +2241,7 @@
     {
       "canonical_rank": 143,
       "display_name": "M143 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 178,
+      "display_rank": 179,
       "exact_empirical_crps": "1.3986759324797136",
       "historical_rank": 154,
       "historical_score_verified": false,
@@ -2241,7 +2253,7 @@
     {
       "canonical_rank": 144,
       "display_name": "M144 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 179,
+      "display_rank": 180,
       "exact_empirical_crps": "1.3986772432810584",
       "historical_rank": 155,
       "historical_score_verified": false,
@@ -2253,7 +2265,7 @@
     {
       "canonical_rank": 145,
       "display_name": "M145 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 180,
+      "display_rank": 181,
       "exact_empirical_crps": "1.3986850338208119",
       "historical_rank": 156,
       "historical_score_verified": false,
@@ -2265,7 +2277,7 @@
     {
       "canonical_rank": 146,
       "display_name": "M146 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 181,
+      "display_rank": 182,
       "exact_empirical_crps": "1.3986949146515641",
       "historical_rank": 157,
       "historical_score_verified": false,
@@ -2277,7 +2289,7 @@
     {
       "canonical_rank": 147,
       "display_name": "M147 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 182,
+      "display_rank": 183,
       "exact_empirical_crps": "1.3987093965753608",
       "historical_rank": 158,
       "historical_score_verified": false,
@@ -2289,7 +2301,7 @@
     {
       "canonical_rank": 148,
       "display_name": "M148 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 183,
+      "display_rank": 184,
       "exact_empirical_crps": "1.3987131551891343",
       "historical_rank": 159,
       "historical_score_verified": false,
@@ -2301,7 +2313,7 @@
     {
       "canonical_rank": 149,
       "display_name": "M149 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 184,
+      "display_rank": 185,
       "exact_empirical_crps": "1.3987298380819884",
       "historical_rank": 160,
       "historical_score_verified": false,
@@ -2313,7 +2325,7 @@
     {
       "canonical_rank": 150,
       "display_name": "M150 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 185,
+      "display_rank": 186,
       "exact_empirical_crps": "1.398735565743864",
       "historical_rank": 161,
       "historical_score_verified": false,
@@ -2325,7 +2337,7 @@
     {
       "canonical_rank": 151,
       "display_name": "M151 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 186,
+      "display_rank": 187,
       "exact_empirical_crps": "1.3987390140803495",
       "historical_rank": 162,
       "historical_score_verified": false,
@@ -2337,7 +2349,7 @@
     {
       "canonical_rank": 152,
       "display_name": "M152 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 187,
+      "display_rank": 188,
       "exact_empirical_crps": "1.3987446234590257",
       "historical_rank": 163,
       "historical_score_verified": false,
@@ -2349,7 +2361,7 @@
     {
       "canonical_rank": 153,
       "display_name": "M153 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 188,
+      "display_rank": 189,
       "exact_empirical_crps": "1.3987743774326942",
       "historical_rank": 164,
       "historical_score_verified": false,
@@ -2361,7 +2373,7 @@
     {
       "canonical_rank": 154,
       "display_name": "M154 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 189,
+      "display_rank": 190,
       "exact_empirical_crps": "1.3987770506922792",
       "historical_rank": 165,
       "historical_score_verified": false,
@@ -2373,7 +2385,7 @@
     {
       "canonical_rank": 155,
       "display_name": "M155 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 190,
+      "display_rank": 191,
       "exact_empirical_crps": "1.398781975705103",
       "historical_rank": 166,
       "historical_score_verified": false,
@@ -2385,7 +2397,7 @@
     {
       "canonical_rank": 156,
       "display_name": "M156 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 191,
+      "display_rank": 192,
       "exact_empirical_crps": "1.398837556325615",
       "historical_rank": 167,
       "historical_score_verified": false,
@@ -2397,7 +2409,7 @@
     {
       "canonical_rank": 157,
       "display_name": "M157 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 192,
+      "display_rank": 193,
       "exact_empirical_crps": "1.398849482203863",
       "historical_rank": 168,
       "historical_score_verified": false,
@@ -2409,7 +2421,7 @@
     {
       "canonical_rank": 158,
       "display_name": "M158 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 193,
+      "display_rank": 194,
       "exact_empirical_crps": "1.3988585290450222",
       "historical_rank": 169,
       "historical_score_verified": false,
@@ -2421,7 +2433,7 @@
     {
       "canonical_rank": 159,
       "display_name": "M159 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 194,
+      "display_rank": 195,
       "exact_empirical_crps": "1.398859197173112",
       "historical_rank": 170,
       "historical_score_verified": false,
@@ -2433,7 +2445,7 @@
     {
       "canonical_rank": 160,
       "display_name": "M160 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 195,
+      "display_rank": 196,
       "exact_empirical_crps": "1.3988604480035662",
       "historical_rank": 171,
       "historical_score_verified": false,
@@ -2445,7 +2457,7 @@
     {
       "canonical_rank": 161,
       "display_name": "M161 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
-      "display_rank": 196,
+      "display_rank": 197,
       "exact_empirical_crps": "1.398861065096854",
       "historical_rank": 172,
       "historical_score_verified": false,
@@ -2457,7 +2469,7 @@
     {
       "canonical_rank": 162,
       "display_name": "M162 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 197,
+      "display_rank": 198,
       "exact_empirical_crps": "1.3988921309203743",
       "historical_rank": 173,
       "historical_score_verified": false,
@@ -2469,7 +2481,7 @@
     {
       "canonical_rank": 163,
       "display_name": "M163 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 198,
+      "display_rank": 199,
       "exact_empirical_crps": "1.3988941443839875",
       "historical_rank": 174,
       "historical_score_verified": false,
@@ -2481,7 +2493,7 @@
     {
       "canonical_rank": 164,
       "display_name": "M164 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 199,
+      "display_rank": 200,
       "exact_empirical_crps": "1.3989015323173275",
       "historical_rank": 175,
       "historical_score_verified": false,
@@ -2493,7 +2505,7 @@
     {
       "canonical_rank": 165,
       "display_name": "M165 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 200,
+      "display_rank": 201,
       "exact_empirical_crps": "1.3989039012694255",
       "historical_rank": 176,
       "historical_score_verified": false,
@@ -2505,7 +2517,7 @@
     {
       "canonical_rank": 166,
       "display_name": "M166 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 201,
+      "display_rank": 202,
       "exact_empirical_crps": "1.3989043944794806",
       "historical_rank": 177,
       "historical_score_verified": false,
@@ -2517,7 +2529,7 @@
     {
       "canonical_rank": 167,
       "display_name": "M167 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 202,
+      "display_rank": 203,
       "exact_empirical_crps": "1.3989068024565854",
       "historical_rank": 178,
       "historical_score_verified": false,
@@ -2529,7 +2541,7 @@
     {
       "canonical_rank": 168,
       "display_name": "M168 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 203,
+      "display_rank": 204,
       "exact_empirical_crps": "1.398913152906432",
       "historical_rank": 179,
       "historical_score_verified": false,
@@ -2541,7 +2553,7 @@
     {
       "canonical_rank": 169,
       "display_name": "M169 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 204,
+      "display_rank": 205,
       "exact_empirical_crps": "1.3989184787097335",
       "historical_rank": 180,
       "historical_score_verified": false,
@@ -2553,7 +2565,7 @@
     {
       "canonical_rank": 170,
       "display_name": "M170 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
-      "display_rank": 205,
+      "display_rank": 206,
       "exact_empirical_crps": "1.3989493285549555",
       "historical_rank": 181,
       "historical_score_verified": false,
@@ -2565,7 +2577,7 @@
     {
       "canonical_rank": 171,
       "display_name": "M171 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 206,
+      "display_rank": 207,
       "exact_empirical_crps": "1.3989528937734335",
       "historical_rank": 182,
       "historical_score_verified": false,
@@ -2577,7 +2589,7 @@
     {
       "canonical_rank": 172,
       "display_name": "M172 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
-      "display_rank": 207,
+      "display_rank": 208,
       "exact_empirical_crps": "1.3989593423886542",
       "historical_rank": 183,
       "historical_score_verified": false,
@@ -2589,7 +2601,7 @@
     {
       "canonical_rank": 173,
       "display_name": "M173 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
-      "display_rank": 208,
+      "display_rank": 209,
       "exact_empirical_crps": "1.3989654738758714",
       "historical_rank": 184,
       "historical_score_verified": false,
@@ -2601,7 +2613,7 @@
     {
       "canonical_rank": 174,
       "display_name": "M174 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
-      "display_rank": 209,
+      "display_rank": 210,
       "exact_empirical_crps": "1.3993406424482673",
       "historical_rank": 185,
       "historical_score_verified": false,
@@ -2613,7 +2625,7 @@
     {
       "canonical_rank": 175,
       "display_name": "M175 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
-      "display_rank": 210,
+      "display_rank": 211,
       "exact_empirical_crps": "1.3998860914387188",
       "historical_rank": 186,
       "historical_score_verified": false,
@@ -2868,5 +2880,5 @@
     "research_repository_revision": "6666be3597b986aff945b985f11c6419284d0f2c"
   },
   "unscored_candidate_row_count": 6,
-  "validated_full_panel_row_count": 35
+  "validated_full_panel_row_count": 36
 }
