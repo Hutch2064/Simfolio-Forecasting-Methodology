@@ -1,14 +1,14 @@
-# Canonical model reference (243 models including the original 175)
+# Canonical model reference (244 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **243** rows, canonical ranks **1–243**.
+- Membership: **244** rows, canonical ranks **1–244**.
 - Retained source ranks: **12–186**.
-- Membership digest: `d5d1e1c6f3784fd2fb3076ec72c0c93a3dce2bf6e1916ced53df9a1b112cb108`.
+- Membership digest: `719ba533a24bb5ffad293571641f46f7d51a75245b66189bbdf3a009b8d56daf`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **243**.
+- Confirmed full statistical specifications: **244**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -257,3 +257,4 @@ The ledger is the sole membership authority for this public set.
 | 241 | None | asset_map_joint_gaussian_multiscale_rough_stationary_normalized | M241 — Asset MAP Joint Gaussian Multiscale + Dynamic Rough, Stationary Normalized | asset_level_extension | 0.24296927753915046 | 0.242969278 | true | validated_full_canonical_score |
 | 242 | None | asset_map_adaptive_stable_coupled_multiscale_dynamic_rough | M242 — Asset MAP Stable Coupled Adaptive Memory + Dynamic Rough | asset_level_extension | 0.24131773884753774 | 0.241317739 | true | validated_full_canonical_score |
 | 243 | None | asset_map_stationary_ar1_proxy_dynamic_rough | M243 — Asset MAP Stationary AR1 Proxy + Dynamic Rough | asset_level_extension | 0.23193080892515236 | 0.231930809 | true | validated_full_canonical_score |
+| 244 | None | asset_map_stationary_ar1_ou_residual_volatility | M244 — Asset MAP Stationary AR1 Proxy + Exact OU Residual Volatility | asset_level_extension | 0.2339750944781271 | 0.233975094 | true | validated_full_canonical_score |
