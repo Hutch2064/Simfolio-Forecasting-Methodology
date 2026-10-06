@@ -158,3 +158,23 @@ def test_single_predictive_loading_control_is_adaptive_first_fit():
     assert expected.tobytes()==actual.tobytes()
     assert receipt['loading_scale']==control['loading_scale']
     assert control['component_count']==1
+
+
+def test_unclipped_rough_observations_match_untransformed_log_square():
+    p=Path(__file__).resolve().parents[1]/'tools/learned_loading_unclipped_rough/models.py'
+    spec=importlib.util.spec_from_file_location('test_unclipped_learned_loading',p)
+    m=importlib.util.module_from_spec(spec);sys.modules[spec.name]=m;spec.loader.exec_module(m)
+    x=np.random.default_rng(813).normal(.0003,.012,600)
+    x[0]=.35;x[1]=-.3
+    data=x.tobytes();m.initialize(None,1,1)
+    y,eps=m.observed(data)
+    original=m.rough.parent.predecessor_fit(data)
+    bias,noise=m.rough.parent.parent.log_square_moments(original['student_return_laplace_fit']['inverse_df'])
+    gaussian_bias,_=m.rough.parent.parent.log_square_moments(0.)
+    squared=((x-x.mean())*100)**2
+    floor=max(np.quantile(squared[squared>0],.001)*.1,1e-10)
+    raw=np.log(np.maximum(squared,floor))-m.shell.bd.SV_LOG_CHI_SQUARE_MEAN+gaussian_bias-bias
+    expected=raw-m.causal_predictor(raw,*original['posterior_center'][:3],noise)
+    assert np.array_equal(y,expected)
+    assert np.array_equal(eps,(x-x.mean())*100)
+    assert raw.max()>np.quantile(raw,.995)
