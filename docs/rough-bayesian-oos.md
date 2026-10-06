@@ -820,3 +820,5 @@ The shared causal predictor now resides in an importable module, preserving
 its arithmetic while allowing compiled caches to survive different candidate
 module aliases. A two-process cache regression and all five saved M216 smoke
 loss vectors verify the cache repair without changing scores.
+
+The raw-return Laplace arm is canonical **M218**, with full-panel CRPS **0.2525845890080237** and isolated fresh-cache time **117.87531887501245 seconds**. All 4,080 vectors reconstruct the 701,280 scored cells exactly; all conventional and rough optimizers converged. It wins 39 of 80 portfolio averages against M193, but its overall score trails M193 and M216. [Audited receipt](results/rough-bayesian/raw-return-laplace-panel.json).

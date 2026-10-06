@@ -34,16 +34,16 @@
     "notes"
   ],
   "membership": {
-    "count": 217,
+    "count": 218,
     "canonical_rank_range": [
       1,
-      217
+      218
     ],
     "source_rank_range": [
       12,
       186
     ],
-    "membership_digest": "f9595149b7c07217250a83817c3bae9c0281d3dc1ba4b7f76831d4bb40ee7c74",
+    "membership_digest": "6c1699562f7e1c6798b4d72954b4c15c39b8dbe68809601db56db0db2cdb455b",
     "membership_digest_algorithm": "sha256(UTF-8 of canonical_rank|historical_rank|public_model_id lines in canonical order, final newline)"
   },
   "score_evidence": {
@@ -98,8 +98,8 @@
       },
       {
         "relative_path": "src/simfolio_forecasting_methodology/resources/catalogs/canonical_175_part2.csv",
-        "sha256": "d38c3a9c05e5cd9330aff0bd6d9fb540e6c1756c80044e8b75e38aa43cc7d6d7",
-        "rows": 128
+        "sha256": "a92f3863726d5a4ed75b35472d254ef1a5160c283338b34d94c07ea91c3d022a",
+        "rows": 129
       }
     ],
     "protocol_identity": {
@@ -124,7 +124,7 @@
     }
   },
   "identity_policy": {
-    "full_statistical_specifications_confirmed": 217,
+    "full_statistical_specifications_confirmed": 218,
     "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
     "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
     "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
@@ -84990,6 +84990,1371 @@
         "M216 fit, mean, dependence, RNG, calendar, policy and clipping remain unchanged; innovation nodes normalized by their interpolated quantile-function moments.",
         "Gaussian log-square frequency-domain quasi likelihood with plug-in covariance parameters; not a full Bayesian raw-return posterior.",
         "Local research worker timings; no production promotion."
+      ]
+    },
+    {
+      "public_model_id": "asset_map_raw_return_laplace_multiscale_dynamic_rough",
+      "display_name": "M218 \u2014 Asset MAP Multiscale + Raw-return sparse Laplace conventional SV with multiscale and dynamic rough",
+      "historical_model_ids": [
+        "asset_map_raw_return_laplace_multiscale_dynamic_rough"
+      ],
+      "seed_identity": {
+        "source_model_key": "asset_map_raw_return_laplace_multiscale_dynamic_rough",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_MAP_multiscale_dynamic_rough_overlay",
+          "source_id": "asset_map_raw_return_laplace_multiscale_dynamic_rough",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "validated_research_candidate",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "model": "tempered_fractional_Volterra_log_variance_overlay",
+            "replacement": false,
+            "production_variance_anchor": false,
+            "production_mean_anchor": false,
+            "level": "training mean of causal conventional-SV prediction residual log-square proxy",
+            "parameter_uncertainty": "none: joint MAP point over H, log_kappa, log_scale",
+            "latent_states": "analytically marginalized Gaussian states; terminal filtering posterior sampled per predictive path",
+            "H_prior": {
+              "distribution": "uniform",
+              "bounds": [
+                0.01,
+                0.49
+              ],
+              "support": "strict interior; lower bound relaxed from 0.03 to 0.01"
+            },
+            "log_kappa_prior": {
+              "distribution": "truncated_normal",
+              "mean": "log(1/63)",
+              "sd": 2,
+              "bounds": [
+                "log(1/2520)",
+                "log(.5)"
+              ]
+            },
+            "log_scale_prior": {
+              "distribution": "truncated_normal",
+              "mean": "log(.7)",
+              "sd": 1.5,
+              "bounds": [
+                "log(.05)",
+                "log(3)"
+              ]
+            },
+            "kernel": {
+              "continuous_target": "exp(-kappa*t)*t**(H-.5)/Gamma(H+.5)",
+              "normalized_stationary_covariance": "E[exp(-kappa*(1+Z)/(1-Z)*t)], Z~Beta(.5-H,2*H)",
+              "lift": "positive Gauss-Jacobi spectral quadrature on logarithmic rates",
+              "error_metric": "normalized absolute stationary autocorrelation difference over every requested integer daily lag",
+              "error_tolerance": 0.001,
+              "factor_selection": "first passing positive integer quadrature order per (H,kappa); no fixed factor count, preset list or factor cap",
+              "lag_domain": "1 through training_days+requested_horizon_days-1",
+              "certificate": "monotonic interval enclosure and C-second-derivative <=4*exp(-2)/t**2; recursively bisect unresolved integer-lag intervals",
+              "fast_rate_threshold": "-log(tolerance/2)",
+              "white_tail_error_bound": "tolerance/2 for every positive daily lag",
+              "zero_lag_variance": "analytic exact unit variance with Beta tail mass retained as independent white component",
+              "reference_numerics": "Tricomi U closed form; independent weighted Beta integration fallback for invalid special-function evaluations"
+            },
+            "daily_discretization": "exact exponential transitions of independent OU spectral factors",
+            "predictive_multiplier": "exp(.5*latent-.25*stationary_variance)",
+            "normalization": "stationary E[multiplier**2]=1; conditional variance signal retained",
+            "first_forecast_state": "one OU transition after final filtered observation",
+            "predecessor_variance_anchor": true,
+            "predecessor_mean_anchor": true,
+            "historical_observation": "unchanged winsorized log-square proxy minus conventional one-step prediction",
+            "measurement_variance": "plug-in log-square variance of empirical innovations recalculated from the raw-return Laplace latent mode; used in rough filter and Gaussian causal offset",
+            "conventional_offset": "one-step Gaussian conventional predictor with raw-return-fitted SV parameters and empirical innovation-pool noise"
+          },
+          "predictive_marginal": {
+            "method": "MAP parameters with a sampled Gaussian terminal state and future rough innovations per asset path",
+            "innovations": "empirical nodes from raw-return Laplace standardized innovations, centered and scaled using equal node weights",
+            "daily_log_return_clip": [
+              -1,
+              1
+            ],
+            "posterior_multiplier": "clip(predecessor_mean+(clipped_predecessor_asset_path-predecessor_mean)*rough_multiplier,-1,1)",
+            "node_normalization": "discrete equal-node mean zero and mean-square one; original interpolation and clipping retained"
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tools/raw_return_laplace_rough/models.py",
+            "revision": "dbe9a3f53e89831be5fdb25af1d4ec9340320450",
+            "sha256": "fb7f3e4864d02a61d99b214987e0e1016f15a4dac39b3aa3d1dc5017ac7793d9",
+            "entrypoints": [
+              "CANDIDATES[0].simulate_daily_log_returns"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "src/simfolio_forecasting_methodology/__init__.py",
+                "sha256": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/candidate_registry.py",
+                "sha256": "535d55b3b8878e429b9400319c0d67a9cbfd28b1a37c927b29b9a70301d80c01"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/catalog.py",
+                "sha256": "8d3f495d38b3fa6f3de412bd049864fa00efae096d64d6de3a2b12ca5f69918a"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/catalogue.py",
+                "sha256": "06d47ab81c35b3e3f33044d545d9f62f1bb62a340a4b24576d9f3fe9a5b2ccc2"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/cli.py",
+                "sha256": "3e48a1cc5cf9bf020b9ba6823be8b1cf59076a896226fff0761576400b52ff7b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/data.py",
+                "sha256": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/evaluation.py",
+                "sha256": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/experiment.py",
+                "sha256": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/__init__.py",
+                "sha256": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/__init__.py",
+                "sha256": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py",
+                "sha256": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py",
+                "sha256": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/frontier.py",
+                "sha256": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py",
+                "sha256": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/__init__.py",
+                "sha256": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py",
+                "sha256": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/base_models.py",
+                "sha256": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py",
+                "sha256": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py",
+                "sha256": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/factors.py",
+                "sha256": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py",
+                "sha256": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py",
+                "sha256": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/__init__.py",
+                "sha256": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py",
+                "sha256": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py",
+                "sha256": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py",
+                "sha256": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py",
+                "sha256": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py",
+                "sha256": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py",
+                "sha256": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/inla.py",
+                "sha256": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py",
+                "sha256": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py",
+                "sha256": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py",
+                "sha256": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py",
+                "sha256": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/registry.py",
+                "sha256": "6f45544cc87158a9157ff693e228443d18497881c1346c960bb0838a6c3e9257"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/naming.py",
+                "sha256": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/origins.py",
+                "sha256": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/panel.py",
+                "sha256": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/protocol.py",
+                "sha256": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/__init__.py",
+                "sha256": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/aggregate.py",
+                "sha256": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/checkpoint.py",
+                "sha256": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/executor.py",
+                "sha256": "c8d9ea263ac056d0ee459c76154d36e67e20403664c0e078a12f85268c155649"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/retained.py",
+                "sha256": "831aa1ab5eecdd90f3baa9867e325c2b9aeedcacd74085aae8bf899f5bc3edf4"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/verified_candidate_scores.py",
+                "sha256": "41c4747c033d9e4b5c4316a648843d0d2f18ccf9bc0dea8ba9ab2f8c5037eabf"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/runner.py",
+                "sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/safety_scan.py",
+                "sha256": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/scores.py",
+                "sha256": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/scoring.py",
+                "sha256": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/seeds.py",
+                "sha256": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/smoke.py",
+                "sha256": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/specifications.py",
+                "sha256": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+              },
+              {
+                "path": "tools/conditional_empirical_rough/models.py",
+                "sha256": "fc511ec8317783eb466df0308b1559ff25504857fee50c9f2eb9ca476ac08fd3"
+              },
+              {
+                "path": "tools/conditional_empirical_rough/run_panel.py",
+                "sha256": "7cedf3be346ec1289e28abc7ab88f8f18f0f6740ba811777faadb1ce94288253"
+              },
+              {
+                "path": "tools/conditional_empirical_rough/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/conditional_residual_rough/models.py",
+                "sha256": "024704d67a785fd198c72d8c69b3f73b991e513c613bc8f3f610852708e6e2c4"
+              },
+              {
+                "path": "tools/conditional_residual_rough/run_panel.py",
+                "sha256": "362055f5bf5b039d0724202d6d7ffc2dc82e924f3e75bf89023c833ce4669b66"
+              },
+              {
+                "path": "tools/conditional_residual_rough/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/consistent_noise_rough/causal_noise.py",
+                "sha256": "1ac4a030f4fd8494a09a44d483208d21e84fb8b2a4b0948f20ae7505d059eea5"
+              },
+              {
+                "path": "tools/consistent_noise_rough/models.py",
+                "sha256": "1d39a0721f24a5d5c6acbc25f909e4a33f86b73bde5138b9f136a51430083be1"
+              },
+              {
+                "path": "tools/consistent_noise_rough/run_panel.py",
+                "sha256": "5778dede3e12d9d3b4d42e426a8c67ed1ee2f60dee752d056d771aa23d7c8578"
+              },
+              {
+                "path": "tools/consistent_noise_rough/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/debiased_whittle_kernel.py",
+                "sha256": "49b308586ed51ad8c9ca7ba5e33aa5552ec6aa53dd80d597eafbe8d78094778c"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/models.py",
+                "sha256": "8bac9e0cfc99cd9a09aee5ae04e61c2857b0ddddc0dcb8edbc2487dc9cb60a9d"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/run_panel.py",
+                "sha256": "0d32e0330ff22262d06a23fb8fd063d4615dd0f308023ca798937cf384aab063"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/differenced_whittle_kernel.py",
+                "sha256": "ba6ed0932cef1c35e92e9aa6fe0fc6c69f72d477264adcb594e31920d384f7e1"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/models.py",
+                "sha256": "dbe8249143e6675dc233c2dea94a0df4c0d13931745fca4ab8d4d1bbb2c93de6"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/run_panel.py",
+                "sha256": "61a611e77b06138cbb421baf570eb43bc894012b5d5aa7ac70a2bab8cb7d3699"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/models.py",
+                "sha256": "0b3e0bcceb24ecbbd424eab2acb7a755443df09e0419b39e53fdbe8e19a0a1b2"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/posterior.py",
+                "sha256": "7854e7a65b2250ccf9e60e8edb3b7ddd9f027405fd3fe8d9e1d25d07c41eb785"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/progress.py",
+                "sha256": "4538d4336190b5395cc3500131da34867c0b3ee17c7021b76f6eb54f294fb5ed"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/run_panel.py",
+                "sha256": "a9250471852ec401c201558df5ea8a1ee12a3b23cf426943a0fa037fe1182139"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/empirical_rough_noise/models.py",
+                "sha256": "55698afe1d1d11815fa711e99efb5fa502a7dc7732e44412f6b4f066fe24e475"
+              },
+              {
+                "path": "tools/empirical_rough_noise/run_panel.py",
+                "sha256": "f32ea907ffc5245ef4cb33f49a525cd813022c50398b582012b41fc83af8c498"
+              },
+              {
+                "path": "tools/empirical_rough_noise/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_model_cases.py",
+                "sha256": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_scaling.py",
+                "sha256": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_dependence.py",
+                "sha256": "05ea1ca7c67003bfb8c217851e217558f770fd8a17ccf55c4f6ca0cdeac659fb"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_moments.py",
+                "sha256": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_chain.py",
+                "sha256": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_map.py",
+                "sha256": "ff14eb242d8701b1dfdd067c63ab81de6d47dbd8b057786ce67b209a4b1a6b76"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_postburn.py",
+                "sha256": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_smoothers.py",
+                "sha256": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46"
+              },
+              {
+                "path": "tools/mcmc_runtime/complex_sv.py",
+                "sha256": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71"
+              },
+              {
+                "path": "tools/mcmc_runtime/exact_path_kernels.py",
+                "sha256": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5"
+              },
+              {
+                "path": "tools/mcmc_runtime/finite_multiscale.py",
+                "sha256": "5f444323af6696d06840a8f88695e482c2e64cec921a62b8bc486f42fbd30906"
+              },
+              {
+                "path": "tools/mcmc_runtime/optimized_mcmc.py",
+                "sha256": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df"
+              },
+              {
+                "path": "tools/mcmc_runtime/parallel_chains.py",
+                "sha256": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3"
+              },
+              {
+                "path": "tools/mcmc_runtime/parameter_mcmc_tuned.py",
+                "sha256": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a"
+              },
+              {
+                "path": "tools/mcmc_runtime/predictive_sv_candidates.py",
+                "sha256": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309"
+              },
+              {
+                "path": "tools/mcmc_runtime/profile_runtime.py",
+                "sha256": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4"
+              },
+              {
+                "path": "tools/mcmc_runtime/replay_full_panel.py",
+                "sha256": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca"
+              },
+              {
+                "path": "tools/mcmc_runtime/research_jit_pilot.py",
+                "sha256": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e"
+              },
+              {
+                "path": "tools/mcmc_runtime/runtime_setup.py",
+                "sha256": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665"
+              },
+              {
+                "path": "tools/mcmc_runtime/steady_kalman_target.py",
+                "sha256": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394"
+              },
+              {
+                "path": "tools/mcmc_runtime/streamed_paths.py",
+                "sha256": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa"
+              },
+              {
+                "path": "tools/raw_return_laplace_rough/laplace_sv.py",
+                "sha256": "10864fc1d50efb3306c19480d534c0764e4ba1d1046d1494977cede898e5a533"
+              },
+              {
+                "path": "tools/raw_return_laplace_rough/models.py",
+                "sha256": "fb7f3e4864d02a61d99b214987e0e1016f15a4dac39b3aa3d1dc5017ac7793d9"
+              },
+              {
+                "path": "tools/raw_return_laplace_rough/run_panel.py",
+                "sha256": "1abebf2e8cfde2811098a535e32f3812a5422b2adb59ea7269f431411c100298"
+              },
+              {
+                "path": "tools/raw_return_laplace_rough/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/relaxed_hurst_differenced_rough/models.py",
+                "sha256": "2943675de70ff4407ae1b5661c9d554a691268f00886f0794758f1b45a59b698"
+              },
+              {
+                "path": "tools/relaxed_hurst_differenced_rough/run_panel.py",
+                "sha256": "68cbfe99d3b3c92433add659b8513a404f5060482257d75ee41bdc6d2f3ef1b9"
+              },
+              {
+                "path": "tools/relaxed_hurst_differenced_rough/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/rough_bayesian/coherent.py",
+                "sha256": "713f8c5790471ccfc2898c2c758be03dc72d04e76fe8d456859998f6d8327950"
+              },
+              {
+                "path": "tools/rough_bayesian/coherent_kernels.py",
+                "sha256": "64dc4e6f4bae8270b86c10d55102d0eefd1421fd93aa55771b6224652594bc47"
+              },
+              {
+                "path": "tools/rough_bayesian/dynamic.py",
+                "sha256": "6fe1eccf02c597d75b65c6259082eebce7237317a8f4ffa0a66ec98047342fac"
+              },
+              {
+                "path": "tools/rough_bayesian/inference.py",
+                "sha256": "9af54147f5db99fc37ad9b71f1cabc1b96762f641ab2372f7876e852d1e54ec3"
+              },
+              {
+                "path": "tools/rough_bayesian/kernels.py",
+                "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+              },
+              {
+                "path": "tools/rough_bayesian/mixture.py",
+                "sha256": "8a315cd80f214c19547a385e7ef807e4bbd2aea147a7ada20a9fcd52525280f0"
+              },
+              {
+                "path": "tools/rough_bayesian/mixture_kernels.py",
+                "sha256": "0d494d68c910b51ae8cb935ca86e0389f6906f6ec4581bd3322fe1c0e6b6dcf3"
+              },
+              {
+                "path": "tools/rough_bayesian/models.py",
+                "sha256": "73389a2fc2bbe0fb0bcbc88ad8aec70e9bfbbb8484c7e825e873f464cf570f9b"
+              },
+              {
+                "path": "tools/rough_bayesian/native.py",
+                "sha256": "696713549712fa70e01369ae5c7805c25ba02a88692a657ad1d1738a9798df2e"
+              },
+              {
+                "path": "tools/rough_bayesian/overlay.py",
+                "sha256": "a401776494b15125c30170bd76c3c9a62ad4626877b857a8d4f474327a852d97"
+              },
+              {
+                "path": "tools/rough_bayesian/overlay_filter.cpp",
+                "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
+              },
+              {
+                "path": "tools/rough_bayesian/run_panel.py",
+                "sha256": "71a8ada2fc26e1506dac8eae4d590576dd66715810347dc7c48dc4cc6c06f301"
+              },
+              {
+                "path": "tools/rough_bayesian/smoke.py",
+                "sha256": "a31f118e207a8aa62a4dec17c689c8c982f150da035150da4d2cab6d386ee395"
+              },
+              {
+                "path": "tools/rough_bayesian/standalone.py",
+                "sha256": "0be7df8758f4b1c31fe75ac863dd273cef4a12033150f6d36c39948c05a42472"
+              },
+              {
+                "path": "tools/rough_jump_vine/build_native.py",
+                "sha256": "2346d6501657e53a998c4fd758c7f077be0f6b65a79a49c7e439effead4c7819"
+              },
+              {
+                "path": "tools/rough_jump_vine/models.py",
+                "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+              },
+              {
+                "path": "tools/rough_jump_vine/native.patch",
+                "sha256": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4"
+              },
+              {
+                "path": "tools/rough_jump_vine/run_panel.py",
+                "sha256": "ff51781b37f38fad3477f8b22158b291bd16e6edad8a1e2cf38af71844a7a925"
+              },
+              {
+                "path": "tools/rough_jump_vine/smoke.py",
+                "sha256": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a"
+              },
+              {
+                "path": "tools/streamed_rough_paths/models.py",
+                "sha256": "714f90846fb04618574ce687a05082c6ad784fad9fff4fb63c43532cdc99e705"
+              },
+              {
+                "path": "tools/streamed_rough_paths/paths.cpp",
+                "sha256": "0f6678a9582221cc1be0a06b8ad72b0d9b7cf9eaf66539e9adf1addb5d6d7732"
+              },
+              {
+                "path": "tools/streamed_rough_paths/run_panel.py",
+                "sha256": "0629c00a461a64091788d53484b6e451647d842684c62688d39edbe45ed2d78b"
+              },
+              {
+                "path": "tools/streamed_rough_paths/screen.py",
+                "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              {
+                "path": "tools/streamed_rough_paths/stream_native.py",
+                "sha256": "9d5292b05244bb1505c4503e66e0d51239e4a3a05b1c9c7582eea83277e3652a"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+          "source_seed_contract": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+          "failure_semantics": {
+            "paths": "reject nonfinite outputs",
+            "kernel": "require finite positive quadrature and complete daily-lag error enclosure; no silent tolerance relaxation",
+            "posterior": "MAP optimizer must converge; no initial-parameter fallback and no tolerance relaxation"
+          },
+          "source_seed_context_ref": "asset_level_MAP_multiscale_dynamic_rough_overlay",
+          "baseline": {
+            "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+            "fitter": "original predecessor initializes raw Gaussian-return sparse Laplace marginal MAP over level, persistence and amplitude; original mean retained",
+            "multiscale_timescales_days": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "timescales_shortened_for_insufficient_history": true,
+            "mean_innovations_dependence_calendar_policy": "original return mean and dependence/calendar/policy retained; empirical innovation pool recalculated from raw-return Laplace latent mode",
+            "parameter_uncertainty": false
+          },
+          "parameter_estimation": {
+            "conventional": "three-parameter MAP with stationary AR1 latent log variance and Gaussian raw percentage-return observations; sparse Laplace state integration; original priors/support retained",
+            "rough": "MAP point under debiased Whittle pseudolikelihood; undifferenced conditional Gaussian terminal-state filtering",
+            "likelihood": "Sykulski et al. (2019) finite-sample expected-periodogram pseudolikelihood plus unchanged rough parameter priors",
+            "optimizer": "bounded normalized-coordinate L-BFGS-B",
+            "ftol": 1e-10,
+            "gtol": 1e-05,
+            "maximum_iterations": 200,
+            "failure_retry": "same target and tolerances with extended line search maxls100; bounded Powell if necessary; reject unresolved fits",
+            "resource_ceiling_seconds": 10,
+            "fixed_posterior_representatives": null,
+            "chains": 0,
+            "two_stage_plug_in_offset": true,
+            "measurement_noise_uncertainty": false,
+            "spectral_reference": "https://doi.org/10.1093/biomet/asy071",
+            "spectral_covariance": "analytic tempered fractional covariance at every integer observed lag; expected finite-sample periodogram computed by FFT",
+            "spectral_frequencies": "all rFFT frequencies of first differences; known zero difference mean",
+            "spectral_weights": "one for conjugate pairs; one half for real Nyquist and, if included, zero",
+            "spectral_window": "finite-sample triangular lag weights; no taper or frequency subsampling",
+            "differenced_observations": true,
+            "measurement_noise_after_differencing": "MA(1) with covariance 2R at lag zero and -R at lag one",
+            "observation_transform": "first differences of log-square rough proxy; original undifferenced observations retained for terminal filter",
+            "measurement_noise_spectrum": "exact finite-sample MA(1) spectrum of differenced independent observation noise",
+            "frequency_weights": "zero and Nyquist half weight; all other rFFT frequencies full weight",
+            "factor_resolution_during_fit": false,
+            "prediction_covariance": "unchanged accuracy-controlled dynamic OU lift, resolved after parameter fitting",
+            "return_mean_model_changed": false,
+            "conventional_offset_noise": "same empirical innovation-pool log-square variance as rough likelihood; conventional raw-return likelihood has no fitted Gaussian proxy-noise parameter",
+            "conventional_laplace": {
+              "latent_objective": "raw Gaussian return negative log density plus stationary AR1 Gaussian log-volatility prior",
+              "mode": "damped Newton, linear-time tridiagonal LDL solves",
+              "latent_precision": "Newton decrement <=1e-14 and maximum Newton step <=1e-10; 100-iteration safety ceiling rejects unresolved mode",
+              "marginal_likelihood": "Laplace mode-density and tridiagonal Hessian determinant",
+              "gradient": "analytic hyperparameter gradient with implicit latent-mode curvature derivatives",
+              "parameters": [
+                "long_run_log_variance",
+                "persistence",
+                "volatility_amplitude"
+              ],
+              "optimizer": "L-BFGS-B; same-objective Powell retry on optimizer failure; unresolved fits rejected",
+              "forecast_state": "conditional Laplace Gaussian mode/covariance, not parameter posterior integration",
+              "reference": "https://doi.org/10.1111/j.1467-9868.2008.00700.x",
+              "full_INLA": false,
+              "raw_return_fit": "Gaussian likelihood; future empirical innovations retained from original forecasting shell"
+            }
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "e6870fd20a981396541a19bb259b8b242e2ab6b9feee13c3255dd6303c39bb0c",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "dbe9a3f53e89831be5fdb25af1d4ec9340320450",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "docs/results/rough-bayesian/raw-return-laplace-panel.json",
+          "sha256": "97ed026124faa243bff707ffdeb5655e4851dc06cc3866c5a6e4c6f9c99b571b",
+          "manifest_sha256": "9722330eb413e0248894b3a00b060ad04a78c7029934cbf36745656c1db89b12",
+          "scope": "full_canonical",
+          "tasks_per_model": 4080,
+          "cells_per_model": 701280,
+          "complete_portfolios": 80,
+          "simulations": 240,
+          "all_denominator_gates_passed": true,
+          "audit_field": "audit",
+          "source_score_field": "scores.asset_map_raw_return_laplace_multiscale_dynamic_rough.exact_empirical_crps"
+        },
+        "source_code": {
+          "relative_path": "tools/raw_return_laplace_rough/models.py",
+          "sha256": "fb7f3e4864d02a61d99b214987e0e1016f15a4dac39b3aa3d1dc5017ac7793d9"
+        },
+        "parameter_dictionary": {
+          "sha256": "e6870fd20a981396541a19bb259b8b242e2ab6b9feee13c3255dd6303c39bb0c"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tools/raw_return_laplace_rough/models.py",
+        "entrypoint": "CANDIDATES[0].simulate_daily_log_returns",
+        "score": "docs/results/rough-bayesian/raw-return-laplace-panel.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "research_runner_entrypoint",
+        "research_entrypoint": "tools/raw_return_laplace_rough/models.py:CANDIDATES[0].simulate_daily_log_returns"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba",
+        "pyvinecopulib==0.7.5",
+        "pybind11==3.1.0"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 218,
+      "historical_score": {
+        "exact_empirical_crps": "0.2525845890080237",
+        "relative_to_naive": 0.8625896540379121,
+        "skill_vs_naive": 0.1374103459620879,
+        "paired_improvement_vs_current": -0.0027922439915679664,
+        "current_comparator_model_id": "asset_map_predecessor_dynamic_rough_map",
+        "portfolio_wins_vs_current": 39,
+        "portfolio_losses_vs_current": 41,
+        "portfolio_scores": [
+          {
+            "portfolio_id": "equal_class_history_001",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13333905716370936,
+            "current_baseline_crps": 0.13346831690589123
+          },
+          {
+            "portfolio_id": "equal_class_history_002",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15162205916242447,
+            "current_baseline_crps": 0.17663453574564353
+          },
+          {
+            "portfolio_id": "equal_class_history_003",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20061212226919262,
+            "current_baseline_crps": 0.19910991904646191
+          },
+          {
+            "portfolio_id": "equal_class_history_004",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18590102949629828,
+            "current_baseline_crps": 0.18865432101349047
+          },
+          {
+            "portfolio_id": "equal_class_history_005",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6040245183566811,
+            "current_baseline_crps": 0.5834790810138075
+          },
+          {
+            "portfolio_id": "equal_class_history_006",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1765543474533727,
+            "current_baseline_crps": 0.17582645146343065
+          },
+          {
+            "portfolio_id": "equal_class_history_007",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1608526102187276,
+            "current_baseline_crps": 0.1635914834266011
+          },
+          {
+            "portfolio_id": "equal_class_history_008",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20644971549319024,
+            "current_baseline_crps": 0.20846185401481473
+          },
+          {
+            "portfolio_id": "equal_class_history_009",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14676020010757987,
+            "current_baseline_crps": 0.14111532922579803
+          },
+          {
+            "portfolio_id": "equal_class_history_010",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14852877206199577,
+            "current_baseline_crps": 0.1451561685077014
+          },
+          {
+            "portfolio_id": "equal_class_history_011",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15101999467429572,
+            "current_baseline_crps": 0.15521392989086596
+          },
+          {
+            "portfolio_id": "equal_class_history_012",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.583899140484463,
+            "current_baseline_crps": 0.5399524677609835
+          },
+          {
+            "portfolio_id": "equal_class_history_013",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.24911588276592914,
+            "current_baseline_crps": 0.2550043360673994
+          },
+          {
+            "portfolio_id": "equal_class_history_014",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12286188977320435,
+            "current_baseline_crps": 0.12571367004789588
+          },
+          {
+            "portfolio_id": "equal_class_history_015",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21753912370186002,
+            "current_baseline_crps": 0.20740621619084224
+          },
+          {
+            "portfolio_id": "equal_class_history_016",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.42431432798702,
+            "current_baseline_crps": 0.4037590564632431
+          },
+          {
+            "portfolio_id": "equal_class_history_017",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2722185093238802,
+            "current_baseline_crps": 0.2606530029583416
+          },
+          {
+            "portfolio_id": "equal_class_history_018",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10130627806432745,
+            "current_baseline_crps": 0.10569907965589095
+          },
+          {
+            "portfolio_id": "equal_class_history_019",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18434037606118178,
+            "current_baseline_crps": 0.1839196069303366
+          },
+          {
+            "portfolio_id": "equal_class_history_020",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12616733288971796,
+            "current_baseline_crps": 0.12511282667359944
+          },
+          {
+            "portfolio_id": "equal_class_history_021",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.27887347747272145,
+            "current_baseline_crps": 0.2698615717816035
+          },
+          {
+            "portfolio_id": "equal_class_history_022",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.41809568156172405,
+            "current_baseline_crps": 0.40499734513046187
+          },
+          {
+            "portfolio_id": "equal_class_history_023",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17971191034024012,
+            "current_baseline_crps": 0.18404550604315875
+          },
+          {
+            "portfolio_id": "equal_class_history_024",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.46700009933941977,
+            "current_baseline_crps": 0.5829827392407122
+          },
+          {
+            "portfolio_id": "equal_class_history_025",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20920635303584226,
+            "current_baseline_crps": 0.22805736770156126
+          },
+          {
+            "portfolio_id": "equal_class_history_026",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16462075007302315,
+            "current_baseline_crps": 0.16144486540203337
+          },
+          {
+            "portfolio_id": "equal_class_history_027",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1880025408258544,
+            "current_baseline_crps": 0.1844517080152864
+          },
+          {
+            "portfolio_id": "equal_class_history_028",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21349738293151493,
+            "current_baseline_crps": 0.20271934930953497
+          },
+          {
+            "portfolio_id": "equal_class_history_029",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.11474654735521934,
+            "current_baseline_crps": 0.10920133812467434
+          },
+          {
+            "portfolio_id": "equal_class_history_030",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15140630766642177,
+            "current_baseline_crps": 0.15163347287052384
+          },
+          {
+            "portfolio_id": "equal_class_history_031",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3024199104911625,
+            "current_baseline_crps": 0.28646947945051787
+          },
+          {
+            "portfolio_id": "equal_class_history_032",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.30516620998731875,
+            "current_baseline_crps": 0.2556908133983273
+          },
+          {
+            "portfolio_id": "equal_class_history_033",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21629275717927507,
+            "current_baseline_crps": 0.1988349309463942
+          },
+          {
+            "portfolio_id": "equal_class_history_034",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.24958119154610162,
+            "current_baseline_crps": 0.2518029951299332
+          },
+          {
+            "portfolio_id": "equal_class_history_035",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1616342828611286,
+            "current_baseline_crps": 0.16452679181962274
+          },
+          {
+            "portfolio_id": "equal_class_history_036",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5317157946516081,
+            "current_baseline_crps": 0.4926815365649623
+          },
+          {
+            "portfolio_id": "equal_class_history_037",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5173261954597547,
+            "current_baseline_crps": 0.5095821757446878
+          },
+          {
+            "portfolio_id": "equal_class_history_038",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6792893590090421,
+            "current_baseline_crps": 0.7193888435243747
+          },
+          {
+            "portfolio_id": "equal_class_history_039",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09581174254641028,
+            "current_baseline_crps": 0.10213282775691089
+          },
+          {
+            "portfolio_id": "equal_class_history_040",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20459061513358073,
+            "current_baseline_crps": 0.20174425034479013
+          },
+          {
+            "portfolio_id": "equal_class_history_041",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1525214821209105,
+            "current_baseline_crps": 0.14531818434421864
+          },
+          {
+            "portfolio_id": "equal_class_history_042",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.574749389888665,
+            "current_baseline_crps": 0.5597242892511627
+          },
+          {
+            "portfolio_id": "equal_class_history_043",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1292334850530824,
+            "current_baseline_crps": 0.12791963018149782
+          },
+          {
+            "portfolio_id": "equal_class_history_044",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14425358842674102,
+            "current_baseline_crps": 0.1490040829940624
+          },
+          {
+            "portfolio_id": "equal_class_history_045",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4257217898665738,
+            "current_baseline_crps": 0.40879072952853235
+          },
+          {
+            "portfolio_id": "equal_class_history_046",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19186226037786358,
+            "current_baseline_crps": 0.20749771353497767
+          },
+          {
+            "portfolio_id": "equal_class_history_047",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1711614594398798,
+            "current_baseline_crps": 0.18536431843174234
+          },
+          {
+            "portfolio_id": "equal_class_history_048",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13794293287958523,
+            "current_baseline_crps": 0.14451309384964448
+          },
+          {
+            "portfolio_id": "equal_class_history_049",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23638262640479155,
+            "current_baseline_crps": 0.21587565846790216
+          },
+          {
+            "portfolio_id": "equal_class_history_050",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3131427732162877,
+            "current_baseline_crps": 0.31493641527098065
+          },
+          {
+            "portfolio_id": "equal_class_history_051",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16004221884880945,
+            "current_baseline_crps": 0.16924546073639907
+          },
+          {
+            "portfolio_id": "equal_class_history_052",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20135568871864273,
+            "current_baseline_crps": 0.21303971504155894
+          },
+          {
+            "portfolio_id": "equal_class_history_053",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5759590904236609,
+            "current_baseline_crps": 0.5862451329678082
+          },
+          {
+            "portfolio_id": "equal_class_history_054",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3172823067110581,
+            "current_baseline_crps": 0.30276609336718585
+          },
+          {
+            "portfolio_id": "equal_class_history_055",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2993306948231653,
+            "current_baseline_crps": 0.3064851524634087
+          },
+          {
+            "portfolio_id": "equal_class_history_056",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10070327603223134,
+            "current_baseline_crps": 0.10597964639214
+          },
+          {
+            "portfolio_id": "equal_class_history_057",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.27266898169358705,
+            "current_baseline_crps": 0.2630506321870411
+          },
+          {
+            "portfolio_id": "equal_class_history_058",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13644114606213967,
+            "current_baseline_crps": 0.13734928605284924
+          },
+          {
+            "portfolio_id": "equal_class_history_059",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10471886492063133,
+            "current_baseline_crps": 0.1044425283848209
+          },
+          {
+            "portfolio_id": "equal_class_history_060",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2436364395361203,
+            "current_baseline_crps": 0.24114442530162233
+          },
+          {
+            "portfolio_id": "equal_class_history_061",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13527925563254833,
+            "current_baseline_crps": 0.14157890703560153
+          },
+          {
+            "portfolio_id": "equal_class_history_062",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.33087738473794515,
+            "current_baseline_crps": 0.3360219647155006
+          },
+          {
+            "portfolio_id": "equal_class_history_063",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.39739930869772405,
+            "current_baseline_crps": 0.39790677941302655
+          },
+          {
+            "portfolio_id": "equal_class_history_064",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1252908399156727,
+            "current_baseline_crps": 0.1327806137964358
+          },
+          {
+            "portfolio_id": "equal_class_history_065",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2679864715565389,
+            "current_baseline_crps": 0.259162864282898
+          },
+          {
+            "portfolio_id": "equal_class_history_066",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18631935866766286,
+            "current_baseline_crps": 0.18699590669606178
+          },
+          {
+            "portfolio_id": "equal_class_history_067",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1618336901858913,
+            "current_baseline_crps": 0.1539342577308225
+          },
+          {
+            "portfolio_id": "equal_class_history_068",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2156073267819414,
+            "current_baseline_crps": 0.2445961390682258
+          },
+          {
+            "portfolio_id": "equal_class_history_069",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21964270215756782,
+            "current_baseline_crps": 0.23561403730749933
+          },
+          {
+            "portfolio_id": "equal_class_history_070",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.43222728605921784,
+            "current_baseline_crps": 0.3958023580226797
+          },
+          {
+            "portfolio_id": "equal_class_history_071",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10871509836702753,
+            "current_baseline_crps": 0.1075691968531223
+          },
+          {
+            "portfolio_id": "equal_class_history_072",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20388865381996757,
+            "current_baseline_crps": 0.19626992864210804
+          },
+          {
+            "portfolio_id": "equal_class_history_073",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12230493443351204,
+            "current_baseline_crps": 0.12787021182753577
+          },
+          {
+            "portfolio_id": "equal_class_history_074",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.25605736441264776,
+            "current_baseline_crps": 0.26144255478346745
+          },
+          {
+            "portfolio_id": "equal_class_history_075",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.9009483620829638,
+            "current_baseline_crps": 0.9203686730875339
+          },
+          {
+            "portfolio_id": "equal_class_history_076",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.22201727619042624,
+            "current_baseline_crps": 0.21141970260775989
+          },
+          {
+            "portfolio_id": "equal_class_history_077",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.41618137713544545,
+            "current_baseline_crps": 0.3937831072701153
+          },
+          {
+            "portfolio_id": "equal_class_history_078",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1855532576128935,
+            "current_baseline_crps": 0.17745808182857883
+          },
+          {
+            "portfolio_id": "equal_class_history_079",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09440108809464862,
+            "current_baseline_crps": 0.09291148391238865
+          },
+          {
+            "portfolio_id": "equal_class_history_080",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13870919167881313,
+            "current_baseline_crps": 0.1481414835643159
+          }
+        ]
+      },
+      "score_precision": {
+        "retained_source_token": "0.2525845890080237",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.252584589",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "-8.0237E-12",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source_token_preserved"
+      },
+      "experiment_id": "raw-return-laplace-panel-20261005",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score",
+      "notes": [
+        "Raw-return sparse Laplace conventional SV with multiscale and dynamic rough; asset-level conventional-inference ablation with unchanged dynamic rough structure.",
+        "All 4080 origin vectors independently reconstruct 701280 cells byte-for-byte.",
+        "Original mean/dependence/RNG/calendar/policy/clipping retained; conventional state fit and its empirical innovation pool replaced.",
+        "Raw Gaussian return likelihood with sparse Laplace historical-state marginalization and MAP hyperparameters; rough remains a Gaussian log-square spectral quasi likelihood.",
+        "No MCMC, no fixed posterior representatives; same dynamically selected rough factor resolution.",
+        "Local research timings; not production promotion."
       ]
     }
   ]
