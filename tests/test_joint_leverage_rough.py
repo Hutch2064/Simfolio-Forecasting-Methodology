@@ -159,3 +159,15 @@ def test_last_observation_conditional_multiscale_moments(rho):
     if rho==0.:
         assert actual[0].tobytes()==np.array(means).tobytes()
         assert actual[1].tobytes()==np.array(variances).tobytes()
+
+
+def test_underflowed_student_tail_matches_high_precision_incomplete_beta():
+    u=1e-4;returns=np.array([-50.,50.]);h=np.zeros(2)
+    # Independent 80-decimal incomplete-beta reference:
+    # log(I_{nu/(nu+x^2)}(nu/2,1/2)/2), x=50/sqrt(1-2u), nu=1/u.
+    logtail=-1120.6376867881663378028747981459467559069703333073460933878973563723244531741189
+    from scipy.special import ndtri_exp
+    expected=-ndtri_exp(float(logtail))
+    actual=model.scores(h,returns,u)
+    np.testing.assert_allclose(actual[0],[-expected,expected],rtol=2e-13,atol=2e-13)
+    assert all(np.isfinite(x).all() for x in actual)

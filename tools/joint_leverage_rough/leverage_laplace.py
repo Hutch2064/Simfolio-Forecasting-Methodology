@@ -11,7 +11,8 @@ from functools import lru_cache
 import numpy as np
 import student_laplace_sv as original
 from numba import njit
-from scipy.special import expit, logit, ndtri, stdtr
+from scipy.integrate import quad
+from scipy.special import expit, logit, ndtri, ndtri_exp, stdtr
 
 
 @njit(cache=True, nogil=True)
@@ -46,8 +47,19 @@ def scores(h,returns,u):
     x=returns*np.exp(-.5*h);squared=x*x
     if u==0:return x,-.5*x,.25*x,-.125*x
     tail=stdtr(1/u,-np.abs(x)/math.sqrt(1-2*u))
-    if np.any(tail<=0):raise ArithmeticError('Student rank tail underflow')
     z=-np.sign(x)*ndtri(tail)
+    for index in np.flatnonzero(tail<=0):
+        a=abs(float(x[index]));denom=1-2*u+u*a*a
+        scale=denom/((1+u)*a)
+        def integrand(v,a=a,scale=scale,denom=denom):
+            shift=scale*v
+            return math.exp(-.5*(1+u)/u*math.log1p(u*(2*a*shift+shift*shift)/denom))
+        integral,error=quad(integrand,0.,np.inf,epsabs=1e-11,epsrel=1e-11)
+        if not np.isfinite(integral) or integral<=0 or error>1e-9*integral:
+            raise ArithmeticError('unresolved Student log-tail quadrature')
+        logpdf_a=original.normalizer(u)[0]-.5*(1+u)/u*math.log1p(u*a*a/(1-2*u))
+        logtail=logpdf_a+math.log(scale)+math.log(integral)
+        z[index]=-np.sign(x[index])*ndtri_exp(logtail)
     logpdf=original.normalizer(u)[0]-.5*(1+u)/u*np.log1p(u*squared/(1-2*u))
     a=x*np.exp(logpdf+.5*z*z+.5*math.log(2*math.pi))
     denom=1-2*u+u*squared
