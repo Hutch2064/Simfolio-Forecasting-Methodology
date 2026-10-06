@@ -1,8 +1,8 @@
 # Joint Bayesian rough volatility candidates
 
 Nine new asset-level candidates are implemented in `tools/rough_bayesian` and
-included in both public catalogues. The canonical catalogue now has 201 entries;
-the broader active research catalogue has 394. The eight-factor Bayesian upgrade
+included in both public catalogues. The canonical catalogue now has 203 entries;
+the broader active research catalogue has 395. The eight-factor Bayesian upgrade
 and dynamic-resolution candidate completed their full panels; the fixed-resolution lift retains its stopped partial
 results. Other aggregate scores remain blank until their complete panels finish.
 The existing production Frontier
@@ -233,7 +233,7 @@ OPENBLAS_NUM_THREADS=1 NUMBA_NUM_THREADS=1 python tools/rough_bayesian/run_panel
 | Full-panel model | Exact empirical CRPS |
 |---|---:|
 | Dynamic-resolution rough | 0.25074679212444156 |
-| Previous eight-factor rough (MAP rough parameters) | 0.2512018559613309 |
+| Previous eight-factor rough (MAP rough parameters) | 0.2511998559613309 |
 | Eight-factor Bayesian upgrade | 0.2522081419138852 |
 | Production Frontier | 0.25246784959071183 |
 | Production Default, matching saved cell replay | 0.292821259593872 |
@@ -612,7 +612,7 @@ Optimization reused exact compiled marginal mapping and policy rejoin, removed
 a redundant sort and duplicated volatility-moment calculation, and cached
 asset/lag fits across portfolios. All five reference smoke loss vectors remained
 byte-identical. The longest smoke changed from 2.009 to 1.221 seconds with fresh
-fits and from 1.394 to 0.734 seconds with cached fits, excluding compiler startup.
+fits and from 1.393 to 0.734 seconds with cached fits, excluding compiler startup.
 All 2,549 distinct asset/lag fits converged; 52 needed an extended L-BFGS-B
 line search with the same likelihood, priors and accuracy tolerances. No Powell
 fallback was needed. Selected rough factor counts ranged from 4 to 10.
@@ -695,7 +695,7 @@ proof. None yet satisfies the requested minimum 1% score breakthrough; the best
 recorded worker-time reduction is about 15%, awaiting a matched timing comparison.
 
 
-Canonical M194–M201 retain all six completed volatility ablations in both catalogues.
+Canonical M194–M199 retain all six completed volatility ablations in both catalogues.
 The joint-noise arm estimates log measurement variance as an unpenalized Gaussian
 quasi-likelihood nuisance parameter alongside the three rough MAP parameters.
 It includes the observation-scaling likelihood Jacobian. Bounds of initial
@@ -717,3 +717,6 @@ All 8,160 origin vectors independently reconstruct the two 701,280-cell score ve
 M202 tests a Gaussian Gamma-mixed OU log-volatility overlay in place of the tempered rough covariance, keeping M197's conventional multiscale backbone, empirical measurement variance, residual observations, and stationary normalization. Its covariance is `scale**2*(1+kappa*lag)**(-shape)`, corresponding to Gamma-distributed stationary variance rates and the Gaussian specialization of [Barndorff-Nielsen and Stelzer (2011), example 3.4](https://arxiv.org/abs/1101.0068). Shape, timescale and amplitude are learned per asset; log-shape has a weak truncated Gaussian prior with mean zero, standard deviation 1.5 and shape bounds [.03,10]. The other priors remain unchanged. This Gaussian log-volatility construction differs from the positive Levy-driven matrix-volatility model.
 
 The preliminary exact Gaussian quasi-likelihood implementation was screened out for runtime (fresh smokes 0.28-5.66 seconds). The full M202 candidate instead fits the exact analytic covariance using debiased Whittle inference, resolving numerical OU factors only for terminal filtering and prediction. Five fresh/cached smoke vectors matched exactly, and all 4,080 full-panel origin vectors reconstruct the retained score cells byte-for-byte. Full CRPS is **0.25087597152824515**, 0.399% better than M193 but worse than M197/M200/M201. Recorded wall time is **159.10 seconds**: inference is cheap, but larger predictive factor sets increase path-generation cost. This direction is rejected for the requested speed/score breakthrough. Evidence is retained in `docs/results/rough-bayesian/gamma-supou-panel.json`.
+
+
+M203 keeps M197's rough covariance and return forecasting backbone but analytically integrates the constant rough-observation level under a flat prior. The covariance parameters maximize the restricted Gaussian quasi likelihood plus unchanged priors; their full posterior is not integrated. A single compiled filter computes the GLS level, its posterior variance, and the terminal latent-state posterior, including the uncertainty from that nuisance level. Four independent dense Gaussian reference tests verify likelihood, level, covariance and shift invariance. All five fresh/cached smoke vectors agree byte-for-byte. Full canonical CRPS is **0.2504647898614585**, a **0.562%** improvement versus M193; wall time is **148.75 seconds**, above M193's recorded 136.82 seconds. The full 4,080-vector reconstruction and parameter-source audit are bound in `docs/results/rough-bayesian/reml-rough-panel.json`. It does not beat M197/M200/M201 and does not satisfy the breakthrough target. Restricted likelihood follows [Patterson and Thompson (1971)](https://doi.org/10.1093/biomet/58.3.545), applied here to the existing Gaussian log-square quasi observation model. The return-mean estimator remains unchanged.

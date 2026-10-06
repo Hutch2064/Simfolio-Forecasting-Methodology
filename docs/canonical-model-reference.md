@@ -1,14 +1,14 @@
-# Canonical model reference (202 models including the original 175)
+# Canonical model reference (203 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **202** rows, canonical ranks **1–202**.
+- Membership: **203** rows, canonical ranks **1–203**.
 - Retained source ranks: **12–186**.
-- Membership digest: `a78879eb93eb44c43c596e0e83c79a0ddd19efc1807114805bd208ee6b32478f`.
+- Membership digest: `f450fddf1c8283d9fa044a74e364ee86814dbe89c207bdea78e38c8c05c629db`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **202**.
+- Confirmed full statistical specifications: **203**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -216,3 +216,4 @@ The ledger is the sole membership authority for this public set.
 | 200 | None | asset_map_multiscale_conditional_empirical_debiased_whittle_rough_map | M200 — Asset MAP Multiscale + Debiased Whittle conditional residual rough + empirical noise | asset_level_extension | 0.249657155081818 | 0.249657155 | true | validated_full_canonical_score |
 | 201 | None | asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map | M201 — Asset MAP Multiscale + Differenced debiased Whittle conditional residual rough + empirical noise | asset_level_extension | 0.24972187973628046 | 0.24972188 | true | validated_full_canonical_score |
 | 202 | None | asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map | M202 — Asset MAP Multiscale + Gaussian Gamma-mixed OU covariance with direct debiased Whittle inference | asset_level_extension | 0.25087597152824515 | 0.250875972 | true | validated_full_canonical_score |
+| 203 | None | asset_map_multiscale_conditional_empirical_reml_rough_map | M203 — Asset MAP Multiscale + Restricted Gaussian rough inference with integrated observation level | asset_level_extension | 0.2504647898614585 | 0.25046479 | true | validated_full_canonical_score |
