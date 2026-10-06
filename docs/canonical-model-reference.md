@@ -1,14 +1,14 @@
-# Canonical model reference (246 models including the original 175)
+# Canonical model reference (247 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **246** rows, canonical ranks **1–246**.
+- Membership: **247** rows, canonical ranks **1–247**.
 - Retained source ranks: **12–186**.
-- Membership digest: `dc37d626410ab1caaa4a8235f675a82d97374015d5acdb8bcaaa54abcc3aa610`.
+- Membership digest: `de29554d6c593501690b13531a6f3112d9d0c44e005c43f40170b6bd706d5992`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **246**.
+- Confirmed full statistical specifications: **247**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -260,3 +260,4 @@ The ledger is the sole membership authority for this public set.
 | 244 | None | asset_map_stationary_ar1_ou_residual_volatility | M244 — Asset MAP Stationary AR1 Proxy + Exact OU Residual Volatility | asset_level_extension | 0.2339750944781271 | 0.233975094 | true | validated_full_canonical_score |
 | 245 | None | asset_map_stationary_ar1_correlated_volatility_dynamic_rough | M245 — Asset MAP Stationary AR1 + Correlated Volatility Shocks + Dynamic Rough | asset_level_extension | 0.23309067734805294 | 0.233090677 | true | validated_full_canonical_score |
 | 246 | None | asset_map_stationary_ar1_matched_offset_dynamic_rough | M246 — Asset MAP Stationary AR1 + Matched Historical Offset + Dynamic Rough | asset_level_extension | 0.2329897727973052 | 0.232989773 | true | validated_full_canonical_score |
+| 247 | None | asset_map_stationary_ar1_proxy_leverage_dynamic_rough | M247 — Asset MAP Stationary AR1 + Lagged Asset-Residual Leverage + Dynamic Rough | asset_level_extension | 0.2319704483126069 | 0.231970448 | true | validated_full_canonical_score |

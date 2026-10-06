@@ -56,6 +56,7 @@
     "asset_map_stationary_ar1_matched_offset_dynamic_rough",
     "asset_map_stationary_ar1_ou_residual_volatility",
     "asset_map_stationary_ar1_proxy_dynamic_rough",
+    "asset_map_stationary_ar1_proxy_leverage_dynamic_rough",
     "asset_map_student_continuous_quantile_untruncated_dynamic_rough",
     "asset_map_student_implied_noise_pathwise_multiscale_dynamic_rough",
     "asset_map_student_implied_noise_pathwise_multiscale_full_hurst_dynamic_rough",
@@ -26675,6 +26676,728 @@
         "sha256": "7bfb063da126bcccd128c86b5bfd3d412e62bbb949647cc4686ec03298e7e338"
       }
     },
+    "asset_map_stationary_ar1_proxy_leverage_dynamic_rough": {
+      "component_refs": [],
+      "definition_fingerprint": "8ea4e25b4ad6c628debe44ea11986495f3eb4b1a83d8f79484b61a61d9d097ee",
+      "factory": {
+        "class": null,
+        "method": "simulate_daily_log_returns",
+        "output": "daily_log_return_increments",
+        "strict_model_id": true
+      },
+      "family": "asset_level_extension",
+      "seed_contract": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "src/simfolio_forecasting_methodology/__init__.py",
+            "sha256": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/candidate_registry.py",
+            "sha256": "535d55b3b8878e429b9400319c0d67a9cbfd28b1a37c927b29b9a70301d80c01"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/catalog.py",
+            "sha256": "8d3f495d38b3fa6f3de412bd049864fa00efae096d64d6de3a2b12ca5f69918a"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/catalogue.py",
+            "sha256": "ce7a0371325f50b4e4b243d906fa3e8ba45a3dbfade555a8cf2421d21cafdba5"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/cli.py",
+            "sha256": "3e48a1cc5cf9bf020b9ba6823be8b1cf59076a896226fff0761576400b52ff7b"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/data.py",
+            "sha256": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/evaluation.py",
+            "sha256": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/experiment.py",
+            "sha256": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/__init__.py",
+            "sha256": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/__init__.py",
+            "sha256": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py",
+            "sha256": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py",
+            "sha256": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/frontier.py",
+            "sha256": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py",
+            "sha256": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/__init__.py",
+            "sha256": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py",
+            "sha256": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/base_models.py",
+            "sha256": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py",
+            "sha256": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py",
+            "sha256": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/factors.py",
+            "sha256": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py",
+            "sha256": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py",
+            "sha256": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/__init__.py",
+            "sha256": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py",
+            "sha256": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py",
+            "sha256": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py",
+            "sha256": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py",
+            "sha256": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py",
+            "sha256": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py",
+            "sha256": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/inla.py",
+            "sha256": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py",
+            "sha256": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py",
+            "sha256": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py",
+            "sha256": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py",
+            "sha256": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/registry.py",
+            "sha256": "6f45544cc87158a9157ff693e228443d18497881c1346c960bb0838a6c3e9257"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/naming.py",
+            "sha256": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/origins.py",
+            "sha256": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/panel.py",
+            "sha256": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/protocol.py",
+            "sha256": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/__init__.py",
+            "sha256": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/aggregate.py",
+            "sha256": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/checkpoint.py",
+            "sha256": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/executor.py",
+            "sha256": "c8d9ea263ac056d0ee459c76154d36e67e20403664c0e078a12f85268c155649"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/retained.py",
+            "sha256": "831aa1ab5eecdd90f3baa9867e325c2b9aeedcacd74085aae8bf899f5bc3edf4"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/verified_candidate_scores.py",
+            "sha256": "41c4747c033d9e4b5c4316a648843d0d2f18ccf9bc0dea8ba9ab2f8c5037eabf"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/runner.py",
+            "sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/safety_scan.py",
+            "sha256": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/scores.py",
+            "sha256": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/scoring.py",
+            "sha256": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/seeds.py",
+            "sha256": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/smoke.py",
+            "sha256": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/specifications.py",
+            "sha256": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+          },
+          {
+            "path": "tools/conditional_empirical_rough/models.py",
+            "sha256": "fc511ec8317783eb466df0308b1559ff25504857fee50c9f2eb9ca476ac08fd3"
+          },
+          {
+            "path": "tools/conditional_empirical_rough/run_panel.py",
+            "sha256": "7cedf3be346ec1289e28abc7ab88f8f18f0f6740ba811777faadb1ce94288253"
+          },
+          {
+            "path": "tools/conditional_empirical_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/conditional_residual_rough/models.py",
+            "sha256": "024704d67a785fd198c72d8c69b3f73b991e513c613bc8f3f610852708e6e2c4"
+          },
+          {
+            "path": "tools/conditional_residual_rough/run_panel.py",
+            "sha256": "362055f5bf5b039d0724202d6d7ffc2dc82e924f3e75bf89023c833ce4669b66"
+          },
+          {
+            "path": "tools/conditional_residual_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/consistent_noise_rough/causal_noise.py",
+            "sha256": "1ac4a030f4fd8494a09a44d483208d21e84fb8b2a4b0948f20ae7505d059eea5"
+          },
+          {
+            "path": "tools/consistent_noise_rough/models.py",
+            "sha256": "1d39a0721f24a5d5c6acbc25f909e4a33f86b73bde5138b9f136a51430083be1"
+          },
+          {
+            "path": "tools/consistent_noise_rough/run_panel.py",
+            "sha256": "5778dede3e12d9d3b4d42e426a8c67ed1ee2f60dee752d056d771aa23d7c8578"
+          },
+          {
+            "path": "tools/consistent_noise_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/coupled_native.py",
+            "sha256": "3e78cc334c11b42e66f6d0958060214e2d52d4ad5d89f6023b5d287683235df3"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/models.py",
+            "sha256": "923128e886546d080fe9649a3cd4c281d477cf92fcc55ebd45dd3402df97ac4f"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/paths.cpp",
+            "sha256": "478119f866216b6304157430ae3e17e04cf518ee3c61c1e19a104144fa56ca4d"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/run_panel.py",
+            "sha256": "0cc4ca2e50fc4c54bca53275ef761cd2dc053b1a6aa8bd255f66259a593ad399"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/screen.py",
+            "sha256": "3cb472cbd4d3e1e92c6e3815c527875eeb808778d4f87cb2546e80c93cc4686b"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/state.py",
+            "sha256": "6c3ffb1297b81bf7cd472b5097b6a785134a135461c59dc03418c19e480d38fa"
+          },
+          {
+            "path": "tools/debiased_whittle_rough/debiased_whittle_kernel.py",
+            "sha256": "49b308586ed51ad8c9ca7ba5e33aa5552ec6aa53dd80d597eafbe8d78094778c"
+          },
+          {
+            "path": "tools/debiased_whittle_rough/models.py",
+            "sha256": "8bac9e0cfc99cd9a09aee5ae04e61c2857b0ddddc0dcb8edbc2487dc9cb60a9d"
+          },
+          {
+            "path": "tools/debiased_whittle_rough/run_panel.py",
+            "sha256": "0d32e0330ff22262d06a23fb8fd063d4615dd0f308023ca798937cf384aab063"
+          },
+          {
+            "path": "tools/debiased_whittle_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/differenced_whittle_rough/differenced_whittle_kernel.py",
+            "sha256": "ba6ed0932cef1c35e92e9aa6fe0fc6c69f72d477264adcb594e31920d384f7e1"
+          },
+          {
+            "path": "tools/differenced_whittle_rough/models.py",
+            "sha256": "dbe8249143e6675dc233c2dea94a0df4c0d13931745fca4ab8d4d1bbb2c93de6"
+          },
+          {
+            "path": "tools/differenced_whittle_rough/run_panel.py",
+            "sha256": "61a611e77b06138cbb421baf570eb43bc894012b5d5aa7ac70a2bab8cb7d3699"
+          },
+          {
+            "path": "tools/differenced_whittle_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/models.py",
+            "sha256": "0b3e0bcceb24ecbbd424eab2acb7a755443df09e0419b39e53fdbe8e19a0a1b2"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/posterior.py",
+            "sha256": "7854e7a65b2250ccf9e60e8edb3b7ddd9f027405fd3fe8d9e1d25d07c41eb785"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/progress.py",
+            "sha256": "4538d4336190b5395cc3500131da34867c0b3ee17c7021b76f6eb54f294fb5ed"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/run_panel.py",
+            "sha256": "a9250471852ec401c201558df5ea8a1ee12a3b23cf426943a0fa037fe1182139"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/empirical_rough_noise/models.py",
+            "sha256": "55698afe1d1d11815fa711e99efb5fa502a7dc7732e44412f6b4f066fe24e475"
+          },
+          {
+            "path": "tools/empirical_rough_noise/run_panel.py",
+            "sha256": "f32ea907ffc5245ef4cb33f49a525cd813022c50398b582012b41fc83af8c498"
+          },
+          {
+            "path": "tools/empirical_rough_noise/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/learned_loading_full_hurst_rough/models.py",
+            "sha256": "01ac5e734237b687cbad4e33a70e6a6b984c9ec3f88315383eeec23d478f6b28"
+          },
+          {
+            "path": "tools/learned_loading_full_hurst_rough/rough_map.py",
+            "sha256": "f6886ed8cd3ac22c3cef567a063d1afcc154691681df1d089048b22bbb3f46bf"
+          },
+          {
+            "path": "tools/learned_loading_full_hurst_rough/run_panel.py",
+            "sha256": "a60eb30afffec53d66630fc18414c68eaa046d59db500880ef7fbb6d485d86a0"
+          },
+          {
+            "path": "tools/learned_loading_full_hurst_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/components.py",
+            "sha256": "e82db9a9481b548eec4332dd7d837656f7783e497a790bde0bed44f95eba9713"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/models.py",
+            "sha256": "b70dec9002317132877784b6d84fca8c5327bbe17e7e554d102caf722cc8ba0b"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/rate_fit.py",
+            "sha256": "39998018e05560cfad524135c525590e959f475944d2e33e54f69d903cdad3f5"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/run_panel.py",
+            "sha256": "7f59e38088371d36c9b63fd47aac280f19bf0ae61bef07a6781f340ffec33957"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/mcmc_runtime/benchmark_model_cases.py",
+            "sha256": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6"
+          },
+          {
+            "path": "tools/mcmc_runtime/benchmark_scaling.py",
+            "sha256": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02"
+          },
+          {
+            "path": "tools/mcmc_runtime/cached_dependence.py",
+            "sha256": "05ea1ca7c67003bfb8c217851e217558f770fd8a17ccf55c4f6ca0cdeac659fb"
+          },
+          {
+            "path": "tools/mcmc_runtime/cached_moments.py",
+            "sha256": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b"
+          },
+          {
+            "path": "tools/mcmc_runtime/compiled_chain.py",
+            "sha256": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059"
+          },
+          {
+            "path": "tools/mcmc_runtime/compiled_map.py",
+            "sha256": "ff14eb242d8701b1dfdd067c63ab81de6d47dbd8b057786ce67b209a4b1a6b76"
+          },
+          {
+            "path": "tools/mcmc_runtime/compiled_postburn.py",
+            "sha256": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c"
+          },
+          {
+            "path": "tools/mcmc_runtime/compiled_smoothers.py",
+            "sha256": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46"
+          },
+          {
+            "path": "tools/mcmc_runtime/complex_sv.py",
+            "sha256": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71"
+          },
+          {
+            "path": "tools/mcmc_runtime/exact_path_kernels.py",
+            "sha256": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5"
+          },
+          {
+            "path": "tools/mcmc_runtime/finite_multiscale.py",
+            "sha256": "5f444323af6696d06840a8f88695e482c2e64cec921a62b8bc486f42fbd30906"
+          },
+          {
+            "path": "tools/mcmc_runtime/optimized_mcmc.py",
+            "sha256": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df"
+          },
+          {
+            "path": "tools/mcmc_runtime/parallel_chains.py",
+            "sha256": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3"
+          },
+          {
+            "path": "tools/mcmc_runtime/parameter_mcmc_tuned.py",
+            "sha256": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a"
+          },
+          {
+            "path": "tools/mcmc_runtime/predictive_sv_candidates.py",
+            "sha256": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309"
+          },
+          {
+            "path": "tools/mcmc_runtime/profile_runtime.py",
+            "sha256": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4"
+          },
+          {
+            "path": "tools/mcmc_runtime/replay_full_panel.py",
+            "sha256": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca"
+          },
+          {
+            "path": "tools/mcmc_runtime/research_jit_pilot.py",
+            "sha256": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e"
+          },
+          {
+            "path": "tools/mcmc_runtime/runtime_setup.py",
+            "sha256": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665"
+          },
+          {
+            "path": "tools/mcmc_runtime/steady_kalman_target.py",
+            "sha256": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394"
+          },
+          {
+            "path": "tools/mcmc_runtime/streamed_paths.py",
+            "sha256": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/models.py",
+            "sha256": "9c50bfe9a44be2732aad079d42e60992f35ace8cc99a7c3217ea10163300e73c"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/paths.cpp",
+            "sha256": "34e881ea3d64e8abe5dfc322845a41e8e51c4a0d493076b51d37e2b52778ebaa"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/pathwise_native.py",
+            "sha256": "add4ffa47987980b858e8593865c3207064630180398bb14d7da075e1173e8a8"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/run_panel.py",
+            "sha256": "57f6b51fb21757ba972edb2c124e05bfcf442aae65b91ca42e1fa7af6abff28a"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/predictive_loading_rates_rough/models.py",
+            "sha256": "9ba5ed81d6ce5400eccb1063b27d61f459bdb7dd2990f02136de4f6ed2d3c909"
+          },
+          {
+            "path": "tools/predictive_loading_rates_rough/run_panel.py",
+            "sha256": "512b6713ce6ee15faef0724f456d6b2d93dc849200f33b0c05ab6fe013b81431"
+          },
+          {
+            "path": "tools/predictive_loading_rates_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/leverage_fit.py",
+            "sha256": "8157f1bdd238f0f2fce36d503ba2e50c878bf67ef4bbb16825f145dc4ff03f00"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/leverage_native.py",
+            "sha256": "972444357f93321acb33faedebe8a5f807da061db3b58b45eaf57dd6d8423733"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/models.py",
+            "sha256": "b1e67d1bac32dcd88b2f8240195b7022425205053b46850f44feea6b1f9b4ec6"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/paths.cpp",
+            "sha256": "e8eaa8a62cf8e5444ff48a9129f8d85eeb20782cf9558c9bc7ba860b1e6a3ae0"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/run_panel.py",
+            "sha256": "5bb061858c7ad10369b650a2c4d7845d6c88a48932dc9690570c26bd3cf1d8df"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/screen.py",
+            "sha256": "4b68d8d38fd12ac0ebbb843181faa3fa33361195311ef23b98323dd94cf9d09a"
+          },
+          {
+            "path": "tools/raw_return_laplace_rough/laplace_sv.py",
+            "sha256": "10864fc1d50efb3306c19480d534c0764e4ba1d1046d1494977cede898e5a533"
+          },
+          {
+            "path": "tools/raw_return_laplace_rough/models.py",
+            "sha256": "fb7f3e4864d02a61d99b214987e0e1016f15a4dac39b3aa3d1dc5017ac7793d9"
+          },
+          {
+            "path": "tools/raw_return_laplace_rough/run_panel.py",
+            "sha256": "1abebf2e8cfde2811098a535e32f3812a5422b2adb59ea7269f431411c100298"
+          },
+          {
+            "path": "tools/raw_return_laplace_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/relaxed_hurst_differenced_rough/models.py",
+            "sha256": "2943675de70ff4407ae1b5661c9d554a691268f00886f0794758f1b45a59b698"
+          },
+          {
+            "path": "tools/relaxed_hurst_differenced_rough/run_panel.py",
+            "sha256": "68cbfe99d3b3c92433add659b8513a404f5060482257d75ee41bdc6d2f3ef1b9"
+          },
+          {
+            "path": "tools/relaxed_hurst_differenced_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/rough_bayesian/coherent.py",
+            "sha256": "713f8c5790471ccfc2898c2c758be03dc72d04e76fe8d456859998f6d8327950"
+          },
+          {
+            "path": "tools/rough_bayesian/coherent_kernels.py",
+            "sha256": "64dc4e6f4bae8270b86c10d55102d0eefd1421fd93aa55771b6224652594bc47"
+          },
+          {
+            "path": "tools/rough_bayesian/dynamic.py",
+            "sha256": "6fe1eccf02c597d75b65c6259082eebce7237317a8f4ffa0a66ec98047342fac"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "9af54147f5db99fc37ad9b71f1cabc1b96762f641ab2372f7876e852d1e54ec3"
+          },
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/mixture.py",
+            "sha256": "8a315cd80f214c19547a385e7ef807e4bbd2aea147a7ada20a9fcd52525280f0"
+          },
+          {
+            "path": "tools/rough_bayesian/mixture_kernels.py",
+            "sha256": "0d494d68c910b51ae8cb935ca86e0389f6906f6ec4581bd3322fe1c0e6b6dcf3"
+          },
+          {
+            "path": "tools/rough_bayesian/models.py",
+            "sha256": "73389a2fc2bbe0fb0bcbc88ad8aec70e9bfbbb8484c7e825e873f464cf570f9b"
+          },
+          {
+            "path": "tools/rough_bayesian/native.py",
+            "sha256": "696713549712fa70e01369ae5c7805c25ba02a88692a657ad1d1738a9798df2e"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay.py",
+            "sha256": "a401776494b15125c30170bd76c3c9a62ad4626877b857a8d4f474327a852d97"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay_filter.cpp",
+            "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "71a8ada2fc26e1506dac8eae4d590576dd66715810347dc7c48dc4cc6c06f301"
+          },
+          {
+            "path": "tools/rough_bayesian/smoke.py",
+            "sha256": "a31f118e207a8aa62a4dec17c689c8c982f150da035150da4d2cab6d386ee395"
+          },
+          {
+            "path": "tools/rough_bayesian/standalone.py",
+            "sha256": "0be7df8758f4b1c31fe75ac863dd273cef4a12033150f6d36c39948c05a42472"
+          },
+          {
+            "path": "tools/rough_jump_vine/build_native.py",
+            "sha256": "2346d6501657e53a998c4fd758c7f077be0f6b65a79a49c7e439effead4c7819"
+          },
+          {
+            "path": "tools/rough_jump_vine/models.py",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+          },
+          {
+            "path": "tools/rough_jump_vine/native.patch",
+            "sha256": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4"
+          },
+          {
+            "path": "tools/rough_jump_vine/run_panel.py",
+            "sha256": "52fb5a3ffb99275eb9b5a2db56bbcea1e69db5e6143715c1877fdc4c3abec55a"
+          },
+          {
+            "path": "tools/rough_jump_vine/smoke.py",
+            "sha256": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a"
+          },
+          {
+            "path": "tools/stationary_ar1_rough/models.py",
+            "sha256": "7bfb063da126bcccd128c86b5bfd3d412e62bbb949647cc4686ec03298e7e338"
+          },
+          {
+            "path": "tools/stationary_ar1_rough/run_panel.py",
+            "sha256": "4d7785123ddffc290989ef6f55e0126e3171b7920b6d9d77527b2ed639b7caa9"
+          },
+          {
+            "path": "tools/stationary_ar1_rough/screen.py",
+            "sha256": "3cb472cbd4d3e1e92c6e3815c527875eeb808778d4f87cb2546e80c93cc4686b"
+          },
+          {
+            "path": "tools/stationary_ar1_rough/state.py",
+            "sha256": "86c583adee4902716f33138a0e140c86b435f20dc43bc8b474af6684992a8899"
+          },
+          {
+            "path": "tools/streamed_rough_paths/models.py",
+            "sha256": "714f90846fb04618574ce687a05082c6ad784fad9fff4fb63c43532cdc99e705"
+          },
+          {
+            "path": "tools/streamed_rough_paths/paths.cpp",
+            "sha256": "0f6678a9582221cc1be0a06b8ad72b0d9b7cf9eaf66539e9adf1addb5d6d7732"
+          },
+          {
+            "path": "tools/streamed_rough_paths/run_panel.py",
+            "sha256": "0629c00a461a64091788d53484b6e451647d842684c62688d39edbe45ed2d78b"
+          },
+          {
+            "path": "tools/streamed_rough_paths/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/streamed_rough_paths/stream_native.py",
+            "sha256": "9d5292b05244bb1505c4503e66e0d51239e4a3a05b1c9c7582eea83277e3652a"
+          },
+          {
+            "path": "tools/student_implied_noise_rough/models.py",
+            "sha256": "ffeb07ac55cbf20c56c3e79e028681c05b9503b9ed9dcd79da252ffbbf67511c"
+          },
+          {
+            "path": "tools/student_implied_noise_rough/run_panel.py",
+            "sha256": "28ce47f24dca5df837fb5f983938c402c46496002923c5a2e0dfa7092aaa7f57"
+          },
+          {
+            "path": "tools/student_implied_noise_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/student_implied_noise_rough/student_log_moments.py",
+            "sha256": "9c334434846d67e37ef585174b6185fea764a946b0d78366046b4796d3996c20"
+          },
+          {
+            "path": "tools/student_return_laplace_rough/models.py",
+            "sha256": "3aa8c5fd06d0543ede4fdd65ce229632011ff85f342fd3c7b7a8f40fc1f74311"
+          },
+          {
+            "path": "tools/student_return_laplace_rough/run_panel.py",
+            "sha256": "83b09e101d321b3fbb54636f0b0062a6ad003c3bde2f3ef256a17e05b61aa64b"
+          },
+          {
+            "path": "tools/student_return_laplace_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/student_return_laplace_rough/student_laplace_sv.py",
+            "sha256": "dc8a4f276b73d287abab9cb2ecb23569ea2026458cd541a5795a38a772515a11"
+          },
+          {
+            "path": "tools/untruncated_rough_priors/models.py",
+            "sha256": "23dca6027cd87d6a606be5ef8e21a2f9b02d35e0dd91af9c03693cb16ea908fd"
+          },
+          {
+            "path": "tools/untruncated_rough_priors/run_panel.py",
+            "sha256": "91f88ad2f5cf369c3ec92d6e715b9cb7bd29aa0d5ebe18faf06fcf0f5912b3e7"
+          },
+          {
+            "path": "tools/untruncated_rough_priors/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/untruncated_rough_priors/unbounded_map.py",
+            "sha256": "0f02d3a18d46c79e89c8943da07e03d0b4d72bb5902d13901b9bb2a37015ee3b"
+          }
+        ],
+        "entrypoints": [
+          "CANDIDATES[0].simulate_daily_log_returns"
+        ],
+        "path": "tools/proxy_leverage_rough/models.py",
+        "revision": "e2d40491fe289aaee320e23d8f36a407ec71a7aa",
+        "sha256": "b1e67d1bac32dcd88b2f8240195b7022425205053b46850f44feea6b1f9b4ec6"
+      }
+    },
     "asset_map_student_continuous_quantile_untruncated_dynamic_rough": {
       "component_refs": [],
       "definition_fingerprint": "a88c5ec44e8c7cad7a8d223abd4203f909c447078d6e6d44d8f22acfc8bdc7f3",
@@ -37293,7 +38016,7 @@
       "source_seed_contract": "blake2b-64-little-mod-2^32-1; args=('forecast_oos_candidate', origin_date, dense_horizon_tuple, public_model_id, simulations)"
     }
   },
-  "fingerprint": "7af272aa499da5f222640a139219cd5e1db30696b211d1803610bcb3f3a21ebf",
+  "fingerprint": "5315314eb8af7d53fca5929d1ee7791ec41a6e868099ece10766c556a5945aba",
   "portfolio_model_ids": [
     "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
     "bayesian_mcmc_stochastic_volatility_sbb",
@@ -71534,6 +72257,924 @@
           "reference_numerics": "Tricomi U closed form; independent weighted Beta integration fallback for invalid special-function evaluations",
           "white_tail_error_bound": "tolerance/2 for every positive daily lag",
           "zero_lag_variance": "analytic exact unit variance with Beta tail mass retained as independent white component"
+        },
+        "latent_states": "conventional starts at last fitted proxy and coupled memory states; rough samples retained terminal Gaussian posterior",
+        "level": "jointly estimated stationary Gaussian proxy level, analytically profiled conditional on persistence",
+        "log_kappa_prior": {
+          "distribution": "normal",
+          "mean": "log(1/63)",
+          "sd": 2
+        },
+        "log_scale_prior": {
+          "distribution": "normal",
+          "mean": "log(.7)",
+          "sd": 1.5
+        },
+        "measurement_variance": "psi1(1/2) + psi1(nu/2), with Gaussian limit pi squared / 2; from fitted Student tail parameter, not empirical innovation-pool variance",
+        "model": "stationary_scalar_AR1_Gaussian_proxy_volatility_plus_unchanged_dynamic_rough_overlay",
+        "multiscale_component_order": "fixed scalar AR1 control motivated by all M242 canonical histories selecting zero extra memories; no adaptive count claim",
+        "multiscale_forecast": {
+          "drivers": "common conventional Gaussian driver across coupled states, independent rough Gaussian innovations; unchanged cross-asset return dependence",
+          "fixed_smoothing_timescales_retained": false,
+          "law": "same coupled recursion for history and future with exact conditional Gaussian mean/covariance propagation"
+        },
+        "multiscale_rates": "none: matched scalar AR1 control",
+        "normalization": "conditional conventional Gaussian second moment one; rough retains M237 stationary normalization",
+        "parameter_uncertainty": "none: plug-in Student MAP, stationary AR1 proxy QMLE, and unchanged conditional rough MAP",
+        "predecessor_mean_anchor": true,
+        "predecessor_variance_anchor": false,
+        "predictive_multiplier": "conventional exp((ell+x_t-conditional_hmean_t)/2-conditional_hvariance_t/4) times unchanged M237 stationary-normalized rough multiplier"
+      }
+    },
+    "asset_map_stationary_ar1_proxy_leverage_dynamic_rough": {
+      "baseline": {
+        "fitter": "original predecessor initializes raw unit-variance Student-return sparse Laplace marginal MAP over level, persistence, amplitude and inverse degrees of freedom; original mean retained",
+        "mean_innovations_dependence_calendar_policy": "original return mean and dependence/calendar/policy retained; empirical innovation pool recalculated from raw-return Laplace latent mode",
+        "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+        "multiscale_timescales_days": [
+          5,
+          21,
+          63,
+          252
+        ],
+        "parameter_uncertainty": false,
+        "timescales_shortened_for_insufficient_history": true
+      },
+      "dependence": {
+        "input": "asset_daily_log_returns",
+        "lagged_asset_residual_leverage": {
+          "future_shock": "epsilon_vol[t+1]=rho*z_idiosyncratic_return[t]+sqrt(1-rho^2)*z_independent_vol[t+1]",
+          "historical_estimator": "Gaussian-score sample correlation between lagged PCA asset-specific return residuals and fitted scalar AR1 Student-mode volatility innovations",
+          "initial_boundary": "first future volatility innovation unchanged; no plug-in conditioning on historical latent residual",
+          "marginals": "every M243 Student, conventional proxy, rough parameter/kernel fit unchanged; independent Gaussian volatility innovation law retained",
+          "mean": "current idiosyncratic return shock independent of volatility built from past idiosyncratic shocks; persistent factor states remain independent of the leverage driver",
+          "parameter_uncertainty": false,
+          "reference": "https://shephard.scholars.harvard.edu/publications/stochastic-volatility-leverage-fast-and-efficient-likelihood-inference",
+          "return_stream": "capture existing day-major asset Gaussian draw block without altering any generated return uniforms",
+          "scope_limit": "plug-in Gaussian-score leverage, not joint raw-return SV inference"
+        },
+        "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks",
+        "method": "exact_Kalman_dynamic_Gaussian_factor"
+      },
+      "factory_seed_contract": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+      "failure_semantics": {
+        "kernel": "require finite positive quadrature and complete daily-lag error enclosure; no silent tolerance relaxation",
+        "paths": "reject nonfinite outputs",
+        "posterior": "MAP optimizer must converge; no initial-parameter fallback and no tolerance relaxation"
+      },
+      "family": "asset_level_MAP_multiscale_dynamic_rough_overlay",
+      "forecast_level": "asset_daily_log_return",
+      "mean": {
+        "fixed_mean": true,
+        "latent_mean_state": false,
+        "method": "historical_sample_mean"
+      },
+      "parameter_estimation": {
+        "chains": 0,
+        "conventional": "retained Student Laplace fit; scalar stationary Gaussian likelihood on its clipped latent mode; level and innovation variance profiled analytically",
+        "conventional_and_rough_fits": "Student fit and rough MAP parameters unchanged from M242; scalar proxy likelihood replaces its sample-mean-centered conditional estimator",
+        "conventional_laplace": {
+          "forecast_state": "conditional Laplace Gaussian mode/covariance, not parameter posterior integration",
+          "full_INLA": false,
+          "gradient": "analytic hyperparameter gradient with implicit latent-mode curvature derivatives",
+          "latent_objective": "raw unit-variance Student return negative log density plus stationary AR1 Gaussian log-volatility prior",
+          "latent_precision": "Newton decrement <=1e-14; 100-iteration safety ceiling rejects unresolved mode",
+          "marginal_likelihood": "Laplace mode-density and tridiagonal Hessian determinant",
+          "mode": "damped Newton, linear-time tridiagonal LDL solves",
+          "optimizer": "mean scaled target L-BFGS-B with analytic gradient; same-objective SLSQP retry; maximum projected mean gradient <=1e-6; unresolved fits rejected",
+          "parameters": [
+            "long_run_log_variance",
+            "persistence",
+            "volatility_amplitude",
+            "inverse_degrees_of_freedom"
+          ],
+          "raw_return_fit": "unit-variance Student likelihood with learned tails; future empirical innovations retained from original forecasting shell",
+          "reference": "https://doi.org/10.1111/j.1467-9868.2008.00700.x",
+          "tail_support": "inverse_df in [0,1/2); exact Gaussian density limit at zero; uniform inverse_df prior"
+        },
+        "conventional_offset_noise": "analytic uncensored Student log-square mean/variance from the fitted inverse degrees of freedom; rough remains Gaussian quasi likelihood",
+        "coupled_count_selection": "matched fixed one-state control after all M242 canonical histories selected zero extra memories",
+        "coupled_optimizer": "bounded scalar profile-likelihood optimization on theoretical stationary support with exact zero-persistence comparison; unresolved fits fail closed",
+        "differenced_observations": true,
+        "factor_resolution_during_fit": false,
+        "failure_retry": "same target and tolerances with extended line search maxls100; bounded Powell if necessary; reject unresolved fits",
+        "fixed_posterior_representatives": null,
+        "frequency_weights": "zero and Nyquist half weight; all other rFFT frequencies full weight",
+        "ftol": 1e-10,
+        "gtol": 1e-05,
+        "leverage": {
+          "future_shock": "epsilon_vol[t+1]=rho*z_idiosyncratic_return[t]+sqrt(1-rho^2)*z_independent_vol[t+1]",
+          "historical_estimator": "Gaussian-score sample correlation between lagged PCA asset-specific return residuals and fitted scalar AR1 Student-mode volatility innovations",
+          "initial_boundary": "first future volatility innovation unchanged; no plug-in conditioning on historical latent residual",
+          "marginals": "every M243 Student, conventional proxy, rough parameter/kernel fit unchanged; independent Gaussian volatility innovation law retained",
+          "mean": "current idiosyncratic return shock independent of volatility built from past idiosyncratic shocks; persistent factor states remain independent of the leverage driver",
+          "parameter_uncertainty": false,
+          "reference": "https://shephard.scholars.harvard.edu/publications/stochastic-volatility-leverage-fast-and-efficient-likelihood-inference",
+          "return_stream": "capture existing day-major asset Gaussian draw block without altering any generated return uniforms",
+          "scope_limit": "plug-in Gaussian-score leverage, not joint raw-return SV inference"
+        },
+        "likelihood": "stationary first-observation density times all conditional AR1 proxy transition densities; Gaussian variance profiled using n observations",
+        "maximum_iterations": 200,
+        "measurement_noise_after_differencing": "MA(1) with covariance 2R at lag zero and -R at lag one",
+        "measurement_noise_spectrum": "exact finite-sample MA(1) spectrum of differenced independent observation noise",
+        "measurement_noise_uncertainty": false,
+        "multiscale_decay_fitting": "conditional Gaussian one-step predictive QMLE on reconstructed Student latent mode; existing ridge retained; signal-median shrinkage replaced with fitted loading contraction; stationary rates; L-BFGS-B with same-objective Powell retry; unresolved fits rejected",
+        "observation_transform": "first differences of log-square rough proxy; original undifferenced observations retained for terminal filter",
+        "optimizer": "bounded normalized-coordinate L-BFGS-B",
+        "prediction_covariance": "same scalar conditional Gaussian future moments with deterministic terminal proxy state; unchanged rough terminal posterior",
+        "resource_ceiling_seconds": 10,
+        "return_mean_model_changed": false,
+        "rough": "unchanged M237 conditional MAP under differenced debiased Whittle rough proxy likelihood",
+        "rough_MAP_coordinates": "H in theoretical (0,1/2) with unchanged numerical interior guard; log kappa/log scale unbounded proper Gaussian prior coordinates",
+        "spectral_covariance": "analytic tempered fractional covariance at every integer observed lag; expected finite-sample periodogram computed by FFT",
+        "spectral_frequencies": "all rFFT frequencies of first differences; known zero difference mean",
+        "spectral_reference": "https://doi.org/10.1093/biomet/asy071",
+        "spectral_weights": "one for conjugate pairs; one half for real Nyquist and, if included, zero",
+        "spectral_window": "finite-sample triangular lag weights; no taper or frequency subsampling",
+        "student_implied_log_square_moments": {
+          "forecast_innovations": "empirical node distribution remains unchanged from M219",
+          "gaussian_limit_mean": "-Euler gamma-log(2)",
+          "gaussian_limit_variance": "pi squared / 2",
+          "learned_parameter": "inverse_df from same conventional raw-return fit",
+          "mean": "psi(1/2)-psi(nu/2)+log(nu-2)",
+          "reference": "https://dlmf.nist.gov/5.12.E3",
+          "scope": "uncensored Student observation moments; existing log-square floor retained",
+          "variance": "psi1(1/2)+psi1(nu/2)"
+        },
+        "two_stage_plug_in_offset": true
+      },
+      "portfolio_rejoin": {
+        "calendar": "strict_source_business_day_calendar",
+        "method": "policy_rebalanced_asset_paths",
+        "weights": "requested_asset_weights"
+      },
+      "predictive_marginal": {
+        "daily_log_return_clip": [
+          -1,
+          1
+        ],
+        "innovations": "empirical nodes from raw-return Laplace standardized innovations, centered and scaled using equal node weights",
+        "method": "stationary Gaussian AR1 proxy QMLE plus unchanged rough MAP; Gaussian future states per asset path",
+        "multiscale_state_uncertainty": "new conditional Gaussian moments set return variance curve; coupled path multiplier has conditional second moment one; rough stationary normalization unchanged",
+        "node_normalization": "discrete equal-node mean zero and mean-square one; original interpolation and clipping retained",
+        "posterior_multiplier": "clip(original_mean+(clipped_base_asset_path-original_mean)*rough_multiplier*conditional_coupled_multiplier,-1,1)",
+        "volatility_return_joint_law": "past independent Gaussian asset return residual drives next conventional volatility innovation; marginal Gaussian conventional recursion unchanged"
+      },
+      "production_role": "validated_research_candidate",
+      "shared_component_digests": {},
+      "shared_component_refs": [],
+      "source_id": "asset_map_stationary_ar1_proxy_leverage_dynamic_rough",
+      "source_reference": {
+        "dependency_artifacts": [
+          {
+            "path": "src/simfolio_forecasting_methodology/__init__.py",
+            "sha256": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/candidate_registry.py",
+            "sha256": "535d55b3b8878e429b9400319c0d67a9cbfd28b1a37c927b29b9a70301d80c01"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/catalog.py",
+            "sha256": "8d3f495d38b3fa6f3de412bd049864fa00efae096d64d6de3a2b12ca5f69918a"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/catalogue.py",
+            "sha256": "ce7a0371325f50b4e4b243d906fa3e8ba45a3dbfade555a8cf2421d21cafdba5"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/cli.py",
+            "sha256": "3e48a1cc5cf9bf020b9ba6823be8b1cf59076a896226fff0761576400b52ff7b"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/data.py",
+            "sha256": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/evaluation.py",
+            "sha256": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/experiment.py",
+            "sha256": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/__init__.py",
+            "sha256": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/__init__.py",
+            "sha256": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py",
+            "sha256": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py",
+            "sha256": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/frontier.py",
+            "sha256": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py",
+            "sha256": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/__init__.py",
+            "sha256": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py",
+            "sha256": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/base_models.py",
+            "sha256": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py",
+            "sha256": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py",
+            "sha256": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/factors.py",
+            "sha256": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py",
+            "sha256": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py",
+            "sha256": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/__init__.py",
+            "sha256": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py",
+            "sha256": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py",
+            "sha256": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py",
+            "sha256": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py",
+            "sha256": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py",
+            "sha256": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py",
+            "sha256": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/inla.py",
+            "sha256": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py",
+            "sha256": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py",
+            "sha256": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py",
+            "sha256": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py",
+            "sha256": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/models/registry.py",
+            "sha256": "6f45544cc87158a9157ff693e228443d18497881c1346c960bb0838a6c3e9257"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/naming.py",
+            "sha256": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/origins.py",
+            "sha256": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/panel.py",
+            "sha256": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/protocol.py",
+            "sha256": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/__init__.py",
+            "sha256": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/aggregate.py",
+            "sha256": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/checkpoint.py",
+            "sha256": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/executor.py",
+            "sha256": "c8d9ea263ac056d0ee459c76154d36e67e20403664c0e078a12f85268c155649"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/retained.py",
+            "sha256": "831aa1ab5eecdd90f3baa9867e325c2b9aeedcacd74085aae8bf899f5bc3edf4"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/results/verified_candidate_scores.py",
+            "sha256": "41c4747c033d9e4b5c4316a648843d0d2f18ccf9bc0dea8ba9ab2f8c5037eabf"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/runner.py",
+            "sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/safety_scan.py",
+            "sha256": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/scores.py",
+            "sha256": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/scoring.py",
+            "sha256": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/seeds.py",
+            "sha256": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/smoke.py",
+            "sha256": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c"
+          },
+          {
+            "path": "src/simfolio_forecasting_methodology/specifications.py",
+            "sha256": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+          },
+          {
+            "path": "tools/conditional_empirical_rough/models.py",
+            "sha256": "fc511ec8317783eb466df0308b1559ff25504857fee50c9f2eb9ca476ac08fd3"
+          },
+          {
+            "path": "tools/conditional_empirical_rough/run_panel.py",
+            "sha256": "7cedf3be346ec1289e28abc7ab88f8f18f0f6740ba811777faadb1ce94288253"
+          },
+          {
+            "path": "tools/conditional_empirical_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/conditional_residual_rough/models.py",
+            "sha256": "024704d67a785fd198c72d8c69b3f73b991e513c613bc8f3f610852708e6e2c4"
+          },
+          {
+            "path": "tools/conditional_residual_rough/run_panel.py",
+            "sha256": "362055f5bf5b039d0724202d6d7ffc2dc82e924f3e75bf89023c833ce4669b66"
+          },
+          {
+            "path": "tools/conditional_residual_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/consistent_noise_rough/causal_noise.py",
+            "sha256": "1ac4a030f4fd8494a09a44d483208d21e84fb8b2a4b0948f20ae7505d059eea5"
+          },
+          {
+            "path": "tools/consistent_noise_rough/models.py",
+            "sha256": "1d39a0721f24a5d5c6acbc25f909e4a33f86b73bde5138b9f136a51430083be1"
+          },
+          {
+            "path": "tools/consistent_noise_rough/run_panel.py",
+            "sha256": "5778dede3e12d9d3b4d42e426a8c67ed1ee2f60dee752d056d771aa23d7c8578"
+          },
+          {
+            "path": "tools/consistent_noise_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/coupled_native.py",
+            "sha256": "3e78cc334c11b42e66f6d0958060214e2d52d4ad5d89f6023b5d287683235df3"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/models.py",
+            "sha256": "923128e886546d080fe9649a3cd4c281d477cf92fcc55ebd45dd3402df97ac4f"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/paths.cpp",
+            "sha256": "478119f866216b6304157430ae3e17e04cf518ee3c61c1e19a104144fa56ca4d"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/run_panel.py",
+            "sha256": "0cc4ca2e50fc4c54bca53275ef761cd2dc053b1a6aa8bd255f66259a593ad399"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/screen.py",
+            "sha256": "3cb472cbd4d3e1e92c6e3815c527875eeb808778d4f87cb2546e80c93cc4686b"
+          },
+          {
+            "path": "tools/coupled_multiscale_rough/state.py",
+            "sha256": "6c3ffb1297b81bf7cd472b5097b6a785134a135461c59dc03418c19e480d38fa"
+          },
+          {
+            "path": "tools/debiased_whittle_rough/debiased_whittle_kernel.py",
+            "sha256": "49b308586ed51ad8c9ca7ba5e33aa5552ec6aa53dd80d597eafbe8d78094778c"
+          },
+          {
+            "path": "tools/debiased_whittle_rough/models.py",
+            "sha256": "8bac9e0cfc99cd9a09aee5ae04e61c2857b0ddddc0dcb8edbc2487dc9cb60a9d"
+          },
+          {
+            "path": "tools/debiased_whittle_rough/run_panel.py",
+            "sha256": "0d32e0330ff22262d06a23fb8fd063d4615dd0f308023ca798937cf384aab063"
+          },
+          {
+            "path": "tools/debiased_whittle_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/differenced_whittle_rough/differenced_whittle_kernel.py",
+            "sha256": "ba6ed0932cef1c35e92e9aa6fe0fc6c69f72d477264adcb594e31920d384f7e1"
+          },
+          {
+            "path": "tools/differenced_whittle_rough/models.py",
+            "sha256": "dbe8249143e6675dc233c2dea94a0df4c0d13931745fca4ab8d4d1bbb2c93de6"
+          },
+          {
+            "path": "tools/differenced_whittle_rough/run_panel.py",
+            "sha256": "61a611e77b06138cbb421baf570eb43bc894012b5d5aa7ac70a2bab8cb7d3699"
+          },
+          {
+            "path": "tools/differenced_whittle_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/models.py",
+            "sha256": "0b3e0bcceb24ecbbd424eab2acb7a755443df09e0419b39e53fdbe8e19a0a1b2"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/posterior.py",
+            "sha256": "7854e7a65b2250ccf9e60e8edb3b7ddd9f027405fd3fe8d9e1d25d07c41eb785"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/progress.py",
+            "sha256": "4538d4336190b5395cc3500131da34867c0b3ee17c7021b76f6eb54f294fb5ed"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/run_panel.py",
+            "sha256": "a9250471852ec401c201558df5ea8a1ee12a3b23cf426943a0fa037fe1182139"
+          },
+          {
+            "path": "tools/dynamic_rough_inference/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/empirical_rough_noise/models.py",
+            "sha256": "55698afe1d1d11815fa711e99efb5fa502a7dc7732e44412f6b4f066fe24e475"
+          },
+          {
+            "path": "tools/empirical_rough_noise/run_panel.py",
+            "sha256": "f32ea907ffc5245ef4cb33f49a525cd813022c50398b582012b41fc83af8c498"
+          },
+          {
+            "path": "tools/empirical_rough_noise/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/learned_loading_full_hurst_rough/models.py",
+            "sha256": "01ac5e734237b687cbad4e33a70e6a6b984c9ec3f88315383eeec23d478f6b28"
+          },
+          {
+            "path": "tools/learned_loading_full_hurst_rough/rough_map.py",
+            "sha256": "f6886ed8cd3ac22c3cef567a063d1afcc154691681df1d089048b22bbb3f46bf"
+          },
+          {
+            "path": "tools/learned_loading_full_hurst_rough/run_panel.py",
+            "sha256": "a60eb30afffec53d66630fc18414c68eaa046d59db500880ef7fbb6d485d86a0"
+          },
+          {
+            "path": "tools/learned_loading_full_hurst_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/components.py",
+            "sha256": "e82db9a9481b548eec4332dd7d837656f7783e497a790bde0bed44f95eba9713"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/models.py",
+            "sha256": "b70dec9002317132877784b6d84fca8c5327bbe17e7e554d102caf722cc8ba0b"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/rate_fit.py",
+            "sha256": "39998018e05560cfad524135c525590e959f475944d2e33e54f69d903cdad3f5"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/run_panel.py",
+            "sha256": "7f59e38088371d36c9b63fd47aac280f19bf0ae61bef07a6781f340ffec33957"
+          },
+          {
+            "path": "tools/learned_multiscale_rates_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/mcmc_runtime/benchmark_model_cases.py",
+            "sha256": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6"
+          },
+          {
+            "path": "tools/mcmc_runtime/benchmark_scaling.py",
+            "sha256": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02"
+          },
+          {
+            "path": "tools/mcmc_runtime/cached_dependence.py",
+            "sha256": "05ea1ca7c67003bfb8c217851e217558f770fd8a17ccf55c4f6ca0cdeac659fb"
+          },
+          {
+            "path": "tools/mcmc_runtime/cached_moments.py",
+            "sha256": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b"
+          },
+          {
+            "path": "tools/mcmc_runtime/compiled_chain.py",
+            "sha256": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059"
+          },
+          {
+            "path": "tools/mcmc_runtime/compiled_map.py",
+            "sha256": "ff14eb242d8701b1dfdd067c63ab81de6d47dbd8b057786ce67b209a4b1a6b76"
+          },
+          {
+            "path": "tools/mcmc_runtime/compiled_postburn.py",
+            "sha256": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c"
+          },
+          {
+            "path": "tools/mcmc_runtime/compiled_smoothers.py",
+            "sha256": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46"
+          },
+          {
+            "path": "tools/mcmc_runtime/complex_sv.py",
+            "sha256": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71"
+          },
+          {
+            "path": "tools/mcmc_runtime/exact_path_kernels.py",
+            "sha256": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5"
+          },
+          {
+            "path": "tools/mcmc_runtime/finite_multiscale.py",
+            "sha256": "5f444323af6696d06840a8f88695e482c2e64cec921a62b8bc486f42fbd30906"
+          },
+          {
+            "path": "tools/mcmc_runtime/optimized_mcmc.py",
+            "sha256": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df"
+          },
+          {
+            "path": "tools/mcmc_runtime/parallel_chains.py",
+            "sha256": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3"
+          },
+          {
+            "path": "tools/mcmc_runtime/parameter_mcmc_tuned.py",
+            "sha256": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a"
+          },
+          {
+            "path": "tools/mcmc_runtime/predictive_sv_candidates.py",
+            "sha256": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309"
+          },
+          {
+            "path": "tools/mcmc_runtime/profile_runtime.py",
+            "sha256": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4"
+          },
+          {
+            "path": "tools/mcmc_runtime/replay_full_panel.py",
+            "sha256": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca"
+          },
+          {
+            "path": "tools/mcmc_runtime/research_jit_pilot.py",
+            "sha256": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e"
+          },
+          {
+            "path": "tools/mcmc_runtime/runtime_setup.py",
+            "sha256": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665"
+          },
+          {
+            "path": "tools/mcmc_runtime/steady_kalman_target.py",
+            "sha256": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394"
+          },
+          {
+            "path": "tools/mcmc_runtime/streamed_paths.py",
+            "sha256": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/models.py",
+            "sha256": "9c50bfe9a44be2732aad079d42e60992f35ace8cc99a7c3217ea10163300e73c"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/paths.cpp",
+            "sha256": "34e881ea3d64e8abe5dfc322845a41e8e51c4a0d493076b51d37e2b52778ebaa"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/pathwise_native.py",
+            "sha256": "add4ffa47987980b858e8593865c3207064630180398bb14d7da075e1173e8a8"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/run_panel.py",
+            "sha256": "57f6b51fb21757ba972edb2c124e05bfcf442aae65b91ca42e1fa7af6abff28a"
+          },
+          {
+            "path": "tools/pathwise_multiscale_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/predictive_loading_rates_rough/models.py",
+            "sha256": "9ba5ed81d6ce5400eccb1063b27d61f459bdb7dd2990f02136de4f6ed2d3c909"
+          },
+          {
+            "path": "tools/predictive_loading_rates_rough/run_panel.py",
+            "sha256": "512b6713ce6ee15faef0724f456d6b2d93dc849200f33b0c05ab6fe013b81431"
+          },
+          {
+            "path": "tools/predictive_loading_rates_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/leverage_fit.py",
+            "sha256": "8157f1bdd238f0f2fce36d503ba2e50c878bf67ef4bbb16825f145dc4ff03f00"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/leverage_native.py",
+            "sha256": "972444357f93321acb33faedebe8a5f807da061db3b58b45eaf57dd6d8423733"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/models.py",
+            "sha256": "b1e67d1bac32dcd88b2f8240195b7022425205053b46850f44feea6b1f9b4ec6"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/paths.cpp",
+            "sha256": "e8eaa8a62cf8e5444ff48a9129f8d85eeb20782cf9558c9bc7ba860b1e6a3ae0"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/run_panel.py",
+            "sha256": "5bb061858c7ad10369b650a2c4d7845d6c88a48932dc9690570c26bd3cf1d8df"
+          },
+          {
+            "path": "tools/proxy_leverage_rough/screen.py",
+            "sha256": "4b68d8d38fd12ac0ebbb843181faa3fa33361195311ef23b98323dd94cf9d09a"
+          },
+          {
+            "path": "tools/raw_return_laplace_rough/laplace_sv.py",
+            "sha256": "10864fc1d50efb3306c19480d534c0764e4ba1d1046d1494977cede898e5a533"
+          },
+          {
+            "path": "tools/raw_return_laplace_rough/models.py",
+            "sha256": "fb7f3e4864d02a61d99b214987e0e1016f15a4dac39b3aa3d1dc5017ac7793d9"
+          },
+          {
+            "path": "tools/raw_return_laplace_rough/run_panel.py",
+            "sha256": "1abebf2e8cfde2811098a535e32f3812a5422b2adb59ea7269f431411c100298"
+          },
+          {
+            "path": "tools/raw_return_laplace_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/relaxed_hurst_differenced_rough/models.py",
+            "sha256": "2943675de70ff4407ae1b5661c9d554a691268f00886f0794758f1b45a59b698"
+          },
+          {
+            "path": "tools/relaxed_hurst_differenced_rough/run_panel.py",
+            "sha256": "68cbfe99d3b3c92433add659b8513a404f5060482257d75ee41bdc6d2f3ef1b9"
+          },
+          {
+            "path": "tools/relaxed_hurst_differenced_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/rough_bayesian/coherent.py",
+            "sha256": "713f8c5790471ccfc2898c2c758be03dc72d04e76fe8d456859998f6d8327950"
+          },
+          {
+            "path": "tools/rough_bayesian/coherent_kernels.py",
+            "sha256": "64dc4e6f4bae8270b86c10d55102d0eefd1421fd93aa55771b6224652594bc47"
+          },
+          {
+            "path": "tools/rough_bayesian/dynamic.py",
+            "sha256": "6fe1eccf02c597d75b65c6259082eebce7237317a8f4ffa0a66ec98047342fac"
+          },
+          {
+            "path": "tools/rough_bayesian/inference.py",
+            "sha256": "9af54147f5db99fc37ad9b71f1cabc1b96762f641ab2372f7876e852d1e54ec3"
+          },
+          {
+            "path": "tools/rough_bayesian/kernels.py",
+            "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+          },
+          {
+            "path": "tools/rough_bayesian/mixture.py",
+            "sha256": "8a315cd80f214c19547a385e7ef807e4bbd2aea147a7ada20a9fcd52525280f0"
+          },
+          {
+            "path": "tools/rough_bayesian/mixture_kernels.py",
+            "sha256": "0d494d68c910b51ae8cb935ca86e0389f6906f6ec4581bd3322fe1c0e6b6dcf3"
+          },
+          {
+            "path": "tools/rough_bayesian/models.py",
+            "sha256": "73389a2fc2bbe0fb0bcbc88ad8aec70e9bfbbb8484c7e825e873f464cf570f9b"
+          },
+          {
+            "path": "tools/rough_bayesian/native.py",
+            "sha256": "696713549712fa70e01369ae5c7805c25ba02a88692a657ad1d1738a9798df2e"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay.py",
+            "sha256": "a401776494b15125c30170bd76c3c9a62ad4626877b857a8d4f474327a852d97"
+          },
+          {
+            "path": "tools/rough_bayesian/overlay_filter.cpp",
+            "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
+          },
+          {
+            "path": "tools/rough_bayesian/run_panel.py",
+            "sha256": "71a8ada2fc26e1506dac8eae4d590576dd66715810347dc7c48dc4cc6c06f301"
+          },
+          {
+            "path": "tools/rough_bayesian/smoke.py",
+            "sha256": "a31f118e207a8aa62a4dec17c689c8c982f150da035150da4d2cab6d386ee395"
+          },
+          {
+            "path": "tools/rough_bayesian/standalone.py",
+            "sha256": "0be7df8758f4b1c31fe75ac863dd273cef4a12033150f6d36c39948c05a42472"
+          },
+          {
+            "path": "tools/rough_jump_vine/build_native.py",
+            "sha256": "2346d6501657e53a998c4fd758c7f077be0f6b65a79a49c7e439effead4c7819"
+          },
+          {
+            "path": "tools/rough_jump_vine/models.py",
+            "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+          },
+          {
+            "path": "tools/rough_jump_vine/native.patch",
+            "sha256": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4"
+          },
+          {
+            "path": "tools/rough_jump_vine/run_panel.py",
+            "sha256": "52fb5a3ffb99275eb9b5a2db56bbcea1e69db5e6143715c1877fdc4c3abec55a"
+          },
+          {
+            "path": "tools/rough_jump_vine/smoke.py",
+            "sha256": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a"
+          },
+          {
+            "path": "tools/stationary_ar1_rough/models.py",
+            "sha256": "7bfb063da126bcccd128c86b5bfd3d412e62bbb949647cc4686ec03298e7e338"
+          },
+          {
+            "path": "tools/stationary_ar1_rough/run_panel.py",
+            "sha256": "4d7785123ddffc290989ef6f55e0126e3171b7920b6d9d77527b2ed639b7caa9"
+          },
+          {
+            "path": "tools/stationary_ar1_rough/screen.py",
+            "sha256": "3cb472cbd4d3e1e92c6e3815c527875eeb808778d4f87cb2546e80c93cc4686b"
+          },
+          {
+            "path": "tools/stationary_ar1_rough/state.py",
+            "sha256": "86c583adee4902716f33138a0e140c86b435f20dc43bc8b474af6684992a8899"
+          },
+          {
+            "path": "tools/streamed_rough_paths/models.py",
+            "sha256": "714f90846fb04618574ce687a05082c6ad784fad9fff4fb63c43532cdc99e705"
+          },
+          {
+            "path": "tools/streamed_rough_paths/paths.cpp",
+            "sha256": "0f6678a9582221cc1be0a06b8ad72b0d9b7cf9eaf66539e9adf1addb5d6d7732"
+          },
+          {
+            "path": "tools/streamed_rough_paths/run_panel.py",
+            "sha256": "0629c00a461a64091788d53484b6e451647d842684c62688d39edbe45ed2d78b"
+          },
+          {
+            "path": "tools/streamed_rough_paths/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/streamed_rough_paths/stream_native.py",
+            "sha256": "9d5292b05244bb1505c4503e66e0d51239e4a3a05b1c9c7582eea83277e3652a"
+          },
+          {
+            "path": "tools/student_implied_noise_rough/models.py",
+            "sha256": "ffeb07ac55cbf20c56c3e79e028681c05b9503b9ed9dcd79da252ffbbf67511c"
+          },
+          {
+            "path": "tools/student_implied_noise_rough/run_panel.py",
+            "sha256": "28ce47f24dca5df837fb5f983938c402c46496002923c5a2e0dfa7092aaa7f57"
+          },
+          {
+            "path": "tools/student_implied_noise_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/student_implied_noise_rough/student_log_moments.py",
+            "sha256": "9c334434846d67e37ef585174b6185fea764a946b0d78366046b4796d3996c20"
+          },
+          {
+            "path": "tools/student_return_laplace_rough/models.py",
+            "sha256": "3aa8c5fd06d0543ede4fdd65ce229632011ff85f342fd3c7b7a8f40fc1f74311"
+          },
+          {
+            "path": "tools/student_return_laplace_rough/run_panel.py",
+            "sha256": "83b09e101d321b3fbb54636f0b0062a6ad003c3bde2f3ef256a17e05b61aa64b"
+          },
+          {
+            "path": "tools/student_return_laplace_rough/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/student_return_laplace_rough/student_laplace_sv.py",
+            "sha256": "dc8a4f276b73d287abab9cb2ecb23569ea2026458cd541a5795a38a772515a11"
+          },
+          {
+            "path": "tools/untruncated_rough_priors/models.py",
+            "sha256": "23dca6027cd87d6a606be5ef8e21a2f9b02d35e0dd91af9c03693cb16ea908fd"
+          },
+          {
+            "path": "tools/untruncated_rough_priors/run_panel.py",
+            "sha256": "91f88ad2f5cf369c3ec92d6e715b9cb7bd29aa0d5ebe18faf06fcf0f5912b3e7"
+          },
+          {
+            "path": "tools/untruncated_rough_priors/screen.py",
+            "sha256": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+          },
+          {
+            "path": "tools/untruncated_rough_priors/unbounded_map.py",
+            "sha256": "0f02d3a18d46c79e89c8943da07e03d0b4d72bb5902d13901b9bb2a37015ee3b"
+          }
+        ],
+        "entrypoints": [
+          "CANDIDATES[0].simulate_daily_log_returns"
+        ],
+        "path": "tools/proxy_leverage_rough/models.py",
+        "revision": "e2d40491fe289aaee320e23d8f36a407ec71a7aa",
+        "sha256": "b1e67d1bac32dcd88b2f8240195b7022425205053b46850f44feea6b1f9b4ec6"
+      },
+      "source_seed_context_ref": "asset_level_MAP_multiscale_dynamic_rough_overlay",
+      "source_seed_contract": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+      "volatility": {
+        "H_prior": {
+          "bounds": [
+            0.0,
+            0.5
+          ],
+          "distribution": "uniform",
+          "support": "theoretical rough open interval; unchanged relative numerical interior guard 1e-10"
+        },
+        "conventional_recursion": "h[t]=level+rho*(h[t-1]-level)+sd*z[t]",
+        "conventional_support": "0<=rho<1, unrestricted real level, positive innovation variance; exact zero-persistence and constant-proxy boundaries",
+        "historical_initial_distribution": "Gaussian(level,sd^2/(1-rho^2)); included in fitting likelihood",
+        "historical_memory_initialization": "not applicable: no extra exponential memories",
+        "historical_observation": "same M237 raw Student-debiased clipped log-square proxy with unchanged production conventional offset for rough fitting",
+        "innovation_covariance": "scalar Gaussian innovation variance",
+        "kernel": {
+          "certificate": "monotonic interval enclosure and C-second-derivative <=4*exp(-2)/t**2; recursively bisect unresolved integer-lag intervals",
+          "continuous_target": "exp(-kappa*t)*t**(H-.5)/Gamma(H+.5)",
+          "error_metric": "normalized absolute stationary autocorrelation difference over every requested integer daily lag",
+          "error_tolerance": 0.001,
+          "factor_selection": "first passing positive integer quadrature order per (H,kappa); no fixed factor count, preset list or factor cap",
+          "fast_rate_threshold": "-log(tolerance/2)",
+          "lag_domain": "1 through training_days+requested_horizon_days-1",
+          "lift": "positive Gauss-Jacobi spectral quadrature on logarithmic rates",
+          "normalized_stationary_covariance": "E[exp(-kappa*(1+Z)/(1-Z)*t)], Z~Beta(.5-H,2*H)",
+          "reference_numerics": "Tricomi U closed form; independent weighted Beta integration fallback for invalid special-function evaluations",
+          "white_tail_error_bound": "tolerance/2 for every positive daily lag",
+          "zero_lag_variance": "analytic exact unit variance with Beta tail mass retained as independent white component"
+        },
+        "lagged_return_volatility_dependence": {
+          "future_shock": "epsilon_vol[t+1]=rho*z_idiosyncratic_return[t]+sqrt(1-rho^2)*z_independent_vol[t+1]",
+          "historical_estimator": "Gaussian-score sample correlation between lagged PCA asset-specific return residuals and fitted scalar AR1 Student-mode volatility innovations",
+          "initial_boundary": "first future volatility innovation unchanged; no plug-in conditioning on historical latent residual",
+          "marginals": "every M243 Student, conventional proxy, rough parameter/kernel fit unchanged; independent Gaussian volatility innovation law retained",
+          "mean": "current idiosyncratic return shock independent of volatility built from past idiosyncratic shocks; persistent factor states remain independent of the leverage driver",
+          "parameter_uncertainty": false,
+          "reference": "https://shephard.scholars.harvard.edu/publications/stochastic-volatility-leverage-fast-and-efficient-likelihood-inference",
+          "return_stream": "capture existing day-major asset Gaussian draw block without altering any generated return uniforms",
+          "scope_limit": "plug-in Gaussian-score leverage, not joint raw-return SV inference"
         },
         "latent_states": "conventional starts at last fitted proxy and coupled memory states; rough samples retained terminal Gaussian posterior",
         "level": "jointly estimated stationary Gaussian proxy level, analytically profiled conditional on persistence",
