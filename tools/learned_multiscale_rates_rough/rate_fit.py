@@ -23,7 +23,7 @@ def ewma(x, alpha):
 
 
 @njit(cache=True, nogil=True)
-def residual_innovations(centered, phis, shrink_loadings=True):
+def residual_innovations(centered, phis, shrink_loadings=True, loading_scale=np.nan):
     n = len(centered); k = len(phis)
     q = np.empty((n, k))
     for j in range(k):
@@ -35,7 +35,9 @@ def residual_innovations(centered, phis, shrink_loadings=True):
     for j in range(k):
         signal[j] = abs(b[j]) * np.std(q[:, j])
     positive = signal[signal > 0.]
-    if shrink_loadings and positive.size:
+    if np.isfinite(loading_scale):
+        b *= loading_scale
+    elif shrink_loadings and positive.size:
         b *= signal / (signal + np.median(positive) + 1e-8)
     residual = centered - q @ b
     residual -= np.mean(residual)
@@ -125,4 +127,53 @@ def fit_one(h, initial_phis, shrink_loadings=True):
     first = np.array([np.clip(rho, np.finfo(float).eps, 1. - np.finfo(float).eps)])
     rates, record = fit(h, first, shrink_loadings)
     record['count_selection'] = 'fixed_one_learned_decay_control'
+    return rates, record
+
+
+def objective_loading(z, centered):
+    phis = np.clip(expit(z[:-1]), np.nextafter(0., 1.), np.nextafter(1., 0.))
+    errors = residual_innovations(centered, phis, False, expit(z[-1]))
+    variance = float(np.mean(errors * errors))
+    return .5 * len(errors) * (np.log(2. * np.pi * variance) + 1.)
+
+
+def fit_loading(h, initial_phis):
+    h = np.asarray(h, float); centered = h - np.mean(h)
+    z = np.r_[logit(initial_phis), 0.]
+    initial = objective_loading(z, centered)
+    result = minimize(objective_loading, z, args=(centered,), method='L-BFGS-B',
+                      options={'maxiter': 200, 'ftol': 1e-10, 'gtol': 1e-5})
+    solver = 'L-BFGS-B'
+    if not result.success or not np.isfinite(result.fun):
+        result = minimize(objective_loading, result.x if np.isfinite(result.x).all() else z,
+                          args=(centered,), method='Powell',
+                          options={'maxiter': 200, 'xtol': 1e-7, 'ftol': 1e-10})
+        solver = 'Powell_after_gradient_line_search_failure'
+    if not result.success or not np.isfinite(result.fun) or result.fun > initial + 1e-7:
+        raise ArithmeticError(f'predictive loading optimization failed: {result.message}')
+    rates = np.clip(expit(result.x[:-1]), np.nextafter(0., 1.), np.nextafter(1., 0.))
+    return rates, {'estimator': 'conditional_Gaussian_predictive_QMLE_decay_and_loading_shrinkage',
+                      'success': True, 'initial_negative_loglikelihood': float(initial),
+                      'negative_loglikelihood': float(result.fun), 'loading_scale': float(expit(result.x[-1])),
+                      'component_count': len(rates), 'phis': rates.tolist(), 'iterations': int(result.nit),
+                      'evaluations': int(result.nfev), 'solver': solver, 'optimizer_message': str(result.message)}
+
+
+def fit_adaptive_loading(h, initial_phis):
+    h = np.asarray(h, float); centered = h - np.mean(h)
+    rho = float(centered[:-1] @ centered[1:] / (centered[:-1] @ centered[:-1]))
+    rates, record = fit_loading(h, np.array([np.clip(rho, np.finfo(float).eps, 1. - np.finfo(float).eps)]))
+    def bic(receipt):
+        return 2. * receipt['negative_loglikelihood'] + (2 * receipt['component_count'] + 4) * np.log(len(h) - 1)
+    score = bic(record); tested = [{'count': 1, 'bic': float(score)}]
+    while 2 * (len(rates) + 1) + 4 < len(h) - 1:
+        grid = np.sort(np.r_[0., np.log(-np.log(2.) / np.log(rates)), np.log(len(h))])
+        gap = int(np.argmax(np.diff(grid)))
+        extra = np.exp(-np.log(2.) / np.exp(.5 * (grid[gap] + grid[gap + 1])))
+        proposed, receipt = fit_loading(h, np.r_[rates, extra])
+        proposed_score = bic(receipt); tested.append({'count': len(proposed), 'bic': float(proposed_score)})
+        if proposed_score >= score: break
+        rates, record, score = proposed, receipt, proposed_score
+    record.update(count_selection='forward_conditional_BIC_predictive_loading',
+                  selected_bic=float(score), tested_orders=tested, bic_parameter_count=2 * len(rates) + 4)
     return rates, record

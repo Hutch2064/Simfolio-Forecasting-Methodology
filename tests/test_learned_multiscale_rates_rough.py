@@ -95,3 +95,22 @@ def test_unshrunk_objective_and_construction_match_loading_rule(model):
     error=centered[1:]-q[:-1]*phi[0]*plain['b'][0]-rho*residual[:-1]
     expected=.5*len(error)*(np.log(2*np.pi*np.mean(error**2))+1)
     assert model.rate_fit.objective(logit(phi),centered,False)==pytest.approx(expected,rel=1e-12)
+
+
+def test_predictive_loading_objective_matches_constructed_states(model):
+    h=np.random.default_rng(101).normal(-1.,.3,600);phi=np.array([.85,.99]);scale=.7
+    fitted=model.components(h,phi,loading_scale=scale)
+    plain=model.components(h,phi,shrink_loadings=False)
+    assert np.array_equal(fitted['b'],plain['b']*scale)
+    centered=h-h.mean();z=np.r_[logit(phi),logit(scale)]
+    error=model.rate_fit.residual_innovations(centered,phi,False,scale)
+    expected=.5*len(error)*(np.log(2*np.pi*np.mean(error**2))+1)
+    assert model.rate_fit.objective_loading(z,centered)==pytest.approx(expected,rel=1e-12)
+
+def test_predictive_loading_selects_by_penalized_target(model):
+    h=np.random.default_rng(123).normal(size=500)
+    rates,record=model.rate_fit.fit_adaptive_loading(h,np.array([.9]))
+    assert 0<record['loading_scale']<1
+    assert record['negative_loglikelihood']<=record['initial_negative_loglikelihood']+1e-7
+    assert record['bic_parameter_count']==2*len(rates)+4
+    assert record['selected_bic']==min(x['bic'] for x in record['tested_orders'])

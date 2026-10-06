@@ -1,18 +1,16 @@
-"""Matched learned-rate control without signal-median loading shrinkage."""
+"""Adaptive EWMA rates/count with data-fitted predictive loading shrinkage."""
 import hashlib
 import importlib.util
 import sys
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
-spec=importlib.util.spec_from_file_location('single_unshrunk_rate_rough_private_learned_rates',ROOT/'tools/learned_multiscale_rates_rough/models.py')
+spec=importlib.util.spec_from_file_location('predictive_loading_private_learned_rates',ROOT/'tools/learned_multiscale_rates_rough/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
-parent.fit_rates=lambda h, rates: parent.rate_fit.fit_one(h, rates, shrink_loadings=False)
-original_components=parent.components
-parent.components=lambda h, rates, **kwargs: original_components(h, rates, shrink_loadings=False, **kwargs)
+parent.fit_rates=parent.rate_fit.fit_adaptive_loading
 parent.SOURCE=hashlib.sha256((parent.SOURCE+Path(__file__).read_text()).encode()).hexdigest()
 initialize=parent.initialize;Candidate=parent.Candidate
-CANDIDATES=(Candidate(model_id='asset_map_single_unshrunk_multiscale_rates_untruncated_dynamic_rough'),)
+CANDIDATES=(Candidate(model_id='asset_map_adaptive_predictive_loading_rates_untruncated_dynamic_rough'),)
 MODEL_IDS=(parent.MODEL_IDS[0],CANDIDATES[0].model_id)
 clear_path_cache=parent.clear_path_cache;TIMINGS=parent.TIMINGS;FIT_DIAGNOSTICS=parent.FIT_DIAGNOSTICS
 shell=parent.shell;overlay=parent.overlay;load_paths=parent.load_paths
