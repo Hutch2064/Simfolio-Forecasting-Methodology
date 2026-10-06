@@ -1,16 +1,17 @@
 """Independent reference recurrences and complete smoke score parity."""
-from dataclasses import replace
 import argparse
 import hashlib
 import json
-from pathlib import Path
 import time
+from dataclasses import replace
+from pathlib import Path
 
-import numpy as np
-from scipy.signal import lfilter
 import inference
 import models
+import numpy as np
 import overlay
+from scipy.signal import lfilter
+
 from simfolio_forecasting_methodology.experiment import build_experiment_plan
 from simfolio_forecasting_methodology.runner import evaluate_origin_task
 

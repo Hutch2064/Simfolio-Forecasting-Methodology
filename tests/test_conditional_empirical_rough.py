@@ -1,7 +1,10 @@
 """Private factorial adapter must not mutate the recorded candidate arms."""
+import importlib.util
+import sys
 from pathlib import Path
-import importlib.util,sys
+
 import numpy as np
+
 
 def test_combined_uses_residual_observations_empirical_noise_and_shared_cache():
     root=Path(__file__).resolve().parents[1]

@@ -1,9 +1,11 @@
 """Independent OLS normal equations and preservation of the 100-year mean."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
+
 import numpy as np
 import pytest
+
 
 @pytest.fixture(scope='module')
 def model():
@@ -22,7 +24,9 @@ def test_multiscale_coefficients_satisfy_independent_ols_normal_equations(model)
 
 
 def test_original_fit_and_century_mean_curve_unchanged(model):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     data=np.random.default_rng(33).normal(.0005,.01,600).tobytes()
     original=model.streamed.predecessor_fit(data);modified=model.fit_with_ols(data)
     assert all(modified[k] is v for k,v in original.items() if k!='bdes_multiscale_vol')

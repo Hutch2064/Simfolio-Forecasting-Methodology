@@ -4,18 +4,23 @@ Gaussian log-square quasi likelihood; original priors retained for SV parameters
 flat log-observation-variance prior. Rough uses the same learned variance. Mean
 curve is the original predecessor's, including its century-long growth behavior.
 """
-from functools import lru_cache
-import hashlib,importlib.util,math
-from pathlib import Path
+import hashlib
+import importlib.util
+import math
 import sys
+from functools import lru_cache
+from pathlib import Path
+
 import numpy as np
 from scipy.optimize import minimize
-from scipy.special import expit,logit
+from scipy.special import expit, logit
+
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 spec=importlib.util.spec_from_file_location('joint_noise_private_m212',ROOT/'tools/consistent_noise_rough/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
 sys.path.insert(0,str(ROOT/'tools/empirical_conventional_sv_rough'))
 import gaussian_sv
+
 streamed=parent.parent.streamed;original_fit=streamed.predecessor_fit;original_noise=parent.parent.base.noise.measurement_scale
 SOURCE=hashlib.sha256(b''.join(p.read_bytes() for p in sorted(HERE.glob('*.py')))+(ROOT/'tools/empirical_conventional_sv_rough/gaussian_sv.py').read_bytes()).hexdigest()
 
@@ -58,8 +63,11 @@ parent.parent.base.noise.measurement_scale=measurement_scale
 parent.parent.SOURCE=hashlib.sha256((parent.parent.SOURCE+SOURCE).encode()).hexdigest()
 
 def asset_paths(data,uniforms):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
     from streamed_paths import map_asset_inplace
+
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     mean,_=moment_return_curves(original_fit(data),uniforms.shape[1]);_,sd=moment_return_curves(refit(data),uniforms.shape[1]);n=len(uniforms)
     nodes=np.quantile(refit(data)['innovation_pool'],np.linspace(.5/n,1-.5/n,n));nodes-=nodes.mean();nodes/=np.sqrt(np.mean(nodes*nodes))
     paths=uniforms.copy();map_asset_inplace(paths,mean,sd,nodes);return mean,paths

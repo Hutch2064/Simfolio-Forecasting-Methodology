@@ -1,9 +1,11 @@
 """One-state Gaussian SV quasi-likelihood with explicit observation noise."""
 import math
+
 import numpy as np
 from numba import njit
 from scipy.optimize import minimize
-from scipy.special import expit,logit
+from scipy.special import expit, logit
+
 
 @njit(cache=True,nogil=True)
 def filter_states(y,level,phi,eta,noise):

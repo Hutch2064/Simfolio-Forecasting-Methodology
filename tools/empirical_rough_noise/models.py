@@ -5,15 +5,15 @@ remain the predecessor's. The rough fit uses the winner's Gaussian log-square
 quasi likelihood, priors and accuracy-controlled covariance approximation.
 Parameter uncertainty is not integrated in this MAP candidate.
 """
-from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass
-from functools import lru_cache
 import hashlib
 import importlib.util
 import math
-from pathlib import Path
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import dataclass
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 
@@ -23,8 +23,8 @@ sys.path[:0]=[str(ROOT/'tools/dynamic_rough_inference'),str(ROOT/'tools/rough_ba
 spec=importlib.util.spec_from_file_location('rough_inference_shell',ROOT/'tools/rough_bayesian/models.py')
 shell=importlib.util.module_from_spec(spec);sys.modules[spec.name]=shell;spec.loader.exec_module(shell)
 import overlay
+from posterior import fit_map
 from streamed_paths import map_asset_inplace
-from posterior import fit_map,InferenceLimit
 
 TIMINGS=shell.TIMINGS
 FIT_DIAGNOSTICS={}
@@ -116,7 +116,9 @@ def predecessor_fit(data):
 
 
 def predecessor_asset_paths(data,uniforms):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     fit=predecessor_fit(data)
     # Reuse the same curves instead of computing all multiscale moments twice.
     mean,sd=moment_return_curves(fit,uniforms.shape[1])
@@ -178,10 +180,10 @@ class PredecessorRoughMAP:
             identity=hashlib.sha256(d).hexdigest()
             theta=rough['map']
             kernel=selected_kernel(float(theta[0]),math.exp(theta[1]),lag)[2]
-            FIT_DIAGNOSTICS[self.model_id,identity]=dict(model_id=self.model_id,data_sha256=identity,
-                conventional_estimator='original_predecessor_MAP',rough_estimator='MAP_point_empirical_measurement_noise',measurement_noise_variance=rough['measurement_noise_variance'],
-                posterior_parameter_uncertainty=False,rough_parameters=theta.tolist(),kernel=kernel,
-                rough_fit={k:v for k,v in rough.items() if k not in ('points','weights','map')})
+            FIT_DIAGNOSTICS[self.model_id,identity]={'model_id': self.model_id,'data_sha256': identity,
+                'conventional_estimator': 'original_predecessor_MAP','rough_estimator': 'MAP_point_empirical_measurement_noise','measurement_noise_variance': rough['measurement_noise_variance'],
+                'posterior_parameter_uncertainty': False,'rough_parameters': theta.tolist(),'kernel': kernel,
+                'rough_fit': {k:v for k,v in rough.items() if k not in ('points','weights','map')}}
             mean,base_paths=predecessor_asset_paths(d,uniforms[:,:,a])
             phi,w,root,state,initial_root,means,variances=prepared(d,theta.tobytes(),lag,horizon)
             rng=np.random.default_rng(shell.bd.deterministic_seed('rough_overlay_prediction',identity,

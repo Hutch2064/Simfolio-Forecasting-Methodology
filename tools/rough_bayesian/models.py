@@ -27,8 +27,10 @@ import optimized_mcmc as opt
 from inference import chain, configuration, heston_path
 from kernels import grid
 from streamed_paths import rejoin
+
 from simfolio_forecasting_methodology.models.asset_level.frontier import (
-    _historical_rebalance_dates, _validate_calendar,
+    _historical_rebalance_dates,
+    _validate_calendar,
 )
 from simfolio_forecasting_methodology.models.numerical import bdes_fastmap as bd
 
@@ -257,11 +259,11 @@ class Candidate:
         return result
 
 
-from overlay import Candidate as OverlayCandidate
-from dynamic import DynamicCandidate
-from standalone import StandaloneCandidate
-from mixture import MixtureCandidate
 from coherent import CoherentCandidate
+from dynamic import DynamicCandidate
+from mixture import MixtureCandidate
+from overlay import Candidate as OverlayCandidate
+from standalone import StandaloneCandidate
 
 CANDIDATES = (
     controls.Candidate(MODEL_IDS[0]), controls.Candidate(MODEL_IDS[1], rough=True),

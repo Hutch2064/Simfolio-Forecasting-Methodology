@@ -1,7 +1,7 @@
 """Independent references for analytic covariance spectral estimation."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -23,7 +23,7 @@ def model():
 def test_covariance_matches_independent_beta_integral(model,h,k):
     lags=np.array([0,1,7,63,252,2520])
     a,b=.5-h,2*h
-    expected=[1. if t==0 else quad(lambda z:np.exp(-k*(1+z)/(1-z)*t) if z<1 else 0.,
+    expected=[1. if t==0 else quad(lambda z, t=t:np.exp(-k*(1+z)/(1-z)*t) if z<1 else 0.,
         0.,1.,weight='alg',wvar=(a-1,b-1),epsabs=1e-12,epsrel=1e-12)[0]/beta(a,b) for t in lags]
     np.testing.assert_allclose(model.overlay.exact_covariance(h,k,lags),expected,rtol=2e-10,atol=2e-12)
 

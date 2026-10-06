@@ -55,11 +55,11 @@ def snapshot(output,reference,best_reference,default_reference):
                 assert len(default)==int(mask.sum())
                 scores['Production default naive']=float(np.mean(default))
     elapsed=progress['elapsed_seconds'];count=len(completed)
-    result=dict(completed_origins=count,required_origins=len(tasks),completed_portfolios=len(finished),
-        required_portfolios=len(groups),elapsed_seconds=elapsed,
-        estimated_remaining_seconds=elapsed*(len(tasks)-count)/count if count else None,
-        scoring='equal portfolio-horizon cells; completed 51-origin portfolios only',
-        comparator_models_rerun=False,cumulative_scores=scores)
+    result={'completed_origins': count,'required_origins': len(tasks),'completed_portfolios': len(finished),
+        'required_portfolios': len(groups),'elapsed_seconds': elapsed,
+        'estimated_remaining_seconds': elapsed*(len(tasks)-count)/count if count else None,
+        'scoring': 'equal portfolio-horizon cells; completed 51-origin portfolios only',
+        'comparator_models_rerun': False,'cumulative_scores': scores}
     (output/'cumulative-comparison.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
 

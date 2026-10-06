@@ -1,12 +1,12 @@
 """Strict floating-point ARM filter; other platforms retain the Numba kernel."""
-from functools import lru_cache
 import hashlib
 import importlib.util
-from pathlib import Path
 import platform
 import subprocess
 import sysconfig
 import tempfile
+from functools import lru_cache
+from pathlib import Path
 
 
 @lru_cache(maxsize=1)
@@ -14,6 +14,7 @@ def load_filter():
     if platform.machine() != 'arm64':
         return None
     import fcntl
+
     import pybind11
     from numba.extending import get_cython_function_address
     source = Path(__file__).with_name('overlay_filter.cpp')

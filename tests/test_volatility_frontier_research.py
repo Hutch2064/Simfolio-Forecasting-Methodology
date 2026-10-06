@@ -1,9 +1,11 @@
 """Causal residual-volatility adapter correctness."""
-from pathlib import Path
 import importlib.util
 import sys
+from pathlib import Path
+
 import numpy as np
 import pytest
+
 
 @pytest.fixture(scope="module",params=["volatility_frontier_research","conditional_residual_rough"])
 def model(request):
@@ -28,8 +30,12 @@ def test_current_and_future_observations_cannot_change_offset(model):
     assert a[41]!=b[41]
 
 def test_mean_innovations_and_multiscale_backbone_unchanged(model):
-    from simfolio_forecasting_methodology.models.asset_level.filtered_innovation_moment_sv import sorted_moment_marginals
-    from simfolio_forecasting_methodology.models.numerical.dynamic_gaussian import map_uniforms_to_marginal_paths
+    from simfolio_forecasting_methodology.models.asset_level.filtered_innovation_moment_sv import (
+        sorted_moment_marginals,
+    )
+    from simfolio_forecasting_methodology.models.numerical.dynamic_gaussian import (
+        map_uniforms_to_marginal_paths,
+    )
     x=np.random.default_rng(5).normal(.0001,.012,300)
     u=np.random.default_rng(6).random((24,17))
     fit=model.predecessor_fit(x.tobytes())

@@ -1,7 +1,10 @@
 """Untrimmed observations affect only the rough quasi likelihood."""
+import importlib.util
+import sys
 from pathlib import Path
-import importlib.util,sys
+
 import numpy as np
+
 
 def test_untrimmed_proxy_keeps_tails_and_preserves_conventional_offset():
     root=Path(__file__).resolve().parents[1]
@@ -19,6 +22,6 @@ def test_untrimmed_proxy_keeps_tails_and_preserves_conventional_offset():
     np.testing.assert_array_equal(actual,raw-m.base.causal_log_variance_predictor(old,level,phi,eta))
     reference=m.shell.bd.fit_bdes_fastmap(x,filtered_innovations=True,fixed_mean=True)
     np.testing.assert_array_equal(fit["innovation_pool"],reference["innovation_pool"])
-    scale,variance=m.measurement_scale(x.tobytes())
+    _scale,variance=m.measurement_scale(x.tobytes())
     assert variance==np.var(m.log_square(fit["innovation_pool"]*.01),ddof=1)
     assert np.isfinite(m.log_square(np.zeros(10))).all()

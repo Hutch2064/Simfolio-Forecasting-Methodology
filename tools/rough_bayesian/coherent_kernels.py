@@ -1,8 +1,9 @@
 """Strict arithmetic kernels avoiding unused mixture draws and state allocations."""
 import math
+
 import numpy as np
+from mixture_kernels import LOCATION, LOG_CONSTANT, VARIANCE
 from numba import njit
-from mixture_kernels import LOG_CONSTANT, LOCATION, VARIANCE
 
 
 @njit(cache=True,nogil=True)

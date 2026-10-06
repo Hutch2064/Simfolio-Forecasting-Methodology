@@ -1,17 +1,18 @@
 """Stream the pinned NumPy Gaussian distribution into the unchanged OU recursion."""
-from functools import lru_cache
 import hashlib
 import importlib.util
-from pathlib import Path
 import platform
 import subprocess
 import sysconfig
 import tempfile
+from functools import lru_cache
+from pathlib import Path
 
 
 @lru_cache(maxsize=1)
 def load_paths():
     import fcntl
+
     import numpy as np
     import pybind11
     from numba.extending import get_cython_function_address

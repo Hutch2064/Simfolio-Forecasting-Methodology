@@ -5,6 +5,7 @@ https://arxiv.org/html/2404.13986v2 Table 1. It defines only the proposal.
 All kernels use strict floating point, without approximate covariance stopping.
 """
 import math
+
 import numpy as np
 from numba import njit
 

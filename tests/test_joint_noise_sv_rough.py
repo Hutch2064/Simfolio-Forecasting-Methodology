@@ -1,9 +1,12 @@
 """Joint observation variance inference and unchanged long-horizon return mean."""
 import importlib.util
+import math
+import sys
 from pathlib import Path
-import sys,math
+
 import numpy as np
 import pytest
+
 
 @pytest.fixture(scope='module')
 def model():
@@ -31,7 +34,9 @@ def test_joint_target_improves_fixed_noise_solution_and_shared_noise_is_identica
 
 
 def test_century_mean_exactly_preserved(model):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     d=np.random.default_rng(21).normal(.0005,.01,600).tobytes()
     reference,_=moment_return_curves(model.original_fit(d),25200)
     mean,paths=model.asset_paths(d,np.full((2,25200),.5))

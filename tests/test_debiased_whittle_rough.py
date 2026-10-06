@@ -1,7 +1,7 @@
 """Independent covariance and likelihood references for spectral inference."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import numpy as np
 import pytest

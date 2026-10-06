@@ -6,24 +6,31 @@ A joint parameter/history proposal is corrected with the exact log-chi-square
 per observation even when the numerical lift changes dimension. Mixture
 indicators are auxiliary; no winsorization is applied.
 """
-from concurrent.futures import ProcessPoolExecutor
-from dataclasses import dataclass
-from functools import lru_cache
 import hashlib
 import math
 import multiprocessing
-from pathlib import Path
 import time
+from concurrent.futures import ProcessPoolExecutor
+from dataclasses import dataclass
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
-from scipy.special import ndtri
-
 import overlay
 import standalone
-from standalone import normal_interval_logmass, truncated_normal
 from dynamic import configuration, selected_kernel
-from mixture_kernels import (exact_return_loglik, gaussian_geometry, mixture_terms,
-    whiten, measurement_geometry, marginal_likelihood, cached_simulation_smoother, marginalized_level)
+from mixture_kernels import (
+    cached_simulation_smoother,
+    exact_return_loglik,
+    gaussian_geometry,
+    marginal_likelihood,
+    marginalized_level,
+    measurement_geometry,
+    mixture_terms,
+    whiten,
+)
+from scipy.special import ndtri
+from standalone import normal_interval_logmass, truncated_normal
 
 
 def observed(data, free_level=True):
@@ -60,7 +67,7 @@ def parameter_chain(data, maximum_lag, free_level, seed, burn, kept, simulations
     log_scale = 0.
     prior_level_mass = normal_interval_logmass(center,4.,lower,upper) if free_level else 0.
     def geometry(point,noise,offset):
-        phi,weights,covariance = configuration(point[:3],maximum_lag)
+        phi,_weights,covariance = configuration(point[:3],maximum_lag)
         q = np.diag(covariance).copy()
         pws,inverse_f,log_f = measurement_geometry(phi,q,noise)
         if free_level:

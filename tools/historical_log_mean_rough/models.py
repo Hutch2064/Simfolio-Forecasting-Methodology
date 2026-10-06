@@ -6,11 +6,14 @@ are unchanged. Median long-horizon log growth remains the sample log mean,
 without shrinkage toward zero or another prior mean.
 """
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import numpy as np
-from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
+
+from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+    moment_return_curves,
+)
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]

@@ -4,11 +4,16 @@ Rough H/kappa/scale retain their original priors. Log measurement variance is
 an unpenalized nuisance parameter: profile QML with rough MAP regularization,
 not full Bayesian integration. Wide log-variance bounds are numerical guards.
 """
-from functools import lru_cache
-import hashlib,importlib.util,math,time
-from pathlib import Path
+import hashlib
+import importlib.util
+import math
 import sys
+import time
+from functools import lru_cache
+from pathlib import Path
+
 import numpy as np
+
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
 spec=importlib.util.spec_from_file_location('profile_noise_private',ROOT/'tools/conditional_empirical_rough/models.py')

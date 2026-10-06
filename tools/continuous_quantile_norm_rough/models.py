@@ -3,11 +3,13 @@
 Normalization is in uniform probability space before the existing return clip;
 it does not claim conditional dynamic-copula uniforms are independently uniform.
 """
-from functools import lru_cache
-import importlib.util,hashlib
-from pathlib import Path
+import importlib.util
 import sys
+from functools import lru_cache
+from pathlib import Path
+
 import numpy as np
+
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 spec=importlib.util.spec_from_file_location('continuous_norm_private_m216',ROOT/'tools/joint_noise_sv_rough/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
@@ -30,8 +32,11 @@ def nodes(data,n):
 
 
 def asset_paths(data,uniforms):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
     from streamed_paths import map_asset_inplace
+
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     mean,_=moment_return_curves(parent.original_fit(data),uniforms.shape[1]);_,sd=moment_return_curves(parent.refit(data),uniforms.shape[1])
     paths=uniforms.copy();map_asset_inplace(paths,mean,sd,nodes(data,len(paths)));return mean,paths
 streamed.predecessor_asset_paths=asset_paths

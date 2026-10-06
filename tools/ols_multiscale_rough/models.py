@@ -3,11 +3,12 @@
 The mean curve, return innovations and rough fit are retained exactly. This is
 a latent-log-volatility projection experiment, not a new raw-return likelihood.
 """
-from functools import lru_cache
-import hashlib,importlib.util
-from pathlib import Path
+import importlib.util
 import sys
+from functools import lru_cache
+from pathlib import Path
 from typing import Any
+
 import numpy as np
 
 HERE=Path(__file__).resolve().parent
@@ -56,8 +57,11 @@ def fit_with_ols(data):
 
 
 def predecessor_asset_paths(data,uniforms):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
     from streamed_paths import map_asset_inplace
+
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     original=streamed.predecessor_fit(data)
     mean,_=moment_return_curves(original,uniforms.shape[1])
     _,sd=moment_return_curves(fit_with_ols(data),uniforms.shape[1])

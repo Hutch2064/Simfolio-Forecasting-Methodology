@@ -1,10 +1,10 @@
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import numpy as np
 import pytest
-from scipy.linalg import toeplitz, cholesky
+from scipy.linalg import cholesky, toeplitz
 
 
 @pytest.fixture(scope='module')
@@ -25,7 +25,7 @@ def test_restricted_filter_matches_dense_gls_likelihood_and_integrated_state(mod
     q = np.diag(mass*(1-phi*phi))
     y = np.random.default_rng(186).normal(size=n)+2.
     covariance = toeplitz((phi[None,:]**np.arange(n)[:,None])@mass)+R*np.eye(n)
-    inverse_y = np.linalg.solve(covariance,y)
+    np.linalg.solve(covariance,y)
     inverse_one = np.linalg.solve(covariance,np.ones(n))
     precision = inverse_one.sum()
     level = inverse_one@y/precision

@@ -6,10 +6,15 @@ from numba import njit
 
 from simfolio_forecasting_methodology.models.numerical import bdes_fastmap as bd
 
+# Retain source functions before runtime_setup replaces the public recurrences.
+# Repeated initialization must compile source, rather than decorating a dispatcher.
+_SOURCE_DLM = bd._dlm_ar1_loglik
+_SOURCE_SV = bd._sv_kalman_filter
+
 
 def make_accelerators():
-    original_dlm = bd._dlm_ar1_loglik
-    original_sv = bd._sv_kalman_filter
+    original_dlm = _SOURCE_DLM
+    original_sv = _SOURCE_SV
     fast_dlm = njit(cache=False, fastmath=False)(original_dlm)
     source = inspect.getsource(original_sv)
     guard = "not all(np.isfinite(v) for v in (level, phi, eta))"

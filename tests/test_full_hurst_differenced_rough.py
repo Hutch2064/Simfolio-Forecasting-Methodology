@@ -1,7 +1,8 @@
 """Dense Gaussian and difference-operator references for the spectral fit."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
+
 import numpy as np
 import pytest
 from scipy.linalg import toeplitz

@@ -6,19 +6,19 @@ unresolved zero-lag variance retained as an analytically sized white component.
 Both retain the original Gaussian log-square quasi likelihood and empirical
 return innovations, rather than changing the production variance anchor.
 """
-from dataclasses import dataclass
-from concurrent.futures import ProcessPoolExecutor
-from functools import lru_cache
 import hashlib
 import math
 import multiprocessing
-from pathlib import Path
 import time
+from concurrent.futures import ProcessPoolExecutor
+from dataclasses import dataclass
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 from numba import njit
-from scipy.special import beta, gamma, hyperu
 from scipy.integrate import quad
+from scipy.special import beta, gamma, hyperu
 
 NODES, GAUSS = np.polynomial.legendre.leggauss(3)
 
@@ -36,7 +36,7 @@ def exact_covariance(hurst, kappa, lags):
     for index in np.flatnonzero(invalid):
         lag = lags[index]
         a, b = .5 - hurst, 2 * hurst
-        def integrand(z):
+        def integrand(z, lag=lag):
             return math.exp(-kappa * (1 + z) / (1 - z) * lag) if z < 1 else 0.
         out[index] = quad(integrand, 0., 1., weight='alg', wvar=(a-1, b-1),
                           epsabs=1e-12, epsrel=1e-12)[0] / beta(a, b)

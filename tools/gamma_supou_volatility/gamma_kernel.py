@@ -5,12 +5,12 @@ over OU rates lambda~Gamma(shape,scale=kappa). This is the Gaussian specializati
 of the Gamma-rate supOU covariance in Barndorff-Nielsen & Stelzer (2011), example
 3.4, with their mixing shape equal to shape+1. It has polynomial memory decay.
 """
-from functools import lru_cache
 import math
+from functools import lru_cache
 
 import numpy as np
-from scipy.special import gammainc, roots_jacobi
 from dynamic import CovarianceCheck
+from scipy.special import gammainc, roots_jacobi
 
 
 class GammaCovarianceCheck(CovarianceCheck):
@@ -48,13 +48,13 @@ def selected_kernel(log_shape, kappa, maximum_lag, tolerance=.001):
         phi, mass = quadrature(shape, kappa, order, tolerance)
         passed, error_bound = check.passes(phi, mass)
         if passed:
-            return phi, mass, dict(factors=phi.size, quadrature_order=order,
-                tolerance=tolerance, maximum_daily_lag=maximum_lag,
-                autocorrelation_error_upper_bound=error_bound,
-                exact_covariance_evaluations=check.evaluations,
-                selection='first_passing_positive_integer_order',
-                white_tail_error_upper_bound=tolerance/2,
-                covariance='(1+kappa*lag)**(-shape)', shape=shape)
+            return phi, mass, {'factors': phi.size, 'quadrature_order': order,
+                'tolerance': tolerance, 'maximum_daily_lag': maximum_lag,
+                'autocorrelation_error_upper_bound': error_bound,
+                'exact_covariance_evaluations': check.evaluations,
+                'selection': 'first_passing_positive_integer_order',
+                'white_tail_error_upper_bound': tolerance/2,
+                'covariance': '(1+kappa*lag)**(-shape)', 'shape': shape}
         order += 1
 
 

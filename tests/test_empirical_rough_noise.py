@@ -1,8 +1,11 @@
 """Empirical measurement noise preserves the intended Gaussian QL."""
+import importlib.util
+import sys
 from pathlib import Path
-import importlib.util,sys
+
 import numpy as np
 import pytest
+
 
 @pytest.fixture(scope="module")
 def model():

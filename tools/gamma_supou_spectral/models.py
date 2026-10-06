@@ -4,13 +4,13 @@ Fit the exact analytic covariance rather than rebuilding a lift in each trial.
 Only predictive state filtering/simulation uses the accuracy-controlled lift.
 This is a new pseudolikelihood estimator, not parity with Gaussian inference.
 """
-from functools import lru_cache
 import hashlib
 import importlib.util
 import math
-from pathlib import Path
 import sys
 import time
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 

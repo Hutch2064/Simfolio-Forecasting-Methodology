@@ -1,5 +1,6 @@
 """One-pass Gaussian mean profiling and restricted covariance likelihood."""
 import math
+
 import numpy as np
 from numba import njit
 

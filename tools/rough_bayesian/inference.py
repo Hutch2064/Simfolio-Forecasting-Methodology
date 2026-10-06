@@ -10,9 +10,8 @@ from __future__ import annotations
 import math
 
 import numpy as np
-from numba import njit
-
 from kernels import coefficients, grid, quadrature
+from numba import njit
 
 
 @njit(cache=True, nogil=True)
@@ -109,7 +108,7 @@ def heston_hmc(y, phi, weights, step, noise, level, kappa, eta, rho, epsilon, mo
     target = -np.inf
     for leapfrog in range(8):
         proposed += epsilon * velocity
-        target, gradient, h, terminal = heston_gradient(y, phi, weights, step, proposed, level, kappa, eta, rho)
+        target, gradient, _h, _terminal = heston_gradient(y, phi, weights, step, proposed, level, kappa, eta, rho)
         if not np.isfinite(target) or not np.all(np.isfinite(gradient)):
             return noise, False
         velocity += epsilon * (.5 if leapfrog == 7 else 1.) * gradient
@@ -123,7 +122,7 @@ def heston_hmc(y, phi, weights, step, noise, level, kappa, eta, rho, epsilon, mo
 def gaussian_gradient(y, phi, innovation, weights, root, white, level, scale, rho, nu):
     dimension = phi.size
     noise = white[dimension:]
-    h, terminal = gaussian_path(phi, innovation, weights, root @ white[:dimension], noise, level, scale)
+    h, _terminal = gaussian_path(phi, innovation, weights, root @ white[:dimension], noise, level, scale)
     ll = student_likelihood(y, h, nu) if nu > 0 else log_likelihood(y, h, noise, rho)
     gradient = np.empty(white.size)
     adjoint = np.zeros(dimension)

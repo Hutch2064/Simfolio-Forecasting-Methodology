@@ -5,14 +5,17 @@ The conventional fit, rough fit, empirical innovation nodes and mean curves are
 unchanged. Only the return standard-deviation curves receive a training-only
 constant that equates their stationary variance to the sample return variance.
 """
-from functools import lru_cache
 import importlib.util
-from pathlib import Path
-import sys
 import math
+import sys
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
-from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
+
+from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+    moment_return_curves,
+)
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]

@@ -1,7 +1,10 @@
 """Noise estimation requires the transformation Jacobian in the likelihood."""
+import importlib.util
+import sys
 from pathlib import Path
-import importlib.util,sys
+
 import numpy as np
+
 
 def test_joint_noise_likelihood_has_correct_gaussian_variance_optimum():
     root=Path(__file__).resolve().parents[1]

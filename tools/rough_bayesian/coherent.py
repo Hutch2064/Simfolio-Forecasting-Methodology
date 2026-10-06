@@ -4,24 +4,28 @@ One volatility process, raw return likelihood, sampled parameters and history.
 Student degrees of freedom are updated with scales marginalized, followed by
 their exact Gamma conditional refresh before the corrected Gaussian block.
 """
-from dataclasses import dataclass
-from functools import lru_cache
 import hashlib
 import math
-from pathlib import Path
 import time
-
-import numpy as np
-from numba import njit
-from scipy.special import ndtri, stdtrit
+from dataclasses import dataclass
+from functools import lru_cache
+from pathlib import Path
 
 import mixture
+import numpy as np
 import overlay
 import standalone
-from dynamic import configuration as rough_configuration, selected_kernel
-from mixture_kernels import exact_return_loglik, mixture_terms, measurement_geometry
-from coherent_kernels import (marginalized_level, cached_simulation_smoother,
-    correction_only, conditional_terminal)
+from coherent_kernels import (
+    cached_simulation_smoother,
+    conditional_terminal,
+    correction_only,
+    marginalized_level,
+)
+from dynamic import configuration as rough_configuration
+from dynamic import selected_kernel
+from mixture_kernels import exact_return_loglik, measurement_geometry, mixture_terms
+from numba import njit
+from scipy.special import ndtri, stdtrit
 
 
 def configuration(theta, kind, maximum_lag):
@@ -226,11 +230,11 @@ def fit(data,maximum_lag,kind,student,simulations,burn,kept,maximum):
             'maximum_autocorrelation_error_upper_bound':max(r['autocorrelation_error_upper_bound'] for r in records),
             'tolerance':.001,'maximum_daily_lag':maximum_lag} if kind == 'rough' else
             {'selection':'structural_AR1_log_variance','factors':1,'numerical_lift_required':False})
-        return dict(parameters=parameters,prepared=prepared,trace=trace,diagnostics=diagnostics,
-            diagnostic_columns=names,convergence_flag=converged,relative_95_percent_mc_halfwidth=precision,
-            kept_per_chain=actual,fit_seconds=seconds,ess_per_second=min(d['bulk_ess'] for d in diagnostics)/seconds,
-            data_sha256=identity,contract=contract,kernel=kernel,
-            sampler_acceptance=[{k:s[k]/s['iterations'] for k in ('latent_accepts','parameter_accepts','tail_accepts')} for _,s in chains])
+        return {'parameters': parameters,'prepared': prepared,'trace': trace,'diagnostics': diagnostics,
+            'diagnostic_columns': names,'convergence_flag': converged,'relative_95_percent_mc_halfwidth': precision,
+            'kept_per_chain': actual,'fit_seconds': seconds,'ess_per_second': min(d['bulk_ess'] for d in diagnostics)/seconds,
+            'data_sha256': identity,'contract': contract,'kernel': kernel,
+            'sampler_acceptance': [{k:s[k]/s['iterations'] for k in ('latent_accepts','parameter_accepts','tail_accepts')} for _,s in chains]}
     return shell.controls.cache('coherent_bayesian_sv_asset',key,build)
 
 

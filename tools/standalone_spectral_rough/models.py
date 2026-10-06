@@ -6,11 +6,14 @@ The conventional predecessor fit is retained only for the unchanged mean and
 filtered innovation/noise inputs. No conventional multiscale variance curve is
 used in forecasting. All estimation remains plug-in Gaussian quasi likelihood.
 """
-from functools import lru_cache
-import hashlib,importlib.util
-from pathlib import Path
+import hashlib
+import importlib.util
 import sys
+from functools import lru_cache
+from pathlib import Path
+
 import numpy as np
+
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 spec=importlib.util.spec_from_file_location('standalone_spectral_private_m212',ROOT/'tools/consistent_noise_rough/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
@@ -25,8 +28,11 @@ parent.parent.base.base.observed=observed;parent.parent.base.noise.observed=obse
 parent.parent.SOURCE=hashlib.sha256((parent.parent.SOURCE+SOURCE).encode()).hexdigest()
 
 def asset_paths(data,uniforms):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
     from streamed_paths import map_asset_inplace
+
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     fit=streamed.predecessor_fit(data);mean,_=moment_return_curves(fit,uniforms.shape[1])
     # Stationary rough multiplier has E[M^2]=1, so this level matches the
     # observed centered-return variance, with no second volatility process.

@@ -2,16 +2,21 @@
 
 Mean curves, both volatility fits, rough kernel and dependence remain unchanged.
 """
-from dataclasses import dataclass
-from functools import lru_cache,partial
-import hashlib,importlib.util,time
-from pathlib import Path
+import hashlib
+import importlib.util
 import sys
+import time
+from dataclasses import dataclass
+from functools import lru_cache, partial
+from pathlib import Path
+
 import numpy as np
+
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
 sys.path.insert(0,str(HERE))
 import density
+
 spec=importlib.util.spec_from_file_location('parametric_innovation_private_m212',ROOT/'tools/consistent_noise_rough/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
 streamed=parent.parent.streamed
@@ -34,8 +39,11 @@ def nodes(data,kind,simulations):
     return result
 
 def asset_paths(data,uniforms,*,kind):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
     from streamed_paths import map_asset_inplace
+
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     mean,sd=moment_return_curves(streamed.predecessor_fit(data),uniforms.shape[1])
     paths=uniforms.copy();map_asset_inplace(paths,mean,sd,nodes(data,kind,len(paths)))
     return mean,paths

@@ -1,13 +1,14 @@
 """MAP rough inference and exact predecessor-backbone correctness."""
-from pathlib import Path
 import importlib.util
 import sys
+from pathlib import Path
+
 import numpy as np
 import pytest
 
 HERE=Path(__file__).resolve().parents[1]/'tools/dynamic_rough_inference'
 sys.path.insert(0,str(HERE))
-from posterior import fit_map,InferenceLimit
+from posterior import InferenceLimit, fit_map
 
 
 def test_map_recovers_known_correlated_mode_and_reports_failure():
@@ -60,8 +61,12 @@ def test_rough_filter_likelihood_matches_dense_gaussian(forecast_models):
 
 @pytest.mark.parametrize('scale',[.012,.8])
 def test_predecessor_backbone_is_exact(forecast_models,scale):
-    from simfolio_forecasting_methodology.models.asset_level.filtered_innovation_moment_sv import sorted_moment_marginals
-    from simfolio_forecasting_methodology.models.numerical.dynamic_gaussian import map_uniforms_to_marginal_paths
+    from simfolio_forecasting_methodology.models.asset_level.filtered_innovation_moment_sv import (
+        sorted_moment_marginals,
+    )
+    from simfolio_forecasting_methodology.models.numerical.dynamic_gaussian import (
+        map_uniforms_to_marginal_paths,
+    )
     x=np.random.default_rng(37).normal(.0002,scale,300)
     u=np.random.default_rng(39).random((24,17))
     fit=forecast_models.shell.bd.fit_bdes_fastmap(x,filtered_innovations=True,fixed_mean=True)

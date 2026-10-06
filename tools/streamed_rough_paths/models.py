@@ -1,16 +1,19 @@
 """Runtime-only M201 optimization: unchanged model, fitting, seeds and draw order."""
 import hashlib
 import importlib.util
-from pathlib import Path
+import math
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
-import math,time
+from pathlib import Path
+
 import numpy as np
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
 sys.path.insert(0,str(HERE))
 from stream_native import load_paths
+
 spec=importlib.util.spec_from_file_location('streamed_private_differenced',ROOT/'tools/differenced_whittle_rough/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
 base=parent.parent.base.base
@@ -63,10 +66,10 @@ class Candidate(parent.Candidate):
             identity=hashlib.sha256(d).hexdigest()
             theta=rough['map']
             kernel=selected_kernel(float(theta[0]),math.exp(theta[1]),lag)[2]
-            FIT_DIAGNOSTICS[self.model_id,identity]=dict(model_id=self.model_id,data_sha256=identity,
-                conventional_estimator='original_predecessor_MAP',rough_estimator='MAP_point_conditional_on_causal_SV_prediction',normalization='stationary_second_moment_one',
-                posterior_parameter_uncertainty=False,rough_parameters=theta.tolist(),kernel=kernel,
-                rough_fit={k:v for k,v in rough.items() if k not in ('points','weights','map')})
+            FIT_DIAGNOSTICS[self.model_id,identity]={'model_id': self.model_id,'data_sha256': identity,
+                'conventional_estimator': 'original_predecessor_MAP','rough_estimator': 'MAP_point_conditional_on_causal_SV_prediction','normalization': 'stationary_second_moment_one',
+                'posterior_parameter_uncertainty': False,'rough_parameters': theta.tolist(),'kernel': kernel,
+                'rough_fit': {k:v for k,v in rough.items() if k not in ('points','weights','map')}}
             mean,base_paths=predecessor_asset_paths(d,uniforms[:,:,a])
             phi,w,root,state,initial_root,means,variances=prepared(d,theta.tobytes(),lag,horizon)
             rng=np.random.default_rng(shell.bd.deterministic_seed('rough_overlay_prediction',identity,

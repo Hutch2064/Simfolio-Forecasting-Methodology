@@ -4,10 +4,10 @@ Only the rough Gaussian terminal-state posterior changes. Covariance parameters
 retain debiased Whittle MAP points; the nuisance intercept is analytically
 integrated, including its uncertainty. The return-mean model is unchanged.
 """
-from functools import lru_cache
 import importlib.util
-from pathlib import Path
 import sys
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 
@@ -15,6 +15,7 @@ HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
 sys.path.insert(0,str(ROOT/'tools/reml_rough'))
 from gaussian_level_filter import restricted_filter
+
 spec=importlib.util.spec_from_file_location('integrated_level_private_streamed',ROOT/'tools/streamed_rough_paths/models.py')
 streamed=importlib.util.module_from_spec(spec)
 sys.modules[spec.name]=streamed;spec.loader.exec_module(streamed)
@@ -27,7 +28,7 @@ def prepared(data,theta_bytes,lag,horizon):
     y,_=streamed.base.observed(data)
     _,noise_variance=streamed.parent.parent.base.noise.measurement_scale(data)
     phi,w,q=streamed.overlay.configuration(np.frombuffer(theta_bytes,np.float64),f'dynamic:{lag}')
-    _,level,level_variance,state,p=restricted_filter(y,phi,w,q,noise_variance)
+    _,_level,_level_variance,state,p=restricted_filter(y,phi,w,q,noise_variance)
     eigen,vectors=np.linalg.eigh((p+p.T)/2)
     initial_root=vectors*np.sqrt(np.maximum(eigen,0))
     root=np.diag(np.sqrt(np.diag(q)))

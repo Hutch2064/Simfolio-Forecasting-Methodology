@@ -3,10 +3,13 @@
 Load private adapter namespaces so the already scored candidates and baseline
 remain unchanged. Only volatility inference/normalization changes.
 """
-from functools import lru_cache
-import hashlib,importlib.util,math
-from pathlib import Path
+import hashlib
+import importlib.util
+import math
 import sys
+from functools import lru_cache
+from pathlib import Path
+
 import numpy as np
 
 HERE=Path(__file__).resolve().parent
@@ -27,14 +30,17 @@ base.SOURCE=noise.SOURCE=SOURCE
 # mutate the already scored rough candidates in other namespaces.
 private_overlay=load('gamma_supou_private_overlay',ROOT/'tools/rough_bayesian/overlay.py')
 from gamma_kernel import configuration, log_prior
+
 private_overlay.configuration=configuration
 private_overlay.log_prior=log_prior
 base.overlay=noise.overlay=private_overlay
 noise.observed=base.observed
 noise.predecessor_fit=base.predecessor_fit
 noise.shell=base.shell
-from posterior import fit_map
 import time
+
+from posterior import fit_map
+
 
 @lru_cache(maxsize=64)
 def rough_fit(data,lag,seconds):
@@ -77,8 +83,9 @@ TIMINGS=base.TIMINGS
 FIT_DIAGNOSTICS=base.FIT_DIAGNOSTICS
 shell=base.shell
 overlay=base.overlay
-from dataclasses import dataclass
 from concurrent.futures import ThreadPoolExecutor
+from dataclasses import dataclass
+
 predecessor_fit=base.predecessor_fit
 predecessor_asset_paths=base.predecessor_asset_paths
 @dataclass(frozen=True)
@@ -126,10 +133,10 @@ class PredecessorRoughMAP:
             identity=hashlib.sha256(d).hexdigest()
             theta=rough['map']
             kernel=selected_kernel(float(theta[0]),math.exp(theta[1]),lag)[2]
-            FIT_DIAGNOSTICS[self.model_id,identity]=dict(model_id=self.model_id,data_sha256=identity,
-                conventional_estimator='original_predecessor_MAP',volatility_estimator='MAP_Gaussian_Gamma_mixed_OU',normalization='stationary_second_moment_one',
-                posterior_parameter_uncertainty=False,volatility_parameters=theta.tolist(),kernel=kernel,
-                rough_fit={k:v for k,v in rough.items() if k not in ('points','weights','map')})
+            FIT_DIAGNOSTICS[self.model_id,identity]={'model_id': self.model_id,'data_sha256': identity,
+                'conventional_estimator': 'original_predecessor_MAP','volatility_estimator': 'MAP_Gaussian_Gamma_mixed_OU','normalization': 'stationary_second_moment_one',
+                'posterior_parameter_uncertainty': False,'volatility_parameters': theta.tolist(),'kernel': kernel,
+                'rough_fit': {k:v for k,v in rough.items() if k not in ('points','weights','map')}}
             mean,base_paths=predecessor_asset_paths(d,uniforms[:,:,a])
             phi,w,root,state,initial_root,means,variances=prepared(d,theta.tobytes(),lag,horizon)
             rng=np.random.default_rng(shell.bd.deterministic_seed('rough_overlay_prediction',identity,

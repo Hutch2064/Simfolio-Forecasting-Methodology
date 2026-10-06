@@ -5,21 +5,20 @@ Level is sampled jointly with H, log(kappa), and log(eta). Historical drift,
 the dynamic Gaussian return copula, calendar and policy rejoin are retained.
 Each predictive draw uses its own rough-filtered empirical innovation law.
 """
-from concurrent.futures import ProcessPoolExecutor
-from dataclasses import dataclass
-from functools import lru_cache
 import hashlib
 import math
 import multiprocessing
-from pathlib import Path
 import time
+from concurrent.futures import ProcessPoolExecutor
+from dataclasses import dataclass
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
-from numba import njit
-from scipy.special import log_ndtr, ndtri_exp
-
 import overlay
 from dynamic import selected_kernel
+from numba import njit
+from scipy.special import log_ndtr, ndtri_exp
 
 
 def log_target(y, theta, maximum_lag):

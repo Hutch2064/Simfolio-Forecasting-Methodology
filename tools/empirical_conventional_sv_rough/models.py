@@ -4,15 +4,19 @@ Observation noise is estimated from the original filtered innovation pool, then
 held fixed in both volatility fits. This is a two-stage plug-in quasi-likelihood,
 not a joint raw-return posterior. Return mean is preserved exactly.
 """
+import hashlib
+import importlib.util
+import sys
 from functools import lru_cache
-import hashlib,importlib.util,math
 from pathlib import Path
-import sys,time
+
 import numpy as np
+
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
 sys.path.insert(0,str(HERE))
 import gaussian_sv
+
 spec=importlib.util.spec_from_file_location('empirical_conventional_private_m212',ROOT/'tools/consistent_noise_rough/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
 streamed=parent.parent.streamed
@@ -55,8 +59,11 @@ parent.parent.SOURCE=hashlib.sha256((parent.parent.SOURCE+SOURCE).encode()).hexd
 
 
 def asset_paths(data,uniforms):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
     from streamed_paths import map_asset_inplace
+
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     mean,_=moment_return_curves(original_fit(data),uniforms.shape[1]);_,sd=moment_return_curves(refit(data),uniforms.shape[1])
     n=len(uniforms);nodes=np.quantile(refit(data)['innovation_pool'],np.linspace(.5/n,1-.5/n,n));nodes-=nodes.mean();nodes/=np.sqrt(np.mean(nodes*nodes))
     paths=uniforms.copy();map_asset_inplace(paths,mean,sd,nodes)

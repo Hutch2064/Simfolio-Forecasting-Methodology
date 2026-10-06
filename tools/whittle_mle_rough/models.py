@@ -7,8 +7,8 @@ It is bounded quasi maximum likelihood, not posterior sampling.
 """
 import hashlib
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]

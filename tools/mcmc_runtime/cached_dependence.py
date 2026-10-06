@@ -4,9 +4,12 @@ from collections import OrderedDict
 
 from simfolio_forecasting_methodology.models.numerical import dynamic_gaussian as dg
 
+# Runtime installation replaces public functions; compile their retained source.
+_SOURCE_TERMINAL = dg.kalman_terminal_posterior
+
 
 def make():
-    source=inspect.getsource(dg.kalman_terminal_posterior)
+    source=inspect.getsource(_SOURCE_TERMINAL)
     source=source.replace('    for index, row in enumerate(observations):','    inverses = OrderedDict()\n    for index, row in enumerate(observations):')
     old='''        prior_precision = np.linalg.inv(covariance)
         posterior_precision = prior_precision + observation_information

@@ -1,14 +1,14 @@
-# Canonical model reference (216 models including the original 175)
+# Canonical model reference (217 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **216** rows, canonical ranks **1–216**.
+- Membership: **217** rows, canonical ranks **1–217**.
 - Retained source ranks: **12–186**.
-- Membership digest: `1913e74e7b6719798490062f018f524abfec11c600ad0efdcab2d291915d657c`.
+- Membership digest: `f9595149b7c07217250a83817c3bae9c0281d3dc1ba4b7f76831d4bb40ee7c74`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **216**.
+- Confirmed full statistical specifications: **217**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -230,3 +230,4 @@ The ledger is the sole membership authority for this public set.
 | 214 | None | asset_map_multiscale_consistent_noise_hansen_skew_t_rough_map | M214 — Asset MAP Multiscale + Learned Hansen skew-t forecast innovations | asset_level_extension | 0.24975351800017143 | 0.249753518 | true | validated_full_canonical_score |
 | 215 | None | asset_map_multiscale_consistent_noise_gaussian_innovations_rough_map | M215 — Asset MAP Multiscale + Standard Gaussian forecast innovation control | asset_level_extension | 0.25198127331647685 | 0.251981273 | true | validated_full_canonical_score |
 | 216 | None | asset_map_joint_observation_noise_multiscale_dynamic_rough_map | M216 — Asset MAP Multiscale + Joint conventional SV observation-noise MAP with dynamic rough overlay | asset_level_extension | 0.24648440999477378 | 0.24648441 | true | validated_full_canonical_score |
+| 217 | None | asset_map_joint_noise_continuous_quantile_normalized_dynamic_rough | M217 — Asset MAP Multiscale + Exact interpolated innovation quantile normalization on M216 | asset_level_extension | 0.2475449989529358 | 0.247544999 | true | validated_full_canonical_score |

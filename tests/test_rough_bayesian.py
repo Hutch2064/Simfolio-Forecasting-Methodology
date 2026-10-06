@@ -10,8 +10,17 @@ from scipy.signal import lfilter
 from scipy.stats import norm, t
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools/rough_bayesian'))
+from inference import (
+    chain,
+    gaussian_gradient,
+    gaussian_path,
+    heston_gradient,
+    heston_path,
+    log_likelihood,
+    student_likelihood,
+    terminal_pgas,
+)
 from kernels import coefficients, fou_cells, fractional_cells, grid, quadrature
-from inference import chain, gaussian_path, gaussian_gradient, heston_path, heston_gradient, log_likelihood, student_likelihood, terminal_pgas
 
 
 @pytest.mark.parametrize('tolerance', [.01, .001])
@@ -47,7 +56,7 @@ def test_gaussian_recurrence_against_independent_linear_filters():
     expected = np.zeros(noise.size)
     end = np.empty(phi.size)
     for j in range(phi.size):
-        states, last = lfilter([innovation[j]], [1, -phi[j]], noise, zi=[phi[j] * initial[j]])
+        states, _last = lfilter([innovation[j]], [1, -phi[j]], noise, zi=[phi[j] * initial[j]])
         before = np.r_[initial[j], states[:-1]]
         expected += weights[j] * before
         end[j] = states[-1]
@@ -88,7 +97,7 @@ def test_heston_adjoint_matches_finite_differences():
     y = np.random.default_rng(182).normal(size=30)
     noise = np.random.default_rng(284).normal(size=30) * .1
     theta, kappa, eta, rho = .7, .3, .15, -.4
-    target, gradient, _, _ = heston_gradient(y, phi, weights, step, noise, math.log(theta), kappa, eta, rho)
+    _target, gradient, _, _ = heston_gradient(y, phi, weights, step, noise, math.log(theta), kappa, eta, rho)
     for j in range(noise.size):
         plus, minus = noise.copy(), noise.copy()
         plus[j] += 1e-5
@@ -103,7 +112,7 @@ def test_fractional_gaussian_adjoint_matches_finite_differences(rho, nu):
     phi, innovation, weights, root, _ = coefficients(.11, 1 / 63, .01)
     y = np.random.default_rng(821).normal(size=32)
     white = np.random.default_rng(291).normal(size=phi.size + y.size) * .2
-    target, gradient = gaussian_gradient(y, phi, innovation, weights, root, white, -.2, .6, rho, nu)
+    _target, gradient = gaussian_gradient(y, phi, innovation, weights, root, white, -.2, .6, rho, nu)
     for j in range(white.size):
         plus, minus = white.copy(), white.copy()
         plus[j] += 1e-5
@@ -215,11 +224,11 @@ def test_collapsed_overlay_filter_against_original_reference(overlay_shell):
 
 @pytest.mark.parametrize('hurst,kappa', [(.031, 1/2500), (.1, 1/63), (.3, .49), (.489, .004)])
 def test_dynamic_spectral_measure_matches_independent_beta_integral(hurst, kappa):
-    from scipy.special import beta
     from overlay import exact_covariance
+    from scipy.special import beta
     a, b = .5 - hurst, 2 * hurst
     for lag in (1, 12, 126, 2520):
-        def integrand(z):
+        def integrand(z, lag=lag):
             return math.exp(-kappa * (1 + z) / (1 - z) * lag) if z < 1 else 0.
         expected = quad(integrand, 0, 1, weight='alg', wvar=(a-1, b-1),
                         epsabs=1e-11, epsrel=1e-11)[0] / beta(a, b)
@@ -242,9 +251,9 @@ def test_dynamic_resolution_covers_every_requested_daily_lag(hurst, kappa):
 
 
 def test_dynamic_filter_matches_dense_gaussian_likelihood(overlay_shell):
-    from scipy.linalg import toeplitz, cho_factor, cho_solve
-    from dynamic import configuration
     import overlay
+    from dynamic import configuration
+    from scipy.linalg import cho_factor, cho_solve, toeplitz
     point = np.array([.11, math.log(1/63), math.log(.7)])
     phi, weights, q = configuration(point, 63)
     mass = np.diag(q) / (1 - phi * phi)
@@ -268,7 +277,8 @@ def test_dynamic_sampling_resume_preserves_trace_and_rng(overlay_shell):
 
 
 def test_reused_jacobi_geometry_preserves_complete_factor_arrays():
-    from dynamic import JacobiGeometry, quadrature as spectral_quadrature
+    from dynamic import JacobiGeometry
+    from dynamic import quadrature as spectral_quadrature
     for hurst in [.0301, .1, .3, .4899]:
         geometry = JacobiGeometry(hurst)
         for order in range(1, 34):
@@ -379,11 +389,12 @@ def test_repeated_posterior_draws_reuse_preparation_without_removing_paths(overl
 
 
 def test_standalone_joint_level_target_against_dense_gaussian(overlay_shell):
-    from scipy.linalg import toeplitz, cho_factor, cho_solve
-    import standalone, overlay
+    import overlay
+    import standalone
+    from scipy.linalg import cho_factor, cho_solve, toeplitz
     y = np.random.default_rng(846).normal(size=64)
     point = np.array([.11, math.log(1/63), math.log(.7), .3])
-    phi, weights, q = overlay.configuration(point[:3], 'dynamic:126')
+    phi, _weights, q = overlay.configuration(point[:3], 'dynamic:126')
     stationary = np.diag(q) / (1 - phi * phi)
     covariance = toeplitz(phi[None, :] ** np.arange(len(y))[:, None] @ stationary)
     covariance += np.eye(len(y)) * math.pi**2/2
@@ -443,8 +454,8 @@ def test_exact_mixture_return_likelihood_includes_zero_returns():
 
 
 def test_scalar_rough_whitening_and_smoother_against_dense_gaussian():
-    from scipy.linalg import toeplitz, cholesky, cho_factor, cho_solve
-    from mixture_kernels import gaussian_geometry,whiten,unwhiten,smooth_mean
+    from mixture_kernels import gaussian_geometry, smooth_mean, unwhiten, whiten
+    from scipy.linalg import cho_factor, cho_solve, cholesky, toeplitz
     rng = np.random.default_rng(279)
     phi,q = np.array([.95,.5,0.]),np.array([.02,.2,.1])
     length = 64
@@ -467,8 +478,8 @@ def test_scalar_rough_whitening_and_smoother_against_dense_gaussian():
 
 
 def test_simulation_smoother_conditional_moments():
-    from scipy.linalg import toeplitz,cho_factor,cho_solve
     from mixture_kernels import simulation_smoother
+    from scipy.linalg import cho_factor, cho_solve, toeplitz
     phi,q = np.array([.9,.2]),np.array([.1,.3])
     length = 8
     covariance = toeplitz(phi[None,:]**np.arange(length)[:,None]@(q/(1-phi**2)))
@@ -484,7 +495,7 @@ def test_simulation_smoother_conditional_moments():
 
 
 def test_corrected_mixture_sampler_matches_exact_scalar_posterior():
-    from mixture_kernels import mixture_terms,simulation_smoother
+    from mixture_kernels import mixture_terms, simulation_smoother
     y,level,q = np.array([math.log(1.7**2)]),.3,np.array([.7**2])
     phi,active = np.array([0.]),np.array([True])
     def target(h):
@@ -530,9 +541,13 @@ def test_precision_measure_shrinks_with_independent_draws():
 
 @pytest.mark.parametrize('missing',[False,True])
 def test_cached_mixture_geometry_preserves_smoothing_and_dense_likelihood(missing):
-    from scipy.linalg import toeplitz,cho_factor,cho_solve
-    from mixture_kernels import (measurement_geometry,marginal_likelihood,
-        simulation_smoother,cached_simulation_smoother)
+    from mixture_kernels import (
+        cached_simulation_smoother,
+        marginal_likelihood,
+        measurement_geometry,
+        simulation_smoother,
+    )
+    from scipy.linalg import cho_factor, cho_solve, toeplitz
     rng = np.random.default_rng(731)
     phi,q = np.array([.96,.4,0.]),np.array([.02,.12,.1])
     length = 64
@@ -555,17 +570,21 @@ def test_cached_mixture_geometry_preserves_smoothing_and_dense_likelihood(missin
 
 
 def test_corrected_joint_parameter_history_sampler_against_quadrature():
-    from mixture_kernels import (mixture_terms,measurement_geometry,marginal_likelihood,
-        cached_simulation_smoother)
+    from mixture_kernels import (
+        cached_simulation_smoother,
+        marginal_likelihood,
+        measurement_geometry,
+        mixture_terms,
+    )
     # Two possible level parameters allow independent integration of both their
     # posterior probability and the latent mean; correction must cover both.
     levels,phi,q = np.array([-.6,.8]),np.array([0.]),np.array([.49])
     y,active = np.array([math.log(1.7**2)]),np.array([True])
     def density(h,level):
         return math.exp(-.5*((h-level)**2/q[0]+h+math.exp(y[0]-h)))
-    masses = np.array([quad(lambda h:density(h,level),-12,12,epsabs=1e-11)[0] for level in levels])
+    masses = np.array([quad(lambda h, level=level:density(h,level),-12,12,epsabs=1e-11)[0] for level in levels])
     expected_probability = masses[1]/masses.sum()
-    expected_mean = sum(quad(lambda h:h*density(h,level),-12,12,epsabs=1e-11)[0] for level in levels)/masses.sum()
+    expected_mean = sum(quad(lambda h, level=level:h*density(h,level),-12,12,epsabs=1e-11)[0] for level in levels)/masses.sum()
     rng = np.random.default_rng(180)
     index,h = 0,np.array([levels[0]])
     draws = []
@@ -589,9 +608,9 @@ def test_corrected_joint_parameter_history_sampler_against_quadrature():
 
 @pytest.mark.parametrize('missing',[False,True])
 def test_marginalized_level_matches_dense_truncated_prior_integral(missing):
-    from scipy.linalg import toeplitz,cho_factor,cho_solve
     from mixture import normal_interval_logmass
-    from mixture_kernels import measurement_geometry,marginalized_level
+    from mixture_kernels import marginalized_level, measurement_geometry
+    from scipy.linalg import cho_factor, cho_solve, toeplitz
     rng = np.random.default_rng(848)
     phi,q = np.array([.93,.3]),np.array([.08,.3])
     length = 8
@@ -619,18 +638,21 @@ def test_marginalized_level_matches_dense_truncated_prior_integral(missing):
 
 
 def test_direct_level_draw_matches_truncated_normal_quantiles():
-    from scipy.stats import truncnorm
     from mixture import truncated_normal
+    from scipy.stats import truncnorm
     for lower,upper in [(-2,3),(12,13),(-13,-12)]:
         for uniform in [.0001,.2,.5,.9999]:
             assert truncated_normal(0,1,lower,upper,uniform) == pytest.approx(truncnorm.ppf(uniform,lower,upper),abs=3e-12)
 
 
 def test_corrected_direct_level_history_draws_match_joint_posterior():
-    from scipy.stats import truncnorm
     from mixture import truncated_normal
-    from mixture_kernels import (mixture_terms,measurement_geometry,marginalized_level,
-        cached_simulation_smoother)
+    from mixture_kernels import (
+        cached_simulation_smoother,
+        marginalized_level,
+        measurement_geometry,
+        mixture_terms,
+    )
     y,active = np.array([math.log(1.7**2)]),np.array([True])
     phi,q = np.array([0.]),np.array([.49])
     center,prior_sd,lower,upper = .3,.8,-1.,1.
@@ -644,7 +666,7 @@ def test_corrected_direct_level_history_draws_match_joint_posterior():
         return quad(lambda h:(h if power=='h' else level if power=='level' else 1)*joint(h,level),
                     -12,12,epsabs=1e-10)[0]
     mass = quad(lambda level:integrated(level,'mass'),lower,upper,epsabs=1e-10)[0]
-    expected = [quad(lambda level:integrated(level,key),lower,upper,epsabs=1e-10)[0]/mass for key in ('level','h')]
+    expected = [quad(lambda level, key=key:integrated(level,key),lower,upper,epsabs=1e-10)[0]/mass for key in ('level','h')]
     rng = np.random.default_rng(280)
     level,h,draws = center,np.array([center]),[]
     for iteration in range(31000):

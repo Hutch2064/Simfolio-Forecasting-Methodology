@@ -1,9 +1,11 @@
 """Independent filtering recursion and exact unchanged-noise reference."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
+
 import numpy as np
 import pytest
+
 
 @pytest.fixture(scope='module')
 def model():

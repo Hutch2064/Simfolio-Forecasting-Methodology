@@ -1,7 +1,9 @@
 """Exact finite-sample spectrum of a differenced OU mixture."""
 import math
+
 import numpy as np
 from numba import njit
+
 
 @njit(cache=True, nogil=True)
 def differenced_expected_periodogram(phi, stationary_mass, n):

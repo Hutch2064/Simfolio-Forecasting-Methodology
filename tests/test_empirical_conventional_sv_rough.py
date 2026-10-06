@@ -1,9 +1,11 @@
 """Explicit-noise Kalman likelihood and smoother against dense Gaussian conditioning."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
+
 import numpy as np
 import pytest
+
 
 @pytest.fixture(scope='module')
 def model():
@@ -25,7 +27,9 @@ def test_likelihood_and_smoothing_match_dense_gaussian_conditioning(model,noise)
 
 
 def test_refit_uses_same_empirical_noise_and_preserves_century_return_mean(model):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     data=np.random.default_rng(10).normal(.0005,.01,600).tobytes()
     original=model.original_fit(data);_,R=model.original_noise(data)
     fit=model.refit(data);assert fit['empirical_conventional_fit']['success'];assert fit['empirical_conventional_fit']['noise_variance']==R

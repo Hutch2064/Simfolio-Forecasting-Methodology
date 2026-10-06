@@ -1,7 +1,9 @@
 """Exact finite-sample spectrum of a stationary OU mixture."""
 import math
+
 import numpy as np
 from numba import njit
+
 
 @njit(cache=True, nogil=True)
 def expected_periodogram(phi, stationary_mass, n):

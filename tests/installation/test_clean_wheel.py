@@ -7,7 +7,10 @@ from importlib import metadata, resources
 
 import pytest
 
-from simfolio_forecasting_methodology.catalogue import load_canonical_models
+from simfolio_forecasting_methodology.catalogue import (
+    EXPECTED_CANONICAL_COUNT,
+    load_canonical_models,
+)
 from simfolio_forecasting_methodology.data import verify_canonical_snapshot
 from simfolio_forecasting_methodology.experiment import build_experiment_schedule
 from simfolio_forecasting_methodology.models.registry import build_model
@@ -38,7 +41,8 @@ def test_installed_package_contains_the_offline_canonical_snapshot():
 def test_every_registered_factory_instantiates_from_the_installed_package():
     rows = load_canonical_models()
     executable = [row for row in rows if row["implementation_factory"]["callable"]]
-    assert len(rows) == 193
+    assert len(rows) == EXPECTED_CANONICAL_COUNT
+    assert [row["canonical_rank"] for row in rows] == list(range(1, EXPECTED_CANONICAL_COUNT + 1))
     assert len(executable) == 176
 
     for row in executable:

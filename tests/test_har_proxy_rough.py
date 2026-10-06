@@ -1,9 +1,11 @@
 """Independent AR covariance reference, likelihood optimum, and mean preservation."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
+
 import numpy as np
 import pytest
+
 
 @pytest.fixture(scope='module')
 def model():
@@ -36,7 +38,9 @@ def test_likelihood_recovers_interior_ordinary_least_squares(model):
 
 
 def test_century_mean_unchanged_and_stationary_variance_finite(model):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     data=np.random.default_rng(10).normal(.0005,.01,600).tobytes()
     reference,_=moment_return_curves(model.streamed.predecessor_fit(data),25200)
     mean,sd=model.curves(data,25200)

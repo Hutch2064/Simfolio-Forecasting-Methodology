@@ -5,10 +5,10 @@ filter estimates the constant observation level by exact Gaussian GLS instead
 of its arithmetic sample mean. This is a plug-in point estimate, not joint Bayes
 or REML covariance estimation. The return-mean model remains unchanged.
 """
-from functools import lru_cache
 import importlib.util
-from pathlib import Path
 import sys
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 

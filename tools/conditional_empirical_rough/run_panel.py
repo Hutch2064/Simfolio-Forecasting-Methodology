@@ -1,9 +1,9 @@
 """Adapters for the existing canonical runner; no scoring changes."""
-from pathlib import Path
 import hashlib
 import importlib.util
 import os
 import sys
+from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
 # Spawn inherits the parent runner's modified search path. Select this suite
@@ -38,8 +38,8 @@ def evaluate(index,task):
         result=original_evaluate(index,task)
     except Exception as error:
         runner.atomic(Path(os.environ['ROUGH_INFERENCE_OUTPUT'])/f'failure-{index:04d}.json',
-            dict(task=index,portfolio=task.portfolio_id,origin=str(task.origin_date),
-                error_type=type(error).__name__,message=str(error)))
+            {'task': index,'portfolio': task.portfolio_id,'origin': str(task.origin_date),
+                'error_type': type(error).__name__,'message': str(error)})
         raise
     runner.atomic(Path(os.environ['ROUGH_INFERENCE_OUTPUT'])/f'task-{index:04d}-diagnostics.json',
         list(models.FIT_DIAGNOSTICS.values()))

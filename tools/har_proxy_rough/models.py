@@ -1,13 +1,17 @@
 """M212 rough overlay with log-HAR proxy volatility moments, mean held exact."""
-from functools import lru_cache
-import hashlib,importlib.util
-from pathlib import Path
+import hashlib
+import importlib.util
 import sys
+from functools import lru_cache
+from pathlib import Path
+
 import numpy as np
+
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
 sys.path.insert(0,str(HERE))
 import har
+
 spec=importlib.util.spec_from_file_location('har_proxy_private_m212',ROOT/'tools/consistent_noise_rough/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
 streamed=parent.parent.streamed
@@ -26,7 +30,10 @@ def har_fit(data):
 
 
 def curves(data,horizon):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves,predictive_state_moments
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+        predictive_state_moments,
+    )
     original=streamed.predecessor_fit(data)
     mean,_=moment_return_curves(original,horizon)
     mh,vh=har.moments(har_fit(data),horizon)

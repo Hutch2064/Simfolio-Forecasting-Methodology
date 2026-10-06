@@ -1,7 +1,7 @@
 """Theoretical-domain support and independent covariance/lift checks."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -22,7 +22,7 @@ def test_full_support_and_exact_bessel_covariance(model,h):
     k=1/63;n=32
     assert np.isfinite(model.log_prior([h,np.log(k),np.log(.7)]))
     lags=np.arange(n);a,b=.5-h,2*h
-    covariance=np.array([1. if t==0 else quad(lambda z:np.exp(-k*(1+z)/(1-z)*t) if z<1 else 0.,
+    covariance=np.array([1. if t==0 else quad(lambda z, t=t:np.exp(-k*(1+z)/(1-z)*t) if z<1 else 0.,
         0.,1.,weight='alg',wvar=(a-1,b-1),epsabs=1e-12,epsrel=1e-12)[0]/beta(a,b) for t in lags])
     expected=2*np.fft.rfft(covariance*(1-lags/n)).real-1
     np.testing.assert_allclose(model.unit_expected_periodogram(h,np.log(k),n),expected[1:],rtol=2e-8,atol=2e-10)

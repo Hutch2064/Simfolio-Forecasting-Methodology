@@ -3,10 +3,11 @@
 Fit inverse degrees of freedom on [0, 1/2): no imposed maximum df.
 """
 import math
+
 import numpy as np
-from scipy.special import betaln,ndtri
+from scipy.optimize import minimize, minimize_scalar
+from scipy.special import betaln, ndtri
 from scipy.stats import t
-from scipy.optimize import minimize,minimize_scalar
 
 
 def constants(inverse_df,skew):

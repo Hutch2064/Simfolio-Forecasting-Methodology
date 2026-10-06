@@ -73,3 +73,18 @@ def test_finite_reductions_preserve_complete_fit(size):
         original=bd._bdes_multiscale_components(values,4)
         actual=make_multiscale()(values,4)
         assert pickle.dumps(actual,protocol=5)==pickle.dumps(original,protocol=5)
+
+
+def test_accelerators_can_be_initialized_after_installation(monkeypatch):
+    from research_jit_pilot import make_accelerators
+
+    _, _, dlm, sv = make_accelerators()
+    monkeypatch.setattr(bd, "_dlm_ar1_loglik", dlm)
+    monkeypatch.setattr(bd, "_sv_kalman_filter", sv)
+    _, _, repeated_dlm, repeated_sv = make_accelerators()
+    y = np.random.default_rng(123).normal(size=80)
+    assert repeated_dlm(y, 1., .9, .01) == dlm(y, 1., .9, .01)
+    expected = sv(y, 0., .9, .2, return_path=True)
+    actual = repeated_sv(y, 0., .9, .2, return_path=True)
+    assert actual[0] == expected[0]
+    assert all(a.tobytes() == b.tobytes() for a, b in zip(actual[1:], expected[1:]))

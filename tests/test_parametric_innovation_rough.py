@@ -1,11 +1,13 @@
 """Distribution references and preservation of the baseline century mean curve."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
+
 import numpy as np
 import pytest
-from scipy.integrate import quad
 from arch.univariate import SkewStudent
+from scipy.integrate import quad
+
 
 @pytest.fixture(scope='module')
 def model():
@@ -25,13 +27,15 @@ def test_hansen_pdf_and_quantiles_match_independent_arch_implementation(model,df
 def test_density_has_zero_mean_and_unit_variance_including_normal_limit(model,u,skew):
     _,a,b=model.density.constants(u,skew);split=-a/b
     for order,expected in [(0,1.),(1,0.),(2,1.)]:
-        f=lambda z:z**order*np.exp(model.density.logpdf(z,u,skew))
+        f=lambda z, order=order:z**order*np.exp(model.density.logpdf(z,u,skew))
         value=quad(f,-np.inf,split,epsabs=1e-9)[0]+quad(f,split,np.inf,epsabs=1e-9)[0]
         assert abs(value-expected)<1e-8
 
 
 def test_both_innovation_arms_preserve_mean_and_ensemble_moments(model):
-    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
+    from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+        moment_return_curves,
+    )
     data=np.random.default_rng(10).normal(.0005,.01,600).tobytes()
     expected,_=moment_return_curves(model.streamed.predecessor_fit(data),25200)
     for kind in ['student','skew_student','gaussian']:

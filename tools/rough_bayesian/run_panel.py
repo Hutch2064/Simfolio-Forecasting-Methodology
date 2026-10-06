@@ -1,11 +1,11 @@
 """Run the new suite through the existing, unchanged canonical panel runner."""
-from pathlib import Path
+import argparse
 import hashlib
 import importlib.util
-import argparse
 import json
 import os
 import sys
+from pathlib import Path
 
 import numpy as np
 

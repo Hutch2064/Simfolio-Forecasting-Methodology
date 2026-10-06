@@ -6,6 +6,9 @@ from numba import njit
 
 from simfolio_forecasting_methodology.models.numerical import bdes_fastmap as bd
 
+# Runtime installation replaces public functions; compile their retained source.
+_SOURCE_COMPONENTS = bd._bdes_multiscale_components
+
 
 @njit(cache=False,fastmath=False,nogil=True)
 def ewma_initial_level(x):
@@ -21,7 +24,7 @@ def ewma_from_initial(values,alpha,level):
     return out
 
 def make():
-    original=bd._bdes_multiscale_components;source=inspect.getsource(original)
+    original=_SOURCE_COMPONENTS;source=inspect.getsource(original)
     for old,new in [('np.nanmean(','np.mean('),('np.nanvar(','np.var('),('np.nanstd(','np.std(')]:source=source.replace(old,new)
     cleanup='h = np.asarray(h_path, dtype=float); finite = h[np.isfinite(h)]; fill = float(np.nanmedian(finite)) if finite.size else 0.0\n    h = np.clip(np.nan_to_num(h, nan=fill, posinf=fill, neginf=fill), -18.0, 18.0)'
     assert source.count(cleanup)==1

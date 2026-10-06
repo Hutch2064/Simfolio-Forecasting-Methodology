@@ -6,15 +6,14 @@ Positive quadrature weights therefore define a valid stationary Gaussian
 OU mixture. Resolution is selected for each (H,kappa) over the complete
 requested daily-lag interval, without a fixed factor count or factor cap.
 """
+import math
 from dataclasses import replace
 from functools import lru_cache
-import math
 
 import numpy as np
+from overlay import Candidate, exact_covariance
 from scipy.special import beta, betainc, eval_jacobi, roots_jacobi
 from scipy.special._orthogonal import _gen_roots_and_weights
-
-from overlay import Candidate, exact_covariance
 
 
 class JacobiGeometry:

@@ -3,10 +3,12 @@
 Load private adapter namespaces so the already scored candidates and baseline
 remain unchanged. Only volatility inference/normalization changes.
 """
-from functools import lru_cache
-import hashlib,importlib.util,math
-from pathlib import Path
+import hashlib
+import importlib.util
 import sys
+from functools import lru_cache
+from pathlib import Path
+
 import numpy as np
 
 HERE=Path(__file__).resolve().parent

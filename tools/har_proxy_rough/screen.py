@@ -1,17 +1,18 @@
 """Bounded smoke through the unchanged canonical origin scorer."""
 import argparse
-from dataclasses import replace
 import hashlib
 import json
-from pathlib import Path
 import pickle
+import platform
 import tempfile
 import time
-import platform
+from dataclasses import replace
+from pathlib import Path
 
+import models
 import numpy as np
 import scipy
-import models
+
 from simfolio_forecasting_methodology.runner import evaluate_origin_task
 
 
@@ -45,24 +46,24 @@ def main():
         models.TIMINGS.clear();models.FIT_DIAGNOSTICS.clear()
         started=time.perf_counter()
         try:losses=evaluate_origin_task(candidate,task,simulations=240)
-        except Exception as error:
-            failure=dict(type=type(error).__name__,message=str(error))
-            record=dict(cache_state=state,seconds=time.perf_counter()-started,timings=dict(models.TIMINGS),failure=failure)
+        except Exception as error:  # noqa: BLE001 - Smoke receipts record any candidate failure.
+            failure={'type': type(error).__name__,'message': str(error)}
+            record={'cache_state': state,'seconds': time.perf_counter()-started,'timings': dict(models.TIMINGS),'failure': failure}
             records.append(record);print(json.dumps(record),flush=True);break
-        record=dict(cache_state=state,seconds=time.perf_counter()-started,timings=dict(models.TIMINGS),
-            smoke_crps=float(losses.mean()),horizons=len(losses),loss_sha256=hashlib.sha256(losses.tobytes()).hexdigest(),
-            diagnostics=list(models.FIT_DIAGNOSTICS.values()))
+        record={'cache_state': state,'seconds': time.perf_counter()-started,'timings': dict(models.TIMINGS),
+            'smoke_crps': float(losses.mean()),'horizons': len(losses),'loss_sha256': hashlib.sha256(losses.tobytes()).hexdigest(),
+            'diagnostics': list(models.FIT_DIAGNOSTICS.values())}
         if reference is None:reference=losses.copy()
         elif reference.tobytes()!=losses.tobytes():raise AssertionError('fresh/cached loss-vector parity')
         np.save(args.output.with_name(args.output.stem+'.'+state+'.npy'),losses)
         records.append(record);print(json.dumps({k:v for k,v in record.items() if k!='diagnostics'}),flush=True)
-    receipt=dict(scope='bounded_local_smoke_not_full_panel',model_id=args.model_id,task_index=args.task_index,
-        portfolio_id=task.portfolio_id,origin=str(task.origin_date),training_rows=len(task.training.asset_log_returns),
-        assets=task.training.asset_log_returns.shape[1],horizon=task.horizon_days,simulations=240,
-        runtime=dict(python=platform.python_version(),numpy=np.__version__,scipy=scipy.__version__),
-        fit_cache=str(cache),failure=failure,records=records,
-        source_hashes={str(p.relative_to(models.ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
-            for p in sorted(Path(__file__).resolve().parent.glob('*.py'))})
+    receipt={'scope': 'bounded_local_smoke_not_full_panel','model_id': args.model_id,'task_index': args.task_index,
+        'portfolio_id': task.portfolio_id,'origin': str(task.origin_date),'training_rows': len(task.training.asset_log_returns),
+        'assets': task.training.asset_log_returns.shape[1],'horizon': task.horizon_days,'simulations': 240,
+        'runtime': {'python': platform.python_version(),'numpy': np.__version__,'scipy': scipy.__version__},
+        'fit_cache': str(cache),'failure': failure,'records': records,
+        'source_hashes': {str(p.relative_to(models.ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in sorted(Path(__file__).resolve().parent.glob('*.py'))}}
     args.output.write_text(json.dumps(receipt,indent=2)+'\n')
 
 

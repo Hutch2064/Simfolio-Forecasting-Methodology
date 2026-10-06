@@ -5,11 +5,11 @@ The finite-sample expected periodogram is exact for the selected OU mixture.
 The frequency-domain likelihood remains an approximation to Gaussian likelihood;
 this is a new estimator experiment, not a parity optimization or raw-return Bayes.
 """
-from functools import lru_cache
 import hashlib
 import math
-from pathlib import Path
 import time
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 
@@ -17,6 +17,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 import importlib.util
 import sys
+
 sys.path.insert(0, str(HERE))
 spec = importlib.util.spec_from_file_location('whittle_private_conditional_empirical', ROOT / 'tools/conditional_empirical_rough/models.py')
 base = importlib.util.module_from_spec(spec)

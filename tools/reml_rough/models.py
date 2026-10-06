@@ -4,13 +4,13 @@ Restricted Gaussian likelihood (Patterson & Thompson, 1971) plus unchanged
 rough-parameter priors. This integrates the observation intercept with a flat
 prior; covariance parameters remain MAP points. Return mean/dependence unchanged.
 """
-from functools import lru_cache
 import hashlib
 import importlib.util
 import math
-from pathlib import Path
 import sys
 import time
+from functools import lru_cache
+from pathlib import Path
 
 import numpy as np
 
@@ -18,6 +18,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0,str(HERE))
 from gaussian_level_filter import restricted_filter
+
 spec = importlib.util.spec_from_file_location('reml_private_conditional_empirical', ROOT/'tools/conditional_empirical_rough/models.py')
 base = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = base
