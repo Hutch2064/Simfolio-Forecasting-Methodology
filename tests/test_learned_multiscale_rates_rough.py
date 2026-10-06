@@ -129,3 +129,32 @@ def test_full_hurst_domain_retains_interior_prior_and_mean():
     for h in (0.,.5):
         theta[0]=h;assert m.log_prior(theta)==-np.inf
     assert m.map_impl.physical(np.array([.2,0.,0.]))[0]==.1
+
+
+def test_zero_ridge_svd_likelihood_matches_independent_projection():
+    folder=Path(__file__).resolve().parents[1]/'tools/learned_loading_zero_ridge_rough'
+    spec=importlib.util.spec_from_file_location('test_zero_ridge_model',folder/'models.py')
+    m=importlib.util.module_from_spec(spec);sys.modules[spec.name]=m;spec.loader.exec_module(m)
+    h=np.random.default_rng(39).normal(size=300);h-=h.mean();phi=np.array([.8,.98]);scale=.3
+    q=np.column_stack([m.rate_fit.ewma(h,1-p) for p in phi]);q-=q.mean(axis=0)
+    b=np.linalg.lstsq(q,h,rcond=np.finfo(float).eps*max(q.shape))[0]*scale
+    residual=h-q@b;residual-=residual.mean()
+    rho=np.clip(residual[:-1]@residual[1:]/(residual[:-1]@residual[:-1]),-.999999,.999999)
+    error=h[1:]-(q[:-1]*phi)@b-rho*residual[:-1]
+    expected=.5*len(error)*(np.log(2*np.pi*np.mean(error**2))+1)
+    assert m.rate_fit.objective_loading(np.r_[logit(phi),logit(scale)],h)==pytest.approx(expected,rel=1e-12)
+    assert np.allclose(m.construction.components(h,phi,loading_scale=scale)['b'],b,rtol=1e-12)
+
+
+def test_single_predictive_loading_control_is_adaptive_first_fit():
+    path=Path(__file__).resolve().parents[1]/'tools/single_predictive_loading_full_hurst_rough/models.py'
+    spec=importlib.util.spec_from_file_location('test_single_predictive_loading_model',path)
+    m=importlib.util.module_from_spec(spec);sys.modules[spec.name]=m;spec.loader.exec_module(m)
+    h=np.random.default_rng(32).normal(size=500);centered=h-h.mean()
+    rho=float(centered[:-1]@centered[1:]/(centered[:-1]@centered[:-1]))
+    first=np.array([np.clip(rho,np.finfo(float).eps,1.-np.finfo(float).eps)])
+    expected,receipt=m.learned.rate_fit.fit_loading(h,first)
+    actual,control=m.fit_rates(h,np.array([.9,.99]))
+    assert expected.tobytes()==actual.tobytes()
+    assert receipt['loading_scale']==control['loading_scale']
+    assert control['component_count']==1
