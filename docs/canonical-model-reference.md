@@ -1,14 +1,14 @@
-# Canonical model reference (242 models including the original 175)
+# Canonical model reference (243 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **242** rows, canonical ranks **1–242**.
+- Membership: **243** rows, canonical ranks **1–243**.
 - Retained source ranks: **12–186**.
-- Membership digest: `ff2fe710eb848ceb14db9406d1f1e0288ec1866e9db00158aae58f274b94d98c`.
+- Membership digest: `d5d1e1c6f3784fd2fb3076ec72c0c93a3dce2bf6e1916ced53df9a1b112cb108`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **242**.
+- Confirmed full statistical specifications: **243**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -256,3 +256,4 @@ The ledger is the sole membership authority for this public set.
 | 240 | None | asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough | M240 — Asset MAP Adaptive Predictive Loading + Learned Multiscale Offset + Full Hurst Rough + Untruncated Dynamic Rough | asset_level_extension | 0.24269856328739714 | 0.242698563 | true | validated_full_canonical_score |
 | 241 | None | asset_map_joint_gaussian_multiscale_rough_stationary_normalized | M241 — Asset MAP Joint Gaussian Multiscale + Dynamic Rough, Stationary Normalized | asset_level_extension | 0.24296927753915046 | 0.242969278 | true | validated_full_canonical_score |
 | 242 | None | asset_map_adaptive_stable_coupled_multiscale_dynamic_rough | M242 — Asset MAP Stable Coupled Adaptive Memory + Dynamic Rough | asset_level_extension | 0.24131773884753774 | 0.241317739 | true | validated_full_canonical_score |
+| 243 | None | asset_map_stationary_ar1_proxy_dynamic_rough | M243 — Asset MAP Stationary AR1 Proxy + Dynamic Rough | asset_level_extension | 0.23193080892515236 | 0.231930809 | true | validated_full_canonical_score |
