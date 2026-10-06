@@ -1,7 +1,7 @@
 # Joint Bayesian rough volatility candidates
 
 Nine new asset-level candidates are implemented in `tools/rough_bayesian` and
-included in both public catalogues. The canonical catalogue now has 207 entries;
+included in both public catalogues. The canonical catalogue now has 208 entries;
 the broader active research catalogue has 397. The eight-factor Bayesian upgrade
 and dynamic-resolution candidate completed their full panels; the fixed-resolution lift retains its stopped partial
 results. Other aggregate scores remain blank until their complete panels finish.
@@ -728,3 +728,11 @@ M205 keeps M200 predictions and numerical rules, replacing its covariance MAP ta
 
 
 M206 retains the M200 covariance MAP fit and integrates the rough observation intercept under a flat prior, adding its uncertainty to the terminal-state covariance. Its audited full-panel CRPS is **0.24984428792635055** (0.809% better than M193), with isolated fresh-fit wall time **111.18 seconds**. M207 fits the analytic tempered fractional covariance directly in the expected-periodogram objective, resolving the same dynamic OU lift only for prediction. Its audited CRPS is **0.2495833333032549** (0.912% better than M193), with fresh-fit wall time **136.45 seconds**. The matched fresh-fit baseline took **125.73 seconds**. Neither meets the revised research goal. Both retain the return mean, empirical innovations, dependence, RNG, calendar and scoring. Evidence: `docs/results/rough-bayesian/whittle-integrated-level-rough-panel.json` and `docs/results/rough-bayesian/exact-covariance-whittle-rough-panel.json`.
+
+
+M208 removes the arbitrary Hurst support restrictions 0.03/0.49, retaining the theoretical strict rough domain 0 < H < 0.5. It evaluates the same covariance through the equivalent Bessel-K form (DLMF 13.6.10), while preserving dynamic prediction-lift accuracy rules and the return mean. Twelve independent mathematical tests and five byte-exact fresh/cached smokes passed. Full-panel CRPS is **0.2505737023816167**, a **0.519%** improvement over M193, with isolated fresh-fit wall time **123.60 seconds**. It trails M207; the more permissive support does not improve the score leader. Evidence: `docs/results/rough-bayesian/full-hurst-domain-rough-panel.json`.
+
+
+Two subsequent candidates were screened without a full-panel score. The M207 variance-targeting adaptation preserves return mean curves and scales volatility to the asset's training sample variance; two independent Lyapunov/long-horizon tests passed, but smoke CRPS values were 0.0368199994475318, 0.04674503819673142, 0.08813419690821843, 0.01483129965098614 and 0.1512294751560598. Four of five were worse than M193, so no official full panel was launched. Implementation: `tools/variance_targeted_rough/models.py`.
+
+The constant historical log-return mean candidate retains M207 volatility and removes volatility-scaled Sharpe drift. Four paired 50/100-year mean-growth tests passed. Smoke CRPS values were 0.035411045651616804, 0.057545773842543314, 0.11817038720242261, 0.014995257683460363 and 0.3627914454779456. The long-horizon smoke worsened sharply, so no official full-panel score is claimed. Implementation: `tools/historical_log_mean_rough/models.py`. Both candidates reproduced all five cached smoke loss vectors byte-for-byte; neither is included among fully validated full-panel catalogue entries.
