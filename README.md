@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **205 models**: the original 175 plus twenty
+The canonical catalogue contains **207 models**: the original 175 plus twenty-two
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–205 and no historical source rank.
+indices 176–207 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 205 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 207 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -101,3 +101,5 @@ Read [README_REPRODUCIBILITY.md](README_REPRODUCIBILITY.md) for the numerical
 environment, source/data identities, parity checks, and known validation
 limits. [docs/quickstart.md](docs/quickstart.md) shows a clean wheel install;
 [docs/validation.md](docs/validation.md) describes the CI gates.
+
+M206 integrates uncertainty in the rough observation level analytically (CRPS 0.24984428792635055). M207 uses the analytic tempered fractional covariance during debiased Whittle fitting (0.2495833333032549), resolving the original dynamic lift only for forecasting. Both completed the full 80-portfolio panel; M207 leads the score ranking but is still slower than the controlled baseline.

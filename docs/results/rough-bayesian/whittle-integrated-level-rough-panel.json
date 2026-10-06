@@ -1,5 +1,5 @@
 {
-  "scope": "streamed_M201_runtime_parity_full_canonical",
+  "scope": "whittle_integrated_level_full_canonical_asset_level_volatility_ablation",
   "baseline_model_id": "asset_map_predecessor_dynamic_rough_map",
   "baseline_crps": 0.2518812750312293,
   "baseline_runtime": {
@@ -29,34 +29,34 @@
     "simulations": 240,
     "temporal_holdouts_per_portfolio": 3
   },
-  "code_revision": "5bd2a268564f4c82da97e12360a7689b52ba0af0",
+  "code_revision": "c6085a0c621ea7cf6d97074b3a5c48cb6a239562",
   "all_other_forecast_components": "unchanged baseline mean, empirical return nodes, Gaussian dependence, RNG streams, calendar, policy, costs, clipping and scorer",
   "candidates": [
     {
-      "model_id": "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map",
-      "label": "M201 streamed NumPy Gaussian draws, unchanged method",
-      "source_revision": "5bd2a268564f4c82da97e12360a7689b52ba0af0",
+      "model_id": "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map",
+      "label": "Debiased Whittle rough covariance with analytically integrated observation level",
+      "source_revision": "c6085a0c621ea7cf6d97074b3a5c48cb6a239562",
       "result": {
         "all_denominator_gates_passed": true,
         "baseline_every_loss_vector_byte_exact": false,
-        "elapsed_seconds": 86.41909945802763,
-        "manifest_sha256": "a7166c584d59cc585abb645c3dab952b6311611c29fe85bf08761af278b48835",
-        "paired_cells_sha256": "98823238bdd05b3962b30f9f969deaf19f598e1efcd07b1e331112342ca5a208",
+        "elapsed_seconds": 111.1833429580438,
+        "manifest_sha256": "caaa093defbc41f0f41dc031c0e5b31d3aa30380febb2e1f4653ae52882810dc",
+        "paired_cells_sha256": "6498eb1e52f5b727b678c7017a197370914a162c0991484f41dc5c64344525fe",
         "portfolios": 80,
         "rolling_origins_per_portfolio": 48,
         "scope": "full_canonical_asset_level_ablations",
         "scores": {
-          "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map": {
+          "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map": {
             "cells": 701280,
-            "exact_empirical_crps": 0.24972187973628046,
-            "relative_improvement_vs_production": 0.01087651302485837,
-            "summed_worker_seconds": 979.2807541871443,
+            "exact_empirical_crps": 0.24984428792635055,
+            "relative_improvement_vs_production": 0.010391666378964604,
+            "summed_worker_seconds": 1276.4339841275942,
             "tasks": 4080,
             "timings": {
-              "asset_predictive_paths": 434.64243713975884,
-              "dependence_paths": 385.1703966734349,
-              "fit_phase_wall": 15.732565235171933,
-              "rough_fit_worker": 4.084135144890752
+              "asset_predictive_paths": 536.9343350065174,
+              "dependence_paths": 395.0163950038259,
+              "fit_phase_wall": 196.4061388365808,
+              "rough_fit_worker": 172.711094307655
             }
           }
         },
@@ -71,7 +71,7 @@
         "models": [
           {
             "fit_seconds": 10.0,
-            "model_id": "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map"
+            "model_id": "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map"
           }
         ],
         "native_binary_sha256": "d6062ebc1e6775b8ee242454176f4b81357f435facd081e0a2569b28397afc50",
@@ -111,7 +111,7 @@
         },
         "source_hashes": {
           "rough_filter_native_binary": "e80c67e337e27ce461c50f53a1dfe3ee3a800c3b6bc0970e91aea633e1542b71",
-          "rough_streamed_native_binary": "d3f7dafc1ef5015c61fcef9f94a23ae2d3373fe111c1af768e1ffbb868498590",
+          "rough_streamed_native_binary": "86e32c75152f71e2607d15288d70ade7417e0c7ff0c553bf045cdaed7567be51",
           "src/simfolio_forecasting_methodology/__init__.py": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621",
           "src/simfolio_forecasting_methodology/candidate_registry.py": "535d55b3b8878e429b9400319c0d67a9cbfd28b1a37c927b29b9a70301d80c01",
           "src/simfolio_forecasting_methodology/catalog.py": "8d3f495d38b3fa6f3de412bd049864fa00efae096d64d6de3a2b12ca5f69918a",
@@ -207,6 +207,10 @@
           "tools/mcmc_runtime/runtime_setup.py": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665",
           "tools/mcmc_runtime/steady_kalman_target.py": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394",
           "tools/mcmc_runtime/streamed_paths.py": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa",
+          "tools/reml_rough/gaussian_level_filter.py": "a7e315731ffbd53d431217a247deff8fa7f2324b1fe56197ac4159b25ae0158c",
+          "tools/reml_rough/models.py": "44dae7e78c7aa7eec31344aba69ccbdbda2f02555a47524beb8b383839525518",
+          "tools/reml_rough/run_panel.py": "d867e9a20641399ce5fcd139704be6c6d4a9eb2e559dd97b73bb108d2177c38e",
+          "tools/reml_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a",
           "tools/rough_bayesian/coherent.py": "7269edb80d3f6fdd21c858b585cb4df26ef92d9ae3bca5635d7f17daf032ccfe",
           "tools/rough_bayesian/coherent_kernels.py": "c923a5e2f2f072831bb4271d6ea14be264df9c09b40b64f1679e85fa8aeb06bf",
           "tools/rough_bayesian/dynamic.py": "e28d49088dc669a1a8c38daac3f218b9404190303d57102753be0eacffd83e9c",
@@ -226,11 +230,14 @@
           "tools/rough_jump_vine/native.patch": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4",
           "tools/rough_jump_vine/run_panel.py": "ff51781b37f38fad3477f8b22158b291bd16e6edad8a1e2cf38af71844a7a925",
           "tools/rough_jump_vine/smoke.py": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a",
-          "tools/streamed_rough_paths/models.py": "df9206d1344db738fc7d5e923637c900f5710e02d287de245b5cc785bca945a4",
-          "tools/streamed_rough_paths/paths.cpp": "ddb797fcc888e44495c7fb260c4cd6a5cbba3cb11837524ea0d75137bdf42a24",
+          "tools/streamed_rough_paths/models.py": "072bb03635c71c23ebccbd9e70523571b00da7ba405bf35d4ceb9c1abdaf844b",
+          "tools/streamed_rough_paths/paths.cpp": "0f6678a9582221cc1be0a06b8ad72b0d9b7cf9eaf66539e9adf1addb5d6d7732",
           "tools/streamed_rough_paths/run_panel.py": "29241489d80635c5a53286cf2242d83d08cb9d33ccd1e3676b96b968d4ed6983",
           "tools/streamed_rough_paths/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a",
-          "tools/streamed_rough_paths/stream_native.py": "1ea0ac811a6db02b0e4db870f5c09633285469b5a844b75cf7cdac70b5df824f"
+          "tools/streamed_rough_paths/stream_native.py": "1ea0ac811a6db02b0e4db870f5c09633285469b5a844b75cf7cdac70b5df824f",
+          "tools/whittle_integrated_level_rough/models.py": "4b31d822378f7d5d66d11cee2311f81b86e6c5c73bee964168424ff97076becc",
+          "tools/whittle_integrated_level_rough/run_panel.py": "787cd880507683af5233e54a008d43634f87fb19c228589bd849e3e83c37aa8b",
+          "tools/whittle_integrated_level_rough/screen.py": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
         },
         "state_workers": 1,
         "task_count": 4080,
@@ -238,570 +245,570 @@
         "workers": 12
       },
       "task_identities_sha256": "46bf82b6cb3702c714b87d131d975ad5f41f3c8220dfb54c821c7f32439300cb",
-      "raw_output": "local_artifacts/dynamic-rough-inference-20261005/streamed-full",
+      "raw_output": "local_artifacts/dynamic-rough-inference-20261005/whittle-integrated-cold/panel",
       "cell_array": "candidate_0",
-      "relative_improvement_vs_baseline": 0.008573067984831817,
-      "portfolio_wins_vs_baseline": 44,
-      "portfolio_losses_vs_baseline": 36,
+      "relative_improvement_vs_baseline": 0.00808709224068449,
+      "portfolio_wins_vs_baseline": 46,
+      "portfolio_losses_vs_baseline": 34,
       "portfolio_scores": [
         {
           "portfolio_id": "equal_class_history_001",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.13155781265522395,
+          "crps": 0.1298991852820519,
           "baseline_crps": 0.13346831690589123
         },
         {
           "portfolio_id": "equal_class_history_002",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1556578334441136,
+          "crps": 0.1808019009603067,
           "baseline_crps": 0.17663453574564353
         },
         {
           "portfolio_id": "equal_class_history_003",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.20687971919781636,
+          "crps": 0.20093161958275269,
           "baseline_crps": 0.19910991904646191
         },
         {
           "portfolio_id": "equal_class_history_004",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.19193359189993361,
+          "crps": 0.19243946524774513,
           "baseline_crps": 0.18865432101349047
         },
         {
           "portfolio_id": "equal_class_history_005",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.5670028519457829,
+          "crps": 0.5797840328913653,
           "baseline_crps": 0.5834790810138075
         },
         {
           "portfolio_id": "equal_class_history_006",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.17220123660804218,
+          "crps": 0.17222006380001564,
           "baseline_crps": 0.17582645146343065
         },
         {
           "portfolio_id": "equal_class_history_007",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.17034920180692,
+          "crps": 0.1671503502346745,
           "baseline_crps": 0.1635914834266011
         },
         {
           "portfolio_id": "equal_class_history_008",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.19313408090565104,
+          "crps": 0.20021131473962853,
           "baseline_crps": 0.20846185401481473
         },
         {
           "portfolio_id": "equal_class_history_009",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.14098108416500876,
+          "crps": 0.14218295488579802,
           "baseline_crps": 0.14111532922579803
         },
         {
           "portfolio_id": "equal_class_history_010",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1448379443436821,
+          "crps": 0.14623908518104223,
           "baseline_crps": 0.1451561685077014
         },
         {
           "portfolio_id": "equal_class_history_011",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.15498738411185775,
+          "crps": 0.15662364785125424,
           "baseline_crps": 0.15521392989086596
         },
         {
           "portfolio_id": "equal_class_history_012",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.5496759204302989,
+          "crps": 0.5448340097802815,
           "baseline_crps": 0.5399524677609835
         },
         {
           "portfolio_id": "equal_class_history_013",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2591743696311456,
+          "crps": 0.2535099360846234,
           "baseline_crps": 0.2550043360673994
         },
         {
           "portfolio_id": "equal_class_history_014",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.12795308041659897,
+          "crps": 0.1248243504005179,
           "baseline_crps": 0.12571367004789588
         },
         {
           "portfolio_id": "equal_class_history_015",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1981778273953748,
+          "crps": 0.19665914893149858,
           "baseline_crps": 0.20740621619084224
         },
         {
           "portfolio_id": "equal_class_history_016",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.41056553835124854,
+          "crps": 0.4104077995586273,
           "baseline_crps": 0.4037590564632431
         },
         {
           "portfolio_id": "equal_class_history_017",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.25256834622301916,
+          "crps": 0.2471303132527435,
           "baseline_crps": 0.2606530029583416
         },
         {
           "portfolio_id": "equal_class_history_018",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.10153995552651632,
+          "crps": 0.0957434405160936,
           "baseline_crps": 0.10569907965589095
         },
         {
           "portfolio_id": "equal_class_history_019",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.18554599331449625,
+          "crps": 0.18628193604938018,
           "baseline_crps": 0.1839196069303366
         },
         {
           "portfolio_id": "equal_class_history_020",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.12335589676778505,
+          "crps": 0.12279770050726274,
           "baseline_crps": 0.12511282667359944
         },
         {
           "portfolio_id": "equal_class_history_021",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2696761335306003,
+          "crps": 0.2734035497191154,
           "baseline_crps": 0.2698615717816035
         },
         {
           "portfolio_id": "equal_class_history_022",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.40419027624905673,
+          "crps": 0.39724139339844194,
           "baseline_crps": 0.40499734513046187
         },
         {
           "portfolio_id": "equal_class_history_023",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.18535286731533465,
+          "crps": 0.17896256820760612,
           "baseline_crps": 0.18404550604315875
         },
         {
           "portfolio_id": "equal_class_history_024",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.4913068376735892,
+          "crps": 0.5874583987800104,
           "baseline_crps": 0.5829827392407122
         },
         {
           "portfolio_id": "equal_class_history_025",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.23654494650245914,
+          "crps": 0.23238069808045822,
           "baseline_crps": 0.22805736770156126
         },
         {
           "portfolio_id": "equal_class_history_026",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.16228786856205954,
+          "crps": 0.15879379495497703,
           "baseline_crps": 0.16144486540203337
         },
         {
           "portfolio_id": "equal_class_history_027",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.18380588742481316,
+          "crps": 0.1791581051183985,
           "baseline_crps": 0.1844517080152864
         },
         {
           "portfolio_id": "equal_class_history_028",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2123136090567207,
+          "crps": 0.21218649624485578,
           "baseline_crps": 0.20271934930953497
         },
         {
           "portfolio_id": "equal_class_history_029",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.12016878907870017,
+          "crps": 0.10904548922303008,
           "baseline_crps": 0.10920133812467434
         },
         {
           "portfolio_id": "equal_class_history_030",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.14385284304890916,
+          "crps": 0.1416929098553064,
           "baseline_crps": 0.15163347287052384
         },
         {
           "portfolio_id": "equal_class_history_031",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.28502856924295195,
+          "crps": 0.2845856296101228,
           "baseline_crps": 0.28646947945051787
         },
         {
           "portfolio_id": "equal_class_history_032",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.25648159214921507,
+          "crps": 0.2497430915963418,
           "baseline_crps": 0.2556908133983273
         },
         {
           "portfolio_id": "equal_class_history_033",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.20185456469285343,
+          "crps": 0.20018222479715186,
           "baseline_crps": 0.1988349309463942
         },
         {
           "portfolio_id": "equal_class_history_034",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2517962055633978,
+          "crps": 0.2586889227119898,
           "baseline_crps": 0.2518029951299332
         },
         {
           "portfolio_id": "equal_class_history_035",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1638715836993829,
+          "crps": 0.16309068297551332,
           "baseline_crps": 0.16452679181962274
         },
         {
           "portfolio_id": "equal_class_history_036",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.5123031329046032,
+          "crps": 0.4958871676384162,
           "baseline_crps": 0.4926815365649623
         },
         {
           "portfolio_id": "equal_class_history_037",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.5283398804952152,
+          "crps": 0.5265878194163035,
           "baseline_crps": 0.5095821757446878
         },
         {
           "portfolio_id": "equal_class_history_038",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.6768031075497201,
+          "crps": 0.6951128752603352,
           "baseline_crps": 0.7193888435243747
         },
         {
           "portfolio_id": "equal_class_history_039",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.0960835014672,
+          "crps": 0.09826597602713097,
           "baseline_crps": 0.10213282775691089
         },
         {
           "portfolio_id": "equal_class_history_040",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.183477152322383,
+          "crps": 0.19323336591538093,
           "baseline_crps": 0.20174425034479013
         },
         {
           "portfolio_id": "equal_class_history_041",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1441704287143268,
+          "crps": 0.14552481232193099,
           "baseline_crps": 0.14531818434421864
         },
         {
           "portfolio_id": "equal_class_history_042",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.5626233560608782,
+          "crps": 0.5488004003194152,
           "baseline_crps": 0.5597242892511627
         },
         {
           "portfolio_id": "equal_class_history_043",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1308499071122102,
+          "crps": 0.13204749353079567,
           "baseline_crps": 0.12791963018149782
         },
         {
           "portfolio_id": "equal_class_history_044",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1501836981537292,
+          "crps": 0.1511553363329407,
           "baseline_crps": 0.1490040829940624
         },
         {
           "portfolio_id": "equal_class_history_045",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.4251610076569267,
+          "crps": 0.4118939226535631,
           "baseline_crps": 0.40879072952853235
         },
         {
           "portfolio_id": "equal_class_history_046",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1880183103445876,
+          "crps": 0.20360854593389469,
           "baseline_crps": 0.20749771353497767
         },
         {
           "portfolio_id": "equal_class_history_047",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.17054761001117621,
+          "crps": 0.1845447382568433,
           "baseline_crps": 0.18536431843174234
         },
         {
           "portfolio_id": "equal_class_history_048",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.14383718761380576,
+          "crps": 0.14691369234684812,
           "baseline_crps": 0.14451309384964448
         },
         {
           "portfolio_id": "equal_class_history_049",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.22799625823317982,
+          "crps": 0.2118416388058288,
           "baseline_crps": 0.21587565846790216
         },
         {
           "portfolio_id": "equal_class_history_050",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.32437306837659735,
+          "crps": 0.350467609369289,
           "baseline_crps": 0.31493641527098065
         },
         {
           "portfolio_id": "equal_class_history_051",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.16971587288311263,
+          "crps": 0.17115665853959622,
           "baseline_crps": 0.16924546073639907
         },
         {
           "portfolio_id": "equal_class_history_052",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2079123972096542,
+          "crps": 0.20547311404421517,
           "baseline_crps": 0.21303971504155894
         },
         {
           "portfolio_id": "equal_class_history_053",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.5959449216517011,
+          "crps": 0.5716809815699447,
           "baseline_crps": 0.5862451329678082
         },
         {
           "portfolio_id": "equal_class_history_054",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.3197494498760344,
+          "crps": 0.32898992046772474,
           "baseline_crps": 0.30276609336718585
         },
         {
           "portfolio_id": "equal_class_history_055",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.300540493350127,
+          "crps": 0.28969749140958395,
           "baseline_crps": 0.3064851524634087
         },
         {
           "portfolio_id": "equal_class_history_056",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.10308835667542134,
+          "crps": 0.1017084931193031,
           "baseline_crps": 0.10597964639214
         },
         {
           "portfolio_id": "equal_class_history_057",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2671157952386645,
+          "crps": 0.25619955534068345,
           "baseline_crps": 0.2630506321870411
         },
         {
           "portfolio_id": "equal_class_history_058",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.13668238487062273,
+          "crps": 0.13797826072334768,
           "baseline_crps": 0.13734928605284924
         },
         {
           "portfolio_id": "equal_class_history_059",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.11003859461658898,
+          "crps": 0.10862652502864811,
           "baseline_crps": 0.1044425283848209
         },
         {
           "portfolio_id": "equal_class_history_060",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.24292628602972297,
+          "crps": 0.2549944243196847,
           "baseline_crps": 0.24114442530162233
         },
         {
           "portfolio_id": "equal_class_history_061",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.12956977187235794,
+          "crps": 0.1391596934800444,
           "baseline_crps": 0.14157890703560153
         },
         {
           "portfolio_id": "equal_class_history_062",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.337014231190018,
+          "crps": 0.33916842184325396,
           "baseline_crps": 0.3360219647155006
         },
         {
           "portfolio_id": "equal_class_history_063",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.40378702478543826,
+          "crps": 0.3898299161153197,
           "baseline_crps": 0.39790677941302655
         },
         {
           "portfolio_id": "equal_class_history_064",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.12392830303251744,
+          "crps": 0.1261962079696744,
           "baseline_crps": 0.1327806137964358
         },
         {
           "portfolio_id": "equal_class_history_065",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2626916062163415,
+          "crps": 0.2598139558648978,
           "baseline_crps": 0.259162864282898
         },
         {
           "portfolio_id": "equal_class_history_066",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.18614353226236252,
+          "crps": 0.18342508963163764,
           "baseline_crps": 0.18699590669606178
         },
         {
           "portfolio_id": "equal_class_history_067",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.14820339246813619,
+          "crps": 0.14858223606881604,
           "baseline_crps": 0.1539342577308225
         },
         {
           "portfolio_id": "equal_class_history_068",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.20870432719703935,
+          "crps": 0.23370609070896045,
           "baseline_crps": 0.2445961390682258
         },
         {
           "portfolio_id": "equal_class_history_069",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2163605612342036,
+          "crps": 0.23075177950830209,
           "baseline_crps": 0.23561403730749933
         },
         {
           "portfolio_id": "equal_class_history_070",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.3922800820823431,
+          "crps": 0.3874364332992391,
           "baseline_crps": 0.3958023580226797
         },
         {
           "portfolio_id": "equal_class_history_071",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1065057457729716,
+          "crps": 0.10793783054860491,
           "baseline_crps": 0.1075691968531223
         },
         {
           "portfolio_id": "equal_class_history_072",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.20686633961228365,
+          "crps": 0.18271725389699794,
           "baseline_crps": 0.19626992864210804
         },
         {
           "portfolio_id": "equal_class_history_073",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.12783795541670662,
+          "crps": 0.12478664905866055,
           "baseline_crps": 0.12787021182753577
         },
         {
           "portfolio_id": "equal_class_history_074",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2654850573872787,
+          "crps": 0.25267708211751766,
           "baseline_crps": 0.26144255478346745
         },
         {
           "portfolio_id": "equal_class_history_075",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.9174510904380424,
+          "crps": 0.8822291372259472,
           "baseline_crps": 0.9203686730875339
         },
         {
           "portfolio_id": "equal_class_history_076",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.2141136369004075,
+          "crps": 0.20406564870422542,
           "baseline_crps": 0.21141970260775989
         },
         {
           "portfolio_id": "equal_class_history_077",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.3935063907728454,
+          "crps": 0.378935459459659,
           "baseline_crps": 0.3937831072701153
         },
         {
           "portfolio_id": "equal_class_history_078",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.1788326242104511,
+          "crps": 0.17994992969174747,
           "baseline_crps": 0.17745808182857883
         },
         {
           "portfolio_id": "equal_class_history_079",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.09136480705548511,
+          "crps": 0.09439818397428203,
           "baseline_crps": 0.09291148391238865
         },
         {
           "portfolio_id": "equal_class_history_080",
           "origins": 51,
           "cells": 8766,
-          "crps": 0.14200949664645796,
+          "crps": 0.14209900523762475,
           "baseline_crps": 0.1481414835643159
         }
       ],
@@ -815,22 +822,22 @@
     }
   ],
   "paired_cells": {
-    "path": "docs/results/rough-bayesian/streamed-rough-runtime-panel-cells.npz",
-    "sha256": "f7ad6c0314da94f56533e8c21eab1e5276b1e9d1a156bb7d4206d40dcf1ecbe7",
-    "bytes": 11656318
+    "path": "docs/results/rough-bayesian/whittle-integrated-level-rough-panel-cells.npz",
+    "sha256": "75ec7974fb7f0c710bf24fd60894388ba1a62cdda02244ae48beb444a4324e3a",
+    "bytes": 11657557
   },
   "scores": {
-    "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map": {
+    "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map": {
       "cells": 701280,
-      "exact_empirical_crps": 0.24972187973628046,
-      "relative_improvement_vs_production": 0.01087651302485837,
-      "summed_worker_seconds": 979.2807541871443,
+      "exact_empirical_crps": 0.24984428792635055,
+      "relative_improvement_vs_production": 0.010391666378964604,
+      "summed_worker_seconds": 1276.4339841275942,
       "tasks": 4080,
       "timings": {
-        "asset_predictive_paths": 434.64243713975884,
-        "dependence_paths": 385.1703966734349,
-        "fit_phase_wall": 15.732565235171933,
-        "rough_fit_worker": 4.084135144890752
+        "asset_predictive_paths": 536.9343350065174,
+        "dependence_paths": 395.0163950038259,
+        "fit_phase_wall": 196.4061388365808,
+        "rough_fit_worker": 172.711094307655
       }
     }
   },
@@ -840,48 +847,5 @@
     "models": 1,
     "origin_vectors": 4080,
     "cells_per_model": 701280
-  },
-  "candidate_runtime_cache_state": "shared pre-existing content-addressed fit cache; not a cold-fit benchmark",
-  "all_4080_origin_vectors_byte_exact_to_M201": true,
-  "cold_fit_benchmark": {
-    "scope": "one controlled fresh-fit full-panel A/B pair; local research worker timing",
-    "workers": 12,
-    "asset_workers": 1,
-    "simulations": 240,
-    "portfolios": 80,
-    "tasks_per_model": 4080,
-    "implementations": [
-      {
-        "model_id": "asset_map_predecessor_dynamic_rough_map",
-        "elapsed_seconds": 125.72699987504166,
-        "summed_worker_seconds": 1442.8576952253934,
-        "exact_empirical_crps": 0.2518812750312293,
-        "manifest_sha256": "04a7b4181239a1ee472356a608edd7d31f8bed9880c219152e39d6faf11d09ed",
-        "cache_state": "isolated empty fit cache at launch",
-        "cache_files_created_after_manifest": 5098,
-        "all_4080_origin_vectors_byte_exact_to_reference": true,
-        "all_701280_cells_byte_exact_to_reference": true,
-        "numerical_runtime": null,
-        "raw_output": "local_artifacts/dynamic-rough-inference-20261005/runtime-matched/baseline-cold-1/panel"
-      },
-      {
-        "model_id": "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map",
-        "elapsed_seconds": 98.50231566699222,
-        "summed_worker_seconds": 1124.0110291144229,
-        "exact_empirical_crps": 0.24972187973628046,
-        "manifest_sha256": "16d78f69de93b09885eb3005f359a4a212873d7894a3f771ad807ec89dd401f6",
-        "cache_state": "isolated empty fit cache at launch",
-        "cache_files_created_after_manifest": 5098,
-        "all_4080_origin_vectors_byte_exact_to_reference": true,
-        "all_701280_cells_byte_exact_to_reference": true,
-        "numerical_runtime": null,
-        "raw_output": "local_artifacts/dynamic-rough-inference-20261005/runtime-matched/streamed-cold-1/panel"
-      }
-    ],
-    "candidate_relative_runtime_reduction": 0.2165380883589657,
-    "candidate_relative_score_improvement": 0.008573067984831817,
-    "candidate_source_revision": "f3528795052d04d18791b51122698c374f3c4e9e",
-    "unchanged_scoring_and_task_identities": true,
-    "not_deployed_website_timing": true
   }
 }

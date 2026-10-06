@@ -34,16 +34,16 @@
     "notes"
   ],
   "membership": {
-    "count": 205,
+    "count": 207,
     "canonical_rank_range": [
       1,
-      205
+      207
     ],
     "source_rank_range": [
       12,
       186
     ],
-    "membership_digest": "062fcaa9977a6f2193cfff8b43c0cd5ec3703117aeda31cba774dfa2b7895369",
+    "membership_digest": "9c9c00032f7894c7eca536da74bf7fd82b72404367dca6b01efeeeeb8d1ba53f",
     "membership_digest_algorithm": "sha256(UTF-8 of canonical_rank|historical_rank|public_model_id lines in canonical order, final newline)"
   },
   "score_evidence": {
@@ -98,8 +98,8 @@
       },
       {
         "relative_path": "src/simfolio_forecasting_methodology/resources/catalogs/canonical_175_part2.csv",
-        "sha256": "634f4a3a5983b8ab1fa4c326eef9df453b9af93682f3f3d88eee45cdff27ee3d",
-        "rows": 116
+        "sha256": "01a7cc1d04549177622438ac4f90e006cc29ecc220d308a67e096c9de274df2c",
+        "rows": 118
       }
     ],
     "protocol_identity": {
@@ -124,7 +124,7 @@
     }
   },
   "identity_policy": {
-    "full_statistical_specifications_confirmed": 205,
+    "full_statistical_specifications_confirmed": 207,
     "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
     "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
     "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
@@ -68961,6 +68961,2644 @@
       "verification_status": "validated_full_canonical_score",
       "notes": [
         "Unpenalized debiased Whittle rough covariance inference; asset-level rough-inference ablation with M200 volatility structure.",
+        "All 4080 origin vectors independently reconstruct the retained 701280 cells byte-for-byte.",
+        "Mean, empirical return nodes, Gaussian dependence, RNG streams, calendar, costs, clipping and policy remain unchanged.",
+        "Gaussian log-square frequency-domain quasi likelihood with plug-in covariance parameters; not a full Bayesian raw-return posterior.",
+        "Local research worker timings; no production promotion."
+      ]
+    },
+    {
+      "public_model_id": "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map",
+      "display_name": "M206 \u2014 Asset MAP Multiscale + Debiased Whittle rough covariance with analytically integrated observation level",
+      "historical_model_ids": [
+        "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map"
+      ],
+      "seed_identity": {
+        "source_model_key": "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_MAP_multiscale_dynamic_rough_overlay",
+          "source_id": "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "validated_research_candidate",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "model": "tempered_fractional_Volterra_log_variance_overlay",
+            "replacement": false,
+            "production_variance_anchor": false,
+            "production_mean_anchor": false,
+            "level": "flat-prior Gaussian posterior of rough observation intercept",
+            "parameter_uncertainty": "none: joint MAP point over H, log_kappa, log_scale",
+            "latent_states": "analytically marginalized Gaussian states; terminal filtering posterior sampled per predictive path",
+            "H_prior": {
+              "distribution": "uniform",
+              "bounds": [
+                0.03,
+                0.49
+              ]
+            },
+            "log_kappa_prior": {
+              "distribution": "truncated_normal",
+              "mean": "log(1/63)",
+              "sd": 2,
+              "bounds": [
+                "log(1/2520)",
+                "log(.5)"
+              ]
+            },
+            "log_scale_prior": {
+              "distribution": "truncated_normal",
+              "mean": "log(.7)",
+              "sd": 1.5,
+              "bounds": [
+                "log(.05)",
+                "log(3)"
+              ]
+            },
+            "kernel": {
+              "continuous_target": "exp(-kappa*t)*t**(H-.5)/Gamma(H+.5)",
+              "normalized_stationary_covariance": "E[exp(-kappa*(1+Z)/(1-Z)*t)], Z~Beta(.5-H,2*H)",
+              "lift": "positive Gauss-Jacobi spectral quadrature on logarithmic rates",
+              "error_metric": "normalized absolute stationary autocorrelation difference over every requested integer daily lag",
+              "error_tolerance": 0.001,
+              "factor_selection": "first passing positive integer quadrature order per (H,kappa); no fixed factor count, preset list or factor cap",
+              "lag_domain": "1 through training_days+requested_horizon_days-1",
+              "certificate": "monotonic interval enclosure and C-second-derivative <=4*exp(-2)/t**2; recursively bisect unresolved integer-lag intervals",
+              "fast_rate_threshold": "-log(tolerance/2)",
+              "white_tail_error_bound": "tolerance/2 for every positive daily lag",
+              "zero_lag_variance": "analytic exact unit variance with Beta tail mass retained as independent white component",
+              "reference_numerics": "Tricomi U closed form; independent weighted Beta integration fallback for invalid special-function evaluations"
+            },
+            "daily_discretization": "exact exponential transitions of independent OU spectral factors",
+            "predictive_multiplier": "exp(.5*latent-.25*stationary_variance)",
+            "normalization": "stationary E[multiplier**2]=1; conditional variance signal retained",
+            "first_forecast_state": "one OU transition after final filtered observation",
+            "predecessor_variance_anchor": true,
+            "predecessor_mean_anchor": true,
+            "historical_observation": "unchanged winsorized log-square proxy minus conventional one-step prediction",
+            "measurement_variance": "sample log-square variance of unchanged empirical innovation pool, with matching rough observation preprocessing",
+            "conventional_offset": "one-step scalar SV predictions with unchanged baseline parameters; no current observation enters its own prediction"
+          },
+          "predictive_marginal": {
+            "method": "M200 covariance MAP points; conditional Gaussian terminal state integrated over flat-prior observation intercept; original return mean unchanged",
+            "innovations": "unchanged predecessor centered empirical standardized nodes",
+            "daily_log_return_clip": [
+              -1,
+              1
+            ],
+            "posterior_multiplier": "clip(predecessor_mean+(clipped_predecessor_asset_path-predecessor_mean)*rough_multiplier,-1,1)"
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tools/whittle_integrated_level_rough/models.py",
+            "revision": "c6085a0c621ea7cf6d97074b3a5c48cb6a239562",
+            "sha256": "4b31d822378f7d5d66d11cee2311f81b86e6c5c73bee964168424ff97076becc",
+            "entrypoints": [
+              "CANDIDATES[0].simulate_daily_log_returns"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "src/simfolio_forecasting_methodology/__init__.py",
+                "sha256": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/candidate_registry.py",
+                "sha256": "535d55b3b8878e429b9400319c0d67a9cbfd28b1a37c927b29b9a70301d80c01"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/catalog.py",
+                "sha256": "8d3f495d38b3fa6f3de412bd049864fa00efae096d64d6de3a2b12ca5f69918a"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/catalogue.py",
+                "sha256": "4e551b3b3882ea550bb48cf068d834309ed58b1fad2afe1118defd3969152496"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/cli.py",
+                "sha256": "3e48a1cc5cf9bf020b9ba6823be8b1cf59076a896226fff0761576400b52ff7b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/data.py",
+                "sha256": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/evaluation.py",
+                "sha256": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/experiment.py",
+                "sha256": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/__init__.py",
+                "sha256": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/__init__.py",
+                "sha256": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py",
+                "sha256": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py",
+                "sha256": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/frontier.py",
+                "sha256": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py",
+                "sha256": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/__init__.py",
+                "sha256": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py",
+                "sha256": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/base_models.py",
+                "sha256": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py",
+                "sha256": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py",
+                "sha256": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/factors.py",
+                "sha256": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py",
+                "sha256": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py",
+                "sha256": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/__init__.py",
+                "sha256": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py",
+                "sha256": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py",
+                "sha256": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py",
+                "sha256": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py",
+                "sha256": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py",
+                "sha256": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py",
+                "sha256": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/inla.py",
+                "sha256": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py",
+                "sha256": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py",
+                "sha256": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py",
+                "sha256": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py",
+                "sha256": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/registry.py",
+                "sha256": "6f45544cc87158a9157ff693e228443d18497881c1346c960bb0838a6c3e9257"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/naming.py",
+                "sha256": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/origins.py",
+                "sha256": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/panel.py",
+                "sha256": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/protocol.py",
+                "sha256": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/__init__.py",
+                "sha256": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/aggregate.py",
+                "sha256": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/checkpoint.py",
+                "sha256": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/executor.py",
+                "sha256": "c8d9ea263ac056d0ee459c76154d36e67e20403664c0e078a12f85268c155649"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/retained.py",
+                "sha256": "831aa1ab5eecdd90f3baa9867e325c2b9aeedcacd74085aae8bf899f5bc3edf4"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/verified_candidate_scores.py",
+                "sha256": "41c4747c033d9e4b5c4316a648843d0d2f18ccf9bc0dea8ba9ab2f8c5037eabf"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/runner.py",
+                "sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/safety_scan.py",
+                "sha256": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/scores.py",
+                "sha256": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/scoring.py",
+                "sha256": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/seeds.py",
+                "sha256": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/smoke.py",
+                "sha256": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/specifications.py",
+                "sha256": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+              },
+              {
+                "path": "tools/conditional_empirical_rough/models.py",
+                "sha256": "9f9a2e75c9e7e39a6970438e96e12a3f098029bd27ffbf016e39308b83317338"
+              },
+              {
+                "path": "tools/conditional_empirical_rough/run_panel.py",
+                "sha256": "5b9d5ff0ae507c8578fd815acfc1959a3b0324336e75aba96f05a9101bc991dd"
+              },
+              {
+                "path": "tools/conditional_empirical_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/conditional_residual_rough/models.py",
+                "sha256": "b3340b0336d577e9d029026299868c24a31d60a9b06dfe40440bbc698438fd34"
+              },
+              {
+                "path": "tools/conditional_residual_rough/run_panel.py",
+                "sha256": "cbf3404c266b505869194dad5ee1019b4be963213a92cec0908d9202e2f68486"
+              },
+              {
+                "path": "tools/conditional_residual_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/debiased_whittle_kernel.py",
+                "sha256": "086ccb4a7d486ee7f402c7c9c5b23a490e90d427038f62f6189429b081701da0"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/models.py",
+                "sha256": "fa2f35d94ac1ada36178c6d78546b76c1b0e65fb71fb06416f4dd55c1b7ea375"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/run_panel.py",
+                "sha256": "86146f36e5f0b78a182f7177f2d472185ab1806ff8008a7571b7c14b747d8cb3"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/differenced_whittle_kernel.py",
+                "sha256": "313f8375fec31f94d49a63e706c690cfea9d8eaa72cbcfb86f4d15bceb1e09bc"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/models.py",
+                "sha256": "5307079b418dbd117e438ad102a54297534ae8182ac0b495e541569109ef12ca"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/run_panel.py",
+                "sha256": "1bacd5526a5fc8febe74ae730b9446bbfad9959358f9c236edbbd8346776abe1"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/models.py",
+                "sha256": "3ddfd385a4a4543d87bd979528ca3d0727cf02b870ec9c408ee215d54ad12d5f"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/posterior.py",
+                "sha256": "6656fe132fc8bfc2dacb9f220ae2e4c0eb36e6564c7a8afd09c2d1d306584d52"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/progress.py",
+                "sha256": "1438d0ab7c5371d8f231102aef30f67a7fa821360a32e0c96e3ff400220ec169"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/run_panel.py",
+                "sha256": "8262ccc2ef52acf1d5815a9782bff4aa92baf941e293e0968894d78c2b0894ad"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/empirical_rough_noise/models.py",
+                "sha256": "9fa6b05aa80f9b6ab50067c6e84a7b9ca5b07e45dac523ce09f98a8183e8bff3"
+              },
+              {
+                "path": "tools/empirical_rough_noise/run_panel.py",
+                "sha256": "4ef36ab5117e53f3d2fc8684a3b525301c3fabd979a101fd87e6586c9e80c9ca"
+              },
+              {
+                "path": "tools/empirical_rough_noise/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_model_cases.py",
+                "sha256": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_scaling.py",
+                "sha256": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_dependence.py",
+                "sha256": "a76ae12e87c5c0802b935d9de12d4d42009a88d030758bf01bfd2a0d78c9b7aa"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_moments.py",
+                "sha256": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_chain.py",
+                "sha256": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_map.py",
+                "sha256": "afd0371d9264e40fd95fb591d04467408d7c58b1876fb5dde7ddad54d5acd844"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_postburn.py",
+                "sha256": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_smoothers.py",
+                "sha256": "65c1f8dfeca0501105c2fdd1b08158c98e91f2b024cd12ad6b05020673641d91"
+              },
+              {
+                "path": "tools/mcmc_runtime/complex_sv.py",
+                "sha256": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71"
+              },
+              {
+                "path": "tools/mcmc_runtime/exact_path_kernels.py",
+                "sha256": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5"
+              },
+              {
+                "path": "tools/mcmc_runtime/finite_multiscale.py",
+                "sha256": "268ab6ed592a3ccca808ed0cba83fa3d39243d39ac7b0778ffd18374510b397e"
+              },
+              {
+                "path": "tools/mcmc_runtime/optimized_mcmc.py",
+                "sha256": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df"
+              },
+              {
+                "path": "tools/mcmc_runtime/parallel_chains.py",
+                "sha256": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3"
+              },
+              {
+                "path": "tools/mcmc_runtime/parameter_mcmc_tuned.py",
+                "sha256": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a"
+              },
+              {
+                "path": "tools/mcmc_runtime/predictive_sv_candidates.py",
+                "sha256": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309"
+              },
+              {
+                "path": "tools/mcmc_runtime/profile_runtime.py",
+                "sha256": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4"
+              },
+              {
+                "path": "tools/mcmc_runtime/replay_full_panel.py",
+                "sha256": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca"
+              },
+              {
+                "path": "tools/mcmc_runtime/research_jit_pilot.py",
+                "sha256": "5d60c5e61990da292d02ebf89a3eeb1fdee788115551a9d881ed26ddc2f9c1b5"
+              },
+              {
+                "path": "tools/mcmc_runtime/runtime_setup.py",
+                "sha256": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665"
+              },
+              {
+                "path": "tools/mcmc_runtime/steady_kalman_target.py",
+                "sha256": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394"
+              },
+              {
+                "path": "tools/mcmc_runtime/streamed_paths.py",
+                "sha256": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa"
+              },
+              {
+                "path": "tools/reml_rough/gaussian_level_filter.py",
+                "sha256": "a7e315731ffbd53d431217a247deff8fa7f2324b1fe56197ac4159b25ae0158c"
+              },
+              {
+                "path": "tools/reml_rough/models.py",
+                "sha256": "44dae7e78c7aa7eec31344aba69ccbdbda2f02555a47524beb8b383839525518"
+              },
+              {
+                "path": "tools/reml_rough/run_panel.py",
+                "sha256": "d867e9a20641399ce5fcd139704be6c6d4a9eb2e559dd97b73bb108d2177c38e"
+              },
+              {
+                "path": "tools/reml_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/rough_bayesian/coherent.py",
+                "sha256": "7269edb80d3f6fdd21c858b585cb4df26ef92d9ae3bca5635d7f17daf032ccfe"
+              },
+              {
+                "path": "tools/rough_bayesian/coherent_kernels.py",
+                "sha256": "c923a5e2f2f072831bb4271d6ea14be264df9c09b40b64f1679e85fa8aeb06bf"
+              },
+              {
+                "path": "tools/rough_bayesian/dynamic.py",
+                "sha256": "e28d49088dc669a1a8c38daac3f218b9404190303d57102753be0eacffd83e9c"
+              },
+              {
+                "path": "tools/rough_bayesian/inference.py",
+                "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+              },
+              {
+                "path": "tools/rough_bayesian/kernels.py",
+                "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+              },
+              {
+                "path": "tools/rough_bayesian/mixture.py",
+                "sha256": "fb26b0d25d96350f9232ea3df14179022dd63bfe0c6da818601f85a589d4f484"
+              },
+              {
+                "path": "tools/rough_bayesian/mixture_kernels.py",
+                "sha256": "517a7572924a10becf7f7c439302149434f9ffa71097d4372f460f13c2fff5aa"
+              },
+              {
+                "path": "tools/rough_bayesian/models.py",
+                "sha256": "9545be22f4cd4ba6be1f03d0d01c4d74e85792464c908ef7b83bf5fde6e30761"
+              },
+              {
+                "path": "tools/rough_bayesian/native.py",
+                "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+              },
+              {
+                "path": "tools/rough_bayesian/overlay.py",
+                "sha256": "9f1697ca82840cf13b83c7522220295541818af302317613c0030db248f8b63b"
+              },
+              {
+                "path": "tools/rough_bayesian/overlay_filter.cpp",
+                "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
+              },
+              {
+                "path": "tools/rough_bayesian/run_panel.py",
+                "sha256": "8296eab120468620b6de68d2fe34cceb0c486679254fcd6d8aa71cc98c4d27b3"
+              },
+              {
+                "path": "tools/rough_bayesian/smoke.py",
+                "sha256": "bce72207eae8a2094abd8e249321d214825af99d733f356fbed6a32a47ccf9df"
+              },
+              {
+                "path": "tools/rough_bayesian/standalone.py",
+                "sha256": "4314a52d711929e35f5c5b2d9946690c33db6939238941450467e932141b9c8d"
+              },
+              {
+                "path": "tools/rough_jump_vine/build_native.py",
+                "sha256": "2346d6501657e53a998c4fd758c7f077be0f6b65a79a49c7e439effead4c7819"
+              },
+              {
+                "path": "tools/rough_jump_vine/models.py",
+                "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+              },
+              {
+                "path": "tools/rough_jump_vine/native.patch",
+                "sha256": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4"
+              },
+              {
+                "path": "tools/rough_jump_vine/run_panel.py",
+                "sha256": "ff51781b37f38fad3477f8b22158b291bd16e6edad8a1e2cf38af71844a7a925"
+              },
+              {
+                "path": "tools/rough_jump_vine/smoke.py",
+                "sha256": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a"
+              },
+              {
+                "path": "tools/streamed_rough_paths/models.py",
+                "sha256": "072bb03635c71c23ebccbd9e70523571b00da7ba405bf35d4ceb9c1abdaf844b"
+              },
+              {
+                "path": "tools/streamed_rough_paths/paths.cpp",
+                "sha256": "0f6678a9582221cc1be0a06b8ad72b0d9b7cf9eaf66539e9adf1addb5d6d7732"
+              },
+              {
+                "path": "tools/streamed_rough_paths/run_panel.py",
+                "sha256": "29241489d80635c5a53286cf2242d83d08cb9d33ccd1e3676b96b968d4ed6983"
+              },
+              {
+                "path": "tools/streamed_rough_paths/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/streamed_rough_paths/stream_native.py",
+                "sha256": "1ea0ac811a6db02b0e4db870f5c09633285469b5a844b75cf7cdac70b5df824f"
+              },
+              {
+                "path": "tools/whittle_integrated_level_rough/models.py",
+                "sha256": "4b31d822378f7d5d66d11cee2311f81b86e6c5c73bee964168424ff97076becc"
+              },
+              {
+                "path": "tools/whittle_integrated_level_rough/run_panel.py",
+                "sha256": "787cd880507683af5233e54a008d43634f87fb19c228589bd849e3e83c37aa8b"
+              },
+              {
+                "path": "tools/whittle_integrated_level_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+          "source_seed_contract": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+          "failure_semantics": {
+            "paths": "reject nonfinite outputs",
+            "kernel": "require finite positive quadrature and complete daily-lag error enclosure; no silent tolerance relaxation",
+            "posterior": "MAP optimizer must converge; no initial-parameter fallback and no tolerance relaxation"
+          },
+          "source_seed_context_ref": "asset_level_MAP_multiscale_dynamic_rough_overlay",
+          "baseline": {
+            "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+            "fitter": "fit_bdes_fastmap(filtered_innovations=True,fixed_mean=True)",
+            "multiscale_timescales_days": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "timescales_shortened_for_insufficient_history": true,
+            "mean_innovations_dependence_calendar_policy": "unchanged predecessor shell",
+            "parameter_uncertainty": false
+          },
+          "parameter_estimation": {
+            "conventional": "unchanged predecessor MAP",
+            "rough": "MAP point under debiased Whittle pseudolikelihood; undifferenced conditional Gaussian terminal-state filtering",
+            "likelihood": "Sykulski et al. (2019) finite-sample expected-periodogram pseudolikelihood plus unchanged rough parameter priors",
+            "optimizer": "bounded normalized-coordinate L-BFGS-B",
+            "ftol": 1e-10,
+            "gtol": 1e-05,
+            "maximum_iterations": 200,
+            "failure_retry": "same target and tolerances with extended line search maxls100; bounded Powell if necessary; reject unresolved fits",
+            "resource_ceiling_seconds": 10,
+            "fixed_posterior_representatives": null,
+            "chains": 0,
+            "two_stage_plug_in_offset": true,
+            "measurement_noise_uncertainty": false,
+            "spectral_reference": "https://doi.org/10.1093/biomet/asy071",
+            "spectral_covariance": "exact covariance of the dynamically selected independent OU mixture plus empirical log-square measurement noise",
+            "spectral_frequencies": "all nonzero rFFT frequencies on sample-demeaned rough observations",
+            "spectral_weights": "one for conjugate pairs; one half for real Nyquist and, if included, zero",
+            "spectral_window": "finite-sample triangular lag weights; no taper or frequency subsampling",
+            "differenced_observations": false,
+            "measurement_noise_after_differencing": "independent with fixed empirical variance R",
+            "observation_level": "(one.T @ C_inverse @ y)/(one.T @ C_inverse @ one)",
+            "observation_level_uncertainty": true,
+            "observation_level_variance": "1/(one.T @ C_inverse @ one)",
+            "terminal_state": "Gaussian conditioning integrated over intercept; add nonnegative level-uncertainty covariance term",
+            "observation_level_reference": "https://gaussianprocess.org/gpml/chapters/RW2.pdf, section 2.7 equation (2.42)",
+            "covariance_parameter_uncertainty": false,
+            "return_mean_model_changed": false
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "626e95f5b8ac38a43c2e8f6e4dbc59f98bac3a32aefd27abdcc0c0bcfaab470e",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "c6085a0c621ea7cf6d97074b3a5c48cb6a239562",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "docs/results/rough-bayesian/whittle-integrated-level-rough-panel.json",
+          "sha256": "08f3f72540b686a21f2e71acc434517e7e6429c03767cc111427cb3bda87dae7",
+          "manifest_sha256": "caaa093defbc41f0f41dc031c0e5b31d3aa30380febb2e1f4653ae52882810dc",
+          "scope": "full_canonical",
+          "tasks_per_model": 4080,
+          "cells_per_model": 701280,
+          "complete_portfolios": 80,
+          "simulations": 240,
+          "all_denominator_gates_passed": true,
+          "audit_field": "audit",
+          "source_score_field": "scores.asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map.exact_empirical_crps"
+        },
+        "source_code": {
+          "relative_path": "tools/whittle_integrated_level_rough/models.py",
+          "sha256": "4b31d822378f7d5d66d11cee2311f81b86e6c5c73bee964168424ff97076becc"
+        },
+        "parameter_dictionary": {
+          "sha256": "626e95f5b8ac38a43c2e8f6e4dbc59f98bac3a32aefd27abdcc0c0bcfaab470e"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tools/whittle_integrated_level_rough/models.py",
+        "entrypoint": "CANDIDATES[0].simulate_daily_log_returns",
+        "score": "docs/results/rough-bayesian/whittle-integrated-level-rough-panel.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "research_runner_entrypoint",
+        "research_entrypoint": "tools/whittle_integrated_level_rough/models.py:CANDIDATES[0].simulate_daily_log_returns"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba",
+        "pyvinecopulib==0.7.5",
+        "pybind11==3.1.0"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 206,
+      "historical_score": {
+        "exact_empirical_crps": "0.24984428792635055",
+        "relative_to_naive": 0.8532313817407646,
+        "skill_vs_naive": 0.14676861825923537,
+        "paired_improvement_vs_current": 0.00808709224068449,
+        "current_comparator_model_id": "asset_map_predecessor_dynamic_rough_map",
+        "portfolio_wins_vs_current": 46,
+        "portfolio_losses_vs_current": 34,
+        "portfolio_scores": [
+          {
+            "portfolio_id": "equal_class_history_001",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1298991852820519,
+            "current_baseline_crps": 0.13346831690589123
+          },
+          {
+            "portfolio_id": "equal_class_history_002",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1808019009603067,
+            "current_baseline_crps": 0.17663453574564353
+          },
+          {
+            "portfolio_id": "equal_class_history_003",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20093161958275269,
+            "current_baseline_crps": 0.19910991904646191
+          },
+          {
+            "portfolio_id": "equal_class_history_004",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19243946524774513,
+            "current_baseline_crps": 0.18865432101349047
+          },
+          {
+            "portfolio_id": "equal_class_history_005",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5797840328913653,
+            "current_baseline_crps": 0.5834790810138075
+          },
+          {
+            "portfolio_id": "equal_class_history_006",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17222006380001564,
+            "current_baseline_crps": 0.17582645146343065
+          },
+          {
+            "portfolio_id": "equal_class_history_007",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1671503502346745,
+            "current_baseline_crps": 0.1635914834266011
+          },
+          {
+            "portfolio_id": "equal_class_history_008",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20021131473962853,
+            "current_baseline_crps": 0.20846185401481473
+          },
+          {
+            "portfolio_id": "equal_class_history_009",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14218295488579802,
+            "current_baseline_crps": 0.14111532922579803
+          },
+          {
+            "portfolio_id": "equal_class_history_010",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14623908518104223,
+            "current_baseline_crps": 0.1451561685077014
+          },
+          {
+            "portfolio_id": "equal_class_history_011",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15662364785125424,
+            "current_baseline_crps": 0.15521392989086596
+          },
+          {
+            "portfolio_id": "equal_class_history_012",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5448340097802815,
+            "current_baseline_crps": 0.5399524677609835
+          },
+          {
+            "portfolio_id": "equal_class_history_013",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2535099360846234,
+            "current_baseline_crps": 0.2550043360673994
+          },
+          {
+            "portfolio_id": "equal_class_history_014",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1248243504005179,
+            "current_baseline_crps": 0.12571367004789588
+          },
+          {
+            "portfolio_id": "equal_class_history_015",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19665914893149858,
+            "current_baseline_crps": 0.20740621619084224
+          },
+          {
+            "portfolio_id": "equal_class_history_016",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4104077995586273,
+            "current_baseline_crps": 0.4037590564632431
+          },
+          {
+            "portfolio_id": "equal_class_history_017",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2471303132527435,
+            "current_baseline_crps": 0.2606530029583416
+          },
+          {
+            "portfolio_id": "equal_class_history_018",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.0957434405160936,
+            "current_baseline_crps": 0.10569907965589095
+          },
+          {
+            "portfolio_id": "equal_class_history_019",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18628193604938018,
+            "current_baseline_crps": 0.1839196069303366
+          },
+          {
+            "portfolio_id": "equal_class_history_020",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12279770050726274,
+            "current_baseline_crps": 0.12511282667359944
+          },
+          {
+            "portfolio_id": "equal_class_history_021",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2734035497191154,
+            "current_baseline_crps": 0.2698615717816035
+          },
+          {
+            "portfolio_id": "equal_class_history_022",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.39724139339844194,
+            "current_baseline_crps": 0.40499734513046187
+          },
+          {
+            "portfolio_id": "equal_class_history_023",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17896256820760612,
+            "current_baseline_crps": 0.18404550604315875
+          },
+          {
+            "portfolio_id": "equal_class_history_024",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5874583987800104,
+            "current_baseline_crps": 0.5829827392407122
+          },
+          {
+            "portfolio_id": "equal_class_history_025",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23238069808045822,
+            "current_baseline_crps": 0.22805736770156126
+          },
+          {
+            "portfolio_id": "equal_class_history_026",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15879379495497703,
+            "current_baseline_crps": 0.16144486540203337
+          },
+          {
+            "portfolio_id": "equal_class_history_027",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1791581051183985,
+            "current_baseline_crps": 0.1844517080152864
+          },
+          {
+            "portfolio_id": "equal_class_history_028",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21218649624485578,
+            "current_baseline_crps": 0.20271934930953497
+          },
+          {
+            "portfolio_id": "equal_class_history_029",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10904548922303008,
+            "current_baseline_crps": 0.10920133812467434
+          },
+          {
+            "portfolio_id": "equal_class_history_030",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1416929098553064,
+            "current_baseline_crps": 0.15163347287052384
+          },
+          {
+            "portfolio_id": "equal_class_history_031",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2845856296101228,
+            "current_baseline_crps": 0.28646947945051787
+          },
+          {
+            "portfolio_id": "equal_class_history_032",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2497430915963418,
+            "current_baseline_crps": 0.2556908133983273
+          },
+          {
+            "portfolio_id": "equal_class_history_033",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20018222479715186,
+            "current_baseline_crps": 0.1988349309463942
+          },
+          {
+            "portfolio_id": "equal_class_history_034",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2586889227119898,
+            "current_baseline_crps": 0.2518029951299332
+          },
+          {
+            "portfolio_id": "equal_class_history_035",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16309068297551332,
+            "current_baseline_crps": 0.16452679181962274
+          },
+          {
+            "portfolio_id": "equal_class_history_036",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4958871676384162,
+            "current_baseline_crps": 0.4926815365649623
+          },
+          {
+            "portfolio_id": "equal_class_history_037",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5265878194163035,
+            "current_baseline_crps": 0.5095821757446878
+          },
+          {
+            "portfolio_id": "equal_class_history_038",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6951128752603352,
+            "current_baseline_crps": 0.7193888435243747
+          },
+          {
+            "portfolio_id": "equal_class_history_039",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09826597602713097,
+            "current_baseline_crps": 0.10213282775691089
+          },
+          {
+            "portfolio_id": "equal_class_history_040",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19323336591538093,
+            "current_baseline_crps": 0.20174425034479013
+          },
+          {
+            "portfolio_id": "equal_class_history_041",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14552481232193099,
+            "current_baseline_crps": 0.14531818434421864
+          },
+          {
+            "portfolio_id": "equal_class_history_042",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5488004003194152,
+            "current_baseline_crps": 0.5597242892511627
+          },
+          {
+            "portfolio_id": "equal_class_history_043",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13204749353079567,
+            "current_baseline_crps": 0.12791963018149782
+          },
+          {
+            "portfolio_id": "equal_class_history_044",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1511553363329407,
+            "current_baseline_crps": 0.1490040829940624
+          },
+          {
+            "portfolio_id": "equal_class_history_045",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4118939226535631,
+            "current_baseline_crps": 0.40879072952853235
+          },
+          {
+            "portfolio_id": "equal_class_history_046",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20360854593389469,
+            "current_baseline_crps": 0.20749771353497767
+          },
+          {
+            "portfolio_id": "equal_class_history_047",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1845447382568433,
+            "current_baseline_crps": 0.18536431843174234
+          },
+          {
+            "portfolio_id": "equal_class_history_048",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14691369234684812,
+            "current_baseline_crps": 0.14451309384964448
+          },
+          {
+            "portfolio_id": "equal_class_history_049",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2118416388058288,
+            "current_baseline_crps": 0.21587565846790216
+          },
+          {
+            "portfolio_id": "equal_class_history_050",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.350467609369289,
+            "current_baseline_crps": 0.31493641527098065
+          },
+          {
+            "portfolio_id": "equal_class_history_051",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17115665853959622,
+            "current_baseline_crps": 0.16924546073639907
+          },
+          {
+            "portfolio_id": "equal_class_history_052",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20547311404421517,
+            "current_baseline_crps": 0.21303971504155894
+          },
+          {
+            "portfolio_id": "equal_class_history_053",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5716809815699447,
+            "current_baseline_crps": 0.5862451329678082
+          },
+          {
+            "portfolio_id": "equal_class_history_054",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.32898992046772474,
+            "current_baseline_crps": 0.30276609336718585
+          },
+          {
+            "portfolio_id": "equal_class_history_055",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.28969749140958395,
+            "current_baseline_crps": 0.3064851524634087
+          },
+          {
+            "portfolio_id": "equal_class_history_056",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1017084931193031,
+            "current_baseline_crps": 0.10597964639214
+          },
+          {
+            "portfolio_id": "equal_class_history_057",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.25619955534068345,
+            "current_baseline_crps": 0.2630506321870411
+          },
+          {
+            "portfolio_id": "equal_class_history_058",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13797826072334768,
+            "current_baseline_crps": 0.13734928605284924
+          },
+          {
+            "portfolio_id": "equal_class_history_059",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10862652502864811,
+            "current_baseline_crps": 0.1044425283848209
+          },
+          {
+            "portfolio_id": "equal_class_history_060",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2549944243196847,
+            "current_baseline_crps": 0.24114442530162233
+          },
+          {
+            "portfolio_id": "equal_class_history_061",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1391596934800444,
+            "current_baseline_crps": 0.14157890703560153
+          },
+          {
+            "portfolio_id": "equal_class_history_062",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.33916842184325396,
+            "current_baseline_crps": 0.3360219647155006
+          },
+          {
+            "portfolio_id": "equal_class_history_063",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3898299161153197,
+            "current_baseline_crps": 0.39790677941302655
+          },
+          {
+            "portfolio_id": "equal_class_history_064",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1261962079696744,
+            "current_baseline_crps": 0.1327806137964358
+          },
+          {
+            "portfolio_id": "equal_class_history_065",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2598139558648978,
+            "current_baseline_crps": 0.259162864282898
+          },
+          {
+            "portfolio_id": "equal_class_history_066",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18342508963163764,
+            "current_baseline_crps": 0.18699590669606178
+          },
+          {
+            "portfolio_id": "equal_class_history_067",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14858223606881604,
+            "current_baseline_crps": 0.1539342577308225
+          },
+          {
+            "portfolio_id": "equal_class_history_068",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23370609070896045,
+            "current_baseline_crps": 0.2445961390682258
+          },
+          {
+            "portfolio_id": "equal_class_history_069",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23075177950830209,
+            "current_baseline_crps": 0.23561403730749933
+          },
+          {
+            "portfolio_id": "equal_class_history_070",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3874364332992391,
+            "current_baseline_crps": 0.3958023580226797
+          },
+          {
+            "portfolio_id": "equal_class_history_071",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10793783054860491,
+            "current_baseline_crps": 0.1075691968531223
+          },
+          {
+            "portfolio_id": "equal_class_history_072",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18271725389699794,
+            "current_baseline_crps": 0.19626992864210804
+          },
+          {
+            "portfolio_id": "equal_class_history_073",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12478664905866055,
+            "current_baseline_crps": 0.12787021182753577
+          },
+          {
+            "portfolio_id": "equal_class_history_074",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.25267708211751766,
+            "current_baseline_crps": 0.26144255478346745
+          },
+          {
+            "portfolio_id": "equal_class_history_075",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.8822291372259472,
+            "current_baseline_crps": 0.9203686730875339
+          },
+          {
+            "portfolio_id": "equal_class_history_076",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20406564870422542,
+            "current_baseline_crps": 0.21141970260775989
+          },
+          {
+            "portfolio_id": "equal_class_history_077",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.378935459459659,
+            "current_baseline_crps": 0.3937831072701153
+          },
+          {
+            "portfolio_id": "equal_class_history_078",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17994992969174747,
+            "current_baseline_crps": 0.17745808182857883
+          },
+          {
+            "portfolio_id": "equal_class_history_079",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09439818397428203,
+            "current_baseline_crps": 0.09291148391238865
+          },
+          {
+            "portfolio_id": "equal_class_history_080",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14209900523762475,
+            "current_baseline_crps": 0.1481414835643159
+          }
+        ]
+      },
+      "score_precision": {
+        "retained_source_token": "0.24984428792635055",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 17,
+          "significant_digits": 17
+        },
+        "publication_token": "0.249844288",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "7.364945E-11",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source_token_preserved"
+      },
+      "experiment_id": "whittle-integrated-level-rough-panel-20261005",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score",
+      "notes": [
+        "Debiased Whittle rough covariance with analytically integrated observation level; asset-level rough-inference ablation with M200 volatility structure.",
+        "All 4080 origin vectors independently reconstruct the retained 701280 cells byte-for-byte.",
+        "Mean, empirical return nodes, Gaussian dependence, RNG streams, calendar, costs, clipping and policy remain unchanged.",
+        "Gaussian log-square frequency-domain quasi likelihood with plug-in covariance parameters; not a full Bayesian raw-return posterior.",
+        "Local research worker timings; no production promotion."
+      ]
+    },
+    {
+      "public_model_id": "asset_map_multiscale_conditional_empirical_exact_covariance_whittle_rough_map",
+      "display_name": "M207 \u2014 Asset MAP Multiscale + Analytic tempered fractional covariance debiased Whittle rough MAP",
+      "historical_model_ids": [
+        "asset_map_multiscale_conditional_empirical_exact_covariance_whittle_rough_map"
+      ],
+      "seed_identity": {
+        "source_model_key": "asset_map_multiscale_conditional_empirical_exact_covariance_whittle_rough_map",
+        "panel_seed": 20260528,
+        "per_model_rng_schedule": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+        "status": "source_verified"
+      },
+      "model_family": "asset_level_extension",
+      "structured_specification": {
+        "schema_version": 1,
+        "resource": "resources/specifications/canonical_statistical_specifications.json",
+        "resolved_definition": {
+          "family": "asset_level_MAP_multiscale_dynamic_rough_overlay",
+          "source_id": "asset_map_multiscale_conditional_empirical_exact_covariance_whittle_rough_map",
+          "forecast_level": "asset_daily_log_return",
+          "production_role": "validated_research_candidate",
+          "mean": {
+            "method": "historical_sample_mean",
+            "fixed_mean": true,
+            "latent_mean_state": false
+          },
+          "volatility": {
+            "model": "tempered_fractional_Volterra_log_variance_overlay",
+            "replacement": false,
+            "production_variance_anchor": false,
+            "production_mean_anchor": false,
+            "level": "training mean of causal conventional-SV prediction residual log-square proxy",
+            "parameter_uncertainty": "none: joint MAP point over H, log_kappa, log_scale",
+            "latent_states": "analytically marginalized Gaussian states; terminal filtering posterior sampled per predictive path",
+            "H_prior": {
+              "distribution": "uniform",
+              "bounds": [
+                0.03,
+                0.49
+              ]
+            },
+            "log_kappa_prior": {
+              "distribution": "truncated_normal",
+              "mean": "log(1/63)",
+              "sd": 2,
+              "bounds": [
+                "log(1/2520)",
+                "log(.5)"
+              ]
+            },
+            "log_scale_prior": {
+              "distribution": "truncated_normal",
+              "mean": "log(.7)",
+              "sd": 1.5,
+              "bounds": [
+                "log(.05)",
+                "log(3)"
+              ]
+            },
+            "kernel": {
+              "continuous_target": "exp(-kappa*t)*t**(H-.5)/Gamma(H+.5)",
+              "normalized_stationary_covariance": "E[exp(-kappa*(1+Z)/(1-Z)*t)], Z~Beta(.5-H,2*H)",
+              "lift": "positive Gauss-Jacobi spectral quadrature on logarithmic rates",
+              "error_metric": "normalized absolute stationary autocorrelation difference over every requested integer daily lag",
+              "error_tolerance": 0.001,
+              "factor_selection": "first passing positive integer quadrature order per (H,kappa); no fixed factor count, preset list or factor cap",
+              "lag_domain": "1 through training_days+requested_horizon_days-1",
+              "certificate": "monotonic interval enclosure and C-second-derivative <=4*exp(-2)/t**2; recursively bisect unresolved integer-lag intervals",
+              "fast_rate_threshold": "-log(tolerance/2)",
+              "white_tail_error_bound": "tolerance/2 for every positive daily lag",
+              "zero_lag_variance": "analytic exact unit variance with Beta tail mass retained as independent white component",
+              "reference_numerics": "Tricomi U closed form; independent weighted Beta integration fallback for invalid special-function evaluations"
+            },
+            "daily_discretization": "exact exponential transitions of independent OU spectral factors",
+            "predictive_multiplier": "exp(.5*latent-.25*stationary_variance)",
+            "normalization": "stationary E[multiplier**2]=1; conditional variance signal retained",
+            "first_forecast_state": "one OU transition after final filtered observation",
+            "predecessor_variance_anchor": true,
+            "predecessor_mean_anchor": true,
+            "historical_observation": "unchanged winsorized log-square proxy minus conventional one-step prediction",
+            "measurement_variance": "sample log-square variance of unchanged empirical innovation pool, with matching rough observation preprocessing",
+            "conventional_offset": "one-step scalar SV predictions with unchanged baseline parameters; no current observation enters its own prediction"
+          },
+          "predictive_marginal": {
+            "method": "MAP parameters with a sampled Gaussian terminal state and future rough innovations per asset path",
+            "innovations": "unchanged predecessor centered empirical standardized nodes",
+            "daily_log_return_clip": [
+              -1,
+              1
+            ],
+            "posterior_multiplier": "clip(predecessor_mean+(clipped_predecessor_asset_path-predecessor_mean)*rough_multiplier,-1,1)"
+          },
+          "dependence": {
+            "method": "exact_Kalman_dynamic_Gaussian_factor",
+            "input": "asset_daily_log_returns",
+            "mapping": "Gaussian_uniforms_to_Gaussian_or_standardized_Student_t_shocks"
+          },
+          "portfolio_rejoin": {
+            "method": "policy_rebalanced_asset_paths",
+            "calendar": "strict_source_business_day_calendar",
+            "weights": "requested_asset_weights"
+          },
+          "source_reference": {
+            "path": "tools/exact_covariance_whittle_rough/models.py",
+            "revision": "880d836b804f89eb1d060d56a3c9b17ba2680553",
+            "sha256": "c826f44a8c5f49f9c1110e74daf0aaf65ec01562cff030b8074edd7ff0d9cc41",
+            "entrypoints": [
+              "CANDIDATES[0].simulate_daily_log_returns"
+            ],
+            "dependency_artifacts": [
+              {
+                "path": "src/simfolio_forecasting_methodology/__init__.py",
+                "sha256": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/candidate_registry.py",
+                "sha256": "535d55b3b8878e429b9400319c0d67a9cbfd28b1a37c927b29b9a70301d80c01"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/catalog.py",
+                "sha256": "8d3f495d38b3fa6f3de412bd049864fa00efae096d64d6de3a2b12ca5f69918a"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/catalogue.py",
+                "sha256": "4e551b3b3882ea550bb48cf068d834309ed58b1fad2afe1118defd3969152496"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/cli.py",
+                "sha256": "3e48a1cc5cf9bf020b9ba6823be8b1cf59076a896226fff0761576400b52ff7b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/data.py",
+                "sha256": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/evaluation.py",
+                "sha256": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/experiment.py",
+                "sha256": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/__init__.py",
+                "sha256": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/__init__.py",
+                "sha256": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py",
+                "sha256": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py",
+                "sha256": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/frontier.py",
+                "sha256": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py",
+                "sha256": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/__init__.py",
+                "sha256": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py",
+                "sha256": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/base_models.py",
+                "sha256": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py",
+                "sha256": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py",
+                "sha256": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/factors.py",
+                "sha256": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py",
+                "sha256": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py",
+                "sha256": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/__init__.py",
+                "sha256": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py",
+                "sha256": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py",
+                "sha256": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py",
+                "sha256": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py",
+                "sha256": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py",
+                "sha256": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py",
+                "sha256": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/inla.py",
+                "sha256": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py",
+                "sha256": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py",
+                "sha256": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py",
+                "sha256": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py",
+                "sha256": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/models/registry.py",
+                "sha256": "6f45544cc87158a9157ff693e228443d18497881c1346c960bb0838a6c3e9257"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/naming.py",
+                "sha256": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/origins.py",
+                "sha256": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/panel.py",
+                "sha256": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/protocol.py",
+                "sha256": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/__init__.py",
+                "sha256": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/aggregate.py",
+                "sha256": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/checkpoint.py",
+                "sha256": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/executor.py",
+                "sha256": "c8d9ea263ac056d0ee459c76154d36e67e20403664c0e078a12f85268c155649"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/retained.py",
+                "sha256": "831aa1ab5eecdd90f3baa9867e325c2b9aeedcacd74085aae8bf899f5bc3edf4"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/results/verified_candidate_scores.py",
+                "sha256": "41c4747c033d9e4b5c4316a648843d0d2f18ccf9bc0dea8ba9ab2f8c5037eabf"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/runner.py",
+                "sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/safety_scan.py",
+                "sha256": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/scores.py",
+                "sha256": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/scoring.py",
+                "sha256": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/seeds.py",
+                "sha256": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/smoke.py",
+                "sha256": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c"
+              },
+              {
+                "path": "src/simfolio_forecasting_methodology/specifications.py",
+                "sha256": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45"
+              },
+              {
+                "path": "tools/conditional_empirical_rough/models.py",
+                "sha256": "9f9a2e75c9e7e39a6970438e96e12a3f098029bd27ffbf016e39308b83317338"
+              },
+              {
+                "path": "tools/conditional_empirical_rough/run_panel.py",
+                "sha256": "5b9d5ff0ae507c8578fd815acfc1959a3b0324336e75aba96f05a9101bc991dd"
+              },
+              {
+                "path": "tools/conditional_empirical_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/conditional_residual_rough/models.py",
+                "sha256": "b3340b0336d577e9d029026299868c24a31d60a9b06dfe40440bbc698438fd34"
+              },
+              {
+                "path": "tools/conditional_residual_rough/run_panel.py",
+                "sha256": "cbf3404c266b505869194dad5ee1019b4be963213a92cec0908d9202e2f68486"
+              },
+              {
+                "path": "tools/conditional_residual_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/debiased_whittle_kernel.py",
+                "sha256": "086ccb4a7d486ee7f402c7c9c5b23a490e90d427038f62f6189429b081701da0"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/models.py",
+                "sha256": "fa2f35d94ac1ada36178c6d78546b76c1b0e65fb71fb06416f4dd55c1b7ea375"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/run_panel.py",
+                "sha256": "86146f36e5f0b78a182f7177f2d472185ab1806ff8008a7571b7c14b747d8cb3"
+              },
+              {
+                "path": "tools/debiased_whittle_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/differenced_whittle_kernel.py",
+                "sha256": "313f8375fec31f94d49a63e706c690cfea9d8eaa72cbcfb86f4d15bceb1e09bc"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/models.py",
+                "sha256": "5307079b418dbd117e438ad102a54297534ae8182ac0b495e541569109ef12ca"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/run_panel.py",
+                "sha256": "1bacd5526a5fc8febe74ae730b9446bbfad9959358f9c236edbbd8346776abe1"
+              },
+              {
+                "path": "tools/differenced_whittle_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/models.py",
+                "sha256": "3ddfd385a4a4543d87bd979528ca3d0727cf02b870ec9c408ee215d54ad12d5f"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/posterior.py",
+                "sha256": "6656fe132fc8bfc2dacb9f220ae2e4c0eb36e6564c7a8afd09c2d1d306584d52"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/progress.py",
+                "sha256": "1438d0ab7c5371d8f231102aef30f67a7fa821360a32e0c96e3ff400220ec169"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/run_panel.py",
+                "sha256": "8262ccc2ef52acf1d5815a9782bff4aa92baf941e293e0968894d78c2b0894ad"
+              },
+              {
+                "path": "tools/dynamic_rough_inference/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/empirical_rough_noise/models.py",
+                "sha256": "9fa6b05aa80f9b6ab50067c6e84a7b9ca5b07e45dac523ce09f98a8183e8bff3"
+              },
+              {
+                "path": "tools/empirical_rough_noise/run_panel.py",
+                "sha256": "4ef36ab5117e53f3d2fc8684a3b525301c3fabd979a101fd87e6586c9e80c9ca"
+              },
+              {
+                "path": "tools/empirical_rough_noise/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/exact_covariance_whittle_rough/models.py",
+                "sha256": "c826f44a8c5f49f9c1110e74daf0aaf65ec01562cff030b8074edd7ff0d9cc41"
+              },
+              {
+                "path": "tools/exact_covariance_whittle_rough/run_panel.py",
+                "sha256": "96d565222965c52e85d78d42afd5d620409cfac5b4d89160d69fcab4104794db"
+              },
+              {
+                "path": "tools/exact_covariance_whittle_rough/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_model_cases.py",
+                "sha256": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6"
+              },
+              {
+                "path": "tools/mcmc_runtime/benchmark_scaling.py",
+                "sha256": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_dependence.py",
+                "sha256": "a76ae12e87c5c0802b935d9de12d4d42009a88d030758bf01bfd2a0d78c9b7aa"
+              },
+              {
+                "path": "tools/mcmc_runtime/cached_moments.py",
+                "sha256": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_chain.py",
+                "sha256": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_map.py",
+                "sha256": "afd0371d9264e40fd95fb591d04467408d7c58b1876fb5dde7ddad54d5acd844"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_postburn.py",
+                "sha256": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c"
+              },
+              {
+                "path": "tools/mcmc_runtime/compiled_smoothers.py",
+                "sha256": "65c1f8dfeca0501105c2fdd1b08158c98e91f2b024cd12ad6b05020673641d91"
+              },
+              {
+                "path": "tools/mcmc_runtime/complex_sv.py",
+                "sha256": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71"
+              },
+              {
+                "path": "tools/mcmc_runtime/exact_path_kernels.py",
+                "sha256": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5"
+              },
+              {
+                "path": "tools/mcmc_runtime/finite_multiscale.py",
+                "sha256": "268ab6ed592a3ccca808ed0cba83fa3d39243d39ac7b0778ffd18374510b397e"
+              },
+              {
+                "path": "tools/mcmc_runtime/optimized_mcmc.py",
+                "sha256": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df"
+              },
+              {
+                "path": "tools/mcmc_runtime/parallel_chains.py",
+                "sha256": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3"
+              },
+              {
+                "path": "tools/mcmc_runtime/parameter_mcmc_tuned.py",
+                "sha256": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a"
+              },
+              {
+                "path": "tools/mcmc_runtime/predictive_sv_candidates.py",
+                "sha256": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309"
+              },
+              {
+                "path": "tools/mcmc_runtime/profile_runtime.py",
+                "sha256": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4"
+              },
+              {
+                "path": "tools/mcmc_runtime/replay_full_panel.py",
+                "sha256": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca"
+              },
+              {
+                "path": "tools/mcmc_runtime/research_jit_pilot.py",
+                "sha256": "5d60c5e61990da292d02ebf89a3eeb1fdee788115551a9d881ed26ddc2f9c1b5"
+              },
+              {
+                "path": "tools/mcmc_runtime/runtime_setup.py",
+                "sha256": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665"
+              },
+              {
+                "path": "tools/mcmc_runtime/steady_kalman_target.py",
+                "sha256": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394"
+              },
+              {
+                "path": "tools/mcmc_runtime/streamed_paths.py",
+                "sha256": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa"
+              },
+              {
+                "path": "tools/rough_bayesian/coherent.py",
+                "sha256": "7269edb80d3f6fdd21c858b585cb4df26ef92d9ae3bca5635d7f17daf032ccfe"
+              },
+              {
+                "path": "tools/rough_bayesian/coherent_kernels.py",
+                "sha256": "c923a5e2f2f072831bb4271d6ea14be264df9c09b40b64f1679e85fa8aeb06bf"
+              },
+              {
+                "path": "tools/rough_bayesian/dynamic.py",
+                "sha256": "e28d49088dc669a1a8c38daac3f218b9404190303d57102753be0eacffd83e9c"
+              },
+              {
+                "path": "tools/rough_bayesian/inference.py",
+                "sha256": "cdefda57f57fbfeec93d20ae892e596bf4a663cd7cf3775a2a1d1e9460f11199"
+              },
+              {
+                "path": "tools/rough_bayesian/kernels.py",
+                "sha256": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b"
+              },
+              {
+                "path": "tools/rough_bayesian/mixture.py",
+                "sha256": "fb26b0d25d96350f9232ea3df14179022dd63bfe0c6da818601f85a589d4f484"
+              },
+              {
+                "path": "tools/rough_bayesian/mixture_kernels.py",
+                "sha256": "517a7572924a10becf7f7c439302149434f9ffa71097d4372f460f13c2fff5aa"
+              },
+              {
+                "path": "tools/rough_bayesian/models.py",
+                "sha256": "9545be22f4cd4ba6be1f03d0d01c4d74e85792464c908ef7b83bf5fde6e30761"
+              },
+              {
+                "path": "tools/rough_bayesian/native.py",
+                "sha256": "81091164d3565f2cd8368986327d63c6c6b1c843396587b4a93d01b657cd4315"
+              },
+              {
+                "path": "tools/rough_bayesian/overlay.py",
+                "sha256": "9f1697ca82840cf13b83c7522220295541818af302317613c0030db248f8b63b"
+              },
+              {
+                "path": "tools/rough_bayesian/overlay_filter.cpp",
+                "sha256": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1"
+              },
+              {
+                "path": "tools/rough_bayesian/run_panel.py",
+                "sha256": "8296eab120468620b6de68d2fe34cceb0c486679254fcd6d8aa71cc98c4d27b3"
+              },
+              {
+                "path": "tools/rough_bayesian/smoke.py",
+                "sha256": "bce72207eae8a2094abd8e249321d214825af99d733f356fbed6a32a47ccf9df"
+              },
+              {
+                "path": "tools/rough_bayesian/standalone.py",
+                "sha256": "4314a52d711929e35f5c5b2d9946690c33db6939238941450467e932141b9c8d"
+              },
+              {
+                "path": "tools/rough_jump_vine/build_native.py",
+                "sha256": "2346d6501657e53a998c4fd758c7f077be0f6b65a79a49c7e439effead4c7819"
+              },
+              {
+                "path": "tools/rough_jump_vine/models.py",
+                "sha256": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620"
+              },
+              {
+                "path": "tools/rough_jump_vine/native.patch",
+                "sha256": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4"
+              },
+              {
+                "path": "tools/rough_jump_vine/run_panel.py",
+                "sha256": "ff51781b37f38fad3477f8b22158b291bd16e6edad8a1e2cf38af71844a7a925"
+              },
+              {
+                "path": "tools/rough_jump_vine/smoke.py",
+                "sha256": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a"
+              },
+              {
+                "path": "tools/streamed_rough_paths/models.py",
+                "sha256": "072bb03635c71c23ebccbd9e70523571b00da7ba405bf35d4ceb9c1abdaf844b"
+              },
+              {
+                "path": "tools/streamed_rough_paths/paths.cpp",
+                "sha256": "0f6678a9582221cc1be0a06b8ad72b0d9b7cf9eaf66539e9adf1addb5d6d7732"
+              },
+              {
+                "path": "tools/streamed_rough_paths/run_panel.py",
+                "sha256": "29241489d80635c5a53286cf2242d83d08cb9d33ccd1e3676b96b968d4ed6983"
+              },
+              {
+                "path": "tools/streamed_rough_paths/screen.py",
+                "sha256": "5cde6b37e1e516f3ba2970c3b87fd54c32a6ed8632571b5ced7eb426a4c20e7a"
+              },
+              {
+                "path": "tools/streamed_rough_paths/stream_native.py",
+                "sha256": "1ea0ac811a6db02b0e4db870f5c09633285469b5a844b75cf7cdac70b5df824f"
+              }
+            ]
+          },
+          "shared_component_refs": [],
+          "shared_component_digests": {},
+          "factory_seed_contract": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+          "source_seed_contract": "unchanged predecessor Gaussian dependence seeds; deterministic_seed(rough_overlay_prediction, training_SHA256, origin, horizon, simulations); deterministic MAP estimation; source-bound asset/lag disk cache",
+          "failure_semantics": {
+            "paths": "reject nonfinite outputs",
+            "kernel": "require finite positive quadrature and complete daily-lag error enclosure; no silent tolerance relaxation",
+            "posterior": "MAP optimizer must converge; no initial-parameter fallback and no tolerance relaxation"
+          },
+          "source_seed_context_ref": "asset_level_MAP_multiscale_dynamic_rough_overlay",
+          "baseline": {
+            "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+            "fitter": "fit_bdes_fastmap(filtered_innovations=True,fixed_mean=True)",
+            "multiscale_timescales_days": [
+              5,
+              21,
+              63,
+              252
+            ],
+            "timescales_shortened_for_insufficient_history": true,
+            "mean_innovations_dependence_calendar_policy": "unchanged predecessor shell",
+            "parameter_uncertainty": false
+          },
+          "parameter_estimation": {
+            "conventional": "unchanged predecessor MAP",
+            "rough": "MAP point under debiased Whittle pseudolikelihood; undifferenced conditional Gaussian terminal-state filtering",
+            "likelihood": "Sykulski et al. (2019) finite-sample expected-periodogram pseudolikelihood plus unchanged rough parameter priors",
+            "optimizer": "bounded normalized-coordinate L-BFGS-B",
+            "ftol": 1e-10,
+            "gtol": 1e-05,
+            "maximum_iterations": 200,
+            "failure_retry": "same target and tolerances with extended line search maxls100; bounded Powell if necessary; reject unresolved fits",
+            "resource_ceiling_seconds": 10,
+            "fixed_posterior_representatives": null,
+            "chains": 0,
+            "two_stage_plug_in_offset": true,
+            "measurement_noise_uncertainty": false,
+            "spectral_reference": "https://doi.org/10.1093/biomet/asy071",
+            "spectral_covariance": "analytic tempered fractional covariance at every integer observed lag; expected finite-sample periodogram computed by FFT",
+            "spectral_frequencies": "all nonzero rFFT frequencies on sample-demeaned rough observations",
+            "spectral_weights": "one for conjugate pairs; one half for real Nyquist and, if included, zero",
+            "spectral_window": "finite-sample triangular lag weights; no taper or frequency subsampling",
+            "differenced_observations": false,
+            "measurement_noise_after_differencing": "independent with fixed empirical variance R",
+            "factor_resolution_during_fit": false,
+            "prediction_covariance": "unchanged accuracy-controlled dynamic OU lift, resolved after parameter fitting",
+            "return_mean_model_changed": false
+          }
+        }
+      },
+      "specification_fingerprint": {
+        "value": "f551c08379d2766510209841ffb3e651e4f30552d3c7dd9d1553ab3a75ab8701",
+        "kind": "resolved_statistical_definition_sha256",
+        "status": "full resolved statistical definition"
+      },
+      "source_revision": "880d836b804f89eb1d060d56a3c9b17ba2680553",
+      "source_artifact_digest": {
+        "retained_score_artifact": {
+          "relative_path": "docs/results/rough-bayesian/exact-covariance-whittle-rough-panel.json",
+          "sha256": "ec858d6a711559564263cf95e85f96e89735e1e325c094d9443cdefdf56c7b3b",
+          "manifest_sha256": "517faafb1b076e03d6fa48d667507de8c0cafc4261271eefdd150aa64a1c5215",
+          "scope": "full_canonical",
+          "tasks_per_model": 4080,
+          "cells_per_model": 701280,
+          "complete_portfolios": 80,
+          "simulations": 240,
+          "all_denominator_gates_passed": true,
+          "audit_field": "audit",
+          "source_score_field": "scores.asset_map_multiscale_conditional_empirical_exact_covariance_whittle_rough_map.exact_empirical_crps"
+        },
+        "source_code": {
+          "relative_path": "tools/exact_covariance_whittle_rough/models.py",
+          "sha256": "c826f44a8c5f49f9c1110e74daf0aaf65ec01562cff030b8074edd7ff0d9cc41"
+        },
+        "parameter_dictionary": {
+          "sha256": "f551c08379d2766510209841ffb3e651e4f30552d3c7dd9d1553ab3a75ab8701"
+        }
+      },
+      "source_location_reference": {
+        "implementation": "tools/exact_covariance_whittle_rough/models.py",
+        "entrypoint": "CANDIDATES[0].simulate_daily_log_returns",
+        "score": "docs/results/rough-bayesian/exact-covariance-whittle-rough-panel.json"
+      },
+      "implementation_factory": {
+        "name": null,
+        "callable": false,
+        "status": "research_runner_entrypoint",
+        "research_entrypoint": "tools/exact_covariance_whittle_rough/models.py:CANDIDATES[0].simulate_daily_log_returns"
+      },
+      "required_dependencies": [
+        "numpy",
+        "scipy",
+        "pandas",
+        "numba",
+        "pyvinecopulib==0.7.5",
+        "pybind11==3.1.0"
+      ],
+      "historical_rank": null,
+      "canonical_rank": 207,
+      "historical_score": {
+        "exact_empirical_crps": "0.2495833333032549",
+        "relative_to_naive": 0.8523402079801655,
+        "skill_vs_naive": 0.14765979201983448,
+        "paired_improvement_vs_current": 0.009123114561372159,
+        "current_comparator_model_id": "asset_map_predecessor_dynamic_rough_map",
+        "portfolio_wins_vs_current": 47,
+        "portfolio_losses_vs_current": 33,
+        "portfolio_scores": [
+          {
+            "portfolio_id": "equal_class_history_001",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1301175442325303,
+            "current_baseline_crps": 0.13346831690589123
+          },
+          {
+            "portfolio_id": "equal_class_history_002",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18116459900057572,
+            "current_baseline_crps": 0.17663453574564353
+          },
+          {
+            "portfolio_id": "equal_class_history_003",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1996558397702986,
+            "current_baseline_crps": 0.19910991904646191
+          },
+          {
+            "portfolio_id": "equal_class_history_004",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1937464863501599,
+            "current_baseline_crps": 0.18865432101349047
+          },
+          {
+            "portfolio_id": "equal_class_history_005",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5807595941809369,
+            "current_baseline_crps": 0.5834790810138075
+          },
+          {
+            "portfolio_id": "equal_class_history_006",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17226371013432848,
+            "current_baseline_crps": 0.17582645146343065
+          },
+          {
+            "portfolio_id": "equal_class_history_007",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16782079322618534,
+            "current_baseline_crps": 0.1635914834266011
+          },
+          {
+            "portfolio_id": "equal_class_history_008",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19932172375002913,
+            "current_baseline_crps": 0.20846185401481473
+          },
+          {
+            "portfolio_id": "equal_class_history_009",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1420636897040454,
+            "current_baseline_crps": 0.14111532922579803
+          },
+          {
+            "portfolio_id": "equal_class_history_010",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.148158702680702,
+            "current_baseline_crps": 0.1451561685077014
+          },
+          {
+            "portfolio_id": "equal_class_history_011",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15662427257384884,
+            "current_baseline_crps": 0.15521392989086596
+          },
+          {
+            "portfolio_id": "equal_class_history_012",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5447423807515213,
+            "current_baseline_crps": 0.5399524677609835
+          },
+          {
+            "portfolio_id": "equal_class_history_013",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.251230366128856,
+            "current_baseline_crps": 0.2550043360673994
+          },
+          {
+            "portfolio_id": "equal_class_history_014",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12474156342746898,
+            "current_baseline_crps": 0.12571367004789588
+          },
+          {
+            "portfolio_id": "equal_class_history_015",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1949793034028932,
+            "current_baseline_crps": 0.20740621619084224
+          },
+          {
+            "portfolio_id": "equal_class_history_016",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.41041057032225015,
+            "current_baseline_crps": 0.4037590564632431
+          },
+          {
+            "portfolio_id": "equal_class_history_017",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.24425995886700602,
+            "current_baseline_crps": 0.2606530029583416
+          },
+          {
+            "portfolio_id": "equal_class_history_018",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09621058841601633,
+            "current_baseline_crps": 0.10569907965589095
+          },
+          {
+            "portfolio_id": "equal_class_history_019",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18843874069982477,
+            "current_baseline_crps": 0.1839196069303366
+          },
+          {
+            "portfolio_id": "equal_class_history_020",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12293178328100704,
+            "current_baseline_crps": 0.12511282667359944
+          },
+          {
+            "portfolio_id": "equal_class_history_021",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.27346810676745464,
+            "current_baseline_crps": 0.2698615717816035
+          },
+          {
+            "portfolio_id": "equal_class_history_022",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3975930468749977,
+            "current_baseline_crps": 0.40499734513046187
+          },
+          {
+            "portfolio_id": "equal_class_history_023",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17637224134718368,
+            "current_baseline_crps": 0.18404550604315875
+          },
+          {
+            "portfolio_id": "equal_class_history_024",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5886298086519132,
+            "current_baseline_crps": 0.5829827392407122
+          },
+          {
+            "portfolio_id": "equal_class_history_025",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23264675676722207,
+            "current_baseline_crps": 0.22805736770156126
+          },
+          {
+            "portfolio_id": "equal_class_history_026",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15855347796851588,
+            "current_baseline_crps": 0.16144486540203337
+          },
+          {
+            "portfolio_id": "equal_class_history_027",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17820706999564676,
+            "current_baseline_crps": 0.1844517080152864
+          },
+          {
+            "portfolio_id": "equal_class_history_028",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.21223615976065482,
+            "current_baseline_crps": 0.20271934930953497
+          },
+          {
+            "portfolio_id": "equal_class_history_029",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10855140628350272,
+            "current_baseline_crps": 0.10920133812467434
+          },
+          {
+            "portfolio_id": "equal_class_history_030",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.140850082798789,
+            "current_baseline_crps": 0.15163347287052384
+          },
+          {
+            "portfolio_id": "equal_class_history_031",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2836484671945111,
+            "current_baseline_crps": 0.28646947945051787
+          },
+          {
+            "portfolio_id": "equal_class_history_032",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.25000835964101137,
+            "current_baseline_crps": 0.2556908133983273
+          },
+          {
+            "portfolio_id": "equal_class_history_033",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20033389371551277,
+            "current_baseline_crps": 0.1988349309463942
+          },
+          {
+            "portfolio_id": "equal_class_history_034",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2588578322833575,
+            "current_baseline_crps": 0.2518029951299332
+          },
+          {
+            "portfolio_id": "equal_class_history_035",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.16405999551209793,
+            "current_baseline_crps": 0.16452679181962274
+          },
+          {
+            "portfolio_id": "equal_class_history_036",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.4967636978386049,
+            "current_baseline_crps": 0.4926815365649623
+          },
+          {
+            "portfolio_id": "equal_class_history_037",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5263668598175003,
+            "current_baseline_crps": 0.5095821757446878
+          },
+          {
+            "portfolio_id": "equal_class_history_038",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.6958755564860243,
+            "current_baseline_crps": 0.7193888435243747
+          },
+          {
+            "portfolio_id": "equal_class_history_039",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.09847976485570584,
+            "current_baseline_crps": 0.10213282775691089
+          },
+          {
+            "portfolio_id": "equal_class_history_040",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.19250514681728448,
+            "current_baseline_crps": 0.20174425034479013
+          },
+          {
+            "portfolio_id": "equal_class_history_041",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1447446063713893,
+            "current_baseline_crps": 0.14531818434421864
+          },
+          {
+            "portfolio_id": "equal_class_history_042",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5469413219845886,
+            "current_baseline_crps": 0.5597242892511627
+          },
+          {
+            "portfolio_id": "equal_class_history_043",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13128934438645998,
+            "current_baseline_crps": 0.12791963018149782
+          },
+          {
+            "portfolio_id": "equal_class_history_044",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.15165353448356897,
+            "current_baseline_crps": 0.1490040829940624
+          },
+          {
+            "portfolio_id": "equal_class_history_045",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.41094237542724615,
+            "current_baseline_crps": 0.40879072952853235
+          },
+          {
+            "portfolio_id": "equal_class_history_046",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2044622462500032,
+            "current_baseline_crps": 0.20749771353497767
+          },
+          {
+            "portfolio_id": "equal_class_history_047",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.18496881501224044,
+            "current_baseline_crps": 0.18536431843174234
+          },
+          {
+            "portfolio_id": "equal_class_history_048",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.147495590778969,
+            "current_baseline_crps": 0.14451309384964448
+          },
+          {
+            "portfolio_id": "equal_class_history_049",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2101428978066068,
+            "current_baseline_crps": 0.21587565846790216
+          },
+          {
+            "portfolio_id": "equal_class_history_050",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3525180763976106,
+            "current_baseline_crps": 0.31493641527098065
+          },
+          {
+            "portfolio_id": "equal_class_history_051",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.17007435196852982,
+            "current_baseline_crps": 0.16924546073639907
+          },
+          {
+            "portfolio_id": "equal_class_history_052",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20350641379165746,
+            "current_baseline_crps": 0.21303971504155894
+          },
+          {
+            "portfolio_id": "equal_class_history_053",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.5690325224953721,
+            "current_baseline_crps": 0.5862451329678082
+          },
+          {
+            "portfolio_id": "equal_class_history_054",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.326843838358734,
+            "current_baseline_crps": 0.30276609336718585
+          },
+          {
+            "portfolio_id": "equal_class_history_055",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.2895925273144491,
+            "current_baseline_crps": 0.3064851524634087
+          },
+          {
+            "portfolio_id": "equal_class_history_056",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1011581710902586,
+            "current_baseline_crps": 0.10597964639214
+          },
+          {
+            "portfolio_id": "equal_class_history_057",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.25153373491373643,
+            "current_baseline_crps": 0.2630506321870411
+          },
+          {
+            "portfolio_id": "equal_class_history_058",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1378843207077103,
+            "current_baseline_crps": 0.13734928605284924
+          },
+          {
+            "portfolio_id": "equal_class_history_059",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10861915071339151,
+            "current_baseline_crps": 0.1044425283848209
+          },
+          {
+            "portfolio_id": "equal_class_history_060",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.255187376453825,
+            "current_baseline_crps": 0.24114442530162233
+          },
+          {
+            "portfolio_id": "equal_class_history_061",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.13985583630444365,
+            "current_baseline_crps": 0.14157890703560153
+          },
+          {
+            "portfolio_id": "equal_class_history_062",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.339466455784111,
+            "current_baseline_crps": 0.3360219647155006
+          },
+          {
+            "portfolio_id": "equal_class_history_063",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3888039449354697,
+            "current_baseline_crps": 0.39790677941302655
+          },
+          {
+            "portfolio_id": "equal_class_history_064",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12488858816856492,
+            "current_baseline_crps": 0.1327806137964358
+          },
+          {
+            "portfolio_id": "equal_class_history_065",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.26182155241588373,
+            "current_baseline_crps": 0.259162864282898
+          },
+          {
+            "portfolio_id": "equal_class_history_066",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1826924219743398,
+            "current_baseline_crps": 0.18699590669606178
+          },
+          {
+            "portfolio_id": "equal_class_history_067",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1481334451525904,
+            "current_baseline_crps": 0.1539342577308225
+          },
+          {
+            "portfolio_id": "equal_class_history_068",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23225225395053614,
+            "current_baseline_crps": 0.2445961390682258
+          },
+          {
+            "portfolio_id": "equal_class_history_069",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.23062272874736223,
+            "current_baseline_crps": 0.23561403730749933
+          },
+          {
+            "portfolio_id": "equal_class_history_070",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.38759822880912537,
+            "current_baseline_crps": 0.3958023580226797
+          },
+          {
+            "portfolio_id": "equal_class_history_071",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.10777693807577081,
+            "current_baseline_crps": 0.1075691968531223
+          },
+          {
+            "portfolio_id": "equal_class_history_072",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.183050257040232,
+            "current_baseline_crps": 0.19626992864210804
+          },
+          {
+            "portfolio_id": "equal_class_history_073",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.12487026698998974,
+            "current_baseline_crps": 0.12787021182753577
+          },
+          {
+            "portfolio_id": "equal_class_history_074",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.25111080868071706,
+            "current_baseline_crps": 0.26144255478346745
+          },
+          {
+            "portfolio_id": "equal_class_history_075",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.8804655220530105,
+            "current_baseline_crps": 0.9203686730875339
+          },
+          {
+            "portfolio_id": "equal_class_history_076",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.20479849754343651,
+            "current_baseline_crps": 0.21141970260775989
+          },
+          {
+            "portfolio_id": "equal_class_history_077",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.3796408581630402,
+            "current_baseline_crps": 0.3937831072701153
+          },
+          {
+            "portfolio_id": "equal_class_history_078",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.1799450281380974,
+            "current_baseline_crps": 0.17745808182857883
+          },
+          {
+            "portfolio_id": "equal_class_history_079",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.0942445922128978,
+            "current_baseline_crps": 0.09291148391238865
+          },
+          {
+            "portfolio_id": "equal_class_history_080",
+            "completed_origins": 51,
+            "required_origins": 51,
+            "exact_empirical_crps": 0.14238728013645113,
+            "current_baseline_crps": 0.1481414835643159
+          }
+        ]
+      },
+      "score_precision": {
+        "retained_source_token": "0.2495833333032549",
+        "retained_source_precision": {
+          "kind": "serialized_source_json_numeric_token",
+          "decimal_places": 16,
+          "significant_digits": 16
+        },
+        "publication_token": "0.249583333",
+        "publication_precision": {
+          "kind": "reconciled_9_significant_digits_variable_decimal_places",
+          "decimal_places": 9,
+          "significant_digits": 9
+        },
+        "public_minus_retained_text": "-3.032549E-10",
+        "source_policy": "serialized_source_json_numeric_token",
+        "publication_policy": "rounded_9_significant_digits_variable_decimal_places",
+        "status": "source_token_preserved"
+      },
+      "experiment_id": "exact-covariance-whittle-rough-panel-20261005",
+      "protocol_fingerprint": "24bace549583831ccfa016ce62d3f604020fa7b2e0b36574cb697aa02baa4ba3",
+      "dataset_fingerprint": "3c2e8218b03ca7a435d145168c97a2f302be427e862170183078bc4917699c12",
+      "panel_fingerprint": "c017963c9eb772e9bac09bb7a84ae975443cbb99cd127d666a9b0ac8103933d3",
+      "identity_recovered": true,
+      "specification_recovered": true,
+      "source_reference_verified": true,
+      "implementation_available": true,
+      "instantiation_validated": false,
+      "forecast_smoke_tested": false,
+      "source_parity_checked": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score",
+      "notes": [
+        "Analytic tempered fractional covariance debiased Whittle rough MAP; asset-level rough-inference ablation with M200 volatility structure.",
         "All 4080 origin vectors independently reconstruct the retained 701280 cells byte-for-byte.",
         "Mean, empirical return nodes, Gaussian dependence, RNG streams, calendar, costs, clipping and policy remain unchanged.",
         "Gaussian log-square frequency-domain quasi likelihood with plug-in covariance parameters; not a full Bayesian raw-return posterior.",
