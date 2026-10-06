@@ -632,3 +632,63 @@ python tools/dynamic_rough_inference/run_panel.py \
 Use the existing panel runner's frozen data setup and the pinned numerical
 dependencies. `screen.py` exercises bounded canonical origins;
 `progress.py` reports matched cumulative scores using saved controls.
+
+
+## Volatility-only research against the MAP multiscale dynamic rough baseline
+
+The frozen baseline is canonical M193, `asset_map_predecessor_dynamic_rough_map`,
+with full-panel CRPS 0.2518812750312293. The following completed experiments
+retain its mean, empirical innovations, Gaussian dependence, random streams,
+calendar, rebalancing, transaction costs, clipping, simulations and scorer.
+Every volatility fit is asset-level. The evidence and complete paired cells are
+in `docs/results/rough-bayesian/volatility-frontier-ablations.json` and the adjacent
+`volatility-frontier-ablations-cells.npz`. The audit independently reconstructs
+all 4,080 origin vectors into 701,280 cells for each candidate, byte-for-byte.
+These are research candidates; the frozen baseline has not been replaced.
+
+| Volatility change | Full CRPS | Improvement over M193 | Summed worker seconds |
+| --- | ---: | ---: | ---: |
+| Baseline M193 | 0.2518812750312293 | — | 1569.24 |
+| Rough fit on causal conventional-SV residuals | 0.25281487701385613 | -0.371% | 1407.43 |
+| Empirical innovation log-square measurement variance | 0.2509457012962614 | 0.371% | 1489.90 |
+| Causal residual fit with conditional rough forecasts | 0.25238690162994976 | -0.201% | 1408.45 |
+| Conditional residual fit plus empirical measurement variance | 0.2497332684165023 | 0.853% | 1332.11 |
+| Same combination with untrimmed rough observations | 0.2498921919286796 | 0.790% | 1343.75 |
+
+The causal residual arms subtract the conventional model's one-step prediction
+from the rough observation series. Parameters of that conventional offset are
+estimated once using only the origin's training history. This is two-stage
+plug-in estimation, not joint Bayesian inference or an exactly orthogonal
+multiscale decomposition. The conventional forecast and innovation pool remain
+unchanged.
+
+The empirical-noise arms use the variance of the same log-square transform
+applied to the existing fitted innovation pool. Gaussian filtering is evaluated
+in scaled units to implement this variance; terminal states and covariances
+are transformed back before simulation. This corrects the fixed Gaussian
+log-chi-square noise moment assumption without changing the return law. It
+remains a Gaussian quasi likelihood, not an exact empirical-return likelihood.
+
+The conditional arms use multiplier `exp(.5*latent-.25*stationary_variance)`.
+Its stationary expected square is one, but its conditional expected square is
+`exp(conditional_mean+.5*(conditional_variance-stationary_variance))`. They retain
+the terminal rough state's forecast information. The baseline instead subtracts
+the conditional mean and normalizes conditional variance, preserving its daily
+variance anchor. This is an explicitly tested volatility-model change.
+
+The untrimmed arm removes quantile flooring and tail winsorization only from the
+rough log-square observation and measurement-noise estimate. Machine tiny protects
+log(0). Its conventional fit and causal offset still use the original preprocessing.
+Both conditional experiments preserve the dynamic kernel's 0.001 daily-lag
+covariance certificate and the original rough priors. No posterior MCMC or fixed
+posterior representative count is introduced.
+
+These variants combine established Gaussian SV quasi-likelihood, state filtering,
+and accuracy-controlled rough covariance approximation in custom research
+adapters. They are not presented as canonical implementations of a named
+published full Bayesian rough-return model. Relevant primary foundations are
+[Harvey's SV review](https://www.nuffield.ox.ac.uk/economics/papers/2005/w17/palgrave.pdf)
+and [Abi Jaber and El Euch's multifactor approximation](https://arxiv.org/abs/1801.10359).
+The observed speed differences are local research timings, not website latency
+proof. None yet satisfies the requested minimum 1% score breakthrough; the best
+recorded worker-time reduction is about 15%, awaiting a matched timing comparison.
