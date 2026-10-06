@@ -744,3 +744,7 @@ M209 combines M207's analytic stationary rough covariance with M201's first-diff
 All 4,080 origin vectors independently reconstruct the 701,280 retained cells byte-for-byte. Every asset fit reported convergence. Full-panel CRPS is **0.2493515254197939**, 1.004% below baseline M193 and 0.093% below previous leader M207; 38 of 80 portfolio-average scores improved against baseline. The return mean, empirical innovations, dependence, calendar, simulations and scoring remain unchanged.
 
 The isolated fresh-cache run took **99.28025445801904 seconds**, compared with the controlled baseline run's **125.72699987504166 seconds**, a 21.04% reduction. These are local research worker timings from one run per model, not deployed website latency. [The audited receipt](results/rough-bayesian/analytic-differenced-rough-panel.json) binds numerical sources, per-portfolio scores and complete paired cells.
+
+## Relaxed Hurst lower support (M210)
+
+M210 changes only the Hurst support lower bound in M209, from 0.03 to 0.01; the 0.49 upper bound, other priors and estimator remain unchanged. All five smoke repeats are byte-identical. Full-panel CRPS is **0.24863202500906678**, and isolated fresh-cache elapsed time is **97.98336741694948 seconds**. All 4,080 task vectors reconstruct the retained 701,280 cells byte-for-byte. The unchanged mean model means this experiment does not modify long-horizon CAGR methodology. [Audited receipt](results/rough-bayesian/relaxed-hurst-differenced-rough-panel.json).

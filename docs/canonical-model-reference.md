@@ -1,14 +1,14 @@
-# Canonical model reference (209 models including the original 175)
+# Canonical model reference (210 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **209** rows, canonical ranks **1–209**.
+- Membership: **210** rows, canonical ranks **1–210**.
 - Retained source ranks: **12–186**.
-- Membership digest: `f99bd09c8b95bddf789aae001f37387991a9cca4af5301f8f441b772a33656d6`.
+- Membership digest: `369869be18c50eba16387eb61327818bf05ae9d5db1f566e7357f7eb78891e2f`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **209**.
+- Confirmed full statistical specifications: **210**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -223,3 +223,4 @@ The ledger is the sole membership authority for this public set.
 | 207 | None | asset_map_multiscale_conditional_empirical_exact_covariance_whittle_rough_map | M207 — Asset MAP Multiscale + Analytic tempered fractional covariance debiased Whittle rough MAP | asset_level_extension | 0.2495833333032549 | 0.249583333 | true | validated_full_canonical_score |
 | 208 | None | asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map | M208 — Asset MAP Multiscale + Full theoretical Hurst support analytic covariance rough MAP | asset_level_extension | 0.2505737023816167 | 0.250573702 | true | validated_full_canonical_score |
 | 209 | None | asset_map_multiscale_conditional_empirical_analytic_differenced_whittle_rough_map | M209 — Asset MAP Multiscale + Analytic covariance differenced debiased Whittle rough MAP | asset_level_extension | 0.2493515254197939 | 0.249351525 | true | validated_full_canonical_score |
+| 210 | None | asset_map_multiscale_conditional_empirical_relaxed_hurst_differenced_rough_map | M210 — Asset MAP Multiscale + Relaxed Hurst lower support analytic differenced rough MAP | asset_level_extension | 0.24863202500906678 | 0.248632025 | true | validated_full_canonical_score |
