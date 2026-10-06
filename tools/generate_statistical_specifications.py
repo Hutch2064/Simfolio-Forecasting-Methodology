@@ -1793,7 +1793,7 @@ def render_readable(resource: dict[str, Any]) -> str:
                     f"- Portfolio rejoin: `{definition['portfolio_rejoin']['ref']}`.",
                 ]
             )
-        elif definition["family"] in {"asset_level_moment_sv", "asset_level_rough_jump_vine_ablation", "asset_level_bayesian_rough_volatility", "asset_level_rough_volterra_overlay_upgrade"}:
+        elif definition["family"] in {"asset_level_moment_sv", "asset_level_rough_jump_vine_ablation", "asset_level_bayesian_rough_volatility", "asset_level_rough_volterra_overlay_upgrade", "asset_level_MAP_multiscale_dynamic_rough_overlay"}:
             lines.extend([
                 f"- Forecast level: `{definition['forecast_level']}`.",
                 f"- Production role: `{definition['production_role']}`.",
@@ -1804,6 +1804,8 @@ def render_readable(resource: dict[str, Any]) -> str:
             ])
             if "parameter_mcmc" in definition:
                 lines.append(f"- Parameter MCMC: `{json.dumps(definition['parameter_mcmc'], sort_keys=True)}`.")
+            if "parameter_estimation" in definition:
+                lines.append(f"- Parameter estimation: `{json.dumps(definition['parameter_estimation'], sort_keys=True)}`.")
             for key in ("ablation_flags", "rough_volatility", "jumps"):
                 if key in definition:
                     lines.append(f"- {key}: `{json.dumps(definition[key], sort_keys=True)}`.")

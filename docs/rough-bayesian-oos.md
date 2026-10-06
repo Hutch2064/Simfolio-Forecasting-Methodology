@@ -563,3 +563,72 @@ References: [Hosszejni and Kastner, conventional and Student Bayesian SV with
 compiled implementations](https://www.jstatsoft.org/article/view/v100i12),
 [Abanto-Valle et al., Bayesian heavy-tailed SV and scale augmentation](https://pmc.ncbi.nlm.nih.gov/articles/PMC2923593/),
 and the mixture/correction and precision references above.
+
+## MAP predecessor with a dynamic rough overlay
+
+`asset_map_predecessor_dynamic_rough_map` retains the previous production
+Frontier's asset-level MAP fit, historical mean, four multiscale half-lives,
+filtered empirical innovations, Gaussian dependence and policy rejoin. It
+adds the same dynamically resolved tempered rough covariance as the Bayesian
+research winner, estimated at a joint MAP point for H, log kappa and log eta.
+Historical rough states are marginalized by the Gaussian filter; conditional
+terminal states and future volatility innovations are simulated. Both parameter
+fits are MAP estimates, with no parameter MCMC or sixteen-draw compression.
+This is a Gaussian log-square quasi-likelihood implementation. Its numerical
+approximation is accuracy controlled; it is not a raw-return posterior fit.
+
+The predecessor's fixed half-lives remain 5, 21, 63 and 252 trading days,
+shortened for insufficient history. Rough factor count is the first passing
+positive integer quadrature order at covariance error tolerance 0.001 over
+the full training-plus-forecast daily lag domain. Priors and parameter bounds
+are unchanged from the dynamic Bayesian overlay. These settings are recorded
+in the canonical statistical specification. Future rough multipliers preserve
+conditional second moments before the existing return clipping.
+
+| Model | Full canonical empirical CRPS |
+| --- | ---: |
+| Dynamic Bayesian rough research winner | 0.25074679212444156 |
+| MAP predecessor + dynamic rough | 0.2518812750312293 |
+| Current production parameter-MCMC Frontier | 0.25246784959071183 |
+| MAP predecessor without rough | 0.25439860867855635 |
+| Production default naive | 0.292821259593872 |
+
+Only the new candidate ran. Saved controls matched all task identities and
+portfolio/horizon keys. All 80 portfolios, 4,080 origins, 240 paths per origin
+and 701,280 cells completed. A separate reconstruction from every origin loss
+vector reproduced all published cell vectors exactly. The new model wins on
+41 of 80 portfolios against production and 50 against its MAP predecessor.
+Its aggregate score improves on production by 0.2323%, while remaining
+0.4524% worse than the dynamic Bayesian winner. These are descriptive panel
+comparisons, not evidence of a universal forecasting improvement.
+
+The twelve-worker run completed in 136.825 seconds, with 1,569.243 total worker
+seconds (0.385 seconds per origin on average). Saved production and dynamic
+Bayesian runs recorded 3,386.493 and 42,590.790 worker seconds respectively.
+Their ratios are historical research timing comparisons, not controlled
+hardware/cache benchmarks or deployed website timings.
+
+Optimization reused exact compiled marginal mapping and policy rejoin, removed
+a redundant sort and duplicated volatility-moment calculation, and cached
+asset/lag fits across portfolios. All five reference smoke loss vectors remained
+byte-identical. The longest smoke changed from 2.009 to 1.221 seconds with fresh
+fits and from 1.393 to 0.734 seconds with cached fits, excluding compiler startup.
+All 2,549 distinct asset/lag fits converged; 52 needed an extended L-BFGS-B
+line search with the same likelihood, priors and accuracy tolerances. No Powell
+fallback was needed. Selected rough factor counts ranged from 4 to 10.
+
+The [full result, 80 portfolio scores, source hashes and audit](results/rough-bayesian/map-predecessor-dynamic-panel.json)
+and [cell-loss evidence](results/rough-bayesian/map-predecessor-dynamic-cells.npz)
+are retained. The candidate is canonical index 193 and a validated master
+catalogue extension. It is research code; production behavior is unchanged.
+
+```bash
+python tools/dynamic_rough_inference/run_panel.py \
+  --output /path/to/run-output \
+  --reference /path/to/parameter-mcmc-tuned-full \
+  --workers 12
+```
+
+Use the existing panel runner's frozen data setup and the pinned numerical
+dependencies. `screen.py` exercises bounded canonical origins;
+`progress.py` reports matched cumulative scores using saved controls.

@@ -36,11 +36,36 @@ def test_membership_is_exact_and_digest_is_immutable():
     payload = load_canonical_ledger()
     models = list(load_canonical_models())
 
-    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 192
-    assert [model["canonical_rank"] for model in models] == list(range(1, 193))
+    assert payload["membership"]["count"] == EXPECTED_CANONICAL_COUNT == 193
+    assert [model["canonical_rank"] for model in models] == list(range(1, 194))
     assert [model["historical_rank"] for model in models] == list(EXPECTED_SOURCE_RANKS)
     assert canonical_membership_digest(models) == EXPECTED_MEMBERSHIP_DIGEST
     assert payload["membership"]["membership_digest"] == EXPECTED_MEMBERSHIP_DIGEST
+
+
+def test_map_predecessor_dynamic_rough_retains_complete_scored_evidence():
+    import hashlib
+    import numpy as np
+
+    row = canonical_model('asset_map_predecessor_dynamic_rough_map')
+    root = Path(__file__).resolve().parents[1]
+    artifact = row['source_artifact_digest']['retained_score_artifact']
+    path = root / artifact['relative_path']
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == artifact['sha256']
+    result = json.loads(path.read_text())
+    assert result['audit']['passed'] and result['audit']['all_cell_vectors_byte_equal']
+    assert all(r['every_loss_byte_equal'] for r in result['smoke_parity'])
+    cells = root / 'docs/results/rough-bayesian/map-predecessor-dynamic-cells.npz'
+    assert hashlib.sha256(cells.read_bytes()).hexdigest() == result['paired_cells_sha256']
+    with np.load(cells) as values:
+        assert len(values['model_0']) == 701280
+        assert len(set(values['portfolio'])) == 80
+        assert repr(float(values['model_0'].mean())) == row['historical_score']['exact_empirical_crps']
+    assert len(row['historical_score']['portfolio_scores']) == 80
+    definition = row['structured_specification']['resolved_definition']
+    assert definition['parameter_estimation']['chains'] == 0
+    assert definition['parameter_estimation']['fixed_posterior_representatives'] is None
+    assert definition['baseline']['model_id'] == 'experimental_filtered_innovation_moment_sv_fixed_mean'
 
 
 def test_rehashing_a_mutated_id_is_rejected():
@@ -61,7 +86,7 @@ def test_each_row_uses_the_exact_flat_contract_and_resolved_spec_flags_are_scope
     payload = load_canonical_ledger()
     assert tuple(payload["required_model_fields"]) == REQUIRED_MODEL_FIELDS
     resolved_ids = _resolved_specification_ids()
-    assert len(resolved_ids) == 192
+    assert len(resolved_ids) == 193
 
     for model in payload["models"]:
         assert set(model) == set(REQUIRED_MODEL_FIELDS) | {"canonical_rank"}
@@ -133,7 +158,7 @@ def test_retained_lexical_scores_and_public_precision_reconcile():
 def test_compatibility_loader_reads_the_same_ledger_rows():
     payload = load_canonical_ledger()
     rows = load_canonical_175()
-    assert len(rows) == len(payload["models"]) == 192
+    assert len(rows) == len(payload["models"]) == 193
     for row, model in zip(rows, payload["models"]):
         assert row.canonical_rank == model["canonical_rank"]
         assert row.source_rank == model["historical_rank"]
@@ -146,7 +171,7 @@ def test_compatibility_loader_reads_the_same_ledger_rows():
 def test_packaged_resource_load_is_independent_of_cwd(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     models = load_canonical_models()
-    assert len(models) == 192
+    assert len(models) == 193
     assert canonical_model(models[0]["public_model_id"])["canonical_rank"] == 1
 
 
@@ -303,12 +328,14 @@ def test_partial_candidates_keep_full_and_unfinished_portfolio_scores_blank():
         assert sum(r['exact_empirical_crps'] is not None for r in rows) == completed
         assert sum(r['completed_origins'] for r in rows) == origins
     altered = deepcopy(payload)
-    rows = altered['models'][-2]['historical_score']['portfolio_scores']
+    rows = next(m for m in altered['models'] if m['public_model_id'] ==
+                'asset_rough_volterra_sv_accuracy_lift_bayesian')['historical_score']['portfolio_scores']
     next(r for r in rows if r['completed_origins'] < 51)['exact_empirical_crps'] = 0.1
     with pytest.raises(ValueError, match='unfinished portfolio score must be blank'):
         validate_canonical_ledger(altered)
     altered = deepcopy(payload)
-    altered['models'][-2]['historical_score_verified'] = True
+    next(m for m in altered['models'] if m['public_model_id'] ==
+         'asset_rough_volterra_sv_accuracy_lift_bayesian')['historical_score_verified'] = True
     with pytest.raises(ValueError, match='blank score requires'):
         validate_canonical_ledger(altered)
 
