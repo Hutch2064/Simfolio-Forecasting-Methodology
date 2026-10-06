@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **237 models**: the original 175 plus fifty-two
+The canonical catalogue contains **238 models**: the original 175 plus fifty-three
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–237 and no historical source rank.
+indices 176–238 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 237 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 238 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -167,3 +167,5 @@ M235 learns multiscale decay rates without median loading shrinkage. Full-panel 
 M236 learns multiscale decay rates with data-fitted predictive loading contraction. Full-panel CRPS: **0.24169600516723397**, cold research elapsed time **158.23470458301017 seconds**.
 
 M237 learns multiscale decay rates with theoretical rough Hurst support (0,1/2). Full-panel CRPS: **0.2416808319759003**, cold research elapsed time **150.4711924159783 seconds**.
+
+M238 learns multiscale decay rates with one fitted conventional EWMA component. Full-panel CRPS: **0.24188836805455496**, cold research elapsed time **136.68520212499425 seconds**.

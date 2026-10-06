@@ -1,0 +1,891 @@
+{
+  "scope": "single_predictive_loading_full_hurst_canonical_asset_level_ablation",
+  "baseline_model_id": "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough",
+  "baseline_crps": 0.2416808319759003,
+  "baseline_runtime": {
+    "all_denominator_gates_passed": true,
+    "baseline_every_loss_vector_byte_exact": false,
+    "elapsed_seconds": 150.4711924159783,
+    "manifest_sha256": "9837d08b136207db078ac5cfa10793a6d7058a8a1132f0b2b32fa2bd06b8dc24",
+    "paired_cells_sha256": "3290b297b50953f224d535df0757307a22883a70ca14901ac4d552969a05535e",
+    "portfolios": 80,
+    "rolling_origins_per_portfolio": 48,
+    "scope": "full_canonical_asset_level_ablations",
+    "scores": {
+      "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough": {
+        "cells": 701280,
+        "exact_empirical_crps": 0.2416808319759003,
+        "relative_improvement_vs_production": 0.042726302110541625,
+        "summed_worker_seconds": 1711.6151639258023,
+        "tasks": 4080,
+        "timings": {
+          "asset_predictive_paths": 552.6433174964623,
+          "dependence_paths": 406.0212613293552,
+          "fit_phase_wall": 596.609860922792,
+          "rough_fit_worker": 216.19290510413703
+        }
+      }
+    },
+    "simulations": 240,
+    "temporal_holdouts_per_portfolio": 3
+  },
+  "code_revision": "4a883e99f05a36d5db32409e93a0f013b0a7a99b",
+  "all_other_forecast_components": "M237 retained except exactly one EWMA rate and common loading contraction fitted per asset; no forward BIC order search; original loading ridge/shrinkage, residual estimator, Student fit, implied noise, rough fit and priors, original mean, innovation nodes, dependence, calendar and scorer unchanged",
+  "original_baseline_model_id": "asset_map_predecessor_dynamic_rough_map",
+  "original_baseline_runtime_seconds": 125.72699987504166,
+  "runtime_ceiling_seconds": null,
+  "candidates": [
+    {
+      "model_id": "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough",
+      "label": "M237 matched single learned component and predictive loading",
+      "source_revision": "4a883e99f05a36d5db32409e93a0f013b0a7a99b",
+      "result": {
+        "all_denominator_gates_passed": true,
+        "baseline_every_loss_vector_byte_exact": false,
+        "elapsed_seconds": 136.68520212499425,
+        "manifest_sha256": "1ed653a0fb7126f18c9e6c72ba06b52b426cb057f64037154e63312422327f08",
+        "paired_cells_sha256": "9280fc5c83fca7fc6d49bd449cf2c211be9fc040852451b4ce38395469617b69",
+        "portfolios": 80,
+        "rolling_origins_per_portfolio": 48,
+        "scope": "full_canonical_asset_level_ablations",
+        "scores": {
+          "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough": {
+            "cells": 701280,
+            "exact_empirical_crps": 0.24188836805455496,
+            "relative_improvement_vs_production": 0.0419042723788704,
+            "summed_worker_seconds": 1545.2782060232712,
+            "tasks": 4080,
+            "timings": {
+              "asset_predictive_paths": 539.8316721545998,
+              "dependence_paths": 399.5428793638712,
+              "fit_phase_wall": 454.28798270452535,
+              "rough_fit_worker": 212.27402581996284
+            }
+          }
+        },
+        "simulations": 240,
+        "temporal_holdouts_per_portfolio": 3
+      },
+      "manifest_summary": {
+        "baseline_reference_manifest": "99c6e32cb84e7c7cf923cfeccae7942c7f7bccb8b2b932945b515147a683690a",
+        "cell_count": 701280,
+        "common_end": "2026-05-13",
+        "common_start": "1979-12-31",
+        "models": [
+          {
+            "fit_seconds": 10.0,
+            "model_id": "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough"
+          }
+        ],
+        "native_binary_sha256": "d6062ebc1e6775b8ee242454176f4b81357f435facd081e0a2569b28397afc50",
+        "numba": "0.67.0",
+        "numpy": "2.5.3",
+        "platform": "macOS-27.0-arm64-arm-64bit",
+        "portfolio_count": 80,
+        "python": "3.12.13",
+        "pyvinecopulib": "0.7.5",
+        "scipy": "1.18.1",
+        "scope": "full_canonical",
+        "scoring": "unchanged empirical_crps_by_horizon and CellAccumulator; terminal log returns; n squared pairwise denominator; equal portfolio-horizon cells",
+        "simulations": 240,
+        "snapshot": {
+          "common_date_count": 11687,
+          "common_end": "2026-05-13",
+          "common_start": "1979-12-31",
+          "dataset_id": "simfolio-canonical-simulated-returns-2026-05-13",
+          "factor_inputs": [
+            "french_daily",
+            "q5_daily"
+          ],
+          "normalized_return_matrix_sha256": "52c5bdd96b39762183ef0c204fa8165c2dfd5a4864e7198662615daddb8d6a49",
+          "redistribution_status": "user_authorized_exact_snapshot",
+          "rights_status": "caller_authorized_local_use",
+          "series_count": 52,
+          "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+          "supporting_series": [
+            "BNDSIM",
+            "CASHX",
+            "EFFRX",
+            "KMLMSIM",
+            "TIPSIM",
+            "UUPSIM"
+          ],
+          "verified": true
+        },
+        "source_hashes": {
+          "rough_filter_native_binary": "e80c67e337e27ce461c50f53a1dfe3ee3a800c3b6bc0970e91aea633e1542b71",
+          "rough_streamed_native_binary": "d207e31c0f8aa4a178dce627be59a972041cac3026ee7190cdfa7fcf8d83e7da",
+          "src/simfolio_forecasting_methodology/__init__.py": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621",
+          "src/simfolio_forecasting_methodology/candidate_registry.py": "535d55b3b8878e429b9400319c0d67a9cbfd28b1a37c927b29b9a70301d80c01",
+          "src/simfolio_forecasting_methodology/catalog.py": "8d3f495d38b3fa6f3de412bd049864fa00efae096d64d6de3a2b12ca5f69918a",
+          "src/simfolio_forecasting_methodology/catalogue.py": "175cd267d095d62fe057677c400d08f63276cc635935320c8ee897cc71e0cdb9",
+          "src/simfolio_forecasting_methodology/cli.py": "3e48a1cc5cf9bf020b9ba6823be8b1cf59076a896226fff0761576400b52ff7b",
+          "src/simfolio_forecasting_methodology/data.py": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0",
+          "src/simfolio_forecasting_methodology/evaluation.py": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8",
+          "src/simfolio_forecasting_methodology/experiment.py": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa",
+          "src/simfolio_forecasting_methodology/models/__init__.py": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b",
+          "src/simfolio_forecasting_methodology/models/asset_level/__init__.py": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4",
+          "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+          "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6",
+          "src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+          "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997",
+          "src/simfolio_forecasting_methodology/models/numerical/__init__.py": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1",
+          "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7",
+          "src/simfolio_forecasting_methodology/models/numerical/base_models.py": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31",
+          "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa",
+          "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+          "src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b",
+          "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+          "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+          "src/simfolio_forecasting_methodology/models/portfolio/__init__.py": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4",
+          "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952",
+          "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1",
+          "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d",
+          "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+          "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f",
+          "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d",
+          "src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+          "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3",
+          "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0",
+          "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040",
+          "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab",
+          "src/simfolio_forecasting_methodology/models/registry.py": "6f45544cc87158a9157ff693e228443d18497881c1346c960bb0838a6c3e9257",
+          "src/simfolio_forecasting_methodology/naming.py": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e",
+          "src/simfolio_forecasting_methodology/origins.py": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8",
+          "src/simfolio_forecasting_methodology/panel.py": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b",
+          "src/simfolio_forecasting_methodology/protocol.py": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d",
+          "src/simfolio_forecasting_methodology/results/__init__.py": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd",
+          "src/simfolio_forecasting_methodology/results/aggregate.py": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f",
+          "src/simfolio_forecasting_methodology/results/checkpoint.py": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228",
+          "src/simfolio_forecasting_methodology/results/executor.py": "c8d9ea263ac056d0ee459c76154d36e67e20403664c0e078a12f85268c155649",
+          "src/simfolio_forecasting_methodology/results/retained.py": "831aa1ab5eecdd90f3baa9867e325c2b9aeedcacd74085aae8bf899f5bc3edf4",
+          "src/simfolio_forecasting_methodology/results/verified_candidate_scores.py": "41c4747c033d9e4b5c4316a648843d0d2f18ccf9bc0dea8ba9ab2f8c5037eabf",
+          "src/simfolio_forecasting_methodology/runner.py": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac",
+          "src/simfolio_forecasting_methodology/safety_scan.py": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e",
+          "src/simfolio_forecasting_methodology/scores.py": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9",
+          "src/simfolio_forecasting_methodology/scoring.py": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487",
+          "src/simfolio_forecasting_methodology/seeds.py": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e",
+          "src/simfolio_forecasting_methodology/smoke.py": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c",
+          "src/simfolio_forecasting_methodology/specifications.py": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45",
+          "tools/conditional_empirical_rough/models.py": "fc511ec8317783eb466df0308b1559ff25504857fee50c9f2eb9ca476ac08fd3",
+          "tools/conditional_empirical_rough/run_panel.py": "7cedf3be346ec1289e28abc7ab88f8f18f0f6740ba811777faadb1ce94288253",
+          "tools/conditional_empirical_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/conditional_residual_rough/models.py": "024704d67a785fd198c72d8c69b3f73b991e513c613bc8f3f610852708e6e2c4",
+          "tools/conditional_residual_rough/run_panel.py": "362055f5bf5b039d0724202d6d7ffc2dc82e924f3e75bf89023c833ce4669b66",
+          "tools/conditional_residual_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/consistent_noise_rough/causal_noise.py": "1ac4a030f4fd8494a09a44d483208d21e84fb8b2a4b0948f20ae7505d059eea5",
+          "tools/consistent_noise_rough/models.py": "1d39a0721f24a5d5c6acbc25f909e4a33f86b73bde5138b9f136a51430083be1",
+          "tools/consistent_noise_rough/run_panel.py": "5778dede3e12d9d3b4d42e426a8c67ed1ee2f60dee752d056d771aa23d7c8578",
+          "tools/consistent_noise_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/debiased_whittle_rough/debiased_whittle_kernel.py": "49b308586ed51ad8c9ca7ba5e33aa5552ec6aa53dd80d597eafbe8d78094778c",
+          "tools/debiased_whittle_rough/models.py": "8bac9e0cfc99cd9a09aee5ae04e61c2857b0ddddc0dcb8edbc2487dc9cb60a9d",
+          "tools/debiased_whittle_rough/run_panel.py": "0d32e0330ff22262d06a23fb8fd063d4615dd0f308023ca798937cf384aab063",
+          "tools/debiased_whittle_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/differenced_whittle_rough/differenced_whittle_kernel.py": "ba6ed0932cef1c35e92e9aa6fe0fc6c69f72d477264adcb594e31920d384f7e1",
+          "tools/differenced_whittle_rough/models.py": "dbe8249143e6675dc233c2dea94a0df4c0d13931745fca4ab8d4d1bbb2c93de6",
+          "tools/differenced_whittle_rough/run_panel.py": "61a611e77b06138cbb421baf570eb43bc894012b5d5aa7ac70a2bab8cb7d3699",
+          "tools/differenced_whittle_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/dynamic_rough_inference/models.py": "0b3e0bcceb24ecbbd424eab2acb7a755443df09e0419b39e53fdbe8e19a0a1b2",
+          "tools/dynamic_rough_inference/posterior.py": "7854e7a65b2250ccf9e60e8edb3b7ddd9f027405fd3fe8d9e1d25d07c41eb785",
+          "tools/dynamic_rough_inference/progress.py": "4538d4336190b5395cc3500131da34867c0b3ee17c7021b76f6eb54f294fb5ed",
+          "tools/dynamic_rough_inference/run_panel.py": "a9250471852ec401c201558df5ea8a1ee12a3b23cf426943a0fa037fe1182139",
+          "tools/dynamic_rough_inference/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/empirical_rough_noise/models.py": "55698afe1d1d11815fa711e99efb5fa502a7dc7732e44412f6b4f066fe24e475",
+          "tools/empirical_rough_noise/run_panel.py": "f32ea907ffc5245ef4cb33f49a525cd813022c50398b582012b41fc83af8c498",
+          "tools/empirical_rough_noise/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/learned_loading_full_hurst_rough/models.py": "01ac5e734237b687cbad4e33a70e6a6b984c9ec3f88315383eeec23d478f6b28",
+          "tools/learned_loading_full_hurst_rough/rough_map.py": "f6886ed8cd3ac22c3cef567a063d1afcc154691681df1d089048b22bbb3f46bf",
+          "tools/learned_loading_full_hurst_rough/run_panel.py": "a60eb30afffec53d66630fc18414c68eaa046d59db500880ef7fbb6d485d86a0",
+          "tools/learned_loading_full_hurst_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/learned_multiscale_rates_rough/components.py": "9e68959ef064c7a72261a4044749d478ce8e8097932864cd23862416b045960b",
+          "tools/learned_multiscale_rates_rough/models.py": "ac3b1ce849d38db843bde214972b281b676ed96e3526ae09227f899284fedebf",
+          "tools/learned_multiscale_rates_rough/rate_fit.py": "796c661d7cf2343ecfc0929552480e3925a9af7bb4a87c27f2fc7ca289a4bb61",
+          "tools/learned_multiscale_rates_rough/run_panel.py": "7f59e38088371d36c9b63fd47aac280f19bf0ae61bef07a6781f340ffec33957",
+          "tools/learned_multiscale_rates_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/mcmc_runtime/benchmark_model_cases.py": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6",
+          "tools/mcmc_runtime/benchmark_scaling.py": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02",
+          "tools/mcmc_runtime/cached_dependence.py": "05ea1ca7c67003bfb8c217851e217558f770fd8a17ccf55c4f6ca0cdeac659fb",
+          "tools/mcmc_runtime/cached_moments.py": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b",
+          "tools/mcmc_runtime/compiled_chain.py": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059",
+          "tools/mcmc_runtime/compiled_map.py": "ff14eb242d8701b1dfdd067c63ab81de6d47dbd8b057786ce67b209a4b1a6b76",
+          "tools/mcmc_runtime/compiled_postburn.py": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c",
+          "tools/mcmc_runtime/compiled_smoothers.py": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46",
+          "tools/mcmc_runtime/complex_sv.py": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71",
+          "tools/mcmc_runtime/exact_path_kernels.py": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5",
+          "tools/mcmc_runtime/finite_multiscale.py": "5f444323af6696d06840a8f88695e482c2e64cec921a62b8bc486f42fbd30906",
+          "tools/mcmc_runtime/optimized_mcmc.py": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df",
+          "tools/mcmc_runtime/parallel_chains.py": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3",
+          "tools/mcmc_runtime/parameter_mcmc_tuned.py": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a",
+          "tools/mcmc_runtime/predictive_sv_candidates.py": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309",
+          "tools/mcmc_runtime/profile_runtime.py": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4",
+          "tools/mcmc_runtime/replay_full_panel.py": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca",
+          "tools/mcmc_runtime/research_jit_pilot.py": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e",
+          "tools/mcmc_runtime/runtime_setup.py": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665",
+          "tools/mcmc_runtime/steady_kalman_target.py": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394",
+          "tools/mcmc_runtime/streamed_paths.py": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa",
+          "tools/pathwise_multiscale_rough/models.py": "9c50bfe9a44be2732aad079d42e60992f35ace8cc99a7c3217ea10163300e73c",
+          "tools/pathwise_multiscale_rough/paths.cpp": "34e881ea3d64e8abe5dfc322845a41e8e51c4a0d493076b51d37e2b52778ebaa",
+          "tools/pathwise_multiscale_rough/pathwise_native.py": "add4ffa47987980b858e8593865c3207064630180398bb14d7da075e1173e8a8",
+          "tools/pathwise_multiscale_rough/run_panel.py": "57f6b51fb21757ba972edb2c124e05bfcf442aae65b91ca42e1fa7af6abff28a",
+          "tools/pathwise_multiscale_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/predictive_loading_rates_rough/models.py": "9ba5ed81d6ce5400eccb1063b27d61f459bdb7dd2990f02136de4f6ed2d3c909",
+          "tools/predictive_loading_rates_rough/run_panel.py": "512b6713ce6ee15faef0724f456d6b2d93dc849200f33b0c05ab6fe013b81431",
+          "tools/predictive_loading_rates_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/raw_return_laplace_rough/laplace_sv.py": "10864fc1d50efb3306c19480d534c0764e4ba1d1046d1494977cede898e5a533",
+          "tools/raw_return_laplace_rough/models.py": "fb7f3e4864d02a61d99b214987e0e1016f15a4dac39b3aa3d1dc5017ac7793d9",
+          "tools/raw_return_laplace_rough/run_panel.py": "1abebf2e8cfde2811098a535e32f3812a5422b2adb59ea7269f431411c100298",
+          "tools/raw_return_laplace_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/relaxed_hurst_differenced_rough/models.py": "2943675de70ff4407ae1b5661c9d554a691268f00886f0794758f1b45a59b698",
+          "tools/relaxed_hurst_differenced_rough/run_panel.py": "68cbfe99d3b3c92433add659b8513a404f5060482257d75ee41bdc6d2f3ef1b9",
+          "tools/relaxed_hurst_differenced_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/rough_bayesian/coherent.py": "713f8c5790471ccfc2898c2c758be03dc72d04e76fe8d456859998f6d8327950",
+          "tools/rough_bayesian/coherent_kernels.py": "64dc4e6f4bae8270b86c10d55102d0eefd1421fd93aa55771b6224652594bc47",
+          "tools/rough_bayesian/dynamic.py": "6fe1eccf02c597d75b65c6259082eebce7237317a8f4ffa0a66ec98047342fac",
+          "tools/rough_bayesian/inference.py": "9af54147f5db99fc37ad9b71f1cabc1b96762f641ab2372f7876e852d1e54ec3",
+          "tools/rough_bayesian/kernels.py": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b",
+          "tools/rough_bayesian/mixture.py": "8a315cd80f214c19547a385e7ef807e4bbd2aea147a7ada20a9fcd52525280f0",
+          "tools/rough_bayesian/mixture_kernels.py": "0d494d68c910b51ae8cb935ca86e0389f6906f6ec4581bd3322fe1c0e6b6dcf3",
+          "tools/rough_bayesian/models.py": "73389a2fc2bbe0fb0bcbc88ad8aec70e9bfbbb8484c7e825e873f464cf570f9b",
+          "tools/rough_bayesian/native.py": "696713549712fa70e01369ae5c7805c25ba02a88692a657ad1d1738a9798df2e",
+          "tools/rough_bayesian/overlay.py": "a401776494b15125c30170bd76c3c9a62ad4626877b857a8d4f474327a852d97",
+          "tools/rough_bayesian/overlay_filter.cpp": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1",
+          "tools/rough_bayesian/run_panel.py": "71a8ada2fc26e1506dac8eae4d590576dd66715810347dc7c48dc4cc6c06f301",
+          "tools/rough_bayesian/smoke.py": "a31f118e207a8aa62a4dec17c689c8c982f150da035150da4d2cab6d386ee395",
+          "tools/rough_bayesian/standalone.py": "0be7df8758f4b1c31fe75ac863dd273cef4a12033150f6d36c39948c05a42472",
+          "tools/rough_jump_vine/build_native.py": "2346d6501657e53a998c4fd758c7f077be0f6b65a79a49c7e439effead4c7819",
+          "tools/rough_jump_vine/models.py": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620",
+          "tools/rough_jump_vine/native.patch": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4",
+          "tools/rough_jump_vine/run_panel.py": "ff51781b37f38fad3477f8b22158b291bd16e6edad8a1e2cf38af71844a7a925",
+          "tools/rough_jump_vine/smoke.py": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a",
+          "tools/single_predictive_loading_full_hurst_rough/models.py": "0066873bff1c5a45edee40451931202f6169a1e97fde187a879ca49188830669",
+          "tools/single_predictive_loading_full_hurst_rough/run_panel.py": "820396df4c6c2cb8462241e2ae30f6424827ac963a26e4828acb2f4a903724fc",
+          "tools/single_predictive_loading_full_hurst_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/streamed_rough_paths/models.py": "714f90846fb04618574ce687a05082c6ad784fad9fff4fb63c43532cdc99e705",
+          "tools/streamed_rough_paths/paths.cpp": "0f6678a9582221cc1be0a06b8ad72b0d9b7cf9eaf66539e9adf1addb5d6d7732",
+          "tools/streamed_rough_paths/run_panel.py": "0629c00a461a64091788d53484b6e451647d842684c62688d39edbe45ed2d78b",
+          "tools/streamed_rough_paths/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/streamed_rough_paths/stream_native.py": "9d5292b05244bb1505c4503e66e0d51239e4a3a05b1c9c7582eea83277e3652a",
+          "tools/student_implied_noise_rough/models.py": "ffeb07ac55cbf20c56c3e79e028681c05b9503b9ed9dcd79da252ffbbf67511c",
+          "tools/student_implied_noise_rough/run_panel.py": "28ce47f24dca5df837fb5f983938c402c46496002923c5a2e0dfa7092aaa7f57",
+          "tools/student_implied_noise_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/student_implied_noise_rough/student_log_moments.py": "9c334434846d67e37ef585174b6185fea764a946b0d78366046b4796d3996c20",
+          "tools/student_return_laplace_rough/models.py": "3aa8c5fd06d0543ede4fdd65ce229632011ff85f342fd3c7b7a8f40fc1f74311",
+          "tools/student_return_laplace_rough/run_panel.py": "83b09e101d321b3fbb54636f0b0062a6ad003c3bde2f3ef256a17e05b61aa64b",
+          "tools/student_return_laplace_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/student_return_laplace_rough/student_laplace_sv.py": "dc8a4f276b73d287abab9cb2ecb23569ea2026458cd541a5795a38a772515a11",
+          "tools/untruncated_rough_priors/models.py": "23dca6027cd87d6a606be5ef8e21a2f9b02d35e0dd91af9c03693cb16ea908fd",
+          "tools/untruncated_rough_priors/run_panel.py": "91f88ad2f5cf369c3ec92d6e715b9cb7bd29aa0d5ebe18faf06fcf0f5912b3e7",
+          "tools/untruncated_rough_priors/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+          "tools/untruncated_rough_priors/unbounded_map.py": "0f02d3a18d46c79e89c8943da07e03d0b4d72bb5902d13901b9bb2a37015ee3b"
+        },
+        "state_workers": 1,
+        "task_count": 4080,
+        "vine_threads": 1,
+        "workers": 12
+      },
+      "task_identities_sha256": "46bf82b6cb3702c714b87d131d975ad5f41f3c8220dfb54c821c7f32439300cb",
+      "raw_output": "local_artifacts/dynamic-rough-inference-20261005/single-loading-full-hurst-cold/panel",
+      "cell_array": "candidate_0",
+      "relative_improvement_vs_baseline": -0.0008587196467255698,
+      "portfolio_wins_vs_baseline": 45,
+      "portfolio_losses_vs_baseline": 35,
+      "portfolio_ties_vs_baseline": 0,
+      "portfolio_scores": [
+        {
+          "portfolio_id": "equal_class_history_001",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.11950916166243,
+          "baseline_crps": 0.11933160861363686
+        },
+        {
+          "portfolio_id": "equal_class_history_002",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1632301162600738,
+          "baseline_crps": 0.1630123413228692
+        },
+        {
+          "portfolio_id": "equal_class_history_003",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.20655465641944723,
+          "baseline_crps": 0.2065557183598582
+        },
+        {
+          "portfolio_id": "equal_class_history_004",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1872845723345805,
+          "baseline_crps": 0.1874589988670218
+        },
+        {
+          "portfolio_id": "equal_class_history_005",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.6548682661774404,
+          "baseline_crps": 0.6509760143721954
+        },
+        {
+          "portfolio_id": "equal_class_history_006",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.17885095948456076,
+          "baseline_crps": 0.17886557473062534
+        },
+        {
+          "portfolio_id": "equal_class_history_007",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.17148376519513756,
+          "baseline_crps": 0.17209717179183476
+        },
+        {
+          "portfolio_id": "equal_class_history_008",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.2346677708043788,
+          "baseline_crps": 0.23455070795556077
+        },
+        {
+          "portfolio_id": "equal_class_history_009",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.15673385465684872,
+          "baseline_crps": 0.156519297396056
+        },
+        {
+          "portfolio_id": "equal_class_history_010",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.13157835514319746,
+          "baseline_crps": 0.1317877938993515
+        },
+        {
+          "portfolio_id": "equal_class_history_011",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1656641954612386,
+          "baseline_crps": 0.1656766112816837
+        },
+        {
+          "portfolio_id": "equal_class_history_012",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.5229845181106629,
+          "baseline_crps": 0.5226658964578912
+        },
+        {
+          "portfolio_id": "equal_class_history_013",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.2922773823101918,
+          "baseline_crps": 0.2925573898727557
+        },
+        {
+          "portfolio_id": "equal_class_history_014",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.12239410922635086,
+          "baseline_crps": 0.12283630153634563
+        },
+        {
+          "portfolio_id": "equal_class_history_015",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.16653347595900336,
+          "baseline_crps": 0.16672333562731062
+        },
+        {
+          "portfolio_id": "equal_class_history_016",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.39994910043001447,
+          "baseline_crps": 0.39990236752720154
+        },
+        {
+          "portfolio_id": "equal_class_history_017",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.26066944587915225,
+          "baseline_crps": 0.26085177888114114
+        },
+        {
+          "portfolio_id": "equal_class_history_018",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.10275100902373192,
+          "baseline_crps": 0.10277489376030209
+        },
+        {
+          "portfolio_id": "equal_class_history_019",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1466281004580789,
+          "baseline_crps": 0.14687676516652634
+        },
+        {
+          "portfolio_id": "equal_class_history_020",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.12626213668856048,
+          "baseline_crps": 0.12616491812803823
+        },
+        {
+          "portfolio_id": "equal_class_history_021",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.274015346872689,
+          "baseline_crps": 0.2740245954022614
+        },
+        {
+          "portfolio_id": "equal_class_history_022",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.37363766505841073,
+          "baseline_crps": 0.37331826888738806
+        },
+        {
+          "portfolio_id": "equal_class_history_023",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.18314568348347887,
+          "baseline_crps": 0.18319222601956428
+        },
+        {
+          "portfolio_id": "equal_class_history_024",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.4767858557726146,
+          "baseline_crps": 0.4774950236002745
+        },
+        {
+          "portfolio_id": "equal_class_history_025",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.19946664949462223,
+          "baseline_crps": 0.20027043832232308
+        },
+        {
+          "portfolio_id": "equal_class_history_026",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.15559520628717247,
+          "baseline_crps": 0.15561339610258568
+        },
+        {
+          "portfolio_id": "equal_class_history_027",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.16251038431212864,
+          "baseline_crps": 0.16246563959545285
+        },
+        {
+          "portfolio_id": "equal_class_history_028",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1983237795845177,
+          "baseline_crps": 0.19899461962554363
+        },
+        {
+          "portfolio_id": "equal_class_history_029",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.11465156563857161,
+          "baseline_crps": 0.11447650302649115
+        },
+        {
+          "portfolio_id": "equal_class_history_030",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1407278904411993,
+          "baseline_crps": 0.14089787735268267
+        },
+        {
+          "portfolio_id": "equal_class_history_031",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.26392089426945914,
+          "baseline_crps": 0.26343805842180545
+        },
+        {
+          "portfolio_id": "equal_class_history_032",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.3758612979482141,
+          "baseline_crps": 0.3722140768206741
+        },
+        {
+          "portfolio_id": "equal_class_history_033",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.19143896565078025,
+          "baseline_crps": 0.19109268080352515
+        },
+        {
+          "portfolio_id": "equal_class_history_034",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.27238883205181835,
+          "baseline_crps": 0.268516865532612
+        },
+        {
+          "portfolio_id": "equal_class_history_035",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.14441148746083293,
+          "baseline_crps": 0.1446669601476091
+        },
+        {
+          "portfolio_id": "equal_class_history_036",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.47808660416085086,
+          "baseline_crps": 0.4777945095171387
+        },
+        {
+          "portfolio_id": "equal_class_history_037",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.47218048245135275,
+          "baseline_crps": 0.4721644533410945
+        },
+        {
+          "portfolio_id": "equal_class_history_038",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.6107643429686677,
+          "baseline_crps": 0.6114572522222249
+        },
+        {
+          "portfolio_id": "equal_class_history_039",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.09899108994884304,
+          "baseline_crps": 0.09945833323197065
+        },
+        {
+          "portfolio_id": "equal_class_history_040",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.177360153692947,
+          "baseline_crps": 0.17757452890473513
+        },
+        {
+          "portfolio_id": "equal_class_history_041",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1483528596977306,
+          "baseline_crps": 0.1479605956818825
+        },
+        {
+          "portfolio_id": "equal_class_history_042",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.4613082113082663,
+          "baseline_crps": 0.4619305957319516
+        },
+        {
+          "portfolio_id": "equal_class_history_043",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.14473808737587543,
+          "baseline_crps": 0.14525749284011563
+        },
+        {
+          "portfolio_id": "equal_class_history_044",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1383928279832176,
+          "baseline_crps": 0.1381092357977074
+        },
+        {
+          "portfolio_id": "equal_class_history_045",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.3778605167451539,
+          "baseline_crps": 0.3786135783110645
+        },
+        {
+          "portfolio_id": "equal_class_history_046",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.18135378043728118,
+          "baseline_crps": 0.18161402661354473
+        },
+        {
+          "portfolio_id": "equal_class_history_047",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.17332431608876486,
+          "baseline_crps": 0.17328165418416375
+        },
+        {
+          "portfolio_id": "equal_class_history_048",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.14822921558223778,
+          "baseline_crps": 0.14824180460837214
+        },
+        {
+          "portfolio_id": "equal_class_history_049",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.19847286573046236,
+          "baseline_crps": 0.19825386774348164
+        },
+        {
+          "portfolio_id": "equal_class_history_050",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.3181613661485282,
+          "baseline_crps": 0.31617799555317366
+        },
+        {
+          "portfolio_id": "equal_class_history_051",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1690461029384084,
+          "baseline_crps": 0.1691281012832712
+        },
+        {
+          "portfolio_id": "equal_class_history_052",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.21778433048746249,
+          "baseline_crps": 0.21733121688057047
+        },
+        {
+          "portfolio_id": "equal_class_history_053",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.4850266964351112,
+          "baseline_crps": 0.48409700632475694
+        },
+        {
+          "portfolio_id": "equal_class_history_054",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.30992817198153855,
+          "baseline_crps": 0.3098562218150394
+        },
+        {
+          "portfolio_id": "equal_class_history_055",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.2799304297400149,
+          "baseline_crps": 0.2792355509538875
+        },
+        {
+          "portfolio_id": "equal_class_history_056",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1028766140603741,
+          "baseline_crps": 0.10289148266264503
+        },
+        {
+          "portfolio_id": "equal_class_history_057",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.2872097826558824,
+          "baseline_crps": 0.2866594949355462
+        },
+        {
+          "portfolio_id": "equal_class_history_058",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.13896276483972708,
+          "baseline_crps": 0.13897239485703197
+        },
+        {
+          "portfolio_id": "equal_class_history_059",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.11423182968269241,
+          "baseline_crps": 0.11401005621701128
+        },
+        {
+          "portfolio_id": "equal_class_history_060",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.20381236346183482,
+          "baseline_crps": 0.20477933926666714
+        },
+        {
+          "portfolio_id": "equal_class_history_061",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.12465227042798978,
+          "baseline_crps": 0.12481949325902242
+        },
+        {
+          "portfolio_id": "equal_class_history_062",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.31840132922193554,
+          "baseline_crps": 0.3184197724157663
+        },
+        {
+          "portfolio_id": "equal_class_history_063",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.3423831917787088,
+          "baseline_crps": 0.34322186921933595
+        },
+        {
+          "portfolio_id": "equal_class_history_064",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1274532653464606,
+          "baseline_crps": 0.12796455657630226
+        },
+        {
+          "portfolio_id": "equal_class_history_065",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.3114160004663769,
+          "baseline_crps": 0.31082283484196854
+        },
+        {
+          "portfolio_id": "equal_class_history_066",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.18861964588544947,
+          "baseline_crps": 0.1886564477428874
+        },
+        {
+          "portfolio_id": "equal_class_history_067",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.1462421177346748,
+          "baseline_crps": 0.14572423596445888
+        },
+        {
+          "portfolio_id": "equal_class_history_068",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.2063596637666786,
+          "baseline_crps": 0.20566503091290342
+        },
+        {
+          "portfolio_id": "equal_class_history_069",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.20375355190815492,
+          "baseline_crps": 0.20403870254105758
+        },
+        {
+          "portfolio_id": "equal_class_history_070",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.3833943580279783,
+          "baseline_crps": 0.3792961254234807
+        },
+        {
+          "portfolio_id": "equal_class_history_071",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.10774662401612586,
+          "baseline_crps": 0.10791780899460181
+        },
+        {
+          "portfolio_id": "equal_class_history_072",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.18291918481730574,
+          "baseline_crps": 0.1805772203978173
+        },
+        {
+          "portfolio_id": "equal_class_history_073",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.11362726660898688,
+          "baseline_crps": 0.11364803314554867
+        },
+        {
+          "portfolio_id": "equal_class_history_074",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.22477722028919989,
+          "baseline_crps": 0.22558345196478272
+        },
+        {
+          "portfolio_id": "equal_class_history_075",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.8775483565365357,
+          "baseline_crps": 0.8762574734937796
+        },
+        {
+          "portfolio_id": "equal_class_history_076",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.18191021436406582,
+          "baseline_crps": 0.18231716023073888
+        },
+        {
+          "portfolio_id": "equal_class_history_077",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.37870615728080625,
+          "baseline_crps": 0.37851807241971686
+        },
+        {
+          "portfolio_id": "equal_class_history_078",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.2146480043865409,
+          "baseline_crps": 0.21466104043999953
+        },
+        {
+          "portfolio_id": "equal_class_history_079",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.09056981687592221,
+          "baseline_crps": 0.09068929455493703
+        },
+        {
+          "portfolio_id": "equal_class_history_080",
+          "origins": 51,
+          "cells": 8766,
+          "crps": 0.15179894200968472,
+          "baseline_crps": 0.15195442884486826
+        }
+      ],
+      "audit": {
+        "all_4080_origin_vectors_reconstructed": true,
+        "701280_saved_cells_byte_exact": true,
+        "all_numerical_sources_verified_at_scored_revision": true,
+        "converged_asset_fit_diagnostics": 24480,
+        "scorer_unchanged": true
+      }
+    }
+  ],
+  "paired_cells": {
+    "path": "docs/results/rough-bayesian/single-loading-full-hurst-panel-cells.npz",
+    "sha256": "3471c2e92d1fbb2ed593f0c8af676e6034010227c57722b2a6cd6cc1b148f028",
+    "bytes": 11656607
+  },
+  "scores": {
+    "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough": {
+      "cells": 701280,
+      "exact_empirical_crps": 0.24188836805455496,
+      "relative_improvement_vs_production": 0.0419042723788704,
+      "summed_worker_seconds": 1545.2782060232712,
+      "tasks": 4080,
+      "timings": {
+        "asset_predictive_paths": 539.8316721545998,
+        "dependence_paths": 399.5428793638712,
+        "fit_phase_wall": 454.28798270452535,
+        "rough_fit_worker": 212.27402581996284
+      }
+    }
+  },
+  "audit": {
+    "passed": true,
+    "all_cell_vectors_byte_equal": true,
+    "models": 1,
+    "origin_vectors": 4080,
+    "cells_per_model": 701280
+  }
+}
