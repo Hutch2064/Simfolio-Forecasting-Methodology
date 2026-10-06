@@ -144,7 +144,7 @@ def latent_mode(squared, level, phi, eta, u):
         pivots = factor(diagonal + curvature, off)
         step = solve(pivots, off, -gradient)
         decrement = -np.dot(gradient, step)
-        if decrement <= 1e-14 and np.max(np.abs(step)) <= 1e-10:
+        if decrement <= 1e-14:
             converged = True
             break
         current = objective(h, squared, level, diagonal, off, u)
@@ -218,7 +218,7 @@ def fit(squared, observed_proxy, initial):
 
     center = float(observed_proxy.mean())
     lo, hi = np.quantile(observed_proxy, [.01, .99])
-    bounds = [(lo - 4, hi + 4), (-7., 7.), (math.log(.02), math.log(2.5)), (0., .5-np.sqrt(np.finfo(float).eps))]
+    bounds = [(lo - 4, hi + 4), (-7., float(logit(np.nextafter(.999, 0.)))), (math.log(.02), math.log(2.5)), (0., .5-np.sqrt(np.finfo(float).eps))]
     def target(theta):
         level, p, e, u = theta
         phi, eta = expit(p), math.exp(e)
@@ -233,22 +233,32 @@ def fit(squared, observed_proxy, initial):
         gradient += np.array([-(level - center) / 16,
                               -(phi - .94) / .04 * phi * (1 - phi) + 1 - 2 * phi,
                               -(e - math.log(.35)) + 1, 0.])
-        return -float(likelihood + prior), -gradient
+        return -float(likelihood + prior) / len(squared), -gradient / len(squared)
     start = [initial[0], logit(initial[1]), math.log(initial[2]), 0.]
+    def projected_gradient(theta):
+        _, gradient = target(theta)
+        for i, (lower, upper) in enumerate(bounds):
+            if theta[i] <= lower and gradient[i] > 0 or theta[i] >= upper and gradient[i] < 0:
+                gradient[i] = 0.
+        return float(np.max(np.abs(gradient)))
     result = minimize(target, start, jac=True, method='L-BFGS-B', bounds=bounds,
-                      options={'ftol': 1e-10, 'gtol': 1e-5, 'maxiter': 200, 'maxls': 100})
-    if not result.success:
-        result = minimize(lambda t: target(t)[0], result.x, method='Powell', bounds=bounds,
-                          options={'ftol': 1e-10, 'xtol': 1e-6, 'maxiter': 200})
-    if not result.success or not np.isfinite(result.fun) or result.fun >= 1e99:
-        raise ArithmeticError('raw-return Laplace conventional SV MAP failed')
+                      options={'ftol': 1e-12, 'gtol': 1e-8, 'maxiter': 200, 'maxls': 100})
+    evaluations = int(result.nfev)
+    if not result.success or projected_gradient(result.x) > 1e-6 or result.fun >= 1e99:
+        result = minimize(target, result.x if result.fun < 1e99 else start, jac=True,
+                          method='SLSQP', bounds=bounds,
+                          options={'ftol': 1e-12, 'maxiter': 200})
+        evaluations += int(result.nfev)
+    pg = projected_gradient(result.x)
+    if not result.success or not np.isfinite(result.fun) or result.fun >= 1e99 or pg > 1e-6:
+        raise ArithmeticError(f'Student-return Laplace MAP failed: {result.message}; projected gradient={pg}; theta={result.x}')
     level, p, e, u = result.x
     theta = (float(level), float(expit(p)), math.exp(e), float(u))
     likelihood, _, h, variance, success, iterations, decrement = likelihood_gradient(squared, *theta)
     if not success:
         raise ArithmeticError('raw-return conditional latent mode did not converge')
-    return theta, h, variance, {'success': True, 'evaluations': int(result.nfev),
-                               'objective': float(result.fun), 'loglikelihood': float(likelihood),
+    return theta, h, variance, {'success': True, 'evaluations': evaluations,
+                               'objective': float(result.fun * len(squared)), 'max_projected_mean_gradient': pg, 'loglikelihood': float(likelihood),
                                'latent_iterations': int(iterations), 'newton_decrement': float(decrement),
                                'latent_integration': 'Laplace approximation, tridiagonal Hessian',
                                'posterior_parameter_uncertainty': False, 'inverse_df': float(u),

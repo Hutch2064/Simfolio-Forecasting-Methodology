@@ -85,3 +85,18 @@ def test_century_mean_curve_remains_the_original_predecessor():
     assert expected.tobytes() == actual.tobytes()
     assert np.isfinite(paths).all()
     assert model.refit(data)['student_return_laplace_fit']['success']
+
+
+def test_map_fit_does_not_accept_stalled_gaussian_endpoint():
+    rng=np.random.default_rng(910)
+    h=np.empty(1000);h[0]=-.4
+    for i in range(1,len(h)):
+        h[i]=-.4+.95*(h[i-1]+.4)+.2*rng.normal()
+    eps=np.exp(.5*h)*rng.standard_t(5,len(h))*np.sqrt(3/5)
+    squared=eps*eps;proxy=np.log(np.maximum(squared,np.finfo(float).tiny))+1.2703628454614782
+    theta,_,_,diagnostics=student.fit(squared,proxy,(-.8,.3,1.33))
+    assert diagnostics['success']
+    assert diagnostics['max_projected_mean_gradient']<=1e-6
+    initial_gradient=student.likelihood_gradient(squared,-.8,.3,1.33,0.)[1]
+    assert np.max(np.abs(initial_gradient))/len(squared)>1e-3
+    assert 0<=theta[3]<.5
