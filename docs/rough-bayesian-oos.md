@@ -1,8 +1,8 @@
 # Joint Bayesian rough volatility candidates
 
 Nine new asset-level candidates are implemented in `tools/rough_bayesian` and
-included in both public catalogues. The canonical catalogue now has 199 entries;
-the broader active research catalogue has 391. The eight-factor Bayesian upgrade
+included in both public catalogues. The canonical catalogue now has 201 entries;
+the broader active research catalogue has 393. The eight-factor Bayesian upgrade
 and dynamic-resolution candidate completed their full panels; the fixed-resolution lift retains its stopped partial
 results. Other aggregate scores remain blank until their complete panels finish.
 The existing production Frontier
@@ -233,7 +233,7 @@ OPENBLAS_NUM_THREADS=1 NUMBA_NUM_THREADS=1 python tools/rough_bayesian/run_panel
 | Full-panel model | Exact empirical CRPS |
 |---|---:|
 | Dynamic-resolution rough | 0.25074679212444156 |
-| Previous eight-factor rough (MAP rough parameters) | 0.2511998559613309 |
+| Previous eight-factor rough (MAP rough parameters) | 0.2512018559613309 |
 | Eight-factor Bayesian upgrade | 0.2522081419138852 |
 | Production Frontier | 0.25246784959071183 |
 | Production Default, matching saved cell replay | 0.292821259593872 |
@@ -695,10 +695,20 @@ proof. None yet satisfies the requested minimum 1% score breakthrough; the best
 recorded worker-time reduction is about 15%, awaiting a matched timing comparison.
 
 
-Canonical M194–M199 retain all six completed volatility ablations in both catalogues.
+Canonical M194–M201 retain all six completed volatility ablations in both catalogues.
 The joint-noise arm estimates log measurement variance as an unpenalized Gaussian
 quasi-likelihood nuisance parameter alongside the three rough MAP parameters.
 It includes the observation-scaling likelihood Jacobian. Bounds of initial
 empirical log variance plus/minus 20 are numerical guards. Its forecast uses the
 fitted noise variance in the terminal filter. It was slower and less accurate,
 so the additional fitted parameter is rejected for this research direction.
+
+
+The subsequent spectral-inference tests retain M197’s causal conventional-SV residual observations, empirical measurement variance, and stationary normalization. Only rough-parameter estimation changes. M200 uses the debiased Whittle pseudolikelihood on demeaned observations, omitting frequency zero. M201 uses first differences and includes every frequency, with the induced MA(1) measurement-noise covariance treated explicitly. Real zero/Nyquist ordinates have half weight; conjugate pairs have unit weight, restoring the Gaussian likelihood scale before adding the unchanged priors. Both use exact finite-sample expected periodograms of the dynamically resolved covariance, without frequency subsampling. Terminal state filtering and future path generation remain the undifferenced conditional Gaussian model. This is approximate frequency-domain inference, not exact likelihood or full Bayesian parameter integration. See [Sykulski et al. (2019), sections 4.1–4.2](https://doi.org/10.1093/biomet/asy071).
+
+| Candidate | Full canonical CRPS | Improvement versus M193 | Recorded 12-worker wall time |
+|---|---:|---:|---:|
+| M200: debiased Whittle | 0.249657155081818 | 0.883% | 119.12 s |
+| M201: differenced debiased Whittle | 0.24972187973628046 | 0.857% | 103.78 s |
+
+All 8,160 origin vectors independently reconstruct the two 701,280-cell score vectors byte-for-byte; source revisions, cell arrays, fit diagnostics, and portfolio results are bound in `docs/results/rough-bayesian/spectral-rough-panels.json`. Local recorded worker times compare against M193’s 136.82-second panel and do not establish website latency. Neither candidate reaches a 1% score improvement versus M193.
