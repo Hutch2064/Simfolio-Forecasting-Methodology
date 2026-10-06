@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **240 models**: the original 175 plus fifty-five
+The canonical catalogue contains **241 models**: the original 175 plus fifty-six
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–240 and no historical source rank.
+indices 176–241 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 240 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 241 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -173,3 +173,5 @@ M238 learns multiscale decay rates with one fitted conventional EWMA component. 
 M239 learns multiscale decay rates without percentile clipping of the rough observation proxy. Full-panel CRPS: **0.24202526341064862**, cold research elapsed time **145.4038729169988 seconds**.
 
 M240 learns multiscale decay rates with a causal learned-multiscale rough observation offset. Full-panel CRPS: **0.24269856328739714**, cold research elapsed time **149.45633587497286 seconds**.
+
+M241 learns multiscale decay rates in a joint Gaussian conventional/rough state model with retained stationary normalization. Full-panel CRPS: **0.24296927753915046**, cold research elapsed time **158.02270416601095 seconds**.

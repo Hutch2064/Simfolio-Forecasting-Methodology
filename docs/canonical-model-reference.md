@@ -1,14 +1,14 @@
-# Canonical model reference (240 models including the original 175)
+# Canonical model reference (241 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **240** rows, canonical ranks **1–240**.
+- Membership: **241** rows, canonical ranks **1–241**.
 - Retained source ranks: **12–186**.
-- Membership digest: `2172f245c1e23663536c6c0a3531c30639b1d135604c4c0e17356bfe3d01896e`.
+- Membership digest: `d8cb9301ae8acea785933d3c105ced8f91e34e741d77d6217b9d2d404c5a6d4e`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **240**.
+- Confirmed full statistical specifications: **241**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -254,3 +254,4 @@ The ledger is the sole membership authority for this public set.
 | 238 | None | asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough | M238 — Asset MAP Single Predictive Loading + Full Hurst Rough + Untruncated Dynamic Rough | asset_level_extension | 0.24188836805455496 | 0.241888368 | true | validated_full_canonical_score |
 | 239 | None | asset_map_adaptive_predictive_loading_full_hurst_unclipped_dynamic_rough | M239 — Asset MAP Adaptive Predictive Loading + Unclipped Full Hurst Rough + Untruncated Dynamic Rough | asset_level_extension | 0.24202526341064862 | 0.242025263 | true | validated_full_canonical_score |
 | 240 | None | asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough | M240 — Asset MAP Adaptive Predictive Loading + Learned Multiscale Offset + Full Hurst Rough + Untruncated Dynamic Rough | asset_level_extension | 0.24269856328739714 | 0.242698563 | true | validated_full_canonical_score |
+| 241 | None | asset_map_joint_gaussian_multiscale_rough_stationary_normalized | M241 — Asset MAP Joint Gaussian Multiscale + Dynamic Rough, Stationary Normalized | asset_level_extension | 0.24296927753915046 | 0.242969278 | true | validated_full_canonical_score |
