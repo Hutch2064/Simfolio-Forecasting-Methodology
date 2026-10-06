@@ -11,7 +11,6 @@ from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
-from numba import njit
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[1]
@@ -19,16 +18,9 @@ spec=importlib.util.spec_from_file_location('consistent_noise_private_m210',ROOT
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
 parent.SOURCE=hashlib.sha256((parent.SOURCE+''.join(hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(HERE.glob('*.py')))).encode()).hexdigest()
 
-@njit(cache=True,nogil=True)
-def causal_predictor(y,level,phi,eta,noise):
-    result=np.empty(y.size);mean=level
-    variance=max(eta*eta/max(1-phi*phi,1e-4),1e-6)
-    for t in range(y.size):
-        result[t]=mean
-        gain=variance/(variance+noise)
-        mean=level+phi*(mean+gain*(y[t]-mean)-level)
-        variance=phi*phi*max((1-gain)*variance,1e-8)+eta*eta
-    return result
+sys.path.insert(0, str(HERE))
+from causal_noise import causal_predictor
+
 
 @lru_cache(maxsize=64)
 def observed(data):
@@ -50,7 +42,10 @@ class Candidate(parent.Candidate):
                 record['conventional_parameter_fit']='unchanged original Gaussian-noise MAP; two-stage plug-in offset only'
         return result
 
-initialize=parent.initialize
+def initialize(cache_root=None, vine_threads=1, state_workers=1):
+    parent.initialize(cache_root, vine_threads, state_workers)
+    causal_predictor(np.zeros(3), 0., .9, .2, 4.934802200544679)
+
 CANDIDATES=(Candidate(model_id='asset_map_multiscale_consistent_empirical_noise_differenced_rough_map'),)
 MODEL_IDS=(parent.MODEL_IDS[0],CANDIDATES[0].model_id)
 clear_path_cache=parent.clear_path_cache

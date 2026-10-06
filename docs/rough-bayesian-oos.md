@@ -792,3 +792,31 @@ A M212 ablation fits rough covariance to the raw log-square proxy, without a con
 A matched M216 candidate centers and scales empirical quantile nodes using the exact integrals of their piecewise-linear quantile function over uniform probabilities. An interval with endpoints a,b contributes mean (a+b)/2 and second moment (a²+ab+b²)/3; intervals have equal probability width. This replaces discrete equal-node moment normalization, without changing the quantile grid, return clipping, volatility fits, RNG or dependence. It guarantees reference-uniform innovation moments before clipping, not the conditional marginal moments of the unchanged dynamic copula. Four independent tests compare piecewise numerical integration and retain the original century-long mean curve. All five fresh/cached smoke vectors match exactly; two improve and three worsen against M216. [Smoke evidence](results/rough-bayesian/continuous-quantile-smokes.json).
 
 The interpolation-normalized arm is canonical **M217**, with full-panel CRPS **0.2475449989529358** and isolated fresh-cache time **110.8023822910036 seconds**. All 4,080 vectors reconstruct the 701,280 scored cells exactly, and all fitted optimizers converged. It trails M216. [Audited receipt](results/rough-bayesian/continuous-quantile-panel.json).
+
+### Raw-return sparse Laplace conventional-volatility screen
+
+The next asset-level candidate replaces the conventional Gaussian log-square
+quasi likelihood with Gaussian return observations and an AR(1) latent log
+variance. A tridiagonal Newton solve finds the conditional latent mode, and its
+Hessian determinant supplies a Laplace marginal likelihood. Analytic gradients
+include the mode's implicit dependence on the three conventional parameters.
+Those parameters use the predecessor's priors/support and MAP estimation; this
+is approximate latent-state integration, not full INLA or parameter-posterior
+integration. The construction follows the latent-Gaussian stochastic-volatility
+example in [Rue, Martino and Chopin (2009), section 5.3](https://doi.org/10.1111/j.1467-9868.2008.00700.x).
+
+The original mean curve, multiscale construction, empirical-return mapping,
+rough spectral target, dynamically resolved prediction kernel, dependence,
+seeds and scorer remain in place. The innovation pool is recalculated from the
+new historical state fit. Its empirical log-square variance calibrates the
+rough likelihood and causal conventional offset; the extra freely fitted
+observation-variance parameter from M216 is absent from this raw-return fit.
+Nine independent numerical/mean checks and five fresh/cached smokes passed.
+The hypothetical 100-year, 240-path asset guard preserved the mean curve and
+showed no systematic median-CAGR collapse on its six assets. Smoke scores are
+mixed and do not establish a full-panel ranking.
+
+The shared causal predictor now resides in an importable module, preserving
+its arithmetic while allowing compiled caches to survive different candidate
+module aliases. A two-process cache regression and all five saved M216 smoke
+loss vectors verify the cache repair without changing scores.

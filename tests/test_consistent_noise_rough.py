@@ -34,3 +34,25 @@ def test_original_noise_is_exact_and_current_observation_cannot_change_predictio
     a=model.causal_predictor(y,.2,.95,.3,2.);b=model.causal_predictor(changed,.2,.95,.3,2.)
     assert np.array_equal(a[:51],b[:51]);assert a[51]!=b[51]
     assert model.parent.streamed.predecessor_asset_paths is model.parent.streamed.base.predecessor_asset_paths
+
+
+def test_compiled_cache_is_reusable_between_candidate_module_aliases(tmp_path):
+    import os
+    import subprocess
+
+    root = Path(__file__).resolve().parents[1]
+    script = '''import hashlib, importlib.util, sys
+import numpy as np
+from pathlib import Path
+path = Path(sys.argv[1]) / 'tools/consistent_noise_rough/models.py'
+spec = importlib.util.spec_from_file_location(sys.argv[2], path)
+model = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = model
+spec.loader.exec_module(model)
+result = model.causal_predictor(np.arange(30, dtype=float), .2, .95, .3, 2.)
+print(hashlib.sha256(result.tobytes()).hexdigest())
+'''
+    env = dict(os.environ, NUMBA_CACHE_DIR=str(tmp_path / 'compiled-cache'), OPENBLAS_NUM_THREADS='1')
+    outputs = [subprocess.check_output([sys.executable, '-c', script, str(root), alias], env=env)
+               for alias in ('first_candidate_alias', 'second_candidate_alias')]
+    assert outputs[0] == outputs[1]
