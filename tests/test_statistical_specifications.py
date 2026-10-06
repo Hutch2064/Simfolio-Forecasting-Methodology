@@ -54,7 +54,7 @@ def test_resolved_spec_scope_and_family_membership_are_exact():
     assert len(expected_base) == 84
     assert len(expected_mcmc) == 40
     assert len(resource["portfolio_model_ids"]) == 50
-    assert len(expected) == 208
+    assert len(expected) == 209
     assert resource["scope"] == "canonical_175_resolved_statistical_definitions"
     assert "ledger_bound_model_ids" not in resource
     assert "staged_model_ids" not in resource
