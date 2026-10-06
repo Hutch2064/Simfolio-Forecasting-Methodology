@@ -114,3 +114,18 @@ def test_predictive_loading_selects_by_penalized_target(model):
     assert record['negative_loglikelihood']<=record['initial_negative_loglikelihood']+1e-7
     assert record['bic_parameter_count']==2*len(rates)+4
     assert record['selected_bic']==min(x['bic'] for x in record['tested_orders'])
+
+
+def test_full_hurst_domain_retains_interior_prior_and_mean():
+    path=Path(__file__).resolve().parents[1]/'tools/learned_loading_full_hurst_rough/models.py'
+    spec=importlib.util.spec_from_file_location('test_learned_loading_full_hurst',path)
+    m=importlib.util.module_from_spec(spec);sys.modules[spec.name]=m;spec.loader.exec_module(m)
+    theta=np.array([.1,np.log(1/63),np.log(.7)])
+    assert m.log_prior(theta)==0.
+    for h in (.001,.499):
+        theta[0]=h;assert m.log_prior(theta)==0.
+        spectrum=m.rough.backend.unit_expected_periodogram(h,theta[1],100)
+        assert np.isfinite(spectrum).all() and (spectrum>0).all()
+    for h in (0.,.5):
+        theta[0]=h;assert m.log_prior(theta)==-np.inf
+    assert m.map_impl.physical(np.array([.2,0.,0.]))[0]==.1

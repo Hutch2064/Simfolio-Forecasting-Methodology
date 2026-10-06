@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **234 models**: the original 175 plus forty-nine
+The canonical catalogue contains **236 models**: the original 175 plus fifty-one
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–234 and no historical source rank.
+indices 176–236 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 234 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 236 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -161,3 +161,7 @@ M232 learns multiscale decay rates while retaining four components to isolate ra
 M233 learns multiscale decay rates with exactly one learned EWMA component as a matched control. Full-panel CRPS: **0.2427871001627023**, cold research elapsed time **154.94550479203463 seconds**.
 
 M234 learns multiscale decay rates without median loading shrinkage. Full-panel CRPS: **0.2437557969452693**, cold research elapsed time **143.57121374999406 seconds**.
+
+M235 learns multiscale decay rates without median loading shrinkage. Full-panel CRPS: **0.2434399646252218**, cold research elapsed time **150.88841825001873 seconds**.
+
+M236 learns multiscale decay rates with data-fitted predictive loading contraction. Full-panel CRPS: **0.24169600516723397**, cold research elapsed time **158.23470458301017 seconds**.
