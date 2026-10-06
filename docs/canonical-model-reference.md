@@ -1,14 +1,14 @@
-# Canonical model reference (230 models including the original 175)
+# Canonical model reference (232 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **230** rows, canonical ranks **1–230**.
+- Membership: **232** rows, canonical ranks **1–232**.
 - Retained source ranks: **12–186**.
-- Membership digest: `ad36ba7a217988bc8d8ffcc96b64b88fe3418ff0fe20531f9d42f0eded52cc06`.
+- Membership digest: `8bac2d94bdb516ca702aace424b7e7ea8de2b19839c15adbf3b7a6c66d9fbfd3`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **230**.
+- Confirmed full statistical specifications: **232**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -244,3 +244,5 @@ The ledger is the sole membership authority for this public set.
 | 228 | None | asset_map_multiscale_predictor_offset_untruncated_dynamic_rough | M228 — Asset MAP Multiscale Predictor Offset + Untruncated Dynamic Rough | asset_level_extension | 0.2452184293792364 | 0.245218429 | true | validated_full_canonical_score |
 | 229 | None | asset_map_unclipped_log_proxy_untruncated_dynamic_rough | M229 — Asset MAP Unclipped Log Proxy + Untruncated Dynamic Rough | asset_level_extension | 0.24425777495214046 | 0.244257775 | true | validated_full_canonical_score |
 | 230 | None | asset_map_student_continuous_quantile_untruncated_dynamic_rough | M230 — Asset MAP Student Continuous Quantile + Untruncated Dynamic Rough | asset_level_extension | 0.24838433757645187 | 0.248384338 | true | validated_full_canonical_score |
+| 231 | None | asset_map_adaptive_multiscale_rates_untruncated_dynamic_rough | M231 — Asset MAP Adaptive Multiscale Rates + Untruncated Dynamic Rough | asset_level_extension | 0.24289420743117274 | 0.242894207 | true | validated_full_canonical_score |
+| 232 | None | asset_map_learned_multiscale_rates_untruncated_dynamic_rough | M232 — Asset MAP Four Learned Multiscale Rates + Untruncated Dynamic Rough | asset_level_extension | 0.41701921590549546 | 0.417019216 | true | validated_full_canonical_score |

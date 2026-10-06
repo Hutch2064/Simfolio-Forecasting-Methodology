@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **230 models**: the original 175 plus forty-five
+The canonical catalogue contains **232 models**: the original 175 plus forty-seven
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–230 and no historical source rank.
+indices 176–232 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 230 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 232 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -153,3 +153,7 @@ M228 retains M227 with an existing multiscale one-step prediction as its rough f
 M229 removes percentile clipping from the M227 rough observation proxy, retaining its finite near-zero floor and all other components. Full-panel CRPS: **0.24425777495214046**.
 
 M230 normalizes the M227 interpolated innovation quantile by exact reference-uniform moments. Full-panel CRPS: **0.24838433757645187**.
+
+M231 learns multiscale decay rates and selects their count per asset by forward conditional BIC. Full-panel CRPS: **0.24289420743117274**, cold research elapsed time **145.81819229200482 seconds**.
+
+M232 learns multiscale decay rates while retaining four components to isolate rate-location learning. Full-panel CRPS: **0.41701921590549546**, cold research elapsed time **181.41140141600044 seconds**.

@@ -116,3 +116,13 @@ local forward search, not a global guarantee over all possible orders.
                   bic_parameter_count=2 * len(rates) + 3,
                   bic_interpretation='conditional approximate model selection on fitted latent proxy; not joint raw-return Bayes evidence')
     return rates, record
+
+
+def fit_one(h, initial_phis):
+    """Matched one-component control using the adaptive search's initial fit."""
+    h = np.asarray(h, float); centered = h - np.mean(h)
+    rho = float(np.dot(centered[:-1], centered[1:]) / np.dot(centered[:-1], centered[:-1]))
+    first = np.array([np.clip(rho, np.finfo(float).eps, 1. - np.finfo(float).eps)])
+    rates, record = fit(h, first)
+    record['count_selection'] = 'fixed_one_learned_decay_control'
+    return rates, record

@@ -71,3 +71,14 @@ def test_adaptive_order_uses_penalized_conditional_likelihood(model):
     assert tested[0]['count']==1
     assert receipt['selected_bic']==min(x['bic'] for x in tested)
     assert len(tested)==len(rates)+1
+
+
+def test_single_component_matches_adaptive_first_fit(model):
+    rng=np.random.default_rng(70);h=np.empty(600);h[0]=0.
+    for i in range(1,len(h)):h[i]=.85*h[i-1]+rng.normal(scale=.15)
+    adaptive,receipt=model.rate_fit.fit_adaptive(h,np.array([.9,.95,.98,.99]))
+    single,control=model.rate_fit.fit_one(h,np.array([.9,.95,.98,.99]))
+    assert len(adaptive)==len(single)==1
+    assert adaptive.tobytes()==single.tobytes()
+    assert receipt['negative_loglikelihood']==control['negative_loglikelihood']
+    assert control['count_selection']=='fixed_one_learned_decay_control'
