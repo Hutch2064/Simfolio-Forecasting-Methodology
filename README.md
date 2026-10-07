@@ -203,3 +203,5 @@ M253/M254 retain M250/M251 fitted market models and test randomized Latin hyperc
 M255 preserves M251 asset forecasts and tests conditional Gaussian corrected-DCC return dependence. Audited full-panel CRPS: **0.22705549647165937**.
 
 M256 preserves M255 asset forecasts and tests conditional Student corrected-DCC return dependence. Audited full-panel CRPS: **0.22687132859413414**.
+
+M256 numerical optimization retains the statistical model and its #1 ranking: **0.22687131940042085** on a fresh complete panel, **296.861 seconds** cold wall versus the original **2042.084 seconds**. The saved M193 comparator is still faster at **125.727 seconds**. Historical catalogue scores remain unchanged; output differences and all tested speed alternatives are recorded in the [optimization audit](docs/results/rough-bayesian/m256-speed-optimization.json).

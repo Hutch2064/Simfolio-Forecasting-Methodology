@@ -1,0 +1,1494 @@
+{
+  "scope": "M256_numerical_speed_optimization_full_canonical",
+  "model_id": "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough",
+  "numerical_source_revision": "acc5e8e4212b57f152df39a09016606bc08180c0",
+  "original_numerical_source_revision": "be587b6afdbfa052d430da6588e891a7bdb6d655",
+  "statistical_model_changed": false,
+  "production_changed": false,
+  "audit": {
+    "numerical_source_revision": "acc5e8e",
+    "harness": "unchanged canonical 80 portfolios, 48 rolling origins plus three temporal holdouts, 4080 tasks, 701280 equal portfolio-horizon cells, 240 simulations, 1979-12-31 start",
+    "manifest_task_identity_inputs_seeds_scoring_and_snapshot_match_all_comparators": true,
+    "source_hashes_match_validated_checkout": true,
+    "records": {
+      "optimized_M256": {
+        "score": 0.22687131940042085,
+        "elapsed_seconds": 296.8614311660058,
+        "worker_seconds": 3434.5729808707256,
+        "manifest_sha256": "d5e822bc7a2ecc50d8e7558022373a251cd2ba8a41953b5cb68793cc3ecb3108",
+        "manifest_file_sha256": "9d1d2d1ec54c808a3dd79ab8d20966f7b25f5d7b52a6d4b3d61ae64a65e7eb1c",
+        "paired_cells_sha256": "a42195630af653201a0a555e75b8ebf3043643d9305c6f16fa813a2d81a52a58",
+        "all_4080_loss_vectors_finite": true,
+        "all_701280_cells_independently_rebuilt_byte_exact": true
+      },
+      "original_M256": {
+        "score": 0.22687132859413414,
+        "elapsed_seconds": 2042.0841380420025,
+        "worker_seconds": 24362.233304344816,
+        "manifest_sha256": "5712394ab74618e053dda96862da7c5e0d2d6fa0d21132a9a2fbfe7b3e995638",
+        "manifest_file_sha256": "4dbe0f655e9651027e892f8726a7976e1470c60c9f267bcc5a16ff87091a2563",
+        "paired_cells_sha256": "469274af96785af39cd256cc36037e76ae4fcf19a5bd820af138605b37fa05e1",
+        "all_4080_loss_vectors_finite": true,
+        "all_701280_cells_independently_rebuilt_byte_exact": true
+      },
+      "M255": {
+        "score": 0.22705549647165937,
+        "elapsed_seconds": 844.1061270409846,
+        "worker_seconds": 9996.92824752495,
+        "manifest_sha256": "b9b678930680c8bd319cfa7056d5f8a05372a6706b62876b59ab57c1586eef85",
+        "manifest_file_sha256": "f744c1cfc54cb3e24ba8daf1003a9f6d5e0aba94922e71f82979ed46aa293500",
+        "paired_cells_sha256": "87b2deeb89697c0fa4cf8a4ea2c04a92e17c488c432a375515a875066c482873",
+        "all_4080_loss_vectors_finite": true,
+        "all_701280_cells_independently_rebuilt_byte_exact": true
+      },
+      "M193": {
+        "score": 0.2518812750312293,
+        "elapsed_seconds": 125.72699987504166,
+        "worker_seconds": 1442.8576952253934,
+        "manifest_sha256": "04a7b4181239a1ee472356a608edd7d31f8bed9880c219152e39d6faf11d09ed",
+        "manifest_file_sha256": "c4e75e57d4a70bc385f0a8039ec16a71d6a34ae6aebee0a229493e8e328469d3",
+        "paired_cells_sha256": "34156d524853cf92b72730085b6349bae9ac5bebedf5cef584bf207971ea7d38",
+        "all_4080_loss_vectors_finite": true,
+        "all_701280_cells_independently_rebuilt_byte_exact": true
+      }
+    },
+    "comparison": {
+      "original_M256": {
+        "relative_score_improvement": 4.0523910005418884e-08,
+        "portfolio_wins": 47
+      },
+      "M255": {
+        "relative_score_improvement": 0.0008111544274441718,
+        "portfolio_wins": 41
+      },
+      "M193": {
+        "relative_score_improvement": 0.09929263549943368,
+        "portfolio_wins": 55
+      }
+    },
+    "original_M256_parity": {
+      "asset_fit_diagnostic_records_exact_excluding_elapsed_and_changed_dependence_fit": 24480,
+      "byte_exact": false,
+      "maximum_absolute_origin_horizon_loss_difference": 0.0013169920115885247,
+      "largest_difference_task": 2200,
+      "mean_absolute_origin_horizon_loss_difference": 5.022125460594556e-08,
+      "maximum_absolute_paired_cell_difference": 3.062772259403157e-05,
+      "absolute_aggregate_score_difference": 9.193713290667205e-09
+    }
+  },
+  "result": {
+    "all_denominator_gates_passed": true,
+    "baseline_every_loss_vector_byte_exact": false,
+    "elapsed_seconds": 296.8614311660058,
+    "manifest_sha256": "d5e822bc7a2ecc50d8e7558022373a251cd2ba8a41953b5cb68793cc3ecb3108",
+    "paired_cells_sha256": "a42195630af653201a0a555e75b8ebf3043643d9305c6f16fa813a2d81a52a58",
+    "portfolios": 80,
+    "rolling_origins_per_portfolio": 48,
+    "scope": "full_canonical_asset_level_ablations",
+    "scores": {
+      "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough": {
+        "cells": 701280,
+        "exact_empirical_crps": 0.22687131940042085,
+        "relative_improvement_vs_production": 0.10138530601732776,
+        "summed_worker_seconds": 3434.5729808707256,
+        "tasks": 4080,
+        "timings": {
+          "asset_predictive_paths": 711.3102517247899,
+          "dependence_paths": 1980.8420078064664,
+          "fit_phase_wall": 544.4041639716015,
+          "rough_fit_worker": 270.84633464878425
+        }
+      }
+    },
+    "simulations": 240,
+    "temporal_holdouts_per_portfolio": 3
+  },
+  "manifest_summary": {
+    "baseline_reference_manifest": "5712394ab74618e053dda96862da7c5e0d2d6fa0d21132a9a2fbfe7b3e995638",
+    "cell_count": 701280,
+    "common_end": "2026-05-13",
+    "common_start": "1979-12-31",
+    "models": [
+      {
+        "fit_seconds": 10.0,
+        "model_id": "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough"
+      }
+    ],
+    "native_binary_sha256": "d6062ebc1e6775b8ee242454176f4b81357f435facd081e0a2569b28397afc50",
+    "numba": "0.67.0",
+    "numpy": "2.5.3",
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "portfolio_count": 80,
+    "python": "3.12.13",
+    "pyvinecopulib": "0.7.5",
+    "scipy": "1.18.1",
+    "scope": "full_canonical",
+    "scoring": "unchanged empirical_crps_by_horizon and CellAccumulator; terminal log returns; n squared pairwise denominator; equal portfolio-horizon cells",
+    "simulations": 240,
+    "snapshot": {
+      "common_date_count": 11687,
+      "common_end": "2026-05-13",
+      "common_start": "1979-12-31",
+      "dataset_id": "simfolio-canonical-simulated-returns-2026-05-13",
+      "factor_inputs": [
+        "french_daily",
+        "q5_daily"
+      ],
+      "normalized_return_matrix_sha256": "52c5bdd96b39762183ef0c204fa8165c2dfd5a4864e7198662615daddb8d6a49",
+      "redistribution_status": "user_authorized_exact_snapshot",
+      "rights_status": "caller_authorized_local_use",
+      "series_count": 52,
+      "source_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "supporting_series": [
+        "BNDSIM",
+        "CASHX",
+        "EFFRX",
+        "KMLMSIM",
+        "TIPSIM",
+        "UUPSIM"
+      ],
+      "verified": true
+    },
+    "source_hashes": {
+      "corrected_dcc_native_binary": "e51292674b96c01a6f3b156816b39720984ed88dc9681f2e3bb7fb12a9b32a92",
+      "rough_filter_native_binary": "e80c67e337e27ce461c50f53a1dfe3ee3a800c3b6bc0970e91aea633e1542b71",
+      "rough_streamed_native_binary": "30b9888028e29addd88b13829eb47fdf05585f3bcacc80acc2f492b02298a15e",
+      "src/simfolio_forecasting_methodology/__init__.py": "def6546c35ef77d344a5dcd5158185c8fc11d1e58a4196e2d35c3270b590d621",
+      "src/simfolio_forecasting_methodology/candidate_registry.py": "535d55b3b8878e429b9400319c0d67a9cbfd28b1a37c927b29b9a70301d80c01",
+      "src/simfolio_forecasting_methodology/catalog.py": "8d3f495d38b3fa6f3de412bd049864fa00efae096d64d6de3a2b12ca5f69918a",
+      "src/simfolio_forecasting_methodology/catalogue.py": "844ed1b78b3eb3ab9e794b5eeacb6729b783f18455eeb258e493a45fd66fbd67",
+      "src/simfolio_forecasting_methodology/cli.py": "3e48a1cc5cf9bf020b9ba6823be8b1cf59076a896226fff0761576400b52ff7b",
+      "src/simfolio_forecasting_methodology/data.py": "f637f8ad2c8b8013f0d222a9dbc4a95ebcd628a774d3ae10fc1e9b672fe894a0",
+      "src/simfolio_forecasting_methodology/evaluation.py": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8",
+      "src/simfolio_forecasting_methodology/experiment.py": "5052939638c0a2adeb4abffb1258078bee31710c6796623957a9c2a7b73756aa",
+      "src/simfolio_forecasting_methodology/models/__init__.py": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b",
+      "src/simfolio_forecasting_methodology/models/asset_level/__init__.py": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4",
+      "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+      "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6",
+      "src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+      "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997",
+      "src/simfolio_forecasting_methodology/models/numerical/__init__.py": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1",
+      "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7",
+      "src/simfolio_forecasting_methodology/models/numerical/base_models.py": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31",
+      "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "e638a246b3bc466f426deac5bf80eb78f6b87895e6a1501396e7e82995d65daa",
+      "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+      "src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b",
+      "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+      "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+      "src/simfolio_forecasting_methodology/models/portfolio/__init__.py": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4",
+      "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952",
+      "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1",
+      "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d",
+      "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+      "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f",
+      "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d",
+      "src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+      "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3",
+      "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0",
+      "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040",
+      "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab",
+      "src/simfolio_forecasting_methodology/models/registry.py": "6f45544cc87158a9157ff693e228443d18497881c1346c960bb0838a6c3e9257",
+      "src/simfolio_forecasting_methodology/naming.py": "dc505a2f90733ca274f21e19fc23ffa2478e1fef006e1fd0d82bd9258d50c10e",
+      "src/simfolio_forecasting_methodology/origins.py": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8",
+      "src/simfolio_forecasting_methodology/panel.py": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b",
+      "src/simfolio_forecasting_methodology/protocol.py": "585b61ab2d50a8bbcedfd968925f4cb185816fb4dc04c1ce889bff8e59b7ca4d",
+      "src/simfolio_forecasting_methodology/results/__init__.py": "abc0f81b3e13757874d55214c08865f2d5cd75f177792f5cc430bf9ee5da5fcd",
+      "src/simfolio_forecasting_methodology/results/aggregate.py": "c28290b61a6928d8318aa827c25ac1a69b64f18a90269a571037ad8dcba8fc4f",
+      "src/simfolio_forecasting_methodology/results/checkpoint.py": "e2315bb83384863418e5cd217b2e01570772acc39aedc4d64edaaae336419228",
+      "src/simfolio_forecasting_methodology/results/executor.py": "c8d9ea263ac056d0ee459c76154d36e67e20403664c0e078a12f85268c155649",
+      "src/simfolio_forecasting_methodology/results/retained.py": "831aa1ab5eecdd90f3baa9867e325c2b9aeedcacd74085aae8bf899f5bc3edf4",
+      "src/simfolio_forecasting_methodology/results/verified_candidate_scores.py": "41c4747c033d9e4b5c4316a648843d0d2f18ccf9bc0dea8ba9ab2f8c5037eabf",
+      "src/simfolio_forecasting_methodology/runner.py": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac",
+      "src/simfolio_forecasting_methodology/safety_scan.py": "cf0fad7e64e0da30dec4dc036ee85aed8da7b7dba501834bfc07d3648771275e",
+      "src/simfolio_forecasting_methodology/scores.py": "cea57fdb1fb852ed05a74fc76342b64dee3c4f84f21e1d1c2d6cfbd51e5187d9",
+      "src/simfolio_forecasting_methodology/scoring.py": "f3aca289c3639d8a6d94ebdfdfe669e58dc3b021e811e24dacacf219babcb487",
+      "src/simfolio_forecasting_methodology/seeds.py": "7132858e92d0f152a6827f5133409f26775c5834cf6ff23a79d7b5082574371e",
+      "src/simfolio_forecasting_methodology/smoke.py": "ad425afae0c2a709f21258445087cfb3f4e474ce27f6b59d3ee323a4e86b7d5c",
+      "src/simfolio_forecasting_methodology/specifications.py": "eab58d12c1b1bc3aa864a7edd3f7a60ef16dfb053e40d845fab85870a42eed45",
+      "tools/conditional_empirical_rough/models.py": "fc511ec8317783eb466df0308b1559ff25504857fee50c9f2eb9ca476ac08fd3",
+      "tools/conditional_empirical_rough/run_panel.py": "7cedf3be346ec1289e28abc7ab88f8f18f0f6740ba811777faadb1ce94288253",
+      "tools/conditional_empirical_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/conditional_residual_rough/models.py": "024704d67a785fd198c72d8c69b3f73b991e513c613bc8f3f610852708e6e2c4",
+      "tools/conditional_residual_rough/run_panel.py": "362055f5bf5b039d0724202d6d7ffc2dc82e924f3e75bf89023c833ce4669b66",
+      "tools/conditional_residual_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/consistent_noise_rough/causal_noise.py": "1ac4a030f4fd8494a09a44d483208d21e84fb8b2a4b0948f20ae7505d059eea5",
+      "tools/consistent_noise_rough/models.py": "1d39a0721f24a5d5c6acbc25f909e4a33f86b73bde5138b9f136a51430083be1",
+      "tools/consistent_noise_rough/run_panel.py": "5778dede3e12d9d3b4d42e426a8c67ed1ee2f60dee752d056d771aa23d7c8578",
+      "tools/consistent_noise_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/corrected_dcc_innovation_copula/cdcc_native.py": "aadcfc45cb906046b57cc410c38f280689720123f574fe0584b71c7392605866",
+      "tools/corrected_dcc_innovation_copula/cdcc_state.py": "a7c0238a3704242886d352d4a027f72c2a13d175a899032e6a23b3c3395b5b48",
+      "tools/corrected_dcc_innovation_copula/models.py": "6e6d5ae0ffa61cb8c257da8b75db4163783e2b1fcc3fbefb62aba3fab4372bd9",
+      "tools/corrected_dcc_innovation_copula/paths.cpp": "ba2be95281e987106fe2a8f2d117094e0d7a2f89d89a3317d80eef5aedd14cb0",
+      "tools/corrected_dcc_innovation_copula/run_panel.py": "61aac71a27392b61e7212bc8777c049d814a6d843d2058a7492fe15865ec6e86",
+      "tools/corrected_dcc_innovation_copula/screen.py": "75d5461ee243948c3765adecfe6995fd46b296c497125d02cd08fe4b1db27292",
+      "tools/coupled_multiscale_rough/coupled_native.py": "3e78cc334c11b42e66f6d0958060214e2d52d4ad5d89f6023b5d287683235df3",
+      "tools/coupled_multiscale_rough/models.py": "923128e886546d080fe9649a3cd4c281d477cf92fcc55ebd45dd3402df97ac4f",
+      "tools/coupled_multiscale_rough/paths.cpp": "478119f866216b6304157430ae3e17e04cf518ee3c61c1e19a104144fa56ca4d",
+      "tools/coupled_multiscale_rough/run_panel.py": "0cc4ca2e50fc4c54bca53275ef761cd2dc053b1a6aa8bd255f66259a593ad399",
+      "tools/coupled_multiscale_rough/screen.py": "3cb472cbd4d3e1e92c6e3815c527875eeb808778d4f87cb2546e80c93cc4686b",
+      "tools/coupled_multiscale_rough/state.py": "6c3ffb1297b81bf7cd472b5097b6a785134a135461c59dc03418c19e480d38fa",
+      "tools/debiased_whittle_rough/debiased_whittle_kernel.py": "49b308586ed51ad8c9ca7ba5e33aa5552ec6aa53dd80d597eafbe8d78094778c",
+      "tools/debiased_whittle_rough/models.py": "8bac9e0cfc99cd9a09aee5ae04e61c2857b0ddddc0dcb8edbc2487dc9cb60a9d",
+      "tools/debiased_whittle_rough/run_panel.py": "0d32e0330ff22262d06a23fb8fd063d4615dd0f308023ca798937cf384aab063",
+      "tools/debiased_whittle_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/differenced_whittle_rough/differenced_whittle_kernel.py": "ba6ed0932cef1c35e92e9aa6fe0fc6c69f72d477264adcb594e31920d384f7e1",
+      "tools/differenced_whittle_rough/models.py": "dbe8249143e6675dc233c2dea94a0df4c0d13931745fca4ab8d4d1bbb2c93de6",
+      "tools/differenced_whittle_rough/run_panel.py": "61a611e77b06138cbb421baf570eb43bc894012b5d5aa7ac70a2bab8cb7d3699",
+      "tools/differenced_whittle_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/dynamic_rough_inference/models.py": "0b3e0bcceb24ecbbd424eab2acb7a755443df09e0419b39e53fdbe8e19a0a1b2",
+      "tools/dynamic_rough_inference/posterior.py": "7854e7a65b2250ccf9e60e8edb3b7ddd9f027405fd3fe8d9e1d25d07c41eb785",
+      "tools/dynamic_rough_inference/progress.py": "4538d4336190b5395cc3500131da34867c0b3ee17c7021b76f6eb54f294fb5ed",
+      "tools/dynamic_rough_inference/run_panel.py": "a9250471852ec401c201558df5ea8a1ee12a3b23cf426943a0fa037fe1182139",
+      "tools/dynamic_rough_inference/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/empirical_rough_noise/models.py": "55698afe1d1d11815fa711e99efb5fa502a7dc7732e44412f6b4f066fe24e475",
+      "tools/empirical_rough_noise/run_panel.py": "f32ea907ffc5245ef4cb33f49a525cd813022c50398b582012b41fc83af8c498",
+      "tools/empirical_rough_noise/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/innovation_shrinkage_copula_rough/innovation_alignment.py": "896f0cbbf0a88aef09c0453697a510bac0f817a58685ca3d15155ee305c76cdd",
+      "tools/innovation_shrinkage_copula_rough/models.py": "148bc4e112bbe421ba93407630f1744ffe37ff328c451178bab0e5126afbfed1",
+      "tools/innovation_shrinkage_copula_rough/run_panel.py": "df162b47faa6b9bdb58ac44d8a76eb840b5d398cfbefad7f76361bfcede2645c",
+      "tools/innovation_shrinkage_copula_rough/screen.py": "62a608023403176f23c359055ea41a8c982897afa4652b0e384c9525a8392a88",
+      "tools/innovation_student_copula_rough/models.py": "2a9a887bfe413248df0147c4832b2ce0b530fec8d42e403a269ee2c403bd0ef8",
+      "tools/innovation_student_copula_rough/run_panel.py": "3b9a7464691dc823afe25b2d757a0416c73e3176ff1ce6633a107d4c1f1de4a8",
+      "tools/innovation_student_copula_rough/screen.py": "62a608023403176f23c359055ea41a8c982897afa4652b0e384c9525a8392a88",
+      "tools/learned_loading_full_hurst_rough/models.py": "01ac5e734237b687cbad4e33a70e6a6b984c9ec3f88315383eeec23d478f6b28",
+      "tools/learned_loading_full_hurst_rough/rough_map.py": "f6886ed8cd3ac22c3cef567a063d1afcc154691681df1d089048b22bbb3f46bf",
+      "tools/learned_loading_full_hurst_rough/run_panel.py": "a60eb30afffec53d66630fc18414c68eaa046d59db500880ef7fbb6d485d86a0",
+      "tools/learned_loading_full_hurst_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/learned_multiscale_rates_rough/components.py": "e82db9a9481b548eec4332dd7d837656f7783e497a790bde0bed44f95eba9713",
+      "tools/learned_multiscale_rates_rough/models.py": "b70dec9002317132877784b6d84fca8c5327bbe17e7e554d102caf722cc8ba0b",
+      "tools/learned_multiscale_rates_rough/rate_fit.py": "39998018e05560cfad524135c525590e959f475944d2e33e54f69d903cdad3f5",
+      "tools/learned_multiscale_rates_rough/run_panel.py": "7f59e38088371d36c9b63fd47aac280f19bf0ae61bef07a6781f340ffec33957",
+      "tools/learned_multiscale_rates_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/mcmc_runtime/benchmark_model_cases.py": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6",
+      "tools/mcmc_runtime/benchmark_scaling.py": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02",
+      "tools/mcmc_runtime/cached_dependence.py": "05ea1ca7c67003bfb8c217851e217558f770fd8a17ccf55c4f6ca0cdeac659fb",
+      "tools/mcmc_runtime/cached_moments.py": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b",
+      "tools/mcmc_runtime/compiled_chain.py": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059",
+      "tools/mcmc_runtime/compiled_map.py": "ff14eb242d8701b1dfdd067c63ab81de6d47dbd8b057786ce67b209a4b1a6b76",
+      "tools/mcmc_runtime/compiled_postburn.py": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c",
+      "tools/mcmc_runtime/compiled_smoothers.py": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46",
+      "tools/mcmc_runtime/complex_sv.py": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71",
+      "tools/mcmc_runtime/exact_path_kernels.py": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5",
+      "tools/mcmc_runtime/finite_multiscale.py": "5f444323af6696d06840a8f88695e482c2e64cec921a62b8bc486f42fbd30906",
+      "tools/mcmc_runtime/optimized_mcmc.py": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df",
+      "tools/mcmc_runtime/parallel_chains.py": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3",
+      "tools/mcmc_runtime/parameter_mcmc_tuned.py": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a",
+      "tools/mcmc_runtime/predictive_sv_candidates.py": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309",
+      "tools/mcmc_runtime/profile_runtime.py": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4",
+      "tools/mcmc_runtime/replay_full_panel.py": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca",
+      "tools/mcmc_runtime/research_jit_pilot.py": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e",
+      "tools/mcmc_runtime/runtime_setup.py": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665",
+      "tools/mcmc_runtime/steady_kalman_target.py": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394",
+      "tools/mcmc_runtime/streamed_paths.py": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa",
+      "tools/pathwise_multiscale_rough/models.py": "9c50bfe9a44be2732aad079d42e60992f35ace8cc99a7c3217ea10163300e73c",
+      "tools/pathwise_multiscale_rough/paths.cpp": "34e881ea3d64e8abe5dfc322845a41e8e51c4a0d493076b51d37e2b52778ebaa",
+      "tools/pathwise_multiscale_rough/pathwise_native.py": "add4ffa47987980b858e8593865c3207064630180398bb14d7da075e1173e8a8",
+      "tools/pathwise_multiscale_rough/run_panel.py": "57f6b51fb21757ba972edb2c124e05bfcf442aae65b91ca42e1fa7af6abff28a",
+      "tools/pathwise_multiscale_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/predictive_loading_rates_rough/models.py": "9ba5ed81d6ce5400eccb1063b27d61f459bdb7dd2990f02136de4f6ed2d3c909",
+      "tools/predictive_loading_rates_rough/run_panel.py": "512b6713ce6ee15faef0724f456d6b2d93dc849200f33b0c05ab6fe013b81431",
+      "tools/predictive_loading_rates_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/raw_return_laplace_rough/laplace_sv.py": "10864fc1d50efb3306c19480d534c0764e4ba1d1046d1494977cede898e5a533",
+      "tools/raw_return_laplace_rough/models.py": "fb7f3e4864d02a61d99b214987e0e1016f15a4dac39b3aa3d1dc5017ac7793d9",
+      "tools/raw_return_laplace_rough/run_panel.py": "1abebf2e8cfde2811098a535e32f3812a5422b2adb59ea7269f431411c100298",
+      "tools/raw_return_laplace_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/relaxed_hurst_differenced_rough/models.py": "2943675de70ff4407ae1b5661c9d554a691268f00886f0794758f1b45a59b698",
+      "tools/relaxed_hurst_differenced_rough/run_panel.py": "68cbfe99d3b3c92433add659b8513a404f5060482257d75ee41bdc6d2f3ef1b9",
+      "tools/relaxed_hurst_differenced_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/rough_bayesian/coherent.py": "713f8c5790471ccfc2898c2c758be03dc72d04e76fe8d456859998f6d8327950",
+      "tools/rough_bayesian/coherent_kernels.py": "64dc4e6f4bae8270b86c10d55102d0eefd1421fd93aa55771b6224652594bc47",
+      "tools/rough_bayesian/dynamic.py": "6fe1eccf02c597d75b65c6259082eebce7237317a8f4ffa0a66ec98047342fac",
+      "tools/rough_bayesian/inference.py": "9af54147f5db99fc37ad9b71f1cabc1b96762f641ab2372f7876e852d1e54ec3",
+      "tools/rough_bayesian/kernels.py": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b",
+      "tools/rough_bayesian/mixture.py": "8a315cd80f214c19547a385e7ef807e4bbd2aea147a7ada20a9fcd52525280f0",
+      "tools/rough_bayesian/mixture_kernels.py": "0d494d68c910b51ae8cb935ca86e0389f6906f6ec4581bd3322fe1c0e6b6dcf3",
+      "tools/rough_bayesian/models.py": "73389a2fc2bbe0fb0bcbc88ad8aec70e9bfbbb8484c7e825e873f464cf570f9b",
+      "tools/rough_bayesian/native.py": "696713549712fa70e01369ae5c7805c25ba02a88692a657ad1d1738a9798df2e",
+      "tools/rough_bayesian/overlay.py": "a401776494b15125c30170bd76c3c9a62ad4626877b857a8d4f474327a852d97",
+      "tools/rough_bayesian/overlay_filter.cpp": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1",
+      "tools/rough_bayesian/run_panel.py": "71a8ada2fc26e1506dac8eae4d590576dd66715810347dc7c48dc4cc6c06f301",
+      "tools/rough_bayesian/smoke.py": "a31f118e207a8aa62a4dec17c689c8c982f150da035150da4d2cab6d386ee395",
+      "tools/rough_bayesian/standalone.py": "0be7df8758f4b1c31fe75ac863dd273cef4a12033150f6d36c39948c05a42472",
+      "tools/rough_jump_vine/build_native.py": "2346d6501657e53a998c4fd758c7f077be0f6b65a79a49c7e439effead4c7819",
+      "tools/rough_jump_vine/models.py": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620",
+      "tools/rough_jump_vine/native.patch": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4",
+      "tools/rough_jump_vine/run_panel.py": "52fb5a3ffb99275eb9b5a2db56bbcea1e69db5e6143715c1877fdc4c3abec55a",
+      "tools/rough_jump_vine/smoke.py": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a",
+      "tools/static_shrinkage_copula_rough/dependence.py": "eee40dd1662a8460ee31066a60f30bf7e4af74814b4164420f7904a129db634a",
+      "tools/static_shrinkage_copula_rough/models.py": "0c67c9f885acceac60299da43f92907f9356ce1158aab021ecf9053f61efff08",
+      "tools/static_shrinkage_copula_rough/run_panel.py": "e2319de3db906ecfe15ec51f4953ba4a3b519ca13d8838de372e717cf4e256db",
+      "tools/static_shrinkage_copula_rough/screen.py": "17017c6d6868f031ec00a5530af54c251ed2e1f1df1c8fe47ecf0dcefdcf4f5e",
+      "tools/stationary_ar1_rough/models.py": "7bfb063da126bcccd128c86b5bfd3d412e62bbb949647cc4686ec03298e7e338",
+      "tools/stationary_ar1_rough/run_panel.py": "4d7785123ddffc290989ef6f55e0126e3171b7920b6d9d77527b2ed639b7caa9",
+      "tools/stationary_ar1_rough/screen.py": "3cb472cbd4d3e1e92c6e3815c527875eeb808778d4f87cb2546e80c93cc4686b",
+      "tools/stationary_ar1_rough/state.py": "86c583adee4902716f33138a0e140c86b435f20dc43bc8b474af6684992a8899",
+      "tools/streamed_rough_paths/models.py": "714f90846fb04618574ce687a05082c6ad784fad9fff4fb63c43532cdc99e705",
+      "tools/streamed_rough_paths/paths.cpp": "0f6678a9582221cc1be0a06b8ad72b0d9b7cf9eaf66539e9adf1addb5d6d7732",
+      "tools/streamed_rough_paths/run_panel.py": "0629c00a461a64091788d53484b6e451647d842684c62688d39edbe45ed2d78b",
+      "tools/streamed_rough_paths/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/streamed_rough_paths/stream_native.py": "9d5292b05244bb1505c4503e66e0d51239e4a3a05b1c9c7582eea83277e3652a",
+      "tools/student_corrected_dcc_innovation_copula/likelihood_kernel.py": "727a19b819118ffa585f693bbdfb81e5e01e5c90e22317bb2fa901512fad93f3",
+      "tools/student_corrected_dcc_innovation_copula/models.py": "d168ed3a7acd7bf49057b2c51b879289083dfdb2d64f4b8a04d05c2f5ed7a002",
+      "tools/student_corrected_dcc_innovation_copula/run_panel.py": "c91840eaf90e86b759f417176222cbbeaad46ceb1bcfa26fe7a1e542e06637ba",
+      "tools/student_corrected_dcc_innovation_copula/screen.py": "d0a3b020a876227efd8fe767e97a5248c5f6d42f02c48fdad807ca32448ba6dc",
+      "tools/student_corrected_dcc_innovation_copula/student_cdf.py": "8de9366730915f4f39620f4cf6eaeed2dc6906b0a86126daa20efac35b7ab601",
+      "tools/student_corrected_dcc_innovation_copula/student_state.py": "78ebd5696da6b17b6ea8b0398160fe842565c4a0c5069dd81a8ed71a970a9001",
+      "tools/student_implied_noise_rough/models.py": "ffeb07ac55cbf20c56c3e79e028681c05b9503b9ed9dcd79da252ffbbf67511c",
+      "tools/student_implied_noise_rough/run_panel.py": "28ce47f24dca5df837fb5f983938c402c46496002923c5a2e0dfa7092aaa7f57",
+      "tools/student_implied_noise_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/student_implied_noise_rough/student_log_moments.py": "9c334434846d67e37ef585174b6185fea764a946b0d78366046b4796d3996c20",
+      "tools/student_return_laplace_rough/models.py": "3aa8c5fd06d0543ede4fdd65ce229632011ff85f342fd3c7b7a8f40fc1f74311",
+      "tools/student_return_laplace_rough/run_panel.py": "83b09e101d321b3fbb54636f0b0062a6ad003c3bde2f3ef256a17e05b61aa64b",
+      "tools/student_return_laplace_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/student_return_laplace_rough/student_laplace_sv.py": "dc8a4f276b73d287abab9cb2ecb23569ea2026458cd541a5795a38a772515a11",
+      "tools/student_t_copula_rough/models.py": "e836d11821cec9ed426285ae52e085d418f3ca86a5aeee8ec8601bd922fd8d0f",
+      "tools/student_t_copula_rough/run_panel.py": "af65e849fce460c5de6a2bf26fe77f7b7d703fbda546cf31a19503256cf5eea6",
+      "tools/student_t_copula_rough/screen.py": "b7415d59e2d89bf60e51d0fe6494703edc5a8df9d3f498c573e670009cb8306b",
+      "tools/student_t_copula_rough/tail_fit.py": "9d2111513aa0b134b7bee1e5f93681a6245c7fe614278ebc08aac60ea968a033",
+      "tools/untruncated_rough_priors/models.py": "23dca6027cd87d6a606be5ef8e21a2f9b02d35e0dd91af9c03693cb16ea908fd",
+      "tools/untruncated_rough_priors/run_panel.py": "91f88ad2f5cf369c3ec92d6e715b9cb7bd29aa0d5ebe18faf06fcf0f5912b3e7",
+      "tools/untruncated_rough_priors/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de",
+      "tools/untruncated_rough_priors/unbounded_map.py": "0f02d3a18d46c79e89c8943da07e03d0b4d72bb5902d13901b9bb2a37015ee3b"
+    },
+    "state_workers": 1,
+    "task_count": 4080,
+    "vine_threads": 1,
+    "workers": 12
+  },
+  "retained_optimizations": [
+    "allocation-free compiled small-matrix likelihood and symmetric recursion",
+    "likelihood-only triangular solve without unused gradients",
+    "distinct rank quantiles gathered to the unchanged full observation matrix",
+    "single recursive joint tail derivative with unchanged cube-root epsilon central quantile/normalizer derivatives",
+    "compiled kernels specialized to actual asset dimension",
+    "Student prediction CDF Hermite interpolation with analytic global 1e-12 probability interpolation bound",
+    "Student training inverse CDF via lower-half 1e-14 probability-error Hermite grid, safeguarded Newton and direct SciPy fallback"
+  ],
+  "unchanged": [
+    "all 240 paths, daily horizons, origin dates, asset observations and seeds",
+    "asset means, conventional and rough volatility fits, terminal states, empirical return nodes and portfolio policy",
+    "Student corrected-DCC likelihood, all optimization starts and boundary candidates, stopping tolerances and budgets"
+  ],
+  "validation": {
+    "focused_numerical_tests": 19,
+    "five_smoke_receipts": [
+      {
+        "task": 0,
+        "max_absolute_loss_difference": 9.949749357751614e-13,
+        "reference_score": 0.03552172449471349,
+        "optimized_score": 0.03552172449489352
+      },
+      {
+        "task": 1,
+        "max_absolute_loss_difference": 3.242767165900773e-12,
+        "reference_score": 0.038076231096897895,
+        "optimized_score": 0.0380762310966948
+      },
+      {
+        "task": 2,
+        "max_absolute_loss_difference": 4.5396936210195804e-11,
+        "reference_score": 0.08205488109119129,
+        "optimized_score": 0.08205488110315945
+      },
+      {
+        "task": 3,
+        "max_absolute_loss_difference": 1.0533560135250752e-11,
+        "reference_score": 0.013692147036455521,
+        "optimized_score": 0.013692147039849946
+      },
+      {
+        "task": 4,
+        "max_absolute_loss_difference": 3.2066016508736084e-12,
+        "reference_score": 0.09474755339670847,
+        "optimized_score": 0.09474755339632836
+      }
+    ],
+    "all_five_cached_loss_vectors_byte_exact": true,
+    "century_asset_CAGR_guard": {
+      "scope": "100_year_asset_marginals_under_same_joint_six_asset_copula_not_OOS_score",
+      "simulations": 240,
+      "trading_days": 25200,
+      "records": [
+        {
+          "asset": "IWMSIM",
+          "original_expected_log_mean_cagr": 0.089393871990655,
+          "simulated_median_cagr": 0.09141790744990222,
+          "simulated_mean_cagr": 0.09131991700115523
+        },
+        {
+          "asset": "XLPSIM",
+          "original_expected_log_mean_cagr": 0.17845903684147965,
+          "simulated_median_cagr": 0.17825388353324922,
+          "simulated_mean_cagr": 0.17825460146017544
+        },
+        {
+          "asset": "IEISIM",
+          "original_expected_log_mean_cagr": 0.08240449922215978,
+          "simulated_median_cagr": 0.08180495023263769,
+          "simulated_mean_cagr": 0.08198359769551367
+        },
+        {
+          "asset": "ZROZSIM",
+          "original_expected_log_mean_cagr": 0.11732872579245986,
+          "simulated_median_cagr": 0.11518141978382941,
+          "simulated_mean_cagr": 0.11375470770323654
+        },
+        {
+          "asset": "GLDSIM",
+          "original_expected_log_mean_cagr": -0.019199597809545187,
+          "simulated_median_cagr": -0.016414162918664765,
+          "simulated_mean_cagr": -0.016432728284363447
+        },
+        {
+          "asset": "REITSIM",
+          "original_expected_log_mean_cagr": 0.05010082219144552,
+          "simulated_median_cagr": 0.05078447515226229,
+          "simulated_mean_cagr": 0.050672725609847966
+        }
+      ],
+      "passed": true
+    }
+  },
+  "runtime": {
+    "workers": 12,
+    "asset_threads_per_worker": 1,
+    "BLAS_and_Numba_threads": 1,
+    "fresh_fit_cache": true,
+    "all_tasks_reused": false,
+    "recorded_original_M256_speedup": 6.878913606328546,
+    "recorded_M193_runtime_ratio": 2.361158951228076,
+    "faster_than_saved_M193": false,
+    "scope": "separately scheduled local research panels with identical frozen inputs and reference environment; historical runs had different background activity; no deployed-browser or controlled wall-time ratio claim"
+  },
+  "paired_cells_artifact": {
+    "path": "docs/results/rough-bayesian/m256-speed-optimization-cells.npz",
+    "sha256": "a42195630af653201a0a555e75b8ebf3043643d9305c6f16fa813a2d81a52a58"
+  },
+  "tested_and_rejected": [
+    {
+      "experiment": "log-benchmark.json",
+      "decision": "rejected_after_full_panel: larger fit differences and no panel speed gain",
+      "measurements": [
+        {
+          "nu": 0.0,
+          "derivatives": true,
+          "median": {
+            "old": 0.0019218960078433156,
+            "new": 0.0018244579841848463
+          },
+          "errors": [
+            9.094947017729282e-13,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "nu": 0.0,
+          "derivatives": false,
+          "median": {
+            "old": 0.0007235624943859875,
+            "new": 0.0005548959888983518
+          },
+          "errors": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "nu": 14.0,
+          "derivatives": true,
+          "median": {
+            "old": 0.002431770524708554,
+            "new": 0.0022057919995859265
+          },
+          "errors": [
+            9.094947017729282e-13,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "nu": 14.0,
+          "derivatives": false,
+          "median": {
+            "old": 0.0010107504785992205,
+            "new": 0.0007868749962653965
+          },
+          "errors": [
+            2.7284841053187847e-12,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "experiment": "marginal-benchmark.json",
+      "decision": "rejected: slower than the logarithm-only kernel",
+      "measurements": [
+        {
+          "derivatives": true,
+          "median": {
+            "old": 0.0024185625079553574,
+            "new": 0.002341832994716242
+          },
+          "errors": [
+            2.2737367544323206e-11,
+            2.1827872842550278e-11,
+            0.0
+          ]
+        },
+        {
+          "derivatives": false,
+          "median": {
+            "old": 0.0009939790179487318,
+            "new": 0.0008722079801373184
+          },
+          "errors": [
+            2.3646862246096134e-11,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "experiment": "optimizer-benchmark.json",
+      "decision": "rejected: BFGS variants slower",
+      "measurements": {
+        "0": {
+          "reference": {
+            "median_seconds": 0.02232516702497378,
+            "parameter_differences": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "nll_difference": 0.0,
+            "optimizer": {
+              "success": true,
+              "iterations": 11,
+              "evaluations": 12,
+              "transformed_mean_gradient": [
+                -5.70385943921076e-09,
+                -1.3514263167668205e-09,
+                -9.74178928244632e-09
+              ]
+            }
+          },
+          "student_bfgs": {
+            "median_seconds": 0.04812499997206032,
+            "parameter_differences": [
+              6.737937241485525e-08,
+              6.513505468319636e-08,
+              1.4792649736250496e-05
+            ],
+            "nll_difference": -1.3642420526593924e-12,
+            "optimizer": {
+              "success": true,
+              "iterations": 25,
+              "evaluations": 27,
+              "transformed_mean_gradient": [
+                5.653767593355341e-09,
+                -8.866954042185172e-09,
+                2.3419178933283463e-08
+              ]
+            }
+          },
+          "gaussian_bfgs": {
+            "median_seconds": 0.032109832973219454,
+            "parameter_differences": [
+              1.811319982891746e-10,
+              1.1104472896761308e-10,
+              1.9130636275122015e-07
+            ],
+            "nll_difference": -5.9117155615240335e-12,
+            "optimizer": {
+              "success": true,
+              "iterations": 11,
+              "evaluations": 12,
+              "transformed_mean_gradient": [
+                -5.713534655187962e-09,
+                -1.3488908390817328e-09,
+                -8.842125861104824e-09
+              ]
+            }
+          },
+          "both_bfgs": {
+            "median_seconds": 0.04014933400321752,
+            "parameter_differences": [
+              6.715183842320727e-08,
+              6.51758946812464e-08,
+              1.4783493686110205e-05
+            ],
+            "nll_difference": -2.0463630789890885e-12,
+            "optimizer": {
+              "success": true,
+              "iterations": 25,
+              "evaluations": 27,
+              "transformed_mean_gradient": [
+                5.657365120677418e-09,
+                -8.859778803078216e-09,
+                2.263250035028013e-08
+              ]
+            }
+          }
+        },
+        "3": {
+          "reference": {
+            "median_seconds": 0.3805751249892637,
+            "parameter_differences": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "nll_difference": 0.0,
+            "optimizer": {
+              "success": true,
+              "iterations": 11,
+              "evaluations": 12,
+              "transformed_mean_gradient": [
+                1.1212578485087033e-08,
+                -6.097232782864047e-09,
+                7.694904061355854e-09
+              ]
+            }
+          },
+          "student_bfgs": {
+            "median_seconds": 0.6498465000186116,
+            "parameter_differences": [
+              1.88218418628594e-09,
+              1.0586122101141626e-07,
+              6.507349148421326e-07
+            ],
+            "nll_difference": -7.639755494892597e-11,
+            "optimizer": {
+              "success": true,
+              "iterations": 22,
+              "evaluations": 24,
+              "transformed_mean_gradient": [
+                4.224199178682759e-09,
+                -4.975828414044696e-09,
+                6.562461865621208e-09
+              ]
+            }
+          },
+          "gaussian_bfgs": {
+            "median_seconds": 0.4088717499980703,
+            "parameter_differences": [
+              1.662248116929277e-11,
+              1.142206773607768e-09,
+              2.4107620077984393e-07
+            ],
+            "nll_difference": -1.2732925824820995e-10,
+            "optimizer": {
+              "success": true,
+              "iterations": 11,
+              "evaluations": 12,
+              "transformed_mean_gradient": [
+                1.1137414748369546e-08,
+                -6.040645610555339e-09,
+                8.026650823026372e-09
+              ]
+            }
+          },
+          "both_bfgs": {
+            "median_seconds": 0.6726421249913983,
+            "parameter_differences": [
+              1.8827093217765878e-09,
+              1.0593515442636203e-07,
+              7.224508049574752e-07
+            ],
+            "nll_difference": -2.473825588822365e-10,
+            "optimizer": {
+              "success": true,
+              "iterations": 22,
+              "evaluations": 24,
+              "transformed_mean_gradient": [
+                4.195751482093408e-09,
+                -4.962701125457341e-09,
+                6.378109021820715e-09
+              ]
+            }
+          }
+        },
+        "4": {
+          "reference": {
+            "median_seconds": 0.11651504097972065,
+            "parameter_differences": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "nll_difference": 0.0,
+            "optimizer": {
+              "success": true,
+              "iterations": 12,
+              "evaluations": 13,
+              "transformed_mean_gradient": [
+                3.0033577077557004e-09,
+                -1.47017342350599e-09,
+                2.9597857461363337e-09
+              ]
+            }
+          },
+          "student_bfgs": {
+            "median_seconds": 0.1738357919966802,
+            "parameter_differences": [
+              1.0492204949308359e-07,
+              4.799171183095252e-07,
+              1.6878723876345703e-05
+            ],
+            "nll_difference": 2.319211489520967e-10,
+            "optimizer": {
+              "success": true,
+              "iterations": 25,
+              "evaluations": 27,
+              "transformed_mean_gradient": [
+                3.118225387695911e-08,
+                -3.18165852941608e-08,
+                -3.698199167905796e-08
+              ]
+            }
+          },
+          "gaussian_bfgs": {
+            "median_seconds": 0.1328122090199031,
+            "parameter_differences": [
+              3.9329428602741245e-11,
+              2.3739940568923146e-10,
+              1.5008725995357963e-07
+            ],
+            "nll_difference": -4.547473508864641e-12,
+            "optimizer": {
+              "success": true,
+              "iterations": 12,
+              "evaluations": 13,
+              "transformed_mean_gradient": [
+                3.0126158711400033e-09,
+                -1.476032322094772e-09,
+                3.586620606942496e-09
+              ]
+            }
+          },
+          "both_bfgs": {
+            "median_seconds": 0.19789529201807454,
+            "parameter_differences": [
+              1.01742292146767e-07,
+              4.6403762214708433e-07,
+              1.5402226654970264e-05
+            ],
+            "nll_difference": 2.255546860396862e-10,
+            "optimizer": {
+              "success": true,
+              "iterations": 24,
+              "evaluations": 27,
+              "transformed_mean_gradient": [
+                1.5737925979433935e-08,
+                -2.2289333306118934e-08,
+                3.182788211899446e-08
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "experiment": "inverse-beta-benchmark.json",
+      "decision": "rejected: exact inverse-beta formulas slower",
+      "measurements": {
+        "2.01": {
+          "max_quantile_error": 5.1958437552457326e-14,
+          "direct": 0.0013824579946231097,
+          "beta": 0.002311666961759329
+        },
+        "2.1": {
+          "max_quantile_error": 6.7390537594747e-14,
+          "direct": 0.0013874379801563919,
+          "beta": 0.002281124994624406
+        },
+        "8.0": {
+          "max_quantile_error": 7.105427357601002e-15,
+          "direct": 0.0013317914854269475,
+          "beta": 0.0014192504750099033
+        },
+        "14.0": {
+          "max_quantile_error": 1.5987211554602254e-14,
+          "direct": 0.0013124379911459982,
+          "beta": 0.001407250005286187
+        },
+        "48.0": {
+          "max_quantile_error": 4.618527782440651e-14,
+          "direct": 0.001301645505009219,
+          "beta": 0.002120021003065631
+        },
+        "1000.0": {
+          "max_quantile_error": 3.730349362740526e-14,
+          "direct": 0.0012458540149964392,
+          "beta": 0.0014486039872281253
+        },
+        "10000000.0": {
+          "max_quantile_error": 3.68594044175552e-14,
+          "direct": 0.0012228960113134235,
+          "beta": 0.0013973749883007258
+        }
+      }
+    },
+    {
+      "experiment": "specialized-flags-benchmark.json",
+      "decision": "rejected: no consistent Student likelihood gain; reassociation adds output drift",
+      "measurements": [
+        {
+          "nu": 0.0,
+          "derivatives": true,
+          "median": {
+            "current": 0.002519270987249911,
+            "contract": 0.0024753745237831026,
+            "reassociate": 0.0022000414901413023
+          },
+          "errors": {
+            "current": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "contract": [
+              9.094947017729282e-13,
+              4.3655745685100555e-11,
+              4.440892098500626e-16
+            ],
+            "reassociate": [
+              9.094947017729282e-13,
+              4.3655745685100555e-11,
+              4.440892098500626e-16
+            ]
+          }
+        },
+        {
+          "nu": 0.0,
+          "derivatives": false,
+          "median": {
+            "current": 0.000997083494439721,
+            "contract": 0.0009766875009518117,
+            "reassociate": 0.0009608124964870512
+          },
+          "errors": {
+            "current": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "contract": [
+              1.3642420526593924e-12,
+              0.0,
+              4.440892098500626e-16
+            ],
+            "reassociate": [
+              1.3642420526593924e-12,
+              0.0,
+              4.440892098500626e-16
+            ]
+          }
+        },
+        {
+          "nu": 14.0,
+          "derivatives": true,
+          "median": {
+            "current": 0.0033557290153112262,
+            "contract": 0.003479417006019503,
+            "reassociate": 0.0035685625043697655
+          },
+          "errors": {
+            "current": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "contract": [
+              2.7284841053187847e-12,
+              4.3655745685100555e-11,
+              4.440892098500626e-16
+            ],
+            "reassociate": [
+              2.7284841053187847e-12,
+              4.3655745685100555e-11,
+              4.440892098500626e-16
+            ]
+          }
+        },
+        {
+          "nu": 14.0,
+          "derivatives": false,
+          "median": {
+            "current": 0.0014253125118557364,
+            "contract": 0.0014217919670045376,
+            "reassociate": 0.0014238334842957556
+          },
+          "errors": {
+            "current": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "contract": [
+              3.637978807091713e-12,
+              0.0,
+              4.440892098500626e-16
+            ],
+            "reassociate": [
+              3.637978807091713e-12,
+              0.0,
+              4.440892098500626e-16
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "experiment": "mode-benchmark.json",
+      "decision": "rejected: Gaussian derivative kernel slower; remaining gain small",
+      "measurements": [
+        {
+          "nu": 0.0,
+          "derivatives": true,
+          "median": {
+            "old": 0.0021623960055876523,
+            "new": 0.002384562510997057
+          },
+          "errors": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "nu": 0.0,
+          "derivatives": false,
+          "median": {
+            "old": 0.0011539375118445605,
+            "new": 0.0010173329792451113
+          },
+          "errors": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "nu": 14.0,
+          "derivatives": true,
+          "median": {
+            "old": 0.003464604465989396,
+            "new": 0.003376624488737434
+          },
+          "errors": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "nu": 14.0,
+          "derivatives": false,
+          "median": {
+            "old": 0.0016217499796766788,
+            "new": 0.0014048745215404779
+          },
+          "errors": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "experiment": "paired-certified-inverse-fits.json",
+      "decision": "retained: matched fitting gain with certified inverse CDF",
+      "measurements": {
+        "background_storage_compaction": true,
+        "alternating_paired_fits": {
+          "old": [
+            0.3749832919565961,
+            0.3723751659854315,
+            0.3685970419901423,
+            0.371380583033897,
+            0.37125495896907523,
+            0.3678091669571586
+          ],
+          "joint": [
+            0.2962235829909332,
+            0.29404549999162555,
+            0.2932324159773998,
+            0.29379937500925735,
+            0.29399074998218566,
+            0.29381045897025615
+          ]
+        },
+        "median_seconds": {
+          "old": 0.3713177710014861,
+          "joint": 0.2939006044762209
+        },
+        "maximum_parameter_differences_last_pair": [
+          1.579084085712168e-12,
+          3.692579575442778e-11,
+          9.43097333561127e-09
+        ]
+      }
+    },
+    {
+      "experiment": "batched-solve-benchmark.json",
+      "decision": "not retained: batched primitive exact, whole-model opportunity tiny",
+      "measurements": {
+        "medians": {
+          "separate": 0.0005336249887477607,
+          "batched": 0.0001134790072683245
+        },
+        "byte_exact": true,
+        "max_error": 0.0
+      }
+    },
+    {
+      "experiment": "batched-likelihood-benchmark.json",
+      "decision": "not retained: 10 percent Student-Laplace kernel improvement bounds full panel impact below one percent",
+      "measurements": [
+        {
+          "inverse_df": 0.0,
+          "medians": {
+            "old": 0.0037621874653268605,
+            "new": 0.0033778329961933196
+          },
+          "byte_exact_fields": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "errors": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "inverse_df": 0.08,
+          "medians": {
+            "old": 0.003570770990336314,
+            "new": 0.003188437520293519
+          },
+          "byte_exact_fields": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "errors": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "experiment": "spectrum-benchmark.json",
+      "decision": "not applicable: older OU spectrum backend is not the active M256 analytic-covariance backend",
+      "measurements": [
+        {
+          "factor_count": 8,
+          "median_seconds": {
+            "old": 0.0003341249830555171,
+            "new": 0.00020864649559371173
+          },
+          "byte_exact": true,
+          "max_absolute_error": 0.0
+        },
+        {
+          "factor_count": 33,
+          "median_seconds": {
+            "old": 0.0013188330049160868,
+            "new": 0.0007102704839780927
+          },
+          "byte_exact": true,
+          "max_absolute_error": 0.0
+        }
+      ]
+    }
+  ],
+  "stopping_finding": "No remaining measured material, non-speculative speed change identified under the retained full-data statistical law and near-output requirement. Faster-than-M193 target not achieved. Retained score remains catalogue number one. This is an evidence-based stopping finding, not a proof of globally maximal speed.",
+  "final_profile": {
+    "scope": "diagnostic six-asset full-history 30-day smoke; profiling overhead and concurrent guard mean these are not matched wall timings",
+    "functions": [
+      {
+        "file": "tools/student_corrected_dcc_innovation_copula/screen.py",
+        "line": 19,
+        "function": "main",
+        "calls": 1,
+        "self_seconds": 0.000432453,
+        "cumulative_seconds": 8.112651083000001
+      },
+      {
+        "file": "tools/student_corrected_dcc_innovation_copula/models.py",
+        "line": 96,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 8.041e-06,
+        "cumulative_seconds": 6.152246166
+      },
+      {
+        "file": "tools/corrected_dcc_innovation_copula/models.py",
+        "line": 87,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 1.4917000000000001e-05,
+        "cumulative_seconds": 6.152224167
+      },
+      {
+        "file": "tools/innovation_student_copula_rough/models.py",
+        "line": 71,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 1.7500000000000002e-06,
+        "cumulative_seconds": 6.1522063750000004
+      },
+      {
+        "file": "tools/student_t_copula_rough/models.py",
+        "line": 82,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 5.834e-06,
+        "cumulative_seconds": 6.152203125000001
+      },
+      {
+        "file": "tools/static_shrinkage_copula_rough/models.py",
+        "line": 72,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 1.1499000000000001e-05,
+        "cumulative_seconds": 6.152196416000001
+      },
+      {
+        "file": "tools/coupled_multiscale_rough/models.py",
+        "line": 117,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 0.00015216600000000002,
+        "cumulative_seconds": 6.152173584000001
+      },
+      {
+        "file": "tools/learned_multiscale_rates_rough/models.py",
+        "line": 82,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 0.00020012600000000001,
+        "cumulative_seconds": 6.109796875000001
+      },
+      {
+        "file": "tools/pathwise_multiscale_rough/models.py",
+        "line": 110,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 3.5542e-05,
+        "cumulative_seconds": 2.376049
+      },
+      {
+        "file": "tools/student_return_laplace_rough/models.py",
+        "line": 106,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 1.4583e-05,
+        "cumulative_seconds": 2.35524475
+      },
+      {
+        "file": "tools/consistent_noise_rough/models.py",
+        "line": 45,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 3.4792e-05,
+        "cumulative_seconds": 2.346184458
+      },
+      {
+        "file": "tools/streamed_rough_paths/models.py",
+        "line": 89,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 2.5334000000000002e-05,
+        "cumulative_seconds": 2.342819542
+      },
+      {
+        "file": "tools/differenced_whittle_rough/models.py",
+        "line": 79,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 1.2959e-05,
+        "cumulative_seconds": 2.319387083
+      },
+      {
+        "file": "tools/debiased_whittle_rough/models.py",
+        "line": 80,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 2.1042000000000003e-05,
+        "cumulative_seconds": 2.317078792
+      },
+      {
+        "file": "tools/conditional_residual_rough/models.py",
+        "line": 35,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 7.5375e-05,
+        "cumulative_seconds": 2.3146072920000003
+      },
+      {
+        "file": "tools/rough_jump_vine/models.py",
+        "line": 84,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 2.1458e-05,
+        "cumulative_seconds": 2.184295417
+      },
+      {
+        "file": "tools/mcmc_runtime/runtime_setup.py",
+        "line": 18,
+        "function": "initialize",
+        "calls": 1,
+        "self_seconds": 8.0875e-05,
+        "cumulative_seconds": 2.144733875
+      },
+      {
+        "file": "tools/student_corrected_dcc_innovation_copula/models.py",
+        "line": 72,
+        "function": "simulate_daily_log_returns",
+        "calls": 2,
+        "self_seconds": 0.00027342,
+        "cumulative_seconds": 1.9089741240000002
+      },
+      {
+        "file": "tools/coupled_multiscale_rough/models.py",
+        "line": 66,
+        "function": "simulate_daily_log_returns",
+        "calls": 2,
+        "self_seconds": 0.007668734000000001,
+        "cumulative_seconds": 1.9082504990000002
+      },
+      {
+        "file": "tools/rough_jump_vine/models.py",
+        "line": 55,
+        "function": "cache",
+        "calls": 25,
+        "self_seconds": 0.000434213,
+        "cumulative_seconds": 1.864829002
+      }
+    ]
+  },
+  "full_panel_implementation_stages": [
+    {
+      "revision": "a031b4e",
+      "decision": "superseded by fused derivative and dimensional specialization",
+      "results": {
+        "all_denominator_gates_passed": true,
+        "baseline_every_loss_vector_byte_exact": false,
+        "elapsed_seconds": 352.6696543750004,
+        "manifest_sha256": "41b5c6682c48c10dc91d183942517f75f5e76457dbb334618bd0b0eed20bf0ac",
+        "paired_cells_sha256": "9c36985fba230536d8f2808c084d3ae2f1827d89341cc769cc0145e77d4b940f",
+        "portfolios": 80,
+        "rolling_origins_per_portfolio": 48,
+        "scope": "full_canonical_asset_level_ablations",
+        "scores": {
+          "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough": {
+            "cells": 701280,
+            "exact_empirical_crps": 0.22687132009736277,
+            "relative_improvement_vs_production": 0.10138530325681017,
+            "summed_worker_seconds": 4085.376153137244,
+            "tasks": 4080,
+            "timings": {
+              "asset_predictive_paths": 676.8727470621816,
+              "dependence_paths": 2677.51571432926,
+              "fit_phase_wall": 546.8044996925164,
+              "rough_fit_worker": 270.6172690510284
+            }
+          }
+        },
+        "simulations": 240,
+        "temporal_holdouts_per_portfolio": 3
+      }
+    },
+    {
+      "revision": "29ea593",
+      "decision": "retained closer arithmetic; superseded by certified inverse CDF",
+      "results": {
+        "all_denominator_gates_passed": true,
+        "baseline_every_loss_vector_byte_exact": false,
+        "elapsed_seconds": 309.626988834003,
+        "manifest_sha256": "3db7513890183f6711268e0adb63568b1a7c881c36f78f606888a114259816cc",
+        "paired_cells_sha256": "e42c0f2d5aaa398701d8ff2b20258c57c72b6fb77797fac2d58eba26795a8522",
+        "portfolios": 80,
+        "rolling_origins_per_portfolio": 48,
+        "scope": "full_canonical_asset_level_ablations",
+        "scores": {
+          "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough": {
+            "cells": 701280,
+            "exact_empirical_crps": 0.22687131955691392,
+            "relative_improvement_vs_production": 0.10138530539747426,
+            "summed_worker_seconds": 3578.801829432952,
+            "tasks": 4080,
+            "timings": {
+              "asset_predictive_paths": 705.5495597549598,
+              "dependence_paths": 2121.7109933067695,
+              "fit_phase_wall": 553.5105232004425,
+              "rough_fit_worker": 273.4607057836838
+            }
+          }
+        },
+        "simulations": 240,
+        "temporal_holdouts_per_portfolio": 3
+      }
+    },
+    {
+      "revision": "7b3be9a",
+      "decision": "rejected: larger numerical fit drift and no overall gain",
+      "results": {
+        "all_denominator_gates_passed": true,
+        "baseline_every_loss_vector_byte_exact": false,
+        "elapsed_seconds": 310.8816750419792,
+        "manifest_sha256": "ace57b0ae36b1e51cd605c424a9bb0ec98d3c551bcc7567690348d32c36d54dd",
+        "paired_cells_sha256": "6cfe1733eb72b1ad4273f72ac520b16e4505499caca91ceb9f73bd74a782552c",
+        "portfolios": 80,
+        "rolling_origins_per_portfolio": 48,
+        "scope": "full_canonical_asset_level_ablations",
+        "scores": {
+          "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough": {
+            "cells": 701280,
+            "exact_empirical_crps": 0.22687109052973764,
+            "relative_improvement_vs_production": 0.10138621255130253,
+            "summed_worker_seconds": 3596.1174121337244,
+            "tasks": 4080,
+            "timings": {
+              "asset_predictive_paths": 751.3071139791864,
+              "dependence_paths": 2027.8871564983274,
+              "fit_phase_wall": 599.1355736539699,
+              "rough_fit_worker": 297.5302452238393
+            }
+          }
+        },
+        "simulations": 240,
+        "temporal_holdouts_per_portfolio": 3
+      }
+    },
+    {
+      "revision": "acc5e8e",
+      "decision": "selected final implementation",
+      "results": {
+        "all_denominator_gates_passed": true,
+        "baseline_every_loss_vector_byte_exact": false,
+        "elapsed_seconds": 296.8614311660058,
+        "manifest_sha256": "d5e822bc7a2ecc50d8e7558022373a251cd2ba8a41953b5cb68793cc3ecb3108",
+        "paired_cells_sha256": "a42195630af653201a0a555e75b8ebf3043643d9305c6f16fa813a2d81a52a58",
+        "portfolios": 80,
+        "rolling_origins_per_portfolio": 48,
+        "scope": "full_canonical_asset_level_ablations",
+        "scores": {
+          "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough": {
+            "cells": 701280,
+            "exact_empirical_crps": 0.22687131940042085,
+            "relative_improvement_vs_production": 0.10138530601732776,
+            "summed_worker_seconds": 3434.5729808707256,
+            "tasks": 4080,
+            "timings": {
+              "asset_predictive_paths": 711.3102517247899,
+              "dependence_paths": 1980.8420078064664,
+              "fit_phase_wall": 544.4041639716015,
+              "rough_fit_worker": 270.84633464878425
+            }
+          }
+        },
+        "simulations": 240,
+        "temporal_holdouts_per_portfolio": 3
+      }
+    }
+  ],
+  "rejected_arithmetic_full_panel_audit": {
+    "numerical_source_revision": "7b3be9a",
+    "harness": "unchanged canonical 80 portfolios, 48 rolling origins plus three temporal holdouts, 4080 tasks, 701280 equal portfolio-horizon cells, 240 simulations, 1979-12-31 start",
+    "manifest_task_identity_inputs_seeds_scoring_and_snapshot_match_all_comparators": true,
+    "source_hashes_match_validated_checkout": true,
+    "records": {
+      "optimized_M256": {
+        "score": 0.22687109052973764,
+        "elapsed_seconds": 310.8816750419792,
+        "worker_seconds": 3596.1174121337244,
+        "manifest_sha256": "ace57b0ae36b1e51cd605c424a9bb0ec98d3c551bcc7567690348d32c36d54dd",
+        "manifest_file_sha256": "c2a77f667e96b58451c009efc580ca58e74b4a99faae0b71eba85510a1048aa9",
+        "paired_cells_sha256": "6cfe1733eb72b1ad4273f72ac520b16e4505499caca91ceb9f73bd74a782552c",
+        "all_4080_loss_vectors_finite": true,
+        "all_701280_cells_independently_rebuilt_byte_exact": true
+      },
+      "original_M256": {
+        "score": 0.22687132859413414,
+        "elapsed_seconds": 2042.0841380420025,
+        "worker_seconds": 24362.233304344816,
+        "manifest_sha256": "5712394ab74618e053dda96862da7c5e0d2d6fa0d21132a9a2fbfe7b3e995638",
+        "manifest_file_sha256": "4dbe0f655e9651027e892f8726a7976e1470c60c9f267bcc5a16ff87091a2563",
+        "paired_cells_sha256": "469274af96785af39cd256cc36037e76ae4fcf19a5bd820af138605b37fa05e1",
+        "all_4080_loss_vectors_finite": true,
+        "all_701280_cells_independently_rebuilt_byte_exact": true
+      },
+      "M255": {
+        "score": 0.22705549647165937,
+        "elapsed_seconds": 844.1061270409846,
+        "worker_seconds": 9996.92824752495,
+        "manifest_sha256": "b9b678930680c8bd319cfa7056d5f8a05372a6706b62876b59ab57c1586eef85",
+        "manifest_file_sha256": "f744c1cfc54cb3e24ba8daf1003a9f6d5e0aba94922e71f82979ed46aa293500",
+        "paired_cells_sha256": "87b2deeb89697c0fa4cf8a4ea2c04a92e17c488c432a375515a875066c482873",
+        "all_4080_loss_vectors_finite": true,
+        "all_701280_cells_independently_rebuilt_byte_exact": true
+      },
+      "M193": {
+        "score": 0.2518812750312293,
+        "elapsed_seconds": 125.72699987504166,
+        "worker_seconds": 1442.8576952253934,
+        "manifest_sha256": "04a7b4181239a1ee472356a608edd7d31f8bed9880c219152e39d6faf11d09ed",
+        "manifest_file_sha256": "c4e75e57d4a70bc385f0a8039ec16a71d6a34ae6aebee0a229493e8e328469d3",
+        "paired_cells_sha256": "34156d524853cf92b72730085b6349bae9ac5bebedf5cef584bf207971ea7d38",
+        "all_4080_loss_vectors_finite": true,
+        "all_701280_cells_independently_rebuilt_byte_exact": true
+      }
+    },
+    "comparison": {
+      "original_M256": {
+        "relative_score_improvement": 1.0493366349173527e-06,
+        "portfolio_wins": 41
+      },
+      "M255": {
+        "relative_score_improvement": 0.00081216242190707,
+        "portfolio_wins": 41
+      },
+      "M193": {
+        "relative_score_improvement": 0.0992935441445213,
+        "portfolio_wins": 55
+      }
+    },
+    "original_M256_parity": {
+      "byte_exact": false,
+      "maximum_absolute_origin_horizon_loss_difference": 0.006377995879832912,
+      "largest_difference_task": 3710,
+      "mean_absolute_origin_horizon_loss_difference": 4.716843755195356e-07,
+      "maximum_absolute_paired_cell_difference": 0.0008234029784064678,
+      "absolute_aggregate_score_difference": 2.3806439650164712e-07
+    }
+  }
+}
