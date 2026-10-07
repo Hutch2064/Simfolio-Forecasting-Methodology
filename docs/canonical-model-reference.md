@@ -1,14 +1,14 @@
-# Canonical model reference (249 models including the original 175)
+# Canonical model reference (251 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **249** rows, canonical ranks **1–249**.
+- Membership: **251** rows, canonical ranks **1–251**.
 - Retained source ranks: **12–186**.
-- Membership digest: `61e8422d61b5df2f9b071ca1e3858c6bb5fe5794a39f8cbd69fc974294b22a03`.
+- Membership digest: `07a5218088e838f736af6e1994fe399b30bd0de641f0573cef910e8b60b53fbc`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **249**.
+- Confirmed full statistical specifications: **251**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -263,3 +263,5 @@ The ledger is the sole membership authority for this public set.
 | 247 | None | asset_map_stationary_ar1_proxy_leverage_dynamic_rough | M247 — Asset MAP Stationary AR1 + Lagged Asset-Residual Leverage + Dynamic Rough | asset_level_extension | 0.2319704483126069 | 0.231970448 | true | validated_full_canonical_score |
 | 248 | None | asset_map_stationary_ar1_static_shrinkage_copula_dynamic_rough | M248 — Asset MAP Stationary AR1 + Full Static Shrinkage Copula + Dynamic Rough | asset_level_extension | 0.22848986371609498 | 0.228489864 | true | validated_full_canonical_score |
 | 249 | None | asset_map_stationary_ar1_shrinkage_student_copula_dynamic_rough | M249 — Asset MAP Stationary AR1 + Shrinkage Student-t Copula + Dynamic Rough | asset_level_extension | 0.2289309701469439 | 0.22893097 | true | validated_full_canonical_score |
+| 250 | None | asset_map_stationary_ar1_innovation_shrinkage_copula_dynamic_rough | M250 — Asset MAP Stationary AR1 + Innovation Gaussian Shrinkage Copula + Dynamic Rough | asset_level_extension | 0.22829160576064347 | 0.228291606 | true | validated_full_canonical_score |
+| 251 | None | asset_map_stationary_ar1_innovation_student_copula_dynamic_rough | M251 — Asset MAP Stationary AR1 + Innovation Student Copula + Dynamic Rough | asset_level_extension | 0.22827457774792856 | 0.228274578 | true | validated_full_canonical_score |
