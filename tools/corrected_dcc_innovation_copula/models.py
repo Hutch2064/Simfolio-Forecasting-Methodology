@@ -46,7 +46,8 @@ def dcc_uniforms(shape,data,sims,horizon,seed):
     result=np.empty((sims,horizon,shape[1]));backend=native.load_paths()
     for start in range(0,horizon,1024):
         stop=min(start+1024,horizon);z=rng.normal(size=(stop-start,sims,shape[1]))
-        backend.scores(z,np.ascontiguousarray(target),states,a,b)
+        from numba import get_num_threads
+        backend.scores(z,np.ascontiguousarray(target),states,a,b,get_num_threads() if shape[1]>=16 else 1)
         ndtr(z,out=z);np.clip(z,1e-8,1.-1e-8,out=z)
         result[:,start:stop]=z.transpose(1,0,2)
     return result

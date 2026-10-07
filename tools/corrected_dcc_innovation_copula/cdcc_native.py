@@ -15,7 +15,7 @@ def load_paths():
 
     import pybind11
     source=Path(__file__).with_name('paths.cpp')
-    flags=['-O3','-std=c++17','-ffp-contract=off','-shared','-fPIC']
+    flags=['-O3','-std=c++17','-ffp-contract=off','-shared','-fPIC','-pthread']
     if platform.system()=='Darwin':flags+=['-undefined','dynamic_lookup']
     compiler=subprocess.check_output(['clang++','--version'])
     identity=hashlib.sha256(source.read_bytes()+compiler+repr((flags,platform.platform(),
