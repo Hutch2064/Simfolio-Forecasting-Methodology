@@ -77,9 +77,13 @@ def test_uniform_stream_prefix_and_gaussian_endpoint(monkeypatch):
     models.dcc_uniforms.cache_clear();args=((100,2),b'',4,1030,85)
     full=models.dcc_uniforms(*args)
     np.testing.assert_array_equal(full[:,:100],models.dcc_uniforms(args[0],b'',4,100,85))
-    expected=np.full((4,12,2),.7)
+    normals=np.random.default_rng(85).normal(size=(12,4,2));states=np.repeat(q[None,:,:],4,axis=0)
+    models.native.load_paths().scores(normals,s,states,.04,.9)
+    from scipy.special import ndtr
+    expected=ndtr(normals).transpose(1,0,2);np.clip(expected,1e-8,1.-1e-8,out=expected)
     monkeypatch.setattr(models,'configuration',lambda *args:(s,q,.04,.9,np.inf,None,None))
-    monkeypatch.setattr(models.parent,'dcc_uniforms',lambda *args:expected)
+    def duplicate_fit(*args):raise AssertionError('Gaussian endpoint must reuse the selected fit')
+    monkeypatch.setattr(models.parent,'dcc_uniforms',duplicate_fit)
     models.dcc_uniforms.cache_clear()
     np.testing.assert_array_equal(models.dcc_uniforms(args[0],b'',4,12,85),expected)
     models.dcc_uniforms.cache_clear()
@@ -195,3 +199,42 @@ def test_certified_quantile_table_preserves_full_history_likelihood_gradient():
         np.testing.assert_allclose(values[0][0],values[1][0],rtol=1e-10,atol=1e-7)
         np.testing.assert_allclose(values[0][1],values[1][1],rtol=2e-6,atol=3e-5)
         np.testing.assert_allclose(values[0][2],values[1][2],rtol=1e-10,atol=1e-10)
+
+
+def test_dense_gaussian_kernel_retains_original_lapack_arithmetic():
+    from lapack_native import load
+    rng=np.random.default_rng(772);z=rng.normal(size=(257,16))
+    design=rng.normal(size=(16,16));s=design@design.T+np.eye(16)*.01
+    s/=np.sqrt(np.diag(s))[:,None]*np.sqrt(np.diag(s))[None,:]
+    q0=s.copy();q0[0,0]+=1.
+    for a,b in ((.02,.95),(.065,0.),(0.,0.)):
+        expected=models.state.gaussian.likelihood(z,s,a,b,q0)
+        actual=load().gaussian_exact(z,s,a,b,q0)
+        assert actual[0]==expected[0]
+        assert actual[1].tobytes()==expected[1].tobytes()
+        assert actual[2].tobytes()==expected[2].tobytes()
+
+
+def test_large_lapack_student_derivatives_match_scalar_reference():
+    from likelihood_kernel import compiled,evaluate
+    rng=np.random.default_rng(773);z=rng.normal(size=(257,16));s=np.eye(16)
+    eta=rng.normal(size=z.shape)*.01;q0=s.copy();q0[0,0]=1.2
+    for derivatives,ze in ((True,None),(False,None),(True,eta)):
+        args=(z,s,.03,.9,q0,8.,0.,derivatives,ze,0.)
+        expected=compiled(16)(*args);actual=evaluate(*args)
+        np.testing.assert_allclose(actual[0],expected[0],rtol=1e-12,atol=1e-10)
+        np.testing.assert_allclose(actual[1],expected[1],rtol=1e-10,atol=1e-9)
+        np.testing.assert_array_equal(actual[2],expected[2])
+
+
+def test_native_parallel_paths_preserve_every_draw_and_memory_block():
+    backend=models.native.load_paths();rng=np.random.default_rng(774)
+    normals=rng.normal(size=(37,7,16));target=np.eye(16);initial=target*1.2
+    for a,b in ((.04,.9),(.065,0.)):
+        serial=normals.copy();states=np.repeat(initial[None,:,:],7,axis=0)
+        backend.scores(serial,target,states,a,b,1)
+        parallel=normals.copy();other=np.repeat(initial[None,:,:],7,axis=0)
+        backend.scores(parallel[:19],target,other,a,b,4)
+        backend.scores(parallel[19:],target,other,a,b,4)
+        assert serial.tobytes()==parallel.tobytes()
+        assert states.tobytes()==other.tobytes()

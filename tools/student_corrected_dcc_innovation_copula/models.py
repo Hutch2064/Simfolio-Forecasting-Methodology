@@ -21,8 +21,7 @@ _gaussian_fit=parent.state.fit
 
 def gaussian_fit(z,s,**kwargs):
     if len(s)>=16 and "evaluator" not in kwargs:
-        from lapack_native import load
-        kwargs["evaluator"]=load().gaussian_exact
+        kwargs["evaluator"]=state.likelihood_kernel.legacy_gaussian_likelihood
     return _gaussian_fit(z,s,**kwargs)
 
 

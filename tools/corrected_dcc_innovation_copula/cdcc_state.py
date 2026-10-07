@@ -45,30 +45,33 @@ def fit(z,s,evaluator=likelihood):
         except np.linalg.LinAlgError:return 1e100,np.zeros(2)
         jac=np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])
         return loss/n,jac@grad/n
-    def optimize(start):
+    def boundary(x):
+        a=float(expit(x[0]));loss,gradient,_=evaluator(z,s,a,0.,s)
+        return loss/n,np.array([gradient[0]*a*(1-a)/n])
+    def optimize(job):
+        kind,start=job
+        if kind=='boundary':
+            result=minimize(boundary,np.array(start),jac=True,method='L-BFGS-B',
+                            options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
+            if result.success and np.max(np.abs(result.jac))<=1e-5:
+                return float(result.fun),np.array([float(expit(result.x[0])),0.]),{
+                    'success':True,'b_zero_boundary':True,'iterations':int(result.nit),
+                    'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
+            return None
         start=np.array(start);coords=np.log(start/(1-start.sum()))
         result=minimize(fun,coords,jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
         theta=physical(result.x)
         if result.success and theta.sum()<1. and np.isfinite(result.fun) and np.max(np.abs(result.jac))<=1e-5:
             return float(result.fun),theta,{'success':bool(result.success),'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
         return None
-    starts=([.02,.95],[.05,.5],[.2,.2])
+    jobs=(('interior',[.02,.95]),('interior',[.05,.5]),('interior',[.2,.2]),('boundary',[-2.]))
     if len(s)>=16:
         from concurrent.futures import ThreadPoolExecutor
         from numba import get_num_threads
-        with ThreadPoolExecutor(max_workers=min(3,get_num_threads())) as pool:
-            results=list(pool.map(optimize,starts))
-    else:results=list(map(optimize,starts))
+        with ThreadPoolExecutor(max_workers=min(4,get_num_threads())) as pool:
+            results=list(pool.map(optimize,jobs))
+    else:results=list(map(optimize,jobs))
     solutions=[result for result in results if result is not None]
-    # Fit the b=0 boundary separately, rather than impose a positive floor.
-    def boundary(x):
-        a=float(expit(x[0]));loss,gradient,_=evaluator(z,s,a,0.,s)
-        return loss/n,np.array([gradient[0]*a*(1-a)/n])
-    edge=minimize(boundary,np.array([-2.]),jac=True,method='L-BFGS-B',
-                  options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
-    if edge.success and np.max(np.abs(edge.jac))<=1e-5:
-        solutions.append((float(edge.fun),np.array([float(expit(edge.x[0])),0.]),
-                          {'success':True,'b_zero_boundary':True,'iterations':int(edge.nit),'evaluations':int(edge.nfev),'transformed_mean_gradient':edge.jac.tolist()}))
     if not solutions:raise ArithmeticError('no converged cDCC parameter fit')
     constant=evaluator(z,s,0.,0.,s)[0]/n
     solutions.append((constant,np.zeros(2),{'success':True,'constant_endpoint':True}))

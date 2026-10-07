@@ -109,3 +109,12 @@ def evaluate(z,s,a,b,q0,nu,constant,derivatives=True,z_eta=None,constant_eta=0.)
 
 def gaussian_likelihood(z,s,a,b,q0):
     return evaluate(z,s,a,b,q0,0.,0.)
+
+
+def legacy_gaussian_likelihood(z,s,a,b,q0):
+    from lapack_native import load
+    backend=load()
+    try:
+        return backend.gaussian_exact(z,s,a,b,q0)
+    except RuntimeError as error:
+        raise np.linalg.LinAlgError(str(error)) from error

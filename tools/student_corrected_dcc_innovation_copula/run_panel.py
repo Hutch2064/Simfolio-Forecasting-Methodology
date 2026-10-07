@@ -32,6 +32,7 @@ def source_hashes():
     native=models.load_paths()[0]
     hashes['rough_streamed_native_binary']=hashlib.sha256(Path(native.__file__).read_bytes()).hexdigest()
     hashes['corrected_dcc_native_binary']=hashlib.sha256(Path(models.native.load_paths().__file__).read_bytes()).hexdigest()
+    hashes['corrected_dcc_lapack_binary']=hashlib.sha256(Path(__import__('lapack_native').load().__file__).read_bytes()).hexdigest()
     return hashes
 
 

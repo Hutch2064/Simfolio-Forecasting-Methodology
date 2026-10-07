@@ -89,30 +89,35 @@ def fit(u,s):
         else:result=np.r_[np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])@grad,gn]
         return value/n,result/n
     start=gtheta if gtheta.min()>0 else np.array([.02,.8])
-    def optimize(initial_nu):
-        x=np.r_[np.log(start/(1-start.sum())),np.log(initial_nu-2)]
-        result=minimize(objective,x,jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
-        theta=softmax(np.r_[result.x[:2],0.])[:2];nu=2+np.exp(result.x[-1])
-        if result.success and np.isfinite(result.fun) and theta.sum()<1 and np.max(np.abs(result.jac))<=1e-5:
-            return float(result.fun),theta,nu,{'success':True,'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
-        return None
-    if p>=16:
-        from concurrent.futures import ThreadPoolExecutor
-        from numba import get_num_threads
-        with ThreadPoolExecutor(max_workers=min(2,get_num_threads())) as pool:
-            results=list(pool.map(optimize,(8.,30.)))
-    else:results=list(map(optimize,(8.,30.)))
-    solutions.extend(result for result in results if result is not None)
-    edge=minimize(lambda x:objective(x,True),np.array([-2.,np.log(6.)]),jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
-    if edge.success and np.isfinite(edge.fun) and np.max(np.abs(edge.jac))<=1e-5:
-        theta=np.array([softmax([edge.x[0],0.])[0],0.]);nu=2+np.exp(edge.x[-1])
-        solutions.append((float(edge.fun),theta,nu,{'success':True,'b_zero_boundary':True,'iterations':int(edge.nit),'evaluations':int(edge.nfev),'transformed_mean_gradient':edge.jac.tolist()}))
     def constant(x):
         h=step*max(1.,abs(x[0]));v=evaluation(0.,0.,x[0],False)[0]
         return v/n,np.array([(evaluation(0.,0.,x[0]+h,False)[0]-evaluation(0.,0.,x[0]-h,False)[0])/(2*h*n)])
-    edge=minimize(constant,np.array([np.log(6.)]),jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
-    if edge.success and np.isfinite(edge.fun) and np.max(np.abs(edge.jac))<=1e-5:
-        solutions.append((float(edge.fun),np.zeros(2),2+np.exp(edge.x[0]),{'success':True,'constant_endpoint':True,'transformed_mean_gradient':edge.jac.tolist()}))
+    def optimize(job):
+        kind,initial_nu=job
+        if kind=='interior':
+            x=np.r_[np.log(start/(1-start.sum())),np.log(initial_nu-2)]
+            result=minimize(objective,x,jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
+            theta=softmax(np.r_[result.x[:2],0.])[:2];nu=2+np.exp(result.x[-1])
+            if result.success and np.isfinite(result.fun) and theta.sum()<1 and np.max(np.abs(result.jac))<=1e-5:
+                return float(result.fun),theta,nu,{'success':True,'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
+        elif kind=='boundary':
+            result=minimize(lambda x:objective(x,True),np.array([-2.,np.log(6.)]),jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
+            if result.success and np.isfinite(result.fun) and np.max(np.abs(result.jac))<=1e-5:
+                theta=np.array([softmax([result.x[0],0.])[0],0.]);nu=2+np.exp(result.x[-1])
+                return float(result.fun),theta,nu,{'success':True,'b_zero_boundary':True,'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
+        else:
+            result=minimize(constant,np.array([np.log(6.)]),jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
+            if result.success and np.isfinite(result.fun) and np.max(np.abs(result.jac))<=1e-5:
+                return float(result.fun),np.zeros(2),2+np.exp(result.x[0]),{'success':True,'constant_endpoint':True,'transformed_mean_gradient':result.jac.tolist()}
+        return None
+    jobs=(('interior',8.),('interior',30.),('boundary',8.),('constant',8.))
+    if p>=16:
+        from concurrent.futures import ThreadPoolExecutor
+        from numba import get_num_threads
+        with ThreadPoolExecutor(max_workers=min(4,get_num_threads())) as pool:
+            results=list(pool.map(optimize,jobs))
+    else:results=list(map(optimize,jobs))
+    solutions.extend(result for result in results if result is not None)
     if not solutions:raise ArithmeticError('no converged Student cDCC fit')
     solutions.append((ginfo['training_nll']/n,gtheta,np.inf,{'success':True,'gaussian_endpoint':True,'gaussian_fit':ginfo}))
     value,theta,nu,info=min(solutions,key=lambda item:item[0])
