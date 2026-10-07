@@ -102,7 +102,7 @@ def evaluate(z,s,a,b,q0,nu,constant,derivatives=True,z_eta=None,constant_eta=0.)
         backend=load()
         try:
             from numba import get_num_threads
-            blocks=min(3,get_num_threads())
+            blocks=min(len(z),get_num_threads())
             if len(s)>=32 and len(z)>=1024 and b>0 and blocks>1:
                 # Each block receives the unchanged recursive state and its
                 # parameter derivatives. Only likelihood work is concurrent.

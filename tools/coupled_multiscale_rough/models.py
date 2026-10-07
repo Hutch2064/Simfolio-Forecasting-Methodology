@@ -5,6 +5,7 @@ import math
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import nullcontext
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
@@ -70,17 +71,24 @@ class Candidate:
         started=time.perf_counter()
         def fit_asset(d):return refit(d),rough.rough_fit(d,lag,self.fit_seconds)
         workers=min(len(data),max(1,shell.controls.STATE_WORKERS))
-        if workers==1:posteriors=list(map(fit_asset,data))
-        else:
-            with ThreadPoolExecutor(max_workers=workers) as pool:posteriors=list(pool.map(fit_asset,data))
-        shell.controls.timed('fit_phase_wall',started);started=time.perf_counter()
-        if assets.shape[1]>1:
-            seed=shell.bd.deterministic_seed('copula_alternatives',shell.bd.FRONTIER_DEPENDENCE_ID,str(context.origin_date),horizon,sims)
-            uniforms=shell.controls.gaussian_uniforms(assets.shape,assets.tobytes(),sims,horizon,seed)
-        else:
-            seed=shell.bd.deterministic_seed('moment_sv_single_asset',str(context.origin_date),horizon,sims)
-            uniforms=np.random.default_rng(seed).random((sims,horizon,1))
-        shell.controls.timed('dependence_paths',started);paths=np.empty_like(uniforms);started=time.perf_counter()
+        with (ThreadPoolExecutor(max_workers=workers) if workers>1 else nullcontext()) as fit_pool:
+            if workers==1:posteriors=list(map(fit_asset,data))
+            else:
+                originals=list(fit_pool.map(refit,data))
+                pending=[fit_pool.submit(rough.rough_fit,d,lag,self.fit_seconds) for d in data]
+            shell.controls.timed('fit_phase_wall',started);started=time.perf_counter()
+            if assets.shape[1]>1:
+                seed=shell.bd.deterministic_seed('copula_alternatives',shell.bd.FRONTIER_DEPENDENCE_ID,str(context.origin_date),horizon,sims)
+                uniforms=shell.controls.gaussian_uniforms(assets.shape,assets.tobytes(),sims,horizon,seed)
+            else:
+                seed=shell.bd.deterministic_seed('moment_sv_single_asset',str(context.origin_date),horizon,sims)
+                uniforms=np.random.default_rng(seed).random((sims,horizon,1))
+            shell.controls.timed('dependence_paths',started)
+            if workers>1:
+                joined=time.perf_counter()
+                posteriors=list(zip(originals,[future.result() for future in pending]))
+                shell.controls.timed('fit_phase_wall',joined)
+        paths=np.empty_like(uniforms);started=time.perf_counter()
         from dynamic import selected_kernel
         from streamed_paths import map_asset_inplace
 

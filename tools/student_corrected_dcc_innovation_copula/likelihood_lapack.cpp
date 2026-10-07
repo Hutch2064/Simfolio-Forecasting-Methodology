@@ -65,7 +65,7 @@ Array starts(Array z,Array s,double a,double b,Array initial,int blocks,py::obje
  std::vector<double> q(initial.data(),initial.data()+p*p),da(p*p),db(p*p),qe(p*p),w(p),wa(p),wb(p),we(p);
  py::gil_scoped_release release;int block=0;
  for(int t=0;t<n;t++){
-  if(block<blocks && t==block*n/blocks){for(int i=0;i<p*p;i++){out[(block*4)*p*p+i]=q[i];out[(block*4+1)*p*p+i]=da[i];out[(block*4+2)*p*p+i]=db[i];out[(block*4+3)*p*p+i]=qe[i];}block++;}
+  if(block<blocks && t==block*n/blocks){for(int i=0;i<p*p;i++){out[(block*4)*p*p+i]=q[i];out[(block*4+1)*p*p+i]=da[i];out[(block*4+2)*p*p+i]=db[i];out[(block*4+3)*p*p+i]=qe[i];}block++;if(block==blocks)break;}
   const double* row=rows+t*p;
   for(int i=0;i<p;i++){double sd=std::sqrt(q[i*p+i]);w[i]=sd*row[i];wa[i]=.5*row[i]/sd*da[i*p+i];wb[i]=.5*row[i]/sd*db[i*p+i];if(ze)we[i]=.5*row[i]/sd*qe[i*p+i]+sd*ze[t*p+i];}
   for(int i=0;i<p;i++)for(int j=0;j<=i;j++){int ij=i*p+j,ji=j*p+i;double outer=w[i]*w[j],old=q[ij];da[ij]=outer-target[ij]+a*(wa[i]*w[j]+w[i]*wa[j])+b*da[ij];db[ij]=old-target[ij]+a*(wb[i]*w[j]+w[i]*wb[j])+b*db[ij];da[ji]=da[ij];db[ji]=db[ij];if(ze){qe[ij]=a*(we[i]*w[j]+w[i]*we[j])+b*qe[ij];qe[ji]=qe[ij];}q[ij]=(1-a-b)*target[ij]+a*outer+b*old;q[ji]=q[ij];}
