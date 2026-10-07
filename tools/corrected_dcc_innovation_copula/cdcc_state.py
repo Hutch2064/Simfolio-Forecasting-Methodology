@@ -32,7 +32,7 @@ def likelihood(z,s,a,b,q0):
         q=(1-a-b)*s+a*outer+b*q
     return loss,gradient,q
 
-def fit(z,s):
+def fit(z,s,evaluator=likelihood):
     """Conditional Gaussian copula QMLE with fixed training shrinkage target."""
     n=len(z)
     def physical(x):
@@ -41,7 +41,7 @@ def fit(z,s):
         theta=physical(x);a,b=theta
         if theta.sum()>=1.:
             return 1e100,np.zeros(2)
-        try:loss,grad,_=likelihood(z,s,a,b,s)
+        try:loss,grad,_=evaluator(z,s,a,b,s)
         except np.linalg.LinAlgError:return 1e100,np.zeros(2)
         jac=np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])
         return loss/n,jac@grad/n
@@ -54,7 +54,7 @@ def fit(z,s):
             solutions.append((float(result.fun),theta,{'success':bool(result.success),'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}))
     # Fit the b=0 boundary separately, rather than impose a positive floor.
     def boundary(x):
-        a=float(expit(x[0]));loss,gradient,_=likelihood(z,s,a,0.,s)
+        a=float(expit(x[0]));loss,gradient,_=evaluator(z,s,a,0.,s)
         return loss/n,np.array([gradient[0]*a*(1-a)/n])
     edge=minimize(boundary,np.array([-2.]),jac=True,method='L-BFGS-B',
                   options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
@@ -62,9 +62,9 @@ def fit(z,s):
         solutions.append((float(edge.fun),np.array([float(expit(edge.x[0])),0.]),
                           {'success':True,'b_zero_boundary':True,'iterations':int(edge.nit),'evaluations':int(edge.nfev),'transformed_mean_gradient':edge.jac.tolist()}))
     if not solutions:raise ArithmeticError('no converged cDCC parameter fit')
-    constant=likelihood(z,s,0.,0.,s)[0]/n
+    constant=evaluator(z,s,0.,0.,s)[0]/n
     solutions.append((constant,np.zeros(2),{'success':True,'constant_endpoint':True}))
     best=min(solutions,key=lambda x:x[0])
-    loss,grad,q=likelihood(z,s,*best[1],s)
+    loss,grad,q=evaluator(z,s,*best[1],s)
     return best[1],q,{'training_nll':float(loss),'static_training_nll':float(constant*n),'gradient':grad.tolist(),'optimizer':best[2]}
 

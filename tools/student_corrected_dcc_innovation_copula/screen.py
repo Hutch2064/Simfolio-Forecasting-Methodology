@@ -41,8 +41,10 @@ def main():
     # task's own dependence fit remains cold; no benchmark observations enter
     # this compiler warm-up.
     dummy=np.random.default_rng(867).normal(size=(300,6))
-    models.state.likelihood(dummy,np.eye(6),.1,.5,np.eye(6),8.,models.state.copula_constant(8.,6))
-    models.state.likelihood(dummy,np.eye(6),.1,.5,np.eye(6),8.,models.state.copula_constant(8.,6),False)
+    models.state.likelihood_kernel.evaluate(dummy,np.eye(6),.1,.5,np.eye(6),8.,models.state.copula_constant(8.,6))
+    models.state.likelihood_kernel.evaluate(dummy,np.eye(6),.1,.5,np.eye(6),8.,models.state.copula_constant(8.,6),False)
+    models.state.likelihood_kernel.gaussian_likelihood(dummy,np.eye(6),.1,.5,np.eye(6))
+    models.student_cdf.interpolate(np.zeros((1,1,1)),8.,*models.student_cdf.grid(8.))
     models.native.load_paths()
     models.shell.controls.gaussian_uniforms.cache_clear()
     records=[];failure=None;reference=None

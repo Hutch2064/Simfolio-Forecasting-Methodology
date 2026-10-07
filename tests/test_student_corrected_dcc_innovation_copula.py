@@ -103,3 +103,40 @@ def test_large_nu_copula_limit_matches_gaussian():
     student=models.state.likelihood(z,s,.03,.9,s,nu,models.state.copula_constant(nu,2))[0]
     gaussian=models.state.gaussian.likelihood(ndtri(u),s,.03,.9,s)[0]
     np.testing.assert_allclose(student,gaussian,atol=2e-6,rtol=2e-6)
+
+
+def test_allocation_free_likelihood_matches_original_for_full_histories():
+    from likelihood_kernel import evaluate, gaussian_likelihood
+    rng=np.random.default_rng(256)
+    for p in (2,6,12):
+        root=rng.normal(size=(p,p));s=root@root.T+p*np.eye(p)
+        s=s/np.sqrt(np.diag(s))[:,None]/np.sqrt(np.diag(s))[None,:]
+        u=rng.uniform(.0001,.9999,(700,p))
+        for a,b in ((0.,0.),(.07,.9),(.2,0.)):
+            z=ndtri(u)
+            expected=models.state.gaussian.likelihood(z,s,a,b,s)
+            actual=gaussian_likelihood(z,s,a,b,s)
+            for measured,reference in zip(actual,expected):
+                np.testing.assert_allclose(measured,reference,rtol=2e-11,atol=2e-10)
+            for nu in (2.1,8.,1e7):
+                z=models.state.standardized_scores(u,nu);c=models.state.copula_constant(nu,p)
+                expected=models.state.likelihood(z,s,a,b,s,nu,c)
+                actual=evaluate(z,s,a,b,s,nu,c)
+                for measured,reference in zip(actual,expected):
+                    np.testing.assert_allclose(measured,reference,rtol=2e-10,atol=2e-9)
+                value,_,q=evaluate(z,s,a,b,s,nu,c,False)
+                np.testing.assert_allclose(value,actual[0],rtol=2e-11,atol=2e-10)
+                np.testing.assert_array_equal(q,actual[2])
+
+
+def test_student_cdf_interpolation_has_uniform_probability_error_bound():
+    from student_cdf import ERROR, grid, interpolate, resolution
+    rng=np.random.default_rng(257)
+    for nu in (2.01,2.1,3.,8.,31.,100.,1000.):
+        limit,n,_=resolution(nu)
+        # Include every interval midpoint, all grid knots and rare tail draws.
+        angles=np.linspace(-limit,limit,2*n+1)
+        x=np.r_[np.sqrt(nu)*np.tan(angles),rng.standard_t(nu,size=10000),-1e10,1e10]
+        expected=np.clip(stdtr(nu,x),1e-8,1-1e-8)
+        actual=x.copy();interpolate(actual,nu,*grid(nu))
+        np.testing.assert_allclose(actual,expected,rtol=0,atol=ERROR+2e-14)

@@ -6,11 +6,12 @@ from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
-from scipy.special import ndtri, stdtr
+from scipy.special import ndtri
 
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 sys.path.insert(0,str(HERE))
 import student_state as state
+import student_cdf
 
 spec=importlib.util.spec_from_file_location('student_cdcc_private_M255',ROOT/'tools/corrected_dcc_innovation_copula/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
@@ -54,7 +55,7 @@ def dcc_uniforms(shape,data,sims,horizon,seed):
             raise ArithmeticError('unresolved Student mixing scale')
         z*=np.sqrt((nu-2)/scales)
         backend.scores(z,np.ascontiguousarray(target),states,a,b)
-        z*=np.sqrt(nu/(nu-2));stdtr(nu,z,out=z)
+        z*=np.sqrt(nu/(nu-2));student_cdf.probabilities(z,nu,1024*sims*shape[1])
         np.clip(z,1e-8,1.-1e-8,out=z)
         result[:,start:stop]=z.transpose(1,0,2)
     return result

@@ -5,6 +5,7 @@ The Student shock is standardized to unit variance before updating Q. This is
 not a Gaussian-score recursion with a Student CDF substituted afterward.
 """
 import sys
+from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
@@ -14,6 +15,7 @@ from scipy.special import gammaln, ndtri, softmax, stdtrit
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'corrected_dcc_innovation_copula'))
 import cdcc_state as gaussian
+import likelihood_kernel
 
 
 def copula_constant(nu,p):
@@ -52,14 +54,21 @@ def standardized_scores(u,nu):
 
 
 def fit(u,s):
-    n,p=u.shape;gtheta,gq,ginfo=gaussian.fit(np.ascontiguousarray(ndtri(u)),s)
+    n,p=u.shape;gtheta,gq,ginfo=gaussian.fit(np.ascontiguousarray(ndtri(u)),s,evaluator=likelihood_kernel.gaussian_likelihood)
     solutions=[];step=np.finfo(float).eps**(1/3)
+    # Rank uniforms share the same grid across assets. Invert each distinct
+    # probability once, then gather the identical per-observation scores.
+    probabilities,indices=np.unique(u,return_inverse=True)
+    @lru_cache(maxsize=32)
+    def scores(nu):
+        values=standardized_scores(probabilities,nu)
+        return np.ascontiguousarray(values[indices].reshape(u.shape))
     def evaluation(a,b,eta,derivatives=True):
         with np.errstate(over='ignore',under='ignore',invalid='ignore'):
             nu=2+np.exp(eta)
         if not np.isfinite(nu) or nu<=2:return 1e100,np.zeros(2),None
-        z=standardized_scores(u,nu)
-        return likelihood(z,s,a,b,s,nu,copula_constant(nu,p),derivatives)
+        z=scores(nu)
+        return likelihood_kernel.evaluate(z,s,a,b,s,nu,copula_constant(nu,p),derivatives)
     def objective(x,boundary=False):
         theta=softmax(np.r_[x[:-1],0.])
         a=float(theta[0]);b=0. if boundary else float(theta[1]);eta=x[-1]
