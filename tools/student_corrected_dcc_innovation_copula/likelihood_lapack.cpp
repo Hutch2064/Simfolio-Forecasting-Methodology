@@ -18,11 +18,15 @@ py::tuple evaluate(Array z,Array s,double a,double b,Array initial,double nu,dou
  const double* zs=z.data();const double* target=s.data();double loss=-n*constant;
  std::vector<double> da(p*p),db(p*p),qe(p*p),inv(p*p),sd(p),w(p),v(p),wa(p),wb(p),we(p);
  {py::gil_scoped_release release;
+ double cached_logdet=0.;
  for(int t=0;t<n;t++){
-  const double* row=zs+t*p;double logdet=0.;for(int i=0;i<p*p;i++)inv[i]=q[i];int info=0;char triangle='L';potrf(&triangle,&p,inv.data(),&p,&info);if(info)throw std::runtime_error("nonpositive cDCC covariance");
-  for(int i=0;i<p;i++){sd[i]=std::sqrt(q[i*p+i]);w[i]=sd[i]*row[i];logdet+=2*std::log(inv[i*p+i])-std::log(q[i*p+i]);}
+  const double* row=zs+t*p;double logdet=cached_logdet;
+  if(a!=0. || b!=0. || t<2){logdet=0.;for(int i=0;i<p*p;i++)inv[i]=q[i];int info=0;char triangle='L';potrf(&triangle,&p,inv.data(),&p,&info);if(info)throw std::runtime_error("nonpositive cDCC covariance");
+  for(int i=0;i<p;i++){sd[i]=std::sqrt(q[i*p+i]);logdet+=2*std::log(inv[i*p+i])-std::log(q[i*p+i]);}
   potri(&triangle,&p,inv.data(),&p,&info);if(info)throw std::runtime_error("noninvertible cDCC covariance");
   for(int i=0;i<p;i++)for(int j=0;j<i;j++)inv[i*p+j]=inv[j*p+i];
+  cached_logdet=logdet;}
+  for(int i=0;i<p;i++)w[i]=sd[i]*row[i];
   double maha=0.,marginal=0.;for(int i=0;i<p;i++){double value=0.;for(int j=0;j<p;j++)value+=inv[i*p+j]*w[j];v[i]=value;maha+=w[i]*value;if(nu>0)marginal+=std::log1p(row[i]*row[i]/(nu-2));else marginal+=row[i]*row[i];}
   double weight=nu>0?(nu+p)/(nu-2+maha):1.;if(nu>0)loss+=.5*logdet+.5*(nu+p)*std::log1p(maha/(nu-2))-.5*(nu+1)*marginal;else loss+=.5*(logdet+maha-marginal);
   if(derivatives){for(int i=0;i<p;i++){wa[i]=.5*row[i]/sd[i]*da[i*p+i];wb[i]=.5*row[i]/sd[i]*db[i*p+i];if(joint)we[i]=.5*row[i]/sd[i]*qe[i*p+i]+sd[i]*ze[t*p+i];}

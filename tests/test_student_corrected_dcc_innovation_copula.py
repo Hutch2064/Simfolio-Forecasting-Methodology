@@ -238,3 +238,32 @@ def test_native_parallel_paths_preserve_every_draw_and_memory_block():
         backend.scores(parallel[19:],target,other,a,b,4)
         assert serial.tobytes()==parallel.tobytes()
         assert states.tobytes()==other.tobytes()
+
+
+def test_constant_large_matrix_factorization_reuse_matches_full_recursion():
+    from lapack_native import load
+    rng=np.random.default_rng(719);z=rng.normal(size=(257,16));s=.25*np.ones((16,16))+.75*np.eye(16)
+    for nu in (0.,8.):
+        for derivatives in (False,True):
+            for initial in (s,2*s):
+                actual=load().evaluate(z,s,0.,0.,initial,nu,0.,derivatives)
+                expected=models.state.likelihood_kernel.compiled(16)(z,s,0.,0.,initial,nu,0.,derivatives)
+                np.testing.assert_allclose(actual[0],expected[0],rtol=1e-13,atol=1e-11)
+                np.testing.assert_allclose(actual[1],expected[1],rtol=1e-12,atol=1e-10)
+                np.testing.assert_array_equal(actual[2],expected[2])
+
+
+def test_parallel_independent_fit_starts_preserve_selection():
+    import numba
+    from scipy.special import ndtr
+    rng=np.random.default_rng(710);z=rng.normal(size=(257,16));s=np.eye(16)
+    previous=numba.get_num_threads()
+    try:
+        results=[]
+        for threads in (1,min(4,numba.config.NUMBA_NUM_THREADS)):
+            numba.set_num_threads(threads)
+            results.append(models.state.fit(ndtr(z),s))
+        for a,b in zip(*results):
+            if isinstance(a,np.ndarray):np.testing.assert_array_equal(a,b)
+            else:assert a==b
+    finally:numba.set_num_threads(previous)

@@ -88,7 +88,8 @@ class Candidate:
             moment_return_curves,
         )
         module,dot=load_paths()
-        for a,(d,((original,fit),rough_fit)) in enumerate(zip(data,posteriors)):
+        def map_asset(item):
+            a,(d,((original,fit),rough_fit))=item
             identity=hashlib.sha256(d).hexdigest();theta=rough_fit['map']
             phi,w,root,terminal,initial_root,rm,rv=pathwise.prepared(d,theta.tobytes(),lag,horizon)
             mean,_=moment_return_curves(learned.student.original_fit(d),horizon)
@@ -109,6 +110,10 @@ class Candidate:
                 'conventional_state_uncertainty':'deterministic last fitted proxy state; stochastic coupled future recursion',
                 'conventional_normalization':'conditional Gaussian second moment one; return variance curve from same coupled state law',
                 'rough_normalization':'unchanged M237 stationary Gaussian normalization'}
+        items=enumerate(zip(data,posteriors))
+        if workers==1:list(map(map_asset,items))
+        else:
+            with ThreadPoolExecutor(max_workers=workers) as pool:list(pool.map(map_asset,items))
         shell.controls.timed('asset_predictive_paths',started)
         dates=shell._historical_rebalance_dates(past.append(future),training.policy.rebalance)
         return shell.rejoin(paths,training.policy.weights,np.asarray([date in dates for date in future]))
