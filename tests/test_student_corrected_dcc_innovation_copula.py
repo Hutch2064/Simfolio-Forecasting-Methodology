@@ -217,7 +217,7 @@ def test_dense_gaussian_kernel_retains_original_lapack_arithmetic():
 
 
 def test_large_lapack_student_derivatives_match_scalar_reference():
-    from likelihood_kernel import compiled,evaluate
+    from likelihood_kernel import compiled, evaluate
     rng=np.random.default_rng(773);z=rng.normal(size=(257,16));s=np.eye(16)
     eta=rng.normal(size=z.shape)*.01;q0=s.copy();q0[0,0]=1.2
     for derivatives,ze in ((True,None),(False,None),(True,eta)):
@@ -272,8 +272,8 @@ def test_parallel_independent_fit_starts_preserve_selection(dimension):
 
 
 def test_large_likelihood_blocks_carry_exact_state_and_derivatives():
-    from lapack_native import load
     import numba
+    from lapack_native import load
     rng=np.random.default_rng(723);z=rng.normal(size=(1031,32));eta=rng.normal(size=z.shape)*.03
     s=.25*np.ones((32,32))+.75*np.eye(32);initial=2*s
     previous=numba.get_num_threads()
@@ -294,7 +294,7 @@ def test_pipelined_gaussian_and_student_blocks_preserve_full_forecast(monkeypatc
     previous=numba.get_num_threads();s=.2*np.ones((16,16))+.8*np.eye(16)
     try:
         for nu in (np.inf,8.):
-            monkeypatch.setattr(models,'configuration',lambda shape,data:(s,s,.04,.9,nu,None,None))
+            monkeypatch.setattr(models,'configuration',lambda shape,data,nu=nu:(s,s,.04,.9,nu,None,None))
             forecasts=[]
             for threads in (1,min(4,numba.config.NUMBA_NUM_THREADS)):
                 numba.set_num_threads(threads);models.dcc_uniforms.cache_clear()

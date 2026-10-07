@@ -32,6 +32,6 @@ def load():
             temporary.replace(binary)
     spec=importlib.util.spec_from_file_location('cdcc_lapack_native',binary)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-    from scipy.linalg import cython_lapack, cython_blas
+    from scipy.linalg import cython_blas, cython_lapack
     module.configure(cython_lapack.__pyx_capi__["dpotrf"],cython_lapack.__pyx_capi__["dpotri"],cython_lapack.__pyx_capi__["dgesv"],cython_blas.__pyx_capi__["dgemv"],cython_blas.__pyx_capi__["ddot"])
     return module

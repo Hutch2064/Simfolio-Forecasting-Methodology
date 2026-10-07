@@ -77,6 +77,7 @@ def fit(z,s,evaluator=likelihood):
     jobs=(('interior',[.02,.95]),('interior',[.05,.5]),('interior',[.2,.2]),('boundary',[-2.]))
     if len(s)>=16:
         from concurrent.futures import ThreadPoolExecutor
+
         from numba import get_num_threads
         with ThreadPoolExecutor(max_workers=min(4,get_num_threads())) as pool:
             results=list(pool.map(optimize,jobs))

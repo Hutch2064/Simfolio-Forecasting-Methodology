@@ -11,7 +11,7 @@ from pathlib import Path
 import numpy as np
 from numba import njit
 from scipy.optimize import minimize
-from scipy.special import gammaln, ndtri, softmax, expit
+from scipy.special import expit, gammaln, ndtri, softmax
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'corrected_dcc_innovation_copula'))
 import cdcc_state as gaussian
@@ -126,6 +126,7 @@ def fit(u,s):
     jobs=(('interior',8.),('interior',30.),('boundary',8.),('constant',8.))
     if p>=16:
         from concurrent.futures import ThreadPoolExecutor
+
         from numba import get_num_threads
         with ThreadPoolExecutor(max_workers=min(4,get_num_threads())) as pool:
             results=list(pool.map(optimize,jobs))

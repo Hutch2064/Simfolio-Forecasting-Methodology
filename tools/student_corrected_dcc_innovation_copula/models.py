@@ -1,15 +1,15 @@
 """M255 asset law with finite-variance Student corrected-DCC dependence."""
 import hashlib
-import os
 import importlib.util
+import os
 import sys
-from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import nullcontext
+from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
-from scipy.special import ndtri, ndtr
+from scipy.special import ndtr, ndtri
 
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 sys.path.insert(0,str(HERE))
