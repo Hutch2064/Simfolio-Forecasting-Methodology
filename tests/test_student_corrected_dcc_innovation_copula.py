@@ -158,3 +158,14 @@ def test_joint_tail_derivative_matches_whole_likelihood_finite_difference():
             assert value==reference[0]
             np.testing.assert_array_equal(q,reference[2])
             np.testing.assert_array_equal(gradient[:2],reference[1])
+
+
+def test_constant_endpoint_reuses_factorization_after_initial_state_transition():
+    from likelihood_kernel import evaluate
+    z=np.random.default_rng(260).normal(size=(83,3))
+    s=.8*np.eye(3)+.2*np.ones((3,3));q0=2*s
+    for derivatives in (True,False):
+        expected=models.state.likelihood(z,s,0.,0.,q0,8.,0.,derivatives)
+        actual=evaluate(z,s,0.,0.,q0,8.,0.,derivatives)
+        for measured,reference in zip(actual,expected):
+            np.testing.assert_allclose(measured,reference,rtol=2e-11,atol=2e-10)
