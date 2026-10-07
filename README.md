@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **251 models**: the original 175 plus sixty-six
+The canonical catalogue contains **252 models**: the original 175 plus sixty-seven
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–251 and no historical source rank.
+indices 176–252 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 251 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 252 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -193,3 +193,5 @@ M248 keeps M243 volatility fits and tests a full static shrinkage Gaussian retur
 M249 keeps M248 mean, volatility, innovation nodes and shrinkage scatter and fits Student-t copula degrees of freedom from training ranks. Full-panel CRPS: **0.2289309701469439**; paired audit and measured runtime are retained.
 
 M250/M251 retain M248 asset marginals and estimate Gaussian/Student dependence from chronological standardized innovations. Both full-panel scores, audit and shared-calibration runtime provenance are retained in `docs/results/rough-bayesian/innovation-copula-panel.json`.
+
+M252 retains M251 asset forecasts and tests Kendall sign-statistic Student copula scatter. Full-panel CRPS: **0.22852566409572264**; complete audit and measured independent runtime are retained.

@@ -3,11 +3,11 @@ from simfolio_forecasting_methodology.catalog import FRONTIER_SOURCE_ID, load_ca
 
 def test_canonical_catalogue_has_exact_membership_and_frontier_rank_one():
     rows = load_canonical_175()
-    assert len(rows) == 251
+    assert len(rows) == 252
     assert rows[0].canonical_rank == 1
     assert rows[0].source_rank == 12
     assert rows[0].model_id == FRONTIER_SOURCE_ID
-    assert rows[-1].canonical_rank == 251
+    assert rows[-1].canonical_rank == 252
     assert rows[-1].source_rank is None
 
 
