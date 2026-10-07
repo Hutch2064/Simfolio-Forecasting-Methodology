@@ -10,8 +10,8 @@ from scipy.special import ndtri
 
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 sys.path.insert(0,str(HERE))
-import student_state as state
 import student_cdf
+import student_state as state
 
 spec=importlib.util.spec_from_file_location('student_cdcc_private_M255',ROOT/'tools/corrected_dcc_innovation_copula/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)

@@ -1,15 +1,19 @@
 """Allocation-free small-matrix cDCC likelihood; the statistical law is unchanged."""
+from functools import lru_cache
+
 import numpy as np
 from numba import njit
 
 
-@njit(cache=True)
-def evaluate(z,s,a,b,q0,nu,constant,derivatives=True):
-    p=len(s);q=q0.copy();da=np.zeros_like(q);db=np.zeros_like(q)
+@njit(cache=True,inline="always")
+def _evaluate(p,z,s,a,b,q0,nu,constant,derivatives=True,z_eta=None,constant_eta=0.):
+    q=q0.copy();da=np.zeros_like(q);db=np.zeros_like(q)
     root=np.zeros_like(q);inverse_root=np.zeros_like(q);inv=np.zeros_like(q)
     sd=np.empty(p);w=np.empty(p);v=np.empty(p);wa=np.empty(p);wb=np.empty(p)
-    loss=-len(z)*constant;gradient=np.zeros(2)
-    for row in z:
+    loss=-len(z)*constant;gradient=np.zeros(2 if z_eta is None else 3)
+    qe=np.zeros_like(q);we=np.empty(p)
+    if z_eta is not None:gradient[2]=-len(z)*constant_eta
+    for t,row in enumerate(z):
         logdet=0.
         for i in range(p):
             sd[i]=np.sqrt(q[i,i]);w[i]=sd[i]*row[i]
@@ -53,12 +57,21 @@ def evaluate(z,s,a,b,q0,nu,constant,derivatives=True):
         if derivatives:
             for i in range(p):
                 wa[i]=.5*row[i]/sd[i]*da[i,i];wb[i]=.5*row[i]/sd[i]*db[i,i]
+                if z_eta is not None:we[i]=.5*row[i]/sd[i]*qe[i,i]+sd[i]*z_eta[t,i]
             for i in range(p):
                 for j in range(i+1):
                     g=.5*inv[i,j]-.5*weight*v[i]*v[j]
                     if i==j:g+=-.5/q[i,i]+.5*weight*v[i]*row[i]/sd[i]
                     scale=1. if i==j else 2.
                     gradient[0]+=scale*g*da[i,j];gradient[1]+=scale*g*db[i,j]
+                    if z_eta is not None:gradient[2]+=scale*g*qe[i,j]
+        if z_eta is not None:
+            d=nu-2;tail_sum=0.
+            for i in range(p):
+                square=row[i]*row[i]
+                tail_sum+=square/(d*(d+square))
+                gradient[2]+=weight*v[i]*sd[i]*z_eta[t,i]-(nu+1)*row[i]*z_eta[t,i]/(d+square)
+            gradient[2]+=d*(.5*np.log1p(maha/d)-.5*(nu+p)*maha/(d*(d+maha))-.5*marginal+.5*(nu+1)*tail_sum)
         for i in range(p):
             for j in range(i+1):
                 outer=w[i]*w[j];old=q[i,j]
@@ -66,9 +79,25 @@ def evaluate(z,s,a,b,q0,nu,constant,derivatives=True):
                     da[i,j]=outer-s[i,j]+a*(wa[i]*w[j]+w[i]*wa[j])+b*da[i,j]
                     db[i,j]=old-s[i,j]+a*(wb[i]*w[j]+w[i]*wb[j])+b*db[i,j]
                     da[j,i]=da[i,j];db[j,i]=db[i,j]
+                if z_eta is not None:
+                    qe[i,j]=a*(we[i]*w[j]+w[i]*we[j])+b*qe[i,j];qe[j,i]=qe[i,j]
                 q[i,j]=(1-a-b)*s[i,j]+a*outer+b*old
                 q[j,i]=q[i,j]
     return loss,gradient,q
+
+
+@lru_cache(maxsize=32)
+def compiled(p):
+    # The actual asset dimension is a compile-time constant, allowing LLVM to
+    # specialize small matrix loops. It is never a statistical factor count.
+    @njit(cache=True)
+    def bound(z,s,a,b,q0,nu,constant,derivatives=True,z_eta=None,constant_eta=0.):
+        return _evaluate(p,z,s,a,b,q0,nu,constant,derivatives,z_eta,constant_eta)
+    return bound
+
+
+def evaluate(z,s,a,b,q0,nu,constant,derivatives=True,z_eta=None,constant_eta=0.):
+    return compiled(len(s))(z,s,a,b,q0,nu,constant,derivatives,z_eta,constant_eta)
 
 
 def gaussian_likelihood(z,s,a,b,q0):

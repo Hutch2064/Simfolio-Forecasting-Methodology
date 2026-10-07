@@ -69,13 +69,20 @@ def fit(u,s):
         if not np.isfinite(nu) or nu<=2:return 1e100,np.zeros(2),None
         z=scores(nu)
         return likelihood_kernel.evaluate(z,s,a,b,s,nu,copula_constant(nu,p),derivatives)
+    def joint(a,b,eta):
+        with np.errstate(over='ignore',under='ignore',invalid='ignore'):
+            nu=2+np.exp(eta)
+        if not np.isfinite(nu) or nu<=2:return 1e100,np.zeros(3),None
+        h=step*max(1.,abs(eta));plus=2+np.exp(eta+h);minus=2+np.exp(eta-h)
+        z=scores(nu);z_eta=(scores(plus)-scores(minus))/(2*h)
+        constant_eta=(copula_constant(plus,p)-copula_constant(minus,p))/(2*h)
+        return likelihood_kernel.evaluate(z,s,a,b,s,nu,copula_constant(nu,p),True,z_eta,constant_eta)
     def objective(x,boundary=False):
         theta=softmax(np.r_[x[:-1],0.])
         a=float(theta[0]);b=0. if boundary else float(theta[1]);eta=x[-1]
         if a+b>=1:return 1e100,np.zeros_like(x)
         try:
-            value,grad,_=evaluation(a,b,eta);h=step*max(1.,abs(eta))
-            gn=(evaluation(a,b,eta+h,False)[0]-evaluation(a,b,eta-h,False)[0])/(2*h)
+            value,grad,_=joint(a,b,eta);gn=grad[2];grad=grad[:2]
         except np.linalg.LinAlgError:return 1e100,np.zeros_like(x)
         if boundary:result=np.array([grad[0]*a*(1-a),gn])
         else:result=np.r_[np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])@grad,gn]
@@ -101,4 +108,4 @@ def fit(u,s):
     solutions.append((ginfo['training_nll']/n,gtheta,np.inf,{'success':True,'gaussian_endpoint':True,'gaussian_fit':ginfo}))
     value,theta,nu,info=min(solutions,key=lambda item:item[0])
     q=gq if np.isinf(nu) else evaluation(*theta,np.log(nu-2))[2]
-    return theta,q,nu,{'training_nll':float(value*n),'gaussian_training_nll':ginfo['training_nll'],'optimizer':info,'nu_support':'nu>2 plus Gaussian endpoint','numerical_nu_derivative':'central difference in log(nu-2), cube-root machine epsilon relative step','a_b_gradient':'exact recursive analytic derivative'}
+    return theta,q,nu,{'training_nll':float(value*n),'gaussian_training_nll':ginfo['training_nll'],'optimizer':info,'nu_support':'nu>2 plus Gaussian endpoint','numerical_nu_derivative':'analytic recursive likelihood derivative; quantile and normalizer central differences in log(nu-2), cube-root machine epsilon relative step','a_b_gradient':'exact recursive analytic derivative'}

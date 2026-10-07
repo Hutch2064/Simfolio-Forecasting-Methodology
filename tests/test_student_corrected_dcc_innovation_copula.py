@@ -140,3 +140,21 @@ def test_student_cdf_interpolation_has_uniform_probability_error_bound():
         expected=np.clip(stdtr(nu,x),1e-8,1-1e-8)
         actual=x.copy();interpolate(actual,nu,*grid(nu))
         np.testing.assert_allclose(actual,expected,rtol=0,atol=ERROR+2e-14)
+
+
+def test_joint_tail_derivative_matches_whole_likelihood_finite_difference():
+    from likelihood_kernel import evaluate
+    u=np.random.default_rng(259).uniform(.0001,.9999,(700,6))
+    s=.8*np.eye(6)+.2*np.ones((6,6));step=np.finfo(float).eps**(1/3)
+    for nu in (2.1,8.,31.,1000.):
+        eta=np.log(nu-2);h=step*max(1,abs(eta));plus=2+np.exp(eta+h);minus=2+np.exp(eta-h)
+        z=models.state.standardized_scores(u,nu);zp=models.state.standardized_scores(u,plus);zm=models.state.standardized_scores(u,minus)
+        cp=models.state.copula_constant(plus,6);cm=models.state.copula_constant(minus,6)
+        for a,b in ((.07,.9),(.2,0.)):
+            value,gradient,q=evaluate(z,s,a,b,s,nu,models.state.copula_constant(nu,6),True,(zp-zm)/(2*h),(cp-cm)/(2*h))
+            fd=(evaluate(zp,s,a,b,s,plus,cp,False)[0]-evaluate(zm,s,a,b,s,minus,cm,False)[0])/(2*h)
+            np.testing.assert_allclose(gradient[2],fd,rtol=2e-5,atol=2e-6)
+            reference=evaluate(z,s,a,b,s,nu,models.state.copula_constant(nu,6))
+            assert value==reference[0]
+            np.testing.assert_array_equal(q,reference[2])
+            np.testing.assert_array_equal(gradient[:2],reference[1])
