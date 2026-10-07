@@ -11,11 +11,12 @@ from pathlib import Path
 import numpy as np
 from numba import njit
 from scipy.optimize import minimize
-from scipy.special import gammaln, ndtri, softmax, stdtrit
+from scipy.special import gammaln, ndtri, softmax
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'corrected_dcc_innovation_copula'))
 import cdcc_state as gaussian
 import likelihood_kernel
+from student_cdf import quantiles
 
 
 def copula_constant(nu,p):
@@ -50,7 +51,7 @@ def likelihood(z,s,a,b,q0,nu,constant,derivatives=True):
 
 
 def standardized_scores(u,nu):
-    return np.ascontiguousarray(stdtrit(nu,u)*np.sqrt((nu-2)/nu))
+    return np.ascontiguousarray(quantiles(u,nu)*np.sqrt((nu-2)/nu))
 
 
 def fit(u,s):

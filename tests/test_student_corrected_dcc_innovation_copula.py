@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
-from scipy.special import ndtri, stdtr
+from scipy.special import ndtri, stdtr, stdtrit
 from scipy.stats import kstest, multivariate_t, t
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -169,3 +169,29 @@ def test_constant_endpoint_reuses_factorization_after_initial_state_transition()
         actual=evaluate(z,s,0.,0.,q0,8.,0.,derivatives)
         for measured,reference in zip(actual,expected):
             np.testing.assert_allclose(measured,reference,rtol=2e-11,atol=2e-10)
+
+
+def test_inverse_student_cdf_matches_direct_quantiles_and_certified_probabilities():
+    from student_cdf import QUANTILE_CDF_ERROR, quantiles
+    u=np.r_[(np.arange(30000)+.5)/30000,np.geomspace(1e-14,1e-8,50),1-np.geomspace(1e-14,1e-8,50),.5]
+    for nu in (2.01,2.1,8.,31.,1000.,1e7):
+        actual=quantiles(u,nu);expected=stdtrit(nu,u)
+        np.testing.assert_allclose(actual,expected,rtol=2e-10,atol=3e-8)
+        np.testing.assert_allclose(stdtr(nu,actual),u,rtol=0,atol=QUANTILE_CDF_ERROR+2e-14)
+
+
+def test_certified_quantile_table_preserves_full_history_likelihood_gradient():
+    from likelihood_kernel import evaluate
+    rng=np.random.default_rng(261);ranks=(np.arange(16000)+.5)/16000
+    u=np.column_stack([rng.permutation(ranks) for _ in range(6)])
+    s=.8*np.eye(6)+.2*np.ones((6,6));step=np.finfo(float).eps**(1/3)
+    for nu in (8.,31.):
+        eta=np.log(nu-2);h=step*max(1.,abs(eta));plus=2+np.exp(eta+h);minus=2+np.exp(eta-h)
+        values=[]
+        for scores in (models.state.standardized_scores,lambda u,v:stdtrit(v,u)*np.sqrt((v-2)/v)):
+            z=scores(u,nu);ze=(scores(u,plus)-scores(u,minus))/(2*h)
+            ce=(models.state.copula_constant(plus,6)-models.state.copula_constant(minus,6))/(2*h)
+            values.append(evaluate(z,s,.07,.9,s,nu,models.state.copula_constant(nu,6),True,ze,ce))
+        np.testing.assert_allclose(values[0][0],values[1][0],rtol=1e-10,atol=1e-7)
+        np.testing.assert_allclose(values[0][1],values[1][1],rtol=2e-6,atol=3e-5)
+        np.testing.assert_allclose(values[0][2],values[1][2],rtol=1e-10,atol=1e-10)
