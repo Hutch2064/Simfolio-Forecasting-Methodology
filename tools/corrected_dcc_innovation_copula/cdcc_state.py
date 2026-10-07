@@ -47,7 +47,7 @@ def fit(z,s,evaluator=likelihood):
         try:loss,grad,_=evaluator(z,s,a,b,s)
         except np.linalg.LinAlgError:return 1e100,np.zeros(2)
         if len(s)>=32:
-            fraction,total=expit(x);shock=total*fraction*(1-fraction)
+            total=a+b;fraction=a/total if total>0 else float(expit(x[0]));shock=total*fraction*(1-fraction)
             jac=np.array([[shock,-shock],[a*(1-total),b*(1-total)]])
         else:jac=np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])
         return loss/n,jac@grad/n
