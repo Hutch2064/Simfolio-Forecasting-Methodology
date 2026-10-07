@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **254 models**: the original 175 plus sixty-nine
+The canonical catalogue contains **255 models**: the original 175 plus seventy
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–254 and no historical source rank.
+indices 176–255 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 254 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 255 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -197,3 +197,5 @@ M250/M251 retain M248 asset marginals and estimate Gaussian/Student dependence f
 M252 retains M251 asset forecasts and tests Kendall sign-statistic Student copula scatter. Full-panel CRPS: **0.22852566409572264**; complete audit and measured independent runtime are retained.
 
 M253/M254 retain M250/M251 fitted market models and test randomized Latin hypercube return-shock simulation. Full-panel results and exact unchanged-fit audits are retained in `docs/results/rough-bayesian/stratified-copula-panel.json` in the methodology repository.
+
+M255 preserves M251 asset forecasts and tests conditional Gaussian corrected-DCC return dependence. Audited full-panel CRPS: **0.22705549647165937**.
