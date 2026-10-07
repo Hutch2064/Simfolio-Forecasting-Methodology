@@ -791,7 +791,7 @@
         "rows": 11657,
         "assets": 6,
         "sha256": "17dd944645d038b114211b8fe273ad0d6e21462b9ad9875026bb30c39331bc15",
-        "path": "/Users/aidanhutchison/simfolio/tmp/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-0.npy"
+        "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-0.npy"
       },
       "results": [
         {
@@ -834,7 +834,7 @@
         "rows": 11657,
         "assets": 6,
         "sha256": "8cf066caf5c7d0800e338cf9ae4462d17d77cd275ef773b00cf1467b0c7bfc46",
-        "path": "/Users/aidanhutchison/simfolio/tmp/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-20.npy"
+        "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-20.npy"
       },
       "results": [
         {
@@ -877,7 +877,7 @@
         "rows": 11657,
         "assets": 6,
         "sha256": "b398c761e92c29bbe65db4707d3b59f0ebf7bc2fc4e1794ba0f264f6e6711a88",
-        "path": "/Users/aidanhutchison/simfolio/tmp/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-40.npy"
+        "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-40.npy"
       },
       "results": [
         {
@@ -920,7 +920,7 @@
         "rows": 11657,
         "assets": 6,
         "sha256": "9f44bb9ecedb28650dd973d403096d837c3e24a6ee24431f9fe3fc29796930dd",
-        "path": "/Users/aidanhutchison/simfolio/tmp/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-60.npy"
+        "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-60.npy"
       },
       "results": [
         {
@@ -963,7 +963,7 @@
         "rows": 11657,
         "assets": 6,
         "sha256": "b0a63301e9ac1455b8ce4af3f83bb3225501c8a29057aca534ad4b3668f4afd7",
-        "path": "/Users/aidanhutchison/simfolio/tmp/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-79.npy"
+        "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-79.npy"
       },
       "results": [
         {
@@ -1000,5 +1000,306 @@
     "scores_before_after_byte_exact": true,
     "runtime_scope": "isolated kernel benchmark; no overall production speed ratio claimed"
   },
-  "full_panel_decision": "mixed five-origin CRPS, two wins and three losses; all ten conditional history density splits improve and all numerical/asset/parity/CAGR gates pass. Evaluate a single canonical80 candidate rather than infer final ranking from smokes."
+  "full_panel_decision": "mixed five-origin CRPS, two wins and three losses; all ten conditional history density splits improve and all numerical/asset/parity/CAGR gates pass. Evaluate a single canonical80 candidate rather than infer final ranking from smokes.",
+  "target_profile_diagnostic": {
+    "reference": "https://repec.canterbury.ac.nz/cbt/econwp/1034.pdf",
+    "source_sha256": "4a8aaef6901c5472fe777a4648faa4c9c0576d96ece9887234c9caa1f65caeb3",
+    "results": [
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "reestimate centered variance-normalized Ledoit-Wolf correlation on corrected shocks for each a,b likelihood evaluation; finite-sample variant of implicit target profiling, not exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 1,
+          "portfolio_id": "equal_class_history_001",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "17dd944645d038b114211b8fe273ad0d6e21462b9ad9875026bb30c39331bc15",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-0.npy"
+        },
+        "numerical_tests": {
+          "dense_likelihood_parity": true,
+          "constant_endpoint_exact": true
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.012132158545645703,
+            "b": 0.985040899124316,
+            "fit_seconds": 2.914803583989851,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": 0.00024124303593565886,
+            "training_nll": -8534.268097250417,
+            "evaluations": 105,
+            "shrinkage": 0.0021511416503149413,
+            "optimizer": {
+              "success": true,
+              "iterations": 12,
+              "transformed_mean_gradient": [
+                -6.544966840595606e-10,
+                1.1902341054801297e-09
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.012972090038770775,
+            "b": 0.9846237706091031,
+            "fit_seconds": 2.683460583037231,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": -0.0002689372375777221,
+            "training_nll": -12347.345037368817,
+            "evaluations": 70,
+            "shrinkage": 0.0016384189051460406,
+            "optimizer": {
+              "success": true,
+              "iterations": 7,
+              "transformed_mean_gradient": [
+                -2.3059119876959065e-09,
+                5.120734454196526e-10
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "reestimate centered variance-normalized Ledoit-Wolf correlation on corrected shocks for each a,b likelihood evaluation; finite-sample variant of implicit target profiling, not exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 21,
+          "portfolio_id": "equal_class_history_021",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "8cf066caf5c7d0800e338cf9ae4462d17d77cd275ef773b00cf1467b0c7bfc46",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-20.npy"
+        },
+        "numerical_tests": {
+          "dense_likelihood_parity": true,
+          "constant_endpoint_exact": true
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.010649341236857145,
+            "b": 0.9853922299053697,
+            "fit_seconds": 1.8976722909719683,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": -0.00010828818967868017,
+            "training_nll": -7254.612029070261,
+            "evaluations": 70,
+            "shrinkage": 0.002563583404443923,
+            "optimizer": {
+              "success": true,
+              "iterations": 4,
+              "transformed_mean_gradient": [
+                -5.7578785484111434e-08,
+                4.444001427810357e-08
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.011506397523131243,
+            "b": 0.9871941772290231,
+            "fit_seconds": 4.963376459025312,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": 2.5454713455539643e-05,
+            "training_nll": -12560.037141568688,
+            "evaluations": 125,
+            "shrinkage": 0.001730509931483199,
+            "optimizer": {
+              "success": true,
+              "iterations": 8,
+              "transformed_mean_gradient": [
+                4.6235362602949635e-10,
+                -5.307113061372665e-10
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "reestimate centered variance-normalized Ledoit-Wolf correlation on corrected shocks for each a,b likelihood evaluation; finite-sample variant of implicit target profiling, not exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 41,
+          "portfolio_id": "equal_class_history_041",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "b398c761e92c29bbe65db4707d3b59f0ebf7bc2fc4e1794ba0f264f6e6711a88",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-40.npy"
+        },
+        "numerical_tests": {
+          "dense_likelihood_parity": true,
+          "constant_endpoint_exact": true
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.010988445305448126,
+            "b": 0.984296606417745,
+            "fit_seconds": 3.169939416984562,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": -0.00010888781045184615,
+            "training_nll": -10023.831266843217,
+            "evaluations": 110,
+            "shrinkage": 0.0023677975384507085,
+            "optimizer": {
+              "success": true,
+              "iterations": 7,
+              "transformed_mean_gradient": [
+                1.614339255087194e-08,
+                -2.1893239586572777e-08
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.012798307991082941,
+            "b": 0.9842286649804055,
+            "fit_seconds": 4.349542000039946,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": -0.00023559536262778073,
+            "training_nll": -14787.539521813176,
+            "evaluations": 110,
+            "shrinkage": 0.0017813136194428747,
+            "optimizer": {
+              "success": true,
+              "iterations": 7,
+              "transformed_mean_gradient": [
+                -3.7177653003132965e-09,
+                -1.9275019168882697e-10
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "reestimate centered variance-normalized Ledoit-Wolf correlation on corrected shocks for each a,b likelihood evaluation; finite-sample variant of implicit target profiling, not exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 61,
+          "portfolio_id": "equal_class_history_061",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "9f44bb9ecedb28650dd973d403096d837c3e24a6ee24431f9fe3fc29796930dd",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-60.npy"
+        },
+        "numerical_tests": {
+          "dense_likelihood_parity": true,
+          "constant_endpoint_exact": true
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.013463006705994053,
+            "b": 0.9864980832314711,
+            "fit_seconds": 6.251601749972906,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": 7.979258054711388e-06,
+            "training_nll": -20606.09558291026,
+            "evaluations": 225,
+            "shrinkage": 0.0021591037378077037,
+            "optimizer": {
+              "success": true,
+              "iterations": 16,
+              "transformed_mean_gradient": [
+                -1.5457805259826395e-07,
+                1.62679729073812e-07
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.01439654214359778,
+            "b": 0.9855824823758653,
+            "fit_seconds": 6.831553292053286,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": 0.0002954821802357504,
+            "training_nll": -25486.52761730627,
+            "evaluations": 195,
+            "shrinkage": 0.0018579610441046225,
+            "optimizer": {
+              "success": true,
+              "iterations": 15,
+              "transformed_mean_gradient": [
+                -1.6000471557992963e-09,
+                3.112056687722874e-09
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "reestimate centered variance-normalized Ledoit-Wolf correlation on corrected shocks for each a,b likelihood evaluation; finite-sample variant of implicit target profiling, not exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 80,
+          "portfolio_id": "equal_class_history_080",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "b0a63301e9ac1455b8ce4af3f83bb3225501c8a29057aca534ad4b3668f4afd7",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-79.npy"
+        },
+        "numerical_tests": {
+          "dense_likelihood_parity": true,
+          "constant_endpoint_exact": true
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.011967267939231826,
+            "b": 0.9831031125942905,
+            "fit_seconds": 1.701898125000298,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": -0.00025004826192949134,
+            "training_nll": -7864.06511203258,
+            "evaluations": 80,
+            "shrinkage": 0.0030739036840177272,
+            "optimizer": {
+              "success": true,
+              "iterations": 6,
+              "transformed_mean_gradient": [
+                1.8170677497582154e-08,
+                -2.5028721135067952e-08
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.012928537539231346,
+            "b": 0.9850134337848079,
+            "fit_seconds": 4.062314082984813,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": -0.00026600293111040416,
+            "training_nll": -12139.717570214003,
+            "evaluations": 115,
+            "shrinkage": 0.0021291714567223817,
+            "optimizer": {
+              "success": true,
+              "iterations": 7,
+              "transformed_mean_gradient": [
+                -6.963811563471221e-09,
+                3.0305027256312637e-10
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "splits": 10,
+    "positive_splits": 4,
+    "negative_splits": 6,
+    "mean_log_density_gain_per_day": -6.676006056942645e-05,
+    "decision": "Do not launch a target-profile forecasting candidate: average conditional heldout density change is slightly negative; this offers no directional improvement evidence."
+  }
 }
