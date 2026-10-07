@@ -36,6 +36,9 @@ def fit(z,s,evaluator=likelihood):
     """Conditional Gaussian copula QMLE with fixed training shrinkage target."""
     n=len(z)
     def physical(x):
+        if len(s)>=32:
+            fraction,total=expit(x)
+            return np.array([fraction*total,(1-fraction)*total])
         return softmax(np.r_[x,0.])[:2]
     def fun(x):
         theta=physical(x);a,b=theta
@@ -43,7 +46,10 @@ def fit(z,s,evaluator=likelihood):
             return 1e100,np.zeros(2)
         try:loss,grad,_=evaluator(z,s,a,b,s)
         except np.linalg.LinAlgError:return 1e100,np.zeros(2)
-        jac=np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])
+        if len(s)>=32:
+            fraction,total=expit(x);shock=total*fraction*(1-fraction)
+            jac=np.array([[shock,-shock],[a*(1-total),b*(1-total)]])
+        else:jac=np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])
         return loss/n,jac@grad/n
     def boundary(x):
         a=float(expit(x[0]));loss,gradient,_=evaluator(z,s,a,0.,s)
@@ -58,7 +64,11 @@ def fit(z,s,evaluator=likelihood):
                     'success':True,'b_zero_boundary':True,'iterations':int(result.nit),
                     'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
             return None
-        start=np.array(start);coords=np.log(start/(1-start.sum()))
+        start=np.array(start)
+        if len(s)>=32:
+            total=start.sum();fraction=start[0]/total
+            probabilities=np.array([fraction,total]);coords=np.log(probabilities/(1-probabilities))
+        else:coords=np.log(start/(1-start.sum()))
         result=minimize(fun,coords,jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
         theta=physical(result.x)
         if result.success and theta.sum()<1. and np.isfinite(result.fun) and np.max(np.abs(result.jac))<=1e-5:

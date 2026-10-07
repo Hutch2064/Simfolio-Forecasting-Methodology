@@ -138,6 +138,7 @@ def latent_mode(squared, level, phi, eta, u):
     h = np.full(len(squared), level)
     converged = False
     decrement = math.inf
+    current = objective(h, squared, level, diagonal, off, u)
     for iteration in range(100):
         observation_gradient, curvature = state_terms(h, squared, u)
         gradient = multiply(diagonal, off, h - level) + observation_gradient
@@ -147,21 +148,23 @@ def latent_mode(squared, level, phi, eta, u):
         if decrement <= 1e-14:
             converged = True
             break
-        current = objective(h, squared, level, diagonal, off, u)
         rounding = 32 * np.finfo(np.float64).eps * max(1., abs(current))
         scale = 1.
         accepted = False
         for _ in range(60):
             proposed = h + scale * step
-            if objective(proposed, squared, level, diagonal, off, u) <= current - 1e-4 * scale * decrement + rounding:
+            proposed_value = objective(proposed, squared, level, diagonal, off, u)
+            if proposed_value <= current - 1e-4 * scale * decrement + rounding:
                 h = proposed
+                current = proposed_value
                 accepted = True
                 break
             scale *= .5
         if not accepted:
             break
-    curvature = state_terms(h, squared, u)[1]
-    pivots = factor(diagonal + curvature, off)
+    if not converged:
+        curvature = state_terms(h, squared, u)[1]
+        pivots = factor(diagonal + curvature, off)
     return h, pivots, diagonal, off, curvature, converged, iteration + 1, decrement
 
 

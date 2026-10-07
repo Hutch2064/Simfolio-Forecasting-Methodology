@@ -101,6 +101,24 @@ def evaluate(z,s,a,b,q0,nu,constant,derivatives=True,z_eta=None,constant_eta=0.)
         from lapack_native import load
         backend=load()
         try:
+            from numba import get_num_threads
+            blocks=min(3,get_num_threads())
+            if len(s)>=32 and len(z)>=1024 and b>0 and blocks>1:
+                # Each block receives the unchanged recursive state and its
+                # parameter derivatives. Only likelihood work is concurrent.
+                from concurrent.futures import ThreadPoolExecutor
+                initial=backend.starts(z,s,a,b,q0,blocks,z_eta)
+                def block(i):
+                    start=i*len(z)//blocks;stop=(i+1)*len(z)//blocks
+                    eta=None if z_eta is None else z_eta[start:stop]
+                    return backend.evaluate(z[start:stop],s,a,b,initial[i,0],nu,
+                        constant,derivatives,eta,constant_eta,*initial[i,1:])
+                with ThreadPoolExecutor(max_workers=blocks) as pool:
+                    results=list(pool.map(block,range(blocks)))
+                loss=sum(x[0] for x in results)
+                gradient=results[0][1].copy()
+                for result in results[1:]:gradient+=result[1]
+                return loss,gradient,results[-1][2]
             return backend.evaluate(z,s,a,b,q0,nu,constant,derivatives,z_eta,constant_eta)
         except RuntimeError as error:
             raise np.linalg.LinAlgError(str(error)) from error

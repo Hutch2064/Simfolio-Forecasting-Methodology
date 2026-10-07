@@ -267,3 +267,21 @@ def test_parallel_independent_fit_starts_preserve_selection():
             if isinstance(a,np.ndarray):np.testing.assert_array_equal(a,b)
             else:assert a==b
     finally:numba.set_num_threads(previous)
+
+
+def test_large_likelihood_blocks_carry_exact_state_and_derivatives():
+    from lapack_native import load
+    import numba
+    rng=np.random.default_rng(723);z=rng.normal(size=(1031,32));eta=rng.normal(size=z.shape)*.03
+    s=.25*np.ones((32,32))+.75*np.eye(32);initial=2*s
+    previous=numba.get_num_threads()
+    try:
+        numba.set_num_threads(min(4,numba.config.NUMBA_NUM_THREADS))
+        for nu in (0.,8.):
+            for ze in (None,eta):
+                expected=load().evaluate(z,s,.05,.9,initial,nu,0.,True,ze,.1)
+                actual=models.state.likelihood_kernel.evaluate(z,s,.05,.9,initial,nu,0.,True,ze,.1)
+                np.testing.assert_allclose(actual[0],expected[0],rtol=2e-13,atol=1e-10)
+                np.testing.assert_allclose(actual[1],expected[1],rtol=2e-12,atol=1e-9)
+                np.testing.assert_array_equal(actual[2],expected[2])
+    finally:numba.set_num_threads(previous)
