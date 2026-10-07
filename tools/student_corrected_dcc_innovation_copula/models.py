@@ -1,5 +1,6 @@
 """M255 asset law with finite-variance Student corrected-DCC dependence."""
 import hashlib
+import os
 import importlib.util
 import sys
 from functools import lru_cache
@@ -66,7 +67,7 @@ def dcc_uniforms(shape,data,sims,horizon,seed):
                 raise ArithmeticError('unresolved Student mixing scale')
             z*=np.sqrt((nu-2)/scales)
         from numba import get_num_threads
-        backend.scores(z,np.ascontiguousarray(target),states,a,b,get_num_threads() if shape[1]>=16 else 1)
+        backend.scores(z,np.ascontiguousarray(target),states,a,b,min(os.cpu_count() or get_num_threads(),sims) if shape[1]>=16 else 1)
         if gaussian_endpoint:ndtr(z,out=z)
         else:
             z*=np.sqrt(nu/(nu-2));student_cdf.probabilities(z,nu,1024*sims*shape[1])

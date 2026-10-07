@@ -14,8 +14,8 @@ void configure(py::capsule rf,py::capsule ri,py::capsule sv,py::capsule mv,py::c
 py::tuple evaluate(Array z,Array s,double a,double b,Array initial,double nu,double constant,bool derivatives,py::object eta,double constant_eta,py::object initial_da,py::object initial_db,py::object initial_qe){
  int p=s.shape(0),n=z.shape(0);if(z.ndim()!=2||s.ndim()!=2||s.shape(1)!=p||z.shape(1)!=p||initial.ndim()!=2||initial.shape(0)!=p||initial.shape(1)!=p||!potrf||!potri)throw py::value_error("cDCC shape or uninitialized LAPACK");
  bool joint=!eta.is_none();Array ez;const double* ze=nullptr;if(joint){ez=eta.cast<Array>();if(ez.ndim()!=2||ez.shape(0)!=n||ez.shape(1)!=p)throw py::value_error("cDCC eta shape");ze=ez.data();}
- Array output({p,p}),gradient(joint?3:2);double* q=output.mutable_data();double* grad=gradient.mutable_data();for(int i=0;i<p*p;i++)q[i]=initial.data()[i];for(int i=0;i<(joint?3:2);i++)grad[i]=0.;if(joint)grad[2]=-n*constant_eta;
- const double* zs=z.data();const double* target=s.data();double loss=-n*constant;
+ Array output({p,p}),gradient(joint?3:2);double* __restrict q=output.mutable_data();double* __restrict grad=gradient.mutable_data();for(int i=0;i<p*p;i++)q[i]=initial.data()[i];for(int i=0;i<(joint?3:2);i++)grad[i]=0.;if(joint)grad[2]=-n*constant_eta;
+ const double* zs=z.data();const double* target=s.data();double loss=-n*constant,ga=0.,gb=0.,ge=joint?-n*constant_eta:0.;
  std::vector<double> da(p*p),db(p*p),qe(p*p),inv(p*p),sd(p),w(p),v(p),wa(p),wb(p),we(p);
  if(!initial_da.is_none()){Array x=initial_da.cast<Array>();if(x.size()!=p*p)throw py::value_error("initial derivative shape");da.assign(x.data(),x.data()+p*p);}
  if(!initial_db.is_none()){Array x=initial_db.cast<Array>();if(x.size()!=p*p)throw py::value_error("initial derivative shape");db.assign(x.data(),x.data()+p*p);}
@@ -49,11 +49,12 @@ py::tuple evaluate(Array z,Array s,double a,double b,Array initial,double nu,dou
   double maha=0.,marginal=0.;for(int i=0;i<p;i++){double value=0.;for(int j=0;j<p;j++)value+=inv[i*p+j]*w[j];v[i]=value;maha+=w[i]*value;if(nu>0)marginal+=std::log1p(row[i]*row[i]/(nu-2));else marginal+=row[i]*row[i];}
   double weight=nu>0?(nu+p)/(nu-2+maha):1.;if(nu>0)loss+=.5*logdet+.5*(nu+p)*std::log1p(maha/(nu-2))-.5*(nu+1)*marginal;else loss+=.5*(logdet+maha-marginal);
   if(derivatives){for(int i=0;i<p;i++){wa[i]=.5*row[i]/sd[i]*da[i*p+i];wb[i]=.5*row[i]/sd[i]*db[i*p+i];if(joint)we[i]=.5*row[i]/sd[i]*qe[i*p+i]+sd[i]*ze[t*p+i];}
-   for(int i=0;i<p;i++)for(int j=0;j<=i;j++){double g=.5*inv[i*p+j]-.5*weight*v[i]*v[j];if(i==j)g+=-.5/q[i*p+i]+.5*weight*v[i]*row[i]/sd[i];double scale=i==j?1.:2.;grad[0]+=scale*g*da[i*p+j];grad[1]+=scale*g*db[i*p+j];if(joint)grad[2]+=scale*g*qe[i*p+j];}}
-  if(joint){double d=nu-2,tail=0.;for(int i=0;i<p;i++){double square=row[i]*row[i];tail+=square/(d*(d+square));grad[2]+=weight*v[i]*sd[i]*ze[t*p+i]-(nu+1)*row[i]*ze[t*p+i]/(d+square);}grad[2]+=d*(.5*std::log1p(maha/d)-.5*(nu+p)*maha/(d*(d+maha))-.5*marginal+.5*(nu+1)*tail);}
-  for(int i=0;i<p;i++)for(int j=0;j<=i;j++){int ij=i*p+j,ji=j*p+i;double outer=w[i]*w[j],old=q[ij];if(derivatives){da[ij]=outer-target[ij]+a*(wa[i]*w[j]+w[i]*wa[j])+b*da[ij];db[ij]=old-target[ij]+a*(wb[i]*w[j]+w[i]*wb[j])+b*db[ij];da[ji]=da[ij];db[ji]=db[ij];}if(joint){qe[ij]=a*(we[i]*w[j]+w[i]*we[j])+b*qe[ij];qe[ji]=qe[ij];}q[ij]=(1-a-b)*target[ij]+a*outer+b*old;q[ji]=q[ij];}
+   for(int i=0;i<p;i++)for(int j=0;j<=i;j++){double g=.5*inv[i*p+j]-.5*weight*v[i]*v[j];if(i==j)g+=-.5/q[i*p+i]+.5*weight*v[i]*row[i]/sd[i];double scale=i==j?1.:2.;ga+=scale*g*da[i*p+j];gb+=scale*g*db[i*p+j];if(joint)ge+=scale*g*qe[i*p+j];}}
+  if(joint){double d=nu-2,tail=0.;for(int i=0;i<p;i++){double square=row[i]*row[i];tail+=square/(d*(d+square));ge+=weight*v[i]*sd[i]*ze[t*p+i]-(nu+1)*row[i]*ze[t*p+i]/(d+square);}ge+=d*(.5*std::log1p(maha/d)-.5*(nu+p)*maha/(d*(d+maha))-.5*marginal+.5*(nu+1)*tail);}
+  for(int i=0;i<p;i++)for(int j=0;j<=i;j++){int ij=i*p+j,ji=j*p+i;double outer=w[i]*w[j],old=q[ij];if(derivatives){da[ij]=outer-target[ij]+a*(wa[i]*w[j]+w[i]*wa[j])+b*da[ij];db[ij]=old-target[ij]+a*(wb[i]*w[j]+w[i]*wb[j])+b*db[ij];}if(joint){qe[ij]=a*(we[i]*w[j]+w[i]*we[j])+b*qe[ij];}q[ij]=(1-a-b)*target[ij]+a*outer+b*old;q[ji]=q[ij];}
  }
  }
+ grad[0]=ga;grad[1]=gb;if(joint)grad[2]=ge;
  return py::make_tuple(loss,gradient,output);
 }
 // State/derivative recursion is independent of likelihood factorizations.
