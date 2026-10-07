@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **248 models**: the original 175 plus sixty-three
+The canonical catalogue contains **249 models**: the original 175 plus sixty-four
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–248 and no historical source rank.
+indices 176–249 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 248 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 249 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -189,3 +189,5 @@ M246 retains M243 conventional fitting and future paths and matches the historic
 M247 retains M243 marginal fits and tests lagged asset-specific return shock leverage on conventional volatility. Full-panel CRPS: **0.2319704483126069**; paired audit and measured runtime are retained.
 
 M248 keeps M243 volatility fits and tests a full static shrinkage Gaussian return copula without the three-factor cap or autoregressions. Full-panel CRPS: **0.22848986371609498**; paired audit and measured runtime are retained.
+
+M249 keeps M248 mean, volatility, innovation nodes and shrinkage scatter and fits Student-t copula degrees of freedom from training ranks. Full-panel CRPS: **0.2289309701469439**; paired audit and measured runtime are retained.

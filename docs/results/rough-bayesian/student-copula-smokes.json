@@ -1,0 +1,168 @@
+{
+  "scope": "five_bounded_origin_smokes_not_full_panel_or_promotion_evidence",
+  "model_id": "asset_map_stationary_ar1_shrinkage_student_copula_dynamic_rough",
+  "baseline": "M248 asset_map_stationary_ar1_static_shrinkage_copula_dynamic_rough",
+  "source_revision": "41800093149e9eeea378730d87d4bc0230affaa3",
+  "method": "Conditional rank pseudo-likelihood for Student-t copula df with M248 Gaussian-rank Ledoit-Wolf scatter held fixed; arbitrary asset marginals unchanged. This is not joint copula MLE or Bayesian parameter inference. Gaussian endpoint included; positive df support, no df 2 floor or fixed maximum.",
+  "primary_reference": "https://doi.org/10.1111/j.1751-5823.2005.tb00254.x",
+  "cases": [
+    {
+      "task_index": 0,
+      "portfolio": "equal_class_history_001",
+      "origin": "1981-12-31",
+      "training_rows": 507,
+      "horizon": 126,
+      "baseline_crps": 0.03568942920448101,
+      "candidate_crps": 0.035459017309314174,
+      "relative_improvement": 0.0064560263445710975,
+      "fresh_seconds": 0.20367854204960167,
+      "cached_seconds": 0.01676729100290686,
+      "degrees_of_freedom": 9.44634988445924,
+      "tail_fit": {
+        "gaussian_log_likelihood": 1115.0235175471282,
+        "log_likelihood": 1140.5193198570892,
+        "evaluations": 16,
+        "optimizer_coordinate": 0.9042727832151521
+      },
+      "fresh_cached_exact": true,
+      "disabled_matches_saved_m248": true
+    },
+    {
+      "task_index": 1,
+      "portfolio": "equal_class_history_001",
+      "origin": "1993-03-31",
+      "training_rows": 3351,
+      "horizon": 837,
+      "baseline_crps": 0.03902196882252409,
+      "candidate_crps": 0.03864120818851471,
+      "relative_improvement": 0.009757596694854653,
+      "fresh_seconds": 0.5902140410034917,
+      "cached_seconds": 0.06364270899211988,
+      "degrees_of_freedom": 9.16128918905944,
+      "tail_fit": {
+        "gaussian_log_likelihood": 5269.769465127722,
+        "log_likelihood": 5522.904964126071,
+        "evaluations": 14,
+        "optimizer_coordinate": 0.9015872906090804
+      },
+      "fresh_cached_exact": true,
+      "disabled_matches_saved_m248": true
+    },
+    {
+      "task_index": 2,
+      "portfolio": "equal_class_history_001",
+      "origin": "2020-06-30",
+      "training_rows": 10213,
+      "horizon": 1474,
+      "baseline_crps": 0.0812306758735574,
+      "candidate_crps": 0.08061339277536314,
+      "relative_improvement": 0.007599137783306231,
+      "fresh_seconds": 1.2031682500382885,
+      "cached_seconds": 0.11025199998402968,
+      "degrees_of_freedom": 6.590803991523106,
+      "tail_fit": {
+        "gaussian_log_likelihood": 11816.866389000665,
+        "log_likelihood": 13036.76600812436,
+        "evaluations": 14,
+        "optimizer_coordinate": 0.8682616490800273
+      },
+      "fresh_cached_exact": true,
+      "disabled_matches_saved_m248": true
+    },
+    {
+      "task_index": 3,
+      "portfolio": "equal_class_history_001",
+      "origin": "2026-03-31",
+      "training_rows": 11657,
+      "horizon": 30,
+      "baseline_crps": 0.013924070239007933,
+      "candidate_crps": 0.01408033935837016,
+      "relative_improvement": -0.011222948224179685,
+      "fresh_seconds": 0.938164041028358,
+      "cached_seconds": 0.010708374960813671,
+      "degrees_of_freedom": 6.770811948577449,
+      "tail_fit": {
+        "gaussian_log_likelihood": 13054.795348255095,
+        "log_likelihood": 14383.526877232187,
+        "evaluations": 14,
+        "optimizer_coordinate": 0.871313318786068
+      },
+      "fresh_cached_exact": true,
+      "disabled_matches_saved_m248": true
+    },
+    {
+      "task_index": 4,
+      "portfolio": "equal_class_history_001",
+      "origin": "1991-07-19",
+      "training_rows": 2921,
+      "horizon": 8766,
+      "baseline_crps": 0.09576971606511214,
+      "candidate_crps": 0.09751605488326223,
+      "relative_improvement": -0.01823477075950386,
+      "fresh_seconds": 2.204669750004541,
+      "cached_seconds": 0.6153992089675739,
+      "degrees_of_freedom": 8.617681424490192,
+      "tail_fit": {
+        "gaussian_log_likelihood": 4911.628127668425,
+        "log_likelihood": 5169.881551842029,
+        "evaluations": 15,
+        "optimizer_coordinate": 0.8960248363546719
+      },
+      "fresh_cached_exact": true,
+      "disabled_matches_saved_m248": true
+    }
+  ],
+  "numerical_and_safety_tests_passed": 10,
+  "all_asset_fit_quantities_unchanged": true,
+  "century_guard": {
+    "scope": "100_year_asset_marginals_under_same_joint_six_asset_copula_not_OOS_score",
+    "simulations": 240,
+    "trading_days": 25200,
+    "records": [
+      {
+        "asset": "IWMSIM",
+        "original_expected_log_mean_cagr": 0.089393871990655,
+        "simulated_median_cagr": 0.0916779611334263,
+        "simulated_mean_cagr": 0.09134651798434007
+      },
+      {
+        "asset": "XLPSIM",
+        "original_expected_log_mean_cagr": 0.17845903684147965,
+        "simulated_median_cagr": 0.17816010228040224,
+        "simulated_mean_cagr": 0.17828483798182754
+      },
+      {
+        "asset": "IEISIM",
+        "original_expected_log_mean_cagr": 0.08240449922215978,
+        "simulated_median_cagr": 0.08198299324608546,
+        "simulated_mean_cagr": 0.08184661448500087
+      },
+      {
+        "asset": "ZROZSIM",
+        "original_expected_log_mean_cagr": 0.11732872579245986,
+        "simulated_median_cagr": 0.1137926767468082,
+        "simulated_mean_cagr": 0.11373857887570062
+      },
+      {
+        "asset": "GLDSIM",
+        "original_expected_log_mean_cagr": -0.019199597809545187,
+        "simulated_median_cagr": -0.01728000805711784,
+        "simulated_mean_cagr": -0.016067180072051886
+      },
+      {
+        "asset": "REITSIM",
+        "original_expected_log_mean_cagr": 0.05010082219144552,
+        "simulated_median_cagr": 0.04994349743579787,
+        "simulated_mean_cagr": 0.05114573702774541
+      }
+    ],
+    "passed": true
+  },
+  "full_panel_status": "started_separate_receipt_required",
+  "source_hashes": {
+    "tools/student_t_copula_rough/models.py": "e836d11821cec9ed426285ae52e085d418f3ca86a5aeee8ec8601bd922fd8d0f",
+    "tools/student_t_copula_rough/run_panel.py": "af65e849fce460c5de6a2bf26fe77f7b7d703fbda546cf31a19503256cf5eea6",
+    "tools/student_t_copula_rough/screen.py": "b7415d59e2d89bf60e51d0fe6494703edc5a8df9d3f498c573e670009cb8306b",
+    "tools/student_t_copula_rough/tail_fit.py": "9d2111513aa0b134b7bee1e5f93681a6245c7fe614278ebc08aac60ea968a033"
+  }
+}
