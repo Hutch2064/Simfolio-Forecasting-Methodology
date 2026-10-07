@@ -16,6 +16,17 @@ import student_state as state
 spec=importlib.util.spec_from_file_location('student_cdcc_private_M255',ROOT/'tools/corrected_dcc_innovation_copula/models.py')
 parent=importlib.util.module_from_spec(spec);sys.modules[spec.name]=parent;spec.loader.exec_module(parent)
 body=parent.body;native=parent.native;ENABLED=True
+_gaussian_fit=parent.state.fit
+
+
+def gaussian_fit(z,s,**kwargs):
+    if len(s)>=16 and "evaluator" not in kwargs:
+        from lapack_native import load
+        kwargs["evaluator"]=load().gaussian_exact
+    return _gaussian_fit(z,s,**kwargs)
+
+
+parent.state.fit=gaussian_fit
 SOURCE=hashlib.sha256((parent.SOURCE+''.join(hashlib.sha256(p.read_bytes()).hexdigest()
     for p in sorted(HERE.glob('*.py')))).encode()).hexdigest()
 

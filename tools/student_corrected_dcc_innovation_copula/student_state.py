@@ -89,12 +89,20 @@ def fit(u,s):
         else:result=np.r_[np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])@grad,gn]
         return value/n,result/n
     start=gtheta if gtheta.min()>0 else np.array([.02,.8])
-    for initial_nu in (8.,30.):
+    def optimize(initial_nu):
         x=np.r_[np.log(start/(1-start.sum())),np.log(initial_nu-2)]
         result=minimize(objective,x,jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
         theta=softmax(np.r_[result.x[:2],0.])[:2];nu=2+np.exp(result.x[-1])
         if result.success and np.isfinite(result.fun) and theta.sum()<1 and np.max(np.abs(result.jac))<=1e-5:
-            solutions.append((float(result.fun),theta,nu,{'success':True,'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}))
+            return float(result.fun),theta,nu,{'success':True,'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
+        return None
+    if p>=16:
+        from concurrent.futures import ThreadPoolExecutor
+        from numba import get_num_threads
+        with ThreadPoolExecutor(max_workers=min(2,get_num_threads())) as pool:
+            results=list(pool.map(optimize,(8.,30.)))
+    else:results=list(map(optimize,(8.,30.)))
+    solutions.extend(result for result in results if result is not None)
     edge=minimize(lambda x:objective(x,True),np.array([-2.,np.log(6.)]),jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
     if edge.success and np.isfinite(edge.fun) and np.max(np.abs(edge.jac))<=1e-5:
         theta=np.array([softmax([edge.x[0],0.])[0],0.]);nu=2+np.exp(edge.x[-1])

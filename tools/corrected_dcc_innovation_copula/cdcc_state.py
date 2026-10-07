@@ -45,13 +45,21 @@ def fit(z,s,evaluator=likelihood):
         except np.linalg.LinAlgError:return 1e100,np.zeros(2)
         jac=np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])
         return loss/n,jac@grad/n
-    solutions=[]
-    for start in ([.02,.95],[.05,.5],[.2,.2]):
+    def optimize(start):
         start=np.array(start);coords=np.log(start/(1-start.sum()))
         result=minimize(fun,coords,jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
         theta=physical(result.x)
         if result.success and theta.sum()<1. and np.isfinite(result.fun) and np.max(np.abs(result.jac))<=1e-5:
-            solutions.append((float(result.fun),theta,{'success':bool(result.success),'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}))
+            return float(result.fun),theta,{'success':bool(result.success),'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
+        return None
+    starts=([.02,.95],[.05,.5],[.2,.2])
+    if len(s)>=16:
+        from concurrent.futures import ThreadPoolExecutor
+        from numba import get_num_threads
+        with ThreadPoolExecutor(max_workers=min(3,get_num_threads())) as pool:
+            results=list(pool.map(optimize,starts))
+    else:results=list(map(optimize,starts))
+    solutions=[result for result in results if result is not None]
     # Fit the b=0 boundary separately, rather than impose a positive floor.
     def boundary(x):
         a=float(expit(x[0]));loss,gradient,_=evaluator(z,s,a,0.,s)

@@ -97,6 +97,13 @@ def compiled(p):
 
 
 def evaluate(z,s,a,b,q0,nu,constant,derivatives=True,z_eta=None,constant_eta=0.):
+    if len(s)>=16:
+        from lapack_native import load
+        backend=load()
+        try:
+            return backend.evaluate(z,s,a,b,q0,nu,constant,derivatives,z_eta,constant_eta)
+        except RuntimeError as error:
+            raise np.linalg.LinAlgError(str(error)) from error
     return compiled(len(s))(z,s,a,b,q0,nu,constant,derivatives,z_eta,constant_eta)
 
 
