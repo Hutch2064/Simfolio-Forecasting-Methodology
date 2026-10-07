@@ -3,6 +3,7 @@
 #include <numpy/random/distributions.h>
 #include <cmath>
 #include <vector>
+#include <algorithm>
 #include <cstdint>
 namespace py=pybind11;
 using Array=py::array_t<double,py::array::c_style>;
@@ -26,14 +27,21 @@ void map_path(Array phis,Array weights,Array root,Array initial,Array means,Arra
     const double *mean=return_mean.data(),*base=baseline.data(),*mp=memory_phis.data(),*c=coefficients.data();
     const double *mm=memory_mean.data(),*mv=memory_variance.data();
     std::vector<double> state(initial.data(),initial.data()+n),memory(memory_initial.data(),memory_initial.data()+k+1);
+    const py::ssize_t block=1024;
+    std::vector<double> rough_draws(block*n),memory_draws(enabled ? block : 0);
     auto* out=output.mutable_data();auto output_stride=output.strides(0)/sizeof(double);
     py::gil_scoped_release release;
     for(py::ssize_t t=0;t<means.size();t++) {
+        if(t%block==0) {
+            auto count=std::min(block,means.size()-t);
+            random_standard_normal_fill(rng,count*n,rough_draws.data());
+            if(enabled)random_standard_normal_fill(memory_rng,count,memory_draws.data());
+        }
         double h=dot(&n,const_cast<double*>(w),&stride,state.data(),&stride);
         double multiplier=std::exp(.5*(h-mu[t])-.25*v[t]);
         if(enabled) {
             double next=0.;for(int j=0;j<k+1;j++)next+=c[j]*memory[j];
-            next+=sd*random_standard_normal(memory_rng);
+            next+=sd*memory_draws[t%block];
             for(int j=0;j<k;j++)memory[j+1]=mp[j]*memory[j+1]+(1.-mp[j])*next;
             memory[0]=next;
             multiplier*=std::exp(.5*(level+next-mm[t])-.25*mv[t]);
@@ -41,7 +49,7 @@ void map_path(Array phis,Array weights,Array root,Array initial,Array means,Arra
         double value=mean[t]+(base[t]-mean[t])*multiplier;
         out[t*output_stride]=value < -1. ? -1. : value > 1. ? 1. : value;
         for(int i=0;i<n;i++) {
-            double z=0.+1.*random_standard_normal(rng);
+            double z=0.+1.*rough_draws[(t%block)*n+i];
             double innovation=r[i*n+i]!=0. ? r[i*n+i]*z : 0.;
             state[i]=phi[i]*state[i]+innovation;
         }

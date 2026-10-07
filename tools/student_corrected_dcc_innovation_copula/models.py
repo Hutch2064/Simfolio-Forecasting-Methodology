@@ -4,6 +4,8 @@ import os
 import importlib.util
 import sys
 from functools import lru_cache
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import nullcontext
 from pathlib import Path
 
 import numpy as np
@@ -59,20 +61,33 @@ def dcc_uniforms(shape,data,sims,horizon,seed):
     states=np.repeat(q[None,:,:],sims,axis=0);rng=np.random.default_rng(seed)
     scale_rng=np.random.default_rng(np.random.SeedSequence([seed,0x54434f50]))
     result=np.empty((sims,horizon,shape[1]));backend=native.load_paths()
-    for start in range(0,horizon,1024):
+    def draw(start):
         stop=min(start+1024,horizon);z=rng.normal(size=(stop-start,sims,shape[1]))
         if not gaussian_endpoint:
             scales=scale_rng.gamma(nu/2,2.,size=(stop-start,sims,1))
             if np.any(scales<=0) or not np.isfinite(scales).all():
                 raise ArithmeticError('unresolved Student mixing scale')
             z*=np.sqrt((nu-2)/scales)
-        from numba import get_num_threads
-        backend.scores(z,np.ascontiguousarray(target),states,a,b,min(os.cpu_count() or get_num_threads(),sims) if shape[1]>=16 else 1)
-        if gaussian_endpoint:ndtr(z,out=z)
-        else:
-            z*=np.sqrt(nu/(nu-2));student_cdf.probabilities(z,nu,1024*sims*shape[1])
-        np.clip(z,1e-8,1.-1e-8,out=z)
-        result[:,start:stop]=z.transpose(1,0,2)
+        return z
+    from numba import get_num_threads
+    pipelined=shape[1]>=16 and get_num_threads()>1 and horizon>1024
+    lanes=min(os.cpu_count() or 1,sims)
+    def gaussian_probabilities(block):
+        ndtr(block,out=block);np.clip(block,1e-8,1.-1e-8,out=block)
+    with ThreadPoolExecutor(max_workers=lanes+1) if pipelined else nullcontext() as executor:
+        pending=executor.submit(draw,0) if pipelined else None
+        for start in range(0,horizon,1024):
+            stop=min(start+1024,horizon)
+            z=pending.result() if pipelined else draw(start)
+            if pipelined and stop<horizon:pending=executor.submit(draw,stop)
+            backend.scores(z,np.ascontiguousarray(target),states,a,b,min(os.cpu_count() or get_num_threads(),sims) if shape[1]>=16 else 1)
+            if gaussian_endpoint and pipelined:
+                list(executor.map(gaussian_probabilities,np.array_split(z,lanes)))
+            elif gaussian_endpoint:ndtr(z,out=z)
+            else:
+                z*=np.sqrt(nu/(nu-2));student_cdf.probabilities(z,nu,1024*sims*shape[1])
+            if not (gaussian_endpoint and pipelined):np.clip(z,1e-8,1.-1e-8,out=z)
+            result[:,start:stop]=z.transpose(1,0,2)
     return result
 
 

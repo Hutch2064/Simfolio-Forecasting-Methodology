@@ -2,6 +2,7 @@
 import hashlib
 import importlib.util
 import math
+import os
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -121,7 +122,8 @@ class Candidate:
         items=enumerate(zip(data,posteriors))
         if workers==1:list(map(map_asset,items))
         else:
-            with ThreadPoolExecutor(max_workers=workers) as pool:list(pool.map(map_asset,items))
+            path_workers=min(os.cpu_count() or workers,len(data)) if len(data)>=16 else workers
+            with ThreadPoolExecutor(max_workers=path_workers) as pool:list(pool.map(map_asset,items))
         shell.controls.timed('asset_predictive_paths',started)
         dates=shell._historical_rebalance_dates(past.append(future),training.policy.rebalance)
         return shell.rejoin(paths,training.policy.weights,np.asarray([date in dates for date in future]))

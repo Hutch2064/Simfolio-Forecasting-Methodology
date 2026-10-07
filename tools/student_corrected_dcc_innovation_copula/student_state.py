@@ -11,7 +11,7 @@ from pathlib import Path
 import numpy as np
 from numba import njit
 from scipy.optimize import minimize
-from scipy.special import gammaln, ndtri, softmax
+from scipy.special import gammaln, ndtri, softmax, expit
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'corrected_dcc_innovation_copula'))
 import cdcc_state as gaussian
@@ -79,13 +79,19 @@ def fit(u,s):
         constant_eta=(copula_constant(plus,p)-copula_constant(minus,p))/(2*h)
         return likelihood_kernel.evaluate(z,s,a,b,s,nu,copula_constant(nu,p),True,z_eta,constant_eta)
     def objective(x,boundary=False):
-        theta=softmax(np.r_[x[:-1],0.])
-        a=float(theta[0]);b=0. if boundary else float(theta[1]);eta=x[-1]
+        if p>=32 and not boundary:
+            fraction,total=expit(x[:2]);a=float(fraction*total);b=float((1-fraction)*total)
+        else:
+            theta=softmax(np.r_[x[:-1],0.]);a=float(theta[0]);b=0. if boundary else float(theta[1])
+        eta=x[-1]
         if a+b>=1:return 1e100,np.zeros_like(x)
         try:
             value,grad,_=joint(a,b,eta);gn=grad[2];grad=grad[:2]
         except np.linalg.LinAlgError:return 1e100,np.zeros_like(x)
         if boundary:result=np.array([grad[0]*a*(1-a),gn])
+        elif p>=32:
+            total=a+b;fraction=a/total if total>0 else float(expit(x[0]));shock=total*fraction*(1-fraction)
+            result=np.r_[np.array([[shock,-shock],[a*(1-total),b*(1-total)]])@grad,gn]
         else:result=np.r_[np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])@grad,gn]
         return value/n,result/n
     start=gtheta if gtheta.min()>0 else np.array([.02,.8])
@@ -95,9 +101,16 @@ def fit(u,s):
     def optimize(job):
         kind,initial_nu=job
         if kind=='interior':
-            x=np.r_[np.log(start/(1-start.sum())),np.log(initial_nu-2)]
+            if p>=32:
+                total=start.sum();probabilities=np.array([start[0]/total,total])
+                coords=np.log(probabilities/(1-probabilities))
+            else:coords=np.log(start/(1-start.sum()))
+            x=np.r_[coords,np.log(initial_nu-2)]
             result=minimize(objective,x,jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
-            theta=softmax(np.r_[result.x[:2],0.])[:2];nu=2+np.exp(result.x[-1])
+            if p>=32:
+                fraction,total=expit(result.x[:2]);theta=np.array([fraction*total,(1-fraction)*total])
+            else:theta=softmax(np.r_[result.x[:2],0.])[:2]
+            nu=2+np.exp(result.x[-1])
             if result.success and np.isfinite(result.fun) and theta.sum()<1 and np.max(np.abs(result.jac))<=1e-5:
                 return float(result.fun),theta,nu,{'success':True,'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
         elif kind=='boundary':

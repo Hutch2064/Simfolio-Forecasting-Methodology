@@ -48,8 +48,9 @@ def test_conditional_moments_match_stationary_covariance_identity(model):
         assert variance[t-1]==pytest.approx((p-power@p@power.T)[0,0],abs=1e-12)
 
 
-def test_native_memory_recursion_and_rng_match_scalar_reference(model):
-    native,dot=model.load_paths();phi=np.array([.8,.98]);c=np.array([.6,.2,.1]);memory=np.array([.1,-.2,.3]);days=31;sd=.2;level=-1.
+@pytest.mark.parametrize('days',[31,2051])
+def test_native_memory_recursion_and_rng_match_scalar_reference(model,days):
+    native,dot=model.load_paths();phi=np.array([.8,.98]);c=np.array([.6,.2,.1]);memory=np.array([.1,-.2,.3]);sd=.2;level=-1.
     f=model.state.transition(phi,c);mm,mv=model.state.moments(f,memory,sd*np.r_[1.,1-phi],days);mm+=level
     mean=np.full(days,.0003);base=np.linspace(-.01,.01,days);expected=np.empty(days)
     rng=np.random.default_rng(73);current=memory.copy()
@@ -67,9 +68,10 @@ def test_native_memory_recursion_and_rng_match_scalar_reference(model):
     assert rng.bit_generator.state==m_rng.bit_generator.state
 
 
-def test_disabled_memory_matches_original_rough_native_bytes_and_rng(model):
+@pytest.mark.parametrize('days',[30,2051])
+def test_disabled_memory_matches_original_rough_native_bytes_and_rng(model,days):
     native,dot=model.load_paths();original,old_dot=model.pathwise.load_paths()
-    phi=np.array([.8,.99]);w=np.array([.4,.8]);root=np.diag([.2,.1]);initial=np.array([.1,-.2]);days=30
+    phi=np.array([.8,.99]);w=np.array([.4,.8]);root=np.diag([.2,.1]);initial=np.array([.1,-.2])
     mean=np.full(days,.0003);base=np.linspace(-.01,.01,days);rm=np.zeros(days);rv=np.full(days,.2)
     r1=np.random.default_rng(75);r2=np.random.default_rng(75);m1=np.random.default_rng(76);m2=np.random.default_rng(76)
     old=np.empty(days);new=np.empty(days)

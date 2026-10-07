@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
+import pytest
 from scipy.special import ndtri, stdtr, stdtrit
 from scipy.stats import kstest, multivariate_t, t
 
@@ -253,10 +254,11 @@ def test_constant_large_matrix_factorization_reuse_matches_full_recursion():
                 np.testing.assert_array_equal(actual[2],expected[2])
 
 
-def test_parallel_independent_fit_starts_preserve_selection():
+@pytest.mark.parametrize('dimension',[16,32])
+def test_parallel_independent_fit_starts_preserve_selection(dimension):
     import numba
     from scipy.special import ndtr
-    rng=np.random.default_rng(710);z=rng.normal(size=(257,16));s=np.eye(16)
+    rng=np.random.default_rng(710);z=rng.normal(size=(257,dimension));s=np.eye(dimension)
     previous=numba.get_num_threads()
     try:
         results=[]
@@ -285,3 +287,18 @@ def test_large_likelihood_blocks_carry_exact_state_and_derivatives():
                 np.testing.assert_allclose(actual[1],expected[1],rtol=2e-12,atol=1e-9)
                 np.testing.assert_array_equal(actual[2],expected[2])
     finally:numba.set_num_threads(previous)
+
+
+def test_pipelined_gaussian_and_student_blocks_preserve_full_forecast(monkeypatch):
+    import numba
+    previous=numba.get_num_threads();s=.2*np.ones((16,16))+.8*np.eye(16)
+    try:
+        for nu in (np.inf,8.):
+            monkeypatch.setattr(models,'configuration',lambda shape,data:(s,s,.04,.9,nu,None,None))
+            forecasts=[]
+            for threads in (1,min(4,numba.config.NUMBA_NUM_THREADS)):
+                numba.set_num_threads(threads);models.dcc_uniforms.cache_clear()
+                forecasts.append(models.dcc_uniforms((100,16),b'pipeline-reference',5,2051,811))
+            assert forecasts[0].tobytes()==forecasts[1].tobytes()
+    finally:
+        models.dcc_uniforms.cache_clear();numba.set_num_threads(previous)

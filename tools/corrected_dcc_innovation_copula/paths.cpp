@@ -29,7 +29,15 @@ void scores(Array normals,Array target,Array states,double a,double b,int thread
             sd[i]=std::sqrt(q[i*p+i]);
             for(py::ssize_t j=0;j<=i;j++) {
                 double v=q[i*p+j];
-                for(py::ssize_t h=0;h<j;h++)v-=root[i*p+h]*root[j*p+h];
+                if(p>=16) {
+                    #pragma clang fp reassociate(on)
+                    double product=0.;
+                    #pragma clang loop vectorize(enable)
+                    for(py::ssize_t h=0;h<j;h++)product+=root[i*p+h]*root[j*p+h];
+                    v-=product;
+                } else {
+                    for(py::ssize_t h=0;h<j;h++)v-=root[i*p+h]*root[j*p+h];
+                }
                 if(i==j) {
                     if(!(v>0.) || !std::isfinite(v))throw std::runtime_error("cDCC lost positive definiteness");
                     root[i*p+j]=std::sqrt(v);
@@ -41,8 +49,12 @@ void scores(Array normals,Array target,Array states,double a,double b,int thread
         for(py::ssize_t i=0;i<p;i++)row[i]=w[i]/sd[i];
         for(py::ssize_t i=0;i<p;i++)for(py::ssize_t j=0;j<=i;j++) {
             double v=c*s[i*p+j]+a*w[i]*w[j]+b*q[i*p+j];
-            q[i*p+j]=v;q[j*p+i]=v;
+            q[i*p+j]=v;
         }
+    }
+    for(py::ssize_t k=begin;k<end;k++) {
+        double* q=qs+k*p*p;
+        for(py::ssize_t i=0;i<p;i++)for(py::ssize_t j=0;j<i;j++)q[j*p+i]=q[i*p+j];
     }
     };
     threads=std::max(1,std::min(threads,static_cast<int>(sims)));
