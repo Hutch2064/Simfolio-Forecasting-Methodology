@@ -1,0 +1,387 @@
+{
+  "scope": "bounded_pilot_not_full_panel_not_catalogue_rank",
+  "baseline": "M251",
+  "reference": "https://doi.org/10.1111/j.1751-5823.2005.tb00254.x",
+  "academic_method": "Section 4.2, equation 19 sign U-statistic and rho=sin(pi*tau/2); ties contribute zero signs; constant margins independent; numerical PSD eigenvalue repair only, no statistical shrinkage; conditional df pseudo-likelihood on distinct informative rank histories; constant/duplicate/reflected ranks excluded from the likelihood only, all forecast assets retained; final quantile accuracy verified without substituting a lower df floor",
+  "records": [
+    {
+      "model_id": "asset_map_stationary_ar1_innovation_kendall_student_copula_dynamic_rough",
+      "task_index": 0,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "1981-12-31",
+      "training_rows": 507,
+      "assets": 6,
+      "horizon": 126,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/kendall_student_copula_rough/models.py": "4576582bde39bd6211b033062da1596fd1f4c52e2f6272639d7170c93d7aecdb",
+        "tools/kendall_student_copula_rough/run_panel.py": "69ba42d697b3c63a8cae63bc9077709368f2e2ac4f1fe139864daaee7ac3bb9d",
+        "tools/kendall_student_copula_rough/scatter.py": "9dad02196a8df0d7de714c38a0519278b492df4b8d7e4872312257436b48f21b",
+        "tools/kendall_student_copula_rough/screen.py": "569273e4ebfa3c30ceb7a779e115e7a5fe81e857687cdcf57d0e72a45b413600"
+      },
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 0.10154225002042949,
+          "timings": {
+            "rough_fit_worker": 0.05564762506401166,
+            "fit_phase_wall": 0.05346949998056516,
+            "dependence_paths": 0.028089291998185217,
+            "asset_predictive_paths": 0.01645166694652289
+          },
+          "smoke_crps": 0.03639518297886529,
+          "horizons": 126,
+          "loss_sha256": "f3f34255ce2419d039891a303322a85583345c33ed2cedd845549791c24c6880"
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.015422915981616825,
+          "timings": {
+            "fit_phase_wall": 0.00019316701218485832,
+            "dependence_paths": 1.1290947441011667e-05,
+            "asset_predictive_paths": 0.012737250013742596
+          },
+          "smoke_crps": 0.03639518297886529,
+          "horizons": 126,
+          "loss_sha256": "f3f34255ce2419d039891a303322a85583345c33ed2cedd845549791c24c6880"
+        }
+      ],
+      "baseline_M251_crps": 0.03569748325598945,
+      "relative_improvement_vs_M251": -0.019544787453854573,
+      "cache_vector_byte_exact": true,
+      "disabled_control_byte_exact_M251": true,
+      "all_marginal_fits_and_kernels_unchanged": true,
+      "scatter_diagnostics": {
+        "eigenvalue_repair_applied": false,
+        "numerical_eigenvalue_floor": 4.03779185423173e-15,
+        "minimum_eigenvalue": 0.08282248497857196,
+        "maximum_absolute_repair": 0.0,
+        "estimator": "sin(pi/2 * empirical_sign_U_statistic_tau_a)",
+        "ties": "zero contribution to pairwise sign U-statistic; no jitter"
+      },
+      "fitted_copula_df": 16.026364151944392
+    },
+    {
+      "model_id": "asset_map_stationary_ar1_innovation_kendall_student_copula_dynamic_rough",
+      "task_index": 1,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "1993-03-31",
+      "training_rows": 3351,
+      "assets": 6,
+      "horizon": 837,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/kendall_student_copula_rough/models.py": "4576582bde39bd6211b033062da1596fd1f4c52e2f6272639d7170c93d7aecdb",
+        "tools/kendall_student_copula_rough/run_panel.py": "69ba42d697b3c63a8cae63bc9077709368f2e2ac4f1fe139864daaee7ac3bb9d",
+        "tools/kendall_student_copula_rough/scatter.py": "9dad02196a8df0d7de714c38a0519278b492df4b8d7e4872312257436b48f21b",
+        "tools/kendall_student_copula_rough/screen.py": "569273e4ebfa3c30ceb7a779e115e7a5fe81e857687cdcf57d0e72a45b413600"
+      },
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 0.5172623750404455,
+          "timings": {
+            "rough_fit_worker": 0.2396372091025114,
+            "fit_phase_wall": 0.27374641597270966,
+            "dependence_paths": 0.16989920905325562,
+            "asset_predictive_paths": 0.058713499980513006
+          },
+          "smoke_crps": 0.03928822249663208,
+          "horizons": 837,
+          "loss_sha256": "70a4c62fac1e69c4ebcf8d7c2eaf0e7f195164ad3f54aa310aba5e7cf6cdf826"
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.06506008398719132,
+          "timings": {
+            "fit_phase_wall": 0.000250832992605865,
+            "dependence_paths": 4.5124965254217386e-05,
+            "asset_predictive_paths": 0.05119779100641608
+          },
+          "smoke_crps": 0.03928822249663208,
+          "horizons": 837,
+          "loss_sha256": "70a4c62fac1e69c4ebcf8d7c2eaf0e7f195164ad3f54aa310aba5e7cf6cdf826"
+        }
+      ],
+      "baseline_M251_crps": 0.03881817649626897,
+      "relative_improvement_vs_M251": -0.012108915018413713,
+      "cache_vector_byte_exact": true,
+      "disabled_control_byte_exact_M251": true,
+      "all_marginal_fits_and_kernels_unchanged": true,
+      "scatter_diagnostics": {
+        "eigenvalue_repair_applied": false,
+        "numerical_eigenvalue_floor": 3.743229487004221e-15,
+        "minimum_eigenvalue": 0.10044413742732225,
+        "maximum_absolute_repair": 0.0,
+        "estimator": "sin(pi/2 * empirical_sign_U_statistic_tau_a)",
+        "ties": "zero contribution to pairwise sign U-statistic; no jitter"
+      },
+      "fitted_copula_df": 14.501068212876007
+    },
+    {
+      "model_id": "asset_map_stationary_ar1_innovation_kendall_student_copula_dynamic_rough",
+      "task_index": 2,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "2020-06-30",
+      "training_rows": 10213,
+      "assets": 6,
+      "horizon": 1474,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/kendall_student_copula_rough/models.py": "4576582bde39bd6211b033062da1596fd1f4c52e2f6272639d7170c93d7aecdb",
+        "tools/kendall_student_copula_rough/run_panel.py": "69ba42d697b3c63a8cae63bc9077709368f2e2ac4f1fe139864daaee7ac3bb9d",
+        "tools/kendall_student_copula_rough/scatter.py": "9dad02196a8df0d7de714c38a0519278b492df4b8d7e4872312257436b48f21b",
+        "tools/kendall_student_copula_rough/screen.py": "569273e4ebfa3c30ceb7a779e115e7a5fe81e857687cdcf57d0e72a45b413600"
+      },
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 1.1378399590030313,
+          "timings": {
+            "rough_fit_worker": 0.58160883304663,
+            "fit_phase_wall": 0.6386069579748437,
+            "dependence_paths": 0.3755174170364626,
+            "asset_predictive_paths": 0.09608533297432587
+          },
+          "smoke_crps": 0.07900331559056296,
+          "horizons": 1474,
+          "loss_sha256": "d70688644b8798fc6ff9d640002e5b1f35d4e3d4672b31457405191aea2555e1"
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.11340554198250175,
+          "timings": {
+            "fit_phase_wall": 0.0003278340445831418,
+            "dependence_paths": 0.00011075002839788795,
+            "asset_predictive_paths": 0.08660033403430134
+          },
+          "smoke_crps": 0.07900331559056296,
+          "horizons": 1474,
+          "loss_sha256": "d70688644b8798fc6ff9d640002e5b1f35d4e3d4672b31457405191aea2555e1"
+        }
+      ],
+      "baseline_M251_crps": 0.0795380134794952,
+      "relative_improvement_vs_M251": 0.006722545177345607,
+      "cache_vector_byte_exact": true,
+      "disabled_control_byte_exact_M251": true,
+      "all_marginal_fits_and_kernels_unchanged": true,
+      "scatter_diagnostics": {
+        "eigenvalue_repair_applied": false,
+        "numerical_eigenvalue_floor": 2.8924783245475357e-15,
+        "minimum_eigenvalue": 0.1425554158554558,
+        "maximum_absolute_repair": 0.0,
+        "estimator": "sin(pi/2 * empirical_sign_U_statistic_tau_a)",
+        "ties": "zero contribution to pairwise sign U-statistic; no jitter"
+      },
+      "fitted_copula_df": 9.973445739178187
+    },
+    {
+      "model_id": "asset_map_stationary_ar1_innovation_kendall_student_copula_dynamic_rough",
+      "task_index": 3,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "2026-03-31",
+      "training_rows": 11657,
+      "assets": 6,
+      "horizon": 30,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/kendall_student_copula_rough/models.py": "4576582bde39bd6211b033062da1596fd1f4c52e2f6272639d7170c93d7aecdb",
+        "tools/kendall_student_copula_rough/run_panel.py": "69ba42d697b3c63a8cae63bc9077709368f2e2ac4f1fe139864daaee7ac3bb9d",
+        "tools/kendall_student_copula_rough/scatter.py": "9dad02196a8df0d7de714c38a0519278b492df4b8d7e4872312257436b48f21b",
+        "tools/kendall_student_copula_rough/screen.py": "569273e4ebfa3c30ceb7a779e115e7a5fe81e857687cdcf57d0e72a45b413600"
+      },
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 0.8780845000292175,
+          "timings": {
+            "rough_fit_worker": 0.6373604169930331,
+            "fit_phase_wall": 0.6631220410345122,
+            "dependence_paths": 0.19634316599695012,
+            "asset_predictive_paths": 0.015063958999235183
+          },
+          "smoke_crps": 0.014260925557272949,
+          "horizons": 30,
+          "loss_sha256": "62076044400503c99009bc761464fa13525a3f3eb4c43d34bb2b43cc39655225"
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.011162540991790593,
+          "timings": {
+            "fit_phase_wall": 0.00036991602974012494,
+            "dependence_paths": 0.00011716701555997133,
+            "asset_predictive_paths": 0.00815120805054903
+          },
+          "smoke_crps": 0.014260925557272949,
+          "horizons": 30,
+          "loss_sha256": "62076044400503c99009bc761464fa13525a3f3eb4c43d34bb2b43cc39655225"
+        }
+      ],
+      "baseline_M251_crps": 0.014266911054566263,
+      "relative_improvement_vs_M251": 0.00041953701613628436,
+      "cache_vector_byte_exact": true,
+      "disabled_control_byte_exact_M251": true,
+      "all_marginal_fits_and_kernels_unchanged": true,
+      "scatter_diagnostics": {
+        "eigenvalue_repair_applied": false,
+        "numerical_eigenvalue_floor": 2.914188856917245e-15,
+        "minimum_eigenvalue": 0.1511007869408918,
+        "maximum_absolute_repair": 0.0,
+        "estimator": "sin(pi/2 * empirical_sign_U_statistic_tau_a)",
+        "ties": "zero contribution to pairwise sign U-statistic; no jitter"
+      },
+      "fitted_copula_df": 9.864943515205551
+    },
+    {
+      "model_id": "asset_map_stationary_ar1_innovation_kendall_student_copula_dynamic_rough",
+      "task_index": 4,
+      "portfolio_id": "equal_class_history_001",
+      "origin": "1991-07-19",
+      "training_rows": 2921,
+      "assets": 6,
+      "horizon": 8766,
+      "simulations": 240,
+      "runtime": {
+        "python": "3.12.13",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1"
+      },
+      "source_hashes": {
+        "tools/kendall_student_copula_rough/models.py": "4576582bde39bd6211b033062da1596fd1f4c52e2f6272639d7170c93d7aecdb",
+        "tools/kendall_student_copula_rough/run_panel.py": "69ba42d697b3c63a8cae63bc9077709368f2e2ac4f1fe139864daaee7ac3bb9d",
+        "tools/kendall_student_copula_rough/scatter.py": "9dad02196a8df0d7de714c38a0519278b492df4b8d7e4872312257436b48f21b",
+        "tools/kendall_student_copula_rough/screen.py": "569273e4ebfa3c30ceb7a779e115e7a5fe81e857687cdcf57d0e72a45b413600"
+      },
+      "records": [
+        {
+          "cache_state": "fresh_fits",
+          "seconds": 2.1257575420313515,
+          "timings": {
+            "rough_fit_worker": 0.23499562498182058,
+            "fit_phase_wall": 0.2330778330215253,
+            "dependence_paths": 1.2312513339566067,
+            "asset_predictive_paths": 0.5250104999868199
+          },
+          "smoke_crps": 0.09514225772687084,
+          "horizons": 8766,
+          "loss_sha256": "1448c06cd8941da5b059a7d97e8e2f0c10eec4ac5122ae6229badb25f8a6d92e"
+        },
+        {
+          "cache_state": "cached_fits",
+          "seconds": 0.6298217080184259,
+          "timings": {
+            "fit_phase_wall": 0.0003142500063404441,
+            "dependence_paths": 4.229199839755893e-05,
+            "asset_predictive_paths": 0.4981726669939235
+          },
+          "smoke_crps": 0.09514225772687084,
+          "horizons": 8766,
+          "loss_sha256": "1448c06cd8941da5b059a7d97e8e2f0c10eec4ac5122ae6229badb25f8a6d92e"
+        }
+      ],
+      "baseline_M251_crps": 0.09598589075571701,
+      "relative_improvement_vs_M251": 0.008789135801148151,
+      "cache_vector_byte_exact": true,
+      "disabled_control_byte_exact_M251": true,
+      "all_marginal_fits_and_kernels_unchanged": true,
+      "scatter_diagnostics": {
+        "eigenvalue_repair_applied": false,
+        "numerical_eigenvalue_floor": 3.880380604125497e-15,
+        "minimum_eigenvalue": 0.09089248627553573,
+        "maximum_absolute_repair": 0.0,
+        "estimator": "sin(pi/2 * empirical_sign_U_statistic_tau_a)",
+        "ties": "zero contribution to pairwise sign U-statistic; no jitter"
+      },
+      "fitted_copula_df": 15.268241230331158
+    }
+  ],
+  "century_guard": {
+    "scope": "100_year_asset_marginals_under_same_joint_six_asset_copula_not_OOS_score",
+    "simulations": 240,
+    "trading_days": 25200,
+    "records": [
+      {
+        "asset": "IWMSIM",
+        "original_expected_log_mean_cagr": 0.089393871990655,
+        "simulated_median_cagr": 0.0915620528615339,
+        "simulated_mean_cagr": 0.09140640826285518
+      },
+      {
+        "asset": "XLPSIM",
+        "original_expected_log_mean_cagr": 0.17845903684147965,
+        "simulated_median_cagr": 0.1786982872052446,
+        "simulated_mean_cagr": 0.1783016685696802
+      },
+      {
+        "asset": "IEISIM",
+        "original_expected_log_mean_cagr": 0.08240449922215978,
+        "simulated_median_cagr": 0.08192865976696075,
+        "simulated_mean_cagr": 0.0818368865263744
+      },
+      {
+        "asset": "ZROZSIM",
+        "original_expected_log_mean_cagr": 0.11732872579245986,
+        "simulated_median_cagr": 0.1126446844629256,
+        "simulated_mean_cagr": 0.1135122508190879
+      },
+      {
+        "asset": "GLDSIM",
+        "original_expected_log_mean_cagr": -0.019199597809545187,
+        "simulated_median_cagr": -0.017856076223652102,
+        "simulated_mean_cagr": -0.016960289370301997
+      },
+      {
+        "asset": "REITSIM",
+        "original_expected_log_mean_cagr": 0.05010082219144552,
+        "simulated_median_cagr": 0.05013451361949452,
+        "simulated_mean_cagr": 0.05108793728817413
+      }
+    ],
+    "passed": true
+  },
+  "numerical_and_safety_tests_passed": 11,
+  "profile": {
+    "scope": "cached_marginal_fit_profile_of_training_scatter_and_df_only",
+    "training_rows": 10213,
+    "assets": 6,
+    "kendall_scatter_seconds": 0.02093316602986306,
+    "conditional_df_fit_seconds": 0.1560230830218643,
+    "independent_fresh_origin_seconds": 1.1378399590030313,
+    "scatter_share_of_origin": 0.018397285017309972,
+    "kernel": "SciPy compiled O(n log n) Kendall calculation; all pairs/full history retained; one tie-count pass per column",
+    "repair": {
+      "eigenvalue_repair_applied": false,
+      "numerical_eigenvalue_floor": 2.8924783245475357e-15,
+      "minimum_eigenvalue": 0.1425554158554558,
+      "maximum_absolute_repair": 0.0,
+      "estimator": "sin(pi/2 * empirical_sign_U_statistic_tau_a)",
+      "ties": "zero contribution to pairwise sign U-statistic; no jitter"
+    }
+  },
+  "execution": {
+    "workers": 4,
+    "state_workers": 1,
+    "blas_threads": 1,
+    "nice": 10
+  }
+}
