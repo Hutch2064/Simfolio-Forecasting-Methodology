@@ -1301,5 +1301,589 @@
     "negative_splits": 6,
     "mean_log_density_gain_per_day": -6.676006056942645e-05,
     "decision": "Do not launch a target-profile forecasting candidate: average conditional heldout density change is slightly negative; this offers no directional improvement evidence."
+  },
+  "student_target_profile_diagnostic": {
+    "scope": "conditional diagnostics on fixed full-origin marginal fits; not independently refitted market forecast OOS",
+    "source_sha256": "ae6034e772d9b0db86d924d9e7328aadd4970407e545f762aa8cb86b584637d4",
+    "records": [
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "centered variance-normalized Ledoit-Wolf correlation on corrected unit-variance Student scores, recomputed inside joint a,b,nu likelihood; finite-sample implicit target variant, no exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 1,
+          "portfolio_id": "equal_class_history_001",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "17dd944645d038b114211b8fe273ad0d6e21462b9ad9875026bb30c39331bc15",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-0.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.011756117890001267,
+            "b": 0.9858460286801094,
+            "nu": 16.07664064917784,
+            "baseline_nu": 16.087544898212215,
+            "fit_seconds": 3.246998083021026,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": -0.0003563860944932899,
+            "baseline_training_nll": -8711.526059308453,
+            "profile_training_nll": -8711.349413056552,
+            "optimizer": {
+              "success": true,
+              "iterations": 10,
+              "evaluations": 91,
+              "transformed_mean_gradient": [
+                4.174741686914769e-09,
+                -1.5949390957870363e-08,
+                -4.527206975518311e-09
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.012844117768339589,
+            "b": 0.9849684124952865,
+            "nu": 14.757731668913179,
+            "baseline_nu": 14.698420729371923,
+            "fit_seconds": 3.872820666991174,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": -0.0007682394401872974,
+            "baseline_training_nll": -12656.977486678848,
+            "profile_training_nll": -12656.223076748434,
+            "optimizer": {
+              "success": true,
+              "iterations": 9,
+              "evaluations": 70,
+              "transformed_mean_gradient": [
+                9.093902208994667e-09,
+                -6.193578305694848e-09,
+                -5.609434658383974e-09
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "centered variance-normalized Ledoit-Wolf correlation on corrected unit-variance Student scores, recomputed inside joint a,b,nu likelihood; finite-sample implicit target variant, no exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 21,
+          "portfolio_id": "equal_class_history_021",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "8cf066caf5c7d0800e338cf9ae4462d17d77cd275ef773b00cf1467b0c7bfc46",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-20.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.010505293109795482,
+            "b": 0.9857891086804044,
+            "nu": 21.294882137800798,
+            "baseline_nu": 21.287902358533515,
+            "fit_seconds": 2.7205471670022234,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": -0.0009476047846054034,
+            "baseline_training_nll": -7348.5363354421825,
+            "profile_training_nll": -7348.726951867857,
+            "optimizer": {
+              "success": true,
+              "iterations": 7,
+              "evaluations": 70,
+              "transformed_mean_gradient": [
+                3.448557319193077e-09,
+                -7.223905332184317e-10,
+                3.2210585058715954e-10
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.011043509040868028,
+            "b": 0.987930517171061,
+            "nu": 17.30317842359301,
+            "baseline_nu": 17.204670645436373,
+            "fit_seconds": 4.646852374949958,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": -0.0003909623798370916,
+            "baseline_training_nll": -12799.470742799573,
+            "profile_training_nll": -12798.363052324026,
+            "optimizer": {
+              "success": true,
+              "iterations": 6,
+              "evaluations": 63,
+              "transformed_mean_gradient": [
+                8.269011773207519e-08,
+                -7.75166453504802e-08,
+                4.9282322693816924e-08
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "centered variance-normalized Ledoit-Wolf correlation on corrected unit-variance Student scores, recomputed inside joint a,b,nu likelihood; finite-sample implicit target variant, no exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 41,
+          "portfolio_id": "equal_class_history_041",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "b398c761e92c29bbe65db4707d3b59f0ebf7bc2fc4e1794ba0f264f6e6711a88",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-40.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.010078810520516587,
+            "b": 0.9858215790096915,
+            "nu": 16.37075533353292,
+            "baseline_nu": 16.31990890724211,
+            "fit_seconds": 2.685251666000113,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": -0.0007619973129935646,
+            "baseline_training_nll": -10193.183734119644,
+            "profile_training_nll": -10193.127638360716,
+            "optimizer": {
+              "success": true,
+              "iterations": 6,
+              "evaluations": 56,
+              "transformed_mean_gradient": [
+                1.630539809953591e-10,
+                -1.896100262395621e-09,
+                -2.1325349095628993e-10
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.012001818101896336,
+            "b": 0.985412146083906,
+            "nu": 15.047274474405354,
+            "baseline_nu": 14.990750330217407,
+            "fit_seconds": 4.512702542007901,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": -0.0005164517872978881,
+            "baseline_training_nll": -15113.125890060715,
+            "profile_training_nll": -15112.548636233209,
+            "optimizer": {
+              "success": true,
+              "iterations": 10,
+              "evaluations": 77,
+              "transformed_mean_gradient": [
+                6.211231074124137e-10,
+                -3.948867499810233e-10,
+                2.4768516265030317e-09
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "centered variance-normalized Ledoit-Wolf correlation on corrected unit-variance Student scores, recomputed inside joint a,b,nu likelihood; finite-sample implicit target variant, no exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 61,
+          "portfolio_id": "equal_class_history_061",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "9f44bb9ecedb28650dd973d403096d837c3e24a6ee24431f9fe3fc29796930dd",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-60.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.012728015342283181,
+            "b": 0.9872710077345817,
+            "nu": 16.407113524012793,
+            "baseline_nu": 16.38640900001873,
+            "fit_seconds": 2.963874999957625,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": -9.354606101393474e-05,
+            "baseline_training_nll": -20993.07608949716,
+            "profile_training_nll": -20993.778651402983,
+            "optimizer": {
+              "success": true,
+              "iterations": 7,
+              "evaluations": 70,
+              "transformed_mean_gradient": [
+                1.3448482655226432e-07,
+                1.1792183037612493e-07,
+                1.800628816293485e-09
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.01406556391039176,
+            "b": 0.9859292742815318,
+            "nu": 15.156204926025742,
+            "baseline_nu": 15.194781501463051,
+            "fit_seconds": 8.02389629202662,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": 0.0006448581011140779,
+            "baseline_training_nll": -25978.520143390477,
+            "profile_training_nll": -25999.549846031652,
+            "optimizer": {
+              "success": true,
+              "iterations": 17,
+              "evaluations": 133,
+              "transformed_mean_gradient": [
+                -1.1310868711183074e-09,
+                2.460640542079837e-09,
+                4.411219886451666e-10
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "scope": "conditional_innovation_history_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 marginal fits fixed before inner split",
+        "target": "centered variance-normalized Ledoit-Wolf correlation on corrected unit-variance Student scores, recomputed inside joint a,b,nu likelihood; finite-sample implicit target variant, no exact Aielli theorem claim",
+        "input": {
+          "portfolio_index": 80,
+          "portfolio_id": "equal_class_history_080",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "b0a63301e9ac1455b8ce4af3f83bb3225501c8a29057aca534ad4b3668f4afd7",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-79.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "a": 0.011584806269377822,
+            "b": 0.9839021830099475,
+            "nu": 16.757223073302008,
+            "baseline_nu": 16.735290124641324,
+            "fit_seconds": 2.9171699580037966,
+            "heldout_rows": 5829,
+            "heldout_log_density_gain_per_day": -0.000888317536481853,
+            "baseline_training_nll": -8027.113078466304,
+            "profile_training_nll": -8027.55651109836,
+            "optimizer": {
+              "success": true,
+              "iterations": 9,
+              "evaluations": 84,
+              "transformed_mean_gradient": [
+                5.037046413045507e-09,
+                -8.240023929999228e-09,
+                -6.504814783570039e-09
+              ]
+            }
+          },
+          {
+            "training_fraction": 0.75,
+            "a": 0.01280276956219152,
+            "b": 0.9853183424266829,
+            "nu": 16.644939459482266,
+            "baseline_nu": 16.598817894156703,
+            "fit_seconds": 4.943069167027716,
+            "heldout_rows": 2915,
+            "heldout_log_density_gain_per_day": -0.0005628763029267989,
+            "baseline_training_nll": -12403.141419351694,
+            "profile_training_nll": -12403.230332851419,
+            "optimizer": {
+              "success": true,
+              "iterations": 7,
+              "evaluations": 63,
+              "transformed_mean_gradient": [
+                1.6882208978393717e-08,
+                -2.1073784037129995e-08,
+                1.0799347093393104e-08
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "heldout_wins": 1,
+    "heldout_losses": 9,
+    "mean_log_density_gain_per_day": -0.0004641523598723044,
+    "decision": "do not launch another panel from this negative diagnostic"
+  },
+  "tail_score_persistence_diagnostic": {
+    "scope": "conditional diagnostics on fixed full-origin marginal fits; not independently refitted market forecast OOS",
+    "source_sha256": "3e980de8526962994848eb83c850670f8e921c581b94484dcd8ee6735bb28f2d",
+    "records": [
+      {
+        "scope": "conditional_tail_score_persistence_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 innovation fits fixed before inner split; no new marginal calibration",
+        "input": {
+          "portfolio_index": 1,
+          "portfolio_id": "equal_class_history_001",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "17dd944645d038b114211b8fe273ad0d6e21462b9ad9875026bb30c39331bc15",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-0.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "nu": 16.087544898212215,
+            "train_score": {
+              "lag_one_slope": 0.08503405136105806,
+              "heteroskedastic_robust_se": 0.0525825718677173,
+              "t_statistic": 1.6171527626107636,
+              "rows": 5828,
+              "mean_score": -0.001266209309656385
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.03273642817447931,
+              "heteroskedastic_robust_se": 0.016775027301739867,
+              "t_statistic": 1.9514977582828712,
+              "rows": 5829,
+              "mean_score": -0.017017391287140905
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          },
+          {
+            "training_fraction": 0.75,
+            "nu": 14.698420729371923,
+            "train_score": {
+              "lag_one_slope": 0.06514286607305092,
+              "heteroskedastic_robust_se": 0.036874507608742745,
+              "t_statistic": 1.766609788102117,
+              "rows": 8742,
+              "mean_score": -0.0015078700711703972
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.03261291375548479,
+              "heteroskedastic_robust_se": 0.023914833551551284,
+              "t_statistic": 1.363710672925394,
+              "rows": 2915,
+              "mean_score": -0.011757544965596561
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          }
+        ]
+      },
+      {
+        "scope": "conditional_tail_score_persistence_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 innovation fits fixed before inner split; no new marginal calibration",
+        "input": {
+          "portfolio_index": 21,
+          "portfolio_id": "equal_class_history_021",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "8cf066caf5c7d0800e338cf9ae4462d17d77cd275ef773b00cf1467b0c7bfc46",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-20.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "nu": 21.287902358533515,
+            "train_score": {
+              "lag_one_slope": 0.04391730842355185,
+              "heteroskedastic_robust_se": 0.0368034497453757,
+              "t_statistic": 1.1932932572189103,
+              "rows": 5828,
+              "mean_score": -0.00021948155958301588
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.031555763459760126,
+              "heteroskedastic_robust_se": 0.023149729900493257,
+              "t_statistic": 1.3631158374373846,
+              "rows": 5829,
+              "mean_score": -0.02403477292543871
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          },
+          {
+            "training_fraction": 0.75,
+            "nu": 17.204670645436373,
+            "train_score": {
+              "lag_one_slope": 0.04134455934778599,
+              "heteroskedastic_robust_se": 0.0274816738572495,
+              "t_statistic": 1.5044410890888855,
+              "rows": 8742,
+              "mean_score": -0.0008666539356899193
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.019436360067452224,
+              "heteroskedastic_robust_se": 0.018413764212783682,
+              "t_statistic": 1.055534318939449,
+              "rows": 2915,
+              "mean_score": -0.016566685128154703
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          }
+        ]
+      },
+      {
+        "scope": "conditional_tail_score_persistence_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 innovation fits fixed before inner split; no new marginal calibration",
+        "input": {
+          "portfolio_index": 41,
+          "portfolio_id": "equal_class_history_041",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "b398c761e92c29bbe65db4707d3b59f0ebf7bc2fc4e1794ba0f264f6e6711a88",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-40.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "nu": 16.31990890724211,
+            "train_score": {
+              "lag_one_slope": 0.07374942339238186,
+              "heteroskedastic_robust_se": 0.03792092855187096,
+              "t_statistic": 1.9448211372646669,
+              "rows": 5828,
+              "mean_score": -0.0008874068144874399
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.06382575777975726,
+              "heteroskedastic_robust_se": 0.026602146831842324,
+              "t_statistic": 2.3992709379138866,
+              "rows": 5829,
+              "mean_score": -0.01666077897820126
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          },
+          {
+            "training_fraction": 0.75,
+            "nu": 14.990750330217407,
+            "train_score": {
+              "lag_one_slope": 0.06289550421202418,
+              "heteroskedastic_robust_se": 0.027509906978121675,
+              "t_statistic": 2.2862856011125112,
+              "rows": 8742,
+              "mean_score": -0.0013332943520601552
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.0644698238936932,
+              "heteroskedastic_robust_se": 0.02577069384458356,
+              "t_statistic": 2.5016720264690644,
+              "rows": 2915,
+              "mean_score": -0.010671426549612445
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          }
+        ]
+      },
+      {
+        "scope": "conditional_tail_score_persistence_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 innovation fits fixed before inner split; no new marginal calibration",
+        "input": {
+          "portfolio_index": 61,
+          "portfolio_id": "equal_class_history_061",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "9f44bb9ecedb28650dd973d403096d837c3e24a6ee24431f9fe3fc29796930dd",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-60.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "nu": 16.38640900001873,
+            "train_score": {
+              "lag_one_slope": 0.009636345018878464,
+              "heteroskedastic_robust_se": 0.012416670509160857,
+              "t_statistic": 0.7760812378623476,
+              "rows": 5828,
+              "mean_score": -0.0036966556736161395
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.02820897404809928,
+              "heteroskedastic_robust_se": 0.02786020832732624,
+              "t_statistic": 1.0125184175464674,
+              "rows": 5829,
+              "mean_score": -0.02065619028011324
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          },
+          {
+            "training_fraction": 0.75,
+            "nu": 15.194781501463051,
+            "train_score": {
+              "lag_one_slope": 0.01107493263787839,
+              "heteroskedastic_robust_se": 0.011906951743439432,
+              "t_statistic": 0.9301232487131332,
+              "rows": 8742,
+              "mean_score": -0.002986273918034458
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.04024274830394858,
+              "heteroskedastic_robust_se": 0.051003847565076275,
+              "t_statistic": 0.789013971006844,
+              "rows": 2915,
+              "mean_score": -0.019522852536941294
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          }
+        ]
+      },
+      {
+        "scope": "conditional_tail_score_persistence_diagnostic_not_forecast_OOS",
+        "conditioning": "full-history M251 innovation fits fixed before inner split; no new marginal calibration",
+        "input": {
+          "portfolio_index": 80,
+          "portfolio_id": "equal_class_history_080",
+          "origin": "2026-03-31",
+          "rows": 11657,
+          "assets": 6,
+          "sha256": "b0a63301e9ac1455b8ce4af3f83bb3225501c8a29057aca534ad4b3668f4afd7",
+          "path": "local_artifacts/dynamic-rough-inference-20261005/cdcc-diagnostic-innovations-79.npy"
+        },
+        "results": [
+          {
+            "training_fraction": 0.5,
+            "nu": 16.735290124641324,
+            "train_score": {
+              "lag_one_slope": 0.11166151426215526,
+              "heteroskedastic_robust_se": 0.04657900349273469,
+              "t_statistic": 2.3972499600506056,
+              "rows": 5828,
+              "mean_score": -8.526286656088958e-05
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.049527035106916584,
+              "heteroskedastic_robust_se": 0.023826184747110266,
+              "t_statistic": 2.0786808980369136,
+              "rows": 5829,
+              "mean_score": -0.015361447396143769
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          },
+          {
+            "training_fraction": 0.75,
+            "nu": 16.598817894156703,
+            "train_score": {
+              "lag_one_slope": 0.10905094112192829,
+              "heteroskedastic_robust_se": 0.03922117760909086,
+              "t_statistic": 2.780409660536352,
+              "rows": 8742,
+              "mean_score": -0.0008709585779156653
+            },
+            "heldout_score": {
+              "lag_one_slope": 0.022018216816662634,
+              "heteroskedastic_robust_se": 0.02915237021996574,
+              "t_statistic": 0.7552805020835973,
+              "rows": 2915,
+              "mean_score": -0.008121202185400786
+            },
+            "scope": "conditional daily direct tail score with realized correlation history held fixed; not the derivative of full recursion likelihood"
+          }
+        ]
+      }
+    ],
+    "positive_heldout_lag_one_slopes": 10,
+    "heldout_t_above_two": 3,
+    "interpretation": "Small positive descriptive tail-score persistence, mostly weak heteroskedastic-robust t statistics. Overlapping splits are not independent; these are not a calibrated GAS model or predictive CRPS evidence. Insufficient support for adding time-varying degrees of freedom now."
   }
 }

@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **255 models**: the original 175 plus seventy
+The canonical catalogue contains **256 models**: the original 175 plus seventy-one
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–255 and no historical source rank.
+indices 176–256 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 255 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 256 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -28,9 +28,11 @@ Existing command names and catalogue filenames remain compatible.
 
 | Model | Exact empirical CRPS | Role |
 | --- | ---: | --- |
-| Asset MAP Multiscale + Dynamic Rough Volatility | 0.2518812750312293 | Validated fast research candidate |
+| M256 — Asset MAP Stationary AR1 + Student Corrected Dynamic Correlation + Dynamic Rough | 0.22687132859413414 | Current research score leader |
+| M255 — Asset MAP Stationary AR1 + Corrected Dynamic Correlation + Dynamic Rough | 0.22705549647165937 | Faster research comparator |
+| Asset MAP Multiscale + Dynamic Rough Volatility | 0.2518812750312293 | Retained production baseline for this research |
 | Asset Rough Volterra SV — Eight Factors | 0.2511998559613309 | Validated research candidate |
-| Asset Parameter MCMC + Filtered Moment SV | 0.25246784959071183 | Current production Frontier |
+| Asset Parameter MCMC + Filtered Moment SV | 0.25246784959071183 | Previous production Frontier |
 | Asset Filtered Innovation Moment SV + Fixed Mean | 0.25439860867855635 | Previous production Frontier |
 | Asset Filtered Innovation Moment SV + DLM | 0.2547972662964723 | Validated candidate |
 | Asset FastMAP + Dynamic Gaussian Factor | 0.2557255171048505 | Earlier production Frontier; retained historical score |
@@ -199,3 +201,5 @@ M252 retains M251 asset forecasts and tests Kendall sign-statistic Student copul
 M253/M254 retain M250/M251 fitted market models and test randomized Latin hypercube return-shock simulation. Full-panel results and exact unchanged-fit audits are retained in `docs/results/rough-bayesian/stratified-copula-panel.json` in the methodology repository.
 
 M255 preserves M251 asset forecasts and tests conditional Gaussian corrected-DCC return dependence. Audited full-panel CRPS: **0.22705549647165937**.
+
+M256 preserves M255 asset forecasts and tests conditional Student corrected-DCC return dependence. Audited full-panel CRPS: **0.22687132859413414**.

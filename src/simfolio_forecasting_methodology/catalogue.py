@@ -21,10 +21,10 @@ from pathlib import Path
 from typing import Any
 
 LEDGER_RESOURCE = "resources/canonical_175/ledger.json"
-EXPECTED_CANONICAL_COUNT = 255
-EXPECTED_SOURCE_RANKS = tuple(range(12, 187)) + (None,) * 80
+EXPECTED_CANONICAL_COUNT = 256
+EXPECTED_SOURCE_RANKS = tuple(range(12, 187)) + (None,) * 81
 EXPECTED_CELLS_PER_MODEL = 701_280
-EXPECTED_MEMBERSHIP_DIGEST = "8036645681f28afaf7cc67bbabfbcfa55dd5296972636d17aa2ed8fbb2aee40e"
+EXPECTED_MEMBERSHIP_DIGEST = "5ca2888949c1c607a5cbd08ed788de4ab2bed42bd10100aab26edfe9bad6270b"
 
 REQUIRED_MODEL_FIELDS = (
     "public_model_id",

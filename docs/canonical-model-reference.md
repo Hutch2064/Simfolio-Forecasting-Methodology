@@ -1,14 +1,14 @@
-# Canonical model reference (255 models including the original 175)
+# Canonical model reference (256 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **255** rows, canonical ranks **1–255**.
+- Membership: **256** rows, canonical ranks **1–256**.
 - Retained source ranks: **12–186**.
-- Membership digest: `8036645681f28afaf7cc67bbabfbcfa55dd5296972636d17aa2ed8fbb2aee40e`.
+- Membership digest: `5ca2888949c1c607a5cbd08ed788de4ab2bed42bd10100aab26edfe9bad6270b`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **255**.
+- Confirmed full statistical specifications: **256**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -269,3 +269,4 @@ The ledger is the sole membership authority for this public set.
 | 253 | None | asset_map_stationary_ar1_innovation_shrinkage_lhs_copula_dynamic_rough | M253 — Asset MAP Stationary AR1 + Innovation Gaussian Copula + Stratified Shocks + Dynamic Rough | asset_level_extension | 0.23018384394078584 | 0.230183844 | true | validated_full_canonical_score |
 | 254 | None | asset_map_stationary_ar1_innovation_student_lhs_copula_dynamic_rough | M254 — Asset MAP Stationary AR1 + Innovation Student Copula + Stratified Shocks + Dynamic Rough | asset_level_extension | 0.23018159938191207 | 0.230181599 | true | validated_full_canonical_score |
 | 255 | None | asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough | M255 — Asset MAP Stationary AR1 + Corrected Dynamic Correlation + Dynamic Rough | asset_level_extension | 0.22705549647165937 | 0.227055496 | true | validated_full_canonical_score |
+| 256 | None | asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough | M256 — Asset MAP Stationary AR1 + Student Corrected Dynamic Correlation + Dynamic Rough | asset_level_extension | 0.22687132859413414 | 0.226871329 | true | validated_full_canonical_score |
