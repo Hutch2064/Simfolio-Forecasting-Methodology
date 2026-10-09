@@ -8,7 +8,9 @@ import models
 import numpy as np
 
 from simfolio_forecasting_methodology.experiment import build_experiment_plan
-from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import moment_return_curves
+from simfolio_forecasting_methodology.models.asset_level.sv_moment_functions import (
+    moment_return_curves,
+)
 
 
 def main():
@@ -30,12 +32,12 @@ def main():
             loglik, h, _ = models.bd._sv_kalman_rts_smoother_mean(y, level, phi, eta)
             assert np.isfinite(loglik) and np.isfinite(h).all()
             samples = {'fixed_four': [], 'existing_sv_rate': []}
-            def evaluate(arm):
+            def evaluate(arm, h=h, phi=phi, fit=fit, horizon=task.horizon_days):
                 if arm == 'fixed_four':
                     q = models.OPTIMIZED_COMPONENTS(h, 4)
                 else:
                     q = models.data_components(h, 4, fitted_phi=phi)
-                return moment_return_curves(dict(fit, bdes_multiscale_vol=q), task.horizon_days)
+                return moment_return_curves(dict(fit, bdes_multiscale_vol=q), horizon)
             for arm in samples:
                 evaluate(arm)
             for repeat in range(12):
