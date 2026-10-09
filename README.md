@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **256 models**: the original 175 plus seventy-one
+The canonical catalogue contains **261 models**: the original 175 plus seventy-six
 asset-level models with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
@@ -17,9 +17,9 @@ dynamic-resolution candidate completed the full panel with CRPS
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–256 and no historical source rank.
+indices 176–261 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 256 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 261 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -28,7 +28,8 @@ Existing command names and catalogue filenames remain compatible.
 
 | Model | Exact empirical CRPS | Role |
 | --- | ---: | --- |
-| M256 — Asset MAP Stationary AR1 + Student Corrected Dynamic Correlation + Dynamic Rough | 0.22687132859413414 | Current research score leader |
+| M261 — M256 with existing fitted SV timescale | 0.22672308848311776 | Timescale-only research score leader |
+| M256 — Asset MAP Stationary AR1 + Student Corrected Dynamic Correlation + Dynamic Rough | 0.22687132859413414 | Retained comparator |
 | M255 — Asset MAP Stationary AR1 + Corrected Dynamic Correlation + Dynamic Rough | 0.22705549647165937 | Faster research comparator |
 | Asset MAP Multiscale + Dynamic Rough Volatility | 0.2518812750312293 | Retained production baseline for this research |
 | Asset Rough Volterra SV — Eight Factors | 0.2511998559613309 | Validated research candidate |

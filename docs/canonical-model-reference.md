@@ -1,14 +1,14 @@
-# Canonical model reference (256 models including the original 175)
+# Canonical model reference (261 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **256** rows, canonical ranks **1–256**.
+- Membership: **261** rows, canonical ranks **1–261**.
 - Retained source ranks: **12–186**.
-- Membership digest: `5ca2888949c1c607a5cbd08ed788de4ab2bed42bd10100aab26edfe9bad6270b`.
+- Membership digest: `ab6c47978e6749205443aa4415aedf71465baa594ffbbc3ddb1bf21f3d211107`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **256**.
+- Confirmed full statistical specifications: **261**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -270,3 +270,8 @@ The ledger is the sole membership authority for this public set.
 | 254 | None | asset_map_stationary_ar1_innovation_student_lhs_copula_dynamic_rough | M254 — Asset MAP Stationary AR1 + Innovation Student Copula + Stratified Shocks + Dynamic Rough | asset_level_extension | 0.23018159938191207 | 0.230181599 | true | validated_full_canonical_score |
 | 255 | None | asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough | M255 — Asset MAP Stationary AR1 + Corrected Dynamic Correlation + Dynamic Rough | asset_level_extension | 0.22705549647165937 | 0.227055496 | true | validated_full_canonical_score |
 | 256 | None | asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough | M256 — Asset MAP Stationary AR1 + Student Corrected Dynamic Correlation + Dynamic Rough | asset_level_extension | 0.22687132859413414 | 0.226871329 | true | validated_full_canonical_score |
+| 257 | None | asset_m256_data_timescales_autocorrelation | M257 — M256 Data-selected Timescale: autocorrelation | asset_level_extension | 0.22910715447179145 | 0.229107154 | true | validated_full_canonical_score |
+| 258 | None | asset_m256_data_timescales_predictive_one | M258 — M256 Data-selected Timescale: predictive_one | asset_level_extension | 0.22983785139197935 | 0.229837851 | true | validated_full_canonical_score |
+| 259 | None | asset_m256_data_timescales_predictive_adaptive | M259 — M256 Data-selected Timescale: predictive_adaptive | asset_level_extension | 0.22981601892906445 | 0.229816019 | true | validated_full_canonical_score |
+| 260 | None | asset_m256_data_timescales_stationary_one | M260 — M256 Data-selected Timescale: stationary_one | asset_level_extension | 0.22804312178001787 | 0.228043122 | true | validated_full_canonical_score |
+| 261 | None | asset_m256_data_timescales_existing_sv_rate | M261 — M256 Data-selected Timescale: existing_sv_rate | asset_level_extension | 0.22672308848311776 | 0.226723088 | true | validated_full_canonical_score |
