@@ -25,7 +25,7 @@ components = parent.body.learned.components
 bd = parent.shell.bd
 ORIGINAL_COMPONENTS = bd._bdes_multiscale_components
 RAW_FIT = bd.fit_bdes_fastmap
-VARIANTS = ('autocorrelation', 'predictive_one', 'predictive_adaptive')
+VARIANTS = ('autocorrelation', 'predictive_one', 'predictive_adaptive', 'stationary_one')
 VARIANT = os.environ.get('SIMFOLIO_TIMESCALE_VARIANT', VARIANTS[0])
 if VARIANT not in VARIANTS:
     raise ValueError(f'Unknown timescale variant: {VARIANT}')
@@ -51,6 +51,14 @@ def selected_components(data):
         receipt = {'estimator': 'centered_log_volatility_conditional_AR1_rate',
             'phis': phis.tolist(), 'component_count': 1,
             'count_selection': 'single_data_fitted_rate_control'}
+    elif VARIANT == 'stationary_one':
+        fitted = parent.body.state.fit(h)
+        phis = np.array([np.clip(fitted['coefficients'][0],
+            np.nextafter(0., 1.), np.nextafter(1., 0.))])
+        receipt = dict(fitted)
+        receipt.update(estimator='stationary_Gaussian_AR1_timescale_on_same_original_latent_history',
+            phis=phis.tolist(), component_count=1,
+            count_selection='single_stationary_likelihood_fitted_rate_control')
     elif VARIANT == 'predictive_one':
         phis, receipt = rates.fit_one(h, None)
     else:
