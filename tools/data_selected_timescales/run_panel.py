@@ -5,6 +5,8 @@ import os
 import sys
 from pathlib import Path
 
+import numpy as np
+
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import models
@@ -43,6 +45,20 @@ def score_completed(plan, out, digest, elapsed, model_ids):
 
 
 runner.score_completed = score_completed
+original_evaluate = runner.evaluate
+
+
+def evaluate(index, task):
+    result = original_evaluate(index, task)
+    reference = os.environ.get('SIMFOLIO_TIMESCALE_PARITY_REFERENCE')
+    if reference:
+        with np.load(Path(reference)/f'task-{index:04d}.npz') as saved:
+            assert len(result[1]) == 1
+            assert result[1][0][1].tobytes() == saved['losses_0'].tobytes(), index
+    return result
+
+
+runner.evaluate = evaluate
 
 
 if __name__ == '__main__':

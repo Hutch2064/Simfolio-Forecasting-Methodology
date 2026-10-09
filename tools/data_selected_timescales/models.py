@@ -25,6 +25,7 @@ components = parent.body.learned.components
 bd = parent.shell.bd
 ORIGINAL_COMPONENTS = bd._bdes_multiscale_components
 RAW_FIT = bd.fit_bdes_fastmap
+OPTIMIZED_COMPONENTS = None
 VARIANTS = ('autocorrelation', 'predictive_one', 'predictive_adaptive', 'stationary_one', 'existing_sv_rate')
 VARIANT = os.environ.get('SIMFOLIO_TIMESCALE_VARIANT', VARIANTS[0])
 if VARIANT not in VARIANTS:
@@ -71,7 +72,8 @@ def selected_components(data, fitted_phi=None):
         phis, receipt = rates.fit_one(h, None)
     else:
         phis, receipt = rates.fit_adaptive(h, None)
-    result = components(h, phis)
+    result = (components(h, phis) if OPTIMIZED_COMPONENTS is None else
+        OPTIMIZED_COMPONENTS(h, len(phis), supplied_phis=phis))
     result['timescale_selection'] = receipt
     return result
 
@@ -111,11 +113,14 @@ clear_path_cache = parent.clear_path_cache
 
 
 def initialize(cache_root=None, vine_threads=1, state_workers=1):
+    global OPTIMIZED_COMPONENTS
     if cache_root is not None:
         cache_root = Path(cache_root)/VARIANT
     parent.initialize(cache_root, vine_threads, state_workers)
     # The retained compiler setup inspects the original constructor's source.
     # Install the selection adapter only after that unchanged setup finishes.
+    OPTIMIZED_COMPONENTS = bd._bdes_multiscale_components
+    selected_components.cache_clear()
     bd._bdes_multiscale_components = data_components
     rates.residual_innovations(np.arange(20., dtype=float), np.array([.9]))
 

@@ -1,5 +1,6 @@
 """Numerical and scope contracts for the timescale-only M256 ablation."""
 import importlib.util
+import subprocess
 import sys
 from pathlib import Path
 
@@ -36,13 +37,11 @@ def test_supplied_rates_preserve_entire_original_component_construction():
         assert np.asarray(old[key]).tobytes() == np.asarray(new[key]).tobytes(), key
 
 
-def test_only_component_fields_change_in_original_asset_fit():
+def test_only_component_fields_change_in_original_asset_fit(monkeypatch):
     x = np.random.default_rng(24).normal(.0003, .01, 504)
-    models.bd._bdes_multiscale_components = models.ORIGINAL_COMPONENTS
-    try:
-        before = models.RAW_FIT(x, filtered_innovations=True, fixed_mean=True)
-    finally:
-        models.bd._bdes_multiscale_components = models.data_components
+    monkeypatch.setattr(models.bd, '_bdes_multiscale_components', models.ORIGINAL_COMPONENTS)
+    before = models.RAW_FIT(x, filtered_innovations=True, fixed_mean=True)
+    monkeypatch.setattr(models.bd, '_bdes_multiscale_components', models.data_components)
     after = models.RAW_FIT(x, filtered_innovations=True, fixed_mean=True)
     assert before.keys() == after.keys()
     def exact(a, b):
@@ -64,3 +63,26 @@ def test_rates_use_history_and_ignore_legacy_calendar_arguments():
     assert np.all((a['phis'] > 0.) & (a['phis'] < 1.))
     assert a['scale_count'] == a['timescale_selection']['component_count']
     assert models.CANDIDATES[0].model_id != models.parent.CANDIDATES[0].model_id
+
+
+def test_retained_runtime_constructor_matches_supplied_rate_reference():
+    # Numerical installation mutates shared reference kernels. Keep that
+    # installation isolated from unrelated tests and their own reference setup.
+    code = '''
+import sys
+from pathlib import Path
+root = Path(sys.argv[1])
+sys.path[:0] = [str(root/'src'), str(root/'tools/mcmc_runtime'),
+               str(root/'tools/data_selected_timescales')]
+import models
+import numpy as np
+models.initialize(None, 1, 1)
+h = np.random.default_rng(82).normal(size=504)
+for phis in (np.array([.8]), np.array([.2, .9, .99])):
+    expected = models.components(h, phis)
+    actual = models.OPTIMIZED_COMPONENTS(h, len(phis), supplied_phis=phis)
+    assert actual.keys() == expected.keys()
+    for key in expected:
+        assert np.asarray(actual[key]).tobytes() == np.asarray(expected[key]).tobytes(), key
+'''
+    subprocess.run([sys.executable, '-c', code, str(ROOT)], check=True)

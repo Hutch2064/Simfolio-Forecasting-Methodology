@@ -606,10 +606,11 @@ def _bdes_ewma(x: np.ndarray, alpha: float) -> np.ndarray:
     return out
 
 
-def _bdes_multiscale_components(h_path: np.ndarray, k_star: int, scale_grid: str = BDES_MULTISCALE_GRID_FIXED, *, fitted_phi=None) -> dict[str, Any]:
+def _bdes_multiscale_components(h_path: np.ndarray, k_star: int, scale_grid: str = BDES_MULTISCALE_GRID_FIXED, *, fitted_phi=None, supplied_phis=None) -> dict[str, Any]:
     h = np.asarray(h_path, dtype=float); finite = h[np.isfinite(h)]; fill = float(np.nanmedian(finite)) if finite.size else 0.0
     h = np.clip(np.nan_to_num(h, nan=fill, posinf=fill, neginf=fill), -18.0, 18.0); n = h.size; ell = float(np.nanmean(h)); centered = h - ell
-    half_lives = _bdes_multiscale_half_lives(n, k_star, scale_grid); phis = np.exp(-np.log(2.0) / np.maximum(half_lives, 2.0)); q = np.empty((n, phis.size), dtype=float)
+    half_lives = _bdes_multiscale_half_lives(n, k_star, scale_grid) if supplied_phis is None else -np.log(2.0) / np.log(supplied_phis)
+    phis = np.exp(-np.log(2.0) / np.maximum(half_lives, 2.0)) if supplied_phis is None else np.asarray(supplied_phis, dtype=float); q = np.empty((n, phis.size), dtype=float)
     for k, phi in enumerate(phis):
         q[:, k] = _bdes_ewma(centered, 1.0 - phi); q[:, k] -= float(np.nanmean(q[:, k]))
     ridge = 0.05 * max(float(np.nanvar(centered)), 1e-8) * np.eye(phis.size)
