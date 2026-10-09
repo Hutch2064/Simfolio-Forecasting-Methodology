@@ -58,8 +58,8 @@ def test_only_component_fields_change_in_original_asset_fit():
 
 
 def test_rates_use_history_and_ignore_legacy_calendar_arguments():
-    a = models.data_components(history(), 4, 'fixed_four_scale')
-    b = models.data_components(history(), 99, 'other_calendar')
+    a = models.data_components(history(), 4, 'fixed_four_scale', fitted_phi=.8)
+    b = models.data_components(history(), 99, 'other_calendar', fitted_phi=.8)
     assert a is b
     assert np.all((a['phis'] > 0.) & (a['phis'] < 1.))
     assert a['scale_count'] == a['timescale_selection']['component_count']

@@ -606,7 +606,7 @@ def _bdes_ewma(x: np.ndarray, alpha: float) -> np.ndarray:
     return out
 
 
-def _bdes_multiscale_components(h_path: np.ndarray, k_star: int, scale_grid: str = BDES_MULTISCALE_GRID_FIXED) -> dict[str, Any]:
+def _bdes_multiscale_components(h_path: np.ndarray, k_star: int, scale_grid: str = BDES_MULTISCALE_GRID_FIXED, *, fitted_phi=None) -> dict[str, Any]:
     h = np.asarray(h_path, dtype=float); finite = h[np.isfinite(h)]; fill = float(np.nanmedian(finite)) if finite.size else 0.0
     h = np.clip(np.nan_to_num(h, nan=fill, posinf=fill, neginf=fill), -18.0, 18.0); n = h.size; ell = float(np.nanmean(h)); centered = h - ell
     half_lives = _bdes_multiscale_half_lives(n, k_star, scale_grid); phis = np.exp(-np.log(2.0) / np.maximum(half_lives, 2.0)); q = np.empty((n, phis.size), dtype=float)
@@ -694,7 +694,7 @@ def fit_bdes_fastmap(
     z_pool = _standardized_empirical_innovation_pool(innovation_values, clip=None, method="mean_std")
     if z_pool is None or z_pool.size < FULL_MCMC_SV_MIN_OBS: raise ValueError("frontier_fastmap_invalid_innovation_pool")
     state_innov = (state_path[1:] - level - phi * (state_path[:-1] - level)) / max(eta, 1e-8); rho = _finite_correlation(z_pool[: state_innov.size], state_innov) if state_innov.size >= 4 else 0.0; rho = float(rho if np.isfinite(rho) and abs(rho) < 1.0 else np.clip(rho if np.isfinite(rho) else 0.0, -0.95, 0.95))
-    posterior_samples = _fast_bdes_delta_method_sigma_samples(state_level=level, state_phi=phi, state_eta=eta, last_log_var=float(state_path[-1]), rho=rho, h_path=state_path); bdes = _bdes_multiscale_components(state_path, 4, BDES_MULTISCALE_GRID_FIXED)
+    posterior_samples = _fast_bdes_delta_method_sigma_samples(state_level=level, state_phi=phi, state_eta=eta, last_log_var=float(state_path[-1]), rho=rho, h_path=state_path); bdes = _bdes_multiscale_components(state_path, 4, BDES_MULTISCALE_GRID_FIXED, fitted_phi=phi)
     return {**settings, "mu": posterior_mean, "residuals": (x - sample_mu).astype(np.float64), "base_fit": {"sample_mu": sample_mu, "sigma": sample_sigma, "posterior_mean": posterior_mean, "posterior_sd": posterior_sd, "posterior_mu_draws": False, "dlm_drift_paths": True, "dlm_long_run_anchor_mean": sample_mu, "dlm_state_transition_phi": phi_dlm, "dlm_state_noise_var": float(filtered["state_noise_var"]) * annual_sharpe_to_daily_mu**2, "dlm_state_posterior_deviation_mean": float(filtered["final_mean"]) * annual_sharpe_to_daily_mu, "dlm_state_posterior_deviation_var": float(filtered["final_var"]) * annual_sharpe_to_daily_mu**2, "standardized_residuals": np.clip(z, -20.0, 20.0), "sample_mean": sample_mu}, "innovation_pool": z_pool, "posterior_samples": posterior_samples, "posterior_center": (float(level), float(phi), float(eta), float(state_path[-1]), float(rho)), "bdes_multiscale_vol": bdes, "unclipped_empirical_innovations": True, "leverage": True, "leverage_alignment": "lagged_return", "sv_sigma_scale": 1.0, "state_loglikelihood": float(state_loglik), "state_path_variance_last": float(state_var_path[-1]), "n_obs": int(x.size), "mean_meta": {"method": "historical_mean_without_latent_mean_dlm" if fixed_mean else "evidence_estimated_ar1_latent_sharpe_dlm_with_historical_cagr_anchor", "sample_mean": sample_mu, "sample_sigma": sample_sigma, "hac_bandwidth": int(bandwidth), "hac_long_run_variance": float(long_run_var), "historical_cagr_anchor": True}}
 
 

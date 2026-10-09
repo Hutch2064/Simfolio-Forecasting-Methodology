@@ -43,7 +43,7 @@ def refit(data):
         fitted = original.copy()
         fitted.update(posterior_center=(level, phi, eta, float(h[-1]), float(rho)),
                       innovation_pool=pool,
-                      bdes_multiscale_vol=shell.bd._bdes_multiscale_components(h, 4, shell.bd.BDES_MULTISCALE_GRID_FIXED),
+                      bdes_multiscale_vol=shell.bd._bdes_multiscale_components(h, 4, shell.bd.BDES_MULTISCALE_GRID_FIXED, fitted_phi=phi),
                       state_path_variance_last=float(variance[-1]),
                       state_loglikelihood=diagnostics["loglikelihood"], student_return_laplace_fit=diagnostics)
         return fitted

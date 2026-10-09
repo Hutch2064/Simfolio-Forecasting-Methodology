@@ -25,7 +25,7 @@ components = parent.body.learned.components
 bd = parent.shell.bd
 ORIGINAL_COMPONENTS = bd._bdes_multiscale_components
 RAW_FIT = bd.fit_bdes_fastmap
-VARIANTS = ('autocorrelation', 'predictive_one', 'predictive_adaptive', 'stationary_one')
+VARIANTS = ('autocorrelation', 'predictive_one', 'predictive_adaptive', 'stationary_one', 'existing_sv_rate')
 VARIANT = os.environ.get('SIMFOLIO_TIMESCALE_VARIANT', VARIANTS[0])
 if VARIANT not in VARIANTS:
     raise ValueError(f'Unknown timescale variant: {VARIANT}')
@@ -41,9 +41,17 @@ def cleaned_history(h):
 
 
 @lru_cache(maxsize=128)
-def selected_components(data):
+def selected_components(data, fitted_phi=None):
     h = np.frombuffer(data, np.float64)
-    if VARIANT == 'autocorrelation':
+    if VARIANT == 'existing_sv_rate':
+        if fitted_phi is None:
+            raise ValueError('Existing SV timescale requires its fitted persistence')
+        phis = np.array([np.clip(fitted_phi, np.nextafter(0., 1.), np.nextafter(1., 0.))])
+        receipt = {'estimator': 'reuse_unchanged_existing_SV_fitted_persistence',
+            'phis': phis.tolist(), 'component_count': 1,
+            'count_selection': 'single_existing_volatility_persistence_control',
+            'additional_parameter_fits': 0}
+    elif VARIANT == 'autocorrelation':
         x = h - h.mean()
         denominator = float(x[:-1] @ x[:-1])
         rho = float(x[:-1] @ x[1:]) / denominator if denominator > 0. else 0.
@@ -68,9 +76,10 @@ def selected_components(data):
     return result
 
 
-def data_components(h_path, k_star, scale_grid=bd.BDES_MULTISCALE_GRID_FIXED):
+def data_components(h_path, k_star, scale_grid=bd.BDES_MULTISCALE_GRID_FIXED, *, fitted_phi=None):
     # k_star/grid are legacy arguments; neither chooses a candidate rate/count.
-    return selected_components(cleaned_history(h_path).tobytes())
+    return selected_components(cleaned_history(h_path).tobytes(),
+        float(fitted_phi) if VARIANT == 'existing_sv_rate' and fitted_phi is not None else None)
 
 
 class Candidate(parent.Candidate):
