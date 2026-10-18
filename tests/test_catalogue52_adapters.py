@@ -19,6 +19,17 @@ def test_only_four_near_duplicate_timescale_variants_are_excluded():
     assert {193, 244, 256, 261, 262, 263}.issubset({row["canonical_rank"] for row in specs})
 
 
+def test_compiler_adapter_changes_only_the_original_full_mcmc_factory():
+    ledger = json.loads((ROOT / "src/simfolio_forecasting_methodology/resources/"
+                        "canonical_175/ledger.json").read_text())
+    expected = {model_id for model_id, factory in ledger["implementation_factory_map"].items()
+                if factory["factory_name"] == (
+                    "simfolio_forecasting_methodology.models.portfolio.full_mcmc:FullMCMCSVModel")}
+    actual = {row["model_id"] for row in model_specs()
+              if row["adapter"] == "tools/catalogue52/latent_exact_filter.py"}
+    assert actual == expected and len(actual) == 40
+
+
 def test_singleton_bridge_preserves_original_candidates_and_multivariate_delegation(tmp_path):
     # Original experiment modules patch globals, so isolate the real initializer
     # from every other test and verify delegation before any forecasting fit.

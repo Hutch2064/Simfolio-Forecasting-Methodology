@@ -44,6 +44,15 @@ Their implementations and measured evidence remain saved. The bounded serial/par
 proof, including identical selected loss vectors and all 2,652 task identities,
 is in `origin-parallel-proof.json`.
 
+Queued original full-latent-MCMC models can use `latent_exact_filter.py`, which
+compiles only their unchanged deterministic Kalman recurrence. The sampler,
+FFBS state draws, adaptation, stopping, seeds and original model factories stay
+fixed. `latent-filter-proof.json` records byte-exact complete fits, daily and
+cumulative paths and CRPS on twelve cases, plus an actual campaign-worker loss
+vector comparison. A representative warmed origin was 2.47 times faster;
+that is a measured case, not a blanket full-panel runtime claim. Only executions
+that had never started were replaced; active and completed runs were untouched.
+
 Periodic top-ten updates combine completed campaign results with previously
 validated results on this same 52-asset grid, including M262 and M263. Updates
 are approximately fifteen minutes apart, or earlier for a new leader, and

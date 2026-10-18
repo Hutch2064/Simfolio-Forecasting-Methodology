@@ -22,8 +22,8 @@
       "reason": "M256 sibling: changes only the mean-curve EWMA timescale selector to a stationary AR(1) likelihood on the existing latent history."
     }
   ],
-  "executions_registered": 267,
-  "fresh_models_complete": 32,
+  "executions_registered": 303,
+  "fresh_models_complete": 36,
   "fresh_models_registered": 258,
   "fresh_models_required": 249,
   "frozen_original_fresh_models_required": 258,
@@ -823,6 +823,267 @@
       },
       "simulations": 240,
       "single52_crps": 0.7288907392692379,
+      "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "tasks": 2652
+    },
+    {
+      "canonical_rank": 40,
+      "cells": 455832,
+      "cells_sha256": "69702d91435d6296e0a5308e7ba0651c6d88f60b6df777d1ea8b39009813ca00",
+      "display_name": "M040 \u2014 AR(1) SV + Stationary Bootstrap",
+      "execution_name": "m040",
+      "historical80_crps": 0.340856561954319,
+      "historical80_evidence_verified": false,
+      "historical80_improves_production": false,
+      "improvement_vs_m261_single52": -0.23385860138264025,
+      "improvement_vs_whitepaper_naive_single52": 0.1059353034481828,
+      "manifest_sha256": "68bca55a1be220f7b9652c4114a81279e0b0f7f9c6a125e246e024dfd3a6da21",
+      "model_id": "stochastic_volatility_ar1_empirical_sbb",
+      "portfolio_scores": {
+        "single_EFASIM": 0.7313926764002265,
+        "single_GLDSIM": 0.7856729145396061,
+        "single_GSGSIM": 1.0649333059763122,
+        "single_IEFSIM": 0.6569086035344317,
+        "single_IEISIM": 0.8516325158919643,
+        "single_IWCSIM": 0.3551954218421993,
+        "single_IWMSIM": 0.2533452777590611,
+        "single_REITSIM": 0.5018393265756196,
+        "single_SDSSIM": 2.1672508360467897,
+        "single_SHYSIM": 1.0435046631660756,
+        "single_SLVSIM": 1.858114790467275,
+        "single_SPMOSIM": 0.47453392377125847,
+        "single_SPXLSIM": 0.6426471087473006,
+        "single_SPXUSIM": 2.938923864184962,
+        "single_SPYSIM": 0.48826424002019553,
+        "single_SSOSIM": 0.37895660252393987,
+        "single_TECLSIM": 1.4064350339663236,
+        "single_TLTSIM": 0.41676103353201266,
+        "single_TMFSIM": 0.9096419667748892,
+        "single_TNASIM": 0.7358137633651212,
+        "single_TYDSIM": 0.5192332161240999,
+        "single_UBTSIM": 0.5901431753575959,
+        "single_UGLSIM": 2.7707680395818772,
+        "single_UPROSIM": 0.6975863908102236,
+        "single_URTHSIM": 0.6596518921293096,
+        "single_URTYSIM": 0.7742809860915374,
+        "single_UWMSIM": 0.5338499084399323,
+        "single_VBKSIM": 0.2684169288416332,
+        "single_VBRSIM": 0.5650623191616453,
+        "single_VBSIM": 0.32532445620281475,
+        "single_VEASIM": 0.7275336431242747,
+        "single_VOESIM": 0.4020929581432565,
+        "single_VOOSIM": 0.43130580733302726,
+        "single_VOSIM": 0.35304621424947813,
+        "single_VOTSIM": 0.3680815170355629,
+        "single_VTISIM": 0.3909345975498289,
+        "single_VTSIM": 0.6063640487494316,
+        "single_VTVSIM": 0.47540062491146734,
+        "single_VUGSIM": 0.41752278764863787,
+        "single_VVSIM": 0.43130580733302726,
+        "single_VXUSSIM": 0.7301053238679344,
+        "single_XLBSIM": 0.3618079198583416,
+        "single_XLCSIM": 1.0099453969255614,
+        "single_XLESIM": 0.31093032533845205,
+        "single_XLFSIM": 0.6239431823086645,
+        "single_XLISIM": 0.21285676923978264,
+        "single_XLKSIM": 0.6934707033856176,
+        "single_XLPSIM": 1.5357667963502295,
+        "single_XLUSIM": 0.651303220109648,
+        "single_XLVSIM": 0.7930586136467593,
+        "single_XLYSIM": 0.4608451096170909,
+        "single_ZROZSIM": 1.0325631147006324
+      },
+      "portfolios": 52,
+      "production_eligibility": "pending_separate_historical80_and_matched_runtime_gates",
+      "raw_evidence": {
+        "access": "authenticated_research_archive",
+        "archive_sha256": "24a7f53ac9e4a66b626bec58f42f1bb4fb2cb600ca65ba0a2cee7cb7d22a413e",
+        "archived_and_download_verified": true,
+        "remote_receipt_sha256": "832b6444e4eb29df05a7c7e154f2f1b015c9feced1d1a99c3700f514855ea643"
+      },
+      "result_sha256": "de2c7a92db48a5fa1e97f2b098dd98c96f7af0461476765f7ee9a211c7a66fe7",
+      "retained_for_revised_campaign": true,
+      "runtime": {
+        "matched_production_runtime_gate": "not_yet_measured",
+        "scope": "concurrent_campaign_worker_wall_seconds",
+        "summed_worker_seconds": 2326.205422546831
+      },
+      "simulations": 240,
+      "single52_crps": 0.7574282627548643,
+      "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "tasks": 2652
+    },
+    {
+      "canonical_rank": 37,
+      "cells": 455832,
+      "cells_sha256": "1eeb36e4db233893075a1642f53327e5ed5d592f7ecb691ac8a7a11f5f9650b8",
+      "display_name": "M037 \u2014 AR(1) SV + Empirical Innovations",
+      "execution_name": "m037",
+      "historical80_crps": 0.3388380552038399,
+      "historical80_evidence_verified": false,
+      "historical80_improves_production": false,
+      "improvement_vs_m261_single52": -0.24514818580634823,
+      "improvement_vs_whitepaper_naive_single52": 0.09775477217768891,
+      "manifest_sha256": "66779227b5cb25f13543d1b0da19ff0ac73e201d22b02e2bd64c9938f125b5ef",
+      "model_id": "stochastic_volatility_ar1_empirical",
+      "portfolio_scores": {
+        "single_EFASIM": 0.7756916139689024,
+        "single_GLDSIM": 0.7533003195143795,
+        "single_GSGSIM": 1.0730130579418746,
+        "single_IEFSIM": 0.670473597923019,
+        "single_IEISIM": 0.8612655432129749,
+        "single_IWCSIM": 0.31374100053076664,
+        "single_IWMSIM": 0.2271495436769476,
+        "single_REITSIM": 0.5244512081410706,
+        "single_SDSSIM": 2.0864413175738337,
+        "single_SHYSIM": 1.0663396176508448,
+        "single_SLVSIM": 1.8376282925506944,
+        "single_SPMOSIM": 0.5194414511811568,
+        "single_SPXLSIM": 0.6578510912046639,
+        "single_SPXUSIM": 2.7948789433116774,
+        "single_SPYSIM": 0.5175703793494069,
+        "single_SSOSIM": 0.41036676426671403,
+        "single_TECLSIM": 1.3411602067184616,
+        "single_TLTSIM": 0.39683860663111864,
+        "single_TMFSIM": 0.9740317601118746,
+        "single_TNASIM": 0.5798213617036551,
+        "single_TYDSIM": 0.559958471328558,
+        "single_UBTSIM": 0.5842506989823211,
+        "single_UGLSIM": 2.867612074147472,
+        "single_UPROSIM": 0.6983985295276687,
+        "single_URTHSIM": 0.7022197005072838,
+        "single_URTYSIM": 0.6351848825885477,
+        "single_UWMSIM": 0.4551224810556686,
+        "single_VBKSIM": 0.23489154636949805,
+        "single_VBRSIM": 0.6182731253623147,
+        "single_VBSIM": 0.3405536235901439,
+        "single_VEASIM": 0.7711239210012634,
+        "single_VOESIM": 0.4485298862778216,
+        "single_VOOSIM": 0.46462212244372353,
+        "single_VOSIM": 0.418260717070747,
+        "single_VOTSIM": 0.4377545870204477,
+        "single_VTISIM": 0.41692064643683235,
+        "single_VTSIM": 0.6505663388761331,
+        "single_VTVSIM": 0.4723612137273677,
+        "single_VUGSIM": 0.4567627462933329,
+        "single_VVSIM": 0.46462212244372353,
+        "single_VXUSSIM": 0.7746624944971531,
+        "single_XLBSIM": 0.41677272140802907,
+        "single_XLCSIM": 1.0254810709841964,
+        "single_XLESIM": 0.2997484512025596,
+        "single_XLFSIM": 0.6606706787613574,
+        "single_XLISIM": 0.23534930230790657,
+        "single_XLKSIM": 0.6641198759747035,
+        "single_XLPSIM": 1.6163628042794018,
+        "single_XLUSIM": 0.7076226185936704,
+        "single_XLVSIM": 0.8305386332012555,
+        "single_XLYSIM": 0.4920314054725861,
+        "single_ZROZSIM": 0.9438417823199358
+      },
+      "portfolios": 52,
+      "production_eligibility": "pending_separate_historical80_and_matched_runtime_gates",
+      "raw_evidence": {
+        "access": "authenticated_research_archive",
+        "archive_sha256": "ad985efa66fcf400e067ef4e9beed3b67c3dd79e4c613f90059bb7dca5b4e6b3",
+        "archived_and_download_verified": true,
+        "remote_receipt_sha256": "0769681cb66d3be870c77d4994a03352bc333641a23f3231c282803df17c3f54"
+      },
+      "result_sha256": "32f6c0f05b980d277a2115f4115246a2030a38069e2db9c2d35ba7bfa277521a",
+      "retained_for_revised_campaign": true,
+      "runtime": {
+        "matched_production_runtime_gate": "not_yet_measured",
+        "scope": "concurrent_campaign_worker_wall_seconds",
+        "summed_worker_seconds": 2325.9282022488187
+      },
+      "simulations": 240,
+      "single52_crps": 0.7643585952157244,
+      "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "tasks": 2652
+    },
+    {
+      "canonical_rank": 44,
+      "cells": 455832,
+      "cells_sha256": "3d947e1b44bc858fb473e700683a4ccb53c869c96c0f1c6bdb6eaf8ba40bb2b5",
+      "display_name": "M044 \u2014 AR(1) SV + Student-t",
+      "execution_name": "m044",
+      "historical80_crps": 0.3443044584558404,
+      "historical80_evidence_verified": false,
+      "historical80_improves_production": false,
+      "improvement_vs_m261_single52": -0.2539055319915662,
+      "improvement_vs_whitepaper_naive_single52": 0.09140912280513325,
+      "manifest_sha256": "677d6a6012e8654fff9603afe4aef1175ba0f590e3a25a96b0b7d1b8a391e2fd",
+      "model_id": "stochastic_volatility_ar1_student_t",
+      "portfolio_scores": {
+        "single_EFASIM": 0.7894130108726416,
+        "single_GLDSIM": 0.7677254134582715,
+        "single_GSGSIM": 1.0775698128396356,
+        "single_IEFSIM": 0.6967363940508294,
+        "single_IEISIM": 0.8796458487031839,
+        "single_IWCSIM": 0.33020742289371635,
+        "single_IWMSIM": 0.21816179716946366,
+        "single_REITSIM": 0.5200596913864007,
+        "single_SDSSIM": 2.0599088817681417,
+        "single_SHYSIM": 1.0732926111168604,
+        "single_SLVSIM": 1.911882028967594,
+        "single_SPMOSIM": 0.5297989604816445,
+        "single_SPXLSIM": 0.6620134407473064,
+        "single_SPXUSIM": 2.7530095287085143,
+        "single_SPYSIM": 0.5343455319735827,
+        "single_SSOSIM": 0.41526295790012596,
+        "single_TECLSIM": 1.32882352929777,
+        "single_TLTSIM": 0.43840057154249573,
+        "single_TMFSIM": 0.8862278502280272,
+        "single_TNASIM": 0.602023974569061,
+        "single_TYDSIM": 0.5102407749298156,
+        "single_UBTSIM": 0.5536810063718953,
+        "single_UGLSIM": 2.8285139631144567,
+        "single_UPROSIM": 0.7003406350196901,
+        "single_URTHSIM": 0.7235292372481443,
+        "single_URTYSIM": 0.6660252095747144,
+        "single_UWMSIM": 0.48237308573247545,
+        "single_VBKSIM": 0.22611133167657813,
+        "single_VBRSIM": 0.6177058044620514,
+        "single_VBSIM": 0.3297605594216539,
+        "single_VEASIM": 0.7835324482085178,
+        "single_VOESIM": 0.4528556584145409,
+        "single_VOOSIM": 0.4824505788834863,
+        "single_VOSIM": 0.4159549347193435,
+        "single_VOTSIM": 0.4293085023670811,
+        "single_VTISIM": 0.42775810083447924,
+        "single_VTSIM": 0.6698950248899043,
+        "single_VTVSIM": 0.496881313490857,
+        "single_VUGSIM": 0.46945546243081915,
+        "single_VVSIM": 0.4824505788834863,
+        "single_VXUSSIM": 0.7842883057929749,
+        "single_XLBSIM": 0.4287052714234466,
+        "single_XLCSIM": 1.059240639682442,
+        "single_XLESIM": 0.3282568029545818,
+        "single_XLFSIM": 0.6656670327591592,
+        "single_XLISIM": 0.23312895620615978,
+        "single_XLKSIM": 0.6568007781086547,
+        "single_XLPSIM": 1.6251791632276886,
+        "single_XLUSIM": 0.7199588321030667,
+        "single_XLVSIM": 0.8532912868955111,
+        "single_XLYSIM": 0.5129159930423917,
+        "single_ZROZSIM": 0.9354255782496146
+      },
+      "portfolios": 52,
+      "production_eligibility": "pending_separate_historical80_and_matched_runtime_gates",
+      "raw_evidence": {
+        "access": "authenticated_research_archive",
+        "archive_sha256": "7bc1945f4864c44ca7328d46abbcf02e904d3b29a4ed9bea669084e2782d12d2",
+        "archived_and_download_verified": true,
+        "remote_receipt_sha256": "7e8ca37762cd772c4653aad7b0a253afaf0ee6a5a7bb4b638feaf33e59302d05"
+      },
+      "result_sha256": "c18608720889fcc494a87b080955203dd1c5e59b2d0d11c79fac54c1013c38a8",
+      "retained_for_revised_campaign": true,
+      "runtime": {
+        "matched_production_runtime_gate": "not_yet_measured",
+        "scope": "concurrent_campaign_worker_wall_seconds",
+        "summed_worker_seconds": 2338.869930429326
+      },
+      "simulations": 240,
+      "single52_crps": 0.7697344636499028,
       "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
       "tasks": 2652
     },
@@ -2826,6 +3087,93 @@
       "single52_crps": 0.8505968441149877,
       "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
       "tasks": 2652
+    },
+    {
+      "canonical_rank": 45,
+      "cells": 455832,
+      "cells_sha256": "d9b9ec6419b9691fe53e98108c2f8015e18f6ba3ca9849edf472c9ff4e150ad3",
+      "display_name": "M045 \u2014 Bayesian SBB + GJR-GARCH(1,1) merton positive sample mean",
+      "execution_name": "m045",
+      "historical80_crps": 0.34682911565929203,
+      "historical80_evidence_verified": false,
+      "historical80_improves_production": false,
+      "improvement_vs_m261_single52": -0.3945010434913139,
+      "improvement_vs_whitepaper_naive_single52": -0.010467610221414958,
+      "manifest_sha256": "679cac12d5d07e65e574ec243925140e90a464e16c15a61090aec8dd683ff0ce",
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+      "portfolio_scores": {
+        "single_EFASIM": 1.0137032709171556,
+        "single_GLDSIM": 0.7171173302371773,
+        "single_GSGSIM": 1.3533108415849386,
+        "single_IEFSIM": 0.6996387796625941,
+        "single_IEISIM": 0.8455562697643956,
+        "single_IWCSIM": 0.2748422330226348,
+        "single_IWMSIM": 0.3703606440670845,
+        "single_REITSIM": 0.30943430121187065,
+        "single_SDSSIM": 3.1587520313986692,
+        "single_SHYSIM": 1.033235993237742,
+        "single_SLVSIM": 0.6623784472664045,
+        "single_SPMOSIM": 0.7205951818812091,
+        "single_SPXLSIM": 0.8381164186653353,
+        "single_SPXUSIM": 5.790638997117272,
+        "single_SPYSIM": 0.6752638423163029,
+        "single_SSOSIM": 0.6618230558473409,
+        "single_TECLSIM": 1.2424001204278832,
+        "single_TLTSIM": 0.5053435274484842,
+        "single_TMFSIM": 0.7167442421518562,
+        "single_TNASIM": 0.8453261824399768,
+        "single_TYDSIM": 0.43441308069173146,
+        "single_UBTSIM": 0.46105132412160404,
+        "single_UGLSIM": 0.6228223198504675,
+        "single_UPROSIM": 0.7862676440621056,
+        "single_URTHSIM": 0.8911844507188457,
+        "single_URTYSIM": 0.7945691463662148,
+        "single_UWMSIM": 0.5117606592772908,
+        "single_VBKSIM": 0.3766959607581313,
+        "single_VBRSIM": 0.6411824714195563,
+        "single_VBSIM": 0.468260601574059,
+        "single_VEASIM": 1.0084588631305822,
+        "single_VOESIM": 0.5255684552605123,
+        "single_VOOSIM": 0.6179214902235435,
+        "single_VOSIM": 0.5257593125163251,
+        "single_VOTSIM": 0.5839277765569469,
+        "single_VTISIM": 0.5362939311163119,
+        "single_VTSIM": 0.8371768094588902,
+        "single_VTVSIM": 0.6159063825311786,
+        "single_VUGSIM": 0.6281706600052084,
+        "single_VVSIM": 0.6179214902235435,
+        "single_VXUSSIM": 1.011104550441629,
+        "single_XLBSIM": 0.5772635567255124,
+        "single_XLCSIM": 1.250037847978694,
+        "single_XLESIM": 0.5198937112339663,
+        "single_XLFSIM": 0.7392117907952368,
+        "single_XLISIM": 0.35924082072770613,
+        "single_XLKSIM": 0.3846907228722285,
+        "single_XLPSIM": 1.7415351175871263,
+        "single_XLUSIM": 0.7315725412011455,
+        "single_XLVSIM": 1.0079284684631789,
+        "single_XLYSIM": 0.6629721868107827,
+        "single_ZROZSIM": 0.608826257296422
+      },
+      "portfolios": 52,
+      "production_eligibility": "pending_separate_historical80_and_matched_runtime_gates",
+      "raw_evidence": {
+        "access": "authenticated_research_archive",
+        "archive_sha256": "31459fb68bc15f410e69579895b1f1954fecde4ca5ee71488c04250395e75ba4",
+        "archived_and_download_verified": true,
+        "remote_receipt_sha256": "2301b8e5d284d9bdd569e2aad8e1964f9c22605260b9cad2b20e8aac649ca6d6"
+      },
+      "result_sha256": "8079d264bf7479c90a8d90d015745bc71403cc89e2ea9c90fa00b0d00d8b2745",
+      "retained_for_revised_campaign": true,
+      "runtime": {
+        "matched_production_runtime_gate": "not_yet_measured",
+        "scope": "concurrent_campaign_worker_wall_seconds",
+        "summed_worker_seconds": 84.76546866842546
+      },
+      "simulations": 240,
+      "single52_crps": 0.8560417713973655,
+      "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "tasks": 2652
     }
   ],
   "historical80_role": "separate_required_production_validation_gate_no_new80_runs",
@@ -2837,6 +3185,42 @@
   },
   "partial_results_ranked": false,
   "progress": [
+    {
+      "completed_tasks": 24,
+      "desired": "running",
+      "execution_name": "a-m191",
+      "live": true,
+      "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 45,
+      "desired": "running",
+      "execution_name": "a-m192",
+      "live": true,
+      "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 1607,
+      "desired": "running",
+      "execution_name": "a0-m091",
+      "live": true,
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "a0-m117",
+      "live": false,
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
     {
       "completed_tasks": 224,
       "desired": "removed",
@@ -3072,7 +3456,7 @@
       "status": "complete"
     },
     {
-      "completed_tasks": 1246,
+      "completed_tasks": 1834,
       "desired": "running",
       "execution_name": "m024",
       "live": true,
@@ -3117,7 +3501,7 @@
       "status": "complete"
     },
     {
-      "completed_tasks": 630,
+      "completed_tasks": 999,
       "desired": "running",
       "execution_name": "m029",
       "live": true,
@@ -3144,7 +3528,7 @@
       "status": "complete"
     },
     {
-      "completed_tasks": 1003,
+      "completed_tasks": 1609,
       "desired": "running",
       "execution_name": "m032",
       "live": true,
@@ -3153,7 +3537,7 @@
       "status": "running"
     },
     {
-      "completed_tasks": 544,
+      "completed_tasks": 860,
       "desired": "running",
       "execution_name": "m033",
       "live": true,
@@ -3189,16 +3573,16 @@
       "status": "complete"
     },
     {
-      "completed_tasks": 2140,
+      "completed_tasks": 2652,
       "desired": "running",
       "execution_name": "m037",
-      "live": true,
+      "live": false,
       "model_id": "stochastic_volatility_ar1_empirical",
       "required_tasks": 2652,
-      "status": "running"
+      "status": "complete"
     },
     {
-      "completed_tasks": 907,
+      "completed_tasks": 1510,
       "desired": "running",
       "execution_name": "m038",
       "live": true,
@@ -3216,16 +3600,16 @@
       "status": "paused"
     },
     {
-      "completed_tasks": 2060,
+      "completed_tasks": 2652,
       "desired": "running",
       "execution_name": "m040",
-      "live": true,
+      "live": false,
       "model_id": "stochastic_volatility_ar1_empirical_sbb",
       "required_tasks": 2652,
-      "status": "running"
+      "status": "complete"
     },
     {
-      "completed_tasks": 847,
+      "completed_tasks": 1440,
       "desired": "running",
       "execution_name": "m041",
       "live": true,
@@ -3243,7 +3627,7 @@
       "status": "paused"
     },
     {
-      "completed_tasks": 761,
+      "completed_tasks": 1348,
       "desired": "running",
       "execution_name": "m043",
       "live": true,
@@ -3252,25 +3636,25 @@
       "status": "running"
     },
     {
-      "completed_tasks": 1767,
+      "completed_tasks": 2652,
       "desired": "running",
       "execution_name": "m044",
-      "live": true,
+      "live": false,
       "model_id": "stochastic_volatility_ar1_student_t",
       "required_tasks": 2652,
-      "status": "running"
+      "status": "complete"
     },
     {
-      "completed_tasks": 0,
+      "completed_tasks": 2652,
       "desired": "running",
       "execution_name": "m045",
-      "live": true,
+      "live": false,
       "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
       "required_tasks": 2652,
-      "status": "running"
+      "status": "complete"
     },
     {
-      "completed_tasks": 4,
+      "completed_tasks": 596,
       "desired": "running",
       "execution_name": "m046",
       "live": true,
@@ -3279,17 +3663,17 @@
       "status": "running"
     },
     {
-      "completed_tasks": 0,
+      "completed_tasks": 1264,
       "desired": "running",
       "execution_name": "m047",
-      "live": false,
+      "live": true,
       "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
       "required_tasks": 2652,
-      "status": "queued"
+      "status": "running"
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m048",
       "live": false,
       "model_id": "sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3299,7 +3683,25 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m048-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m049",
+      "live": false,
+      "model_id": "sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m049-exact",
       "live": false,
       "model_id": "sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3316,8 +3718,17 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m051",
+      "live": false,
+      "model_id": "sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m051-exact",
       "live": false,
       "model_id": "sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3334,7 +3745,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m053",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3344,6 +3755,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m053-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m054",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3353,6 +3773,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m054-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m055",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3362,7 +3791,25 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m055-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m056",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m056-exact",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3379,8 +3826,17 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m058",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m058-exact",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3397,8 +3853,17 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m060",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m060-exact",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3415,7 +3880,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m062",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3425,7 +3890,25 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m062-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m063",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m063-exact",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3451,7 +3934,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m066",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3461,6 +3944,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m066-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m067",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc",
@@ -3470,7 +3962,25 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m067-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m068",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m068-exact",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3487,7 +3997,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m070",
       "live": false,
       "model_id": "sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3497,6 +4007,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m070-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m071",
       "live": false,
       "model_id": "sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3506,6 +4025,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m071-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m072",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
@@ -3515,6 +4043,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m072-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m073",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc",
@@ -3524,6 +4061,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m073-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m074",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc",
@@ -3533,6 +4079,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m074-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m075",
       "live": false,
       "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3542,6 +4097,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m075-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m076",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
@@ -3551,6 +4115,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m076-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m077",
       "live": false,
       "model_id": "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc",
@@ -3560,6 +4133,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m077-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m078",
       "live": false,
       "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
@@ -3569,6 +4151,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m078-exact",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m079",
       "live": false,
       "model_id": "sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc",
@@ -3578,6 +4169,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m079-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m080",
       "live": false,
       "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3587,6 +4187,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m080-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m081",
       "live": false,
       "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3596,7 +4205,25 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m081-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m082",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m082-exact",
       "live": false,
       "model_id": "sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3613,7 +4240,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m084",
       "live": false,
       "model_id": "sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3623,7 +4250,25 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m084-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m085",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m085-exact",
       "live": false,
       "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3640,7 +4285,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m087",
       "live": false,
       "model_id": "sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
@@ -3650,7 +4295,25 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m087-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m088",
+      "live": false,
+      "model_id": "sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m088-exact",
       "live": false,
       "model_id": "sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
       "required_tasks": 2652,
@@ -3667,7 +4330,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m090",
       "live": false,
       "model_id": "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc",
@@ -3677,6 +4340,15 @@
     {
       "completed_tasks": 0,
       "desired": "running",
+      "execution_name": "m090-exact",
+      "live": false,
+      "model_id": "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "removed",
       "execution_name": "m091",
       "live": false,
       "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
@@ -3910,7 +4582,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m117",
       "live": false,
       "model_id": "expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
@@ -4576,7 +5248,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m191",
       "live": false,
       "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
@@ -4585,7 +5257,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m192",
       "live": false,
       "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
@@ -6745,7 +7417,7 @@
       "role": "fresh_candidate"
     }
   ],
-  "retained_fresh_models_complete": 32,
+  "retained_fresh_models_complete": 36,
   "user_authorized_screening": {
     "accuracy_inferiority_inferred_from_runtime": false,
     "exclusions": [

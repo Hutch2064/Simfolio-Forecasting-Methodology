@@ -14,7 +14,9 @@ EXCLUDED_RANKS = frozenset({257, 258, 259, 260})
 
 
 def model_specs():
-    rows = json.loads(LEDGER.read_text())["models"]
+    ledger = json.loads(LEDGER.read_text())
+    rows = ledger["models"]
+    factories = ledger["implementation_factory_map"]
     result = []
     for row in rows:
         rank = row["canonical_rank"]
@@ -23,6 +25,10 @@ def model_specs():
         environment = {}
         if rank in {1, 8, 9}:
             adapter = "tools/catalogue52/legacy_exact_kernels.py"
+        elif factories.get(row["public_model_id"], {}).get("factory_name") == (
+            "simfolio_forecasting_methodology.models.portfolio.full_mcmc:FullMCMCSVModel"
+        ):
+            adapter = "tools/catalogue52/latent_exact_filter.py"
         elif rank <= 175 or rank == 177:
             adapter = None
         elif rank in {176, 178, 179}:

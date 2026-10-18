@@ -1,0 +1,1227 @@
+{
+  "adapter": "tools/catalogue52/latent_exact_filter.py",
+  "adapter_validation": {
+    "focused_output_sha256": "b574d7cb3ed53f4f3b6a6c592860ea930d15053ccc5b7c3f1ab981e35273bcad",
+    "focused_result": "65 passed; one pre-existing importlib Traversable deprecation warning",
+    "focused_seconds": 54.71,
+    "focused_tests": [
+      "tests/test_catalogue52_latent_exact_filter.py",
+      "tests/test_catalogue52_adapters.py"
+    ],
+    "git_diff_check": "passed",
+    "lifecycle": "Only one module global replaced; nested/error/model-error restoration and repeated initialize inside/outside a scope are verified; all40 references are the original FullMCMCSVModel class.",
+    "registry_mapping_source_sha256": "13e7388032172a0fae82e390cbeb5d4d40bdd76e13a0458486383734c5c985ea",
+    "registry_scope": "Root-owned registry isolation test confirms exactly the ledger40 original FullMCMCSVModel identities select this adapter.",
+    "registry_test_source_sha256": "860ed7f181a5367bf3b6a82016187b6f8a84105ba858ea772708a268ef2786fb",
+    "result": "62 passed; one pre-existing importlib Traversable deprecation warning",
+    "ruff": "passed",
+    "seconds": 42.67,
+    "test_output_sha256": "5391f4930b5100843ab15713b0aa38df0d7367f57d961bdcbc7d56e337bdf821",
+    "test_source_sha256": "45d87f3601cc7d49b1902ef0181053b8bb0c9510954b177c3c96ae8d9631dcf2",
+    "tests": "tests/test_catalogue52_latent_exact_filter.py"
+  },
+  "adoption": "This adapter implementation did not modify registry, registrations, control, running workers or immutable snapshots. Root owns its registry mapping, queued-only adoption and broader acceptance. Exposure of40 original identities is not a40-model full-panel parity claim.",
+  "campaign_worker_integration_gate": {
+    "checkpoint_manifest_binding_intentionally_different": true,
+    "full_panel_score": false,
+    "loss_vector_bytes_equal": true,
+    "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+    "optimized_checkpoint_sha256": "7f1ba14fea690e59d233c4a273282c04e38395b8cf26b529df982f2e001e433e",
+    "optimized_origin_seconds": 0.9408358749933541,
+    "original_checkpoint_sha256": "0e0edf631d8ab2354bf488b34d8972c506e7e5cb23a360feb180dd8b24d7d795",
+    "original_origin_seconds": 2.229510582983494,
+    "simulations": 240,
+    "source_snapshot_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+    "startup_seconds": 40.99071520799771,
+    "task_identity_fields_equal": true,
+    "task_index": 25,
+    "worker_closed": true
+  },
+  "candidate_ids": [
+    "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+    "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+    "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+    "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+    "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean",
+    "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
+    "sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+    "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc",
+    "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+    "sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc",
+    "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+    "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc"
+  ],
+  "complete_fit_forecast_crps_cases": [
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "64c37e6fd66f70ed800b5856c7dddd95ac5f0b1b6a34ebd973491d03495989b0",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 126,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "rank": 24,
+      "sha256": {
+        "crps": "7d832e7e2580c619b899089b3a5a24e50d6594fbc7b8868348903887d4cd65cc",
+        "cumulative": "94dd365c5cfcd2a9147c96a357ffe1d26ba29dd4de11086ec551069afe5bd715",
+        "daily": "7608b5ee2c4a0bb30ef1c3d17e9baa4e358ebbb7135b624ff0539c5fb7f71626",
+        "fit": "5ee88c9090189312ffda2875c4bc8fa5ee660e3953864a25a97598b23c7e0433"
+      },
+      "simulations": 240,
+      "task": 0,
+      "training_observations": 507
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "aadbf9065cc042bd039c4ba95999702bf51482ff6ffbbb679c316043d60df126",
+        "horizon_days": 1609,
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+        "origin_date": "2005-06-30",
+        "origin_label": "rolling_26",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "114a06b6dd62e8881217a2e59e44128e00f94181c0c3439f903db73f7e0676fd",
+        "seed": 4414425,
+        "task_id": "9fb6a9f0dd2c01a1e573506a717aea924e8869ce4f6bcf32da8037b6f391c5e6",
+        "training_digest": "6f43f25e6dfc133b35440717a4132130c52990b06ead43a94f800eec5cbef443"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 1609,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "rank": 24,
+      "sha256": {
+        "crps": "6ef39a4c31abf6edca6e155b85df73f9231efffad82f3a249faf82497fbb4b01",
+        "cumulative": "083a27241e96bc37bee6fcaf14707c83a2c36b5f77e9a09ab9b65e0486aefad4",
+        "daily": "6b994a02b11aff541a5bc67ab9860eccd35d56607afbae3c1fb9fbf475908388",
+        "fit": "dd18cbc3a1b3d7aa3b29be9dd754ce2e56455c2af828eaee4ea6dade0f433225"
+      },
+      "simulations": 240,
+      "task": 25,
+      "training_observations": 6438
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "43b7299a880c5d9c15fc1b90f9af1090d7b87786974e76e89411a1f5249a8ec9",
+        "horizon_days": 30,
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_48",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "f49b4352e3cd09d53c235be402d6abe231baeb6fa9a647f84750737c21705884",
+        "seed": 1235375639,
+        "task_id": "945b24d7c7a2b36c79a1bc5ae44c88912fd5b805e85284183cc4dd8c61d2b3c6",
+        "training_digest": "1c0c73703d641e83374a46a114ebaac6b5f121ef7c468a5ec5e47a9d1f4e82da"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 30,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "rank": 24,
+      "sha256": {
+        "crps": "9f24884cb8023221d68caf7ba10a9b48ae4dc995136aa43272f8865f25f7ad4c",
+        "cumulative": "ca29981c46e36c5dca2c933521d0c5d598a6fa2f741a68a7f0ff50bf24be96ac",
+        "daily": "a87ea30580a3cd88c7c96b7118d8d055798f13649930f6b50f3d7236954ad587",
+        "fit": "d3f297eb4c6fe6050da3b4995f3006845c30e8ec15c7fc8cd98a86ec325e7de0"
+      },
+      "simulations": 240,
+      "task": 47,
+      "training_observations": 11657
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "6c6de6b9ff4d2859468d8e2720276f75d5cce623fa2c135f0da030486c524778",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 126,
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "rank": 29,
+      "sha256": {
+        "crps": "254a60ee0563fdee2b2ad1afa08f43e93c12906ef096d6e11074e6c3365bedc4",
+        "cumulative": "c09453dbe8912cda219b3646204722b5c142fcad529b1b4f2455b982b642874c",
+        "daily": "d4676f4cfbf3472a3d7d8a58893463b9c8f5e00e27314a8880b1753d83ef57ed",
+        "fit": "3d504de982ac7aa4d652bfab084b6ccd2aba4ae1b6400de53eee8e7413191077"
+      },
+      "simulations": 240,
+      "task": 0,
+      "training_observations": 507
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "aadbf9065cc042bd039c4ba95999702bf51482ff6ffbbb679c316043d60df126",
+        "horizon_days": 1609,
+        "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "origin_date": "2005-06-30",
+        "origin_label": "rolling_26",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "114a06b6dd62e8881217a2e59e44128e00f94181c0c3439f903db73f7e0676fd",
+        "seed": 4414425,
+        "task_id": "ae16fdd0ed41b5d45689eb56dd15af51beda639ee43ab68c834c06dfacfef64f",
+        "training_digest": "6f43f25e6dfc133b35440717a4132130c52990b06ead43a94f800eec5cbef443"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 1609,
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "rank": 29,
+      "sha256": {
+        "crps": "9335fe3a10baeda7f0832f5879dd091bf0faa818ba0f93cf932123c13c860532",
+        "cumulative": "7cc9ecf2237720568e86b4c158ada4127a2820a0db49e435dfdaf82a9197db93",
+        "daily": "08e72fbe35d2f0a5402c59e1776c423fb0c985aa27c7448746cc0aa77882844a",
+        "fit": "3e21a1f164c23c120f9f0ad6c8791c7a64fe1b6f7697578fcc734249c4188b29"
+      },
+      "simulations": 240,
+      "task": 25,
+      "training_observations": 6438
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "43b7299a880c5d9c15fc1b90f9af1090d7b87786974e76e89411a1f5249a8ec9",
+        "horizon_days": 30,
+        "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_48",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "f49b4352e3cd09d53c235be402d6abe231baeb6fa9a647f84750737c21705884",
+        "seed": 1235375639,
+        "task_id": "99114800053c82d69599dd3e9c8f8ff6a75ef4fa89d48e5b4abbdc29d87f9aa1",
+        "training_digest": "1c0c73703d641e83374a46a114ebaac6b5f121ef7c468a5ec5e47a9d1f4e82da"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 30,
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "rank": 29,
+      "sha256": {
+        "crps": "fa3f3c28b67d298de15f6fdeda1fb8ea1edbaf51cc9c33252fc8ec328384bf93",
+        "cumulative": "02012193a7edd1e1868d4b5e1c9c7b93e9e8cb8afd65da0d889347bcf2760477",
+        "daily": "8d981fbc39fecddf269ad4aeb44dc702c1b7331eee2824bd819ee779b4ccc35d",
+        "fit": "44355c52bfc33520423f1fd1f250cd6eab9f1d5c36aa31c1161752a1440bfaa9"
+      },
+      "simulations": 240,
+      "task": 47,
+      "training_observations": 11657
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "98d15f3045f36438056e266d17a855c6fc061a4fe43a067cb2475d35a75221f4",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 126,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+      "rank": 32,
+      "sha256": {
+        "crps": "fab657cbe979f664a9db486dff266ff58fd669c0e8b03f488351b4023d73246c",
+        "cumulative": "1a6df38d0ca8a84169ea6e17aa3c47d7fdd0c7fe96a572b3d63800b0b8c424fd",
+        "daily": "15c538ccc9d02b15887eb8e019b09bc13d168affcc77caa7e0955d8c479c60d8",
+        "fit": "f8574f6cb90bbd8e5b2d67aad79152567149792ac5da4395911743aebeb5e61d"
+      },
+      "simulations": 240,
+      "task": 0,
+      "training_observations": 507
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "aadbf9065cc042bd039c4ba95999702bf51482ff6ffbbb679c316043d60df126",
+        "horizon_days": 1609,
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+        "origin_date": "2005-06-30",
+        "origin_label": "rolling_26",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "114a06b6dd62e8881217a2e59e44128e00f94181c0c3439f903db73f7e0676fd",
+        "seed": 4414425,
+        "task_id": "752f612bab536a9a32bbaf56499ab32fac3ecc055b6e71de85a08cdcfd806218",
+        "training_digest": "6f43f25e6dfc133b35440717a4132130c52990b06ead43a94f800eec5cbef443"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 1609,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+      "rank": 32,
+      "sha256": {
+        "crps": "1c94784264d251779adf8deba90b955ba5fb3d3f337e317ed560a842066348e8",
+        "cumulative": "83f3bd7694770525fba5b1366aa913f41055aceab61959ccf2d5c79f2a54d420",
+        "daily": "dd8e7108368b26c9f4aa757fb1f44152fa347eb81c0943aaeca41bc2f914c406",
+        "fit": "c430358defaa54ea58356662124c813c41c606d01cf6c9c8aa3f19e917b48930"
+      },
+      "simulations": 240,
+      "task": 25,
+      "training_observations": 6438
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "43b7299a880c5d9c15fc1b90f9af1090d7b87786974e76e89411a1f5249a8ec9",
+        "horizon_days": 30,
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_48",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "f49b4352e3cd09d53c235be402d6abe231baeb6fa9a647f84750737c21705884",
+        "seed": 1235375639,
+        "task_id": "0c35d76ae2a6ead358c87125a6a160867ada2bae0a3c0936050bc25c5ef3d54f",
+        "training_digest": "1c0c73703d641e83374a46a114ebaac6b5f121ef7c468a5ec5e47a9d1f4e82da"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 30,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+      "rank": 32,
+      "sha256": {
+        "crps": "b36d45ecdf23e9f4cfb0158414588fe400bd28707b327491fecd007bb3289aa9",
+        "cumulative": "4de0479e3642a63df05e59188ec981ee315cfcc3c4d39f5a554839602ec2f501",
+        "daily": "9a8d36ea5b767df03048c6b3901590473cb0420770b68cc7993c616ec3270002",
+        "fit": "7dab2d364e8bdb9b92e60ba4e229755742318ef96f1ca313135e2ff30aca5c4a"
+      },
+      "simulations": 240,
+      "task": 47,
+      "training_observations": 11657
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "591432a203969aca625eb7c012af5280c5fb69455a06a391e13adc7226457496",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 126,
+      "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "rank": 38,
+      "sha256": {
+        "crps": "939da03ceca91ba58ce4fb5cf958259372be2bb56483e454b564e496d5ade22f",
+        "cumulative": "c90229c44193d0cb2565cf7dd03811174a7ec5e0c00210d42a8c990ec03d8fb0",
+        "daily": "ccd0365eb715ddc63b90d658c1051f11f250a59be4d21ab81908274b826ef447",
+        "fit": "5746ad9aa937eb74b45ac074512cef0e556cf0edd59213ad636512eb06c42dd4"
+      },
+      "simulations": 240,
+      "task": 0,
+      "training_observations": 507
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "aadbf9065cc042bd039c4ba95999702bf51482ff6ffbbb679c316043d60df126",
+        "horizon_days": 1609,
+        "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "origin_date": "2005-06-30",
+        "origin_label": "rolling_26",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "114a06b6dd62e8881217a2e59e44128e00f94181c0c3439f903db73f7e0676fd",
+        "seed": 4414425,
+        "task_id": "70959a95e3b1af300d851845f1b0f6d54efccc75c652ba8447a3d13f6cf950db",
+        "training_digest": "6f43f25e6dfc133b35440717a4132130c52990b06ead43a94f800eec5cbef443"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 1609,
+      "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "rank": 38,
+      "sha256": {
+        "crps": "639c5b5c50d20a954384d5b854e8d1132ac77b3ec200fb3ba42e100191c7fae4",
+        "cumulative": "0f2276c1223a504e39928465f73ffcb654e573baab7bef03b0ca836037d52b66",
+        "daily": "2e9ad91d856e9d47484382df4059a6db1d15d36183bde4e59d4cfa7a86984dbb",
+        "fit": "62652a2f1d75b3a5202531613b366035c268b0e3bb1cc90f331f48f499423524"
+      },
+      "simulations": 240,
+      "task": 25,
+      "training_observations": 6438
+    },
+    {
+      "canonical_case_identity": {
+        "future_dates_digest": "43b7299a880c5d9c15fc1b90f9af1090d7b87786974e76e89411a1f5249a8ec9",
+        "horizon_days": 30,
+        "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_48",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "f49b4352e3cd09d53c235be402d6abe231baeb6fa9a647f84750737c21705884",
+        "seed": 1235375639,
+        "task_id": "20571d45a581f213b09a9741415171726eb4513eb7d533a0dde9ebd853a5394a",
+        "training_digest": "1c0c73703d641e83374a46a114ebaac6b5f121ef7c468a5ec5e47a9d1f4e82da"
+      },
+      "equality": {
+        "complete_fit_bytes": true,
+        "crps_vector_bytes": true,
+        "cumulative_path_bytes": true,
+        "daily_path_bytes": true
+      },
+      "horizon": 30,
+      "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "rank": 38,
+      "sha256": {
+        "crps": "403fb38e2a0494e50a5772af9ba6771eb39c638b1850acfa91610c48ed33cc62",
+        "cumulative": "b617a3c5cb307d44d3dabb272d1bd6981b8d231af87247c1847275575967262c",
+        "daily": "bee876cf8df418771f1abe7912f29613daf8ee543500eccf141ee46d53ebaf5f",
+        "fit": "d063dc796edb54ce4eca17f95167bec70c9285c7b2a934074a4032bc3a25a5c5"
+      },
+      "simulations": 240,
+      "task": 47,
+      "training_observations": 11657
+    }
+  ],
+  "environment": {
+    "packages": {
+      "llvmlite": "0.49.0",
+      "numba": "0.67.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "pybind11": "3.1.0",
+      "pyvinecopulib": "0.7.5",
+      "scipy": "1.18.1"
+    },
+    "python": "3.12.13"
+  },
+  "fit_comparison": "The complete pickle comparison includes mcmc_iterations/limit/burn/thin/chains/stopping/stop_reason/ESS/acceptance/proposal-adaptation/diagnostic checks and all fit arrays. No metadata fields were normalized or omitted.",
+  "initial_prototype_interface_issue": "First attempt passed scalar gate then stopped on dispatcher keyword-default TypeError, before any numerical comparison failure. Preserved under attempt-01-dispatch-interface. No arithmetic or tolerance change; explicit default-forwarding wrapper fixed call compatibility.",
+  "nice": 15,
+  "prototype_evidence": {
+    "full-proof.json": {
+      "bytes": 9636,
+      "sha256": "8b4f8c1a2e44436363e9dd310f4d6d4a9fa664c58193a98be0037cd891f4d6d7"
+    },
+    "matched-timing.json": {
+      "bytes": 1913,
+      "sha256": "fc8723f6415e0479d3fc275a827e1c702bb6c06549d303f479abc2deadea450f"
+    },
+    "prove.py": {
+      "bytes": 10302,
+      "sha256": "a7bd22b0a3b780e8e98452464620b5d368d5b4d5899d84273eb28beeffffb9df"
+    },
+    "receipt.json": {
+      "bytes": 10143,
+      "sha256": "00461161603076d8d2ab456fde3bf398d69bc1520eb46c8116b30002c40d2b8f"
+    },
+    "scalar-parity.json": {
+      "bytes": 25993,
+      "sha256": "3996bad42d2d41719bd3ae247169965c880f6b7d0658326cf93c4b005d09826f"
+    }
+  },
+  "queued_only_adoption": {
+    "models": [
+      {
+        "canonical_rank": 48,
+        "model_id": "sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m048-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m048",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "34c99100f5df90b1d21c7e81cae8cf93d4953cda5e0c6edc46e0c781e16e4041",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 49,
+        "model_id": "sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m049-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m049",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "e059845dca4a32513838672aeb1186405b293c3ec70a079fd59c0763171b3016",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 51,
+        "model_id": "sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m051-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m051",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "37403f7f68e58228626aac526d2f38e52f07a89b32f4fe8be7231c7f2afa8a99",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 53,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m053-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m053",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "d16e7d5cff526fadcac5168b2aef0fc838fbf6415ac35e0eed4d04bd83127697",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 54,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m054-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m054",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "fd9abe28c9a6797a7220b48426b053cd32b706384f7d8777b5544d7d6de266a5",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 55,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m055-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m055",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "86ec554bc58ab4bad0c065b1349ed4db8a0bf63e19ba86ec205d255b8b805bb3",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 56,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m056-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m056",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "7081170c825cf83df1e987f90b24b99b9c8344a409ab064a7f858a58e107cc80",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 58,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m058-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m058",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "c9ba72de6f247524c9caa8c105b47a58aa8768f25e47a70224dc2b7abb377a93",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 60,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m060-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m060",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "eae37dab44b567b9d8d2960bab69054e022d3551377d581f71a793bfb81ca0cb",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 62,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m062-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m062",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "3fee049637e0cce664b8b7adeb6db129aeb468287693bef0a25f6e739b0ffaec",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 63,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m063-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m063",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "e5f855be1b307c86f8a2b07ad6fa24cdb4513fcf08f59314726065ec8e31d9f6",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 66,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m066-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m066",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "dbb29503d2a51ffdcb5be3cbb531649033bc83728f74a37fddd48066f58da0ca",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 67,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc",
+        "new_execution": "m067-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m067",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "6776744e5e3e10a78617d99a4ed10dc0bc5cfae823912dd0a8066d2b58d778a5",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 68,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m068-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m068",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "2139fb01b61dfcff1f1fe831aaa1e30538f86b921038e30b703ee9490b421aca",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 70,
+        "model_id": "sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m070-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m070",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "7bad75eeead75c23b7985e8b5045b9d7791744da8bafd0398ab79bcfe85bb351",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 71,
+        "model_id": "sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m071-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m071",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "c04c05b9f4b6d3991c6ce0b55fddda565b6fa965190241ff3832602514ba5c6a",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 72,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+        "new_execution": "m072-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m072",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "7bf1b07592069955df398127ab2ddc23fbbd119f9892caece3dce2d39b498596",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 73,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc",
+        "new_execution": "m073-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m073",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "abf971ad156007be2fc2eaecc7105bf25d4e955becc5405118ff6788fc0b5efc",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 74,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m074-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m074",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "9f714f81bc2e4c94542c6e7eacc75ffe8d32022060125ab03d5cab3368f63f6c",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 75,
+        "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m075-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m075",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "956d38f0c6a9930bfed401deec64ebc3be8ef695b1a013717847a1d3af2964a5",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 76,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+        "new_execution": "m076-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m076",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "7773967af287d0c301e66320a759d6ef535fd69f876ef6a0a8f7d64926abe17f",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 77,
+        "model_id": "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc",
+        "new_execution": "m077-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m077",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "89fc6fa01d01d2e56c7e40670b8825145eba012bebaa3d7a93fd5cc6a2c91700",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 78,
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+        "new_execution": "m078-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m078",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "2dc202c2dd3c940df29a2334a1b92f41749892d92a609142a5b89dc58de5f68f",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 79,
+        "model_id": "sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc",
+        "new_execution": "m079-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m079",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "be4b454ac3db6ce5ff55aa52a15078706bc416a7e7de9f9f43bf3c9b89b0133a",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 80,
+        "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m080-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m080",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "f7387e1e67f4e6a5761400c6b4fc7605ee08e704598c5e1a4b1743d01674a30c",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 81,
+        "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m081-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m081",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "4da61754d513ea3180f7e127e632e9f38fab8126d8741072ff69ef0ddda9b3c0",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 82,
+        "model_id": "sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m082-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m082",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "5b81974fa1d0bbbf71027b7537249f0bcb415fe6813e664c43771e0c999edb66",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 84,
+        "model_id": "sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m084-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m084",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "188c50729f7bc95aa4629a0396b06a15309a23217ba2d72cc23a17f94018de80",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 85,
+        "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m085-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m085",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "cc154a00139eba8c81a332ffbcb13974e78bbda42e27e8b48fa47c721ade9878",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 87,
+        "model_id": "sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m087-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m087",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "de2004c6ccd1fdc2e6d580a80b7abe3ba8feedf48ac4f73da0262c86fc1b4af8",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 88,
+        "model_id": "sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "new_execution": "m088-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m088",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "3a7c9e6461f48b95aef8c04bd97a0afc6ab44ba3924f911cc34fee1308aace33",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      },
+      {
+        "canonical_rank": 90,
+        "model_id": "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc",
+        "new_execution": "m090-exact",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "m090",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "original_tasks_started_at_adoption": false,
+        "specification_fingerprint": "492e1873eb05cac4a0570891d240c9e9ae4544c059ec1febb00cf68ea68c4dd5",
+        "unchanged_fields": [
+          "model_id",
+          "environment",
+          "indices",
+          "campaign_sha256"
+        ]
+      }
+    ],
+    "numerical_proof_scope": "All top-level proof fields except queued_only_adoption and campaign_worker_integration_gate.",
+    "numerical_proof_sha256": "b1ed463c40c1b947db1164a334cac014fc834e8553ef20b15b8f1fa49f972238",
+    "scope": "Only never-started future full-MCMC executions; active and completed runs untouched. No statistical changes.",
+    "worker_smoke_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2"
+  },
+  "representative_configurations": [
+    {
+      "rank": 29,
+      "raw_descriptor_sha256": "93de45745f55862dca02d4c187bcb6b63060563bc87effd2d405b73807b448b0",
+      "raw_source_descriptor": {
+        "ablation_family": "current_live_bdes_cagr_retest",
+        "feature_family": "current_bdes_cagr_full_latent_mcmc_sv_overlay",
+        "id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "innovation_component": "stationary_bootstrap_standardized_residuals_scaled_by_bdes_multiscale_latent_sv_paths",
+        "innovation_pool_source": "sample_standardized",
+        "innovation_resampling": "stationary_bootstrap",
+        "mcmc_proposal_adaptation": "adaptive_metropolis_warmup_covariance",
+        "mcmc_stopping": "adaptive_ess_forecast_stability",
+        "mean_component": "portfolio_likelihood_estimated_latent_sharpe_dlm_to_historical_cagr_anchor",
+        "mean_model": "evidence_estimated_sharpe_dlm_historical_cagr_anchor",
+        "overlay_model": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "path_generator": "stationary_bootstrap_standardized_residuals_scaled_by_bdes_multiscale_latent_sv_paths",
+        "state_inference": "same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_full_mcmc_sv_overlay",
+        "validation_status": "paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate",
+        "vol_model": "full_latent_mcmc_stochastic_log_volatility_overlay"
+      }
+    },
+    {
+      "rank": 24,
+      "raw_descriptor_sha256": "4cb27462ff302e4a476a0fbe2df8d0d1d9e94e77558fdffa2c08f61e2d93b61e",
+      "raw_source_descriptor": {
+        "ablation_family": "mcmc_sv_overlay_evt_drift_research",
+        "id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+        "innovation_pool_source": "sample_standardized",
+        "innovation_resampling": "stationary_bootstrap",
+        "mcmc_proposal_adaptation": "fixed",
+        "mcmc_stopping": "fixed",
+        "mean_model": "merton_positive_hac_drift_uncertainty",
+        "overlay_model": "mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+        "path_generator": "stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_full_mcmc_sv_overlay",
+        "validation_status": "paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate",
+        "vol_model": "full_latent_mcmc_stochastic_log_volatility_overlay"
+      }
+    },
+    {
+      "rank": 32,
+      "raw_descriptor_sha256": "c4432290f8e1437df9717d11c15ff58fc85550c28ae6b0ee1772d6bfd6e99452",
+      "raw_source_descriptor": {
+        "id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+        "innovation_pool_source": "sample_standardized",
+        "innovation_resampling": "stationary_bootstrap",
+        "mcmc_proposal_adaptation": "fixed",
+        "mcmc_stopping": "fixed",
+        "mean_model": "positive_sample_mean",
+        "overlay_model": "mcmc_sv_ar1_leverage",
+        "path_generator": "stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_full_mcmc_sv_overlay",
+        "validation_status": "paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate",
+        "vol_model": "full_latent_mcmc_stochastic_log_volatility_overlay"
+      }
+    },
+    {
+      "rank": 38,
+      "raw_descriptor_sha256": "b7c50ae89e7295c4a6ec0f2eb9eaf1d5c80744d13fc1ad134461f495d8507684",
+      "raw_source_descriptor": {
+        "ablation_family": "live_horizon_mean_sample_sbb_targeted_tweak_research",
+        "feature_family": "current_sv_live_baseline_horizon_sample_tweak",
+        "id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "innovation_component": "stationary_bootstrap_sample_standardized_residuals_politis_white_block_length",
+        "innovation_pool_source": "sample_standardized",
+        "innovation_resampling": "stationary_bootstrap",
+        "mcmc_proposal_adaptation": "adaptive_metropolis_warmup_covariance",
+        "mcmc_stopping": "adaptive_ess_forecast_stability",
+        "mean_component": "constant_historical_sample_mean",
+        "mean_model": "historical_realized_sharpe",
+        "overlay_model": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+        "path_generator": "stationary_bootstrap_standardized_residuals_scaled_by_latent_sv_paths",
+        "state_inference": "same_saved_live_adaptive_mcmc_with_adaptive_metropolis_warmup_covariance",
+        "tail_method": "filtered_empirical_tail",
+        "type": "bayesian_sbb_full_mcmc_sv_overlay",
+        "validation_status": "paired_80_portfolio_full_latent_mcmc_sv_overlay_candidate",
+        "vol_model": "full_latent_mcmc_stochastic_log_volatility_overlay"
+      }
+    }
+  ],
+  "scalar_path_guards": {
+    "all_bytes_equal": true,
+    "cases": 128,
+    "manifest_sha256": "3996bad42d2d41719bd3ae247169965c880f6b7d0658326cf93c4b005d09826f"
+  },
+  "scope": "Compiler-only scoped adapter for the original40 FullMCMCSVModel identities. Four representative configurations and12 actual origins have full-fit/path/CRPS byte proof; no full-panel parity or accuracy claim.",
+  "source_equivalence": {
+    "compiler_options_identical": {
+      "cache": false,
+      "fastmath": false,
+      "function": "mc._sv_kalman_filter",
+      "nogil": true
+    },
+    "default_forwarding_ast_equal": true,
+    "default_forwarding_ast_sha256": "48990e90f2567bbf5ebab9bf998643781cb1658d0b5bb8c8e51eeb1da392f4f6",
+    "native_full_model_source_byte_equal": true,
+    "numerical_scope": "Only numerical.mcmc_sv._sv_kalman_filter is replaced. Original sampler, FFBS, RNG, proposal/stopping settings, seed derivation, path generator and native class remain unchanged.",
+    "proof_reuse": "Prior complete model fits and forecasts are reused because the retained compiled function, compiler flags, explicit keyword forwarding, native model source and configurations match. No broad benchmark was rerun.",
+    "prototype_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+    "raw_forty_candidate_descriptors_byte_equal": true,
+    "retained_filter_source_byte_equal": true,
+    "retained_filter_source_sha256": "5ce7d062e02aff577695dff394dbbcc5e8c418f87d1912717cc2f8998be6ed98"
+  },
+  "source_version": {
+    "files": {
+      "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+      "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+      "src/simfolio_forecasting_methodology/resources/catalogs/canonical_40_full_mcmc_sv_specs.json": "30d868665f277ecf2494ad6256c60aa1a8fd9a8fce006ab384d667e02e32c078",
+      "tools/catalogue52/latent_exact_filter.py": "6471ed7a9feaa8441bb0ff58c0da3604d2a7f274902455da38fc91683367f36b"
+    },
+    "filter_source_sha256": "5ce7d062e02aff577695dff394dbbcc5e8c418f87d1912717cc2f8998be6ed98"
+  },
+  "task_cache_payload_sha256": "5dec2c84e52f1c5b6e4c4e9395e919b55f4dc449d2e68afafdda15d4c6ffe74c",
+  "thread_environment": {
+    "BLIS_NUM_THREADS": "1",
+    "GOTO_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMBA_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "warm_paired_timing": {
+    "decomposition": {
+      "median_filter_delta_seconds": 1.4615130784804933,
+      "median_total_delta_seconds": 1.4614302910049446,
+      "total_reduction_fraction": 0.5954363588855196,
+      "total_speedup": 2.4717989912420912
+    },
+    "description": "One warmed M024task25 case only; three pairs with alternating order. Same original native model,240paths, only filter implementation differs. Matched per-call observer overhead is present in both arms.",
+    "horizon": 1609,
+    "median_compiled_filter_seconds": 0.0392468775389716,
+    "median_compiled_seconds": 0.9929550840170123,
+    "median_original_filter_seconds": 1.5007599560194649,
+    "median_original_seconds": 2.454385375021957,
+    "rank": 24,
+    "rows": [
+      {
+        "compiled": false,
+        "cpu_seconds": 2.124865,
+        "daily_sha256": "6b994a02b11aff541a5bc67ab9860eccd35d56607afbae3c1fb9fbf475908388",
+        "filter_calls": 529,
+        "filter_seconds": 1.5007599560194649,
+        "repeat": 0,
+        "total_seconds": 2.454385375021957
+      },
+      {
+        "compiled": true,
+        "cpu_seconds": 0.8547150000000059,
+        "daily_sha256": "6b994a02b11aff541a5bc67ab9860eccd35d56607afbae3c1fb9fbf475908388",
+        "filter_calls": 529,
+        "filter_seconds": 0.0392468775389716,
+        "repeat": 0,
+        "total_seconds": 0.9929550840170123
+      },
+      {
+        "compiled": true,
+        "cpu_seconds": 0.8512959999999978,
+        "daily_sha256": "6b994a02b11aff541a5bc67ab9860eccd35d56607afbae3c1fb9fbf475908388",
+        "filter_calls": 529,
+        "filter_seconds": 0.03826492716325447,
+        "repeat": 1,
+        "total_seconds": 0.9394845000351779
+      },
+      {
+        "compiled": false,
+        "cpu_seconds": 2.0775530000000018,
+        "daily_sha256": "6b994a02b11aff541a5bc67ab9860eccd35d56607afbae3c1fb9fbf475908388",
+        "filter_calls": 529,
+        "filter_seconds": 1.4604678385076113,
+        "repeat": 1,
+        "total_seconds": 2.45139212498907
+      },
+      {
+        "compiled": false,
+        "cpu_seconds": 2.1232569999999953,
+        "daily_sha256": "6b994a02b11aff541a5bc67ab9860eccd35d56607afbae3c1fb9fbf475908388",
+        "filter_calls": 529,
+        "filter_seconds": 1.5241782071534544,
+        "repeat": 2,
+        "total_seconds": 2.5943842920241877
+      },
+      {
+        "compiled": true,
+        "cpu_seconds": 0.8601120000000009,
+        "daily_sha256": "6b994a02b11aff541a5bc67ab9860eccd35d56607afbae3c1fb9fbf475908388",
+        "filter_calls": 529,
+        "filter_seconds": 0.043849333946127445,
+        "repeat": 2,
+        "total_seconds": 1.072283542016521
+      }
+    ],
+    "simulations": 240,
+    "task": 25,
+    "training_observations": 6438
+  }
+}
