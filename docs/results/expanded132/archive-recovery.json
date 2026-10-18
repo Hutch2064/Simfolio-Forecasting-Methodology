@@ -1,0 +1,41 @@
+{
+  "assets": {
+    "expanded132-numeric-checkpoints-manifest.json": {
+      "bytes": 6958845,
+      "sha256": "9258e349d3241f62d67d303fae4262c375937d125b3d670963730ca589f6f78b",
+      "url": "https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/releases/download/expanded132-research-20261018/expanded132-numeric-checkpoints-manifest.json"
+    },
+    "expanded132-numeric-checkpoints.tar.gz": {
+      "bytes": 501141682,
+      "sha256": "70e518c353091731d1222ff6aa81510657a74153a3306300cf977e43125089e4",
+      "url": "https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/releases/download/expanded132-research-20261018/expanded132-numeric-checkpoints.tar.gz"
+    },
+    "public-checkpoints-restoration-verification.json": {
+      "bytes": 267,
+      "sha256": "6b6fca61d1b6e1bef99c71744c119a79a6ea38c3032c381fb769c4a320c08bf7",
+      "url": "https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/releases/download/expanded132-research-20261018/public-checkpoints-restoration-verification.json"
+    },
+    "verify_research_archive.py": {
+      "bytes": 1291,
+      "sha256": "70a123b05f106021813110a30f9a9323a3317586e032a96d3ba7cef619c6e948",
+      "url": "https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/releases/download/expanded132-research-20261018/verify_research_archive.py"
+    }
+  },
+  "private_diagnostics": "Original machine-path metadata, cache namespaces, complete source-state restoration records and private audit inputs are held in the authenticated private archival release identified by the campaign storage ledger.",
+  "release": "https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/releases/tag/expanded132-research-20261018",
+  "restoration_verification": {
+    "all_file_members_verified": 43110,
+    "archive": "expanded132-numeric-checkpoints.tar.gz",
+    "archive_bytes": 501141682,
+    "archive_sha256": "70e518c353091731d1222ff6aa81510657a74153a3306300cf977e43125089e4",
+    "fresh_download_verified": true,
+    "passed": true
+  },
+  "restore_commands": [
+    "gh release download expanded132-research-20261018 --repo Hutch2064/Simfolio-Forecasting-Methodology --dir restored-expanded132",
+    "cd restored-expanded132",
+    "python3 verify_research_archive.py expanded132-numeric-checkpoints-manifest.json expanded132-numeric-checkpoints.tar.gz restoration-verification.json",
+    "tar -xzf expanded132-numeric-checkpoints.tar.gz"
+  ],
+  "scope": "43,079 original per-origin NPZ files and 31 portable manifests, including partial, rejected and interrupted attempts. Only complete validated report entries are ranked."
+}
