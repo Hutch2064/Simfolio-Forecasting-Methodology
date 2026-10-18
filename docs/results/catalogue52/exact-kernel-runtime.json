@@ -1,0 +1,112 @@
+{
+  "source_version": {
+    "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "f7fc60d38870db552b0cda4a47c019e207c5a48d78dcbe2defe73c946a5d5380",
+    "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+    "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+    "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+    "src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+    "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+    "tools/mcmc_runtime/compiled_smoothers.py": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46",
+    "tools/mcmc_runtime/exact_path_kernels.py": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5",
+    "tools/mcmc_runtime/research_jit_pilot.py": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e",
+    "tools/catalogue52/legacy_exact_kernels.py": "2968c438a32347f63da2e33061080d9f4b7378756ad0587a28255c64599b6c5c"
+  },
+  "records": [
+    {
+      "model": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "task": 25,
+      "training": 6438,
+      "horizon": 1609,
+      "simulations": 240,
+      "rows": [
+        {
+          "repeat": 0,
+          "accelerated": false,
+          "seconds": 3.268359458015766,
+          "sha256": "9b2a03bb987ecb3c7ece474f80a56ae7bb209157022159a2176d82d1f1d16d37"
+        },
+        {
+          "repeat": 0,
+          "accelerated": true,
+          "seconds": 0.07854583399603143,
+          "sha256": "9b2a03bb987ecb3c7ece474f80a56ae7bb209157022159a2176d82d1f1d16d37"
+        },
+        {
+          "repeat": 1,
+          "accelerated": true,
+          "seconds": 0.0772327080485411,
+          "sha256": "9b2a03bb987ecb3c7ece474f80a56ae7bb209157022159a2176d82d1f1d16d37"
+        },
+        {
+          "repeat": 1,
+          "accelerated": false,
+          "seconds": 3.15442149998853,
+          "sha256": "9b2a03bb987ecb3c7ece474f80a56ae7bb209157022159a2176d82d1f1d16d37"
+        },
+        {
+          "repeat": 2,
+          "accelerated": false,
+          "seconds": 3.148702541948296,
+          "sha256": "9b2a03bb987ecb3c7ece474f80a56ae7bb209157022159a2176d82d1f1d16d37"
+        },
+        {
+          "repeat": 2,
+          "accelerated": true,
+          "seconds": 0.07690820802235976,
+          "sha256": "9b2a03bb987ecb3c7ece474f80a56ae7bb209157022159a2176d82d1f1d16d37"
+        }
+      ],
+      "all_hashes_equal": true,
+      "median_original": 3.15442149998853,
+      "median_accelerated": 0.0772327080485411
+    },
+    {
+      "model": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "task": 25,
+      "training": 6438,
+      "horizon": 1609,
+      "simulations": 240,
+      "rows": [
+        {
+          "repeat": 0,
+          "accelerated": false,
+          "seconds": 3.5999015839770436,
+          "sha256": "a8a5262165a9c0997ff3d18ac891f271f49f4298067e27dc99b4fb221dd5c568"
+        },
+        {
+          "repeat": 0,
+          "accelerated": true,
+          "seconds": 0.09948224999243394,
+          "sha256": "a8a5262165a9c0997ff3d18ac891f271f49f4298067e27dc99b4fb221dd5c568"
+        },
+        {
+          "repeat": 1,
+          "accelerated": true,
+          "seconds": 0.10963416699087247,
+          "sha256": "a8a5262165a9c0997ff3d18ac891f271f49f4298067e27dc99b4fb221dd5c568"
+        },
+        {
+          "repeat": 1,
+          "accelerated": false,
+          "seconds": 3.6316577920224518,
+          "sha256": "a8a5262165a9c0997ff3d18ac891f271f49f4298067e27dc99b4fb221dd5c568"
+        },
+        {
+          "repeat": 2,
+          "accelerated": false,
+          "seconds": 3.5903152499813586,
+          "sha256": "a8a5262165a9c0997ff3d18ac891f271f49f4298067e27dc99b4fb221dd5c568"
+        },
+        {
+          "repeat": 2,
+          "accelerated": true,
+          "seconds": 0.09812341700308025,
+          "sha256": "a8a5262165a9c0997ff3d18ac891f271f49f4298067e27dc99b4fb221dd5c568"
+        }
+      ],
+      "all_hashes_equal": true,
+      "median_original": 3.5999015839770436,
+      "median_accelerated": 0.09948224999243394
+    }
+  ]
+}

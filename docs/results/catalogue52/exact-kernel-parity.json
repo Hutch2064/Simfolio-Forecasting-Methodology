@@ -1,0 +1,168 @@
+{
+  "source_version": {
+    "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "f7fc60d38870db552b0cda4a47c019e207c5a48d78dcbe2defe73c946a5d5380",
+    "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+    "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+    "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+    "src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+    "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+    "tools/mcmc_runtime/compiled_smoothers.py": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46",
+    "tools/mcmc_runtime/exact_path_kernels.py": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5",
+    "tools/mcmc_runtime/research_jit_pilot.py": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e",
+    "tools/catalogue52/legacy_exact_kernels.py": "2968c438a32347f63da2e33061080d9f4b7378756ad0587a28255c64599b6c5c"
+  },
+  "records": [
+    {
+      "index": 0,
+      "n": 507,
+      "model": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "fit_seconds": [
+        0.15081454103346914,
+        0.014422334032133222
+      ],
+      "fit_pickle_equal": true
+    },
+    {
+      "index": 0,
+      "n": 507,
+      "model": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "horizon": 126,
+      "seconds": [
+        0.7353124580113217,
+        0.020959084038622677
+      ],
+      "daily_byte_equal": true,
+      "terminal_byte_equal": true,
+      "daily_sha256": "a8ce117d1fe0c006445bc3f7711ae8a98b1e8ac32f433f26ba1b0dbf6cb353ac",
+      "max_abs_diff": 0.0
+    },
+    {
+      "index": 0,
+      "n": 507,
+      "model": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "horizon": 2922,
+      "seconds": [
+        4.16390354197938,
+        0.0929875829606317
+      ],
+      "daily_byte_equal": true,
+      "terminal_byte_equal": true,
+      "daily_sha256": "fd6fd4b738ef3858a78bb8da714a1657896b3d41cbb295a37ed08743ede07b8f",
+      "max_abs_diff": 0.0
+    },
+    {
+      "index": 0,
+      "n": 507,
+      "model": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "fit_seconds": [
+        0.15878633299143985,
+        0.01893608400132507
+      ],
+      "fit_pickle_equal": true
+    },
+    {
+      "index": 0,
+      "n": 507,
+      "model": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "horizon": 126,
+      "seconds": [
+        0.3217565839877352,
+        0.025368542002979666
+      ],
+      "daily_byte_equal": true,
+      "terminal_byte_equal": true,
+      "daily_sha256": "d9b33245cf0ee8d17e3610b9f062fc52648cd5ac435dd230a9e03a245db35db3",
+      "max_abs_diff": 0.0
+    },
+    {
+      "index": 0,
+      "n": 507,
+      "model": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "horizon": 2922,
+      "seconds": [
+        4.043210375006311,
+        0.09529579197987914
+      ],
+      "daily_byte_equal": true,
+      "terminal_byte_equal": true,
+      "daily_sha256": "a97f14c5b42d52566ec6045f9540bc5f1a32d3108ac6c142436a86eb3ff5b8ca",
+      "max_abs_diff": 0.0
+    },
+    {
+      "index": 47,
+      "n": 11657,
+      "model": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "fit_seconds": [
+        1.7905454160063528,
+        0.045251416973769665
+      ],
+      "fit_pickle_equal": true
+    },
+    {
+      "index": 47,
+      "n": 11657,
+      "model": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "horizon": 126,
+      "seconds": [
+        1.8590719169587828,
+        0.05260079097934067
+      ],
+      "daily_byte_equal": true,
+      "terminal_byte_equal": true,
+      "daily_sha256": "62d512ece84a6b14984fc1c92dac863522a7a3bf71fea60c17084c9b266fadbd",
+      "max_abs_diff": 0.0
+    },
+    {
+      "index": 47,
+      "n": 11657,
+      "model": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "horizon": 2922,
+      "seconds": [
+        5.603812582965475,
+        0.12306187499780208
+      ],
+      "daily_byte_equal": true,
+      "terminal_byte_equal": true,
+      "daily_sha256": "1e1c43e783aa38ca9e67d22273fd461f2161202332dd06974a832825f25c23d7",
+      "max_abs_diff": 0.0
+    },
+    {
+      "index": 47,
+      "n": 11657,
+      "model": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "fit_seconds": [
+        2.4957405410241336,
+        0.08338949998142198
+      ],
+      "fit_pickle_equal": true
+    },
+    {
+      "index": 47,
+      "n": 11657,
+      "model": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "horizon": 126,
+      "seconds": [
+        2.1945576250436716,
+        0.08225504198344424
+      ],
+      "daily_byte_equal": true,
+      "terminal_byte_equal": true,
+      "daily_sha256": "61cd53f10c2bc8e08659a4cd60b699f063c7e8593ed8d0ac1fb25e58c626ce2e",
+      "max_abs_diff": 0.0
+    },
+    {
+      "index": 47,
+      "n": 11657,
+      "model": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "horizon": 2922,
+      "seconds": [
+        5.919365084031597,
+        0.1931574170012027
+      ],
+      "daily_byte_equal": true,
+      "terminal_byte_equal": true,
+      "daily_sha256": "b2ccf82fde4963aa459c7f3abe10f7833ffad88b74d96a17bc2203f97a28d3d6",
+      "max_abs_diff": 0.0
+    }
+  ]
+}

@@ -1,0 +1,2809 @@
+{
+  "blended_score_used": false,
+  "exclusions": [
+    {
+      "canonical_rank": 257,
+      "public_model_id": "asset_m256_data_timescales_autocorrelation",
+      "reason": "M256 sibling: changes only the mean-curve EWMA timescale selector to centered conditional lag-one regression."
+    },
+    {
+      "canonical_rank": 258,
+      "public_model_id": "asset_m256_data_timescales_predictive_one",
+      "reason": "M256 sibling: changes only the mean-curve EWMA timescale selector to a one-rate predictive-proxy likelihood."
+    },
+    {
+      "canonical_rank": 259,
+      "public_model_id": "asset_m256_data_timescales_predictive_adaptive",
+      "reason": "M256 sibling: changes only the mean-curve timescale-selection branch to forward BIC-selected rates and component count; retained as the closest adaptive-count sibling, but outside the one requested campaign slot."
+    },
+    {
+      "canonical_rank": 260,
+      "public_model_id": "asset_m256_data_timescales_stationary_one",
+      "reason": "M256 sibling: changes only the mean-curve EWMA timescale selector to a stationary AR(1) likelihood on the existing latent history."
+    }
+  ],
+  "fresh_models_complete": 5,
+  "fresh_models_registered": 258,
+  "fresh_models_required": 258,
+  "full_scores": [
+    {
+      "canonical_rank": 261,
+      "cells": 455832,
+      "cells_sha256": "e256aed32f9975745d961bc89d60e1a866e82bdfd3e2c3e829b99c4b072e8ab3",
+      "display_name": "M261 \u2014 M256 Data-selected Timescale: existing_sv_rate",
+      "historical80_crps": 0.22672308848311776,
+      "historical80_evidence_verified": true,
+      "model_id": "asset_m256_data_timescales_existing_sv_rate",
+      "portfolios": 52,
+      "role": "validated_saved_production_control",
+      "saved_control_verification_sha256": "afe62f5aca1cc52ef4201343b5238a245973440f8a3c49e989fbc581dfbf3223",
+      "simulations": 240,
+      "single52_crps": 0.6138695810898457,
+      "tasks": 2652
+    },
+    {
+      "canonical_rank": 3,
+      "cells": 455832,
+      "cells_sha256": "dd536a2c60b3595d88204b28400b1b6d66b7f3058e5c35768fb69d2c02e40059",
+      "display_name": "M003 \u2014 bayesian sbb ml vol overlay rf harx ff6",
+      "execution_name": "m003",
+      "historical80_crps": 0.2558767877509775,
+      "historical80_evidence_verified": false,
+      "historical80_improves_production": false,
+      "improvement_vs_m261_single52": -0.008633670886196487,
+      "improvement_vs_whitepaper_naive_single52": 0.26913525108769376,
+      "manifest_sha256": "83bf27de5e9ea6c36ca22470058670235b0d5eff15c41a6b623126363c5cba5a",
+      "model_id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "portfolio_scores": {
+        "single_EFASIM": 0.7368492126859678,
+        "single_GLDSIM": 1.0816268589956746,
+        "single_GSGSIM": 1.1803883414515728,
+        "single_IEFSIM": 0.15313887354244932,
+        "single_IEISIM": 0.11965124984954568,
+        "single_IWCSIM": 0.34817197333723576,
+        "single_IWMSIM": 0.2264355649529054,
+        "single_REITSIM": 0.3851266525646596,
+        "single_SDSSIM": 1.6818802012571954,
+        "single_SHYSIM": 0.1449578472746804,
+        "single_SLVSIM": 2.440211430164919,
+        "single_SPMOSIM": 0.2828547577334295,
+        "single_SPXLSIM": 0.6982439477435257,
+        "single_SPXUSIM": 2.4637627135282933,
+        "single_SPYSIM": 0.37198263368380624,
+        "single_SSOSIM": 0.471333832636169,
+        "single_TECLSIM": 2.1176275898751937,
+        "single_TLTSIM": 0.3251636563305946,
+        "single_TMFSIM": 0.730477046631508,
+        "single_TNASIM": 0.7335298875878119,
+        "single_TYDSIM": 0.44222696426104413,
+        "single_UBTSIM": 0.42759044234392657,
+        "single_UGLSIM": 3.3374291051333977,
+        "single_UPROSIM": 0.6800403611920227,
+        "single_URTHSIM": 0.38193104991230237,
+        "single_URTYSIM": 0.7307062456583872,
+        "single_UWMSIM": 0.4795415390732324,
+        "single_VBKSIM": 0.26917367979429013,
+        "single_VBRSIM": 0.37493576786408783,
+        "single_VBSIM": 0.209827971210685,
+        "single_VEASIM": 0.732083095807036,
+        "single_VOESIM": 0.19881173799214816,
+        "single_VOOSIM": 0.33588437695493606,
+        "single_VOSIM": 0.18159913908375636,
+        "single_VOTSIM": 0.28597051557188086,
+        "single_VTISIM": 0.23026205337642508,
+        "single_VTSIM": 0.3413923186949163,
+        "single_VTVSIM": 0.28106689845407856,
+        "single_VUGSIM": 0.36169123325970176,
+        "single_VVSIM": 0.33588437695493606,
+        "single_VXUSSIM": 0.7362248875840669,
+        "single_XLBSIM": 0.3271237764492308,
+        "single_XLCSIM": 0.5928614526194294,
+        "single_XLESIM": 0.35674909312136055,
+        "single_XLFSIM": 0.4261951076634072,
+        "single_XLISIM": 0.21975615998078435,
+        "single_XLKSIM": 0.5085596716425302,
+        "single_XLPSIM": 0.36735258073706656,
+        "single_XLUSIM": 0.14423788983685637,
+        "single_XLVSIM": 0.3598475317324798,
+        "single_XLYSIM": 0.2961996189996143,
+        "single_ZROZSIM": 0.5502445942540312
+      },
+      "portfolios": 52,
+      "production_eligibility": "pending_separate_historical80_and_matched_runtime_gates",
+      "raw_evidence": {
+        "access": "authenticated_research_archive",
+        "archive_sha256": "f4d4fb8df1ec1d018f2a7a260da69d5ec3b5dc249c5c55ad7e82cfbc7d773742",
+        "archived_and_download_verified": true,
+        "remote_receipt_sha256": "00dec7542486fe6ba6e262907d100b0f0f59db0b726c71f1bf2d864edb9bab60"
+      },
+      "result_sha256": "cdfd103c64583ae19e7b553078a9aa89093fb5d0aa3cd304b8a16473718b7722",
+      "runtime": {
+        "matched_production_runtime_gate": "not_yet_measured",
+        "scope": "concurrent_campaign_worker_wall_seconds",
+        "summed_worker_seconds": 140.03777984762564
+      },
+      "simulations": 240,
+      "single52_crps": 0.6191695290200228,
+      "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "tasks": 2652
+    },
+    {
+      "canonical_rank": 6,
+      "cells": 455832,
+      "cells_sha256": "44205eae0bff0e3c629786c3907b8cbd4605524aef239a1127af8f652861556b",
+      "display_name": "M006 \u2014 Bayesian SBB + GJR-GARCH(1,1)",
+      "execution_name": "m006",
+      "historical80_crps": 0.26224498248121614,
+      "historical80_evidence_verified": false,
+      "historical80_improves_production": false,
+      "improvement_vs_m261_single52": -0.009785623764414275,
+      "improvement_vs_whitepaper_naive_single52": 0.2683005359920162,
+      "manifest_sha256": "e2e79aeff882d8726fe275ccfae37c80063ec715d0fd9a92cf5afd62d52e4741",
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1",
+      "portfolio_scores": {
+        "single_EFASIM": 0.6613499593230029,
+        "single_GLDSIM": 1.1012316200660568,
+        "single_GSGSIM": 1.128235970012989,
+        "single_IEFSIM": 0.15231364675684178,
+        "single_IEISIM": 0.12627462811869683,
+        "single_IWCSIM": 0.3652069953114856,
+        "single_IWMSIM": 0.2345082334061692,
+        "single_REITSIM": 0.4238028767595394,
+        "single_SDSSIM": 1.7169055523973895,
+        "single_SHYSIM": 0.15599351523146493,
+        "single_SLVSIM": 2.4911960389550876,
+        "single_SPMOSIM": 0.2862706124505756,
+        "single_SPXLSIM": 0.6652383915642144,
+        "single_SPXUSIM": 2.496769833711052,
+        "single_SPYSIM": 0.337792246807749,
+        "single_SSOSIM": 0.4404958746865644,
+        "single_TECLSIM": 2.2999186695866136,
+        "single_TLTSIM": 0.31292277126352647,
+        "single_TMFSIM": 0.78422142042614,
+        "single_TNASIM": 0.771033918570526,
+        "single_TYDSIM": 0.4608375632622207,
+        "single_UBTSIM": 0.4433799192081251,
+        "single_UGLSIM": 3.3952707700615763,
+        "single_UPROSIM": 0.661098865935312,
+        "single_URTHSIM": 0.3430105351169781,
+        "single_URTYSIM": 0.7751629221308138,
+        "single_UWMSIM": 0.5106418524825557,
+        "single_VBKSIM": 0.26683144479517584,
+        "single_VBRSIM": 0.3840412166320271,
+        "single_VBSIM": 0.2240901747012609,
+        "single_VEASIM": 0.6570103846505041,
+        "single_VOESIM": 0.21031657902387213,
+        "single_VOOSIM": 0.30271352148807035,
+        "single_VOSIM": 0.1962001386922261,
+        "single_VOTSIM": 0.27345265178844913,
+        "single_VTISIM": 0.224690209516094,
+        "single_VTSIM": 0.3048606289327007,
+        "single_VTVSIM": 0.2543368030915834,
+        "single_VUGSIM": 0.3409492943251625,
+        "single_VVSIM": 0.30271352148807035,
+        "single_VXUSSIM": 0.6597640788959821,
+        "single_XLBSIM": 0.3062459458236435,
+        "single_XLCSIM": 0.5606453810016476,
+        "single_XLESIM": 0.340945941515163,
+        "single_XLFSIM": 0.4327383297921281,
+        "single_XLISIM": 0.2311215344753485,
+        "single_XLKSIM": 0.5572563038830207,
+        "single_XLPSIM": 0.3457468348368403,
+        "single_XLUSIM": 0.14583188880021375,
+        "single_XLVSIM": 0.34550829105750475,
+        "single_XLYSIM": 0.2868889539850604,
+        "single_ZROZSIM": 0.5376019914470787
+      },
+      "portfolios": 52,
+      "production_eligibility": "pending_separate_historical80_and_matched_runtime_gates",
+      "raw_evidence": {
+        "access": "authenticated_research_archive",
+        "archive_sha256": "a94708bcb067691d6015ecddceaf1b05891f4e2f3374f5da5a1d4b3ef70c985b",
+        "archived_and_download_verified": true,
+        "remote_receipt_sha256": "cacb897ff0ed52ba57169826d087419ba5649e0589468a1bbda19921c117c538"
+      },
+      "result_sha256": "3f3c226cfa5d1bc29f6927e3fbc7ba44d994b43fd99426aab7f21955f437e55e",
+      "runtime": {
+        "matched_production_runtime_gate": "not_yet_measured",
+        "scope": "concurrent_campaign_worker_wall_seconds",
+        "summed_worker_seconds": 85.75291874806862
+      },
+      "simulations": 240,
+      "single52_crps": 0.6198766778508095,
+      "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "tasks": 2652
+    },
+    {
+      "canonical_rank": 5,
+      "cells": 455832,
+      "cells_sha256": "cb9a0bcefd604df159603a96a9aaa957bf5e8a3420be9117e28786ecf017d10b",
+      "display_name": "M005 \u2014 Bayesian SBB + Absolute-EWMA",
+      "execution_name": "m005",
+      "historical80_crps": 0.25801165086966715,
+      "historical80_evidence_verified": false,
+      "historical80_improves_production": false,
+      "improvement_vs_m261_single52": -0.015816289281761264,
+      "improvement_vs_whitepaper_naive_single52": 0.26393066319643776,
+      "manifest_sha256": "4a002a7309d3ac9b6fe3943d7c22f172673015aef7324f58646d05c3e105d67d",
+      "model_id": "bayesian_sbb_overlay_ewma_absolute",
+      "portfolio_scores": {
+        "single_EFASIM": 0.7617879552407524,
+        "single_GLDSIM": 1.0452561347968825,
+        "single_GSGSIM": 1.177926438966905,
+        "single_IEFSIM": 0.15877670679576047,
+        "single_IEISIM": 0.11248246738733893,
+        "single_IWCSIM": 0.36573369600786754,
+        "single_IWMSIM": 0.2389141771819713,
+        "single_REITSIM": 0.4028423738345848,
+        "single_SDSSIM": 1.6693393849627283,
+        "single_SHYSIM": 0.13869240591622087,
+        "single_SLVSIM": 2.4703108508517735,
+        "single_SPMOSIM": 0.28316232033100724,
+        "single_SPXLSIM": 0.7350570883567115,
+        "single_SPXUSIM": 2.4377224216320594,
+        "single_SPYSIM": 0.36811975153042675,
+        "single_SSOSIM": 0.487224420955089,
+        "single_TECLSIM": 2.0557825165565777,
+        "single_TLTSIM": 0.3584323618523753,
+        "single_TMFSIM": 0.6765318778609247,
+        "single_TNASIM": 0.7772553848773693,
+        "single_TYDSIM": 0.41523252961054,
+        "single_UBTSIM": 0.4318590332979987,
+        "single_UGLSIM": 3.2932118757702598,
+        "single_UPROSIM": 0.7171725706095173,
+        "single_URTHSIM": 0.38750036763124945,
+        "single_URTYSIM": 0.7703671254663698,
+        "single_UWMSIM": 0.4989761511413258,
+        "single_VBKSIM": 0.27815376696109434,
+        "single_VBRSIM": 0.3610302285414394,
+        "single_VBSIM": 0.21914617440946477,
+        "single_VEASIM": 0.7570308253347837,
+        "single_VOESIM": 0.2128401459159232,
+        "single_VOOSIM": 0.3308661122246659,
+        "single_VOSIM": 0.19652689307435386,
+        "single_VOTSIM": 0.294986410658063,
+        "single_VTISIM": 0.24136315450275894,
+        "single_VTSIM": 0.34687749706476023,
+        "single_VTVSIM": 0.27129158177645185,
+        "single_VUGSIM": 0.36933026372554817,
+        "single_VVSIM": 0.3308661122246659,
+        "single_VXUSSIM": 0.7604747704954045,
+        "single_XLBSIM": 0.33583711602624705,
+        "single_XLCSIM": 0.5848636284477625,
+        "single_XLESIM": 0.3300850106443159,
+        "single_XLFSIM": 0.4264475246995674,
+        "single_XLISIM": 0.2396977775030263,
+        "single_XLKSIM": 0.512215873436563,
+        "single_XLPSIM": 0.38695526717757905,
+        "single_XLUSIM": 0.1529872857508063,
+        "single_XLVSIM": 0.3513787562123272,
+        "single_XLYSIM": 0.3172414561426028,
+        "single_ZROZSIM": 0.5819294158403211
+      },
+      "portfolios": 52,
+      "production_eligibility": "pending_separate_historical80_and_matched_runtime_gates",
+      "raw_evidence": {
+        "access": "authenticated_research_archive",
+        "archive_sha256": "f832df699bb725a9a1c2c51e3700af5d6a0bb176fdda7d494450d86f3f358452",
+        "archived_and_download_verified": true,
+        "remote_receipt_sha256": "1aa1af8e89759e6f7f561a70be60d206e56eae5e5f45c7249a372a4d9166b781"
+      },
+      "result_sha256": "f216ebc67dc99c1e82c8eb99fe15073d833614eaa9feacc7a9c99441df08a87a",
+      "runtime": {
+        "matched_production_runtime_gate": "not_yet_measured",
+        "scope": "concurrent_campaign_worker_wall_seconds",
+        "summed_worker_seconds": 101.60902786348015
+      },
+      "simulations": 240,
+      "single52_crps": 0.6235787199656363,
+      "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "tasks": 2652
+    },
+    {
+      "canonical_rank": 4,
+      "cells": 455832,
+      "cells_sha256": "03cc5d14d21df684180d4d9ab9b100fdfbe64a66de31c258fcffeeff886c307f",
+      "display_name": "M004 \u2014 Bayesian SBB + HARCH(1,5,22)",
+      "execution_name": "m004",
+      "historical80_crps": 0.2568880640642086,
+      "historical80_evidence_verified": false,
+      "historical80_improves_production": false,
+      "improvement_vs_m261_single52": -0.04735056186200981,
+      "improvement_vs_whitepaper_naive_single52": 0.24108065444028948,
+      "manifest_sha256": "64d6970c29f855325287c7e44c1cbc5650c05510c85dff2e2c4a900aa89ef841",
+      "model_id": "bayesian_sbb_overlay_harch_1_5_22",
+      "portfolio_scores": {
+        "single_EFASIM": 0.7394176539046814,
+        "single_GLDSIM": 1.1991175312844309,
+        "single_GSGSIM": 1.0858275132208266,
+        "single_IEFSIM": 0.1480236267068639,
+        "single_IEISIM": 0.1144541142104992,
+        "single_IWCSIM": 0.3648055833096675,
+        "single_IWMSIM": 0.258911091609203,
+        "single_REITSIM": 0.48630857928693094,
+        "single_SDSSIM": 1.5518275655555902,
+        "single_SHYSIM": 0.15880713759777798,
+        "single_SLVSIM": 2.732670931823873,
+        "single_SPMOSIM": 0.34539140654123623,
+        "single_SPXLSIM": 0.7652710094026691,
+        "single_SPXUSIM": 2.264879105224817,
+        "single_SPYSIM": 0.3827869400356211,
+        "single_SSOSIM": 0.5202609200281358,
+        "single_TECLSIM": 2.035773646202575,
+        "single_TLTSIM": 0.3551174335875539,
+        "single_TMFSIM": 0.6514687479649417,
+        "single_TNASIM": 0.8176335851587798,
+        "single_TYDSIM": 0.38908973639842626,
+        "single_UBTSIM": 0.3994802317614972,
+        "single_UGLSIM": 3.6182943976503426,
+        "single_UPROSIM": 0.7492383094431926,
+        "single_URTHSIM": 0.4056327943616626,
+        "single_URTYSIM": 0.8089776974055486,
+        "single_UWMSIM": 0.5273630908585553,
+        "single_VBKSIM": 0.2840374493366083,
+        "single_VBRSIM": 0.3545730482374768,
+        "single_VBSIM": 0.23353215761962026,
+        "single_VEASIM": 0.7347542003594307,
+        "single_VOESIM": 0.21862611955224776,
+        "single_VOOSIM": 0.3496114275861666,
+        "single_VOSIM": 0.2180504710584164,
+        "single_VOTSIM": 0.3324130514073002,
+        "single_VTISIM": 0.2632097499297455,
+        "single_VTSIM": 0.36928927218182706,
+        "single_VTVSIM": 0.2762601580818272,
+        "single_VUGSIM": 0.4165674620320368,
+        "single_VVSIM": 0.3496114275861666,
+        "single_VXUSSIM": 0.7377680394325321,
+        "single_XLBSIM": 0.36777831599005545,
+        "single_XLCSIM": 0.6274166923314954,
+        "single_XLESIM": 0.33506009893181504,
+        "single_XLFSIM": 0.4368410632436589,
+        "single_XLISIM": 0.26883639523450126,
+        "single_XLKSIM": 0.5042296179094501,
+        "single_XLPSIM": 0.43058515386106816,
+        "single_XLUSIM": 0.1720502643677857,
+        "single_XLVSIM": 0.4110011583401198,
+        "single_XLYSIM": 0.3621073822575774,
+        "single_ZROZSIM": 0.5016652771463871
+      },
+      "portfolios": 52,
+      "production_eligibility": "pending_separate_historical80_and_matched_runtime_gates",
+      "raw_evidence": {
+        "access": "authenticated_research_archive",
+        "archive_sha256": "21188005704c7d2ad1fd8ee80bc2a1df6af325a3e9176bbe265e146dd1e17a63",
+        "archived_and_download_verified": true,
+        "remote_receipt_sha256": "8a4adc85718beb2baea19fe34ac39cc94a0e0294cd1a593ffe24379ee8109401"
+      },
+      "result_sha256": "ce13ff2526a6f20f7d0742f518cab77bbd43115902347f09faff00bab2fd98f0",
+      "runtime": {
+        "matched_production_runtime_gate": "not_yet_measured",
+        "scope": "concurrent_campaign_worker_wall_seconds",
+        "summed_worker_seconds": 101.01129809685517
+      },
+      "simulations": 240,
+      "single52_crps": 0.6429366506644465,
+      "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "tasks": 2652
+    },
+    {
+      "canonical_rank": 7,
+      "cells": 455832,
+      "cells_sha256": "65293fcd74eb71b8a40e0b9b91736cf194c99d364b2de43e7bc8ef894e48289e",
+      "display_name": "M007 \u2014 Bayesian SBB + FIGARCH(1,d,1)",
+      "execution_name": "m007",
+      "historical80_crps": 0.2624589516546082,
+      "historical80_evidence_verified": false,
+      "historical80_improves_production": false,
+      "improvement_vs_m261_single52": -0.18737067566564725,
+      "improvement_vs_whitepaper_naive_single52": 0.13962085959935921,
+      "manifest_sha256": "0b121ebbfe1fff0ad2233018426f23f760c1eede2f2f97dfa994e266276b54f5",
+      "model_id": "bayesian_sbb_overlay_figarch_1_d_1",
+      "portfolio_scores": {
+        "single_EFASIM": 0.7136360592768171,
+        "single_GLDSIM": 1.1889652139640963,
+        "single_GSGSIM": 0.9974098085453365,
+        "single_IEFSIM": 0.14650579177387182,
+        "single_IEISIM": 0.11694309741016073,
+        "single_IWCSIM": 0.7801077705781799,
+        "single_IWMSIM": 0.5957075605238693,
+        "single_REITSIM": 0.6356320857258418,
+        "single_SDSSIM": 1.751162445640092,
+        "single_SHYSIM": 0.16721049610029154,
+        "single_SLVSIM": 2.540070560460761,
+        "single_SPMOSIM": 0.33391548906541607,
+        "single_SPXLSIM": 0.6842539557959361,
+        "single_SPXUSIM": 2.539449034373167,
+        "single_SPYSIM": 0.35044323565980745,
+        "single_SSOSIM": 0.47273969700090707,
+        "single_TECLSIM": 2.108850527269369,
+        "single_TLTSIM": 0.33531909431372486,
+        "single_TMFSIM": 0.7123626781641386,
+        "single_TNASIM": 1.8988949791047005,
+        "single_TYDSIM": 0.4011775763802192,
+        "single_UBTSIM": 0.4010520872421958,
+        "single_UGLSIM": 3.595072812299033,
+        "single_UPROSIM": 0.6744425241369936,
+        "single_URTHSIM": 0.40355181716628596,
+        "single_URTYSIM": 1.888361842744383,
+        "single_UWMSIM": 1.240327609964156,
+        "single_VBKSIM": 0.616422178245414,
+        "single_VBRSIM": 0.5549550819477911,
+        "single_VBSIM": 0.5402702989820065,
+        "single_VEASIM": 0.7040472131775282,
+        "single_VOESIM": 0.3545502667781492,
+        "single_VOOSIM": 0.3174599974126759,
+        "single_VOSIM": 0.2160306012368267,
+        "single_VOTSIM": 0.3183721023563868,
+        "single_VTISIM": 0.23525364574300048,
+        "single_VTSIM": 0.37198859688505026,
+        "single_VTVSIM": 0.25764377852692194,
+        "single_VUGSIM": 0.38011850432636174,
+        "single_VVSIM": 0.3174599974126759,
+        "single_VXUSSIM": 0.7152311101802744,
+        "single_XLBSIM": 0.3304678770917255,
+        "single_XLCSIM": 0.5753487076224776,
+        "single_XLESIM": 0.3480609081946424,
+        "single_XLFSIM": 0.4144486717868247,
+        "single_XLISIM": 0.24234854478587206,
+        "single_XLKSIM": 0.677688910131181,
+        "single_XLPSIM": 0.3726795110485015,
+        "single_XLUSIM": 0.205356444073245,
+        "single_XLVSIM": 0.3517925945199401,
+        "single_XLYSIM": 0.33005949331698103,
+        "single_ZROZSIM": 0.480697555538168
+      },
+      "portfolios": 52,
+      "production_eligibility": "pending_separate_historical80_and_matched_runtime_gates",
+      "raw_evidence": {
+        "access": "authenticated_research_archive",
+        "archive_sha256": "083d16edb252f24257fe12eb49357a7f280e2cc2a11742c837e47cb3730cd4cf",
+        "archived_and_download_verified": true,
+        "remote_receipt_sha256": "3b17a7f41a763d7c5e730261675dae6b709e423c0391649c2db90d13f4580042"
+      },
+      "result_sha256": "466a05661cf9c3d383d5abed9f86b322927536d42a36a726cb0e54eb88e44e05",
+      "runtime": {
+        "matched_production_runtime_gate": "not_yet_measured",
+        "scope": "concurrent_campaign_worker_wall_seconds",
+        "summed_worker_seconds": 420.80924747965764
+      },
+      "simulations": 240,
+      "single52_crps": 0.7288907392692379,
+      "source_snapshot_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "tasks": 2652
+    }
+  ],
+  "historical80_role": "separate_required_production_validation_gate_no_new80_runs",
+  "inventory_sha256": "70f5f1d4b2926f26f5efb4bf29ed4bd28daca3112cca3f343447ff5eae5f6654",
+  "naive_benchmark": {
+    "cells_sha256": "300b4b126a730e7baef267739b40f2bcacd22fac5366c36359524a84f8b4c607",
+    "model_id": "asset_level_naive_politis_white_stationary_bootstrap_rebalanced",
+    "single52_crps": 0.8471738853754932
+  },
+  "partial_results_ranked": false,
+  "progress": [
+    {
+      "completed_tasks": 178,
+      "desired": "running",
+      "execution_name": "m001",
+      "live": true,
+      "model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 621,
+      "desired": "running",
+      "execution_name": "m002",
+      "live": true,
+      "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 2652,
+      "desired": "running",
+      "execution_name": "m003",
+      "live": false,
+      "model_id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "required_tasks": 2652,
+      "status": "complete"
+    },
+    {
+      "completed_tasks": 2652,
+      "desired": "running",
+      "execution_name": "m004",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_harch_1_5_22",
+      "required_tasks": 2652,
+      "status": "complete"
+    },
+    {
+      "completed_tasks": 2652,
+      "desired": "running",
+      "execution_name": "m005",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_ewma_absolute",
+      "required_tasks": 2652,
+      "status": "complete"
+    },
+    {
+      "completed_tasks": 2652,
+      "desired": "running",
+      "execution_name": "m006",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1",
+      "required_tasks": 2652,
+      "status": "complete"
+    },
+    {
+      "completed_tasks": 2652,
+      "desired": "running",
+      "execution_name": "m007",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_figarch_1_d_1",
+      "required_tasks": 2652,
+      "status": "complete"
+    },
+    {
+      "completed_tasks": 171,
+      "desired": "running",
+      "execution_name": "m008",
+      "live": true,
+      "model_id": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 296,
+      "desired": "running",
+      "execution_name": "m009",
+      "live": true,
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 1367,
+      "desired": "running",
+      "execution_name": "m010",
+      "live": true,
+      "model_id": "canonical",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 1309,
+      "desired": "running",
+      "execution_name": "m011",
+      "live": true,
+      "model_id": "stack_canonical_gaussian_w0.60",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 1302,
+      "desired": "running",
+      "execution_name": "m012",
+      "live": true,
+      "model_id": "stack_canonical_gaussian_w0.50",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 1063,
+      "desired": "running",
+      "execution_name": "m013",
+      "live": true,
+      "model_id": "stack_canonical_student_t_w0.60",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 1037,
+      "desired": "running",
+      "execution_name": "m014",
+      "live": true,
+      "model_id": "stack_canonical_student_t_w0.50",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 1037,
+      "desired": "running",
+      "execution_name": "m015",
+      "live": true,
+      "model_id": "stack_canonical_gaussian_w0.70",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 925,
+      "desired": "running",
+      "execution_name": "m016",
+      "live": true,
+      "model_id": "stack_canonical_student_t_w0.70",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 185,
+      "desired": "running",
+      "execution_name": "m017",
+      "live": true,
+      "model_id": "stack_canonical_gaussian_w0.80",
+      "required_tasks": 2652,
+      "status": "running"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m018",
+      "live": false,
+      "model_id": "stack_canonical_student_t_w0.80",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m019",
+      "live": false,
+      "model_id": "stack_canonical_student_t_w0.90",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m020",
+      "live": false,
+      "model_id": "stack_canonical_gaussian_w0.90",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m021",
+      "live": false,
+      "model_id": "stack_canonical_gaussian_w1.00",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m022",
+      "live": false,
+      "model_id": "stack_canonical_student_t_w1.00",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m023",
+      "live": false,
+      "model_id": "dp_mixture_sv_sbb",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m024",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m025",
+      "live": false,
+      "model_id": "observable_markov_state_sbb",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m026",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m027",
+      "live": false,
+      "model_id": "factor_ff6_ridge_residual_sbb_none",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m028",
+      "live": false,
+      "model_id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m029",
+      "live": false,
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m030",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m031",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m032",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m033",
+      "live": false,
+      "model_id": "gas_score_driven_skewt",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m034",
+      "live": false,
+      "model_id": "constant_mean_gaussian",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m035",
+      "live": false,
+      "model_id": "constant_mean_student_t",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m036",
+      "live": false,
+      "model_id": "naive_iid_historical_portfolio_bootstrap",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m037",
+      "live": false,
+      "model_id": "stochastic_volatility_ar1_empirical",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m038",
+      "live": false,
+      "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m039",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m040",
+      "live": false,
+      "model_id": "stochastic_volatility_ar1_empirical_sbb",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m041",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m042",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m043",
+      "live": false,
+      "model_id": "bayesian_mcmc_stochastic_volatility_sbb",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m044",
+      "live": false,
+      "model_id": "stochastic_volatility_ar1_student_t",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m045",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m046",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m047",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m048",
+      "live": false,
+      "model_id": "sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m049",
+      "live": false,
+      "model_id": "sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m050",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m051",
+      "live": false,
+      "model_id": "sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m052",
+      "live": false,
+      "model_id": "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m053",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m054",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m055",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m056",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m057",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m058",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m059",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m060",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m061",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m062",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m063",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m064",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m065",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m066",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m067",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m068",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m069",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m070",
+      "live": false,
+      "model_id": "sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m071",
+      "live": false,
+      "model_id": "sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m072",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m073",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m074",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m075",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m076",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m077",
+      "live": false,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m078",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m079",
+      "live": false,
+      "model_id": "sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m080",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m081",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m082",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m083",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m084",
+      "live": false,
+      "model_id": "sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m085",
+      "live": false,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m086",
+      "live": false,
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m087",
+      "live": false,
+      "model_id": "sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m088",
+      "live": false,
+      "model_id": "sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m089",
+      "live": false,
+      "model_id": "zero_mean_gaussian_vol_only",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m090",
+      "live": false,
+      "model_id": "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m091",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m092",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m093",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m094",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m095",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m096",
+      "live": false,
+      "model_id": "expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m097",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m098",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m099",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m100",
+      "live": false,
+      "model_id": "expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m101",
+      "live": false,
+      "model_id": "expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m102",
+      "live": false,
+      "model_id": "expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m103",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m104",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m105",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m106",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m107",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m108",
+      "live": false,
+      "model_id": "expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m109",
+      "live": false,
+      "model_id": "expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m110",
+      "live": false,
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m111",
+      "live": false,
+      "model_id": "expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m112",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m113",
+      "live": false,
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m114",
+      "live": false,
+      "model_id": "portfolio_gjr_garch_eb_sampler_moving_block_optimal",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m115",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m116",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m117",
+      "live": false,
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m118",
+      "live": false,
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m119",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m120",
+      "live": false,
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m121",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m122",
+      "live": false,
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m123",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m124",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m125",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m126",
+      "live": false,
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m127",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m128",
+      "live": false,
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m129",
+      "live": false,
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m130",
+      "live": false,
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m131",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m132",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m133",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m134",
+      "live": false,
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m135",
+      "live": false,
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m136",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m137",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m138",
+      "live": false,
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m139",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m140",
+      "live": false,
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m141",
+      "live": false,
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m142",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m143",
+      "live": false,
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m144",
+      "live": false,
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m145",
+      "live": false,
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m146",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m147",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m148",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m149",
+      "live": false,
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m150",
+      "live": false,
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m151",
+      "live": false,
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m152",
+      "live": false,
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m153",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m154",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m155",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m156",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m157",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m158",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m159",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m160",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m161",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m162",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m163",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m164",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m165",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m166",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m167",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m168",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m169",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m170",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m171",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m172",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m173",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m174",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m175",
+      "live": false,
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m176",
+      "live": false,
+      "model_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m177",
+      "live": false,
+      "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m178",
+      "live": false,
+      "model_id": "experimental_filtered_innovation_moment_sv_dlm",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m179",
+      "live": false,
+      "model_id": "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m180",
+      "live": false,
+      "model_id": "asset_rough_volterra_sv_eight_factor",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m181",
+      "live": false,
+      "model_id": "asset_compensated_poisson_jump_sv",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m182",
+      "live": false,
+      "model_id": "asset_hmm_three_state_full_rvine_sv",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m183",
+      "live": false,
+      "model_id": "asset_rough_jump_hmm_rvine_sv",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m184",
+      "live": false,
+      "model_id": "asset_bayesian_lifted_rfsv_ess",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m185",
+      "live": false,
+      "model_id": "asset_bayesian_lifted_rfsv_tight_ess",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m186",
+      "live": false,
+      "model_id": "asset_bayesian_lifted_rfsv_ess_terminal_pgas",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m187",
+      "live": false,
+      "model_id": "asset_bayesian_lifted_rfsv_leverage_ess",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m188",
+      "live": false,
+      "model_id": "asset_bayesian_lifted_rough_heston_hmc",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m189",
+      "live": false,
+      "model_id": "asset_bayesian_lifted_rfsv_student_ess",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m190",
+      "live": false,
+      "model_id": "asset_rough_volterra_sv_eight_factor_bayesian",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m191",
+      "live": false,
+      "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m192",
+      "live": false,
+      "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m193",
+      "live": false,
+      "model_id": "asset_map_predecessor_dynamic_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m194",
+      "live": false,
+      "model_id": "asset_map_multiscale_causal_residual_dynamic_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m195",
+      "live": false,
+      "model_id": "asset_map_multiscale_empirical_noise_dynamic_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m196",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_residual_dynamic_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m197",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_residual_empirical_noise_dynamic_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m198",
+      "live": false,
+      "model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m199",
+      "live": false,
+      "model_id": "asset_map_multiscale_profile_noise_conditional_residual_dynamic_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m200",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_debiased_whittle_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m201",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m202",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m203",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_reml_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m204",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_whittle_gls_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m205",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_whittle_mle_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m206",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m207",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_exact_covariance_whittle_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m208",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m209",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_analytic_differenced_whittle_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m210",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_relaxed_hurst_differenced_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m211",
+      "live": false,
+      "model_id": "asset_map_multiscale_conditional_empirical_full_hurst_differenced_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m212",
+      "live": false,
+      "model_id": "asset_map_multiscale_consistent_empirical_noise_differenced_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m213",
+      "live": false,
+      "model_id": "asset_map_multiscale_consistent_noise_student_innovations_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m214",
+      "live": false,
+      "model_id": "asset_map_multiscale_consistent_noise_hansen_skew_t_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m215",
+      "live": false,
+      "model_id": "asset_map_multiscale_consistent_noise_gaussian_innovations_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m216",
+      "live": false,
+      "model_id": "asset_map_joint_observation_noise_multiscale_dynamic_rough_map",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m217",
+      "live": false,
+      "model_id": "asset_map_joint_noise_continuous_quantile_normalized_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m218",
+      "live": false,
+      "model_id": "asset_map_raw_return_laplace_multiscale_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m219",
+      "live": false,
+      "model_id": "asset_map_student_return_laplace_multiscale_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m220",
+      "live": false,
+      "model_id": "asset_map_student_return_laplace_implied_noise_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m221",
+      "live": false,
+      "model_id": "asset_map_student_implied_noise_pathwise_multiscale_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m222",
+      "live": false,
+      "model_id": "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m223",
+      "live": false,
+      "model_id": "asset_map_student_implied_noise_pathwise_multiscale_full_hurst_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m224",
+      "live": false,
+      "model_id": "asset_map_student_pathwise_joint_rough_noise_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m225",
+      "live": false,
+      "model_id": "asset_map_matched_student_innovations_pathwise_multiscale_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m226",
+      "live": false,
+      "model_id": "asset_map_eb_ar1_multiscale_pathwise_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m227",
+      "live": false,
+      "model_id": "asset_map_student_implied_noise_pathwise_multiscale_untruncated_rough_priors",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m228",
+      "live": false,
+      "model_id": "asset_map_multiscale_predictor_offset_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m229",
+      "live": false,
+      "model_id": "asset_map_unclipped_log_proxy_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m230",
+      "live": false,
+      "model_id": "asset_map_student_continuous_quantile_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m231",
+      "live": false,
+      "model_id": "asset_map_adaptive_multiscale_rates_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m232",
+      "live": false,
+      "model_id": "asset_map_learned_multiscale_rates_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m233",
+      "live": false,
+      "model_id": "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m234",
+      "live": false,
+      "model_id": "asset_map_single_unshrunk_multiscale_rates_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m235",
+      "live": false,
+      "model_id": "asset_map_adaptive_unshrunk_multiscale_rates_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m236",
+      "live": false,
+      "model_id": "asset_map_adaptive_predictive_loading_rates_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m237",
+      "live": false,
+      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m238",
+      "live": false,
+      "model_id": "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m239",
+      "live": false,
+      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_unclipped_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m240",
+      "live": false,
+      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m241",
+      "live": false,
+      "model_id": "asset_map_joint_gaussian_multiscale_rough_stationary_normalized",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m242",
+      "live": false,
+      "model_id": "asset_map_adaptive_stable_coupled_multiscale_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m243",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_proxy_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m244",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_ou_residual_volatility",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m245",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_correlated_volatility_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m246",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_matched_offset_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m247",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_proxy_leverage_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m248",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_static_shrinkage_copula_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m249",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_shrinkage_student_copula_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m250",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_innovation_shrinkage_copula_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m251",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_innovation_student_copula_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m252",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_innovation_kendall_student_copula_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m253",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_innovation_shrinkage_lhs_copula_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m254",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_innovation_student_lhs_copula_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m255",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m256",
+      "live": false,
+      "model_id": "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m262",
+      "live": false,
+      "model_id": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+      "required_tasks": 2652,
+      "status": "queued"
+    },
+    {
+      "completed_tasks": 0,
+      "desired": "running",
+      "execution_name": "m263",
+      "live": false,
+      "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+      "required_tasks": 2652,
+      "status": "queued"
+    }
+  ],
+  "protocol": "catalogue52-terminal-log-empirical-crps-240-v1",
+  "ranking_metric": "single52_crps_only_lower_is_better"
+}

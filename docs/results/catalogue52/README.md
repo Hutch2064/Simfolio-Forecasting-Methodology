@@ -44,9 +44,10 @@ branches (`legacy-source-branch-parity.json`); reference text is retained under
 `tools/catalogue52/reference_legacy/`.
 
 Active inputs/checkpoints are temporary local working files. Completed model
-outputs are archived losslessly to release `catalogue52-20261018`, freshly
-downloaded and verified member-by-member before redundant raw local files are
-retired. Compact scores, manifests and restore receipts remain searchable.
+outputs and execution envelopes are archived losslessly to the approved private
+research archive, freshly downloaded and verified member-by-member before
+redundant raw local files are retired. Public score summaries and source are
+published here; authenticated recovery locators remain in the storage ledger.
 Archived runs require explicit restoration before resume. Scheduling priority
 and bounded worker counts preserve local interactivity; the campaign owns a
 20-GiB total storage budget with at least 100 GiB free-space reserve.

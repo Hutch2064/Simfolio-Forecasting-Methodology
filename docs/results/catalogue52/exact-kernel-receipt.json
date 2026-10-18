@@ -1,0 +1,76 @@
+{
+  "scope": "bounded local compiler-only diagnostic; no deployed-browser CTV or complete catalogue parity claim",
+  "revision": "5fbc52c3b7777bfc8e8d6c85bbc8266d98a3d1d7",
+  "task_cache": "6f139419bc532714fae01156bc82fdab299eb85fd11452057944e000dff425d8",
+  "environment": {
+    "packages": {
+      "llvmlite": "0.49.0",
+      "numba": "0.67.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "pybind11": "3.1.0",
+      "pyvinecopulib": "0.7.5",
+      "scipy": "1.18.1"
+    },
+    "python": "3.12.13"
+  },
+  "source_version": {
+    "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "f7fc60d38870db552b0cda4a47c019e207c5a48d78dcbe2defe73c946a5d5380",
+    "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+    "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+    "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+    "src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+    "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+    "tools/mcmc_runtime/compiled_smoothers.py": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46",
+    "tools/mcmc_runtime/exact_path_kernels.py": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5",
+    "tools/mcmc_runtime/research_jit_pilot.py": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e",
+    "tools/catalogue52/legacy_exact_kernels.py": "2968c438a32347f63da2e33061080d9f4b7378756ad0587a28255c64599b6c5c"
+  },
+  "fit_parity": "full pickle5 bytes; tasks0/47; n507/11657; M001/M008",
+  "forecast_parity": "240 complete daily and cumulative-terminal paths; horizons126/2922;8 cases; maxabs0",
+  "timing": "nice10; same process; original path dispatcher warmed; 3 alternating-order paired repeats per model on task25 n6438 horizon1609",
+  "global_restoration": "finally block; exception and nested context verified",
+  "storage_owner": "root catalogue52 campaign; retain setup/legacy-runtime until root archives and verifies entire campaign",
+  "evidence": {
+    "check_parity.py": {
+      "bytes": 2988,
+      "sha256": "b96cfa85d6c5661f59be677f105c90d6f4c831832dee2465279f788cc85c4b0c"
+    },
+    "parity-results.json": {
+      "bytes": 5700,
+      "sha256": "1d68c9817c96f190957c930fdc8a6beb332f1110f24de72c10ebd1138a3b6454"
+    },
+    "parity.log": {
+      "bytes": 3375,
+      "sha256": "faabc8ec0514efb806daa7e31b667f86972865dd82858f98e1d4944c4ab0ed31"
+    },
+    "profile-one.log": {
+      "bytes": 6991,
+      "sha256": "0a0e063fef0fd930437ca7fe6bdd40a8ef9c759f9fd705904887e41faf77f0f8"
+    },
+    "profile-one.txt": {
+      "bytes": 6837,
+      "sha256": "96cca9133abd6f8fab3bc2454cd23ba4a8ba2bc46f509a94e2f8fe9f2e0bac37"
+    },
+    "profile_one.py": {
+      "bytes": 1210,
+      "sha256": "3f408251c1b5a5c6e27ec5938d769a7eab9a79e707332a4717089108538c1656"
+    },
+    "pytest.log": {
+      "bytes": 584,
+      "sha256": "5f66fbe641bca0383c7eebb7eb91a74e96500767868c1b742157816a35725f66"
+    },
+    "repeat_timing.py": {
+      "bytes": 1540,
+      "sha256": "460a9d4401b71198ff6fb60c3c7eb2619557f844bb2e08f940ddd5f31ef79d3d"
+    },
+    "repeated-timings.json": {
+      "bytes": 4483,
+      "sha256": "71793231528333afdd27af5ced9a9aaff4d73d81cdbc5b3d16425abd32e33bc4"
+    },
+    "repeated-timings.log": {
+      "bytes": 2262,
+      "sha256": "26d9991b1c133f3079c7c3fd35904525c91cb28b8a6934e988a46da108247523"
+    }
+  }
+}
