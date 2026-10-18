@@ -1,14 +1,14 @@
-# Canonical model reference (261 models including the original 175)
+# Canonical model reference (263 models including the original 175)
 
 This file is generated from `src/simfolio_forecasting_methodology/resources/canonical_175/ledger.json`.
 The ledger is the sole membership authority for this public set.
 
-- Membership: **261** rows, canonical ranks **1–261**.
+- Membership: **263** rows, canonical ranks **1–263**.
 - Retained source ranks: **12–186**.
-- Membership digest: `ab6c47978e6749205443aa4415aedf71465baa594ffbbc3ddb1bf21f3d211107`.
+- Membership digest: `5499df536de164d5533a70f4140f2af6919d640e2e73cc53cd2b537afd381669`.
 - Retained score token: `lexical decimal token recovered from observed retained JSON`.
 - Publication score token: `rounded to nine significant digits with variable decimal places`.
-- Confirmed full statistical specifications: **261**.
+- Confirmed full statistical specifications: **263**.
 - Rows retain source score evidence while implementation, numerical defaults, dependency closure, and parity are tracked by per-row verification flags.
 - Protocol, frozen data, and scored-panel fingerprints are recorded in the ledger. Their exact linkage to retained historical scores remains qualified by the documented source discrepancies.
 
@@ -275,3 +275,5 @@ The ledger is the sole membership authority for this public set.
 | 259 | None | asset_m256_data_timescales_predictive_adaptive | M259 — M256 Data-selected Timescale: predictive_adaptive | asset_level_extension | 0.22981601892906445 | 0.229816019 | true | validated_full_canonical_score |
 | 260 | None | asset_m256_data_timescales_stationary_one | M260 — M256 Data-selected Timescale: stationary_one | asset_level_extension | 0.22804312178001787 | 0.228043122 | true | validated_full_canonical_score |
 | 261 | None | asset_m256_data_timescales_existing_sv_rate | M261 — M256 Data-selected Timescale: existing_sv_rate | asset_level_extension | 0.22672308848311776 | 0.226723088 | true | validated_full_canonical_score |
+| 262 | None | equal_path_pool_m261_and_bayesian_ewma_sbb | Equal-weight MAP rough and Bayesian EWMA forecast mixture | portfolio_path_density_mixture | 0.2201357869781349 | 0.220135787 | true | validated_full_canonical_score |
+| 263 | None | equal_path_pool_stationary_ou_and_bayesian_ewma_sbb | Equal-weight stationary OU and Bayesian EWMA forecast mixture | portfolio_path_density_mixture | 0.22745132492949452 | 0.227451325 | true | validated_full_canonical_score |
