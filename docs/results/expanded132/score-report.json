@@ -654,11 +654,12 @@
   "relative_pool_improvement_vs_incumbent": 0.02968876937261844,
   "research_decision": {
     "best_validated_aggregate_model": "equal_path_pool_m261_and_bayesian_ewma_sbb",
-    "confidence_scope": "Evidence-backed stopping judgment for these candidate families and this frozen protocol, not a statistical proof that no better model exists.",
+    "confidence_scope": "Ten-model first pass across selected families. Best tested so far; the catalogue has not been comprehensively screened under the new equal-block objective.",
     "faster_validated_tradeoff_model": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
     "no_production_change": true,
     "runtime_scope": "Four matched local research cases, 240 paths, one state worker/thread; cache strata and concurrent load disclosed. No uniform all-workload or browser speed claim.",
-    "stopping_basis": "The remaining source-backed mean ablation failed strongly. Its asset/horizon losses do not provide sufficient complementary error evidence for another mixture. Earlier distinct raw-bootstrap, moment-SV, rough-MAP, OU and Student GJR-GARCH screens did not support a better follow-up. Both validated mixtures were profiled against the same incumbent; compiled mapping and dependence kernels dominate and no substantial exact-parity optimization remains justified by profiling. Further architecture changes or fitted mixture weights would be speculative given these comparisons."
+    "search_status": "bounded_first_pass_complete_not_catalogue_exhaustion",
+    "stopping_basis": "The tested controls support the retained score leaders. This bounded screen does not justify ruling out untested catalogue families after changing the scoring weights; further catalogue selection should consider single-asset performance directly."
   },
   "runtime_claim": false,
   "schema_version": 1,
@@ -680,5 +681,21 @@
     "single52": 0.8400348401996254,
     "status": "mathematically_pruned_from_complete_independently_audited_single52"
   },
-  "timing_scope": "Checkpoint/cache harness times are diagnostic. Separate matched local attachment supports only the measured cases; no global runtime win or deployed-browser CTV claim."
+  "timing_scope": "Checkpoint/cache harness times are diagnostic. Separate matched local attachment supports only the measured cases; no global runtime win or deployed-browser CTV claim.",
+  "whitepaper_naive_benchmark": {
+    "all_6732_origins_independently_reaggregated": true,
+    "best_candidate_improvement_percent": 33.63966205564958,
+    "equal_block_score": 0.6145512010153478,
+    "evidence_index": {
+      "bytes": 1460,
+      "path": "docs/results/expanded132/whitepaper-naive/files.json",
+      "sha256": "b7c854b04bd460c310cd338d15f3839531a5103443387263b8ff715bcdfeb7ec"
+    },
+    "frontier_improvement_percent": 31.609224082211952,
+    "historical_original80_reproduced_exactly": true,
+    "label": "Naive benchmark: whitepaper joint stationary bootstrap",
+    "model_id": "asset_level_naive_politis_white_stationary_bootstrap_rebalanced",
+    "original80": 0.3819285166552024,
+    "single52": 0.8471738853754932
+  }
 }

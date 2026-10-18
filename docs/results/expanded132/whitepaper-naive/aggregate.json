@@ -1,0 +1,32 @@
+{
+  "all_denominator_gates_passed": true,
+  "best_candidate_aggregate": 0.40781825383484904,
+  "best_candidate_improvement_vs_naive_percent": 33.63966205564958,
+  "cells": 1157112,
+  "elapsed_seconds": 104.14527201652527,
+  "equal_block_score": 0.6145512010153478,
+  "independent_audits": {
+    "original80": {
+      "cells": 701280,
+      "every_origin_reaggregated_exact": true,
+      "tasks": 4080
+    },
+    "single52": {
+      "cells": 455832,
+      "every_origin_reaggregated_exact": true,
+      "tasks": 2652
+    }
+  },
+  "model_id": "asset_level_naive_politis_white_stationary_bootstrap_rebalanced",
+  "scores": {
+    "original80": 0.3819285166552024,
+    "single52": 0.8471738853754932
+  },
+  "simulations": 240,
+  "status": "complete",
+  "tasks": 6732,
+  "weights": {
+    "original80": 0.5,
+    "single52": 0.5
+  }
+}

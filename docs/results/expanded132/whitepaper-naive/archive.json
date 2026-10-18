@@ -1,0 +1,31 @@
+{
+  "assets": {
+    "whitepaper-naive-expanded132-checkpoints-manifest.json": {
+      "bytes": 1946188,
+      "sha256": "4d1504a652bb63d7cc00efc9d9a06a7fc474e56c3f7d2707060c0a80000ff64a",
+      "url": "https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/releases/download/expanded132-research-20261018/whitepaper-naive-expanded132-checkpoints-manifest.json"
+    },
+    "whitepaper-naive-expanded132-checkpoints.tar.gz": {
+      "bytes": 87101713,
+      "sha256": "7e01d927ce8df2d322006f1a9bf6bdba479702a1d814fc5538e3767fbcfc16bb",
+      "url": "https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/releases/download/expanded132-research-20261018/whitepaper-naive-expanded132-checkpoints.tar.gz"
+    },
+    "whitepaper-naive-restoration-verification.json": {
+      "bytes": 211,
+      "sha256": "732f2c59fe6f7c4ac26001275268205482354646fa49511999040b2350f9b807",
+      "url": "https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/releases/download/expanded132-research-20261018/whitepaper-naive-restoration-verification.json"
+    }
+  },
+  "restore_commands": [
+    "gh release download expanded132-research-20261018 --repo Hutch2064/Simfolio-Forecasting-Methodology --pattern \"whitepaper-naive-*\" --dir restored-whitepaper-naive",
+    "Verify the archive and every member against its manifest before extraction.",
+    "tar -xzf whitepaper-naive-expanded132-checkpoints.tar.gz"
+  ],
+  "verification": {
+    "all_file_members_verified": 13472,
+    "archive_bytes": 87101713,
+    "archive_sha256": "7e01d927ce8df2d322006f1a9bf6bdba479702a1d814fc5538e3767fbcfc16bb",
+    "fresh_download_verified": true,
+    "passed": true
+  }
+}

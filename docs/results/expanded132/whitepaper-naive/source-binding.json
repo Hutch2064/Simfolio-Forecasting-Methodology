@@ -1,0 +1,34 @@
+{
+  "reference_revision": "b0663a44e007c852a45be0a3e2dd2e7e61bcf2f0",
+  "reference_path": "research/asset_level_naive_oos_research.py",
+  "reference_file_sha256": "295720bd98eb32dbfc6520523dbc079186f9146065a6df5ddf433699cc7ce51e",
+  "verbatim_extracted_helpers": [
+    "_normalized_weights",
+    "_no_rebalance_terminal_logs",
+    "_future_rebalance_mask",
+    "_segmented_rebalanced_terminal_logs",
+    "_asset_level_politis_white_block_length"
+  ],
+  "selector": "public extracted engine _politis_white_block_length, matching whitepaper formula",
+  "source_base_revision": "ed6c96c93c70847a42f227a1fe4daed6c6c2add2",
+  "execution_revision": "c98a20a76188f9c48fdd0a62ac35779aed0561d2",
+  "smoke": {
+    "passed": true,
+    "selector_matches_retained_whitepaper_engine_cases": 21,
+    "repeat_and_policy_cases": 4,
+    "origin_smokes": [
+      {
+        "index": 0,
+        "horizon": 126,
+        "mean_origin_loss": 0.03507985308888033,
+        "seconds": 0.00446379097411409
+      },
+      {
+        "index": 50,
+        "horizon": 2922,
+        "mean_origin_loss": 0.15945737379548997,
+        "seconds": 0.0762802500394173
+      }
+    ]
+  }
+}
