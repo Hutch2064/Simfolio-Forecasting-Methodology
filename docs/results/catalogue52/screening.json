@@ -1,0 +1,203 @@
+{
+  "accuracy_inferiority_inferred_from_runtime": false,
+  "exclusions": [
+    {
+      "canonical_rank": 39,
+      "category": "resolved_statistical_alias",
+      "display_name": "M039 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations merton positive sample mean",
+      "execution_registrations": [
+        "m039"
+      ],
+      "full52_score_available": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+      "reason": "Source-verified resolved statistical alias of retained M032; preserve the representative and all existing evidence rather than finish another model-ID seed stream.",
+      "retained_representative_rank": 32
+    },
+    {
+      "canonical_rank": 42,
+      "category": "resolved_statistical_alias",
+      "display_name": "M042 \u2014 Bayesian SBB + mcmc sv ar1 merton positive sample mean",
+      "execution_registrations": [
+        "m042"
+      ],
+      "full52_score_available": false,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean",
+      "reason": "Source-verified resolved statistical alias of retained M032; preserve the representative and all existing evidence rather than finish another model-ID seed stream.",
+      "retained_representative_rank": 32
+    },
+    {
+      "canonical_rank": 57,
+      "category": "resolved_statistical_alias",
+      "display_name": "M057 \u2014 Bayesian SBB + Absolute-EWMA Empirical-Bayes positive sharpe mu uncertainty",
+      "execution_registrations": [
+        "m057"
+      ],
+      "full52_score_available": false,
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+      "reason": "Source-verified resolved statistical alias of retained M050; preserve the representative and all existing evidence rather than finish another model-ID seed stream.",
+      "retained_representative_rank": 50
+    },
+    {
+      "canonical_rank": 184,
+      "category": "disproportionate_runtime_screen",
+      "display_name": "M184 \u2014 Bayesian Lifted RFSV \u2014 ESS/HMC",
+      "execution_registrations": [
+        "m184",
+        "parallel-05-m184"
+      ],
+      "first_origin_loss_sha256": "42129f3684539e9cd256b82bd9a7ece1249c48f66ba54c7eb89417a6d7c2d44c",
+      "first_origin_mean_crps": 0.08240677404735539,
+      "first_origin_seconds": 23.733980541990604,
+      "full52_score_available": false,
+      "model_id": "asset_bayesian_lifted_rfsv_ess",
+      "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+    },
+    {
+      "canonical_rank": 185,
+      "category": "disproportionate_runtime_screen",
+      "display_name": "M185 \u2014 Bayesian Lifted RFSV \u2014 Tight Kernel ESS/HMC",
+      "execution_registrations": [
+        "m185",
+        "parallel-04-m185"
+      ],
+      "first_origin_loss_sha256": "c4cd21d5949de1d6de8d2ceeea0cc3da62b343283ff5747bb522a28aed4a2ded",
+      "first_origin_mean_crps": 0.08222633919967944,
+      "first_origin_seconds": 26.1746803750284,
+      "full52_score_available": false,
+      "model_id": "asset_bayesian_lifted_rfsv_tight_ess",
+      "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+    },
+    {
+      "canonical_rank": 186,
+      "category": "disproportionate_runtime_screen",
+      "display_name": "M186 \u2014 Bayesian Lifted RFSV \u2014 ESS/HMC + Terminal PGAS",
+      "execution_registrations": [
+        "m186",
+        "parallel-06-m186"
+      ],
+      "first_origin_loss_sha256": "d2bfdde4819e0f431cd00a2f6ebba67ed585786041d5dd3f31cf14bc90214b81",
+      "first_origin_mean_crps": 0.08289818023196265,
+      "first_origin_seconds": 16.485429874970578,
+      "full52_score_available": false,
+      "model_id": "asset_bayesian_lifted_rfsv_ess_terminal_pgas",
+      "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+    },
+    {
+      "canonical_rank": 187,
+      "category": "disproportionate_runtime_screen",
+      "display_name": "M187 \u2014 Bayesian Lifted RFSV \u2014 Leverage ESS/HMC",
+      "execution_registrations": [
+        "m187",
+        "parallel-03-m187"
+      ],
+      "first_origin_loss_sha256": "f687e6d23821eb224ae1c2717b0790627f6348f35dd5fec95c4dd9dca0d29a0b",
+      "first_origin_mean_crps": 0.08340188523228396,
+      "first_origin_seconds": 36.57394116697833,
+      "full52_score_available": false,
+      "model_id": "asset_bayesian_lifted_rfsv_leverage_ess",
+      "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+    },
+    {
+      "canonical_rank": 188,
+      "category": "disproportionate_runtime_screen",
+      "display_name": "M188 \u2014 Bayesian Lifted Rough Heston \u2014 HMC",
+      "execution_registrations": [
+        "m188",
+        "parallel-01-m188"
+      ],
+      "first_origin_loss_sha256": "de375ea3213b15dfe6848b99feae84a1b75b5d110e9869889387d5076a7c157f",
+      "first_origin_mean_crps": 0.08421489027682633,
+      "first_origin_seconds": 100.73478237498784,
+      "full52_score_available": false,
+      "model_id": "asset_bayesian_lifted_rough_heston_hmc",
+      "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+    },
+    {
+      "canonical_rank": 189,
+      "category": "disproportionate_runtime_screen",
+      "display_name": "M189 \u2014 Bayesian Lifted RFSV \u2014 Inferred Student-t ESS/HMC",
+      "execution_registrations": [
+        "m189",
+        "parallel-02-m189"
+      ],
+      "first_origin_loss_sha256": "b26ae5589c66060d652941472968f59abdeaadaed224574fa06c5df84098042c",
+      "first_origin_mean_crps": 0.08212347142963769,
+      "first_origin_seconds": 42.281155749980826,
+      "full52_score_available": false,
+      "model_id": "asset_bayesian_lifted_rfsv_student_ess",
+      "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+    }
+  ],
+  "frozen_catalogue_membership_changed": false,
+  "initial_inventory_sha256": "70f5f1d4b2926f26f5efb4bf29ed4bd28daca3112cca3f343447ff5eae5f6654",
+  "minimum_retained_canonical_models": 100,
+  "priority_interpretation": "User interests preserved; do not narrow the campaign to these four.",
+  "priority_models": [
+    "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+    "bayesian_sbb_overlay_gjr_garch_1_1",
+    "equal_path_pool_m261_and_bayesian_ewma_sbb",
+    "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb"
+  ],
+  "retention_decisions": [
+    "M029 retained: its distinct inference method remains useful coverage; the M009 score alone does not establish M029 accuracy.",
+    "Dependence-only models retained: they remain distinct joint models even where single-asset laws overlap."
+  ],
+  "runtime_screen": {
+    "group_first_origin_projection_share": 0.655592416310461,
+    "heston_representative": {
+      "canonical_rank": 188,
+      "completed_origin": false,
+      "cpu_seconds": 652.5968,
+      "full_panel_score": false,
+      "horizon_days": 1609,
+      "observed_hotspot": "native Heston HMC",
+      "raw_evidence_manifest_sha256": "f3ce5f47c69abfa051e320ebe8be386c7fc9ea245a8da191c5068198e60cf2ce",
+      "simulations": 240,
+      "stopped_elapsed_seconds": 717.7423,
+      "task_index": 25,
+      "training_observations": 6438
+    },
+    "projection_scope": "sum of first-origin seconds times2652; unvalidated extrapolation, includes startup effects, not observed full-panel cost"
+  },
+  "schema_version": 1,
+  "scope_amendment": "User permits only clear nonunique variants or disproportionate runtime outliers without leading evidence to be removed; retain broad methodological coverage and at least 100-plus canonical models. The four named interests are not a narrowed shortlist.",
+  "statistical_alias_evidence": {
+    "groups": [
+      {
+        "canonical_ranks": [
+          32,
+          39,
+          42
+        ],
+        "excluded_identity_labels": [
+          "id",
+          "overlay_model",
+          "ablation_family",
+          "feature_family"
+        ],
+        "factory": "simfolio_forecasting_methodology.models.portfolio.full_mcmc:FullMCMCSVModel",
+        "interpretation": "Same resolved numerical/statistical specification and executable factory. Public-ID seed streams can differ; this is not a byte-identical path claim.",
+        "normalized_resolved_candidate_sha256": "76f79407ea4c94e582cd868489d17b3f913a6e99407bd6de29d4252e63cae237",
+        "retained_representative_rank": 32
+      },
+      {
+        "canonical_ranks": [
+          50,
+          57
+        ],
+        "excluded_identity_labels": [
+          "id",
+          "overlay_model",
+          "ablation_family",
+          "feature_family"
+        ],
+        "factory": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+        "interpretation": "Same resolved numerical/statistical specification and executable factory. Public-ID seed streams can differ; this is not a byte-identical path claim.",
+        "normalized_resolved_candidate_sha256": "2b01ddbbc22d1b3cc2727d3679e5d50dabd384eaee03399b6773fbe7c0cb9850",
+        "retained_representative_rank": 50
+      }
+    ],
+    "resolved_specifications_path": "src/simfolio_forecasting_methodology/resources/specifications/canonical_statistical_specifications.json",
+    "resolved_specifications_sha256": "d0b5d4c8e03024077df12b3440146df43b5bead5e6361db6da0d7eaa20fb6e69"
+  }
+}

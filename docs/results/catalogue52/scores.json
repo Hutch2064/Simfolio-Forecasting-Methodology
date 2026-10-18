@@ -25,7 +25,8 @@
   "executions_registered": 267,
   "fresh_models_complete": 32,
   "fresh_models_registered": 258,
-  "fresh_models_required": 258,
+  "fresh_models_required": 249,
+  "frozen_original_fresh_models_required": 258,
   "full_scores": [
     {
       "canonical_rank": 261,
@@ -118,6 +119,7 @@
         "remote_receipt_sha256": "18ff9f3944dd5cd30dc0866f32d4945efac420cfc14a176030db9ca2b4e84474"
       },
       "result_sha256": "eeeb8440737f4ee5543d8fe934af5fdffedc5c34fb7f260e180a9236ae853c14",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -204,6 +206,7 @@
         "remote_receipt_sha256": "00dec7542486fe6ba6e262907d100b0f0f59db0b726c71f1bf2d864edb9bab60"
       },
       "result_sha256": "cdfd103c64583ae19e7b553078a9aa89093fb5d0aa3cd304b8a16473718b7722",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -290,6 +293,7 @@
         "remote_receipt_sha256": "cacb897ff0ed52ba57169826d087419ba5649e0589468a1bbda19921c117c538"
       },
       "result_sha256": "3f3c226cfa5d1bc29f6927e3fbc7ba44d994b43fd99426aab7f21955f437e55e",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -376,6 +380,7 @@
         "remote_receipt_sha256": "1aa1af8e89759e6f7f561a70be60d206e56eae5e5f45c7249a372a4d9166b781"
       },
       "result_sha256": "f216ebc67dc99c1e82c8eb99fe15073d833614eaa9feacc7a9c99441df08a87a",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -462,6 +467,7 @@
         "remote_receipt_sha256": "d7508b2ad34de9a512b87ece30765db61d6c319d39a5142bad939cbdd4842143"
       },
       "result_sha256": "45711fdf372100e6fdd04f9f95ed3c3f01cf27afc2cfaf334814fcaa81a4eda5",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -548,6 +554,7 @@
         "remote_receipt_sha256": "8a4adc85718beb2baea19fe34ac39cc94a0e0294cd1a593ffe24379ee8109401"
       },
       "result_sha256": "ce13ff2526a6f20f7d0742f518cab77bbd43115902347f09faff00bab2fd98f0",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -634,6 +641,7 @@
         "remote_receipt_sha256": "9bcc1ad8c34e06e592fcd08f95acfb3b80ca837f2d2261f068df74b1f76829e6"
       },
       "result_sha256": "9ee236db0143a6ab3f355bb9c52cab65d8ea74e963b4858eade5a95d428efe26",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -720,6 +728,7 @@
         "remote_receipt_sha256": "c51a77d7481ab9e4cd82f107b37e5701f06a573284c90bc932d56ba2ca6115fd"
       },
       "result_sha256": "02394b747002def42195eb25acd32cf58945acd1d8b561d2283b58d64a03215e",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -806,6 +815,7 @@
         "remote_receipt_sha256": "3b17a7f41a763d7c5e730261675dae6b709e423c0391649c2db90d13f4580042"
       },
       "result_sha256": "466a05661cf9c3d383d5abed9f86b322927536d42a36a726cb0e54eb88e44e05",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -892,6 +902,7 @@
         "remote_receipt_sha256": "d66d8da1d17f5bfde8d52547426ac591de84e3257f59471921277b76d73ad6e4"
       },
       "result_sha256": "c245568824ae0bbfaba526fde2389603a3e63567fe32037f13768cae9c574f34",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -978,6 +989,7 @@
         "remote_receipt_sha256": "22c54b93d60654a9ae7a5ebb2d23fbb0ad3cc41f10b701ce3043eb84cd9ae505"
       },
       "result_sha256": "14f61a0fd829c9f7ef6944c3b11703b457c7fa15f4938e843a4224e45c2b0d79",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1064,6 +1076,7 @@
         "remote_receipt_sha256": "d5bfd90e6b2d7248bf8a98b58c56b82c78d7f98befdaf4da48e3527772c37592"
       },
       "result_sha256": "ad40fc9dfbefef7994ba2f31aeea1e1f577d56bb20738b98d6d96cdc15d93604",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1150,6 +1163,7 @@
         "remote_receipt_sha256": "675cf34a192fc2a51b2dd85eacbfab2591963df22ef30c0bc904e8b5a071bba9"
       },
       "result_sha256": "6ab60411bc8f804bd3f40e13cb95a6bbd56088f332b49781bd200274ce639d42",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1236,6 +1250,7 @@
         "remote_receipt_sha256": "046045b7baff39e42192419f5550715ad6e61263fa402e2943839023775bd13d"
       },
       "result_sha256": "b1f51bd8245deb78d055837858f1ffab53f1e203d5e78351761ec656c0bb73b5",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1322,6 +1337,7 @@
         "remote_receipt_sha256": "82be53a7526d155a7817db883a16ee76e95836329342d29966d5793a48098859"
       },
       "result_sha256": "2a7eb281b2724a39945b246cc5218901e8df8a463ed8444de3ea4cdc5324dbdd",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1408,6 +1424,7 @@
         "remote_receipt_sha256": "8673fe9f6979ab891434ccbdf30459fcbcbc36e2f93a8a505a6ead798a852532"
       },
       "result_sha256": "edc8a46cd5370658c8acf03c0dbc05c1cc9589ad23e27d8b0d2eb05feac5b163",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1494,6 +1511,7 @@
         "remote_receipt_sha256": "543238a635e1da25e29de6d12cb03ce9a19b8056fb15598f68f875e56f04d4e0"
       },
       "result_sha256": "a1887b7ffb9a6003037e7ffc74072c69245a24984afcdc7910ea1123a00d6e26",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1580,6 +1598,7 @@
         "remote_receipt_sha256": "761bd54e791f2914bee3df58ae73a36c9e3efca57607d6612808914188a084eb"
       },
       "result_sha256": "9a30a4c90039d6543cd6ef4ff3de3e63bd7efddbf224976fa5fb1b2c1df74a37",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1666,6 +1685,7 @@
         "remote_receipt_sha256": "de4251c7c2e19a7c6afc242b1e92aab23e664152b3044077333cedff189a2a5d"
       },
       "result_sha256": "f3b5ccda17c4c1766eb0bb3528a099990569bc11f391a0ecb92901c543663625",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1752,6 +1772,7 @@
         "remote_receipt_sha256": "1efb4c56b6605cecf9a0e74103e0119c642b9b2beb11ec5fde8de4e6788fd059"
       },
       "result_sha256": "2362afc91f7172d9796bda68e39b6328a1b310811ec699015cc17cc70f2c630f",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1838,6 +1859,7 @@
         "remote_receipt_sha256": "1936f9ee8eaf433322c53367d91ebade883c0f521cb353c54b54f7fbf9265e3c"
       },
       "result_sha256": "c89445e1cd0000045e3f66c5103ff4816d810b01408ce952cc7f7c736ffcfb28",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -1924,6 +1946,7 @@
         "remote_receipt_sha256": "5d1932f0b7601ac1b781adb3b8d0aa599c49d33a8ac9a73e26ae76de68a83308"
       },
       "result_sha256": "68f1849551ba7f95f2621c5cba034d0ae588fa5262bba3a0732f2c489e495d85",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2010,6 +2033,7 @@
         "remote_receipt_sha256": "e2f6f86855bbea75300b9763190f9b8f820a22b01dd420bda8206d3b09b981f8"
       },
       "result_sha256": "e277c3fc057e1376f8fbe52ada0a436df6a08d34613991d5b795fdd786f0af14",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2096,6 +2120,7 @@
         "remote_receipt_sha256": "496d64f92cd13081cf5d0de32e30f2078ae551782bdbd6ee1b05d1d20f46fddf"
       },
       "result_sha256": "2187bf89f3d23be90f9f907c3df23b5b34dd9c03e47207b514772add37e2818f",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2182,6 +2207,7 @@
         "remote_receipt_sha256": "76b2498cc82826eec7da5eee4c7988616ea3cfa4f84360d4fced31a3b50d4f8c"
       },
       "result_sha256": "f5a8a88737ffcedc28e9fa85051aabdf7ad256f2c11d5700ede24d630d1e105a",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2268,6 +2294,7 @@
         "remote_receipt_sha256": "68bc5e77363eda19b26b12326b872206ff5eb0f1924095a52f0bd5bb70cf1b15"
       },
       "result_sha256": "325ef0d51fd28883d889a2ba9dca4c97d1524ea4072eb193dcb9852d91f99708",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2354,6 +2381,7 @@
         "remote_receipt_sha256": "1f729cc3b277457a0883436022869bcc6de6243500b42ff6ee7b19b9417c5131"
       },
       "result_sha256": "5fca196efd8d1ac94eda9b555b803f5f33ff271cc2e2bcd7b159f49e354667dd",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2440,6 +2468,7 @@
         "remote_receipt_sha256": "815b9d5ff179a9e2338a90015e9ebf8be723369591a9ab80342a4f5818409022"
       },
       "result_sha256": "336034eeac6acfae8baadf90544e2c8bf99cfe14040a9f90367f5145db84a0ec",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2526,6 +2555,7 @@
         "remote_receipt_sha256": "11bf118715b3a3b67099627b7920fde030250ad0252ea850204b45cf3cc537bf"
       },
       "result_sha256": "3bea9bfd848d91ee837d153e778f4b0f8ea2383b952e0ab2b5c75cee472a248e",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2612,6 +2642,7 @@
         "remote_receipt_sha256": "0206715fecd96c719ce592956665661646078b91360ae53b70cbaf98d56ff7b8"
       },
       "result_sha256": "1dd4d70379519440c23d4b151c382003374565cbb69b1573a24656d97bbd5215",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2698,6 +2729,7 @@
         "remote_receipt_sha256": "5cf3c8aad8b390974efe67ecc1cdcb8563a3b411e44e674dff2a5c19cf424260"
       },
       "result_sha256": "ced19c86bbd9562e13f2a809b10196c29bcfbc595eb8c924769238b46a8eb8f1",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -2784,6 +2816,7 @@
         "remote_receipt_sha256": "9736fa214271117e68f2f756f327801ab8a43abd438a0fa0f9ac9d7cb2d66283"
       },
       "result_sha256": "af30050f83cde4c1b9fd0d0e663e79974847d4931d01cb6b854fb603a24f050d",
+      "retained_for_revised_campaign": true,
       "runtime": {
         "matched_production_runtime_gate": "not_yet_measured",
         "scope": "concurrent_campaign_worker_wall_seconds",
@@ -3039,7 +3072,7 @@
       "status": "complete"
     },
     {
-      "completed_tasks": 754,
+      "completed_tasks": 1246,
       "desired": "running",
       "execution_name": "m024",
       "live": true,
@@ -3084,7 +3117,7 @@
       "status": "complete"
     },
     {
-      "completed_tasks": 321,
+      "completed_tasks": 630,
       "desired": "running",
       "execution_name": "m029",
       "live": true,
@@ -3111,7 +3144,7 @@
       "status": "complete"
     },
     {
-      "completed_tasks": 504,
+      "completed_tasks": 1003,
       "desired": "running",
       "execution_name": "m032",
       "live": true,
@@ -3120,7 +3153,7 @@
       "status": "running"
     },
     {
-      "completed_tasks": 276,
+      "completed_tasks": 544,
       "desired": "running",
       "execution_name": "m033",
       "live": true,
@@ -3156,7 +3189,7 @@
       "status": "complete"
     },
     {
-      "completed_tasks": 961,
+      "completed_tasks": 2140,
       "desired": "running",
       "execution_name": "m037",
       "live": true,
@@ -3165,7 +3198,7 @@
       "status": "running"
     },
     {
-      "completed_tasks": 414,
+      "completed_tasks": 907,
       "desired": "running",
       "execution_name": "m038",
       "live": true,
@@ -3174,16 +3207,16 @@
       "status": "running"
     },
     {
-      "completed_tasks": 399,
-      "desired": "running",
+      "completed_tasks": 900,
+      "desired": "removed",
       "execution_name": "m039",
-      "live": true,
+      "live": false,
       "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
       "required_tasks": 2652,
-      "status": "running"
+      "status": "paused"
     },
     {
-      "completed_tasks": 888,
+      "completed_tasks": 2060,
       "desired": "running",
       "execution_name": "m040",
       "live": true,
@@ -3192,7 +3225,7 @@
       "status": "running"
     },
     {
-      "completed_tasks": 341,
+      "completed_tasks": 847,
       "desired": "running",
       "execution_name": "m041",
       "live": true,
@@ -3201,16 +3234,16 @@
       "status": "running"
     },
     {
-      "completed_tasks": 326,
-      "desired": "running",
+      "completed_tasks": 827,
+      "desired": "removed",
       "execution_name": "m042",
-      "live": true,
+      "live": false,
       "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean",
       "required_tasks": 2652,
-      "status": "running"
+      "status": "paused"
     },
     {
-      "completed_tasks": 266,
+      "completed_tasks": 761,
       "desired": "running",
       "execution_name": "m043",
       "live": true,
@@ -3219,7 +3252,7 @@
       "status": "running"
     },
     {
-      "completed_tasks": 591,
+      "completed_tasks": 1767,
       "desired": "running",
       "execution_name": "m044",
       "live": true,
@@ -3231,19 +3264,19 @@
       "completed_tasks": 0,
       "desired": "running",
       "execution_name": "m045",
-      "live": false,
+      "live": true,
       "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
       "required_tasks": 2652,
-      "status": "queued"
+      "status": "running"
     },
     {
-      "completed_tasks": 0,
+      "completed_tasks": 4,
       "desired": "running",
       "execution_name": "m046",
-      "live": false,
+      "live": true,
       "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
       "required_tasks": 2652,
-      "status": "queued"
+      "status": "running"
     },
     {
       "completed_tasks": 0,
@@ -3337,7 +3370,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "m057",
       "live": false,
       "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
@@ -5155,7 +5188,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "parallel-01-m188",
       "live": false,
       "model_id": "asset_bayesian_lifted_rough_heston_hmc",
@@ -5164,7 +5197,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "parallel-02-m189",
       "live": false,
       "model_id": "asset_bayesian_lifted_rfsv_student_ess",
@@ -5173,7 +5206,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "parallel-03-m187",
       "live": false,
       "model_id": "asset_bayesian_lifted_rfsv_leverage_ess",
@@ -5182,7 +5215,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "parallel-04-m185",
       "live": false,
       "model_id": "asset_bayesian_lifted_rfsv_tight_ess",
@@ -5191,7 +5224,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "parallel-05-m184",
       "live": false,
       "model_id": "asset_bayesian_lifted_rfsv_ess",
@@ -5200,7 +5233,7 @@
     },
     {
       "completed_tasks": 0,
-      "desired": "running",
+      "desired": "removed",
       "execution_name": "parallel-06-m186",
       "live": false,
       "model_id": "asset_bayesian_lifted_rfsv_ess_terminal_pgas",
@@ -5209,5 +5242,1711 @@
     }
   ],
   "protocol": "catalogue52-terminal-log-empirical-crps-240-v1",
-  "ranking_metric": "single52_crps_only_lower_is_better"
+  "ranking_metric": "single52_crps_only_lower_is_better",
+  "retained_canonical_models": [
+    {
+      "canonical_rank": 1,
+      "display_name": "M001 \u2014 Asset FastMAP + Dynamic Gaussian Factor",
+      "model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 2,
+      "display_name": "M002 \u2014 Bayesian SBB + Bias-Corrected SV-AR1",
+      "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 3,
+      "display_name": "M003 \u2014 bayesian sbb ml vol overlay rf harx ff6",
+      "model_id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 4,
+      "display_name": "M004 \u2014 Bayesian SBB + HARCH(1,5,22)",
+      "model_id": "bayesian_sbb_overlay_harch_1_5_22",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 5,
+      "display_name": "M005 \u2014 Bayesian SBB + Absolute-EWMA",
+      "model_id": "bayesian_sbb_overlay_ewma_absolute",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 6,
+      "display_name": "M006 \u2014 Bayesian SBB + GJR-GARCH(1,1)",
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 7,
+      "display_name": "M007 \u2014 Bayesian SBB + FIGARCH(1,d,1)",
+      "model_id": "bayesian_sbb_overlay_figarch_1_d_1",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 8,
+      "display_name": "M008 \u2014 Asset Exact-Kalman + Dynamic Gaussian Factor",
+      "model_id": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 9,
+      "display_name": "M009 \u2014 SV Baseline: sharpe dlm historical cagr anchor bdes multiscale vol conditional sharpe full in...",
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 10,
+      "display_name": "M010 \u2014 Canonical Gaussian Baseline",
+      "model_id": "canonical",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 11,
+      "display_name": "M011 \u2014 Canonical Distribution Stack (gaussian w0.60)",
+      "model_id": "stack_canonical_gaussian_w0.60",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 12,
+      "display_name": "M012 \u2014 Canonical Distribution Stack (gaussian w0.50)",
+      "model_id": "stack_canonical_gaussian_w0.50",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 13,
+      "display_name": "M013 \u2014 Canonical Distribution Stack (student t w0.60)",
+      "model_id": "stack_canonical_student_t_w0.60",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 14,
+      "display_name": "M014 \u2014 Canonical Distribution Stack (student t w0.50)",
+      "model_id": "stack_canonical_student_t_w0.50",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 15,
+      "display_name": "M015 \u2014 Canonical Distribution Stack (gaussian w0.70)",
+      "model_id": "stack_canonical_gaussian_w0.70",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 16,
+      "display_name": "M016 \u2014 Canonical Distribution Stack (student t w0.70)",
+      "model_id": "stack_canonical_student_t_w0.70",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 17,
+      "display_name": "M017 \u2014 Canonical Distribution Stack (gaussian w0.80)",
+      "model_id": "stack_canonical_gaussian_w0.80",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 18,
+      "display_name": "M018 \u2014 Canonical Distribution Stack (student t w0.80)",
+      "model_id": "stack_canonical_student_t_w0.80",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 19,
+      "display_name": "M019 \u2014 Canonical Distribution Stack (student t w0.90)",
+      "model_id": "stack_canonical_student_t_w0.90",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 20,
+      "display_name": "M020 \u2014 Canonical Distribution Stack (gaussian w0.90)",
+      "model_id": "stack_canonical_gaussian_w0.90",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 21,
+      "display_name": "M021 \u2014 Canonical Distribution Stack (gaussian w1.00)",
+      "model_id": "stack_canonical_gaussian_w1.00",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 22,
+      "display_name": "M022 \u2014 Canonical Distribution Stack (student t w1.00)",
+      "model_id": "stack_canonical_student_t_w1.00",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 23,
+      "display_name": "M023 \u2014 DP-Mixture SV + Stationary Bootstrap",
+      "model_id": "dp_mixture_sv_sbb",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 24,
+      "display_name": "M024 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations hac drift uncertainty",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 25,
+      "display_name": "M025 \u2014 Observable Markov State + Stationary Bootstrap",
+      "model_id": "observable_markov_state_sbb",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 26,
+      "display_name": "M026 \u2014 Bayesian SBB + Absolute-EWMA historical realized sharpe",
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 27,
+      "display_name": "M027 \u2014 factor ff6 ridge residual sbb none",
+      "model_id": "factor_ff6_ridge_residual_sbb_none",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 28,
+      "display_name": "M028 \u2014 factor ff6 ridge residual sbb absolute ewma",
+      "model_id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 29,
+      "display_name": "M029 \u2014 SV Baseline: sharpe dlm historical cagr anchor bdes multiscale vol conditional sharpe Optimal...",
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 30,
+      "display_name": "M030 \u2014 Bayesian SBB + Absolute-EWMA merton positive sample mean",
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 31,
+      "display_name": "M031 \u2014 Bayesian SBB + GARCH(1,1) merton positive sample mean",
+      "model_id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 32,
+      "display_name": "M032 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage merton positive sample mean",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 33,
+      "display_name": "M033 \u2014 Score-Driven Skew-t",
+      "model_id": "gas_score_driven_skewt",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 34,
+      "display_name": "M034 \u2014 Constant-Mean Gaussian",
+      "model_id": "constant_mean_gaussian",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 35,
+      "display_name": "M035 \u2014 Constant-Mean Student-t",
+      "model_id": "constant_mean_student_t",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 36,
+      "display_name": "M036 \u2014 IID Historical Bootstrap",
+      "model_id": "naive_iid_historical_portfolio_bootstrap",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 37,
+      "display_name": "M037 \u2014 AR(1) SV + Empirical Innovations",
+      "model_id": "stochastic_volatility_ar1_empirical",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 38,
+      "display_name": "M038 \u2014 SV Baseline: sample mean sample standardized sbb Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 40,
+      "display_name": "M040 \u2014 AR(1) SV + Stationary Bootstrap",
+      "model_id": "stochastic_volatility_ar1_empirical_sbb",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 41,
+      "display_name": "M041 \u2014 Bayesian SBB + mcmc sv no ar leverage transformed raw innovations hac drift uncertainty Adapt...",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 43,
+      "display_name": "M043 \u2014 Bayesian MCMC SV + Stationary Bootstrap",
+      "model_id": "bayesian_mcmc_stochastic_volatility_sbb",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 44,
+      "display_name": "M044 \u2014 AR(1) SV + Student-t",
+      "model_id": "stochastic_volatility_ar1_student_t",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 45,
+      "display_name": "M045 \u2014 Bayesian SBB + GJR-GARCH(1,1) merton positive sample mean",
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 46,
+      "display_name": "M046 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations hac drift uncertainty Adaptiv...",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 47,
+      "display_name": "M047 \u2014 Bayesian SBB + Bias-Corrected SV-AR1 hac drift uncertainty harx ff6 vol anchor",
+      "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 48,
+      "display_name": "M048 \u2014 SV Baseline: robust Horizon-Credibility mean sample standardized sbb Optimal Block Adaptive-M...",
+      "model_id": "sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 49,
+      "display_name": "M049 \u2014 SV Baseline: positive hac mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_positive_hac_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 50,
+      "display_name": "M050 \u2014 Bayesian SBB + Absolute-EWMA Empirical-Bayes positive sharpe",
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 51,
+      "display_name": "M051 \u2014 SV Baseline: positive eb mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 52,
+      "display_name": "M052 \u2014 portfolio gjr garch eb sampler stationary sbb optimal",
+      "model_id": "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 53,
+      "display_name": "M053 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB mad standardized Optimal Block Adaptive-Metrop...",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 54,
+      "display_name": "M054 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB vol conditioned residuals Optimal Block Adapti...",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 55,
+      "display_name": "M055 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB paired state shocks Optimal Block Adaptive-Met...",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 56,
+      "display_name": "M056 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB empirical state shocks Optimal Block Adaptive-...",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 58,
+      "display_name": "M058 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 59,
+      "display_name": "M059 \u2014 Bayesian SBB + GARCH(1,1) Empirical-Bayes sharpe",
+      "model_id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 60,
+      "display_name": "M060 \u2014 SV Baseline: Empirical-Bayes mean sbb Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 61,
+      "display_name": "M061 \u2014 Bayesian SBB + GJR-GARCH(1,1) Empirical-Bayes sharpe",
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 62,
+      "display_name": "M062 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB empirical sv measurement bias Optimal Block Ad...",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_sv_measurement_bias_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 63,
+      "display_name": "M063 \u2014 SV Baseline: Empirical-Bayes mean filtered circular block Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_circular_block_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 64,
+      "display_name": "M064 \u2014 Bayesian SBB + eGARCH(1,1) Empirical-Bayes sharpe",
+      "model_id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 65,
+      "display_name": "M065 \u2014 Bayesian SBB + GARCH(1,1) hierarchical Empirical-Bayes sharpe",
+      "model_id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 66,
+      "display_name": "M066 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB evt tail splice Optimal Block Adaptive-Metropo...",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 67,
+      "display_name": "M067 \u2014 SV Baseline: Empirical-Bayes mean sbb Optimal Block Adaptive MCMC",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 68,
+      "display_name": "M068 \u2014 SV Baseline: Empirical-Bayes mean Filtered SBB student t state shocks Optimal Block Adaptive-...",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_student_t_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 69,
+      "display_name": "M069 \u2014 Bayesian SBB + Absolute-EWMA Empirical-Bayes sharpe",
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 70,
+      "display_name": "M070 \u2014 SV Baseline: evidence dlm drift mean sample standardized sbb Optimal Block Adaptive-Metropoli...",
+      "model_id": "sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 71,
+      "display_name": "M071 \u2014 SV Baseline: Hierarchical-EB mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_hierarchical_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 72,
+      "display_name": "M072 \u2014 SV Baseline: Empirical-Bayes mean nig Adaptive MCMC",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 73,
+      "display_name": "M073 \u2014 SV Baseline: Empirical-Bayes mean nig student t state shocks Adaptive MCMC",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_student_t_state_shocks_adaptive_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 74,
+      "display_name": "M074 \u2014 SV Baseline: Empirical-Bayes mean nig Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_nig_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 75,
+      "display_name": "M075 \u2014 SV Baseline: Horizon-Credibility mean sample standardized sbb Optimal Block Adaptive-Metropol...",
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 76,
+      "display_name": "M076 \u2014 SV Baseline: Empirical-Bayes mean student t state shocks Adaptive MCMC",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_student_t_state_shocks_adaptive_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 77,
+      "display_name": "M077 \u2014 SV Baseline: Empirical-Bayes mean jf skewt Adaptive MCMC",
+      "model_id": "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 78,
+      "display_name": "M078 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations Horizon-Credibility hac drift...",
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 79,
+      "display_name": "M079 \u2014 SV Baseline: Hierarchical-EB mean jf skewt Adaptive MCMC",
+      "model_id": "sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 80,
+      "display_name": "M080 \u2014 SV Baseline: Horizon-Credibility mean sample standardized sbb vol conditioned residuals Optim...",
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 81,
+      "display_name": "M081 \u2014 SV Baseline: Horizon-Credibility mean sample standardized sbb evt tail splice Optimal Block A...",
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 82,
+      "display_name": "M082 \u2014 SV Baseline: Horizon-Credibility mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_horizon_credibility_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 83,
+      "display_name": "M083 \u2014 Bayesian SBB + GARCH(1,1) prequential crps shrinkage",
+      "model_id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 84,
+      "display_name": "M084 \u2014 SV Baseline: prequential crps mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_prequential_crps_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 85,
+      "display_name": "M085 \u2014 SV Baseline: Horizon-Credibility mean sample standardized sbb drift instability Optimal Block...",
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 86,
+      "display_name": "M086 \u2014 Bayesian SBB + Absolute-EWMA zero sharpe",
+      "model_id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 87,
+      "display_name": "M087 \u2014 SV Baseline: zero mean sample standardized sbb Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_zero_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 88,
+      "display_name": "M088 \u2014 SV Baseline: zero mean Filtered SBB Optimal Block Adaptive-Metropolis MCMC",
+      "model_id": "sv_live_baseline_zero_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 89,
+      "display_name": "M089 \u2014 Zero-Mean Gaussian Volatility",
+      "model_id": "zero_mean_gaussian_vol_only",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 90,
+      "display_name": "M090 \u2014 SV Baseline: zero mean jf skewt Adaptive MCMC",
+      "model_id": "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 91,
+      "display_name": "M091 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 92,
+      "display_name": "M092 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 93,
+      "display_name": "M093 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 94,
+      "display_name": "M094 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 95,
+      "display_name": "M095 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 96,
+      "display_name": "M096 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 97,
+      "display_name": "M097 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 98,
+      "display_name": "M098 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 99,
+      "display_name": "M099 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 100,
+      "display_name": "M100 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 101,
+      "display_name": "M101 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 102,
+      "display_name": "M102 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|constant_sample_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 103,
+      "display_name": "M103 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 104,
+      "display_name": "M104 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 105,
+      "display_name": "M105 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 106,
+      "display_name": "M106 \u2014 Factor-Premium Shrunk Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 107,
+      "display_name": "M107 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 108,
+      "display_name": "M108 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "expanding_sample_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 109,
+      "display_name": "M109 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "expanding_sample_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 110,
+      "display_name": "M110 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 111,
+      "display_name": "M111 \u2014 Expanding Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "expanding_sample_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 112,
+      "display_name": "M112 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 113,
+      "display_name": "M113 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 114,
+      "display_name": "M114 \u2014 portfolio gjr garch eb sampler moving block optimal",
+      "model_id": "portfolio_gjr_garch_eb_sampler_moving_block_optimal",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 115,
+      "display_name": "M115 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 116,
+      "display_name": "M116 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 117,
+      "display_name": "M117 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 118,
+      "display_name": "M118 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 119,
+      "display_name": "M119 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 120,
+      "display_name": "M120 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 121,
+      "display_name": "M121 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 122,
+      "display_name": "M122 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 123,
+      "display_name": "M123 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 124,
+      "display_name": "M124 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 125,
+      "display_name": "M125 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 126,
+      "display_name": "M126 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 127,
+      "display_name": "M127 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 128,
+      "display_name": "M128 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 129,
+      "display_name": "M129 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 130,
+      "display_name": "M130 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 131,
+      "display_name": "M131 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 132,
+      "display_name": "M132 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 133,
+      "display_name": "M133 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 134,
+      "display_name": "M134 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 135,
+      "display_name": "M135 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 136,
+      "display_name": "M136 \u2014 Factor-Premium Shrunk Mean \u00b7 GARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 137,
+      "display_name": "M137 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 138,
+      "display_name": "M138 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 139,
+      "display_name": "M139 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 140,
+      "display_name": "M140 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 141,
+      "display_name": "M141 \u2014 Expanding Mean \u00b7 GARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 142,
+      "display_name": "M142 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 143,
+      "display_name": "M143 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 144,
+      "display_name": "M144 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 145,
+      "display_name": "M145 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 146,
+      "display_name": "M146 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 147,
+      "display_name": "M147 \u2014 Factor-Premium Shrunk Mean \u00b7 GJR/TARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 148,
+      "display_name": "M148 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 149,
+      "display_name": "M149 \u2014 Factor-Premium Shrunk Mean \u00b7 EGARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 150,
+      "display_name": "M150 \u2014 Expanding Mean \u00b7 GJR/TARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 151,
+      "display_name": "M151 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 152,
+      "display_name": "M152 \u2014 Expanding Mean \u00b7 EGARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 153,
+      "display_name": "M153 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 154,
+      "display_name": "M154 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 155,
+      "display_name": "M155 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 156,
+      "display_name": "M156 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 157,
+      "display_name": "M157 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 158,
+      "display_name": "M158 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 159,
+      "display_name": "M159 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 160,
+      "display_name": "M160 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 161,
+      "display_name": "M161 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Gaussian Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 162,
+      "display_name": "M162 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 163,
+      "display_name": "M163 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 164,
+      "display_name": "M164 \u2014 BIC ARMA Mean \u00b7 Constant Volatility \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 165,
+      "display_name": "M165 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Skew-t Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 166,
+      "display_name": "M166 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 167,
+      "display_name": "M167 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 168,
+      "display_name": "M168 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 169,
+      "display_name": "M169 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 170,
+      "display_name": "M170 \u2014 BIC ARMA Mean \u00b7 GJR/TARCH(1,1) \u00b7 Student-t Innovations \u00b7 Parametric Tail",
+      "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 171,
+      "display_name": "M171 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 172,
+      "display_name": "M172 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 Filtered Empirical Tail",
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 173,
+      "display_name": "M173 \u2014 BIC ARMA Mean \u00b7 GARCH(1,1) \u00b7 Empirical Innovations \u00b7 IID Resampling \u00b7 EVT POT/GPD Tail",
+      "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 174,
+      "display_name": "M174 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 EVT POT/GPD Tail",
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 175,
+      "display_name": "M175 \u2014 BIC ARMA Mean \u00b7 EGARCH(1,1) \u00b7 Empirical Innovations \u00b7 Stationary Bootstrap \u00b7 Filtered Empirical Tail",
+      "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 176,
+      "display_name": "M176 \u2014 Asset Parameter MCMC + Filtered Moment SV",
+      "model_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 177,
+      "display_name": "M177 \u2014 Asset Filtered Innovation Moment SV + Fixed Mean",
+      "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 178,
+      "display_name": "M178 \u2014 Asset Filtered Innovation Moment SV + DLM",
+      "model_id": "experimental_filtered_innovation_moment_sv_dlm",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 179,
+      "display_name": "M179 \u2014 Asset Gaussian Moment SV + Fixed Mean",
+      "model_id": "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 180,
+      "display_name": "M180 \u2014 Asset Rough Volterra SV \u2014 Eight Factors",
+      "model_id": "asset_rough_volterra_sv_eight_factor",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 181,
+      "display_name": "M181 \u2014 Asset Compensated Poisson Jump SV",
+      "model_id": "asset_compensated_poisson_jump_sv",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 182,
+      "display_name": "M182 \u2014 Asset Three-State HMM + Full R-Vine SV",
+      "model_id": "asset_hmm_three_state_full_rvine_sv",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 183,
+      "display_name": "M183 \u2014 Asset Rough + Jump + HMM R-Vine SV",
+      "model_id": "asset_rough_jump_hmm_rvine_sv",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 190,
+      "display_name": "M190 \u2014 Asset Rough Volterra SV \u2014 Eight Factors + Bayesian Parameters",
+      "model_id": "asset_rough_volterra_sv_eight_factor_bayesian",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 191,
+      "display_name": "M191 \u2014 Asset Rough Volterra SV \u2014 Accuracy-Controlled Lift + Bayesian Parameters",
+      "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 192,
+      "display_name": "M192 \u2014 Asset Rough Volterra SV \u2014 Dynamic Resolution + Bayesian Parameters",
+      "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 193,
+      "display_name": "M193 \u2014 Asset MAP Multiscale + Dynamic Rough Volatility",
+      "model_id": "asset_map_predecessor_dynamic_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 194,
+      "display_name": "M194 \u2014 Asset MAP Multiscale + Causal residual rough fit",
+      "model_id": "asset_map_multiscale_causal_residual_dynamic_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 195,
+      "display_name": "M195 \u2014 Asset MAP Multiscale + Empirical log-square measurement noise",
+      "model_id": "asset_map_multiscale_empirical_noise_dynamic_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 196,
+      "display_name": "M196 \u2014 Asset MAP Multiscale + Conditional residual rough forecasts",
+      "model_id": "asset_map_multiscale_conditional_residual_dynamic_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 197,
+      "display_name": "M197 \u2014 Asset MAP Multiscale + Conditional residual rough + empirical noise",
+      "model_id": "asset_map_multiscale_conditional_residual_empirical_noise_dynamic_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 198,
+      "display_name": "M198 \u2014 Asset MAP Multiscale + Untrimmed conditional residual rough + empirical noise",
+      "model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 199,
+      "display_name": "M199 \u2014 Asset MAP Multiscale + Jointly estimated measurement noise",
+      "model_id": "asset_map_multiscale_profile_noise_conditional_residual_dynamic_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 200,
+      "display_name": "M200 \u2014 Asset MAP Multiscale + Debiased Whittle conditional residual rough + empirical noise",
+      "model_id": "asset_map_multiscale_conditional_empirical_debiased_whittle_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 201,
+      "display_name": "M201 \u2014 Asset MAP Multiscale + Differenced debiased Whittle conditional residual rough + empirical noise",
+      "model_id": "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 202,
+      "display_name": "M202 \u2014 Asset MAP Multiscale + Gaussian Gamma-mixed OU covariance with direct debiased Whittle inference",
+      "model_id": "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 203,
+      "display_name": "M203 \u2014 Asset MAP Multiscale + Restricted Gaussian rough inference with integrated observation level",
+      "model_id": "asset_map_multiscale_conditional_empirical_reml_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 204,
+      "display_name": "M204 \u2014 Asset MAP Multiscale + Debiased Whittle rough covariance with GLS observation-level point estimate",
+      "model_id": "asset_map_multiscale_conditional_empirical_whittle_gls_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 205,
+      "display_name": "M205 \u2014 Asset MAP Multiscale + Unpenalized debiased Whittle rough covariance inference",
+      "model_id": "asset_map_multiscale_conditional_empirical_whittle_mle_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 206,
+      "display_name": "M206 \u2014 Asset MAP Multiscale + Debiased Whittle rough covariance with analytically integrated observation level",
+      "model_id": "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 207,
+      "display_name": "M207 \u2014 Asset MAP Multiscale + Analytic tempered fractional covariance debiased Whittle rough MAP",
+      "model_id": "asset_map_multiscale_conditional_empirical_exact_covariance_whittle_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 208,
+      "display_name": "M208 \u2014 Asset MAP Multiscale + Full theoretical Hurst support analytic covariance rough MAP",
+      "model_id": "asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 209,
+      "display_name": "M209 \u2014 Asset MAP Multiscale + Analytic covariance differenced debiased Whittle rough MAP",
+      "model_id": "asset_map_multiscale_conditional_empirical_analytic_differenced_whittle_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 210,
+      "display_name": "M210 \u2014 Asset MAP Multiscale + Relaxed Hurst lower support analytic differenced rough MAP",
+      "model_id": "asset_map_multiscale_conditional_empirical_relaxed_hurst_differenced_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 211,
+      "display_name": "M211 \u2014 Asset MAP Multiscale + Full theoretical Hurst support analytic differenced rough MAP",
+      "model_id": "asset_map_multiscale_conditional_empirical_full_hurst_differenced_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 212,
+      "display_name": "M212 \u2014 Asset MAP Multiscale + Empirical-noise consistent conventional offset rough MAP",
+      "model_id": "asset_map_multiscale_consistent_empirical_noise_differenced_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 213,
+      "display_name": "M213 \u2014 Asset MAP Multiscale + Learned standardized Student-t forecast innovations",
+      "model_id": "asset_map_multiscale_consistent_noise_student_innovations_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 214,
+      "display_name": "M214 \u2014 Asset MAP Multiscale + Learned Hansen skew-t forecast innovations",
+      "model_id": "asset_map_multiscale_consistent_noise_hansen_skew_t_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 215,
+      "display_name": "M215 \u2014 Asset MAP Multiscale + Standard Gaussian forecast innovation control",
+      "model_id": "asset_map_multiscale_consistent_noise_gaussian_innovations_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 216,
+      "display_name": "M216 \u2014 Asset MAP Multiscale + Joint conventional SV observation-noise MAP with dynamic rough overlay",
+      "model_id": "asset_map_joint_observation_noise_multiscale_dynamic_rough_map",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 217,
+      "display_name": "M217 \u2014 Asset MAP Multiscale + Exact interpolated innovation quantile normalization on M216",
+      "model_id": "asset_map_joint_noise_continuous_quantile_normalized_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 218,
+      "display_name": "M218 \u2014 Asset MAP Multiscale + Raw-return sparse Laplace conventional SV with multiscale and dynamic rough",
+      "model_id": "asset_map_raw_return_laplace_multiscale_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 219,
+      "display_name": "M219 \u2014 Asset MAP Multiscale + Student-return sparse Laplace conventional SV with multiscale and dynamic rough",
+      "model_id": "asset_map_student_return_laplace_multiscale_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 220,
+      "display_name": "M220 \u2014 Asset MAP Multiscale + Student-return sparse Laplace SV with analytically implied log-square noise and dynamic rough",
+      "model_id": "asset_map_student_return_laplace_implied_noise_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 221,
+      "display_name": "M221 \u2014 Asset MAP Student-Implied Noise + Pathwise Multiscale + Dynamic Rough",
+      "model_id": "asset_map_student_implied_noise_pathwise_multiscale_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 222,
+      "display_name": "M222 \u2014 Asset MAP Joint Student Copula Leverage + Pathwise Multiscale + Dynamic Rough",
+      "model_id": "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 223,
+      "display_name": "M223 \u2014 Asset MAP Student-Implied Noise + Pathwise Multiscale + Full-Hurst Dynamic Rough",
+      "model_id": "asset_map_student_implied_noise_pathwise_multiscale_full_hurst_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 224,
+      "display_name": "M224 \u2014 Asset MAP Student + Pathwise Multiscale + Estimated-Noise Dynamic Rough",
+      "model_id": "asset_map_student_pathwise_joint_rough_noise_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 225,
+      "display_name": "M225 \u2014 Asset MAP Matched Student Innovations + Pathwise Multiscale + Dynamic Rough",
+      "model_id": "asset_map_matched_student_innovations_pathwise_multiscale_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 226,
+      "display_name": "M226 \u2014 Asset MAP Empirical Bayes AR1 Multiscale + Pathwise Dynamic Rough",
+      "model_id": "asset_map_eb_ar1_multiscale_pathwise_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 227,
+      "display_name": "M227 \u2014 Asset MAP Pathwise Multiscale + Dynamic Rough with Untruncated Priors",
+      "model_id": "asset_map_student_implied_noise_pathwise_multiscale_untruncated_rough_priors",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 228,
+      "display_name": "M228 \u2014 Asset MAP Multiscale Predictor Offset + Untruncated Dynamic Rough",
+      "model_id": "asset_map_multiscale_predictor_offset_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 229,
+      "display_name": "M229 \u2014 Asset MAP Unclipped Log Proxy + Untruncated Dynamic Rough",
+      "model_id": "asset_map_unclipped_log_proxy_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 230,
+      "display_name": "M230 \u2014 Asset MAP Student Continuous Quantile + Untruncated Dynamic Rough",
+      "model_id": "asset_map_student_continuous_quantile_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 231,
+      "display_name": "M231 \u2014 Asset MAP Adaptive Multiscale Rates + Untruncated Dynamic Rough",
+      "model_id": "asset_map_adaptive_multiscale_rates_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 232,
+      "display_name": "M232 \u2014 Asset MAP Four Learned Multiscale Rates + Untruncated Dynamic Rough",
+      "model_id": "asset_map_learned_multiscale_rates_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 233,
+      "display_name": "M233 \u2014 Asset MAP Single Learned Multiscale Rate + Untruncated Dynamic Rough",
+      "model_id": "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 234,
+      "display_name": "M234 \u2014 Asset MAP Single Unshrunk Multiscale Rates + Untruncated Dynamic Rough",
+      "model_id": "asset_map_single_unshrunk_multiscale_rates_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 235,
+      "display_name": "M235 \u2014 Asset MAP Adaptive Unshrunk Multiscale Rates + Untruncated Dynamic Rough",
+      "model_id": "asset_map_adaptive_unshrunk_multiscale_rates_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 236,
+      "display_name": "M236 \u2014 Asset MAP Adaptive Predictive Loading + Multiscale Rates + Untruncated Dynamic Rough",
+      "model_id": "asset_map_adaptive_predictive_loading_rates_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 237,
+      "display_name": "M237 \u2014 Asset MAP Adaptive Predictive Loading + Full Hurst Rough + Untruncated Dynamic Rough",
+      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 238,
+      "display_name": "M238 \u2014 Asset MAP Single Predictive Loading + Full Hurst Rough + Untruncated Dynamic Rough",
+      "model_id": "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 239,
+      "display_name": "M239 \u2014 Asset MAP Adaptive Predictive Loading + Unclipped Full Hurst Rough + Untruncated Dynamic Rough",
+      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_unclipped_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 240,
+      "display_name": "M240 \u2014 Asset MAP Adaptive Predictive Loading + Learned Multiscale Offset + Full Hurst Rough + Untruncated Dynamic Rough",
+      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 241,
+      "display_name": "M241 \u2014 Asset MAP Joint Gaussian Multiscale + Dynamic Rough, Stationary Normalized",
+      "model_id": "asset_map_joint_gaussian_multiscale_rough_stationary_normalized",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 242,
+      "display_name": "M242 \u2014 Asset MAP Stable Coupled Adaptive Memory + Dynamic Rough",
+      "model_id": "asset_map_adaptive_stable_coupled_multiscale_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 243,
+      "display_name": "M243 \u2014 Asset MAP Stationary AR1 Proxy + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_proxy_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 244,
+      "display_name": "M244 \u2014 Asset MAP Stationary AR1 Proxy + Exact OU Residual Volatility",
+      "model_id": "asset_map_stationary_ar1_ou_residual_volatility",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 245,
+      "display_name": "M245 \u2014 Asset MAP Stationary AR1 + Correlated Volatility Shocks + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_correlated_volatility_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 246,
+      "display_name": "M246 \u2014 Asset MAP Stationary AR1 + Matched Historical Offset + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_matched_offset_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 247,
+      "display_name": "M247 \u2014 Asset MAP Stationary AR1 + Lagged Asset-Residual Leverage + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_proxy_leverage_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 248,
+      "display_name": "M248 \u2014 Asset MAP Stationary AR1 + Full Static Shrinkage Copula + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_static_shrinkage_copula_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 249,
+      "display_name": "M249 \u2014 Asset MAP Stationary AR1 + Shrinkage Student-t Copula + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_shrinkage_student_copula_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 250,
+      "display_name": "M250 \u2014 Asset MAP Stationary AR1 + Innovation Gaussian Shrinkage Copula + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_innovation_shrinkage_copula_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 251,
+      "display_name": "M251 \u2014 Asset MAP Stationary AR1 + Innovation Student Copula + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_innovation_student_copula_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 252,
+      "display_name": "M252 \u2014 Asset MAP Stationary AR1 + Kendall Student Copula + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_innovation_kendall_student_copula_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 253,
+      "display_name": "M253 \u2014 Asset MAP Stationary AR1 + Innovation Gaussian Copula + Stratified Shocks + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_innovation_shrinkage_lhs_copula_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 254,
+      "display_name": "M254 \u2014 Asset MAP Stationary AR1 + Innovation Student Copula + Stratified Shocks + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_innovation_student_lhs_copula_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 255,
+      "display_name": "M255 \u2014 Asset MAP Stationary AR1 + Corrected Dynamic Correlation + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 256,
+      "display_name": "M256 \u2014 Asset MAP Stationary AR1 + Student Corrected Dynamic Correlation + Dynamic Rough",
+      "model_id": "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 261,
+      "display_name": "M261 \u2014 M256 Data-selected Timescale: existing_sv_rate",
+      "model_id": "asset_m256_data_timescales_existing_sv_rate",
+      "role": "saved_result_control"
+    },
+    {
+      "canonical_rank": 262,
+      "display_name": "Equal-weight MAP rough and Bayesian EWMA forecast mixture",
+      "model_id": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+      "role": "fresh_candidate"
+    },
+    {
+      "canonical_rank": 263,
+      "display_name": "Equal-weight stationary OU and Bayesian EWMA forecast mixture",
+      "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+      "role": "fresh_candidate"
+    }
+  ],
+  "retained_fresh_models_complete": 32,
+  "user_authorized_screening": {
+    "accuracy_inferiority_inferred_from_runtime": false,
+    "exclusions": [
+      {
+        "canonical_rank": 39,
+        "category": "resolved_statistical_alias",
+        "display_name": "M039 \u2014 Bayesian SBB + MCMC SV-AR1 Leverage transformed raw innovations merton positive sample mean",
+        "execution_registrations": [
+          "m039"
+        ],
+        "full52_score_available": false,
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+        "reason": "Source-verified resolved statistical alias of retained M032; preserve the representative and all existing evidence rather than finish another model-ID seed stream.",
+        "retained_representative_rank": 32
+      },
+      {
+        "canonical_rank": 42,
+        "category": "resolved_statistical_alias",
+        "display_name": "M042 \u2014 Bayesian SBB + mcmc sv ar1 merton positive sample mean",
+        "execution_registrations": [
+          "m042"
+        ],
+        "full52_score_available": false,
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean",
+        "reason": "Source-verified resolved statistical alias of retained M032; preserve the representative and all existing evidence rather than finish another model-ID seed stream.",
+        "retained_representative_rank": 32
+      },
+      {
+        "canonical_rank": 57,
+        "category": "resolved_statistical_alias",
+        "display_name": "M057 \u2014 Bayesian SBB + Absolute-EWMA Empirical-Bayes positive sharpe mu uncertainty",
+        "execution_registrations": [
+          "m057"
+        ],
+        "full52_score_available": false,
+        "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+        "reason": "Source-verified resolved statistical alias of retained M050; preserve the representative and all existing evidence rather than finish another model-ID seed stream.",
+        "retained_representative_rank": 50
+      },
+      {
+        "canonical_rank": 184,
+        "category": "disproportionate_runtime_screen",
+        "display_name": "M184 \u2014 Bayesian Lifted RFSV \u2014 ESS/HMC",
+        "execution_registrations": [
+          "m184",
+          "parallel-05-m184"
+        ],
+        "first_origin_loss_sha256": "42129f3684539e9cd256b82bd9a7ece1249c48f66ba54c7eb89417a6d7c2d44c",
+        "first_origin_mean_crps": 0.08240677404735539,
+        "first_origin_seconds": 23.733980541990604,
+        "full52_score_available": false,
+        "model_id": "asset_bayesian_lifted_rfsv_ess",
+        "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+      },
+      {
+        "canonical_rank": 185,
+        "category": "disproportionate_runtime_screen",
+        "display_name": "M185 \u2014 Bayesian Lifted RFSV \u2014 Tight Kernel ESS/HMC",
+        "execution_registrations": [
+          "m185",
+          "parallel-04-m185"
+        ],
+        "first_origin_loss_sha256": "c4cd21d5949de1d6de8d2ceeea0cc3da62b343283ff5747bb522a28aed4a2ded",
+        "first_origin_mean_crps": 0.08222633919967944,
+        "first_origin_seconds": 26.1746803750284,
+        "full52_score_available": false,
+        "model_id": "asset_bayesian_lifted_rfsv_tight_ess",
+        "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+      },
+      {
+        "canonical_rank": 186,
+        "category": "disproportionate_runtime_screen",
+        "display_name": "M186 \u2014 Bayesian Lifted RFSV \u2014 ESS/HMC + Terminal PGAS",
+        "execution_registrations": [
+          "m186",
+          "parallel-06-m186"
+        ],
+        "first_origin_loss_sha256": "d2bfdde4819e0f431cd00a2f6ebba67ed585786041d5dd3f31cf14bc90214b81",
+        "first_origin_mean_crps": 0.08289818023196265,
+        "first_origin_seconds": 16.485429874970578,
+        "full52_score_available": false,
+        "model_id": "asset_bayesian_lifted_rfsv_ess_terminal_pgas",
+        "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+      },
+      {
+        "canonical_rank": 187,
+        "category": "disproportionate_runtime_screen",
+        "display_name": "M187 \u2014 Bayesian Lifted RFSV \u2014 Leverage ESS/HMC",
+        "execution_registrations": [
+          "m187",
+          "parallel-03-m187"
+        ],
+        "first_origin_loss_sha256": "f687e6d23821eb224ae1c2717b0790627f6348f35dd5fec95c4dd9dca0d29a0b",
+        "first_origin_mean_crps": 0.08340188523228396,
+        "first_origin_seconds": 36.57394116697833,
+        "full52_score_available": false,
+        "model_id": "asset_bayesian_lifted_rfsv_leverage_ess",
+        "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+      },
+      {
+        "canonical_rank": 188,
+        "category": "disproportionate_runtime_screen",
+        "display_name": "M188 \u2014 Bayesian Lifted Rough Heston \u2014 HMC",
+        "execution_registrations": [
+          "m188",
+          "parallel-01-m188"
+        ],
+        "first_origin_loss_sha256": "de375ea3213b15dfe6848b99feae84a1b75b5d110e9869889387d5076a7c157f",
+        "first_origin_mean_crps": 0.08421489027682633,
+        "first_origin_seconds": 100.73478237498784,
+        "full52_score_available": false,
+        "model_id": "asset_bayesian_lifted_rough_heston_hmc",
+        "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+      },
+      {
+        "canonical_rank": 189,
+        "category": "disproportionate_runtime_screen",
+        "display_name": "M189 \u2014 Bayesian Lifted RFSV \u2014 Inferred Student-t ESS/HMC",
+        "execution_registrations": [
+          "m189",
+          "parallel-02-m189"
+        ],
+        "first_origin_loss_sha256": "b26ae5589c66060d652941472968f59abdeaadaed224574fa06c5df84098042c",
+        "first_origin_mean_crps": 0.08212347142963769,
+        "first_origin_seconds": 42.281155749980826,
+        "full52_score_available": false,
+        "model_id": "asset_bayesian_lifted_rfsv_student_ess",
+        "reason": "User permits removing runtime-dominating models without leading evidence; this latent-state Bayesian group dominates the smoke-based work projection. No full52 accuracy inferiority is claimed."
+      }
+    ],
+    "frozen_catalogue_membership_changed": false,
+    "initial_inventory_sha256": "70f5f1d4b2926f26f5efb4bf29ed4bd28daca3112cca3f343447ff5eae5f6654",
+    "minimum_retained_canonical_models": 100,
+    "priority_interpretation": "User interests preserved; do not narrow the campaign to these four.",
+    "priority_models": [
+      "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "bayesian_sbb_overlay_gjr_garch_1_1",
+      "equal_path_pool_m261_and_bayesian_ewma_sbb",
+      "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb"
+    ],
+    "retention_decisions": [
+      "M029 retained: its distinct inference method remains useful coverage; the M009 score alone does not establish M029 accuracy.",
+      "Dependence-only models retained: they remain distinct joint models even where single-asset laws overlap."
+    ],
+    "runtime_screen": {
+      "group_first_origin_projection_share": 0.655592416310461,
+      "heston_representative": {
+        "canonical_rank": 188,
+        "completed_origin": false,
+        "cpu_seconds": 652.5968,
+        "full_panel_score": false,
+        "horizon_days": 1609,
+        "observed_hotspot": "native Heston HMC",
+        "raw_evidence_manifest_sha256": "f3ce5f47c69abfa051e320ebe8be386c7fc9ea245a8da191c5068198e60cf2ce",
+        "simulations": 240,
+        "stopped_elapsed_seconds": 717.7423,
+        "task_index": 25,
+        "training_observations": 6438
+      },
+      "projection_scope": "sum of first-origin seconds times2652; unvalidated extrapolation, includes startup effects, not observed full-panel cost"
+    },
+    "schema_version": 1,
+    "scope_amendment": "User permits only clear nonunique variants or disproportionate runtime outliers without leading evidence to be removed; retain broad methodological coverage and at least 100-plus canonical models. The four named interests are not a narrowed shortlist.",
+    "statistical_alias_evidence": {
+      "groups": [
+        {
+          "canonical_ranks": [
+            32,
+            39,
+            42
+          ],
+          "excluded_identity_labels": [
+            "id",
+            "overlay_model",
+            "ablation_family",
+            "feature_family"
+          ],
+          "factory": "simfolio_forecasting_methodology.models.portfolio.full_mcmc:FullMCMCSVModel",
+          "interpretation": "Same resolved numerical/statistical specification and executable factory. Public-ID seed streams can differ; this is not a byte-identical path claim.",
+          "normalized_resolved_candidate_sha256": "76f79407ea4c94e582cd868489d17b3f913a6e99407bd6de29d4252e63cae237",
+          "retained_representative_rank": 32
+        },
+        {
+          "canonical_ranks": [
+            50,
+            57
+          ],
+          "excluded_identity_labels": [
+            "id",
+            "overlay_model",
+            "ablation_family",
+            "feature_family"
+          ],
+          "factory": "simfolio_forecasting_methodology.models.portfolio.bayesian_vol:BayesianVolOverlayModel",
+          "interpretation": "Same resolved numerical/statistical specification and executable factory. Public-ID seed streams can differ; this is not a byte-identical path claim.",
+          "normalized_resolved_candidate_sha256": "2b01ddbbc22d1b3cc2727d3679e5d50dabd384eaee03399b6773fbe7c0cb9850",
+          "retained_representative_rank": 50
+        }
+      ],
+      "resolved_specifications_path": "src/simfolio_forecasting_methodology/resources/specifications/canonical_statistical_specifications.json",
+      "resolved_specifications_sha256": "d0b5d4c8e03024077df12b3440146df43b5bead5e6361db6da0d7eaa20fb6e69"
+    }
+  }
 }

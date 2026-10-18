@@ -10,10 +10,41 @@ from adapters import ROOT
 from campaign import EXPECTED, atomic, digest, file_hash, read, verified_process
 
 
+def screening_policy(root, inventory, inventory_path):
+    path = Path(root) / "docs/results/catalogue52/screening.json"
+    if not path.exists():
+        return None, set()
+    policy = read(path)
+    entries = {row["public_model_id"]: row for row in inventory["models"]}
+    if policy.get("initial_inventory_sha256") != file_hash(inventory_path):
+        raise ValueError("screening amendment does not match the frozen inventory")
+    excluded = set()
+    for item in policy["exclusions"]:
+        model_id = item["model_id"]
+        entry = entries.get(model_id)
+        if (model_id in excluded or entry is None
+                or entry["canonical_rank"] != item["canonical_rank"]
+                or not entry["campaign"]["fresh_evaluation"]
+                or not item.get("reason")):
+            raise ValueError("invalid or duplicate model screening exclusion")
+        excluded.add(model_id)
+    if excluded.intersection(policy.get("priority_models", [])):
+        raise ValueError("a protected priority model cannot be screened out")
+    minimum = policy.get("minimum_retained_canonical_models")
+    if minimum is not None:
+        retained = sum(row["campaign"].get("included", True)
+                       and row["public_model_id"] not in excluded
+                       for row in inventory["models"])
+        if type(minimum) is not int or minimum < 1 or retained < minimum:
+            raise ValueError("screening violates the user-required breadth of coverage")
+    return policy, excluded
+
+
 def make_report(campaign, *, root=ROOT):
     campaign, root = Path(campaign), Path(root)
     inventory_path = root / "docs/results/catalogue52/inventory.json"
     inventory = read(inventory_path)
+    screening, screened = screening_policy(root, inventory, inventory_path)
     entries = {row["public_model_id"]: row for row in inventory["models"]}
     baseline = read(root / "docs/results/expanded132/incumbent-single52.json")
     naive = read(root / "docs/results/expanded132/whitepaper-naive/single52.json")
@@ -65,6 +96,7 @@ def make_report(campaign, *, root=ROOT):
         ranked.append({"canonical_rank": None if record is None else record["canonical_rank"],
             "model_id": spec["model_id"], "display_name": None if record is None else record["display_name"],
             "execution_name": name, "single52_crps": result["exact_empirical_crps"],
+            "retained_for_revised_campaign": spec["model_id"] not in screened,
             "improvement_vs_m261_single52": 1 - result["exact_empirical_crps"] / baseline["exact_empirical_crps"],
             "improvement_vs_whitepaper_naive_single52": 1 - result["exact_empirical_crps"] / naive["exact_empirical_crps"],
             "historical80_crps": score80, "historical80_evidence_verified": history_valid,
@@ -89,10 +121,19 @@ def make_report(campaign, *, root=ROOT):
             "naive_benchmark": {"model_id": "asset_level_naive_politis_white_stationary_bootstrap_rebalanced",
                                 "single52_crps": naive["exact_empirical_crps"],
                                 "cells_sha256": naive["cells_sha256"]},
-            "inventory_sha256": file_hash(inventory_path), "fresh_models_required": 258,
+            "inventory_sha256": file_hash(inventory_path),
+            "frozen_original_fresh_models_required": 258,
+            "fresh_models_required": 258 - len(screened),
             "fresh_models_registered": len({read(campaign / "models" / name / "registration.json")["model_id"]
                                              for name in control["models"]}),
             "executions_registered": len(control["models"]), "fresh_models_complete": len(ranked) - 1,
+            "retained_fresh_models_complete": sum(row.get("role") is None
+                and row["model_id"] not in screened for row in ranked),
+            "user_authorized_screening": screening,
+            "retained_canonical_models": [{"canonical_rank": row["canonical_rank"],
+                "model_id": row["public_model_id"], "display_name": row["display_name"],
+                "role": row["campaign"]["role"]} for row in inventory["models"]
+                if row["campaign"]["included"] and row["public_model_id"] not in screened],
             "full_scores": ranked, "progress": progress,
             "exclusions": inventory["population"]["excluded_models"],
             "partial_results_ranked": False, "blended_score_used": False}

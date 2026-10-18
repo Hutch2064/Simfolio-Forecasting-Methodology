@@ -6,9 +6,15 @@ part of this ranking. No new 80-portfolio panel is run in this campaign.
 
 The frozen population is in `inventory.json`: all 263 canonical records,
 with only the four direct M261 timescale-selector siblings M257–M260 excluded.
-There are 258 fresh evaluations and the independently revalidated saved M261
-control (`saved-control-verification.json`). Old rankings and smoke scores
-never prune the population. Missing historical evidence remains explicitly
+The initial population contains 258 fresh evaluations and the independently
+revalidated saved M261 control (`saved-control-verification.json`). The later
+user-authorized scope amendment is recorded separately in `screening.json`;
+the frozen inventory and historical catalogue definitions remain intact.
+Retain broad methodological coverage and at least 100-plus models: remove only
+clear nonunique variants or disproportionate runtime outliers without leading
+evidence. Old portfolio rankings alone do not establish single-asset inferiority.
+M003, M006, M262 and M263 are user interests, not a narrowed shortlist.
+Missing historical evidence remains explicitly
 unqualified; a 52-asset result alone cannot establish production eligibility.
 
 Each fresh model evaluates all 2,652 origins at 240 paths, preserving frozen
@@ -32,8 +38,9 @@ new execution identities. No automatic wall-clock cutoff rejects long fits.
 Expensive controls can evaluate independent origins in separate processes,
 within a total twelve-slot CPU budget and reduced scheduling priority. The
 original model, sampling effort and per-origin seeds stay fixed. Six-way
-execution registrations replace unused serial registrations for M184–M189;
-these are execution changes, not model exclusions. The bounded serial/parallel
+execution registrations were prepared for M184–M189, but the subsequent
+runtime screen removed both execution forms before their full panels began.
+Their implementations and measured evidence remain saved. The bounded serial/parallel
 proof, including identical selected loss vectors and all 2,652 task identities,
 is in `origin-parallel-proof.json`.
 
