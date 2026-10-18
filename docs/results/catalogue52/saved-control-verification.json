@@ -1,0 +1,22 @@
+{
+  "model_id": "asset_m256_data_timescales_existing_sv_rate",
+  "rank": 261,
+  "scope": "validated_saved_single52_control",
+  "score": 0.6138695810898457,
+  "tasks": 2652,
+  "cells": 455832,
+  "all_task_inputs_dates_seeds_match_current_constructor": true,
+  "cell_file_sha256": "e256aed32f9975745d961bc89d60e1a866e82bdfd3e2c3e829b99c4b072e8ab3",
+  "cell_counts_match_all_task_horizons": true,
+  "all_retained_numerical_sources_identical": true,
+  "non_numerical_source_differences": [
+    "src/simfolio_forecasting_methodology/catalogue.py",
+    "src/simfolio_forecasting_methodology/naming.py",
+    "tools/generate_statistical_specifications.py"
+  ],
+  "saved_manifest_sha256": "144003e30b7fd781ca98ee4dcbc79e0342b5987ec003f9eada316ab7064d2f36",
+  "data_manifest_sha256": "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76",
+  "saved_result_path": "docs/results/expanded132/incumbent-single52.json",
+  "saved_cells_path": "docs/results/expanded132/incumbent-single52.npz",
+  "current_engine_origin_main": "ab02a817fe66c9461951c2e940110580765c9e20"
+}

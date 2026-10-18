@@ -1,0 +1,51 @@
+"""Filtered historical innovations rather than raw standardized returns.
+
+The incumbent SV MAP/RTS inference is unchanged. Innovations are standardized
+by that historical volatility path before predictive moment integration. This
+is an explicit change to the predictive tail distribution and leverage fit.
+"""
+from dataclasses import dataclass
+import inspect
+
+import numpy as np
+
+from fixed_mean_sv_candidates import iid_mean_filter
+from moment_sv_candidates import MomentSVModel
+from simfolio_forecasting_methodology.models.numerical import bdes_fastmap as bd
+
+
+source = inspect.getsource(bd.fit_bdes_fastmap)
+old = 'z_pool = _standardized_empirical_innovation_pool(eps_x, clip=None, method="mean_std")'
+if source.count(old) != 1:
+    raise RuntimeError("filtered_sv_innovation_source_contract_drift")
+source = source.replace(old, 'z_pool = _standardized_empirical_innovation_pool(eps_x * np.exp(-0.5 * state_path), clip=None, method="mean_std")')
+namespace = dict(bd.__dict__)
+exec(compile(source, __file__, "exec"), namespace)
+filtered_fit = namespace['fit_bdes_fastmap']
+fixed_namespace = dict(namespace)
+fixed_namespace['_estimate_evidence_dlm_drift_params'] = lambda *args, **kwargs: {'phi': 0.0, 'state_var_ratio': 1e-10}
+fixed_namespace['_kalman_ar1_drift_filter'] = iid_mean_filter
+exec(compile(source, __file__, "exec"), fixed_namespace)
+filtered_fixed_fit = fixed_namespace['fit_bdes_fastmap']
+
+
+@dataclass(frozen=True)
+class FilteredInnovationSV(MomentSVModel):
+    fixed_mean: bool = False
+
+    def simulate_daily_log_returns(self, training, context):
+        original = bd.fit_bdes_fastmap
+        fitted = filtered_fixed_fit if self.fixed_mean else filtered_fit
+        fitted.__globals__['_sv_kalman_filter'] = bd._sv_kalman_filter
+        fitted.__globals__['_dlm_ar1_loglik'] = bd._dlm_ar1_loglik
+        bd.fit_bdes_fastmap = fitted
+        try:
+            return super().simulate_daily_log_returns(training, context)
+        finally:
+            bd.fit_bdes_fastmap = original
+
+
+CANDIDATES = (
+    FilteredInnovationSV('experimental_filtered_innovation_moment_sv_dlm'),
+    FilteredInnovationSV('experimental_filtered_innovation_moment_sv_fixed_mean', fixed_mean=True),
+)

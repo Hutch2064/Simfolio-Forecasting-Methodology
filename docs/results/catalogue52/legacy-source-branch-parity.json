@@ -1,0 +1,23 @@
+{
+  "scope": "native_flags_vs_recovered_original_namespace_and_innovation_edits",
+  "native_function_sha256": "fbbb4f0345ac47bc064649965a5d8b294f2a4acf4bf9f73c40509125e72aa4be",
+  "source_iid_mean_filter_ast_executed": true,
+  "comparisons": [
+    {
+      "filtered_innovations": false,
+      "fixed_mean": true,
+      "source_file": "fixed_mean_sv_candidates.py",
+      "source_sha256": "fae19363e24d976c0d29613e397bca565bba07e3d6bf960f9631cfab3e4add9c",
+      "all_fit_fields_byte_exact": true,
+      "observations": 507
+    },
+    {
+      "filtered_innovations": true,
+      "fixed_mean": false,
+      "source_file": "filtered_innovation_sv_candidates.py",
+      "source_sha256": "6c790cab4ee479a35a1b29a7943032f6177939928357c6e31825212c9f622150",
+      "all_fit_fields_byte_exact": true,
+      "observations": 507
+    }
+  ]
+}

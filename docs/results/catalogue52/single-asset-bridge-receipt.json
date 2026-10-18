@@ -1,0 +1,283 @@
+{
+  "extension": "one-dimensional identity copula C(u)=u",
+  "preserved": "original candidate objects, volatility and jumps, means, input seed values; multidimensional delegation unchanged",
+  "source": "tools/catalogue52/single_asset_bridge.py",
+  "source_sha256": "5ec44a39f238660d0faf7fa923ecc3f34a0de8b4a2c4d0dccec174dafb4ef89e",
+  "validation": "tests/test_catalogue52_adapters.py: exact uniform streams and unchanged multidimensional delegation; 13 exact first-single52 origin admissions with identical cached repeats",
+  "admissions": [
+    {
+      "canonical_rank": 180,
+      "model_id": "asset_rough_volterra_sv_eight_factor",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_rough_volterra_sv_eight_factor",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "58f4dc52505a19c7ab7ec56ae5e239030dbc70ab22cd16bc4cb50651be49c30d",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "189340fbffaff767107c962ba1334dde8d94a427029a8c61aa3846a55d8b1d73",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 181,
+      "model_id": "asset_compensated_poisson_jump_sv",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_compensated_poisson_jump_sv",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "0bd885574561ec8d1d68e9c3785540cc46bcdba8b96585c09977d93c86585fed",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "2f6d7762bce53ac5a29d72654d8584da5117c428b9d074c5f568b857ea0eb0a4",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 182,
+      "model_id": "asset_hmm_three_state_full_rvine_sv",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_hmm_three_state_full_rvine_sv",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "207358b57575ad0ef8b1920b933ad21a53149a5d4ea05321aaaad6455234113d",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "4d54b45ce2cc381c84a67bad38a05bf4ae97559000b66bf42b6247f2a725413c",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 183,
+      "model_id": "asset_rough_jump_hmm_rvine_sv",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_rough_jump_hmm_rvine_sv",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "f40601f7d2084088ad3c0a1b9f5f2fb98b6b4ac85686fee633569537b5a97f92",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "4bbae8d73eaa79ee6459e34de7895c9ab8a5b8da2f3cd191f6f1894714e2235e",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 184,
+      "model_id": "asset_bayesian_lifted_rfsv_ess",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_bayesian_lifted_rfsv_ess",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "3087ffea62f89982230d703a092777f5620646689a00e405673eada605a87258",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "42129f3684539e9cd256b82bd9a7ece1249c48f66ba54c7eb89417a6d7c2d44c",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 185,
+      "model_id": "asset_bayesian_lifted_rfsv_tight_ess",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_bayesian_lifted_rfsv_tight_ess",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "9bb7f6fe445d06fb5a1c94cd3f5af75c6878adf3d775992e83f1c49a3b9f77b8",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "c4cd21d5949de1d6de8d2ceeea0cc3da62b343283ff5747bb522a28aed4a2ded",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 186,
+      "model_id": "asset_bayesian_lifted_rfsv_ess_terminal_pgas",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_bayesian_lifted_rfsv_ess_terminal_pgas",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "be82a643490801b83f04189a990470e4706b7ad38def754a787d462d46004f48",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "d2bfdde4819e0f431cd00a2f6ebba67ed585786041d5dd3f31cf14bc90214b81",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 187,
+      "model_id": "asset_bayesian_lifted_rfsv_leverage_ess",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_bayesian_lifted_rfsv_leverage_ess",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "981001b1d33e0a194f681d1da77666b00df30a08aeef0c0e54d7b3264d6faa5d",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "f687e6d23821eb224ae1c2717b0790627f6348f35dd5fec95c4dd9dca0d29a0b",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 188,
+      "model_id": "asset_bayesian_lifted_rough_heston_hmc",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_bayesian_lifted_rough_heston_hmc",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "f5ce70009846edc0b93b0981b2f98b2b8eec72aecf184a1b1ad5ccee7615beb7",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "de375ea3213b15dfe6848b99feae84a1b75b5d110e9869889387d5076a7c157f",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 189,
+      "model_id": "asset_bayesian_lifted_rfsv_student_ess",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_bayesian_lifted_rfsv_student_ess",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "18454546028b598c38abd7b4573e0a7766342473d7203a8c9f6b483d6fb994d0",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "b26ae5589c66060d652941472968f59abdeaadaed224574fa06c5df84098042c",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 190,
+      "model_id": "asset_rough_volterra_sv_eight_factor_bayesian",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_rough_volterra_sv_eight_factor_bayesian",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "fc8d5f6966032ba9b3db4cdb1558051271cbfbdf878472efac75930fe657082f",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "e1c4af16d479a53f34157cedab8fe92ac5726eb0178a318393c6bd284da458b1",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 191,
+      "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "dca7499210a9522d1f03d0344e07950c289153b6d5c51749f7ce4ef24eeb6bdf",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "d0b9169c134fe0393143dd9dc902b990b3ad29cd80f755c7a445c226438d6f8d",
+      "cached_repeat_array_equal": true
+    },
+    {
+      "canonical_rank": 192,
+      "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+      "index": 0,
+      "task": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "859efb249af6c2f1a320ed5717ce644ff0aa6f6c28b5487dddd69e6044d796e9",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      },
+      "simulations": 240,
+      "loss_count": 126,
+      "losses_sha256": "32d4e6f4089e7230b3c8ae62090209d0fcb68a17bfe5d0579e667f08852e14d5",
+      "cached_repeat_array_equal": true
+    }
+  ],
+  "scope": "one-origin admission only; no full-panel score"
+}

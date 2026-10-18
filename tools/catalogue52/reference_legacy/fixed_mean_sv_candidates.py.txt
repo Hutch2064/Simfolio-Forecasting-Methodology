@@ -1,0 +1,64 @@
+"""Predeclared ablation: historical mean without a separately estimated DLM.
+
+The SV fit remains unchanged because it already centers observations on the
+historical mean. Eliminating the latent mean inference changes the predictive
+mean/variance and removes one likelihood optimization per asset.
+"""
+import inspect
+import math
+from dataclasses import dataclass
+
+import numpy as np
+
+from simfolio_forecasting_methodology.models.numerical import bdes_fastmap as bd
+from moment_sv_candidates import MomentSVModel
+from predictive_sv_candidates import PredictiveSVModel
+
+
+def iid_mean_filter(y, *, obs_var, phi, state_var_ratio):
+    return {"loglik": float(-0.5 * (len(y) * math.log(2 * math.pi * obs_var) + np.dot(y, y) / obs_var)),
+            "predicted_mean": np.zeros(len(y)), "state_noise_var": 0.0,
+            "final_mean": 0.0, "final_var": 0.0}
+
+
+namespace = dict(bd.__dict__)
+namespace["_estimate_evidence_dlm_drift_params"] = lambda *args, **kwargs: {"phi": 0.0, "state_var_ratio": 1e-10}
+namespace["_kalman_ar1_drift_filter"] = iid_mean_filter
+exec(compile(inspect.getsource(bd.fit_bdes_fastmap), __file__, "exec"), namespace)
+_fixed_fit = namespace["fit_bdes_fastmap"]
+
+
+def fit_fixed_mean_sv(values, candidate=None):
+    # Follow the currently installed, validated compiler for the SV filter.
+    _fixed_fit.__globals__["_sv_kalman_filter"] = bd._sv_kalman_filter
+    fitted = _fixed_fit(values, candidate)
+    fitted["mean_meta"]["method"] = "historical_mean_without_latent_mean_dlm"
+    return fitted
+
+
+@dataclass(frozen=True)
+class FixedMeanMomentSV(MomentSVModel):
+    def simulate_daily_log_returns(self, training, context):
+        original = bd.fit_bdes_fastmap
+        bd.fit_bdes_fastmap = fit_fixed_mean_sv
+        try:
+            return super().simulate_daily_log_returns(training, context)
+        finally:
+            bd.fit_bdes_fastmap = original
+
+
+@dataclass(frozen=True)
+class FixedMeanQuadratureSV(PredictiveSVModel):
+    def simulate_daily_log_returns(self, training, context):
+        original = bd.fit_bdes_fastmap
+        bd.fit_bdes_fastmap = fit_fixed_mean_sv
+        try:
+            return super().simulate_daily_log_returns(training, context)
+        finally:
+            bd.fit_bdes_fastmap = original
+
+
+CANDIDATES = (
+    FixedMeanMomentSV("experimental_gaussian_moment_matched_sv_empirical_fixed_mean"),
+    FixedMeanQuadratureSV("experimental_gaussian_state_sv_quadrature_empirical_fixed_mean"),
+)
