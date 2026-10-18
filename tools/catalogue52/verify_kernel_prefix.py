@@ -7,7 +7,8 @@ from pathlib import Path
 
 import legacy_exact_kernels as fast
 import numpy as np
-from campaign import atomic, digest, read, verified_process
+import worker
+from campaign import atomic, digest, read, verified_process, verify_snapshot
 from worker import checkpoint_losses, shared_tasks
 
 from simfolio_forecasting_methodology.models.registry import build_model
@@ -24,7 +25,14 @@ def verify(campaign, names):
         if verified_process(state):
             raise ValueError("reference must finish its current task and stop before auditing")
         spec = read(output / "registration.json")
-        tasks, cache = shared_tasks(campaign, spec, config)
+        snapshot = Path(spec["snapshot"])
+        verify_snapshot(snapshot, spec["source_sha256"])
+        original_root = worker.ROOT
+        try:
+            worker.ROOT = snapshot
+            tasks, cache = shared_tasks(campaign, spec, config)
+        finally:
+            worker.ROOT = original_root
         manifest = read(output / "manifest.json")
         binding = digest(manifest)
         count = read(output / "progress.json")["completed_tasks"]
