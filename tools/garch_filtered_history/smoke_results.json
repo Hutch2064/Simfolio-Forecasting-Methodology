@@ -1,0 +1,280 @@
+{
+  "scope": "synthetic_smoke_no_OOS_or_speed_claim",
+  "initialization_seconds": 5.907526500057429,
+  "records": [
+    {
+      "assets": 1,
+      "days": 504,
+      "horizon": 21,
+      "paths": 240,
+      "seconds": 0.20636599999852479,
+      "timings": {
+        "fit_phase_wall": 0.2037545419880189,
+        "asset_predictive_paths": 0.0003433749661780894,
+        "portfolio_rejoin": 0.00024979200679808855
+      },
+      "exact_mean_byte_parity": true,
+      "diagnostics": [
+        {
+          "model_id": "asset_m261_mean_gjr_garch_student_filtered_history",
+          "data_sha256": "e203dd60d5ed575767d99f3d91eca04b5b082f271255a6c8dcc46dc5d0eac000",
+          "gjr_student_fit": {
+            "estimator": "full_training_GJR_GARCH_1_1_unit_variance_Student_t_likelihood",
+            "omega": 9.576967704887378e-05,
+            "alpha": 0.08922801627452218,
+            "gamma": -0.07494898979464781,
+            "beta": 2.2328008531639703e-18,
+            "nu": 177.5576434076718,
+            "persistence": 0.05175352137719827,
+            "converged": true,
+            "training_rows": 504,
+            "historical_center": -0.0002966169494246443,
+            "loglikelihood_percent_units": -716.6768046014339,
+            "empirical_pool_center": -7.93016446160826e-18,
+            "empirical_pool_second_moment": 1.0,
+            "terminal_variance": 9.597733643815787e-05,
+            "terminal_residual": 0.007890091915196053,
+            "solver_feasibility_tolerance": 1e-09,
+            "optimizer_params_percent_units": [
+              0.9576967704887378,
+              0.08922801627452218,
+              -0.07494898979464781,
+              2.2328008531639703e-18,
+              177.5576434076718
+            ],
+            "used_params_percent_units": [
+              0.9576967704887378,
+              0.08922801627452218,
+              -0.07494898979464781,
+              2.2328008531639703e-18,
+              177.5576434076718
+            ],
+            "maximum_parameter_feasibility_correction": 0.0,
+            "maximum_variance_refilter_change_percent_units": 0.0
+          },
+          "stationary_bootstrap": {
+            "selector": "arch.bootstrap.optimal_block_length_PPW",
+            "selector_inputs": "aligned_standardized_innovations_and_their_squares",
+            "stationary_lengths": [
+              0.14189606623436052,
+              0.5428570125081636
+            ],
+            "expected_block_length": 1.0,
+            "joint_row_resampling": true,
+            "training_rows": 504,
+            "innovation_matrix_sha256": "4742b265b7db772f9d5da5714ff6990146b50310784ceb178f3faa3efa7126f8"
+          },
+          "return_mean_curve": "exact_M261_Gaussian_original_fit_existing_sv_rate",
+          "parameter_uncertainty": false,
+          "rough_fit": false,
+          "innovation_law": "centered_unit_second_moment_empirical_training_residuals",
+          "baseline_daily_log_return_clip": [
+            -1.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "assets": 3,
+      "days": 504,
+      "horizon": 21,
+      "paths": 240,
+      "seconds": 0.11351266701240093,
+      "timings": {
+        "fit_phase_wall": 0.11194941698340699,
+        "asset_predictive_paths": 0.0003195000463165343,
+        "portfolio_rejoin": 0.00034425000194460154
+      },
+      "exact_mean_byte_parity": true,
+      "diagnostics": [
+        {
+          "model_id": "asset_m261_mean_gjr_garch_student_filtered_history",
+          "data_sha256": "f3cd6f200e61a7558b5e4bb2cb7a0ba70eafbe7df34edc0383d205d383ca7b63",
+          "gjr_student_fit": {
+            "estimator": "full_training_GJR_GARCH_1_1_unit_variance_Student_t_likelihood",
+            "omega": 0.00010817331690771311,
+            "alpha": 0.0,
+            "gamma": 0.0018598811874633962,
+            "beta": 7.035179295695255e-12,
+            "nu": 117.5039816290125,
+            "persistence": 0.0009299406007668774,
+            "converged": true,
+            "training_rows": 504,
+            "historical_center": 0.00020410622594724094,
+            "loglikelihood_percent_units": -735.101532357375,
+            "empirical_pool_center": 8.8112938462314e-18,
+            "empirical_pool_second_moment": 0.9999999999999999,
+            "terminal_variance": 0.00010869661703096829,
+            "terminal_residual": 0.002966563008597217,
+            "solver_feasibility_tolerance": 1e-09,
+            "optimizer_params_percent_units": [
+              1.081733169077131,
+              0.0,
+              0.0018598811874633962,
+              7.035179295695255e-12,
+              117.5039816290125
+            ],
+            "used_params_percent_units": [
+              1.081733169077131,
+              0.0,
+              0.0018598811874633962,
+              7.035179295695255e-12,
+              117.5039816290125
+            ],
+            "maximum_parameter_feasibility_correction": 0.0,
+            "maximum_variance_refilter_change_percent_units": 0.0
+          },
+          "stationary_bootstrap": {
+            "selector": "arch.bootstrap.optimal_block_length_PPW",
+            "selector_inputs": "aligned_standardized_innovations_and_their_squares",
+            "stationary_lengths": [
+              2.53081727861135,
+              1.0818126404230435,
+              2.215237346073541,
+              1.4338601646954865,
+              1.9118139370433658,
+              0.7830967432204591
+            ],
+            "expected_block_length": 2.53081727861135,
+            "joint_row_resampling": true,
+            "training_rows": 504,
+            "innovation_matrix_sha256": "aeac6c5a8abd6102e5709133e29808cc3f230f75ebb276b6ea80481a21e82b73"
+          },
+          "return_mean_curve": "exact_M261_Gaussian_original_fit_existing_sv_rate",
+          "parameter_uncertainty": false,
+          "rough_fit": false,
+          "innovation_law": "centered_unit_second_moment_empirical_training_residuals",
+          "baseline_daily_log_return_clip": [
+            -1.0,
+            1.0
+          ]
+        },
+        {
+          "model_id": "asset_m261_mean_gjr_garch_student_filtered_history",
+          "data_sha256": "1d42f475f69ab9c3ed859cff4d8cb88b1004e315702f20dd5d7050dbc241ca51",
+          "gjr_student_fit": {
+            "estimator": "full_training_GJR_GARCH_1_1_unit_variance_Student_t_likelihood",
+            "omega": 5.512016607970718e-06,
+            "alpha": 0.0,
+            "gamma": 0.009631547331439004,
+            "beta": 0.9423889642113045,
+            "nu": 199.5029877899177,
+            "persistence": 0.947204737877024,
+            "converged": true,
+            "training_rows": 504,
+            "historical_center": 0.0004199667326657909,
+            "loglikelihood_percent_units": -721.0625022483175,
+            "empirical_pool_center": -7.04903507698512e-18,
+            "empirical_pool_second_moment": 1.0000000000000002,
+            "terminal_variance": 9.916097510831494e-05,
+            "terminal_residual": -0.006860253640228184,
+            "solver_feasibility_tolerance": 1e-09,
+            "optimizer_params_percent_units": [
+              0.055120166079707184,
+              0.0,
+              0.009631547331439004,
+              0.9423889642113045,
+              199.5029877899177
+            ],
+            "used_params_percent_units": [
+              0.055120166079707184,
+              0.0,
+              0.009631547331439004,
+              0.9423889642113045,
+              199.5029877899177
+            ],
+            "maximum_parameter_feasibility_correction": 0.0,
+            "maximum_variance_refilter_change_percent_units": 0.0
+          },
+          "stationary_bootstrap": {
+            "selector": "arch.bootstrap.optimal_block_length_PPW",
+            "selector_inputs": "aligned_standardized_innovations_and_their_squares",
+            "stationary_lengths": [
+              2.53081727861135,
+              1.0818126404230435,
+              2.215237346073541,
+              1.4338601646954865,
+              1.9118139370433658,
+              0.7830967432204591
+            ],
+            "expected_block_length": 2.53081727861135,
+            "joint_row_resampling": true,
+            "training_rows": 504,
+            "innovation_matrix_sha256": "aeac6c5a8abd6102e5709133e29808cc3f230f75ebb276b6ea80481a21e82b73"
+          },
+          "return_mean_curve": "exact_M261_Gaussian_original_fit_existing_sv_rate",
+          "parameter_uncertainty": false,
+          "rough_fit": false,
+          "innovation_law": "centered_unit_second_moment_empirical_training_residuals",
+          "baseline_daily_log_return_clip": [
+            -1.0,
+            1.0
+          ]
+        },
+        {
+          "model_id": "asset_m261_mean_gjr_garch_student_filtered_history",
+          "data_sha256": "7ca5c10e6fa0073c4e5a86e20c2edc7baab25ae535ab130af0c7a6f53c5bb873",
+          "gjr_student_fit": {
+            "estimator": "full_training_GJR_GARCH_1_1_unit_variance_Student_t_likelihood",
+            "omega": 9.77661554642585e-05,
+            "alpha": 0.03415580473417857,
+            "gamma": -0.03415580473417857,
+            "beta": 0.06126461371250878,
+            "nu": 288.4147296492616,
+            "persistence": 0.07834251607959807,
+            "converged": true,
+            "training_rows": 504,
+            "historical_center": 0.00064222854702722,
+            "loglikelihood_percent_units": -729.9041300752064,
+            "empirical_pool_center": 2.114710523095536e-17,
+            "empirical_pool_second_moment": 1.0,
+            "terminal_variance": 0.00010415058393396685,
+            "terminal_residual": -0.013059773736305397,
+            "solver_feasibility_tolerance": 1e-09,
+            "optimizer_params_percent_units": [
+              0.977661554642585,
+              0.03415580473417857,
+              -0.034155804734377605,
+              0.06126461371250878,
+              288.4147296492616
+            ],
+            "used_params_percent_units": [
+              0.977661554642585,
+              0.03415580473417857,
+              -0.03415580473417857,
+              0.06126461371250878,
+              288.4147296492616
+            ],
+            "maximum_parameter_feasibility_correction": 1.9903523273967494e-13,
+            "maximum_variance_refilter_change_percent_units": 2.218891737015838e-12
+          },
+          "stationary_bootstrap": {
+            "selector": "arch.bootstrap.optimal_block_length_PPW",
+            "selector_inputs": "aligned_standardized_innovations_and_their_squares",
+            "stationary_lengths": [
+              2.53081727861135,
+              1.0818126404230435,
+              2.215237346073541,
+              1.4338601646954865,
+              1.9118139370433658,
+              0.7830967432204591
+            ],
+            "expected_block_length": 2.53081727861135,
+            "joint_row_resampling": true,
+            "training_rows": 504,
+            "innovation_matrix_sha256": "aeac6c5a8abd6102e5709133e29808cc3f230f75ebb276b6ea80481a21e82b73"
+          },
+          "return_mean_curve": "exact_M261_Gaussian_original_fit_existing_sv_rate",
+          "parameter_uncertainty": false,
+          "rough_fit": false,
+          "innovation_law": "centered_unit_second_moment_empirical_training_residuals",
+          "baseline_daily_log_return_clip": [
+            -1.0,
+            1.0
+          ]
+        }
+      ]
+    }
+  ]
+}

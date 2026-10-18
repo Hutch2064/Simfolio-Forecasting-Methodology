@@ -1,0 +1,44 @@
+{
+  "scope": "one_failed_prefix_fit_only_no_panel",
+  "seconds": 0.011931125016417354,
+  "receipt": {
+    "estimator": "full_training_GJR_GARCH_1_1_unit_variance_Student_t_likelihood",
+    "omega": 1.3713183114998864e-06,
+    "alpha": 0.10576765191227123,
+    "gamma": -0.0443188870188371,
+    "beta": 0.9163917915971472,
+    "nu": 4.781393512585048,
+    "persistence": 0.9999999999999999,
+    "converged": true,
+    "training_rows": 1960,
+    "historical_center": -5.519677931133311e-05,
+    "loglikelihood_percent_units": -3421.8580736319614,
+    "empirical_pool_center": -1.0875654118777043e-17,
+    "empirical_pool_second_moment": 1.0,
+    "empirical_negative_shock_second_moment": 0.5155187797951618,
+    "empirical_iid_variance_persistence": 0.9993122249515879,
+    "terminal_variance": 5.143342758369742e-05,
+    "terminal_residual": 0.0002728466877136372,
+    "solver_feasibility_tolerance": 1e-09,
+    "optimizer_persistence": 1.0000000000000004,
+    "open_stationarity_boundary_projection": true,
+    "stationarity_boundary_interpretation": "approximate_open_constraint_GJR_not_a_separate_IGARCH_law",
+    "optimizer_loglikelihood_percent_units": -3421.858073631962,
+    "optimizer_params_percent_units": [
+      0.013713183114998863,
+      0.10576765191227129,
+      -0.04431888701883713,
+      0.9163917915971478,
+      4.781393512585048
+    ],
+    "used_params_percent_units": [
+      0.013713183114998863,
+      0.10576765191227123,
+      -0.0443188870188371,
+      0.9163917915971472,
+      4.781393512585048
+    ],
+    "maximum_parameter_feasibility_correction": 5.551115123125783e-16,
+    "maximum_variance_refilter_change_percent_units": 2.913225216616411e-13
+  }
+}
