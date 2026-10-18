@@ -614,3 +614,47 @@ def test_oversize_inactive_or_queued_model_does_not_block_eligible_work(controll
     blocked = campaign.read(root / "controller.json")["capacity_blocked"]
     assert set(blocked) == {"oversize"} and blocked["oversize"]["requested_cpu_slots"] == 6
     controller.children["eligible"].wait(timeout=5)
+
+
+def test_queued_origin_pool_reserves_slots_without_interrupting_live_work(controlled):
+    root, source, _ = controlled
+    controller = campaign.Controller(root, max_models=3, max_cpu_slots=3,
+                                     python=sys.executable, nice=0)
+    campaign.add_model(root, "running", source_root=source)
+    controller.tick()
+    original = campaign.read(root / "models/running/process.json")
+    campaign.add_model(root, "a-wide", environment={campaign.ORIGIN_WORKERS_ENV: "3"},
+                       source_root=source)
+    campaign.add_model(root, "b-small", source_root=source)
+    controller.tick()
+    assert not (root / "models/a-wide/process.json").exists()
+    assert not (root / "models/b-small/process.json").exists()
+    assert campaign.read(root / "models/running/process.json") == original
+    assert campaign.read(root / "controller.json")["cpu_slot_reservation"] == {
+        "execution_name": "a-wide", "requested_cpu_slots": 3, "available_cpu_slots": 2}
+    controller.children["running"].wait(timeout=5)
+    controller.tick()
+    assert (root / "models/a-wide/process.json").exists()
+    assert not (root / "models/b-small/process.json").exists()
+    assert campaign.read(root / "controller.json")["allocated_cpu_slots"] == 3
+    controller.children["a-wide"].wait(timeout=5)
+    controller.tick()
+    assert (root / "models/b-small/process.json").exists()
+
+
+def test_removing_reserved_pool_immediately_releases_small_jobs(controlled):
+    root, source, _ = controlled
+    controller = campaign.Controller(root, max_models=3, max_cpu_slots=3,
+                                     python=sys.executable, nice=0)
+    campaign.add_model(root, "running", source_root=source)
+    controller.tick()
+    original = campaign.read(root / "models/running/process.json")
+    campaign.add_model(root, "a-wide", environment={campaign.ORIGIN_WORKERS_ENV: "3"},
+                       source_root=source)
+    campaign.add_model(root, "b-small", source_root=source)
+    controller.tick()
+    campaign.remove_model(root, "a-wide", reason="User removed queued model")
+    controller.tick()
+    assert (root / "models/b-small/process.json").exists()
+    assert campaign.read(root / "models/running/process.json") == original
+    assert campaign.read(root / "controller.json")["cpu_slot_reservation"] is None

@@ -414,16 +414,27 @@ class Controller:
             active[name] = None  # Queue without consuming a process slot yet.
         count = sum(state is not None for state in active.values())
         used_slots = sum(slots[name] for name, state in active.items() if state is not None)
+        reservation = None
         if not shutdown and self.storage_available:
             for name, state in active.items():
-                if (state is None and count < self.max_models
-                        and used_slots + slots[name] <= self.max_cpu_slots):
-                    active[name] = self.launch(name, control["models"][name]["request"])
-                    count += 1
-                    used_slots += slots[name]
+                if state is not None:
+                    continue
+                if count >= self.max_models:
+                    break
+                if used_slots + slots[name] > self.max_cpu_slots:
+                    # Reserve released slots for the first eligible queued job.
+                    # Backfilling forever with single-slot jobs starves a wide
+                    # origin pool until the end and creates a long serial tail.
+                    reservation = {"execution_name": name, "requested_cpu_slots": slots[name],
+                                   "available_cpu_slots": self.max_cpu_slots - used_slots}
+                    break
+                active[name] = self.launch(name, control["models"][name]["request"])
+                count += 1
+                used_slots += slots[name]
         atomic(self.root / "controller.json", {"live_models": count, "max_models": self.max_models,
                "allocated_cpu_slots": used_slots, "max_cpu_slots": self.max_cpu_slots,
                "capacity_blocked": capacity_blocked,
+               "cpu_slot_reservation": reservation,
                "shutting_down": shutdown, "time": time.time()})
         return count
 

@@ -53,6 +53,19 @@ vector comparison. A representative warmed origin was 2.47 times faster;
 that is a measured case, not a blanket full-panel runtime claim. Only executions
 that had never started were replaced; active and completed runs were untouched.
 
+The retained rough controls M191/M192 use four independent origin lanes each,
+within that same twelve-slot budget. Their serial executions stopped after
+checkpointing the current origin; new executions run the entire unchanged grid.
+`retained-rough-parallel-proof.json` records the selected loss-vector and
+inference-diagnostic parity gate. All old checkpoint evidence is retained for
+the subsequent complete-prefix comparison. The controller reserves released
+slots for the first queued eligible origin pool, so repeated admission of small
+jobs cannot defer it to the end. This can briefly leave slots idle while other
+running models finish; it never interrupts those models.
+M255/M256 are also scheduled earlier using their original frozen source and
+full grids, to measure their actual single-asset cost before they become a late
+campaign tail. Queue order changes neither their scores nor the retained list.
+
 Periodic top-ten updates combine completed campaign results with previously
 validated results on this same 52-asset grid, including M262 and M263. Updates
 are approximately fifteen minutes apart, or earlier for a new leader, and

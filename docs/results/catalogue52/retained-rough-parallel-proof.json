@@ -1,0 +1,449 @@
+{
+  "excluded_diagnostic_timing_fields": [
+    "fit_seconds",
+    "ess_per_second"
+  ],
+  "free_gib_at_finish": 638.7059135437012,
+  "full_panel_execution_adoption": {
+    "models": [
+      {
+        "canonical_rank": 191,
+        "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+        "new_execution": "00-m191-p4",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "a-m191",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "origin_workers": 4,
+        "original_prefix_audit": "pending_serial_drain_and_parallel_catchup",
+        "original_prefix_checkpoint_manifest_sha256": "9c4a6e49c5f5a1ed795354f06ca9bd78b6cfa17c118b7a1eedc3348ef0a01637",
+        "original_prefix_tasks": 56,
+        "statistical_configuration_unchanged": true
+      },
+      {
+        "canonical_rank": 192,
+        "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+        "new_execution": "01-m192-p4",
+        "new_source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2",
+        "old_execution": "a-m192",
+        "old_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+        "origin_workers": 4,
+        "original_prefix_audit": "pending_serial_drain_and_parallel_catchup",
+        "original_prefix_checkpoint_manifest_sha256": "8ecea30a217a84678dd2e4049e24913d9f90d947908ed98962aea635efbe43a9",
+        "original_prefix_tasks": 120,
+        "statistical_configuration_unchanged": true
+      }
+    ],
+    "scope": "Execution-only parallelism within total12CPUslots. Both models retained. No old checkpoint rebound or discarded; optimized executions rerun the complete grid."
+  },
+  "full_panel_launched": false,
+  "indices": [
+    0,
+    25
+  ],
+  "limits": [
+    "Selected126/1609-horizon loss vectors and diagnostics verified; not all2652 forecasts.",
+    "All2652 task identities and seeds verified independently of selected forecast coverage.",
+    "Timing arms were not concurrent paired benchmarks; no measured full-campaign speedup claimed.",
+    "No controller replacement or full-panel run performed by this proof."
+  ],
+  "main_control_mutated": false,
+  "max_cpu_slots": 2,
+  "max_models": 1,
+  "minimum_free_gib": 100,
+  "models": [
+    {
+      "all2652_task_identities_and_seeds_equal": true,
+      "all_model_environment_values_equal_except_origin_workers": true,
+      "full_score_eligible": false,
+      "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+      "numerical_source_files": {
+        "src/simfolio_forecasting_methodology/evaluation.py": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8",
+        "src/simfolio_forecasting_methodology/models/__init__.py": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b",
+        "src/simfolio_forecasting_methodology/models/asset_level/__init__.py": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4",
+        "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+        "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6",
+        "src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+        "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997",
+        "src/simfolio_forecasting_methodology/models/numerical/__init__.py": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1",
+        "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7",
+        "src/simfolio_forecasting_methodology/models/numerical/base_models.py": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31",
+        "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "f7fc60d38870db552b0cda4a47c019e207c5a48d78dcbe2defe73c946a5d5380",
+        "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+        "src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b",
+        "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+        "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+        "src/simfolio_forecasting_methodology/models/portfolio/__init__.py": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4",
+        "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952",
+        "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1",
+        "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d",
+        "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+        "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f",
+        "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d",
+        "src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+        "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3",
+        "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0",
+        "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040",
+        "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab",
+        "src/simfolio_forecasting_methodology/models/registry.py": "6f45544cc87158a9157ff693e228443d18497881c1346c960bb0838a6c3e9257",
+        "src/simfolio_forecasting_methodology/runner.py": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac",
+        "tools/catalogue52/single_asset_bridge.py": "5ec44a39f238660d0faf7fa923ecc3f34a0de8b4a2c4d0dccec174dafb4ef89e",
+        "tools/expanded_panel/protocol.py": "9bd9780074159d8b5329b136d8eadd4ae1d2515c8da68cc78f628dc21aeb0842",
+        "tools/expanded_panel/run_cached_panel.py": "ffdab6bb265019f15c9701c02cda5d4c1020cbd379f3d0cbbd808852aeed4e43",
+        "tools/expanded_panel/run_panel.py": "e1f482f994abbd92b5014607fe76411c640163c76a009eec2ef34ac30da4368e",
+        "tools/mcmc_runtime/README.md": "581dbbdc4c070328b953edd68ab04ddfa3b91e6f32eb11a9c891b59736b1317b",
+        "tools/mcmc_runtime/benchmark_model_cases.py": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6",
+        "tools/mcmc_runtime/benchmark_scaling.py": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02",
+        "tools/mcmc_runtime/cached_dependence.py": "05ea1ca7c67003bfb8c217851e217558f770fd8a17ccf55c4f6ca0cdeac659fb",
+        "tools/mcmc_runtime/cached_moments.py": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b",
+        "tools/mcmc_runtime/compiled_chain.py": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059",
+        "tools/mcmc_runtime/compiled_map.py": "ff14eb242d8701b1dfdd067c63ab81de6d47dbd8b057786ce67b209a4b1a6b76",
+        "tools/mcmc_runtime/compiled_postburn.py": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c",
+        "tools/mcmc_runtime/compiled_smoothers.py": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46",
+        "tools/mcmc_runtime/complex_sv.py": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71",
+        "tools/mcmc_runtime/exact_path_kernels.py": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5",
+        "tools/mcmc_runtime/finite_multiscale.py": "5f444323af6696d06840a8f88695e482c2e64cec921a62b8bc486f42fbd30906",
+        "tools/mcmc_runtime/optimized_mcmc.py": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df",
+        "tools/mcmc_runtime/parallel_chains.py": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3",
+        "tools/mcmc_runtime/parameter_mcmc_tuned.py": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a",
+        "tools/mcmc_runtime/predictive_sv_candidates.py": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309",
+        "tools/mcmc_runtime/profile_runtime.py": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4",
+        "tools/mcmc_runtime/replay_full_panel.py": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca",
+        "tools/mcmc_runtime/research_jit_pilot.py": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e",
+        "tools/mcmc_runtime/runtime_setup.py": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665",
+        "tools/mcmc_runtime/steady_kalman_target.py": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394",
+        "tools/mcmc_runtime/streamed_paths.py": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa",
+        "tools/rough_bayesian/coherent.py": "713f8c5790471ccfc2898c2c758be03dc72d04e76fe8d456859998f6d8327950",
+        "tools/rough_bayesian/coherent_kernels.py": "64dc4e6f4bae8270b86c10d55102d0eefd1421fd93aa55771b6224652594bc47",
+        "tools/rough_bayesian/dynamic.py": "6fe1eccf02c597d75b65c6259082eebce7237317a8f4ffa0a66ec98047342fac",
+        "tools/rough_bayesian/inference.py": "9af54147f5db99fc37ad9b71f1cabc1b96762f641ab2372f7876e852d1e54ec3",
+        "tools/rough_bayesian/kernels.py": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b",
+        "tools/rough_bayesian/mixture.py": "8a315cd80f214c19547a385e7ef807e4bbd2aea147a7ada20a9fcd52525280f0",
+        "tools/rough_bayesian/mixture_kernels.py": "0d494d68c910b51ae8cb935ca86e0389f6906f6ec4581bd3322fe1c0e6b6dcf3",
+        "tools/rough_bayesian/models.py": "73389a2fc2bbe0fb0bcbc88ad8aec70e9bfbbb8484c7e825e873f464cf570f9b",
+        "tools/rough_bayesian/native.py": "696713549712fa70e01369ae5c7805c25ba02a88692a657ad1d1738a9798df2e",
+        "tools/rough_bayesian/overlay.py": "a401776494b15125c30170bd76c3c9a62ad4626877b857a8d4f474327a852d97",
+        "tools/rough_bayesian/overlay_filter.cpp": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1",
+        "tools/rough_bayesian/run_panel.py": "71a8ada2fc26e1506dac8eae4d590576dd66715810347dc7c48dc4cc6c06f301",
+        "tools/rough_bayesian/smoke.py": "a31f118e207a8aa62a4dec17c689c8c982f150da035150da4d2cab6d386ee395",
+        "tools/rough_bayesian/standalone.py": "0be7df8758f4b1c31fe75ac863dd273cef4a12033150f6d36c39948c05a42472",
+        "tools/rough_jump_vine/build_native.py": "2346d6501657e53a998c4fd758c7f077be0f6b65a79a49c7e439effead4c7819",
+        "tools/rough_jump_vine/models.py": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620",
+        "tools/rough_jump_vine/native.patch": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4",
+        "tools/rough_jump_vine/run_panel.py": "52fb5a3ffb99275eb9b5a2db56bbcea1e69db5e6143715c1877fdc4c3abec55a",
+        "tools/rough_jump_vine/smoke.py": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a"
+      },
+      "numerical_source_files_equal": true,
+      "package_metadata_explanation": "New snapshot includes project egg-info; both unchanged pyproject.toml files already declare0.3.0. No external dependency version differs.",
+      "parallel_environment_only_addition": {
+        "SIMFOLIO_CATALOGUE_ORIGIN_WORKERS": "2"
+      },
+      "rank": 191,
+      "recorded_startup_plus_task_stage_seconds": 128.89418308401946,
+      "runtime_dependency_versions_equal": true,
+      "runtime_package_metadata_difference": {
+        "simfolio-forecasting-methodology": {
+          "parallel": "0.3.0",
+          "serial": null
+        }
+      },
+      "selected_task_stage_seconds": 72.0503582090023,
+      "selected_tasks": [
+        {
+          "diagnostics": [
+            {
+              "burn_per_chain": 2048,
+              "convergence_flag": true,
+              "data_sha256": "269a57cb42505bce2aead50f028f3ca7e83aec505c56e79ce5a10ae8a599cfd6",
+              "diagnostics": [
+                {
+                  "bulk_ess": 1326.282339639454,
+                  "rank_split_rhat": 1.0016146449360115
+                },
+                {
+                  "bulk_ess": 1292.9222098771168,
+                  "rank_split_rhat": 1.0019877892392197
+                },
+                {
+                  "bulk_ess": 973.7051148233402,
+                  "rank_split_rhat": 1.0023631259339751
+                },
+                {
+                  "bulk_ess": 1020.7043477917747,
+                  "rank_split_rhat": 1.0011664375156635
+                }
+              ],
+              "kept_per_chain": 8192,
+              "kernel": {
+                "diagonal_variance": "analytic_exact_with_unresolved_white_remainder",
+                "factors": 33,
+                "log_rate_bins": 16,
+                "maximum_absolute_autocorrelation_error": 0.00031965075874224036,
+                "tolerance": 0.001
+              },
+              "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian"
+            }
+          ],
+          "diagnostics_equal_excluding_timing": true,
+          "horizon": 126,
+          "index": 0,
+          "loss_bytes_equal": true,
+          "loss_vector_sha256": "d0b9169c134fe0393143dd9dc902b990b3ad29cd80f755c7a445c226438d6f8d",
+          "parallel_task_seconds": 14.027233125001658,
+          "seed": 1469231240,
+          "serial_task_seconds": 12.239662875013892
+        },
+        {
+          "diagnostics": [
+            {
+              "burn_per_chain": 2048,
+              "convergence_flag": true,
+              "data_sha256": "83967c36d7358f8ebe27f7e63c69f0d7d39ccbcfafd723975295a3ffe0ef5c7c",
+              "diagnostics": [
+                {
+                  "bulk_ess": 860.5644030167507,
+                  "rank_split_rhat": 1.0023312627222254
+                },
+                {
+                  "bulk_ess": 668.0159569179303,
+                  "rank_split_rhat": 1.0060295040226177
+                },
+                {
+                  "bulk_ess": 707.1060712718487,
+                  "rank_split_rhat": 1.0025333886740617
+                },
+                {
+                  "bulk_ess": 680.8113614949666,
+                  "rank_split_rhat": 1.0042344694713754
+                }
+              ],
+              "kept_per_chain": 8192,
+              "kernel": {
+                "diagonal_variance": "analytic_exact_with_unresolved_white_remainder",
+                "factors": 33,
+                "log_rate_bins": 16,
+                "maximum_absolute_autocorrelation_error": 0.00031965075874224036,
+                "tolerance": 0.001
+              },
+              "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian"
+            }
+          ],
+          "diagnostics_equal_excluding_timing": true,
+          "horizon": 1609,
+          "index": 25,
+          "loss_bytes_equal": true,
+          "loss_vector_sha256": "7c2626ef159a12b2319590dc4e21f4acacc9753bbae0e13c66a5001a2664d9e4",
+          "parallel_task_seconds": 62.05888354202034,
+          "seed": 4414425,
+          "serial_task_seconds": 50.66731858300045
+        }
+      ],
+      "serial_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "task_identity_sha256": "073ba1f1383763c1b843ae7eac80fa81e219806486dbd98b30f70fa6e0045ff9",
+      "worker_process_group_closed": true,
+      "worker_total_seconds": null
+    },
+    {
+      "all2652_task_identities_and_seeds_equal": true,
+      "all_model_environment_values_equal_except_origin_workers": true,
+      "full_score_eligible": false,
+      "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+      "numerical_source_files": {
+        "src/simfolio_forecasting_methodology/evaluation.py": "02cb489f367ca7150f88017ec1d3af36a61e9e2db3926f5667d15a2bfbe579f8",
+        "src/simfolio_forecasting_methodology/models/__init__.py": "bbe3cc31d9f5049a79f25be2f10afe46274a00c5a791e8f30bb19ab2db07127b",
+        "src/simfolio_forecasting_methodology/models/asset_level/__init__.py": "9807cee7ed2736d3c48b43d419e56b4a9c053867220518cb937cdb2d185e88d4",
+        "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+        "src/simfolio_forecasting_methodology/models/asset_level/filtered_innovation_moment_sv.py": "0c9ee85e6cfb9d286288aad3c5a4e0ffa563565bdd18e24acbd10243bb44fbb6",
+        "src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+        "src/simfolio_forecasting_methodology/models/asset_level/sv_moment_functions.py": "f93fee50220f1c2abbaa6280ce260427e302b58aa483dd231d8b73e288bb9997",
+        "src/simfolio_forecasting_methodology/models/numerical/__init__.py": "36b5a0f1334876cbf4d2e126687860f1d595d0a4b8a4eb4cf7c5939eff122ee1",
+        "src/simfolio_forecasting_methodology/models/numerical/adaptive_pgas.py": "8dd48985c9e85ca89abaf992de97a2873e7bcb94e2541622ebfbbe7fbacf92e7",
+        "src/simfolio_forecasting_methodology/models/numerical/base_models.py": "ddf951305a2a4e0b86e65fff8f284cca22398140bc34977702a662a7160a0a31",
+        "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "f7fc60d38870db552b0cda4a47c019e207c5a48d78dcbe2defe73c946a5d5380",
+        "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+        "src/simfolio_forecasting_methodology/models/numerical/factors.py": "4a1a7fc2e4e3b48bf57495cca7234ebc69c6458fdec7a79dd444a0a647798b5b",
+        "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+        "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+        "src/simfolio_forecasting_methodology/models/portfolio/__init__.py": "fd7d5b28038099cfc349cdc99f08027fd4d15b0bd704d2869be7b64cd24b23c4",
+        "src/simfolio_forecasting_methodology/models/portfolio/bayesian_vol.py": "dd62f2f2c0f15c7e016f34b0efba2f0718e16f3b3fd8095f4eeeb0f36a410952",
+        "src/simfolio_forecasting_methodology/models/portfolio/canonical_stack_reference.py": "cf8ba7e4cc06879c45c1716b666f55488b67337ecfc2b6a59238f8ddc4e671e1",
+        "src/simfolio_forecasting_methodology/models/portfolio/factor_residual.py": "15267d2759ab814735deebbf20e7e8a2fb86d5bf7276b71832d749ae3e7d728d",
+        "src/simfolio_forecasting_methodology/models/portfolio/full_mcmc.py": "9be2367c14803363e63585a99ca2a13a9f137821d66359e5919e9e08da51cb5a",
+        "src/simfolio_forecasting_methodology/models/portfolio/gas_reference.py": "0ec29f0a803b113f4b1f5b6dae37466259ddce6d412e9d2416177244c444505f",
+        "src/simfolio_forecasting_methodology/models/portfolio/gjr_reference.py": "97833beb4dafdad22ebc61aba8f006f3fef9faecee565a003f339d8adf8b9e5d",
+        "src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+        "src/simfolio_forecasting_methodology/models/portfolio/reference_families.py": "302ae5f52e42d918b9c762fe6fc77bf1ed2361356a7c848c722ae2230bd3d3a3",
+        "src/simfolio_forecasting_methodology/models/portfolio/sv_extensions.py": "29d26bb222a451aadbac35a14da80e7ad3c62f1a43313bde8f0267d641cdb7b0",
+        "src/simfolio_forecasting_methodology/models/portfolio/sv_mcmc_reference.py": "09a844ff09c3297e0144a7b17cd729757c63092cee51e2a86ae87f81badb1040",
+        "src/simfolio_forecasting_methodology/models/portfolio/sv_reference.py": "d45dc69f51897090c96443a90db96c8edc8f5694ebf2692663086bb47135dbab",
+        "src/simfolio_forecasting_methodology/models/registry.py": "6f45544cc87158a9157ff693e228443d18497881c1346c960bb0838a6c3e9257",
+        "src/simfolio_forecasting_methodology/runner.py": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac",
+        "tools/catalogue52/single_asset_bridge.py": "5ec44a39f238660d0faf7fa923ecc3f34a0de8b4a2c4d0dccec174dafb4ef89e",
+        "tools/expanded_panel/protocol.py": "9bd9780074159d8b5329b136d8eadd4ae1d2515c8da68cc78f628dc21aeb0842",
+        "tools/expanded_panel/run_cached_panel.py": "ffdab6bb265019f15c9701c02cda5d4c1020cbd379f3d0cbbd808852aeed4e43",
+        "tools/expanded_panel/run_panel.py": "e1f482f994abbd92b5014607fe76411c640163c76a009eec2ef34ac30da4368e",
+        "tools/mcmc_runtime/README.md": "581dbbdc4c070328b953edd68ab04ddfa3b91e6f32eb11a9c891b59736b1317b",
+        "tools/mcmc_runtime/benchmark_model_cases.py": "9d0f9bb6d246d58a7bdb08de6474743aaf284e4fdf974b54327c51ed89f2c6c6",
+        "tools/mcmc_runtime/benchmark_scaling.py": "b58e17345b6a8f8f9737585eda1fd5330fdb7b080a644b6920bca19a500d2e02",
+        "tools/mcmc_runtime/cached_dependence.py": "05ea1ca7c67003bfb8c217851e217558f770fd8a17ccf55c4f6ca0cdeac659fb",
+        "tools/mcmc_runtime/cached_moments.py": "230a6c494fa49abd35ce43d2b151fb5a0ac80220551960484aad9e5690171b8b",
+        "tools/mcmc_runtime/compiled_chain.py": "41db138eea323bed2556f52aa7bbd41e288d5b75658143483fb55f8a3848f059",
+        "tools/mcmc_runtime/compiled_map.py": "ff14eb242d8701b1dfdd067c63ab81de6d47dbd8b057786ce67b209a4b1a6b76",
+        "tools/mcmc_runtime/compiled_postburn.py": "e15d16bb95d2537d5879b81f118b297943bdb954cdd2639af88ed5c00633374c",
+        "tools/mcmc_runtime/compiled_smoothers.py": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46",
+        "tools/mcmc_runtime/complex_sv.py": "219afaf9ade67c34e708a8ace2594a625877a5628d17d316abe22ab8a7d15a71",
+        "tools/mcmc_runtime/exact_path_kernels.py": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5",
+        "tools/mcmc_runtime/finite_multiscale.py": "5f444323af6696d06840a8f88695e482c2e64cec921a62b8bc486f42fbd30906",
+        "tools/mcmc_runtime/optimized_mcmc.py": "966d647206b2d593d3c3fdb6691d8d1d1231956da88b9e366f1c7a19c5d1e0df",
+        "tools/mcmc_runtime/parallel_chains.py": "2a41a8935c9a5c2f947cc827d600f4ac12f010d1e40ea2685a9be5e0e3bfa5a3",
+        "tools/mcmc_runtime/parameter_mcmc_tuned.py": "8322def27875d08652cf5858e3d84d7920613290018cf91fbd938b988127119a",
+        "tools/mcmc_runtime/predictive_sv_candidates.py": "fce7707e5fd2bb06d221d4d33169606c551e66dd2d327ea4824d102d6b113309",
+        "tools/mcmc_runtime/profile_runtime.py": "29d8255f9a1fad5eda92e3c5df0e6deb71e104b5e1fa7894039e17e01494c4c4",
+        "tools/mcmc_runtime/replay_full_panel.py": "18ad87a7ce5a17ba8ad3536b4a9dcb4a3e2c1e79cccf3d002e527e581306c3ca",
+        "tools/mcmc_runtime/research_jit_pilot.py": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e",
+        "tools/mcmc_runtime/runtime_setup.py": "df94ffb8b3ed0670c29599b3fe3ec0695fe756d9c137a48000daa61fa63a7665",
+        "tools/mcmc_runtime/steady_kalman_target.py": "07f2f3b991589a3e51a2473ba4086548957b4c0edc371c20d29fd8afceebf394",
+        "tools/mcmc_runtime/streamed_paths.py": "8d32098b16e318e1379f82df06ff1814d536edaa8891afd0210fc09a9512d1fa",
+        "tools/rough_bayesian/coherent.py": "713f8c5790471ccfc2898c2c758be03dc72d04e76fe8d456859998f6d8327950",
+        "tools/rough_bayesian/coherent_kernels.py": "64dc4e6f4bae8270b86c10d55102d0eefd1421fd93aa55771b6224652594bc47",
+        "tools/rough_bayesian/dynamic.py": "6fe1eccf02c597d75b65c6259082eebce7237317a8f4ffa0a66ec98047342fac",
+        "tools/rough_bayesian/inference.py": "9af54147f5db99fc37ad9b71f1cabc1b96762f641ab2372f7876e852d1e54ec3",
+        "tools/rough_bayesian/kernels.py": "43429a60e947213997d889f0404c7d4dd68918c9a6ac1d0fccebc15dde10304b",
+        "tools/rough_bayesian/mixture.py": "8a315cd80f214c19547a385e7ef807e4bbd2aea147a7ada20a9fcd52525280f0",
+        "tools/rough_bayesian/mixture_kernels.py": "0d494d68c910b51ae8cb935ca86e0389f6906f6ec4581bd3322fe1c0e6b6dcf3",
+        "tools/rough_bayesian/models.py": "73389a2fc2bbe0fb0bcbc88ad8aec70e9bfbbb8484c7e825e873f464cf570f9b",
+        "tools/rough_bayesian/native.py": "696713549712fa70e01369ae5c7805c25ba02a88692a657ad1d1738a9798df2e",
+        "tools/rough_bayesian/overlay.py": "a401776494b15125c30170bd76c3c9a62ad4626877b857a8d4f474327a852d97",
+        "tools/rough_bayesian/overlay_filter.cpp": "879d248d2dfde8c628378a184a6238f8d5dd077cb2e040ce73798c1baae201f1",
+        "tools/rough_bayesian/run_panel.py": "71a8ada2fc26e1506dac8eae4d590576dd66715810347dc7c48dc4cc6c06f301",
+        "tools/rough_bayesian/smoke.py": "a31f118e207a8aa62a4dec17c689c8c982f150da035150da4d2cab6d386ee395",
+        "tools/rough_bayesian/standalone.py": "0be7df8758f4b1c31fe75ac863dd273cef4a12033150f6d36c39948c05a42472",
+        "tools/rough_jump_vine/build_native.py": "2346d6501657e53a998c4fd758c7f077be0f6b65a79a49c7e439effead4c7819",
+        "tools/rough_jump_vine/models.py": "69725cc330bc2539705757b687c5a7d643f46bca06f0e6cace02eedff7bf3620",
+        "tools/rough_jump_vine/native.patch": "298aa6c5ec6603c8f0ce31e03c247b75d8cd96efc1cdfc2495c4db62e7293de4",
+        "tools/rough_jump_vine/run_panel.py": "52fb5a3ffb99275eb9b5a2db56bbcea1e69db5e6143715c1877fdc4c3abec55a",
+        "tools/rough_jump_vine/smoke.py": "2700f2206ffe64d661a32b78c700d906d2de4dbdf944717aac9cb57a6d1b2e8a"
+      },
+      "numerical_source_files_equal": true,
+      "package_metadata_explanation": "New snapshot includes project egg-info; both unchanged pyproject.toml files already declare0.3.0. No external dependency version differs.",
+      "parallel_environment_only_addition": {
+        "SIMFOLIO_CATALOGUE_ORIGIN_WORKERS": "2"
+      },
+      "rank": 192,
+      "recorded_startup_plus_task_stage_seconds": 59.74211437505437,
+      "runtime_dependency_versions_equal": true,
+      "runtime_package_metadata_difference": {
+        "simfolio-forecasting-methodology": {
+          "parallel": "0.3.0",
+          "serial": null
+        }
+      },
+      "selected_task_stage_seconds": 35.148579958011396,
+      "selected_tasks": [
+        {
+          "diagnostics": [
+            {
+              "burn_per_chain": 2048,
+              "convergence_flag": true,
+              "data_sha256": "269a57cb42505bce2aead50f028f3ca7e83aec505c56e79ce5a10ae8a599cfd6",
+              "diagnostics": [
+                {
+                  "bulk_ess": 1081.4023324451869,
+                  "rank_split_rhat": 1.0008391864198154
+                },
+                {
+                  "bulk_ess": 1082.4833458515666,
+                  "rank_split_rhat": 1.000135040967881
+                },
+                {
+                  "bulk_ess": 963.7202712843115,
+                  "rank_split_rhat": 1.0028149581468895
+                },
+                {
+                  "bulk_ess": 1032.8384324021379,
+                  "rank_split_rhat": 1.0010407539207016
+                }
+              ],
+              "kept_per_chain": 8192,
+              "kernel": {
+                "maximum_autocorrelation_error_upper_bound": 0.0009998893155780397,
+                "maximum_daily_lag": 632,
+                "maximum_factors": 10,
+                "minimum_factors": 4,
+                "selection": "per_parameter_dynamic_positive_integer_order",
+                "tolerance": 0.001
+              },
+              "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian"
+            }
+          ],
+          "diagnostics_equal_excluding_timing": true,
+          "horizon": 126,
+          "index": 0,
+          "loss_bytes_equal": true,
+          "loss_vector_sha256": "32d4e6f4089e7230b3c8ae62090209d0fcb68a17bfe5d0579e667f08852e14d5",
+          "parallel_task_seconds": 20.036620667029638,
+          "seed": 1469231240,
+          "serial_task_seconds": 17.156938332947902
+        },
+        {
+          "diagnostics": [
+            {
+              "burn_per_chain": 2048,
+              "convergence_flag": true,
+              "data_sha256": "83967c36d7358f8ebe27f7e63c69f0d7d39ccbcfafd723975295a3ffe0ef5c7c",
+              "diagnostics": [
+                {
+                  "bulk_ess": 689.6817209327502,
+                  "rank_split_rhat": 1.0015885388971841
+                },
+                {
+                  "bulk_ess": 655.9863624036047,
+                  "rank_split_rhat": 1.00262648116664
+                },
+                {
+                  "bulk_ess": 586.6622765359575,
+                  "rank_split_rhat": 1.0056152090113746
+                },
+                {
+                  "bulk_ess": 366.6601493717411,
+                  "rank_split_rhat": 1.00379159173826
+                }
+              ],
+              "kept_per_chain": 8192,
+              "kernel": {
+                "maximum_autocorrelation_error_upper_bound": 0.0009999468984254274,
+                "maximum_daily_lag": 8046,
+                "maximum_factors": 8,
+                "minimum_factors": 5,
+                "selection": "per_parameter_dynamic_positive_integer_order",
+                "tolerance": 0.001
+              },
+              "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian"
+            }
+          ],
+          "diagnostics_equal_excluding_timing": true,
+          "horizon": 1609,
+          "index": 25,
+          "loss_bytes_equal": true,
+          "loss_vector_sha256": "73b68f7b04cd299d999da8dcb76c3404bbb5aebf98d92a8828d54a2c03e76940",
+          "parallel_task_seconds": 24.770864250021987,
+          "seed": 4414425,
+          "serial_task_seconds": 15.03073341603158
+        }
+      ],
+      "serial_source_sha256": "03d94942fad21c923b3f891b85c3b35752eda9de7e60a245437dabd53aec7ac3",
+      "task_identity_sha256": "6093c8fab3a67323a2d44525ed8b0cc959b7d8427a5088ab2ddf78d493f5e624",
+      "worker_process_group_closed": true,
+      "worker_total_seconds": 61.66128825000487
+    }
+  ],
+  "nice": 15,
+  "numerical_threads": 1,
+  "origin_workers": 2,
+  "owned_budget_gib": 1,
+  "owned_bytes_at_finish": 144577931,
+  "passed": true,
+  "preflight_free_gib": 638.714054107666,
+  "scope": "two retained rough models, canonical indices0,25 only; no full-panel score or general speedup claim",
+  "simulations": 240,
+  "source_sha256": "1567312499dc3ff87249826af66dfd72c24ffce3ec1fb1706354119d9faa05f2"
+}
