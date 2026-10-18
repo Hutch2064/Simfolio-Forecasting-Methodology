@@ -1,0 +1,49 @@
+{
+  "cagr_of_mean_ending_nav": 0.08573152561753189,
+  "case": "single_REITSIM",
+  "daily_log_return_range": [
+    -0.14124105824447264,
+    0.143556784038608
+  ],
+  "differences_from_historical_cagr": {
+    "cagr_of_mean_ending_nav": 0.004682269320325477,
+    "mean_path_cagr": -0.027993904712305964,
+    "median_path_cagr": -0.0286555568602032
+  },
+  "group": "single_asset",
+  "historical_cagr": 0.08104925629720641,
+  "historical_sign": "positive",
+  "horizon_days": 12600,
+  "log_mean_ending_nav": 4.11269884845787,
+  "manifest_sha256": "2788fb4061d5c80c1e2022805bdb807507f9342373355624de5d0869de5c61ea",
+  "mean_path_cagr": 0.05305535158490045,
+  "median_path_cagr": 0.05239369943700321,
+  "model": "incumbent",
+  "model_id": "asset_m256_data_timescales_existing_sv_rate",
+  "paths": 240,
+  "policy": {
+    "rebalance": "none",
+    "tickers": [
+      "REITSIM"
+    ],
+    "weights": [
+      1.0
+    ]
+  },
+  "ratios_to_positive_historical_cagr": {
+    "cagr_of_mean_ending_nav": 1.0577706635969077,
+    "mean_path_cagr": 0.6546062728860492,
+    "median_path_cagr": 0.6464426921436058
+  },
+  "seed": 3194230221,
+  "terminal_file_sha256": "919fe330c19523485ee6541225d9ee5f56efa5be1bef549cfaffb98a0132bcb1",
+  "terminal_log_nav_quantiles": [
+    -0.3713743693374183,
+    0.68786079270273,
+    2.5533638972427797,
+    4.5336353309251,
+    9.002251648048144
+  ],
+  "warnings": [],
+  "years": 50
+}

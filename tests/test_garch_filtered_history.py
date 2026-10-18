@@ -159,7 +159,11 @@ def test_exact_original_mean_function(monkeypatch):
 
 @pytest.mark.parametrize('assets_count', [1, 3])
 def test_candidate_small_training_and_policy_rejoin(assets_count, monkeypatch):
-    from simfolio_forecasting_methodology.runner import TrainingData, PortfolioPolicy, ForecastContext
+    from simfolio_forecasting_methodology.runner import (
+        ForecastContext,
+        PortfolioPolicy,
+        TrainingData,
+    )
     rng = np.random.default_rng(520)
     x = np.empty((504, assets_count))
     v = np.full(assets_count, .0001)

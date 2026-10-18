@@ -1,0 +1,33 @@
+{
+  "actual_execution_git_sha": "3aee75cab77d152b3311acf5da061dc07d339082",
+  "all_accepted_ou_optimizers_successful": true,
+  "all_checks_passed": true,
+  "all_horizons_aligned": true,
+  "all_losses_finite": true,
+  "cells": 701280,
+  "cells_sha256": "02d923d5b2ee363f41190eef12f566b5b79559f9583de6c096a44e5b17bc588d",
+  "component_paths_each": 120,
+  "elapsed_seconds": 97.85721758397995,
+  "exact_empirical_crps": 0.22745132492949452,
+  "independent_reaggregation_exact": true,
+  "loss_vectors": 4080,
+  "manifest_sha256": "72cb02a736be1dfa2fbf8513d2d54d768bc8807e0f8d99549e3d2d40a3bebc4e",
+  "manifest_static_source_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99",
+  "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+  "ou_diagnostic_records": 24480,
+  "ou_optimizer_messages": {
+    "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL": 9722,
+    "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH": 14758
+  },
+  "portfolios": 80,
+  "simulations": 240,
+  "source_hash_guard_verified": true,
+  "summed_component_timing_diagnostics": {
+    "asset_predictive_paths": 237.94624417024897,
+    "dependence_paths": 329.8829006649321,
+    "fit_phase_wall": 238.9769311742857,
+    "rough_fit_worker": 28.882647440303117
+  },
+  "summed_worker_seconds": 1037.8868570541963,
+  "warning": "Existing endpoint OU objective emitted overflow encountered in square warnings during optimizer trial evaluations; all accepted optimizer records are successful and all output loss vectors finite."
+}

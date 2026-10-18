@@ -1,0 +1,40 @@
+{
+  "actual_execution_git_sha": "3aee75cab77d152b3311acf5da061dc07d339082",
+  "all_full_block_audits_passed": true,
+  "beat_best_pool": false,
+  "best_m261_pool_equal_block_aggregate": 0.40781825383484904,
+  "blocks": {
+    "original80": {
+      "independent_audit_file": "/Users/aidanhutchison/simfolio/tmp/frontier-one-asset-audit-20261018/expanded/ou-pool-original80/independent-audit.json",
+      "m261_pool_elapsed_seconds_observed": 227.8193078340264,
+      "m261_pool_score": 0.2201357869781349,
+      "m261_pool_summed_worker_seconds_observed": 2588.4717370266444,
+      "ou_pool_elapsed_seconds": 97.85721758397995,
+      "ou_pool_score": 0.22745132492949452,
+      "ou_pool_summed_worker_seconds": 1037.8868570541963,
+      "portfolio_losses": 62,
+      "portfolio_ties": 0,
+      "portfolio_wins": 18,
+      "same_targets_seeds_dates_horizons_counts": true
+    },
+    "single52": {
+      "independent_audit_file": "/Users/aidanhutchison/simfolio/tmp/frontier-one-asset-audit-20261018/expanded/ou-pool-single52/independent-audit.json",
+      "m261_pool_elapsed_seconds_observed": 56.99760400003288,
+      "m261_pool_score": 0.5955007206915632,
+      "m261_pool_summed_worker_seconds_observed": 574.8236167399446,
+      "ou_pool_elapsed_seconds": 38.498571250005625,
+      "ou_pool_score": 0.5989814898729843,
+      "ou_pool_summed_worker_seconds": 351.73438456765143,
+      "portfolio_losses": 31,
+      "portfolio_ties": 0,
+      "portfolio_wins": 21,
+      "same_targets_seeds_dates_horizons_counts": true
+    }
+  },
+  "candidate_model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+  "equal_block_aggregate": 0.4132164074012394,
+  "interpretation": "New candidate model; score/runtime tradeoff. Observed elapsed times are research diagnostics across separate completed runs, not parity or deployed CTV evidence.",
+  "relative_score_increase_vs_best_pool": 0.013236664900674988,
+  "standalone_m261_equal_block_aggregate": 0.4202963347864817,
+  "warning": "Existing OU objective warnings preserved in original80 log; all accepted fits and output loss vectors passed validation."
+}

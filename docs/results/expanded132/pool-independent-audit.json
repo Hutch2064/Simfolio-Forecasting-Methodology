@@ -1,0 +1,126 @@
+{
+  "blocks": {
+    "original80": {
+      "all_checkpoint_manifests_shapes_and_finiteness_verified": true,
+      "all_recorded_source_hashes_current": true,
+      "all_task_input_identities_and_record_identities_equal": true,
+      "cell_file_sha256": "590d165e991219e0c9fc9166037398ffbb5ea50e3ada39c5f4e63b442b24c4f1",
+      "cells": 701280,
+      "checkpoint_hash_ledger_sha256": "2c1cfa3402fdd0146721817e61c4c769e9bb44d8f538615f821708bf39346f96",
+      "exact_empirical_crps": 0.2201357869781349,
+      "independent_canonical_accumulator_all_cells_and_counts_byte_equal": true,
+      "manifest_sha256": "e7d51d4fbd883f0d85315fca26d0f01944432541faed499123d54bdd48d05883",
+      "portfolios": 80,
+      "tasks": 4080
+    },
+    "single52": {
+      "all_checkpoint_manifests_shapes_and_finiteness_verified": true,
+      "all_recorded_source_hashes_current": true,
+      "all_task_input_identities_and_record_identities_equal": true,
+      "cell_file_sha256": "2db89c18821264ba3bb1a90d60dfc648a5501b02d3f408fe01f7e1f8dd8fed8c",
+      "cells": 455832,
+      "checkpoint_hash_ledger_sha256": "226ae76508ee023deda7dc3824ede35c026345ac242f3841a43a2770aa75cc93",
+      "exact_empirical_crps": 0.5955007206915632,
+      "independent_canonical_accumulator_all_cells_and_counts_byte_equal": true,
+      "manifest_sha256": "50f4fe4b37ce70f5c3a12bac05b1afb696dcf1c78f2f1e4364013e7365280231",
+      "portfolios": 52,
+      "tasks": 2652
+    }
+  },
+  "completed_utc": "2026-10-18T09:15:45.430813+00:00",
+  "component_source_review": {
+    "fits_use_training_only": true,
+    "fixed_weights": "equal120/120 allocation; no fitted OOS weight or ticker gate in implementation",
+    "mixture": "concatenate 120 full M261 paths and 120 full EWMA-SBB paths",
+    "no_additional_rejoin_or_fees": true,
+    "no_daily_path_averaging_or_score_averaging": true,
+    "seeds": "Task seed remains canonical240 identity; each unchanged component receives simulations120 and uses its own deterministic model seed scheme. This is a new mixture law, not parity with component240 ensembles."
+  },
+  "equal_block_score": 0.40781825383484904,
+  "incumbent_equal_block_score": 0.4202963347864817,
+  "packages": {
+    "llvmlite": "0.49.0",
+    "numba": "0.67.0",
+    "numpy": "2.5.3",
+    "pandas": "2.3.3",
+    "pybind11": "3.1.0",
+    "pyvinecopulib": "0.7.5",
+    "scipy": "1.18.1"
+  },
+  "passed": true,
+  "python": "3.12.13",
+  "relative_improvement_vs_incumbent": 0.02968876937261844,
+  "replays": [
+    {
+      "block": "single52",
+      "component_120_path_halves_byte_equal": true,
+      "direct_pairwise_crps_max_abs_error": 1.1102230246251565e-16,
+      "horizon": 8766,
+      "loss_replay_byte_equal": true,
+      "origin": "1991-07-19",
+      "policy": {
+        "rebalance": "none",
+        "tickers": [
+          "SPYSIM"
+        ],
+        "weights": [
+          1.0
+        ]
+      },
+      "portfolio": "single_SPYSIM",
+      "task_index": 762
+    },
+    {
+      "block": "single52",
+      "component_120_path_halves_byte_equal": true,
+      "direct_pairwise_crps_max_abs_error": 1.1102230246251565e-16,
+      "horizon": 8766,
+      "loss_replay_byte_equal": true,
+      "origin": "1991-07-19",
+      "policy": {
+        "rebalance": "none",
+        "tickers": [
+          "SHYSIM"
+        ],
+        "weights": [
+          1.0
+        ]
+      },
+      "portfolio": "single_SHYSIM",
+      "task_index": 507
+    },
+    {
+      "block": "original80",
+      "component_120_path_halves_byte_equal": true,
+      "direct_pairwise_crps_max_abs_error": 6.938893903907228e-18,
+      "horizon": 126,
+      "loss_replay_byte_equal": true,
+      "origin": "1981-12-31",
+      "policy": {
+        "rebalance": "quarterly",
+        "tickers": [
+          "VOSIM",
+          "VTSIM",
+          "IEFSIM",
+          "TLTSIM",
+          "GLDSIM",
+          "GSGSIM"
+        ],
+        "weights": [
+          0.16666666666666669,
+          0.16666666666666669,
+          0.16666666666666669,
+          0.16666666666666669,
+          0.16666666666666669,
+          0.16666666666666669
+        ]
+      },
+      "portfolio": "equal_class_history_007",
+      "task_index": 306
+    }
+  ],
+  "runtime_claim": false,
+  "scope": "independent saved-vector audit both full blocks; three bounded model replays; no full panel rerun",
+  "total_cells": 1157112,
+  "total_tasks": 6732
+}

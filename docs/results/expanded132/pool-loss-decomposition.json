@@ -1,0 +1,485 @@
+{
+  "asset_wins_losses_and_contributions": {
+    "SPYSIM": {
+      "mean_crps_gain_incumbent_minus_pool": -0.04015393517681881
+    },
+    "largest_gains": [
+      {
+        "contribution_to_equal_50_50_score": 0.0032629325746450157,
+        "mean_crps_gain_incumbent_minus_pool": 0.33934498776308164,
+        "name": "SPXUSIM"
+      },
+      {
+        "contribution_to_equal_50_50_score": 0.00316809482278399,
+        "mean_crps_gain_incumbent_minus_pool": 0.32948186156953496,
+        "name": "XLPSIM"
+      },
+      {
+        "contribution_to_equal_50_50_score": 0.0031101049971217023,
+        "mean_crps_gain_incumbent_minus_pool": 0.32345091970065704,
+        "name": "SHYSIM"
+      },
+      {
+        "contribution_to_equal_50_50_score": 0.002002684531559866,
+        "mean_crps_gain_incumbent_minus_pool": 0.20827919128222602,
+        "name": "IEISIM"
+      },
+      {
+        "contribution_to_equal_50_50_score": 0.0017044852866314934,
+        "mean_crps_gain_incumbent_minus_pool": 0.1772664698096753,
+        "name": "SDSSIM"
+      }
+    ],
+    "largest_losses": [
+      {
+        "contribution_to_equal_50_50_score": -0.0033416726107835825,
+        "mean_crps_gain_incumbent_minus_pool": -0.3475339515214926,
+        "name": "SLVSIM"
+      },
+      {
+        "contribution_to_equal_50_50_score": -0.001403340623456693,
+        "mean_crps_gain_incumbent_minus_pool": -0.14594742483949608,
+        "name": "UGLSIM"
+      },
+      {
+        "contribution_to_equal_50_50_score": -0.0011641176538757043,
+        "mean_crps_gain_incumbent_minus_pool": -0.12106823600307326,
+        "name": "TNASIM"
+      },
+      {
+        "contribution_to_equal_50_50_score": -0.0010065751598315636,
+        "mean_crps_gain_incumbent_minus_pool": -0.1046838166224826,
+        "name": "URTYSIM"
+      },
+      {
+        "contribution_to_equal_50_50_score": -0.0008320063113443755,
+        "mean_crps_gain_incumbent_minus_pool": -0.08652865637981505,
+        "name": "ZROZSIM"
+      }
+    ],
+    "pool_losses": 31,
+    "pool_wins": 21,
+    "ties": 0
+  },
+  "canonical_score_checks": {
+    "incumbent52": {
+      "canonical_exact_match": true,
+      "canonical_mean_recomputed": 0.6138695810898457,
+      "flat_matrix_np_mean": 0.6138695810898456,
+      "flat_minus_saved": -1.1102230246251565e-16,
+      "rowwise_minus_saved": 0.0,
+      "rowwise_np_mean": 0.6138695810898457,
+      "saved_score": 0.6138695810898457,
+      "selected_method": "np.mean(np.mean(losses, axis=1)) on saved portfolio-by-horizon cells"
+    },
+    "incumbent80": {
+      "canonical_exact_match": true,
+      "canonical_mean_recomputed": 0.22672308848311776,
+      "flat_matrix_np_mean": 0.22672308848311776,
+      "flat_minus_saved": 0.0,
+      "rowwise_minus_saved": 2.7755575615628914e-17,
+      "rowwise_np_mean": 0.22672308848311779,
+      "saved_score": 0.22672308848311776,
+      "selected_method": "np.mean(model_0) on the source 1D (portfolio,horizon)-ordered array"
+    },
+    "pool52": {
+      "canonical_exact_match": true,
+      "canonical_mean_recomputed": 0.5955007206915632,
+      "flat_matrix_np_mean": 0.5955007206915632,
+      "flat_minus_saved": 0.0,
+      "rowwise_minus_saved": 0.0,
+      "rowwise_np_mean": 0.5955007206915632,
+      "saved_score": 0.5955007206915632,
+      "selected_method": "np.mean(np.mean(losses, axis=1)) on saved portfolio-by-horizon cells"
+    },
+    "pool80": {
+      "canonical_exact_match": true,
+      "canonical_mean_recomputed": 0.2201357869781349,
+      "flat_matrix_np_mean": 0.22013578697813496,
+      "flat_minus_saved": 5.551115123125783e-17,
+      "rowwise_minus_saved": 0.0,
+      "rowwise_np_mean": 0.2201357869781349,
+      "saved_score": 0.2201357869781349,
+      "selected_method": "np.mean(np.mean(losses, axis=1)) on saved portfolio-by-horizon cells"
+    }
+  },
+  "generated_at_utc": "2026-10-18T09:42:46+00:00",
+  "helper_sha256": "61d408221b186e5f3e35e6f8e4d269bde7fa469f89e96fb568e36242700d8bce",
+  "horizon_bands": [
+    {
+      "cells": {
+        "original80": 1680,
+        "single52": 1092
+      },
+      "days_inclusive": [
+        1,
+        21
+      ],
+      "origin_count_support": {
+        "note": "counts are support checks; cell means receive equal weight",
+        "pool_original80_max": 51,
+        "pool_original80_min": 51,
+        "single52_max": 51,
+        "single52_min": 51
+      },
+      "original80": {
+        "aggregate_score_contribution": 2.044690927297581e-07,
+        "gain": 0.00017070248255895808,
+        "incumbent": 0.013041208425416463,
+        "pool": 0.012870505942857505
+      },
+      "single52": {
+        "aggregate_score_contribution": 4.813276209083224e-07,
+        "gain": 0.0004018398023697481,
+        "incumbent": 0.030398090952516853,
+        "pool": 0.029996251150147105
+      },
+      "total_50_50_aggregate_gain_contribution": 6.857967136380805e-07,
+      "within_block_cell_weight": 0.0023956194387405884
+    },
+    {
+      "cells": {
+        "original80": 3360,
+        "single52": 2184
+      },
+      "days_inclusive": [
+        22,
+        63
+      ],
+      "origin_count_support": {
+        "note": "counts are support checks; cell means receive equal weight",
+        "pool_original80_max": 51,
+        "pool_original80_min": 50,
+        "single52_max": 51,
+        "single52_min": 50
+      },
+      "original80": {
+        "aggregate_score_contribution": 1.2376993537512586e-06,
+        "gain": 0.000516651073094454,
+        "incumbent": 0.024895547988293826,
+        "pool": 0.024378896915199372
+      },
+      "single52": {
+        "aggregate_score_contribution": 4.144639162298858e-06,
+        "gain": 0.0017300908046053234,
+        "incumbent": 0.05929027296490293,
+        "pool": 0.05756018216029761
+      },
+      "total_50_50_aggregate_gain_contribution": 5.382338516050117e-06,
+      "within_block_cell_weight": 0.004791238877481177
+    },
+    {
+      "cells": {
+        "original80": 15120,
+        "single52": 9828
+      },
+      "days_inclusive": [
+        64,
+        252
+      ],
+      "origin_count_support": {
+        "note": "counts are support checks; cell means receive equal weight",
+        "pool_original80_max": 50,
+        "pool_original80_min": 48,
+        "single52_max": 50,
+        "single52_min": 48
+      },
+      "original80": {
+        "aggregate_score_contribution": 4.14808943594368e-06,
+        "gain": 0.0003847846772008709,
+        "incumbent": 0.04814311762983213,
+        "pool": 0.04775833295263126
+      },
+      "single52": {
+        "aggregate_score_contribution": 2.3397409292056176e-05,
+        "gain": 0.0021703882524250206,
+        "incumbent": 0.10587969352679676,
+        "pool": 0.10370930527437174
+      },
+      "total_50_50_aggregate_gain_contribution": 2.7545498727999858e-05,
+      "within_block_cell_weight": 0.021560574948665298
+    },
+    {
+      "cells": {
+        "original80": 80640,
+        "single52": 52416
+      },
+      "days_inclusive": [
+        253,
+        1260
+      ],
+      "origin_count_support": {
+        "note": "counts are support checks; cell means receive equal weight",
+        "pool_original80_max": 48,
+        "pool_original80_min": 26,
+        "single52_max": 48,
+        "single52_min": 26
+      },
+      "original80": {
+        "aggregate_score_contribution": 1.806965976548076e-05,
+        "gain": 0.0003142830109210404,
+        "incumbent": 0.09671948858629761,
+        "pool": 0.09640520557537657
+      },
+      "single52": {
+        "aggregate_score_contribution": 0.000525267223130425,
+        "gain": 0.009135897773732748,
+        "incumbent": 0.24646698849471468,
+        "pool": 0.23733109072098194
+      },
+      "total_50_50_aggregate_gain_contribution": 0.0005433368828959057,
+      "within_block_cell_weight": 0.11498973305954825
+    },
+    {
+      "cells": {
+        "original80": 100800,
+        "single52": 65520
+      },
+      "days_inclusive": [
+        1261,
+        2520
+      ],
+      "origin_count_support": {
+        "note": "counts are support checks; cell means receive equal weight",
+        "pool_original80_max": 26,
+        "pool_original80_min": 3,
+        "single52_max": 26,
+        "single52_min": 3
+      },
+      "original80": {
+        "aggregate_score_contribution": 6.584578677778168e-05,
+        "gain": 0.0009161970903079908,
+        "incumbent": 0.14535793012444184,
+        "pool": 0.14444173303413385
+      },
+      "single52": {
+        "aggregate_score_contribution": 0.0017124450556380347,
+        "gain": 0.02382744977416351,
+        "incumbent": 0.3736875834063565,
+        "pool": 0.349860133632193
+      },
+      "total_50_50_aggregate_gain_contribution": 0.0017782908424158164,
+      "within_block_cell_weight": 0.1437371663244353
+    },
+    {
+      "cells": {
+        "original80": 201600,
+        "single52": 131040
+      },
+      "days_inclusive": [
+        2521,
+        5040
+      ],
+      "origin_count_support": {
+        "note": "counts are support checks; cell means receive equal weight",
+        "pool_original80_max": 3,
+        "pool_original80_min": 2,
+        "single52_max": 3,
+        "single52_min": 2
+      },
+      "original80": {
+        "aggregate_score_contribution": -0.0007239344763420474,
+        "gain": -0.00503651557112253,
+        "incumbent": 0.18259279819322924,
+        "pool": 0.18762931376435177
+      },
+      "single52": {
+        "aggregate_score_contribution": 0.0014460337691436197,
+        "gain": 0.010060263508184897,
+        "incumbent": 0.49186013419129065,
+        "pool": 0.48179987068310576
+      },
+      "total_50_50_aggregate_gain_contribution": 0.0007220992928015723,
+      "within_block_cell_weight": 0.2874743326488706
+    },
+    {
+      "cells": {
+        "original80": 298080,
+        "single52": 193752
+      },
+      "days_inclusive": [
+        5041,
+        8766
+      ],
+      "origin_count_support": {
+        "note": "counts are support checks; cell means receive equal weight",
+        "pool_original80_max": 2,
+        "pool_original80_min": 1,
+        "single52_max": 2,
+        "single52_min": 1
+      },
+      "original80": {
+        "aggregate_score_contribution": 0.003928079524407788,
+        "gain": 0.018482847617261766,
+        "incumbent": 0.3317922646591003,
+        "pool": 0.3133094170418385
+      },
+      "single52": {
+        "aggregate_score_contribution": 0.005472660775153969,
+        "gain": 0.02575058741545877,
+        "incumbent": 0.9123103372854965,
+        "pool": 0.8865597498700377
+      },
+      "total_50_50_aggregate_gain_contribution": 0.009400740299561757,
+      "within_block_cell_weight": 0.42505133470225875
+    }
+  ],
+  "inputs": {
+    "incumbent52_cells": {
+      "path": "docs/results/expanded132/incumbent-single52.npz",
+      "sha256": "e256aed32f9975745d961bc89d60e1a866e82bdfd3e2c3e829b99c4b072e8ab3"
+    },
+    "incumbent52_manifest": {
+      "path": "docs/results/expanded132/incumbent-single52-manifest.json.gz",
+      "sha256": "144003e30b7fd781ca98ee4dcbc79e0342b5987ec003f9eada316ab7064d2f36"
+    },
+    "incumbent52_score": {
+      "path": "docs/results/expanded132/incumbent-single52.json",
+      "sha256": "f6a3d4e61f1e53e36d7832b3f2b0e0b09e564ce943678d91b43156a70ac99fc3"
+    },
+    "incumbent80_cells": {
+      "path": "docs/results/rough-bayesian/timescale-only-existing_sv_rate-cells.npz",
+      "sha256": "5d98f49f8aea65496b2c9344fbbd86c9128dbc7f6c0503b6bcad2f352c22f2a6"
+    },
+    "incumbent80_score": {
+      "path": "docs/results/rough-bayesian/timescale-only-existing_sv_rate-panel.json",
+      "sha256": "7680e2733769a617022e037aa2623aa6b533f20da76845e51ae508e22f8818c4"
+    },
+    "pool52_cells": {
+      "path": "docs/results/expanded132/pool-single52.npz",
+      "sha256": "2db89c18821264ba3bb1a90d60dfc648a5501b02d3f408fe01f7e1f8dd8fed8c"
+    },
+    "pool52_manifest": {
+      "path": "docs/results/expanded132/pool-single52-manifest.json.gz",
+      "sha256": "ac424f697851e90f9bade5a4e304d076c815f984198120b037961dcdf29ad175"
+    },
+    "pool52_score": {
+      "path": "docs/results/expanded132/pool-single52.json",
+      "sha256": "07abc6e54a6f5a8b09e502c758ab59f2560fc0ba0ddb250227af57043e0d9e6c"
+    },
+    "pool80_cells": {
+      "path": "docs/results/expanded132/pool-original80.npz",
+      "sha256": "590d165e991219e0c9fc9166037398ffbb5ea50e3ada39c5f4e63b442b24c4f1"
+    },
+    "pool80_manifest": {
+      "path": "docs/results/expanded132/pool-original80-manifest.json",
+      "sha256": "3c5033b07af6c9d0f042e9ed19687bbea4ebd9a6337c0488575a80e7d0583d5b"
+    },
+    "pool80_score": {
+      "path": "docs/results/expanded132/pool-original80.json",
+      "sha256": "59aff22bc1151bd6b9573c1d3690bcd0ceffbe0809e0b34c86160380ae2aeebf"
+    }
+  },
+  "leave_one_out_sensitivity": {
+    "original80_portfolio_out_fixed_single52": {
+      "maximum_gain": 0.013713012625732102,
+      "minimum_gain": 0.010844860789359145,
+      "omitted_at_maximum": "equal_class_history_015",
+      "omitted_at_minimum": "equal_class_history_037",
+      "sign_flip": false
+    },
+    "single_asset_out_fixed_original80": {
+      "maximum_gain": 0.016065363421434276,
+      "minimum_gain": 0.009331256173546243,
+      "omitted_at_maximum": "single_SLVSIM",
+      "omitted_at_minimum": "single_SPXUSIM",
+      "sign_flip": false
+    }
+  },
+  "lineage": {
+    "data_manifest_sha256": "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76",
+    "expanded_adapters": {
+      "incumbent52": "tools/data_selected_timescales/models.py",
+      "pool52": "tools/expanded_linear_pool/models.py",
+      "pool80": "tools/expanded_linear_pool/models.py"
+    }
+  },
+  "original80_portfolio_wins_losses_and_contributions": {
+    "largest_gains": [
+      {
+        "contribution_to_equal_50_50_score": 0.0016539755446512313,
+        "mean_crps_gain_incumbent_minus_pool": 0.264636087144197,
+        "name": "equal_class_history_037"
+      },
+      {
+        "contribution_to_equal_50_50_score": 0.0010782500951093666,
+        "mean_crps_gain_incumbent_minus_pool": 0.17252001521749866,
+        "name": "equal_class_history_016"
+      },
+      {
+        "contribution_to_equal_50_50_score": 0.0009052697582551484,
+        "mean_crps_gain_incumbent_minus_pool": 0.14484316132082375,
+        "name": "equal_class_history_075"
+      },
+      {
+        "contribution_to_equal_50_50_score": 0.0007783938264152608,
+        "mean_crps_gain_incumbent_minus_pool": 0.12454301222644173,
+        "name": "equal_class_history_034"
+      },
+      {
+        "contribution_to_equal_50_50_score": 0.0007012960791596329,
+        "mean_crps_gain_incumbent_minus_pool": 0.11220737266554126,
+        "name": "equal_class_history_021"
+      }
+    ],
+    "largest_losses": [
+      {
+        "contribution_to_equal_50_50_score": -0.0011783243937671033,
+        "mean_crps_gain_incumbent_minus_pool": -0.1885319030027365,
+        "name": "equal_class_history_015"
+      },
+      {
+        "contribution_to_equal_50_50_score": -0.0010395023536520316,
+        "mean_crps_gain_incumbent_minus_pool": -0.16632037658432505,
+        "name": "equal_class_history_040"
+      },
+      {
+        "contribution_to_equal_50_50_score": -0.000738259669258181,
+        "mean_crps_gain_incumbent_minus_pool": -0.11812154708130895,
+        "name": "equal_class_history_019"
+      },
+      {
+        "contribution_to_equal_50_50_score": -0.0006389232945948821,
+        "mean_crps_gain_incumbent_minus_pool": -0.10222772713518113,
+        "name": "equal_class_history_024"
+      },
+      {
+        "contribution_to_equal_50_50_score": -0.00042411640945293796,
+        "mean_crps_gain_incumbent_minus_pool": -0.06785862551247007,
+        "name": "equal_class_history_068"
+      }
+    ],
+    "pool_losses": 36,
+    "pool_wins": 44,
+    "ties": 0
+  },
+  "overall": {
+    "equal_50_50_gain": 0.012478080951632664,
+    "equal_50_50_incumbent": 0.4202963347864817,
+    "equal_50_50_pool": 0.40781825383484904,
+    "gain52": 0.01836886039828245,
+    "gain80": 0.006587301504982851,
+    "incumbent52": 0.6138695810898457,
+    "incumbent80": 0.22672308848311776,
+    "pool52": 0.5955007206915632,
+    "pool80": 0.2201357869781349
+  },
+  "protocol": {
+    "blocks": {
+      "original80": 0.5,
+      "single52": 0.5
+    },
+    "cell_definition": "portfolio-horizon loss averaged across forecast origins",
+    "horizons": 8766,
+    "original80_portfolio_order_sha256": "2851e15c2f1c5f3d718dc6db15658aef6adececc26bd43c0d828711e9d43398c",
+    "single52_ticker_order_sha256": "500b82838f70e07615e81d8eb5753bfeec6c3e0dbca9690a7931a5d78459545e",
+    "within_block_weighting": "equal weight per complete portfolio-horizon cell"
+  },
+  "receipt_schema": "pool_loss_decomposition_v1",
+  "rounding_and_orientation": {
+    "aggregate_gain_minus_band_sum": -7.632783294297951e-17,
+    "explanation": "The persisted source score reductions use a 1D mean for the historical original80 archive and rowwise means followed by a mean for the expanded matrix reports. Flattening a matrix and averaging changes only reduction order and can differ by a few floating-point ulps.",
+    "matrix_flattening_is_not_used_to_replace_saved_scores": true,
+    "sum_of_band_contributions": 0.01247808095163274
+  }
+}

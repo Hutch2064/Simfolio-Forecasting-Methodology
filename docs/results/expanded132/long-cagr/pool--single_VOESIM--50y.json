@@ -1,0 +1,49 @@
+{
+  "cagr_of_mean_ending_nav": 0.12340882256362788,
+  "case": "single_VOESIM",
+  "daily_log_return_range": [
+    -0.16094017310576184,
+    0.10963111140134744
+  ],
+  "differences_from_historical_cagr": {
+    "cagr_of_mean_ending_nav": -0.002357643130114509,
+    "mean_path_cagr": -0.020795143613904735,
+    "median_path_cagr": -0.022165288275339506
+  },
+  "group": "single_asset",
+  "historical_cagr": 0.1257664656937424,
+  "historical_sign": "positive",
+  "horizon_days": 12600,
+  "log_mean_ending_nav": 5.8183827266742965,
+  "manifest_sha256": "3c00eb45a87e0b6c809bfbbbf8e20b11d4644686f009990f11c6e87e1edc7b77",
+  "mean_path_cagr": 0.10497132207983766,
+  "median_path_cagr": 0.10360117741840288,
+  "model": "pool",
+  "model_id": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+  "paths": 240,
+  "policy": {
+    "rebalance": "none",
+    "tickers": [
+      "VOESIM"
+    ],
+    "weights": [
+      1.0
+    ]
+  },
+  "ratios_to_positive_historical_cagr": {
+    "cagr_of_mean_ending_nav": 0.9812538015033699,
+    "mean_path_cagr": 0.8346527152592202,
+    "median_path_cagr": 0.8237583591693286
+  },
+  "seed": 3194230221,
+  "terminal_file_sha256": "21d64e099542394ce44fa7ed67d52bcd335a3a2b17648a4d09ca8ddf8ef5dec3",
+  "terminal_log_nav_quantiles": [
+    2.029134060471444,
+    3.24754803316231,
+    4.928931434332812,
+    7.045128401513115,
+    9.537186773816893
+  ],
+  "warnings": [],
+  "years": 50
+}

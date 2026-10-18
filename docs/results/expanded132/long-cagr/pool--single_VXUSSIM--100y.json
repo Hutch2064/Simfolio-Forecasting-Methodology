@@ -1,0 +1,49 @@
+{
+  "cagr_of_mean_ending_nav": 0.09938428304289829,
+  "case": "single_VXUSSIM",
+  "daily_log_return_range": [
+    -0.12047459575094481,
+    0.11542436770589048
+  ],
+  "differences_from_historical_cagr": {
+    "cagr_of_mean_ending_nav": 0.012309981496732694,
+    "mean_path_cagr": -0.0062530109129523,
+    "median_path_cagr": -0.007662797383396272
+  },
+  "group": "single_asset",
+  "historical_cagr": 0.08707430154616559,
+  "historical_sign": "positive",
+  "horizon_days": 25200,
+  "log_mean_ending_nav": 9.475028040162947,
+  "manifest_sha256": "3c00eb45a87e0b6c809bfbbbf8e20b11d4644686f009990f11c6e87e1edc7b77",
+  "mean_path_cagr": 0.08082129063321329,
+  "median_path_cagr": 0.07941150416276932,
+  "model": "pool",
+  "model_id": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+  "paths": 240,
+  "policy": {
+    "rebalance": "none",
+    "tickers": [
+      "VXUSSIM"
+    ],
+    "weights": [
+      1.0
+    ]
+  },
+  "ratios_to_positive_historical_cagr": {
+    "cagr_of_mean_ending_nav": 1.1413733016302876,
+    "mean_path_cagr": 0.9281876420261949,
+    "median_path_cagr": 0.9119970272821131
+  },
+  "seed": 2109837819,
+  "terminal_file_sha256": "12a4d261b40124031100ff4cb771a2cba773a19820ec498a71141023b0a63518",
+  "terminal_log_nav_quantiles": [
+    2.622766167628686,
+    4.876487361156386,
+    7.641598730459535,
+    11.116373855389838,
+    12.553419274918614
+  ],
+  "warnings": [],
+  "years": 100
+}

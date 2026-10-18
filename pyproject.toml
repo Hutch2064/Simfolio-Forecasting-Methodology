@@ -44,3 +44,17 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+
+[tool.ruff.lint.per-file-ignores]
+# These retained experiment adapters are bound byte-for-byte in published
+# manifests. Preserve their import sequence rather than restyle scored sources.
+"tools/expanded_controls/models.py" = ["I001"]
+"tools/expanded_linear_pool/models.py" = ["I001"]
+"tools/expanded_panel/run_panel.py" = ["I001"]
+"tools/expanded_panel/run_cached_panel.py" = ["I001"]
+"tools/fast_moment_controls/models.py" = ["I001"]
+"tools/raw_stationary_bootstrap/models.py" = ["I001"]
+# The diagnostic preflight records every exception as a failed fit admission.
+"tools/garch_filtered_history/admission_preflight.py" = ["I001", "BLE001"]
+# The scaled callback is consumed synchronously before the loop advances.
+"tools/garch_filtered_history/models.py" = ["I001", "B023"]

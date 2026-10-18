@@ -1,0 +1,251 @@
+"""Verify the separately published equal-block protocol and retained evidence."""
+from __future__ import annotations
+
+import gzip
+import hashlib
+import importlib.util
+import itertools
+import json
+import sys
+from dataclasses import asdict
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import pytest
+import yaml
+
+from simfolio_forecasting_methodology.origins import origin_schedule
+from simfolio_forecasting_methodology.panel import generate_equal_class_history_panel
+
+ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location(
+    "expanded132_publication_protocol", ROOT / "tools/expanded_panel/protocol.py"
+)
+protocol_module = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = protocol_module
+spec.loader.exec_module(protocol_module)
+block_cells = protocol_module.block_cells
+combined_score = protocol_module.combined_score
+OUT = ROOT / "docs/results/expanded132"
+RESOURCES = ROOT / "src/simfolio_forecasting_methodology/resources"
+REPORT = json.loads((OUT / "score-report.json").read_text())
+PROTOCOL = yaml.safe_load((RESOURCES / "protocols/portfolio80_asset52_equal_weight_v1.yaml").read_text())
+
+
+def digest(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def canonical(value):
+    return digest(json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False).encode())
+
+
+def verified_file(reference):
+    path = ROOT / reference["path"]
+    assert digest(path.read_bytes()) == reference["sha256"]
+    assert path.stat().st_size == reference["bytes"]
+    return path
+
+
+def test_protocol_membership_fingerprints_and_frozen_dates():
+    protocol = dict(PROTOCOL)
+    assert protocol.pop("protocol_fingerprint") == canonical(protocol) == REPORT["protocol_fingerprint"]
+    verified_file(REPORT["protocol"])
+    legacy_path = RESOURCES / "protocols/canonical_dense_oos.yaml"
+    legacy = yaml.safe_load(legacy_path.read_text())
+    assert digest(legacy_path.read_bytes()) == PROTOCOL["legacy_protocol"]["sha256"]
+    assert legacy["identity"]["protocol_fingerprint"] == PROTOCOL["legacy_protocol"]["protocol_fingerprint"]
+    tickers = sorted({ticker for p in generate_equal_class_history_panel() for ticker in p.tickers})
+    assert tickers == PROTOCOL["blocks"]["single52"]["tickers"]
+    assert len(tickers) == 52
+    for key in ("normalized_return_matrix_sha256", "derived_asset_log_matrix_sha256",
+                "derived_portfolio_log_matrix_sha256", "source_manifest_sha256", "calendar_sha256"):
+        assert PROTOCOL["data"][key] == legacy.get("data", {}).get(key, legacy["identity"].get(key))
+    dates = pd.read_csv(RESOURCES / "data/canonical_calendar.csv")["date"]
+    assert (dates.iloc[0], dates.iloc[-1], len(dates)) == ("1979-12-31", "2026-05-13", 11687)
+    schedule = [asdict(origin) for origin in origin_schedule(dates)]
+    assert schedule == PROTOCOL["origins"]["schedule"]
+    assert canonical(schedule) == PROTOCOL["origins"]["schedule_sha256"]
+    assert len(schedule) == 51 and max(o["max_horizon"] for o in schedule) == 8766
+    assert PROTOCOL["simulation"]["simulations_per_origin"] == 240
+    assert sum(b["tasks"] for b in PROTOCOL["blocks"].values()) == 6732
+    assert sum(b["cells"] for b in PROTOCOL["blocks"].values()) == 1157112
+
+
+@pytest.mark.parametrize("name", REPORT["evidence"])
+def test_results_and_full_manifest_files_are_sha_bound(name):
+    evidence = REPORT["evidence"][name]
+    result = json.loads(verified_file(evidence["result"]).read_text())
+    if "result_selector" in evidence:
+        result = result[evidence["result_selector"]]
+        manifest = result["manifest"]
+        assert result["audit"]["optimization_all_4080_vectors_byte_equal"] is True
+        assert result["scores"][evidence["model_id"]]["exact_empirical_crps"] == evidence["score"]
+        assert result["paired_cells_sha256"] == evidence["cells"]["sha256"]
+    else:
+        reference = evidence["manifest"]
+        path = verified_file(reference)
+        raw = gzip.decompress(path.read_bytes()) if reference["encoding"] == "gzip" else path.read_bytes()
+        assert digest(raw) == reference["uncompressed_file_sha256"]
+        manifest = json.loads(raw)
+        assert digest(json.dumps(manifest, sort_keys=True).encode()) == result["manifest_sha256"] == reference["canonical_sha256"]
+        assert manifest["source_revision"] == evidence["source_binding"]["manifest_base_revision"]
+        assert manifest["source_revision"] != evidence["source_binding"]["implementation_revision"]
+        adapter = manifest["adapter"]
+        assert digest((ROOT / adapter).read_bytes()) == manifest["source_hashes"][adapter]
+        expected = PROTOCOL["blocks"][result["block"]]
+        assert (result["portfolios"], result["tasks"], result["cells"]) == tuple(expected[k] for k in ("portfolios", "tasks", "cells"))
+        assert result["all_denominator_gates_passed"] is True
+        assert len(manifest["task_identities"]) == result["tasks"]
+        assert manifest["indices"] == list(range(result["tasks"]))
+        assert manifest["data_manifest_sha256"] == PROTOCOL["data"]["frozen_prepared_manifest_sha256"]
+        assert result["exact_empirical_crps"] == evidence["score"]
+    assert manifest["simulations"] == 240
+
+
+def block_mean(name):
+    evidence = REPORT["evidence"][name]
+    with np.load(verified_file(evidence["cells"])) as saved:
+        losses = saved["model_0"] if "model_0" in saved else saved["losses"]
+        expected = PROTOCOL["blocks"][evidence["block"]]
+        assert losses.size == expected["cells"]
+        assert np.isfinite(losses).all() and (losses >= 0).all()
+        assert len(set(saved["portfolio"])) == expected["portfolios"]
+        if "counts" in saved:
+            counts = np.zeros(8766, dtype=np.int64)
+            for origin in PROTOCOL["origins"]["schedule"]:
+                counts[:origin["max_horizon"]] += 1
+            np.testing.assert_array_equal(saved["counts"], np.tile(counts, (expected["portfolios"], 1)))
+        assert float(losses.mean()) == evidence["score"]
+        return float(losses.mean())
+
+
+def test_all_ranked_scores_recompute_from_both_complete_cell_blocks():
+    assert [row["candidate"] for row in REPORT["aggregate_ranking"]] == [
+        "pool", "ou-pool", "incumbent", "ewma"
+    ]
+    assert [row["rank"] for row in REPORT["aggregate_ranking"]] == [1, 2, 3, 4]
+    scores = []
+    for row in REPORT["aggregate_ranking"]:
+        original, single = (block_mean(name) for name in row["evidence"])
+        assert (original, single) == (row["original80"], row["single52"])
+        assert combined_score(original, single) == row["equal_block_score"]
+        assert row["equal_block_score"] != pytest.approx((80 * original + 52 * single) / 132)
+        scores.append(row["equal_block_score"])
+    assert scores == sorted(scores)
+    for row in REPORT["partial_controls"].values():
+        assert row["equal_block_score"] is None
+    assert REPORT["garch"]["equal_block_score"] is None
+    assert REPORT["raw_sbb"]["nonnegative_other_block_lower_bound"] > scores[0]
+    audit = json.loads(verified_file(REPORT["independent_pool_audit"]).read_text())
+    assert audit["passed"] and audit["equal_block_score"] == scores[0]
+    assert audit["total_cells"] == 1157112 and audit["total_tasks"] == 6732
+    assert REPORT["runtime_claim"] is False
+
+
+def test_ou_pool_audits_bind_both_complete_blocks_and_accepted_fits():
+    combined = json.loads(verified_file(REPORT["independent_ou_pool_audit"]).read_text())
+    assert combined["all_full_block_audits_passed"] is True
+    assert combined["equal_block_aggregate"] == REPORT["aggregate_ranking"][1]["equal_block_score"]
+    assert combined["beat_best_pool"] is False
+    tasks = cells = fits = 0
+    for block in ("original80", "single52"):
+        evidence = REPORT["evidence"]["ou-pool-" + block]
+        audit = json.loads(verified_file(evidence["independent_audit"]).read_text())
+        assert audit["all_checks_passed"] and audit["independent_reaggregation_exact"]
+        assert audit["all_accepted_ou_optimizers_successful"] and audit["source_hash_guard_verified"]
+        assert audit["actual_execution_git_sha"] == evidence["source_binding"]["implementation_revision"]
+        assert audit["manifest_sha256"] == evidence["manifest"]["canonical_sha256"]
+        assert audit["cells_sha256"] == evidence["cells"]["sha256"]
+        assert audit["exact_empirical_crps"] == evidence["score"]
+        assert audit["component_paths_each"] == 120 and audit["simulations"] == 240
+        assert combined["blocks"][block]["same_targets_seeds_dates_horizons_counts"]
+        tasks += audit["loss_vectors"]
+        cells += audit["cells"]
+        fits += audit["ou_diagnostic_records"]
+    assert (tasks, cells, fits) == (6732, 1157112, 27132)
+
+
+def test_pool_loss_decomposition_preserves_scores_inputs_and_horizon_coverage():
+    reference = REPORT["pool_loss_decomposition"]
+    receipt = json.loads(verified_file(reference["receipt"]).read_text())
+    helper = verified_file(reference["helper"])
+    assert digest(helper.read_bytes()) == receipt["helper_sha256"]
+    for source in receipt["inputs"].values():
+        assert digest((ROOT / source["path"]).read_bytes()) == source["sha256"]
+    checks = receipt["canonical_score_checks"]
+    for name, evidence in (("incumbent52", "incumbent-single52"),
+                           ("incumbent80", "incumbent-original80"),
+                           ("pool52", "pool-single52"), ("pool80", "pool-original80")):
+        assert checks[name]["canonical_exact_match"] is True
+        assert checks[name]["canonical_mean_recomputed"] == REPORT["evidence"][evidence]["score"]
+    bands = receipt["horizon_bands"]
+    assert bands[0]["days_inclusive"][0] == 1
+    assert bands[-1]["days_inclusive"][1] == 8766
+    for left, right in itertools.pairwise(bands):
+        assert left["days_inclusive"][1] + 1 == right["days_inclusive"][0]
+    total = sum(band["total_50_50_aggregate_gain_contribution"] for band in bands)
+    assert total == pytest.approx(receipt["overall"]["equal_50_50_gain"], abs=2e-16)
+    assets = receipt["asset_wins_losses_and_contributions"]
+    assert (assets["pool_wins"], assets["pool_losses"], assets["ties"]) == (21, 31, 0)
+    assert assets["SPYSIM"]["mean_crps_gain_incumbent_minus_pool"] < 0
+    assert all(row["sign_flip"] is False for row in receipt["leave_one_out_sensitivity"].values())
+
+
+@pytest.mark.parametrize("defect", ["missing", "short", "nan", "inf"])
+def test_invalid_origin_losses_fail_closed(defect):
+    from types import SimpleNamespace
+    tasks = [SimpleNamespace(portfolio_id="single_test", horizon_days=3)]
+    losses = [] if defect == "missing" else [np.ones(2 if defect == "short" else 3)]
+    if defect in ("nan", "inf"):
+        losses[0][0] = float(defect)
+    with pytest.raises(ValueError):
+        block_cells(tasks, losses)
+    with pytest.raises(ValueError):
+        combined_score(0.2, np.nan)
+
+
+def test_garch_audit_and_bounded_runtime_attachments_are_sha_bound():
+    audit = json.loads(verified_file(REPORT["garch"]["independent_audit"]).read_text())
+    assert audit["passed"] and audit["independent_accumulator_all_cells_byte_equal"]
+    assert (audit["tasks"], audit["cells"]) == (2652, 455832)
+    assert audit["score"] == REPORT["garch"]["single52"]
+    assert audit["source_revision"] == REPORT["evidence"]["garch-final-single52"]["source_binding"]["implementation_revision"]
+    for reference in REPORT["garch"]["failed_attempt_receipts"]:
+        assert "error" in json.loads(verified_file(reference).read_text())
+    timing = json.loads(verified_file(REPORT["local_matched_runtime"]["receipt"]).read_text())
+    assert timing["simulations"] == 240 and timing["threads"] == 1
+    assert len(timing["records"]) == 48
+    assert timing["source_revision"] == PROTOCOL["execution"]["tested_implementation_revision"]
+    assert timing["data_manifest_sha256"] == PROTOCOL["data"]["frozen_prepared_manifest_sha256"]
+
+
+def test_all_prospective_case_archives_and_statistics_are_retained():
+    from scipy.special import logsumexp
+    receipt = json.loads(verified_file(REPORT["long_cagr"]["receipt"]).read_text())
+    verified_file(REPORT["long_cagr"]["comparison"])
+    verified_file(REPORT["long_cagr"]["script"])
+    assert receipt["passed"] and receipt["completed_cases"] == 224
+    assert receipt["independent_statistic_validation"]["passed"]
+    folder = OUT / "long-cagr"
+    for name, expected in receipt["files"].items():
+        path = folder / name
+        assert digest(path.read_bytes()) == expected["sha256"]
+        assert path.stat().st_size == expected["bytes"]
+    records = sorted(folder.glob("*--*y.json"))
+    assert len(records) == 224
+    for path in records:
+        record = json.loads(path.read_text())
+        archive = path.with_suffix(".npz")
+        assert digest(archive.read_bytes()) == record["terminal_file_sha256"]
+        with np.load(archive) as saved:
+            terminal = saved["terminal_log_nav"]
+        assert terminal.shape == (240,) and np.isfinite(terminal).all()
+        horizon = record["horizon_days"]
+        assert horizon in (12600, 25200)
+        cagr = np.expm1(252 * terminal / horizon)
+        assert np.median(cagr) == pytest.approx(record["median_path_cagr"], abs=2e-16)
+        assert cagr.mean() == pytest.approx(record["mean_path_cagr"], abs=2e-16)
+        nav_cagr = np.expm1(252 * (logsumexp(terminal) - np.log(240)) / horizon)
+        assert nav_cagr == pytest.approx(record["cagr_of_mean_ending_nav"], abs=2e-16)

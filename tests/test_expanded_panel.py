@@ -1,7 +1,7 @@
 """Independent checks for the new block weights and denominator reduction."""
 import importlib.util
-from pathlib import Path
 import sys
+from pathlib import Path
 from types import SimpleNamespace
 
 import numpy as np

@@ -12,6 +12,12 @@ import re
 from .catalog import CanonicalRow
 
 _SPECIAL_NAMES = {
+    "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb": (
+        "Equal-weight stationary OU and Bayesian EWMA forecast mixture"
+    ),
+    "equal_path_pool_m261_and_bayesian_ewma_sbb": (
+        "Equal-weight MAP rough and Bayesian EWMA forecast mixture"
+    ),
     "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced": (
         "Asset FastMAP + Dynamic Gaussian Factor"
     ),

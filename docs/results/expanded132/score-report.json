@@ -1,0 +1,566 @@
+{
+  "aggregate_ranking": [
+    {
+      "candidate": "pool",
+      "equal_block_score": 0.40781825383484904,
+      "evidence": [
+        "pool-original80",
+        "pool-single52"
+      ],
+      "original80": 0.2201357869781349,
+      "rank": 1,
+      "single52": 0.5955007206915632
+    },
+    {
+      "candidate": "ou-pool",
+      "equal_block_score": 0.4132164074012394,
+      "evidence": [
+        "ou-pool-original80",
+        "ou-pool-single52"
+      ],
+      "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+      "original80": 0.22745132492949452,
+      "rank": 2,
+      "single52": 0.5989814898729843
+    },
+    {
+      "candidate": "incumbent",
+      "equal_block_score": 0.4202963347864817,
+      "evidence": [
+        "incumbent-original80",
+        "incumbent-single52"
+      ],
+      "original80": 0.22672308848311776,
+      "rank": 3,
+      "single52": 0.6138695810898457
+    },
+    {
+      "candidate": "ewma",
+      "equal_block_score": 0.4407951854176517,
+      "evidence": [
+        "ewma-original80",
+        "ewma-single52"
+      ],
+      "original80": 0.25801165086966715,
+      "rank": 4,
+      "single52": 0.6235787199656363
+    }
+  ],
+  "evidence": {
+    "ewma-original80": {
+      "adapter": "tools/expanded_controls/models.py",
+      "block": "original80",
+      "cells": {
+        "bytes": 5178811,
+        "path": "docs/results/expanded132/ewma-original80.npz",
+        "sha256": "5cbd05a34e32b072b6fe7568de6c8476aa8c2a4ab7a4fcf04851767e8c24cefd"
+      },
+      "cells_sha256": "5cbd05a34e32b072b6fe7568de6c8476aa8c2a4ab7a4fcf04851767e8c24cefd",
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 559364,
+        "canonical_sha256": "106cceb25a902c0f0d85063204ccf6833e7077ee1159d9f230be8b4663fced97",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/ewma-original80-manifest.json.gz",
+        "sha256": "627bb79da6b76789d9f4dda4cd7ef60844fe63a2ad1878152bea744f7ee8ac4f",
+        "uncompressed_file_sha256": "c4ac19ca806c0eab1df0438a90ec7fad2d8b078ba36941d942a894226be44999"
+      },
+      "model_id": "bayesian_sbb_overlay_ewma_absolute",
+      "result": {
+        "bytes": 4581,
+        "path": "docs/results/expanded132/ewma-original80.json",
+        "sha256": "3b14a9b9e72795bd49266651b2289a4169fd3403978adbc9305b543b4c4872f0"
+      },
+      "score": 0.25801165086966715,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "ewma-single52": {
+      "adapter": "tools/expanded_controls/models.py",
+      "block": "single52",
+      "cells": {
+        "bytes": 3369738,
+        "path": "docs/results/expanded132/ewma-single52.npz",
+        "sha256": "cb9a0bcefd604df159603a96a9aaa957bf5e8a3420be9117e28786ecf017d10b"
+      },
+      "cells_sha256": "cb9a0bcefd604df159603a96a9aaa957bf5e8a3420be9117e28786ecf017d10b",
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 371774,
+        "canonical_sha256": "3f3b204e020add9c683fbb3886ff8b6c3da9674649b9d8fc26969170b50849fb",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/ewma-single52-manifest.json.gz",
+        "sha256": "32a8014f400306e59e9127a29d0d2459822f290b53d271913378520d375efd2d",
+        "uncompressed_file_sha256": "d0efb8be9bc77b6c200744da1e46f8e144c9fc679a91d90950762f1297af009a"
+      },
+      "model_id": "bayesian_sbb_overlay_ewma_absolute",
+      "result": {
+        "bytes": 2604,
+        "path": "docs/results/expanded132/ewma-single52.json",
+        "sha256": "cdd9edc27d163a0a0014f3ef6a227ea3cbab93b09ac9b36f0e3d07435e4451d5"
+      },
+      "score": 0.6235787199656363,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "garch-final-single52": {
+      "adapter": "tools/garch_filtered_history/models.py",
+      "block": "single52",
+      "cell_retention": "Full cell checksum retained in result; raw vectors and cells remain with campaign owner, not duplicated in this compact publication.",
+      "cells_sha256": "fb5e4ee1cd3f3c22e17774c4034966090eb4ae3b6fdc49c3598b934efdfe9ab2",
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 372341,
+        "canonical_sha256": "770d97b0f588eeab037fabe62974df7ab67d7604247598fda629163d91a4e1d7",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/garch-final-single52-manifest.json.gz",
+        "sha256": "5ada5974645a30cd5156de66a41b8ae65cea9b2cc0182da824f75f60c7b95bd2",
+        "uncompressed_file_sha256": "924950cbc582f4182aafc725292b719ec75adecbdc222c008d1abdf1f8dfc1e7"
+      },
+      "model_id": "asset_m261_mean_gjr_garch_student_filtered_history",
+      "result": {
+        "bytes": 2609,
+        "path": "docs/results/expanded132/garch-final-single52.json",
+        "sha256": "b95d9dfe0070e0e844cca7a9017bd6348e2ca789d8c9afb1b63fac5af2d599b6"
+      },
+      "score": 0.6610958769972571,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "cb5f1e819dacd52862f38ae42fb25254e5eff376",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "incumbent-original80": {
+      "block": "original80",
+      "cells": {
+        "bytes": 6467044,
+        "path": "docs/results/rough-bayesian/timescale-only-existing_sv_rate-cells.npz",
+        "sha256": "5d98f49f8aea65496b2c9344fbbd86c9128dbc7f6c0503b6bcad2f352c22f2a6"
+      },
+      "full_block_gates_passed": true,
+      "manifest_selector": "optimized_confirmation.manifest",
+      "model_id": "asset_m256_data_timescales_existing_sv_rate",
+      "result": {
+        "bytes": 5689644,
+        "path": "docs/results/rough-bayesian/timescale-only-existing_sv_rate-panel.json",
+        "sha256": "7680e2733769a617022e037aa2623aa6b533f20da76845e51ae508e22f8818c4"
+      },
+      "result_selector": "optimized_confirmation",
+      "score": 0.22672308848311776,
+      "source_binding": {
+        "authority": "Retained optimized_confirmation.manifest source_hashes; numerical sources match execution-574e1b3, catalogue.py metadata differs. All 4080 optimized vectors were byte equal in retained independent audit.",
+        "scored_source_revision": "d40501ae2f5b0bebcc665a3c176e57dac5be598f",
+        "tested_implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f"
+      }
+    },
+    "incumbent-single52": {
+      "adapter": "tools/data_selected_timescales/models.py",
+      "block": "single52",
+      "cells": {
+        "bytes": 3384271,
+        "path": "docs/results/expanded132/incumbent-single52.npz",
+        "sha256": "e256aed32f9975745d961bc89d60e1a866e82bdfd3e2c3e829b99c4b072e8ab3"
+      },
+      "cells_sha256": "e256aed32f9975745d961bc89d60e1a866e82bdfd3e2c3e829b99c4b072e8ab3",
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 371332,
+        "canonical_sha256": "5270dd3f5596bf5240ff251a6c815964c9fdee1748844e9c142964d52d5fe9ac",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/incumbent-single52-manifest.json.gz",
+        "sha256": "144003e30b7fd781ca98ee4dcbc79e0342b5987ec003f9eada316ab7064d2f36",
+        "uncompressed_file_sha256": "54f8621736ef0a3e229132527b14604caa5c364df7c3af41860ab82412985c81"
+      },
+      "model_id": "asset_m256_data_timescales_existing_sv_rate",
+      "result": {
+        "bytes": 2604,
+        "path": "docs/results/expanded132/incumbent-single52.json",
+        "sha256": "f6a3d4e61f1e53e36d7832b3f2b0e0b09e564ce943678d91b43156a70ac99fc3"
+      },
+      "score": 0.6138695810898457,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "maprough-single52": {
+      "adapter": "tools/dynamic_rough_inference/models.py",
+      "block": "single52",
+      "cell_retention": "Full cell checksum retained in result; raw vectors and cells remain with campaign owner, not duplicated in this compact publication.",
+      "cells_sha256": "f963cacf5400a7e2505af4425d6b188a153b3e78398abe9f071fe86ea931bad4",
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 371347,
+        "canonical_sha256": "1a78669740631953bafee519303cb782c872b338c335b5839f596a446b16b28b",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/maprough-single52-manifest.json.gz",
+        "sha256": "8d07085b1492fdd50ed9bfcdba15f16ec1b5da61e3e2faf428b6024fcb448f80",
+        "uncompressed_file_sha256": "234d0d34d84dcf7aa91c3e1eb353377e88475b3335e4ae9e486f856c76af2afe"
+      },
+      "model_id": "asset_map_predecessor_dynamic_rough_map",
+      "result": {
+        "bytes": 2603,
+        "path": "docs/results/expanded132/maprough-single52.json",
+        "sha256": "6176ae6803a72133880ce83653a956ca3b7aa948305220c67f289d1141f58242"
+      },
+      "score": 0.6220527813789176,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "moments-single52": {
+      "adapter": "tools/fast_moment_controls/models.py",
+      "block": "single52",
+      "cell_retention": "Full cell checksum retained in result; raw vectors and cells remain with campaign owner, not duplicated in this compact publication.",
+      "cells_sha256": "66f46ec4328e3e77464d4636caf2c3a6f802681b615937042e3c1e704c4b906a",
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 372388,
+        "canonical_sha256": "b096018b8ea295d0fe481e1a8a55af26804ee59b6ee13fd4bb1c99f7a2744918",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/moments-single52-manifest.json.gz",
+        "sha256": "e4028bb43afda8cf65d73bd2023cbee5c9ea680d3d0c1b1b51e93180fd24cd13",
+        "uncompressed_file_sha256": "6d4d7f5be3fdb2fbd42c7b1619e74ad7fd9b1d0c33aca5f5e5ecb7b2944f9862"
+      },
+      "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+      "result": {
+        "bytes": 2609,
+        "path": "docs/results/expanded132/moments-single52.json",
+        "sha256": "452471877638d4f131493cf5ad27a4b56f41e5ec4a6425bc56c25b1c4ac17381"
+      },
+      "score": 0.6234994707366732,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "ou-pool-original80": {
+      "adapter": "tools/expanded_ou_pool/models.py",
+      "block": "original80",
+      "cells": {
+        "bytes": 5180140,
+        "path": "docs/results/expanded132/ou-pool-original80.npz",
+        "sha256": "02d923d5b2ee363f41190eef12f566b5b79559f9583de6c096a44e5b17bc588d"
+      },
+      "full_block_gates_passed": true,
+      "independent_audit": {
+        "bytes": 1506,
+        "path": "docs/results/expanded132/ou-pool-original80-independent-audit.json",
+        "sha256": "d6b08f612cfda778c9572f18977520e785b27dfe58c707d461b34f5d75af1bf9"
+      },
+      "manifest": {
+        "bytes": 2654105,
+        "canonical_sha256": "72cb02a736be1dfa2fbf8513d2d54d768bc8807e0f8d99549e3d2d40a3bebc4e",
+        "encoding": "json",
+        "path": "docs/results/expanded132/ou-pool-original80-manifest.json",
+        "sha256": "75a7ae61daf3d1c767380a71787b4fbfb760af865a69f431485222a5987d9c1b",
+        "uncompressed_file_sha256": "75a7ae61daf3d1c767380a71787b4fbfb760af865a69f431485222a5987d9c1b"
+      },
+      "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+      "result": {
+        "bytes": 4598,
+        "path": "docs/results/expanded132/ou-pool-original80.json",
+        "sha256": "5965c5a4b92dc2d46d029d21ed546672f3113098756add75262f6ebd12771102"
+      },
+      "score": 0.22745132492949452,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "3aee75cab77d152b3311acf5da061dc07d339082",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "ou-pool-single52": {
+      "adapter": "tools/expanded_ou_pool/models.py",
+      "block": "single52",
+      "cells": {
+        "bytes": 3372857,
+        "path": "docs/results/expanded132/ou-pool-single52.npz",
+        "sha256": "dd02696fbb4f3aed7e494ca1bd9c316aa79a62b240b5103b149992188e6a8528"
+      },
+      "full_block_gates_passed": true,
+      "independent_audit": {
+        "bytes": 1504,
+        "path": "docs/results/expanded132/ou-pool-single52-independent-audit.json",
+        "sha256": "7edbc3adcddb284ef9d84581a6758e617da911f49acd09e700d939ec0418f3b1"
+      },
+      "manifest": {
+        "bytes": 372328,
+        "canonical_sha256": "fa916d0d6280773af8880a306cd2fc3eaeca0fd74b7154f3a5dcd9a2037e4611",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/ou-pool-single52-manifest.json.gz",
+        "sha256": "a172985f8d5b81c06e13deb2c0a981780bb85c402a3d16ff0ac05b2ca72fc0e7",
+        "uncompressed_file_sha256": "080ef20040b1b4d22cf65228785af78b08c5ef95069567af2a9b084bd1f7abb0"
+      },
+      "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+      "result": {
+        "bytes": 2609,
+        "path": "docs/results/expanded132/ou-pool-single52.json",
+        "sha256": "157c5ef7f9f94a837cb2d56de2bf578023acacbe7b29343b41584600f0d4d3e4"
+      },
+      "score": 0.5989814898729843,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "3aee75cab77d152b3311acf5da061dc07d339082",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "ou-single52": {
+      "adapter": "tools/endpoint_residual_volatility/models.py",
+      "block": "single52",
+      "cell_retention": "Full cell checksum retained in result; raw vectors and cells remain with campaign owner, not duplicated in this compact publication.",
+      "cells_sha256": "ec3845032836a012c8610f01e8e04b8f506a9c886abea064d5ceb81a5cc7cfd5",
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 371817,
+        "canonical_sha256": "ac5286116986fb428d1ac6e0af25f6b0bd85564b43af4354f7039f27f0da145a",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/ou-single52-manifest.json.gz",
+        "sha256": "c16fd93612b659bbd07a35312b401e5c63501c6dba660d11e1e4b6fa64c4358a",
+        "uncompressed_file_sha256": "48b3d60545fdd1d807f2990c92221d0feee1a95d154e5d0e9978acf8e592200f"
+      },
+      "model_id": "asset_map_stationary_ar1_ou_residual_volatility",
+      "result": {
+        "bytes": 2613,
+        "path": "docs/results/expanded132/ou-single52.json",
+        "sha256": "a548506332fa2975078ffbb76f96f57a506befad7fdab2cba406cfe0043304d4"
+      },
+      "score": 0.6201708548679135,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "pool-original80": {
+      "block": "original80",
+      "cells": {
+        "bytes": 5183677,
+        "path": "docs/results/expanded132/pool-original80.npz",
+        "sha256": "590d165e991219e0c9fc9166037398ffbb5ea50e3ada39c5f4e63b442b24c4f1"
+      },
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 2616556,
+        "canonical_sha256": "e7d51d4fbd883f0d85315fca26d0f01944432541faed499123d54bdd48d05883",
+        "encoding": "json",
+        "path": "docs/results/expanded132/pool-original80-manifest.json",
+        "sha256": "3c5033b07af6c9d0f042e9ed19687bbea4ebd9a6337c0488575a80e7d0583d5b",
+        "uncompressed_file_sha256": "3c5033b07af6c9d0f042e9ed19687bbea4ebd9a6337c0488575a80e7d0583d5b"
+      },
+      "model_id": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+      "result": {
+        "bytes": 4586,
+        "path": "docs/results/expanded132/pool-original80.json",
+        "sha256": "59aff22bc1151bd6b9573c1d3690bcd0ceffbe0809e0b34c86160380ae2aeebf"
+      },
+      "score": 0.2201357869781349,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "pool-single52": {
+      "adapter": "tools/expanded_linear_pool/models.py",
+      "block": "single52",
+      "cells": {
+        "bytes": 3372809,
+        "path": "docs/results/expanded132/pool-single52.npz",
+        "sha256": "2db89c18821264ba3bb1a90d60dfc648a5501b02d3f408fe01f7e1f8dd8fed8c"
+      },
+      "cells_sha256": "2db89c18821264ba3bb1a90d60dfc648a5501b02d3f408fe01f7e1f8dd8fed8c",
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 371423,
+        "canonical_sha256": "50f4fe4b37ce70f5c3a12bac05b1afb696dcf1c78f2f1e4364013e7365280231",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/pool-single52-manifest.json.gz",
+        "sha256": "ac424f697851e90f9bade5a4e304d076c815f984198120b037961dcdf29ad175",
+        "uncompressed_file_sha256": "c5c6839ee7236acb6dbbda4a68b95e6dcb881a2d4f0ebeeb7f6d028f2c7c9e7c"
+      },
+      "model_id": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+      "result": {
+        "bytes": 2615,
+        "path": "docs/results/expanded132/pool-single52.json",
+        "sha256": "07abc6e54a6f5a8b09e502c758ab59f2560fc0ba0ddb250227af57043e0d9e6c"
+      },
+      "score": 0.5955007206915632,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    },
+    "rawsbb-single52": {
+      "adapter": "tools/raw_stationary_bootstrap/models.py",
+      "block": "single52",
+      "cell_retention": "Full cell checksum retained in result; raw vectors and cells remain with campaign owner, not duplicated in this compact publication.",
+      "cells_sha256": "6a41ab39a57e3aed6ed96cfd62be3670584e94e1fc7351d6b4b8efd7c62f6d11",
+      "full_block_gates_passed": true,
+      "manifest": {
+        "bytes": 371272,
+        "canonical_sha256": "9932ab4a286174de05609284ae66be3ab936317fb337734811a54921ca868e40",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/rawsbb-single52-manifest.json.gz",
+        "sha256": "5f147a8e630b44f6b6f20b5e04950c0df69f6596402f81d816962a6796014082",
+        "uncompressed_file_sha256": "af28e5880745adb9ae00368ae923cc20d9a1787f40e888a1b17d586a40624649"
+      },
+      "model_id": "asset_joint_raw_stationary_bootstrap_ppw",
+      "result": {
+        "bytes": 2595,
+        "path": "docs/results/expanded132/rawsbb-single52.json",
+        "sha256": "87054434d210b0b73d9be74bcc4cfd4c836e1f524f59012377545ed65e24605f"
+      },
+      "score": 0.8536411102679926,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
+    }
+  },
+  "garch": {
+    "equal_block_score": null,
+    "failed_attempt_receipts": [
+      {
+        "bytes": 128,
+        "path": "docs/results/expanded132/garch-failed-attempts/garch-single52-failure-0057.json",
+        "sha256": "1cdb0ea8eb6c342fc1ebdbae0715a112231c621b7bdac04cb1afb2280d6d464f"
+      },
+      {
+        "bytes": 119,
+        "path": "docs/results/expanded132/garch-failed-attempts/garch-repaired-single52-failure-0067.json",
+        "sha256": "0ed39166db46476ba8347e3da57236411e00547aa863daba791d48ea26822a1f"
+      }
+    ],
+    "failure_context": "Earlier GARCH attempts failed; only final cb5f1e8 run completed single52. Failures must not be presented as valid scores or repaired by silent clipping.",
+    "independent_audit": {
+      "bytes": 750,
+      "path": "docs/results/expanded132/garch-independent-audit.json",
+      "sha256": "a89df57bb5acc27c2bc3b1ee59954beb6402a86598dd1f8029867da399a8e2ab"
+    },
+    "independent_audit_status": "passed_complete_single52",
+    "original80_required_to_beat_pool": 0.15454063067244095,
+    "single52": 0.6610958769972571,
+    "status": "single52_only_unranked_control"
+  },
+  "independent_ou_pool_audit": {
+    "bytes": 2105,
+    "path": "docs/results/expanded132/ou-pool-independent-audit.json",
+    "sha256": "2ccb97b844efedcd9e3b5ebd37596ff5e1b46791bd8c2d17709a71ac987e1b56"
+  },
+  "independent_pool_audit": {
+    "bytes": 4334,
+    "path": "docs/results/expanded132/pool-independent-audit.json",
+    "sha256": "bc83d92c6e2f337066407feba2e14101c2c57ad3b2a557c632d01720e6d888ab"
+  },
+  "legacy_ranking": "Existing canonical80 score values and ranking semantics are unchanged; this report ranks only candidates with both complete, source-bound blocks.",
+  "local_matched_runtime": {
+    "limitations": "Case-dependent: singleton short/medium cases can be slower. Cold fit clears loaded source-module LRU fit caches; warm fit retains the preceding case fit. Both clear path cache.",
+    "receipt": {
+      "bytes": 156351,
+      "path": "docs/results/expanded132/matched-pool-runtime.json",
+      "sha256": "a59a0edd8040934e1ce7ef4088e5cf6036c7d3870b4034a3d15a1f1957aaa4db"
+    },
+    "scope": "Four bounded local matched cases, 240 paths, one thread, alternating repeats; compiler warm. Neither global speedup nor production/browser CTV.",
+    "uncertainty": "Latest receipt includes finite 27-resample paired percentile-bootstrap intervals and exact case task bindings; measured-case scope only."
+  },
+  "long_cagr": {
+    "annualization_days": 252,
+    "case_definition": "52 single assets plus first original80 portfolio for each of none/monthly/quarterly/annually, two models, two horizons, 240 paths.",
+    "comparison": {
+      "bytes": 5892,
+      "path": "docs/results/expanded132/long-cagr/comparison.json",
+      "sha256": "2c72dabc3aef5b7dff44eb1b5dc48e509c05a9c0020aa890bb83043de1573ec7"
+    },
+    "completed_cases": 224,
+    "horizon_days": [
+      12600,
+      25200
+    ],
+    "interpretation": "Median path CAGR, mean path CAGR and CAGR of mean ending NAV are distinct statistics; historical CAGR is a reference, not a forecast target.",
+    "receipt": {
+      "bytes": 79944,
+      "path": "docs/results/expanded132/long-cagr/audit-receipt.json",
+      "sha256": "cc567db1f4eb3453695bcd3b19ccfc6b5e6e080edd50459f72120947571cac00"
+    },
+    "scope": "Prospective 50/100-year diagnostics beyond available OOS history; not OOS scores or fitted objectives.",
+    "script": {
+      "bytes": 12125,
+      "path": "docs/results/expanded132/reproduction/long_cagr_audit.py",
+      "sha256": "4ffb1eb6ff793587e780e2cc92c52cf3c674de3f1cca17d45382c323716dfcf8"
+    },
+    "script_reproduction_note": "Historical script expects sibling execution-574e1b3, data, cache312, native-tmp and expanded/long-cagr roots. Use original script SHA in manifests for exact campaign reproduction; copied script is unchanged.",
+    "thresholds": "0.5 and 0.75 times positive historical CAGR are descriptive diagnostics only, never fitting constraints."
+  },
+  "ou_pool_interpretation": {
+    "accepted_ou_fit_records": 27132,
+    "all_accepted_optimizers_successful": true,
+    "observed_elapsed_seconds": {
+      "original80": 97.85721758397995,
+      "single52": 38.498571250005625
+    },
+    "scope": "New equal-path pool law with 120 stationary-OU residual-volatility paths and 120 Bayesian EWMA-SBB paths, strict preserved original80 and single52 protocols.",
+    "timing_scope": "Separate-run local diagnostics only; no matched speedup or deployed-browser CTV claim.",
+    "warnings": "Existing endpoint OU objective emitted overflow in square during optimizer trial evaluations; preserved warnings do not invalidate successful accepted fits and finite scored vectors."
+  },
+  "partial_controls": {
+    "maprough": {
+      "equal_block_score": null,
+      "reason": "No source-bound current original80 block; historical original80 values are not substituted.",
+      "single52": 0.6220527813789176
+    },
+    "moments": {
+      "equal_block_score": null,
+      "reason": "No source-bound current original80 block; historical original80 values are not substituted.",
+      "single52": 0.6234994707366732
+    },
+    "ou": {
+      "equal_block_score": null,
+      "reason": "No source-bound current original80 block; historical original80 values are not substituted.",
+      "single52": 0.6201708548679135
+    }
+  },
+  "pool_loss_decomposition": {
+    "floating_point_note": "Preserves source score reduction order; alternate flat matrix means can differ at approximately 1e-16.",
+    "helper": {
+      "bytes": 17074,
+      "path": "docs/results/expanded132/reproduction/decompose_pool_losses.py",
+      "sha256": "61d408221b186e5f3e35e6f8e4d269bde7fa469f89e96fb568e36242700d8bce"
+    },
+    "receipt": {
+      "bytes": 17061,
+      "path": "docs/results/expanded132/pool-loss-decomposition.json",
+      "sha256": "f4f25114cdba8d921f210491208f95fbe6f598c064523516eb7d5601b90c5939"
+    },
+    "scope": "Descriptive decomposition of the original M261 pool gain using every scored horizon and exact retained source scores. Not an ablation or universal asset-improvement claim."
+  },
+  "protocol": {
+    "bytes": 13542,
+    "path": "src/simfolio_forecasting_methodology/resources/protocols/portfolio80_asset52_equal_weight_v1.yaml",
+    "sha256": "1c6a66468ff825a3df2ddb719feeaa15c8b18c16e92382d2eba2555706811df0"
+  },
+  "protocol_fingerprint": "6adf689fd1ede54ef39dce3ac23b143ad3b2cf36ddbcb782153a44f61cc09016",
+  "protocol_id": "portfolio80-asset52-equal-weight-v1",
+  "raw_sbb": {
+    "equal_block_score": null,
+    "nonnegative_other_block_lower_bound": 0.4268205551339963,
+    "single52": 0.8536411102679926,
+    "status": "mathematically_prunable_against_pool_from_single52_lower_bound"
+  },
+  "relative_pool_improvement_vs_incumbent": 0.02968876937261844,
+  "runtime_claim": false,
+  "schema_version": 1,
+  "scope": "Frozen full-block OOS research evidence; separate from canonical80 ledger and production releases.",
+  "timing_scope": "Checkpoint/cache harness times are diagnostic. Separate matched local attachment supports only the measured cases; no global runtime win or deployed-browser CTV claim."
+}

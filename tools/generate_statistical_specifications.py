@@ -1543,7 +1543,11 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
         definition = copy.deepcopy(row["structured_specification"]["resolved_definition"])
         resolved[model_id] = definition
         bindings[model_id] = {
-            "family": "asset_level_extension",
+            "family": (
+                definition["family"]
+                if definition["family"] == "equal_weight_path_density_mixture"
+                else "asset_level_extension"
+            ),
             "component_refs": definition["shared_component_refs"],
             "definition_fingerprint": _digest(definition),
             "source_reference": definition["source_reference"],
@@ -1555,6 +1559,18 @@ def build_resource() -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
                 "strict_model_id": True,
             },
         }
+
+    # A mixture's complete component laws remain in the same resolved graph.
+    # Bind their fingerprints, rather than duplicating or abbreviating them.
+    for definition in resolved.values():
+        if definition["family"] != "equal_weight_path_density_mixture":
+            continue
+        for component in definition["component_definitions"]:
+            component_id = component["model_id"]
+            if component["resolved_definition_ref"] != f"resolved_definitions.{component_id}":
+                raise ValueError("mixture component reference does not match its model ID")
+            if component["definition_fingerprint"] != _digest(resolved[component_id]):
+                raise ValueError(f"mixture component definition changed: {component_id}")
 
     ledger_model_ids = {str(row["public_model_id"]) for row in rows}
     if set(resolved) != ledger_model_ids:
@@ -1793,6 +1809,19 @@ def render_readable(resource: dict[str, Any]) -> str:
                     f"- Portfolio rejoin: `{definition['portfolio_rejoin']['ref']}`.",
                 ]
             )
+        elif definition["family"] == "equal_weight_path_density_mixture":
+            lines.extend([
+                f"- Forecast level: `{definition['forecast_level']}`.",
+                f"- Mixture law: `{definition['mixture']['law']}`.",
+                f"- Allocation: `{definition['mixture']['component_simulations']}` coherent paths from each component; `{definition['mixture']['simulations']}` total.",
+                f"- Combination: `{definition['mixture']['combination']}`. No daily-return, parameter, or score averaging.",
+                f"- Fit and context: `{json.dumps(definition['fit_contract'], sort_keys=True)}`.",
+                "- Complete component methodology is resolved by these fingerprinted definitions in the same machine-readable resource:",
+            ])
+            for component in definition["component_definitions"]:
+                lines.append(
+                    f"  - `{component['resolved_definition_ref']}`; SHA-256 `{component['definition_fingerprint']}`; weight `{component['weight']}`; simulations `{component['simulations']}`."
+                )
         elif definition["family"] in {"asset_level_moment_sv", "asset_level_rough_jump_vine_ablation", "asset_level_bayesian_rough_volatility", "asset_level_rough_volterra_overlay_upgrade", "asset_level_MAP_multiscale_dynamic_rough_overlay"}:
             lines.extend([
                 f"- Forecast level: `{definition['forecast_level']}`.",
