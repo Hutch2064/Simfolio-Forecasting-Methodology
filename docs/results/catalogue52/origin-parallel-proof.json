@@ -1,0 +1,200 @@
+{
+  "all_2652_task_identities_equal": true,
+  "all_other_source_files_byte_equal": true,
+  "canonical_rank": 184,
+  "changed_source_files_after_proof": [
+    "tools/catalogue52/campaign.py",
+    "tools/catalogue52/worker.py"
+  ],
+  "data_manifest_sha256": "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76",
+  "final_source_sha256": "f9f58da4efb9d71539cca8ceb09e4af540091b41d2519b1b84c7f23b79db5d82",
+  "guard_changes_after_proof": "standalone same-group parent-death watchdog covers TERM-ignoring grandchildren; queued oversize CPU requests isolated without aborting unrelated work",
+  "inference_observations": {
+    "m184-parallel2": [
+      {
+        "burn_per_chain": 2048,
+        "convergence_flag": true,
+        "kept_per_chain": 16384,
+        "kernel": {
+          "factors": 32,
+          "fractional_cell_max_relative_error": 0.0033409990310173665,
+          "hurst_grid_points": 17,
+          "machine_precision_white_aggregation": 1e-15,
+          "maximum_checked_lag": 25200,
+          "tolerance": 0.01
+        }
+      },
+      {
+        "burn_per_chain": 2048,
+        "convergence_flag": true,
+        "kept_per_chain": 16384,
+        "kernel": {
+          "factors": 32,
+          "fractional_cell_max_relative_error": 0.0033409990310173665,
+          "hurst_grid_points": 17,
+          "machine_precision_white_aggregation": 1e-15,
+          "maximum_checked_lag": 25200,
+          "tolerance": 0.01
+        }
+      }
+    ],
+    "m184-serial": [
+      {
+        "burn_per_chain": 2048,
+        "convergence_flag": true,
+        "kept_per_chain": 16384,
+        "kernel": {
+          "factors": 32,
+          "fractional_cell_max_relative_error": 0.0033409990310173665,
+          "hurst_grid_points": 17,
+          "machine_precision_white_aggregation": 1e-15,
+          "maximum_checked_lag": 25200,
+          "tolerance": 0.01
+        }
+      },
+      {
+        "burn_per_chain": 2048,
+        "convergence_flag": true,
+        "kept_per_chain": 16384,
+        "kernel": {
+          "factors": 32,
+          "fractional_cell_max_relative_error": 0.0033409990310173665,
+          "hurst_grid_points": 17,
+          "machine_precision_white_aggregation": 1e-15,
+          "maximum_checked_lag": 25200,
+          "tolerance": 0.01
+        }
+      }
+    ]
+  },
+  "latest_validation": {
+    "focused_tests": 23,
+    "result": "passed",
+    "ruff": "passed",
+    "seconds": 25.22
+  },
+  "model_id": "asset_bayesian_lifted_rfsv_ess",
+  "native_seed_contract": "source-bound native model seed derivation",
+  "no_live_campaign_mutations": true,
+  "proof_process_groups_closed": true,
+  "proof_source_sha256": "c94fbd4df689be1bf38c081568451364cf779ee4d897ab9d66fa27820c01478c",
+  "scope": "bounded numerical parity for exact canonical single-asset origins 0,1; no full-panel or general speedup claim",
+  "simulations": 240,
+  "source_declared_inference_budget": {
+    "burn_per_chain": 2048,
+    "initial_kept_per_chain": 8192,
+    "max_kept_per_chain": 65536,
+    "source_path": "tools/rough_bayesian/models.py",
+    "source_sha256": "73389a2fc2bbe0fb0bcbc88ad8aec70e9bfbbb8484c7e825e873f464cf570f9b"
+  },
+  "task_cache": {
+    "parity": {
+      "all_float_date_arrays_byte_equal": true,
+      "all_strides_and_alias_groups_equal": true,
+      "all_task_identities_equal": true,
+      "arrays": 13260,
+      "tasks": 2652
+    },
+    "payload_bytes": 46443948,
+    "payload_sha256": "5dec2c84e52f1c5b6e4c4e9395e919b55f4dc449d2e68afafdda15d4c6ffe74c",
+    "reference_identities_sha256": "af75523c24817eb82f1f5c43a9ebf77829e47c71b8a2feebae1b483dcf3646d8",
+    "sha256": "88d2c56c0851e0c85ddf49b8e3beb63e881d13ccbcff8dc13b763c40982c556f"
+  },
+  "task_identity_set_sha256": "701c998ba386c679a0d5fd649b1c04b7ea713d899d672b15929ce76eb304cca9",
+  "timing_diagnostic_seconds": {
+    "m184-parallel2": {
+      "origin_seconds": [
+        26.16470374999335,
+        30.78455245902296
+      ],
+      "startup": {
+        "stage": "complete",
+        "stage_seconds": {
+          "model_initialization": 20.713662958994973,
+          "shared_task_input_cache": 0.15802779200021178,
+          "source_environment_verification": 0.13084391597658396,
+          "task_identities": 0.4905375840025954
+        },
+        "total_seconds": 21.49488420796115
+      },
+      "task_stage_including_parallel_child_startup": 39.810748582996894,
+      "wall": 62.603890375001356
+    },
+    "m184-serial": {
+      "origin_seconds": [
+        24.127831124991644,
+        27.961637041007634
+      ],
+      "startup": {
+        "stage": "complete",
+        "stage_seconds": {
+          "model_initialization": 22.915886167029385,
+          "shared_task_input_cache": 27.80375483399257,
+          "source_environment_verification": 0.13655799999833107,
+          "task_identities": 0.45004362502368167
+        },
+        "total_seconds": 51.30816220800625
+      },
+      "task_stage_including_parallel_child_startup": 52.36756558303023,
+      "wall": 104.89543891698122
+    }
+  },
+  "timing_limitations": "serial arm built the cold shared input cache; parallel arm reused it; background campaign active; total wall times are not matched end-to-end speedup evidence",
+  "unchanged_dispatch_loop_ast_sha256_excluding_watchdog_liveness_check": "beee33ab898a5d12de03cc153b4db28403494def169d4bc0bcb45c4b06782166",
+  "unchanged_execution_function_ast_sha256": {
+    "dump_task_views": "794feeef9522f4c744fe7f9c3b27c067a064fedf77db8eed0dc8c31d9de7f28b",
+    "evaluate_origin_index": "ef5f413fb0293fe8eb1d0a4e262d80432aaac6b72981d08de027a19ad8da54a7",
+    "execute": "967300c3b8b0e6e65b0eef310e16d2e02474271b4e66d64df61700075718bcce",
+    "finalize": "634154477f52a21b818bf8d6b1c7c1bf1cb620165090591c59459eeab9e7f44c",
+    "initialize_origins": "91d75384b9ee4aa545f1b54d761435158eb8e31e5b293402c143eb7b268be3c0",
+    "load_model": "614dd6f63d731eec93eed777cfee033b1a334ae1d16feee53a861f18aa11a15b",
+    "load_task_views": "9c96283641b09d2db6328d550c9142f6c3a65ca6b19e7d93e691b238e53aed6c",
+    "model_identity": "533a9d9406462fa5236400df6d52cc26ab5f4aee30694a293235ed44e16b0985",
+    "shared_tasks": "2e907e483a8446dcada433af76d3e083e7f38c7173a75194b5e4a913209c776f",
+    "write_checkpoint": "1727b3c339502c881f9f69a1529eda678b1a8c4124257e533a4b60d7f8ef1c17"
+  },
+  "vectors": [
+    {
+      "all_loss_bytes_equal": true,
+      "index": 0,
+      "parallel_sha256": "42129f3684539e9cd256b82bd9a7ece1249c48f66ba54c7eb89417a6d7c2d44c",
+      "serial_sha256": "42129f3684539e9cd256b82bd9a7ece1249c48f66ba54c7eb89417a6d7c2d44c",
+      "shape": [
+        126
+      ],
+      "task_identity": {
+        "future_dates_digest": "e7e94194614f18b9a20af9fd0d9c4f50d03a25017d33cc916a9194f3aef4992f",
+        "horizon_days": 126,
+        "model_id": "asset_bayesian_lifted_rfsv_ess",
+        "origin_date": "1981-12-31",
+        "origin_label": "rolling_01",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "25d25871b989ab056f1339fc2668dfcebfa0938b56e04e05da4a2549bc202b97",
+        "seed": 1469231240,
+        "task_id": "3087ffea62f89982230d703a092777f5620646689a00e405673eada605a87258",
+        "training_digest": "c66fb2f287657e7b53df9fe9286662566ca45781dca9f312bcb7fb7dbb723c8d"
+      }
+    },
+    {
+      "all_loss_bytes_equal": true,
+      "index": 1,
+      "parallel_sha256": "61b4706214d7ea48f19213c41f20539d2d12ecd3647ba4655f48a17d66cf238e",
+      "serial_sha256": "61b4706214d7ea48f19213c41f20539d2d12ecd3647ba4655f48a17d66cf238e",
+      "shape": [
+        190
+      ],
+      "task_identity": {
+        "future_dates_digest": "e0be299b74d40a6ffb083c2c8a7761938456c18aed2242f0cb14017ddf54992c",
+        "horizon_days": 190,
+        "model_id": "asset_bayesian_lifted_rfsv_ess",
+        "origin_date": "1982-12-31",
+        "origin_label": "rolling_02",
+        "portfolio_id": "single_EFASIM",
+        "realized_digest": "272122536fd9c30dfb31eaf089743bc45c3d31ac64eef907c4b0ac6097f849cf",
+        "seed": 4260613839,
+        "task_id": "6a415a80b4565f2804eb2273ac3e8af59b453ca3327a0257694f2420be8af6c6",
+        "training_digest": "2cb4b6438976bc9f59b18fe3bbf4f8182a6561b4e1d63f0c589c136ff3a543ef"
+      }
+    }
+  ]
+}

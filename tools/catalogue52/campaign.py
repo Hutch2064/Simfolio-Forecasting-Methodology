@@ -30,6 +30,14 @@ THREAD_KEYS = ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS",
                "BLIS_NUM_THREADS", "GOTO_NUM_THREADS")
 PROTOCOL = "catalogue52-terminal-log-empirical-crps-240-v1"
 EXPECTED = {"portfolios": 52, "tasks": 2652, "cells": 455832}
+ORIGIN_WORKERS_ENV = "SIMFOLIO_CATALOGUE_ORIGIN_WORKERS"
+
+
+def origin_worker_count(environment):
+    value = environment.get(ORIGIN_WORKERS_ENV, "1")
+    if not isinstance(value, str) or not re.fullmatch(r"[1-9][0-9]*", value):
+        raise ValueError("origin workers must be a positive integer string")
+    return int(value)
 
 
 def digest(value):
@@ -181,6 +189,7 @@ def add_model(campaign, model_id, *, name=None, adapter=None, environment=None,
     if not re.fullmatch(r"[A-Za-z0-9_.-]+", name) or name in {".", ".."}:
         raise ValueError("model name must be a safe directory name")
     environment = environment or {}
+    origin_worker_count(environment)
     if any(not key.startswith("SIMFOLIO_") or not isinstance(value, str)
            for key, value in environment.items()):
         raise ValueError("model environment must contain explicit SIMFOLIO_ string values")
@@ -294,6 +303,7 @@ def force_stop(state, output, reason, *, now=None):
         atomic(Path(output) / "interruption.json", {"reason": reason, "forced": True,
                "time": now, "pid": state["pid"], "token": state["token"],
                "interrupted_task": progress.get("current_task"),
+               "interrupted_tasks": progress.get("active_tasks", []),
                "completed_tasks": progress.get("completed_tasks", 0),
                "full_score_eligible": False})
         try:
@@ -312,10 +322,12 @@ def force_stop(state, output, reason, *, now=None):
 
 
 class Controller:
-    def __init__(self, campaign, *, max_models=1, python=sys.executable, nice=10):
-        if max_models < 1 or not 0 <= nice <= 19:
+    def __init__(self, campaign, *, max_models=1, max_cpu_slots=None, python=sys.executable, nice=10):
+        max_cpu_slots = max_models if max_cpu_slots is None else max_cpu_slots
+        if max_models < 1 or max_cpu_slots < 1 or not 0 <= nice <= 19:
             raise ValueError("invalid resource bounds")
         self.root, self.max_models = Path(campaign).resolve(), max_models
+        self.max_cpu_slots = max_cpu_slots
         self.python, self.nice = str(Path(python).absolute()), nice
         self.config = read(self.root / "campaign.json")
         self.children = {}
@@ -353,19 +365,24 @@ class Controller:
         state = {"pid": process.pid, "token": token, "worker": worker,
                  "started": None if identity is None else identity["started"],
                  "ready": str(output / "ready.json"),
-                 "request": request, "stopping": False}
+                 "request": request, "stopping": False,
+                 "cpu_slots": origin_worker_count(spec["environment"])}
         atomic(output / "process.json", state)
         return state
 
     def tick(self, *, shutdown=False):
         if time.monotonic() >= self.next_storage_check:
-            self.storage_available = storage_ok(self.root, self.config)
+            self.storage_available = storage_ok(self.root, self.config,
+                                                additional_bytes=self.max_cpu_slots * 2 * 1024 ** 2)
             atomic(self.root / "storage.json", {"available": self.storage_available, "time": time.time()})
             self.next_storage_check = time.monotonic() + 60
         control = read(self.root / "control.json")
         active = {}
+        slots = {}
+        capacity_blocked = {}
         for name, desired in control["models"].items():
             output = self.root / "models" / name
+            slots[name] = origin_worker_count(read(output / "registration.json")["environment"])
             process_file = output / "process.json"
             state = read(process_file) if process_file.exists() else None
             child = self.children.get(name)
@@ -389,14 +406,24 @@ class Controller:
                 continue
             if state and state["request"] == desired["request"]:
                 continue  # Failed/crashed workers require an explicit add/resume.
+            if slots[name] > self.max_cpu_slots:
+                capacity_blocked[name] = {"requested_cpu_slots": slots[name],
+                                          "max_cpu_slots": self.max_cpu_slots,
+                                          "reason": "requested origin workers exceed CPU-slot capacity"}
+                continue
             active[name] = None  # Queue without consuming a process slot yet.
         count = sum(state is not None for state in active.values())
+        used_slots = sum(slots[name] for name, state in active.items() if state is not None)
         if not shutdown and self.storage_available:
             for name, state in active.items():
-                if state is None and count < self.max_models:
+                if (state is None and count < self.max_models
+                        and used_slots + slots[name] <= self.max_cpu_slots):
                     active[name] = self.launch(name, control["models"][name]["request"])
                     count += 1
+                    used_slots += slots[name]
         atomic(self.root / "controller.json", {"live_models": count, "max_models": self.max_models,
+               "allocated_cpu_slots": used_slots, "max_cpu_slots": self.max_cpu_slots,
+               "capacity_blocked": capacity_blocked,
                "shutting_down": shutdown, "time": time.time()})
         return count
 
@@ -423,6 +450,8 @@ def main(argv=None):
     remove.add_argument("--reason")
     run = sub.add_parser("run")
     run.add_argument("--max-models", type=int, default=1)
+    run.add_argument("--max-cpu-slots", type=int,
+                     help="Total single-thread origin slots; defaults to --max-models")
     run.add_argument("--python", default=sys.executable)
     run.add_argument("--nice", type=int, default=10)
     sub.add_parser("status")
@@ -454,7 +483,7 @@ def main(argv=None):
         print(json.dumps(control, indent=2, sort_keys=True))
     else:
         controller = Controller(args.campaign, max_models=args.max_models,
-                                python=args.python, nice=args.nice)
+                                max_cpu_slots=args.max_cpu_slots, python=args.python, nice=args.nice)
         stopping = False
         def stop(signum, frame):
             nonlocal stopping

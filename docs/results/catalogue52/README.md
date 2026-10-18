@@ -29,6 +29,20 @@ removal saves the current origin; explicit force removal records interruption
 and affects only the verified model process group. Changed implementations use
 new execution identities. No automatic wall-clock cutoff rejects long fits.
 
+Expensive controls can evaluate independent origins in separate processes,
+within a total twelve-slot CPU budget and reduced scheduling priority. The
+original model, sampling effort and per-origin seeds stay fixed. Six-way
+execution registrations replace unused serial registrations for M184–M189;
+these are execution changes, not model exclusions. The bounded serial/parallel
+proof, including identical selected loss vectors and all 2,652 task identities,
+is in `origin-parallel-proof.json`.
+
+Periodic top-ten updates combine completed campaign results with previously
+validated results on this same 52-asset grid, including M262 and M263. Updates
+are approximately fifteen minutes apart, or earlier for a new leader, and
+include the entire campaign's remaining-time estimate. Runtime estimates based
+on evaluator worker time remain distinct from matched latency benchmarks.
+
 The original materializer creates a shared exact input cache once. Its roundtrip
 proof covers all 2,652 identities, 13,260 arrays, bytes, strides, writeability and
 buffer aliasing (`preprocessing-parity.json`). Every load checks source,

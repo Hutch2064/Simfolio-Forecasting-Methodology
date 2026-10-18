@@ -10,13 +10,16 @@ import argparse
 import importlib.metadata
 import importlib.util
 import io
+import multiprocessing
 import os
 import pickle
 import platform
 import shutil
 import signal
+import subprocess
 import sys
 import time
+from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
 from dataclasses import asdict
 from pathlib import Path
 
@@ -27,6 +30,7 @@ from campaign import (
     digest,
     file_hash,
     lock,
+    origin_worker_count,
     read,
     storage_ok,
     verify_snapshot,
@@ -36,6 +40,165 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "tools/mcmc_runtime"),
                 str(ROOT / "tools/expanded_panel")]
 CACHE_REFERENCE_MODEL = "catalogue52-task-cache-reference"
+_ORIGIN_STATE = None
+
+
+def parent_watchdog(parent_pid):
+    """An owned group cannot be reused while this member remains alive."""
+    for signum in (signal.SIGTERM, signal.SIGINT, signal.SIGUSR1):
+        signal.signal(signum, signal.SIG_IGN)
+    group = os.getpgrp()
+    if group != parent_pid or os.getppid() != parent_pid:
+        raise RuntimeError("origin watchdog requires its leader's owned process group")
+    print("origin-watchdog-ready", flush=True)
+    while os.getppid() == parent_pid:
+        time.sleep(0.2)
+    if os.getpgrp() == group:
+        os.killpg(group, signal.SIGKILL)
+
+
+def model_identity(model):
+    from simfolio_forecasting_methodology.runner import _numerical_environment_identity
+    return {"model_id": model.model_id,
+            "native_seed_contract": getattr(model, "seed_contract", "source-bound native model seed derivation"),
+            "native_forecast_semantics": getattr(model, "forecast_output_semantics", "daily_log_return_paths"),
+            "specification_fingerprint": getattr(model, "specification_fingerprint", None),
+            "model_environment": {k: v for k, v in os.environ.items() if k.startswith("SIMFOLIO_")},
+            "numerical_environment": _numerical_environment_identity()}
+
+
+def initialize_origins(registration, binding, expected_cache, expected_model, parent_pid):
+    global _ORIGIN_STATE
+    signal.signal(signal.SIGTERM, signal.SIG_DFL)
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+    signal.signal(signal.SIGUSR1, signal.SIG_IGN)
+    output = Path(registration).resolve().parent
+    spec = read(registration)
+    for name in list(os.environ):
+        if name.startswith("SIMFOLIO_"):
+            del os.environ[name]
+    os.environ.update(spec["environment"])
+    runtime = output / "runtime" / f"origin-{os.getpid()}"
+    runtime.mkdir(parents=True, exist_ok=True)
+    os.environ.update({"NUMBA_CACHE_DIR": str(runtime / "numba"), "TMPDIR": str(runtime)})
+    tasks, receipt = shared_tasks(output.parent.parent, spec, read(output.parent.parent / "campaign.json"))
+    if receipt != expected_cache:
+        raise ValueError("origin child task-cache identity mismatch")
+    model, adapter = load_model(spec)
+    if model_identity(model) != expected_model:
+        raise ValueError("origin child model/environment identity mismatch")
+    if os.getppid() != parent_pid or os.getpgrp() != parent_pid:
+        raise RuntimeError("origin child lost its owned leader")
+    _ORIGIN_STATE = tasks, model, adapter, output, binding, parent_pid
+    atomic(output / "runtime" / f"origin-process-{os.getpid()}.json",
+           {"pid": os.getpid(), "parent": parent_pid, "pgid": os.getpgrp()})
+
+
+def evaluate_origin_index(index):
+    from simfolio_forecasting_methodology.runner import evaluate_origin_task
+    tasks, model, adapter, output, binding, parent_pid = _ORIGIN_STATE
+    if os.getppid() != parent_pid:
+        raise RuntimeError("origin child lost its leader before dispatch")
+    if adapter is not None:
+        getattr(adapter, "clear_path_cache", lambda: None)()
+        getattr(adapter, "TIMINGS", {}).clear()
+        getattr(adapter, "FIT_DIAGNOSTICS", {}).clear()
+    started = time.perf_counter()
+    try:
+        losses = evaluate_origin_task(model, tasks[index], simulations=240)
+        write_checkpoint(output, index, binding, tasks[index], losses,
+                         time.perf_counter() - started, adapter)
+    except Exception as error:
+        atomic(output / f"failure-{index:04d}.json", {"index": index,
+               "manifest_sha256": binding, "error": type(error).__name__, "message": str(error)})
+        raise
+    finally:
+        if adapter is not None:
+            getattr(adapter, "clear_path_cache", lambda: None)()
+    return index
+
+
+def parallel_origins(registration, tasks, task_cache, model, binding, indices, completed,
+                     workers, stop_requested, progress, active_tasks):
+    """Bounded index-only dispatch; drain every submitted task before returning."""
+    if os.getpgrp() != os.getpid():
+        raise RuntimeError("parallel origins require an isolated process-group leader")
+    output = Path(registration).resolve().parent
+    campaign = output.parent.parent
+    config = read(campaign / "campaign.json")
+    context = multiprocessing.get_context("spawn")
+    # A subprocess has no multiprocessing interpreter auto-join. It remains
+    # alive through leader exit, including errors and TERM-ignoring descendants.
+    watchdog = subprocess.Popen([sys.executable, "-s", str(ROOT / "tools/catalogue52/worker.py"),
+                                 "--watch-parent", str(os.getpid())], stdout=subprocess.PIPE, text=True)
+    pool = None
+    failure = None
+    status = "running"
+    next_storage_check = 0
+    try:
+        if watchdog.stdout.readline().strip() != "origin-watchdog-ready":
+            raise RuntimeError("origin parent-death watchdog failed to initialize")
+        pool = ProcessPoolExecutor(max_workers=workers, mp_context=context,
+                                   initializer=initialize_origins,
+                                   initargs=(str(registration), binding, task_cache,
+                                             model_identity(model), os.getpid()))
+        todo = iter(i for i in indices if i not in completed)
+        pending = {}
+        exhausted = False
+        while pending or not exhausted:
+            if stop_requested and stop_requested():
+                status = "paused"
+            if watchdog.poll() is not None:
+                failure = failure or RuntimeError("origin parent-death watchdog exited unexpectedly")
+            if status == "running" and time.monotonic() >= next_storage_check:
+                storage_file = campaign / "storage.json"
+                storage = read(storage_file) if storage_file.exists() else {}
+                available = (storage["available"] if time.time() - storage.get("time", 0) < 120
+                             else storage_ok(campaign, config, additional_bytes=workers * 2 * 1024 ** 2))
+                if not available:
+                    status = "storage_paused"
+                next_storage_check = time.monotonic() + 60
+            if failure is None and status == "running":
+                while len(pending) < workers and not exhausted:
+                    if stop_requested and stop_requested():
+                        status = "paused"
+                        break
+                    index = next(todo, None)
+                    if index is None:
+                        exhausted = True
+                    else:
+                        pending[pool.submit(evaluate_origin_index, index)] = index
+            else:
+                exhausted = True
+            active_tasks[:] = sorted(pending.values())
+            progress("stopping" if status != "running" or failure else "running")
+            if not pending:
+                break
+            done, _ = wait(pending, timeout=0.2, return_when=FIRST_COMPLETED)
+            for future in done:
+                index = pending.pop(future)
+                try:
+                    if future.result() != index or checkpoint_losses(output, index, binding, tasks[index]) is None:
+                        raise ValueError("origin child completion/checkpoint identity mismatch")
+                    completed.add(index)
+                except Exception as error:  # noqa: BLE001 - re-raised after draining valid in-flight tasks
+                    # A completed atomic checkpoint survives a child/IPC crash.
+                    if checkpoint_losses(output, index, binding, tasks[index]) is not None:
+                        completed.add(index)
+                    atomic(output / f"failure-{index:04d}.json", {"index": index,
+                           "manifest_sha256": binding, "error": type(error).__name__, "message": str(error)})
+                    failure = failure or error
+    except Exception as error:  # noqa: BLE001 - re-raised after pool and watchdog cleanup
+        failure = failure or error
+    finally:
+        if pool is not None:
+            pool.shutdown(wait=True, cancel_futures=True)
+        watchdog.stdout.close()
+        active_tasks.clear()
+    if failure is not None:
+        progress("failed")
+        raise failure
+    return status
 
 
 def runtime_packages():
@@ -311,6 +474,7 @@ def execute(registration, *, stop_requested=None):
     startup = {"stage": "source_environment_verification", "stage_seconds": {}}
     atomic(output / "startup.json", startup)
     spec = read(registration)
+    origin_workers = origin_worker_count(spec["environment"])
     campaign = output.parent.parent
     config = read(campaign / "campaign.json")
     if config["protocol"] != PROTOCOL or config["expected"] != EXPECTED or config["simulations"] != 240:
@@ -366,13 +530,27 @@ def execute(registration, *, stop_requested=None):
     started = time.monotonic()
     next_storage_check = started
     current_task = None
+    active_tasks = []
     def progress(status):
-        atomic(output / "progress.json", {"status": status, "completed_tasks": len(completed),
+        value = {"status": status, "completed_tasks": len(completed),
                "required_tasks": len(tasks), "scheduled_tasks": len(indices),
                "full_score_eligible": spec["indices"] is None,
                "current_task": current_task,
-               "manifest_sha256": binding, "elapsed_seconds": time.monotonic() - started})
+               "manifest_sha256": binding, "elapsed_seconds": time.monotonic() - started}
+        if origin_workers > 1:
+            value.update({"origin_workers": origin_workers, "active_tasks": list(active_tasks)})
+        atomic(output / "progress.json", value)
     progress("running")
+    if origin_workers > 1:
+        status = parallel_origins(registration, tasks, task_cache, model, binding, indices,
+                                  completed, origin_workers, stop_requested, progress, active_tasks)
+        if status != "running":
+            progress(status)
+            return
+        verify_snapshot(ROOT, spec["source_sha256"])
+        finalize(output, tasks, binding, smoke=spec["indices"] is not None)
+        progress("complete" if spec["indices"] is None else "smoke_complete")
+        return
     for index in indices:
         if index in completed:
             continue
@@ -415,6 +593,9 @@ def execute(registration, *, stop_requested=None):
 
 
 def main():
+    if len(sys.argv) == 3 and sys.argv[1] == "--watch-parent":
+        parent_watchdog(int(sys.argv[2]))
+        return
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--registration", required=True, type=Path)
     parser.add_argument("--token", required=True)

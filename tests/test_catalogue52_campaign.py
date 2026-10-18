@@ -9,7 +9,10 @@ from __future__ import annotations
 import io
 import json
 import os
+import platform
+import shutil
 import signal
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -384,3 +387,230 @@ def test_archived_model_requires_restoration_before_add_or_worker(controlled):
         campaign.add_model(root, "first", source_root=source)
     with pytest.raises(ValueError, match="explicit restoration"):
         worker.execute(output / "registration.json")
+
+
+PARALLEL_ADAPTER = '''
+import json, os, signal, subprocess, sys, time
+from pathlib import Path
+import numpy as np
+class Model:
+    model_id = "parallel_fixture"
+    seed_contract = "fixture-context-seed"
+    def simulate_daily_log_returns(self, training, context):
+        folder = Path(os.environ['SIMFOLIO_FIXTURE_EVENTS'])
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / ('started-%d-%d.json' % (context.seed, os.getpid()))).write_text(
+            json.dumps({'index': context.seed, 'pid': os.getpid(), 'pgid': os.getpgrp()}))
+        if os.environ.get('SIMFOLIO_FIXTURE_GRANDCHILD'):
+            child = subprocess.Popen([sys.executable, '-c',
+                'import signal,time; signal.signal(signal.SIGTERM,signal.SIG_IGN); time.sleep(60)'])
+            (folder / ('grandchild-%d.json' % child.pid)).write_text(json.dumps({'pid':child.pid}))
+        delays = json.loads(os.environ.get('SIMFOLIO_FIXTURE_DELAYS', '{}'))
+        time.sleep(float(delays.get(str(context.seed), .03)))
+        if str(context.seed) == os.environ.get('SIMFOLIO_FIXTURE_FAIL_INDEX'):
+            raise ValueError('intentional origin failure')
+        return np.random.default_rng(context.seed).normal(0, .01, (context.simulations, context.horizon_days))
+CANDIDATES = [Model()]
+def initialize(cache, workers, state_workers):
+    if os.environ.get('SIMFOLIO_FIXTURE_IGNORE_TERM'):
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
+    if os.environ.get('SIMFOLIO_FIXTURE_INIT_FAILURE') and os.getpid() != os.getpgrp():
+        raise ValueError('intentional child initialization failure')
+'''
+
+
+@pytest.fixture
+def parallel_campaign(tmp_path):
+    source = tmp_path / "source"
+    for path in (ROOT / "src").rglob("*.py"):
+        if "__pycache__" not in path.parts:
+            target = source / path.relative_to(ROOT)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(path, target)
+    (source / "tools/catalogue52").mkdir(parents=True)
+    for name in ("worker.py", "campaign.py"):
+        shutil.copyfile(ROOT / "tools/catalogue52" / name, source / "tools/catalogue52" / name)
+    (source / "tools/expanded_panel").mkdir()
+    protocol = (ROOT / "tools/expanded_panel/protocol.py").read_text()
+    protocol += '''
+def single_asset_tasks(data_root):
+    from simfolio_forecasting_methodology.runner import OriginTask, TrainingData
+    training = TrainingData(np.array([.01, -.01, .003]))
+    return tuple(OriginTask('single_FIXTURE', 'fixture_%d' % i, training,
+                            np.array([.002, -.004]), seed=i) for i in range(2652))
+'''
+    (source / "tools/expanded_panel/protocol.py").write_text(protocol)
+    (source / "tools/catalogue52/fixture_adapter.py").write_text(PARALLEL_ADAPTER)
+    data = tmp_path / "data"
+    data.mkdir()
+    (data / "canonical_data_manifest.json").write_text("{}")
+    environment = tmp_path / "environment.json"
+    environment.write_text(json.dumps({"python": platform.python_version(), "packages": {"numpy": np.__version__}}))
+    root = tmp_path / "campaign"
+    campaign.initialize(root, data, environment, min_free_gib=0, budget_gib=1)
+    controller = campaign.Controller(root, max_models=3, max_cpu_slots=3, python=sys.executable, nice=10)
+    yield root, source, controller
+    for path in (root / "models").glob("*/process.json"):
+        state = campaign.read(path)
+        if campaign.verified_process(state):
+            os.killpg(state["pid"], signal.SIGKILL)
+    for child in controller.children.values():
+        child.wait(timeout=5)
+
+
+def add_parallel_fixture(root, source, name, workers, *, indices=None, **environment):
+    values = {"SIMFOLIO_FIXTURE_EVENTS": str(root / "events" / name),
+              campaign.ORIGIN_WORKERS_ENV: str(workers), **environment}
+    return campaign.add_model(root, "parallel_fixture", name=name,
+                              adapter="tools/catalogue52/fixture_adapter.py", source_root=source,
+                              environment=values, indices=indices or [0, 1, 2])
+
+
+def completed_fixture(controller, root, name):
+    await_condition(controller, lambda: (root / "models" / name / "progress.json").exists()
+                    and campaign.read(root / "models" / name / "progress.json")["status"] == "smoke_complete",
+                    seconds=25)
+    controller.children[name].wait(timeout=5)
+
+
+def live_group(group):
+    result = subprocess.run(["ps", "-axo", "pid=,pgid=,stat="], check=True, capture_output=True, text=True)
+    return [int(fields[0]) for line in result.stdout.splitlines()
+            if len(fields := line.split()) == 3 and int(fields[1]) == group and not fields[2].startswith("Z")]
+
+
+def assert_group_closed(group):
+    deadline = time.monotonic() + 5
+    while live_group(group) and time.monotonic() < deadline:
+        time.sleep(.05)
+    assert live_group(group) == []
+
+
+def test_parallel_checkpoint_losses_equal_serial_and_resume_unordered(parallel_campaign):
+    root, source, controller = parallel_campaign
+    add_parallel_fixture(root, source, "serial", 1)
+    completed_fixture(controller, root, "serial")
+    add_parallel_fixture(root, source, "parallel", 2,
+                         SIMFOLIO_FIXTURE_DELAYS='{"0":0.15,"1":0.01}')
+    completed_fixture(controller, root, "parallel")
+    serial_vectors, parallel_vectors = [], []
+    for index in range(3):
+        with (np.load(root / "models/serial" / f"task-{index:04d}.npz") as reference,
+              np.load(root / "models/parallel" / f"task-{index:04d}.npz") as actual):
+            assert reference["losses"].tobytes() == actual["losses"].tobytes()
+            serial_vectors.append(reference["losses"])
+            parallel_vectors.append(actual["losses"])
+    from protocol import block_cells
+    geometry = [SimpleNamespace(portfolio_id="single_FIXTURE", horizon_days=2)] * 3
+    assert block_cells(geometry, serial_vectors)[1].tobytes() == block_cells(geometry, parallel_vectors)[1].tobytes()
+    output = root / "models/parallel"
+    retained = (output / "task-0002.npz").read_bytes()
+    (output / "task-0000.npz").unlink()
+    (output / "task-0000.json").unlink()
+    add_parallel_fixture(root, source, "parallel", 2,
+                         SIMFOLIO_FIXTURE_DELAYS='{"0":0.15,"1":0.01}')
+    completed_fixture(controller, root, "parallel")
+    assert (output / "task-0002.npz").read_bytes() == retained
+    assert (output / "task-0000.npz").exists() and not (output / "results.json").exists()
+    state = campaign.read(output / "process.json")
+    assert_group_closed(state["pid"])
+
+
+def test_parallel_graceful_stop_drains_only_inflight_origins(parallel_campaign):
+    root, source, controller = parallel_campaign
+    add_parallel_fixture(root, source, "graceful", 2,
+                         SIMFOLIO_FIXTURE_DELAYS='{"0":0.4,"1":0.4}')
+    await_condition(controller, lambda: len(list((root / "events/graceful").glob("started-*.json"))) == 2,
+                    seconds=25)
+    campaign.remove_model(root, "graceful")
+    await_condition(controller, lambda: (root / "models/graceful/progress.json").exists()
+                    and campaign.read(root / "models/graceful/progress.json")["status"] == "paused",
+                    seconds=10)
+    controller.children["graceful"].wait(timeout=5)
+    assert len(list((root / "models/graceful").glob("task-*.npz"))) == 2
+    assert not (root / "models/graceful/task-0002.npz").exists()
+    assert_group_closed(campaign.read(root / "models/graceful/process.json")["pid"])
+
+
+@pytest.mark.parametrize("initializer", [False, True])
+def test_parallel_exception_preserves_success_and_leaves_no_children(parallel_campaign, initializer):
+    root, source, controller = parallel_campaign
+    settings = ({"SIMFOLIO_FIXTURE_INIT_FAILURE": "1"} if initializer else
+                {"SIMFOLIO_FIXTURE_FAIL_INDEX": "0", "SIMFOLIO_FIXTURE_DELAYS": '{"0":0.01,"1":0.2}'})
+    add_parallel_fixture(root, source, "failure", 2, **settings)
+    await_condition(controller, lambda: (root / "models/failure/error.json").exists(), seconds=25)
+    assert controller.children["failure"].wait(timeout=5) != 0
+    output = root / "models/failure"
+    assert campaign.read(output / "progress.json")["status"] == "failed"
+    assert not (output / "task-0002.npz").exists() and not (output / "results.json").exists()
+    if not initializer:
+        assert (output / "task-0001.npz").exists()
+    assert_group_closed(campaign.read(output / "process.json")["pid"])
+
+
+@pytest.mark.parametrize("force", [False, True])
+def test_parallel_leader_crash_or_forced_removal_leaves_no_orphans(parallel_campaign, force):
+    root, source, controller = parallel_campaign
+    add_parallel_fixture(root, source, "kill", 2, SIMFOLIO_FIXTURE_IGNORE_TERM="1",
+                         SIMFOLIO_FIXTURE_DELAYS='{"0":30,"1":30}')
+    await_condition(controller, lambda: len(list((root / "events/kill").glob("started-*.json"))) == 2,
+                    seconds=25)
+    output = root / "models/kill"
+    state = campaign.read(output / "process.json")
+    assert campaign.verified_process(state)
+    if force:
+        campaign.force_stop(state, output, "bounded fixture removal", now=100)
+        campaign.force_stop(state, output, "bounded fixture removal", now=115)
+    else:
+        os.kill(state["pid"], signal.SIGKILL)
+    controller.children["kill"].wait(timeout=5)
+    assert_group_closed(state["pid"])
+    assert not (output / "results.json").exists()
+
+
+def test_group_term_cleanup_kills_native_grandchild_that_ignores_term(parallel_campaign):
+    root, source, controller = parallel_campaign
+    add_parallel_fixture(root, source, "grandchild", 2, SIMFOLIO_FIXTURE_GRANDCHILD="1",
+                         SIMFOLIO_FIXTURE_DELAYS='{"0":30,"1":30}')
+    await_condition(controller, lambda: len(list((root / "events/grandchild").glob("grandchild-*.json"))) == 2,
+                    seconds=25)
+    state = campaign.read(root / "models/grandchild/process.json")
+    time.sleep(.1)  # Descendants have installed their TERM-ignore disposition.
+    campaign.force_stop(state, root / "models/grandchild", "bounded grandchild cleanup", now=100)
+    controller.children["grandchild"].wait(timeout=5)
+    assert_group_closed(state["pid"])
+
+
+def test_weighted_cpu_slots_admit_old_serial_workers_and_bound_parallel(controlled):
+    root, source, _ = controlled
+    controller = campaign.Controller(root, max_models=3, max_cpu_slots=3, python=sys.executable, nice=0)
+    campaign.add_model(root, "first", environment={campaign.ORIGIN_WORKERS_ENV: "2"}, source_root=source)
+    campaign.add_model(root, "second", environment={campaign.ORIGIN_WORKERS_ENV: "2"}, source_root=source)
+    campaign.add_model(root, "legacy", source_root=source)
+    controller.tick()
+    assert (root / "models/first/process.json").exists()
+    assert (root / "models/legacy/process.json").exists()
+    assert not (root / "models/second/process.json").exists()
+    assert campaign.read(root / "controller.json")["allocated_cpu_slots"] == 3
+    assert campaign.origin_worker_count({}) == 1
+    for value in ("0", "-1", "1.5", " 2", "02"):
+        with pytest.raises(ValueError, match="positive integer"):
+            campaign.origin_worker_count({campaign.ORIGIN_WORKERS_ENV: value})
+    for child in controller.children.values():
+        child.wait(timeout=5)
+
+
+def test_oversize_inactive_or_queued_model_does_not_block_eligible_work(controlled):
+    root, source, _ = controlled
+    for name in ("complete", "removed", "oversize"):
+        campaign.add_model(root, name, environment={campaign.ORIGIN_WORKERS_ENV: "6"}, source_root=source)
+    campaign.atomic(root / "models/complete/progress.json", {"status": "complete"})
+    campaign.remove_model(root, "removed")
+    campaign.add_model(root, "eligible", source_root=source)
+    controller = campaign.Controller(root, max_models=4, max_cpu_slots=4, python=sys.executable, nice=0)
+    controller.tick()
+    assert (root / "models/eligible/process.json").exists()
+    assert not (root / "models/oversize/process.json").exists()
+    blocked = campaign.read(root / "controller.json")["capacity_blocked"]
+    assert set(blocked) == {"oversize"} and blocked["oversize"]["requested_cpu_slots"] == 6
+    controller.children["eligible"].wait(timeout=5)
