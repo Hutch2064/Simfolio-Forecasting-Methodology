@@ -95,6 +95,31 @@ def test_path_clear_retains_bounded_training_fit_cache():
     assert after.hits == before.hits+1 and after.maxsize == 64
 
 
+def test_constrained_retry_uses_same_likelihood_and_records_failed_attempt(monkeypatch):
+    original = models.arch_model
+    calls = []
+    def builder(*args, **kwargs):
+        model = original(*args, **kwargs)
+        fit = model.fit
+        def retry_fit(**options):
+            calls.append(options)
+            result = fit(**options)
+            if len(calls) == 1:
+                result.params.iloc[3] += 2.
+            return result
+        model.fit = retry_fit
+        return model
+    monkeypatch.setattr(models, 'arch_model', builder)
+    x = np.random.default_rng(391).standard_t(7, 504)*.01
+    receipt = models.fit_asset(x.tobytes())[4]
+    assert receipt['retry_count'] >= 1
+    assert calls[0]['options']['ftol'] == 1e-9 and calls[1]['options']['ftol'] == 1e-12
+    assert calls[1]['starting_values'] is not None
+    assert receipt['fit_attempts'][0]['accepted'] is False
+    assert receipt['fit_attempts'][-1]['accepted'] is True
+    assert receipt['fit_attempts'][0]['used_params_percent_units'] is None
+
+
 def test_ppw_is_training_only_and_joint_rows(monkeypatch):
     assets = np.random.default_rng(42).normal(size=(40, 3))
     seen = []

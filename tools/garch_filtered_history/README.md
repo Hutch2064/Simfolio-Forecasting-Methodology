@@ -43,6 +43,17 @@ recorded approximate constrained GJR boundary fit, not a separate IGARCH law.
 Larger violations, nonconvergence and nonfinite/nonpositive future variances
 raise errors. There is no alternative-law fallback.
 
+An inadmissible initial fit triggers deterministic constrained retries of the
+same likelihood: first summed likelihood with ftol 1e-12, then average
+likelihood (sum divided by training-row count) with ftol 1e-12. Dividing an
+objective by a positive constant preserves its exact argmax and constraint
+set while conditioning SLSQP's numerical steps. Retry starting values are
+feasible interior points; their .99 persistence is initialization only, never
+a final fitted parameter restriction. Final admission still uses the same
+1e-9 feasibility tolerance, strict stationarity check and convergence gate.
+Each attempt records its start, raw/used parameters, likelihood in restored
+summed units, objective scale, elapsed time and admission result.
+
 The Student-likelihood stationarity condition assumes symmetric unit-variance
 shocks. The empirical shock distribution can be asymmetric, and its bootstrap
 can be serially dependent. Diagnostics therefore also record the empirical
@@ -52,17 +63,43 @@ for the dependent empirical forecast law.
 
 ## Bounded validation
 
-`tests/test_garch_filtered_history.py`: eleven checks passed under CPython 3.12.13,
+`tests/test_garch_filtered_history.py`: twelve checks passed under CPython 3.12.13,
 arch 8, one numerical thread. Includes scalar-recursion oracle, sign asymmetry,
 common-row deterministic stationary indices, full-prefix Student fitting, IID
 boundary-feasibility projection with variance-difference bound, training-only PPW
 inputs, exact mean call-chain and 1/3-asset policy-rejoin simulations. Positive
 and negative gamma stationarity-boundary cases, substantive-violation rejection
 and retention of the bounded training-fit LRU across path clears are checked.
+The retry test verifies that an inadmissible raw fit cannot silently become
+used parameters and that a feasible starting point and stricter tolerance
+are passed to the same likelihood fit.
 
 `failure57_diagnosis.json` records the official single52 failure: GLDSIM,
 1987-09-30, 1,960 training rows, converged fit with persistence
 1.0000000000000004. The bounded repair/refilter result is recorded separately.
+
+`admission_preflight.py` performs fit-only admission on all 52 assets and 51
+canonical training prefixes per asset, without constructing forecast targets,
+running paths or calculating OOS scores. `admission_preflight.json` records
+all 2,652 passes, every attempt and prefix identity, complete numerical-source
+hashes, dataset manifest/fingerprints, package versions and thread settings.
+Training digests for official failures 57 and 67 match the failed-run manifests.
+The final run used twelve processes: 8.449 seconds execution wall time after
+data/task preparation, 69.129 summed fit seconds, zero failures and unchanged
+source hashes. There were 2,631 initial-fit passes, three first-retry passes
+and eighteen objective-preconditioned second-retry passes. This admits the
+historical fits; it does not establish future-path stability or OOS accuracy.
+
+The strict-summed-likelihood-only preflight is preserved as
+`admission_preflight_strict_sum_failed.json`: sixteen prefixes still failed
+SLSQP convergence/feasibility near the closed stationarity boundary. No
+feasibility tolerance was widened. In the final preflight, failure 67 converged
+under the preconditioned same likelihood with persistence .9999999999999992
+and zero parameter projection. Its recorded summed likelihood agrees exactly
+with the unscaled refiltered likelihood. Across all final admissions, the
+largest allowed parameter-boundary correction was 7.0361e-10 and the largest
+conditional-variance refilter change was 1.8522e-6 in percent-return variance
+units; the complete per-prefix effects remain in the artifact.
 
 `smoke_results.json` contains actual initialized synthetic forecasts with 504
 training rows, 240 paths and 21 future dates. Initialization: 5.91 seconds;

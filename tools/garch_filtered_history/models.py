@@ -76,6 +76,29 @@ def feasible_parameters(raw_params, tolerance=1e-9):
     return used, correction, raw_persistence
 
 
+class FitAdmissionError(ArithmeticError):
+    def __init__(self, message, attempts):
+        super().__init__(message)
+        self.attempts = attempts
+
+
+def feasible_start(raw, residuals):
+    """An interior optimizer starting point, never a substitute fitted model."""
+    raw = np.asarray(raw, dtype=float)
+    if not np.isfinite(raw).all():
+        return None
+    omega, alpha, gamma, beta, nu = map(float, raw)
+    alpha = max(alpha, 0.)
+    gamma = max(float(raw[1]+raw[2]), 0.)-alpha
+    beta = max(beta, 0.)
+    persistence = alpha+gamma/2.+beta
+    if persistence >= .99:
+        scale = .99/persistence
+        alpha, gamma, beta = alpha*scale, gamma*scale, beta*scale
+    return np.array([omega if omega > 0. else .01*float(np.mean(residuals**2)),
+        alpha, gamma, beta, min(max(nu, 2.05), 500.)])
+
+
 @lru_cache(maxsize=64)
 def fit_asset(data):
     x = np.frombuffer(data, np.float64)
@@ -85,17 +108,51 @@ def fit_asset(data):
     residuals = (x - center)*100.
     model = arch_model(residuals, mean='Zero', vol='GARCH', p=1, o=1,
         q=1, dist='StudentsT', rescale=False)
-    result = model.fit(disp='off', show_warning=False,
-            options={'maxiter': 1000, 'ftol': 1e-9})
-    if result.convergence_flag != 0 or not result.optimization_result.success:
-        raise ArithmeticError(f'GJR Student likelihood failed: {result.optimization_result.message}')
-    raw_params = result.params.to_numpy().copy()
     feasibility_tolerance = 1e-9
-    projected_params, correction, raw_persistence = feasible_parameters(raw_params, feasibility_tolerance)
+    attempts = []
+    starting_values = None
+    for ftol, objective_scale in ((1e-9, 1.), (1e-12, 1.), (1e-12, float(len(x)))):
+        started = time.perf_counter()
+        original_likelihood = model._loglikelihood
+        if objective_scale != 1.:
+            # Average rather than summed likelihood conditions SLSQP's step
+            # and feasibility arithmetic. Its exact argmax and constraints
+            # are unchanged. Refilter below restores reported summed units.
+            def scaled_likelihood(*args, **kwargs):
+                return original_likelihood(*args, **kwargs)/objective_scale
+            model._loglikelihood = scaled_likelihood
+        try:
+            result = model.fit(disp='off', show_warning=False, starting_values=starting_values,
+                options={'maxiter': 1000 if starting_values is None else 2000, 'ftol': ftol})
+        finally:
+            model._loglikelihood = original_likelihood
+        raw_params = result.params.to_numpy().copy()
+        attempt = {'ftol': ftol, 'objective_scale': objective_scale, 'seconds': time.perf_counter()-started,
+            'starting_params_percent_units': None if starting_values is None else starting_values.tolist(),
+            'optimizer_params_percent_units': raw_params.tolist(),
+            'optimizer_persistence': float(raw_params[1]+raw_params[2]/2.+raw_params[3]),
+            'optimizer_loglikelihood_percent_units': float(result.loglikelihood)*objective_scale,
+            'convergence_flag': int(result.convergence_flag),
+            'optimizer_success': bool(result.optimization_result.success),
+            'optimizer_message': str(result.optimization_result.message)}
+        attempts.append(attempt)
+        try:
+            if result.convergence_flag != 0 or not result.optimization_result.success:
+                raise ArithmeticError(f'GJR Student likelihood failed: {result.optimization_result.message}')
+            projected_params, correction, raw_persistence = feasible_parameters(raw_params, feasibility_tolerance)
+        except ArithmeticError as error:
+            attempt.update(accepted=False, admission_error=str(error), used_params_percent_units=None)
+            starting_values = feasible_start(raw_params, residuals)
+        else:
+            attempt.update(accepted=True, used_params_percent_units=projected_params.tolist(),
+                maximum_parameter_feasibility_correction=correction)
+            break
+    else:
+        raise FitAdmissionError('GJR Student likelihood admission failed after deterministic constrained retries', attempts)
     omega, alpha, gamma, beta, nu = map(float, projected_params)
     original_variance = np.asarray(result.conditional_volatility)**2
-    original_loglikelihood = float(result.loglikelihood)
-    if correction:
+    original_loglikelihood = float(result.loglikelihood)*objective_scale
+    if correction or objective_scale != 1.:
         result = model.fix(projected_params)
     persistence = alpha + gamma/2. + beta
     if not (np.isfinite(result.params).all() and omega > 0. and alpha >= 0.
@@ -123,6 +180,8 @@ def fit_asset(data):
         'terminal_variance': float(variance[-1]/10000.),
         'terminal_residual': float(residuals[-1]/100.),
         'solver_feasibility_tolerance': feasibility_tolerance,
+        'fit_attempts': attempts,
+        'retry_count': len(attempts)-1,
         'optimizer_persistence': raw_persistence,
         'open_stationarity_boundary_projection': raw_persistence >= 1.,
         'stationarity_boundary_interpretation': 'approximate_open_constraint_GJR_not_a_separate_IGARCH_law',
