@@ -21,7 +21,7 @@ def model_specs():
         if rank in EXCLUDED_RANKS:
             continue
         environment = {}
-        if rank in {1, 8}:
+        if rank in {1, 8, 9}:
             adapter = "tools/catalogue52/legacy_exact_kernels.py"
         elif rank <= 175 or rank == 177:
             adapter = None

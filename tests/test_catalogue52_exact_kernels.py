@@ -22,6 +22,8 @@ from simfolio_forecasting_methodology.runner import ForecastContext, PortfolioPo
     (kernels.frontier.HistoricalFrontierModel, bd.fit_bdes_fastmap, lambda x: x),
     (kernels.exact_kalman.ExactKalmanDynamicGaussianFactorModel, ib.fit_bdes_full_inla,
      kernels.exact_kalman._source_engine_log_returns),
+    (kernels.inla.FullINLABDESModel, ib.fit_bdes_full_inla,
+     kernels.inla._source_engine_log_returns),
 ])
 def test_complete_fit_daily_and_terminal_bytes(n, model_class, fit, normalize):
     x = np.random.default_rng(83).normal(0.0003, 0.009, n)
@@ -76,3 +78,33 @@ def test_rejoin_keeps_original_validation(paths, weights, mask):
         dg.rebalanced_portfolio_log_paths(paths, weights, mask)
     with pytest.raises(ValueError, match=str(original.value)):
         kernels._rejoin(paths, weights, mask)
+
+
+def test_only_three_proven_original_factories_use_exact_kernel_adapter():
+    from adapters import model_specs
+
+    kernels.initialize(None, 1, 1)
+    references = (kernels.frontier.HistoricalFrontierModel,
+                  kernels.exact_kalman.ExactKalmanDynamicGaussianFactorModel,
+                  kernels.inla.FullINLABDESModel)
+    assert [type(model.reference) for model in kernels.CANDIDATES] == list(references)
+    assert [model.model_id for model in kernels.CANDIDATES] == [cls().model_id for cls in references]
+    mapped = [row for row in model_specs()
+              if row["adapter"] == "tools/catalogue52/legacy_exact_kernels.py"]
+    assert {row["canonical_rank"] for row in mapped} == {1, 8, 9}
+    assert {row["model_id"] for row in mapped} == {model.model_id for model in kernels.CANDIDATES}
+
+
+def test_original_m009_error_restores_every_global():
+    kernels.prepare()
+    before = [(module, name, getattr(module, name))
+              for module, name, _ in kernels._REPLACEMENTS]
+    dates = pd.bdate_range("1990-01-01", periods=96)
+    values = np.random.default_rng(83).normal(0.0003, 0.009, len(dates))
+    training = TrainingData(values, training_dates=dates.to_numpy())
+    context = ForecastContext("wrong_id", "test", "test", 126, 240, 83)
+    model = kernels.ExactKernelModel(kernels.inla.FullINLABDESModel())
+    with pytest.raises(ValueError, match="inla_context_model_id_mismatch"):
+        model.simulate_daily_log_returns(training, context)
+    for module, name, original in before:
+        assert getattr(module, name) is original

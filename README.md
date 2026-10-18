@@ -9,6 +9,15 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
+The separate [single52 result index](src/simfolio_forecasting_methodology/resources/results/single52.json)
+contains completed 52-asset results and the verified saved control,
+keyed by immutable model ID. Read it with
+`simfolio_forecasting_methodology.single_asset_results.load_single52_results()`.
+Its `single52_crps` and historical80 score/status remain separate; it does not
+replace the retained 80-portfolio catalogue scores or change model fingerprints.
+Each fresh result separately declares whether its raw archive is verified or pending.
+See the [campaign and catalogue synchronization notes](docs/results/catalogue52/README.md).
+
 The canonical catalogue contains **263 models**: the original 175 plus seventy-six
 asset-level models and two forecast mixtures with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The

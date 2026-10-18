@@ -1,4 +1,4 @@
-"""Scoped compiler-only adapter for the two original catalogue asset models.
+"""Scoped compiler-only adapter for original catalogue models M001, M008 and M009.
 
 No fit cache, inference settings, seed, sampling budget or dependence changes.
 The context always restores every patched global, including after exceptions.
@@ -25,13 +25,14 @@ from simfolio_forecasting_methodology.models.numerical import bdes_fastmap as bd
 from simfolio_forecasting_methodology.models.numerical import dynamic_gaussian as dg
 from simfolio_forecasting_methodology.models.numerical import inla_bdes as ib
 from simfolio_forecasting_methodology.models.numerical import mcmc_sv as mc
+from simfolio_forecasting_methodology.models.portfolio import inla
 
 CANDIDATES = ()
 _REPLACEMENTS = None
 
 
 def source_version():
-    paths = [Path(module.__file__) for module in (bd, dg, ib, mc, frontier, exact_kalman)]
+    paths = [Path(module.__file__) for module in (bd, dg, ib, mc, frontier, exact_kalman, inla)]
     paths += [ROOT / "tools/mcmc_runtime" / name for name in
               ("compiled_smoothers.py", "exact_path_kernels.py", "research_jit_pilot.py")]
     paths += [Path(__file__)]
@@ -108,4 +109,5 @@ def initialize(_data=None, _workers=1, _simulations=1):
     global CANDIDATES
     prepare()
     CANDIDATES = (ExactKernelModel(frontier.HistoricalFrontierModel()),
-                  ExactKernelModel(exact_kalman.ExactKalmanDynamicGaussianFactorModel()))
+                  ExactKernelModel(exact_kalman.ExactKalmanDynamicGaussianFactorModel()),
+                  ExactKernelModel(inla.FullINLABDESModel()))

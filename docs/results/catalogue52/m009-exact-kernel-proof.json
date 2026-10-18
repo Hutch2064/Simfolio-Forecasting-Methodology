@@ -1,0 +1,308 @@
+{
+  "scope": "M009-only compiler adapter admission evidence; bounded local parity, not full-panel or deployed-browser proof",
+  "supported_adapter_ranks": [
+    1,
+    8,
+    9
+  ],
+  "newly_admitted_rank": 9,
+  "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+  "original_factory": "simfolio_forecasting_methodology.models.portfolio.inla.FullINLABDESModel",
+  "baseline_revision": "f862c4cf4c4511ffde5037c89a3bea679fd49d2c",
+  "source_version": {
+    "src/simfolio_forecasting_methodology/models/numerical/bdes_fastmap.py": "f7fc60d38870db552b0cda4a47c019e207c5a48d78dcbe2defe73c946a5d5380",
+    "src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+    "src/simfolio_forecasting_methodology/models/numerical/inla_bdes.py": "14f5e8276d24296ce09a0322b52520de380e4a26579fc5a822dda362503ca125",
+    "src/simfolio_forecasting_methodology/models/numerical/mcmc_sv.py": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+    "src/simfolio_forecasting_methodology/models/asset_level/frontier.py": "814a468b537a2efd907e4b5b5643cdbc3e162067111c886c7b56b5dfb5e52a34",
+    "src/simfolio_forecasting_methodology/models/asset_level/exact_kalman.py": "9315a66d99d8ed8ad6e650c4c1f5d0842f5a8bdf18d187a77a335f9edcfcf6ef",
+    "src/simfolio_forecasting_methodology/models/portfolio/inla.py": "2fc18845e896a627be6f65f5af216962a3c5d63203b7f0dabf50d849f18fa92f",
+    "tools/mcmc_runtime/compiled_smoothers.py": "c8c4f4e9d47796a1df92e4d432d97158b3232084d6cc60e33fe021e21c5dac46",
+    "tools/mcmc_runtime/exact_path_kernels.py": "869c9800f0b7860619d601b1ca843ca6c5183dfb3616de68d2cba26f875ea1e5",
+    "tools/mcmc_runtime/research_jit_pilot.py": "e6be3116bc77162606084866f45f045946b9eacfb16b611102df314049526c7e",
+    "tools/catalogue52/legacy_exact_kernels.py": "03f3ed04a16c090bb0afe0d864c692d739b335dda89f14e64d00b0d2a16e0773",
+    "tools/catalogue52/adapters.py": "8790057e9f50a046716d1e02dac0cd3e622d13cf6f0461d0a4a93979984bd787",
+    "tests/test_catalogue52_exact_kernels.py": "46eb5dd1a79e9cb423c5f9f059fd7ca8674acf43470522428d06d38f45564008"
+  },
+  "unchanged_runtime_kernel_asts": {
+    "prepare": {
+      "unchanged": true,
+      "ast_sha256": "02ba3be75948fa000dea64af45643db2b5d750fafb2fc0d0a04609d8f6f074f8"
+    },
+    "accelerated": {
+      "unchanged": true,
+      "ast_sha256": "33e3a6164c12e8d554400f781b60579b6fe6958cb8c879f932e0c16e9b55f5fb"
+    },
+    "_rejoin": {
+      "unchanged": true,
+      "ast_sha256": "13388319bb84c3c7518ed585eefbf8fde4ca5dbb189adc2e9199336812582dfd"
+    },
+    "ExactKernelModel": {
+      "unchanged": true,
+      "ast_sha256": "57960c871ca1ff16045772bc60f0276771ee8d54daa6feb02e3430bc8a94356b"
+    }
+  },
+  "environment": {
+    "packages": {
+      "llvmlite": "0.49.0",
+      "numba": "0.67.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "pybind11": "3.1.0",
+      "pyvinecopulib": "0.7.5",
+      "scipy": "1.18.1"
+    },
+    "python": "3.12.13"
+  },
+  "thread_environment": {
+    "CODEX_THREAD_ID": "01a15092-dbde-7ef1-865a-80d19d7bfd1d",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "NUMBA_NUM_THREADS": "1"
+  },
+  "scheduling": "one diagnostic compute lane; nice 10; all six numerical thread environment values 1",
+  "input_cache_key": "6f139419bc532714fae01156bc82fdab299eb85fd11452057944e000dff425d8",
+  "profile": {
+    "task_index": 25,
+    "training_observations": 6438,
+    "horizon": 1609,
+    "simulations": 240,
+    "profiled_total_seconds": 3.527,
+    "full_inla_fit_seconds": 2.493,
+    "mc_dlm_likelihood_seconds": 1.884,
+    "initial_marginal_jit_seconds": 1.001
+  },
+  "fit_and_forecast_parity": [
+    {
+      "rank": 9,
+      "index": 0,
+      "n": 507,
+      "kind": "complete_fit",
+      "seconds": [
+        0.16834904201095924,
+        0.021070290997158736
+      ],
+      "pickle_bytes_equal": true
+    },
+    {
+      "rank": 9,
+      "index": 0,
+      "n": 507,
+      "horizon": 126,
+      "kind": "complete_forecast",
+      "seconds": [
+        0.16034366696840152,
+        0.020988292002584785
+      ],
+      "daily_bytes_equal": true,
+      "terminal_bytes_equal": true,
+      "sha256": "840865cab6991f98a09fea993982b3772598b75004fcbfaa3534d91cc3192807"
+    },
+    {
+      "rank": 9,
+      "index": 0,
+      "n": 507,
+      "horizon": 2922,
+      "kind": "complete_forecast",
+      "seconds": [
+        0.21466987498570234,
+        0.07213516597403213
+      ],
+      "daily_bytes_equal": true,
+      "terminal_bytes_equal": true,
+      "sha256": "a4534368e07519e29bfbfa0ef2ad7e9b7c1807a86b7cf18d424bba72a32d76a0"
+    },
+    {
+      "rank": 9,
+      "index": 47,
+      "n": 11657,
+      "kind": "complete_fit",
+      "seconds": [
+        1.9545405420358293,
+        0.08580116595840082
+      ],
+      "pickle_bytes_equal": true
+    },
+    {
+      "rank": 9,
+      "index": 47,
+      "n": 11657,
+      "horizon": 126,
+      "kind": "complete_forecast",
+      "seconds": [
+        1.9748130409861915,
+        0.08026837499346584
+      ],
+      "daily_bytes_equal": true,
+      "terminal_bytes_equal": true,
+      "sha256": "c6ce6ed4245c21de714f0db31d445e3116d0e2854815fe20979e674450c52850"
+    },
+    {
+      "rank": 9,
+      "index": 47,
+      "n": 11657,
+      "horizon": 2922,
+      "kind": "complete_forecast",
+      "seconds": [
+        1.9914597080205567,
+        0.13984129199525341
+      ],
+      "daily_bytes_equal": true,
+      "terminal_bytes_equal": true,
+      "sha256": "3a50d09d269981711c7a9618a77e1a51c83e1d071e0157da536fb0131f5f2403"
+    }
+  ],
+  "warm_matched_repeats": {
+    "rank": 9,
+    "model": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+    "index": 25,
+    "n": 6438,
+    "horizon": 1609,
+    "simulations": 240,
+    "rows": [
+      {
+        "repeat": 0,
+        "accelerated": false,
+        "seconds": 1.5205749160377309,
+        "sha256": "e6cdc2b2e27f7fa38e4adaa3bf907625b5aef1e9a11c40f68739c7658e3b519f"
+      },
+      {
+        "repeat": 0,
+        "accelerated": true,
+        "seconds": 0.08659795799758285,
+        "sha256": "e6cdc2b2e27f7fa38e4adaa3bf907625b5aef1e9a11c40f68739c7658e3b519f"
+      },
+      {
+        "repeat": 1,
+        "accelerated": true,
+        "seconds": 0.08724008296849206,
+        "sha256": "e6cdc2b2e27f7fa38e4adaa3bf907625b5aef1e9a11c40f68739c7658e3b519f"
+      },
+      {
+        "repeat": 1,
+        "accelerated": false,
+        "seconds": 1.559514874999877,
+        "sha256": "e6cdc2b2e27f7fa38e4adaa3bf907625b5aef1e9a11c40f68739c7658e3b519f"
+      },
+      {
+        "repeat": 2,
+        "accelerated": false,
+        "seconds": 1.5488246669992805,
+        "sha256": "e6cdc2b2e27f7fa38e4adaa3bf907625b5aef1e9a11c40f68739c7658e3b519f"
+      },
+      {
+        "repeat": 2,
+        "accelerated": true,
+        "seconds": 0.0941782079753466,
+        "sha256": "e6cdc2b2e27f7fa38e4adaa3bf907625b5aef1e9a11c40f68739c7658e3b519f"
+      }
+    ],
+    "fit_pickle_bytes_equal": true,
+    "all_forecast_hashes_equal": true,
+    "median_original": 1.5488246669992805,
+    "median_accelerated": 0.08724008296849206
+  },
+  "final_registered_adapter_proof": {
+    "rank": 9,
+    "task": 25,
+    "n": 6438,
+    "horizon": 1609,
+    "simulations": 240,
+    "original_class": "FullINLABDESModel",
+    "daily_bytes_equal": true,
+    "terminal_bytes_equal": true,
+    "sha256": "e6cdc2b2e27f7fa38e4adaa3bf907625b5aef1e9a11c40f68739c7658e3b519f"
+  },
+  "other_families_diagnostic_only": [
+    {
+      "rank": 2,
+      "fit_pickle_bytes_equal": true,
+      "all_forecast_hashes_equal": true,
+      "median_original_seconds": 0.06017562496708706,
+      "median_with_existing_replacements_seconds": 0.059929999988526106
+    },
+    {
+      "rank": 10,
+      "fit_pickle_bytes_equal": true,
+      "all_forecast_hashes_equal": true,
+      "median_original_seconds": 0.06500454101478681,
+      "median_with_existing_replacements_seconds": 0.06345083401538432
+    },
+    {
+      "rank": 37,
+      "fit_pickle_bytes_equal": true,
+      "all_forecast_hashes_equal": true,
+      "median_original_seconds": 0.06196845800150186,
+      "median_with_existing_replacements_seconds": 0.06292995798867196
+    },
+    {
+      "rank": 29,
+      "fit_pickle_bytes_equal": true,
+      "all_forecast_hashes_equal": true,
+      "median_original_seconds": 0.9542964589782059,
+      "median_with_existing_replacements_seconds": 0.8228826660197228
+    }
+  ],
+  "other_family_conclusion": "No material measured benefit for M002/M010/M037. Modest M029 diagnostic only; rank29 remains on original factory. No claim of acceleration for any other legacy family.",
+  "validation": {
+    "pytest": "20 passed; one pre-existing importlib Traversable deprecation warning",
+    "ruff": "passed on the three changed Python files",
+    "git_diff_check": "passed",
+    "global_restoration": "nested context, exception and original M009 context-id failure tested"
+  },
+  "remaining_gate": "Parent-owned exhaustive completed-prefix comparison and separately versioned full single52 rerun. No queue/worker modifications by this task.",
+  "raw_evidence_owner": "Parent catalogue52 campaign; setup/legacy-runtime-followup retained until campaign archive checksum verification",
+  "raw_evidence": {
+    "check.log": {
+      "bytes": 2547,
+      "sha256": "9f839a6104adb2590f0a1371023cd26acc738dcfb9217fd86a951bd529a6bc4e"
+    },
+    "check.py": {
+      "bytes": 4014,
+      "sha256": "d0a96693ec17ffd20f0031f676a61e8e9c0fe16b479aaa4fad170a8fa35c43ee"
+    },
+    "final-adapter-proof.json": {
+      "bytes": 1760,
+      "sha256": "8295b57249cc5b34b99056d78ec4996ba1fd033e46d95a741e551ece95123f5f"
+    },
+    "final-adapter.log": {
+      "bytes": 1690,
+      "sha256": "155a9f976b69ef09776694a50d1875ae388ecd4dbaeabd8401485550592ea7cf"
+    },
+    "final_adapter.py": {
+      "bytes": 870,
+      "sha256": "add6a3579399d026f6febf7a54b12abdec54c2b8171cfc3a86d48413cbe3d137"
+    },
+    "m009-profile.txt": {
+      "bytes": 5905,
+      "sha256": "bad078e266bdc0f815d41693e4eddd2066a65cdc9d700bc24f5d817f491616bb"
+    },
+    "pytest.log": {
+      "bytes": 584,
+      "sha256": "5f9d2cdcb394fd11859819a707cb7a6b8c0aaa90e2e5f4f901b06718424f5ae7"
+    },
+    "repeat.py": {
+      "bytes": 2102,
+      "sha256": "755ca2035acf8c5acef86902eed9f7ff12bca8aceeea4a576273f1d48a9e3c28"
+    },
+    "repeated.json": {
+      "bytes": 9513,
+      "sha256": "bf91877d6fd09411f2635abba9154532174247dc1bddf42e0b68dbd596467c75"
+    },
+    "repeated.log": {
+      "bytes": 5969,
+      "sha256": "8a3de02d659b0bb0063636f96079db1eef914323ada79b2d3503ec9e98232a7e"
+    },
+    "results.json": {
+      "bytes": 4982,
+      "sha256": "4990908b2beb6c0412e241987809cdb5aca091332b726e37c7461b4329ee51d2"
+    },
+    "unchanged-kernels.json": {
+      "bytes": 528,
+      "sha256": "87a6e8e0c11af2a437e373edd08db5de2100ce1d0c41f4b2cbec357e58306b74"
+    }
+  }
+}

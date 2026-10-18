@@ -58,3 +58,37 @@ blocker after reasonable recovery. Final reporting includes the full ranking,
 runtimes, additions/removals, historical validation, and long-horizon CAGR
 diagnostics for relevant leaders. Valid completed results are published in both
 canonical and master catalogues. Production is unchanged by this research.
+
+`scores.json` is the live campaign report; its progress section is not a full
+score. The independent, packaged result index is
+`src/simfolio_forecasting_methodology/resources/results/single52.json`.
+It contains full 52-asset results plus the separately verified saved M261 control.
+Each fresh result retains its explicit raw-archive verification state; pending
+archival does not hide a valid completed score. Partial executions do not enter
+this index. A subset of completed models does not imply that the catalogue-wide
+campaign is complete.
+
+After generating the public report, mirror the validated completed results to
+both catalogues with:
+
+```bash
+python tools/catalogue52/sync_catalogues.py --master-root ../master
+```
+
+The helper validates immutable model IDs/ranks, specification fingerprints,
+52 assets, 2,652 tasks, 455,832 cells, 240 simulations, finite scores and evidence
+hashes before writing identical portable JSON to the packaged methodology
+resource and `catalogs/single52_results.json` in the master checkout. It retains
+every completed row's evidence fields and the source report's SHA-256. A result
+declaring a verified raw archive must include its archive and receipt hashes;
+a pending archive remains explicitly pending. The
+historical80 score and its verification status remain separate from single52;
+no blended score, catalogue membership change or specification edit occurs.
+Refreshing the live report requires another explicit synchronization.
+
+The independent loaders are
+`simfolio_forecasting_methodology.single_asset_results.load_single52_results()`
+and `simfolio_forecasting.single_asset_results.load_single52_results()` in the
+master repository. Both return a dictionary keyed by immutable model ID, without
+merging result fields into model metadata. The master manifest, canonical score
+CSVs, methodology ledger and all existing model fingerprints remain unchanged.
