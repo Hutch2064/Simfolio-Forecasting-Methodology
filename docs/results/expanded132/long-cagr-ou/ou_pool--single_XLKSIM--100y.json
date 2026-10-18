@@ -1,0 +1,49 @@
+{
+  "cagr_of_mean_ending_nav": 0.13951951439973787,
+  "case": "single_XLKSIM",
+  "daily_log_return_range": [
+    -0.22534319467952296,
+    0.1493764047578125
+  ],
+  "differences_from_historical_cagr": {
+    "cagr_of_mean_ending_nav": 0.015284503020626214,
+    "mean_path_cagr": -0.013836696465680726,
+    "median_path_cagr": -0.012309000532244749
+  },
+  "group": "single_asset",
+  "historical_cagr": 0.12423501137911165,
+  "historical_sign": "positive",
+  "horizon_days": 25200,
+  "log_mean_ending_nav": 13.060669496261355,
+  "manifest_sha256": "c6f879fcaf26c1412e34132b24b96eb810db68de830f0e0b618ee5d2269b1d66",
+  "mean_path_cagr": 0.11039831491343093,
+  "median_path_cagr": 0.1119260108468669,
+  "model": "ou_pool",
+  "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+  "paths": 240,
+  "policy": {
+    "rebalance": "none",
+    "tickers": [
+      "XLKSIM"
+    ],
+    "weights": [
+      1.0
+    ]
+  },
+  "ratios_to_positive_historical_cagr": {
+    "cagr_of_mean_ending_nav": 1.1230289501401864,
+    "mean_path_cagr": 0.8886248223259939,
+    "median_path_cagr": 0.9009216452302403
+  },
+  "seed": 2109837819,
+  "terminal_file_sha256": "42071e78142a3e4cab248ce9c1cb4519b36559aa7797f91b5aedf7a250c28140",
+  "terminal_log_nav_quantiles": [
+    3.5756116210230076,
+    6.559503453189036,
+    10.609363964431878,
+    14.982915379030189,
+    16.59569742939111
+  ],
+  "warnings": [],
+  "years": 100
+}

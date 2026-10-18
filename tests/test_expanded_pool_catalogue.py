@@ -139,9 +139,21 @@ def test_ou_pool_append_preserves_m262_and_all_prior_metadata():
     manifest_path = ROOT / binding["manifest_path"]
     assert _file_digest(manifest_path) == binding["manifest_file_sha256"]
     manifest = json.loads(manifest_path.read_text())
-    assert hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest() == (
-        result["manifest_sha256"]
-    ) == binding["manifest_sha256"]
+    assert binding["manifest_representation"] == "portable_public_derivative"
+    assert binding["original_manifest_file_sha256"] == (
+        "75a7ae61daf3d1c767380a71787b4fbfb760af865a69f431485222a5987d9c1b"
+    )
+    assert binding["manifest_sha256"] == binding["original_manifest_semantic_sha256"] == result["manifest_sha256"]
+    assert hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest() != result["manifest_sha256"]
+    assert manifest["environment"]["SIMFOLIO_RESEARCH_FIT_CACHE"] == "campaign/fit-cache"
+    assert binding["portable_normalization"]["field_path"] == "environment.SIMFOLIO_RESEARCH_FIT_CACHE"
+    numerical_identity = json.loads(json.dumps(manifest))
+    del numerical_identity["environment"]["SIMFOLIO_RESEARCH_FIT_CACHE"]
+    assert _digest(numerical_identity) == binding["portable_numerical_identity_sha256"] == (
+        "dd11164863bed5252e9fa88dd75a2c1811dd82709b98ff9088d811c55f2360af"
+    )
+    numerical_identity["simulations"] += 1
+    assert _digest(numerical_identity) != binding["portable_numerical_identity_sha256"]
     assert manifest["source_hashes"] == binding["recorded_source_hashes"]
     assert _file_digest(ROOT / source["path"]) == source["sha256"] == manifest["source_hashes"][source["path"]]
     assert len(manifest["task_identities"]) == 4080 and manifest["simulations"] == 240

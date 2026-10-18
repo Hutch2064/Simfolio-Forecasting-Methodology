@@ -9,17 +9,17 @@ private datastore, or operational API.
 
 ## Current catalogue and score ranking
 
-The canonical catalogue contains **261 models**: the original 175 plus seventy-six
-asset-level models with validated full-panel scores, four partially scored
+The canonical catalogue contains **263 models**: the original 175 plus seventy-six
+asset-level models and two forecast mixtures with validated full-panel scores, four partially scored
 candidates, and six unscored asset-level rough-volatility candidates. The
 dynamic-resolution candidate completed the full panel with CRPS
 **0.25074679212444156**. The debiased Whittle rough-inference candidate (M200) scored **0.249657155081818**, a validated catalogue score. Six canonical rough-volatility
 alternatives remain unscored. Their [implementations, results and diagnostics](docs/rough-bayesian-oos.md) are saved. The current production
 Frontier and both previous Frontiers are included. The original model IDs,
 historical ranks and score tokens are preserved; additions have canonical
-indices 176–261 and no historical source rank.
+indices 176–263 and no historical source rank.
 
-`simfolio-oos candidate-scores --json` returns all 261 models once, sorted by
+`simfolio-oos candidate-scores --json` returns all 263 models once, sorted by
 exact empirical CRPS, with unscored full-panel rows last and unranked.
 [Partial candidate results](docs/rough-jump-vine-oos.md) retain completed
 portfolio scores and blank unfinished portfolios. The [complete ranked JSON](docs/results/combined-176-score-ranking.json)
@@ -28,10 +28,12 @@ Existing command names and catalogue filenames remain compatible.
 
 | Model | Exact empirical CRPS | Role |
 | --- | ---: | --- |
-| M261 — M256 with existing fitted SV timescale | 0.22672308848311776 | Timescale-only research score leader |
+| Equal-weight MAP rough and Bayesian EWMA forecast mixture | 0.2201357869781349 | Expanded-panel accuracy leader; table shows original80 component |
+| M261 — M256 with existing fitted SV timescale | 0.22672308848311776 | Frozen expanded-panel incumbent |
 | M256 — Asset MAP Stationary AR1 + Student Corrected Dynamic Correlation + Dynamic Rough | 0.22687132859413414 | Retained comparator |
 | M255 — Asset MAP Stationary AR1 + Corrected Dynamic Correlation + Dynamic Rough | 0.22705549647165937 | Faster research comparator |
-| Asset MAP Multiscale + Dynamic Rough Volatility | 0.2518812750312293 | Retained production baseline for this research |
+| Equal-weight stationary OU and Bayesian EWMA forecast mixture | 0.22745132492949452 | Faster expanded-panel tradeoff; table shows original80 component |
+| Asset MAP Multiscale + Dynamic Rough Volatility | 0.2518812750312293 | Retained earlier production baseline |
 | Asset Rough Volterra SV — Eight Factors | 0.2511998559613309 | Validated research candidate |
 | Asset Parameter MCMC + Filtered Moment SV | 0.25246784959071183 | Previous production Frontier |
 | Asset Filtered Innovation Moment SV + Fixed Mean | 0.25439860867855635 | Previous production Frontier |
@@ -44,10 +46,18 @@ simulations per origin using the whitepaper's exact empirical CRPS and equal
 portfolio-horizon cell weighting. Complete statistical specifications, source
 hashes, run manifests and validation references are recorded per model.
 
+The [expanded132 research report](docs/results/expanded132/README.md) preserves this
+original80 block and adds every unique ticker as a 100% single-asset holding:
+52 assets, the same 51 origins and every eligible daily horizon. Its separate
+score weights the two blocks equally. The MAP-rough mixture scores **0.40781825383484904**,
+versus **0.4202963347864817** for the incumbent; the faster OU mixture scores
+**0.4132164074012394**. These combined scores are not the original80 scores in
+the table above. Complete cells, portable manifests and independent audits are retained.
+
 The public package has **176 explicit executable factories**. Other entries
 retain their standalone research entrypoints and source details.
 The [parameter-MCMC report](docs/mcmc-runtime-optimization.md) includes the
-current Frontier's complete-output replay and optimized numerical sources.
+historical parameter-MCMC Frontier's complete-output replay and optimized numerical sources.
 The [alternative SV inference experiments](docs/sv-inference-candidates.md)
 retain their screening results separately.
 

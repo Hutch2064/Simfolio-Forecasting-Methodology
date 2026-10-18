@@ -259,12 +259,23 @@
         "sha256": "d6b08f612cfda778c9572f18977520e785b27dfe58c707d461b34f5d75af1bf9"
       },
       "manifest": {
-        "bytes": 2654105,
+        "bytes": 2654045,
         "canonical_sha256": "72cb02a736be1dfa2fbf8513d2d54d768bc8807e0f8d99549e3d2d40a3bebc4e",
+        "derivation_attestation": {
+          "normalization": {
+            "field_path": "environment.SIMFOLIO_RESEARCH_FIT_CACHE",
+            "public_value": "campaign/fit-cache",
+            "scope": "Only the cache storage location changes. All source, task, data, dependency-version and numerical fields remain identical."
+          },
+          "original_file_sha256": "75a7ae61daf3d1c767380a71787b4fbfb760af865a69f431485222a5987d9c1b",
+          "original_semantic_sha256": "72cb02a736be1dfa2fbf8513d2d54d768bc8807e0f8d99549e3d2d40a3bebc4e",
+          "portable_numerical_identity_sha256": "dd11164863bed5252e9fa88dd75a2c1811dd82709b98ff9088d811c55f2360af"
+        },
         "encoding": "json",
         "path": "docs/results/expanded132/ou-pool-original80-manifest.json",
-        "sha256": "75a7ae61daf3d1c767380a71787b4fbfb760af865a69f431485222a5987d9c1b",
-        "uncompressed_file_sha256": "75a7ae61daf3d1c767380a71787b4fbfb760af865a69f431485222a5987d9c1b"
+        "representation": "portable_public_derivative",
+        "sha256": "e22b4026f9721ec0309072958d7b00b7de5aafdeabcef0641fc4d487f1a4bb8b",
+        "uncompressed_file_sha256": "e22b4026f9721ec0309072958d7b00b7de5aafdeabcef0641fc4d487f1a4bb8b"
       },
       "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
       "result": {
@@ -427,7 +438,54 @@
         "implementation_revision": "574e1b34d478f74a0397905ac3ddbd558e1c118f",
         "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
       }
+    },
+    "static-mean-single52": {
+      "adapter": "tools/expanded_static_mean/models.py",
+      "block": "single52",
+      "cells": {
+        "bytes": 3382953,
+        "path": "docs/results/expanded132/static-mean-single52.npz",
+        "sha256": "44a9304c30ccb7218c0aaf7853028d11ae3d58e9ba80961fb87579f3c3f0a12d"
+      },
+      "full_block_gates_passed": true,
+      "independent_audit": {
+        "bytes": 1094,
+        "path": "docs/results/expanded132/static-mean-independent-audit.json",
+        "sha256": "d1150d86a3dd8dbf7d76243f38ed4854fb30dfa042241b71ea33d7870557cfcd"
+      },
+      "manifest": {
+        "bytes": 372154,
+        "canonical_sha256": "592933c78fdfd55e12609e3f94e059842641c17b16e0b50f2384d0d514e536dc",
+        "encoding": "gzip",
+        "path": "docs/results/expanded132/static-mean-single52-manifest.json.gz",
+        "sha256": "fd707893019d3352520d2d16f009559d86ec5d10988b346366141925ee95f7d8",
+        "uncompressed_file_sha256": "4b9ae608e8599ff65be49268cc7cd1bdd64a59271a05711ca6f66fe552c9bd9f"
+      },
+      "model_id": "asset_m261_raw_historical_log_mean",
+      "result": {
+        "bytes": 2594,
+        "path": "docs/results/expanded132/static-mean-single52.json",
+        "sha256": "02f4f4c0cc61b7ebedc99f8f3227a243b9ae5959e34c701a69053dcf251fb205"
+      },
+      "score": 0.8400348401996254,
+      "source_binding": {
+        "authority": "recorded source_hashes, not manifest_base_revision",
+        "implementation_revision": "79a70b26d6cad4f021308bcf6acd3677e3ee648e",
+        "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+      }
     }
+  },
+  "final_three_model_runtime": {
+    "receipt": {
+      "bytes": 139304,
+      "path": "docs/results/expanded132/finalmatched-three-model-runtime.json",
+      "sha256": "eceef144bc824993f5493281572e66cf4c7ca596fd18679ed7946dc70c29f498"
+    },
+    "scope": "Final matched local research compute diagnostic for incumbent, M261 pool and stationary-OU pool; case-specific timing evidence only, never deployed-browser CTV or universal speedup.",
+    "source_revisions": [
+      "574e1b34d478f74a0397905ac3ddbd558e1c118f",
+      "3aee75cab77d152b3311acf5da061dc07d339082"
+    ]
   },
   "garch": {
     "equal_block_score": null,
@@ -455,9 +513,9 @@
     "status": "single52_only_unranked_control"
   },
   "independent_ou_pool_audit": {
-    "bytes": 2105,
+    "bytes": 2816,
     "path": "docs/results/expanded132/ou-pool-independent-audit.json",
-    "sha256": "2ccb97b844efedcd9e3b5ebd37596ff5e1b46791bd8c2d17709a71ac987e1b56"
+    "sha256": "6200ef0ef50d4cdde831db45536ad50155f681f8a505113451c2a0ee03c58a8c"
   },
   "independent_pool_audit": {
     "bytes": 4334,
@@ -468,9 +526,9 @@
   "local_matched_runtime": {
     "limitations": "Case-dependent: singleton short/medium cases can be slower. Cold fit clears loaded source-module LRU fit caches; warm fit retains the preceding case fit. Both clear path cache.",
     "receipt": {
-      "bytes": 156351,
+      "bytes": 155214,
       "path": "docs/results/expanded132/matched-pool-runtime.json",
-      "sha256": "a59a0edd8040934e1ce7ef4088e5cf6036c7d3870b4034a3d15a1f1957aaa4db"
+      "sha256": "83a683ed5e9d864162db22d3128087c2c82319451e7bb60d9d4ba5a171d6b7d9"
     },
     "scope": "Four bounded local matched cases, 240 paths, one thread, alternating repeats; compiler warm. Neither global speedup nor production/browser CTV.",
     "uncertainty": "Latest receipt includes finite 27-resample paired percentile-bootstrap intervals and exact case task bindings; measured-case scope only."
@@ -502,6 +560,36 @@
     },
     "script_reproduction_note": "Historical script expects sibling execution-574e1b3, data, cache312, native-tmp and expanded/long-cagr roots. Use original script SHA in manifests for exact campaign reproduction; copied script is unchanged.",
     "thresholds": "0.5 and 0.75 times positive historical CAGR are descriptive diagnostics only, never fitting constraints."
+  },
+  "long_cagr_ou": {
+    "all_terminal_paths_finite": true,
+    "annualization_days": 252,
+    "case_definition": "52 single assets plus four original portfolios covering all rebalance frequencies; two horizons and 240 paths.",
+    "completed_cases": 112,
+    "horizon_days": [
+      12600,
+      25200
+    ],
+    "median_path_cagr_below_0_75_positive_history": {
+      "incumbent_100y": 14,
+      "incumbent_50y": 17,
+      "ou_pool_100y": 2,
+      "ou_pool_50y": 2,
+      "positive_history_assets": 49
+    },
+    "receipt": {
+      "bytes": 40692,
+      "path": "docs/results/expanded132/long-cagr-ou/audit-receipt.json",
+      "sha256": "efa60ff549e147e5e71cf91ed5867f87d47b7896b56addb5b30e5dadda772f55"
+    },
+    "scope": "Prospective stationary-OU pool 50/100-year coherence diagnostics beyond available OOS history; not scored OOS results or fitting targets.",
+    "script": {
+      "bytes": 12026,
+      "path": "docs/results/expanded132/reproduction/long_cagr_ou_audit.py",
+      "sha256": "1bafd4ae52a39359d58692aea779f7c15375ee8eb8119acc7f49b0772d25934f"
+    },
+    "threshold_scope": "Historical-CAGR ratios and thresholds are descriptive only, not fitting objectives.",
+    "total_warnings": 0
   },
   "ou_pool_interpretation": {
     "accepted_ou_fit_records": 27132,
@@ -559,8 +647,33 @@
     "status": "mathematically_prunable_against_pool_from_single52_lower_bound"
   },
   "relative_pool_improvement_vs_incumbent": 0.02968876937261844,
+  "research_decision": {
+    "best_validated_aggregate_model": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+    "confidence_scope": "Evidence-backed stopping judgment for these candidate families and this frozen protocol, not a statistical proof that no better model exists.",
+    "faster_validated_tradeoff_model": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+    "no_production_change": true,
+    "runtime_scope": "Four matched local research cases, 240 paths, one state worker/thread; cache strata and concurrent load disclosed. No uniform all-workload or browser speed claim.",
+    "stopping_basis": "The remaining source-backed mean ablation failed strongly. Its asset/horizon losses do not provide sufficient complementary error evidence for another mixture. Earlier distinct raw-bootstrap, moment-SV, rough-MAP, OU and Student GJR-GARCH screens did not support a better follow-up. Both validated mixtures were profiled against the same incumbent; compiled mapping and dependence kernels dominate and no substantial exact-parity optimization remains justified by profiling. Further architecture changes or fitted mixture weights would be speculative given these comparisons."
+  },
   "runtime_claim": false,
   "schema_version": 1,
   "scope": "Frozen full-block OOS research evidence; separate from canonical80 ledger and production releases.",
+  "static_mean_ablation": {
+    "equal_block_score": null,
+    "independent_audit": {
+      "bytes": 1094,
+      "path": "docs/results/expanded132/static-mean-independent-audit.json",
+      "sha256": "d1150d86a3dd8dbf7d76243f38ed4854fb30dfa042241b71ea33d7870557cfcd"
+    },
+    "interpretation": "Raw historical asset log means replace the M261 mean forecast in a separate research control. It is not registered as a canonical model and no original80 run is needed for pruning. The initial audit helper failed because of a field-name typo; the fixed independent audit and fresh model replays passed.",
+    "mixture_followup_screening": {
+      "bytes": 42309,
+      "path": "docs/results/expanded132/static-mean-screening.json",
+      "sha256": "b222499e3863a6de128eb37750d31d7154cd56c8d994cbbc5a1f23078229c9c0"
+    },
+    "nonnegative_other_block_lower_bound": 0.4200174200998127,
+    "single52": 0.8400348401996254,
+    "status": "mathematically_pruned_from_complete_independently_audited_single52"
+  },
   "timing_scope": "Checkpoint/cache harness times are diagnostic. Separate matched local attachment supports only the measured cases; no global runtime win or deployed-browser CTV claim."
 }

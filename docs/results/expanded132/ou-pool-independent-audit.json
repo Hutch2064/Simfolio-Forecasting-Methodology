@@ -5,7 +5,7 @@
   "best_m261_pool_equal_block_aggregate": 0.40781825383484904,
   "blocks": {
     "original80": {
-      "independent_audit_file": "/Users/aidanhutchison/simfolio/tmp/frontier-one-asset-audit-20261018/expanded/ou-pool-original80/independent-audit.json",
+      "independent_audit_file": "expanded/ou-pool-original80/independent-audit.json",
       "m261_pool_elapsed_seconds_observed": 227.8193078340264,
       "m261_pool_score": 0.2201357869781349,
       "m261_pool_summed_worker_seconds_observed": 2588.4717370266444,
@@ -18,7 +18,7 @@
       "same_targets_seeds_dates_horizons_counts": true
     },
     "single52": {
-      "independent_audit_file": "/Users/aidanhutchison/simfolio/tmp/frontier-one-asset-audit-20261018/expanded/ou-pool-single52/independent-audit.json",
+      "independent_audit_file": "expanded/ou-pool-single52/independent-audit.json",
       "m261_pool_elapsed_seconds_observed": 56.99760400003288,
       "m261_pool_score": 0.5955007206915632,
       "m261_pool_summed_worker_seconds_observed": 574.8236167399446,
@@ -34,6 +34,18 @@
   "candidate_model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
   "equal_block_aggregate": 0.4132164074012394,
   "interpretation": "New candidate model; score/runtime tradeoff. Observed elapsed times are research diagnostics across separate completed runs, not parity or deployed CTV evidence.",
+  "publication_derivation": {
+    "normalized_json_pointers": [
+      "/blocks/original80/independent_audit_file",
+      "/blocks/single52/independent_audit_file"
+    ],
+    "normalized_payload_sha256": "69cb32d3696143a38f0b248be6a41502d71d140dcbe4153f2c907b3bccfc18e9",
+    "original_file_sha256": "2ccb97b844efedcd9e3b5ebd37596ff5e1b46791bd8c2d17709a71ac987e1b56",
+    "original_filename": "ou-pool-independent-audit.json",
+    "path_elided_payload_sha256": "0d396457dc32dc6c766393482f8d4e743ee68f38b1962e9f58fcbb34e76d73c0",
+    "schema_version": 1,
+    "transformation": "Only absolute campaign-root prefixes in recorded filesystem path strings were removed to produce campaign-relative paths. All numeric values, timing records, task bindings, seeds and source hashes are unchanged. Original raw evidence remains with the campaign owner."
+  },
   "relative_score_increase_vs_best_pool": 0.013236664900674988,
   "standalone_m261_equal_block_aggregate": 0.4202963347864817,
   "warning": "Existing OU objective warnings preserved in original80 log; all accepted fits and output loss vectors passed validation."

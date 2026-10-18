@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "source_revision": "79a70b26d6cad4f021308bcf6acd3677e3ee648e",
+  "base_revision_in_manifest": "6bfeb13157c80f5debfdd21340c69884e6a6cf99",
+  "tasks": 2652,
+  "cells": 455832,
+  "independent_accumulator_all_cells_byte_equal": true,
+  "manifest_semantic_sha256": "592933c78fdfd55e12609e3f94e059842641c17b16e0b50f2384d0d514e536dc",
+  "cells_sha256": "44a9304c30ccb7218c0aaf7853028d11ae3d58e9ba80961fb87579f3c3f0a12d",
+  "score": 0.8400348401996254,
+  "portfolio80_maximum_score_to_beat_best_mixture": -0.02439833252992729,
+  "screening_decision": "Pruned mathematically: half the single52 score already exceeds the best aggregate with original80 CRPS constrained nonnegative.",
+  "replays": [
+    {
+      "task": 507,
+      "all_horizon_loss_replay_byte_equal": true,
+      "independent_pairwise_crps_max_abs_error": 1.0842021724855044e-19
+    },
+    {
+      "task": 762,
+      "all_horizon_loss_replay_byte_equal": true,
+      "independent_pairwise_crps_max_abs_error": 1.3877787807814457e-17
+    }
+  ],
+  "nonnegative_original80_aggregate_lower_bound": 0.4200174200998127
+}

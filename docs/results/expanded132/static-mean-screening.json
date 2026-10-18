@@ -1,0 +1,1102 @@
+{
+  "alignment_checks": {
+    "all_cells_positive_support": true,
+    "canonical_score_exact_matches_saved_reports": {
+      "ewma-single52": false,
+      "incumbent-single52": true,
+      "pool-single52": true,
+      "static-mean-single52": true
+    },
+    "counts_identical_cell_by_cell": true,
+    "loss_shapes_identical": [
+      52,
+      8766
+    ],
+    "maximum_cell_origin_count": 51,
+    "minimum_cell_origin_count": 1,
+    "same_data_manifest_sha256": "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76",
+    "ticker_names_identical_and_sorted": true
+  },
+  "all_asset_results": {
+    "EFASIM": {
+      "bayesian_ewma": 0.7617879552407524,
+      "equal_path_pool": 0.7807803609993235,
+      "incumbent_m261": 0.8058556669214961,
+      "static_advantage_vs_ewma": -0.1254138995440457,
+      "static_advantage_vs_incumbent": -0.08134618786330194,
+      "static_advantage_vs_pool": -0.10642149378547461,
+      "static_mean": 0.8872018547847981
+    },
+    "GLDSIM": {
+      "bayesian_ewma": 1.0452561347968825,
+      "equal_path_pool": 1.0550042320605688,
+      "incumbent_m261": 0.9955797540162329,
+      "static_advantage_vs_ewma": -0.06875042884535665,
+      "static_advantage_vs_incumbent": -0.11842680962600627,
+      "static_advantage_vs_pool": -0.05900233158167034,
+      "static_mean": 1.1140065636422392
+    },
+    "GSGSIM": {
+      "bayesian_ewma": 1.1779264389669053,
+      "equal_path_pool": 1.0807898742612954,
+      "incumbent_m261": 1.0337116035364133,
+      "static_advantage_vs_ewma": -0.1717103390667376,
+      "static_advantage_vs_incumbent": -0.31592517449722957,
+      "static_advantage_vs_pool": -0.26884690377234755,
+      "static_mean": 1.349636778033643
+    },
+    "IEFSIM": {
+      "bayesian_ewma": 0.15877670679576047,
+      "equal_path_pool": 0.23910566398121152,
+      "incumbent_m261": 0.3627915627366389,
+      "static_advantage_vs_ewma": -0.625066521680644,
+      "static_advantage_vs_incumbent": -0.42105166573976566,
+      "static_advantage_vs_pool": -0.5447375644951931,
+      "static_mean": 0.7838432284764045
+    },
+    "IEISIM": {
+      "bayesian_ewma": 0.11248246738733891,
+      "equal_path_pool": 0.19021751441340942,
+      "incumbent_m261": 0.39849670569563544,
+      "static_advantage_vs_ewma": -0.8023109818838268,
+      "static_advantage_vs_incumbent": -0.5162967435755302,
+      "static_advantage_vs_pool": -0.7245759348577563,
+      "static_mean": 0.9147934492711657
+    },
+    "IWCSIM": {
+      "bayesian_ewma": 0.3657336960078674,
+      "equal_path_pool": 0.4289374551462399,
+      "incumbent_m261": 0.5576667641048657,
+      "static_advantage_vs_ewma": 0.12545365802036978,
+      "static_advantage_vs_incumbent": 0.31738672611736807,
+      "static_advantage_vs_pool": 0.18865741715874224,
+      "static_mean": 0.24028003798749764
+    },
+    "IWMSIM": {
+      "bayesian_ewma": 0.23891417718197136,
+      "equal_path_pool": 0.19381365029016012,
+      "incumbent_m261": 0.1718704145657162,
+      "static_advantage_vs_ewma": -0.08784220621374553,
+      "static_advantage_vs_incumbent": -0.1548859688300007,
+      "static_advantage_vs_pool": -0.13294273310555677,
+      "static_mean": 0.3267563833957169
+    },
+    "REITSIM": {
+      "bayesian_ewma": 0.4028423738345849,
+      "equal_path_pool": 0.40536279715532175,
+      "incumbent_m261": 0.46508744059889545,
+      "static_advantage_vs_ewma": 0.10897848028739199,
+      "static_advantage_vs_incumbent": 0.17122354705170256,
+      "static_advantage_vs_pool": 0.11149890360812886,
+      "static_mean": 0.2938638935471929
+    },
+    "SDSSIM": {
+      "bayesian_ewma": 1.6693393849627278,
+      "equal_path_pool": 1.8301269531459534,
+      "incumbent_m261": 2.0073934229556287,
+      "static_advantage_vs_ewma": 0.05082291492578128,
+      "static_advantage_vs_incumbent": 0.3888769529186822,
+      "static_advantage_vs_pool": 0.21161048310900687,
+      "static_mean": 1.6185164700369465
+    },
+    "SHYSIM": {
+      "bayesian_ewma": 0.13869240591622087,
+      "equal_path_pool": 0.17647903316009467,
+      "incumbent_m261": 0.4999299528607517,
+      "static_advantage_vs_ewma": -0.9577673804411262,
+      "static_advantage_vs_incumbent": -0.5965298334965954,
+      "static_advantage_vs_pool": -0.9199807531972524,
+      "static_mean": 1.096459786357347
+    },
+    "SLVSIM": {
+      "bayesian_ewma": 2.4703108508517735,
+      "equal_path_pool": 2.0744420638715066,
+      "incumbent_m261": 1.726908112350014,
+      "static_advantage_vs_ewma": -0.020984584780250337,
+      "static_advantage_vs_incumbent": -0.7643873232820098,
+      "static_advantage_vs_pool": -0.4168533717605172,
+      "static_mean": 2.491295435632024
+    },
+    "SPMOSIM": {
+      "bayesian_ewma": 0.28316232033100724,
+      "equal_path_pool": 0.2755971123179422,
+      "incumbent_m261": 0.2705078738043043,
+      "static_advantage_vs_ewma": -0.36476285149614723,
+      "static_advantage_vs_incumbent": -0.3774172980228502,
+      "static_advantage_vs_pool": -0.3723280595092123,
+      "static_mean": 0.6479251718271545
+    },
+    "SPXLSIM": {
+      "bayesian_ewma": 0.7350570883567116,
+      "equal_path_pool": 0.6440469774878426,
+      "incumbent_m261": 0.6213715514188185,
+      "static_advantage_vs_ewma": 0.09447141265748826,
+      "static_advantage_vs_incumbent": -0.01921412428040481,
+      "static_advantage_vs_pool": 0.003461301788619253,
+      "static_mean": 0.6405856756992233
+    },
+    "SPXUSIM": {
+      "bayesian_ewma": 2.437722421632059,
+      "equal_path_pool": 2.7147229206840207,
+      "incumbent_m261": 3.0540679084471023,
+      "static_advantage_vs_ewma": 0.21629773646799322,
+      "static_advantage_vs_incumbent": 0.8326432232830365,
+      "static_advantage_vs_pool": 0.4932982355199549,
+      "static_mean": 2.2214246851640658
+    },
+    "SPYSIM": {
+      "bayesian_ewma": 0.36811975153042675,
+      "equal_path_pool": 0.2996254232561943,
+      "incumbent_m261": 0.2594714880793755,
+      "static_advantage_vs_ewma": -0.24207178606903135,
+      "static_advantage_vs_incumbent": -0.3507200495200826,
+      "static_advantage_vs_pool": -0.3105661143432638,
+      "static_mean": 0.6101915375994581
+    },
+    "SSOSIM": {
+      "bayesian_ewma": 0.487224420955089,
+      "equal_path_pool": 0.4171622504584535,
+      "incumbent_m261": 0.40522171901191506,
+      "static_advantage_vs_ewma": -0.0407612121521258,
+      "static_advantage_vs_incumbent": -0.12276391409529974,
+      "static_advantage_vs_pool": -0.11082338264876129,
+      "static_mean": 0.5279856331072148
+    },
+    "TECLSIM": {
+      "bayesian_ewma": 2.055782516556578,
+      "equal_path_pool": 1.9702670435630751,
+      "incumbent_m261": 2.0155316110711587,
+      "static_advantage_vs_ewma": -0.2730374681585741,
+      "static_advantage_vs_incumbent": -0.31328837364399353,
+      "static_advantage_vs_pool": -0.35855294115207714,
+      "static_mean": 2.3288199847151523
+    },
+    "TLTSIM": {
+      "bayesian_ewma": 0.3584323618523753,
+      "equal_path_pool": 0.32155164623738286,
+      "incumbent_m261": 0.2906969993721821,
+      "static_advantage_vs_ewma": -0.21549806320523274,
+      "static_advantage_vs_incumbent": -0.283233425685426,
+      "static_advantage_vs_pool": -0.2523787788202252,
+      "static_mean": 0.573930425057608
+    },
+    "TMFSIM": {
+      "bayesian_ewma": 0.6765318778609247,
+      "equal_path_pool": 0.6611918379130025,
+      "incumbent_m261": 0.728621636574588,
+      "static_advantage_vs_ewma": -0.02483651374592377,
+      "static_advantage_vs_incumbent": 0.02725324496773951,
+      "static_advantage_vs_pool": -0.040176553693845984,
+      "static_mean": 0.7013683916068485
+    },
+    "TNASIM": {
+      "bayesian_ewma": 0.7772553848773693,
+      "equal_path_pool": 0.6256280324075254,
+      "incumbent_m261": 0.5045597964044521,
+      "static_advantage_vs_ewma": 0.19513602574744981,
+      "static_advantage_vs_incumbent": -0.07755956272546738,
+      "static_advantage_vs_pool": 0.04350867327760588,
+      "static_mean": 0.5821193591299195
+    },
+    "TYDSIM": {
+      "bayesian_ewma": 0.41523252961054,
+      "equal_path_pool": 0.39336892305345905,
+      "incumbent_m261": 0.43239935907770444,
+      "static_advantage_vs_ewma": 0.03862004844944367,
+      "static_advantage_vs_incumbent": 0.05578687791660808,
+      "static_advantage_vs_pool": 0.016756441892362695,
+      "static_mean": 0.37661248116109636
+    },
+    "UBTSIM": {
+      "bayesian_ewma": 0.43185903329799874,
+      "equal_path_pool": 0.3818183843586108,
+      "incumbent_m261": 0.3630421786578523,
+      "static_advantage_vs_ewma": 0.0347605202304162,
+      "static_advantage_vs_incumbent": -0.034056334409730216,
+      "static_advantage_vs_pool": -0.015280128708971719,
+      "static_mean": 0.39709851306758254
+    },
+    "UGLSIM": {
+      "bayesian_ewma": 3.2932118757702593,
+      "equal_path_pool": 2.8899682485023352,
+      "incumbent_m261": 2.744020823662839,
+      "static_advantage_vs_ewma": -0.6813702650411129,
+      "static_advantage_vs_incumbent": -1.230561317148533,
+      "static_advantage_vs_pool": -1.084613892309037,
+      "static_mean": 3.974582140811372
+    },
+    "UPROSIM": {
+      "bayesian_ewma": 0.7171725706095173,
+      "equal_path_pool": 0.6523772225684891,
+      "incumbent_m261": 0.6614199981410155,
+      "static_advantage_vs_ewma": 0.08408956018671299,
+      "static_advantage_vs_incumbent": 0.028336987718211137,
+      "static_advantage_vs_pool": 0.01929421214568472,
+      "static_mean": 0.6330830104228043
+    },
+    "URTHSIM": {
+      "bayesian_ewma": 0.38750036763124945,
+      "equal_path_pool": 0.49863407711918256,
+      "incumbent_m261": 0.634118490105714,
+      "static_advantage_vs_ewma": -0.38977747599114604,
+      "static_advantage_vs_incumbent": -0.14315935351668152,
+      "static_advantage_vs_pool": -0.27864376650321293,
+      "static_mean": 0.7772778436223955
+    },
+    "URTYSIM": {
+      "bayesian_ewma": 0.7703671254663697,
+      "equal_path_pool": 0.6127940912699472,
+      "incumbent_m261": 0.5081102746474646,
+      "static_advantage_vs_ewma": 0.2323974468434009,
+      "static_advantage_vs_incumbent": -0.02985940397550413,
+      "static_advantage_vs_pool": 0.07482441264697848,
+      "static_mean": 0.5379696786229687
+    },
+    "UWMSIM": {
+      "bayesian_ewma": 0.4989761511413258,
+      "equal_path_pool": 0.411397527837725,
+      "incumbent_m261": 0.3811833590565109,
+      "static_advantage_vs_ewma": 0.16681826306341718,
+      "static_advantage_vs_incumbent": 0.04902547097860227,
+      "static_advantage_vs_pool": 0.07923963975981635,
+      "static_mean": 0.33215788807790864
+    },
+    "VBKSIM": {
+      "bayesian_ewma": 0.27815376696109434,
+      "equal_path_pool": 0.22575636016910577,
+      "incumbent_m261": 0.2019665212842608,
+      "static_advantage_vs_ewma": -0.03736907107316456,
+      "static_advantage_vs_incumbent": -0.11355631674999811,
+      "static_advantage_vs_pool": -0.08976647786515313,
+      "static_mean": 0.3155228380342589
+    },
+    "VBRSIM": {
+      "bayesian_ewma": 0.36103022854143946,
+      "equal_path_pool": 0.2073238902733536,
+      "incumbent_m261": 0.15259115317905567,
+      "static_advantage_vs_ewma": -0.34687353702187956,
+      "static_advantage_vs_incumbent": -0.5553126123842633,
+      "static_advantage_vs_pool": -0.5005798752899654,
+      "static_mean": 0.707903765563319
+    },
+    "VBSIM": {
+      "bayesian_ewma": 0.21914617440946477,
+      "equal_path_pool": 0.16927616330990425,
+      "incumbent_m261": 0.13929857495725065,
+      "static_advantage_vs_ewma": -0.24441867635794912,
+      "static_advantage_vs_incumbent": -0.3242662758101632,
+      "static_advantage_vs_pool": -0.29428868745750963,
+      "static_mean": 0.4635648507674139
+    },
+    "VEASIM": {
+      "bayesian_ewma": 0.7570308253347837,
+      "equal_path_pool": 0.770486114336703,
+      "incumbent_m261": 0.794304919454298,
+      "static_advantage_vs_ewma": -0.11891256596176547,
+      "static_advantage_vs_incumbent": -0.08163847184225115,
+      "static_advantage_vs_pool": -0.10545727695984619,
+      "static_mean": 0.8759433912965492
+    },
+    "VOESIM": {
+      "bayesian_ewma": 0.21284014591592323,
+      "equal_path_pool": 0.17184143479314365,
+      "incumbent_m261": 0.15182804080888052,
+      "static_advantage_vs_ewma": -0.3074055236372,
+      "static_advantage_vs_incumbent": -0.3684176287442427,
+      "static_advantage_vs_pool": -0.3484042347599796,
+      "static_mean": 0.5202456695531232
+    },
+    "VOOSIM": {
+      "bayesian_ewma": 0.33086611222466594,
+      "equal_path_pool": 0.27074013768426675,
+      "incumbent_m261": 0.23822900876263425,
+      "static_advantage_vs_ewma": -0.23297190277407848,
+      "static_advantage_vs_incumbent": -0.32560900623611017,
+      "static_advantage_vs_pool": -0.2930978773144777,
+      "static_mean": 0.5638380149987444
+    },
+    "VOSIM": {
+      "bayesian_ewma": 0.19652689307435386,
+      "equal_path_pool": 0.18615406424745198,
+      "incumbent_m261": 0.17176472186088507,
+      "static_advantage_vs_ewma": -0.31832318226744616,
+      "static_advantage_vs_incumbent": -0.34308535348091496,
+      "static_advantage_vs_pool": -0.3286960110943481,
+      "static_mean": 0.5148500753418
+    },
+    "VOTSIM": {
+      "bayesian_ewma": 0.29498641065806297,
+      "equal_path_pool": 0.2657782992383304,
+      "incumbent_m261": 0.23120687824550204,
+      "static_advantage_vs_ewma": -0.27594397823670136,
+      "static_advantage_vs_incumbent": -0.3397235106492623,
+      "static_advantage_vs_pool": -0.3051520896564339,
+      "static_mean": 0.5709303888947643
+    },
+    "VTISIM": {
+      "bayesian_ewma": 0.24136315450275894,
+      "equal_path_pool": 0.22183929150673526,
+      "incumbent_m261": 0.2142552650473902,
+      "static_advantage_vs_ewma": -0.2916745251824039,
+      "static_advantage_vs_incumbent": -0.31878241463777257,
+      "static_advantage_vs_pool": -0.31119838817842754,
+      "static_mean": 0.5330376796851628
+    },
+    "VTSIM": {
+      "bayesian_ewma": 0.34687749706476023,
+      "equal_path_pool": 0.4524631471844272,
+      "incumbent_m261": 0.5813104134495334,
+      "static_advantage_vs_ewma": -0.37569190283517073,
+      "static_advantage_vs_incumbent": -0.14125898645039758,
+      "static_advantage_vs_pool": -0.27010625271550376,
+      "static_mean": 0.722569399899931
+    },
+    "VTVSIM": {
+      "bayesian_ewma": 0.2712915817764518,
+      "equal_path_pool": 0.23688457848075356,
+      "incumbent_m261": 0.21006225424230265,
+      "static_advantage_vs_ewma": -0.28698562570765823,
+      "static_advantage_vs_incumbent": -0.3482149532418074,
+      "static_advantage_vs_pool": -0.32139262900335647,
+      "static_mean": 0.55827720748411
+    },
+    "VUGSIM": {
+      "bayesian_ewma": 0.3693302637255482,
+      "equal_path_pool": 0.3063393850691873,
+      "incumbent_m261": 0.27490875088592154,
+      "static_advantage_vs_ewma": -0.2123156191650042,
+      "static_advantage_vs_incumbent": -0.3067371320046309,
+      "static_advantage_vs_pool": -0.2753064978213651,
+      "static_mean": 0.5816458828905524
+    },
+    "VVSIM": {
+      "bayesian_ewma": 0.33086611222466594,
+      "equal_path_pool": 0.27074013768426675,
+      "incumbent_m261": 0.23822900876263425,
+      "static_advantage_vs_ewma": -0.23297190277407848,
+      "static_advantage_vs_incumbent": -0.32560900623611017,
+      "static_advantage_vs_pool": -0.2930978773144777,
+      "static_mean": 0.5638380149987444
+    },
+    "VXUSSIM": {
+      "bayesian_ewma": 0.7604747704954045,
+      "equal_path_pool": 0.7723263525310131,
+      "incumbent_m261": 0.7971089497764995,
+      "static_advantage_vs_ewma": -0.11806816460423819,
+      "static_advantage_vs_incumbent": -0.08143398532314317,
+      "static_advantage_vs_pool": -0.10621658256862954,
+      "static_mean": 0.8785429350996427
+    },
+    "XLBSIM": {
+      "bayesian_ewma": 0.33583711602624705,
+      "equal_path_pool": 0.2558798962387959,
+      "incumbent_m261": 0.1931441946221835,
+      "static_advantage_vs_ewma": -0.22125212607003747,
+      "static_advantage_vs_incumbent": -0.36394504747410106,
+      "static_advantage_vs_pool": -0.3012093458574886,
+      "static_mean": 0.5570892420962845
+    },
+    "XLCSIM": {
+      "bayesian_ewma": 0.5848636284477627,
+      "equal_path_pool": 0.6334445074670664,
+      "incumbent_m261": 0.7432419064578457,
+      "static_advantage_vs_ewma": -0.5948042195453719,
+      "static_advantage_vs_incumbent": -0.4364259415352889,
+      "static_advantage_vs_pool": -0.5462233405260682,
+      "static_mean": 1.1796678479931346
+    },
+    "XLESIM": {
+      "bayesian_ewma": 0.33008501064431583,
+      "equal_path_pool": 0.2809383058799678,
+      "incumbent_m261": 0.27155314322515806,
+      "static_advantage_vs_ewma": -0.13274817903899772,
+      "static_advantage_vs_incumbent": -0.1912800464581555,
+      "static_advantage_vs_pool": -0.18189488380334573,
+      "static_mean": 0.46283318968331355
+    },
+    "XLFSIM": {
+      "bayesian_ewma": 0.4264475246995674,
+      "equal_path_pool": 0.39471160182634557,
+      "incumbent_m261": 0.37635410071306724,
+      "static_advantage_vs_ewma": -0.33159332434297456,
+      "static_advantage_vs_incumbent": -0.38168674832947475,
+      "static_advantage_vs_pool": -0.3633292472161964,
+      "static_mean": 0.758040849042542
+    },
+    "XLISIM": {
+      "bayesian_ewma": 0.2396977775030263,
+      "equal_path_pool": 0.1974228311892311,
+      "incumbent_m261": 0.17945309105349025,
+      "static_advantage_vs_ewma": -0.08931622484221391,
+      "static_advantage_vs_incumbent": -0.14956091129174995,
+      "static_advantage_vs_pool": -0.1315911711560091,
+      "static_mean": 0.3290140023452402
+    },
+    "XLKSIM": {
+      "bayesian_ewma": 0.512215873436563,
+      "equal_path_pool": 0.5273620906817673,
+      "incumbent_m261": 0.5675985823165378,
+      "static_advantage_vs_ewma": 0.10625100313071656,
+      "static_advantage_vs_incumbent": 0.16163371201069132,
+      "static_advantage_vs_pool": 0.12139722037592082,
+      "static_mean": 0.4059648703058465
+    },
+    "XLPSIM": {
+      "bayesian_ewma": 0.38695526717757905,
+      "equal_path_pool": 0.5842397432261321,
+      "incumbent_m261": 0.9137216047956671,
+      "static_advantage_vs_ewma": -1.3269263703986989,
+      "static_advantage_vs_incumbent": -0.8001600327806109,
+      "static_advantage_vs_pool": -1.1296418943501458,
+      "static_mean": 1.713881637576278
+    },
+    "XLUSIM": {
+      "bayesian_ewma": 0.15298728575080628,
+      "equal_path_pool": 0.20296568076823726,
+      "incumbent_m261": 0.3105211982149829,
+      "static_advantage_vs_ewma": -0.6016671290120099,
+      "static_advantage_vs_incumbent": -0.4441332165478332,
+      "static_advantage_vs_pool": -0.5516887339945789,
+      "static_mean": 0.7546544147628161
+    },
+    "XLVSIM": {
+      "bayesian_ewma": 0.3513787562123272,
+      "equal_path_pool": 0.4086577647505761,
+      "incumbent_m261": 0.4500787718910278,
+      "static_advantage_vs_ewma": -0.6066821947632617,
+      "static_advantage_vs_incumbent": -0.5079821790845611,
+      "static_advantage_vs_pool": -0.5494031862250128,
+      "static_mean": 0.958060950975589
+    },
+    "XLYSIM": {
+      "bayesian_ewma": 0.3172414561426027,
+      "equal_path_pool": 0.29212055426606864,
+      "incumbent_m261": 0.2702455255313097,
+      "static_advantage_vs_ewma": -0.32230771568136196,
+      "static_advantage_vs_incumbent": -0.36930364629265494,
+      "static_advantage_vs_pool": -0.347428617557896,
+      "static_mean": 0.6395491718239646
+    },
+    "ZROZSIM": {
+      "bayesian_ewma": 0.5819294158403211,
+      "equal_path_pool": 0.4351338256381858,
+      "incumbent_m261": 0.34860516925837076,
+      "static_advantage_vs_ewma": 0.009370317430674735,
+      "static_advantage_vs_incumbent": -0.2239539291512756,
+      "static_advantage_vs_pool": -0.13742527277146055,
+      "static_mean": 0.5725590984096464
+    }
+  },
+  "generated_at_utc": "2026-10-18T10:01:17+00:00",
+  "horizon_bands": [
+    {
+      "cells_per_model": 1092,
+      "horizon_cell_weight": 0.0023956194387405884,
+      "horizons_inclusive": [
+        1,
+        21
+      ],
+      "losses": {
+        "ewma-single52": 0.029493965568835587,
+        "incumbent-single52": 0.030398090952516853,
+        "pool-single52": 0.029996251150147105,
+        "static-mean-single52": 0.030487648211546335
+      },
+      "static_vs": {
+        "ewma-single52": {
+          "mean_advantage_comparator_minus_static": -0.0009936826427107458,
+          "static_cell_losses": 888,
+          "static_cell_wins": 204,
+          "ties": 0
+        },
+        "incumbent-single52": {
+          "mean_advantage_comparator_minus_static": -8.955725902947587e-05,
+          "static_cell_losses": 805,
+          "static_cell_wins": 287,
+          "ties": 0
+        },
+        "pool-single52": {
+          "mean_advantage_comparator_minus_static": -0.0004913970613992293,
+          "static_cell_losses": 687,
+          "static_cell_wins": 405,
+          "ties": 0
+        }
+      }
+    },
+    {
+      "cells_per_model": 2184,
+      "horizon_cell_weight": 0.004791238877481177,
+      "horizons_inclusive": [
+        22,
+        63
+      ],
+      "losses": {
+        "ewma-single52": 0.05723653292987381,
+        "incumbent-single52": 0.05929027296490293,
+        "pool-single52": 0.05756018216029761,
+        "static-mean-single52": 0.05955590029641049
+      },
+      "static_vs": {
+        "ewma-single52": {
+          "mean_advantage_comparator_minus_static": -0.002319367366536673,
+          "static_cell_losses": 1820,
+          "static_cell_wins": 364,
+          "ties": 0
+        },
+        "incumbent-single52": {
+          "mean_advantage_comparator_minus_static": -0.0002656273315075584,
+          "static_cell_losses": 1468,
+          "static_cell_wins": 716,
+          "ties": 0
+        },
+        "pool-single52": {
+          "mean_advantage_comparator_minus_static": -0.0019957181361128806,
+          "static_cell_losses": 1953,
+          "static_cell_wins": 231,
+          "ties": 0
+        }
+      }
+    },
+    {
+      "cells_per_model": 9828,
+      "horizon_cell_weight": 0.021560574948665298,
+      "horizons_inclusive": [
+        64,
+        252
+      ],
+      "losses": {
+        "ewma-single52": 0.10383337664371589,
+        "incumbent-single52": 0.10587969352679676,
+        "pool-single52": 0.10370930527437174,
+        "static-mean-single52": 0.1060618414919094
+      },
+      "static_vs": {
+        "ewma-single52": {
+          "mean_advantage_comparator_minus_static": -0.0022284648481935045,
+          "static_cell_losses": 6597,
+          "static_cell_wins": 3231,
+          "ties": 0
+        },
+        "incumbent-single52": {
+          "mean_advantage_comparator_minus_static": -0.00018214796511266702,
+          "static_cell_losses": 5407,
+          "static_cell_wins": 4421,
+          "ties": 0
+        },
+        "pool-single52": {
+          "mean_advantage_comparator_minus_static": -0.002352536217537665,
+          "static_cell_losses": 7677,
+          "static_cell_wins": 2151,
+          "ties": 0
+        }
+      }
+    },
+    {
+      "cells_per_model": 52416,
+      "horizon_cell_weight": 0.11498973305954825,
+      "horizons_inclusive": [
+        253,
+        1260
+      ],
+      "losses": {
+        "ewma-single52": 0.2373931368731858,
+        "incumbent-single52": 0.24646698849471468,
+        "pool-single52": 0.23733109072098194,
+        "static-mean-single52": 0.25377095960734464
+      },
+      "static_vs": {
+        "ewma-single52": {
+          "mean_advantage_comparator_minus_static": -0.016377822734158852,
+          "static_cell_losses": 45902,
+          "static_cell_wins": 6514,
+          "ties": 0
+        },
+        "incumbent-single52": {
+          "mean_advantage_comparator_minus_static": -0.007303971112629999,
+          "static_cell_losses": 37655,
+          "static_cell_wins": 14761,
+          "ties": 0
+        },
+        "pool-single52": {
+          "mean_advantage_comparator_minus_static": -0.01643986888636271,
+          "static_cell_losses": 48311,
+          "static_cell_wins": 4105,
+          "ties": 0
+        }
+      }
+    },
+    {
+      "cells_per_model": 65520,
+      "horizon_cell_weight": 0.1437371663244353,
+      "horizons_inclusive": [
+        1261,
+        2520
+      ],
+      "losses": {
+        "ewma-single52": 0.3491739108721861,
+        "incumbent-single52": 0.3736875834063565,
+        "pool-single52": 0.349860133632193,
+        "static-mean-single52": 0.37168645038873
+      },
+      "static_vs": {
+        "ewma-single52": {
+          "mean_advantage_comparator_minus_static": -0.022512539516543917,
+          "static_cell_losses": 33479,
+          "static_cell_wins": 32041,
+          "ties": 0
+        },
+        "incumbent-single52": {
+          "mean_advantage_comparator_minus_static": 0.0020011330176265166,
+          "static_cell_losses": 36982,
+          "static_cell_wins": 28538,
+          "ties": 0
+        },
+        "pool-single52": {
+          "mean_advantage_comparator_minus_static": -0.021826316756536943,
+          "static_cell_losses": 37867,
+          "static_cell_wins": 27653,
+          "ties": 0
+        }
+      }
+    },
+    {
+      "cells_per_model": 131040,
+      "horizon_cell_weight": 0.2874743326488706,
+      "horizons_inclusive": [
+        2521,
+        5040
+      ],
+      "losses": {
+        "ewma-single52": 0.5151192041385315,
+        "incumbent-single52": 0.49186013419129065,
+        "pool-single52": 0.48179987068310576,
+        "static-mean-single52": 0.6189804259979944
+      },
+      "static_vs": {
+        "ewma-single52": {
+          "mean_advantage_comparator_minus_static": -0.10386122185946281,
+          "static_cell_losses": 83146,
+          "static_cell_wins": 47894,
+          "ties": 0
+        },
+        "incumbent-single52": {
+          "mean_advantage_comparator_minus_static": -0.12712029180670364,
+          "static_cell_losses": 99173,
+          "static_cell_wins": 31867,
+          "ties": 0
+        },
+        "pool-single52": {
+          "mean_advantage_comparator_minus_static": -0.1371805553148885,
+          "static_cell_losses": 95668,
+          "static_cell_wins": 35372,
+          "ties": 0
+        }
+      }
+    },
+    {
+      "cells_per_model": 193752,
+      "horizon_cell_weight": 0.42505133470225875,
+      "horizons_inclusive": [
+        5041,
+        8766
+      ],
+      "losses": {
+        "ewma-single52": 0.9302982928816099,
+        "incumbent-single52": 0.9123103372854965,
+        "pool-single52": 0.8865597498700377,
+        "static-mean-single52": 1.3571125615765176
+      },
+      "static_vs": {
+        "ewma-single52": {
+          "mean_advantage_comparator_minus_static": -0.42681426869490746,
+          "static_cell_losses": 144411,
+          "static_cell_wins": 49341,
+          "ties": 0
+        },
+        "incumbent-single52": {
+          "mean_advantage_comparator_minus_static": -0.4448022242910212,
+          "static_cell_losses": 161711,
+          "static_cell_wins": 32041,
+          "ties": 0
+        },
+        "pool-single52": {
+          "mean_advantage_comparator_minus_static": -0.47055281170647945,
+          "static_cell_losses": 154847,
+          "static_cell_wins": 38905,
+          "ties": 0
+        }
+      }
+    }
+  ],
+  "input_artifacts": {
+    "ewma-single52": {
+      "adapter": "tools/expanded_controls/models.py",
+      "cells": 455832,
+      "cells_file": "ewma-single52.npz",
+      "cells_sha256": "cb9a0bcefd604df159603a96a9aaa957bf5e8a3420be9117e28786ecf017d10b",
+      "data_manifest_sha256": "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76",
+      "elapsed_seconds": 8.91627604200039,
+      "flat_recomputed_score": 0.6235787199656362,
+      "manifest_file": "ewma-single52-manifest.json.gz",
+      "manifest_file_sha256": "32a8014f400306e59e9127a29d0d2459822f290b53d271913378520d375efd2d",
+      "requested_model_id": "bayesian_sbb_overlay_ewma_absolute",
+      "rowwise_minus_saved": 1.1102230246251565e-16,
+      "rowwise_recomputed_score": 0.6235787199656364,
+      "saved_score": 0.6235787199656363,
+      "score_file": "ewma-single52.json",
+      "score_file_sha256": "cdd9edc27d163a0a0014f3ef6a227ea3cbab93b09ac9b36f0e3d07435e4451d5",
+      "score_report_manifest_sha256": "3f3b204e020add9c683fbb3886ff8b6c3da9674649b9d8fc26969170b50849fb",
+      "source_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+    },
+    "incumbent-single52": {
+      "adapter": "tools/data_selected_timescales/models.py",
+      "cells": 455832,
+      "cells_file": "incumbent-single52.npz",
+      "cells_sha256": "e256aed32f9975745d961bc89d60e1a866e82bdfd3e2c3e829b99c4b072e8ab3",
+      "data_manifest_sha256": "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76",
+      "elapsed_seconds": 52.367048542015254,
+      "flat_recomputed_score": 0.6138695810898456,
+      "manifest_file": "incumbent-single52-manifest.json.gz",
+      "manifest_file_sha256": "144003e30b7fd781ca98ee4dcbc79e0342b5987ec003f9eada316ab7064d2f36",
+      "requested_model_id": "asset_m256_data_timescales_existing_sv_rate",
+      "rowwise_minus_saved": 0.0,
+      "rowwise_recomputed_score": 0.6138695810898457,
+      "saved_score": 0.6138695810898457,
+      "score_file": "incumbent-single52.json",
+      "score_file_sha256": "f6a3d4e61f1e53e36d7832b3f2b0e0b09e564ce943678d91b43156a70ac99fc3",
+      "score_report_manifest_sha256": "5270dd3f5596bf5240ff251a6c815964c9fdee1748844e9c142964d52d5fe9ac",
+      "source_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+    },
+    "pool-single52": {
+      "adapter": "tools/expanded_linear_pool/models.py",
+      "cells": 455832,
+      "cells_file": "pool-single52.npz",
+      "cells_sha256": "2db89c18821264ba3bb1a90d60dfc648a5501b02d3f408fe01f7e1f8dd8fed8c",
+      "data_manifest_sha256": "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76",
+      "elapsed_seconds": 56.99760400003288,
+      "flat_recomputed_score": 0.5955007206915632,
+      "manifest_file": "pool-single52-manifest.json.gz",
+      "manifest_file_sha256": "ac424f697851e90f9bade5a4e304d076c815f984198120b037961dcdf29ad175",
+      "requested_model_id": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+      "rowwise_minus_saved": 0.0,
+      "rowwise_recomputed_score": 0.5955007206915632,
+      "saved_score": 0.5955007206915632,
+      "score_file": "pool-single52.json",
+      "score_file_sha256": "07abc6e54a6f5a8b09e502c758ab59f2560fc0ba0ddb250227af57043e0d9e6c",
+      "score_report_manifest_sha256": "50f4fe4b37ce70f5c3a12bac05b1afb696dcf1c78f2f1e4364013e7365280231",
+      "source_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+    },
+    "static-mean-single52": {
+      "adapter": "tools/expanded_static_mean/models.py",
+      "cells": 455832,
+      "cells_file": "static-mean-single52.npz",
+      "cells_sha256": "44a9304c30ccb7218c0aaf7853028d11ae3d58e9ba80961fb87579f3c3f0a12d",
+      "data_manifest_sha256": "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76",
+      "elapsed_seconds": 62.42372779198922,
+      "flat_recomputed_score": 0.8400348401996253,
+      "manifest_file": "static-mean-single52-manifest.json.gz",
+      "manifest_file_sha256": "fd707893019d3352520d2d16f009559d86ec5d10988b346366141925ee95f7d8",
+      "requested_model_id": "asset_m261_raw_historical_log_mean",
+      "rowwise_minus_saved": 0.0,
+      "rowwise_recomputed_score": 0.8400348401996254,
+      "saved_score": 0.8400348401996254,
+      "score_file": "static-mean-single52.json",
+      "score_file_sha256": "02f4f4c0cc61b7ebedc99f8f3227a243b9ae5959e34c701a69053dcf251fb205",
+      "score_report_manifest_sha256": "592933c78fdfd55e12609e3f94e059842641c17b16e0b50f2384d0d514e536dc",
+      "source_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99"
+    }
+  },
+  "interpretation": {
+    "failure_assets": "Static mean is worse than M261, EWMA, and the pool on SLVSIM and UGLSIM. On TNASIM it improves on the final pool by 0.043509 CRPS, but still trails M261 by 0.077560.",
+    "mixture_screen": "No evidence supports spending another mixture test. Static mean wins a minority of tickers and horizon cells, loses in six of seven horizon bands against M261 and all seven bands against EWMA and the pool, and its ticker-level gains are modestly negatively correlated with pool losses. It does improve TNASIM relative to the pool, though not relative to M261, and beats M261 on SPXUSIM. A nonlinear CRPS path mixture can still improve despite a weaker standalone score, so this is a deprioritization based on weak complementarity evidence, not a mathematical exclusion.",
+    "standalone_bound": "With a nonnegative static-mean original-80 score, its equal 50/50 aggregate is at least 0.4200174200998127. That lower bound is above the best pool aggregate (0.40781825383484904), so static mean alone cannot beat the pool; it is below the incumbent aggregate (0.4202963347864817), so it does not rule out beating the incumbent. This bound does not rule out static mean as a mixture component."
+  },
+  "overall": {
+    "all_horizon_cell_win_loss_counts": {
+      "ewma-single52": {
+        "cells": 455832,
+        "static_losses": 316243,
+        "static_win_share": 0.3062290492988645,
+        "static_wins": 139589,
+        "ties": 0
+      },
+      "incumbent-single52": {
+        "cells": 455832,
+        "static_losses": 343201,
+        "static_win_share": 0.24708883974797732,
+        "static_wins": 112631,
+        "ties": 0
+      },
+      "pool-single52": {
+        "cells": 455832,
+        "static_losses": 347010,
+        "static_win_share": 0.2387326909914179,
+        "static_wins": 108822,
+        "ties": 0
+      }
+    },
+    "canonical_rowwise_scores": {
+      "ewma-single52": 0.6235787199656364,
+      "incumbent-single52": 0.6138695810898457,
+      "pool-single52": 0.5955007206915632,
+      "static-mean-single52": 0.8400348401996254
+    },
+    "static_score_minus_comparator": {
+      "ewma-single52": 0.21645612023398897,
+      "incumbent-single52": 0.2261652591097797,
+      "pool-single52": 0.24453411950806214
+    },
+    "ticker_level_signed_gain_correlations": {
+      "ewma_gain_vs_incumbent": "incumbent minus EWMA; positive favors EWMA",
+      "pearson_static_gain_vs_ewma_gain": 0.38622506310873533,
+      "pearson_static_gain_vs_pool_failure": -0.2771877001450933,
+      "pool_failure_vs_incumbent": "pool minus incumbent; positive means pool is worse",
+      "spearman_static_gain_vs_ewma_gain": 0.08106723585912486,
+      "spearman_static_gain_vs_pool_failure": -0.14817502668089647,
+      "static_gain_vs_incumbent": "incumbent minus static mean; positive favors static mean",
+      "unit": "ticker-level mean CRPS over 8,766 horizons"
+    },
+    "ticker_win_loss_counts": {
+      "ewma-single52": {
+        "largest_static_gains": [
+          {
+            "static_advantage": 0.2323974468434009,
+            "ticker": "URTYSIM"
+          },
+          {
+            "static_advantage": 0.21629773646799322,
+            "ticker": "SPXUSIM"
+          },
+          {
+            "static_advantage": 0.19513602574744981,
+            "ticker": "TNASIM"
+          },
+          {
+            "static_advantage": 0.16681826306341718,
+            "ticker": "UWMSIM"
+          },
+          {
+            "static_advantage": 0.12545365802036978,
+            "ticker": "IWCSIM"
+          }
+        ],
+        "largest_static_losses": [
+          {
+            "static_advantage": -1.3269263703986989,
+            "ticker": "XLPSIM"
+          },
+          {
+            "static_advantage": -0.9577673804411262,
+            "ticker": "SHYSIM"
+          },
+          {
+            "static_advantage": -0.8023109818838268,
+            "ticker": "IEISIM"
+          },
+          {
+            "static_advantage": -0.6813702650411129,
+            "ticker": "UGLSIM"
+          },
+          {
+            "static_advantage": -0.625066521680644,
+            "ticker": "IEFSIM"
+          }
+        ],
+        "mean_ticker_advantage": -0.21645612023398922,
+        "ticker_losses": 39,
+        "ticker_wins": 13,
+        "ties": 0
+      },
+      "incumbent-single52": {
+        "largest_static_gains": [
+          {
+            "static_advantage": 0.8326432232830365,
+            "ticker": "SPXUSIM"
+          },
+          {
+            "static_advantage": 0.3888769529186822,
+            "ticker": "SDSSIM"
+          },
+          {
+            "static_advantage": 0.31738672611736807,
+            "ticker": "IWCSIM"
+          },
+          {
+            "static_advantage": 0.17122354705170256,
+            "ticker": "REITSIM"
+          },
+          {
+            "static_advantage": 0.16163371201069132,
+            "ticker": "XLKSIM"
+          }
+        ],
+        "largest_static_losses": [
+          {
+            "static_advantage": -1.230561317148533,
+            "ticker": "UGLSIM"
+          },
+          {
+            "static_advantage": -0.8001600327806109,
+            "ticker": "XLPSIM"
+          },
+          {
+            "static_advantage": -0.7643873232820098,
+            "ticker": "SLVSIM"
+          },
+          {
+            "static_advantage": -0.5965298334965954,
+            "ticker": "SHYSIM"
+          },
+          {
+            "static_advantage": -0.5553126123842633,
+            "ticker": "VBRSIM"
+          }
+        ],
+        "mean_ticker_advantage": -0.2261652591097797,
+        "ticker_losses": 43,
+        "ticker_wins": 9,
+        "ties": 0
+      },
+      "pool-single52": {
+        "largest_static_gains": [
+          {
+            "static_advantage": 0.4932982355199549,
+            "ticker": "SPXUSIM"
+          },
+          {
+            "static_advantage": 0.21161048310900687,
+            "ticker": "SDSSIM"
+          },
+          {
+            "static_advantage": 0.18865741715874224,
+            "ticker": "IWCSIM"
+          },
+          {
+            "static_advantage": 0.12139722037592082,
+            "ticker": "XLKSIM"
+          },
+          {
+            "static_advantage": 0.11149890360812886,
+            "ticker": "REITSIM"
+          }
+        ],
+        "largest_static_losses": [
+          {
+            "static_advantage": -1.1296418943501458,
+            "ticker": "XLPSIM"
+          },
+          {
+            "static_advantage": -1.084613892309037,
+            "ticker": "UGLSIM"
+          },
+          {
+            "static_advantage": -0.9199807531972524,
+            "ticker": "SHYSIM"
+          },
+          {
+            "static_advantage": -0.7245759348577563,
+            "ticker": "IEISIM"
+          },
+          {
+            "static_advantage": -0.5516887339945789,
+            "ticker": "XLUSIM"
+          }
+        ],
+        "mean_ticker_advantage": -0.2445341195080621,
+        "ticker_losses": 41,
+        "ticker_wins": 11,
+        "ties": 0
+      }
+    }
+  },
+  "scope": {
+    "advantage_sign": "Comparator loss minus static-mean loss; positive favors static mean.",
+    "canonical_asset_score": "np.mean(np.mean(losses, axis=1)); equal weight per asset and horizon.",
+    "panel": "52 single-asset series by 8,766 horizons",
+    "protocol": "Saved exact empirical-CRPS cells on the shared frozen panel; no fitting, refitting, or mixture-weight search."
+  },
+  "selected_asset_results": {
+    "SHYSIM": {
+      "bayesian_ewma": 0.13869240591622087,
+      "equal_path_pool": 0.17647903316009467,
+      "incumbent_m261": 0.4999299528607517,
+      "static_advantage_vs_ewma": -0.9577673804411262,
+      "static_advantage_vs_incumbent": -0.5965298334965954,
+      "static_advantage_vs_pool": -0.9199807531972524,
+      "static_mean": 1.096459786357347
+    },
+    "SLVSIM": {
+      "bayesian_ewma": 2.4703108508517735,
+      "equal_path_pool": 2.0744420638715066,
+      "incumbent_m261": 1.726908112350014,
+      "static_advantage_vs_ewma": -0.020984584780250337,
+      "static_advantage_vs_incumbent": -0.7643873232820098,
+      "static_advantage_vs_pool": -0.4168533717605172,
+      "static_mean": 2.491295435632024
+    },
+    "SPXUSIM": {
+      "bayesian_ewma": 2.437722421632059,
+      "equal_path_pool": 2.7147229206840207,
+      "incumbent_m261": 3.0540679084471023,
+      "static_advantage_vs_ewma": 0.21629773646799322,
+      "static_advantage_vs_incumbent": 0.8326432232830365,
+      "static_advantage_vs_pool": 0.4932982355199549,
+      "static_mean": 2.2214246851640658
+    },
+    "SPYSIM": {
+      "bayesian_ewma": 0.36811975153042675,
+      "equal_path_pool": 0.2996254232561943,
+      "incumbent_m261": 0.2594714880793755,
+      "static_advantage_vs_ewma": -0.24207178606903135,
+      "static_advantage_vs_incumbent": -0.3507200495200826,
+      "static_advantage_vs_pool": -0.3105661143432638,
+      "static_mean": 0.6101915375994581
+    },
+    "TNASIM": {
+      "bayesian_ewma": 0.7772553848773693,
+      "equal_path_pool": 0.6256280324075254,
+      "incumbent_m261": 0.5045597964044521,
+      "static_advantage_vs_ewma": 0.19513602574744981,
+      "static_advantage_vs_incumbent": -0.07755956272546738,
+      "static_advantage_vs_pool": 0.04350867327760588,
+      "static_mean": 0.5821193591299195
+    },
+    "UGLSIM": {
+      "bayesian_ewma": 3.2932118757702593,
+      "equal_path_pool": 2.8899682485023352,
+      "incumbent_m261": 2.744020823662839,
+      "static_advantage_vs_ewma": -0.6813702650411129,
+      "static_advantage_vs_incumbent": -1.230561317148533,
+      "static_advantage_vs_pool": -1.084613892309037,
+      "static_mean": 3.974582140811372
+    },
+    "URTYSIM": {
+      "bayesian_ewma": 0.7703671254663697,
+      "equal_path_pool": 0.6127940912699472,
+      "incumbent_m261": 0.5081102746474646,
+      "static_advantage_vs_ewma": 0.2323974468434009,
+      "static_advantage_vs_incumbent": -0.02985940397550413,
+      "static_advantage_vs_pool": 0.07482441264697848,
+      "static_mean": 0.5379696786229687
+    },
+    "XLPSIM": {
+      "bayesian_ewma": 0.38695526717757905,
+      "equal_path_pool": 0.5842397432261321,
+      "incumbent_m261": 0.9137216047956671,
+      "static_advantage_vs_ewma": -1.3269263703986989,
+      "static_advantage_vs_incumbent": -0.8001600327806109,
+      "static_advantage_vs_pool": -1.1296418943501458,
+      "static_mean": 1.713881637576278
+    },
+    "ZROZSIM": {
+      "bayesian_ewma": 0.5819294158403211,
+      "equal_path_pool": 0.4351338256381858,
+      "incumbent_m261": 0.34860516925837076,
+      "static_advantage_vs_ewma": 0.009370317430674735,
+      "static_advantage_vs_incumbent": -0.2239539291512756,
+      "static_advantage_vs_pool": -0.13742527277146055,
+      "static_mean": 0.5725590984096464
+    }
+  },
+  "title": "Static-mean candidate screening against M261, Bayesian EWMA, and the equal-path pool"
+}

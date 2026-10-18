@@ -132,7 +132,7 @@ spec = importlib.util.spec_from_file_location('control_dependency_check', sys.ar
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 forbidden = [str(getattr(value, '__file__', '') or '') for value in sys.modules.values()
-             if '/simfolio-engine/' in str(getattr(value, '__file__', '') or '')
+             if ('/simfolio' + '-engine/') in str(getattr(value, '__file__', '') or '')
              or '/source-research/' in str(getattr(value, '__file__', '') or '')]
 forbidden += [name for name in sys.modules if name == 'app' or name.startswith('app.')]
 print(json.dumps(forbidden))

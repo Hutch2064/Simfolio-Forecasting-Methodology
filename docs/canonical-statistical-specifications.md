@@ -7415,7 +7415,7 @@ Raw seed-bearing descriptors remain in `source_candidate` and `source_seed_descr
 ## 263. `equal_path_pool_stationary_ou_and_bayesian_ewma_sbb`
 
 - Family: `equal_weight_path_density_mixture`
-- Resolved-definition SHA-256: `103ca9a8df5f0e96717a8dfa64ce4ffb3a0333c4653c912777dcb9fb08447c3e`
+- Resolved-definition SHA-256: `8e77cb214e3d0d228b3532c373f439816eaf1a8afb7e742fb10c73daf378253b`
 - Source: `tools/expanded_ou_pool/models.py` at `3aee75cab77d152b3311acf5da061dc07d339082` (SHA-256 `09b0670bea539721dea3fbcadb9833e93a3f19d1b5ce617fd09f35a4c63273fa`).
 - Source entrypoints: `CANDIDATES[0].simulate_daily_log_returns`.
 - Factory seed contract: `Canonical task retains the outer model ID and 240 simulations; dataclasses.replace gives each unchanged component its own exact model ID and 120 simulations, retaining all other context fields. Each component uses its resolved factory_seed_contract with 120 simulations, including the first component 120-node empirical quantile grid.`.

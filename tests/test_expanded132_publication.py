@@ -89,7 +89,19 @@ def test_results_and_full_manifest_files_are_sha_bound(name):
         raw = gzip.decompress(path.read_bytes()) if reference["encoding"] == "gzip" else path.read_bytes()
         assert digest(raw) == reference["uncompressed_file_sha256"]
         manifest = json.loads(raw)
-        assert digest(json.dumps(manifest, sort_keys=True).encode()) == result["manifest_sha256"] == reference["canonical_sha256"]
+        manifest_digest = digest(json.dumps(manifest, sort_keys=True).encode())
+        if reference.get("representation") == "portable_public_derivative":
+            attestation = reference["derivation_attestation"]
+            assert attestation["original_semantic_sha256"] == result["manifest_sha256"] == reference["canonical_sha256"]
+            assert attestation["original_file_sha256"] == "75a7ae61daf3d1c767380a71787b4fbfb760af865a69f431485222a5987d9c1b"
+            assert manifest_digest != result["manifest_sha256"]
+            numerical = json.loads(json.dumps(manifest))
+            normalization = attestation["normalization"]
+            assert normalization["field_path"] == "environment.SIMFOLIO_RESEARCH_FIT_CACHE"
+            assert numerical["environment"].pop("SIMFOLIO_RESEARCH_FIT_CACHE") == normalization["public_value"]
+            assert canonical(numerical) == attestation["portable_numerical_identity_sha256"]
+        else:
+            assert manifest_digest == result["manifest_sha256"] == reference["canonical_sha256"]
         assert manifest["source_revision"] == evidence["source_binding"]["manifest_base_revision"]
         assert manifest["source_revision"] != evidence["source_binding"]["implementation_revision"]
         adapter = manifest["adapter"]
@@ -221,20 +233,76 @@ def test_garch_audit_and_bounded_runtime_attachments_are_sha_bound():
     assert timing["data_manifest_sha256"] == PROTOCOL["data"]["frozen_prepared_manifest_sha256"]
 
 
-def test_all_prospective_case_archives_and_statistics_are_retained():
+@pytest.mark.parametrize("reference, original_sha", [
+    (REPORT["local_matched_runtime"]["receipt"],
+     "a59a0edd8040934e1ce7ef4088e5cf6036c7d3870b4034a3d15a1f1957aaa4db"),
+    (REPORT["final_three_model_runtime"]["receipt"],
+     "92beb69643e31f19a3ec816203036c333bf8f30cd8c447a0ac94dd92a40341e1"),
+    (REPORT["independent_ou_pool_audit"],
+     "2ccb97b844efedcd9e3b5ebd37596ff5e1b46791bd8c2d17709a71ac987e1b56"),
+])
+def test_portable_receipts_attest_path_only_derivation(reference, original_sha):
+    from simfolio_forecasting_methodology.safety_scan import scan_text
+    path = verified_file(reference)
+    assert scan_text(path.read_text()) == []
+    payload = json.loads(path.read_text())
+    attestation = payload.pop("publication_derivation")
+    assert attestation["original_file_sha256"] == original_sha
+    assert canonical(payload) == attestation["normalized_payload_sha256"]
+    assert attestation["normalized_json_pointers"]
+    for pointer in attestation["normalized_json_pointers"]:
+        parts = [part.replace("~1", "/").replace("~0", "~") for part in pointer[1:].split("/")]
+        parent = payload
+        for part in parts[:-1]:
+            parent = parent[int(part)] if isinstance(parent, list) else parent[part]
+        key = int(parts[-1]) if isinstance(parent, list) else parts[-1]
+        assert isinstance(parent[key], str) and not Path(parent[key]).is_absolute()
+        parent[key] = "<campaign-relative-path>"
+    assert canonical(payload) == attestation["path_elided_payload_sha256"]
+
+
+def test_final_three_model_runtime_and_static_mean_pruning_receipts():
+    runtime = json.loads(verified_file(REPORT["final_three_model_runtime"]["receipt"]).read_text())
+    assert len(runtime["records"]) == 72
+    assert runtime["simulations"] == 240 and runtime["threads"] == 1
+    assert all(row["all_loss_hashes_match_previous_receipt"]
+               and row["all_path_hashes_match_previous_receipt"]
+               for row in runtime["prior_receipt_parity"])
+    ablation = REPORT["static_mean_ablation"]
+    assert block_mean("static-mean-single52") == ablation["single52"]
+    audit = json.loads(verified_file(ablation["independent_audit"]).read_text())
+    assert audit["passed"] and audit["independent_accumulator_all_cells_byte_equal"]
+    assert (audit["tasks"], audit["cells"]) == (2652, 455832)
+    evidence = REPORT["evidence"]["static-mean-single52"]
+    assert audit["source_revision"] == evidence["source_binding"]["implementation_revision"]
+    assert audit["manifest_semantic_sha256"] == evidence["manifest"]["canonical_sha256"]
+    assert audit["cells_sha256"] == evidence["cells"]["sha256"]
+    assert all(row["all_horizon_loss_replay_byte_equal"]
+               and row["independent_pairwise_crps_max_abs_error"] < 2e-17
+               for row in audit["replays"])
+    assert ablation["equal_block_score"] is None
+    assert 0.5 * ablation["single52"] == ablation["nonnegative_other_block_lower_bound"]
+    assert ablation["nonnegative_other_block_lower_bound"] > REPORT["aggregate_ranking"][0]["equal_block_score"]
+
+
+@pytest.mark.parametrize("key, folder_name, count", [
+    ("long_cagr", "long-cagr", 224), ("long_cagr_ou", "long-cagr-ou", 112)
+])
+def test_all_prospective_case_archives_and_statistics_are_retained(key, folder_name, count):
     from scipy.special import logsumexp
-    receipt = json.loads(verified_file(REPORT["long_cagr"]["receipt"]).read_text())
-    verified_file(REPORT["long_cagr"]["comparison"])
-    verified_file(REPORT["long_cagr"]["script"])
-    assert receipt["passed"] and receipt["completed_cases"] == 224
+    receipt = json.loads(verified_file(REPORT[key]["receipt"]).read_text())
+    if "comparison" in REPORT[key]:
+        verified_file(REPORT[key]["comparison"])
+    verified_file(REPORT[key]["script"])
+    assert receipt["passed"] and receipt["completed_cases"] == count
     assert receipt["independent_statistic_validation"]["passed"]
-    folder = OUT / "long-cagr"
+    folder = OUT / folder_name
     for name, expected in receipt["files"].items():
         path = folder / name
         assert digest(path.read_bytes()) == expected["sha256"]
         assert path.stat().st_size == expected["bytes"]
     records = sorted(folder.glob("*--*y.json"))
-    assert len(records) == 224
+    assert len(records) == count
     for path in records:
         record = json.loads(path.read_text())
         archive = path.with_suffix(".npz")
@@ -249,3 +317,15 @@ def test_all_prospective_case_archives_and_statistics_are_retained():
         assert cagr.mean() == pytest.approx(record["mean_path_cagr"], abs=2e-16)
         nav_cagr = np.expm1(252 * (logsumexp(terminal) - np.log(240)) / horizon)
         assert nav_cagr == pytest.approx(record["cagr_of_mean_ending_nav"], abs=2e-16)
+
+
+def test_final_screening_and_stopping_decision_are_bound_to_completed_evidence():
+    screening = json.loads(verified_file(REPORT["static_mean_ablation"]["mixture_followup_screening"]).read_text())
+    scores = screening["overall"]["canonical_rowwise_scores"]
+    assert scores["static-mean-single52"] == REPORT["static_mean_ablation"]["single52"]
+    comparisons = screening["overall"]["ticker_win_loss_counts"]
+    assert comparisons["incumbent-single52"]["ticker_wins"] == 9
+    assert comparisons["pool-single52"]["ticker_wins"] == 11
+    assert screening["overall"]["ticker_level_signed_gain_correlations"]["pearson_static_gain_vs_pool_failure"] < 0
+    assert REPORT["research_decision"]["best_validated_aggregate_model"] == REPORT["evidence"][REPORT["aggregate_ranking"][0]["evidence"][0]]["model_id"]
+    assert REPORT["research_decision"]["no_production_change"] is True

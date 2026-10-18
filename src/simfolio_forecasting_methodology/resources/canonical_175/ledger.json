@@ -158562,7 +158562,7 @@
               "manifest_path": "docs/results/expanded132/ou-pool-original80-manifest.json",
               "manifest_sha256": "72cb02a736be1dfa2fbf8513d2d54d768bc8807e0f8d99549e3d2d40a3bebc4e",
               "manifest_digest_algorithm": "sha256(json.dumps(manifest, sort_keys=True).encode(UTF-8)); Python default separators",
-              "manifest_file_sha256": "75a7ae61daf3d1c767380a71787b4fbfb760af865a69f431485222a5987d9c1b",
+              "manifest_file_sha256": "e22b4026f9721ec0309072958d7b00b7de5aafdeabcef0641fc4d487f1a4bb8b",
               "manifest_base_revision": "6bfeb13157c80f5debfdd21340c69884e6a6cf99",
               "implementation_revision": "3aee75cab77d152b3311acf5da061dc07d339082",
               "qualification": "The static run manifest retains an earlier repository HEAD. The independently audited execution used implementation_revision, which retains the exact adapter bytes; recorded source hashes bind the complete tested snapshot. This pool did not exist in manifest_base_revision.",
@@ -158995,6 +158995,17 @@
                 "tools/whittle_mle_rough/models.py": "2689d6a321fbcef5e8c5eac3015a2edb365672ddcba6b686581d1f1c46bbeac3",
                 "tools/whittle_mle_rough/run_panel.py": "c9a2bdb7b131afdefce6fbf0519b7dd3d3be0efb354eebc4934554295129b5a4",
                 "tools/whittle_mle_rough/screen.py": "c53cd47a940571595a76a478082bc0aebfecd9a41b184d8390671c52bd9b94de"
+              },
+              "manifest_representation": "portable_public_derivative",
+              "original_manifest_file_sha256": "75a7ae61daf3d1c767380a71787b4fbfb760af865a69f431485222a5987d9c1b",
+              "original_manifest_semantic_sha256": "72cb02a736be1dfa2fbf8513d2d54d768bc8807e0f8d99549e3d2d40a3bebc4e",
+              "portable_numerical_identity_sha256": "dd11164863bed5252e9fa88dd75a2c1811dd82709b98ff9088d811c55f2360af",
+              "portable_numerical_identity_digest_algorithm": "sha256(canonical JSON sorted keys, compact separators, UTF-8 after removing environment.SIMFOLIO_RESEARCH_FIT_CACHE)",
+              "portable_normalization": {
+                "public_value": "campaign/fit-cache",
+                "scope": "Only the cache storage location changes. All source, task, data, dependency-version and numerical fields remain identical.",
+                "original_manifest_retention": "Original manifest retained in the private campaign evidence archive; its path is not serialized in public metadata.",
+                "field_path": "environment.SIMFOLIO_RESEARCH_FIT_CACHE"
               }
             }
           },
@@ -159066,7 +159077,7 @@
         }
       },
       "specification_fingerprint": {
-        "value": "103ca9a8df5f0e96717a8dfa64ce4ffb3a0333c4653c912777dcb9fb08447c3e",
+        "value": "8e77cb214e3d0d228b3532c373f439816eaf1a8afb7e742fb10c73daf378253b",
         "kind": "resolved_statistical_definition_sha256",
         "status": "full resolved statistical definition"
       },
@@ -159098,7 +159109,7 @@
           "sha256": "09b0670bea539721dea3fbcadb9833e93a3f19d1b5ce617fd09f35a4c63273fa"
         },
         "parameter_dictionary": {
-          "sha256": "103ca9a8df5f0e96717a8dfa64ce4ffb3a0333c4653c912777dcb9fb08447c3e"
+          "sha256": "8e77cb214e3d0d228b3532c373f439816eaf1a8afb7e742fb10c73daf378253b"
         }
       },
       "source_location_reference": {
