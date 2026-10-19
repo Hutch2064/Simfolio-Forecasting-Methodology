@@ -1,5 +1,5 @@
 {
-  "model_count": 30,
+  "model_count": 29,
   "no_runtime_percentile_filter": true,
   "positive_percentage_means_lower_crps_better": "100*(1-model/baseline)",
   "production52_crps": 0.6138695810898457,
@@ -277,17 +277,6 @@
       "percent_better_production52": -2.5275847537895135,
       "percent_better_production80": -7.7224814277638165,
       "percent_better_website_default80": 16.593577521517446,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
-      "canonical52_crps": 0.6297949649487339,
-      "historical80_crps": 0.2537399472056091,
-      "label": "M222 \u2014 joint Student copula and pathwise leverage rough model",
-      "model_id": "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough",
-      "percent_better_production52": -2.5942617698395676,
-      "percent_better_production80": -11.916236190697038,
-      "percent_better_website_default80": 13.34647369609253,
       "role": "candidate",
       "score80_status": "retained_historical_catalogue_not_new_rerun"
     },

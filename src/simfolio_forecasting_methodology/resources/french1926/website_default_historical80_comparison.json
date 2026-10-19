@@ -2,7 +2,7 @@
   "baseline": "exact website Default, saved historical canonical80 control",
   "baseline_crps": 0.292821259593872,
   "baseline_source": "docs/rough-bayesian-oos.md and docs/results/rough-bayesian/map-predecessor-dynamic-panel.json",
-  "current_selected_candidates": 28,
+  "current_selected_candidates": 27,
   "models": [
     {
       "comparison": "better",
@@ -165,12 +165,6 @@
       "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
       "historical80_crps": 0.24423173688367905,
       "model_id": "asset_map_student_return_laplace_implied_noise_dynamic_rough"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2537399472056091,
-      "model_id": "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough"
     }
   ],
   "no_model_registry_changes": true,
@@ -203,7 +197,8 @@
   "subsequent_explicit_removals": [
     190,
     192,
-    177
+    177,
+    222
   ],
   "unknown_count": 2
 }

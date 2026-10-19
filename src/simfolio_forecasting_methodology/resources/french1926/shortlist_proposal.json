@@ -8,13 +8,14 @@
     "The 241-row sweep remains historical evidence; omitted IDs below are deferred from this recommendation only and are not deleted from the catalogue.",
     "User-requested exclusion from this proposed run list of models with retained historical80 CRPS worse than the exact website Default control; preserve unknown comparisons and mandatory controls.",
     "Explicit user removal of M190 and M192, without applying a general runtime percentile exclusion.",
-    "Explicit user removal of M177; no additional runtime-percentile exclusion applied."
+    "Explicit user removal of M177; no additional runtime-percentile exclusion applied.",
+    "Explicit user removal of M222; no general dominance or runtime-share cutoff applied."
   ],
-  "deferred_from_sweep": 216,
+  "deferred_from_sweep": 217,
   "dropped_241_over_10_percent": 160,
   "eligible_241_not_selected_after_method_family_reduction": 50,
   "eligible_241_within_10_percent_of_M261": 81,
-  "final_panel_method_count_including_required_controls": 30,
+  "final_panel_method_count_including_required_controls": 29,
   "historical80_evidence_limitation": {
     "evidence": "The saved historical-80 catalogue has 41 rows, 34 overlapping IDs with the 241-row sweep; only the M261 join is marked verified.",
     "selection_use": "Do not infer that any deferred model is weak on both panels; the historical-80 join is not sufficient for a cross-panel exclusion claim.",
@@ -33,6 +34,7 @@
     "asset_map_joint_gaussian_multiscale_rough_stationary_normalized",
     "asset_map_joint_noise_continuous_quantile_normalized_dynamic_rough",
     "asset_map_joint_observation_noise_multiscale_dynamic_rough_map",
+    "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough",
     "asset_map_learned_multiscale_rates_untruncated_dynamic_rough",
     "asset_map_matched_student_innovations_pathwise_multiscale_dynamic_rough",
     "asset_map_multiscale_conditional_empirical_analytic_differenced_whittle_rough_map",
@@ -421,6 +423,11 @@
       "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
       "rank": 177,
       "reason": "explicit user removal after full-panel runtime estimate identified M177 as the critical-path model"
+    },
+    {
+      "model_id": "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough",
+      "rank": 222,
+      "reason": "explicit user removal after M220 had better saved scores on both panels and 59 percent lower recorded work"
     }
   ],
   "removed_by_website_default_historical80_rule": [
@@ -487,9 +494,9 @@
     }
   ],
   "runtime_percentile_exclusion_applied": false,
-  "selected_count": 28,
+  "selected_count": 27,
   "selected_external_records": 3,
-  "selected_from_sweep": 25,
+  "selected_from_sweep": 24,
   "selected_models": [
     {
       "CRPS": 0.5957716608071161,
@@ -779,17 +786,6 @@
       "rank": 220,
       "reason": "Keeps a heavy-tail rough-model representative.",
       "summed_worker_seconds_not_controlled_benchmark": 587.8577890872257
-    },
-    {
-      "CRPS": 0.6297949649487339,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "joint Student copula and pathwise leverage rough model",
-      "model_id": "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough",
-      "name": "m222",
-      "percent_better_M261": -2.5942617698395676,
-      "rank": 222,
-      "reason": "Retains the joint Student copula and pathwise leverage construction within the requested score bound.",
-      "summed_worker_seconds_not_controlled_benchmark": 1427.5623644499574
     }
   ],
   "selection_rule": {

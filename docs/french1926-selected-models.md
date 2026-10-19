@@ -1,6 +1,6 @@
 # Models selected for the French panel
 
-M190, M192 and M177 have been removed from the planned run list. **28 candidates + two required benchmarks = 30 methods.** No models have been wired or run on the French panel.
+M190, M192, M177 and M222 have been removed from the planned run list. **27 candidates + two required benchmarks = 29 methods.** No models have been wired or run on the French panel.
 
 The table reports saved **52-asset** and **historical 80-portfolio** comparisons. It contains no scores from the new French panel. Production means M261. Percentages use `(baseline - model) / baseline`; lower CRPS is better.
 
@@ -31,7 +31,6 @@ The table reports saved **52-asset** and **historical 80-portfolio** comparisons
 | M182 — three-state HMM with full R-vine SV | 1.75% worse | — | — |
 | M183 — rough-jump HMM with R-vine SV | 2.49% worse | — | — |
 | M220 — Student-return rough model with Laplace-implied noise | 2.53% worse | 7.72% worse | 16.59% better |
-| M222 — joint Student copula and pathwise leverage rough model | 2.59% worse | 11.92% worse | 13.35% better |
 | M201 — differenced conditional-empirical Whittle rough MAP | 2.71% worse | 10.14% worse | 14.72% better |
 | M001 — FastMAP Kalman with dynamic Gaussian factors | 4.59% worse | 12.79% worse | 12.67% better |
 | Website Default | — | 29.15% worse | same |
