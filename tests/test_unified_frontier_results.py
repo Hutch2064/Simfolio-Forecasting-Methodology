@@ -79,11 +79,11 @@ def test_closed_moment_studies_preserve_full_panels_and_typed_validation(study_i
 
 def test_factorial_record_is_unchanged_when_moment_studies_append():
     studies = load_unified_frontier_studies()["studies"]
-    assert len(studies) == 5
+    assert len(studies) == 7
     factorial = studies[0]
     encoded = json.dumps(factorial, sort_keys=True, separators=(",", ":")).encode()
     assert hashlib.sha256(encoded).hexdigest() == "9d2187fe9b832878f868d12837660c7df5f33c622f5b4dee97b61d8486e4ac34"
-    assert len({row["archive_summary"]["normalized_closure_resource"] for row in studies}) == 5
+    assert len({row["archive_summary"]["normalized_closure_resource"] for row in studies}) == 7
 
 
 def test_workspace_evidence_root_keeps_pinned_cleanup_receipt_separate_from_data_root():
