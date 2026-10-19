@@ -1,10 +1,10 @@
-# Proposed reduction from 29 to 20 methods
+# Approved reduction from 29 to 20 methods
 
-**Proposal only. The current 29-method list is unchanged.** M190, M192, M177 and M222 were the explicit removals already applied.
+**The nine-method reduction was approved and applied; the subsequent explicit M183 removal leaves 19 current methods.** M190, M192, M177 and M222 were the explicit removals already applied.
 
 Preserve both benchmarks, FAST, IID, current production, inexpensive controls, and distinct volatility, inference, mean and dependence families. Flag redundant variants where a retained peer has at least as good saved scores on both panels and less recorded work; interpret small differences cautiously. This is a curated research selection, not a combined-panel ranking or proof of statistical superiority.
 
-| Current method | Proposal |
+| Previous method | Decision |
 | --- | --- |
 | FAST | Keep |
 | IID | Keep |
@@ -29,15 +29,15 @@ Preserve both benchmarks, FAST, IID, current production, inexpensive controls, a
 | M203 — conditional-empirical REML rough MAP | Omit |
 | M194 — causal-residual dynamic-rough MAP | Omit |
 | M182 — three-state HMM with full R-vine SV | Keep |
-| M183 — rough-jump HMM with R-vine SV | Keep |
+| M183 — rough-jump HMM with R-vine SV | Removed by subsequent explicit user request |
 | M220 — Student-return rough model with Laplace-implied noise | Keep |
 | M201 — differenced conditional-empirical Whittle rough MAP | Keep |
 | M001 — FastMAP Kalman with dynamic Gaussian factors | Keep |
 | Website Default | Keep |
 | Competing Public Model | Keep |
 
-Proposed omissions: M193, M194, M195, M203, M205, M208, M237, M238 and M246. No further exclusions have been applied.
+Approved removals: M193, M194, M195, M203, M205, M208, M237, M238 and M246. These nine removals are applied to the planned run list; historical results are preserved.
 
-M183 remains because the jump/regime structure is distinct and the historical80 comparison is missing. M233 retains a simpler single-rate mean model; M201 preserves a different rough-inference trade-off.
+M183 was initially retained for its distinct jump/regime structure and missing historical80 comparison, then explicitly removed by the user after reviewing cost and weaker canonical52 performance. M233 retains a simpler single-rate mean model; M201 preserves a different rough-inference trade-off.
 
-The proposed list contains **18 candidates plus two mandatory benchmarks**. Estimated completion is **8–12 hours with 12 workers**, extrapolated from historical timing records, not measured on the new French panel. Full score/work comparisons, peer identities and ETA assumptions are in `resources/french1926/candidate_reduction_proposal.json`.
+The current approved list contains **17 candidates plus two mandatory benchmarks**. Estimated completion is **8–12 hours with 12 workers**, extrapolated from historical timing records, not measured on the new French panel. Full score/work comparisons, peer identities and ETA assumptions are in `resources/french1926/candidate_reduction_proposal.json`.

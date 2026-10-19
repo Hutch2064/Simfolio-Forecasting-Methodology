@@ -1,6 +1,7 @@
 {
-  "current_candidate_count": 27,
-  "current_method_count": 29,
+  "applied": true,
+  "current_candidate_count": 17,
+  "current_method_count": 19,
   "historical_records_preserved": true,
   "method_ids": [
     "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
@@ -12,7 +13,6 @@
     "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
     "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
     "asset_hmm_three_state_full_rvine_sv",
-    "asset_rough_jump_hmm_rvine_sv",
     "asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough",
     "asset_map_stationary_ar1_ou_residual_volatility",
     "asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough",
@@ -24,14 +24,14 @@
     "asset_level_naive_iid_mean_shrunk_rebalanced",
     "model_testing_joint_stationary_bootstrap_v1"
   ],
-  "no_additional_models_removed": true,
+  "no_additional_models_removed": false,
   "no_combined_panel_score": true,
   "no_fixed_runtime_share_threshold": true,
   "preserved_uncertainty_examples": {
-    "M183": "distinct jump/regime model; matched80 score is missing, so retain instead of treating it as a proven two-panel loser",
     "M201": "differentenced rough inference retains a different score/runtime trade-off",
     "M233": "simple single learned rate gives a structural comparison to richer adaptive mean models"
   },
+  "prior_method_count": 29,
   "proposed_candidate_count": 18,
   "proposed_method_count": 20,
   "proposed_omissions": [
@@ -221,6 +221,7 @@
     "status": "rough_extrapolation_not_measured",
     "workers": 12
   },
+  "runtime_estimate_scope": "original approved 20-method proposal before subsequent explicit M183 removal; current19 estimate in remaining_runtime_estimate.json",
   "selected_candidates": [
     {
       "CRPS": 0.5957716608071161,
@@ -314,17 +315,6 @@
       "summed_worker_seconds_not_controlled_benchmark": 632.2413526775199
     },
     {
-      "CRPS": 0.6291500177166945,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "rough-jump HMM with R-vine SV",
-      "model_id": "asset_rough_jump_hmm_rvine_sv",
-      "name": "m183",
-      "percent_better_M261": -2.489199187834079,
-      "rank": 183,
-      "reason": "Retains the rough-jump regime and R-vine construction as a distinct method within the requested score bound.",
-      "summed_worker_seconds_not_controlled_benchmark": 1226.193821226887
-    },
-    {
       "CRPS": 0.6156783111169394,
       "evidence_source": "completed canonical52 main sweep leaderboard",
       "family": "stationary AR1 with corrected DCC innovations",
@@ -414,5 +404,19 @@
     }
   ],
   "selection_evidence_limit": "historical80 verification limitations and uncontrolled summed-worker timing scope remain as in current shortlist; small margins are not evidence of significant superiority",
-  "status": "proposal_only_not_applied"
+  "status": "approved_and_applied",
+  "subsequent_explicit_removals": [
+    {
+      "CRPS": 0.6291500177166945,
+      "evidence_source": "completed canonical52 main sweep leaderboard",
+      "exclusion_reason": "Explicit user removal after reviewing compute cost and weaker canonical52 performance than the retained simpler regime model; historical80 comparison remains unknown.",
+      "family": "rough-jump HMM with R-vine SV",
+      "model_id": "asset_rough_jump_hmm_rvine_sv",
+      "name": "m183",
+      "percent_better_M261": -2.489199187834079,
+      "rank": 183,
+      "reason": "Retains the rough-jump regime and R-vine construction as a distinct method within the requested score bound.",
+      "summed_worker_seconds_not_controlled_benchmark": 1226.193821226887
+    }
+  ]
 }

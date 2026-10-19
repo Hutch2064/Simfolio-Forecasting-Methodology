@@ -1,24 +1,30 @@
 {
-  "candidates": 27,
+  "candidates": 17,
   "cost_scaling_factor": 23.903916909649773,
   "estimates": {
     "mean": {
-      "estimated_total_worker_hours": 116.59952316848945,
-      "greedy_one_worker_per_model_makespan_hours": 10.767652490332512,
-      "ideal_fully_divisible_12worker_hours": 9.716626930707456,
-      "missing_model_imputation_old_panel_worker_seconds": 605.5251790094844,
-      "unchanged_list_order_makespan_hours": 12.16257188429916
+      "estimated_total_worker_hours": 71.47855920987085,
+      "greedy_one_worker_per_model_makespan_hours": 7.524058864196931,
+      "ideal_fully_divisible_12worker_hours": 5.956546600822571,
+      "missing_model_imputation_old_panel_worker_seconds": 566.5726670128768,
+      "unchanged_list_order_makespan_hours": 7.866209605059421
     },
     "median": {
-      "estimated_total_worker_hours": 116.51501291585328,
-      "greedy_one_worker_per_model_makespan_hours": 10.767652490332512,
-      "ideal_fully_divisible_12worker_hours": 9.70958440965444,
+      "estimated_total_worker_hours": 72.68726786027497,
+      "greedy_one_worker_per_model_makespan_hours": 7.907133313576921,
+      "ideal_fully_divisible_12worker_hours": 6.057272321689581,
       "missing_model_imputation_old_panel_worker_seconds": 602.979680624092,
-      "unchanged_list_order_makespan_hours": 12.145669833771919
+      "unchanged_list_order_makespan_hours": 8.107951335140248
     }
   },
-  "matched_old52_timing_records": 24,
-  "methods": 29,
+  "largest_recorded_compute_share": {
+    "matched_records": 14,
+    "missing_records": 5,
+    "percent_of_matched_records": 11.538920592226741,
+    "rank": 240
+  },
+  "matched_old52_timing_records": 14,
+  "methods": 19,
   "missing_cost_assumption": "impute five unmatched method costs with remaining-model mean or median; not measured costs",
   "missing_timing_records": 5,
   "new_daily_observations": 26317,
@@ -29,17 +35,17 @@
   "required_benchmarks": 2,
   "rough_planning_range_assumption": "longest estimated jobs admitted first",
   "rough_planning_range_hours": [
-    10,
-    14
+    8,
+    12
   ],
-  "rounded_central_estimate_hours": 11,
+  "rounded_central_estimate_hours": 8,
   "runtime_percentile_filter_applied": false,
   "scaling_assumption": "linear in series count and observation count; same origin rules and 240 paths; model heterogeneity and contention can invalidate this approximation",
   "scheduling_assumption": "Admit longest estimated model jobs first; one process per model. Model factories are not wired and no execution order has been launched.",
   "slowest_remaining_model": {
-    "estimated_hours": 8.141898671592626,
-    "model_id": "asset_rough_jump_hmm_rvine_sv",
-    "rank": 183
+    "estimated_hours": 6.077366243564566,
+    "model_id": "asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough",
+    "rank": 240
   },
   "status": "rough_extrapolation_not_measured_new_panel_runtime",
   "timing_type": "saved summed_worker_seconds_not_controlled_benchmark",

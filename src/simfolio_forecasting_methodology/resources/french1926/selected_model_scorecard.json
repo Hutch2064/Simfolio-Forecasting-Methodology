@@ -1,5 +1,5 @@
 {
-  "model_count": 29,
+  "model_count": 19,
   "no_runtime_percentile_filter": true,
   "positive_percentage_means_lower_crps_better": "100*(1-model/baseline)",
   "production52_crps": 0.6138695810898457,
@@ -72,17 +72,6 @@
       "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "canonical52_crps": 0.6165224820633392,
-      "historical80_crps": 0.2329897727973052,
-      "label": "M246 \u2014 stationary AR1 with matched offset",
-      "model_id": "asset_map_stationary_ar1_matched_offset_dynamic_rough",
-      "percent_better_production52": -0.43216035705557765,
-      "percent_better_production80": -2.7640256473720815,
-      "percent_better_website_default80": 20.432767374728876,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
       "canonical52_crps": 0.6178708650751215,
       "historical80_crps": 0.24269856328739714,
       "label": "M240 \u2014 adaptive predictive loading with full-Hurst multiscale offset",
@@ -138,28 +127,6 @@
       "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "canonical52_crps": 0.6197359063708634,
-      "historical80_crps": 0.2416808319759003,
-      "label": "M237 \u2014 adaptive predictive loading, full-Hurst untruncated",
-      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough",
-      "percent_better_production52": -0.9556305543928056,
-      "percent_better_production80": -6.5973622681557265,
-      "percent_better_website_default80": 17.464724961876364,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
-      "canonical52_crps": 0.6199560143274625,
-      "historical80_crps": 0.24188836805455496,
-      "label": "M238 \u2014 single predictive loading, full-Hurst untruncated",
-      "model_id": "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough",
-      "percent_better_production52": -0.9914863718790468,
-      "percent_better_production80": -6.688899517424507,
-      "percent_better_website_default80": 17.393850299653234,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
       "canonical52_crps": 0.6201708548679135,
       "historical80_crps": 0.2339750944781271,
       "label": "M244 \u2014 stationary AR1 with OU residual volatility",
@@ -167,17 +134,6 @@
       "percent_better_production52": -1.0264841217381582,
       "percent_better_production80": -3.198618210226667,
       "percent_better_website_default80": 20.096274839252303,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
-      "canonical52_crps": 0.621038409023111,
-      "historical80_crps": 0.2509457012962614,
-      "label": "M195 \u2014 multiscale empirical-noise rough MAP",
-      "model_id": "asset_map_multiscale_empirical_noise_dynamic_rough_map",
-      "percent_better_production52": -1.1678096055090403,
-      "percent_better_production80": -10.68378742332956,
-      "percent_better_website_default80": 14.30072336813586,
       "role": "candidate",
       "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
@@ -193,77 +149,11 @@
       "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "canonical52_crps": 0.6215250886749608,
-      "historical80_crps": 0.24998100070682613,
-      "label": "M205 \u2014 conditional-empirical Whittle MLE",
-      "model_id": "asset_map_multiscale_conditional_empirical_whittle_mle_rough",
-      "percent_better_production52": -1.2470902323460598,
-      "percent_better_production80": -10.258290136798397,
-      "percent_better_website_default80": 14.63017369246452,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
-      "canonical52_crps": 0.6220527813789176,
-      "historical80_crps": 0.2518812750312293,
-      "label": "M193 \u2014 predecessor dynamic-rough MAP",
-      "model_id": "asset_map_predecessor_dynamic_rough_map",
-      "percent_better_production52": -1.3330519284802778,
-      "percent_better_production80": -11.096437824851213,
-      "percent_better_website_default80": 13.981220017776163,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
-      "canonical52_crps": 0.6221970475896321,
-      "historical80_crps": 0.2505737023816167,
-      "label": "M208 \u2014 full-Hurst-domain Whittle rough MAP",
-      "model_id": "asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map",
-      "percent_better_production52": -1.3565530458443886,
-      "percent_better_production80": -10.519711096946738,
-      "percent_better_website_default80": 14.427762953704438,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
-      "canonical52_crps": 0.6223595273585232,
-      "historical80_crps": 0.2504647898614585,
-      "label": "M203 \u2014 conditional-empirical REML rough MAP",
-      "model_id": "asset_map_multiscale_conditional_empirical_reml_rough_map",
-      "percent_better_production52": -1.3830211709797924,
-      "percent_better_production80": -10.471673413230075,
-      "percent_better_website_default80": 14.464957152072843,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
-      "canonical52_crps": 0.6234169132238517,
-      "historical80_crps": 0.25281487701385613,
-      "label": "M194 \u2014 causal-residual dynamic-rough MAP",
-      "model_id": "asset_map_multiscale_causal_residual_dynamic_rough_map",
-      "percent_better_production52": -1.5552704398637873,
-      "percent_better_production80": -11.50821855211328,
-      "percent_better_website_default80": 13.662390031209725,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
       "canonical52_crps": 0.6245841918841899,
       "historical80_crps": null,
       "label": "M182 \u2014 three-state HMM with full R-vine SV",
       "model_id": "asset_hmm_three_state_full_rvine_sv",
       "percent_better_production52": -1.7454213605635704,
-      "percent_better_production80": null,
-      "percent_better_website_default80": null,
-      "role": "candidate",
-      "score80_status": "missing_matched_score"
-    },
-    {
-      "canonical52_crps": 0.6291500177166945,
-      "historical80_crps": null,
-      "label": "M183 \u2014 rough-jump HMM with R-vine SV",
-      "model_id": "asset_rough_jump_hmm_rvine_sv",
-      "percent_better_production52": -2.489199187834079,
       "percent_better_production80": null,
       "percent_better_website_default80": null,
       "role": "candidate",

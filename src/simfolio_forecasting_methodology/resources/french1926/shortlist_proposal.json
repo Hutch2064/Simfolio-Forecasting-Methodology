@@ -9,13 +9,14 @@
     "User-requested exclusion from this proposed run list of models with retained historical80 CRPS worse than the exact website Default control; preserve unknown comparisons and mandatory controls.",
     "Explicit user removal of M190 and M192, without applying a general runtime percentile exclusion.",
     "Explicit user removal of M177; no additional runtime-percentile exclusion applied.",
-    "Explicit user removal of M222; no general dominance or runtime-share cutoff applied."
+    "Explicit user removal of M222; no general dominance or runtime-share cutoff applied.",
+    "Apply the user-approved nine-method curated reduction, preserving the 20-method list including both required benchmarks."
   ],
-  "deferred_from_sweep": 217,
+  "deferred_from_sweep": 227,
   "dropped_241_over_10_percent": 160,
-  "eligible_241_not_selected_after_method_family_reduction": 50,
+  "eligible_241_not_selected_after_method_family_reduction": 60,
   "eligible_241_within_10_percent_of_M261": 81,
-  "final_panel_method_count_including_required_controls": 29,
+  "final_panel_method_count_including_required_controls": 19,
   "historical80_evidence_limitation": {
     "evidence": "The saved historical-80 catalogue has 41 rows, 34 overlapping IDs with the 241-row sweep; only the M261 join is marked verified.",
     "selection_use": "Do not infer that any deferred model is weak on both panels; the historical-80 join is not sufficient for a cross-panel exclusion claim.",
@@ -28,6 +29,7 @@
     "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
     "asset_map_adaptive_multiscale_rates_untruncated_dynamic_rough",
     "asset_map_adaptive_predictive_loading_full_hurst_unclipped_dynamic_rough",
+    "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough",
     "asset_map_adaptive_predictive_loading_rates_untruncated_dynamic_rough",
     "asset_map_adaptive_unshrunk_multiscale_rates_untruncated_dynamic_rough",
     "asset_map_eb_ar1_multiscale_pathwise_dynamic_rough",
@@ -37,22 +39,29 @@
     "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough",
     "asset_map_learned_multiscale_rates_untruncated_dynamic_rough",
     "asset_map_matched_student_innovations_pathwise_multiscale_dynamic_rough",
+    "asset_map_multiscale_causal_residual_dynamic_rough_map",
     "asset_map_multiscale_conditional_empirical_analytic_differenced_whittle_rough_map",
     "asset_map_multiscale_conditional_empirical_debiased_whittle_rough_map",
     "asset_map_multiscale_conditional_empirical_exact_covariance_whittle_rough_map",
     "asset_map_multiscale_conditional_empirical_full_hurst_differenced_rough_map",
+    "asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map",
     "asset_map_multiscale_conditional_empirical_relaxed_hurst_differenced_rough_map",
+    "asset_map_multiscale_conditional_empirical_reml_rough_map",
     "asset_map_multiscale_conditional_empirical_whittle_gls_rough_map",
     "asset_map_multiscale_conditional_empirical_whittle_integrated_level_rough_map",
+    "asset_map_multiscale_conditional_empirical_whittle_mle_rough",
     "asset_map_multiscale_conditional_residual_dynamic_rough_map",
     "asset_map_multiscale_conditional_residual_empirical_noise_dynamic_rough_map",
     "asset_map_multiscale_consistent_empirical_noise_differenced_rough_map",
     "asset_map_multiscale_consistent_noise_gaussian_innovations_rough_map",
     "asset_map_multiscale_consistent_noise_hansen_skew_t_rough_map",
     "asset_map_multiscale_consistent_noise_student_innovations_rough_map",
+    "asset_map_multiscale_empirical_noise_dynamic_rough_map",
     "asset_map_multiscale_predictor_offset_untruncated_dynamic_rough",
     "asset_map_multiscale_profile_noise_conditional_residual_dynamic_rough_map",
+    "asset_map_predecessor_dynamic_rough_map",
     "asset_map_raw_return_laplace_multiscale_dynamic_rough",
+    "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough",
     "asset_map_single_unshrunk_multiscale_rates_untruncated_dynamic_rough",
     "asset_map_stationary_ar1_correlated_volatility_dynamic_rough",
     "asset_map_stationary_ar1_innovation_kendall_student_copula_dynamic_rough",
@@ -60,6 +69,7 @@
     "asset_map_stationary_ar1_innovation_shrinkage_lhs_copula_dynamic_rough",
     "asset_map_stationary_ar1_innovation_student_copula_dynamic_rough",
     "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough",
+    "asset_map_stationary_ar1_matched_offset_dynamic_rough",
     "asset_map_stationary_ar1_proxy_dynamic_rough",
     "asset_map_stationary_ar1_shrinkage_student_copula_dynamic_rough",
     "asset_map_stationary_ar1_static_shrinkage_copula_dynamic_rough",
@@ -70,6 +80,7 @@
     "asset_map_student_pathwise_joint_rough_noise_dynamic_rough",
     "asset_map_student_return_laplace_multiscale_dynamic_rough",
     "asset_map_unclipped_log_proxy_untruncated_dynamic_rough",
+    "asset_rough_jump_hmm_rvine_sv",
     "asset_rough_volterra_sv_accuracy_lift_bayesian",
     "asset_rough_volterra_sv_dynamic_lift_bayesian",
     "asset_rough_volterra_sv_eight_factor",
@@ -408,6 +419,125 @@
   ],
   "prior_proposal_rows_dropped_over_10_percent": 18,
   "proposed_panel": "fresh 552-series French panel",
+  "removed_by_approved_curated_reduction": [
+    {
+      "canonical52_crps": 0.6165224820633392,
+      "historical80_crps": 0.2329897727973052,
+      "interpretation": "proposal to omit overlapping method variant; point-estimate screening only, not a significance or controlled speed claim",
+      "model_id": "asset_map_stationary_ar1_matched_offset_dynamic_rough",
+      "rank": 246,
+      "recorded_worker_seconds": 583.343177614559,
+      "retained_canonical52_crps": 0.6156783111169394,
+      "retained_comparison_model_id": "asset_map_stationary_ar1_innovation_student_lhs_copula_dynamic_rough",
+      "retained_comparison_rank": 254,
+      "retained_historical80_crps": 0.23018159938191207,
+      "retained_recorded_worker_seconds": 549.8273796944995
+    },
+    {
+      "canonical52_crps": 0.6197359063708634,
+      "historical80_crps": 0.2416808319759003,
+      "interpretation": "proposal to omit overlapping method variant; point-estimate screening only, not a significance or controlled speed claim",
+      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough",
+      "rank": 237,
+      "recorded_worker_seconds": 978.5094342083903,
+      "retained_canonical52_crps": 0.6195391932109288,
+      "retained_comparison_model_id": "asset_map_adaptive_stable_coupled_multiscale_dynamic_rough",
+      "retained_comparison_rank": 242,
+      "retained_historical80_crps": 0.24131773884753774,
+      "retained_recorded_worker_seconds": 696.0544758985052
+    },
+    {
+      "canonical52_crps": 0.6199560143274625,
+      "historical80_crps": 0.24188836805455496,
+      "interpretation": "proposal to omit overlapping method variant; point-estimate screening only, not a significance or controlled speed claim",
+      "model_id": "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough",
+      "rank": 238,
+      "recorded_worker_seconds": 765.4064992414787,
+      "retained_canonical52_crps": 0.6195391932109288,
+      "retained_comparison_model_id": "asset_map_adaptive_stable_coupled_multiscale_dynamic_rough",
+      "retained_comparison_rank": 242,
+      "retained_historical80_crps": 0.24131773884753774,
+      "retained_recorded_worker_seconds": 696.0544758985052
+    },
+    {
+      "canonical52_crps": 0.621038409023111,
+      "historical80_crps": 0.2509457012962614,
+      "interpretation": "proposal to omit overlapping method variant; point-estimate screening only, not a significance or controlled speed claim",
+      "model_id": "asset_map_multiscale_empirical_noise_dynamic_rough_map",
+      "rank": 195,
+      "recorded_worker_seconds": 497.56470874365186,
+      "retained_canonical52_crps": 0.6193666228782178,
+      "retained_comparison_model_id": "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
+      "retained_comparison_rank": 202,
+      "retained_historical80_crps": 0.25087597152824515,
+      "retained_recorded_worker_seconds": 314.67837734607747
+    },
+    {
+      "canonical52_crps": 0.6215250886749608,
+      "historical80_crps": 0.24998100070682613,
+      "interpretation": "proposal to omit overlapping method variant; point-estimate screening only, not a significance or controlled speed claim",
+      "model_id": "asset_map_multiscale_conditional_empirical_whittle_mle_rough",
+      "rank": 205,
+      "recorded_worker_seconds": 489.2639084760449,
+      "retained_canonical52_crps": 0.6211786826067934,
+      "retained_comparison_model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+      "retained_comparison_rank": 198,
+      "retained_historical80_crps": 0.2498921919286796,
+      "retained_recorded_worker_seconds": 395.4462267917115
+    },
+    {
+      "canonical52_crps": 0.6220527813789176,
+      "historical80_crps": 0.2518812750312293,
+      "interpretation": "proposal to omit overlapping method variant; point-estimate screening only, not a significance or controlled speed claim",
+      "model_id": "asset_map_predecessor_dynamic_rough_map",
+      "rank": 193,
+      "recorded_worker_seconds": 406.9066911623231,
+      "retained_canonical52_crps": 0.6211786826067934,
+      "retained_comparison_model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+      "retained_comparison_rank": 198,
+      "retained_historical80_crps": 0.2498921919286796,
+      "retained_recorded_worker_seconds": 395.4462267917115
+    },
+    {
+      "canonical52_crps": 0.6221970475896321,
+      "historical80_crps": 0.2505737023816167,
+      "interpretation": "proposal to omit overlapping method variant; point-estimate screening only, not a significance or controlled speed claim",
+      "model_id": "asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map",
+      "rank": 208,
+      "recorded_worker_seconds": 634.1668469289434,
+      "retained_canonical52_crps": 0.6211786826067934,
+      "retained_comparison_model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+      "retained_comparison_rank": 198,
+      "retained_historical80_crps": 0.2498921919286796,
+      "retained_recorded_worker_seconds": 395.4462267917115
+    },
+    {
+      "canonical52_crps": 0.6223595273585232,
+      "historical80_crps": 0.2504647898614585,
+      "interpretation": "proposal to omit overlapping method variant; point-estimate screening only, not a significance or controlled speed claim",
+      "model_id": "asset_map_multiscale_conditional_empirical_reml_rough_map",
+      "rank": 203,
+      "recorded_worker_seconds": 642.6154998770216,
+      "retained_canonical52_crps": 0.6211786826067934,
+      "retained_comparison_model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+      "retained_comparison_rank": 198,
+      "retained_historical80_crps": 0.2498921919286796,
+      "retained_recorded_worker_seconds": 395.4462267917115
+    },
+    {
+      "canonical52_crps": 0.6234169132238517,
+      "historical80_crps": 0.25281487701385613,
+      "interpretation": "proposal to omit overlapping method variant; point-estimate screening only, not a significance or controlled speed claim",
+      "model_id": "asset_map_multiscale_causal_residual_dynamic_rough_map",
+      "rank": 194,
+      "recorded_worker_seconds": 376.61637056805193,
+      "retained_canonical52_crps": 0.6193666228782178,
+      "retained_comparison_model_id": "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
+      "retained_comparison_rank": 202,
+      "retained_historical80_crps": 0.25087597152824515,
+      "retained_recorded_worker_seconds": 314.67837734607747
+    }
+  ],
   "removed_by_explicit_runtime_choice": [
     {
       "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
@@ -428,6 +558,18 @@
       "model_id": "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough",
       "rank": 222,
       "reason": "explicit user removal after M220 had better saved scores on both panels and 59 percent lower recorded work"
+    },
+    {
+      "CRPS": 0.6291500177166945,
+      "evidence_source": "completed canonical52 main sweep leaderboard",
+      "exclusion_reason": "Explicit user removal after reviewing compute cost and weaker canonical52 performance than the retained simpler regime model; historical80 comparison remains unknown.",
+      "family": "rough-jump HMM with R-vine SV",
+      "model_id": "asset_rough_jump_hmm_rvine_sv",
+      "name": "m183",
+      "percent_better_M261": -2.489199187834079,
+      "rank": 183,
+      "reason": "Retains the rough-jump regime and R-vine construction as a distinct method within the requested score bound.",
+      "summed_worker_seconds_not_controlled_benchmark": 1226.193821226887
     }
   ],
   "removed_by_website_default_historical80_rule": [
@@ -494,9 +636,9 @@
     }
   ],
   "runtime_percentile_exclusion_applied": false,
-  "selected_count": 27,
+  "selected_count": 17,
   "selected_external_records": 3,
-  "selected_from_sweep": 24,
+  "selected_from_sweep": 14,
   "selected_models": [
     {
       "CRPS": 0.5957716608071161,
@@ -590,17 +732,6 @@
       "summed_worker_seconds_not_controlled_benchmark": 632.2413526775199
     },
     {
-      "CRPS": 0.6291500177166945,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "rough-jump HMM with R-vine SV",
-      "model_id": "asset_rough_jump_hmm_rvine_sv",
-      "name": "m183",
-      "percent_better_M261": -2.489199187834079,
-      "rank": 183,
-      "reason": "Retains the rough-jump regime and R-vine construction as a distinct method within the requested score bound.",
-      "summed_worker_seconds_not_controlled_benchmark": 1226.193821226887
-    },
-    {
       "CRPS": 0.6156783111169394,
       "evidence_source": "completed canonical52 main sweep leaderboard",
       "family": "stationary AR1 with corrected DCC innovations",
@@ -610,17 +741,6 @@
       "rank": 255,
       "reason": "Preserves a distinct cross-asset dependence correction alongside the copula and leverage-proxy cores.",
       "summed_worker_seconds_not_controlled_benchmark": 847.543117611378
-    },
-    {
-      "CRPS": 0.6165224820633392,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "stationary AR1 with matched offset",
-      "model_id": "asset_map_stationary_ar1_matched_offset_dynamic_rough",
-      "name": "m246",
-      "percent_better_M261": -0.43216035705557765,
-      "rank": 246,
-      "reason": "Retains the matched-offset AR1 extension within the requested score bound alongside the separate Pareto representatives.",
-      "summed_worker_seconds_not_controlled_benchmark": 583.343177614559
     },
     {
       "CRPS": 0.6201708548679135,
@@ -667,39 +787,6 @@
       "summed_worker_seconds_not_controlled_benchmark": 696.0544758985052
     },
     {
-      "CRPS": 0.6197359063708634,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "adaptive predictive loading, full-Hurst untruncated",
-      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough",
-      "name": "m237",
-      "percent_better_M261": -0.9556305543928056,
-      "rank": 237,
-      "reason": "Retains the untruncated full-Hurst adaptive-loading configuration as a distinct variant within the requested score bound.",
-      "summed_worker_seconds_not_controlled_benchmark": 978.5094342083903
-    },
-    {
-      "CRPS": 0.6199560143274625,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "single predictive loading, full-Hurst untruncated",
-      "model_id": "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough",
-      "name": "m238",
-      "percent_better_M261": -0.9914863718790468,
-      "rank": 238,
-      "reason": "Retains the single predictive-loading full-Hurst configuration as a distinct variant within the requested score bound.",
-      "summed_worker_seconds_not_controlled_benchmark": 765.4064992414787
-    },
-    {
-      "CRPS": 0.621038409023111,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "multiscale empirical-noise rough MAP",
-      "model_id": "asset_map_multiscale_empirical_noise_dynamic_rough_map",
-      "name": "m195",
-      "percent_better_M261": -1.1678096055090403,
-      "rank": 195,
-      "reason": "Core representative for empirical observation-noise modeling.",
-      "summed_worker_seconds_not_controlled_benchmark": 497.56470874365186
-    },
-    {
       "CRPS": 0.6211786826067934,
       "evidence_source": "completed canonical52 main sweep leaderboard",
       "family": "untrimmed conditional-residual empirical rough MAP",
@@ -709,61 +796,6 @@
       "rank": 198,
       "reason": "Retains the untrimmed conditional-residual empirical estimator within the requested score bound.",
       "summed_worker_seconds_not_controlled_benchmark": 395.4462267917115
-    },
-    {
-      "CRPS": 0.6215250886749608,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "conditional-empirical Whittle MLE",
-      "model_id": "asset_map_multiscale_conditional_empirical_whittle_mle_rough",
-      "name": "m205",
-      "percent_better_M261": -1.2470902323460598,
-      "rank": 205,
-      "reason": "Retains a likelihood-based estimator distinct from MAP and REML variants.",
-      "summed_worker_seconds_not_controlled_benchmark": 489.2639084760449
-    },
-    {
-      "CRPS": 0.6220527813789176,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "predecessor dynamic-rough MAP",
-      "model_id": "asset_map_predecessor_dynamic_rough_map",
-      "name": "m193",
-      "percent_better_M261": -1.3330519284802778,
-      "rank": 193,
-      "reason": "Retains the predecessor as a reference for interpreting later rough-model refinements.",
-      "summed_worker_seconds_not_controlled_benchmark": 406.9066911623231
-    },
-    {
-      "CRPS": 0.6221970475896321,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "full-Hurst-domain Whittle rough MAP",
-      "model_id": "asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map",
-      "name": "m208",
-      "percent_better_M261": -1.3565530458443886,
-      "rank": 208,
-      "reason": "Retains the full-Hurst-domain Whittle MAP estimator within the requested score bound.",
-      "summed_worker_seconds_not_controlled_benchmark": 634.1668469289434
-    },
-    {
-      "CRPS": 0.6223595273585232,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "conditional-empirical REML rough MAP",
-      "model_id": "asset_map_multiscale_conditional_empirical_reml_rough_map",
-      "name": "m203",
-      "percent_better_M261": -1.3830211709797924,
-      "rank": 203,
-      "reason": "Retains the REML objective as a distinct estimator within the requested score bound.",
-      "summed_worker_seconds_not_controlled_benchmark": 642.6154998770216
-    },
-    {
-      "CRPS": 0.6234169132238517,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "causal-residual dynamic-rough MAP",
-      "model_id": "asset_map_multiscale_causal_residual_dynamic_rough_map",
-      "name": "m194",
-      "percent_better_M261": -1.5552704398637873,
-      "rank": 194,
-      "reason": "Retains the causal-residual rough MAP estimator within the requested score bound.",
-      "summed_worker_seconds_not_controlled_benchmark": 376.61637056805193
     },
     {
       "CRPS": 0.6305263527037843,
@@ -800,7 +832,7 @@
     "row_count": 241,
     "sha256": "6db0c69609ccc79d0318f67283ebe37657a2ae407ee9a2bd1c04c523e17c54fb"
   },
-  "status": "proposal_only_not_registered",
+  "status": "approved_selection_not_registered",
   "website_default_historical80_rule": {
     "baseline_crps": 0.292821259593872,
     "comparison": "retain_known_score_at_or_below_Default_or_unknown",

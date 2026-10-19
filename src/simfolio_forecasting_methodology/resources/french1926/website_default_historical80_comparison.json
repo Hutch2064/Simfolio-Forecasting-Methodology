@@ -2,7 +2,7 @@
   "baseline": "exact website Default, saved historical canonical80 control",
   "baseline_crps": 0.292821259593872,
   "baseline_source": "docs/rough-bayesian-oos.md and docs/results/rough-bayesian/map-predecessor-dynamic-panel.json",
-  "current_selected_candidates": 27,
+  "current_selected_candidates": 17,
   "models": [
     {
       "comparison": "better",
@@ -59,22 +59,10 @@
       "model_id": "asset_hmm_three_state_full_rvine_sv"
     },
     {
-      "comparison": "unknown",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": null,
-      "model_id": "asset_rough_jump_hmm_rvine_sv"
-    },
-    {
       "comparison": "better",
       "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
       "historical80_crps": 0.22705549647165937,
       "model_id": "asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2329897727973052,
-      "model_id": "asset_map_stationary_ar1_matched_offset_dynamic_rough"
     },
     {
       "comparison": "better",
@@ -103,56 +91,8 @@
     {
       "comparison": "better",
       "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2416808319759003,
-      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.24188836805455496,
-      "model_id": "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2509457012962614,
-      "model_id": "asset_map_multiscale_empirical_noise_dynamic_rough_map"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
       "historical80_crps": 0.2498921919286796,
       "model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.24998100070682613,
-      "model_id": "asset_map_multiscale_conditional_empirical_whittle_mle_rough"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2518812750312293,
-      "model_id": "asset_map_predecessor_dynamic_rough_map"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2505737023816167,
-      "model_id": "asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2504647898614585,
-      "model_id": "asset_map_multiscale_conditional_empirical_reml_rough_map"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.25281487701385613,
-      "model_id": "asset_map_multiscale_causal_residual_dynamic_rough_map"
     },
     {
       "comparison": "better",
@@ -194,11 +134,34 @@
     }
   ],
   "rounding_correction": "M009 score 0.2928636384101145 is slightly worse than exact Default 0.292821259593872, but had already failed the separate 52-asset ten-percent bound",
+  "subsequent_approved_curated_removals": [
+    "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough",
+    "asset_map_multiscale_causal_residual_dynamic_rough_map",
+    "asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map",
+    "asset_map_multiscale_conditional_empirical_reml_rough_map",
+    "asset_map_multiscale_conditional_empirical_whittle_mle_rough",
+    "asset_map_multiscale_empirical_noise_dynamic_rough_map",
+    "asset_map_predecessor_dynamic_rough_map",
+    "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough",
+    "asset_map_stationary_ar1_matched_offset_dynamic_rough"
+  ],
   "subsequent_explicit_removals": [
     190,
     192,
     177,
-    222
+    222,
+    {
+      "CRPS": 0.6291500177166945,
+      "evidence_source": "completed canonical52 main sweep leaderboard",
+      "exclusion_reason": "Explicit user removal after reviewing compute cost and weaker canonical52 performance than the retained simpler regime model; historical80 comparison remains unknown.",
+      "family": "rough-jump HMM with R-vine SV",
+      "model_id": "asset_rough_jump_hmm_rvine_sv",
+      "name": "m183",
+      "percent_better_M261": -2.489199187834079,
+      "rank": 183,
+      "reason": "Retains the rough-jump regime and R-vine construction as a distinct method within the requested score bound.",
+      "summed_worker_seconds_not_controlled_benchmark": 1226.193821226887
+    }
   ],
-  "unknown_count": 2
+  "unknown_count": 1
 }
