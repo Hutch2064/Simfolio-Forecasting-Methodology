@@ -1,0 +1,7 @@
+Saved-only independent actual audit PASS: 27 new trials, 108 timed calls, 162 total forecasts and zero extra boundary forecasts. The prior 24 paired forecasts were inherited evidence and were not executed again. All 169 original files remain unchanged; 1,476 unique references and 590 frozen resources verified. All 31 observed numerical/support PIDs are absent.
+
+Complete paths, daily CRPS, native/Q/CDF/RNG scientific checkpoint objects, exact binaries/ABI, restoration, exclusive stage partitions, one initializer, NI10/thread1, recorded quiet scope and storage caps pass. Five saved fixtures reject corruption. Historical M261 oracle scope remains explicit: selected/candidate have saved path and CRPS oracles in all three contexts; M261 multiasset relies on pinned original law/input plus fresh original plain guards, with no invented historical path/CRPS evidence.
+
+Candidate/FAST wall medians (fresh; pooled cached): SPYSIM 8766 1.006099;0.986818, six-asset 126d 0.975373;0.885464, six-asset 8766d 0.929429;0.829218. Thus the long six-asset context is 7.06%/17.08% lower time. This is bounded local literal-bound p6 compiler evidence, not an all80-dimension, all-work, score, deployment or website claim.
+
+The unused frozen summarize.py has obsolete cached labels and extra-boundary forecast counts. Its bytes are preserved. Parent stdlib summaries were independently reconstructed exactly using actual cached_fit_1/2/3 labels. No financial/native/network/timing calls by the reviewer.

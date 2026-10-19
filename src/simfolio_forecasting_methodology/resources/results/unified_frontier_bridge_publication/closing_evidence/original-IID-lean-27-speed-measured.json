@@ -1,0 +1,67 @@
+{
+  "scope": "27 boundedlocal diagnostic controlledtrials; no fullpanel/website/allwork/independentpostselection claim",
+  "cases": {
+    "SPYSIM_8766": {
+      "fresh_fit": {
+        "model_median_seconds": {
+          "selected_fast": 0.05463133403100073,
+          "iid_conditional_unit_second_moment_scale_original_nodes": 0.11029783403500915,
+          "m261": 0.16516520804725587
+        },
+        "M261_speedup": 1.497447429428501,
+        "selected_fast_time_multiple": 2.018948209692633
+      },
+      "cached_fit": {
+        "model_median_seconds": {
+          "selected_fast": 0.027662124950438738,
+          "iid_conditional_unit_second_moment_scale_original_nodes": 0.0535569170024246,
+          "m261": 0.11145570798544213
+        },
+        "M261_speedup": 2.0810702748329666,
+        "selected_fast_time_multiple": 1.9361100095665338
+      }
+    },
+    "multi_annually_126": {
+      "fresh_fit": {
+        "model_median_seconds": {
+          "selected_fast": 0.05770658398978412,
+          "iid_conditional_unit_second_moment_scale_original_nodes": 0.10614704200997949,
+          "m261": 0.12109433399746194
+        },
+        "M261_speedup": 1.1408168490091055,
+        "selected_fast_time_multiple": 1.8394268846128692
+      },
+      "cached_fit": {
+        "model_median_seconds": {
+          "selected_fast": 0.006487750040832907,
+          "iid_conditional_unit_second_moment_scale_original_nodes": 0.008999917015898973,
+          "m261": 0.01833212503697723
+        },
+        "M261_speedup": 2.0369215632313353,
+        "selected_fast_time_multiple": 1.3872169795776457
+      }
+    },
+    "multi_annually_8766": {
+      "fresh_fit": {
+        "model_median_seconds": {
+          "selected_fast": 0.7390240830136463,
+          "iid_conditional_unit_second_moment_scale_original_nodes": 1.08638258400606,
+          "m261": 1.3134398749680258
+        },
+        "M261_speedup": 1.209003066051268,
+        "selected_fast_time_multiple": 1.4700232495481471
+      },
+      "cached_fit": {
+        "model_median_seconds": {
+          "selected_fast": 0.4061544580035843,
+          "iid_conditional_unit_second_moment_scale_original_nodes": 0.5448335830005817,
+          "m261": 0.7847923329682089
+        },
+        "M261_speedup": 1.4404257693626257,
+        "selected_fast_time_multiple": 1.3414443009653574
+      }
+    }
+  },
+  "parent_18_terminal_sha256": "104d94bfa7f2cfa3899f1efccb15eabba2d1f0b4bea96995a20bb6f68ae331a0",
+  "parent_9_terminal_sha256": "116de39206cbf8191940c6e2475a6997baf52a3562cf72dd1a37734b7674ebc6"
+}

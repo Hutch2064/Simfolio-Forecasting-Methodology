@@ -1,0 +1,183 @@
+{
+  "actual_session": 93858,
+  "actual_exit_code": 0,
+  "trials": 18,
+  "numerical_worker_pids": [
+    345,
+    1382,
+    2190,
+    2996,
+    3788,
+    4569,
+    5337,
+    91255,
+    92062,
+    92723,
+    93900,
+    94650,
+    95312,
+    96072,
+    96953,
+    97661,
+    98602,
+    99438
+  ],
+  "all_numeric_workers_absent": true,
+  "completion_sha256": "1994e9a4f7681a86028f55f28aeb5c24a721ce0f16f0e0d53b71070516aa17b0",
+  "cases": {
+    "SPYSIM_8766": {
+      "fresh": {
+        "m261": {
+          "median_seconds": 0.17264616600004956,
+          "samples": 3,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.05594791698968038,
+            "dependence_seconds": 0.0072322500054724514,
+            "fit_preparation_seconds": 0.05104816594393924,
+            "other_seconds": 0.0009119570604525506,
+            "simulation_seconds": 0.05750587600050494
+          }
+        },
+        "selected_fast": {
+          "median_seconds": 0.05641620798269287,
+          "samples": 3,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.017536957981064916,
+            "dependence_seconds": 0.007048957981169224,
+            "fit_preparation_seconds": 0.02312012598849833,
+            "other_seconds": 0.00015583407366648316,
+            "simulation_seconds": 0.008566666045226157
+          }
+        },
+        "rough_only_IID_on_sampled_conventional_SV_corrected_nodes": {
+          "median_seconds": 0.11705312499543652,
+          "samples": 3,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.018390084034763277,
+            "dependence_seconds": 0.007182250032201409,
+            "fit_preparation_seconds": 0.04640125099103898,
+            "other_seconds": 0.0003301679971627891,
+            "simulation_seconds": 0.04550541698699817
+          }
+        },
+        "candidate_speedup_vs_M261": 1.4749385461240818,
+        "candidate_time_ratio_vs_selected_fast": 2.07481376684065
+      },
+      "cached": {
+        "m261": {
+          "median_seconds": 0.11805820796871558,
+          "samples": 9,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.05481941596372053,
+            "dependence_seconds": 0.006478958006482571,
+            "fit_preparation_seconds": 2.6709050871431828e-05,
+            "other_seconds": 0.000527665950357914,
+            "simulation_seconds": 0.05604495701845735
+          }
+        },
+        "selected_fast": {
+          "median_seconds": 0.030195875035133213,
+          "samples": 9,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.01714708295185119,
+            "dependence_seconds": 0.006450292014051229,
+            "fit_preparation_seconds": 8.25000461190939e-06,
+            "other_seconds": 0.00016149901784956455,
+            "simulation_seconds": 0.005935250024776906
+          }
+        },
+        "rough_only_IID_on_sampled_conventional_SV_corrected_nodes": {
+          "median_seconds": 0.06772758299484849,
+          "samples": 9,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.017425791011191905,
+            "dependence_seconds": 0.0064244160312227905,
+            "fit_preparation_seconds": 0.001011208922136575,
+            "other_seconds": 0.00031212501926347613,
+            "simulation_seconds": 0.04204733303049579
+          }
+        },
+        "candidate_speedup_vs_M261": 1.7431333401886695,
+        "candidate_time_ratio_vs_selected_fast": 2.2429415579461347
+      }
+    },
+    "multi_annually_126": {
+      "fresh": {
+        "m261": {
+          "median_seconds": 0.12480020796647295,
+          "samples": 3,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.0022642500116489828,
+            "dependence_seconds": 0.004601542023010552,
+            "fit_preparation_seconds": 0.10436483501689509,
+            "other_seconds": 0.00023441697703674436,
+            "simulation_seconds": 0.013455999142024666
+          }
+        },
+        "selected_fast": {
+          "median_seconds": 0.061385000008158386,
+          "samples": 3,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.001807249034754932,
+            "dependence_seconds": 0.004793583007995039,
+            "fit_preparation_seconds": 0.05284641799516976,
+            "other_seconds": 0.00018912501400336623,
+            "simulation_seconds": 0.0018352929037064314
+          }
+        },
+        "rough_only_IID_on_sampled_conventional_SV_corrected_nodes": {
+          "median_seconds": 0.1217253339709714,
+          "samples": 3,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.001906750025227666,
+            "dependence_seconds": 0.0047354999696835876,
+            "fit_preparation_seconds": 0.10618366696871817,
+            "other_seconds": 0.00043516705045476556,
+            "simulation_seconds": 0.008521249983459711
+          }
+        },
+        "candidate_speedup_vs_M261": 1.0252607562878804,
+        "candidate_time_ratio_vs_selected_fast": 1.9829817374732177
+      },
+      "cached": {
+        "m261": {
+          "median_seconds": 0.01868224999634549,
+          "samples": 9,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.001945790951140225,
+            "dependence_seconds": 0.004244667012244463,
+            "fit_preparation_seconds": 3.2248091883957386e-05,
+            "other_seconds": 0.0001840420882217586,
+            "simulation_seconds": 0.012185041035991162
+          }
+        },
+        "selected_fast": {
+          "median_seconds": 0.00718783400952816,
+          "samples": 9,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.0016010000254027545,
+            "dependence_seconds": 0.004277208005078137,
+            "fit_preparation_seconds": 1.3417971786111593e-05,
+            "other_seconds": 0.00011841801460832357,
+            "simulation_seconds": 0.0011113739456050098
+          }
+        },
+        "rough_only_IID_on_sampled_conventional_SV_corrected_nodes": {
+          "median_seconds": 0.013647290994413197,
+          "samples": 9,
+          "median_partition_seconds": {
+            "calendar_rejoin_seconds": 0.0017068330198526382,
+            "dependence_seconds": 0.004265040974132717,
+            "fit_preparation_seconds": 0.0004524592077359557,
+            "other_seconds": 0.0002693328424356878,
+            "simulation_seconds": 0.00709341699257493
+          }
+        },
+        "candidate_speedup_vs_M261": 1.3689346848391712,
+        "candidate_time_ratio_vs_selected_fast": 1.8986652969896647
+      }
+    }
+  },
+  "scope": "SRIU local diagnostic; two predefined contexts, three repeats; not broad14/website/seed-robustness. Cached median pools9calls permodel/context.",
+  "timestamp": 1792421609.344046
+}

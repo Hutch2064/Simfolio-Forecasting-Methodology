@@ -1,0 +1,244 @@
+{
+  "all_bound_sources_and_controls_match": true,
+  "all_cells_and_counts_rebuilt_byte_exactly": true,
+  "all_saved_controls_byte_equal": true,
+  "all_task_identities_match_reference": true,
+  "artifact_sha256": {
+    "analysis": "785b296708816464154a21a32f70aa7fbda44f083a502020b63406c4ed0d1c4b",
+    "cells": "a9a202f25ff09ea2a7775f8dec5a305aaddfe07d8cb0d8a898df1111add17c88",
+    "completion": "6448ad508f8aa29144b833752d053d67f2b78dc05321d740e480934a4cf8f2bd",
+    "manifest": "9e53bdeacaf564a1430656b80f1a6c5234d982e5a65ef0c502effba8b02c65f4",
+    "reference_manifest": "bc4ad30824e8c23d924da3e7de7beb07b1131b3845ae10dd1b6758e16b50c4c2",
+    "results": "393d5a2b3d50f77897e6111f6f2f94f60840b789dc42b95d1baa850026def948"
+  },
+  "auditor_dependencies": [
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/normalize.py",
+      "sha256": "1d60c45411a9e3af4bb4a96bdfa6c5d1ae4e664fb888ad46c3425f380a8663a7"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_original_nodes/full_audit.py",
+      "sha256": "9cc6e533142361220454853df2b8264ea70ba228bacb58975006b883286c12cd"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/iid_original_nodes_full_actual_audit/review.json",
+      "sha256": "601dcd72bfd541533ad428e65d92cdae37de72e6aee30a0602aa920da3120347"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/catalogue_support/drafts_original_nodes_IID/seal-v3.json",
+      "sha256": "765206aa4ec39f4bcf523fe61b65f92ff96df52589275481ac0bb2a2afb1842c"
+    }
+  ],
+  "auditor_source": {
+    "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/normalize.py",
+    "sha256": "0ad64bb19cdec85d1353364bce35620edaff27c54daa13327299dd70304cd238"
+  },
+  "canonical_denominators": {
+    "cells_per_model": 701280,
+    "counts_sha256": "fb6d86e09c08529330327ca11536de44c7df6e81676125fb5d18403cfb9f2288",
+    "horizons": 8766,
+    "origin_horizon_contributions": 6006480,
+    "origins": 4080,
+    "portfolios": 80,
+    "simulations": 240
+  },
+  "complete_origins": 4080,
+  "counts_sha256": "fb6d86e09c08529330327ca11536de44c7df6e81676125fb5d18403cfb9f2288",
+  "data_manifest_sha256": "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76",
+  "denominator_sha256": "66cce5d88dae67baa04559b6059040d8c024886e612623d66f325e8f3f66efc4",
+  "failures": 0,
+  "independent_from_runner": true,
+  "original_independent_audit": {
+    "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/iid_original_nodes_full_actual_audit/review.json",
+    "sha256": "601dcd72bfd541533ad428e65d92cdae37de72e6aee30a0602aa920da3120347"
+  },
+  "original_runner_audit": {
+    "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_original_nodes/full-52d4c26b608ac1ac/audit.json",
+    "sha256": "b94517ff442bf24a1695a4a6cff3f09e4e96e1dca0a2b1cdd2ffda316f0b7ff6"
+  },
+  "panel": "80",
+  "required_publication_source_refs": [
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/normalize.py",
+      "sha256": "0ad64bb19cdec85d1353364bce35620edaff27c54daa13327299dd70304cd238"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/normalize.py",
+      "sha256": "1d60c45411a9e3af4bb4a96bdfa6c5d1ae4e664fb888ad46c3425f380a8663a7"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_original_nodes/full_audit.py",
+      "sha256": "9cc6e533142361220454853df2b8264ea70ba228bacb58975006b883286c12cd"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/iid_original_nodes_full_actual_audit/review.json",
+      "sha256": "601dcd72bfd541533ad428e65d92cdae37de72e6aee30a0602aa920da3120347"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/catalogue_support/drafts_original_nodes_IID/seal-v3.json",
+      "sha256": "765206aa4ec39f4bcf523fe61b65f92ff96df52589275481ac0bb2a2afb1842c"
+    }
+  ],
+  "schema": "unified-frontier-publication-audit-v1",
+  "scope": "Schema projection of the pinned accepted independent completed saved study, not a new raw reconstruction or financial run.",
+  "score_aggregation": {
+    "canonical_order": "C",
+    "canonical_scores": {
+      "M261_saved_control": 0.22672308848311776,
+      "RMS_corrected_nodes_saved_control": 0.23457102422540146,
+      "RMS_original_nodes": 0.23258808209819795,
+      "conditional_rough_no_conventional_original_nodes": 0.22869542481735233,
+      "conventional_SV_corrected_variance_nodes": 0.23007252374266968,
+      "conventional_mean_plus_covariance": 0.2331864906759,
+      "covariance_only": 0.23387900572210277,
+      "iid_conditional_unit_second_moment_scale": 0.22784056761333035,
+      "iid_conditional_unit_second_moment_scale_original_nodes": 0.22653257917294423,
+      "mean_only": 0.23385584849519025,
+      "rough_off_original_nodes_saved_control": 0.23051618147311073,
+      "rough_only_IID_on_sampled_conventional_SV_corrected_nodes": 0.22835434759659093,
+      "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": 0.22904705025144675,
+      "total_covariance_only": 0.23239664339923255,
+      "total_kernel_existing_conventional_mean": 0.23171189271702697,
+      "total_kernel_full_conditional_total_mean": 0.23155344406726108
+    },
+    "dtype": "float64",
+    "epsilon": 2.220446049250313e-16,
+    "gamma_n": 1.5571544056607326e-10,
+    "method": "float64_gamma_n_mean_absolute_cells",
+    "n": 701280,
+    "per_label": {
+      "M261_saved_control": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.530428560964949e-11,
+        "mean_absolute_cells": 0.22672308848311776,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "RMS_corrected_nodes_saved_control": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.652633038129343e-11,
+        "mean_absolute_cells": 0.23457102422540146,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "RMS_original_nodes": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.621755567433891e-11,
+        "mean_absolute_cells": 0.23258808209819795,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "conditional_rough_no_conventional_original_nodes": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.5611408830879304e-11,
+        "mean_absolute_cells": 0.22869542481735233,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "conventional_SV_corrected_variance_nodes": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.582584439673816e-11,
+        "mean_absolute_cells": 0.23007252374266968,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "conventional_mean_plus_covariance": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.63107371296543e-11,
+        "mean_absolute_cells": 0.2331864906759,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "covariance_only": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.64185724151724e-11,
+        "mean_absolute_cells": 0.23387900572210277,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "iid_conditional_unit_second_moment_scale": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.547829436473394e-11,
+        "mean_absolute_cells": 0.22784056761333035,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "iid_conditional_unit_second_moment_scale_original_nodes": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.527462036848388e-11,
+        "mean_absolute_cells": 0.22653257917294423,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "mean_only": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.641496647738143e-11,
+        "mean_absolute_cells": 0.23385584849519025,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "rough_off_original_nodes_saved_control": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.589492875569433e-11,
+        "mean_absolute_cells": 0.23051618147311073,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "rough_only_IID_on_sampled_conventional_SV_corrected_nodes": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.555829784118139e-11,
+        "mean_absolute_cells": 0.22835434759659093,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.566616234026355e-11,
+        "mean_absolute_cells": 0.22904705025144675,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "total_covariance_only": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.618774571298812e-11,
+        "mean_absolute_cells": 0.23239664339923255,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "total_kernel_existing_conventional_mean": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.608111945883056e-11,
+        "mean_absolute_cells": 0.23171189271702697,
+        "ulp_difference": 0,
+        "within_bound": true
+      },
+      "total_kernel_full_conditional_total_mean": {
+        "absolute_difference": 0.0,
+        "error_bound": 3.605644655752516e-11,
+        "mean_absolute_cells": 0.23155344406726108,
+        "ulp_difference": 0,
+        "within_bound": true
+      }
+    },
+    "raw_results_scores": {
+      "M261_saved_control": 0.22672308848311776,
+      "RMS_corrected_nodes_saved_control": 0.23457102422540146,
+      "RMS_original_nodes": 0.23258808209819795,
+      "conditional_rough_no_conventional_original_nodes": 0.22869542481735233,
+      "conventional_SV_corrected_variance_nodes": 0.23007252374266968,
+      "conventional_mean_plus_covariance": 0.2331864906759,
+      "covariance_only": 0.23387900572210277,
+      "iid_conditional_unit_second_moment_scale": 0.22784056761333035,
+      "iid_conditional_unit_second_moment_scale_original_nodes": 0.22653257917294423,
+      "mean_only": 0.23385584849519025,
+      "rough_off_original_nodes_saved_control": 0.23051618147311073,
+      "rough_only_IID_on_sampled_conventional_SV_corrected_nodes": 0.22835434759659093,
+      "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": 0.22904705025144675,
+      "total_covariance_only": 0.23239664339923255,
+      "total_kernel_existing_conventional_mean": 0.23171189271702697,
+      "total_kernel_full_conditional_total_mean": 0.23155344406726108
+    },
+    "schema": "unified-frontier-scalar-aggregation-v1"
+  },
+  "task_identities_sha256": "48aa177e99d14ae8d7783c50210e00dc6910f3b00ca8efcaf399d21ef29f15bd"
+}

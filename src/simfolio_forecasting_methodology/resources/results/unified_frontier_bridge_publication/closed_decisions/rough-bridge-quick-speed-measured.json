@@ -1,0 +1,145 @@
+{
+  "scope": "Two fixed contexts, three fresh-process repetitions per method; cached median across nine calls. SRIU local diagnostic with idle original administrative pair retained, not full14/website CTV or seedrobustness.",
+  "passed": true,
+  "trials": 18,
+  "contexts": {
+    "SPYSIM_8766": {
+      "m261": {
+        "fresh_median_seconds": 0.1687607080093585,
+        "fresh_all_seconds": [
+          0.1687607080093585,
+          0.16836245899321511,
+          0.1692131250165403
+        ],
+        "cached_median_seconds": 0.11596545798238367,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.0540205420111306,
+          "dependence_seconds": 0.007226708985399455,
+          "fit_preparation_seconds": 0.05070054193492979,
+          "other_seconds": 0.0006740830722264946,
+          "simulation_seconds": 0.056305875943508
+        },
+        "pids": [
+          95265,
+          1727,
+          4733
+        ]
+      },
+      "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": {
+        "fresh_median_seconds": 0.06756699999095872,
+        "fresh_all_seconds": [
+          0.06756699999095872,
+          0.07013220898807049,
+          0.06750283401925117
+        ],
+        "cached_median_seconds": 0.040962417027913034,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.01840016699861735,
+          "dependence_seconds": 0.00726762501290068,
+          "fit_preparation_seconds": 0.021611375035718083,
+          "other_seconds": 0.00023012602468952537,
+          "simulation_seconds": 0.020118042011745274
+        },
+        "pids": [
+          96818,
+          99929,
+          6332
+        ],
+        "fresh_speedup_vs_M261": 2.497679459380181,
+        "fresh_time_multiple_vs_selected_fast": 1.1358685713991206,
+        "cached_speedup_vs_M261": 2.8310208819797253,
+        "cached_time_multiple_vs_selected_fast": 1.411874356877024
+      },
+      "selected_fast": {
+        "fresh_median_seconds": 0.05948487500427291,
+        "fresh_all_seconds": [
+          0.0563567079952918,
+          0.05948487500427291,
+          0.060431750025600195
+        ],
+        "cached_median_seconds": 0.029012791987042874,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.01793904200894758,
+          "dependence_seconds": 0.007200291962362826,
+          "fit_preparation_seconds": 0.0233364169835113,
+          "other_seconds": 0.00014154007658362389,
+          "simulation_seconds": 0.009761833003722131
+        },
+        "pids": [
+          96039,
+          992,
+          5616
+        ]
+      }
+    },
+    "multi_annually_126": {
+      "m261": {
+        "fresh_median_seconds": 0.11903395794797689,
+        "fresh_all_seconds": [
+          0.11878362501738593,
+          0.12005024997051805,
+          0.11903395794797689
+        ],
+        "cached_median_seconds": 0.01796658302191645,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.002123375015798956,
+          "dependence_seconds": 0.004483831988181919,
+          "fit_preparation_seconds": 0.09981416398659348,
+          "other_seconds": 0.0001922511146403849,
+          "simulation_seconds": 0.01266954094171524
+        },
+        "pids": [
+          97595,
+          4005,
+          7085
+        ]
+      },
+      "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": {
+        "fresh_median_seconds": 0.1186484579811804,
+        "fresh_all_seconds": [
+          0.1186484579811804,
+          0.12254016700899228,
+          0.1101646659662947
+        ],
+        "cached_median_seconds": 0.0123542919754982,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.0016788750072009861,
+          "dependence_seconds": 0.006201666023116559,
+          "fit_preparation_seconds": 0.10501170810312033,
+          "other_seconds": 0.0003274580813013017,
+          "simulation_seconds": 0.005333291017450392
+        },
+        "pids": [
+          99150,
+          2602,
+          8995
+        ],
+        "fresh_speedup_vs_M261": 1.0032490937796903,
+        "fresh_time_multiple_vs_selected_fast": 2.0220851711983414,
+        "cached_speedup_vs_M261": 1.4542786472546458,
+        "cached_time_multiple_vs_selected_fast": 1.7595678650670161
+      },
+      "selected_fast": {
+        "fresh_median_seconds": 0.05867629102431238,
+        "fresh_all_seconds": [
+          0.05999429104849696,
+          0.05867629102431238,
+          0.05625483300536871
+        ],
+        "cached_median_seconds": 0.007021208002697676,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.0017625830369070172,
+          "dependence_seconds": 0.004654956981539726,
+          "fit_preparation_seconds": 0.050193250994198024,
+          "other_seconds": 0.00016095803584903479,
+          "simulation_seconds": 0.0017491650069132447
+        },
+        "pids": [
+          98371,
+          3343,
+          8221
+        ]
+      }
+    }
+  }
+}

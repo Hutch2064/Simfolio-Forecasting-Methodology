@@ -1,0 +1,59 @@
+{
+  "scope": "One fixed predeclared six-asset annual-policy8766-day context,3fresh-process repetitions permodel,9cachedmeasurements; extension of SRIU local diagnostic, not representative full14/website CTV or seedrobustness.",
+  "passed": true,
+  "trials": 9,
+  "models": {
+    "m261": {
+      "fresh_median_seconds": 1.474780708027538,
+      "fresh_all_seconds": [
+        1.362162208009977,
+        1.474780708027538,
+        1.9226996659999713
+      ],
+      "cached_median_seconds": 0.851616500003729,
+      "fresh_stage_medians_seconds": {
+        "calendar_rejoin_seconds": 0.10671258298680186,
+        "dependence_seconds": 0.31855316599830985,
+        "fit_preparation_seconds": 0.5858202491072007,
+        "other_seconds": 0.0008803340024314821,
+        "simulation_seconds": 0.46281437593279406
+      }
+    },
+    "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": {
+      "fresh_median_seconds": 1.1565362500259653,
+      "fresh_all_seconds": [
+        1.1565362500259653,
+        1.1547655000467785,
+        1.2110849170130678
+      ],
+      "cached_median_seconds": 0.6195524579961784,
+      "fresh_stage_medians_seconds": {
+        "calendar_rejoin_seconds": 0.08245550008723512,
+        "dependence_seconds": 0.4136222920496948,
+        "fit_preparation_seconds": 0.5228510000160895,
+        "other_seconds": 0.0006477499846369028,
+        "simulation_seconds": 0.14484054199419916
+      },
+      "fresh_speedup_vs_M261": 1.2751703269088432,
+      "fresh_time_multiple_vs_selected_fast": 1.5624628648967753,
+      "cached_speedup_vs_M261": 1.3745672202772248,
+      "cached_time_multiple_vs_selected_fast": 1.4731088734670117
+    },
+    "selected_fast": {
+      "fresh_median_seconds": 0.7402007919736207,
+      "fresh_all_seconds": [
+        0.7402007919736207,
+        0.7877151250140741,
+        0.7359564590151422
+      ],
+      "cached_median_seconds": 0.42057479196228087,
+      "fresh_stage_medians_seconds": {
+        "calendar_rejoin_seconds": 0.07978429098147899,
+        "dependence_seconds": 0.29176437499700114,
+        "fit_preparation_seconds": 0.30430820799665526,
+        "other_seconds": 0.00027120893355458975,
+        "simulation_seconds": 0.06725412601372227
+      }
+    }
+  }
+}

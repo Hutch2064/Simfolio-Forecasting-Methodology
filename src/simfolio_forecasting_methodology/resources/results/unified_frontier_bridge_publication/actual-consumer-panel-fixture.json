@@ -1,0 +1,302 @@
+{
+  "canonical_data_root": "tmp/catalogue52-20261018",
+  "completion_ref": {
+    "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/publication-audit-completion.json",
+    "sha256": "bd8e5aec8d0cd59765b7bd31e4dae03ee1c3ab2c2889320857eb28dcf7773669"
+  },
+  "evidence_root": ".",
+  "historical_annotation": {
+    "inherited_CRPS": 0.6022154610545161,
+    "new_forecasts": 0,
+    "panel": "52",
+    "scope": "Historical one-history identity only; not a newly evaluated52 panel."
+  },
+  "panels": {
+    "52": {
+      "reason": "Zero fresh52 forecasts; inherited single-history identity is a separate historical annotation.",
+      "status": "not_evaluated"
+    },
+    "80": {
+      "controls": {
+        "M261_saved_control": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "RMS_corrected_nodes_saved_control": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "RMS_original_nodes": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "conditional_rough_no_conventional_original_nodes": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "conventional_SV_corrected_variance_nodes": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "conventional_mean_plus_covariance": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "covariance_only": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "iid_conditional_unit_second_moment_scale": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "mean_only": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "rough_off_original_nodes_saved_control": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "total_covariance_only": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "total_kernel_existing_conventional_mean": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        },
+        "total_kernel_full_conditional_total_mean": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/iid_conditional_scale_candidates/full-8544ad97dc7caf39/80/cells.npz",
+          "sha256": "4e99549cc203ac3826614d1273f479b8debc8512ebb9486135a4a1e7e7409fc5"
+        }
+      },
+      "evidence": {
+        "analysis": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge/full-4ce66184d7db04fd/analysis.json",
+          "sha256": "be3d0f04885e093b9925d60af34012a2351eaaffc2da614557cb4f8a4bdfebc2"
+        },
+        "audit": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/80/publication-audit.json",
+          "sha256": "29c7b35ece8c29de4c7f2634212bc027f953eed26ad823af6452aa0cb6c3c2fa"
+        },
+        "cells": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge/full-4ce66184d7db04fd/80/cells.npz",
+          "sha256": "8a9ba9f04513295583de9f172a2e2f67980fa487a9a491290ca9e0023901cb52"
+        },
+        "completion": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/80/normalized-completion.json",
+          "sha256": "7de9db375d42577a2076f0afe5a15e9c3ba588d8b725d78b8f759470c28ba73d"
+        },
+        "manifest": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge/full-4ce66184d7db04fd/manifest.json",
+          "sha256": "e8470a7a7c53b414cac0d4faaec48d0dc90f5dddddf83edd4ee95352606fb3d8"
+        },
+        "reference_manifest": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/rough-off80/manifest.json",
+          "sha256": "bc4ad30824e8c23d924da3e7de7beb07b1131b3845ae10dd1b6758e16b50c4c2"
+        },
+        "results": {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge/full-4ce66184d7db04fd/80/results.json",
+          "sha256": "90bc4a1735c352a10b837c82edba0d4979284668ecd05fbccb2b91966ddcd544"
+        }
+      },
+      "raw_results_scores": {
+        "M261_saved_control": 0.22672308848311776,
+        "RMS_corrected_nodes_saved_control": 0.23457102422540146,
+        "RMS_original_nodes": 0.23258808209819795,
+        "conditional_rough_no_conventional_original_nodes": 0.22869542481735233,
+        "conventional_SV_corrected_variance_nodes": 0.23007252374266968,
+        "conventional_mean_plus_covariance": 0.2331864906759,
+        "covariance_only": 0.23387900572210277,
+        "iid_conditional_unit_second_moment_scale": 0.22784056761333035,
+        "mean_only": 0.23385584849519025,
+        "rough_off_original_nodes_saved_control": 0.23051618147311073,
+        "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": 0.22904705025144675,
+        "total_covariance_only": 0.23239664339923255,
+        "total_kernel_existing_conventional_mean": 0.23171189271702697,
+        "total_kernel_full_conditional_total_mean": 0.23155344406726108
+      },
+      "runner_sources": [
+        {
+          "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge/full_run.py",
+          "sha256": "b4c683a072fd989f6cc7706b7bba2f03167c9cb6d927463555c12d3dccfb3846"
+        }
+      ],
+      "score_aggregation": {
+        "canonical_order": "C",
+        "canonical_scores": {
+          "M261_saved_control": 0.22672308848311776,
+          "RMS_corrected_nodes_saved_control": 0.23457102422540146,
+          "RMS_original_nodes": 0.23258808209819795,
+          "conditional_rough_no_conventional_original_nodes": 0.22869542481735233,
+          "conventional_SV_corrected_variance_nodes": 0.23007252374266968,
+          "conventional_mean_plus_covariance": 0.2331864906759,
+          "covariance_only": 0.23387900572210277,
+          "iid_conditional_unit_second_moment_scale": 0.22784056761333035,
+          "mean_only": 0.23385584849519025,
+          "rough_off_original_nodes_saved_control": 0.23051618147311073,
+          "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": 0.22904705025144675,
+          "total_covariance_only": 0.23239664339923255,
+          "total_kernel_existing_conventional_mean": 0.23171189271702697,
+          "total_kernel_full_conditional_total_mean": 0.23155344406726108
+        },
+        "dtype": "float64",
+        "epsilon": 2.220446049250313e-16,
+        "gamma_n": 1.5571544056607326e-10,
+        "method": "float64_gamma_n_mean_absolute_cells",
+        "n": 701280,
+        "per_label": {
+          "M261_saved_control": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.530428560964949e-11,
+            "mean_absolute_cells": 0.22672308848311776,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "RMS_corrected_nodes_saved_control": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.652633038129343e-11,
+            "mean_absolute_cells": 0.23457102422540146,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "RMS_original_nodes": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.621755567433891e-11,
+            "mean_absolute_cells": 0.23258808209819795,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "conditional_rough_no_conventional_original_nodes": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.5611408830879304e-11,
+            "mean_absolute_cells": 0.22869542481735233,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "conventional_SV_corrected_variance_nodes": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.582584439673816e-11,
+            "mean_absolute_cells": 0.23007252374266968,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "conventional_mean_plus_covariance": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.63107371296543e-11,
+            "mean_absolute_cells": 0.2331864906759,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "covariance_only": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.64185724151724e-11,
+            "mean_absolute_cells": 0.23387900572210277,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "iid_conditional_unit_second_moment_scale": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.547829436473394e-11,
+            "mean_absolute_cells": 0.22784056761333035,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "mean_only": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.641496647738143e-11,
+            "mean_absolute_cells": 0.23385584849519025,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "rough_off_original_nodes_saved_control": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.589492875569433e-11,
+            "mean_absolute_cells": 0.23051618147311073,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.566616234026355e-11,
+            "mean_absolute_cells": 0.22904705025144675,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "total_covariance_only": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.618774571298812e-11,
+            "mean_absolute_cells": 0.23239664339923255,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "total_kernel_existing_conventional_mean": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.608111945883056e-11,
+            "mean_absolute_cells": 0.23171189271702697,
+            "ulp_difference": 0,
+            "within_bound": true
+          },
+          "total_kernel_full_conditional_total_mean": {
+            "absolute_difference": 0.0,
+            "error_bound": 3.605644655752516e-11,
+            "mean_absolute_cells": 0.23155344406726108,
+            "ulp_difference": 0,
+            "within_bound": true
+          }
+        },
+        "raw_results_scores": {
+          "M261_saved_control": 0.22672308848311776,
+          "RMS_corrected_nodes_saved_control": 0.23457102422540146,
+          "RMS_original_nodes": 0.23258808209819795,
+          "conditional_rough_no_conventional_original_nodes": 0.22869542481735233,
+          "conventional_SV_corrected_variance_nodes": 0.23007252374266968,
+          "conventional_mean_plus_covariance": 0.2331864906759,
+          "covariance_only": 0.23387900572210277,
+          "iid_conditional_unit_second_moment_scale": 0.22784056761333035,
+          "mean_only": 0.23385584849519025,
+          "rough_off_original_nodes_saved_control": 0.23051618147311073,
+          "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": 0.22904705025144675,
+          "total_covariance_only": 0.23239664339923255,
+          "total_kernel_existing_conventional_mean": 0.23171189271702697,
+          "total_kernel_full_conditional_total_mean": 0.23155344406726108
+        },
+        "schema": "unified-frontier-scalar-aggregation-v1"
+      },
+      "scores": {
+        "M261_saved_control": 0.22672308848311776,
+        "RMS_corrected_nodes_saved_control": 0.23457102422540146,
+        "RMS_original_nodes": 0.23258808209819795,
+        "conditional_rough_no_conventional_original_nodes": 0.22869542481735233,
+        "conventional_SV_corrected_variance_nodes": 0.23007252374266968,
+        "conventional_mean_plus_covariance": 0.2331864906759,
+        "covariance_only": 0.23387900572210277,
+        "iid_conditional_unit_second_moment_scale": 0.22784056761333035,
+        "mean_only": 0.23385584849519025,
+        "rough_off_original_nodes_saved_control": 0.23051618147311073,
+        "rough_only_covariance_on_sampled_conventional_SV_corrected_nodes": 0.22904705025144675,
+        "total_covariance_only": 0.23239664339923255,
+        "total_kernel_existing_conventional_mean": 0.23171189271702697,
+        "total_kernel_full_conditional_total_mean": 0.23155344406726108
+      },
+      "status": "complete_scored_and_audited"
+    }
+  },
+  "schema": "bridge80-normalized-publication-panel-fixture-v1",
+  "scope": "Public-safe aggregate scores, counts, hashes and provenance only; no provider returns or path arrays.",
+  "sources": [
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/normalize.py",
+      "sha256": "1d60c45411a9e3af4bb4a96bdfa6c5d1ae4e664fb888ad46c3425f380a8663a7"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge/full_audit.py",
+      "sha256": "fac69df160cbe8b2677925590cd198fe347a8b4e28ef2772d56f99aa511f848c"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/rough_only_conventional_bridge_full_actual_audit/review.json",
+      "sha256": "434cadd8ac94b9a74dc784b0efeb5a7d2ec29455be5d432a8114c9192592c1c1"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "timestamp": 1792433934.868314,
+  "goal_status": "ACTIVE",
+  "branch": "same-law clip-owned accounting exp buffer, no RMS/native composition",
+  "actual_saved_audit": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_growth_speed/independent-27-actual-audit-v3.json",
+    "sha256": "4d6ae96baa84d6d581abf43afdf69ecb558b79b4dbbea15bd756f77a5c1dfce8"
+  },
+  "accepted_trials": 27,
+  "new_trials": 22,
+  "reused_immutable_trials": 5,
+  "accepted_timed_calls": 108,
+  "accepted_forecasts_including_extras": 168,
+  "failed_attempts_preserved_and_separate": true,
+  "candidate_time_multiple_selected_FAST": {
+    "SPYSIM8766_sameV3_epoch": {
+      "fresh_fit": 1.0298117584966828,
+      "cached_fit": 1.0321650132424454
+    },
+    "multi126_sameV3_epoch": {
+      "fresh_fit": 0.9429613780362662,
+      "cached_fit": 0.9929753056276985
+    },
+    "multi8766_allnew": {
+      "fresh_fit": 0.9877918615096872,
+      "cached_fit": 1.0012020643655206
+    }
+  },
+  "interpretation": "No broad FAST speed win; no score changes tested or inferred beyond bounded exact output comparisons; do not promote on incidental subset savings. Financial law unchanged, implementation not all-work production validated.",
+  "decision": "park standalone accounting allocation tweak for strict unified-speed objective; retain all evidence; native kernel test remains pending",
+  "not_excluded_from_catalogue_or_sweep": true,
+  "summarizer_limit": "frozen saved-only summarize_v3.py has numbered cached-state label mismatch; not executed/mutated. Parent stdlib medians independently reproduced.",
+  "production_changed": false
+}

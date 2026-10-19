@@ -1,0 +1,97 @@
+{
+  "actual_session": 1776,
+  "actual_exit_code": 0,
+  "trials": 9,
+  "case": "multi_annually_8766",
+  "numerical_worker_pids": [
+    42386,
+    43896,
+    44941,
+    46350,
+    47798,
+    48838,
+    50283,
+    51705,
+    52753
+  ],
+  "all_numeric_workers_absent": true,
+  "completion_sha256": "6abe0b7c6a04f31b7fd3bb2af73a3eb43065aab4bbf17a093bff649517515763",
+  "results": {
+    "fresh": {
+      "m261": {
+        "median_seconds": 1.3604857500176877,
+        "samples": 3,
+        "median_partition_seconds": {
+          "calendar_rejoin_seconds": 0.10288383305305615,
+          "dependence_seconds": 0.2983612079988234,
+          "fit_preparation_seconds": 0.5226172928814776,
+          "other_seconds": 0.0008441240643151104,
+          "simulation_seconds": 0.4350242919754237
+        }
+      },
+      "selected_fast": {
+        "median_seconds": 0.7310386250028387,
+        "samples": 3,
+        "median_partition_seconds": {
+          "calendar_rejoin_seconds": 0.08026250096736476,
+          "dependence_seconds": 0.2890455000451766,
+          "fit_preparation_seconds": 0.29939833289245144,
+          "other_seconds": 0.000232623890042305,
+          "simulation_seconds": 0.06245383305940777
+        }
+      },
+      "rough_only_IID_on_sampled_conventional_SV_corrected_nodes": {
+        "median_seconds": 1.181851709028706,
+        "samples": 3,
+        "median_partition_seconds": {
+          "calendar_rejoin_seconds": 0.08117575099458918,
+          "dependence_seconds": 0.29793524998240173,
+          "fit_preparation_seconds": 0.5274995850631967,
+          "other_seconds": 0.0009518330916762352,
+          "simulation_seconds": 0.2742768329917453
+        }
+      },
+      "candidate_speedup_vs_M261": 1.1511475929038428,
+      "candidate_time_ratio_vs_selected_fast": 1.6166747810679862
+    },
+    "cached": {
+      "m261": {
+        "median_seconds": 0.7977204169728793,
+        "samples": 9,
+        "median_partition_seconds": {
+          "calendar_rejoin_seconds": 0.10043483303161338,
+          "dependence_seconds": 0.28433499904349446,
+          "fit_preparation_seconds": 0.00010816403664648533,
+          "other_seconds": 0.0006634999881498516,
+          "simulation_seconds": 0.4127904581837356
+        }
+      },
+      "selected_fast": {
+        "median_seconds": 0.4155079579795711,
+        "samples": 9,
+        "median_partition_seconds": {
+          "calendar_rejoin_seconds": 0.08087641600286588,
+          "dependence_seconds": 0.2831865420448594,
+          "fit_preparation_seconds": 4.7332956455647945e-05,
+          "other_seconds": 0.00018375000217929482,
+          "simulation_seconds": 0.0510121239349246
+        }
+      },
+      "rough_only_IID_on_sampled_conventional_SV_corrected_nodes": {
+        "median_seconds": 0.6283357919892296,
+        "samples": 9,
+        "median_partition_seconds": {
+          "calendar_rejoin_seconds": 0.07950504106702283,
+          "dependence_seconds": 0.28977404203033075,
+          "fit_preparation_seconds": 0.0066387910628691316,
+          "other_seconds": 0.0008381668594665825,
+          "simulation_seconds": 0.25344175001373515
+        }
+      },
+      "candidate_speedup_vs_M261": 1.2695765976459816,
+      "candidate_time_ratio_vs_selected_fast": 1.512211210212543
+    }
+  },
+  "scope": "Single predefined longmulti context; SRIU diagnostic, not broad14/website/seed robustness.",
+  "timestamp": 1792421902.313741
+}

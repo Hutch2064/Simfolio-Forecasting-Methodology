@@ -1,0 +1,82 @@
+{
+  "scope": "18 bounded local controlled trials, no website/full-panel claim",
+  "cases": {
+    "SPYSIM_8766": {
+      "fresh_fit": {
+        "models": {
+          "iid_conditional_unit_second_moment_scale_original_nodes": {
+            "median_seconds": 0.14788733300520107,
+            "observations": 3
+          },
+          "m261": {
+            "median_seconds": 0.16503812500741333,
+            "observations": 3
+          },
+          "selected_fast": {
+            "median_seconds": 0.0548898329725489,
+            "observations": 3
+          }
+        },
+        "speedup_vs_M261": 1.1159720150042132,
+        "time_multiple_vs_selected_fast": 2.6942572967777365
+      },
+      "cached_fit": {
+        "models": {
+          "iid_conditional_unit_second_moment_scale_original_nodes": {
+            "median_seconds": 0.09297629201319069,
+            "observations": 9
+          },
+          "m261": {
+            "median_seconds": 0.11272841604659334,
+            "observations": 9
+          },
+          "selected_fast": {
+            "median_seconds": 0.028318500029854476,
+            "observations": 9
+          }
+        },
+        "speedup_vs_M261": 1.212442587306024,
+        "time_multiple_vs_selected_fast": 3.2832350553585616
+      }
+    },
+    "multi_annually_126": {
+      "fresh_fit": {
+        "models": {
+          "iid_conditional_unit_second_moment_scale_original_nodes": {
+            "median_seconds": 0.11581912502879277,
+            "observations": 3
+          },
+          "m261": {
+            "median_seconds": 0.11529066698858514,
+            "observations": 3
+          },
+          "selected_fast": {
+            "median_seconds": 0.05533845804166049,
+            "observations": 3
+          }
+        },
+        "speedup_vs_M261": 0.9954372126358557,
+        "time_multiple_vs_selected_fast": 2.092922880894162
+      },
+      "cached_fit": {
+        "models": {
+          "iid_conditional_unit_second_moment_scale_original_nodes": {
+            "median_seconds": 0.013008124951738864,
+            "observations": 9
+          },
+          "m261": {
+            "median_seconds": 0.017468874983023852,
+            "observations": 9
+          },
+          "selected_fast": {
+            "median_seconds": 0.006495374953374267,
+            "observations": 9
+          }
+        },
+        "speedup_vs_M261": 1.3429202938805331,
+        "time_multiple_vs_selected_fast": 2.002674987220146
+      }
+    }
+  },
+  "terminal_sha256": "7b1e596f8bb7c6348bbffd6f2d4503879e5307abdad9ed393d889042d6532a64"
+}

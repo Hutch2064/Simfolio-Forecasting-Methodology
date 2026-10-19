@@ -1,0 +1,540 @@
+{
+  "M261_oracle_scope": "SPYSIM M261 retains a prior full-path hash but no independent daily CRPS oracle. Multiasset M261 has pinned original law/input plus fresh original plain full-path/CRPS and cross-rep guards; no invented historical path/CRPS oracle.",
+  "all31_observed_financial_and_support_PIDs_currently_absent": true,
+  "all_observed_timing_PIDs_currently_absent": true,
+  "cached_median_policy": "Pool cached_fit_1/2/3 (9 observations/model/context); fresh_fit has3. Use raw wall samples; nested timers never summed twice.",
+  "candidate_selected_all_three_contexts_direct_saved_CRPS_oracles_pass": true,
+  "cases": {
+    "SPYSIM_8766": {
+      "cached_fit": {
+        "candidate_time_multiple_FAST": 0.986817935010398,
+        "median_seconds": {
+          "m261": 0.11559299996588379,
+          "selected_fast": 0.029395999968983233,
+          "selected_fast_literal_bound_cdcc": 0.02900849998695776
+        },
+        "partition_medians_seconds": {
+          "m261": {
+            "calendar_rejoin_seconds": 0.05366908299038187,
+            "dependence_seconds": 0.006368500005919486,
+            "fit_preparation_seconds": 2.483295975252986e-05,
+            "other_seconds": 0.0005288749234750867,
+            "simulation_seconds": 0.055412041023373604
+          },
+          "selected_fast": {
+            "calendar_rejoin_seconds": 0.016813000082038343,
+            "dependence_seconds": 0.006273167033214122,
+            "fit_preparation_seconds": 7.792026735842228e-06,
+            "other_seconds": 0.00014008302241563797,
+            "simulation_seconds": 0.005373332998715341
+          },
+          "selected_fast_literal_bound_cdcc": {
+            "calendar_rejoin_seconds": 0.016778625024016947,
+            "dependence_seconds": 0.006317584018688649,
+            "fit_preparation_seconds": 7.1249669417738914e-06,
+            "other_seconds": 0.00014799903146922588,
+            "simulation_seconds": 0.005587749998085201
+          }
+        }
+      },
+      "fresh_fit": {
+        "candidate_time_multiple_FAST": 1.0060991902965781,
+        "median_seconds": {
+          "m261": 0.16950416599866003,
+          "selected_fast": 0.055635749944485724,
+          "selected_fast_literal_bound_cdcc": 0.05597508297068998
+        },
+        "partition_medians_seconds": {
+          "m261": {
+            "calendar_rejoin_seconds": 0.05429841694422066,
+            "dependence_seconds": 0.007086875033564866,
+            "fit_preparation_seconds": 0.051184540963731706,
+            "other_seconds": 0.000678124139085412,
+            "simulation_seconds": 0.056073083949740976
+          },
+          "selected_fast": {
+            "calendar_rejoin_seconds": 0.016862458956893533,
+            "dependence_seconds": 0.0071520000346936285,
+            "fit_preparation_seconds": 0.022975125000812113,
+            "other_seconds": 0.00013408291852101684,
+            "simulation_seconds": 0.008380624989513308
+          },
+          "selected_fast_literal_bound_cdcc": {
+            "calendar_rejoin_seconds": 0.01709995901910588,
+            "dependence_seconds": 0.007285374973434955,
+            "fit_preparation_seconds": 0.023082582978531718,
+            "other_seconds": 0.0001552079920656979,
+            "simulation_seconds": 0.008605207956861705
+          }
+        }
+      }
+    },
+    "multi_annually_126": {
+      "cached_fit": {
+        "candidate_time_multiple_FAST": 0.8854636216905164,
+        "median_seconds": {
+          "m261": 0.01808883302146569,
+          "selected_fast": 0.006741666002199054,
+          "selected_fast_literal_bound_cdcc": 0.005969499994534999
+        },
+        "partition_medians_seconds": {
+          "m261": {
+            "calendar_rejoin_seconds": 0.0018396669765934348,
+            "dependence_seconds": 0.0040861249435693026,
+            "fit_preparation_seconds": 2.816889900714159e-05,
+            "other_seconds": 0.00016612495528534055,
+            "simulation_seconds": 0.01190058299107477
+          },
+          "selected_fast": {
+            "calendar_rejoin_seconds": 0.0015099580632522702,
+            "dependence_seconds": 0.004111374029889703,
+            "fit_preparation_seconds": 1.1416967026889324e-05,
+            "other_seconds": 8.858292130753398e-05,
+            "simulation_seconds": 0.0010070828720927238
+          },
+          "selected_fast_literal_bound_cdcc": {
+            "calendar_rejoin_seconds": 0.001566166989505291,
+            "dependence_seconds": 0.0031997920596040785,
+            "fit_preparation_seconds": 1.2461037840694189e-05,
+            "other_seconds": 0.00010558398207649589,
+            "simulation_seconds": 0.001054875086992979
+          }
+        }
+      },
+      "fresh_fit": {
+        "candidate_time_multiple_FAST": 0.9753729527039896,
+        "median_seconds": {
+          "m261": 0.11839829199016094,
+          "selected_fast": 0.059448542015161365,
+          "selected_fast_literal_bound_cdcc": 0.057984499959275126
+        },
+        "partition_medians_seconds": {
+          "m261": {
+            "calendar_rejoin_seconds": 0.0021824580035172403,
+            "dependence_seconds": 0.004482958000153303,
+            "fit_preparation_seconds": 0.09918825112981722,
+            "other_seconds": 0.00020562595454975963,
+            "simulation_seconds": 0.012478288961574435
+          },
+          "selected_fast": {
+            "calendar_rejoin_seconds": 0.0017596239922568202,
+            "dependence_seconds": 0.0046660410589538515,
+            "fit_preparation_seconds": 0.05123987596016377,
+            "other_seconds": 0.00016512605361640453,
+            "simulation_seconds": 0.001807542983442545
+          },
+          "selected_fast_literal_bound_cdcc": {
+            "calendar_rejoin_seconds": 0.0016143739921972156,
+            "dependence_seconds": 0.003615500987507403,
+            "fit_preparation_seconds": 0.050870289967861027,
+            "other_seconds": 0.00013375107664614916,
+            "simulation_seconds": 0.0017335009761154652
+          }
+        }
+      }
+    },
+    "multi_annually_8766": {
+      "cached_fit": {
+        "candidate_time_multiple_FAST": 0.8292180717218793,
+        "median_seconds": {
+          "m261": 0.790578291984275,
+          "selected_fast": 0.41312674997607246,
+          "selected_fast_literal_bound_cdcc": 0.34257216699188575
+        },
+        "partition_medians_seconds": {
+          "m261": {
+            "calendar_rejoin_seconds": 0.0995010010083206,
+            "dependence_seconds": 0.2789102509850636,
+            "fit_preparation_seconds": 0.00010091497097164392,
+            "other_seconds": 0.0006377919926308095,
+            "simulation_seconds": 0.41023549903184175
+          },
+          "selected_fast": {
+            "calendar_rejoin_seconds": 0.07985899900086224,
+            "dependence_seconds": 0.2818756240303628,
+            "fit_preparation_seconds": 4.770699888467789e-05,
+            "other_seconds": 0.0001902079675346613,
+            "simulation_seconds": 0.04836370691191405
+          },
+          "selected_fast_literal_bound_cdcc": {
+            "calendar_rejoin_seconds": 0.07849666697438806,
+            "dependence_seconds": 0.21553224994568154,
+            "fit_preparation_seconds": 4.816602449864149e-05,
+            "other_seconds": 0.00017804198432713747,
+            "simulation_seconds": 0.04755991499405354
+          }
+        }
+      },
+      "fresh_fit": {
+        "candidate_time_multiple_FAST": 0.9294293486916605,
+        "median_seconds": {
+          "m261": 1.348132541985251,
+          "selected_fast": 0.7306495829834603,
+          "selected_fast_literal_bound_cdcc": 0.6790871660341509
+        },
+        "partition_medians_seconds": {
+          "m261": {
+            "calendar_rejoin_seconds": 0.09968950093025342,
+            "dependence_seconds": 0.2906509169260971,
+            "fit_preparation_seconds": 0.5173491679597646,
+            "other_seconds": 0.0006618740735575557,
+            "simulation_seconds": 0.43069237493909895
+          },
+          "selected_fast": {
+            "calendar_rejoin_seconds": 0.0811690419795923,
+            "dependence_seconds": 0.2887890840647742,
+            "fit_preparation_seconds": 0.30099100002553314,
+            "other_seconds": 0.00024508399656042457,
+            "simulation_seconds": 0.061018250009510666
+          },
+          "selected_fast_literal_bound_cdcc": {
+            "calendar_rejoin_seconds": 0.0806083750212565,
+            "dependence_seconds": 0.22915679099969566,
+            "fit_preparation_seconds": 0.3018168320413679,
+            "other_seconds": 0.0001835001166909933,
+            "simulation_seconds": 0.06729791796533391
+          }
+        }
+      }
+    }
+  },
+  "component_and_owned_cache_actual_bytes_within_caps": true,
+  "daily_CRPS_all_rows_original_plain_guard_and_cross_rep_stability_pass": true,
+  "exact_tested_ABI_and_binary_gate_pass": true,
+  "extra_boundary_forecasts": 0,
+  "full_paths_all_samples_and_original_plain_guard_pass": true,
+  "new_forecasts": 162,
+  "new_timed_calls": 108,
+  "new_trials": 27,
+  "observed_numerical_and_support_family": [
+    60257,
+    64411,
+    64414,
+    65992,
+    66773,
+    67563,
+    68609,
+    69426,
+    70187,
+    70948,
+    71649,
+    72511,
+    73182,
+    73850,
+    74633,
+    75409,
+    76183,
+    76960,
+    77734,
+    78511,
+    84681,
+    88816,
+    88858,
+    90331,
+    91372,
+    92593,
+    93692,
+    94728,
+    96299,
+    97647,
+    98796
+  ],
+  "one_worker_one_initializer_NI10_thread1_caps_and_recorded_quiet_scope_pass": true,
+  "original_bytes": 30486795,
+  "original_files": 169,
+  "original_mutations": 0,
+  "owned_cache_bytes": 13577848,
+  "panels": [
+    {
+      "cases": {
+        "SPYSIM_8766": {
+          "cached_fit": {
+            "candidate_time_multiple_FAST": 0.986817935010398,
+            "median_seconds": {
+              "m261": 0.11559299996588379,
+              "selected_fast": 0.029395999968983233,
+              "selected_fast_literal_bound_cdcc": 0.02900849998695776
+            },
+            "partition_medians_seconds": {
+              "m261": {
+                "calendar_rejoin_seconds": 0.05366908299038187,
+                "dependence_seconds": 0.006368500005919486,
+                "fit_preparation_seconds": 2.483295975252986e-05,
+                "other_seconds": 0.0005288749234750867,
+                "simulation_seconds": 0.055412041023373604
+              },
+              "selected_fast": {
+                "calendar_rejoin_seconds": 0.016813000082038343,
+                "dependence_seconds": 0.006273167033214122,
+                "fit_preparation_seconds": 7.792026735842228e-06,
+                "other_seconds": 0.00014008302241563797,
+                "simulation_seconds": 0.005373332998715341
+              },
+              "selected_fast_literal_bound_cdcc": {
+                "calendar_rejoin_seconds": 0.016778625024016947,
+                "dependence_seconds": 0.006317584018688649,
+                "fit_preparation_seconds": 7.1249669417738914e-06,
+                "other_seconds": 0.00014799903146922588,
+                "simulation_seconds": 0.005587749998085201
+              }
+            }
+          },
+          "fresh_fit": {
+            "candidate_time_multiple_FAST": 1.0060991902965781,
+            "median_seconds": {
+              "m261": 0.16950416599866003,
+              "selected_fast": 0.055635749944485724,
+              "selected_fast_literal_bound_cdcc": 0.05597508297068998
+            },
+            "partition_medians_seconds": {
+              "m261": {
+                "calendar_rejoin_seconds": 0.05429841694422066,
+                "dependence_seconds": 0.007086875033564866,
+                "fit_preparation_seconds": 0.051184540963731706,
+                "other_seconds": 0.000678124139085412,
+                "simulation_seconds": 0.056073083949740976
+              },
+              "selected_fast": {
+                "calendar_rejoin_seconds": 0.016862458956893533,
+                "dependence_seconds": 0.0071520000346936285,
+                "fit_preparation_seconds": 0.022975125000812113,
+                "other_seconds": 0.00013408291852101684,
+                "simulation_seconds": 0.008380624989513308
+              },
+              "selected_fast_literal_bound_cdcc": {
+                "calendar_rejoin_seconds": 0.01709995901910588,
+                "dependence_seconds": 0.007285374973434955,
+                "fit_preparation_seconds": 0.023082582978531718,
+                "other_seconds": 0.0001552079920656979,
+                "simulation_seconds": 0.008605207956861705
+              }
+            }
+          }
+        },
+        "multi_annually_126": {
+          "cached_fit": {
+            "candidate_time_multiple_FAST": 0.8854636216905164,
+            "median_seconds": {
+              "m261": 0.01808883302146569,
+              "selected_fast": 0.006741666002199054,
+              "selected_fast_literal_bound_cdcc": 0.005969499994534999
+            },
+            "partition_medians_seconds": {
+              "m261": {
+                "calendar_rejoin_seconds": 0.0018396669765934348,
+                "dependence_seconds": 0.0040861249435693026,
+                "fit_preparation_seconds": 2.816889900714159e-05,
+                "other_seconds": 0.00016612495528534055,
+                "simulation_seconds": 0.01190058299107477
+              },
+              "selected_fast": {
+                "calendar_rejoin_seconds": 0.0015099580632522702,
+                "dependence_seconds": 0.004111374029889703,
+                "fit_preparation_seconds": 1.1416967026889324e-05,
+                "other_seconds": 8.858292130753398e-05,
+                "simulation_seconds": 0.0010070828720927238
+              },
+              "selected_fast_literal_bound_cdcc": {
+                "calendar_rejoin_seconds": 0.001566166989505291,
+                "dependence_seconds": 0.0031997920596040785,
+                "fit_preparation_seconds": 1.2461037840694189e-05,
+                "other_seconds": 0.00010558398207649589,
+                "simulation_seconds": 0.001054875086992979
+              }
+            }
+          },
+          "fresh_fit": {
+            "candidate_time_multiple_FAST": 0.9753729527039896,
+            "median_seconds": {
+              "m261": 0.11839829199016094,
+              "selected_fast": 0.059448542015161365,
+              "selected_fast_literal_bound_cdcc": 0.057984499959275126
+            },
+            "partition_medians_seconds": {
+              "m261": {
+                "calendar_rejoin_seconds": 0.0021824580035172403,
+                "dependence_seconds": 0.004482958000153303,
+                "fit_preparation_seconds": 0.09918825112981722,
+                "other_seconds": 0.00020562595454975963,
+                "simulation_seconds": 0.012478288961574435
+              },
+              "selected_fast": {
+                "calendar_rejoin_seconds": 0.0017596239922568202,
+                "dependence_seconds": 0.0046660410589538515,
+                "fit_preparation_seconds": 0.05123987596016377,
+                "other_seconds": 0.00016512605361640453,
+                "simulation_seconds": 0.001807542983442545
+              },
+              "selected_fast_literal_bound_cdcc": {
+                "calendar_rejoin_seconds": 0.0016143739921972156,
+                "dependence_seconds": 0.003615500987507403,
+                "fit_preparation_seconds": 0.050870289967861027,
+                "other_seconds": 0.00013375107664614916,
+                "simulation_seconds": 0.0017335009761154652
+              }
+            }
+          }
+        }
+      },
+      "completion": {
+        "bytes": 377045,
+        "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_cdcc_literal_bound_speed/results/completion.json",
+        "sha256": "397fac340f8eb48b9fc24270717e941c851788b8511f4472e7feaf0366cff46d"
+      },
+      "source": {
+        "bytes": 390562,
+        "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_cdcc_literal_bound_speed/results/source.json",
+        "sha256": "1de04ac8079bb86ad67d2b1b25d71fc887f393dd670ff7a0f3efe3b84d0da9d8"
+      },
+      "summary": {
+        "bytes": 10874,
+        "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_cdcc_literal_bound_speed/results/measured18-parent.json",
+        "sha256": "92fa77f46c87b23ca7330479c8607a437ecb8b594adbe999c94af714403311ee"
+      },
+      "terminal": {
+        "bytes": 1074,
+        "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_cdcc_literal_bound_speed/parent-18-terminal.json",
+        "sha256": "4124dec452c4a39121e869af24539c50268025f79d2698fa0b0e2676d8f93492"
+      }
+    },
+    {
+      "cases": {
+        "multi_annually_8766": {
+          "cached_fit": {
+            "candidate_time_multiple_FAST": 0.8292180717218793,
+            "median_seconds": {
+              "m261": 0.790578291984275,
+              "selected_fast": 0.41312674997607246,
+              "selected_fast_literal_bound_cdcc": 0.34257216699188575
+            },
+            "partition_medians_seconds": {
+              "m261": {
+                "calendar_rejoin_seconds": 0.0995010010083206,
+                "dependence_seconds": 0.2789102509850636,
+                "fit_preparation_seconds": 0.00010091497097164392,
+                "other_seconds": 0.0006377919926308095,
+                "simulation_seconds": 0.41023549903184175
+              },
+              "selected_fast": {
+                "calendar_rejoin_seconds": 0.07985899900086224,
+                "dependence_seconds": 0.2818756240303628,
+                "fit_preparation_seconds": 4.770699888467789e-05,
+                "other_seconds": 0.0001902079675346613,
+                "simulation_seconds": 0.04836370691191405
+              },
+              "selected_fast_literal_bound_cdcc": {
+                "calendar_rejoin_seconds": 0.07849666697438806,
+                "dependence_seconds": 0.21553224994568154,
+                "fit_preparation_seconds": 4.816602449864149e-05,
+                "other_seconds": 0.00017804198432713747,
+                "simulation_seconds": 0.04755991499405354
+              }
+            }
+          },
+          "fresh_fit": {
+            "candidate_time_multiple_FAST": 0.9294293486916605,
+            "median_seconds": {
+              "m261": 1.348132541985251,
+              "selected_fast": 0.7306495829834603,
+              "selected_fast_literal_bound_cdcc": 0.6790871660341509
+            },
+            "partition_medians_seconds": {
+              "m261": {
+                "calendar_rejoin_seconds": 0.09968950093025342,
+                "dependence_seconds": 0.2906509169260971,
+                "fit_preparation_seconds": 0.5173491679597646,
+                "other_seconds": 0.0006618740735575557,
+                "simulation_seconds": 0.43069237493909895
+              },
+              "selected_fast": {
+                "calendar_rejoin_seconds": 0.0811690419795923,
+                "dependence_seconds": 0.2887890840647742,
+                "fit_preparation_seconds": 0.30099100002553314,
+                "other_seconds": 0.00024508399656042457,
+                "simulation_seconds": 0.061018250009510666
+              },
+              "selected_fast_literal_bound_cdcc": {
+                "calendar_rejoin_seconds": 0.0806083750212565,
+                "dependence_seconds": 0.22915679099969566,
+                "fit_preparation_seconds": 0.3018168320413679,
+                "other_seconds": 0.0001835001166909933,
+                "simulation_seconds": 0.06729791796533391
+              }
+            }
+          }
+        }
+      },
+      "completion": {
+        "bytes": 377578,
+        "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_cdcc_literal_bound_speed/results-long/completion.json",
+        "sha256": "9656e2fa164f47289c3eca1973b694e0dbd5533a749cbed3d5dbc61129dfdc0e"
+      },
+      "source": {
+        "bytes": 389629,
+        "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_cdcc_literal_bound_speed/results-long/source.json",
+        "sha256": "97ae45e72da1680f3b46fa8a69b509240fcfc890f8b3bd41481d10b5f5245da0"
+      },
+      "summary": {
+        "bytes": 5427,
+        "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_cdcc_literal_bound_speed/results-long/measured9-parent.json",
+        "sha256": "0c79686ad8e4ddec8e345ddd0af0f8479850cf7e533e564dafd61768ab97418c"
+      },
+      "terminal": {
+        "bytes": 1073,
+        "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_cdcc_literal_bound_speed/parent-9-terminal.json",
+        "sha256": "67d9d947bc41fd3d272b5b663a4bb1a418dcb8266609603946531fc381293fdd"
+      }
+    }
+  ],
+  "passed": true,
+  "prior_pair_forecasts_newly_executed": 0,
+  "prior_paired_forecasts_reused_as_evidence": 24,
+  "pure_saved_fixtures_passed": 5,
+  "restored_before_original_plain_and_failure_source_gate_pass": true,
+  "reviewer_calls": {
+    "financial_initializers": 0,
+    "forecasts": 0,
+    "native_builds": 0,
+    "native_imports": 0,
+    "network": 0,
+    "timings": 0
+  },
+  "rows_with_direct_saved_CRPS_oracle": 18,
+  "rows_with_direct_saved_path_oracle": 21,
+  "schema": "independent-native-unpaired-27-saved-actual-audit-v1",
+  "scope": "Bounded local compiler literal-bound p6 specialization; p1 native path bypass is control. Not all dimensions, full80, all-work parity, score improvement, production or authenticated website performance.",
+  "snapshot_resources_verified": 590,
+  "three_rep0_original_plain_native_Q_CDF_RNG_non_timing_checkpoint_equality_pass": true,
+  "timestamp": "2026-10-19T18:39:26.516986+00:00",
+  "unique_worker_pids": [
+    64414,
+    65992,
+    66773,
+    71649,
+    70948,
+    70187,
+    74633,
+    75409,
+    76183,
+    67563,
+    68609,
+    69426,
+    73850,
+    73182,
+    72511,
+    76960,
+    77734,
+    78511,
+    88858,
+    90331,
+    91372,
+    94728,
+    93692,
+    92593,
+    96299,
+    97647,
+    98796
+  ],
+  "unused_frozen_summarizer_issue": "summarize.py expects obsolete cached_fit labels and incorrectly adds2 boundary forecasts/context; not executed and unchanged. Parent stdlib measured summaries independently reconstructed exactly.",
+  "verified_unique_refs": 1476
+}

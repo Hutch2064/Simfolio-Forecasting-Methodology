@@ -258,3 +258,54 @@ Canonical panels: exploratory reused evidence. Seed robustness: not_tested. Inde
 Archive receipt: [normalized private archive closure](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_IID_archive_closure.json).
 
 The IID seed helper remains BLOCKED_PREPARED_NOT_RUN: its source-only comparison defect is not an established financial seed-law failure. The older 12-trial/24-forecast baseline integration is a separate evidence type. Nine exact historical source epochs remain authoritative. Superseded growth tables are not authority; separately pinned metadata gives 8766-day median/mean row-wise ratios IID0.940970/0.964253, M2610.838983/0.955149 and selected0.983538/0.988876. No matched full52 M261 long-growth baseline is available. These later annotations remain outside the63816 numerical members; growth is descriptive, with no return floor or routing.
+
+# Corrected rough-node studies and conventional bridge — closed study preservation
+
+Private compact preservation is verified; exact source/member/scientific scope follows the normalized closure resources. The private bulk archive has12 closed parts; six fixed restored Task path/CRPS oracles passed. Restoration uses the explicitly retained original46-distribution runtime, so this is not a standalone environment rebuild. Independent saved actual-science review passed. Fresh compact-lineage verification passed.
+
+| Record | 52 CRPS / freshness | 80 CRPS / freshness | Decision scope |
+|---|---|---|---|
+| Conventional OFF, corrected continuous nodes |0.6048042045569166;2652 fresh origins|0.23045095600899104;4080 fresh origins|Fails joint score objective; exploratory reuse of evaluation panels|
+| Conventional ON, corrected continuous nodes |0.6095093947133338;2652 fresh origins|0.22648879635922456;4080 fresh origins|Parked after speed prescreen; no production recommendation|
+| Rough covariance on sampled conventional-SV corrected nodes |0.6022154610545161; inherited exact single-history identity,0 fresh forecasts|0.22904705025144675;4080 fresh origins|Full80 does not improve M261; retain tested law and controls|
+| Conventional ON, original empirical nodes prototype |0.6105233636157572; historical aggregate,0 fresh forecasts|Not run|Six-case correctness pilot and18 accepted local timing trials; parked after runtime screen|
+
+Detailed model/control scores, portfolio wins/losses, horizon bands and original task/seed/source bindings are preserved in the companion draft packet. Bridge52 inherits a one-history identity; the original-node prototype has no invented full80 score. All failed technical attempts, source corrections, the exact recovered historical Numba index and failed-part prefix witnesses remain in the private provenance chain.
+
+Runtime evidence remains separately typed: original prototype18 accepted trials and bridge18 short+9 long trials are local representative diagnostics. Forecast parity, runtime prescreens, archive reconstruction and production/browser validation are different gates. No full14/site speed, seed robustness, independent post-selection or production validation is claimed. Existing seven unified studies,24 legacy refinement rows and selected80 must remain byte-exact when the final append is prepared.
+
+Private provider data, raw returns, task arrays and native artifacts remain private release assets.
+
+## Closing comparison and recommendation
+
+Keep M261 for the strict joint score-and-FAST-runtime goal. No tested candidate qualifies. FAST retains the stronger52-panel tradeoff; the new original-node IID law's tiny80 mean advantage does not establish a production recommendation. Canonical panels remain exploratory, seed robustness and independent post-selection testing are absent, and production/browser validation is absent. The shared long-horizon CAGR shortfall around0.75 of training-history growth is a diagnostic concern shared with controls; no historical return floor or portfolio exclusion was applied.
+
+Rough-only IID with sampled conventional SV: full6732 fresh Tasks (2652 full52 and4080 full80),240 paths. Full52 CRPS 0.6053046527780706: 1.3952358246142826% better than M261 but 1.600108329765093% worse than selected52. Full80 CRPS 0.22835434759659093: 0.7194940419994467% worse than M261. Rejected by the full80 accuracy gate; no joint winner. The27-trial local controlled runtime prescreen is separate from browser/production performance. Seed robustness and independent post-selection validation remain untested; production unvalidated. Private raw-byte/member preservation is verified; restored-law replay is not claimed for this study. All controls/rejected labels are retained in the preserved compact results; the corrected-node/bridge archive remains unchanged.
+
+Original-node all-volatility IID: research preservation for the canonical/methodology catalogue. Private raw-byte/member preservation in the later batch is verified; this study is separate from the corrected-node/bridge batch.
+
+All 6,732 fresh Tasks completed: 2,652 full52 and 4,080 full80, with 240 paths and all saved controls preserved. Full52 CRPS is 0.600668345431752: 2.1504951645684445% better than M261, but 0.8219062682508493% worse than selected52. Full80 CRPS is 0.22653257917294423: 0.08402730901740929% better than M261, with only 32/80 portfolio wins (48 losses). Both aggregate M261 comparisons pass under this fixed research seed; the small full80 edge on reused development contexts does not establish independent generalization or a production recommendation.
+
+Execution retained byte-equality receipts for 2,378,566,080 original-versus-lean path values across all 6,732 Tasks. Raw path pairs were not retained; the saved auditor rechecked source-bound parity receipts and reconstructed daily losses/counts. This supports the stated all-work financial path comparison, while the full-run elapsed time includes both implementations and recording and is not controlled speed evidence.
+
+The separate lean runtime prescreen has 27 local trials: three contexts, three fresh processes per model/context, and nine cached samples per model/context. Fresh median M261 speedups are 1.497447429428501 for single SPYSIM H8766, 1.1408168490091055 for six-asset annual-policy H126, and 1.209003066051268 for six-asset annual-policy H8766. Selected_fast remains faster in all three. Idle administrative controllers and paused-family rules are preserved in the saved SRIU audit; this is not strict raw quiet, CPU cleanroom, full14, browser/website/production latency or independent post-selection proof.
+
+Growth uses 396 actual fresh candidate checkpoint records at exact temporal H8766, H5844 and H2922, annualized using 252 days per year. Plotted score bands are separate. Matched80 baseline diagnostics are available. Additive saved-only reconciliation now validates156 exact true-H full52 contexts per M261 and selected control, using624 retained raw loss/accounting files. It reconstructs source-bound stored growth and control score vectors; old full paths are unavailable and no new financial path replay is claimed. Full matched tables and limits are preserved in growth-supplement-v3.json. This supersedes the initial draft's pending full52 growth status; the original draft and historical audits remain unchanged. The historical selected/M261 central90-width ratio 1.048236 belongs to H2922; H8766 is 0.986556. Original historical artifacts remain unchanged. Training-return ratios and 75% counts are diagnostics, not forecast floors, exclusions, routing, or causal score decomposition.
+
+Attempt1 completed zero origins because owned TMP directories were missing during initialization. Its retained terminal/excerpt is incomplete; no complete stderr is claimed. Attempt2 used the same scientific source, manifest and admission after the directories were created and completed all Tasks. Source, failed history, pilot/native provenance, accepted and provisional timing records remain required preservation inputs.
+
+The original-versus-corrected all-vol IID contrast retains the same post-RMS finish-clip IID law. Comparison with fused rough-IID × conventional-ON also changes clipping/composition and cannot isolate conventional serial state. Seed robustness, independent post-selection validation and production validation remain untested. All control labels, portfolio scores, counts, horizon bands and audit references are retained in study-draft.json and source-history-refs.json.
+
+Final recommendation: [strict speed and growth assessment](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_bridge_publication/closing_evidence/2026-10-19-final-strict-speed-recommendation.md). Ancillary evidence: [typed closed experiments](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_bridge_publication/closing_evidence/records-and-scope.json), [native compute audit](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_bridge_publication/closing_evidence/selected_fast_cdcc_literal_bound_speed_actual_audit/review.json), [independent stopping review](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_bridge_publication/closing_evidence/2026-10-19-independent-strict-fast-stopping-review.md).
+
+The later private batch freshly verifies raw bytes and saved whole-panel evidence. Its six restored financial oracles cover the corrected-node/bridge dependency only, not a replay of these two IID laws. Bounded Markov/VC rejections, RMS/allocation/accounting experiments, native implementation parity and controlled context timings are linked as ancillary evidence, not new ranked models or broad website speed claims. An obsolete unexecuted Markov admission source epoch is unavailable; the receipt and executed corrected epoch are retained, and lossless historical source closure is explicitly not claimed.
+
+Archive receipt: [UF-ROUGH-CORRECTED-OFF-021da156f7455bce](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_corrected_OFF_archive_closure.json).
+
+Archive receipt: [UF-ROUGH-CORRECTED-ON-9953676cd480585f](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_corrected_ON_archive_closure.json).
+
+Archive receipt: [UF-ROUGH-CONVENTIONAL-BRIDGE-4ce66184d7db04fd](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_bridge_archive_closure.json).
+
+Archive receipt: [UF-ROUGH-IID-b67722c7aaebc226](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_rough_IID_archive_closure.json).
+
+Archive receipt: [UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac](../../../src/simfolio_forecasting_methodology/resources/results/unified_frontier_original_nodes_IID_archive_closure.json).

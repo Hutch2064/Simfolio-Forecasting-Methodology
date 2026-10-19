@@ -79,11 +79,11 @@ def test_closed_moment_studies_preserve_full_panels_and_typed_validation(study_i
 
 def test_factorial_record_is_unchanged_when_moment_studies_append():
     studies = load_unified_frontier_studies()["studies"]
-    assert len(studies) == 7
+    assert len(studies) == 12
     factorial = studies[0]
     encoded = json.dumps(factorial, sort_keys=True, separators=(",", ":")).encode()
     assert hashlib.sha256(encoded).hexdigest() == "9d2187fe9b832878f868d12837660c7df5f33c622f5b4dee97b61d8486e4ac34"
-    assert len({row["archive_summary"]["normalized_closure_resource"] for row in studies}) == 7
+    assert len({row["archive_summary"]["normalized_closure_resource"] for row in studies}) == 12
 
 
 def test_workspace_evidence_root_keeps_pinned_cleanup_receipt_separate_from_data_root():
@@ -224,3 +224,54 @@ def test_normalized_archive_closure_binds_every_source_and_actual_scientific_pro
     assert closure['scientific_restore']['actual_batch_forecast_oracles'] == 5
     assert closure['scientific_restore']['actual_saved_M261_reconstruction'] == 'passed'
     assert all(closure['closed_artifacts'][s['path']] == s['sha256'] for s in study['sources'])
+
+
+def test_corrected_nodes_and_bridge_keep_freshness_and_runtime_scopes_distinct():
+    studies = {s['study_id']: s for s in load_unified_frontier_studies()['studies']}
+    off = studies['UF-ROUGH-CORRECTED-OFF-021da156f7455bce']
+    on = studies['UF-ROUGH-CORRECTED-ON-9953676cd480585f']
+    bridge = studies['UF-ROUGH-CONVENTIONAL-BRIDGE-4ce66184d7db04fd']
+    assert off['panels']['52']['scores']['conditional_rough_no_conventional_preserve_mean_continuous_nodes'] == 0.6048042045569166
+    assert off['panels']['80']['scores']['conditional_rough_no_conventional_preserve_mean_continuous_nodes'] == 0.23045095600899104
+    assert on['panels']['52']['scores']['conditional_rough_conventional_preserve_mean_continuous_nodes'] == 0.6095093947133338
+    assert on['panels']['80']['scores']['conditional_rough_conventional_preserve_mean_continuous_nodes'] == 0.22648879635922456
+    assert bridge['panels']['52']['status'] == 'not_evaluated'
+    assert 'scores' not in bridge['panels']['52']
+    assert bridge['catalogue_review_annotations']['historical52']['CRPS'] == 0.6022154610545161
+    assert bridge['catalogue_review_annotations']['historical52']['new_forecasts'] == 0
+    assert bridge['panels']['80']['scores']['rough_only_covariance_on_sampled_conventional_SV_corrected_nodes'] == 0.22904705025144675
+    original = on['related_historical_experiments'][0]
+    assert original['full52']['CRPS'] == 0.6105233636157572
+    assert original['full52']['new_forecasts'] == 0
+    assert original['full80']['status'] == 'not_run'
+    assert original['full80']['CRPS'] is None
+    for study in (off, on, bridge):
+        assert not study['selection']['joint_objective_met']
+        assert study['validation']['production'] == 'not_validated'
+        assert study['validation']['seed_robustness']['status'] == 'not_tested'
+        assert study['validation']['independent_post_selection']['status'] == 'not_tested'
+        assert study['runtime_evidence']['production_browser_ctv'] is False
+        assert study['archive_summary']['batch_restored_oracles'] == 6
+        assert study['archive_summary']['original_runtime_reused'] is True
+        assert study['archive_summary']['standalone_environment_restore'] is False
+
+
+def test_bridge_inherited_panel_cannot_be_presented_as_fresh_scores():
+    payload = copy.deepcopy(load_unified_frontier_studies())
+    bridge = next(s for s in payload['studies'] if s['study_id'] == 'UF-ROUGH-CONVENTIONAL-BRIDGE-4ce66184d7db04fd')
+    bridge['panels']['52']['scores'] = {'fake': 0.6022154610545161}
+    with pytest.raises(ValueError, match='unscored panels cannot carry scores'):
+        validate_unified_frontier_index(payload)
+
+
+def test_final_IID_panels_keep_saved_scores_and_dependency_restore_scope():
+    studies = {row['study_id']: row for row in load_unified_frontier_studies()['studies']}
+    expected = [('UF-ROUGH-IID-b67722c7aaebc226', 'rough_only_IID_on_sampled_conventional_SV_corrected_nodes', .6053046527780706, .22835434759659093), ('UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac', 'iid_conditional_unit_second_moment_scale_original_nodes', .600668345431752, .22653257917294423)]
+    for identity, label, score52, score80 in expected:
+        row = studies[identity]
+        assert row['panels']['52']['scores'][label] == score52
+        assert row['panels']['80']['scores'][label] == score80
+        assert row['archive_summary']['restoration_scope'] == 'reused_dependency_only_not_IID_law_replay'
+        assert row['archive_summary']['later_historical_source_closure'] is False
+        assert row['selection']['joint_objective_met'] is False
+        assert row['validation']['production'] == 'not_validated'

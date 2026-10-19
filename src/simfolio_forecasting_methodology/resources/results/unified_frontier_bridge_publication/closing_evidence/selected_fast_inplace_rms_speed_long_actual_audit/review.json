@@ -1,0 +1,267 @@
+{
+  "actual_case": {
+    "multi_annually_8766": {
+      "candidate_time_divided_by_FAST_cached": 0.9877157577616988,
+      "candidate_time_divided_by_FAST_fresh": 1.0009139850601634,
+      "models": {
+        "m261": {
+          "cached_count": 9,
+          "cached_partition_medians": {
+            "calendar_rejoin_seconds": 0.09523199999239296,
+            "dependence_seconds": 0.27646541700232774,
+            "fit_preparation_seconds": 9.633414447307587e-05,
+            "other_seconds": 0.0005974568775855005,
+            "simulation_seconds": 0.4099803341086954
+          },
+          "cached_seconds_median": 0.7839094999944791,
+          "fresh_count": 3,
+          "fresh_partition_medians": {
+            "calendar_rejoin_seconds": 0.09844283398706466,
+            "dependence_seconds": 0.2846121659385972,
+            "fit_preparation_seconds": 0.5049595410237089,
+            "other_seconds": 0.0006299150991253555,
+            "simulation_seconds": 0.4162927058059722
+          },
+          "fresh_seconds_median": 1.308488083013799
+        },
+        "selected_fast": {
+          "cached_count": 9,
+          "cached_partition_medians": {
+            "calendar_rejoin_seconds": 0.0759874579962343,
+            "dependence_seconds": 0.27600458305096254,
+            "fit_preparation_seconds": 4.3874140828847885e-05,
+            "other_seconds": 0.00016925099771469831,
+            "simulation_seconds": 0.04588004184188321
+          },
+          "cached_seconds_median": 0.3977927920059301,
+          "fresh_count": 3,
+          "fresh_partition_medians": {
+            "calendar_rejoin_seconds": 0.07688170805340633,
+            "dependence_seconds": 0.279832208994776,
+            "fit_preparation_seconds": 0.2962285009562038,
+            "other_seconds": 0.00019008206436410546,
+            "simulation_seconds": 0.056834041024558246
+          },
+          "fresh_seconds_median": 0.7095313330064528
+        },
+        "selected_fast_ordered_inplace_RMS": {
+          "cached_count": 9,
+          "cached_partition_medians": {
+            "calendar_rejoin_seconds": 0.07583229098236188,
+            "dependence_seconds": 0.27570862596621737,
+            "fit_preparation_seconds": 4.3414009269326925e-05,
+            "other_seconds": 0.00016987399430945516,
+            "simulation_seconds": 0.03973258408950642
+          },
+          "cached_seconds_median": 0.3929062089882791,
+          "fresh_count": 3,
+          "fresh_partition_medians": {
+            "calendar_rejoin_seconds": 0.0789116250234656,
+            "dependence_seconds": 0.2812742910464294,
+            "fit_preparation_seconds": 0.29435804206877947,
+            "other_seconds": 0.00019541796064004302,
+            "simulation_seconds": 0.05366104090353474
+          },
+          "fresh_seconds_median": 0.7101798340445384
+        }
+      }
+    }
+  },
+  "actual_long_rows": 9,
+  "actual_sameowner_fullboundary_comparison_valid": true,
+  "all_forecasts": 56,
+  "all_long_oracles_fullpath_dailyCRPS_crossrep_priority_threads_cache_valid": true,
+  "auditor_source_sha256": "644e32c7dc2952f2c162607e6d3db5b4b183e7f0c88e982b0faf70f6a2e68c03",
+  "combined": {
+    "all_forecasts": 168,
+    "contexts": {
+      "SPYSIM_8766": {
+        "candidate_time_divided_by_FAST_cached": 0.9661590169530153,
+        "candidate_time_divided_by_FAST_fresh": 0.9482829772765637,
+        "models": {
+          "m261": {
+            "cached_count": 9,
+            "cached_seconds_median": 0.11473962501622736,
+            "fresh_count": 3,
+            "fresh_seconds_median": 0.17228179203812033
+          },
+          "selected_fast": {
+            "cached_count": 9,
+            "cached_seconds_median": 0.028645000013057142,
+            "fresh_count": 3,
+            "fresh_seconds_median": 0.05572875001234934
+          },
+          "selected_fast_ordered_inplace_RMS": {
+            "cached_count": 9,
+            "cached_seconds_median": 0.0276756250532344,
+            "fresh_count": 3,
+            "fresh_seconds_median": 0.05284662498161197
+          }
+        }
+      },
+      "multi_annually_126": {
+        "candidate_time_divided_by_FAST_cached": 0.9403445522329243,
+        "candidate_time_divided_by_FAST_fresh": 1.0046051798615536,
+        "models": {
+          "m261": {
+            "cached_count": 9,
+            "cached_seconds_median": 0.018164041975978762,
+            "fresh_count": 3,
+            "fresh_seconds_median": 0.12023062497610226
+          },
+          "selected_fast": {
+            "cached_count": 9,
+            "cached_seconds_median": 0.00680575001752004,
+            "fresh_count": 3,
+            "fresh_seconds_median": 0.057552792015485466
+          },
+          "selected_fast_ordered_inplace_RMS": {
+            "cached_count": 9,
+            "cached_seconds_median": 0.0063997499528340995,
+            "fresh_count": 3,
+            "fresh_seconds_median": 0.05781783297425136
+          }
+        }
+      },
+      "multi_annually_8766": {
+        "candidate_time_divided_by_FAST_cached": 0.9877157577616988,
+        "candidate_time_divided_by_FAST_fresh": 1.0009139850601634,
+        "models": {
+          "m261": {
+            "cached_count": 9,
+            "cached_partition_medians": {
+              "calendar_rejoin_seconds": 0.09523199999239296,
+              "dependence_seconds": 0.27646541700232774,
+              "fit_preparation_seconds": 9.633414447307587e-05,
+              "other_seconds": 0.0005974568775855005,
+              "simulation_seconds": 0.4099803341086954
+            },
+            "cached_seconds_median": 0.7839094999944791,
+            "fresh_count": 3,
+            "fresh_partition_medians": {
+              "calendar_rejoin_seconds": 0.09844283398706466,
+              "dependence_seconds": 0.2846121659385972,
+              "fit_preparation_seconds": 0.5049595410237089,
+              "other_seconds": 0.0006299150991253555,
+              "simulation_seconds": 0.4162927058059722
+            },
+            "fresh_seconds_median": 1.308488083013799
+          },
+          "selected_fast": {
+            "cached_count": 9,
+            "cached_partition_medians": {
+              "calendar_rejoin_seconds": 0.0759874579962343,
+              "dependence_seconds": 0.27600458305096254,
+              "fit_preparation_seconds": 4.3874140828847885e-05,
+              "other_seconds": 0.00016925099771469831,
+              "simulation_seconds": 0.04588004184188321
+            },
+            "cached_seconds_median": 0.3977927920059301,
+            "fresh_count": 3,
+            "fresh_partition_medians": {
+              "calendar_rejoin_seconds": 0.07688170805340633,
+              "dependence_seconds": 0.279832208994776,
+              "fit_preparation_seconds": 0.2962285009562038,
+              "other_seconds": 0.00019008206436410546,
+              "simulation_seconds": 0.056834041024558246
+            },
+            "fresh_seconds_median": 0.7095313330064528
+          },
+          "selected_fast_ordered_inplace_RMS": {
+            "cached_count": 9,
+            "cached_partition_medians": {
+              "calendar_rejoin_seconds": 0.07583229098236188,
+              "dependence_seconds": 0.27570862596621737,
+              "fit_preparation_seconds": 4.3414009269326925e-05,
+              "other_seconds": 0.00016987399430945516,
+              "simulation_seconds": 0.03973258408950642
+            },
+            "cached_seconds_median": 0.3929062089882791,
+            "fresh_count": 3,
+            "fresh_partition_medians": {
+              "calendar_rejoin_seconds": 0.0789116250234656,
+              "dependence_seconds": 0.2812742910464294,
+              "fit_preparation_seconds": 0.29435804206877947,
+              "other_seconds": 0.00019541796064004302,
+              "simulation_seconds": 0.05366104090353474
+            },
+            "fresh_seconds_median": 0.7101798340445384
+          }
+        }
+      }
+    },
+    "extra_untimed_boundary_forecasts": 6,
+    "timed_calls": 108,
+    "trials": 27
+  },
+  "completion": {
+    "bytes": 1090834,
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/results-long/completion.json",
+    "sha256": "84a167b454c42c8592716ef75fbf9492b0d1148978761d22050af87e01e99433"
+  },
+  "controller_states": {
+    "Rs": 8,
+    "SNs": 18,
+    "Ss": 8,
+    "Us": 2
+  },
+  "explicit_idle_admin_rows": 9,
+  "extra_untimed_boundary_forecasts": 2,
+  "financial_calls": 0,
+  "interpretation": "Freshlong total essentiallyflat:+0.0914%time;cachedtotal\u22121.2284%. Simulationstage lower but fullfresh total doesnotimprove. Across3contexts mixedsmalldifferences, no broadspeedwin/promotion/allworkparity.",
+  "limitations": [
+    "Threefixedcontexts/threefresh andninecachedsamplespermodel, notfull14/all6732/deployedwebsiteCTV.",
+    "SRIUcontroller/adminpollingbackgroundphysicallyrecorded; notstrictcleanroom. Savedquiescentstate replayed.",
+    "Completeassetcube/uniform/fit/node/policy boundaryproof is rep0outside timing; raw arraysnotretained.",
+    "Stage medians are marginal medians; their sum neednot equal medianwall, while each individual sample partition sums exactly.",
+    "Hostile outofcontract floatingerror partial-private-buffer limitation unchanged."
+  ],
+  "native_loads_builds": 0,
+  "network_calls": 0,
+  "parent_and9workerPIDs_independently_absent": [
+    2013,
+    6372,
+    7695,
+    8825,
+    9980,
+    11043,
+    12158,
+    13603,
+    14922,
+    16046
+  ],
+  "passed": true,
+  "prior18_review_unchanged": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/selected_fast_inplace_rms_speed_actual_audit/review.json",
+    "sha256": "45307308b67cd9df6bc3ef9f0ac418585471f06d56623c2b002484a67c809375"
+  },
+  "raw_quiet_snapshots_reconstructed": 18,
+  "saved_only": true,
+  "saved_summarizer_failure_preserved": {
+    "cause": "summarizer incorrectly expected cached_fit repeated, actual frozen trial schema cached_fit_1/2/3. No forecastfailure, no result changed or rerun.",
+    "entry": {
+      "bytes": 3085,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/summarize.py",
+      "sha256": "7989a02270622015358ab79c38e9211a8e744e97d862fe28616dbc65512d0ee5"
+    },
+    "exit_code": 1
+  },
+  "schema": "independent-selected-FAST-inplace9-and-combined27-saved-audit-v1",
+  "source": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/results-long/source.json",
+    "sha256": "971a60863c459946c98420bf2cdf614697daacb099c5d454c2ee100d044e820f"
+  },
+  "source_refs_rehashed": 4413,
+  "stage_partitions_verified": 36,
+  "summary": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/measured-9-long.json",
+    "sha256": "8dd660d5863ce24bead0296dbdd9c7494aba072445c19909bb8809260231ca49"
+  },
+  "summary_medians_and_stage_medians_exact": true,
+  "terminal": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/parent-9-long-terminal.json",
+    "sha256": "346a14a1317826b7dd6f965e574d1d075bfce0a672b4e28d4d9321c4efad00e3"
+  },
+  "timed_calls": 36,
+  "timing_replays": 0
+}

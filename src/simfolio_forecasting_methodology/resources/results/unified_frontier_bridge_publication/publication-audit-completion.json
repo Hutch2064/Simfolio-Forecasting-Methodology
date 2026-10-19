@@ -1,0 +1,56 @@
+{
+  "auditor_source": {
+    "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/normalize.py",
+    "sha256": "1d60c45411a9e3af4bb4a96bdfa6c5d1ae4e664fb888ad46c3425f380a8663a7"
+  },
+  "fresh_forecasts": {
+    "52": 0,
+    "80": 4080
+  },
+  "no_fits_or_forecasts": true,
+  "normalized_analysis": {
+    "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge/full-4ce66184d7db04fd/analysis.json",
+    "sha256": "be3d0f04885e093b9925d60af34012a2351eaaffc2da614557cb4f8a4bdfebc2"
+  },
+  "normalized_completion": {
+    "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/80/normalized-completion.json",
+    "sha256": "7de9db375d42577a2076f0afe5a15e9c3ba588d8b725d78b8f759470c28ba73d"
+  },
+  "original_independent_audit": {
+    "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/rough_only_conventional_bridge_full_actual_audit/review.json",
+    "sha256": "434cadd8ac94b9a74dc784b0efeb5a7d2ec29455be5d432a8114c9192592c1c1"
+  },
+  "original_private_archive_manifest": {
+    "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/corrected-nodes-bridge-2534707642eb5804c5af.manifest.json",
+    "sha256": "fa1a964cc84e17ccad0f426ca3f62ba7163e0a9a5dd209eed0729025a989d193"
+  },
+  "panel_audits": {
+    "80": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/80/publication-audit.json",
+      "sha256": "29c7b35ece8c29de4c7f2634212bc027f953eed26ad823af6452aa0cb6c3c2fa"
+    }
+  },
+  "raw_checkpoints_preserved": true,
+  "required_publication_source_refs": [
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/normalize.py",
+      "sha256": "1d60c45411a9e3af4bb4a96bdfa6c5d1ae4e664fb888ad46c3425f380a8663a7"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge/full_audit.py",
+      "sha256": "fac69df160cbe8b2677925590cd198fe347a8b4e28ef2772d56f99aa511f848c"
+    },
+    {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/rough_only_conventional_bridge_full_actual_audit/review.json",
+      "sha256": "434cadd8ac94b9a74dc784b0efeb5a7d2ec29455be5d432a8114c9192592c1c1"
+    }
+  ],
+  "schema": "unified-frontier-publication-audit-completion-v1",
+  "schema_projection_only": true,
+  "scope": "Existing verified private raw evidence plus Git-versioned public normalization source/metadata; no extra private asset required.",
+  "source_hashes": {
+    "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/rough_only_conventional_bridge_full_actual_audit/review.json": "434cadd8ac94b9a74dc784b0efeb5a7d2ec29455be5d432a8114c9192592c1c1",
+    "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge/full_audit.py": "fac69df160cbe8b2677925590cd198fe347a8b4e28ef2772d56f99aa511f848c",
+    "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/rough_only_conventional_bridge_publication_normalization/normalize.py": "1d60c45411a9e3af4bb4a96bdfa6c5d1ae4e664fb888ad46c3425f380a8663a7"
+  }
+}

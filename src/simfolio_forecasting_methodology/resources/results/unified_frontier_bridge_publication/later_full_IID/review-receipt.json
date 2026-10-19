@@ -1,0 +1,142 @@
+{
+  "archive_status": "Original later raw-batch archive not yet closed. Combined publication must wait parent actual verified private raw closure; wrapper/public metadata may be Git-versioned separately.",
+  "checks": {
+    "all_four_raw_score_maps_equal_saved_canonical_analysis_zero_ULP": true,
+    "all_original_input_files_unchanged": true,
+    "candidate_scores_match_original_independent_audits": true,
+    "canonical_task_identity_lists_match_original_reference_manifests": true,
+    "counts_payload_hashes_shapes_positivity_and_canonical_contribution_sums_checked": true,
+    "deterministic_projection_check_passed": true,
+    "missing_control_changed_score_partial_evidence_wrong_prior_audit_pin_rejected": true,
+    "raw_results_equal_pinned_completion_results": true,
+    "saved_source_tests_passed": 4,
+    "source_and_snapshot_hashes_reverified": true,
+    "unchanged_strict_consumer_all_four_completed_panels_passed": true
+  },
+  "initializers": 0,
+  "inputs": {
+    "original_nodes_IID_actual_audit_sha256": "601dcd72bfd541533ad428e65d92cdae37de72e6aee30a0602aa920da3120347",
+    "original_nodes_IID_draft_seal_sha256": "765206aa4ec39f4bcf523fe61b65f92ff96df52589275481ac0bb2a2afb1842c",
+    "rough_IID_actual_audit_sha256": "03ce9b566ec71021dc40f1236e338060238347211a23fd5bc3855985f9a809b9",
+    "rough_IID_draft_seal_sha256": "9be37f24170a7e3dd129dda0354e8175dba97454eb6d1c4103e22ca3d53b98fc"
+  },
+  "known_validation_scope_preserved": "Original accepted audits/drafts remain authority. No new seed/post-selection/generalization claim or eligibility rule; no production/website speed promotion. Original-node all-work runtime comparison and rough-IID limited pilot scope are not interchanged.",
+  "native_imports_or_builds": 0,
+  "network_calls": 0,
+  "new_forecasts": 0,
+  "new_public_source_and_metadata": {
+    "normalize.py": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/normalize.py",
+      "sha256": "0ad64bb19cdec85d1353364bce35620edaff27c54daa13327299dd70304cd238"
+    },
+    "original_nodes_IID/52/publication-audit.json": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/original_nodes_IID/52/publication-audit.json",
+      "sha256": "cd8fca84a46a75801557d62663154efe806b5afb3bef9a699d76f1aad82ac198"
+    },
+    "original_nodes_IID/80/publication-audit.json": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/original_nodes_IID/80/publication-audit.json",
+      "sha256": "bb3614e6ed1b0f4ced3bd9d8e6a153f3068adb2cf973955f8eebdaf5b9c39836"
+    },
+    "original_nodes_IID/actual-consumer-panel-fixture.json": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/original_nodes_IID/actual-consumer-panel-fixture.json",
+      "sha256": "37f699b5b86c3c2a021603f1b537311b69b1a8df39ea17ca8843a0b44e9e51bd"
+    },
+    "original_nodes_IID/publication-audit-completion.json": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/original_nodes_IID/publication-audit-completion.json",
+      "sha256": "6fb5bc8dfce932901a245bdee4df4ded432ef7e655d2d951cc4d3084456d6b00"
+    },
+    "rough_IID/52/publication-audit.json": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/rough_IID/52/publication-audit.json",
+      "sha256": "e547697f691f867649db368dffa695ed877c22f89e0076dc80e24a5914a828f5"
+    },
+    "rough_IID/80/publication-audit.json": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/rough_IID/80/publication-audit.json",
+      "sha256": "495961809717eda71a63ef444b5e01b6bcf0953d5b0e65bc44dfbdaac002d7c5"
+    },
+    "rough_IID/actual-consumer-panel-fixture.json": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/rough_IID/actual-consumer-panel-fixture.json",
+      "sha256": "d4c1d055ce42f671e8fd1321de347a39db426cba1410f5a9cdf9b07beb1a43cb"
+    },
+    "rough_IID/publication-audit-completion.json": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/rough_IID/publication-audit-completion.json",
+      "sha256": "699f85403e6cc23f5734d6daf882d88c0956dae717f5d1cb31fbc4d331536c24"
+    },
+    "test_normalize.py": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/full_IID_publication_normalization/test_normalize.py",
+      "sha256": "6dfb44935517ce38a8ce22ced0ad55d1aeaec6becefb9d0961c9794ae052d806"
+    }
+  },
+  "original_mutations": 0,
+  "panels": {
+    "original_nodes_IID": {
+      "52": {
+        "candidate_CRPS": 0.600668345431752,
+        "candidate_label": "iid_conditional_unit_second_moment_scale_original_nodes",
+        "canonical_denominators": {
+          "cells_per_model": 455832,
+          "counts_sha256": "16f382357157c05736343b43183b823ebc0aea9cd95cecd88e5b6fda15f97533",
+          "horizons": 8766,
+          "origin_horizon_contributions": 3904212,
+          "origins": 2652,
+          "portfolios": 52,
+          "simulations": 240
+        },
+        "full_scored_labels": 15,
+        "saved_control_labels": 14
+      },
+      "80": {
+        "candidate_CRPS": 0.22653257917294423,
+        "candidate_label": "iid_conditional_unit_second_moment_scale_original_nodes",
+        "canonical_denominators": {
+          "cells_per_model": 701280,
+          "counts_sha256": "fb6d86e09c08529330327ca11536de44c7df6e81676125fb5d18403cfb9f2288",
+          "horizons": 8766,
+          "origin_horizon_contributions": 6006480,
+          "origins": 4080,
+          "portfolios": 80,
+          "simulations": 240
+        },
+        "full_scored_labels": 16,
+        "saved_control_labels": 15
+      }
+    },
+    "rough_IID": {
+      "52": {
+        "candidate_CRPS": 0.6053046527780706,
+        "candidate_label": "rough_only_IID_on_sampled_conventional_SV_corrected_nodes",
+        "canonical_denominators": {
+          "cells_per_model": 455832,
+          "counts_sha256": "16f382357157c05736343b43183b823ebc0aea9cd95cecd88e5b6fda15f97533",
+          "horizons": 8766,
+          "origin_horizon_contributions": 3904212,
+          "origins": 2652,
+          "portfolios": 52,
+          "simulations": 240
+        },
+        "full_scored_labels": 14,
+        "saved_control_labels": 13
+      },
+      "80": {
+        "candidate_CRPS": 0.22835434759659093,
+        "candidate_label": "rough_only_IID_on_sampled_conventional_SV_corrected_nodes",
+        "canonical_denominators": {
+          "cells_per_model": 701280,
+          "counts_sha256": "fb6d86e09c08529330327ca11536de44c7df6e81676125fb5d18403cfb9f2288",
+          "horizons": 8766,
+          "origin_horizon_contributions": 6006480,
+          "origins": 4080,
+          "portfolios": 80,
+          "simulations": 240
+        },
+        "full_scored_labels": 15,
+        "saved_control_labels": 14
+      }
+    }
+  },
+  "passed": true,
+  "public_safety": "Source plus aggregate scores/counts, hashes and provenance only; no provider returns, raw NPZ bytes, simulated paths or credentials.",
+  "publication_status": "Ready for parent combined12-row BOTH publication source staging only; no Git/network work by this worker.",
+  "raw_checkpoint_reconstructions": 0,
+  "schema": "full-IID-saved-publication-normalization-review-v1",
+  "scope": "Deterministic metadata projection of two fixed completed accepted independent saved audits; no new study execution or raw-checkpoint reconstruction."
+}

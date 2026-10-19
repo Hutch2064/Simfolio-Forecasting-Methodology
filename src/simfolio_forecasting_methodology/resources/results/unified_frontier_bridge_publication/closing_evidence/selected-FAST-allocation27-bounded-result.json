@@ -1,0 +1,26 @@
+{
+  "timestamp": 1792431403.263508,
+  "candidate": "selected_fast_ordered_inplace_RMS",
+  "reference": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+  "disposition": "bounded_output_equivalence_and_modest_context_specific_compute_savings; not a joint-score candidate or promotion",
+  "actual_completed_trials": 27,
+  "timed_calls": 108,
+  "forecast_calls": 168,
+  "extra_untimed_boundaries": 6,
+  "full_panel_parity": false,
+  "new52score": null,
+  "new80score": null,
+  "production_validated": false,
+  "remaining_work": [
+    "native cDCC exact implementation parity/speed",
+    "accounting exp output-buffer exact implementation parity/speed",
+    "assess supported integration into existing joint-score candidate only if timing justifies it",
+    "private archive/restore closure and both catalogue preservation"
+  ],
+  "evidence": {
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/measured-18.json": "b40e130963798a2c34b3e06f0c73be3280e230c00c2652720424df99d101d147",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/measured-9-long.json": "8dd660d5863ce24bead0296dbdd9c7494aba072445c19909bb8809260231ca49",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/selected_fast_inplace_rms_speed_actual_audit/review.json": "45307308b67cd9df6bc3ef9f0ac418585471f06d56623c2b002484a67c809375",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/selected_fast_inplace_rms_speed_long_actual_audit/review.json": "e342721e685bffc19e81bad65c47fdc9b0fc7804b480a5cd3171080cd4fe0f9c"
+  }
+}

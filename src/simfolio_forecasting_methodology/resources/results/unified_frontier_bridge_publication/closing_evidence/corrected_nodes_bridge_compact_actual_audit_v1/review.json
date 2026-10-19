@@ -1,0 +1,123 @@
+{
+  "checks": {
+    "base_originals_retained": true,
+    "bulk_new_parts": 12,
+    "cache_temp_mpl_bytes": 5015570,
+    "cache_temp_mpl_files_exact_map_count": 77,
+    "cleanup_and_catalogue_push_authorized": false,
+    "compact_source_inventory_keys_equal_lineage_logical_evidence_members": true,
+    "destination_tags": {
+      "research-unified-closure-corrected-bridge-20261019": 274,
+      "research-unified-corrected-nodes-bridge-20261019": 36
+    },
+    "fresh_authenticated_sha_readability_flags_true_count": 310,
+    "identity_asset_bytes_sha_match_count": 304,
+    "lineage_states_no_raw_payload_repacked_or_redownloaded": true,
+    "logical_empty_file_descriptor_count": 6,
+    "logical_member_count": 310,
+    "logical_source_bytes": 87788532,
+    "native_files_bytes": 1932440,
+    "native_files_exact_map_count": 7,
+    "post_closure_terminal_in_compact_member_set": false,
+    "prior_full_streams_verified": 3,
+    "private_destination_as_recorded": {
+      "private": true,
+      "release_id": 417600690,
+      "release_tag": "research-unified-closure-corrected-bridge-20261019",
+      "repository": "Hutch2064/simfolio-engine",
+      "repository_id": 1128115229
+    },
+    "science_index_member_path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/corrected_nodes_bridge_science_actual_audit_v6/publication-evidence-index.json",
+    "science_proof_member_path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/scientific-restore-proof.json",
+    "source_path_bytes_sha_exact_match_count": 310,
+    "terminal_session_exit_pid_absent": {
+      "exit_code": 0,
+      "pid": 43877,
+      "pid_absent": true,
+      "session": 5786
+    },
+    "unique_asset_sha_count": 276
+  },
+  "evidence_refs": {
+    "actual_terminal": {
+      "bytes": 1699,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/finalization_v2/parent-compact-attempt1-terminal.json",
+      "sha256": "61f0cedbf2748f0e44999aaecfb1ef481f72af95a46485e8426706916a65af86"
+    },
+    "bulk_completion": {
+      "bytes": 135124,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/bulk-completion.json",
+      "sha256": "cec492add1b12e1d9da582b4253bd7c1103994c9111072133aad638195575be6"
+    },
+    "bulk_terminal": {
+      "bytes": 951,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/execution_v4/parent-attempt1-terminal.json",
+      "sha256": "d46b6f526b700e38840bf1ca9078476cbc1af9529318c158e479190619ca6b81"
+    },
+    "compact_lineage": {
+      "bytes": 412377,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/compact-lineage.json",
+      "sha256": "09c7103c6d1d9cf1e7ba37552f52cd884069274a42549b511a842de069de502e"
+    },
+    "compact_source_inventory": {
+      "bytes": 158329,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/compact-source-inventory.json",
+      "sha256": "4930fff4251ed30fab00ee0d28e25a5f37ade6cbb9a9990c80239468c334b6d0"
+    },
+    "compact_verification": {
+      "bytes": 804,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/compact-verification.json",
+      "sha256": "2de29b075b8165dbe010c48df61666e40bafe6c85368aa614b33d8dff880690c"
+    },
+    "post_lineage": {
+      "bytes": 1343,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/post-lineage.json",
+      "sha256": "07ea899d75d06314db55ccbd8ac5431569453aba42c60ff8c9b6f0e00b292c3f"
+    },
+    "science_index": {
+      "bytes": 14309,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/corrected_nodes_bridge_science_actual_audit_v6/publication-evidence-index.json",
+      "sha256": "6ae2ee48ea7d87e4a73ea7c66495c96c6d987c9bfc6f54181b9040ed0f509128"
+    },
+    "science_proof": {
+      "bytes": 276869,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/scientific-restore-proof.json",
+      "sha256": "ef08b3bf4ec5e9d222f8cd9520eac172439c172548c429f2d7dbce3504b09b9d"
+    },
+    "v2_source_review": {
+      "bytes": 5605,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/corrected_nodes_bridge_finalization_source_review_v2/review.json",
+      "sha256": "6bddbad39431b3d236c27f2c731965877091cc3176a47ca91e066e97e2921f62"
+    },
+    "v2_source_seal": {
+      "bytes": 8293,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/finalization_v2/seal.json",
+      "sha256": "fe0bdaca342ed225ae94e20cb5834feda16963f23a06763330af4782b2e1ffa1"
+    }
+  },
+  "limitations": [
+    "Fresh remote SHA/readability results are observed in saved receipts; this independent audit did not contact or independently re-verify the private destination.",
+    "The compact closure covers the six fixed restored science Tasks and related preservation scope; it is not production validation, panel rerun, speed or seed-robustness evidence.",
+    "The compact terminal postdates the member snapshot and is not one of the 310 members; parent has designated it for a later closed batch."
+  ],
+  "passed": true,
+  "schema": "independent-saved-actual-compact-audit-v1",
+  "scope": "Read-only JSON metadata and saved member maps; no raw member payloads, network, numerical/native/financial action, cleanup, or catalogue mutation.",
+  "six_logical_empty_descriptor_rows": [
+    "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/science-temp/simfolio-corrected-dcc/4a284e9dc6f8a86fdafcee90f77b9c54a25945a70d2b5179dc87a7a910801cbb/build.lock",
+    "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/science-temp/simfolio-coupled-multiscale/eb2f83986a06408c2d85a9f13d13e249696b1fb7fdf7e5f79b99b5dbb85922f2/build.lock",
+    "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/science-temp/simfolio-no-rough/774302f507aa60d4032738f7012818005ab3509456b4af312697bc7c0d3ef180/build.lock",
+    "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/science-temp/simfolio-pathwise-multiscale/296e1e8cbe4ba0c512fa27c8067ce96c3f68d590e54f0d8d74c05ba4924311bb/build.lock",
+    "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/science-temp/simfolio-rough-native/129dd4652189481a1db48634e314be9fd5d8a344ebe530a841b63b1039261a52/build.lock",
+    "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_corrected_nodes_bridge/science-temp/simfolio-rough-streamed/dd9e1eb2924e5f10cd45ec7136bf2e1608da1d9aa82f6b94da633fa4e0f19354/build.lock"
+  ],
+  "status": "PASS_WITH_FROZEN_V2_BASELINE_LIMITATION",
+  "v2_source_review_aggregate_only": {
+    "logical_bytes": 87622291,
+    "logical_members": 304,
+    "note": "The V2 source review retains aggregate counts (304/270), not a row-level frozen per-member map. The final compact map is internally exact against its lineage, but a complete row-by-row delta against the pre-compact V2 snapshot cannot be independently reconstructed from that receipt.",
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/corrected_nodes_bridge_finalization_source_review_v2/review.json",
+    "sha256": "6bddbad39431b3d236c27f2c731965877091cc3176a47ca91e066e97e2921f62",
+    "unique_physical_assets": 270
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "scope": "Two fixed contexts, three fresh-process repetitions per method; cached median across nine measured cached calls. Idle main administrative pair retained, not cleanroom or website CTV. Same-seed runtime repetitions, not seed robustness.",
+  "passed": true,
+  "trials": 18,
+  "contexts": {
+    "SPYSIM_8766": {
+      "conditional_rough_conventional_original_nodes": {
+        "fresh_median_seconds": 0.1322032919852063,
+        "fresh_all_seconds": [
+          0.1322032919852063,
+          0.13270491699222475,
+          0.13217495795106515
+        ],
+        "cached_median_seconds": 0.07977087498875335,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.017764874966815114,
+          "dependence_seconds": 0.006992375012487173,
+          "fit_preparation_seconds": 0.050769333029165864,
+          "other_seconds": 0.000762626004870981,
+          "simulation_seconds": 0.05591474997345358
+        },
+        "pids": [
+          71803,
+          75427,
+          81446
+        ],
+        "fresh_speedup_vs_M261": 1.256085090669044,
+        "fresh_time_multiple_vs_selected_fast": 2.3897343475779986,
+        "cached_speedup_vs_M261": 1.431451855703176,
+        "cached_time_multiple_vs_selected_fast": 2.734884184495509
+      },
+      "m261": {
+        "fresh_median_seconds": 0.16605858399998397,
+        "fresh_all_seconds": [
+          0.1698518749908544,
+          0.16558425000403076,
+          0.16605858399998397
+        ],
+        "cached_median_seconds": 0.11418816703371704,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.05313420802121982,
+          "dependence_seconds": 0.006919916020706296,
+          "fit_preparation_seconds": 0.049842166947200894,
+          "other_seconds": 0.000620958162471652,
+          "simulation_seconds": 0.05596916697686538
+        },
+        "pids": [
+          69981,
+          76897,
+          79847
+        ]
+      },
+      "selected_fast": {
+        "fresh_median_seconds": 0.055321333988104016,
+        "fresh_all_seconds": [
+          0.05527229199651629,
+          0.056695958017371595,
+          0.055321333988104016
+        ],
+        "cached_median_seconds": 0.02916791703319177,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.01723695796681568,
+          "dependence_seconds": 0.0068704160512425005,
+          "fit_preparation_seconds": 0.023035124992020428,
+          "other_seconds": 0.00013608398148790002,
+          "simulation_seconds": 0.008235541987232864
+        },
+        "pids": [
+          70757,
+          76213,
+          80669
+        ]
+      }
+    },
+    "multi_annually_126": {
+      "conditional_rough_conventional_original_nodes": {
+        "fresh_median_seconds": 0.12321350001730025,
+        "fresh_all_seconds": [
+          0.12465987500036135,
+          0.11556879099225625,
+          0.12321350001730025
+        ],
+        "cached_median_seconds": 0.018786917033139616,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.0017574590165168047,
+          "dependence_seconds": 0.004514165979344398,
+          "fit_preparation_seconds": 0.10350170696619898,
+          "other_seconds": 0.0002075820229947567,
+          "simulation_seconds": 0.013079500989988446
+        },
+        "pids": [
+          74667,
+          77664,
+          83806
+        ],
+        "fresh_speedup_vs_M261": 0.971114163587855,
+        "fresh_time_multiple_vs_selected_fast": 2.20102223674811,
+        "cached_speedup_vs_M261": 0.9432494921710041,
+        "cached_time_multiple_vs_selected_fast": 2.845245076022206
+      },
+      "m261": {
+        "fresh_median_seconds": 0.11965437501203269,
+        "fresh_all_seconds": [
+          0.11947491695173085,
+          0.12077304197009653,
+          0.11965437501203269
+        ],
+        "cached_median_seconds": 0.01772074995096773,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.0021147499792277813,
+          "dependence_seconds": 0.004528584016952664,
+          "fit_preparation_seconds": 0.10022483323700726,
+          "other_seconds": 0.00019837403669953346,
+          "simulation_seconds": 0.01262345799477771
+        },
+        "pids": [
+          72842,
+          79062,
+          82234
+        ]
+      },
+      "selected_fast": {
+        "fresh_median_seconds": 0.05598012503469363,
+        "fresh_all_seconds": [
+          0.05964595795376226,
+          0.05598012503469363,
+          0.055945957952644676
+        ],
+        "cached_median_seconds": 0.006602916982956231,
+        "fresh_stage_medians_seconds": {
+          "calendar_rejoin_seconds": 0.0016857910086400807,
+          "dependence_seconds": 0.004565417009871453,
+          "fit_preparation_seconds": 0.047918332915287465,
+          "other_seconds": 0.0001438740873709321,
+          "simulation_seconds": 0.0017339190235361457
+        },
+        "pids": [
+          73878,
+          78384,
+          83020
+        ]
+      }
+    }
+  },
+  "source_completion_sha256": "2e2309a8bbd59b9a1d07ceaf11b6f5ff73d4fa090c32b13c02a7e75c6c507c42"
+}

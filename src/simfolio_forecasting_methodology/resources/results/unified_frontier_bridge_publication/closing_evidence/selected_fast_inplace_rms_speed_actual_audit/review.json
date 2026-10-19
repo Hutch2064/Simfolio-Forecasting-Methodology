@@ -1,0 +1,131 @@
+{
+  "actual_cases": {
+    "SPYSIM_8766": {
+      "candidate_time_divided_by_FAST_cached": 0.9661590169530153,
+      "candidate_time_divided_by_FAST_fresh": 0.9482829772765637,
+      "models": {
+        "m261": {
+          "cached_count": 9,
+          "cached_seconds_median": 0.11473962501622736,
+          "fresh_count": 3,
+          "fresh_seconds_median": 0.17228179203812033
+        },
+        "selected_fast": {
+          "cached_count": 9,
+          "cached_seconds_median": 0.028645000013057142,
+          "fresh_count": 3,
+          "fresh_seconds_median": 0.05572875001234934
+        },
+        "selected_fast_ordered_inplace_RMS": {
+          "cached_count": 9,
+          "cached_seconds_median": 0.0276756250532344,
+          "fresh_count": 3,
+          "fresh_seconds_median": 0.05284662498161197
+        }
+      }
+    },
+    "multi_annually_126": {
+      "candidate_time_divided_by_FAST_cached": 0.9403445522329243,
+      "candidate_time_divided_by_FAST_fresh": 1.0046051798615536,
+      "models": {
+        "m261": {
+          "cached_count": 9,
+          "cached_seconds_median": 0.018164041975978762,
+          "fresh_count": 3,
+          "fresh_seconds_median": 0.12023062497610226
+        },
+        "selected_fast": {
+          "cached_count": 9,
+          "cached_seconds_median": 0.00680575001752004,
+          "fresh_count": 3,
+          "fresh_seconds_median": 0.057552792015485466
+        },
+        "selected_fast_ordered_inplace_RMS": {
+          "cached_count": 9,
+          "cached_seconds_median": 0.0063997499528340995,
+          "fresh_count": 3,
+          "fresh_seconds_median": 0.05781783297425136
+        }
+      }
+    }
+  },
+  "actual_rows": 18,
+  "all_forecasts": 112,
+  "all_rows_oracles_fullpath_dailyCRPS_crossrep_priority_threads_cache_valid": true,
+  "auditor_source_sha256": "4d4aa1aaa74dce5dad6e9ab0501bdec8e3965de691782d130c4a76cc46351bc6",
+  "both_actual_sameowner_fullboundary_comparisons_valid": true,
+  "completion": {
+    "bytes": 1089549,
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/results/completion.json",
+    "sha256": "1a609d05870deecbfc65c7b198ff21e7fc57617a3badaeb9c824f74e4f1f14b5"
+  },
+  "controller_states": {
+    "Rs": 9,
+    "SNs": 36,
+    "Ss": 26,
+    "Us": 1
+  },
+  "explicit_idle_admin_rows": 7,
+  "extra_untimed_boundary_forecasts": 4,
+  "financial_calls": 0,
+  "limitations": [
+    "Twofixedcontexts/threefresh andninecachedsamplespermodel, notfull14/all6732/deployedwebsiteCTV.",
+    "SRIUcontroller/adminpollingbackgroundphysicallyrecorded; notstrictcleanroom. Savedquiescentstate replayed, no newlivecampaignconditionssubstituted.",
+    "Actualcube/uniform/fit/node/policy boundaries compared in rep0 outside timing; raw arrays not retained, equality receipts plus exact hashes/source are checked.",
+    "Hostile outofcontract floatingerror partial-private-buffer limitation unchanged; no fittedreachability or completefailureequivalence claim.",
+    "Smallmixed timingdifferences do not establish a broadspeedwin: multi126fresh+0.46% vsFAST, long remainsunrun inthisaudit."
+  ],
+  "native_loads_builds": 0,
+  "network_calls": 0,
+  "parent_and18workerPIDs_independently_absent": [
+    39363,
+    43542,
+    45109,
+    45890,
+    46674,
+    47706,
+    48456,
+    49077,
+    49801,
+    50584,
+    51378,
+    52166,
+    52881,
+    53582,
+    54422,
+    55092,
+    55817,
+    56601,
+    57381
+  ],
+  "passed": true,
+  "raw_quiet_snapshots_reconstructed": 36,
+  "saved_only": true,
+  "saved_summarizer_failure": {
+    "cause": "summarizer incorrectly expected cached_fit repeated, actual frozen trial schema cached_fit_1/2/3. No forecastfailure, no result changed or rerun.",
+    "entry": {
+      "bytes": 3085,
+      "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/summarize.py",
+      "sha256": "7989a02270622015358ab79c38e9211a8e744e97d862fe28616dbc65512d0ee5"
+    },
+    "exit_code": 1
+  },
+  "schema": "independent-selected-FAST-inplace18-saved-actual-audit-v1",
+  "source": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/results/source.json",
+    "sha256": "7c94f5d4a5a0c8e76d7b1ef2b92ad26c39432d4c87857f36c7a22cb009f73ece"
+  },
+  "source_refs_rehashed": 4408,
+  "stage_partitions_verified": 72,
+  "summary": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/measured-18.json",
+    "sha256": "b40e130963798a2c34b3e06f0c73be3280e230c00c2652720424df99d101d147"
+  },
+  "summary_medians_exact": true,
+  "terminal": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/benchmarks/selected_fast_inplace_rms_speed/parent-18-terminal.json",
+    "sha256": "e361b433ea5ef08163dc399267c92b6ebd6c017536ec0ce431c8907236707c7e"
+  },
+  "timed_calls": 72,
+  "timing_replays": 0
+}

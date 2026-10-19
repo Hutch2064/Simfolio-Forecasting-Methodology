@@ -1,0 +1,468 @@
+{
+  "actual_temporal_horizons_days": [
+    8766,
+    5844,
+    2922
+  ],
+  "annualization_days": 252,
+  "audit": {
+    "bytes": 16695,
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/baseline52_growth_reconciliation_actual_audit/review.json",
+    "sha256": "0fc1b06de522b2a550620b235afc90dfc7d31e1dd80bc7b0fc4b18e8fb06e29c"
+  },
+  "baseline52_growth_validation": "validated_saved_raw_losses_and_source_bound_stored_growth",
+  "by_horizon": {
+    "2922": {
+      "IID_vs_M261": {
+        "CAGR_of_mean_terminal_wealth": {
+          "higher_count": 25,
+          "lower_count": 27,
+          "median_difference_pp": -0.007196782613027794
+        },
+        "mean_path_CAGR": {
+          "higher_count": 27,
+          "lower_count": 25,
+          "median_difference_pp": 0.020083071421803447
+        },
+        "median_path_CAGR": {
+          "higher_count": 23,
+          "lower_count": 29,
+          "median_difference_pp": -0.02790780716039991
+        }
+      },
+      "IID_vs_selected": {
+        "CAGR_of_mean_terminal_wealth": {
+          "higher_count": 23,
+          "lower_count": 29,
+          "median_difference_pp": -0.02376371063132418
+        },
+        "mean_path_CAGR": {
+          "higher_count": 32,
+          "lower_count": 20,
+          "median_difference_pp": 0.021186649379049266
+        },
+        "median_path_CAGR": {
+          "higher_count": 20,
+          "lower_count": 32,
+          "median_difference_pp": -0.024842013507431204
+        }
+      },
+      "M261": {
+        "CAGR_of_mean_terminal_wealth": {
+          "below_75_percent_training_count": 2,
+          "forecast_minus_training_median_pp": -1.2273873392864363,
+          "nonpositive_forecast_count_all52": 3,
+          "positive_training_contexts": 47,
+          "ratio_q05_median_q95": [
+            0.7638643708888389,
+            0.8694335759307328,
+            1.7357112577691916
+          ]
+        },
+        "mean_path_CAGR": {
+          "below_75_percent_training_count": 17,
+          "forecast_minus_training_median_pp": -2.239348204924626,
+          "nonpositive_forecast_count_all52": 5,
+          "positive_training_contexts": 47,
+          "ratio_q05_median_q95": [
+            0.6608116147043532,
+            0.7655821033150813,
+            0.8901541895706677
+          ]
+        },
+        "median_path_CAGR": {
+          "below_75_percent_training_count": 23,
+          "forecast_minus_training_median_pp": -2.5747922003447474,
+          "nonpositive_forecast_count_all52": 5,
+          "positive_training_contexts": 47,
+          "ratio_q05_median_q95": [
+            0.6542520571639656,
+            0.7502989596662561,
+            0.847763064897828
+          ]
+        }
+      },
+      "original_IID": {
+        "CAGR_of_mean_terminal_wealth": {
+          "below_75_percent_training_count": 3,
+          "forecast_minus_training_median_pp": -1.3399745336971705,
+          "nonpositive_forecast_count_all52": 3,
+          "positive_training_contexts": 47,
+          "ratio_q05_median_q95": [
+            0.744046107665479,
+            0.8727298871106969,
+            1.5239015791699788
+          ]
+        },
+        "mean_path_CAGR": {
+          "below_75_percent_training_count": 19,
+          "forecast_minus_training_median_pp": -2.321268555398253,
+          "nonpositive_forecast_count_all52": 5,
+          "positive_training_contexts": 47,
+          "ratio_q05_median_q95": [
+            0.6615214576860279,
+            0.760257064277746,
+            0.870873993405605
+          ]
+        },
+        "median_path_CAGR": {
+          "below_75_percent_training_count": 27,
+          "forecast_minus_training_median_pp": -2.5552865902625075,
+          "nonpositive_forecast_count_all52": 5,
+          "positive_training_contexts": 47,
+          "ratio_q05_median_q95": [
+            0.6450654444144178,
+            0.7399861081905901,
+            0.844671013019589
+          ]
+        }
+      },
+      "selected": {
+        "CAGR_of_mean_terminal_wealth": {
+          "below_75_percent_training_count": 2,
+          "forecast_minus_training_median_pp": -1.1857190748127584,
+          "nonpositive_forecast_count_all52": 3,
+          "positive_training_contexts": 47,
+          "ratio_q05_median_q95": [
+            0.7592406548853912,
+            0.8773871281425075,
+            1.693322462288902
+          ]
+        },
+        "mean_path_CAGR": {
+          "below_75_percent_training_count": 18,
+          "forecast_minus_training_median_pp": -2.2851099722342703,
+          "nonpositive_forecast_count_all52": 5,
+          "positive_training_contexts": 47,
+          "ratio_q05_median_q95": [
+            0.6476653472287941,
+            0.7639302346616599,
+            0.9095695543596894
+          ]
+        },
+        "median_path_CAGR": {
+          "below_75_percent_training_count": 26,
+          "forecast_minus_training_median_pp": -2.5988668558744843,
+          "nonpositive_forecast_count_all52": 5,
+          "positive_training_contexts": 47,
+          "ratio_q05_median_q95": [
+            0.630886408516662,
+            0.7456366498752154,
+            0.8599801706031119
+          ]
+        }
+      }
+    },
+    "5844": {
+      "IID_vs_M261": {
+        "CAGR_of_mean_terminal_wealth": {
+          "higher_count": 15,
+          "lower_count": 37,
+          "median_difference_pp": -0.14589122576698435
+        },
+        "mean_path_CAGR": {
+          "higher_count": 29,
+          "lower_count": 23,
+          "median_difference_pp": 0.006642141704646387
+        },
+        "median_path_CAGR": {
+          "higher_count": 29,
+          "lower_count": 23,
+          "median_difference_pp": 0.05222941293036576
+        }
+      },
+      "IID_vs_selected": {
+        "CAGR_of_mean_terminal_wealth": {
+          "higher_count": 6,
+          "lower_count": 46,
+          "median_difference_pp": -0.18296348213940675
+        },
+        "mean_path_CAGR": {
+          "higher_count": 18,
+          "lower_count": 34,
+          "median_difference_pp": -0.026954343025887423
+        },
+        "median_path_CAGR": {
+          "higher_count": 3,
+          "lower_count": 49,
+          "median_difference_pp": -0.20549439580362094
+        }
+      },
+      "M261": {
+        "CAGR_of_mean_terminal_wealth": {
+          "below_75_percent_training_count": 2,
+          "forecast_minus_training_median_pp": 0.5423990640394268,
+          "nonpositive_forecast_count_all52": 1,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.8141045632474481,
+            1.0162677409973053,
+            3.2821192592780806
+          ]
+        },
+        "mean_path_CAGR": {
+          "below_75_percent_training_count": 3,
+          "forecast_minus_training_median_pp": -1.7402241842261543,
+          "nonpositive_forecast_count_all52": 5,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.7440389530786109,
+            0.8235443669337172,
+            1.0784817902640953
+          ]
+        },
+        "median_path_CAGR": {
+          "below_75_percent_training_count": 3,
+          "forecast_minus_training_median_pp": -1.8713730376364541,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.7444464603099792,
+            0.8221770960733698,
+            0.9890961531306631
+          ]
+        }
+      },
+      "original_IID": {
+        "CAGR_of_mean_terminal_wealth": {
+          "below_75_percent_training_count": 2,
+          "forecast_minus_training_median_pp": 0.32775746016886,
+          "nonpositive_forecast_count_all52": 2,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.8141205850180012,
+            1.0084963193223049,
+            3.04381208435515
+          ]
+        },
+        "mean_path_CAGR": {
+          "below_75_percent_training_count": 3,
+          "forecast_minus_training_median_pp": -1.7855621986643824,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.7431304830502705,
+            0.8352548740573775,
+            1.0896566601399214
+          ]
+        },
+        "median_path_CAGR": {
+          "below_75_percent_training_count": 5,
+          "forecast_minus_training_median_pp": -1.6766401898047678,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.7349304533413137,
+            0.8395227558003056,
+            0.9976399890189751
+          ]
+        }
+      },
+      "selected": {
+        "CAGR_of_mean_terminal_wealth": {
+          "below_75_percent_training_count": 1,
+          "forecast_minus_training_median_pp": 0.5207516567559369,
+          "nonpositive_forecast_count_all52": 2,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.815640136473864,
+            1.007635089632608,
+            3.301455937259309
+          ]
+        },
+        "mean_path_CAGR": {
+          "below_75_percent_training_count": 3,
+          "forecast_minus_training_median_pp": -1.7446939394927374,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.7467375296967602,
+            0.8340464287238837,
+            1.0710565331708688
+          ]
+        },
+        "median_path_CAGR": {
+          "below_75_percent_training_count": 2,
+          "forecast_minus_training_median_pp": -1.4932733624539212,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.7640598422857943,
+            0.8579382442274565,
+            1.1184116777816828
+          ]
+        }
+      }
+    },
+    "8766": {
+      "IID_vs_M261": {
+        "CAGR_of_mean_terminal_wealth": {
+          "higher_count": 28,
+          "lower_count": 24,
+          "median_difference_pp": 0.029062677467395215
+        },
+        "mean_path_CAGR": {
+          "higher_count": 30,
+          "lower_count": 22,
+          "median_difference_pp": 0.014757848537300111
+        },
+        "median_path_CAGR": {
+          "higher_count": 32,
+          "lower_count": 20,
+          "median_difference_pp": 0.030614026190069893
+        }
+      },
+      "IID_vs_selected": {
+        "CAGR_of_mean_terminal_wealth": {
+          "higher_count": 9,
+          "lower_count": 43,
+          "median_difference_pp": -0.060615623843349176
+        },
+        "mean_path_CAGR": {
+          "higher_count": 34,
+          "lower_count": 18,
+          "median_difference_pp": 0.01724946506806782
+        },
+        "median_path_CAGR": {
+          "higher_count": 33,
+          "lower_count": 19,
+          "median_difference_pp": 0.030153594499541386
+        }
+      },
+      "M261": {
+        "CAGR_of_mean_terminal_wealth": {
+          "below_75_percent_training_count": 6,
+          "forecast_minus_training_median_pp": -2.156187550669695,
+          "nonpositive_forecast_count_all52": 2,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.7185470808172467,
+            0.8317374742187389,
+            1.394957992593353
+          ]
+        },
+        "mean_path_CAGR": {
+          "below_75_percent_training_count": 20,
+          "forecast_minus_training_median_pp": -3.564780354233182,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.6869698686422138,
+            0.7545657195770799,
+            0.9258150707373911
+          ]
+        },
+        "median_path_CAGR": {
+          "below_75_percent_training_count": 23,
+          "forecast_minus_training_median_pp": -3.575569282323932,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.6862489473024471,
+            0.7483912417036997,
+            0.9264794110760043
+          ]
+        }
+      },
+      "original_IID": {
+        "CAGR_of_mean_terminal_wealth": {
+          "below_75_percent_training_count": 5,
+          "forecast_minus_training_median_pp": -2.2331122065357896,
+          "nonpositive_forecast_count_all52": 3,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.7196069159034278,
+            0.8335887409756317,
+            1.5440184626895115
+          ]
+        },
+        "mean_path_CAGR": {
+          "below_75_percent_training_count": 19,
+          "forecast_minus_training_median_pp": -3.487838988834576,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.6918342278361282,
+            0.754318847743741,
+            0.92461621644749
+          ]
+        },
+        "median_path_CAGR": {
+          "below_75_percent_training_count": 23,
+          "forecast_minus_training_median_pp": -3.5089277095466005,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.6872296667449844,
+            0.7539777556644763,
+            0.9054209573526814
+          ]
+        }
+      },
+      "selected": {
+        "CAGR_of_mean_terminal_wealth": {
+          "below_75_percent_training_count": 4,
+          "forecast_minus_training_median_pp": -2.1570565145397826,
+          "nonpositive_forecast_count_all52": 3,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.7196570379543358,
+            0.8357748119455591,
+            1.61561042485426
+          ]
+        },
+        "mean_path_CAGR": {
+          "below_75_percent_training_count": 20,
+          "forecast_minus_training_median_pp": -3.5635453650926054,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.6890851092263821,
+            0.7537509195890929,
+            0.9274302706873916
+          ]
+        },
+        "median_path_CAGR": {
+          "below_75_percent_training_count": 25,
+          "forecast_minus_training_median_pp": -3.6605640588326347,
+          "nonpositive_forecast_count_all52": 6,
+          "positive_training_contexts": 46,
+          "ratio_q05_median_q95": [
+            0.6880156577143657,
+            0.7495878213508766,
+            0.921720484020756
+          ]
+        }
+      }
+    }
+  },
+  "contexts_per_control": 156,
+  "limitations": [
+    "Forecast paths are not retained in old archive; verifies scored raw loss vectors and source-bound stored growth, not new path replays.",
+    "M261 seed/training digest bound through original manifest; raw M261 JSON lacks those fields.",
+    "Historical CAGR is a descriptive denominator, not a floor. Ratios do not identify under/overdispersion or causal mechanisms.",
+    "Overlapping development contexts are not independent evidence or statistical proof.",
+    "Old e31623 correction and earlier audits remain unchanged; this is additive52 reconciliation."
+  ],
+  "no_new_financial_path_replay_or_production_claim": true,
+  "prior_draft_seal": {
+    "bytes": 2986,
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/catalogue_support/drafts_original_nodes_IID/seal-v2.json",
+    "sha256": "4bcea4313459b4f40081196e39237a2d0c7c4657c7898e2b59543cfbf0ac48ff"
+  },
+  "private_archive_for_new_reconciliation_still_pending": true,
+  "status": "ADDITIVE_OFF_REPO_DRAFT_SAVED_GROWTH_RECONCILIATION",
+  "supersedes_only_prior_baseline52_growth_pending_status": true,
+  "terminal": {
+    "OS_absence_not_claimed": true,
+    "exit_code": 0,
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/baseline52_growth_reconciliation/revision_v2/parent-witness-v3-terminal.json",
+    "pid_not_retained": true,
+    "session": 63325,
+    "sha256": "ff912f0ea262c02d8a58b19cc907458c32b37cb633daafdcb3b2a1b7fbcec8e9"
+  },
+  "witness": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/baseline52_growth_reconciliation/revision_v2/matched52-growth-v3.json",
+    "sha256": "9f23b790d2e23418781dba9876224b8d6cc2441ad7a6acc47e8ec508a125bdc9"
+  }
+}
