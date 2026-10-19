@@ -7,13 +7,14 @@
     "The standalone website Default 52 score remains unknown: the reviewed evidence located a 50/50 blend, not a completed standalone Default result.",
     "The 241-row sweep remains historical evidence; omitted IDs below are deferred from this recommendation only and are not deleted from the catalogue.",
     "User-requested exclusion from this proposed run list of models with retained historical80 CRPS worse than the exact website Default control; preserve unknown comparisons and mandatory controls.",
-    "Explicit user removal of M190 and M192, without applying a general runtime percentile exclusion."
+    "Explicit user removal of M190 and M192, without applying a general runtime percentile exclusion.",
+    "Explicit user removal of M177; no additional runtime-percentile exclusion applied."
   ],
-  "deferred_from_sweep": 215,
+  "deferred_from_sweep": 216,
   "dropped_241_over_10_percent": 160,
   "eligible_241_not_selected_after_method_family_reduction": 50,
   "eligible_241_within_10_percent_of_M261": 81,
-  "final_panel_method_count_including_required_controls": 31,
+  "final_panel_method_count_including_required_controls": 30,
   "historical80_evidence_limitation": {
     "evidence": "The saved historical-80 catalogue has 41 rows, 34 overlapping IDs with the 241-row sweep; only the M261 join is marked verified.",
     "selection_use": "Do not infer that any deferred model is weak on both panels; the historical-80 join is not sufficient for a cross-panel exclusion claim.",
@@ -151,6 +152,7 @@
     "expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
     "expanding_sample_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
     "experimental_filtered_innovation_moment_sv_dlm",
+    "experimental_filtered_innovation_moment_sv_fixed_mean",
     "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
     "factor_ff6_ridge_residual_sbb_absolute_ewma",
     "factor_ff6_ridge_residual_sbb_none",
@@ -414,6 +416,11 @@
       "model_id": "asset_rough_volterra_sv_eight_factor_bayesian",
       "rank": 190,
       "reason": "explicit user removal after reviewing slowest current-list runtimes"
+    },
+    {
+      "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+      "rank": 177,
+      "reason": "explicit user removal after full-panel runtime estimate identified M177 as the critical-path model"
     }
   ],
   "removed_by_website_default_historical80_rule": [
@@ -480,9 +487,9 @@
     }
   ],
   "runtime_percentile_exclusion_applied": false,
-  "selected_count": 29,
+  "selected_count": 28,
   "selected_external_records": 3,
-  "selected_from_sweep": 26,
+  "selected_from_sweep": 25,
   "selected_models": [
     {
       "CRPS": 0.5957716608071161,
@@ -563,17 +570,6 @@
       "rank": 176,
       "reason": "Method-distinct moment-SV candidate; defer pending a clear first-wave rationale.",
       "summed_worker_seconds_not_controlled_benchmark": 618.1015721609583
-    },
-    {
-      "CRPS": 0.6234994707366732,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "filtered-innovation moment SV",
-      "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
-      "name": "m177",
-      "percent_better_M261": -1.5687191454788918,
-      "rank": 177,
-      "reason": "Experimental moment-SV variant with high observed work; retain for later review.",
-      "summed_worker_seconds_not_controlled_benchmark": 5110.36738467979
     },
     {
       "CRPS": 0.6245841918841899,

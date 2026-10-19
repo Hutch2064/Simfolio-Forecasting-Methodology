@@ -1,6 +1,6 @@
 # Models selected for the French panel
 
-M190 and M192 have been removed from the planned run list. **29 candidates + two required benchmarks = 31 methods.** No models have been wired or run on the French panel.
+M190, M192 and M177 have been removed from the planned run list. **28 candidates + two required benchmarks = 30 methods.** No models have been wired or run on the French panel.
 
 The table reports saved **52-asset** and **historical 80-portfolio** comparisons. It contains no scores from the new French panel. Production means M261. Percentages use `(baseline - model) / baseline`; lower CRPS is better.
 
@@ -28,7 +28,6 @@ The table reports saved **52-asset** and **historical 80-portfolio** comparisons
 | M208 — full-Hurst-domain Whittle rough MAP | 1.36% worse | 10.52% worse | 14.43% better |
 | M203 — conditional-empirical REML rough MAP | 1.38% worse | 10.47% worse | 14.46% better |
 | M194 — causal-residual dynamic-rough MAP | 1.56% worse | 11.51% worse | 13.66% better |
-| M177 — filtered-innovation moment SV | 1.57% worse | 12.21% worse | 13.12% better |
 | M182 — three-state HMM with full R-vine SV | 1.75% worse | — | — |
 | M183 — rough-jump HMM with R-vine SV | 2.49% worse | — | — |
 | M220 — Student-return rough model with Laplace-implied noise | 2.53% worse | 7.72% worse | 16.59% better |

@@ -2,7 +2,7 @@
   "baseline": "exact website Default, saved historical canonical80 control",
   "baseline_crps": 0.292821259593872,
   "baseline_source": "docs/rough-bayesian-oos.md and docs/results/rough-bayesian/map-predecessor-dynamic-panel.json",
-  "current_selected_candidates": 29,
+  "current_selected_candidates": 28,
   "models": [
     {
       "comparison": "better",
@@ -51,12 +51,6 @@
       "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
       "historical80_crps": 0.25246784959071183,
       "model_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.25439860867855635,
-      "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean"
     },
     {
       "comparison": "unknown",
@@ -208,7 +202,8 @@
   "rounding_correction": "M009 score 0.2928636384101145 is slightly worse than exact Default 0.292821259593872, but had already failed the separate 52-asset ten-percent bound",
   "subsequent_explicit_removals": [
     190,
-    192
+    192,
+    177
   ],
   "unknown_count": 2
 }

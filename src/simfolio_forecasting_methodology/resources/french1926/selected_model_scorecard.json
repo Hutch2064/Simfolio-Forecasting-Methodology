@@ -1,5 +1,5 @@
 {
-  "model_count": 31,
+  "model_count": 30,
   "no_runtime_percentile_filter": true,
   "positive_percentage_means_lower_crps_better": "100*(1-model/baseline)",
   "production52_crps": 0.6138695810898457,
@@ -244,17 +244,6 @@
       "percent_better_production52": -1.5552704398637873,
       "percent_better_production80": -11.50821855211328,
       "percent_better_website_default80": 13.662390031209725,
-      "role": "candidate",
-      "score80_status": "retained_historical_catalogue_not_new_rerun"
-    },
-    {
-      "canonical52_crps": 0.6234994707366732,
-      "historical80_crps": 0.25439860867855635,
-      "label": "M177 \u2014 filtered-innovation moment SV",
-      "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
-      "percent_better_production52": -1.5687191454788918,
-      "percent_better_production80": -12.206749820056096,
-      "percent_better_website_default80": 13.1215373394015,
       "role": "candidate",
       "score80_status": "retained_historical_catalogue_not_new_rerun"
     },

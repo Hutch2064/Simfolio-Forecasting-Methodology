@@ -1,0 +1,43 @@
+{
+  "candidates": 28,
+  "cost_scaling_factor": 23.903916909649773,
+  "estimates": {
+    "mean": {
+      "estimated_total_worker_hours": 127.1701659069998,
+      "greedy_one_worker_per_model_makespan_hours": 11.390599731343144,
+      "ideal_fully_divisible_12worker_hours": 10.597513825583317,
+      "missing_model_imputation_old_panel_worker_seconds": 638.4066664271033
+    },
+    "median": {
+      "estimated_total_worker_hours": 126.49603912063799,
+      "greedy_one_worker_per_model_makespan_hours": 11.390599731343144,
+      "ideal_fully_divisible_12worker_hours": 10.541336593386498,
+      "missing_model_imputation_old_panel_worker_seconds": 618.1015721609583
+    }
+  },
+  "matched_old52_timing_records": 25,
+  "methods": 30,
+  "missing_cost_assumption": "impute five unmatched method costs with remaining-model mean or median; not measured costs",
+  "missing_timing_records": 5,
+  "new_daily_observations": 26317,
+  "new_panel_series": 552,
+  "no_new_runs_started": true,
+  "old_daily_observations": 11687,
+  "old_panel_series": 52,
+  "required_benchmarks": 2,
+  "rough_planning_range_hours": [
+    12,
+    16
+  ],
+  "rounded_central_estimate_hours": 12,
+  "runtime_percentile_filter_applied": false,
+  "scaling_assumption": "linear in series count and observation count; same origin rules and 240 paths; model heterogeneity and contention can invalidate this approximation",
+  "slowest_remaining_model": {
+    "estimated_hours": 9.478981150876374,
+    "model_id": "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough",
+    "rank": 222
+  },
+  "status": "rough_extrapolation_not_measured_new_panel_runtime",
+  "timing_type": "saved summed_worker_seconds_not_controlled_benchmark",
+  "workers_assumed": 12
+}
