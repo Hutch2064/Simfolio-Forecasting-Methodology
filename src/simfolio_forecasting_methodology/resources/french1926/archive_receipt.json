@@ -1,22 +1,30 @@
 {
-  "archive_bytes": 76923299,
-  "archive_sha256": "77344f5ff1b02ad6243b872b93a7a321c8263baa4e173ed731d89adde4c5e1c5",
-  "asset": "french1926-inputs-20261019.tar.gz",
-  "downloaded_copy_sha256_verified": true,
-  "models_in_archive": 0,
-  "panel_fingerprint": "1a2e9dfcde0b49afb51c3290cde6176585b678af1f37ba0640647104daa1e5d9",
-  "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-french1926-panel-20261019",
-  "repository": "Hutch2064/simfolio-engine",
+  "all_readiness_evidence_members_verified": true,
+  "assets": {
+    "french1926-15model-readiness-20261019.tar.gz": {
+      "bytes": 9599407,
+      "sha256": "b636d15a899406b1367d1a36882b81a554f09747236554b1e4fb3443d4687a94"
+    },
+    "french1926-equity551-inputs-20261019.tar.gz": {
+      "bytes": 76919648,
+      "sha256": "7478e4fa488500591c22cd34bb02e652083ea556e0fac3b5d99178cb02fd45bc"
+    }
+  },
+  "checksums_asset": "EQUITY551_SHA256SUMS",
+  "full_sweep_started": false,
+  "local_retention": "Temporary downloaded/restored inputs, probe evidence and owned caches retired after verified publication; active older campaign untouched",
+  "manual_launch_approval_required": true,
+  "panel_fingerprint": "e45e1b5bec4ad011f280a236bd9901c5ea75fd4282ab26072be2dd289e41e4c0",
+  "panel_id": "french1926-single-series-551-v2",
+  "prior552_archive_retained": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-french1926-panel-20261019",
+  "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-french1926-equity551-ready-20261019",
   "restoration": [
-    "gh release download research-french1926-panel-20261019 --repo Hutch2064/simfolio-engine --pattern french1926-inputs-20261019.tar.gz --pattern SHA256SUMS",
-    "shasum -a 256 -c SHA256SUMS",
-    "tar -xzf french1926-inputs-20261019.tar.gz",
-    "python -m simfolio_forecasting_methodology.french_panel validate french1926"
+    "gh release download research-french1926-equity551-ready-20261019 --repo Hutch2064/simfolio-engine --pattern french1926-*.tar.gz --pattern EQUITY551_SHA256SUMS",
+    "shasum -a 256 -c EQUITY551_SHA256SUMS",
+    "tar -xzf french1926-equity551-inputs-20261019.tar.gz",
+    "python -m simfolio_forecasting_methodology.french_panel validate french1926-equity551"
   ],
-  "restored_member_checksums_verified": 21,
+  "restored_input_member_hashes_verified": 21,
   "restored_panel_validation": "passed",
-  "retention": "bulk local source/normalized/staging/restored copies retired only after verified remote source publication and this restoration check; archive preserves exact vintage",
-  "scores_in_archive": 0,
-  "status": "verified_private_online_archive",
-  "tag": "research-french1926-panel-20261019"
+  "status": "downloaded_restored_and_verified"
 }

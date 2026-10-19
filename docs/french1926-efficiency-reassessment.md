@@ -1,6 +1,6 @@
 # Efficiency and method-coverage reassessment
 
-**One draft proposal: 17 methods (14 reassessed entries plus three family-coverage additions). The approved 19-method selection is unchanged.** No new-panel model adapters or forecasts have been started.
+**Approved:15 methods (14 reassessed entries plus one inexpensive EWMA comparison), replacing the prior19-method list.** The fifteen adapters are prepared and passed bounded native equity probes; no full new-panel sweep has started.
 
 The review covers all 52 original candidates (49 sweep methods plus FAST, IID and M261), the two exact required benchmarks, and three additional family-coverage proposals. Historical 52 scores drive the efficiency calculation; historical 80 scores stay separate. The French panel remains unscored.
 
@@ -22,9 +22,7 @@ The review covers all 52 original candidates (49 sweep methods plus FAST, IID an
 | M233 — single learned untruncated multiscale rate | 0.85% worse | 11.84 | One learned volatility-memory rate supplies a compact structure instead of multiple nearby adaptive-memory variants. |
 | M244 — stationary AR1 with OU residual volatility | 1.03% worse | 6.62 | Exact OU residual volatility is a simpler alternative to fractional rough residual volatility. |
 | M247 — stationary AR1 rough model with leverage proxy | 0.23% worse | 10.85 | Lagged return/volatility leverage changes within-series path dynamics and is not merely cross-asset dependence. |
-| ARMA returns / ARIMA log wealth | untested design | unknown | Adds serial return-mean dynamics; compare exact existing ARMA implementation before assigning a new method. |
 | Standalone fitted-decay EWMA | untested design | unknown | Adds standalone recency-weighted variance; reconcile prior EWMA-QMLE implementation. |
-| Within-series Markov-switching returns | untested design | unknown | Adds persistent changes to the series own return distribution; reconcile earlier regime models. |
 
 The two restored methods are M035 (Student-t) and M052 (GJR-GARCH with stationary bootstrap). They are inexpensive structural controls, not claims of strong old-panel accuracy. In this proposal only, their role justifies revisiting the prior score filters. No restoration has been applied to the approved list.
 
@@ -40,7 +38,7 @@ The old M001 score is used only for this historical shortlist screen. A new Fren
 
 The nine timed historical methods in the proposal have 56.24% less recorded worker compute than the fourteen timed methods in the approved19. Five methods in both sets lack comparable timing fields. This is a comparison of known recorded work, not an all-method measured speedup.
 
-For the historical14 subset only, with the same rough linear scaling by series count and history length, mean- and median-imputed longest-jobs-first estimates both give about 4.72 elapsed hours with twelve workers. That subset has a 5–8 hour planning range. The total17 runtime is not estimated until the three added designs are profiled. The estimate includes five imputed costs, does not measure the new panel, and remains sensitive to nonlinear fits and contention. No model order or execution queue has been launched.
+For the historical14 subset only, with the same rough linear scaling by series count and history length, mean- and median-imputed longest-jobs-first estimates both give about 4.72 elapsed hours with twelve workers. That subset has a 5–8 hour planning range. The total15 runtime is not estimated until the retained EWMA implementation is matched and profiled. The estimate includes five imputed costs, does not measure the new panel, and remains sensitive to nonlinear fits and contention. No model order or execution queue has been launched.
 
 ## Complete comparison and reproduction
 
@@ -56,16 +54,21 @@ Long-horizon mean/median CAGR remains a required diagnostic in the panel harness
 
 M083 was explicitly removed from the proposal because its prequential CRPS calibration depends on forecast scores. Per-origin fitting must use only history available at the origin and must not depend on out-of-sample scoring artifacts or score-based calibration, including prequential CRPS. Historical-score screening of this research shortlist is separate from model fitting. Native adapter validation remains pending before registration.
 
-## Family-coverage additions and prior tests
+## Family-coverage review and prior tests
 
-| Proposed addition | Mechanism to test | Existing catalogue evidence |
+| Family considered | Mechanism | Existing catalogue evidence |
 | --- | --- | --- |
 | ARMA on returns / ARIMA on log wealth | Explicit serial return-mean dynamics, with training-likelihood order selection and coherent simulated paths | 35 historical master ARMA specifications; 28 completed canonical52 tests |
 | Standalone fitted-decay EWMA | Direct recency-weighted variance, fitted by training likelihood instead of fixed decay or forecast-score calibration | Six completed52 EWMA variants; `bayesian_sbb_overlay_ewma_qmle` has historical80 test references |
-| Within-series Markov-switching returns | Persistent discrete changes in the series own mean/variance, fitted from training likelihood | M025 observable Markov bootstrap has full52 evidence; hidden multifractal switching has a limited prior test |
 
-These are additions to the proposed set, not globally new families. Before implementation, reuse an existing method when the exact fit and simulation definitions match. A new identity requires a documented methodological difference; old scores cannot be attached to an altered model. The three added designs have no completed52, historical80 or new-French scores attached. All exact native adapters, convergence safeguards and history-only boundaries remain validation gates before execution.
+These are considered families, not globally new families. Only EWMA is retained in the proposal; ARMA and regime switching are omitted after reviewing the previous scores and costs. Before implementation, reuse an existing method when the exact fit and simulation definitions match. A new identity requires a documented methodological difference; old scores cannot be attached to an altered model. The retained EWMA design has no exact matched completed52, historical80 or new-French score attached. The rejected ARMA and regime designs are preserved only as considered-and-omitted records. All exact native adapters, convergence safeguards and history-only boundaries remain validation gates before execution.
 
 The ARIMA mechanism is autocorrelation in the observed series, described in [Forecasting: Principles and Practice](https://otexts.com/fpp3/arima.html). Existing latent-mean and volatility states do not make every ARMA specification equivalent. EWMA is the recursive variance family documented by [RiskMetrics](https://www.msci.com/documents/10199/5915b101-4206-4ba0-aee2-3449d5c7e95a); [arch documents an estimated-decay option](https://arch.readthedocs.io/en/latest/univariate/generated/arch.univariate.EWMAVariance.html). The planned fit uses training likelihood, not RiskMetrics' fixed decay. A scalar regime model changes the return distribution itself, motivated by [Hamilton and Susmel's regime-switching volatility study](https://www.sciencedirect.com/science/article/pii/0304407694900671); this proposal is not an exact reproduction of that paper's switching ARCH model.
 
 A plain extra GARCH or Gaussian-only model is not added solely for name recognition: the proposal already contains conditional GJR volatility and a static parametric heavy-tail comparison. Existing continuous latent-mean adaptation gives adjacent coverage of state-space smoothing. Extra cross-asset copulas are not a distinct test of this single-series protocol, and realized-volatility/factor models require unavailable century-wide covariates. This is a reasoned family screen, not a claim that every possible forecast model has been exhausted.
+
+Final family decision: omit ARMA (best historical52 score 330.60% worse than production, 11.95 worker minutes) and observable Markov/regime alternatives (35.29% worse, 10.83 worker minutes). Keep one standalone EWMA control: its family representative was 30.52% worse but used only 1.94 worker minutes, making the simple recency-volatility mechanism inexpensive to compare. These are family-screening figures, not scores assigned to the unvalidated likelihood-EWMA design.
+
+## Superseding preparation result
+
+The user removed RF, leaving551 unchanged equity series. All135 retained native equity probes passed; the earlier cash failures remain archived. The paused executable registry contains all fifteen methods. The native timing extrapolation supersedes the historical estimate:65.2 worker-hours and about42.5 elapsed hours with the current one-worker-per-model controller, dominated by M001. No full French scores exist. See the panel readiness and runtime resources.

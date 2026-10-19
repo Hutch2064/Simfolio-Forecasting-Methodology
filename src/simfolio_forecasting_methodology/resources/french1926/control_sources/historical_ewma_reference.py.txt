@@ -1,0 +1,478 @@
+def _ewma_volatility_nll(x: np.ndarray, base_var: float, lam: float) -> float:
+    arr = np.asarray(x, dtype=np.float64)
+    if _ewma_volatility_nll_numba is not None:
+        return float(_ewma_volatility_nll_numba(arr, float(base_var), float(lam)))
+    h = float(base_var)
+    ll = 0.0
+    for value in arr:
+        h = float(lam * h + (1.0 - lam) * value * value)
+        h = max(h, 1e-8)
+        ll += math.log(h) + (value * value / h)
+    return float(ll)
+
+
+def _ewma_volatility_sigma_path(x: np.ndarray, base_var: float, lam: float) -> np.ndarray:
+    arr = np.asarray(x, dtype=np.float64)
+    if _ewma_volatility_sigma_path_numba is not None:
+        return np.asarray(_ewma_volatility_sigma_path_numba(arr, float(base_var), float(lam)), dtype=np.float64)
+    sigma = np.empty_like(arr, dtype=np.float64)
+    h = float(base_var)
+    for idx, value in enumerate(arr):
+        h = float(lam * h + (1.0 - lam) * value * value)
+        h = max(h, 1e-8)
+        sigma[idx] = math.sqrt(h)
+    return sigma
+
+
+@staticmethod
+def _fit_ewma_volatility(residuals: np.ndarray) -> Dict[str, Any]:
+    eps = np.asarray(residuals, dtype=np.float64)
+    eps = eps[np.isfinite(eps)]
+    x = eps * 100.0
+    if x.size < 30:
+        sigma = float(np.std(x, ddof=1)) if x.size > 1 else 1.0
+        sigma = float(max(sigma, 1e-6))
+        return {
+            "vol_model": "estimated_decay_ewma_volatility",
+            "lambda": 0.94,
+            "sigma_x": np.full(max(len(x), 1), sigma, dtype=np.float64),
+            "last_sigma_x": sigma,
+            "params": {"lambda": 0.94},
+            "fit_status": "fallback_short_history",
+        }
+    base_var = float(np.var(x, ddof=1))
+    base_var = max(base_var, 1e-8)
+
+    try:
+        opt = minimize_scalar(
+            lambda lam: _ewma_volatility_nll(x, base_var, float(lam)),
+            bounds=(0.80, 0.995),
+            method="bounded",
+            options={"xatol": 1e-4},
+        )
+        lam = float(opt.x) if opt.success and np.isfinite(opt.x) else 0.94
+    except Exception:
+        lam = 0.94
+    sigma = _ewma_volatility_sigma_path(x, base_var, lam)
+    return {
+        "vol_model": "estimated_decay_ewma_volatility",
+        "lambda": lam,
+        "sigma_x": sigma,
+        "last_sigma_x": float(sigma[-1]),
+        "params": {"lambda": lam},
+        "fit_status": "complete",
+    }
+
+
+def _fit_bayesian_sbb_vol_overlay(train_values: np.ndarray, candidate: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    x = np.asarray(train_values, dtype=np.float64)
+    x = x[np.isfinite(x)]
+    if x.size < 60:
+        return None
+    base_fit: Optional[Dict[str, Any]] = None
+    if str(candidate.get("mean_model", "")) == "empirical_bayes_hac_sharpe":
+        base_fit = _fit_empirical_bayes_sharpe_sbb(x)
+    elif str(candidate.get("mean_model", "")) == "empirical_bayes_hac_positive_sharpe":
+        base_fit = _fit_empirical_bayes_sharpe_sbb(
+            x,
+            nonnegative_sharpe=True,
+            posterior_mu_draws=bool(candidate.get("posterior_mu_draws", False)),
+        )
+    elif str(candidate.get("mean_model", "")) == "hierarchical_empirical_bayes_sharpe":
+        base_fit = _fit_hierarchical_empirical_bayes_sharpe_sbb(x)
+    elif str(candidate.get("mean_model", "")) == "prequential_crps_shrinkage":
+        base_fit = _fit_prequential_crps_shrinkage_sbb(x)
+    elif str(candidate.get("mean_model", "")) == "positive_sample_mean":
+        base_fit = _fit_positive_sample_mean_sbb(x)
+    elif str(candidate.get("mean_model", "")) == "merton_positive_hac_drift_uncertainty":
+        base_fit = _fit_merton_positive_hac_drift_uncertainty_sbb(x)
+    elif str(candidate.get("mean_model", "")) == "evidence_estimated_sharpe_dlm_historical_cagr_anchor":
+        mu, residuals, mean_meta = SimfolioEngine._evidence_estimated_sharpe_dlm_historical_cagr_anchor_mean(x)
+        base_fit_override = mean_meta.get("_base_fit_override") if isinstance(mean_meta, dict) else None
+        if isinstance(base_fit_override, dict):
+            base_fit = dict(base_fit_override)
+        else:
+            base_fit = SimfolioEngine._base_sbb_fit_from_mean_fit(
+                x,
+                float(mu),
+                np.asarray(residuals, dtype=np.float64),
+                dict(mean_meta),
+            )
+    elif str(candidate.get("mean_model", "")) == "zero_sharpe":
+        base_fit = _fit_zero_sharpe_sbb(x)
+    elif str(candidate.get("mean_model", "")) == "historical_realized_sharpe":
+        base_fit = _fit_historical_realized_sharpe_sbb(x)
+    elif str(candidate.get("mean_model", "")) == "historical_realized_sharpe_prior_cap":
+        sharpe_stats = _historical_sharpe_stats(x)
+        if sharpe_stats is None:
+            base_fit = None
+        else:
+            realized_sr = float(sharpe_stats["historical_sharpe"])
+            realized_abs_sr = float(sharpe_stats["historical_abs_sharpe"])
+            base_fit = _fit_bayesian_constrained_sbb(
+                x,
+                {
+                    "prior_sr": realized_abs_sr,
+                    "sr_cap": realized_abs_sr,
+                    "prior_source": "zero",
+                    "nonnegative_drift": False,
+                    "posterior_mu_draws": False,
+                    "posterior_sd_scale": 0.0,
+                },
+            )
+            if base_fit is not None:
+                base_fit["meta"]["prior_source"] = "portfolio_historical_realized_sharpe"
+                base_fit["meta"]["sample_sharpe_annualized"] = realized_sr
+                base_fit["meta"]["historical_realized_abs_sharpe_cap"] = realized_abs_sr
+    elif str(candidate.get("mean_model", "")) in {"horizon_sharpe_cap_schedule", "historical_sharpe_horizon_schedule"}:
+        sharpe_stats = _historical_sharpe_stats(x)
+        schedule_specs = candidate.get("sharpe_schedule") or []
+        segment_fits: List[Dict[str, Any]] = []
+        for raw_segment in schedule_specs:
+            if not isinstance(raw_segment, dict):
+                continue
+            if raw_segment.get("prior_sr_source") == "historical_abs_sharpe":
+                if sharpe_stats is None:
+                    continue
+                prior_sr = float(sharpe_stats["historical_abs_sharpe"])
+                sr_cap = float(raw_segment.get("sr_cap", prior_sr))
+            else:
+                prior_sr = float(raw_segment.get("prior_sr", 0.4375))
+                sr_cap = float(raw_segment.get("sr_cap", prior_sr))
+            segment_fit = _fit_bayesian_constrained_sbb(
+                x,
+                {
+                    "prior_sr": prior_sr,
+                    "sr_cap": sr_cap,
+                    "prior_source": "zero",
+                    "nonnegative_drift": False,
+                    "posterior_mu_draws": False,
+                    "posterior_sd_scale": 0.0,
+                },
+            )
+            if segment_fit is None:
+                continue
+            segment_fits.append(
+                {
+                    "through_day": raw_segment.get("through_day"),
+                    "prior_sr": prior_sr,
+                    "sr_cap": sr_cap,
+                    "prior_sr_source": str(raw_segment.get("prior_sr_source") or "fixed"),
+                    "posterior_mean": float(segment_fit["posterior_mean"]),
+                    "mu_cap": float(segment_fit.get("mu_cap", 0.0)),
+                }
+            )
+            if base_fit is None:
+                base_fit = segment_fit
+        if base_fit is not None and segment_fits:
+            base_fit = dict(base_fit)
+            base_fit["posterior_mean_schedule_segments"] = segment_fits
+            base_fit["posterior_mu_draws"] = False
+            base_fit["meta"] = {
+                **dict(base_fit.get("meta", {}) or {}),
+                "mean_schedule_method": str(candidate.get("mean_model")),
+                "historical_sharpe_stats": sharpe_stats,
+                "posterior_mean_schedule_segments": segment_fits,
+            }
+    elif str(candidate.get("mean_model", "")) == "historical_sharpe_uncertainty_decay":
+        sharpe_stats = _historical_sharpe_stats(x)
+        if sharpe_stats is None:
+            base_fit = None
+        else:
+            historical_abs_sr = float(sharpe_stats["historical_abs_sharpe"])
+            long_run_sr = float(max(candidate.get("long_run_sr", 0.4375), 1e-6))
+            short_fit = _fit_bayesian_constrained_sbb(
+                x,
+                {
+                    "prior_sr": historical_abs_sr,
+                    "sr_cap": historical_abs_sr,
+                    "prior_source": "zero",
+                    "nonnegative_drift": False,
+                    "posterior_mu_draws": False,
+                    "posterior_sd_scale": 0.0,
+                },
+            )
+            long_fit = _fit_bayesian_constrained_sbb(
+                x,
+                {
+                    "prior_sr": long_run_sr,
+                    "sr_cap": long_run_sr,
+                    "prior_source": "zero",
+                    "nonnegative_drift": False,
+                    "posterior_mu_draws": False,
+                    "posterior_sd_scale": 0.0,
+                },
+            )
+            if short_fit is not None and long_fit is not None:
+                base_fit = dict(short_fit)
+                decay_meta = {
+                    **sharpe_stats,
+                    "method": "mean_parameter_uncertainty_decay_to_long_run_sharpe",
+                    "long_run_sr": long_run_sr,
+                    "short_posterior_mean": float(short_fit["posterior_mean"]),
+                    "long_posterior_mean": float(long_fit["posterior_mean"]),
+                    "short_prior_sr": historical_abs_sr,
+                    "short_sr_cap": historical_abs_sr,
+                    "long_prior_sr": long_run_sr,
+                    "long_sr_cap": long_run_sr,
+                }
+                base_fit["posterior_mean"] = float(short_fit["posterior_mean"])
+                base_fit["posterior_mean_decay_meta"] = decay_meta
+                base_fit["posterior_mu_draws"] = False
+                base_fit["meta"] = {
+                    **dict(base_fit.get("meta", {}) or {}),
+                    "mean_schedule_method": "historical_sharpe_uncertainty_decay",
+                    "posterior_mean_decay_meta": decay_meta,
+                }
+    else:
+        prior_sr = float(candidate.get("prior_sr", 0.75))
+        sr_cap = float(candidate.get("sr_cap", 0.75))
+        base_fit = _fit_bayesian_constrained_sbb(
+            x,
+            {
+                "prior_sr": prior_sr,
+                "sr_cap": sr_cap,
+                "prior_source": "zero",
+                "nonnegative_drift": False,
+                "posterior_mu_draws": False,
+                "posterior_sd_scale": 0.0,
+            },
+        )
+    if base_fit is None:
+        return None
+    if candidate.get("fixed_block_length") is not None:
+        base_fit = dict(base_fit)
+        base_fit["fixed_block_length"] = int(max(1, int(candidate["fixed_block_length"])))
+        base_fit["meta"] = {
+            **dict(base_fit.get("meta", {}) or {}),
+            "block_length_method": "fixed_trading_days",
+            "fixed_block_length": int(base_fit["fixed_block_length"]),
+        }
+    residuals = x - float(np.mean(x))
+    long_sigma_x = float(max(float(base_fit["sigma"]) * 100.0, 1e-6))
+    long_variance_x = float(max(long_sigma_x * long_sigma_x, 1e-8))
+    overlay_model = str(candidate.get("overlay_model", "ewma_qmle"))
+    meta: Dict[str, Any] = {
+        "method": "bayesian_constrained_sbb_with_data_driven_short_horizon_volatility_overlay",
+        "overlay_model": overlay_model,
+        "long_run_sigma_source": "base_bayesian_constrained_sbb_sample_sigma",
+        "long_sigma_x": long_sigma_x,
+    }
+    curve_fit: Dict[str, Any]
+    if overlay_model == "ewma_qmle":
+        vol_fit = SimfolioEngine._fit_ewma_volatility(residuals)
+        persistence = float(vol_fit.get("lambda", 0.94))
+        curve_fit = {
+            "curve_type": "variance_decay",
+            "persistence": float(np.clip(persistence, 0.0, 0.999)),
+            "last_variance_x": float(max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8)),
+            "long_variance_x": long_variance_x,
+            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(np.asarray(vol_fit.get("sigma_x", []), dtype=np.float64), long_sigma_x),
+            "fit_status": str(vol_fit.get("fit_status", "complete")),
+        }
+    elif overlay_model == "ewma_absolute":
+        vol_fit = _fit_absolute_ewma_volatility(residuals)
+        if vol_fit is None:
+            return None
+        persistence = float(vol_fit.get("lambda", 0.94))
+        curve_fit = {
+            "curve_type": "variance_decay",
+            "persistence": float(np.clip(persistence, 0.0, 0.999)),
+            "last_variance_x": float(max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8)),
+            "long_variance_x": long_variance_x,
+            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(np.asarray(vol_fit.get("sigma_x", []), dtype=np.float64), long_sigma_x),
+            "fit_status": str(vol_fit.get("fit_status", "complete")),
+            "objective": str(vol_fit.get("objective", "")),
+        }
+    elif overlay_model in {"garch_1_1", "gjr_garch_1_1", "egarch_1_1"}:
+        vol_name = {
+            "garch_1_1": "garch_1_1_volatility",
+            "gjr_garch_1_1": "gjr_tarch_1_1_volatility",
+            "egarch_1_1": "egarch_1_1_volatility",
+        }[overlay_model]
+        vol_fit = SimfolioEngine._fit_arch_volatility(residuals, vol_name, "gaussian_iid_standardized_innovations")
+        if vol_fit is None:
+            return None
+        params = vol_fit.get("params", {}) or {}
+        sigma_x = np.asarray(vol_fit.get("sigma_x", []), dtype=np.float64)
+        if overlay_model == "egarch_1_1":
+            persistence = float(np.clip(params.get("beta[1]", 0.94), -0.98, 0.995))
+            curve_fit = {
+                "curve_type": "log_variance_decay",
+                "persistence": persistence,
+                "last_log_variance_x": float(math.log(max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8))),
+                "long_log_variance_x": float(math.log(long_variance_x)),
+                "sigma_clip_bounds_x": _overlay_vol_clip_bounds(sigma_x, long_sigma_x),
+                "fit_status": str(vol_fit.get("fit_status", "complete")),
+            }
+        else:
+            alpha = float(np.clip(params.get("alpha[1]", 0.05), 0.0, 0.80))
+            beta = float(np.clip(params.get("beta[1]", 0.90), 0.0, 0.999))
+            gamma = float(np.clip(params.get("gamma[1]", 0.0), -0.80, 1.20)) if overlay_model == "gjr_garch_1_1" else 0.0
+            persistence = float(np.clip(alpha + beta + 0.5 * gamma, 0.0, 0.999))
+            curve_fit = {
+                "curve_type": "variance_decay",
+                "persistence": persistence,
+                "last_variance_x": float(max(float(vol_fit.get("last_sigma_x", long_sigma_x)) ** 2, 1e-8)),
+                "long_variance_x": long_variance_x,
+                "sigma_clip_bounds_x": _overlay_vol_clip_bounds(sigma_x, long_sigma_x),
+                "fit_status": str(vol_fit.get("fit_status", "complete")),
+                "arch_params": params,
+            }
+    elif overlay_model in {"sv_ar1_logvol", "sv_ar1_logvol_bias_corrected", "sv_no_ar_logvol_bias_corrected"}:
+        if overlay_model == "sv_no_ar_logvol_bias_corrected":
+            sv_fit = _fit_sv_variant(
+                x,
+                {"bias_correct": True, "eta_scale": 0.0, "last_blend": 0.0, "phi_cap": 0.0},
+            )
+        elif overlay_model == "sv_ar1_logvol_bias_corrected":
+            sv_fit = _fit_sv_variant(
+                x,
+                {"bias_correct": True, "eta_scale": 0.0, "last_blend": 0.0, "phi_cap": 0.995},
+            )
+        else:
+            sv_fit = _fit_sv_ar1(x)
+        if sv_fit is None:
+            return None
+        persistence = 0.0 if overlay_model == "sv_no_ar_logvol_bias_corrected" else float(np.clip(sv_fit.get("phi", 0.94), 0.0, 0.995))
+        curve_fit = {
+            "curve_type": "log_variance_decay",
+            "persistence": persistence,
+            "last_log_variance_x": float(sv_fit.get("last_log_var", math.log(long_variance_x))),
+            "long_log_variance_x": float(math.log(long_variance_x)),
+            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(np.sqrt(np.maximum((residuals * 100.0) ** 2, 1e-8)), long_sigma_x),
+            "fit_status": "complete",
+        }
+        filtered_var = np.asarray(sv_fit.get("filtered_log_var_var", []), dtype=np.float64)
+        filtered_var = filtered_var[np.isfinite(filtered_var)]
+        if filtered_var.size:
+            curve_fit["last_log_variance_error_variance"] = float(max(filtered_var[-1], 1e-10))
+        if "sv_measurement_bias_correction" in sv_fit:
+            curve_fit["sv_measurement_bias_correction"] = float(sv_fit["sv_measurement_bias_correction"])
+    elif overlay_model in {"har_log_variance", "har_absolute_volatility"}:
+        mode = "log_variance" if overlay_model == "har_log_variance" else "absolute_volatility"
+        har_fit = _fit_har_overlay(residuals, mode, long_sigma_x)
+        if har_fit is None:
+            return None
+        curve_fit = {
+            "curve_type": "har_recursive",
+            **har_fit,
+        }
+        persistence = float(har_fit.get("persistence", 0.0))
+    elif overlay_model in {"harch_1_5_22", "figarch_1_d_1"}:
+        arch_fit = _fit_arch_forecast_overlay(residuals, overlay_model)
+        if arch_fit is None:
+            return None
+        params = arch_fit.get("params", {}) or {}
+        if overlay_model == "harch_1_5_22":
+            persistence = float(sum(value for key, value in params.items() if str(key).startswith("alpha[")))
+        else:
+            persistence = float(params.get("beta", 0.0) + params.get("d", 0.0))
+        persistence = float(np.clip(persistence, 0.0, 0.999))
+        curve_fit = {
+            "curve_type": "arch_forecast",
+            "arch_result": arch_fit["result"],
+            "arch_params": params,
+            "persistence": persistence,
+            "sigma_clip_bounds_x": _overlay_vol_clip_bounds(np.asarray(arch_fit.get("sigma_x", []), dtype=np.float64), long_sigma_x),
+            "fit_status": str(arch_fit.get("fit_status", "complete")),
+        }
+    else:
+        return None
+    meta["overlay_persistence"] = float(persistence)
+    meta["overlay_half_life_days"] = _overlay_half_life_days(float(persistence))
+    meta["overlay_fit_status"] = str(curve_fit.get("fit_status", "complete"))
+    return {
+        "base_fit": base_fit,
+        "curve_fit": curve_fit,
+        "meta": meta,
+    }
+
+
+def _overlay_vol_multiplier_curve(fit: Dict[str, Any], total_days: int) -> np.ndarray:
+    total_days = int(total_days)
+    if total_days <= 0:
+        return np.empty(0, dtype=np.float64)
+    base_fit = fit.get("base_fit", {}) or {}
+    curve_fit = fit.get("curve_fit", {}) or {}
+    long_sigma_x = float(max(float(base_fit.get("sigma", 0.0)) * 100.0, 1e-6))
+    steps = np.arange(1, total_days + 1, dtype=np.float64)
+    curve_type = str(curve_fit.get("curve_type", "variance_decay"))
+    if curve_type == "variance_decay":
+        p = float(curve_fit.get("persistence", 0.0))
+        long_h = float(max(curve_fit.get("long_variance_x", long_sigma_x * long_sigma_x), 1e-8))
+        last_h = float(max(curve_fit.get("last_variance_x", long_h), 1e-8))
+        sigma_x = np.sqrt(np.maximum(long_h + np.power(p, steps) * (last_h - long_h), 1e-8))
+    elif curve_type == "log_variance_decay":
+        p = float(curve_fit.get("persistence", 0.0))
+        long_log_h = float(curve_fit.get("long_log_variance_x", math.log(max(long_sigma_x * long_sigma_x, 1e-8))))
+        last_log_h = float(curve_fit.get("last_log_variance_x", long_log_h))
+        log_h = long_log_h + np.power(p, steps) * (last_log_h - long_log_h)
+        sigma_x = np.exp(0.5 * np.clip(log_h, -18.0, 18.0))
+    elif curve_type == "har_recursive":
+        coef = np.asarray(curve_fit.get("coefficients", [0.0, 0.0, 0.0]), dtype=np.float64)
+        history = list(np.asarray(curve_fit.get("history", []), dtype=np.float64))
+        long_level = float(curve_fit.get("long_level", math.log(max(long_sigma_x, 1e-8))))
+        mode = str(curve_fit.get("mode", "absolute_volatility"))
+        values = np.empty(total_days, dtype=np.float64)
+        if len(history) < 22 or coef.shape != (3,) or not np.all(np.isfinite(coef)):
+            values.fill(long_sigma_x)
+        else:
+            for idx in range(total_days):
+                hist = np.asarray(history, dtype=np.float64)
+                dev = hist - long_level
+                pred_dev = float(
+                    coef[0] * dev[-1]
+                    + coef[1] * float(np.mean(dev[-5:]))
+                    + coef[2] * float(np.mean(dev[-22:]))
+                )
+                pred_level = float(long_level + pred_dev)
+                if mode == "log_variance":
+                    values[idx] = math.exp(0.5 * float(np.clip(pred_level, -18.0, 18.0)))
+                else:
+                    values[idx] = math.exp(float(np.clip(pred_level, -18.0, 18.0)))
+                history.append(pred_level)
+            sigma_x = values
+    elif curve_type == "arch_forecast":
+        result = curve_fit.get("arch_result")
+        try:
+            forecast = result.forecast(horizon=total_days, reindex=False, method="analytic")
+            values = np.asarray(forecast.variance.values[-1], dtype=np.float64)
+            sigma_x = np.sqrt(np.maximum(values, 1e-8))
+        except Exception:
+            sigma_x = np.full(total_days, long_sigma_x, dtype=np.float64)
+    else:
+        sigma_x = np.full(total_days, long_sigma_x, dtype=np.float64)
+    bounds = curve_fit.get("sigma_clip_bounds_x")
+    if bounds is not None and len(bounds) == 2:
+        floor, ceiling = float(bounds[0]), float(bounds[1])
+        if np.isfinite(floor) and np.isfinite(ceiling) and ceiling > floor > 0.0:
+            sigma_x = np.clip(sigma_x, floor, ceiling)
+    multiplier = np.asarray(sigma_x, dtype=np.float64) / max(long_sigma_x, 1e-8)
+    multiplier = multiplier[np.isfinite(multiplier)]
+    if multiplier.size != total_days:
+        return np.ones(total_days, dtype=np.float64)
+    return np.clip(multiplier, 0.01, 100.0)
+
+
+def _simulate_bayesian_sbb_vol_overlay(
+    fit: Dict[str, Any],
+    total_days: int,
+    n_paths: int,
+    rng: np.random.Generator,
+) -> np.ndarray:
+    base_fit = fit.get("base_fit", {}) or {}
+    base_paths = _simulate_bayesian_constrained_sbb(base_fit, int(total_days), int(n_paths), rng)
+    if base_paths.size == 0:
+        return base_paths
+    multipliers = _overlay_vol_multiplier_curve(fit, int(total_days))
+    if multipliers.size != base_paths.shape[1]:
+        return base_paths
+    center_schedule = _mean_schedule_from_fit(base_fit, int(total_days))
+    if center_schedule is not None:
+        center: Any = center_schedule[None, :]
+    else:
+        center = float(base_fit.get("posterior_mean", 0.0))
+    paths = center + (base_paths - center) * multipliers[None, :]
+    return np.clip(paths, -1.0, 1.0)
+

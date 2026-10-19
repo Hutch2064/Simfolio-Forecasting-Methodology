@@ -12,6 +12,8 @@ import os
 import tempfile
 from collections.abc import Callable
 from dataclasses import asdict
+from functools import lru_cache
+from importlib import metadata
 from pathlib import Path
 from time import perf_counter
 
@@ -37,13 +39,36 @@ from ..seeds import coherent_daily_seed
 from .data import PROTOCOL_ID, SIMULATIONS, load_dates, load_panel, load_returns, schedule
 
 
+@lru_cache(maxsize=1)
+def _native_dependency_identity() -> dict:
+    """Bind retained compiler headers and transitive native binaries as installed."""
+    packages = {}
+    for name in ("pybind11", "pyvinecopulib"):
+        try:
+            distribution = metadata.distribution(name)
+        except metadata.PackageNotFoundError:
+            packages[name] = None
+            continue
+        artifacts = {}
+        for entry in distribution.files or ():
+            if Path(entry).suffix in {".h", ".hpp", ".so", ".dylib", ".pyd"}:
+                artifacts[str(entry)] = hashlib.sha256(distribution.locate_file(entry).read_bytes()).hexdigest()
+        packages[name] = {"version": distribution.version, "native_artifacts": artifacts}
+    return packages
+
+
+def dependency_identity(model) -> dict:
+    return {**_dependency_identity(model, {}), "french_native_dependencies": _native_dependency_identity()}
+
+
 def _source_closure() -> dict[str, str]:
     """Bind execution/scoring/seeds, adapters, and retained protocol resources."""
     root = Path(__file__).resolve().parents[1]
     paths = set(root.rglob("*.py"))
     for directory in ("protocols", "french1926"):
         paths.update(path for path in (root / "resources" / directory).rglob("*")
-                     if path.is_file())
+                     if path.is_file() and "__pycache__" not in path.parts
+                     and path.suffix not in {".pyc", ".pyo"})
     return {str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
             for path in sorted(paths)}
 
@@ -240,7 +265,7 @@ def run_panel(model: ForecastModel, panel_root: Path, output_root: Path, *,
         "series_ids": series_ids,
         "model_id": model.model_id,
         "implementation_digest": implementation_digest,
-        "runtime": _dependency_identity(model, {}),
+        "runtime": dependency_identity(model),
         "simulations_per_origin": SIMULATIONS,
         "source_closure": _source_closure(),
         "origins": [asdict(origin) for origin in origins],

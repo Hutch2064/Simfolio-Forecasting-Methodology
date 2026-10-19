@@ -1,25 +1,4 @@
 {
-  "active19_method_ids": [
-    "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
-    "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac",
-    "asset_m256_data_timescales_existing_sv_rate",
-    "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
-    "asset_map_stationary_ar1_proxy_leverage_dynamic_rough",
-    "asset_map_stationary_ar1_innovation_student_lhs_copula_dynamic_rough",
-    "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
-    "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
-    "asset_hmm_three_state_full_rvine_sv",
-    "asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough",
-    "asset_map_stationary_ar1_ou_residual_volatility",
-    "asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough",
-    "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough",
-    "asset_map_adaptive_stable_coupled_multiscale_dynamic_rough",
-    "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
-    "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map",
-    "asset_map_student_return_laplace_implied_noise_dynamic_rough",
-    "asset_level_naive_iid_mean_shrunk_rebalanced",
-    "model_testing_joint_stationary_bootstrap_v1"
-  ],
   "additional_family_candidates": [
     {
       "CRPS": null,
@@ -35,8 +14,8 @@
       "label": "ARMA returns / ARIMA log wealth",
       "model_id": "FRENCH1926-ARMA-TRAINING-LIKELIHOOD",
       "new_family_candidate": true,
-      "proposal_include": true,
-      "proposal_reason": "Adds explicit serial dynamics in the return mean; existing volatility persistence is not an ARMA return-mean model.",
+      "proposal_include": false,
+      "proposal_reason": "Do not include: 28 completed52 ARMA variants have weak results; best retained score is 330.60% worse than production with 11.95 recorded worker minutes. No demonstrated methodological gain warrants another implementation.",
       "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
       "sources": [
         "https://otexts.com/fpp3/arima.html",
@@ -60,7 +39,7 @@
       "model_id": "FRENCH1926-EWMA-QMLE",
       "new_family_candidate": true,
       "proposal_include": true,
-      "proposal_reason": "Adds a direct recency-weighted volatility model without the latent-SV/rough machinery.",
+      "proposal_reason": "Retain exactly one inexpensive standalone EWMA control to isolate simple recency-weighted variance. Existing full52 EWMA variants are weak, but the best uses only 1.94 recorded worker minutes. Match the historical QMLE implementation and document any fit change before registering a model; do not attach the family representative score to a changed model.",
       "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
       "sources": [
         "https://www.msci.com/documents/10199/5915b101-4206-4ba0-aee2-3449d5c7e95a",
@@ -83,8 +62,8 @@
       "label": "Within-series Markov-switching returns",
       "model_id": "FRENCH1926-MARKOV-RETURN-REGIMES",
       "new_family_candidate": true,
-      "proposal_include": true,
-      "proposal_reason": "Adds persistent discrete changes in the series own return distribution, not just cross-asset dependence.",
+      "proposal_include": false,
+      "proposal_reason": "Do not include: observable Markov bootstrap is 35.29% worse than production with 10.83 recorded worker minutes; limited hidden-state evidence does not establish a competitive score/work case.",
       "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
       "sources": [
         "https://www.sciencedirect.com/science/article/pii/0304407694900671",
@@ -94,12 +73,12 @@
     }
   ],
   "analysis": {
-    "additional_family_candidates": 3,
+    "additional_family_candidates": 1,
     "comparable_timing_records_original": 49,
     "comparable_timing_records_proposed": 9,
     "known_worker_seconds_reduction_vs_approved19_percent": 56.23572730938445,
     "original_candidates": 52,
-    "proposed_methods": 17,
+    "proposed_methods": 15,
     "reviewed_rows_including_required_benchmarks": 57,
     "rows": [
       {
@@ -1276,8 +1255,8 @@
         "percent_better_fixed_M001": null,
         "percent_better_production52": null,
         "positive_gain_efficiency_per_worker_minute": null,
-        "proposal_include": true,
-        "proposal_reason": "Adds explicit serial dynamics in the return mean; existing volatility persistence is not an ARMA return-mean model.",
+        "proposal_include": false,
+        "proposal_reason": "Do not include: 28 completed52 ARMA variants have weak results; best retained score is 330.60% worse than production with 11.95 recorded worker minutes. No demonstrated methodological gain warrants another implementation.",
         "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
         "sources": [
           "https://otexts.com/fpp3/arima.html",
@@ -1308,7 +1287,7 @@
         "percent_better_production52": null,
         "positive_gain_efficiency_per_worker_minute": null,
         "proposal_include": true,
-        "proposal_reason": "Adds a direct recency-weighted volatility model without the latent-SV/rough machinery.",
+        "proposal_reason": "Retain exactly one inexpensive standalone EWMA control to isolate simple recency-weighted variance. Existing full52 EWMA variants are weak, but the best uses only 1.94 recorded worker minutes. Match the historical QMLE implementation and document any fit change before registering a model; do not attach the family representative score to a changed model.",
         "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
         "sources": [
           "https://www.msci.com/documents/10199/5915b101-4206-4ba0-aee2-3449d5c7e95a",
@@ -1338,8 +1317,8 @@
         "percent_better_fixed_M001": null,
         "percent_better_production52": null,
         "positive_gain_efficiency_per_worker_minute": null,
-        "proposal_include": true,
-        "proposal_reason": "Adds persistent discrete changes in the series own return distribution, not just cross-asset dependence.",
+        "proposal_include": false,
+        "proposal_reason": "Do not include: observable Markov bootstrap is 35.29% worse than production with 10.83 recorded worker minutes; limited hidden-state evidence does not establish a competitive score/work case.",
         "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
         "sources": [
           "https://www.sciencedirect.com/science/article/pii/0304407694900671",
@@ -1355,7 +1334,7 @@
         "mean": {
           "imputed_old52_worker_seconds": 385.70996641645775,
           "scheduled_wall_hours_at_12_workers": 4.715661553859462,
-          "total_worker_hours": 35.855473843944274
+          "total_worker_hours": 35.85547384394427
         },
         "median": {
           "imputed_old52_worker_seconds": 395.4462267917115,
@@ -1369,11 +1348,44 @@
       ],
       "scaling_factor": 23.903916909649773,
       "scheduling": "longest estimated model jobs first; one worker per model",
-      "status": "old14_subset_only_total17_not_estimated_until_new_families_profiled",
-      "unestimated_additional_family_count": 3,
+      "status": "historical14_subset_only_full_proposal_not_estimated_until_EWMA_profiled",
+      "unestimated_additional_family_count": 1,
       "workers": 12
     },
-    "unknown_timing_records_proposed": 8
+    "unknown_timing_records_proposed": 6
+  },
+  "family_addition_decision": {
+    "approved19_unchanged": false,
+    "approved_method_count": 15,
+    "historical52_comparisons": {
+      "ARMA_best": {
+        "CRPS": 2.6433460283543564,
+        "canonical_id": "M167",
+        "percent_worse_production": 330.60384644918213,
+        "worker_minutes": 11.947119834371067
+      },
+      "EWMA_best": {
+        "CRPS": 0.8012524633935214,
+        "canonical_id": "M050",
+        "percent_worse_production": 30.524868486071878,
+        "worker_minutes": 1.9389950962281242
+      },
+      "observable_Markov": {
+        "CRPS": 0.830530361861699,
+        "canonical_id": "M025",
+        "percent_worse_production": 35.29426892063952,
+        "worker_minutes": 10.827044659600748
+      }
+    },
+    "interpretation": "Only EWMA warrants a low-cost mechanism control; none of these historical family results establishes a new production contender.",
+    "keep": [
+      "standalone fitted-decay EWMA as inexpensive structural control"
+    ],
+    "omit": [
+      "additional ARMA",
+      "additional regime switching"
+    ],
+    "proposed_methods": 15
   },
   "family_coverage_review": {
     "cost": "secondary screening constraint; profile new candidates before full execution; do not invent a total17 ETA",
@@ -1400,6 +1412,38 @@
     "prequential_crps_calibration_allowed": false,
     "research_shortlist_screening_separate_from_per_origin_fit": true,
     "runtime_adapter_validation": "pending_before_registration"
+  },
+  "historical19_comparison_ids": [
+    "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+    "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac",
+    "asset_m256_data_timescales_existing_sv_rate",
+    "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+    "asset_map_stationary_ar1_proxy_leverage_dynamic_rough",
+    "asset_map_stationary_ar1_innovation_student_lhs_copula_dynamic_rough",
+    "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
+    "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+    "asset_hmm_three_state_full_rvine_sv",
+    "asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough",
+    "asset_map_stationary_ar1_ou_residual_volatility",
+    "asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough",
+    "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough",
+    "asset_map_adaptive_stable_coupled_multiscale_dynamic_rough",
+    "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+    "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map",
+    "asset_map_student_return_laplace_implied_noise_dynamic_rough",
+    "asset_level_naive_iid_mean_shrunk_rebalanced",
+    "model_testing_joint_stationary_bootstrap_v1"
+  ],
+  "historical19_source_revision": "53eb21eeea0b0bdd6fc8c669696d003601de60cf",
+  "historical19_source_sha256": {
+    "candidate_reduction_proposal.json": "5d636530fa0ba93362c42f354a8e208a26f5a53281c9bcb892e35057ad5880a2",
+    "panel_manifest.json": "482f0254be5036caad0b300df8c4abb37894ffb4e85e4e64fba366013121ca2e",
+    "remaining_runtime_estimate.json": "90dfcfd3e03b441c145c7f0a5f5dd5c286ff604f0fca39a826248915bfb3f4e2",
+    "selected_model_scorecard.csv": "63ed7d5a9c5810e8a23e4843ac82ccc25e45f711428240d667a6e920edd9a03e",
+    "selected_model_scorecard.json": "d4aa776adc487dec08f0b7a4b989268464d21202347c3b85aa15438601aa7021",
+    "shortlist_proposal.json": "af6aeb7361989f1275fbc3fe7abe6d6cd0fbc4d7e5e5065409e01c97ef8369da",
+    "sweep_control.json": "376a0d6a7eb9f06b4fba23a0fb51f025caa79c57148db3a6233354a69f88bef0",
+    "website_default_historical80_comparison.json": "69f07bb3c86247835c5d3695545d815e72c679b151eced653f936589b986aab5"
   },
   "historical80_scope": "retained_historical_separate_evidence_not_new_panel_scores",
   "new_french_panel_validation_status": "ready_unscored_no_models_registered",
@@ -1721,17 +1765,7 @@
     "source_sha256": "b80e3e3c9616916f090b0449cdbe3a79f150340dd98846d1f40b0691dae537a8"
   },
   "production52_crps": 0.6138695810898457,
-  "proposed_method_count": 17,
-  "protected_active19_sha256": {
-    "candidate_reduction_proposal.json": "5d636530fa0ba93362c42f354a8e208a26f5a53281c9bcb892e35057ad5880a2",
-    "panel_manifest.json": "482f0254be5036caad0b300df8c4abb37894ffb4e85e4e64fba366013121ca2e",
-    "remaining_runtime_estimate.json": "90dfcfd3e03b441c145c7f0a5f5dd5c286ff604f0fca39a826248915bfb3f4e2",
-    "selected_model_scorecard.csv": "63ed7d5a9c5810e8a23e4843ac82ccc25e45f711428240d667a6e920edd9a03e",
-    "selected_model_scorecard.json": "d4aa776adc487dec08f0b7a4b989268464d21202347c3b85aa15438601aa7021",
-    "shortlist_proposal.json": "af6aeb7361989f1275fbc3fe7abe6d6cd0fbc4d7e5e5065409e01c97ef8369da",
-    "sweep_control.json": "376a0d6a7eb9f06b4fba23a0fb51f025caa79c57148db3a6233354a69f88bef0",
-    "website_default_historical80_comparison.json": "69f07bb3c86247835c5d3695545d815e72c679b151eced653f936589b986aab5"
-  },
+  "proposed_method_count": 15,
   "reference52_crps": 0.6420341742861375,
   "reference_model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
   "required_benchmarks": 2,
@@ -2515,7 +2549,7 @@
   ],
   "score_scope": "completed_canonical52_only",
   "selection_policy": [
-    "One proposal only; approved19 remains untouched.",
+    "User approved the fifteen-method selection; it supersedes the old19 planned list.",
     "Use fixed M001 positive score gain per recorded worker minute; never rank negative ratios as efficient.",
     "Inspect raw accuracy, full score/work frontier and distinct within-series mechanisms alongside efficiency.",
     "Retain the five mandatory anchors with unknown comparable compute left null.",
@@ -2526,6 +2560,6 @@
   ],
   "source_leaderboard_sha256": "6db0c69609ccc79d0318f67283ebe37657a2ae407ee9a2bd1c04c523e17c54fb",
   "source_ledger_sha256": "87ceee50d36a3c5f8e1933a5f0b7374edd4022637e53d5cd9c4d56f4b5912b2b",
-  "status": "proposal_only_active19_unchanged",
+  "status": "approved15_replaces19_adapters_preparing",
   "timing_type": "summed_worker_seconds_not_controlled_benchmark"
 }

@@ -1,53 +1,174 @@
 {
-  "candidates": 17,
-  "cost_scaling_factor": 23.903916909649773,
-  "estimates": {
-    "mean": {
-      "estimated_total_worker_hours": 71.47855920987085,
-      "greedy_one_worker_per_model_makespan_hours": 7.524058864196931,
-      "ideal_fully_divisible_12worker_hours": 5.956546600822571,
-      "missing_model_imputation_old_panel_worker_seconds": 566.5726670128768,
-      "unchanged_list_order_makespan_hours": 7.866209605059421
+  "full_sweep_started": false,
+  "limitations": "single-series stratified extrapolation; no parallel contention or full-sweep timing",
+  "max_horizon": 19738,
+  "maximum_observed_worker_rss_bytes": 978763776,
+  "methods": 15,
+  "models": {
+    "FRENCH1926-EWMA-QMLE": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 1791.3702534599577,
+      "median_origin_extrapolation_worker_seconds": 1207.2072547408752,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 836.5321965717012
     },
-    "median": {
-      "estimated_total_worker_hours": 72.68726786027497,
-      "greedy_one_worker_per_model_makespan_hours": 7.907133313576921,
-      "ideal_fully_divisible_12worker_hours": 6.057272321689581,
-      "missing_model_imputation_old_panel_worker_seconds": 602.979680624092,
-      "unchanged_list_order_makespan_hours": 8.107951335140248
+    "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 5978.387831653003,
+      "median_origin_extrapolation_worker_seconds": 6913.821329240338,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 4729.740905908751
+    },
+    "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 12011.55564640672,
+      "median_origin_extrapolation_worker_seconds": 13097.540644355002,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 9866.971865212196
+    },
+    "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 244031.9787867632,
+      "median_origin_extrapolation_worker_seconds": 213361.94984408288,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 152990.51360930025
+    },
+    "asset_level_naive_iid_mean_shrunk_rebalanced": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 1730.9314470074023,
+      "median_origin_extrapolation_worker_seconds": 1248.809029607044,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 858.2610867302865
+    },
+    "asset_m256_data_timescales_existing_sv_rate": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 14702.657080985895,
+      "median_origin_extrapolation_worker_seconds": 15055.221397584595,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 13488.644634462777
+    },
+    "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 14529.43451841781,
+      "median_origin_extrapolation_worker_seconds": 8162.047278285725,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 5375.129986291984
+    },
+    "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 12020.579967977246,
+      "median_origin_extrapolation_worker_seconds": 11344.1295717982,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 7809.339833375998
+    },
+    "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 13993.370665447845,
+      "median_origin_extrapolation_worker_seconds": 15054.918720684713,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 11883.646418540273
+    },
+    "asset_map_stationary_ar1_ou_residual_volatility": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 7827.0363173877695,
+      "median_origin_extrapolation_worker_seconds": 8784.4516352067,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 6260.170704332064
+    },
+    "asset_map_stationary_ar1_proxy_leverage_dynamic_rough": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 13391.42929521884,
+      "median_origin_extrapolation_worker_seconds": 13965.470478201576,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 10550.25530531304
+    },
+    "constant_mean_student_t": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 1676.2947141249897,
+      "median_origin_extrapolation_worker_seconds": 1155.3784879571758,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 732.5751446285285
+    },
+    "model_testing_joint_stationary_bootstrap_v1": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 1906.9898620671008,
+      "median_origin_extrapolation_worker_seconds": 1308.574575354578,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 910.8805280494271
+    },
+    "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 2080.1384765686817,
+      "median_origin_extrapolation_worker_seconds": 1382.592623371398,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 1022.7520891180029
+    },
+    "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture": {
+      "coverage": "one broad-market series; three rolling history strata and all temporal origins",
+      "limitations": "asset-specific fit costs, contention and checkpoint IO remain unmeasured",
+      "mean_origin_extrapolation_worker_seconds": 9214.138560221996,
+      "median_origin_extrapolation_worker_seconds": 10207.432419217424,
+      "origins_per_series": 51,
+      "series_count": 551,
+      "status": "bounded_extrapolation_not_full_panel_measurement",
+      "worker_seconds": 7415.275262638112
     }
   },
-  "largest_recorded_compute_share": {
-    "matched_records": 14,
-    "missing_records": 5,
-    "percent_of_matched_records": 11.538920592226741,
-    "rank": 240
-  },
-  "matched_old52_timing_records": 14,
-  "methods": 19,
-  "missing_cost_assumption": "impute five unmatched method costs with remaining-model mean or median; not measured costs",
-  "missing_timing_records": 5,
-  "new_daily_observations": 26317,
-  "new_panel_series": 552,
-  "no_new_runs_started": true,
-  "old_daily_observations": 11687,
-  "old_panel_series": 52,
-  "required_benchmarks": 2,
-  "rough_planning_range_assumption": "longest estimated jobs admitted first",
-  "rough_planning_range_hours": [
-    8,
-    12
-  ],
-  "rounded_central_estimate_hours": 8,
-  "runtime_percentile_filter_applied": false,
-  "scaling_assumption": "linear in series count and observation count; same origin rules and 240 paths; model heterogeneity and contention can invalidate this approximation",
-  "scheduling_assumption": "Admit longest estimated model jobs first; one process per model. Model factories are not wired and no execution order has been launched.",
-  "slowest_remaining_model": {
-    "estimated_hours": 6.077366243564566,
-    "model_id": "asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough",
-    "rank": 240
-  },
-  "status": "rough_extrapolation_not_measured_new_panel_runtime",
-  "timing_type": "saved summed_worker_seconds_not_controlled_benchmark",
-  "workers_assumed": 12
+  "models_with_probe_failures": [],
+  "native_readiness_passed": true,
+  "original_552_profile_records_retained": true,
+  "origins_per_model": 28101,
+  "panel_fingerprint": "e45e1b5bec4ad011f280a236bd9901c5ea75fd4282ab26072be2dd289e41e4c0",
+  "panel_id": "french1926-single-series-551-v2",
+  "paths": 240,
+  "projected_elapsed_hours": 42.497364891472294,
+  "projection_assumption": "Represents every origin stratum using broad market timing; same551 equity histories; no full-panel scores",
+  "scheduling": "one native model per worker, longest estimated model first",
+  "source": "165 prior bounded probes;135 retained equity probes all passed;12 cash errors preserved separately",
+  "status": "bounded_extrapolation",
+  "total_origins": 421515,
+  "total_worker_hours": 65.20296932513149,
+  "workers": 12
 }

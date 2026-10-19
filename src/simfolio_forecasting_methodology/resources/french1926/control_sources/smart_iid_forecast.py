@@ -1,0 +1,1122 @@
+"""Speed-optimized asset-level Smart IID forecast kernel.
+
+The OOS candidate samples one shared pre-origin historical return row for all
+assets, applies the existing positive-part t-statistic shrinkage to each
+asset's mean, and rejoins the sampled assets with the configured portfolio
+rebalance rule.  The public engine applies its existing cash-flow, inflation,
+and metric pipeline to the resulting portfolio return paths.
+"""
+
+from __future__ import annotations
+
+import math
+import time
+from typing import Any, Callable, Dict, Mapping, Optional, Sequence, Tuple
+
+import numpy as np
+import pandas as pd
+
+from .forecast_allocation_composition import smart_composition_from_samples
+
+
+SMART_IID_FORECAST_METHOD = "asset_level_naive_iid_mean_shrunk_rebalanced"
+NAIVE_BOOTSTRAP_FORECAST_METHOD = "model_testing_joint_stationary_bootstrap_v1"
+SUPPORTED_REBALANCE_FREQUENCIES = frozenset(
+    {
+        "none",
+        "daily",
+        "weekly",
+        "biweekly",
+        "monthly",
+        "bimonthly",
+        "quarterly",
+        "semiannually",
+        "annually",
+        "every2years",
+        "every5years",
+    }
+)
+
+try:
+    from numba import njit, prange
+except Exception:  # pragma: no cover - production images include numba.
+    njit = None
+    prange = range
+
+
+if njit is not None:
+
+    @njit(cache=False, fastmath=False, inline="always")
+    def _diversification_ratio_from_moments(
+        asset_sums: np.ndarray,
+        asset_sumsq: np.ndarray,
+        portfolio_sum: float,
+        portfolio_sumsq: float,
+        weights: np.ndarray,
+        observation_count: int,
+    ) -> float:
+        if observation_count <= 1 or weights.size <= 1:
+            return 1.0
+        denominator = float(observation_count - 1)
+        weighted_volatility = 0.0
+        for asset in range(weights.size):
+            centered_sum = (
+                asset_sumsq[asset]
+                - asset_sums[asset] * asset_sums[asset] / float(observation_count)
+            )
+            weighted_volatility += weights[asset] * math.sqrt(
+                max(centered_sum / denominator, 0.0)
+            )
+        portfolio_centered_sum = (
+            portfolio_sumsq
+            - portfolio_sum * portfolio_sum / float(observation_count)
+        )
+        portfolio_volatility = math.sqrt(
+            max(portfolio_centered_sum / denominator, 0.0)
+        )
+        if portfolio_volatility <= 0.0:
+            return 1.0
+        ratio = weighted_volatility / portfolio_volatility
+        return ratio if math.isfinite(ratio) else 1.0
+
+    @njit(parallel=True, cache=False, fastmath=False)
+    def _fused_no_rebalance_terminal_wealth(
+        asset_source_simple: np.ndarray,
+        sampled_indices: np.ndarray,
+        weights: np.ndarray,
+        diversification_weights: np.ndarray,
+        diversification_factors: np.ndarray,
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        n_sims, horizon = sampled_indices.shape
+        n_assets = asset_source_simple.shape[1]
+        terminal = np.empty((n_sims, horizon), dtype=np.float64)
+        diversification_ratios = np.empty(n_sims, dtype=np.float64)
+        for simulation in prange(n_sims):
+            wealth = np.ones(n_assets, dtype=np.float64)
+            asset_sums = np.zeros(n_assets, dtype=np.float64)
+            asset_sumsq = np.zeros(n_assets, dtype=np.float64)
+            portfolio_sum = 0.0
+            portfolio_sumsq = 0.0
+            previous_log_value = 0.0
+            for day in range(horizon):
+                ending_value = 0.0
+                diversification_return = 0.0
+                for asset in range(n_assets):
+                    simple_return = asset_source_simple[
+                        sampled_indices[simulation, day], asset
+                    ]
+                    metric_return = (
+                        (1.0 + simple_return) * diversification_factors[day] - 1.0
+                    )
+                    asset_sums[asset] += metric_return
+                    asset_sumsq[asset] += metric_return * metric_return
+                    diversification_return += diversification_weights[asset] * metric_return
+                    wealth[asset] *= 1.0 + simple_return
+                    ending_value += weights[asset] * wealth[asset]
+                portfolio_sum += diversification_return
+                portfolio_sumsq += diversification_return * diversification_return
+                current_log_value = math.log(max(ending_value, 1.0e-300))
+                terminal[simulation, day] = current_log_value - previous_log_value
+                previous_log_value = current_log_value
+            diversification_ratios[simulation] = _diversification_ratio_from_moments(
+                asset_sums,
+                asset_sumsq,
+                portfolio_sum,
+                portfolio_sumsq,
+                diversification_weights,
+                horizon,
+            )
+        return terminal, diversification_ratios
+
+
+    @njit(parallel=True, cache=False, fastmath=False)
+    def _fused_rebalanced_terminal_wealth(
+        asset_source_simple: np.ndarray,
+        sampled_indices: np.ndarray,
+        weights: np.ndarray,
+        rebalance_mask: np.ndarray,
+        segment_ends: np.ndarray,
+        cost_rate: float,
+        diversification_weights: np.ndarray,
+        diversification_factors: np.ndarray,
+        rebalance_counts=None,
+        rebalance_turnovers=None,
+        turnover_paths=None,
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Rejoin sampled assets without materializing a path-by-asset cube."""
+        n_sims, horizon = sampled_indices.shape
+        n_assets = asset_source_simple.shape[1]
+        n_segments = segment_ends.size
+        terminal = np.empty((n_sims, horizon), dtype=np.float64)
+        diversification_ratios = np.empty(n_sims, dtype=np.float64)
+        for simulation in prange(n_sims):
+            holdings = weights.copy()
+            wealth = np.ones(n_assets, dtype=np.float64)
+            asset_sums = np.zeros(n_assets, dtype=np.float64)
+            asset_sumsq = np.zeros(n_assets, dtype=np.float64)
+            portfolio_sum = 0.0
+            portfolio_sumsq = 0.0
+            start_value = 1.0
+            cumulative_log_value = 0.0
+            previous_log_value = 0.0
+            segment_index = 0
+            segment_end = segment_ends[0]
+            for day in range(horizon):
+                ending_value_raw = 0.0
+                diversification_return = 0.0
+                for asset in range(n_assets):
+                    simple_return = asset_source_simple[
+                        sampled_indices[simulation, day], asset
+                    ]
+                    metric_return = (
+                        (1.0 + simple_return) * diversification_factors[day] - 1.0
+                    )
+                    asset_sums[asset] += metric_return
+                    asset_sumsq[asset] += metric_return * metric_return
+                    diversification_return += diversification_weights[asset] * metric_return
+                    wealth[asset] *= 1.0 + simple_return
+                    ending_value_raw += holdings[asset] * wealth[asset]
+                portfolio_sum += diversification_return
+                portfolio_sumsq += diversification_return * diversification_return
+
+                ending_value_safe = max(ending_value_raw, 1.0e-300)
+                start_value_safe = max(start_value, 1.0e-300)
+                current_log_value = cumulative_log_value + math.log(
+                    ending_value_safe / start_value_safe
+                )
+
+                if day == segment_end:
+                    turnover = 0.0
+                    for asset in range(n_assets):
+                        drifted_weight = (
+                            holdings[asset] * wealth[asset] / ending_value_safe
+                        )
+                        turnover += abs(weights[asset] - drifted_weight)
+                    turnover *= 0.5
+                    after_cost = max(
+                        ending_value_raw * (1.0 - turnover * cost_rate), 0.0
+                    )
+                    after_cost_safe = max(after_cost, 1.0e-300)
+                    cumulative_log_value += math.log(
+                        after_cost_safe / start_value_safe
+                    )
+                    # This is the canonical research rejoin boundary: each
+                    # terminal horizon is valued after its turnover cost, even
+                    # when the horizon ends between scheduled rebalances.
+                    current_log_value = cumulative_log_value
+                    if rebalance_mask[day]:
+                        if rebalance_counts is not None:
+                            rebalance_counts[simulation] += 1
+                            rebalance_turnovers[simulation] += turnover
+                        if turnover_paths is not None:
+                            turnover_paths[simulation, day] = turnover
+                        start_value = after_cost
+                        for asset in range(n_assets):
+                            holdings[asset] = after_cost * weights[asset]
+                            wealth[asset] = 1.0
+                    segment_index += 1
+                    if segment_index < n_segments:
+                        segment_end = segment_ends[segment_index]
+                    else:
+                        segment_end = horizon + 1
+                terminal[simulation, day] = current_log_value - previous_log_value
+                previous_log_value = current_log_value
+            diversification_ratios[simulation] = _diversification_ratio_from_moments(
+                asset_sums,
+                asset_sumsq,
+                portfolio_sum,
+                portfolio_sumsq,
+                diversification_weights,
+                horizon,
+            )
+        return terminal, diversification_ratios
+
+
+    @njit(parallel=True, cache=False, fastmath=False)
+    def _fused_band_rebalanced_terminal_wealth(
+        asset_source_simple: np.ndarray,
+        sampled_indices: np.ndarray,
+        weights: np.ndarray,
+        rebalance_mask: np.ndarray,
+        cost_rate: float,
+        absolute_lower: float,
+        absolute_upper: float,
+        relative_lower: float,
+        relative_upper: float,
+        diversification_weights: np.ndarray,
+        diversification_factors: np.ndarray,
+        rebalance_counts=None,
+        rebalance_turnovers=None,
+        turnover_paths=None,
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Rejoin assets while applying scheduled and drift-band rebalances."""
+        n_sims, horizon = sampled_indices.shape
+        n_assets = asset_source_simple.shape[1]
+        terminal = np.empty((n_sims, horizon), dtype=np.float64)
+        diversification_ratios = np.empty(n_sims, dtype=np.float64)
+        for simulation in prange(n_sims):
+            holdings = weights.copy()
+            asset_sums = np.zeros(n_assets, dtype=np.float64)
+            asset_sumsq = np.zeros(n_assets, dtype=np.float64)
+            portfolio_sum = 0.0
+            portfolio_sumsq = 0.0
+            previous_value = 1.0
+            for day in range(horizon):
+                ending_value = 0.0
+                diversification_return = 0.0
+                for asset in range(n_assets):
+                    simple_return = asset_source_simple[
+                        sampled_indices[simulation, day], asset
+                    ]
+                    metric_return = (
+                        (1.0 + simple_return) * diversification_factors[day] - 1.0
+                    )
+                    asset_sums[asset] += metric_return
+                    asset_sumsq[asset] += metric_return * metric_return
+                    diversification_return += diversification_weights[asset] * metric_return
+                    holdings[asset] *= 1.0 + simple_return
+                    ending_value += holdings[asset]
+                portfolio_sum += diversification_return
+                portfolio_sumsq += diversification_return * diversification_return
+
+                denominator = max(ending_value, 1.0e-300)
+                should_rebalance = rebalance_mask[day]
+                if day > 0:
+                    for asset in range(n_assets):
+                        actual_weight = holdings[asset] / denominator
+                        drift = actual_weight - weights[asset]
+                        if (
+                            (absolute_lower > 0.0 and drift < -absolute_lower)
+                            or (absolute_upper > 0.0 and drift > absolute_upper)
+                            or (
+                                relative_lower > 0.0
+                                and drift < -relative_lower * max(abs(weights[asset]), 1.0e-300)
+                            )
+                            or (
+                                relative_upper > 0.0
+                                and drift > relative_upper * max(abs(weights[asset]), 1.0e-300)
+                            )
+                        ):
+                            should_rebalance = True
+                            break
+
+                after_cost = ending_value
+                if should_rebalance:
+                    turnover = 0.0
+                    for asset in range(n_assets):
+                        turnover += abs(weights[asset] - holdings[asset] / denominator)
+                    turnover *= 0.5
+                    if rebalance_counts is not None:
+                        rebalance_counts[simulation] += 1
+                        rebalance_turnovers[simulation] += turnover
+                    if turnover_paths is not None:
+                        turnover_paths[simulation, day] = turnover
+                    after_cost = max(
+                        ending_value * (1.0 - turnover * cost_rate),
+                        0.0,
+                    )
+                    for asset in range(n_assets):
+                        holdings[asset] = after_cost * weights[asset]
+
+                terminal[simulation, day] = math.log(
+                    max(after_cost, 1.0e-300) / max(previous_value, 1.0e-300)
+                )
+                previous_value = after_cost
+            diversification_ratios[simulation] = _diversification_ratio_from_moments(
+                asset_sums,
+                asset_sumsq,
+                portfolio_sum,
+                portfolio_sumsq,
+                diversification_weights,
+                horizon,
+            )
+        return terminal, diversification_ratios
+
+
+    @njit(cache=False, fastmath=False)
+    def _daily_rejoin_row_table(asset_source_simple, weights, diversification_weights, factor):
+        row_gross = np.empty(len(asset_source_simple))
+        row_turnovers = np.empty(len(asset_source_simple))
+        row_portfolio_returns = np.empty(len(asset_source_simple))
+        row_portfolio_gross = np.empty(len(asset_source_simple))
+        asset_metric_returns = np.empty_like(asset_source_simple)
+        for row in range(len(asset_source_simple)):
+            value = total = total_gross = 0.0
+            for asset in range(len(weights)):
+                asset_gross = 1.0 + asset_source_simple[row, asset]
+                asset_metric_returns[row, asset] = asset_gross * factor - 1.0
+                value += weights[asset] * asset_gross
+                total += diversification_weights[asset] * asset_metric_returns[row, asset]
+                total_gross += diversification_weights[asset] * asset_gross
+            turnover = 0.0
+            for asset in range(len(weights)):
+                turnover += abs(weights[asset] - weights[asset] * (1.0 + asset_source_simple[row, asset]) / max(value, 1e-300))
+            row_gross[row] = value
+            row_turnovers[row] = 0.5 * turnover
+            row_portfolio_returns[row] = total
+            row_portfolio_gross[row] = total_gross
+        return (row_gross, row_turnovers, row_portfolio_returns, row_portfolio_gross, asset_metric_returns)
+
+    @njit(cache=False, parallel=True, fastmath=False)
+    def _daily_rejoin_lookup(
+        asset_source_simple, weights, sampled_indices, row_gross, row_turnovers,
+        row_portfolio_returns, row_portfolio_gross, cost_rate,
+        diversification_factors, varying_factors, turnover_paths=None,
+    ):
+        (n_sims, horizon) = sampled_indices.shape
+        n_rows = len(asset_source_simple)
+        log_returns = np.empty(sampled_indices.shape)
+        row_counts = np.zeros((n_sims, n_rows))
+        row_factor_deltas = np.zeros((n_sims, n_rows if varying_factors else 0))
+        row_factor_squares = np.zeros((n_sims, n_rows if varying_factors else 0))
+        turnover = np.empty(n_sims)
+        portfolio_sums = np.empty(n_sims)
+        portfolio_sumsq = np.empty(n_sims)
+        for path in prange(n_sims):
+            start_value = 1.0
+            cumulative = previous = t = s = ss = 0.0
+            for day in range(horizon):
+                row = sampled_indices[path, day]
+                ending_value = start_value * row_gross[row]
+                day_turnover = row_turnovers[row]
+                # Preserve the existing value floor and zero/overflow behavior.
+                if not (1e-290 < ending_value < 1e+290 and 1e-290 < start_value < 1e+290):
+                    ending_value = 0.0
+                    for asset in range(len(weights)):
+                        ending_value += start_value * weights[asset] * (1.0 + asset_source_simple[row, asset])
+                    day_turnover = 0.0
+                    for asset in range(len(weights)):
+                        day_turnover += abs(weights[asset] - start_value * weights[asset] * (1.0 + asset_source_simple[row, asset]) / max(ending_value, 1e-300))
+                    day_turnover *= 0.5
+                after_cost = max(ending_value * (1.0 - day_turnover * cost_rate), 0.0)
+                cumulative += np.log(max(after_cost, 1e-300) / max(start_value, 1e-300))
+                log_returns[path, day] = cumulative - previous
+                previous = cumulative
+                start_value = after_cost
+                row_counts[path, row] += 1.0
+                t += day_turnover
+                if turnover_paths is not None:
+                    turnover_paths[path, day] = day_turnover
+                if varying_factors:
+                    delta = diversification_factors[day] - 1.0
+                    row_factor_deltas[path, row] += delta
+                    row_factor_squares[path, row] += delta * delta
+                r = row_portfolio_returns[row]
+                if varying_factors:
+                    r += row_portfolio_gross[row] * (diversification_factors[day] - 1.0)
+                s += r
+                ss += r * r
+            turnover[path] = t
+            portfolio_sums[path] = s
+            portfolio_sumsq[path] = ss
+        return (log_returns, row_counts, row_factor_deltas, row_factor_squares, turnover, portfolio_sums, portfolio_sumsq)
+
+    @njit(cache=False, fastmath=False)
+    def _daily_rejoin_reference_moments(asset_source_simple, sampled_indices, diversification_weights, diversification_factors):
+        asset_sums = np.zeros(asset_source_simple.shape[1])
+        asset_sumsq = np.zeros(asset_source_simple.shape[1])
+        portfolio_sum = portfolio_sumsq = 0.0
+        for day in range(len(sampled_indices)):
+            portfolio_return = 0.0
+            for asset in range(asset_source_simple.shape[1]):
+                r = (1.0 + asset_source_simple[sampled_indices[day], asset]) * diversification_factors[day] - 1.0
+                asset_sums[asset] += r
+                asset_sumsq[asset] += r * r
+                portfolio_return += diversification_weights[asset] * r
+            portfolio_sum += portfolio_return
+            portfolio_sumsq += portfolio_return * portfolio_return
+        return (asset_sums, asset_sumsq, portfolio_sum, portfolio_sumsq)
+
+else:  # pragma: no cover - exercised only in dependency-light environments.
+    _fused_no_rebalance_terminal_wealth = None
+    _fused_rebalanced_terminal_wealth = None
+    _fused_band_rebalanced_terminal_wealth = None
+    _daily_rejoin_row_table = None
+    _daily_rejoin_lookup = None
+    _daily_rejoin_reference_moments = None
+
+
+def _daily_row_rejoined_terminal_wealth(
+    asset_source_simple, sampled_indices, weights, cost_rate,
+    diversification_weights, diversification_factors,
+    rebalance_counts=None, rebalance_turnovers=None, turnover_paths=None,
+):
+    """Reuse historical asset-row arithmetic for an all-daily schedule."""
+    varying_factors = not np.all(diversification_factors == diversification_factors[0])
+    factor = 1.0 if varying_factors else float(diversification_factors[0])
+    row_gross, row_turnovers, row_portfolio_returns, row_portfolio_gross, asset_metric_returns = (
+        _daily_rejoin_row_table(asset_source_simple, weights, diversification_weights, factor)
+    )
+    log_returns, row_counts, row_factor_deltas, row_factor_squares, total_turnover, portfolio_sums, portfolio_sumsq = (
+        _daily_rejoin_lookup(
+            asset_source_simple, weights, sampled_indices, row_gross, row_turnovers,
+            row_portfolio_returns, row_portfolio_gross, cost_rate,
+            diversification_factors, varying_factors, turnover_paths,
+        )
+    )
+    # Repeated sampled rows contribute repeated copies of identical asset returns.
+    asset_sums = row_counts @ asset_metric_returns
+    asset_sumsq = row_counts @ (asset_metric_returns * asset_metric_returns)
+    if varying_factors:
+        asset_gross = 1.0 + asset_source_simple
+        asset_sums += row_factor_deltas @ asset_gross
+        asset_sumsq += (
+            2.0 * (row_factor_deltas @ (asset_metric_returns * asset_gross))
+            + row_factor_squares @ (asset_gross * asset_gross)
+        )
+    ratios = np.empty(sampled_indices.shape[0])
+    horizon = sampled_indices.shape[1]
+    for path in range(sampled_indices.shape[0]):
+        second = portfolio_sums[path] * portfolio_sums[path] / horizon
+        cancellation_bound = (
+            16.0 * horizon * np.finfo(float).eps
+            * max(portfolio_sumsq[path], second, 1e-300)
+        )
+        # Near-zero variance is sensitive to moment accumulation order.
+        if portfolio_sumsq[path] - second <= cancellation_bound:
+            sums, sumsq, portfolio_sum, portfolio_sumsq_value = _daily_rejoin_reference_moments(
+                asset_source_simple, sampled_indices[path],
+                diversification_weights, diversification_factors,
+            )
+        else:
+            sums, sumsq = asset_sums[path], asset_sumsq[path]
+            portfolio_sum, portfolio_sumsq_value = portfolio_sums[path], portfolio_sumsq[path]
+        ratios[path] = _diversification_ratio_from_moments(
+            sums, sumsq, portfolio_sum, portfolio_sumsq_value,
+            diversification_weights, horizon,
+        )
+    if rebalance_counts is not None:
+        rebalance_counts[:] = horizon
+        rebalance_turnovers[:] = total_turnover
+    return log_returns, ratios
+
+
+def warm_smart_iid_kernels() -> bool:
+    """Compile Smart IID rejoin signatures on tiny inputs."""
+    if (
+        _fused_no_rebalance_terminal_wealth is None
+        or _fused_rebalanced_terminal_wealth is None
+        or _fused_band_rebalanced_terminal_wealth is None
+    ):
+        return False
+    source_simple = np.asarray(
+        [[0.01, -0.01], [0.02, 0.0], [-0.01, 0.03]],
+        dtype=np.float64,
+    )
+    sampled_indices = np.asarray(
+        [[0, 1, 2, 0], [1, 2, 0, 1]],
+        dtype=np.int64,
+    )
+    weights = np.asarray([0.5, 0.5], dtype=np.float64)
+    diversification_factors = np.ones(sampled_indices.shape[1], dtype=np.float64)
+    rebalance_mask = np.asarray([False, True, False, True], dtype=np.bool_)
+    segment_ends = np.asarray([1, 3], dtype=np.int64)
+    _fused_no_rebalance_terminal_wealth(
+        source_simple,
+        sampled_indices,
+        weights,
+        weights,
+        diversification_factors,
+    )
+    _fused_rebalanced_terminal_wealth(
+        source_simple,
+        sampled_indices,
+        weights,
+        rebalance_mask,
+        segment_ends,
+        0.0015,
+        weights,
+        diversification_factors,
+    )
+    _fused_band_rebalanced_terminal_wealth(
+        source_simple,
+        sampled_indices,
+        weights,
+        rebalance_mask,
+        0.0015,
+        0.01,
+        0.01,
+        0.05,
+        0.05,
+        weights,
+        diversification_factors,
+    )
+    _daily_row_rejoined_terminal_wealth(
+        source_simple, sampled_indices, weights, 0.0015, weights,
+        diversification_factors, np.zeros(2, dtype=np.int32), np.zeros(2),
+    )
+    # Exact production turnover-output ABI, in addition to every existing
+    # no-capture signature. Capturing facts does not change source arithmetic.
+    turnover_paths = np.zeros(sampled_indices.shape)
+    _fused_rebalanced_terminal_wealth(source_simple, sampled_indices, weights,
+        rebalance_mask, segment_ends, .0015, weights, diversification_factors,
+        np.zeros(2, dtype=np.int32), np.zeros(2), turnover_paths)
+    _fused_band_rebalanced_terminal_wealth(source_simple, sampled_indices, weights,
+        rebalance_mask, .0015, .01, .01, .05, .05, weights, diversification_factors,
+        np.zeros(2, dtype=np.int32), np.zeros(2), turnover_paths)
+    _daily_row_rejoined_terminal_wealth(source_simple, sampled_indices, weights,
+        .0015, weights, diversification_factors, np.zeros(2, dtype=np.int32),
+        np.zeros(2), turnover_paths)
+    # Exercise original-order moments for numerically constant sample paths.
+    _daily_rejoin_reference_moments(
+        source_simple, sampled_indices[0], weights, diversification_factors,
+    )
+    return True
+
+
+def _normalized_weights(values: Sequence[float], count: int) -> np.ndarray:
+    weights = np.asarray(values, dtype=np.float64).reshape(-1)
+    if weights.size != int(count):
+        raise ValueError("Smart IID weights do not match the asset panel")
+    total = float(np.sum(weights, dtype=np.float64))
+    if not np.all(np.isfinite(weights)) or not np.isfinite(total) or total <= 0.0:
+        raise ValueError("Smart IID weights must have a positive finite net allocation")
+    return weights / total
+
+
+def _complete_asset_history(
+    asset_returns: pd.DataFrame,
+    weights: Mapping[str, float],
+) -> Tuple[pd.DataFrame, np.ndarray, str]:
+    frame = asset_returns.copy()
+    frame.columns = [str(column) for column in frame.columns]
+    frame.index = pd.to_datetime(frame.index).tz_localize(None).normalize()
+    frame = frame[~frame.index.duplicated(keep="last")]
+    ordered_columns = [
+        str(column)
+        for column in frame.columns
+        if str(column) in weights
+    ]
+    if not ordered_columns:
+        return pd.DataFrame(), np.empty(0, dtype=np.float64), "no_weighted_assets"
+    if not any(
+        abs(float(weights.get(column, 0.0))) > 0.0
+        for column in ordered_columns
+    ):
+        return pd.DataFrame(), np.empty(0, dtype=np.float64), "no_weighted_assets"
+    frame = frame.loc[:, ordered_columns].apply(pd.to_numeric, errors="coerce")
+    frame = frame.replace([np.inf, -np.inf], np.nan).dropna(how="any")
+    if frame.empty:
+        return pd.DataFrame(), np.empty(0, dtype=np.float64), "no_complete_asset_rows"
+    normalized = _normalized_weights(
+        [float(weights.get(column, 0.0)) for column in ordered_columns],
+        len(ordered_columns),
+    )
+    return frame, normalized, ""
+
+
+def _future_rebalance_mask(
+    historical_dates: pd.DatetimeIndex,
+    future_dates: pd.DatetimeIndex,
+    frequency: str,
+    rebalance_offset_days: int,
+    date_selector: Callable[[pd.DatetimeIndex, str, int], set],
+) -> np.ndarray:
+    policy_dates = pd.DatetimeIndex(historical_dates).append(pd.DatetimeIndex(future_dates))
+    scheduled = date_selector(policy_dates, str(frequency), int(max(rebalance_offset_days, 0)))
+    scheduled_dates = {
+        pd.Timestamp(value).tz_localize(None).normalize() for value in scheduled
+    }
+    return np.asarray(
+        [pd.Timestamp(value).tz_localize(None).normalize() in scheduled_dates for value in future_dates],
+        dtype=bool,
+    )
+
+
+def _band_parameters(
+    settings: Optional[Mapping[str, Any]],
+) -> Tuple[bool, float, float, float, float]:
+    if not isinstance(settings, Mapping):
+        return False, 0.0, 0.0, 0.0, 0.0
+    nested = settings.get("rebalance_band_settings") or settings.get(
+        "forecast_rebalance_band_settings"
+    )
+    if isinstance(nested, Mapping):
+        settings = nested
+    raw_enabled = settings.get("enabled") or settings.get("rebalance_bands_enabled")
+    if isinstance(raw_enabled, bool):
+        enabled = raw_enabled
+    else:
+        enabled = str(raw_enabled or "").strip().lower() in {"true", "1", "yes", "on"}
+    if not enabled:
+        return False, 0.0, 0.0, 0.0, 0.0
+
+    def percent(key: str) -> float:
+        try:
+            value = float(settings.get(key, 0.0) or 0.0)
+        except (TypeError, ValueError):
+            value = 0.0
+        return max(value, 0.0) / 100.0
+
+    mode = str(settings.get("mode") or "symmetric").strip().lower()
+    basis = str(settings.get("basis") or "absolute").strip().lower()
+    symmetric = percent("value")
+    legacy_lower = percent("lower") if mode == "asymmetric" else symmetric
+    legacy_upper = percent("upper") if mode == "asymmetric" else symmetric
+    absolute_value = percent("absolute_value") or (symmetric if basis == "absolute" else 0.0)
+    relative_value = percent("relative_value") or (symmetric if basis == "relative" else 0.0)
+    values = (
+        percent("absolute_lower") or (legacy_lower if basis == "absolute" else 0.0)
+        if mode == "asymmetric" else absolute_value,
+        percent("absolute_upper") or (legacy_upper if basis == "absolute" else 0.0)
+        if mode == "asymmetric" else absolute_value,
+        percent("relative_lower") or (legacy_lower if basis == "relative" else 0.0)
+        if mode == "asymmetric" else relative_value,
+        percent("relative_upper") or (legacy_upper if basis == "relative" else 0.0)
+        if mode == "asymmetric" else relative_value,
+    )
+    return (any(value > 0.0 for value in values), *values)
+
+
+def _numpy_rejoin(
+    source_simple: np.ndarray,
+    sampled_indices: np.ndarray,
+    weights: np.ndarray,
+    rebalance_mask: np.ndarray,
+    cost_rate: float,
+) -> np.ndarray:
+    """Dependency-light reference path matching the fused research kernel."""
+    n_sims, horizon = sampled_indices.shape
+    n_assets = source_simple.shape[1]
+    terminal = np.empty((n_sims, horizon), dtype=np.float64)
+    if not np.any(rebalance_mask):
+        for simulation in range(n_sims):
+            wealth = np.ones(n_assets, dtype=np.float64)
+            for day in range(horizon):
+                wealth *= 1.0 + source_simple[sampled_indices[simulation, day]]
+                ending_value = float(np.sum(weights * wealth, dtype=np.float64))
+                terminal[simulation, day] = math.log(max(ending_value, 1.0e-300))
+        return terminal
+    segment_ends = np.flatnonzero(rebalance_mask).tolist()
+    if not segment_ends or segment_ends[-1] != horizon - 1:
+        segment_ends.append(horizon - 1)
+    for simulation in range(n_sims):
+        holdings = weights.copy()
+        wealth = np.ones(n_assets, dtype=np.float64)
+        start_value = 1.0
+        cumulative_log_value = 0.0
+        segment_start = 0
+        for segment_end in segment_ends:
+            for day in range(segment_start, segment_end + 1):
+                wealth *= 1.0 + source_simple[sampled_indices[simulation, day]]
+                ending_value = float(np.sum(holdings * wealth, dtype=np.float64))
+                terminal[simulation, day] = cumulative_log_value + math.log(
+                    max(ending_value, 1.0e-300) / max(start_value, 1.0e-300)
+                )
+            ending_value = float(np.sum(holdings * wealth, dtype=np.float64))
+            drifted = holdings * wealth / max(ending_value, 1.0e-300)
+            turnover = 0.5 * float(np.sum(np.abs(weights - drifted), dtype=np.float64))
+            after_cost = max(ending_value * (1.0 - turnover * cost_rate), 0.0)
+            cumulative_log_value += math.log(
+                max(after_cost, 1.0e-300) / max(start_value, 1.0e-300)
+            )
+            terminal[simulation, segment_end] = cumulative_log_value
+            if rebalance_mask[segment_end]:
+                start_value = after_cost
+                holdings = after_cost * weights
+                wealth.fill(1.0)
+            segment_start = segment_end + 1
+    return terminal
+
+
+def _numpy_band_rejoin(
+    source_simple: np.ndarray,
+    sampled_indices: np.ndarray,
+    weights: np.ndarray,
+    rebalance_mask: np.ndarray,
+    cost_rate: float,
+    absolute_lower: float,
+    absolute_upper: float,
+    relative_lower: float,
+    relative_upper: float,
+) -> np.ndarray:
+    n_sims, horizon = sampled_indices.shape
+    n_assets = source_simple.shape[1]
+    terminal = np.empty((n_sims, horizon), dtype=np.float64)
+    for simulation in range(n_sims):
+        holdings = weights.copy()
+        previous_value = 1.0
+        for day in range(horizon):
+            holdings *= 1.0 + source_simple[sampled_indices[simulation, day]]
+            ending_value = float(np.sum(holdings, dtype=np.float64))
+            denominator = max(ending_value, 1e-300)
+            should_rebalance = bool(rebalance_mask[day])
+            if day > 0:
+                drift = holdings / denominator - weights
+                should_rebalance = should_rebalance or bool(
+                    np.any(
+                        ((absolute_lower > 0.0) & (drift < -absolute_lower))
+                        | ((absolute_upper > 0.0) & (drift > absolute_upper))
+                        | (
+                            (relative_lower > 0.0)
+                            & (drift < -relative_lower * np.maximum(np.abs(weights), 1e-300))
+                        )
+                        | (
+                            (relative_upper > 0.0)
+                            & (drift > relative_upper * np.maximum(np.abs(weights), 1e-300))
+                        )
+                    )
+                )
+            after_cost = ending_value
+            if should_rebalance:
+                turnover = 0.5 * float(
+                    np.sum(np.abs(weights - holdings / denominator), dtype=np.float64)
+                )
+                after_cost = max(ending_value * (1.0 - turnover * cost_rate), 0.0)
+                holdings = after_cost * weights
+            terminal[simulation, day] = math.log(
+                max(after_cost, 1e-300) / max(previous_value, 1e-300)
+            )
+            previous_value = after_cost
+    return terminal
+
+
+def _pathwise_diversification_ratio_from_sampled_rows(
+    source_simple: np.ndarray,
+    sampled_indices: np.ndarray,
+    weights: np.ndarray,
+    factors: np.ndarray,
+) -> np.ndarray:
+    """Dependency-light reference for the fused pathwise DR calculation."""
+    path_count, horizon = sampled_indices.shape
+    if source_simple.shape[1] <= 1 or horizon <= 1:
+        return np.ones(path_count, dtype=np.float64)
+    ratios = np.empty(path_count, dtype=np.float64)
+    for simulation in range(path_count):
+        sampled = source_simple[sampled_indices[simulation]]
+        selected_basis = (1.0 + sampled) * factors[:, None] - 1.0
+        asset_volatility = np.std(selected_basis, axis=0, ddof=1)
+        portfolio_returns = selected_basis @ weights
+        portfolio_volatility = float(np.std(portfolio_returns, ddof=1))
+        ratio = (
+            float(np.sum(weights * asset_volatility, dtype=np.float64))
+            / portfolio_volatility
+            if portfolio_volatility > 0.0
+            else 1.0
+        )
+        ratios[simulation] = ratio if np.isfinite(ratio) else 1.0
+    return ratios
+
+
+def simulate_smart_iid_log_returns(
+    *,
+    strategy_returns: pd.Series,
+    asset_returns: Optional[pd.DataFrame],
+    weights: Optional[Mapping[str, float]],
+    historical_dates: pd.DatetimeIndex,
+    future_dates: pd.DatetimeIndex,
+    n_paths: int,
+    rng: np.random.Generator,
+    rebalance_frequency: str,
+    rebalance_offset_days: int,
+    cost_per_turnover_bps: float,
+    date_selector: Callable[[pd.DatetimeIndex, str, int], set],
+    rebalance_band_settings: Optional[Mapping[str, Any]] = None,
+    return_asset_path_context: bool = False,
+    return_turnover_paths: bool = False,
+    capture_allocation_composition: bool = False,
+    diversification_inflation_log_returns: Optional[np.ndarray] = None,
+    _naive_stationary_bootstrap: bool = False,
+) -> Tuple[np.ndarray, Dict[str, Any]]:
+    """Return portfolio log-return paths and exact candidate metadata."""
+    started = time.perf_counter()
+    effective_frequency = str(rebalance_frequency or "none").strip().lower() or "none"
+    if effective_frequency not in SUPPORTED_REBALANCE_FREQUENCIES:
+        raise ValueError("unsupported_rebalance_policy")
+    if not isinstance(asset_returns, pd.DataFrame) or not isinstance(weights, Mapping):
+        raise ValueError("asset_level_inputs_unavailable")
+    source_frame, weight_array, history_reason = _complete_asset_history(
+        asset_returns,
+        weights,
+    )
+    if history_reason:
+        raise ValueError(f"asset_level_inputs_unavailable:{history_reason}")
+
+    normalized_historical_dates = pd.DatetimeIndex(historical_dates)
+    if not normalized_historical_dates.empty and not source_frame.empty:
+        cutoff = pd.Timestamp(normalized_historical_dates.max()).tz_localize(None).normalize()
+        source_frame = source_frame.loc[source_frame.index <= cutoff]
+        if source_frame.empty:
+            raise ValueError("asset_level_inputs_unavailable:no_asset_rows_before_forecast_origin")
+
+    log_history = np.log1p(
+        np.clip(
+            source_frame.to_numpy(dtype=np.float64, copy=False),
+            -0.999999,
+            np.finfo(np.float64).max / 10.0,
+        )
+    )
+    valid_rows = np.all(np.isfinite(log_history), axis=1)
+    log_history = log_history[valid_rows]
+    complete_dates = pd.DatetimeIndex(source_frame.index[valid_rows])
+    if log_history.shape[0] < 1:
+        raise ValueError("Smart IID has no finite historical asset rows")
+
+    sample_means = np.mean(log_history, axis=0, dtype=np.float64)
+    block_length = 1
+    if _naive_stationary_bootstrap:
+        from .engine_helpers import _politis_white_block_length
+        centered = log_history - sample_means
+        block_length = min(len(log_history), max(
+            max(_politis_white_block_length(log_history[:, asset]),
+                _politis_white_block_length(centered[:, asset] ** 2))
+            for asset in range(log_history.shape[1])
+        ))
+        forecast_means = sample_means
+        shrink_weights = np.empty(0, dtype=np.float64)
+    else:
+        sample_stds = (
+            np.std(log_history, axis=0, ddof=1, dtype=np.float64)
+            if log_history.shape[0] > 1
+            else np.zeros(log_history.shape[1], dtype=np.float64)
+        )
+        standard_errors = sample_stds / math.sqrt(float(log_history.shape[0]))
+        with np.errstate(divide="ignore", invalid="ignore"):
+            t_stats = np.divide(
+                np.abs(sample_means), standard_errors,
+                out=np.zeros_like(sample_means), where=standard_errors > 0.0,
+            )
+            t_squared = t_stats * t_stats
+            shrink_weights = np.divide(
+                t_squared, 1.0 + t_squared,
+                out=np.zeros_like(t_squared), where=np.isfinite(t_squared),
+            )
+        forecast_means = sample_means * shrink_weights
+    source_simple = np.clip(
+        np.expm1(log_history + (forecast_means - sample_means)[None, :]),
+        -0.999999,
+        np.finfo(np.float64).max / 10.0,
+    )
+
+    horizon = int(len(future_dates))
+    path_count = int(max(1, n_paths))
+    diversification_weight_total = float(np.sum(np.abs(weight_array), dtype=np.float64))
+    if not np.isfinite(diversification_weight_total) or diversification_weight_total <= 0.0:
+        raise ValueError("Smart IID diversification weights are unavailable")
+    diversification_weights = weight_array / diversification_weight_total
+    if diversification_inflation_log_returns is None:
+        diversification_factors = np.ones(horizon, dtype=np.float64)
+    else:
+        diversification_inflation = np.asarray(
+            diversification_inflation_log_returns,
+            dtype=np.float64,
+        ).reshape(-1)
+        if diversification_inflation.shape != (horizon,) or not np.all(
+            np.isfinite(diversification_inflation)
+        ):
+            raise ValueError("Smart IID diversification inflation path is invalid")
+        diversification_factors = np.exp(-diversification_inflation)
+    if _naive_stationary_bootstrap:
+        from .engine_helpers import _stationary_bootstrap_indices_from_draws_fast
+        n = len(log_history)
+        sampled_indices = _stationary_bootstrap_indices_from_draws_fast(
+            n=n,
+            initial_indices=rng.integers(0, n, size=path_count, dtype=np.int32),
+            restart_flags=rng.random((path_count, max(horizon - 1, 0))) < 1.0 / block_length,
+            restart_points=rng.integers(0, n, size=(path_count, max(horizon - 1, 0)), dtype=np.int32),
+        ).astype(np.int64)
+    else:
+        sampled_indices = rng.integers(
+            0, int(log_history.shape[0]), size=(path_count, horizon), dtype=np.int64,
+        )
+    rebalance_mask = _future_rebalance_mask(
+        complete_dates,
+        pd.DatetimeIndex(future_dates),
+        effective_frequency,
+        int(rebalance_offset_days),
+        date_selector,
+    )
+    cost_rate = max(float(cost_per_turnover_bps), 0.0) / 10000.0
+    rebalance_counts = np.zeros(path_count, dtype=np.int32)
+    rebalance_turnovers = np.zeros(path_count, dtype=np.float64)
+    turnover_paths = np.zeros((path_count, horizon), dtype=np.float64) if return_turnover_paths else None
+    band_enabled, absolute_lower, absolute_upper, relative_lower, relative_upper = _band_parameters(
+        rebalance_band_settings
+    )
+    if band_enabled:
+        if _fused_band_rebalanced_terminal_wealth is not None:
+            log_returns, diversification_ratios = _fused_band_rebalanced_terminal_wealth(
+                source_simple,
+                sampled_indices,
+                weight_array,
+                rebalance_mask,
+                cost_rate,
+                absolute_lower,
+                absolute_upper,
+                relative_lower,
+                relative_upper,
+                diversification_weights,
+                diversification_factors,
+                rebalance_counts,
+                rebalance_turnovers,
+                **({"turnover_paths": turnover_paths} if return_turnover_paths else {}),
+            )
+            implementation = "numba_fused_band_rebalanced_wealth64"
+        else:
+            cumulative_logs = _numpy_band_rejoin(
+                source_simple,
+                sampled_indices,
+                weight_array,
+                rebalance_mask,
+                cost_rate,
+                absolute_lower,
+                absolute_upper,
+                relative_lower,
+                relative_upper,
+            )
+            implementation = "numpy_reference_band_rejoin"
+    elif effective_frequency == "none":
+        if _fused_no_rebalance_terminal_wealth is not None:
+            log_returns, diversification_ratios = _fused_no_rebalance_terminal_wealth(
+                source_simple,
+                sampled_indices,
+                weight_array,
+                diversification_weights,
+                diversification_factors,
+            )
+            implementation = "numba_fused_no_rebalance_wealth64"
+        else:
+            cumulative_logs = _numpy_rejoin(
+                source_simple,
+                sampled_indices,
+                weight_array,
+                rebalance_mask,
+                cost_rate,
+            )
+            implementation = "numpy_reference_rejoin"
+    else:
+        segment_ends = np.flatnonzero(rebalance_mask).astype(np.int64)
+        if segment_ends.size == 0 or int(segment_ends[-1]) != horizon - 1:
+            segment_ends = np.concatenate(
+                [segment_ends, np.asarray([horizon - 1], dtype=np.int64)]
+            )
+        if (
+            _daily_rejoin_lookup is not None
+            and np.all(rebalance_mask)
+            and horizon >= len(source_simple)
+            and np.all(weight_array >= 0.0)
+            and np.isfinite(cost_rate)
+        ):
+            log_returns, diversification_ratios = _daily_row_rejoined_terminal_wealth(
+                source_simple, sampled_indices, weight_array, cost_rate,
+                diversification_weights, diversification_factors,
+                rebalance_counts, rebalance_turnovers,
+                **({"turnover_paths": turnover_paths} if return_turnover_paths else {}),
+            )
+            implementation = "numba_daily_row_rejoined_wealth64"
+        elif _fused_rebalanced_terminal_wealth is not None:
+            log_returns, diversification_ratios = _fused_rebalanced_terminal_wealth(
+                source_simple,
+                sampled_indices,
+                weight_array,
+                rebalance_mask,
+                segment_ends,
+                cost_rate,
+                diversification_weights,
+                diversification_factors,
+                rebalance_counts,
+                rebalance_turnovers,
+                **({"turnover_paths": turnover_paths} if return_turnover_paths else {}),
+            )
+            implementation = "numba_fused_rebalanced_wealth64"
+        else:
+            cumulative_logs = _numpy_rejoin(
+                source_simple,
+                sampled_indices,
+                weight_array,
+                rebalance_mask,
+                cost_rate,
+            )
+            implementation = "numpy_reference_rejoin"
+    if return_turnover_paths and implementation in {"numpy_reference_rejoin", "numpy_reference_band_rejoin"}:
+        raise RuntimeError("Tax shadow requires native original turnover facts")
+    if implementation in {"numpy_reference_rejoin", "numpy_reference_band_rejoin"}:
+        cumulative_logs = np.asarray(cumulative_logs, dtype=np.float64)
+        if cumulative_logs.shape != (path_count, horizon) or not np.all(np.isfinite(cumulative_logs)):
+            raise ValueError("Smart IID rejoin produced a non-finite path matrix")
+        previous = np.concatenate(
+            [np.zeros((path_count, 1), dtype=np.float64), cumulative_logs[:, :-1]],
+            axis=1,
+        )
+        log_returns = cumulative_logs - previous
+        diversification_ratios = _pathwise_diversification_ratio_from_sampled_rows(
+            source_simple,
+            sampled_indices,
+            diversification_weights,
+            diversification_factors,
+        )
+    else:
+        log_returns = np.asarray(log_returns, dtype=np.float64)
+        if log_returns.shape != (path_count, horizon) or not np.all(np.isfinite(log_returns)):
+            raise ValueError("Smart IID rejoin produced a non-finite path matrix")
+    metadata: Dict[str, Any] = {
+        "simulation_method": SMART_IID_FORECAST_METHOD,
+        "forecast_target": "realized_portfolio_return",
+        "forecast_level": "asset_return_rejoined_portfolio",
+        "asset_level": True,
+        "joint_asset_bootstrap": bool(log_history.shape[1] > 1),
+        "mean_model": "sample_mean_positive_part_t_stat_shrinkage_to_zero",
+        "regime_model": "not_applicable",
+        "vol_model": "historical_asset_return_distribution",
+        "factor_model": "not_applicable",
+        "innovation_method": "shared_iid_resampled_historical_asset_return_rows",
+        "innovation_resampling": "iid",
+        "innovation_pool_source": "pre_origin_complete_asset_rows",
+        "tail_method": "empirical_historical_tail",
+        "path_generator": "fused_asset_level_iid_rejoin",
+        "asset_count": int(log_history.shape[1]),
+        "history_rows": int(log_history.shape[0]),
+        "rebalance_frequency": effective_frequency,
+        "rebalance_offset_days": int(max(rebalance_offset_days, 0)),
+        "cost_per_turnover_bps": float(cost_per_turnover_bps),
+        "mean_shrink_weights": shrink_weights.tolist(),
+        "terminal_turnover_cost_boundary": "canonical_research_rejoin",
+        "rejoin_implementation": implementation,
+        "fallback_reason": None,
+        "source_date_start": complete_dates[0].strftime("%Y-%m-%d"),
+        "source_date_end": complete_dates[-1].strftime("%Y-%m-%d"),
+        "simulation_count": path_count,
+        "horizon_days": horizon,
+        "kernel_seconds": float(max(0.0, time.perf_counter() - started)),
+    }
+    if _naive_stationary_bootstrap:
+        metadata.update(
+            simulation_method=NAIVE_BOOTSTRAP_FORECAST_METHOD,
+            mean_model="unshifted_historical_log_returns", mean_shrink_weights=[],
+            innovation_method="joint_stationary_bootstrap_historical_asset_rows",
+            innovation_resampling="stationary_bootstrap", block_length=int(block_length),
+            block_length_rule="white_paper_section_6_1_max_asset_return_and_squared_centered_return_plugin",
+            path_generator="fused_joint_stationary_bootstrap_rejoin",
+        )
+    diversification_ratios = np.asarray(diversification_ratios, dtype=np.float64)
+    if diversification_ratios.shape != (path_count,) or not np.all(
+        np.isfinite(diversification_ratios)
+    ):
+        raise ValueError("Smart IID produced invalid pathwise diversification ratios")
+    metadata["_pathwise_diversification_ratio"] = diversification_ratios
+    if implementation in {"numba_fused_band_rebalanced_wealth64", "numba_fused_rebalanced_wealth64", "numba_fused_no_rebalance_wealth64", "numba_daily_row_rejoined_wealth64"}:
+        metadata["_rebalancing_stats"] = (rebalance_counts, rebalance_turnovers)
+    if return_turnover_paths:
+        metadata["_tax_turnover_paths"] = turnover_paths
+    if capture_allocation_composition:
+        metadata["_allocation_composition"] = smart_composition_from_samples(
+            source_simple=source_simple,
+            sampled_indices=sampled_indices,
+            target=weight_array,
+            rebalance_mask=rebalance_mask,
+            future_dates=future_dates,
+            tickers=[str(value) for value in source_frame.columns],
+            band_settings=rebalance_band_settings,
+        )
+    if return_asset_path_context:
+        metadata["_tax_rebalance_mask"] = rebalance_mask
+        metadata["_asset_path_reuse"] = {
+            "model_method": SMART_IID_FORECAST_METHOD,
+            "source_simple": np.ascontiguousarray(source_simple, dtype=np.float64),
+            "sampled_indices": np.ascontiguousarray(sampled_indices, dtype=np.int32),
+            "tickers": [str(value) for value in source_frame.columns],
+            "source_dates": [
+                pd.Timestamp(value).strftime("%Y-%m-%d") for value in complete_dates
+            ],
+        }
+    return log_returns, metadata

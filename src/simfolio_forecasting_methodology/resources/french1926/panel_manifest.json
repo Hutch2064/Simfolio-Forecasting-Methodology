@@ -1,15 +1,15 @@
 {
   "aggregation": "mean_origins_within_series_horizon_then_equal_all_cells",
   "calendar": "actual_provider_dates_including_historical_saturdays_no_fill",
-  "cash_control_in_primary_aggregate": true,
-  "cash_controls": 1,
+  "cash_control_in_primary_aggregate": false,
+  "cash_controls": 0,
   "common_end": "2026-08-31",
   "common_start": "1926-07-01",
   "equity_series_count": 551,
-  "expected_cells": 10895376,
-  "expected_tasks": 28152,
+  "expected_cells": 10875638,
+  "expected_tasks": 28101,
   "files": {
-    "daily_log_returns.npy": "35dc0d23a4013e12cc3e06ee4e4df2b996f1dd969b0205cc5c43fba56234c1b7",
+    "daily_log_returns.npy": "49fb9f3a1d2a9138805c16dbf53ee40350bcd05e0f918d4e036ac752dc60b2f4",
     "dates.npy": "b99cd0196bc58c2619cbeff3a9cf50e2f51ae4501bf216cf5bbf1f348a11ef3b",
     "origins.json": "ac0cbf75e24c93fab15841567632a0b3d1a8a031549f29608a0e46a8521042a8"
   },
@@ -18,8 +18,8 @@
   "max_horizon": 19738,
   "observations": 26317,
   "origins_per_series": 51,
-  "panel_fingerprint": "1a2e9dfcde0b49afb51c3290cde6176585b678af1f37ba0640647104daa1e5d9",
-  "panel_id": "french1926-single-series-552-v1",
+  "panel_fingerprint": "e45e1b5bec4ad011f280a236bd9901c5ea75fd4282ab26072be2dd289e41e4c0",
+  "panel_id": "french1926-single-series-551-v2",
   "protocol_id": "french1926-whitepaper-dense-daily-240-v1",
   "raw_sources": {
     "100_Portfolios_10x10_Daily_CSV.zip": "baec6562efa76fb04b2e4185af9b05f5691a85c651786644628e4b2c0b8d27ff",
@@ -6657,22 +6657,10 @@
       "source_sha256": "2f29e22546069914890a712680a6f81f3680ebc3543b52864484d209ca13a7db",
       "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip",
       "weighting": "value"
-    },
-    {
-      "dataset_family": "cash",
-      "family": "cash",
-      "log_returns_sha256": "1bc0b6dda4b09700317673fbf3b1bb609de6582ad0d47ddc01f8db941ecd6828",
-      "published_column": "RF",
-      "return_series_sha256": "d77d2a4d9c64bcf1e17c7d4b216659539b507d97dc626881fb83aea9bc270948",
-      "role": "cash_control",
-      "series_id": "FR0552",
-      "source_sha256": "2f29e22546069914890a712680a6f81f3680ebc3543b52864484d209ca13a7db",
-      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip",
-      "weighting": "cash_control"
     }
   ],
-  "series_count": 552,
+  "series_count": 551,
   "simulations_per_origin": 240,
-  "source_audit_sha256": "2ecb4387a3dfd327ed0d3be74d92dd57fa456af71325aa7cf9817d52adace09f",
+  "source_audit_sha256": "79a93fa168f8d8b7eab10a91554939e51a6cc74819b1873dcdafa0e65333a568",
   "status": "ready_unscored"
 }

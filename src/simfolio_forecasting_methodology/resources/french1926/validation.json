@@ -1,10 +1,27 @@
 {
-  "contract_tests_passed": 80,
-  "empty_controller_smoke": "passed_12_slots_zero_models_zero_workers_spawned",
-  "independent_source_review": "no_concrete_defects_found",
-  "input_validation": "passed_original_and_downloaded_restored_copy",
+  "contract_tests_passed": 11,
+  "equity_only_revision": {
+    "date_calendar_and_origin_schedule": "identical byte hashes to 552_v1",
+    "full_raw_builder_reproduction": "passed_all_four_normalized_files_byte_exact",
+    "market_total_return": "Mkt-RF + RF preserved byte-for-byte as FR0551",
+    "new_input_archive_file_count": 21,
+    "panel_fingerprint": "e45e1b5bec4ad011f280a236bd9901c5ea75fd4282ab26072be2dd289e41e4c0",
+    "previous_panel_fingerprint": "1a2e9dfcde0b49afb51c3290cde6176585b678af1f37ba0640647104daa1e5d9",
+    "prior_input_archive_files_sha256_verified": 21,
+    "removed_published_column": "RF",
+    "removed_series_id": "FR0552",
+    "retained_equity_rows_byte_exact_to_552_v1": 551,
+    "retained_series_count": 551
+  },
+  "input_validation": "passed_551_equity_rows_exact_against_verified_552_v1_input",
   "model_scores": [],
-  "packaged_wheel_input_validation": "passed_against_downloaded_restored_input_copy",
+  "packaged_wheel_input_validation": "not_rerun_for_551_v2",
+  "panel_id": "french1926-single-series-551-v2",
+  "prior_552_v1_validation": {
+    "empty_controller_smoke": "passed_12_slots_zero_models_zero_workers_spawned",
+    "independent_source_review": "no_concrete_defects_found",
+    "sweep_tests": "dynamic_add_remove_pause_resume_restart_locks_long_ids_worker_limits_rankings_mean_median_eta_passed"
+  },
   "registered_models": 0,
   "research_forecast_tasks_executed": 0,
   "runtime": {
@@ -15,6 +32,5 @@
     "scipy": "1.18.1"
   },
   "status": "input_and_contract_validated_no_models_run",
-  "sweep_tests": "dynamic_add_remove_pause_resume_restart_locks_long_ids_worker_limits_rankings_mean_median_eta_passed",
-  "test_scope": "French data and checkpoint synthetic fixtures plus existing panel/origins, evaluation, scoring and seeds"
+  "test_scope": "French data parser, frozen equity-only manifest and source inventory; no forecast models executed"
 }

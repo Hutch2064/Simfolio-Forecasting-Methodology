@@ -21,7 +21,7 @@ import numpy as np
 
 from ..origins import origin_schedule
 
-PANEL_ID = "french1926-single-series-552-v1"
+PANEL_ID = "french1926-single-series-551-v2"
 PROTOCOL_ID = "french1926-whitepaper-dense-daily-240-v1"
 SIMULATIONS = 240
 RESOURCE = files("simfolio_forecasting_methodology").joinpath("resources", "french1926")
@@ -156,16 +156,15 @@ def build_panel(root: Path) -> dict:
     }]
     for source in source_records:
         _download(source["url"], raw / source["url"].rsplit("/", 1)[-1], source["source_sha256"])
-    dates, market, cash = parse_market_zip(raw / audit["market_source"]["url"].rsplit("/", 1)[-1])
+    dates, market, _ = parse_market_zip(raw / audit["market_source"]["url"].rsplit("/", 1)[-1])
     if len(dates) != audit["daily_observations"] or dates[0] != audit["common_start"] or dates[-1] != audit["common_end"]:
         raise ValueError("market calendar differs from frozen audit")
     date_array = np.array([f"{d[:4]}-{d[4:6]}-{d[6:]}" for d in dates], dtype="datetime64[D]")
     np.save(root / "dates.npy", date_array, allow_pickle=False)
-    matrix = np.lib.format.open_memmap(root / "daily_log_returns.npy", mode="w+", dtype="<f8", shape=(552, len(dates)))
+    matrix = np.lib.format.open_memmap(root / "daily_log_returns.npy", mode="w+", dtype="<f8", shape=(551, len(dates)))
     series, seen, cached_url, blocks = [], set(), None, None
     for index, row in enumerate(selected + [
         {"family": "broad_market", "dataset_family": "market", "weighting": "value", "published_column": "Mkt-RF + RF", "source_url": audit["market_source"]["url"], "source_sha256": audit["market_source"]["sha256"]},
-        {"family": "cash", "dataset_family": "cash", "weighting": "cash_control", "published_column": "RF", "source_url": audit["market_source"]["url"], "source_sha256": audit["market_source"]["sha256"]},
     ]):
         if index < 550:
             if row["source_url"] != cached_url:
@@ -177,7 +176,7 @@ def build_panel(root: Path) -> dict:
                 raise ValueError("portfolio calendar mismatch; no filling allowed")
             values = np.asarray(data[positions, headers.index(row["published_column"])], dtype="<f8")
         else:
-            values = market if index == 550 else cash
+            values = market
         value_hash = hashlib.sha256(values.tobytes()).hexdigest()
         if value_hash != row.get("return_series_sha256", value_hash) or value_hash in seen:
             raise ValueError("selected return history changed or duplicates another series")
@@ -186,7 +185,7 @@ def build_panel(root: Path) -> dict:
         seen.add(value_hash)
         logs = np.log1p(values / 100.0)
         matrix[index] = logs
-        series.append({**row, "series_id": f"FR{index + 1:04d}", "role": "cash_control" if index == 551 else "equity", "return_series_sha256": value_hash, "log_returns_sha256": hashlib.sha256(logs.tobytes()).hexdigest()})
+        series.append({**row, "series_id": f"FR{index + 1:04d}", "role": "equity", "return_series_sha256": value_hash, "log_returns_sha256": hashlib.sha256(logs.tobytes()).hexdigest()})
     matrix.flush()
     del matrix
     descriptors = origin_schedule(date_array)
@@ -195,15 +194,15 @@ def build_panel(root: Path) -> dict:
     panel = {
         "panel_id": PANEL_ID, "protocol_id": PROTOCOL_ID, "status": "ready_unscored",
         "common_start": str(date_array[0]), "common_end": str(date_array[-1]),
-        "observations": len(dates), "series_count": 552, "equity_series_count": 551,
-        "cash_controls": 1, "simulations_per_origin": SIMULATIONS,
-        "origins_per_series": len(descriptors), "expected_tasks": 552 * len(descriptors),
+        "observations": len(dates), "series_count": 551, "equity_series_count": 551,
+        "cash_controls": 0, "simulations_per_origin": SIMULATIONS,
+        "origins_per_series": len(descriptors), "expected_tasks": 551 * len(descriptors),
         "max_horizon": max(d.max_horizon for d in descriptors),
-        "expected_cells": 552 * max(d.max_horizon for d in descriptors),
+        "expected_cells": 551 * max(d.max_horizon for d in descriptors),
         "registered_models": [], "results": [], "series": series,
         "score_target": "terminal_log_return", "score": "exact_empirical_crps_n_squared",
         "aggregation": "mean_origins_within_series_horizon_then_equal_all_cells",
-        "cash_control_in_primary_aggregate": True,
+        "cash_control_in_primary_aggregate": False,
         "calendar": "actual_provider_dates_including_historical_saturdays_no_fill",
         "future_policy_calendar": "synthetic_business_days_matching_existing_harness",
         "return_transform": "log1p(published_simple_percent_return / 100)",
@@ -246,7 +245,7 @@ def load_panel(root: Path) -> dict:
         if name not in {"dates.npy", "daily_log_returns.npy", "origins.json"} or digest_file(root / name) != expected:
             raise ValueError("panel input checksum mismatch")
     values, dates = load_returns(root), load_dates(root)
-    if values.shape != (552, 26317) or values.dtype != np.dtype("<f8") or dates.dtype != np.dtype("datetime64[D]"):
+    if values.shape != (551, 26317) or values.dtype != np.dtype("<f8") or dates.dtype != np.dtype("datetime64[D]"):
         raise ValueError("frozen panel dimensions or precision drifted")
     if len(dates) != 26317 or np.any(np.isnat(dates)) or np.any(dates[1:] <= dates[:-1]):
         raise ValueError("invalid source calendar")

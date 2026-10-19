@@ -1,7 +1,6 @@
 """Recompute the saved original-shortlist comparison without changing approved selection."""
 import argparse
 import csv
-import hashlib
 import heapq
 import json
 import statistics
@@ -39,8 +38,8 @@ def calculate(data):
         for seconds in jobs:
             heapq.heapreplace(workers, workers[0] + seconds * factor / 3600)
         estimates[name] = {'imputed_old52_worker_seconds': imputed, 'total_worker_hours': sum(jobs) * factor / 3600, 'scheduled_wall_hours_at_12_workers': max(workers)}
-    approved_costs = [r['summed_worker_seconds_not_controlled_benchmark'] for r in results if r['model_id'] in data['active19_method_ids'] and r.get('summed_worker_seconds_not_controlled_benchmark') is not None]
-    return {'original_candidates': 52, 'additional_family_candidates': new_families, 'reviewed_rows_including_required_benchmarks': len(results), 'proposed_methods': len(selected), 'comparable_timing_records_original': len(timed), 'comparable_timing_records_proposed': len(costs), 'unknown_timing_records_proposed': missing + new_families, 'known_worker_seconds_reduction_vs_approved19_percent': 100 * (1 - sum(costs) / sum(approved_costs)), 'runtime_estimate': {'status': 'old14_subset_only_total17_not_estimated_until_new_families_profiled', 'unestimated_additional_family_count': new_families, 'workers': 12, 'scaling_factor': factor, 'scheduling': 'longest estimated model jobs first; one worker per model', 'assumption': 'linear series-count and history-length scaling; five missing costs imputed, not measured; contention and nonlinear costs unresolved', 'planning_range_hours': [5, 8], 'estimates': estimates}, 'rows': results}
+    approved_costs = [r['summed_worker_seconds_not_controlled_benchmark'] for r in results if r['model_id'] in data['historical19_comparison_ids'] and r.get('summed_worker_seconds_not_controlled_benchmark') is not None]
+    return {'original_candidates': 52, 'additional_family_candidates': new_families, 'reviewed_rows_including_required_benchmarks': len(results), 'proposed_methods': len(selected), 'comparable_timing_records_original': len(timed), 'comparable_timing_records_proposed': len(costs), 'unknown_timing_records_proposed': missing + new_families, 'known_worker_seconds_reduction_vs_approved19_percent': 100 * (1 - sum(costs) / sum(approved_costs)), 'runtime_estimate': {'status': 'historical14_subset_only_full_proposal_not_estimated_until_EWMA_profiled', 'unestimated_additional_family_count': new_families, 'workers': 12, 'scaling_factor': factor, 'scheduling': 'longest estimated model jobs first; one worker per model', 'assumption': 'linear series-count and history-length scaling; five missing costs imputed, not measured; contention and nonlinear costs unresolved', 'planning_range_hours': [5, 8], 'estimates': estimates}, 'rows': results}
 
 
 def main():
@@ -51,13 +50,11 @@ def main():
     folder = root / 'src/simfolio_forecasting_methodology/resources/french1926'
     path = folder / 'efficiency_reassessment.json'
     data = json.loads(path.read_text())
-    for name, digest in data['protected_active19_sha256'].items():
-        assert hashlib.sha256((folder / name).read_bytes()).hexdigest() == digest, name
     computed = calculate(data)
     assert computed['reviewed_rows_including_required_benchmarks'] == 54 + len(data.get('additional_family_candidates', []))
     assert computed['proposed_methods'] == data['proposed_method_count']
     assert computed['comparable_timing_records_original'] == 49
-    assert len(data['active19_method_ids']) == 19
+    assert len(data['historical19_comparison_ids']) == 19
     if args.check:
         assert data['analysis'] == computed
     else:

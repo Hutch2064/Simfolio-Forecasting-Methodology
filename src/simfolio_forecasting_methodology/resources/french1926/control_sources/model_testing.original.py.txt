@@ -1,0 +1,438 @@
+"""One-origin historical forecast tests using the production model/accounting paths.
+
+Only the information set, calendar and investor origin differ from a fresh
+Simulation. Neither forecasting model nor a numerical accounting loop lives here.
+"""
+from __future__ import annotations
+
+import copy
+import hashlib
+import json
+import time
+from contextlib import contextmanager
+from contextvars import ContextVar
+from dataclasses import dataclass
+
+import numpy as np
+import pandas as pd
+
+CONTRACT = "historical-model-test-v2"
+SPLITS = {"half", "train_first", "test_last", "custom"}
+_CONTEXT = ContextVar("model_test_forecast_context", default=None)
+
+
+@dataclass(frozen=True)
+class PreparedTestPanel:
+    """In-process only; public JSON cannot supply a prepared numerical panel."""
+    prices: pd.DataFrame
+    spreads: pd.DataFrame | None
+    first_dates: dict
+
+
+def current_context():
+    return _CONTEXT.get()
+
+
+def rate_input(key):
+    context = current_context()
+    return context.get(key) if context is not None else None
+
+
+def normalize_config(value):
+    if not isinstance(value, dict) or value.get("split", "half") not in SPLITS:
+        raise ValueError("Choose a valid Training / Test Split.")
+    result = {"split": value.get("split", "half")}
+    for key in ("training_years", "test_years"):
+        default = 10 if key == "training_years" else 5
+        active = result["split"] == ("train_first" if key == "training_years" else "test_last")
+        number = value.get(key, default) if active else default
+        if isinstance(number, bool):
+            raise ValueError("Training and test durations must be positive finite years.")
+        try:
+            number = float(number)
+        except (ValueError, TypeError):
+            raise ValueError("Training and test durations must be positive finite years.") from None
+        if not np.isfinite(number) or number <= 0:
+            raise ValueError("Training and test durations must be positive finite years.")
+        result[key] = number
+    for key in ("training_start", "training_end", "test_end"):
+        text = str(value.get(key) or "").strip() if result["split"] == "custom" else ""
+        if text and pd.Timestamp(text).strftime("%Y-%m-%d") != text:
+            raise ValueError("Choose valid training and test dates.")
+        result[key] = text
+    return result
+
+
+def selected_history(prices, settings):
+    """Resolve relative history against its observed end, never wall-clock today."""
+    history = settings.get("_model_testing_history") or settings
+    selected = prices
+    end = history.get("end_date")
+    if end:
+        selected = selected.loc[:pd.Timestamp(end)]
+    if selected.empty:
+        raise ValueError("No shared history exists in the selected Date Range.")
+    mode = history.get("date_range", "full_history")
+    if mode == "last_n_years":
+        years = float(history.get("date_range_years", 10))
+        if not np.isfinite(years) or years <= 0:
+            raise ValueError("Date Range Years must be positive.")
+        start = _shift_years(selected.index[-1], -years)
+    elif mode == "to_date_since":
+        start = pd.Timestamp(year=int(history["date_range_since_year"]), month=1, day=1)
+    else:
+        start = pd.Timestamp(history.get("start_date") or prices.index[0]) if mode is None else prices.index[0]
+    selected = selected.loc[selected.index >= start]
+    if selected.empty:
+        raise ValueError("No shared history exists in the selected Date Range.")
+    return selected
+
+
+def preview_model_testing(engine, settings):
+    """Read prepared public history only; never fit or acquire new market symbols."""
+    import re
+    requested = [value for value in re.split(r"[,\s]+", settings.get("portfolio_tickers", "").upper()) if value]
+    panel = engine._investment_tool_data_panel_source({**settings, "_model_testing_preview": True, "date_range": None, "start_date": "1800-01-01"}, requested)
+    if panel is None:
+        return {"status": "not_prepared", "message": "Dates resolve automatically on Run after shared market history is loaded. No model is fitted to check dates."}
+    prices = selected_history(panel[0], settings)
+    _, _, summary = resolve_split(prices.index, settings["model_testing"], maximum_test_days=(100 if settings.get("is_subscribed") else 20) * 252)
+    return {"status": "success", "model_testing": summary}
+
+
+def _shift_years(date, years):
+    months = years * 12
+    if np.isclose(months, round(months), rtol=0, atol=1e-9):
+        return date + pd.DateOffset(months=round(months))
+    whole = int(years)
+    return date + pd.DateOffset(years=whole) + pd.Timedelta(days=(years - whole) * 365.2425)
+
+
+def resolve_split(dates, config, *, minimum_training=5, maximum_test_days=25200):
+    index = pd.DatetimeIndex(dates).tz_localize(None).normalize()
+    if index.has_duplicates or not index.is_monotonic_increasing or len(index) < 2:
+        raise ValueError("Model Testing requires an ordered shared history.")
+    config = normalize_config(config)
+    available_start, available_end = index[0], index[-1]
+    if config["split"] == "custom":
+        if not config["training_end"]:
+            raise ValueError("Choose Training End Date.")
+        start = pd.Timestamp(config["training_start"] or available_start)
+        cutoff = pd.Timestamp(config["training_end"])
+        end = pd.Timestamp(config["test_end"] or available_end)
+        if start < available_start or end > available_end or cutoff >= end or start >= cutoff:
+            raise ValueError("Choose non-overlapping training and test dates within available history.")
+        selected = index[(index >= start) & (index <= end)]
+        boundary = int(selected.searchsorted(cutoff, side="right"))
+    else:
+        selected = index
+        if config["split"] == "half":
+            boundary = len(selected) // 2
+        elif config["split"] == "train_first":
+            boundary = int(selected.searchsorted(_shift_years(available_start, config["training_years"]), side="left"))
+        else:
+            cutoff = _shift_years(available_end, -config["test_years"])
+            boundary = int(selected.searchsorted(cutoff, side="right"))
+    training, testing = selected[:boundary], selected[boundary:]
+    # The first price is an opening anchor, not a fitted return observation.
+    if len(training) - 1 < minimum_training:
+        raise ValueError(f"The split requires at least {minimum_training} training return observations.")
+    if len(testing) < 21:
+        raise ValueError("The split requires at least 21 test observations.")
+    if len(testing) > maximum_test_days:
+        raise ValueError("The test period exceeds your permitted Simulation Horizon. Choose a shorter split.")
+    summary = {
+        "available_start": available_start.strftime("%Y-%m-%d"), "available_end": available_end.strftime("%Y-%m-%d"),
+        "training_start": training[0].strftime("%Y-%m-%d"), "training_end": training[-1].strftime("%Y-%m-%d"),
+        "test_start": testing[0].strftime("%Y-%m-%d"), "test_end": testing[-1].strftime("%Y-%m-%d"),
+        "training_observations": len(training) - 1, "test_observations": len(testing),
+        "split": config["split"], "schema_version": CONTRACT,
+    }
+    return training, testing, summary
+
+
+@contextmanager
+def forecast_information(engine, cutoff, dates):
+    """Bind as-of rate inputs locally, without mutating shared engines/caches."""
+    engine._load_rate_context_parallel()
+    risk_free = engine._load_rf_series().loc[lambda value: value.index <= cutoff].copy()
+    inflation = engine._load_inflation_frame().loc[lambda value: value.index <= cutoff].copy()
+    digest = hashlib.sha256(CONTRACT.encode())
+    for value in (risk_free, inflation):
+        digest.update(value.index.asi8.tobytes())
+        digest.update(np.ascontiguousarray(np.asarray(value), dtype="<f8").tobytes())
+        digest.update(json.dumps(value.attrs, sort_keys=True, default=str).encode())
+    digest.update(dates.asi8.tobytes())
+    context = {"risk_free": risk_free, "inflation": inflation,
+               "identity": f"{CONTRACT}:{digest.hexdigest()}", "dates": dates,
+               "metrics": {}, "internal": None, "cutoff": cutoff, "source_seeds": []}
+    token = _CONTEXT.set(context)
+    try:
+        yield context
+    finally:
+        _CONTEXT.reset(token)
+
+
+def capture_metrics(chunks):
+    context = current_context()
+    if context is not None:
+        context["metrics"] = {
+            namespace: {key: np.concatenate(values) for key, values in metrics.items() if values}
+            for namespace, metrics in chunks.items() if isinstance(metrics, dict)
+        }
+
+
+def actual_return_series(observed, dates):
+    source = observed["raw_return_series"]["portfolio"]
+    series = pd.Series(source["returns"], index=pd.to_datetime(source["dates"]), dtype=float)
+    if not series.index.is_unique or not pd.DatetimeIndex(dates).isin(series.index).all():
+        raise ValueError("Model Testing forecast and backtest calendars do not match.")
+    return series.reindex(dates)
+
+
+def daily_crps(matrix, actual):
+    """Exact empirical CRPS at each daily horizon from one forecast origin."""
+    matrix = np.asarray(matrix, dtype=np.float64)
+    actual = np.asarray(actual, dtype=np.float64)
+    if matrix.ndim != 2 or matrix.shape[1] != len(actual):
+        raise ValueError("Model Testing forecast and backtest calendars do not match.")
+    paths = matrix.shape[0]
+    with np.errstate(divide="ignore", invalid="ignore"):
+        forecast_logs = np.cumsum(np.log1p(matrix), axis=1)
+        actual_logs = np.cumsum(np.log1p(actual))
+    # Keep undefined/depleted outcomes explicit; never drop a bad path from a score.
+    valid = np.isfinite(forecast_logs).all(axis=0) & np.isfinite(actual_logs)
+    scores = np.full(len(actual), np.nan)
+    coefficients = 2 * np.arange(1, paths + 1, dtype=np.float64) - paths - 1
+    for start in range(0, len(actual), 256):
+        stop = min(start + 256, len(actual))
+        sample = forecast_logs[:, start:stop]
+        with np.errstate(invalid="ignore"):
+            scores[start:stop] = np.mean(np.abs(sample - actual_logs[None, start:stop]), axis=0) - (
+                coefficients @ np.sort(sample, axis=0) / (paths * paths)
+            )
+    scores[~valid] = np.nan
+    return scores
+
+
+def run_naive_reference(engine, context):
+    """Reuse prepared training inputs and native policy replay; no reports or model refit."""
+    arguments = context.pop("naive_arguments")
+    naive_context = {**context, "naive_benchmark": True, "source_seeds": [], "metrics": {}, "internal": None}
+    token = _CONTEXT.set(naive_context)
+    try:
+        result = engine.generate_forecast(**arguments)
+        internal = result.get("_internal", {})
+        if internal.get("return_values") is None:
+            raise ValueError("The Naive Model could not produce the comparison paths.")
+        return internal["return_values"], {
+            "model": result["meta"]["simulation_method"],
+            "block_length": result["meta"]["naive_block_length"],
+            "simulation_count": arguments["n_sims"], "source_seeds": naive_context["source_seeds"],
+        }
+    finally:
+        _CONTEXT.reset(token)
+
+
+def crps_improvement(model_score, naive_score):
+    if model_score is None or naive_score is None:
+        return None
+    if naive_score == 0:
+        return 0.0 if model_score == 0 else None
+    return float((naive_score - model_score) / naive_score * 100)
+
+
+def evaluate(context, observed, summary):
+    """Score the selected paths and actual outcomes without additional model fits."""
+    internal = context["internal"]
+    dates = context["dates"]
+    matrix = np.asarray(internal.get("return_values"), dtype=np.float64)
+    actual = actual_return_series(observed, dates).to_numpy(dtype=float)
+    scores = daily_crps(matrix, actual)
+    paths = matrix.shape[0]
+    ranks = {}
+    for namespace, metrics in context["metrics"].items():
+        actual_metrics = observed.get(namespace, {}).get("portfolio", {})
+        ranks[namespace] = {}
+        for key, values in metrics.items():
+            target = actual_metrics.get(key)
+            if isinstance(target, (int, float)) and np.isfinite(target):
+                finite = np.asarray(values)[np.isfinite(values)]
+                if finite.size:
+                    ranks[namespace][key] = {"percentile": float(np.mean(finite <= target) * 100), "sample_count": int(finite.size)}
+    return {
+        **summary, "simulation_count": paths, "forecast_origin_count": 1,
+        "score": {"name": "CRPS", "variable": "cumulative time-weighted log return",
+                  "reporting_basis": internal.get("reporting_basis", "nominal"),
+                  "aggregation": "equal-weight daily horizons from one forecast origin",
+                  "mean": float(scores.mean()) if np.isfinite(scores).all() else None,
+                  "status": "complete" if np.isfinite(scores).all() else "undefined_nonpositive_growth",
+                  "dates": dates.strftime("%Y-%m-%d").tolist(),
+                  "values": [float(value) if np.isfinite(value) else None for value in scores]},
+        "backtest_percentiles": ranks,
+        "interpretation": "One historical forecast; this is not a calibration or model-selection guarantee.",
+    }
+
+
+def align_actual_metric_conventions(engine, observed, dates, start_value):
+    """Use the forecast's metric definitions on the one realized path.
+
+    Historical reporting includes an opening anchor and net invested capital.
+    Forward distributions use held-out sessions and gross future contributions.
+    Reuse the path reducer so their comparison has identical annualization and
+    contribution semantics. Realized RF/CPI remain outcome-period observations.
+    """
+    from app.engine import _forecast_pathwise_metric_values
+    curve = observed["equity_curves"]["portfolio"]
+    returns = actual_return_series(observed, dates)
+    wealth = pd.Series(curve["values"], index=pd.to_datetime(curve["dates"]), dtype=float).reindex(dates)
+    real = observed["metadata"].get("reporting_basis") == "real"
+    rf = engine._real_rf_for_index(dates) if real else engine._avg_rf(dates)
+    contributions = float(observed.get("flow_analysis", {}).get("summary", {}).get("gross_contributions", 0.0))
+    values = _forecast_pathwise_metric_values(returns.to_numpy()[None, :], wealth.to_numpy()[None, :],
+                                              start_value, contributions, dates.strftime("%Y-%m-%d").tolist(), rf)
+    for namespace in ("performance", "extended_metrics"):
+        observed.setdefault(namespace, {}).setdefault("portfolio", {}).update({
+            key: float(np.asarray(value).reshape(-1)[0]) for key, value in values[namespace].items()
+        })
+    observed["performance"]["portfolio"]["Total_Contributions"] = contributions
+
+
+def attach_actual_projections(observed, forecast_bundle):
+    """Join existing bounded historical metrics to their forecast projections.
+
+    These are contemporaneous held-out comparisons, never forecast continuation.
+    The simulation distributions and their fresh origin stay unchanged.
+    """
+    historical = observed["metadata"].get("rolling_bundle", {}).get("inline", {}).get("backtest", {})
+    for basis, wrapper in forecast_bundle.get("inline", {}).get("forecast", {}).items():
+        section = wrapper.get(basis, wrapper)
+        actual = historical.get(basis, {})
+        actual = actual.get(basis, actual)
+        windows = actual.get("rolling_metrics", {}).get("windows", {})
+        for key, forecast in section.get("rolling_metrics", {}).get("windows", {}).items():
+            metrics = windows.get(key, {}).get("metric_payloads", {})
+            for metric, output in forecast.get("metrics", {}).items():
+                source = metrics.get(metric, {})
+                if source.get("dates") and "portfolio_values" in source:
+                    output["backtest"] = {"dates": copy.deepcopy(source["dates"]), "values": copy.deepcopy(source["portfolio_values"])}
+        drawdown = section.get("drawdown")
+        if isinstance(drawdown, dict):
+            curve = observed["twr_equity_curves"]["portfolio"]
+            returns = actual_return_series(observed, pd.to_datetime(curve["dates"][1:])).to_numpy(dtype=float)
+            values = np.concatenate([[1.0], np.cumprod(1.0 + returns)])
+            peak = np.maximum.accumulate(values)
+            dd = np.divide(values, peak, out=np.ones_like(values), where=peak > 0) * 100 - 100
+            from app.forecast_rolling_analysis import _aligned_extrema_indexes
+            selected = _aligned_extrema_indexes([dd.tolist()], len(dd), 480)
+            drawdown["backtest"] = {"dates": [curve["dates"][i] for i in selected], "values": dd[selected].tolist()}
+            drawdown["with_backtest"] = False
+            drawdown["assumptions"] = [
+                "Backtest is the held-out drawdown over the same test period and fresh origin.",
+                "All simulated paths and every test observation are computed; the browser receives an extrema-preserving projection.",
+            ]
+
+
+def run_model_testing(engine, settings, *, prices, spread_bps_df, weights, horizon_info, policy, stage_timing=None):
+    from app import engine as implementation
+    from app.fresh_origin import FRESH_START_CONTRACT
+    from app.fresh_simulation import run_fresh_simulation
+
+    config = normalize_config(settings["model_testing"])
+    prices = selected_history(prices, settings)
+    maximum = (100 if settings.get("is_subscribed") else 20) * 252
+    training, testing, summary = resolve_split(
+        prices.index, config, minimum_training=implementation.RANK1_SV_FORECAST_MIN_OBS,
+        maximum_test_days=maximum,
+    )
+    count = len(testing)
+    horizon = {**horizon_info, "mc_horizon_days": count, "mc_horizon_years": count / 252,
+               "requested_horizon_days": count, "requested_horizon_years": count / 252,
+               "requested_horizon_end_date": summary["test_end"], "mc_horizon_mode": "explicit"}
+    start_value = float(settings.get("current_portfolio_value", 10000))
+    training_settings = {**settings, "analysis_mode": "simulation_only", "simulation_origin_contract": FRESH_START_CONTRACT,
+                         "_prepare_rolling_bundle": True, "_model_testing_capture": True,
+                         "mc_horizon_end_date": summary["test_end"]}
+    started = time.perf_counter()
+    with forecast_information(engine, training[-1], testing) as context:
+        forecast_result = run_fresh_simulation(
+            engine, training_settings, prices=prices.loc[training], weights=weights, horizon_info=horizon,
+            spread_bps_df=spread_bps_df.loc[training] if spread_bps_df is not None else None,
+            origin_start_value=start_value, **policy,
+        )
+    forecast_seconds = time.perf_counter() - started
+    forecast = forecast_result["monte_carlo"]["forecast"]["portfolio"]
+    if forecast.get("meta", {}).get("status") == "skipped" or not forecast.get("dates"):
+        raise ValueError(f"The selected model could not produce this test: {forecast.get('meta', {}).get('detail') or forecast.get('meta', {}).get('reason')}.")
+    started = time.perf_counter()
+    naive_paths, naive_metadata = run_naive_reference(engine, context)
+    naive_seconds = time.perf_counter() - started
+    # Anchor the actual investor at the same close, with fresh tax/flow state.
+    actual_dates = pd.DatetimeIndex([training[-1]]).append(testing)
+    actual_settings = {**settings, "model_testing": None, "analysis_mode": "backtest_only", "forecasting_enabled": False,
+                       "start_date": summary["training_end"], "end_date": summary["test_end"], "date_range": None,
+                       "initial_capital": start_value, "current_portfolio_value": start_value,
+                       "mc_horizon_days": 0, "mc_horizon_years": 0, "mc_horizon_end_date": "",
+                       "_skip_historical_base_cache_write": True,
+                       "_model_testing_observed": True, "_prepare_rolling_bundle": True,
+                       "_model_testing_prepared_panel": PreparedTestPanel(
+                           prices.loc[actual_dates], spread_bps_df.loc[actual_dates] if spread_bps_df is not None else None,
+                           {column: summary["training_end"] for column in prices.columns}),
+                       }
+    actual_settings.pop("simulation_origin_contract", None)
+    actual_settings.pop("_synthetic_prices_df", None)
+    actual_settings.pop("_synthetic_prices", None)
+    actual_settings.pop("_partial_result_callback", None)
+    from app.fresh_origin import prepare_fresh_forward_policy
+    effective = prepare_fresh_forward_policy(settings.get("cash_flow_legs"), training[-1], testing)["effective_legs"]
+    actual_settings["cash_flow_legs"] = [leg for leg in effective if (
+        leg.get("frequency") != "one_time" or pd.Timestamp(leg["date"]) > training[-1]
+    ) and (not leg.get("end_date") or pd.Timestamp(leg["end_date"]) >= testing[0])]
+    started = time.perf_counter()
+    observed = engine.run_full_analysis(actual_settings, stage_timing=stage_timing)
+    actual_seconds = time.perf_counter() - started
+    align_actual_metric_conventions(engine, observed, testing, start_value)
+    assessment = evaluate(context, observed, summary)
+    started = time.perf_counter()
+    naive_scores = daily_crps(naive_paths, actual_return_series(observed, testing).to_numpy(dtype=float))
+    naive_mean = float(naive_scores.mean()) if np.isfinite(naive_scores).all() else None
+    assessment["naive_score"] = {**naive_metadata, "mean": naive_mean,
+                               "status": "complete" if naive_mean is not None else "undefined_nonpositive_growth"}
+    assessment["score_improvement_percent"] = crps_improvement(assessment["score"]["mean"], naive_mean)
+    naive_seconds += time.perf_counter() - started
+    from app.artifact_cache import digest_frame
+    assessment["training_data_identity"] = digest_frame(prices.loc[training], label=CONTRACT)
+    assessment["randomness"] = {
+        "presentation_seed": 42, "source_seeds": context["source_seeds"],
+        "source_seed_recipe": "engine._deterministic_seed(forecast_final_fixed, model_namespace, test_observations, simulation_count); chunked sources add chunk offset and path count under forecast_final_fixed_chunk",
+        "note": "A reused source may omit fresh seed calls; its deterministic seed recipe and calculation identity still apply.",
+    }
+    assessment["calculation_contract_source_identity"] = implementation.CALCULATION_CONTRACT_SOURCE_IDENTITY
+    assessment["settings_identity"] = hashlib.sha256(json.dumps({
+        "contract": CONTRACT, "config": config, "policy": policy, "weights": weights,
+        "start_value": start_value, "model": settings.get("forecast_model", "default"),
+        "tax_assumptions": settings.get("tax_assumptions"), "real": settings.get("inflation_adjusted", False),
+        "calendar": summary,
+    }, sort_keys=True, separators=(",", ":"), default=str).encode()).hexdigest()
+    assessment.update(model=forecast["meta"].get("simulation_method"), information_cutoff=summary["training_end"],
+                      rate_context_identity=context["identity"],
+                      runtime_seconds={"forecast": forecast_seconds, "naive": naive_seconds, "backtest": actual_seconds})
+    observed["monte_carlo"] = forecast_result["monte_carlo"]
+    observed["model_testing"] = assessment
+    metadata = observed["metadata"]
+    metadata.update(analysis_mode="full", model_testing=summary, simulation_origin_contract=FRESH_START_CONTRACT,
+                    model_testing_metric_contract="forecast_pathwise_reducer_realized_rates_gross_forward_contributions")
+    historical_bundle = metadata.get("rolling_bundle")
+    forecast_bundle = forecast_result["metadata"].get("rolling_bundle")
+    if historical_bundle and forecast_bundle:
+        attach_actual_projections(observed, forecast_bundle)
+        historical_bundle["forecast"] = forecast_bundle["forecast"]
+        historical_bundle.setdefault("inline", {}).update({
+            key: value for key, value in forecast_bundle.get("inline", {}).items() if key.startswith("forecast")
+        })
+    if forecast_result.get("taxes"):
+        observed.setdefault("taxes", {}).update({"forecast": forecast_result["taxes"]["forecast"]})
+    target = observed["monte_carlo"]["forecast_target"]
+    target.update(equity_curve=observed["equity_curves"]["portfolio"], twr_equity_curve=observed["twr_equity_curves"]["portfolio"])
+    implementation._sanitize_response_payload_inplace(observed)
+    return observed

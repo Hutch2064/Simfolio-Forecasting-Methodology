@@ -1,3 +1,4 @@
+import json
 import zipfile
 
 import numpy as np
@@ -67,3 +68,24 @@ def test_fresh_panel_uses_actual_historical_saturdays_and_no_old_cap():
     assert len(schedule) == 51
     assert max(d.max_horizon for d in schedule) > 8766
     assert sum(d.evaluation_split == "rolling_origin" for d in schedule) == 48
+
+
+def test_equity_only_frozen_panel_keeps_market_and_retires_rf_tasks():
+    panel = json.loads(data.RESOURCE.joinpath("panel_manifest.json").read_text())
+    assert panel["panel_id"] == data.PANEL_ID == "french1926-single-series-551-v2"
+    assert panel["protocol_id"] == data.PROTOCOL_ID
+    assert panel["series_count"] == panel["equity_series_count"] == 551
+    assert panel["cash_controls"] == 0
+    assert panel["cash_control_in_primary_aggregate"] is False
+    assert panel["expected_tasks"] == 551 * panel["origins_per_series"] == 28101
+    assert panel["expected_cells"] == 551 * panel["max_horizon"] == 10875638
+    assert [row["series_id"] for row in panel["series"]] == [
+        f"FR{index:04d}" for index in range(1, 552)
+    ]
+    assert {row["role"] for row in panel["series"]} == {"equity"}
+    market = panel["series"][-1]
+    assert market["published_column"] == "Mkt-RF + RF"
+    assert market["family"] == "broad_market"
+    assert all(row["published_column"] != "RF" for row in panel["series"])
+    payload = {key: value for key, value in panel.items() if key != "panel_fingerprint"}
+    assert panel["panel_fingerprint"] == data.stable_digest(payload)

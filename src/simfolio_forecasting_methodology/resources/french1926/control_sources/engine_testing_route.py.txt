@@ -1,0 +1,41 @@
+def _simulate_smart_iid_forecast_log_paths(
+    self,
+    *,
+    strategy_returns: pd.Series,
+    asset_returns: Optional[pd.DataFrame],
+    forecast_weights: Optional[Mapping[str, float]],
+    historical_dates: pd.DatetimeIndex,
+    future_dates: pd.DatetimeIndex,
+    n_paths: int,
+    rng: np.random.Generator,
+    rebalance_frequency: str,
+    rebalance_offset_days: int,
+    rebalance_band_settings: Optional[Mapping[str, Any]] = None,
+    return_asset_path_context: bool = False,
+    return_turnover_paths: bool = False,
+    capture_allocation_composition: bool = False,
+    diversification_inflation_log_returns: Optional[np.ndarray] = None,
+) -> Tuple[np.ndarray, Dict[str, Any]]:
+    from app.model_testing import current_context
+    test_context = current_context()
+    naive_benchmark = bool(test_context and test_context.get("naive_benchmark"))
+    return simulate_smart_iid_log_returns(
+        strategy_returns=strategy_returns,
+        asset_returns=asset_returns,
+        weights=forecast_weights,
+        historical_dates=pd.DatetimeIndex(historical_dates),
+        future_dates=pd.DatetimeIndex(future_dates),
+        n_paths=int(n_paths),
+        rng=rng,
+        rebalance_frequency=str(rebalance_frequency or "none"),
+        rebalance_offset_days=int(rebalance_offset_days),
+        cost_per_turnover_bps=self.COST_PER_TURNOVER_BPS,
+        date_selector=self._get_dates_for_freq,
+        return_asset_path_context=bool(return_asset_path_context),
+        **({"return_turnover_paths": True} if return_turnover_paths else {}),
+        capture_allocation_composition=bool(capture_allocation_composition) and not naive_benchmark,
+        rebalance_band_settings=rebalance_band_settings,
+        diversification_inflation_log_returns=diversification_inflation_log_returns,
+        _naive_stationary_bootstrap=naive_benchmark,
+    )
+

@@ -1,15 +1,13 @@
 # French long-history single-series panel
 
 This is a **new, unscored panel**, separate from canonical52 and historical80.
-No model is registered, selected, or run by data preparation. Model selection
-and execution require an explicit subsequent research decision.
+Data preparation itself does not select or run models. The approved15-method selection is maintained separately in the selected-model table and executable control configuration.
 
 ## Frozen return universe
 
 The common observed calendar is July 1, 1926 through August 31, 2026:
 26,317 daily observations per series, including historical Saturday trading.
-There are **552 independently tested input series: 551 equity portfolios and
-one risk-free cash control**. Each is supplied as one return column at unit
+There are **551 independently tested equity return series**. Each is supplied as one return column at unit
 weight; no combinations of these series are constructed.
 
 | Family | Unique daily equity series |
@@ -33,7 +31,7 @@ calendar/missingness audit are retained in
 `resources/french1926/source_audit.json`; the 550 selected portfolio columns
 are listed in `equity_series.csv`. Broad-market total return is computed as
 **Mkt-RF + RF in simple percent units**, then converted with `log1p(r / 100)`.
-RF is converted in the same units and labelled `cash_control`. Factor spreads,
+RF is used only to reconstruct market total return; it is not a separate test series. Factor spreads,
 firm counts, monthly/annual tables, ex-dividend series and later-starting
 families are not inputs. No missing returns are forward-filled, back-filled
 or interpolated. Dates align exactly to the market source calendar.
@@ -62,12 +60,12 @@ source is the 38-page repository PDF at web revision
 - Exact empirical CRPS, including all self-pairs in the **240 squared** pairwise
   denominator. No historical adjusted/fair-score substitution.
 - Average origin losses within each series × horizon cell, then equally
-  average all cells. The cash control participates in this all-552 aggregate;
-  role/family slices remain separately available from saved origin vectors.
+  average all cells. The aggregate covers all 551 equity series;
+  family slices remain separately available from saved origin vectors.
 - Strict finite outputs and complete task and per-cell-origin counts are
   required for a final score. A partial score covers only named complete series.
 
-The resulting frozen plan has **28,152 origins** and **10,895,376 series ×
+The resulting frozen plan has **28,101 origins** and **10,875,638 series ×
 horizon cells**, with a maximum of **19,738 future observations**. Old 52/80
 panel counts, dates and maximum horizon are not substituted into this plan.
 Training and realizations use observed French dates. As in the existing
@@ -88,7 +86,7 @@ materializes a read-only memory-mapped float64 input matrix, calendar, manifest
 and value-free origin schedule. It imports no model adapter. Validation checks
 the packaged frozen definition, input hashes, dimensions, dates and schedule.
 
-For future model adapters, the execution entry point is
+For selected model adapters, the execution entry point is
 `simfolio_forecasting_methodology.french_panel.runner.run_panel`. Its adapter
 interface is the existing `ForecastModel`/`TrainingData`/`ForecastContext`.
 Only immutable historical input copies reach the adapter; held-out returns
@@ -103,8 +101,8 @@ time is saved separately from score and checkpoint I/O.
 ## Live sweep controls
 
 Copy `resources/french1926/sweep_control.json` to an owned run directory. Its
-initial model map is empty. The controller accepts explicit future adapter
-factories and implementation hashes only when models are subsequently chosen.
+model map contains the approved fifteen factories and pinned implementation
+hashes. It starts paused (`stop: true`); preparation does not launch a sweep.
 It supports at most 12 worker processes and checkpoints each completed origin.
 Enabled additions enter the waiting list without restarting other models.
 Disabled or removed models stop before their next origin and retain their
@@ -123,7 +121,7 @@ using the completed models' saved forecast/scoring compute totals and current
 worker allocation. The sample count and assumptions are visible; neither ETA
 is populated without completed-model timing evidence. These are compute-based
 planning estimates, excluding checkpoint I/O and assuming comparable future
-models, rather than measured website latency. Completed-model rankings never
+models. Completed-model rankings never
 mix in incomplete scores.
 
 ## Preservation
@@ -139,28 +137,67 @@ that check. Source code can reconstruct the panel from official ZIPs while
 their frozen hashes remain available; the archive preserves this exact vintage.
 
 Neither historical panel nor any model ranking is replaced by creating this
-panel. Its model registry and result list remain empty.
+panel. The immutable data manifest retains empty model/result fields; the
+separate execution control carries model selection.
 
-## Approved model list, not an executable registry
+## Approved model list and executable registry
 
 `resources/french1926/shortlist_proposal.json` preserves one approved list:
-17 candidate methods and two required comparison controls, for 19 methods.
-It applies the user's 52-asset bound (no more than 10% worse than M261),
-method-family reduction, and the subsequent exclusion of candidates with
-saved historical80 scores worse than website Default. Unknown historical80
-comparisons remain unknown and retained. No runtime-percentile exclusion was
-requested or applied. Every omitted identity remains in historical catalogues.
+13 candidate methods and two required comparison controls, for15 methods.
+It supersedes the earlier nineteen-method list after the efficiency and
+method-family review. Cheap structural comparisons are retained explicitly;
+historical screening rules are preserved as history rather than reapplied
+to erase these deliberate comparisons. All model results remain available in
+the historical catalogues.
 
 The two mandatory controls are the exact website Default
 `asset_level_naive_iid_mean_shrunk_rebalanced` and the paper's Testing comparator
 `model_testing_joint_stationary_bootstrap_v1`. Their source identities are
-recorded separately; adapter parity must be verified when models are wired.
+recorded separately and checked against their native implementations.
 The standalone website Default has no completed canonical52 score attached
 here; the earlier 50/50 mixture cannot substitute for that missing result.
 
 The slow-tail table and saved historical80 comparison are separate screening
 records. Historical scores have not been promoted into results on this new
-panel. The controller's executable model map is still empty.
+panel. `french_panel.selected` defines the fifteen explicit lazy factories;
+`prepare_control` generates a paused control bound to the numerical source closure.
 
 The subsequent explicit removal of M190, M192, M177, M222 and M183 and the full saved score
 comparisons are recorded in [the selected-model table](french1926-selected-models.md).
+
+## Bounded readiness and runtime probes
+
+`python -m simfolio_forecasting_methodology.french_panel.readiness MODEL_ID
+/path/to/french1926 /path/to/profile.json` profiles one selected method in a
+fresh interpreter. It uses all 240 paths, a separate native warm-up, three
+rolling-history strata, every temporal origin (including the full maximum
+horizon), and an industry-series smoke. The scorer is unchanged. Probe losses
+are separate readiness evidence, never full-panel scores or checkpoints.
+Stratum weights extrapolate the per-model research compute; the twelve-worker
+estimate schedules the longest model first. Asset-specific fit costs and
+parallel contention remain limitations of this bounded estimate.
+
+## RF removal and native readiness
+
+At the user’s direction, the standalone RF series was removed in
+`french1926-single-series-551-v2`. Its first 526 published daily returns were
+identical (0.01% daily), so most volatility fits could not identify a variance
+process there. No deterministic fallback, artificial noise, interpolation or
+cash replacement was introduced. RF still contributes to Mkt-RF + RF for the
+broad market. Every retained equity row, observed date and origin is byte
+identical to the earlier 552-series definition. The earlier input archive and
+all cash-probe failures remain preserved as historical evidence.
+
+All fifteen methods passed the retained 135 bounded native equity probes,
+including the full 19,738-observation horizon. This is adapter readiness, not
+a completed French-panel score. The full sweep is unstarted and its control
+is paused. Explicit manual approval is required before launching. See
+`resources/french1926/model_readiness.json`.
+
+The measured-strata extrapolation is about 65.2 total worker-hours. With the
+current controller assigning one model to each worker, the projected elapsed
+time is about 42.5 hours, dominated by M001 alone. This supersedes the earlier
+historical 5–8-hour estimate. Dividing total compute by twelve would give an
+idealized 5.4 hours, but the current one-worker-per-model scheduler cannot
+attain that bound for this uneven workload. Asset-dependent fitting and
+parallel contention remain unmeasured. No extra model has been removed.

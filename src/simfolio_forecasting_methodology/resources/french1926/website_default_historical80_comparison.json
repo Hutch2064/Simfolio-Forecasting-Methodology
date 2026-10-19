@@ -2,109 +2,163 @@
   "baseline": "exact website Default, saved historical canonical80 control",
   "baseline_crps": 0.292821259593872,
   "baseline_source": "docs/rough-bayesian-oos.md and docs/results/rough-bayesian/map-predecessor-dynamic-panel.json",
-  "current_selected_candidates": 17,
+  "current_selected_candidates": 13,
   "models": [
     {
-      "comparison": "better",
-      "evidence_type": "verified_refinement_publication",
-      "historical80_crps": 0.23457102422540146,
-      "model_id": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "verified_refinement_publication",
+      "canonical52_crps": 0.600668345431752,
       "historical80_crps": 0.22653257917294423,
-      "model_id": "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac"
+      "label": "IID",
+      "model_id": "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": 2.1504951645684445,
+      "percent_better_production80": 0.08402730901740929,
+      "percent_better_website_default80": 22.637932953661497,
+      "role": "IID reference refinement",
+      "score80_status": "audited_refinement_record"
     },
     {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "canonical52_crps": 0.6138695810898457,
       "historical80_crps": 0.22672308848311776,
-      "model_id": "asset_m256_data_timescales_existing_sv_rate"
+      "label": "M261 \u2014 Current production Frontier",
+      "model_id": "asset_m256_data_timescales_existing_sv_rate",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": 0.0,
+      "percent_better_production80": 0.0,
+      "percent_better_website_default80": 22.572873022412733,
+      "role": "incumbent/reference",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "canonical52_crps": 0.5957716608071161,
+      "historical80_crps": 0.23457102422540146,
+      "label": "FAST",
+      "model_id": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": 2.948170236843972,
+      "percent_better_production80": -3.4614629655894458,
+      "percent_better_website_default80": 19.89276169676364,
+      "role": "FAST refinement",
+      "score80_status": "audited_refinement_record"
+    },
+    {
+      "canonical52_crps": 0.6420341742861375,
       "historical80_crps": 0.2557255171048505,
-      "model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced"
+      "label": "M001 \u2014 FastMAP Kalman with dynamic Gaussian factors",
+      "model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": -4.588041835578371,
+      "percent_better_production80": -12.792004914793797,
+      "percent_better_website_default80": 12.668391134056133,
+      "role": "selected_candidate",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2319704483126069,
-      "model_id": "asset_map_stationary_ar1_proxy_leverage_dynamic_rough"
+      "canonical52_crps": 0.8285466485181484,
+      "historical80_crps": 0.3362227403076284,
+      "label": "M035 \u2014 Constant-Mean Student-t",
+      "model_id": "constant_mean_student_t",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": -34.97111993188709,
+      "percent_better_production80": -48.29664793167468,
+      "percent_better_website_default80": -14.821833897563286,
+      "role": "selected_candidate",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.23018159938191207,
-      "model_id": "asset_map_stationary_ar1_innovation_student_lhs_copula_dynamic_rough"
+      "canonical52_crps": 0.8007001510689734,
+      "historical80_crps": 0.3798494733159625,
+      "label": "M052 \u2014 portfolio gjr garch eb sampler stationary sbb optimal",
+      "model_id": "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": -30.434896227865593,
+      "percent_better_production80": -67.53894623495607,
+      "percent_better_website_default80": -29.720592638251087,
+      "role": "selected_candidate",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.25087597152824515,
-      "model_id": "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "canonical52_crps": 0.6179553024080343,
       "historical80_crps": 0.25246784959071183,
-      "model_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture"
+      "label": "M176 \u2014 moment-mixture SV MCMC",
+      "model_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": -0.6655682972489085,
+      "percent_better_production80": -11.35515631859041,
+      "percent_better_website_default80": 13.780901721114214,
+      "role": "selected_candidate",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "comparison": "unknown",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": null,
-      "model_id": "asset_hmm_three_state_full_rvine_sv"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.22705549647165937,
-      "model_id": "asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2339750944781271,
-      "model_id": "asset_map_stationary_ar1_ou_residual_volatility"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.24269856328739714,
-      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.2427871001627023,
-      "model_id": "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.24131773884753774,
-      "model_id": "asset_map_adaptive_stable_coupled_multiscale_dynamic_rough"
-    },
-    {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "canonical52_crps": 0.6211786826067934,
       "historical80_crps": 0.2498921919286796,
-      "model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map"
+      "label": "M198 \u2014 untrimmed conditional-residual empirical rough MAP",
+      "model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": -1.1906603197329613,
+      "percent_better_production80": -10.219119543833788,
+      "percent_better_website_default80": 14.66050235721712,
+      "role": "selected_candidate",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.24972187973628046,
-      "model_id": "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map"
+      "canonical52_crps": 0.6193666228782178,
+      "historical80_crps": 0.25087597152824515,
+      "label": "M202 \u2014 Gamma supOU Whittle MAP",
+      "model_id": "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": -0.8954738852856581,
+      "percent_better_production80": -10.653031946027781,
+      "percent_better_website_default80": 14.324536450598856,
+      "role": "selected_candidate",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
     },
     {
-      "comparison": "better",
-      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
-      "historical80_crps": 0.24423173688367905,
-      "model_id": "asset_map_student_return_laplace_implied_noise_dynamic_rough"
+      "canonical52_crps": 0.6191008531478863,
+      "historical80_crps": 0.2427871001627023,
+      "label": "M233 \u2014 single learned untruncated multiscale rate",
+      "model_id": "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": -0.8521797168631773,
+      "percent_better_production80": -7.0853003049050844,
+      "percent_better_website_default80": 17.086928558590508,
+      "role": "selected_candidate",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
+    },
+    {
+      "canonical52_crps": 0.6201708548679135,
+      "historical80_crps": 0.2339750944781271,
+      "label": "M244 \u2014 stationary AR1 with OU residual volatility",
+      "model_id": "asset_map_stationary_ar1_ou_residual_volatility",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": -1.0264841217381582,
+      "percent_better_production80": -3.198618210226667,
+      "percent_better_website_default80": 20.096274839252303,
+      "role": "selected_candidate",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
+    },
+    {
+      "canonical52_crps": 0.6153031053025058,
+      "historical80_crps": 0.2319704483126069,
+      "label": "M247 \u2014 stationary AR1 rough model with leverage proxy",
+      "model_id": "asset_map_stationary_ar1_proxy_leverage_dynamic_rough",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": -0.2335226010246494,
+      "percent_better_production80": -2.314435580688512,
+      "percent_better_website_default80": 20.78087204653859,
+      "role": "selected_candidate",
+      "score80_status": "retained_historical_catalogue_not_new_rerun"
+    },
+    {
+      "canonical52_crps": null,
+      "historical80_crps": null,
+      "label": "Standalone fitted-decay EWMA",
+      "model_id": "FRENCH1926-EWMA-QMLE",
+      "new_panel_validation_status": "adapter_preparation_pending_no_new_panel_score",
+      "percent_better_production52": null,
+      "percent_better_production80": null,
+      "percent_better_website_default80": null,
+      "role": "selected_candidate",
+      "score80_status": "no_historical_score_attached"
     }
   ],
   "no_model_registry_changes": true,
@@ -134,6 +188,7 @@
     }
   ],
   "rounding_correction": "M009 score 0.2928636384101145 is slightly worse than exact Default 0.292821259593872, but had already failed the separate 52-asset ten-percent bound",
+  "selection_status": "superseded historical filter; current approved15 includes two inexpensive structural comparisons by user-approved reassessment",
   "subsequent_approved_curated_removals": [
     "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough",
     "asset_map_multiscale_causal_residual_dynamic_rough_map",

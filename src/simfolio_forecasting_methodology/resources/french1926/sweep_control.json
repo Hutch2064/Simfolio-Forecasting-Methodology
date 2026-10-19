@@ -1,5 +1,81 @@
 {
-  "models": {},
-  "workers": 1,
-  "stop": false
+  "models": {
+    "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m001",
+      "implementation_digest": "fbb8ae16788741d062b22d69be354c80a93b027ba35a6a351ef936f7e2bc032b"
+    },
+    "asset_m256_data_timescales_existing_sv_rate": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m261",
+      "implementation_digest": "d0f717035bbe1ad90068faf3a5bf0df5dce4ba43048b8423e65bc91f8f790469"
+    },
+    "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m233",
+      "implementation_digest": "a7be0033705fb7dc34bd3ec6810dbb4bbf65817e9206dce2afaf88cb41e91ba8"
+    },
+    "asset_map_stationary_ar1_proxy_leverage_dynamic_rough": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m247",
+      "implementation_digest": "fa76c0710663fd304f4e88e42608127cb4b5fa0c45a35213ed412bad3ad924d6"
+    },
+    "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.refinement_adapters:build_iid",
+      "implementation_digest": "714d46b7795692d3abe456e05167eabed6e878d9af466a1400ed568b597018f9"
+    },
+    "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m198",
+      "implementation_digest": "110fb0e232e5c279a3dc7b723fedd4957267dce3b53fb2422b3b26102e2af037"
+    },
+    "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m176",
+      "implementation_digest": "6c034e67c4f3271d62cb89e4e7727e313bc64c8027e13efcc4fcd14ddeaca1f7"
+    },
+    "asset_map_stationary_ar1_ou_residual_volatility": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m244",
+      "implementation_digest": "b01d400c1536e83b35f033f388d17171eacf232e15b4fb7254ee60be74f46961"
+    },
+    "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m202",
+      "implementation_digest": "595a7d724b9fdbb9cb567053ca84a682818f8f2718898128c0be611e66b5717f"
+    },
+    "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.refinement_adapters:build_fast",
+      "implementation_digest": "8effadc7a5345ef10280ab77949c3a5b7f53557ff5a9ed00c4fc5735ecfe2364"
+    },
+    "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m052",
+      "implementation_digest": "64a251f4e7a53b9c7d323a9be698d788bc82cf2cccb2bb5fe0401634c1c740b7"
+    },
+    "model_testing_joint_stationary_bootstrap_v1": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.selected:build_public",
+      "implementation_digest": "bb7185aef9f555bed5a16280584b750794cb242c5286a2ec430884ba58ee9cba"
+    },
+    "asset_level_naive_iid_mean_shrunk_rebalanced": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.selected:build_default",
+      "implementation_digest": "b931dd1261dbf58b8ecadb6d114cdf59cec4cc013919851147b9405a13076355"
+    },
+    "FRENCH1926-EWMA-QMLE": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.selected:build_ewma",
+      "implementation_digest": "07997b1220a1a54ea4b1227e4551fa9ba0449cfc2a863cdf79be979ce337a938"
+    },
+    "constant_mean_student_t": {
+      "enabled": true,
+      "factory": "simfolio_forecasting_methodology.french_panel.catalogue_adapters:build_m035",
+      "implementation_digest": "c03c56116abc1d544dd6dc14d1aa63baf3e64a0d731ef68a246a4be3b0abd964"
+    }
+  },
+  "workers": 12,
+  "stop": true
 }
