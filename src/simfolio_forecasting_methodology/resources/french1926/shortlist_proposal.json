@@ -6,13 +6,14 @@
     "The website Default and whitepaper Competing Public are mandatory, separately identified controls even though their adapter records have no attached old-sweep score.",
     "The standalone website Default 52 score remains unknown: the reviewed evidence located a 50/50 blend, not a completed standalone Default result.",
     "The 241-row sweep remains historical evidence; omitted IDs below are deferred from this recommendation only and are not deleted from the catalogue.",
-    "User-requested exclusion from this proposed run list of models with retained historical80 CRPS worse than the exact website Default control; preserve unknown comparisons and mandatory controls."
+    "User-requested exclusion from this proposed run list of models with retained historical80 CRPS worse than the exact website Default control; preserve unknown comparisons and mandatory controls.",
+    "Explicit user removal of M190 and M192, without applying a general runtime percentile exclusion."
   ],
-  "deferred_from_sweep": 213,
+  "deferred_from_sweep": 215,
   "dropped_241_over_10_percent": 160,
   "eligible_241_not_selected_after_method_family_reduction": 50,
   "eligible_241_within_10_percent_of_M261": 81,
-  "final_panel_method_count_including_required_controls": 33,
+  "final_panel_method_count_including_required_controls": 31,
   "historical80_evidence_limitation": {
     "evidence": "The saved historical-80 catalogue has 41 rows, 34 overlapping IDs with the 241-row sweep; only the M261 join is marked verified.",
     "selection_use": "Do not infer that any deferred model is weak on both panels; the historical-80 join is not sufficient for a cross-panel exclusion claim.",
@@ -67,7 +68,9 @@
     "asset_map_student_return_laplace_multiscale_dynamic_rough",
     "asset_map_unclipped_log_proxy_untruncated_dynamic_rough",
     "asset_rough_volterra_sv_accuracy_lift_bayesian",
+    "asset_rough_volterra_sv_dynamic_lift_bayesian",
     "asset_rough_volterra_sv_eight_factor",
+    "asset_rough_volterra_sv_eight_factor_bayesian",
     "bayesian_mcmc_stochastic_volatility_sbb",
     "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
     "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
@@ -401,6 +404,18 @@
   ],
   "prior_proposal_rows_dropped_over_10_percent": 18,
   "proposed_panel": "fresh 552-series French panel",
+  "removed_by_explicit_runtime_choice": [
+    {
+      "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+      "rank": 192,
+      "reason": "explicit user removal after reviewing slowest current-list runtimes"
+    },
+    {
+      "model_id": "asset_rough_volterra_sv_eight_factor_bayesian",
+      "rank": 190,
+      "reason": "explicit user removal after reviewing slowest current-list runtimes"
+    }
+  ],
   "removed_by_website_default_historical80_rule": [
     {
       "comparison": "worse",
@@ -465,9 +480,9 @@
     }
   ],
   "runtime_percentile_exclusion_applied": false,
-  "selected_count": 31,
+  "selected_count": 29,
   "selected_external_records": 3,
-  "selected_from_sweep": 28,
+  "selected_from_sweep": 26,
   "selected_models": [
     {
       "CRPS": 0.5957716608071161,
@@ -496,12 +511,13 @@
     {
       "CRPS": 0.6420341742861375,
       "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "current production FASTMAP",
+      "family": "FastMAP Kalman with dynamic Gaussian factors",
       "model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
       "name": "m001-exact",
       "percent_better_M261": -4.588041835578371,
       "rank": 1,
       "reason": "Retains the current production identity as a French-panel comparator.",
+      "role": "historical FastMAP control",
       "summed_worker_seconds_not_controlled_benchmark": 244.2116049862234
     },
     {
@@ -580,28 +596,6 @@
       "rank": 183,
       "reason": "Retains the rough-jump regime and R-vine construction as a distinct method within the requested score bound.",
       "summed_worker_seconds_not_controlled_benchmark": 1226.193821226887
-    },
-    {
-      "CRPS": 0.6322343124432587,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "Bayesian Volterra SV dynamic lift",
-      "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
-      "name": "01-m192-p4",
-      "percent_better_M261": -2.9916340407043496,
-      "rank": 192,
-      "reason": "Distinct Bayesian Volterra dynamic-lift method. Its summed worker work is very high, but its observed CRPS passes the requested cutoff; work totals are not controlled wall-time comparisons.",
-      "summed_worker_seconds_not_controlled_benchmark": 53627.80696389853
-    },
-    {
-      "CRPS": 0.6338554845052788,
-      "evidence_source": "completed canonical52 main sweep leaderboard",
-      "family": "eight-factor Bayesian Volterra SV",
-      "model_id": "asset_rough_volterra_sv_eight_factor_bayesian",
-      "name": "m190",
-      "percent_better_M261": -3.2557246736270473,
-      "rank": 190,
-      "reason": "Distinct eight-factor Volterra construction. Its observed CRPS passes the requested cutoff; the high summed work is preserved as typed context rather than used as an arbitrary cutoff.",
-      "summed_worker_seconds_not_controlled_benchmark": 12496.285763486114
     },
     {
       "CRPS": 0.6156783111169394,

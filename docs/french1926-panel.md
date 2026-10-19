@@ -144,7 +144,7 @@ panel. Its model registry and result list remain empty.
 ## Proposed model list, not an executable registry
 
 `resources/french1926/shortlist_proposal.json` preserves one proposed list:
-31 candidate methods and two required comparison controls, for 33 methods.
+29 candidate methods and two required comparison controls, for 31 methods.
 It applies the user's 52-asset bound (no more than 10% worse than M261),
 method-family reduction, and the subsequent exclusion of candidates with
 saved historical80 scores worse than website Default. Unknown historical80
@@ -161,3 +161,6 @@ here; the earlier 50/50 mixture cannot substitute for that missing result.
 The slow-tail table and saved historical80 comparison are separate screening
 records. Historical scores have not been promoted into results on this new
 panel. The controller's executable model map is still empty.
+
+The subsequent explicit removal of M190 and M192 and the full saved score
+comparisons are recorded in [the selected-model table](french1926-selected-models.md).
