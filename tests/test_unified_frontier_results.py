@@ -1,6 +1,7 @@
 import copy
 import hashlib
 import json
+from pathlib import Path
 
 import pytest
 
@@ -78,11 +79,11 @@ def test_closed_moment_studies_preserve_full_panels_and_typed_validation(study_i
 
 def test_factorial_record_is_unchanged_when_moment_studies_append():
     studies = load_unified_frontier_studies()["studies"]
-    assert len(studies) == 3
+    assert len(studies) == 5
     factorial = studies[0]
     encoded = json.dumps(factorial, sort_keys=True, separators=(",", ":")).encode()
     assert hashlib.sha256(encoded).hexdigest() == "9d2187fe9b832878f868d12837660c7df5f33c622f5b4dee97b61d8486e4ac34"
-    assert len({row["archive_summary"]["normalized_closure_resource"] for row in studies}) == 3
+    assert len({row["archive_summary"]["normalized_closure_resource"] for row in studies}) == 5
 
 
 def test_workspace_evidence_root_keeps_pinned_cleanup_receipt_separate_from_data_root():
@@ -117,3 +118,109 @@ def test_mean_and_combined_laws_keep_exact_scores_and_explicit_rejections():
         variant = next(row for row in study["variants"] if row["label"] == label)
         assert variant["decision"] == "rejected"
         assert variant["methodology"] and variant["rationale"]
+
+
+_NEW_RESOURCES = Path(__file__).resolve().parents[1] / 'src/simfolio_forecasting_methodology/resources/results'
+
+
+def _new_resource(name):
+    return json.loads((_NEW_RESOURCES / name).read_text())
+
+
+@pytest.mark.parametrize(('study_id', 'label', 'score52', 'score80', 'variants'), [
+    ('UF-INTERACTION-0c07f7cefb83d7ed', 'total_kernel_existing_conventional_mean',
+     0.5969980426397338, 0.23171189271702697, 10),
+    ('UF-RESERVE-27c9c8aa0fafac4f', 'conditional_rough_no_conventional_original_nodes',
+     0.605745843721052, 0.22869542481735233, 11),
+])
+def test_interaction_and_reserve_full_panels_keep_exact_scores_controls_and_decisions(study_id, label, score52, score80, variants):
+    study = next(s for s in load_unified_frontier_studies()['studies'] if s['study_id'] == study_id)
+    assert len(study['variants']) == variants
+    assert study['panels']['52']['scores'][label] == score52
+    assert study['panels']['80']['scores'][label] == score80
+    assert next(v for v in study['variants'] if v['label'] == label)['decision'] == 'rejected'
+    assert study['selection']['joint_objective_met'] is False
+    assert study['selection']['stopping_condition_met'] is False
+    assert 'publication_readiness' not in study
+
+
+@pytest.mark.parametrize('study_id', ['UF-INTERACTION-0c07f7cefb83d7ed', 'UF-RESERVE-27c9c8aa0fafac4f'])
+def test_verified_archive_restoration_keeps_validation_types_and_does_not_establish_a_new_winner(study_id):
+    study = next(s for s in load_unified_frontier_studies()['studies'] if s['study_id'] == study_id)
+    archive = study['archive_summary']
+    assert archive['status'] == 'verified_restored_scientific_smoke'
+    assert archive['restored_oracles'] == 2 and archive['batch_restored_oracles'] == 5
+    assert archive['all_path_and_CRPS_oracles_byte_equal'] is True
+    assert archive['M261_all240_saved_reconstruction'] == 'passed'
+    assert archive['scientific_proof']['sha256'] == '12f0a407913c41006622a2cf7f4ca15a203357ad3bb12962ad6db9d1f27f6517'
+    assert archive['lineage_receipt']['sha256'] == '7002b26cffae99b465fde9e38246153b22076723b7c216aa25aeb80fa3c2f557'
+    assert study['runtime_evidence']['status'] == 'not_measured'
+    assert study['runtime_evidence']['production_browser_ctv'] is False
+    assert study['validation'] == {'canonical_use': 'exploratory_reused_panels',
+        'seed_robustness': {'status': 'not_tested'}, 'independent_post_selection': {'status': 'not_tested'},
+        'production': 'not_validated'}
+
+
+@pytest.mark.parametrize('study_id', ['UF-INTERACTION-0c07f7cefb83d7ed', 'UF-RESERVE-27c9c8aa0fafac4f'])
+def test_an_unpassed_restoration_gate_remains_unpublishable(study_id):
+    study = copy.deepcopy(next(s for s in load_unified_frontier_studies()['studies'] if s['study_id'] == study_id))
+    study['archive_summary']['status'] = 'verified_bytes_scientific_restore_pending'
+    study['archive_summary']['restored_oracles'] = 0
+    with pytest.raises(ValueError, match='verified private archive references missing'):
+        validate_unified_frontier_index({'schema': 'unified-frontier-studies-v1', 'studies': [study]})
+
+
+def test_all_three_prior_study_records_are_unchanged():
+    studies = load_unified_frontier_studies()['studies']
+    expected = ['9d2187fe9b832878f868d12837660c7df5f33c622f5b4dee97b61d8486e4ac34',
+        '186c48defe679768a40838a4447e6887804b21ee79e2a355ae03928ba252114f',
+        'b5141e510910429964763fcbee8aaa258d3a358e6f2f636e12e1b2734b3dea20']
+    assert [hashlib.sha256(json.dumps(s, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        for s in studies[:3]] == expected
+
+
+def test_targeted_M261_reference_has_no_new_rank_or_fabricated_panel_score():
+    diagnostic = _new_resource('unified_frontier_m261_long_diagnostic.json')
+    assert diagnostic['ranked_model'] is False
+    assert not {'study_id', 'panels', 'scores', 'variants', 'rank'} & set(diagnostic)
+    assert diagnostic['scope'] == {'panel': 'original80_targeted_long_contexts', 'observed_contexts': 240,
+        'portfolios': 80, 'horizons': [8766, 5844, 2922], 'simulations': 240, 'full4080_origin_rerun': False,
+        'new_candidate': False, 'new_full_panel_score': False, 'zero_cost_scored': False}
+    assert diagnostic['independent_saved_data_audit']['status'] == 'passed'
+    assert diagnostic['historical_observer_plain_parity']['actual_contexts'] == 3
+    assert diagnostic['historical_observer_plain_parity']['indices'] == [48, 49, 50]
+    restoration = diagnostic['restoration_validation']
+    assert restoration['status'] == 'passed'
+    assert restoration['observed_context_executed'] is True
+    assert restoration['all240_saved_data_reconstruction_executed'] is True
+    assert restoration['observed_context']['index'] == 48
+    assert restoration['saved_reconstruction']['saved_records'] == 240
+    assert restoration['saved_reconstruction']['portfolio_reconstructions'] == 80
+    assert restoration['saved_reconstruction']['financial_forecasts'] == 0
+
+
+def test_workspace_diagnostic_source_index_preserves_outside_root_evidence():
+    source = _new_resource('unified_frontier_m261_long_diagnostic_sources.json')
+    assert source['evidence_root'] == 'workspace' and len(source['files']) == 1367
+    assert any(p.endswith('m261_long_full_audit/full-audit.json') for p in source['files'])
+    assert any(p.endswith('diagnostics/m261-relative-long-controls.json') for p in source['files'])
+    assert all(not Path(p).is_absolute() and '..' not in Path(p).parts and len(h) == 64 for p, h in source['files'].items())
+
+
+def test_reserve_historical_parity_and_normalized_analysis_scope_remain_exact():
+    study = next(s for s in load_unified_frontier_studies()['studies'] if s['study_id'] == 'UF-RESERVE-27c9c8aa0fafac4f')
+    assert study['historical_scope']['historical_saved_path_oracles_available'] is False
+    assert study['historical_scope']['retained_historical_full52_cells_and_counts_byte_equal'] is True
+    assert study['analysis_normalization']['added_only'] == ['simulations', 'origin_horizon_contributions']
+    assert 'reserve_publication_audit/normalized-analysis.json' in study['panels']['80']['evidence']['analysis']['path']
+
+
+@pytest.mark.parametrize('study_id', ['UF-INTERACTION-0c07f7cefb83d7ed', 'UF-RESERVE-27c9c8aa0fafac4f'])
+def test_normalized_archive_closure_binds_every_source_and_actual_scientific_proof(study_id):
+    study = next(s for s in load_unified_frontier_studies()['studies'] if s['study_id'] == study_id)
+    closure = _new_resource(study['archive_summary']['normalized_closure_resource'])
+    assert closure['status'] == 'verified' and closure['source_input_seed_environment_closure'] is True
+    assert closure['scientific_restore']['status'] == 'passed'
+    assert closure['scientific_restore']['actual_batch_forecast_oracles'] == 5
+    assert closure['scientific_restore']['actual_saved_M261_reconstruction'] == 'passed'
+    assert all(closure['closed_artifacts'][s['path']] == s['sha256'] for s in study['sources'])

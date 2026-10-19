@@ -11,6 +11,8 @@ private datastore, or operational API.
 
 The additive [unified Frontier studies](docs/results/catalogue52/unified-frontier-studies.md) preserve the closed factorial, standalone conditional and moment-followup studies: every variant and control, separate full52/full80 scores, scalar roundoff audits and verified private archive closure. None of these tested laws beats M261 on both panels; runtime, seed robustness, independent post-selection validation and production validation remain separate pending gates. Load the metadata with `simfolio_forecasting_methodology.unified_frontier_results.load_unified_frontier_studies()`. Existing catalogue identities, ranks and refinement rows are unchanged.
 
+The [completed interaction and exact conditional-rough reserve studies](docs/results/catalogue52/unified-frontier-studies.md#interaction-and-exact-conditional-rough-reserve-closure) append separate audited full52/full80 evidence with verified private restoration. The [targeted original M261 long diagnostic](docs/results/catalogue52/unified-frontier-m261-long-diagnostic.md) preserves 240 long contexts over 80 portfolios as an unranked reference. All runtime, seed, independent-validation and production gates remain separate.
+
 ## 52-asset refinement evidence
 
 The independent [refinement results](docs/results/catalogue52/refinement52.md)

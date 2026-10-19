@@ -1,0 +1,461 @@
+{
+  "archive_summary": {
+    "batch_identity": "97093ed7c8b1c2b163ab",
+    "batch_restored_oracles": 5,
+    "bulk_verification_receipt": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_interaction_reserve/interaction-reserve-97093ed7c8b1c2b163ab.bulk-verification-receipt.json",
+      "sha256": "91c9370ffe3c83f395f1e24cc0a3299d51080d22b84dc334db7aaf385285584c",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-catalogue52-20261018/interaction-reserve-97093ed7c8b1c2b163ab.bulk-verification-receipt.json"
+    },
+    "lineage_receipt": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_interaction_reserve/interaction-reserve-97093ed7c8b1c2b163ab.lineage-receipt.json",
+      "sha256": "7002b26cffae99b465fde9e38246153b22076723b7c216aa25aeb80fa3c2f557",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-catalogue52-20261018/interaction-reserve-97093ed7c8b1c2b163ab.lineage-receipt.json"
+    },
+    "private": true,
+    "restored_oracles": 1,
+    "scientific_proof": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_interaction_reserve/scientific-restore-proof.json",
+      "sha256": "12f0a407913c41006622a2cf7f4ca15a203357ad3bb12962ad6db9d1f27f6517",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-catalogue52-20261018/interaction-reserve-97093ed7c8b1c2b163ab.scientific-restore-proof-v1.json"
+    },
+    "status": "verified_restored_scientific_smoke"
+  },
+  "canonical_data_root": "tmp/catalogue52-20261018",
+  "comparison": {
+    "by_horizon": {
+      "2922": {
+        "contexts": 80,
+        "historical_growth_ratios": {
+          "baseline": {
+            "mean_CAGR_ratio_q05_median_q95": [
+              0.5823445757090514,
+              0.719322806504914,
+              0.9600742814427536
+            ],
+            "median_CAGR_ratio_q05_median_q95": [
+              0.5391976346711341,
+              0.7152391682934822,
+              0.9440284405326297
+            ],
+            "positive_history_contexts": 80,
+            "positive_history_nonpositive_forecast_medians": 0
+          },
+          "reserve": {
+            "mean_CAGR_ratio_q05_median_q95": [
+              0.5837885741644592,
+              0.7175021999758067,
+              0.9498713847099514
+            ],
+            "median_CAGR_ratio_q05_median_q95": [
+              0.5463442314031649,
+              0.7204900109339711,
+              0.9358500516532173
+            ],
+            "positive_history_contexts": 80,
+            "positive_history_nonpositive_forecast_medians": 0
+          },
+          "selected": {
+            "mean_CAGR_ratio_q05_median_q95": [
+              0.5902916752039966,
+              0.7213159127248712,
+              0.9509834333867057
+            ],
+            "median_CAGR_ratio_q05_median_q95": [
+              0.5894301961548268,
+              0.726920431328993,
+              0.9374287807198205
+            ],
+            "positive_history_contexts": 80,
+            "positive_history_nonpositive_forecast_medians": 0
+          }
+        },
+        "median_CAGR_absolute_target_error_improves": {
+          "reserve": 44,
+          "selected": 48
+        },
+        "q05_median_q95": {
+          "M261_zero_fee_rebalanced_minus_buyhold_mean_path_CAGR_pp": [
+            -1.8463770106274906,
+            -0.4500890387034522,
+            5.905215552659547e-15
+          ],
+          "reserve_minus_M261_fee_mean_path_CAGR_pp": [
+            -0.0015500357772239154,
+            -0.0002775865582668041,
+            0.0
+          ],
+          "reserve_minus_M261_mean_CAGR_pp": [
+            -0.14146367040543575,
+            -0.0268841314684215,
+            0.10544028259208707
+          ],
+          "reserve_minus_M261_median_CAGR_pp": [
+            -0.10177794166542016,
+            0.03351460936880449,
+            0.21660360567211115
+          ],
+          "reserve_terminal_central90_width_ratio_to_M261": [
+            0.9019405652412589,
+            1.0117823547727938,
+            1.1181660490062875
+          ],
+          "reserve_vs_M261_asset_terminal_covariance_relative_Frobenius": [
+            0.057244877778692076,
+            0.10320569160021384,
+            0.2956687516721063
+          ],
+          "selected_minus_M261_mean_CAGR_pp": [
+            -0.09470787021279174,
+            -0.003793090169095653,
+            0.1695707423060047
+          ],
+          "selected_minus_M261_median_CAGR_pp": [
+            -0.08980830892876698,
+            0.08758477279018143,
+            0.4493712505716462
+          ],
+          "selected_terminal_central90_width_ratio_to_M261": [
+            0.9176315117577915,
+            1.0482364587919615,
+            1.1512126704709806
+          ]
+        }
+      },
+      "5844": {
+        "contexts": 80,
+        "historical_growth_ratios": {
+          "baseline": {
+            "mean_CAGR_ratio_q05_median_q95": [
+              0.7961110845934937,
+              0.9173266356839292,
+              1.534895409017876
+            ],
+            "median_CAGR_ratio_q05_median_q95": [
+              0.7728927065576813,
+              0.8647468590695309,
+              1.298050278359958
+            ],
+            "positive_history_contexts": 80,
+            "positive_history_nonpositive_forecast_medians": 0
+          },
+          "reserve": {
+            "mean_CAGR_ratio_q05_median_q95": [
+              0.7896832951592638,
+              0.912079711016487,
+              1.4873852532557987
+            ],
+            "median_CAGR_ratio_q05_median_q95": [
+              0.7901331203311478,
+              0.8920660723030007,
+              1.349427965254734
+            ],
+            "positive_history_contexts": 80,
+            "positive_history_nonpositive_forecast_medians": 0
+          },
+          "selected": {
+            "mean_CAGR_ratio_q05_median_q95": [
+              0.7952206074377618,
+              0.9197074326215936,
+              1.4943504204561828
+            ],
+            "median_CAGR_ratio_q05_median_q95": [
+              0.7821119094466112,
+              0.9072249675029088,
+              1.4686575759795526
+            ],
+            "positive_history_contexts": 80,
+            "positive_history_nonpositive_forecast_medians": 0
+          }
+        },
+        "median_CAGR_absolute_target_error_improves": {
+          "reserve": 50,
+          "selected": 51
+        },
+        "q05_median_q95": {
+          "M261_zero_fee_rebalanced_minus_buyhold_mean_path_CAGR_pp": [
+            -2.0021864609237916,
+            -0.576379593145512,
+            0.03035934397387046
+          ],
+          "reserve_minus_M261_fee_mean_path_CAGR_pp": [
+            -0.0034953974030640933,
+            -0.0006742126578342111,
+            0.0
+          ],
+          "reserve_minus_M261_mean_CAGR_pp": [
+            -0.4499632690627757,
+            -0.07987176702440174,
+            0.1451343750459493
+          ],
+          "reserve_minus_M261_median_CAGR_pp": [
+            -0.06497896104660131,
+            0.24086610967792438,
+            0.6707090327285541
+          ],
+          "reserve_terminal_central90_width_ratio_to_M261": [
+            0.8487598871748503,
+            0.9252771513570415,
+            1.039020828890216
+          ],
+          "reserve_vs_M261_asset_terminal_covariance_relative_Frobenius": [
+            0.049738536841938755,
+            0.08118794254674458,
+            0.1853484653270252
+          ],
+          "selected_minus_M261_mean_CAGR_pp": [
+            -0.33067377642233803,
+            -0.041370101582025726,
+            0.5109141373511362
+          ],
+          "selected_minus_M261_median_CAGR_pp": [
+            -0.05941998128114863,
+            0.3873654156426376,
+            1.7791066111266662
+          ],
+          "selected_terminal_central90_width_ratio_to_M261": [
+            0.7301658196309183,
+            0.9390876274724533,
+            1.0529198670593263
+          ]
+        }
+      },
+      "8766": {
+        "contexts": 80,
+        "historical_growth_ratios": {
+          "baseline": {
+            "mean_CAGR_ratio_q05_median_q95": [
+              0.6936258195391909,
+              0.9551493665106772,
+              2.0229279914265175
+            ],
+            "median_CAGR_ratio_q05_median_q95": [
+              0.6809127980364177,
+              0.8389826189030347,
+              1.7052935086856138
+            ],
+            "positive_history_contexts": 80,
+            "positive_history_nonpositive_forecast_medians": 0
+          },
+          "reserve": {
+            "mean_CAGR_ratio_q05_median_q95": [
+              0.6944599015449262,
+              0.9880207601958584,
+              2.2926020973354526
+            ],
+            "median_CAGR_ratio_q05_median_q95": [
+              0.6931075999952638,
+              0.9756843386970847,
+              2.223534789828869
+            ],
+            "positive_history_contexts": 80,
+            "positive_history_nonpositive_forecast_medians": 0
+          },
+          "selected": {
+            "mean_CAGR_ratio_q05_median_q95": [
+              0.6944285831962107,
+              0.9888759099439608,
+              2.5523840655880585
+            ],
+            "median_CAGR_ratio_q05_median_q95": [
+              0.6980652329452979,
+              0.9835384341812181,
+              2.6045600548541015
+            ],
+            "positive_history_contexts": 80,
+            "positive_history_nonpositive_forecast_medians": 0
+          }
+        },
+        "median_CAGR_absolute_target_error_improves": {
+          "reserve": 32,
+          "selected": 33
+        },
+        "q05_median_q95": {
+          "M261_zero_fee_rebalanced_minus_buyhold_mean_path_CAGR_pp": [
+            -3.442912508000939,
+            -0.9512119298900273,
+            0.4320414467290696
+          ],
+          "reserve_minus_M261_fee_mean_path_CAGR_pp": [
+            -0.010864504569275506,
+            -0.0012332057606534441,
+            0.0
+          ],
+          "reserve_minus_M261_mean_CAGR_pp": [
+            -0.13221601910877914,
+            0.04771798234080166,
+            0.7330443215365138
+          ],
+          "reserve_minus_M261_median_CAGR_pp": [
+            -0.030477977221016812,
+            0.14386150709000367,
+            2.8096576201473766
+          ],
+          "reserve_terminal_central90_width_ratio_to_M261": [
+            0.6122979791513773,
+            0.9341471537932535,
+            1.057966320669917
+          ],
+          "reserve_vs_M261_asset_terminal_covariance_relative_Frobenius": [
+            0.04938595346436081,
+            0.1485677041527549,
+            0.5859310779112324
+          ],
+          "selected_minus_M261_mean_CAGR_pp": [
+            -0.22606850870328724,
+            0.0664977726851583,
+            0.9383727301244349
+          ],
+          "selected_minus_M261_median_CAGR_pp": [
+            -0.04011525329000232,
+            0.2539099201842282,
+            3.162592620594122
+          ],
+          "selected_terminal_central90_width_ratio_to_M261": [
+            0.6241245295480715,
+            0.9865558803104387,
+            1.0963067025511297
+          ]
+        }
+      }
+    },
+    "limitations": [
+      "Long origins and portfolios are dependent; no significance or causal residual decomposition claim.",
+      "Buy-and-hold is reconstructed only for M261, whose asset terminal samples are retained; corresponding selected/reserve samples were not retained.",
+      "Transaction-fee differences do not isolate rebalancing or compounding differences.",
+      "Historical growth ratios are diagnostics, never floors, exclusions or forecast selectors."
+    ],
+    "same_asset_terminal_buyhold_consistency": {
+      "max_abs_terminal_log_error": 6.750155989720952e-14,
+      "no_rebalance_contexts": 54
+    },
+    "source": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/diagnostics/m261-relative-long-controls.json",
+      "sha256": "9d39a18ffb340fa0b32ffd441bb3bd9839bbccbd31e091ce88891b6323fbd4f0"
+    }
+  },
+  "diagnostic_id": "UF-M261-LONG-CONTROL-a6acac8feb4ef008",
+  "historical_observer_plain_parity": {
+    "CRPS_values_bound_execution": 17532,
+    "actual_contexts": 3,
+    "full_daily_paths_retained": false,
+    "indices": [
+      48,
+      49,
+      50
+    ],
+    "path_values_bound_execution": 4207680,
+    "scope": "existing observed/plain execution receipts only; no independent refit/reforecast"
+  },
+  "independent_saved_data_audit": {
+    "all_original_files_unchanged": true,
+    "all_retained_arrays_accounting_and_raw_input_identities_exact": true,
+    "audit": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/m261_long_full_audit/full-audit.json",
+      "sha256": "d41f5f150a1ba76758a01491cdbdcff7f6ed4ccff1e648e0579ddc1e048eaaa6"
+    },
+    "audited_portfolios": 80,
+    "audited_records": 240,
+    "original_inventory": {
+      "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/m261_long_full_audit/original-inventory.json",
+      "sha256": "b1aa1bd7f1bbeab280fc2bb83e58ae25bd843ad6e1bc5dbae8d880a60d8663f0"
+    },
+    "status": "passed",
+    "suffix_reconstruction": {
+      "direct_tail_first_day": 5845,
+      "direct_tail_values": 233760,
+      "first_day": 2318,
+      "original_ascending_three_loss_addition_and_counts_byte_equal": true,
+      "portfolios": 80,
+      "requested_first_day": 2521,
+      "requested_values": 499680,
+      "values": 515920
+    }
+  },
+  "ranked_model": false,
+  "reference_model": "M261_saved_control",
+  "restoration_validation": {
+    "all240_saved_data_reconstruction_executed": true,
+    "evidence": [
+      {
+        "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_interaction_reserve/scientific-restore-proof.json",
+        "sha256": "12f0a407913c41006622a2cf7f4ca15a203357ad3bb12962ad6db9d1f27f6517"
+      },
+      {
+        "path": "tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier/archive_interaction_reserve/interaction-reserve-97093ed7c8b1c2b163ab.lineage-receipt.json",
+        "sha256": "7002b26cffae99b465fde9e38246153b22076723b7c216aa25aeb80fa3c2f557",
+        "url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-catalogue52-20261018/interaction-reserve-97093ed7c8b1c2b163ab.lineage-receipt.json"
+      }
+    ],
+    "observed_context": {
+      "CRPS_sha256": "24bc672390d64293f35ed183416f529fc86084024a9d3cc5144cf145b88c292c",
+      "actual_accounting_metrics_exact": true,
+      "index": 48,
+      "new_plain_parity_forecasts": 0,
+      "observed_forecasts": 1,
+      "observer_hook_restored": true,
+      "passed": true,
+      "paths_sha256": "37bde492a9fecd9e16a16959cc58b8e1371c454a9388e6616dfad30d3185f016",
+      "retained_array_sha256": {
+        "actual_terminal_log_returns": "b2b999bd1130408b52bbc87f52ae9ab7723b0b697559ce63c215e0cf42bc88cb",
+        "asset_terminal_log_returns": "305ae5b1cadf77a04869958c8133cde9adb3fcfe8aabfa70765047e8c5ed8d5d",
+        "losses": "24bc672390d64293f35ed183416f529fc86084024a9d3cc5144cf145b88c292c",
+        "zero_cost_terminal_log_returns": "20441ec0bcc880a0a9ab028846faeb864f1affe0095ac4c3736af0e01709250f"
+      }
+    },
+    "observed_context_executed": true,
+    "required_observed_context": {
+      "horizon": 8766,
+      "index": 48,
+      "panel": "80",
+      "simulations": 240
+    },
+    "saved_reconstruction": {
+      "adapter_scope": "two IO identity expressions; frozen numerical audit unchanged",
+      "financial_forecasts": 0,
+      "passed": true,
+      "portfolio_reconstructions": 80,
+      "reconstruction_array_sha256": {
+        "diagnostic_long_counts": "ec8b4f6539e4f11126202aea5a985edae3d02c89114b60c9bbd3b45064cb3cf8",
+        "diagnostic_long_sums": "0fed5885a760121b5ee58ff49bc8934ecbc6072afa76734447c219290414fa3c",
+        "original_full_counts": "fb6d86e09c08529330327ca11536de44c7df6e81676125fb5d18403cfb9f2288",
+        "portfolio": "d5bb61363b3803a6bf11420ef2e789cf466b39fa926dc0f8bc86b2325a6e38b0",
+        "reconstructed_M261_suffix": "8e7c0a0791f8bd91c0d2ed885b3183840210ba8402c40aa65edcc487d4be0fe9"
+      },
+      "saved_records": 240
+    },
+    "status": "passed"
+  },
+  "runtime_evidence": {
+    "production_browser_ctv": false,
+    "status": "not_measured"
+  },
+  "schema": "unified-frontier-targeted-diagnostic-v1",
+  "scope": {
+    "full4080_origin_rerun": false,
+    "horizons": [
+      8766,
+      5844,
+      2922
+    ],
+    "new_candidate": false,
+    "new_full_panel_score": false,
+    "observed_contexts": 240,
+    "panel": "original80_targeted_long_contexts",
+    "portfolios": 80,
+    "simulations": 240,
+    "zero_cost_scored": false
+  },
+  "source_evidence_root": "workspace",
+  "source_index_resource": "unified_frontier_m261_long_diagnostic_sources.json",
+  "validation": {
+    "canonical_use": "exploratory_targeted_long_controls",
+    "independent_post_selection": {
+      "status": "not_tested"
+    },
+    "production": "not_validated",
+    "seed_robustness": {
+      "status": "not_tested"
+    }
+  }
+}
