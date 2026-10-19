@@ -12,7 +12,7 @@ def calculate(data):
     baseline = data['reference52_crps']
     timed = [r for r in data['rows'] if r.get('summed_worker_seconds_not_controlled_benchmark') is not None]
     results = []
-    for source in data['rows']:
+    for source in data['rows'] + data.get('additional_family_candidates', []):
         row = dict(source)
         score = row.get('CRPS')
         seconds = row.get('summed_worker_seconds_not_controlled_benchmark')
@@ -28,7 +28,8 @@ def calculate(data):
         results.append(row)
     selected = [r for r in results if r['proposal_include']]
     costs = [r['summed_worker_seconds_not_controlled_benchmark'] for r in selected if r.get('summed_worker_seconds_not_controlled_benchmark') is not None]
-    missing = len(selected) - len(costs)
+    new_families = sum(bool(r.get('new_family_candidate')) for r in selected)
+    missing = len(selected) - len(costs) - new_families
     factor = (552 / 52) * (26317 / 11687)
     estimates = {}
     for name, function in [('mean', statistics.mean), ('median', statistics.median)]:
@@ -39,7 +40,7 @@ def calculate(data):
             heapq.heapreplace(workers, workers[0] + seconds * factor / 3600)
         estimates[name] = {'imputed_old52_worker_seconds': imputed, 'total_worker_hours': sum(jobs) * factor / 3600, 'scheduled_wall_hours_at_12_workers': max(workers)}
     approved_costs = [r['summed_worker_seconds_not_controlled_benchmark'] for r in results if r['model_id'] in data['active19_method_ids'] and r.get('summed_worker_seconds_not_controlled_benchmark') is not None]
-    return {'original_candidates': 52, 'reviewed_rows_including_required_benchmarks': len(results), 'proposed_methods': len(selected), 'comparable_timing_records_original': len(timed), 'comparable_timing_records_proposed': len(costs), 'unknown_timing_records_proposed': missing, 'known_worker_seconds_reduction_vs_approved19_percent': 100 * (1 - sum(costs) / sum(approved_costs)), 'runtime_estimate': {'status': 'rough_extrapolation_not_measured', 'workers': 12, 'scaling_factor': factor, 'scheduling': 'longest estimated model jobs first; one worker per model', 'assumption': 'linear series-count and history-length scaling; five missing costs imputed, not measured; contention and nonlinear costs unresolved', 'planning_range_hours': [5, 8], 'estimates': estimates}, 'rows': results}
+    return {'original_candidates': 52, 'additional_family_candidates': new_families, 'reviewed_rows_including_required_benchmarks': len(results), 'proposed_methods': len(selected), 'comparable_timing_records_original': len(timed), 'comparable_timing_records_proposed': len(costs), 'unknown_timing_records_proposed': missing + new_families, 'known_worker_seconds_reduction_vs_approved19_percent': 100 * (1 - sum(costs) / sum(approved_costs)), 'runtime_estimate': {'status': 'old14_subset_only_total17_not_estimated_until_new_families_profiled', 'unestimated_additional_family_count': new_families, 'workers': 12, 'scaling_factor': factor, 'scheduling': 'longest estimated model jobs first; one worker per model', 'assumption': 'linear series-count and history-length scaling; five missing costs imputed, not measured; contention and nonlinear costs unresolved', 'planning_range_hours': [5, 8], 'estimates': estimates}, 'rows': results}
 
 
 def main():
@@ -53,8 +54,8 @@ def main():
     for name, digest in data['protected_active19_sha256'].items():
         assert hashlib.sha256((folder / name).read_bytes()).hexdigest() == digest, name
     computed = calculate(data)
-    assert computed['reviewed_rows_including_required_benchmarks'] == 54
-    assert computed['proposed_methods'] == 15
+    assert computed['reviewed_rows_including_required_benchmarks'] == 54 + len(data.get('additional_family_candidates', []))
+    assert computed['proposed_methods'] == data['proposed_method_count']
     assert computed['comparable_timing_records_original'] == 49
     assert len(data['active19_method_ids']) == 19
     if args.check:

@@ -20,13 +20,87 @@
     "asset_level_naive_iid_mean_shrunk_rebalanced",
     "model_testing_joint_stationary_bootstrap_v1"
   ],
+  "additional_family_candidates": [
+    {
+      "CRPS": null,
+      "design": {
+        "estimation": "training-only likelihood with in-sample information criterion for parsimonious stationary/invertible order selection",
+        "forecast": "coherent simulated return paths, not independently sampled horizon intervals",
+        "parameters_to_freeze_before_adapter": "order-search/stopping and convergence rules; no preset forecast-horizon transitions",
+        "target": "daily log returns; ARMA on returns corresponds to first-differenced ARIMA on cumulative log wealth"
+      },
+      "fit_data": "training_return_history_available_at_origin_only",
+      "historical80_crps": null,
+      "implementation_status": "planned_not_implemented_registered_or_scored",
+      "label": "ARMA returns / ARIMA log wealth",
+      "model_id": "FRENCH1926-ARMA-TRAINING-LIKELIHOOD",
+      "new_family_candidate": true,
+      "proposal_include": true,
+      "proposal_reason": "Adds explicit serial dynamics in the return mean; existing volatility persistence is not an ARMA return-mean model.",
+      "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
+      "sources": [
+        "https://otexts.com/fpp3/arima.html",
+        "https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html"
+      ],
+      "uses_out_of_sample_scores": false
+    },
+    {
+      "CRPS": null,
+      "design": {
+        "decay": "estimated with training-only Gaussian quasi likelihood, not fixed 0.94 and not prequential CRPS",
+        "forecast": "simulate full paths with variance recursively updated from each path return shocks",
+        "mean": "training-history estimate; no fixed Sharpe target",
+        "scope": "new likelihood-fitted design; do not relabel historical absolute-EWMA M026 as this model",
+        "variance": "EWMA recursion on historical return residual squares"
+      },
+      "fit_data": "training_return_history_available_at_origin_only",
+      "historical80_crps": null,
+      "implementation_status": "planned_not_implemented_registered_or_scored",
+      "label": "Standalone fitted-decay EWMA",
+      "model_id": "FRENCH1926-EWMA-QMLE",
+      "new_family_candidate": true,
+      "proposal_include": true,
+      "proposal_reason": "Adds a direct recency-weighted volatility model without the latent-SV/rough machinery.",
+      "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
+      "sources": [
+        "https://www.msci.com/documents/10199/5915b101-4206-4ba0-aee2-3449d5c7e95a",
+        "https://arch.readthedocs.io/en/latest/univariate/generated/arch.univariate.EWMAVariance.html"
+      ],
+      "uses_out_of_sample_scores": false
+    },
+    {
+      "CRPS": null,
+      "design": {
+        "emissions": "scalar return regimes with state-dependent location and variance",
+        "estimation": "training-history likelihood; parsimonious state count selected using training-only information criterion",
+        "forecast": "sample persistent state transitions and state-conditional return draws in coherent paths",
+        "methodology_status": "family motivated by regime-switching literature; not an exact reproduction of Hamilton-Susmel switching ARCH",
+        "parameters_to_freeze_before_adapter": "state-order search, variance-degeneracy and convergence safeguards; verify fitted cost before admitting full panel"
+      },
+      "fit_data": "training_return_history_available_at_origin_only",
+      "historical80_crps": null,
+      "implementation_status": "planned_not_implemented_registered_or_scored",
+      "label": "Within-series Markov-switching returns",
+      "model_id": "FRENCH1926-MARKOV-RETURN-REGIMES",
+      "new_family_candidate": true,
+      "proposal_include": true,
+      "proposal_reason": "Adds persistent discrete changes in the series own return distribution, not just cross-asset dependence.",
+      "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
+      "sources": [
+        "https://www.sciencedirect.com/science/article/pii/0304407694900671",
+        "https://www.statsmodels.org/stable/generated/statsmodels.tsa.regime_switching.markov_regression.MarkovRegression.html"
+      ],
+      "uses_out_of_sample_scores": false
+    }
+  ],
   "analysis": {
+    "additional_family_candidates": 3,
     "comparable_timing_records_original": 49,
-    "comparable_timing_records_proposed": 10,
-    "known_worker_seconds_reduction_vs_approved19_percent": 54.84365987003934,
+    "comparable_timing_records_proposed": 9,
+    "known_worker_seconds_reduction_vs_approved19_percent": 56.23572730938445,
     "original_candidates": 52,
-    "proposed_methods": 15,
-    "reviewed_rows_including_required_benchmarks": 54,
+    "proposed_methods": 17,
+    "reviewed_rows_including_required_benchmarks": 57,
     "rows": [
       {
         "CRPS": 0.600668345431752,
@@ -462,8 +536,8 @@
         "percent_better_fixed_M001": -13.49790693444184,
         "percent_better_production52": -18.705238387099854,
         "positive_gain_efficiency_per_worker_minute": null,
-        "proposal_include": true,
-        "proposal_reason": "Cheap GARCH model with prequential CRPS-based shrinkage; strong low-cost point on the original score/work frontier.",
+        "proposal_include": false,
+        "proposal_reason": "Excluded by the user: active prequential CRPS shrinkage learns calibration from forecast scores; per-origin fitting may use history-only likelihood/moment estimates, not out-of-sample score calibration.",
         "rank": 83,
         "source_specification_sha256": "bf18aceae75f985a2c9250cd3165287b52cb886061e6d5fa7fde589713f8a26d",
         "summed_worker_seconds_not_controlled_benchmark": 110.4190306480159,
@@ -1181,20 +1255,112 @@
         "source_repository": "Hutch2064/simfolio-engine",
         "source_revision": "eb54a8c20b99581aed2d0f7946425fcf2c9c5927",
         "worker_minutes": null
+      },
+      {
+        "CRPS": null,
+        "design": {
+          "estimation": "training-only likelihood with in-sample information criterion for parsimonious stationary/invertible order selection",
+          "forecast": "coherent simulated return paths, not independently sampled horizon intervals",
+          "parameters_to_freeze_before_adapter": "order-search/stopping and convergence rules; no preset forecast-horizon transitions",
+          "target": "daily log returns; ARMA on returns corresponds to first-differenced ARIMA on cumulative log wealth"
+        },
+        "dominance_witness_model_id": null,
+        "efficiency_status": "unknown_comparable_cost_or_score",
+        "fit_data": "training_return_history_available_at_origin_only",
+        "historical80_crps": null,
+        "implementation_status": "planned_not_implemented_registered_or_scored",
+        "label": "ARMA returns / ARIMA log wealth",
+        "model_id": "FRENCH1926-ARMA-TRAINING-LIKELIHOOD",
+        "new_family_candidate": true,
+        "on_original_measured_score_work_frontier": null,
+        "percent_better_fixed_M001": null,
+        "percent_better_production52": null,
+        "positive_gain_efficiency_per_worker_minute": null,
+        "proposal_include": true,
+        "proposal_reason": "Adds explicit serial dynamics in the return mean; existing volatility persistence is not an ARMA return-mean model.",
+        "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
+        "sources": [
+          "https://otexts.com/fpp3/arima.html",
+          "https://www.statsmodels.org/stable/generated/statsmodels.tsa.arima.model.ARIMA.html"
+        ],
+        "uses_out_of_sample_scores": false,
+        "worker_minutes": null
+      },
+      {
+        "CRPS": null,
+        "design": {
+          "decay": "estimated with training-only Gaussian quasi likelihood, not fixed 0.94 and not prequential CRPS",
+          "forecast": "simulate full paths with variance recursively updated from each path return shocks",
+          "mean": "training-history estimate; no fixed Sharpe target",
+          "scope": "new likelihood-fitted design; do not relabel historical absolute-EWMA M026 as this model",
+          "variance": "EWMA recursion on historical return residual squares"
+        },
+        "dominance_witness_model_id": null,
+        "efficiency_status": "unknown_comparable_cost_or_score",
+        "fit_data": "training_return_history_available_at_origin_only",
+        "historical80_crps": null,
+        "implementation_status": "planned_not_implemented_registered_or_scored",
+        "label": "Standalone fitted-decay EWMA",
+        "model_id": "FRENCH1926-EWMA-QMLE",
+        "new_family_candidate": true,
+        "on_original_measured_score_work_frontier": null,
+        "percent_better_fixed_M001": null,
+        "percent_better_production52": null,
+        "positive_gain_efficiency_per_worker_minute": null,
+        "proposal_include": true,
+        "proposal_reason": "Adds a direct recency-weighted volatility model without the latent-SV/rough machinery.",
+        "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
+        "sources": [
+          "https://www.msci.com/documents/10199/5915b101-4206-4ba0-aee2-3449d5c7e95a",
+          "https://arch.readthedocs.io/en/latest/univariate/generated/arch.univariate.EWMAVariance.html"
+        ],
+        "uses_out_of_sample_scores": false,
+        "worker_minutes": null
+      },
+      {
+        "CRPS": null,
+        "design": {
+          "emissions": "scalar return regimes with state-dependent location and variance",
+          "estimation": "training-history likelihood; parsimonious state count selected using training-only information criterion",
+          "forecast": "sample persistent state transitions and state-conditional return draws in coherent paths",
+          "methodology_status": "family motivated by regime-switching literature; not an exact reproduction of Hamilton-Susmel switching ARCH",
+          "parameters_to_freeze_before_adapter": "state-order search, variance-degeneracy and convergence safeguards; verify fitted cost before admitting full panel"
+        },
+        "dominance_witness_model_id": null,
+        "efficiency_status": "unknown_comparable_cost_or_score",
+        "fit_data": "training_return_history_available_at_origin_only",
+        "historical80_crps": null,
+        "implementation_status": "planned_not_implemented_registered_or_scored",
+        "label": "Within-series Markov-switching returns",
+        "model_id": "FRENCH1926-MARKOV-RETURN-REGIMES",
+        "new_family_candidate": true,
+        "on_original_measured_score_work_frontier": null,
+        "percent_better_fixed_M001": null,
+        "percent_better_production52": null,
+        "positive_gain_efficiency_per_worker_minute": null,
+        "proposal_include": true,
+        "proposal_reason": "Adds persistent discrete changes in the series own return distribution, not just cross-asset dependence.",
+        "runtime_status": "unknown_requires_feasibility_and_profile_before_execution",
+        "sources": [
+          "https://www.sciencedirect.com/science/article/pii/0304407694900671",
+          "https://www.statsmodels.org/stable/generated/statsmodels.tsa.regime_switching.markov_regression.MarkovRegression.html"
+        ],
+        "uses_out_of_sample_scores": false,
+        "worker_minutes": null
       }
     ],
     "runtime_estimate": {
       "assumption": "linear series-count and history-length scaling; five missing costs imputed, not measured; contention and nonlinear costs unresolved",
       "estimates": {
         "mean": {
-          "imputed_old52_worker_seconds": 358.1808728396136,
+          "imputed_old52_worker_seconds": 385.70996641645775,
           "scheduled_wall_hours_at_12_workers": 4.715661553859462,
-          "total_worker_hours": 35.67469092909981
+          "total_worker_hours": 35.855473843944274
         },
         "median": {
-          "imputed_old52_worker_seconds": 355.0623020688945,
+          "imputed_old52_worker_seconds": 395.4462267917115,
           "scheduled_wall_hours_at_12_workers": 4.715661553859462,
-          "total_worker_hours": 35.57115473940518
+          "total_worker_hours": 36.178716564806464
         }
       },
       "planning_range_hours": [
@@ -1203,15 +1369,359 @@
       ],
       "scaling_factor": 23.903916909649773,
       "scheduling": "longest estimated model jobs first; one worker per model",
-      "status": "rough_extrapolation_not_measured",
+      "status": "old14_subset_only_total17_not_estimated_until_new_families_profiled",
+      "unestimated_additional_family_count": 3,
       "workers": 12
     },
-    "unknown_timing_records_proposed": 5
+    "unknown_timing_records_proposed": 8
+  },
+  "family_coverage_review": {
+    "cost": "secondary screening constraint; profile new candidates before full execution; do not invent a total17 ETA",
+    "global_catalogue_correction": "These are coverage gaps in the draft14 set, not globally unexplored model families. Additions remain unimplemented proposals; use existing methods when exactly equivalent and require a documented methodological delta for any new ID.",
+    "not_automatically_added": {
+      "ETS": "existing latent-mean/state-space model offers adjacent continuous state adaptation; ARMA adds the more specific uncovered serial-return mechanism",
+      "additional_cross_asset_copulas": "single input series do not test cross-asset dependence",
+      "constant_Gaussian": "static parametric returns already have Student-t comparison; no separate Gaussian-only addition required for this lean proposal",
+      "plain_GARCH": "GJR-GARCH already covers the conditional heteroskedasticity family; no extra textbook GARCH variant solely for recognition",
+      "realized_volatility_or_factor_ML": "extra covariates/intraday coverage are not supplied across the frozen century"
+    },
+    "not_global_exhaustiveness_claim": true,
+    "selection": "mechanism gaps rather than name recognition"
+  },
+  "fit_dependency_source_review": {
+    "catalogue_and_control_branches": "No active per-origin CRPS/prequential calibration found in the reviewed14 branches after excluding M083. Likelihood, training moments, MAP/MCMC and within-training information criteria are permitted.",
+    "external_FAST_IID": "No attached exact fit specification hash in this proposal; native source binding and validation pending.",
+    "new_family_designs": "Unimplemented training-history-only proposals; exact equivalence and feasibility checks pending."
+  },
+  "forecast_fitting_contract": {
+    "M083": "excluded_by_explicit_user_requirement",
+    "as_of_origin_history_only": true,
+    "out_of_sample_score_calibration_allowed": false,
+    "prequential_crps_calibration_allowed": false,
+    "research_shortlist_screening_separate_from_per_origin_fit": true,
+    "runtime_adapter_validation": "pending_before_registration"
   },
   "historical80_scope": "retained_historical_separate_evidence_not_new_panel_scores",
   "new_french_panel_validation_status": "ready_unscored_no_models_registered",
   "original_candidate_count": 52,
+  "prior_family_test_audit": {
+    "ARMA": {
+      "completed52_count": 28,
+      "completed52_models": [
+        {
+          "CRPS": 2.6433460283543564,
+          "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+          "name": "m167",
+          "percent_better_M261": -330.60384644918213,
+          "rank": 167,
+          "summed_worker_seconds_not_controlled_benchmark": 716.827190062264
+        },
+        {
+          "CRPS": 2.6573433725204785,
+          "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+          "name": "m168",
+          "percent_better_M261": -332.88402852650074,
+          "rank": 168,
+          "summed_worker_seconds_not_controlled_benchmark": 738.689884074498
+        },
+        {
+          "CRPS": 2.658992701594168,
+          "model_id": "bic_auto_arma_mean|constant_sample_volatility|student_t_standardized_innovations|parametric",
+          "name": "m158",
+          "percent_better_M261": -333.15270596622037,
+          "rank": 158,
+          "summed_worker_seconds_not_controlled_benchmark": 547.7133240469266
+        },
+        {
+          "CRPS": 2.6655435569292103,
+          "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+          "name": "m161",
+          "percent_better_M261": -334.21984718592574,
+          "rank": 161,
+          "summed_worker_seconds_not_controlled_benchmark": 680.429211271985
+        },
+        {
+          "CRPS": 2.6662700268167674,
+          "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+          "name": "m164",
+          "percent_better_M261": -334.3381898942038,
+          "rank": 164,
+          "summed_worker_seconds_not_controlled_benchmark": 681.5397176950937
+        },
+        {
+          "CRPS": 2.6664615971846235,
+          "model_id": "bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+          "name": "m159",
+          "percent_better_M261": -334.36939690848783,
+          "rank": 159,
+          "summed_worker_seconds_not_controlled_benchmark": 823.1908889767947
+        },
+        {
+          "CRPS": 2.6665231252737205,
+          "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+          "name": "m157",
+          "percent_better_M261": -334.3794198988742,
+          "rank": 157,
+          "summed_worker_seconds_not_controlled_benchmark": 893.009823713568
+        },
+        {
+          "CRPS": 2.6665656647918112,
+          "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|iid|filtered_empirical_tail",
+          "name": "m163",
+          "percent_better_M261": -334.38634963108456,
+          "rank": 163,
+          "summed_worker_seconds_not_controlled_benchmark": 634.6308091995306
+        },
+        {
+          "CRPS": 2.668106032484597,
+          "model_id": "bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+          "name": "m169",
+          "percent_better_M261": -334.6372771473252,
+          "rank": 169,
+          "summed_worker_seconds_not_controlled_benchmark": 692.8807257267763
+        },
+        {
+          "CRPS": 2.6690526541203323,
+          "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+          "name": "m172",
+          "percent_better_M261": -334.79148280678385,
+          "rank": 172,
+          "summed_worker_seconds_not_controlled_benchmark": 641.7717499633436
+        },
+        {
+          "CRPS": 2.6691065441391935,
+          "model_id": "bic_auto_arma_mean|constant_sample_volatility|gaussian_iid_standardized_innovations|parametric",
+          "name": "m154",
+          "percent_better_M261": -334.80026154750027,
+          "rank": 154,
+          "summed_worker_seconds_not_controlled_benchmark": 510.33136745379306
+        },
+        {
+          "CRPS": 2.673049938819029,
+          "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+          "name": "m166",
+          "percent_better_M261": -335.4426446857614,
+          "rank": 166,
+          "summed_worker_seconds_not_controlled_benchmark": 717.8375683586928
+        },
+        {
+          "CRPS": 2.673941648754872,
+          "model_id": "bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+          "name": "m165",
+          "percent_better_M261": -335.58790517158974,
+          "rank": 165,
+          "summed_worker_seconds_not_controlled_benchmark": 1019.1040316632134
+        },
+        {
+          "CRPS": 2.676251528782209,
+          "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|student_t_standardized_innovations|parametric",
+          "name": "m170",
+          "percent_better_M261": -335.9641870559659,
+          "rank": 170,
+          "summed_worker_seconds_not_controlled_benchmark": 691.9889373690239
+        },
+        {
+          "CRPS": 2.677088400699286,
+          "model_id": "bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+          "name": "m160",
+          "percent_better_M261": -336.1005143708968,
+          "rank": 160,
+          "summed_worker_seconds_not_controlled_benchmark": 587.0315807752195
+        },
+        {
+          "CRPS": 2.6825854505494666,
+          "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+          "name": "m173",
+          "percent_better_M261": -336.9959895694595,
+          "rank": 173,
+          "summed_worker_seconds_not_controlled_benchmark": 649.2505772222648
+        },
+        {
+          "CRPS": 2.6852914496459555,
+          "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+          "name": "a0-m091",
+          "percent_better_M261": -337.4367996665626,
+          "rank": 91,
+          "summed_worker_seconds_not_controlled_benchmark": 688.870522246696
+        },
+        {
+          "CRPS": 2.68596977425611,
+          "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+          "name": "m171",
+          "percent_better_M261": -337.54729945854615,
+          "rank": 171,
+          "summed_worker_seconds_not_controlled_benchmark": 661.239470280183
+        },
+        {
+          "CRPS": 2.696197063204153,
+          "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+          "name": "m162",
+          "percent_better_M261": -339.21333557812164,
+          "rank": 162,
+          "summed_worker_seconds_not_controlled_benchmark": 631.0527199489297
+        },
+        {
+          "CRPS": 2.6990521089943083,
+          "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+          "name": "m155",
+          "percent_better_M261": -339.67842553828643,
+          "rank": 155,
+          "summed_worker_seconds_not_controlled_benchmark": 615.4306256340933
+        },
+        {
+          "CRPS": 2.701696866430629,
+          "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+          "name": "m156",
+          "percent_better_M261": -340.10925930457694,
+          "rank": 156,
+          "summed_worker_seconds_not_controlled_benchmark": 608.1215117125539
+        },
+        {
+          "CRPS": 2.7058189541112614,
+          "model_id": "bic_auto_arma_mean|constant_sample_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+          "name": "m153",
+          "percent_better_M261": -340.7807517204927,
+          "rank": 153,
+          "summed_worker_seconds_not_controlled_benchmark": 557.9119180823327
+        },
+        {
+          "CRPS": 2.754534248597987,
+          "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+          "name": "m092",
+          "percent_better_M261": -348.7165243971968,
+          "rank": 92,
+          "summed_worker_seconds_not_controlled_benchmark": 636.4193478625966
+        },
+        {
+          "CRPS": 3.1604975221478737,
+          "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+          "name": "m093",
+          "percent_better_M261": -414.84836836789026,
+          "rank": 93,
+          "summed_worker_seconds_not_controlled_benchmark": 952.641169351642
+        },
+        {
+          "CRPS": 4.215181935085434,
+          "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+          "name": "m094",
+          "percent_better_M261": -586.6575678178949,
+          "rank": 94,
+          "summed_worker_seconds_not_controlled_benchmark": 724.1751218930003
+        },
+        {
+          "CRPS": 5.665871973570384,
+          "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+          "name": "m103",
+          "percent_better_M261": -822.9764999124676,
+          "rank": 103,
+          "summed_worker_seconds_not_controlled_benchmark": 660.6780410766369
+        },
+        {
+          "CRPS": 10.169167042470015,
+          "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+          "name": "m175",
+          "percent_better_M261": -1556.568000065418,
+          "rank": 175,
+          "summed_worker_seconds_not_controlled_benchmark": 626.502536571119
+        },
+        {
+          "CRPS": 12.170046333038368,
+          "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+          "name": "m174",
+          "percent_better_M261": -1882.5133396302242,
+          "rank": 174,
+          "summed_worker_seconds_not_controlled_benchmark": 667.884438717505
+        }
+      ],
+      "historical_master_specifications": 35,
+      "relationship": "ARMA return-mean family was already extensively tested; proposed full-path likelihood design requires exact simulation-semantics comparison before being called a new variant."
+    },
+    "EWMA": {
+      "completed52_count": 6,
+      "completed52_models": [
+        {
+          "CRPS": 0.8012524633935214,
+          "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+          "name": "m050",
+          "percent_better_M261": -30.524868486071878,
+          "rank": 50,
+          "summed_worker_seconds_not_controlled_benchmark": 116.33970577368746
+        },
+        {
+          "CRPS": 0.8028521839045314,
+          "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+          "name": "m069",
+          "percent_better_M261": -30.785464638787218,
+          "rank": 69,
+          "summed_worker_seconds_not_controlled_benchmark": 123.00862023379887
+        },
+        {
+          "CRPS": 0.8264059511534246,
+          "model_id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+          "name": "m030",
+          "percent_better_M261": -34.622398081079076,
+          "rank": 30,
+          "summed_worker_seconds_not_controlled_benchmark": 102.77490718051558
+        },
+        {
+          "CRPS": 0.842019814767785,
+          "model_id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
+          "name": "m028",
+          "percent_better_M261": -37.165912875645056,
+          "rank": 28,
+          "summed_worker_seconds_not_controlled_benchmark": 156.46776924293954
+        },
+        {
+          "CRPS": 0.8505968441149877,
+          "model_id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+          "name": "m026",
+          "percent_better_M261": -38.56311997164992,
+          "rank": 26,
+          "summed_worker_seconds_not_controlled_benchmark": 102.15835599647835
+        },
+        {
+          "CRPS": 1.2570137298032844,
+          "model_id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
+          "name": "m086",
+          "percent_better_M261": -104.76885783648373,
+          "rank": 86,
+          "summed_worker_seconds_not_controlled_benchmark": 126.98939930053893
+        }
+      ],
+      "evidence_limit": "test references retained in the historical catalogue; raw old80 result bytes were not restored or rescored here",
+      "historical_qmle_model_id": "bayesian_sbb_overlay_ewma_qmle",
+      "historical_qmle_test_sources": [
+        ".forecast-oos-runs/consolidated-no-crypto/canonical_80p_1979_full_oos_20260525.json",
+        ".forecast-oos-runs/consolidated-no-crypto/canonical_80p_1979_full_oos_20260525_with_current_live_garch.json"
+      ],
+      "relationship": "Likelihood-fitted EWMA already exists; compare mean/innovation/fit definitions before reusing its implementation or historical score."
+    },
+    "conclusion": "These are coverage gaps in the draft14 set, not globally unexplored model families. Additions remain unimplemented proposals; use existing methods when exactly equivalent and require a documented methodological delta for any new ID.",
+    "regime_switching": {
+      "hidden_switching_model_id": "bayesian_msm_sv_jf_skewt_leverage_exact_filter",
+      "hidden_switching_test_sources": [
+        ".forecast-oos-runs/consolidated-no-crypto/bayesian_msm_sv_jf_skewt_leverage_canonical7_single_origin_20260527.json"
+      ],
+      "observable_markov_completed52": {
+        "CRPS": 0.830530361861699,
+        "model_id": "observable_markov_state_sbb",
+        "name": "m025",
+        "percent_better_M261": -35.29426892063952,
+        "rank": 25,
+        "summed_worker_seconds_not_controlled_benchmark": 649.6226795760449
+      },
+      "observable_markov_old_test_sources": [
+        ".forecast-oos-runs/consolidated-no-crypto/canonical_80p_1979_full_oos_20260525.json",
+        ".forecast-oos-runs/consolidated-no-crypto/canonical_80p_1979_full_oos_20260525_with_current_live_garch.json"
+      ],
+      "relationship": "Observable-state bootstrap and a limited hidden multifractal test already exist; proposed scalar likelihood return-regime model is not the same as a cross-asset HMM copula."
+    },
+    "source_engine_revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+    "source_path": "docs/forecast_oos_publication_master_catalog.json",
+    "source_sha256": "b80e3e3c9616916f090b0449cdbe3a79f150340dd98846d1f40b0691dae537a8"
+  },
   "production52_crps": 0.6138695810898457,
+  "proposed_method_count": 17,
   "protected_active19_sha256": {
     "candidate_reduction_proposal.json": "5d636530fa0ba93362c42f354a8e208a26f5a53281c9bcb892e35057ad5880a2",
     "panel_manifest.json": "482f0254be5036caad0b300df8c4abb37894ffb4e85e4e64fba366013121ca2e",
@@ -1514,8 +2024,8 @@
       "model_id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
       "name": "m083",
       "percent_better_M261": -18.705238387099854,
-      "proposal_include": true,
-      "proposal_reason": "Cheap GARCH model with prequential CRPS-based shrinkage; strong low-cost point on the original score/work frontier.",
+      "proposal_include": false,
+      "proposal_reason": "Excluded by the user: active prequential CRPS shrinkage learns calibration from forecast scores; per-origin fitting may use history-only likelihood/moment estimates, not out-of-sample score calibration.",
       "rank": 83,
       "source_specification_sha256": "bf18aceae75f985a2c9250cd3165287b52cb886061e6d5fa7fde589713f8a26d",
       "summed_worker_seconds_not_controlled_benchmark": 110.4190306480159
@@ -2011,7 +2521,8 @@
     "Retain the five mandatory anchors with unknown comparable compute left null.",
     "Exclude extreme compute and redundant variants; explicit individual runtime removals remain omitted.",
     "Cheap structural controls may be proposed despite previous old-panel score filters; this is an explicit proposal exception, not a silent active-list change.",
-    "Use old52 for screening only; new French scores and ratios must be measured within the new campaign."
+    "Use old52 for screening only; new French scores and ratios must be measured within the new campaign.",
+    "Explicitly exclude score-calibrated fitting, including prequential CRPS; no lookahead or dependency on other out-of-sample scores."
   ],
   "source_leaderboard_sha256": "6db0c69609ccc79d0318f67283ebe37657a2ae407ee9a2bd1c04c523e17c54fb",
   "source_ledger_sha256": "87ceee50d36a3c5f8e1933a5f0b7374edd4022637e53d5cd9c4d56f4b5912b2b",
