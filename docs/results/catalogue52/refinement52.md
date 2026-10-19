@@ -34,8 +34,7 @@ of cumulative terminal log returns. The sidecar does not blend the panels.
 | Coherent-growth identity control | `R52-COHERENT-GROWTH-IDENTITY-CONTROL` | — | — | — | stopped after 1,025/2,652 origins; unscored |
 
 The percentages compare each canonical52 CRPS with the M261 canonical52 score;
-positive values mean lower CRPS. Only rough-off has a completed historical80
-candidate score. No 80-portfolio score is inferred for the other variants.
+positive values mean lower CRPS. Rough-off and the selected variance-only candidate have completed historical80 scores in a panel separate from canonical52. No 80-portfolio score is inferred for the other variants.
 The permanent-growth run regresses on the full canonical52 panel. Fitted growth
 improves on M261 but remains 0.2134% worse than rough-off. The coherent-growth
 run was stopped because its upstream fit fixed the mean, making the proposed
@@ -90,8 +89,7 @@ measurements, not an all52 timing average or website click-to-visible result.
 A separate [full-panel rough-off adapter parity audit](../../../../short-horizon-mechanisms/refinement52/runtime/stage-profile.json)
 compared all 937,010,880 daily path values and all 455,832 cells byte-for-byte;
 its concurrent-worker timings remain diagnostic, and it does not establish
-full-panel RMSruntime parity. The variants have no historical80 score, so the
-full research goal remains open and no production promotion follows.
+full-panel RMSruntime parity. The selected candidate has a separately audited historical80 score; neither panel changes production registration or deployment.
 
 `short-horizon-mechanisms/refinement52/catalogue_preservation.py` rebuilds and
 validates both repository sidecars from the completed receipts. The packaged
@@ -107,13 +105,13 @@ receipts. The exact user objective is copied below for durable context.
 
 **Current gate status (2026-10-18).** The variance-only node-spread candidate has the lowest completed canonical52 CRPS (0.5957716608), passes exact output parity on all 2,652 contexts, and is faster than production and rough-off in all six prespecified local benchmark contexts for both fresh and cached fits. Fresh-fit median speedups are 2.8646x and 1.7000x; cached-fit medians are 4.1387x and 2.9260x. The timing scope is six fixed local compute contexts, not an all52 timing average or deployed click-to-visible result; earlier open-gate statements in this report are superseded by this status update. No production candidate is registered.
 
-These independently identified candidates were completed after the original sidecar rows. All are full canonical52 results; every historical80 status below remains `not_run`. The fixed RMS result is the statistical comparison target; the speed evidence remains separately scoped below.
+These independently identified candidates were completed after the original sidecar rows. Canonical52 scores remain the primary refinement panel. Rough-off and the selected variance-only candidate have separate completed historical80 scores; other refinements remain `not_run` on that panel. The fixed RMS result is the canonical52 statistical comparison target; speed evidence remains separately scoped below.
 
 | Research ID | Canonical52 CRPS | vs M261 | vs rough-off | vs RMS | Historical80 |
 | --- | ---: | ---: | ---: | ---: | --- |
 | `R52-ROUGH-OFF-CONTINUOUS-NODE-MOMENTS` | 0.6112011019 | +0.4347% | -1.3078% | -2.4098% | not run |
 | `R52-RMS-CONTINUOUS-NODE-MOMENTS` | 0.6060690401 | +1.2707% | -0.4572% | -1.5499% | not run |
-| `R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION` | 0.5957716608 | +2.9482% | +1.2497% | +0.1755% | not run |
+| `R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION` | 0.5957716608 | +2.9482% | +1.2497% | +0.1755% | 0.2345710242; -3.4615% vs M261, -1.7590% vs rough-off |
 | `R52-CONDITIONAL-GROWTH-STATE-MEAN` | 0.5985909296 | +2.4889% | +0.7824% | -0.2969% | not run |
 | `R52-CONDITIONAL-GROWTH-STATE-MEAN-UNCERTAINTY` | 0.6018202228 | +1.9629% | +0.2471% | -0.8380% | not run |
 | `R52-ORIGINAL-MOMENT-CONTINUOUS-NODE-MOMENTS` | 0.6272794957 | -2.1845% | -3.9728% | -5.1038% | not run |
@@ -121,7 +119,7 @@ These independently identified candidates were completed after the original side
 | `R52-RMS-STATIONARY-RESIDUAL-CONTINUOUS-NODE-MOMENTS` | 0.6233143457 | -1.5386% | -3.3156% | -4.4394% | not run |
 | `R52-RMS-STATIONARY-RESIDUAL-SIGNED-Z-ORIGINAL-NODES` | 0.6180617065 | -0.6829% | -2.4450% | -3.5593% | not run |
 
-All rows use the same 52-asset panel: 2,652 origins, 455,832 equally weighted asset/horizon cells, and 240 paths per origin. Positive percentages mean lower CRPS. Score reductions are source-bound to the saved complete result receipts and cells; no candidate above was run on historical80. These experiments do not modify master M definitions, ranks, or production settings.
+All rows use the same 52-asset panel: 2,652 origins, 455,832 equally weighted asset/horizon cells, and 240 paths per origin. Positive percentages mean lower CRPS. Score reductions are source-bound to the saved complete result receipts and cells; the selected variance-only candidate alone also has a separately scored historical80 panel; no other candidate's 80-portfolio result is inferred. These experiments do not modify master M definitions, ranks, or production settings.
 
 The two conditional-growth rows add the training-filtered terminal mean-state deviation to the unchanged M261/RMS point curve, with the second also adding coherent fitted AR(1) state uncertainty. Both improve on rough-off but lose to RMS; a separate read-only assessment closes only this growth-state branch and leaves its explicitly unrun RMS zero-centered-uncertainty factorial cell unscored. The original-variance/continuous-node result, both stationary residual-rank results, and all three direct-Student variance variants also lose to RMS. The best canonical52 score is the variance-only node-spread correction at 0.5957716608 versus RMS at 0.5968189283. Continuous-node corrections are pre-clipping and do not assert exact post-clipping moments or conditional-copula uniformity. No historical-growth floor is imposed.
 
@@ -133,6 +131,9 @@ Private archival status: `verified_private_online_archive`. A checksum-bound pri
 
 The full hashes, per-asset canonical52 scores, methods, validation state, control cells, runtime scope, factorial diagnostic and archive receipt fields are in the [extension JSON sidecar](../../../src/simfolio_forecasting_methodology/resources/results/refinement52.json). Load it with `simfolio_forecasting_methodology.refinement52_results.load_refinement52_results()`; it does not merge into ranked catalogue IDs.
 <!-- refinement52-additional-results:end -->
+
+
+The selected variance-only candidate has a separate, independently audited historical80 score of **0.2345710242**, -3.4615% versus M261 and -1.7590% versus rough-off. It covers all 80 portfolios, 4,080 origins, 701,280 horizon cells, and 240 paths per origin. The newly verified selected80 archive has its own receipt; the earlier H archive is only an external source/data dependency for this result. This remains research evidence, not a production registration or deployment.
 
 ## User-requested objective (verbatim)
 

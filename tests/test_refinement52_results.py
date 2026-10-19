@@ -129,3 +129,141 @@ def test_unbound_source_path_is_rejected():
     payload["source_hashes"].pop(path)
     with pytest.raises(ValueError, match="source hashes are missing"):
         validate_refinement52_index(payload)
+
+
+def _with_selected80_result(payload):
+    from simfolio_forecasting_methodology.refinement52_results import (
+        SELECTED80_HASH_ROLES,
+        SELECTED80_ID,
+        SELECTED80_LABEL,
+    )
+
+    selected = next(row for row in payload["entries"]
+                    if row["research_id"] == SELECTED80_ID)
+    canonical52_before = copy.deepcopy(selected["panel_results"]["canonical52"])
+    rough = next(row for row in payload["entries"]
+                 if row["research_id"] == "R52-ROUGH-OFF")["panel_results"]["historical80"]
+    m261 = payload["baseline_result"]["historical80"]["exact_empirical_crps"]
+    score = sum(rough["portfolio_scores"].values()) / 80 * 0.95
+    paths = {}
+    for index, role in enumerate(sorted(SELECTED80_HASH_ROLES)):
+        path = f"short-horizon-mechanisms/refinement52/selected80/test/{role}"
+        digest = f"{index + 1:064x}"
+        payload["source_hashes"][path] = digest
+        selected["source_paths"].append(path)
+        paths[role] = {"path": path, "sha256": digest}
+    archived_roles = SELECTED80_HASH_ROLES - {"archive_receipt", "archive_manifest"}
+    evidence = {
+        "schema": "selected80-evidence-v1",
+        "research_id": SELECTED80_ID,
+        "candidate": SELECTED80_LABEL,
+        "run_identity": "selected80-0123456789abcdef",
+        "manifest_digest": "f" * 64,
+        "panel": {"portfolios": 80, "origins": 4080, "cells": 701280,
+                  "simulations": 240},
+        "complete_origins": 4080,
+        "required_origins": 4080,
+        "complete_portfolios": 80,
+        "failures": 0,
+        "full80_runtime_parity_claimed": False,
+        "independent_audit": {
+            "status": "complete_independent_checkpoint_cell_rebuild",
+            "complete_origins": 4080,
+            "required_origins": 4080,
+            "failures": 0,
+            "all_original_identities_match": True,
+            "all_bound_source_control_hashes_match": True,
+            "all_selected_cells_and_counts_byte_equal_rebuilt_checkpoints": True,
+            "saved_M261_and_rough_off_control_cells_byte_equal": True,
+            "manifest_digest": "f" * 64,
+        },
+        "artifact_hashes": paths,
+        "archive": {
+            "status": "verified_new_selected80_private_archive",
+            "format": "selected80-archive-receipt-v1",
+            "repo": "Hutch2064/simfolio-engine",
+            "release": "selected80-test",
+            "identity": "a" * 20,
+            "selected80_run_identity": "selected80-0123456789abcdef",
+            "receipt_url": "https://example.test/receipt",
+            "manifest_url": "https://example.test/manifest",
+            "receipt_sha256": paths["archive_receipt"]["sha256"],
+            "manifest_sha256": paths["archive_manifest"]["sha256"],
+            "member_count": 100,
+            "member_bytes": 1000,
+            "task_checkpoint_members": 4080,
+            "task_metadata_members": 4080,
+            "independent_download_and_member_verification": True,
+            "prior_receipt_fresh_download_verified": True,
+            "deletion_authorized": False,
+            "assets": {"part.tar.gz": {"bytes": 20, "sha256": "b" * 64,
+                                       "url": "https://example.test/part"}},
+            "archived_members": {
+                role: {"path": f"selected80/selected80-test/{role}",
+                       "sha256": paths[role]["sha256"]}
+                for role in archived_roles
+            },
+        },
+    }
+    selected["panel_results"]["historical80"] = {
+        "status": "complete_full_panel",
+        "exact_empirical_crps": score,
+        "production_m261_crps": m261,
+        "percent_better_than_m261": 100 * (1 - score / m261),
+        "percent_better_than_rough_off": 100 * (1 - score / rough["exact_empirical_crps"]),
+        "portfolio_scores": {name: value * 0.95
+                             for name, value in rough["portfolio_scores"].items()},
+        "cells_sha256": paths["cells"]["sha256"],
+        "evidence": evidence,
+    }
+    return payload, canonical52_before
+
+
+def test_selected80_result_requires_complete_audit_archive_and_preserves_canonical52():
+    payload, canonical52_before = _with_selected80_result(
+        copy.deepcopy(load_refinement52_results()))
+    validate_refinement52_index(payload)
+    selected = next(row for row in payload["entries"]
+                    if row["research_id"] == "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION")
+    assert selected["panel_results"]["canonical52"] == canonical52_before
+    assert selected["panel_results"]["historical80"]["evidence"]["panel"] == {
+        "portfolios": 80, "origins": 4080, "cells": 701280, "simulations": 240,
+    }
+
+
+def test_selected80_rejects_partial_or_unverified_evidence():
+    payload, _ = _with_selected80_result(copy.deepcopy(load_refinement52_results()))
+    selected = next(row for row in payload["entries"]
+                    if row["research_id"] == "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION")
+    selected["panel_results"]["historical80"]["evidence"]["failures"] = 1
+    with pytest.raises(ValueError, match="incomplete or wrong panel"):
+        validate_refinement52_index(payload)
+
+    payload, _ = _with_selected80_result(copy.deepcopy(load_refinement52_results()))
+    selected = next(row for row in payload["entries"]
+                    if row["research_id"] == "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION")
+    selected["panel_results"]["historical80"]["portfolio_scores"].pop(
+        next(iter(selected["panel_results"]["historical80"]["portfolio_scores"])))
+    with pytest.raises(ValueError, match="portfolio scores are incomplete"):
+        validate_refinement52_index(payload)
+
+    payload, _ = _with_selected80_result(copy.deepcopy(load_refinement52_results()))
+    selected = next(row for row in payload["entries"]
+                    if row["research_id"] == "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION")
+    selected["panel_results"]["historical80"]["evidence"]["archive"][
+        "independent_download_and_member_verification"] = False
+    with pytest.raises(ValueError, match="archive receipt is not verified"):
+        validate_refinement52_index(payload)
+
+
+def test_selected80_cannot_be_attached_to_another_research_id():
+    payload, _ = _with_selected80_result(copy.deepcopy(load_refinement52_results()))
+    selected = next(row for row in payload["entries"]
+                    if row["research_id"] == "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION")
+    other = next(row for row in payload["entries"]
+                 if row["research_id"] == "R52-DIRECT-STUDENT-VARIANCE-ORIGINAL-MEAN")
+    other["panel_results"]["historical80"] = copy.deepcopy(
+        selected["panel_results"]["historical80"])
+    other["source_paths"].extend(selected["source_paths"][-10:])
+    with pytest.raises(ValueError, match="unrun historical80 results cannot carry a score"):
+        validate_refinement52_index(payload)

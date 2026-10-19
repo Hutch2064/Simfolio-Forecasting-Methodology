@@ -275745,10 +275745,11 @@
   },
   "decision": {
     "current_goal_winner": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
-    "interpretation": "The RMS continuous-node variance-only correction is the selected research candidate with the lowest completed canonical52 score (0.5957716608071159): 0.1755% better than deterministic RMS, 1.2497% better than rough-off and 2.9482% better than M261. Its hooked runtime adapter matches the complete daily paths and saved winner CRPS vectors on all 2,652 original contexts, with calendars and hooks restored. In six predetermined local compute contexts, its measured medians are faster than production and rough-off for both fresh and cached fits, and essentially tied with the separate RMSruntime implementation. These are not an all52 timing average or website click-to-visible evidence, so no universal or live speed claim is made. Historical80 scores remain unrun for all refinements except the distinct rough-off control. No candidate is registered for production.",
+    "interpretation": "The RMS continuous-node variance-only correction is the selected research candidate with the lowest completed canonical52 score (0.5957716608071159): 0.1755% better than deterministic RMS, 1.2497% better than rough-off and 2.9482% better than M261. Its hooked runtime adapter matches the complete daily paths and saved winner CRPS vectors on all 2,652 original contexts, with calendars and hooks restored. In six predetermined local compute contexts, its measured medians are faster than production and rough-off for both fresh and cached fits, and essentially tied with the separate RMSruntime implementation. These are not an all52 timing average or website click-to-visible evidence, so no universal or live speed claim is made. The selected candidate also scores 0.2345710242 on the separate historical80 panel, -3.4615% versus M261 and -1.7590% versus rough-off; the other refinements remain unrun on that panel. No candidate is registered for production.",
     "methodology_search_status": "closed_no_additional_non_speculative_variant_on_current_evidence",
     "production_change_or_deployment": false,
     "research_goal_status": "bounded_research_comparison_complete_no_all52_speed_claim",
+    "selected_candidate_historical80_status": "complete_validated_full_panel",
     "selected_research_candidate": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION"
   },
   "entries": [
@@ -277471,7 +277472,243 @@
           "status": "complete_validated_full_panel"
         },
         "historical80": {
-          "status": "not_run"
+          "cells_sha256": "3eaf34cac3a82c1f996a60811c53f0c3de5ec29de8375cd63d9a7c92cce2455f",
+          "control_replay": "inherited published M261 and rough-off full80 cells; no fresh per-origin control replay",
+          "evidence": {
+            "archive": {
+              "archived_members": {
+                "analysis": {
+                  "path": "selected80/selected80-01146c8dcf5235cc/analysis.json",
+                  "sha256": "97bd5da948be6a8a0393ba3f228e34b4c9b54330ad2ce58ddc6177f74ae069d0"
+                },
+                "audit": {
+                  "path": "selected80/selected80-01146c8dcf5235cc/audit.json",
+                  "sha256": "5a6fddd188cd2fb796a36e616045f845b9f57c218dda5d7fbf45f34fe79c149f"
+                },
+                "catalogue_updater": {
+                  "path": "selected80/catalogue_support/update_selected80_catalogues.py",
+                  "sha256": "cf6161ee4a122948f229243270c4452327ffec33b0cba2c370713bd8f1d3d682"
+                },
+                "cells": {
+                  "path": "selected80/selected80-01146c8dcf5235cc/cells.npz",
+                  "sha256": "3eaf34cac3a82c1f996a60811c53f0c3de5ec29de8375cd63d9a7c92cce2455f"
+                },
+                "completion": {
+                  "path": "selected80/selected80-01146c8dcf5235cc/completion.json",
+                  "sha256": "4ee0096cdd2ca09604b5e6aed0a37bc23f1a9419d913b5cec01c63d44e48f90d"
+                },
+                "manifest": {
+                  "path": "selected80/selected80-01146c8dcf5235cc/manifest.json",
+                  "sha256": "6fab6dd66358f02589a151f1cd8e972e0004c04c4fc0005aaad10f4457e51c44"
+                },
+                "results": {
+                  "path": "selected80/selected80-01146c8dcf5235cc/results.json",
+                  "sha256": "ab3d484b97a7634068d13bc370db42cb966c2f6556f11b4939ca3582c7b1afa3"
+                },
+                "run_source": {
+                  "path": "selected80/run.py",
+                  "sha256": "971fee07724da253acab9be78449ff5fed36c5947298435f6c31b532982dff9f"
+                },
+                "summary_source": {
+                  "path": "selected80/summarize.py",
+                  "sha256": "2c0d639f8a83476cdd0a6fdde753b425f03cc2425798ae3488017470bde7de75"
+                }
+              },
+              "assets": {
+                "selected80-64a8beac9f9c5d4ccea8-part-001.tar.gz": {
+                  "bytes": 93975211,
+                  "sha256": "f969a2957a418adffaf4ac2da7ad5a9059de54b01f8173022c1200ddc98bc51c",
+                  "url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-catalogue52-20261018/selected80-64a8beac9f9c5d4ccea8-part-001.tar.gz"
+                },
+                "selected80-64a8beac9f9c5d4ccea8.restore.py": {
+                  "bytes": 53650,
+                  "sha256": "a6368f44d5bcf2c9a29e0041a5df1de4c65db8661993a14a4399a546dd370467",
+                  "url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-catalogue52-20261018/selected80-64a8beac9f9c5d4ccea8.restore.py"
+                }
+              },
+              "deletion_authorized": false,
+              "format": "selected80-archive-receipt-v1",
+              "identity": "64a8beac9f9c5d4ccea8",
+              "independent_download_and_member_verification": true,
+              "manifest_sha256": "9c48cbca1e9f5ea47f2730f526be516131826bace8243f5a755a0612458c5a04",
+              "manifest_url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-catalogue52-20261018/selected80-64a8beac9f9c5d4ccea8.manifest.json",
+              "member_bytes": 106040113,
+              "member_count": 8264,
+              "prior_receipt_fresh_download_verified": true,
+              "receipt_sha256": "024f541ddf2eac7a7a197ede280a2a7ad132bdcbd04c87ec4dfb3c0808d4b1a7",
+              "receipt_url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-catalogue52-20261018/selected80-64a8beac9f9c5d4ccea8.receipt.json",
+              "release": "research-catalogue52-20261018",
+              "repo": "Hutch2064/simfolio-engine",
+              "scope": "new selected80 run and output members; the prior H receipt is a separate external source/data dependency",
+              "selected80_run_identity": "selected80-01146c8dcf5235cc",
+              "status": "verified_new_selected80_private_archive",
+              "task_checkpoint_members": 4080,
+              "task_metadata_members": 4080
+            },
+            "artifact_hashes": {
+              "analysis": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/analysis.json",
+                "sha256": "97bd5da948be6a8a0393ba3f228e34b4c9b54330ad2ce58ddc6177f74ae069d0"
+              },
+              "archive_manifest": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/archive_support/prepared/64a8beac9f9c5d4ccea8/selected80-64a8beac9f9c5d4ccea8.manifest.json",
+                "sha256": "9c48cbca1e9f5ea47f2730f526be516131826bace8243f5a755a0612458c5a04"
+              },
+              "archive_receipt": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/archive_support/prepared/64a8beac9f9c5d4ccea8/selected80-64a8beac9f9c5d4ccea8.receipt.json",
+                "sha256": "024f541ddf2eac7a7a197ede280a2a7ad132bdcbd04c87ec4dfb3c0808d4b1a7"
+              },
+              "audit": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/audit.json",
+                "sha256": "5a6fddd188cd2fb796a36e616045f845b9f57c218dda5d7fbf45f34fe79c149f"
+              },
+              "catalogue_updater": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/catalogue_support/update_selected80_catalogues.py",
+                "sha256": "cf6161ee4a122948f229243270c4452327ffec33b0cba2c370713bd8f1d3d682"
+              },
+              "cells": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/cells.npz",
+                "sha256": "3eaf34cac3a82c1f996a60811c53f0c3de5ec29de8375cd63d9a7c92cce2455f"
+              },
+              "completion": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/completion.json",
+                "sha256": "4ee0096cdd2ca09604b5e6aed0a37bc23f1a9419d913b5cec01c63d44e48f90d"
+              },
+              "manifest": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/manifest.json",
+                "sha256": "6fab6dd66358f02589a151f1cd8e972e0004c04c4fc0005aaad10f4457e51c44"
+              },
+              "results": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/results.json",
+                "sha256": "ab3d484b97a7634068d13bc370db42cb966c2f6556f11b4939ca3582c7b1afa3"
+              },
+              "run_source": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/run.py",
+                "sha256": "971fee07724da253acab9be78449ff5fed36c5947298435f6c31b532982dff9f"
+              },
+              "summary_source": {
+                "path": "short-horizon-mechanisms/refinement52/selected80/summarize.py",
+                "sha256": "2c0d639f8a83476cdd0a6fdde753b425f03cc2425798ae3488017470bde7de75"
+              }
+            },
+            "candidate": "RMS_continuous_variance_only_preserve_mean",
+            "complete_origins": 4080,
+            "complete_portfolios": 80,
+            "failures": 0,
+            "full80_runtime_parity_claimed": false,
+            "independent_audit": {
+              "all_bound_source_control_hashes_match": true,
+              "all_original_identities_match": true,
+              "all_selected_cells_and_counts_byte_equal_rebuilt_checkpoints": true,
+              "complete_origins": 4080,
+              "failures": 0,
+              "manifest_digest": "01146c8dcf5235cccba9eb4a78631ebeca15c376b395787be4326d120ce9aa17",
+              "required_origins": 4080,
+              "saved_M261_and_rough_off_control_cells_byte_equal": true,
+              "status": "complete_independent_checkpoint_cell_rebuild"
+            },
+            "inherited_control_parity": "retained published M26180 cells, exact task/data/baseline hashes; inherited original control parity evidence, no fresh per-origin control replay",
+            "manifest_digest": "01146c8dcf5235cccba9eb4a78631ebeca15c376b395787be4326d120ce9aa17",
+            "panel": {
+              "cells": 701280,
+              "origins": 4080,
+              "portfolios": 80,
+              "simulations": 240
+            },
+            "required_origins": 4080,
+            "research_id": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+            "run_identity": "selected80-01146c8dcf5235cc",
+            "schema": "selected80-evidence-v1",
+            "score_scope": "equally weighted complete portfolio/horizon cells, original canonical scoring"
+          },
+          "exact_empirical_crps": 0.23457102422540146,
+          "percent_better_than_m261": -3.4614629655894458,
+          "percent_better_than_rough_off": -1.7590273821032065,
+          "portfolio_scores": {
+            "equal_class_history_001": 0.11264272173028492,
+            "equal_class_history_002": 0.4030013017287179,
+            "equal_class_history_003": 0.2121344969566584,
+            "equal_class_history_004": 0.19073974613178254,
+            "equal_class_history_005": 0.33749617432516743,
+            "equal_class_history_006": 0.17332162880386828,
+            "equal_class_history_007": 0.17942714599410783,
+            "equal_class_history_008": 0.17244361593525398,
+            "equal_class_history_009": 0.31576392536446535,
+            "equal_class_history_010": 0.12073582968279067,
+            "equal_class_history_011": 0.16435178752085636,
+            "equal_class_history_012": 0.26631619637439186,
+            "equal_class_history_013": 0.17526520774657597,
+            "equal_class_history_014": 0.13710426060368908,
+            "equal_class_history_015": 0.15629346259725801,
+            "equal_class_history_016": 0.4385804935716524,
+            "equal_class_history_017": 0.1866218990122757,
+            "equal_class_history_018": 0.11327952525415727,
+            "equal_class_history_019": 0.1483669351473553,
+            "equal_class_history_020": 0.1245066438518093,
+            "equal_class_history_021": 0.2814336418431741,
+            "equal_class_history_022": 0.1851577130527016,
+            "equal_class_history_023": 0.2038808364404851,
+            "equal_class_history_024": 0.6497554501871292,
+            "equal_class_history_025": 0.19956949114815695,
+            "equal_class_history_026": 0.14706274799216867,
+            "equal_class_history_027": 0.21371205852158034,
+            "equal_class_history_028": 0.19687946512171203,
+            "equal_class_history_029": 0.30166944644768917,
+            "equal_class_history_030": 0.1353598651479094,
+            "equal_class_history_031": 0.17493051971259413,
+            "equal_class_history_032": 0.3986635404122531,
+            "equal_class_history_033": 0.18291768690600146,
+            "equal_class_history_034": 0.2826636978932301,
+            "equal_class_history_035": 0.14183478663937105,
+            "equal_class_history_036": 0.22919853056711445,
+            "equal_class_history_037": 0.48773236151055793,
+            "equal_class_history_038": 0.3026841271579154,
+            "equal_class_history_039": 0.10247451551491689,
+            "equal_class_history_040": 0.16675235285509513,
+            "equal_class_history_041": 0.14894485862389098,
+            "equal_class_history_042": 0.2828397163966656,
+            "equal_class_history_043": 0.13210334774266924,
+            "equal_class_history_044": 0.3296978531264019,
+            "equal_class_history_045": 0.2262116154116734,
+            "equal_class_history_046": 0.17528115003843311,
+            "equal_class_history_047": 0.4048658132441634,
+            "equal_class_history_048": 0.1451259700021971,
+            "equal_class_history_049": 0.1813916485626034,
+            "equal_class_history_050": 0.3278897732325417,
+            "equal_class_history_051": 0.15594683768307152,
+            "equal_class_history_052": 0.18452693327316053,
+            "equal_class_history_053": 0.4774595854842763,
+            "equal_class_history_054": 0.3339416342944337,
+            "equal_class_history_055": 0.26190115224795596,
+            "equal_class_history_056": 0.2560088705021419,
+            "equal_class_history_057": 0.17164282131502429,
+            "equal_class_history_058": 0.1467269420254032,
+            "equal_class_history_059": 0.32161648226270045,
+            "equal_class_history_060": 0.21654108599562222,
+            "equal_class_history_061": 0.11057909780828941,
+            "equal_class_history_062": 0.33515267157916023,
+            "equal_class_history_063": 0.16609532688310358,
+            "equal_class_history_064": 0.12210803772466373,
+            "equal_class_history_065": 0.1942200591984025,
+            "equal_class_history_066": 0.17628819692675443,
+            "equal_class_history_067": 0.1321097178705171,
+            "equal_class_history_068": 0.4911547365139947,
+            "equal_class_history_069": 0.2080693220690767,
+            "equal_class_history_070": 0.3208369127676669,
+            "equal_class_history_071": 0.09682200574915122,
+            "equal_class_history_072": 0.34986867650738074,
+            "equal_class_history_073": 0.11481654090812704,
+            "equal_class_history_074": 0.1698400199296576,
+            "equal_class_history_075": 0.8765678710918915,
+            "equal_class_history_076": 0.19135363919917417,
+            "equal_class_history_077": 0.20311689212055395,
+            "equal_class_history_078": 0.20614216447254458,
+            "equal_class_history_079": 0.08561464284513816,
+            "equal_class_history_080": 0.22153548099696585
+          },
+          "portfolios_beating_m261": 31,
+          "production_m261_crps": 0.22672308848311776,
+          "status": "complete_full_panel"
         }
       },
       "research_id": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
@@ -289264,7 +289501,18 @@
         "short-horizon-mechanisms/refinement52/node_variance_runtime_parity/full2652/run.log",
         "short-horizon-mechanisms/refinement52/node_variance_runtime_parity/full2652/run.py",
         "short-horizon-mechanisms/refinement52/node_variance_runtime_parity/full2652/storage-owner.json",
-        "short-horizon-mechanisms/refinement52/node_variance_runtime_parity/full2652/artifact-inventory.json"
+        "short-horizon-mechanisms/refinement52/node_variance_runtime_parity/full2652/artifact-inventory.json",
+        "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/manifest.json",
+        "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/completion.json",
+        "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/results.json",
+        "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/analysis.json",
+        "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/audit.json",
+        "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/cells.npz",
+        "short-horizon-mechanisms/refinement52/selected80/run.py",
+        "short-horizon-mechanisms/refinement52/selected80/summarize.py",
+        "short-horizon-mechanisms/refinement52/selected80/catalogue_support/update_selected80_catalogues.py",
+        "short-horizon-mechanisms/refinement52/selected80/archive_support/prepared/64a8beac9f9c5d4ccea8/selected80-64a8beac9f9c5d4ccea8.receipt.json",
+        "short-horizon-mechanisms/refinement52/selected80/archive_support/prepared/64a8beac9f9c5d4ccea8/selected80-64a8beac9f9c5d4ccea8.manifest.json"
       ],
       "status": "complete",
       "validation": {
@@ -350823,6 +351071,17 @@
     "short-horizon-mechanisms/refinement52/runtime/stage-profile.json": "97804cce08729170f572e853c6733fbfbdbd1ade772ed7efc266f0899d205712",
     "short-horizon-mechanisms/refinement52/runtime/summarize.py": "58761bad90513fe5f18aad1d88dc457fa35bd9ef76e3e9315602a0ce17cf84c9",
     "short-horizon-mechanisms/refinement52/runtime/test_adapter.py": "893dd76319200a986f3a7fc29907ce4bba4d156db3422af906efc87cdd471d2c",
+    "short-horizon-mechanisms/refinement52/selected80/archive_support/prepared/64a8beac9f9c5d4ccea8/selected80-64a8beac9f9c5d4ccea8.manifest.json": "9c48cbca1e9f5ea47f2730f526be516131826bace8243f5a755a0612458c5a04",
+    "short-horizon-mechanisms/refinement52/selected80/archive_support/prepared/64a8beac9f9c5d4ccea8/selected80-64a8beac9f9c5d4ccea8.receipt.json": "024f541ddf2eac7a7a197ede280a2a7ad132bdcbd04c87ec4dfb3c0808d4b1a7",
+    "short-horizon-mechanisms/refinement52/selected80/catalogue_support/update_selected80_catalogues.py": "cf6161ee4a122948f229243270c4452327ffec33b0cba2c370713bd8f1d3d682",
+    "short-horizon-mechanisms/refinement52/selected80/run.py": "971fee07724da253acab9be78449ff5fed36c5947298435f6c31b532982dff9f",
+    "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/analysis.json": "97bd5da948be6a8a0393ba3f228e34b4c9b54330ad2ce58ddc6177f74ae069d0",
+    "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/audit.json": "5a6fddd188cd2fb796a36e616045f845b9f57c218dda5d7fbf45f34fe79c149f",
+    "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/cells.npz": "3eaf34cac3a82c1f996a60811c53f0c3de5ec29de8375cd63d9a7c92cce2455f",
+    "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/completion.json": "4ee0096cdd2ca09604b5e6aed0a37bc23f1a9419d913b5cec01c63d44e48f90d",
+    "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/manifest.json": "6fab6dd66358f02589a151f1cd8e972e0004c04c4fc0005aaad10f4457e51c44",
+    "short-horizon-mechanisms/refinement52/selected80/selected80-01146c8dcf5235cc/results.json": "ab3d484b97a7634068d13bc370db42cb966c2f6556f11b4939ca3582c7b1afa3",
+    "short-horizon-mechanisms/refinement52/selected80/summarize.py": "2c0d639f8a83476cdd0a6fdde753b425f03cc2425798ae3488017470bde7de75",
     "short-horizon-mechanisms/refinement52/signed_residual_selector/SPEC.md": "136177424ea061d9dc6ecff0fb40bdd017dde2f458b96d28bece24286cfdbd63",
     "short-horizon-mechanisms/refinement52/signed_residual_selector/active-run.json": "c8e6672e1964cbbe1856798290c9c66356e97b617ff9be9796b2e21a60464532",
     "short-horizon-mechanisms/refinement52/signed_residual_selector/artifact-manifest.json": "29b0124b714c72ad5cb014f9890ad6868155daa65132daa88f4158bcb6ce296d",

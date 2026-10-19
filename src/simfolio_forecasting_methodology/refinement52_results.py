@@ -10,6 +10,13 @@ from pathlib import Path
 
 INDEX_RESOURCE = "resources/results/refinement52.json"
 M261_ID = "asset_m256_data_timescales_existing_sv_rate"
+SELECTED80_ID = "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION"
+SELECTED80_LABEL = "RMS_continuous_variance_only_preserve_mean"
+SELECTED80_HASH_ROLES = {
+    "manifest", "completion", "results", "analysis", "audit", "cells",
+    "run_source", "summary_source", "catalogue_updater", "archive_receipt",
+    "archive_manifest",
+}
 
 
 def _valid_hash(value):
@@ -19,6 +26,115 @@ def _valid_hash(value):
 def _valid_score(value):
     return (isinstance(value, (int, float)) and not isinstance(value, bool)
             and math.isfinite(value) and value >= 0)
+
+
+def _validate_selected80_result(entry, historical, rough_off, baseline, hashes):
+    evidence = historical.get("evidence", {})
+    panel = evidence.get("panel", {})
+    if (historical.get("status") != "complete_full_panel"
+            or not _valid_score(historical.get("exact_empirical_crps"))
+            or panel != {"portfolios": 80, "origins": 4080, "cells": 701280,
+                         "simulations": 240}
+            or evidence.get("schema") != "selected80-evidence-v1"
+            or evidence.get("research_id") != SELECTED80_ID
+            or evidence.get("candidate") != SELECTED80_LABEL
+            or not re.fullmatch(r"selected80-[0-9a-f]{16}", evidence.get("run_identity", ""))
+            or evidence.get("complete_origins") != 4080
+            or evidence.get("required_origins") != 4080
+            or evidence.get("complete_portfolios") != 80
+            or evidence.get("failures") != 0
+            or evidence.get("full80_runtime_parity_claimed") is not False):
+        raise ValueError("selected historical80 result has an incomplete or wrong panel")
+    audit = evidence.get("independent_audit", {})
+    if (audit.get("status") != "complete_independent_checkpoint_cell_rebuild"
+            or audit.get("complete_origins") != 4080
+            or audit.get("required_origins") != 4080
+            or audit.get("failures") != 0
+            or audit.get("all_original_identities_match") is not True
+            or audit.get("all_bound_source_control_hashes_match") is not True
+            or audit.get("all_selected_cells_and_counts_byte_equal_rebuilt_checkpoints") is not True
+            or audit.get("saved_M261_and_rough_off_control_cells_byte_equal") is not True
+            or not _valid_hash(audit.get("manifest_digest"))
+            or audit.get("manifest_digest") != evidence.get("manifest_digest")):
+        raise ValueError("selected historical80 independent audit did not pass")
+    artifact_hashes = evidence.get("artifact_hashes", {})
+    if (not isinstance(artifact_hashes, dict)
+            or set(artifact_hashes) != SELECTED80_HASH_ROLES):
+        raise ValueError("selected historical80 artifact hash roles are incomplete")
+    for role, artifact in artifact_hashes.items():
+        if (not isinstance(artifact, dict)
+                or not isinstance(artifact.get("path"), str)
+                or artifact.get("path") not in hashes
+                or not _valid_hash(artifact.get("sha256"))
+                or artifact.get("sha256") != hashes[artifact["path"]]
+                or artifact["path"] not in entry.get("source_paths", [])):
+            raise ValueError("selected historical80 artifact hashes are not source-bound")
+    if (artifact_hashes["cells"]["sha256"] != historical.get("cells_sha256")
+            or artifact_hashes["archive_receipt"]["sha256"]
+            != evidence.get("archive", {}).get("receipt_sha256")
+            or artifact_hashes["archive_manifest"]["sha256"]
+            != evidence.get("archive", {}).get("manifest_sha256")):
+        raise ValueError("selected historical80 cells or archive hashes disagree")
+    archived_members = evidence.get("archive", {}).get("archived_members", {})
+    member_roles = SELECTED80_HASH_ROLES - {"archive_receipt", "archive_manifest"}
+    if not isinstance(archived_members, dict) or set(archived_members) != member_roles:
+        raise ValueError("selected historical80 archive member map is incomplete")
+    for role in member_roles:
+        member = archived_members[role]
+        if (not isinstance(member, dict)
+                or not isinstance(member.get("path"), str)
+                or not member["path"].startswith("selected80/")
+                or member.get("sha256") != artifact_hashes[role]["sha256"]):
+            raise ValueError("selected historical80 artifacts are not in the new archive")
+    archive = evidence.get("archive", {})
+    assets = archive.get("assets", {})
+    if (archive.get("status") != "verified_new_selected80_private_archive"
+            or archive.get("format") != "selected80-archive-receipt-v1"
+            or not isinstance(archive.get("repo"), str) or not archive["repo"]
+            or not isinstance(archive.get("release"), str) or not archive["release"]
+            or not isinstance(archive.get("identity"), str)
+            or re.fullmatch(r"[0-9a-f]{20}", archive["identity"]) is None
+            or archive.get("selected80_run_identity") != evidence.get("run_identity")
+            or not _valid_hash(archive.get("receipt_sha256"))
+            or not _valid_hash(archive.get("manifest_sha256"))
+            or not isinstance(archive.get("member_count"), int)
+            or not isinstance(archive.get("member_bytes"), int)
+            or archive.get("task_checkpoint_members") != 4080
+            or archive.get("task_metadata_members") != 4080
+            or archive.get("independent_download_and_member_verification") is not True
+            or archive.get("prior_receipt_fresh_download_verified") is not True
+            or archive.get("deletion_authorized") is not False
+            or not isinstance(archive.get("receipt_url"), str) or not archive["receipt_url"]
+            or not isinstance(archive.get("manifest_url"), str) or not archive["manifest_url"]
+            or not isinstance(assets, dict) or not assets
+            or any(not isinstance(item, dict) or not _valid_hash(item.get("sha256"))
+                   or not isinstance(item.get("bytes"), int)
+                   or not isinstance(item.get("url"), str) or not item["url"]
+                   for item in assets.values())):
+        raise ValueError("selected historical80 archive receipt is not verified")
+    candidate_score = historical["exact_empirical_crps"]
+    m261_score = baseline["exact_empirical_crps"]
+    rough_score = rough_off["exact_empirical_crps"]
+    pct_m261 = historical.get("percent_better_than_m261")
+    pct_rough = historical.get("percent_better_than_rough_off")
+    if (historical.get("production_m261_crps") != m261_score
+            or not isinstance(pct_m261, (int, float)) or isinstance(pct_m261, bool)
+            or not math.isfinite(pct_m261)
+            or not isinstance(pct_rough, (int, float)) or isinstance(pct_rough, bool)
+            or not math.isfinite(pct_rough)
+            or not math.isclose(pct_m261,
+                                100 * (1 - candidate_score / m261_score), abs_tol=1e-10)
+            or not math.isclose(pct_rough,
+                                100 * (1 - candidate_score / rough_score), abs_tol=1e-10)):
+        raise ValueError("selected historical80 aggregate comparisons are inconsistent")
+    scores = historical.get("portfolio_scores", {})
+    if (not isinstance(scores, dict)
+            or set(scores) != set(rough_off.get("portfolio_scores", {}))
+            or len(scores) != 80
+            or any(not _valid_score(value) for value in scores.values())
+            or not math.isclose(sum(scores.values()) / 80, candidate_score,
+                                rel_tol=0, abs_tol=1e-12)):
+        raise ValueError("selected historical80 portfolio scores are incomplete")
 
 
 def validate_refinement52_index(payload):
@@ -59,7 +175,10 @@ def validate_refinement52_index(payload):
             or any(not isinstance(item, str) or not re.fullmatch(r"R52-[A-Z0-9-]+", item)
                    for item in ids)):
         raise ValueError("refinement entries need unique immutable R52 research IDs")
-    rough_off = None
+    rough_off_entry = next((entry for entry in entries
+                            if entry.get("research_id") == "R52-ROUGH-OFF"), None)
+    rough_off = (rough_off_entry.get("panel_results", {}).get("historical80", {})
+                 if rough_off_entry else None)
     for entry in entries:
         if entry.get("status") == "stopped_identity_control":
             canonical = entry.get("panel_results", {}).get("canonical52", {})
@@ -81,7 +200,13 @@ def validate_refinement52_index(payload):
                 if (historical.get("status") != "complete_full_panel"
                         or not _valid_score(historical.get("exact_empirical_crps"))):
                     raise ValueError("rough-off historical80 result must be full-panel evidence")
-                rough_off = historical
+            elif entry.get("research_id") == SELECTED80_ID:
+                if historical.get("status") == "not_run" and "exact_empirical_crps" not in historical:
+                    pass
+                else:
+                    _validate_selected80_result(
+                        entry, historical, rough_off,
+                        baseline.get("historical80", {}), hashes)
             elif (historical.get("status") != "not_run"
                   or "exact_empirical_crps" in historical):
                 raise ValueError("unrun historical80 results cannot carry a score")
