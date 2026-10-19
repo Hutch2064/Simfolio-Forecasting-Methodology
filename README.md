@@ -9,7 +9,7 @@ private datastore, or operational API.
 
 ## Unified Frontier two-panel studies
 
-The additive [unified Frontier studies](docs/results/catalogue52/unified-frontier-studies.md) preserve every completed factorial variant and control, separate full52/full80 scores, scalar roundoff audits and private archive closure. No factorial law beats M261 on both panels; runtime, seed robustness, independent post-selection validation and production validation remain separate pending gates. Load the metadata with `simfolio_forecasting_methodology.unified_frontier_results.load_unified_frontier_studies()`. Existing catalogue identities, ranks and refinement rows are unchanged.
+The additive [unified Frontier studies](docs/results/catalogue52/unified-frontier-studies.md) preserve the closed factorial, standalone conditional and moment-followup studies: every variant and control, separate full52/full80 scores, scalar roundoff audits and verified private archive closure. None of these tested laws beats M261 on both panels; runtime, seed robustness, independent post-selection validation and production validation remain separate pending gates. Load the metadata with `simfolio_forecasting_methodology.unified_frontier_results.load_unified_frontier_studies()`. Existing catalogue identities, ranks and refinement rows are unchanged.
 
 ## 52-asset refinement evidence
 
