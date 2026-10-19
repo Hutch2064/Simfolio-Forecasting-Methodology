@@ -1,5 +1,7 @@
 # Simfolio Forecasting Methodology
 
+The [fresh French 1926 panel](docs/french1926-panel.md) contains 551 equity series and one cash control on a common century-long daily history. Its frozen data, exact whitepaper scoring contract and resumable harness are prepared separately; no models or scores are registered for it.
+
 This repository is a standalone, public-safe research package for the
 out-of-sample comparison of probabilistic portfolio forecasts. It contains
 the canonical catalogue and protocol contracts, source-derived numerical

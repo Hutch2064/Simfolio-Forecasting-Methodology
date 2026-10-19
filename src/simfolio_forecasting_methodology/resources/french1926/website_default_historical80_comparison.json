@@ -1,0 +1,222 @@
+{
+  "baseline": "exact website Default, saved historical canonical80 control",
+  "baseline_crps": 0.292821259593872,
+  "baseline_source": "docs/rough-bayesian-oos.md and docs/results/rough-bayesian/map-predecessor-dynamic-panel.json",
+  "current_selected_candidates": 31,
+  "models": [
+    {
+      "comparison": "better",
+      "evidence_type": "verified_refinement_publication",
+      "historical80_crps": 0.23457102422540146,
+      "model_id": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "verified_refinement_publication",
+      "historical80_crps": 0.22653257917294423,
+      "model_id": "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.22672308848311776,
+      "model_id": "asset_m256_data_timescales_existing_sv_rate"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2557255171048505,
+      "model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2319704483126069,
+      "model_id": "asset_map_stationary_ar1_proxy_leverage_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.23018159938191207,
+      "model_id": "asset_map_stationary_ar1_innovation_student_lhs_copula_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.25087597152824515,
+      "model_id": "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.25246784959071183,
+      "model_id": "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.25439860867855635,
+      "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean"
+    },
+    {
+      "comparison": "unknown",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": null,
+      "model_id": "asset_hmm_three_state_full_rvine_sv"
+    },
+    {
+      "comparison": "unknown",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": null,
+      "model_id": "asset_rough_jump_hmm_rvine_sv"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.25074679212444156,
+      "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2522081419138852,
+      "model_id": "asset_rough_volterra_sv_eight_factor_bayesian"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.22705549647165937,
+      "model_id": "asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2329897727973052,
+      "model_id": "asset_map_stationary_ar1_matched_offset_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2339750944781271,
+      "model_id": "asset_map_stationary_ar1_ou_residual_volatility"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.24269856328739714,
+      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_multiscale_offset_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2427871001627023,
+      "model_id": "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.24131773884753774,
+      "model_id": "asset_map_adaptive_stable_coupled_multiscale_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2416808319759003,
+      "model_id": "asset_map_adaptive_predictive_loading_full_hurst_untruncated_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.24188836805455496,
+      "model_id": "asset_map_single_predictive_loading_full_hurst_untruncated_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2509457012962614,
+      "model_id": "asset_map_multiscale_empirical_noise_dynamic_rough_map"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2498921919286796,
+      "model_id": "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.24998100070682613,
+      "model_id": "asset_map_multiscale_conditional_empirical_whittle_mle_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2518812750312293,
+      "model_id": "asset_map_predecessor_dynamic_rough_map"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2505737023816167,
+      "model_id": "asset_map_multiscale_conditional_empirical_full_hurst_domain_whittle_rough_map"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2504647898614585,
+      "model_id": "asset_map_multiscale_conditional_empirical_reml_rough_map"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.25281487701385613,
+      "model_id": "asset_map_multiscale_causal_residual_dynamic_rough_map"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.24972187973628046,
+      "model_id": "asset_map_multiscale_conditional_empirical_differenced_whittle_rough_map"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.24423173688367905,
+      "model_id": "asset_map_student_return_laplace_implied_noise_dynamic_rough"
+    },
+    {
+      "comparison": "better",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.2537399472056091,
+      "model_id": "asset_map_joint_student_copula_leverage_pathwise_multiscale_dynamic_rough"
+    }
+  ],
+  "no_model_registry_changes": true,
+  "no_runtime_percentile_filter_applied": true,
+  "original_52_draft_worse_count_exact_baseline": 20,
+  "original_rounded_0_293_count_was": 19,
+  "prior_selected_candidates": 34,
+  "prior_worse_count": 3,
+  "removed_models": [
+    {
+      "comparison": "worse",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.3573941599619772,
+      "model_id": "sv_live_baseline_robust_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"
+    },
+    {
+      "comparison": "worse",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.4153038237330848,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc"
+    },
+    {
+      "comparison": "worse",
+      "evidence_type": "retained_historical_catalogue_score_not_new_rerun",
+      "historical80_crps": 0.40631078588212816,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc"
+    }
+  ],
+  "rounding_correction": "M009 score 0.2928636384101145 is slightly worse than exact Default 0.292821259593872, but had already failed the separate 52-asset ten-percent bound",
+  "unknown_count": 2
+}

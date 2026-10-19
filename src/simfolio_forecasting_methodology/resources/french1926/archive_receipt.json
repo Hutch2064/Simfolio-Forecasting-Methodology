@@ -1,0 +1,22 @@
+{
+  "archive_bytes": 76923299,
+  "archive_sha256": "77344f5ff1b02ad6243b872b93a7a321c8263baa4e173ed731d89adde4c5e1c5",
+  "asset": "french1926-inputs-20261019.tar.gz",
+  "downloaded_copy_sha256_verified": true,
+  "models_in_archive": 0,
+  "panel_fingerprint": "1a2e9dfcde0b49afb51c3290cde6176585b678af1f37ba0640647104daa1e5d9",
+  "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-french1926-panel-20261019",
+  "repository": "Hutch2064/simfolio-engine",
+  "restoration": [
+    "gh release download research-french1926-panel-20261019 --repo Hutch2064/simfolio-engine --pattern french1926-inputs-20261019.tar.gz --pattern SHA256SUMS",
+    "shasum -a 256 -c SHA256SUMS",
+    "tar -xzf french1926-inputs-20261019.tar.gz",
+    "python -m simfolio_forecasting_methodology.french_panel validate french1926"
+  ],
+  "restored_member_checksums_verified": 21,
+  "restored_panel_validation": "passed",
+  "retention": "bulk local source/normalized/staging/restored copies retired only after verified remote source publication and this restoration check; archive preserves exact vintage",
+  "scores_in_archive": 0,
+  "status": "verified_private_online_archive",
+  "tag": "research-french1926-panel-20261019"
+}

@@ -1,0 +1,20 @@
+{
+  "contract_tests_passed": 80,
+  "empty_controller_smoke": "passed_12_slots_zero_models_zero_workers_spawned",
+  "independent_source_review": "no_concrete_defects_found",
+  "input_validation": "passed_original_and_downloaded_restored_copy",
+  "model_scores": [],
+  "packaged_wheel_input_validation": "passed_against_downloaded_restored_input_copy",
+  "registered_models": 0,
+  "research_forecast_tasks_executed": 0,
+  "runtime": {
+    "numpy": "2.5.3",
+    "pandas": "2.3.3",
+    "pytest": "8.4.2",
+    "python": "3.12.13",
+    "scipy": "1.18.1"
+  },
+  "status": "input_and_contract_validated_no_models_run",
+  "sweep_tests": "dynamic_add_remove_pause_resume_restart_locks_long_ids_worker_limits_rankings_mean_median_eta_passed",
+  "test_scope": "French data and checkpoint synthetic fixtures plus existing panel/origins, evaluation, scoring and seeds"
+}

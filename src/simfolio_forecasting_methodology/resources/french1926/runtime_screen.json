@@ -1,0 +1,211 @@
+{
+  "all_score_worse_than_m261_on52": true,
+  "count": 25,
+  "fraction_of_recorded_total_worker_time": 0.6755078793101076,
+  "models": [
+    {
+      "CRPS": 0.6328599183833102,
+      "model_id": "asset_rough_volterra_sv_accuracy_lift_bayesian",
+      "name": "00-m191-p4",
+      "percent_better_M261": -3.093545905915329,
+      "rank": 191,
+      "summed_worker_seconds_not_controlled_benchmark": 140915.4040661289
+    },
+    {
+      "CRPS": 0.6322343124432587,
+      "model_id": "asset_rough_volterra_sv_dynamic_lift_bayesian",
+      "name": "01-m192-p4",
+      "percent_better_M261": -2.9916340407043496,
+      "rank": 192,
+      "summed_worker_seconds_not_controlled_benchmark": 53627.80696389853
+    },
+    {
+      "CRPS": 0.6338554845052788,
+      "model_id": "asset_rough_volterra_sv_eight_factor_bayesian",
+      "name": "m190",
+      "percent_better_M261": -3.2557246736270473,
+      "rank": 190,
+      "summed_worker_seconds_not_controlled_benchmark": 12496.285763486114
+    },
+    {
+      "CRPS": 0.8764188833299885,
+      "model_id": "gas_score_driven_skewt",
+      "name": "m033",
+      "percent_better_M261": -42.7695573014093,
+      "rank": 33,
+      "summed_worker_seconds_not_controlled_benchmark": 10074.947316720674
+    },
+    {
+      "CRPS": 0.6253552751383846,
+      "model_id": "experimental_filtered_innovation_moment_sv_dlm",
+      "name": "m178",
+      "percent_better_M261": -1.8710316331601806,
+      "rank": 178,
+      "summed_worker_seconds_not_controlled_benchmark": 8952.910886760801
+    },
+    {
+      "CRPS": 0.8487837350071156,
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m029",
+      "percent_better_M261": -38.26776259221223,
+      "rank": 29,
+      "summed_worker_seconds_not_controlled_benchmark": 8928.119735985005
+    },
+    {
+      "CRPS": 0.8028201623136568,
+      "model_id": "sv_live_baseline_evidence_dlm_drift_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m070-exact",
+      "percent_better_M261": -30.78024828797574,
+      "rank": 70,
+      "summed_worker_seconds_not_controlled_benchmark": 6417.465689567791
+    },
+    {
+      "CRPS": 0.8220850564849133,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+      "name": "m024",
+      "percent_better_M261": -33.918519797871085,
+      "rank": 24,
+      "summed_worker_seconds_not_controlled_benchmark": 5554.505081063544
+    },
+    {
+      "CRPS": 0.7595589350456717,
+      "model_id": "bayesian_mcmc_stochastic_volatility_sbb",
+      "name": "m043",
+      "percent_better_M261": -23.732948893993665,
+      "rank": 43,
+      "summed_worker_seconds_not_controlled_benchmark": 5490.908102951769
+    },
+    {
+      "CRPS": 0.8660857984156913,
+      "model_id": "sv_live_baseline_sample_mean_sample_standardized_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m038",
+      "percent_better_M261": -41.0862869077286,
+      "rank": 38,
+      "summed_worker_seconds_not_controlled_benchmark": 5443.796096095117
+    },
+    {
+      "CRPS": 0.8431127209081577,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_no_ar_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc_harx_ff6_vol_anchor",
+      "name": "m041",
+      "percent_better_M261": -37.34394843466924,
+      "rank": 41,
+      "summed_worker_seconds_not_controlled_benchmark": 5426.814213892387
+    },
+    {
+      "CRPS": 0.8545992297068854,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+      "name": "m032",
+      "percent_better_M261": -39.21511279149157,
+      "rank": 32,
+      "summed_worker_seconds_not_controlled_benchmark": 5414.963159991894
+    },
+    {
+      "CRPS": 0.8368793267789117,
+      "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
+      "name": "m046",
+      "percent_better_M261": -36.328521979072704,
+      "rank": 46,
+      "summed_worker_seconds_not_controlled_benchmark": 5330.434493730776
+    },
+    {
+      "CRPS": 0.6361831588650376,
+      "model_id": "experimental_gaussian_moment_matched_sv_empirical_fixed_mean",
+      "name": "m179",
+      "percent_better_M261": -3.634905273458422,
+      "rank": 179,
+      "summed_worker_seconds_not_controlled_benchmark": 5146.892331567535
+    },
+    {
+      "CRPS": 0.6234994707366732,
+      "model_id": "experimental_filtered_innovation_moment_sv_fixed_mean",
+      "name": "m177",
+      "percent_better_M261": -1.5687191454788918,
+      "rank": 177,
+      "summed_worker_seconds_not_controlled_benchmark": 5110.36738467979
+    },
+    {
+      "CRPS": 0.8059546699863964,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_paired_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m055-exact",
+      "percent_better_M261": -31.290862882557,
+      "rank": 55,
+      "summed_worker_seconds_not_controlled_benchmark": 2838.972466929117
+    },
+    {
+      "CRPS": 0.80403222618372,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_empirical_state_shocks_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m056-exact",
+      "percent_better_M261": -30.97769476641361,
+      "rank": 56,
+      "summed_worker_seconds_not_controlled_benchmark": 2779.881883452239
+    },
+    {
+      "CRPS": 0.7991637440172664,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m058-exact",
+      "percent_better_M261": -30.18461390421969,
+      "rank": 58,
+      "summed_worker_seconds_not_controlled_benchmark": 2776.330178823613
+    },
+    {
+      "CRPS": 0.7971002916459219,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_vol_conditioned_residuals_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m054-exact",
+      "percent_better_M261": -29.84847534402566,
+      "rank": 54,
+      "summed_worker_seconds_not_controlled_benchmark": 2729.9182178425253
+    },
+    {
+      "CRPS": 0.8066543906164068,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m060-exact",
+      "percent_better_M261": -31.404848108664506,
+      "rank": 60,
+      "summed_worker_seconds_not_controlled_benchmark": 2720.353650958219
+    },
+    {
+      "CRPS": 0.7963723877168409,
+      "model_id": "sv_live_baseline_empirical_bayes_mean_filtered_sbb_mad_standardized_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m053-exact",
+      "percent_better_M261": -29.729899028876016,
+      "rank": 53,
+      "summed_worker_seconds_not_controlled_benchmark": 2685.7630648945924
+    },
+    {
+      "CRPS": 0.8144475265501644,
+      "model_id": "sv_live_baseline_positive_eb_mean_filtered_sbb_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m051-exact",
+      "percent_better_M261": -32.67435814366606,
+      "rank": 51,
+      "summed_worker_seconds_not_controlled_benchmark": 2671.62151361024
+    },
+    {
+      "CRPS": 0.8505130414927178,
+      "model_id": "sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc",
+      "name": "m079-exact",
+      "percent_better_M261": -38.54946843639693,
+      "rank": 79,
+      "summed_worker_seconds_not_controlled_benchmark": 2634.011700208357
+    },
+    {
+      "CRPS": 1.1043260271448643,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_drift_instability_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m085-exact",
+      "percent_better_M261": -79.8958705828487,
+      "rank": 85,
+      "summed_worker_seconds_not_controlled_benchmark": 2587.8920910749584
+    },
+    {
+      "CRPS": 0.6556852752920568,
+      "model_id": "sv_live_baseline_horizon_credibility_mean_sample_standardized_sbb_evt_tail_splice_optimal_block_adaptive_metropolis_proposal_mcmc",
+      "name": "m081-exact",
+      "percent_better_M261": -6.8118205381626495,
+      "rank": 81,
+      "summed_worker_seconds_not_controlled_benchmark": 2572.107083359442
+    }
+  ],
+  "new_panel_models_registered": 0,
+  "scope": "completed_241_eligible_canonical52_main_sweep",
+  "timing_type": "summed_worker_seconds_not_controlled_benchmark",
+  "use": "shortlist screening evidence only; no automatic exclusion rule"
+}
