@@ -7,6 +7,14 @@ implementations that have passed bounded parity checks, and an offline frozen
 data snapshot. It has no dependency on a production website, customer system,
 private datastore, or operational API.
 
+## 52-asset refinement evidence
+
+The independent [refinement results](docs/results/catalogue52/refinement52.md)
+preserve completed 52-asset scores, separate historical 80-portfolio results,
+runtime evidence and validation status. Read the additive research index with
+`simfolio_forecasting_methodology.refinement52_results.load_refinement52_results()`.
+Its R52 research IDs do not replace historical catalogue IDs or ranks. The [completed selection report](docs/results/catalogue52/refinement52-final-report.md) explains the selected model, score, speed and limits.
+
 ## Current catalogue and score ranking
 
 The canonical catalogue contains **263 models**: the original 175 plus seventy-six
