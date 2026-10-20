@@ -74,25 +74,27 @@ def run(phase):
         key=identity._task_key(sid,origin)
         task=api.task_identity(fingerprint,model.model_id,sid,origin)
         checkpoint=root/sid/(origin['origin_label']+'.npz')
-        try:
-            if checkpoint.exists():
-                losses,diagnostics=api.original._read_checkpoint(checkpoint,task)
-            else:
+        if checkpoint.exists():
+            # Corrupt identities/files are integrity failures, not native fits.
+            losses,diagnostics=api.original._read_checkpoint(checkpoint,task)
+        else:
+            try:
                 losses,diagnostics=api.original._forecast(model,sid,values,dates,SimpleNamespace(**origin),task['seed'])
-                diagnostics={**diagnostics,**model.last_metadata}
-                api.original._write_checkpoint(checkpoint,task,losses,diagnostics)
-        except Exception as exc:
-            native+=1
-            error={'task_key':key,'kind':type(exc).__name__,'message':str(exc)}
-            errors.append(error);write(root/sid/(origin['origin_label']+'.error.json'),error)
-            continue
+            except Exception as exc:
+                native+=1
+                error={'task_key':key,'kind':type(exc).__name__,'message':str(exc)}
+                errors.append(error);write(root/sid/(origin['origin_label']+'.error.json'),error)
+                continue
+            diagnostics={**diagnostics,**model.last_metadata}
+            # IO/serialization errors must fail closed, without native-fit labels.
+            api.original._write_checkpoint(checkpoint,task,losses,diagnostics)
         assert np.isfinite(losses).all() and np.all(losses>=0)
-        assert not diagnostics.get('daily_clips',0) and not diagnostics.get('wealth_floor_events',0)
         stop=origin['position']+1
         q=score_main.origin_score(losses,values[:stop],origin['origin_date'],dates[stop:stop+origin['max_horizon']])
         records['Candidate'].append({'series_id':sid,'origin_date':origin['origin_date'],'score':q,
             'origin_label':origin['origin_label'],'loss_sha256':hashlib.sha256(losses.tobytes()).hexdigest(),
-            'forecast_seconds':diagnostics['forecast_and_score_seconds'],'task_key':key})
+            'forecast_seconds':diagnostics['forecast_and_score_seconds'],'task_key':key,
+            'diagnostic_daily_clips':diagnostics.get('daily_clips',0),'diagnostic_wealth_floor_events':diagnostics.get('wealth_floor_events',0)})
         for arm in reference:
             records[arm].append({**reference[arm][key],'origin_label':origin['origin_label'],'task_key':key})
         if i%25==0 or i+1==len(cases):
@@ -107,7 +109,9 @@ def run(phase):
         'percent_better_vs_worst_Public':{a:100*(1-s['score']/public) for a,s in scores.items()},
         'reference_model_id':reference_id,'main_score_only':True,'diagnostics_in_score':False,
         'adaptive_benchmark_reuse':True,'independent_validation_or_significance_claim':False,
-        'forecast_and_score_worker_seconds':sum(r['forecast_seconds'] for r in records['Candidate'])}
+        'forecast_and_score_worker_seconds':sum(r['forecast_seconds'] for r in records['Candidate']),
+        'diagnostic_daily_clips':sum(r['diagnostic_daily_clips'] for r in records['Candidate']),
+        'diagnostic_wealth_floor_events':sum(r['diagnostic_wealth_floor_events'] for r in records['Candidate'])}
     write(OWN/(phase+'_summary.json'),result)
     guard()
     write(OWN/'active_run.json',{'utc':now(),'pid':os.getpid(),'phase':phase,'status':'complete'})

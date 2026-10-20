@@ -1,0 +1,152 @@
+{
+  "expected_tasks": 24,
+  "full_panel_admission": false,
+  "native_failures": 0,
+  "peak_active_workers_observed": 12,
+  "scope": "scheduler_parity",
+  "spec_sha256": "34e407f4bac114113405ca4efc346150a4c74e1040bbb6b93a060f1bf1b5c32c",
+  "status": "terminal",
+  "status_sha256": "dde8c155777c8858f2a1b709bf3f1a3913454d656cf3b4130964685a7766b4d5",
+  "successful_tasks": 24,
+  "unchanged_native_forecast_and_seed_contract": true,
+  "unique_worker_pids": [
+    89711,
+    89712,
+    89713,
+    89714,
+    89715,
+    89716,
+    89717,
+    89718,
+    89719,
+    89720,
+    89721,
+    89722
+  ],
+  "utc": "2026-10-20T21:34:23.492719+00:00",
+  "workers_requested": 12,
+  "all24_native_loss_vectors_bitwise_match_completed_baseline": true,
+  "verified_tasks": [
+    {
+      "series_id": "FR0259",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "4b797c62847b58de44e642f666a2a2730b3a60d818922268de2b32b222e40684"
+    },
+    {
+      "series_id": "FR0001",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "fb98d47a6e76ffb40bc5770f9adb277de22e8134a62946ac652374fd680a5a53"
+    },
+    {
+      "series_id": "FR0037",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "fe169f749587d936c404f775b70f3fba2b33222d60390211883a4c5b16386dae"
+    },
+    {
+      "series_id": "FR0073",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "f592cf153a30765c67028d88f3ded446d66ec8030da7079cb9813b239f513d3c"
+    },
+    {
+      "series_id": "FR0337",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "09a67708511e405c41e5a25963be6ef102afc79ecbdb0fe1aee897ecca40a433"
+    },
+    {
+      "series_id": "FR0525",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "f5b3b5550b1af03b06dd19822faac19c1a7de1686f79f3130bc42cd6ba217621"
+    },
+    {
+      "series_id": "FR0551",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "260cb12352c5ba5ae463d0f434e5a3fc2243e14bb496026d2d37b973b885087e"
+    },
+    {
+      "series_id": "P_dd6bd8cde6aab8b6",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "94d2bc4ad1fc1eb0502453e76ee21e453b998d6504c83e43fd3e5ac3c5ed0f74"
+    },
+    {
+      "series_id": "EQX0068",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "bf11435ca4c2cd5310508645cbefe2d412e61743c08860421171854d89845d93"
+    },
+    {
+      "series_id": "EQX0080",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "35d856d82dd5b09db1f078dd1c96b826d59b235013a01cd77173edb68a2c73fc"
+    },
+    {
+      "series_id": "SHYSIM",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "ab310d3b00544b4de9bd1d6f2bb02ee96d4336ad639355c00503720f6e21cac7"
+    },
+    {
+      "series_id": "P_531742fb3228a575",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "6200782e1e2d1044a5e5f6a6e2c21175f24ee2946ebcfd6b5cbb3d2ad291c35e"
+    },
+    {
+      "series_id": "P_81effad461cf77b7",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "1ba09a54e1bcd08414b0e156de5684d81e0bdef31457125055488b7159707f67"
+    },
+    {
+      "series_id": "P_ba695698ae8a83e1",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "024e45fc7a8d4746c68ae4b14b6a0031131a0b0dc2d2e16ae4439b1e2f15b8d9"
+    },
+    {
+      "series_id": "P_f12dc676c64a5527",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "0cce7389b8847b8462d9c1d59af0b091e037f04f1a7e7b56bf3e57a2092345ca"
+    },
+    {
+      "series_id": "P_f5914b3ab852b0bb",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "956829c9431c797363102a75175f87ad5e7dd36791225c087fe7a9e1de86f38d"
+    },
+    {
+      "series_id": "EQX0056",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "63d631e7431a8f411c24e8e2a48a8ac9dd139aa8d49978d1599f65bf4819a4f7"
+    },
+    {
+      "series_id": "EQX0062",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "1a14d66ad290993878243ef55f4c8f01397cb6de84112159dc9e51f61fe00ea8"
+    },
+    {
+      "series_id": "SLVSIM",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "52df5e9398817cbc66682e798bb2cb74d25975b9394008eb08041e234eb40961"
+    },
+    {
+      "series_id": "P_0b4cd6d9522059a3",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "0fea00f7a8d6018e7eb3bed38e1ad11697ae445a41cffb8fe930da254198b30d"
+    },
+    {
+      "series_id": "P_6edf99327247877c",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "40fdac77436fad7ccaa241ef411436423c0695537f74e4d095036f6f64cf77aa"
+    },
+    {
+      "series_id": "P_f8f8122e859ba0af",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "9c5305e49128a55ddb619d2f1bd3530600dd53356cb06c71f7559b09a749dc46"
+    },
+    {
+      "series_id": "FX_CAD_USD",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "b7ea885d9cacce997b15c7c102075e44df53ae270ccdd4d58a5f6c4f216b71c5"
+    },
+    {
+      "series_id": "P_1500af4fa1498cb8",
+      "origin_label": "train_first_quarter_test_remaining",
+      "loss_sha256": "551e6e598db660cb91f204808d619d2e35255000c78273322f425504d961cc9d"
+    }
+  ],
+  "global_unique_model_count_unchanged": 13
+}

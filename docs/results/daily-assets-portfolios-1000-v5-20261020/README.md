@@ -1,0 +1,7 @@
+# Expanded1,000-simulation benchmark v5
+
+Human-authorized baseline reset, not a scientific model promotion. Three named Public comparators plus the current best; FAST excluded. The1,264 input series and64,049 forecasts/model and sole v4 main score are unchanged; every baseline is recomputed with1,000 ensemble members.
+
+Six numeric tests pass, covering exact block-generator/accounting parity, chunk-invariant streams and empirical CRPS, and genuine1,000-member ensembles for all four methods. The real-data smoke completed216/216 native forecasts with no failures or score-integrity errors, and12 simultaneous scheduler workers. No old checkpoint imports; no full-panel1,000-path scores are claimed yet.
+
+See DESIGN.md for financial-law versus numerical-RNG version distinctions. `input-manifest.json` references the unchanged inputs preserved by the historical v4 private archive. Restore that evidence, put its inputs at inputs/, replace only panel.json with input-manifest.json, and restore the sealed native parent sources. Paths/module imports reflect the original research tree. `launch_plan.json` binds every execution source hash, registry and unchanged source closure. The forecast module consumes a training-only terminal-chunk iterator; future serious candidates can implement that same interface and enter the shared12-worker queue after representative validation.

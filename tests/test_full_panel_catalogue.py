@@ -131,11 +131,13 @@ def test_frozen_scoring_and_remote_archives_are_bound_to_catalogue():
 def test_incumbent_replacement_preserves_previous_full_execution():
     ledger = json.loads(LEDGER.read_text())
     active = set(ledger['active_model_ids'])
-    assert len(active) == 5 and ledger['current_best_model_id'] in active
+    assert len(active) == 4 and ledger['current_best_model_id'] in active
     previous = 'model_testing_equal_bootstrap_fhs_stratified_matched_Gaussian_mean_pool_v1'
     assert previous not in active
     assert any(m['identity']['model_id'] == previous for m in ledger['models'].values())
-    assert 'R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION' in active
+    fast = 'R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION'
+    assert fast not in active
+    assert any(m['identity']['model_id'] == fast and m['executions'] for m in ledger['models'].values())
 
 
 def test_new_benchmark_has_one_main_score_and_does_not_inflate_unique_model_count():
