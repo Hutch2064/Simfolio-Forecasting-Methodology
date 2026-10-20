@@ -1,6 +1,6 @@
 # Simfolio Forecasting Methodology
 
-The [French 1926 panel notes](docs/french1926-panel.md) document an earlier preparation with a cash-control series. The current user-authorized French551 campaign uses a frozen equity-only input with 551 series and zero cash controls. See the [timestamped partial-run metadata](docs/french551-partial-campaign-metadata.json) and the [scoring-v2 methodology](METHODOLOGY.md). The captured state is `RUNNING PARTIAL`; no full-panel ranking is published.
+The user-cancelled French551 official sweep is retired; only its completed public adaptive-block reference is retained. The restarted public-only search has two validated comparator implementations, but neither has scores; representative development is authorized while the full-panel control remains stopped. See the [current public-search status](docs/french551-public-search-metadata.json), [comparator definitions](docs/results/french551-public-search-20261020/COMPARATORS.md), and [scoring-v2 methodology](docs/french551-scoring-v2-methodology.md). No production behavior changed.
 The retired historical [French551 public refinement pilot](docs/results/french551-public-refinement-pilot-20261019/README.md) tested two bounded volatility refinements; both underperformed the exact public baseline, neither enters a catalogue ranking, and the pilot is excluded from the restarted public-only comparison.
 
 This repository is a standalone, public-safe research package for the

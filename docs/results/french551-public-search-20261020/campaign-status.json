@@ -1,0 +1,509 @@
+{
+  "schema": "simfolio-french551-public-search-metadata-v1",
+  "as_of_utc": "2026-10-20T01:05:01Z",
+  "campaign_state": {
+    "previous_official_campaign": "USER_CANCELLED",
+    "nonpublic_official_scores_republished": false,
+    "cancellation_receipt_sha256": "f2473e4c110bcf2836ed4849a6487f333fe7ffd6db88207d2aeeab2da40e419c",
+    "new_public_only_search": "COMPARATOR_SETUP_VALIDATED; NO NEW COMPARATOR SCORES AT PUBLICATION SNAPSHOT",
+    "representative_development": "AUTHORIZED; no result is included in this publication",
+    "full_panel_control": "STOPPED",
+    "full_panel_activation_gate": "Do not activate until the predeclared research stopping criterion is met.",
+    "all_new_comparator_scores_absent": true,
+    "production_change": false
+  },
+  "panel": {
+    "id": "french1926-single-series-551-v2",
+    "series": 551,
+    "panel_fingerprint": "e45e1b5bec4ad011f280a236bd9901c5ea75fd4282ab26072be2dd289e41e4c0",
+    "protocol_id": "french1926-whitepaper-dense-daily-240-v1",
+    "origins_per_model": [
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 131,
+        "origin_date": "1928-03-31",
+        "origin_label": "rolling_01",
+        "position": 525,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 277,
+        "origin_date": "1930-03-31",
+        "origin_label": "rolling_02",
+        "position": 1110,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 446,
+        "origin_date": "1932-06-30",
+        "origin_label": "rolling_03",
+        "position": 1785,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 593,
+        "origin_date": "1934-06-30",
+        "origin_label": "rolling_04",
+        "position": 2372,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 743,
+        "origin_date": "1936-06-30",
+        "origin_label": "rolling_05",
+        "position": 2974,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 912,
+        "origin_date": "1938-09-30",
+        "origin_label": "rolling_06",
+        "position": 3650,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1063,
+        "origin_date": "1940-09-30",
+        "origin_label": "rolling_07",
+        "position": 4252,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1232,
+        "origin_date": "1942-12-31",
+        "origin_label": "rolling_08",
+        "position": 4928,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1382,
+        "origin_date": "1944-12-30",
+        "origin_label": "rolling_09",
+        "position": 5527,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1523,
+        "origin_date": "1946-12-31",
+        "origin_label": "rolling_10",
+        "position": 6094,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1683,
+        "origin_date": "1949-03-31",
+        "origin_label": "rolling_11",
+        "position": 6734,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1824,
+        "origin_date": "1951-03-31",
+        "origin_label": "rolling_12",
+        "position": 7297,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1959,
+        "origin_date": "1953-03-31",
+        "origin_label": "rolling_13",
+        "position": 7838,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2101,
+        "origin_date": "1955-06-30",
+        "origin_label": "rolling_14",
+        "position": 8406,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2227,
+        "origin_date": "1957-06-28",
+        "origin_label": "rolling_15",
+        "position": 8908,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2353,
+        "origin_date": "1959-06-30",
+        "origin_label": "rolling_16",
+        "position": 9413,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2495,
+        "origin_date": "1961-09-29",
+        "origin_label": "rolling_17",
+        "position": 9980,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2621,
+        "origin_date": "1963-09-30",
+        "origin_label": "rolling_18",
+        "position": 10483,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2762,
+        "origin_date": "1965-12-31",
+        "origin_label": "rolling_19",
+        "position": 11050,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2888,
+        "origin_date": "1967-12-29",
+        "origin_label": "rolling_20",
+        "position": 11553,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3007,
+        "origin_date": "1969-12-31",
+        "origin_label": "rolling_21",
+        "position": 12029,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3150,
+        "origin_date": "1972-03-30",
+        "origin_label": "rolling_22",
+        "position": 12599,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3275,
+        "origin_date": "1974-03-29",
+        "origin_label": "rolling_23",
+        "position": 13101,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3402,
+        "origin_date": "1976-03-31",
+        "origin_label": "rolling_24",
+        "position": 13608,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3544,
+        "origin_date": "1978-06-30",
+        "origin_label": "rolling_25",
+        "position": 14176,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3670,
+        "origin_date": "1980-06-30",
+        "origin_label": "rolling_26",
+        "position": 14681,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3796,
+        "origin_date": "1982-06-30",
+        "origin_label": "rolling_27",
+        "position": 15186,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3939,
+        "origin_date": "1984-09-28",
+        "origin_label": "rolling_28",
+        "position": 15756,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4065,
+        "origin_date": "1986-09-30",
+        "origin_label": "rolling_29",
+        "position": 16261,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4192,
+        "origin_date": "1988-09-30",
+        "origin_label": "rolling_30",
+        "position": 16768,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4334,
+        "origin_date": "1990-12-31",
+        "origin_label": "rolling_31",
+        "position": 17336,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4461,
+        "origin_date": "1992-12-31",
+        "origin_label": "rolling_32",
+        "position": 17843,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4603,
+        "origin_date": "1995-03-31",
+        "origin_label": "rolling_33",
+        "position": 18411,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4729,
+        "origin_date": "1997-03-31",
+        "origin_label": "rolling_34",
+        "position": 18915,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4855,
+        "origin_date": "1999-03-31",
+        "origin_label": "rolling_35",
+        "position": 19420,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4997,
+        "origin_date": "2001-06-29",
+        "origin_label": "rolling_36",
+        "position": 19988,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5122,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20487,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5248,
+        "origin_date": "2005-06-30",
+        "origin_label": "rolling_38",
+        "position": 20992,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4759,
+        "origin_date": "2007-09-28",
+        "origin_label": "rolling_39",
+        "position": 21557,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4254,
+        "origin_date": "2009-09-30",
+        "origin_label": "rolling_40",
+        "position": 22062,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3749,
+        "origin_date": "2011-09-30",
+        "origin_label": "rolling_41",
+        "position": 22567,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3184,
+        "origin_date": "2013-12-31",
+        "origin_label": "rolling_42",
+        "position": 23132,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2680,
+        "origin_date": "2015-12-31",
+        "origin_label": "rolling_43",
+        "position": 23636,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2116,
+        "origin_date": "2018-03-29",
+        "origin_label": "rolling_44",
+        "position": 24200,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1612,
+        "origin_date": "2020-03-31",
+        "origin_label": "rolling_45",
+        "position": 24704,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1107,
+        "origin_date": "2022-03-31",
+        "origin_label": "rolling_46",
+        "position": 25209,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25772,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 43,
+        "origin_date": "2026-06-30",
+        "origin_label": "rolling_48",
+        "position": 26273,
+        "train_fraction": null
+      },
+      {
+        "evaluation_split": "train_first_quarter_test_remaining",
+        "max_horizon": 19738,
+        "origin_date": "1948-09-20",
+        "origin_label": "train_first_quarter_test_remaining",
+        "position": 6578,
+        "train_fraction": 0.25
+      },
+      {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6580,
+        "origin_date": "2000-06-29",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19736,
+        "train_fraction": 0.75
+      }
+    ],
+    "simulations_per_origin": 240,
+    "aggregation": "origin_mean_per_series_horizon_then_equal_cell_mean",
+    "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+    "methodology_source_revision": "b958ed46cc2b341a024abbd8a8dea70ff569c01f",
+    "public_execution_source_closure_files": 255,
+    "public_execution_source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682"
+  },
+  "scoring_v2": {
+    "primary_score_version": "french551-training-reference-scaled-loghorizon-crps-v2",
+    "primary_plan_fingerprint": "3f22f9039169711c7ac254f4f057627405cddb28632ff20b1bb4024d31c5da90",
+    "predeclared_sensitivity_fingerprint": "da3790ecf5fe15f200b97fa24b1d53e25df7fd9c71ef950f365c0bf4fb18ce90",
+    "plan_arrays_committed": false,
+    "scoring_engine_sha256": "49ed633f96b6a257ba72e74d0a2124dac4d7cef6ab696c45436e2135be334a1d",
+    "plan_builder_sha256": "4c41e4b66785d1d8ab71b76a7896c2798fb9c42705d67a84600bd3e28067ae36",
+    "reporter_r2_sha256": "e2ba24477bd6c9a3154d4e6a7b3089e4b39c007db500740fd83e74969d9a344c",
+    "r2_test_sha256_reviewed": "2b0a4b419e189637a92ff9f4b62595d90d23d68ab221f66d720cc0fda10b0b56",
+    "r2_validation_receipt_sha256": "d06f3852a281b810a26db5fce7f11d77a0fee02ada05bd069366e2386fd4432a",
+    "tests_passed": {
+      "scoring_eta_r2": 24,
+      "r2_focused": 13
+    },
+    "ruff": "passed"
+  },
+  "models": [
+    {
+      "model_id": "model_testing_joint_stationary_bootstrap_v1",
+      "display_name": "Public — Adaptive Blocks",
+      "role": "completed_reference",
+      "status": "COMPLETE",
+      "score_version": "french551-training-reference-scaled-loghorizon-crps-v2",
+      "primary_score": 0.7272852027781417,
+      "origins_completed": 28101,
+      "origins_expected": 28101,
+      "complete_series": 551,
+      "execution_fingerprint": "3526bcaba96d212caadeccf2111e042f4ca0ae8cce8942f61253bdb02efeba41",
+      "implementation_digest": "bb7185aef9f555bed5a16280584b750794cb242c5286a2ec430884ba58ee9cba",
+      "derived_score_fingerprint": "465a4bebb6c0ba17e0dbca823a15c68a2e85a97799edaf33b9159d6a45e2c80f",
+      "public_result_path": "docs/results/french551-public-search-20261020/public-baseline-v2.json"
+    },
+    {
+      "model_id": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+      "display_name": "Public — Random Blocks (Replacement)",
+      "role": "comparator",
+      "status": "IMPLEMENTED_VALIDATED_NOT_RUN",
+      "factory": "bounded_public:build_bounded_public",
+      "source_sha256": "db9842aeab1c42febc37f4e1d4a7cf85d7393b08abfe67ac4cb4e040c19c7e61",
+      "implementation_digest": "2c3c3c8f2ce9864eb3e6a1b473047aff9dacb83486f89b5e1f01299fe8ca686c",
+      "scored_origins": 0
+    },
+    {
+      "model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+      "display_name": "Public — Random Blocks (No Replacement, Cycled)",
+      "role": "comparator",
+      "status": "IMPLEMENTED_VALIDATED_NOT_RUN",
+      "factory": "bounded_public_without_replacement:build_bounded_cycle_public",
+      "source_sha256": "6a871fc2984539ad1d72c8edbdd4a5a5414a052a4beddcb41decfb8e115bf4a0",
+      "implementation_digest": "c99b4e72698f30e19ac124f14bcdd257ceefca1dc047760754ed80c5ba009939",
+      "history_exhaustion_rule": "refill_after_each_complete_history_cycle",
+      "rule_source": "explicit_user_reply",
+      "scored_origins": 0
+    }
+  ],
+  "comparator_validation": {
+    "stage_receipt_sha256": "fb43c1bd6871e4e451b8dff5b3ef2248974bf419f6f4c8cdb4f1965929621a16",
+    "control_sha256": "d9a4f22902a6522b9e42b8e311ec1b16931fe6843c4fafbc2ca527a4d23571b5",
+    "external_registry_sha256": "b78dcb4be193c4d0b71ed9615a763658cb9a0d56d540d8b2de8ebe15ca821304",
+    "control_stop": true,
+    "workers_configured": 12,
+    "tests_passed": 62,
+    "ruff": "passed",
+    "independent_oracle_review": "passed",
+    "new_comparator_results_exist": false
+  },
+  "publication_policy": {
+    "only_completed_public_reference_score_published": true,
+    "cancelled_official_nonpublic_scores_included": false,
+    "historical52_and80_untouched": true,
+    "private_inputs_or_credentials_included": false
+  }
+}

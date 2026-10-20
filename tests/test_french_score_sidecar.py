@@ -1,16 +1,16 @@
 """Synthetic declared-weight tests only; no production formula is selected."""
+import os
+import sys
 from dataclasses import asdict
 import hashlib
 import json
-import os
 from pathlib import Path
-import sys
 
 import numpy as np
 import pytest
 
 OWN_ROOT = Path(__file__).resolve().parents[1]
-SOURCE = Path(os.environ.get("FRENCH551_METHODOLOGY_ROOT", OWN_ROOT))
+SOURCE = Path(os.environ.get('FRENCH551_TEST_HELPERS_ROOT', OWN_ROOT))
 sys.path.insert(0, str(OWN_ROOT))
 sys.path.insert(0, str(SOURCE / 'tests'))
 from test_french_panel_runner import ZeroOracle, panel  # noqa: E402,F401

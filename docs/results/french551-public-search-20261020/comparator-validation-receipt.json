@@ -1,0 +1,23 @@
+{
+  "staged_utc": "2026-10-20T01:03:15.356871+00:00",
+  "activation_performed": false,
+  "control_stop": true,
+  "global_worker_cap": 12,
+  "development_first": true,
+  "model_ids": [
+    "model_testing_joint_stationary_bootstrap_v1",
+    "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+    "model_testing_joint_uniform_bounded_cycle_bootstrap_v1"
+  ],
+  "external_registry_sha256": "b78dcb4be193c4d0b71ed9615a763658cb9a0d56d540d8b2de8ebe15ca821304",
+  "control_sha256": "d9a4f22902a6522b9e42b8e311ec1b16931fe6843c4fafbc2ca527a4d23571b5",
+  "modules": {
+    "scripts/bounded_public.py": "db9842aeab1c42febc37f4e1d4a7cf85d7393b08abfe67ac4cb4e040c19c7e61",
+    "scripts/bounded_public_without_replacement.py": "6a871fc2984539ad1d72c8edbdd4a5a5414a052a4beddcb41decfb8e115bf4a0"
+  },
+  "factory_validation": "62 dedicated tests (27 WR + 35 cycle), Ruff, and independent oracle review passed; sources/digests unchanged.",
+  "new_model_results_exist": {
+    "model_testing_joint_uniform_bounded_block_bootstrap_v1": false,
+    "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": false
+  }
+}

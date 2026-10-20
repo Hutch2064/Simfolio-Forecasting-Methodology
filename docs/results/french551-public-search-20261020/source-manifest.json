@@ -1,0 +1,123 @@
+{
+  "schema": "french551-public-search-publication-manifest-v1",
+  "status": "public baseline retained; comparator implementations validated but unscored; full-panel control stopped",
+  "evidence": {
+    "public_baseline_sha256": "9af15ec3738f26c2c8be3ab8e640e5c532373f59db1acfeb34efe871181ecbe8",
+    "public_baseline_score": 0.7272852027781417,
+    "public_origins": 28101,
+    "public_series": 551,
+    "cancellation_receipt_sha256": "f2473e4c110bcf2836ed4849a6487f333fe7ffd6db88207d2aeeab2da40e419c",
+    "comparator_stage_receipt_sha256": "fb43c1bd6871e4e451b8dff5b3ef2248974bf419f6f4c8cdb4f1965929621a16",
+    "r2_validation_receipt_sha256": "d06f3852a281b810a26db5fce7f11d77a0fee02ada05bd069366e2386fd4432a",
+    "source_closure_files": 255,
+    "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682"
+  },
+  "reviewed_implementation_hashes": {
+    "with_replacement_module": "db9842aeab1c42febc37f4e1d4a7cf85d7393b08abfe67ac4cb4e040c19c7e61",
+    "with_replacement_digest": "2c3c3c8f2ce9864eb3e6a1b473047aff9dacb83486f89b5e1f01299fe8ca686c",
+    "cycle_module": "6a871fc2984539ad1d72c8edbdd4a5a5414a052a4beddcb41decfb8e115bf4a0",
+    "cycle_digest": "c99b4e72698f30e19ac124f14bcdd257ceefca1dc047760754ed80c5ba009939",
+    "score_engine": "49ed633f96b6a257ba72e74d0a2124dac4d7cef6ab696c45436e2135be334a1d",
+    "r2_reporter": "e2ba24477bd6c9a3154d4e6a7b3089e4b39c007db500740fd83e74969d9a344c",
+    "plan_builder": "4c41e4b66785d1d8ab71b76a7896c2798fb9c42705d67a84600bd3e28067ae36",
+    "primary_plan_fingerprint": "3f22f9039169711c7ac254f4f057627405cddb28632ff20b1bb4024d31c5da90",
+    "sensitivity_plan_fingerprint": "da3790ecf5fe15f200b97fa24b1d53e25df7fd9c71ef950f365c0bf4fb18ce90"
+  },
+  "validation": {
+    "comparator_tests": 62,
+    "published_scoring_and_r2_tests": 21,
+    "scoring_eta_r2_reviewed_suite_tests": 24,
+    "r2_focused_tests": 13,
+    "published_comparator_tests_sha256": {
+      "tests/test_bounded_public.py": "599622a00649506b52709106b0948224a3111f52fdab6ee1b9f0e27ab47015cf",
+      "tests/test_bounded_public_without_replacement.py": "85ec472afead92745a3fe7ca65c2bc1e0aafe11fd45e33d88b44730992fe4b4c"
+    },
+    "portable_fixture_adjustment": "The published synthetic score-sidecar test now uses the repository-local test_french_panel_runner fixture by default; optional FRENCH551_TEST_HELPERS_ROOT overrides it. Scoring and forecast source files are unchanged.",
+    "comparator_ruff": "passed with I001 ignored for the frozen import order",
+    "reporter_ruff": "passed",
+    "independent_runtime_gate_review": "passed",
+    "new_comparator_forecasts": "not run"
+  },
+  "published_files": {
+    "README.md": {
+      "bytes": 22562,
+      "sha256": "f9ae1c0d121dd4ced0bfe636efe8c912358070c25933c835eff229656e417e43"
+    },
+    "docs/french551-public-search-metadata.json": {
+      "bytes": 16749,
+      "sha256": "5132fcaccd3ce30d5d5f2e59460c2be4f631fca37d610941036d8927b4ffcd1f"
+    },
+    "docs/french551-scoring-v2-methodology.md": {
+      "bytes": 6609,
+      "sha256": "2f808514c83bd441321bacba39d8eac50f296dfa237e01059395bc3dfea3848e"
+    },
+    "scripts/bounded_public.py": {
+      "bytes": 6697,
+      "sha256": "db9842aeab1c42febc37f4e1d4a7cf85d7393b08abfe67ac4cb4e040c19c7e61"
+    },
+    "scripts/bounded_public_without_replacement.py": {
+      "bytes": 7295,
+      "sha256": "6a871fc2984539ad1d72c8edbdd4a5a5414a052a4beddcb41decfb8e115bf4a0"
+    },
+    "scripts/french_score_sidecar.py": {
+      "bytes": 24985,
+      "sha256": "49ed633f96b6a257ba72e74d0a2124dac4d7cef6ab696c45436e2135be334a1d"
+    },
+    "scripts/french_score_sidecar_r2.py": {
+      "bytes": 16106,
+      "sha256": "e2ba24477bd6c9a3154d4e6a7b3089e4b39c007db500740fd83e74969d9a344c"
+    },
+    "scripts/build_french551_scoring_plans.py": {
+      "bytes": 8289,
+      "sha256": "4c41e4b66785d1d8ab71b76a7896c2798fb9c42705d67a84600bd3e28067ae36"
+    },
+    "tests/test_bounded_public.py": {
+      "bytes": 10791,
+      "sha256": "599622a00649506b52709106b0948224a3111f52fdab6ee1b9f0e27ab47015cf"
+    },
+    "tests/test_bounded_public_without_replacement.py": {
+      "bytes": 11225,
+      "sha256": "85ec472afead92745a3fe7ca65c2bc1e0aafe11fd45e33d88b44730992fe4b4c"
+    },
+    "tests/test_french_score_sidecar.py": {
+      "bytes": 13086,
+      "sha256": "59d6d0108fbb7fd5640d8aeb87dd5bdbaa977fd9d16ecc7aa34e153222760259"
+    },
+    "tests/test_french_score_sidecar_r2.py": {
+      "bytes": 14021,
+      "sha256": "2b0a4b419e189637a92ff9f4b62595d90d23d68ab221f66d720cc0fda10b0b56"
+    },
+    "tests/test_french_panel_runner.py": {
+      "bytes": 13761,
+      "sha256": "dd8f71d5a2dfddb45b25f5548a8946d4baefee92853a3c1eab53cecd525900cc"
+    },
+    "docs/results/french551-public-search-20261020/README.md": {
+      "bytes": 1862,
+      "sha256": "5ca7caf7bde3c8d393ad6097d571e2c9c7e9a3dbb1ceaab63281bc5aabfa90fe"
+    },
+    "docs/results/french551-public-search-20261020/COMPARATORS.md": {
+      "bytes": 1922,
+      "sha256": "f306533c12503aad5f66ff4f2deb8f3ec78a5ef053580a61fff717a1e6bc42f4"
+    },
+    "docs/results/french551-public-search-20261020/model_catalogue.json": {
+      "bytes": 1398,
+      "sha256": "8c4613767ab4ea0ddcc37dadd036916ab7bd67783ebc4cc5d045700649851e34"
+    },
+    "docs/results/french551-public-search-20261020/public-baseline-v2.json": {
+      "bytes": 30107,
+      "sha256": "9af15ec3738f26c2c8be3ab8e640e5c532373f59db1acfeb34efe871181ecbe8"
+    },
+    "docs/results/french551-public-search-20261020/campaign-status.json": {
+      "bytes": 16749,
+      "sha256": "5132fcaccd3ce30d5d5f2e59460c2be4f631fca37d610941036d8927b4ffcd1f"
+    },
+    "docs/results/french551-public-search-20261020/comparator-validation-receipt.json": {
+      "bytes": 1101,
+      "sha256": "fb43c1bd6871e4e451b8dff5b3ef2248974bf419f6f4c8cdb4f1965929621a16"
+    },
+    "docs/results/french551-public-search-20261020/scoring-r2-validation-receipt.json": {
+      "bytes": 1277,
+      "sha256": "d06f3852a281b810a26db5fce7f11d77a0fee02ada05bd069366e2386fd4432a"
+    }
+  }
+}

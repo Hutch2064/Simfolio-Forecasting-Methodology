@@ -1,0 +1,26 @@
+{
+  "schema": "french-public-comparator-names-v1",
+  "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+  "comparators": [
+    {
+      "model_id": "model_testing_joint_stationary_bootstrap_v1",
+      "display_name": "Public — Adaptive Blocks",
+      "description": "Original public benchmark: Politis–White-style training-selected mean block length, random geometric blocks, and sampling with replacement.",
+      "role": "reference_comparator"
+    },
+    {
+      "model_id": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+      "display_name": "Public — Random Blocks (Replacement)",
+      "description": "Uniformly drawn block lengths from one to min(training observations, requested forecast observations), circular historical blocks, and sampling with replacement.",
+      "role": "comparator"
+    },
+    {
+      "model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+      "display_name": "Public — Random Blocks (No Replacement, Cycled)",
+      "description": "Uniform block lengths subject to the same forecast/history bound and unused-row feasibility; each historical observation is used once per path per history cycle, then the complete pool is refilled.",
+      "role": "comparator",
+      "history_exhaustion_rule": "refill_after_each_complete_history_cycle",
+      "history_exhaustion_rule_source": "explicit_user_reply"
+    }
+  ]
+}

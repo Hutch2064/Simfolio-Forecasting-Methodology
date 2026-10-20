@@ -1,0 +1,26 @@
+{
+  "schema": "french-reporting-r2-validation-v1",
+  "verified_utc": "2026-10-20T01:05:01.420578+00:00",
+  "source_sha256": {
+    "french_score_sidecar.py": "49ed633f96b6a257ba72e74d0a2124dac4d7cef6ab696c45436e2135be334a1d",
+    "build_scoring_plans.py": "4c41e4b66785d1d8ab71b76a7896c2798fb9c42705d67a84600bd3e28067ae36",
+    "french_score_sidecar_r2.py": "e2ba24477bd6c9a3154d4e6a7b3089e4b39c007db500740fd83e74969d9a344c",
+    "tests/test_french_score_sidecar_r2.py": "2b0a4b419e189637a92ff9f4b62595d90d23d68ab221f66d720cc0fda10b0b56"
+  },
+  "tests": {
+    "r2_focused": 13,
+    "entire_scoring_eta_suite": 24,
+    "result": "passed",
+    "focused_ruff": "passed"
+  },
+  "saved_runtime_contract_gate": "All approved keys required present and exactly equal before checkpoint ingestion.",
+  "plan_or_forecast_source_change": false,
+  "scoring_fingerprint_change": false,
+  "no_forecast_launched": true,
+  "no_reporter_launched": true,
+  "external_registry_sha256": "b78dcb4be193c4d0b71ed9615a763658cb9a0d56d540d8b2de8ebe15ca821304",
+  "full_control_stop": true,
+  "full_panel_activation_hold": "Development representative-family stopping criterion must be met first.",
+  "final_independent_review": "passed (root coordinator confirmed final green)",
+  "comparator_tests": 62
+}
