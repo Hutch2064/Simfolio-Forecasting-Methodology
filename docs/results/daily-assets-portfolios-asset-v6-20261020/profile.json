@@ -1,0 +1,16 @@
+{
+  "version": "asset_joint_blocks_v6",
+  "simulations": 1000,
+  "workers": 12,
+  "minimum_block_observations": 1,
+  "maximum_block_observations": null,
+  "effective_maximum": "min(training_rows, forecast_observations)",
+  "effective_minimum": "min(configured_minimum, effective_maximum)",
+  "length_distribution": "discrete_uniform_inclusive",
+  "with_replacement": "uniform valid contiguous nonwrapping starting point for each drawn block",
+  "without_replacement": "chronologically partition history into random-length contiguous blocks; shuffle blocks; use every row once; repartition and reshuffle after complete history cycle",
+  "final_partition_block": "truncate to history end if remaining rows are shorter than minimum",
+  "portfolio_policy": "fixed target weights restored at each common observed endpoint, matching unchanged panel construction",
+  "reference_selection": "Higher (worse) canonical main score of the two configurations on identical successful coverage; final choice after both complete",
+  "testfolio_approximation": "Joint asset block resampling and within-path portfolio accounting. Public block bounds are configurable. This frozen support-bounded profile is not a claim to reproduce their one-to-five-year UI defaults or unpublished RNG/start-index code."
+}

@@ -1,0 +1,9 @@
+# Asset-level baseline transition: qualification complete
+
+The accuracy-maximization goal remains active. Two source-bound asset-level TestFolio-style references passed 154 representative forecasts through 12 worker slots with zero native failures or scoring integrity errors. All542 constructed-portfolio matrices matched the unchanged panel at three causal prefix lengths. Twelve unit/contract tests passed; scheduler resume reused all154 checkpoints with zero new forecasts and identical losses.
+
+The full128098-task pair is **not yet launched**. Source publication and verified closed-V5 archival precede large-output admission. No current asset-level winner, baseline selection or full-panel improvement is claimed. The worse main-score configuration on identical full successful coverage will become the sole reference; research starts from it. Earlier scalar portfolio runs remain historical.
+
+[DESIGN.md](DESIGN.md) describes the exact random-block profile, replacement/exhaustion rules, joint-asset accounting, fixed main score, TestFolio approximation and restrictions. [integration_verification.json](integration_verification.json), [smoke_receipt.json](smoke_receipt.json) and [qualification/receipt.json](qualification/receipt.json) are the compact qualification evidence.
+
+Source recovery: recreate the documented research-owner layout with asset_level_v6 plus the existing sealed French research code and campaign scoring.py parents. scoring_parent.py is the exact parent scoring source, not a new scoring method. Data arrays remain in the private source/input archives; preserve the panel fingerprint and all per-file hashes. The asset-only numerical tests can run directly with the declared Python3.12/NumPy/Numba environment. Reporting tests also need the original scoring parent and source package. No dependency-clean or authenticated TestFolio output reproduction is claimed.
