@@ -1,6 +1,10 @@
 # Ongoing accuracy-maximization search — 2026-10-20
 
-The goal remains active. The stopping requirement has NOT been met.
+The research objective remains unfinished. The stopping requirement has NOT been met.
+The actual goal control now reports blocked, despite reporting active earlier in
+this turn. This research turn did not change that goal status or establish a
+scientific blocker. The next scientific action is identified below; automatic
+active continuation is not claimed.
 
 Current full722/36813 baseline: Equal Mix — Shrunk Mean / Gaussian Uncertainty,
 model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1.
