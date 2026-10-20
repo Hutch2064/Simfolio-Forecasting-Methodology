@@ -1,23 +1,32 @@
 # Ongoing accuracy-maximization search — 2026-10-20
 
-The actual goal control returned active at the latest continuation start. The
-research objective is unfinished; the stopping requirement has NOT been met.
+The research objective remains unfinished; no global stopping requirement has
+been declared satisfied. Current retained winner and full-panel count are unchanged.
 
-Latest evidence:
-- [Joint conditional MA1-GARCH](joint-ma1-fhs-20261020/README.md) passed7tests
-  and245training-prefix checks, then completed245development+245reserved origins
-  per arm (1470forecasts). It improved development but lost both reserved profiles.
-  No broad/full escalation or coefficient/order retuning. Zero native failures
-  or scoring integrity errors; all1470loss hashes and980prior baseline hashes
-  audited. Complete1490-file private archive was freshly downloaded, disk-restored
-  and SHA256-verified before1470local raw duplicates were retired.
-- [Volatility-coefficient uncertainty](volatility-uncertainty-qualification-20261020/DESIGN.md)
-  is a distinct training-only prototype, not an admitted forecast model.3numerical
-  tests passed, and12short/long prefixes spanning6classes passed an initial
-  importance-integration check. No field scores/targets used. All245-prefix
-  precision checks and predictive integration remain required. The newly
-  published18source/report files were freshly downloaded/restored/SHA-verified;
-  the3prototype tests also passed on the restored source.
+Latest completed evidence:
+- [Stationary volatility-coefficient posterior](volatility-coefficient-posterior-20261020/README.md):
+  9tests and all245training/native-seed/exact-prefix precision checks passed.
+  Actual245-origin development735forecasts narrowly missed the frozen gate on
+  both profiles. Zero native failures/scoring errors,735checkpoint identities/
+  losses and490prior baseline hashes audited. No prior/temperature/seed retuning.
+- [Fixed Huber drift location](Huber-location-20261020/README.md):4tests and245native
+  training-prefix checks passed;735development forecasts lost both profiles
+  versus Public/current. Raw tail observations were retained; this result does
+  not label crashes as data errors. Zero failures/scoring errors; all735losses
+  and490prior baseline hashes audited. No cutoff or scale retuning.
+
+Both methods were kept after rejection. Complete private archives were freshly
+retrieved, disk-restored and SHA256-verified before their1470local raw duplicates
+were retired (774posterior files and751Huber files).30public source/report files
+were freshly downloaded/restored/verified;9posterior and4Huber tests passed on
+the recovered sources with fixed native/input parents. Neither was admitted to
+reserved/broad/full evaluation, so neither inflates the13full-panel versions.
+
+[Persistent volatility regimes](persistent-regime-assessment-20261020.md) is the
+next researched mechanism, not an implemented/admitted candidate. It differs
+from coefficient uncertainty or robust drift. Numerical well-posedness, proper
+inference/accounting and all-prefix qualification must precede a frozen test.
+No scientific job is currently running; closed stages are expected terminal.
 
 Current full722/36813 baseline: Equal Mix — Shrunk Mean / Gaussian Uncertainty,
 model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1.
