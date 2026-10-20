@@ -1,0 +1,23 @@
+{
+  "utc": "2026-10-20T23:30:07.922837+00:00",
+  "model_id": "model_testing_asset_equal_joint_blocks_FHS_smooth_joint_mean_uncertainty_v1",
+  "training_only": true,
+  "heldout_forecasts_or_scores": 0,
+  "representative_prefixes": 710,
+  "successful_asset_fits": 1190,
+  "failures": [],
+  "source_hashes": {
+    "candidates/asset_prior_best/fit.py": "df629481a544832e0dd50e5d09813d127e6d75ae179a430f0452cfdbb07a9329",
+    "candidates/asset_prior_best/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidates/asset_prior_best/mean.py": "a39968c4c95a8679f0ed3d422f3d7fb8e83fd4479db10fe1319f8e08727e45f5",
+    "candidates/asset_prior_best/kernels.py": "fb608b9c1a7776d6b99f093c83a2779e11c1741270506d0405bb7b7f33d8b2f9",
+    "candidates/asset_prior_best/candidate.py": "19e1ce86d88466c94eb6177351ba54089c500a4e5e710529219ecb49ac39fb14",
+    "profile.json": "7a560dddb1ddf1134b71b00db39be18ca83b0ad9d2921f405e66a51807830f2c"
+  },
+  "serial_training_preflight_reason": "All12scientific forecast slots remain occupied by full baseline pair; this is a low-priority training-only fit check, not a parallel forecast queue or runtime benchmark",
+  "elapsed_diagnostic_seconds": 14.009698875015602,
+  "candidate_admitted": false,
+  "parent_selection_pending_completed_baselines": true,
+  "complete_training_preflight_sha256": "7f2b0b8c7f9715e1f9ac80e9acc8ddc46197f9b1d8a5fd8311ffca41a5a6e05d",
+  "complete_training_fit_records_retained_locally_until_candidate_phase_is_archived": true
+}

@@ -1,0 +1,243 @@
+{
+  "utc": "2026-10-20T23:17:21.884050+00:00",
+  "training_only_synthetic_mechanism_check": true,
+  "forecast_cases": 12,
+  "workers": 12,
+  "panel_outcomes_or_scores_used": false,
+  "records": [
+    {
+      "history_rows": 24,
+      "assets": 1,
+      "replacement": true,
+      "paths": 1000,
+      "worker_pid": 95111,
+      "terminal_sd_at_complete_cycles": {
+        "1": 0.02450746164187696,
+        "2": 0.033273682769272304,
+        "3": 0.039950298186024656
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 0.08686259916613331,
+        "2": 0.1292502273643301,
+        "3": 0.15317927508918722
+      }
+    },
+    {
+      "history_rows": 24,
+      "assets": 1,
+      "replacement": false,
+      "paths": 1000,
+      "worker_pid": 95112,
+      "terminal_sd_at_complete_cycles": {
+        "1": 2.6721909667238746e-18,
+        "2": 4.5065260495129975e-18,
+        "3": 6.420046522825728e-18
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 1.474514954580286e-17,
+        "2": 2.42861286636753e-17,
+        "3": 2.7755575615628914e-17
+      }
+    },
+    {
+      "history_rows": 24,
+      "assets": 3,
+      "replacement": true,
+      "paths": 1000,
+      "worker_pid": 95113,
+      "terminal_sd_at_complete_cycles": {
+        "1": 0.017443033927443376,
+        "2": 0.024659999252943727,
+        "3": 0.029198127212713
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 0.06991903651429865,
+        "2": 0.0872332785136467,
+        "3": 0.09534336159102919
+      }
+    },
+    {
+      "history_rows": 24,
+      "assets": 3,
+      "replacement": false,
+      "paths": 1000,
+      "worker_pid": 95114,
+      "terminal_sd_at_complete_cycles": {
+        "1": 3.47118297755735e-18,
+        "2": 6.9423659551147e-18,
+        "3": 0.0
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 1.887379141862766e-15,
+        "2": 3.774758283725532e-15,
+        "3": 5.662137425588298e-15
+      }
+    },
+    {
+      "history_rows": 53,
+      "assets": 1,
+      "replacement": true,
+      "paths": 1000,
+      "worker_pid": 95116,
+      "terminal_sd_at_complete_cycles": {
+        "1": 0.05890470030917291,
+        "2": 0.08075765376424965,
+        "3": 0.09680498105884754
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 0.2510140676784564,
+        "2": 0.3007632902423892,
+        "3": 0.322551722475824
+      }
+    },
+    {
+      "history_rows": 53,
+      "assets": 1,
+      "replacement": false,
+      "paths": 1000,
+      "worker_pid": 95117,
+      "terminal_sd_at_complete_cycles": {
+        "1": 4.3270492226069834e-17,
+        "2": 6.994377712731766e-17,
+        "3": 1.0832226791960053e-16
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 1.3877787807814457e-16,
+        "2": 1.6653345369377348e-16,
+        "3": 4.440892098500626e-16
+      }
+    },
+    {
+      "history_rows": 53,
+      "assets": 3,
+      "replacement": true,
+      "paths": 1000,
+      "worker_pid": 95115,
+      "terminal_sd_at_complete_cycles": {
+        "1": 0.025129438003558352,
+        "2": 0.03238026950474581,
+        "3": 0.03963283257298118
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 0.10903045784579067,
+        "2": 0.1568958092902428,
+        "3": 0.1865980067496654
+      }
+    },
+    {
+      "history_rows": 53,
+      "assets": 3,
+      "replacement": false,
+      "paths": 1000,
+      "worker_pid": 95119,
+      "terminal_sd_at_complete_cycles": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 3.47118297755735e-18
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 4.9855952699573436e-15,
+        "2": 9.971190539914687e-15,
+        "3": 1.495678580987203e-14
+      }
+    },
+    {
+      "history_rows": 101,
+      "assets": 1,
+      "replacement": true,
+      "paths": 1000,
+      "worker_pid": 95118,
+      "terminal_sd_at_complete_cycles": {
+        "1": 0.047561931893460196,
+        "2": 0.06401043676277188,
+        "3": 0.07660899390919886
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 0.18497683198078924,
+        "2": 0.2642390851247888,
+        "3": 0.3494450008922527
+      }
+    },
+    {
+      "history_rows": 101,
+      "assets": 1,
+      "replacement": false,
+      "paths": 1000,
+      "worker_pid": 95121,
+      "terminal_sd_at_complete_cycles": {
+        "1": 4.11091248921605e-17,
+        "2": 8.768293400161418e-17,
+        "3": 7.121121514817075e-17
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 8.326672684688674e-17,
+        "2": 1.942890293094024e-16,
+        "3": 3.3306690738754696e-16
+      }
+    },
+    {
+      "history_rows": 101,
+      "assets": 3,
+      "replacement": true,
+      "paths": 1000,
+      "worker_pid": 95122,
+      "terminal_sd_at_complete_cycles": {
+        "1": 0.029725858504315413,
+        "2": 0.04113357574692648,
+        "3": 0.04935915394572681
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 0.14185636401025736,
+        "2": 0.14442336523344676,
+        "3": 0.2987892460282691
+      }
+    },
+    {
+      "history_rows": 101,
+      "assets": 3,
+      "replacement": false,
+      "paths": 1000,
+      "worker_pid": 95120,
+      "terminal_sd_at_complete_cycles": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 5.55389276409176e-17
+      },
+      "max_error_vs_exact_cycle_total": {
+        "1": 7.202571872255703e-15,
+        "2": 1.4405143744511406e-14,
+        "3": 2.1593837828959295e-14
+      }
+    }
+  ],
+  "nonwrapping_row_exposure": [
+    {
+      "n": 24,
+      "edge_exposure_vs_uniform": 0.30207665422028057,
+      "center_exposure_vs_uniform": 1.345494999085655,
+      "definition": "renewal long-run row occupancy, not a finite forecast score or observed error"
+    },
+    {
+      "n": 53,
+      "edge_exposure_vs_uniform": 0.16877451389725004,
+      "center_exposure_vs_uniform": 1.367947280984383,
+      "definition": "renewal long-run row occupancy, not a finite forecast score or observed error"
+    },
+    {
+      "n": 101,
+      "edge_exposure_vs_uniform": 0.10190742172036532,
+      "center_exposure_vs_uniform": 1.3765384956811424,
+      "definition": "renewal long-run row occupancy, not a finite forecast score or observed error"
+    }
+  ],
+  "findings": [
+    "Without replacement complete cycles have deterministic cumulative constant-weight portfolio log return conditional on the finite history; shuffling changes order but not this terminal total. This alone does not prove worse CRPS.",
+    "With-replacement nonwrapping blocks give nonuniform long-run row exposure; circular starts would remove this edge effect. This alone does not prove an accuracy improvement."
+  ],
+  "next_tests_pending_full_baseline_diagnosis": [
+    "Training-fitted joint mean uncertainty for long-horizon finite-history uncertainty.",
+    "Circular joint row sampling as a separate edge-exposure contrast if supported by new baseline results."
+  ],
+  "no_candidate_admitted": true,
+  "no_reference_selected": true
+}
