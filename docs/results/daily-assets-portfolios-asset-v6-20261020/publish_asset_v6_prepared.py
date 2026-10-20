@@ -28,13 +28,15 @@ def main():
                  'bind_asset_prior_parent.py', 'publish_asset_v6_prepared.py',
                  'continue_asset_v6_research.py', 'diagnose_asset_v6_pair.py',
                  'test_asset_v6_decomposition.py', 'preserve_asset_v6_closed.py',
-                 'catalogue_asset_v6_closed.py', 'archive_asset_v6_when_closed.py']:
+                 'catalogue_asset_v6_closed.py', 'archive_asset_v6_when_closed.py',
+                 'prepare_asset_prior_broad.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
     for path in c.glob('*.py'):
         shutil.copy2(path, target/path.name)
-    for name in ['plan.json', 'parent_selection.json', 'plan_receipt.json']:
+    for name in ['plan.json', 'parent_selection.json', 'plan_receipt.json',
+                 'broad_case_selection_receipt.json', 'DESIGN.md']:
         if (c/name).exists():
             shutil.copy2(c/name, target/name)
     for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json']:

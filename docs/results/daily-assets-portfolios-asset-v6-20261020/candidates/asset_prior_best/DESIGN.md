@@ -36,6 +36,15 @@ queue releases its slots. Promotion uses only the unchanged main score on exact
 matched coverage, followed by broader/full testing. Diagnostics have zero score
 weight and no separate promotion objective.
 
+Before any field outcomes, a broad follow-through roster was frozen:7418cases
+cover all1264series and70families. It uses the first,middle,last remaining rolling
+origins and remaining temporal splits,excluding the development/reserved cases.
+Additional individual-asset calendar support is included where required by the
+unchanged main score. No earlier pilot cases were needed as support replays.
+This phase is eligible only if development and reserved both improve the main
+score relative to the better completed asset parent. It is not a claim of fresh
+independent validation or a substitute for a successful full-panel run.
+
 ## Academic context and limits
 
 The FHS authors describe filtering historical shocks by conditional volatility

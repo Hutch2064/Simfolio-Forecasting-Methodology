@@ -59,6 +59,8 @@ def run(phase):
     baseline_report = wait_for_baseline_completion()
     if phase == 'reserved':
         assert read(OWN/'development/summary.json')['advance_to_next_stage']
+    if phase == 'broad':
+        assert read(OWN/'reserved/summary.json')['advance_to_next_stage']
     destination = OWN/phase
     destination.mkdir(exist_ok=True)
     cases = plan['phases'][phase]
@@ -122,10 +124,10 @@ def run(phase):
             records[mid].append({'series_id': sid, 'origin_date': origin['origin_date'], 'score': score,
                 'loss_sha256': hashlib.sha256(np.asarray(loss, dtype=np.float64).tobytes()).hexdigest()})
             verified += 1
-    complete = not missing and final['failed_active_tasks'] == 0 and all(len(x) == 355 for x in records.values())
+    complete = not missing and final['failed_active_tasks'] == 0 and all(len(x) == len(cases) for x in records.values())
     scores = {mid: reporter.scalar(rows, metadata) if complete else None for mid, rows in records.items()}
     advance = bool(complete and scores[adapter.MODEL_ID] is not None and scores[adapter.MODEL_ID] < scores[current_best])
-    summary = {'utc': now(), 'phase': phase, 'complete': complete, 'cases_per_model': 355,
+    summary = {'utc': now(), 'phase': phase, 'complete': complete, 'cases_per_model': len(cases),
         'workers_requested': 12, 'peak_workers': peak, 'worker_pids': sorted(pids),
         'forecast_successes': final['completed_active_tasks'], 'native_failures': final['failed_active_tasks'],
         'scoring_integrity_errors': 0, 'missing': missing, 'checkpoint_identities_verified': verified,
@@ -142,5 +144,5 @@ def run(phase):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('phase', choices=['development', 'reserved'])
+    parser.add_argument('phase', choices=['development', 'reserved', 'broad'])
     run(parser.parse_args().phase)
