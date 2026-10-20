@@ -23,7 +23,8 @@ def main():
     assert not subprocess.check_output(['git', 'status', '--porcelain'], cwd=R, text=True).strip(), 'Preserve unrelated repository edits'
     for name in ['test_asset_prior_best.py', 'audit_asset_v6_full_pair.py',
                  'bind_asset_prior_parent.py', 'publish_asset_v6_prepared.py',
-                 'continue_asset_v6_research.py']:
+                 'continue_asset_v6_research.py', 'diagnose_asset_v6_pair.py',
+                 'test_asset_v6_decomposition.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -32,14 +33,16 @@ def main():
     for name in ['plan.json', 'parent_selection.json', 'plan_receipt.json']:
         if (c/name).exists():
             shutil.copy2(c/name, target/name)
-    if (V/'full_pair_independent_audit.json').exists():
-        shutil.copy2(V/'full_pair_independent_audit.json', D/'full_pair_independent_audit.json')
+    for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json']:
+        if (V/name).exists():
+            shutil.copy2(V/name, D/name)
     manifest = {str(p.relative_to(D)): sha(p) for p in sorted(D.rglob('*'))
                 if p.is_file() and p.name != 'PUBLIC_FILES.json'
                 and '__pycache__' not in p.parts}
     (D/'PUBLIC_FILES.json').write_text(json.dumps(manifest, indent=2)+'\n')
     test = subprocess.run([PY, '-m', 'unittest', '-v', 'test_asset_paths.py',
-                           'test_v6_reporting.py', 'test_asset_prior_best.py'],
+                           'test_v6_reporting.py', 'test_asset_prior_best.py',
+                           'test_asset_v6_decomposition.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
@@ -62,7 +65,7 @@ def main():
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 19}), flush=True)
+                      'tests': 21}), flush=True)
 
 
 if __name__ == '__main__':
