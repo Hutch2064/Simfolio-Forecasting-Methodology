@@ -1,0 +1,4 @@
+{
+  "reason": "Native public metadata contains numpy arrays; JSON serializer repaired before any pilot ranking was inspected. Method/cases unchanged. Initial saved raw loss NPZ retained under incomplete attempt.",
+  "source_fix": "write JSON serializer only"
+}

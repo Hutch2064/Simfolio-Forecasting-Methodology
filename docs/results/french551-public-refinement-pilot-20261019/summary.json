@@ -1,0 +1,262 @@
+{
+  "public": {
+    "complete_series": 11,
+    "series": [
+      {
+        "series_id": "FR0551",
+        "family": "broad_market",
+        "weighting": "value",
+        "v2": 0.46895317465243247,
+        "sensitivity": 0.5613326330416316,
+        "raw": 1.75004427293673,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0451",
+        "family": "industries",
+        "weighting": "equal",
+        "v2": 0.4889604884145827,
+        "sensitivity": 0.5358453527387373,
+        "raw": 1.1602901773052232,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0424",
+        "family": "industries",
+        "weighting": "value",
+        "v2": 0.5011176702835051,
+        "sensitivity": 0.5880225780985286,
+        "raw": 1.519278285895335,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0307",
+        "family": "short_term_reversal",
+        "weighting": "equal",
+        "v2": 1.5537332103839292,
+        "sensitivity": 2.0926359026947385,
+        "raw": 12.535897029076764,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0284",
+        "family": "short_term_reversal",
+        "weighting": "value",
+        "v2": 1.5316106694927536,
+        "sensitivity": 2.059624636217905,
+        "raw": 12.221817715919158,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0027",
+        "family": "size",
+        "weighting": "equal",
+        "v2": 2.1500303718190175,
+        "sensitivity": 2.915171500507708,
+        "raw": 24.212443328792023,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0009",
+        "family": "size",
+        "weighting": "value",
+        "v2": 0.516877636776861,
+        "sensitivity": 0.5567389906837543,
+        "raw": 0.8241652755838236,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0212",
+        "family": "size_value",
+        "weighting": "equal",
+        "v2": 0.32989888466365763,
+        "sensitivity": 0.3560678676745241,
+        "raw": 0.628374752590255,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0149",
+        "family": "size_value",
+        "weighting": "value",
+        "v2": 0.45601820080106603,
+        "sensitivity": 0.5380364914309753,
+        "raw": 2.530860921345268,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0063",
+        "family": "value",
+        "weighting": "equal",
+        "v2": 0.388499553547445,
+        "sensitivity": 0.43478984763274736,
+        "raw": 0.7919627016826372,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0045",
+        "family": "value",
+        "weighting": "value",
+        "v2": 0.5110099964137162,
+        "sensitivity": 0.604397225465273,
+        "raw": 1.7543741683771312,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      }
+    ],
+    "v2": 0.8087918052044514,
+    "sensitivity": 1.0220602751078658,
+    "raw": 5.448137148136759
+  },
+  "ewma_residual_sbb": {
+    "complete_series": 11,
+    "series": [
+      {
+        "series_id": "FR0551",
+        "family": "broad_market",
+        "weighting": "value",
+        "v2": 0.5418903682421446,
+        "sensitivity": 0.6709776075263839,
+        "raw": 2.47693551947591,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0451",
+        "family": "industries",
+        "weighting": "equal",
+        "v2": 0.5023798881749401,
+        "sensitivity": 0.5653968807589668,
+        "raw": 1.736774172094204,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0424",
+        "family": "industries",
+        "weighting": "value",
+        "v2": 0.5590567070387632,
+        "sensitivity": 0.679545275576036,
+        "raw": 2.2098151612070884,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0307",
+        "family": "short_term_reversal",
+        "weighting": "equal",
+        "v2": 1.8097660204341428,
+        "sensitivity": 2.423593028480814,
+        "raw": 14.008123367759397,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0284",
+        "family": "short_term_reversal",
+        "weighting": "value",
+        "v2": 1.7805989756865424,
+        "sensitivity": 2.3821581109278447,
+        "raw": 13.656588625617694,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0027",
+        "family": "size",
+        "weighting": "equal",
+        "v2": 2.6331020082716114,
+        "sensitivity": 3.482633108588282,
+        "raw": 26.343372285833524,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0009",
+        "family": "size",
+        "weighting": "value",
+        "v2": 0.5145421728384849,
+        "sensitivity": 0.5588056680173261,
+        "raw": 0.9584277818541582,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0212",
+        "family": "size_value",
+        "weighting": "equal",
+        "v2": 0.28835833673677513,
+        "sensitivity": 0.3031442055992884,
+        "raw": 0.310096700632018,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0149",
+        "family": "size_value",
+        "weighting": "value",
+        "v2": 0.5221204543855286,
+        "sensitivity": 0.6385299074617733,
+        "raw": 3.6341220104947753,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0063",
+        "family": "value",
+        "weighting": "equal",
+        "v2": 0.4211295295125245,
+        "sensitivity": 0.4866641486446611,
+        "raw": 1.2166632700342463,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      },
+      {
+        "series_id": "FR0045",
+        "family": "value",
+        "weighting": "value",
+        "v2": 0.5883115720614422,
+        "sensitivity": 0.7152311425053678,
+        "raw": 2.442987499454995,
+        "min_origins_per_horizon": 1,
+        "max_origins_per_horizon": 4,
+        "horizons": 19738
+      }
+    ],
+    "v2": 0.9237505484893547,
+    "sensitivity": 1.1733344621897042,
+    "raw": 6.272173308587093
+  },
+  "skill_percent": -14.213638484608948,
+  "scope": "predeclared bounded paired pilot, not full-panel official scores"
+}

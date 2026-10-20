@@ -1,0 +1,69 @@
+{
+  "files": [
+    {
+      "bytes": 9534,
+      "path": "METHODOLOGY.md",
+      "sha256": "0a01d04e14ae6a07f614096caa998ad05f69006e67c6e1c13c4e92a699d2d3f4"
+    },
+    {
+      "bytes": 1327,
+      "path": "README.md",
+      "sha256": "995073f82095a34fd58854d833e8523935e2b10b795c1ea4132c4e0bd0edd658"
+    },
+    {
+      "bytes": 3133,
+      "path": "alternate/candidate_garch.py",
+      "sha256": "c550744f4cd8fdba24f83d3099728d688881f3e4a784263693e352c48f0df7b2"
+    },
+    {
+      "bytes": 1372,
+      "path": "alternate/plan.json",
+      "sha256": "5538f7a5e4f6f94d86c6393cb4d883f3efdf6b6815d51cd0a6c3890a02cc6456"
+    },
+    {
+      "bytes": 6648,
+      "path": "alternate/run_alternate.py",
+      "sha256": "632429a7efafba7f203eab85f31c60dfd87ffb2879c962c09eeb89b9ae13a3d9"
+    },
+    {
+      "bytes": 5331,
+      "path": "alternate/summary.json",
+      "sha256": "568b6562d7c1830c62f8a2cb2509c4ff8b7be002ce3005ea6a5cb999c9371579"
+    },
+    {
+      "bytes": 2669,
+      "path": "implementation/candidate.py",
+      "sha256": "e9e6a5cfe16eea29995970030c9403804a8ef1d3db597328a38973f3a28bc051"
+    },
+    {
+      "bytes": 10688,
+      "path": "implementation/run_pilot.py",
+      "sha256": "35e52aeba6f7a5edb021f77042a9a297561f9520b75ad087f87e5b159ed807cb"
+    },
+    {
+      "bytes": 8914,
+      "path": "plan.json",
+      "sha256": "8975204bc689af402a236221d84ec2500456f006472e8dd3db4b5c295aeb82ec"
+    },
+    {
+      "bytes": 261,
+      "path": "serialization-fix.json",
+      "sha256": "33897bf848d723fee40000f7634e87dd94b05a7b66216c2f737cc6028560fbeb"
+    },
+    {
+      "bytes": 7576,
+      "path": "summary.json",
+      "sha256": "c0e7f1b84ba15394fc6037eb4d0512230ef001d88124b75d1371632836d74c2b"
+    },
+    {
+      "bytes": 668,
+      "path": "validation.json",
+      "sha256": "6a3cc7de2caaa9ef3db0b8439f1d627e29130b671c365709565f1906ab73a474"
+    }
+  ],
+  "frozen_methodology_revision": "b958ed46cc2b341a024abbd8a8dea70ff569c01f",
+  "panel_fingerprint": "e45e1b5bec4ad011f280a236bd9901c5ea75fd4282ab26072be2dd289e41e4c0",
+  "parent_source_capture_commit": "ad16b2575d1868d59fef1ef72cd59fd0d59f0a09",
+  "schema": "french551-public-refinement-pilot-public-source-manifest-v1",
+  "scope": "11 metadata-selected series, 4 origins per series, 240 paths, all eligible daily horizons; no full-panel or significance claim"
+}

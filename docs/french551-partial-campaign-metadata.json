@@ -1,14 +1,13 @@
 {
   "campaign": {
     "activeWorkersSnapshot": 12,
-    "approvedModelCount": 15,
+    "approvedModelCount": 14,
     "approvedModelIds": [
       "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
       "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac",
       "asset_m256_data_timescales_existing_sv_rate",
       "asset_level_naive_iid_mean_shrunk_rebalanced",
       "model_testing_joint_stationary_bootstrap_v1",
-      "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
       "constant_mean_student_t",
       "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
       "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
@@ -46,7 +45,57 @@
       "verifiedPriorOrigins": 7977
     },
     "schedulerSourceSha256": "11014f52c46e0b5e64be9a0c14ef874001954b03f31e66c1bb109c0d9887bb31",
-    "workersConfigured": 12
+    "workersConfigured": 12,
+    "historicalApprovedModelIds": [
+      "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+      "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac",
+      "asset_m256_data_timescales_existing_sv_rate",
+      "asset_level_naive_iid_mean_shrunk_rebalanced",
+      "model_testing_joint_stationary_bootstrap_v1",
+      "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "constant_mean_student_t",
+      "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
+      "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+      "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+      "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
+      "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough",
+      "asset_map_stationary_ar1_ou_residual_volatility",
+      "asset_map_stationary_ar1_proxy_leverage_dynamic_rough",
+      "FRENCH1926-EWMA-QMLE"
+    ],
+    "currentControlState": {
+      "capturedUtc": "2026-10-20T00:22:51.002026+00:00",
+      "activeModelCount": 14,
+      "activeModelIds": [
+        "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+        "UF-ORIGINAL-NODES-IID-52d4c26b608ac1ac",
+        "asset_m256_data_timescales_existing_sv_rate",
+        "asset_level_naive_iid_mean_shrunk_rebalanced",
+        "model_testing_joint_stationary_bootstrap_v1",
+        "constant_mean_student_t",
+        "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
+        "sv_parameter_mcmc_twochain_sixteen_node_moment_mixture",
+        "asset_map_multiscale_untrimmed_conditional_residual_empirical_rough_map",
+        "asset_map_multiscale_conditional_empirical_gamma_supou_whittle_map",
+        "asset_map_single_learned_multiscale_rate_untruncated_dynamic_rough",
+        "asset_map_stationary_ar1_ou_residual_volatility",
+        "asset_map_stationary_ar1_proxy_leverage_dynamic_rough",
+        "FRENCH1926-EWMA-QMLE"
+      ],
+      "removedFromActiveScope": [
+        {
+          "modelId": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+          "validSavedOriginsPreserved": 489,
+          "historicalSourceAndEvidencePreserved": true,
+          "sourceReceiptSha256": "e98c08049ff3b6194bc3204063ce8ffa8407b7d3d742b905bc0658c0e6c01891"
+        }
+      ],
+      "frenchSweepSchedulerWorkers": 0,
+      "sharedSchedulerActiveWorkers": 12,
+      "activeWorkerModelId": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+      "comparisonStatus": "RUNNING PARTIAL; NOT FINAL",
+      "finalPanelRankPublished": false
+    }
   },
   "capturedUtc": "2026-10-20T00:12:09Z",
   "inputChecksums": {

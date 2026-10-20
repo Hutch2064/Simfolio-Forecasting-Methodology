@@ -1,0 +1,188 @@
+{
+  "identity": "public_conditional_residual_sbb_pilot_v1",
+  "status": "predeclared_before_any_pilot_scores",
+  "panel_fingerprint": "e45e1b5bec4ad011f280a236bd9901c5ea75fd4282ab26072be2dd289e41e4c0",
+  "frozen_revision": "b958ed46cc2b341a024abbd8a8dea70ff569c01f",
+  "selection": "lower median series_id within each family and weighting stratum; broad market only value",
+  "series": [
+    {
+      "dataset_family": "market",
+      "family": "broad_market",
+      "log_returns_sha256": "d2fb078f50a35acd8863fd114c19a7f841e7f8c41e5ef311e17ad507b6e559a7",
+      "published_column": "Mkt-RF + RF",
+      "return_series_sha256": "953e40d7336d6603e43f55c56472fbc6781c0b9b5464156bf38e8a7baa7c02a5",
+      "role": "equity",
+      "series_id": "FR0551",
+      "source_sha256": "2f29e22546069914890a712680a6f81f3680ebc3543b52864484d209ca13a7db",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip",
+      "weighting": "value"
+    },
+    {
+      "dataset_family": "industry_30",
+      "family": "industries",
+      "log_returns_sha256": "1c2a2b8f1d15c0010210525bbc4799ad638ac2cbee162c75513710456d7b9c0b",
+      "published_column": "BusEq",
+      "return_series_sha256": "5dd091ca499ea9ef368bad9ad9c7f62e0942db2a4e6219d3898777c5a0a1df22",
+      "role": "equity",
+      "series_id": "FR0451",
+      "source_sha256": "04a7a74fcd7c12e90461718e5ba8490e99d18c3e9323182b6c7a7b320e6cd34a",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/30_Industry_Portfolios_daily_CSV.zip",
+      "weighting": "equal"
+    },
+    {
+      "dataset_family": "industry_30",
+      "family": "industries",
+      "log_returns_sha256": "e0c08453e02b213df7bc32f28dba2e04d2b2a4c9bf2e083a51e765e52fe1d322",
+      "published_column": "BusEq",
+      "return_series_sha256": "333acea842cdfea6303d439c594915392b5d99cc9864ce970ca64713e85465cf",
+      "role": "equity",
+      "series_id": "FR0424",
+      "source_sha256": "04a7a74fcd7c12e90461718e5ba8490e99d18c3e9323182b6c7a7b320e6cd34a",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/30_Industry_Portfolios_daily_CSV.zip",
+      "weighting": "value"
+    },
+    {
+      "dataset_family": "short_reversal_25",
+      "family": "short_term_reversal",
+      "log_returns_sha256": "e8a8b11540e8bc6a4b1f6549103ed7f272d8dfe256380596608f9078d272e413",
+      "published_column": "ME3 PRIOR4",
+      "return_series_sha256": "72e402566d5d1c149678dae8826000deb074785efa4b7027d7dc317f0d766bf1",
+      "role": "equity",
+      "series_id": "FR0307",
+      "source_sha256": "1b13b06d8e1003d764eb7edd32ee32e50d750e9ba75bf308cb02b93e6d0ff97c",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/25_Portfolios_ME_Prior_1_0_Daily_CSV.zip",
+      "weighting": "equal"
+    },
+    {
+      "dataset_family": "short_reversal_25",
+      "family": "short_term_reversal",
+      "log_returns_sha256": "af02cb5855397e1dfeee8c2ec1a29d20f46970017ac8df713adb472dabf4d67a",
+      "published_column": "ME3 PRIOR4",
+      "return_series_sha256": "b4faffae05f257828ed52ea06dfc275070e7605578f11f0fdd7643cd68e27241",
+      "role": "equity",
+      "series_id": "FR0284",
+      "source_sha256": "1b13b06d8e1003d764eb7edd32ee32e50d750e9ba75bf308cb02b93e6d0ff97c",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/25_Portfolios_ME_Prior_1_0_Daily_CSV.zip",
+      "weighting": "value"
+    },
+    {
+      "dataset_family": "size",
+      "family": "size",
+      "log_returns_sha256": "08ae4a83a9e8dbb310633b051feb698496f09ee5d2b3fe51f8af8b8e40967374",
+      "published_column": "Lo 10",
+      "return_series_sha256": "a5119ad219c03f4e8c1f16a0f5f26062d65b638b40689dad84bbf1162f4d7ed1",
+      "role": "equity",
+      "series_id": "FR0027",
+      "source_sha256": "a14d94bc1fe89a5ee0584c34fbc1b705bd2584774f29b33d23ca14aa10936f57",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/Portfolios_Formed_on_ME_Daily_CSV.zip",
+      "weighting": "equal"
+    },
+    {
+      "dataset_family": "size",
+      "family": "size",
+      "log_returns_sha256": "b108baf3c2555f3d8abe41ebf0d02258660c718f2d79b7beb399ddf69b29d8f3",
+      "published_column": "Lo 10",
+      "return_series_sha256": "63a589902484eac1cd3c652b04c01da02f0f9452cab0f0b58e79512eab523947",
+      "role": "equity",
+      "series_id": "FR0009",
+      "source_sha256": "a14d94bc1fe89a5ee0584c34fbc1b705bd2584774f29b33d23ca14aa10936f57",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/Portfolios_Formed_on_ME_Daily_CSV.zip",
+      "weighting": "value"
+    },
+    {
+      "dataset_family": "size_value_100",
+      "family": "size_value",
+      "log_returns_sha256": "d6634cce24cc6368d9ddd6133f8eacc6fa385f8452ad0142caf6add63be18eda",
+      "published_column": "ME4 BM8",
+      "return_series_sha256": "a9cecbe7c8e3135e758ff6ae5d90301ceb794bbe5570a95bc79f79ed710de678",
+      "role": "equity",
+      "series_id": "FR0212",
+      "source_sha256": "baec6562efa76fb04b2e4185af9b05f5691a85c651786644628e4b2c0b8d27ff",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/100_Portfolios_10x10_Daily_CSV.zip",
+      "weighting": "equal"
+    },
+    {
+      "dataset_family": "size_value_100",
+      "family": "size_value",
+      "log_returns_sha256": "ccec916bc92ebe839dcddbd379f85c527a3dcdce3dffc3a95838a8b2a3a81773",
+      "published_column": "ME4 BM8",
+      "return_series_sha256": "53fad129474b05e4124429c815d7220fbcd6e40639f1f70b4cdee48b6f3d05bc",
+      "role": "equity",
+      "series_id": "FR0149",
+      "source_sha256": "baec6562efa76fb04b2e4185af9b05f5691a85c651786644628e4b2c0b8d27ff",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/100_Portfolios_10x10_Daily_CSV.zip",
+      "weighting": "value"
+    },
+    {
+      "dataset_family": "value",
+      "family": "value",
+      "log_returns_sha256": "49ab97c7adabb3bcf04f14e445298a99021a679bb59bb27bb21f541f14b44b9d",
+      "published_column": "Lo 10",
+      "return_series_sha256": "42bc4725118d93335a3c827d2b280306fb62da51882e7176821d4ab6a9ff082c",
+      "role": "equity",
+      "series_id": "FR0063",
+      "source_sha256": "bf949056f53870eda1ba463205de92eb656fc1ba2e6ff689579ca472a95f7edf",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/Portfolios_Formed_on_BE-ME_Daily_CSV.zip",
+      "weighting": "equal"
+    },
+    {
+      "dataset_family": "value",
+      "family": "value",
+      "log_returns_sha256": "788a13fbb4b6067c9dafd555098eb2b549d36e61e89c66989fcca7e15613ea7c",
+      "published_column": "Lo 10",
+      "return_series_sha256": "a29ddeb20e5c3e4aad47bfdfe8a025d60bdb8af9a229c8b877bae96513aca645",
+      "role": "equity",
+      "series_id": "FR0045",
+      "source_sha256": "bf949056f53870eda1ba463205de92eb656fc1ba2e6ff689579ca472a95f7edf",
+      "source_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/Portfolios_Formed_on_BE-ME_Daily_CSV.zip",
+      "weighting": "value"
+    }
+  ],
+  "origins": [
+    {
+      "origin_label": "rolling_01",
+      "evaluation_split": "rolling_origin",
+      "position": 525,
+      "origin_date": "1928-03-31",
+      "max_horizon": 131,
+      "train_fraction": null
+    },
+    {
+      "origin_label": "rolling_24",
+      "evaluation_split": "rolling_origin",
+      "position": 13608,
+      "origin_date": "1976-03-31",
+      "max_horizon": 3402,
+      "train_fraction": null
+    },
+    {
+      "origin_label": "rolling_48",
+      "evaluation_split": "rolling_origin",
+      "position": 26273,
+      "origin_date": "2026-06-30",
+      "max_horizon": 43,
+      "train_fraction": null
+    },
+    {
+      "origin_label": "train_first_quarter_test_remaining",
+      "evaluation_split": "train_first_quarter_test_remaining",
+      "position": 6578,
+      "origin_date": "1948-09-20",
+      "max_horizon": 19738,
+      "train_fraction": 0.25
+    }
+  ],
+  "paths": 240,
+  "seed": "unchanged coherent_daily_seed(origin_date, full max_horizon, 240), shared baseline/candidate",
+  "score": "v2 q=CRPS/(training_std_ddof1*sqrt(h+h*h/n)); origin means inside daily horizon cells; log1p(1/h) weights; equal series",
+  "sensitivity": "same aggregation, denominator training_std_ddof1*sqrt(h)",
+  "all_eligible_horizons": true,
+  "partial_scope": "pilot complete on only selected 11 series and four selected origins; no full-panel victory or significance claim",
+  "artifact_budget_gib": 3,
+  "expected_growth_gib": 0.2,
+  "candidate": "raw mean; exact public block selection and index RNG; training-only existing EWMA QMLE; residuals centered and unit-RMS; recursive conditional variance; native simple-return clipping and wealth accounting",
+  "source_sha256": {
+    "candidate.py": "e9e6a5cfe16eea29995970030c9403804a8ef1d3db597328a38973f3a28bc051",
+    "run_pilot.py": "35e52aeba6f7a5edb021f77042a9a297561f9520b75ad087f87e5b159ed807cb"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "checks": [
+    "training conditional variance matches hand recurrence",
+    "forecast recursion and wealth accounting match independent scalar implementation",
+    "EWMA is nested within alternate at rho=1",
+    "training-only optimizer nests EWMA, enforces admissible parameters and normalized residual pool; forecasts deterministic",
+    "public v2 matches independent per-horizon scalar oracle",
+    "ewma v2 matches independent per-horizon scalar oracle",
+    "alternate v2 matches independent per-horizon scalar oracle",
+    "all 44 public forecasts have byte-exact independent RNG/indices/native-accounting replay"
+  ],
+  "count": 8
+}

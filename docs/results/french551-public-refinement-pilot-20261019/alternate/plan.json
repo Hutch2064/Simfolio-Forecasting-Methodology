@@ -1,0 +1,14 @@
+{
+  "identity": "public_mean_reverting_residual_sbb_pilot_v1",
+  "initial_pilot_plan_sha256": "8975204bc689af402a236221d84ec2500456f006472e8dd3db4b5c295aeb82ec",
+  "cases": "identical 11 series x four origins x240 paths; full horizons unchanged",
+  "baseline": "reuse exact public arrays from first complete pilot; no refits",
+  "reason": "Initial recursive EWMA lost 14.21 percent vs public; near-zero typical future variance collapses long-horizon ensemble spread. Add only a training-fitted restoring variance intercept.",
+  "method": "v_next=(1-rho)*training_variance + rho*(lambda*v+(1-lambda)*residual^2). Fit lambda,rho in[0,1] training Gaussian predictive likelihood, variance targeted sample ddof1; nested EWMA rho1 and constant variance rho0 evaluated explicitly. Raw mean, empirical centered unit-RMS residual SBB, indices and native wealth accounting unchanged.",
+  "optimization": "two deterministic L-BFGS-B starts: (EWMA lambda,.99),(.5,.5); endpoints EWMA and constant; no outcome fitting or parameter cutoffs",
+  "source_sha256": {
+    "candidate_garch.py": "c550744f4cd8fdba24f83d3099728d688881f3e4a784263693e352c48f0df7b2",
+    "run_alternate.py": "632429a7efafba7f203eab85f31c60dfd87ffb2879c962c09eeb89b9ae13a3d9"
+  },
+  "claim_limit": "one exploratory incremental alternative on same bounded panel; no untouched validation set or full-panel result"
+}
