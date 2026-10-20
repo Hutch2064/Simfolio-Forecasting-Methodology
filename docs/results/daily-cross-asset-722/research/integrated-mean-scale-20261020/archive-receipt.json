@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T19:01:23.885837+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-mean-horseshoe-20261020T1902Z",
+  "archive_name": "mean-horseshoe-evidence.tar.gz",
+  "archive_sha256": "eff8aca96a513023a214310f5c12c8adc3a13720cd76995eb5e5289cc8937b0c",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "507ad2c52e00e0078ab04c08a83ea2aa9c7ba4cfc3bdda688fec6b5e1cefaa9d",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 1488,
+  "archive_bytes": 51760418,
+  "restore_command": "gh release download research-accuracy-mean-horseshoe-20261020T1902Z --repo Hutch2064/simfolio-engine --pattern mean-horseshoe-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 1470,
+  "free_before_cleanup": 643282681856,
+  "free_after_cleanup": 643453493248
+}
