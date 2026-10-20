@@ -6,6 +6,7 @@ import json
 import os
 import shutil
 import subprocess
+import fcntl
 
 O = Path(__file__).resolve().parent
 V = O/'asset_level_v6'
@@ -20,11 +21,14 @@ sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
 
 
 def main():
+    lock = (O/'asset_v6_publication.lock').open('a')
+    fcntl.flock(lock, fcntl.LOCK_EX)
     assert not subprocess.check_output(['git', 'status', '--porcelain'], cwd=R, text=True).strip(), 'Preserve unrelated repository edits'
     for name in ['test_asset_prior_best.py', 'audit_asset_v6_full_pair.py',
                  'bind_asset_prior_parent.py', 'publish_asset_v6_prepared.py',
                  'continue_asset_v6_research.py', 'diagnose_asset_v6_pair.py',
-                 'test_asset_v6_decomposition.py']:
+                 'test_asset_v6_decomposition.py', 'preserve_asset_v6_closed.py',
+                 'catalogue_asset_v6_closed.py', 'archive_asset_v6_when_closed.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
