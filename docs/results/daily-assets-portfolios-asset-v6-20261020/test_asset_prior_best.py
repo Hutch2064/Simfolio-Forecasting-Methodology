@@ -5,6 +5,8 @@ for k in ['OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'NUMBA_NUM_THREADS']:
     os.environ[k] = '1'
 import sys
 import unittest
+from unittest.mock import patch
+import tempfile
 import ast
 import json
 import numpy as np
@@ -69,9 +71,10 @@ class AssetPriorTests(unittest.TestCase):
         self.assertAlmostEqual(assets[0, 0], -assets[0, 1], places=15)
 
     def test_factory_refuses_unselected_or_missing_parent(self):
-        self.assertFalse((candidate.OWN/'parent_selection.json').exists())
-        with self.assertRaises(FileNotFoundError):
-            candidate.build()
+        with tempfile.TemporaryDirectory() as folder:
+            with patch.object(candidate, 'OWN', Path(folder)):
+                with self.assertRaises(FileNotFoundError):
+                    candidate.build()
 
 
 if __name__ == '__main__':
