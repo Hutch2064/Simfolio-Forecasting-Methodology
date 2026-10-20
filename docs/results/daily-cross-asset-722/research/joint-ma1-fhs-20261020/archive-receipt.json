@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T19:24:28.389147+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-joint-ma1-fhs-20261020T1924Z",
+  "archive_name": "joint-ma1-fhs-evidence.tar.gz",
+  "archive_sha256": "4bef30c53367bab44b7a586c713dcc39f6381ea1eb0a64cdf736e8f5b53c6dcf",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "2e40057208ac73780cf87d19f8e16fed4d0cd889f0dc5a1669713491b5f10e90",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 1490,
+  "archive_bytes": 52234560,
+  "restore_command": "gh release download research-accuracy-joint-ma1-fhs-20261020T1924Z --repo Hutch2064/simfolio-engine --pattern joint-ma1-fhs-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 1470,
+  "free_before_cleanup": 643304701952,
+  "free_after_cleanup": 643477905408
+}

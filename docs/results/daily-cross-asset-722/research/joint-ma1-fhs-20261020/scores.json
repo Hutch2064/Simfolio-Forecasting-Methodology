@@ -1,0 +1,1418 @@
+{
+  "development": {
+    "adaptive_reused_evidence": true,
+    "arms": {
+      "Candidate": {
+        "by_class": {
+          "commodities": {
+            "primary_score": 0.5243777362770977,
+            "sensitivity_score": 0.5449491288511065
+          },
+          "cryptocurrencies": {
+            "primary_score": 0.6000115378153058,
+            "sensitivity_score": 0.6443477335712658
+          },
+          "equities": {
+            "primary_score": 0.596136635369863,
+            "sensitivity_score": 0.6184018143649371
+          },
+          "fixed_income": {
+            "primary_score": 0.7519329690604291,
+            "sensitivity_score": 0.8049685234970951
+          },
+          "foreign_exchange": {
+            "primary_score": 0.8067536096884622,
+            "sensitivity_score": 0.8575110650219374
+          },
+          "real_estate": {
+            "primary_score": 0.2545718313688118,
+            "sensitivity_score": 0.26560097528448234
+          }
+        },
+        "by_family": {
+          "aggregate_bonds": {
+            "primary_score": 0.5382157450551182,
+            "sensitivity_score": 0.575447226984009
+          },
+          "asia_pacific_ex_japan_investment": {
+            "primary_score": 1.108437244352313,
+            "sensitivity_score": 1.143923284886493
+          },
+          "asia_pacific_ex_japan_market": {
+            "primary_score": 0.6807639449626615,
+            "sensitivity_score": 0.7000388323126686
+          },
+          "asia_pacific_ex_japan_momentum": {
+            "primary_score": 0.8807409239493943,
+            "sensitivity_score": 0.901234351431533
+          },
+          "asia_pacific_ex_japan_profitability": {
+            "primary_score": 0.6748861631681291,
+            "sensitivity_score": 0.6964509189117802
+          },
+          "asia_pacific_ex_japan_size_value": {
+            "primary_score": 0.6584569719665493,
+            "sensitivity_score": 0.6799360823265533
+          },
+          "bilateral_spot_currency": {
+            "primary_score": 0.8067536096884622,
+            "sensitivity_score": 0.8575110650219374
+          },
+          "broad_agriculture": {
+            "primary_score": 0.33578959459271474,
+            "sensitivity_score": 0.3513824329421845
+          },
+          "broad_commodity": {
+            "primary_score": 0.9462776759628391,
+            "sensitivity_score": 0.9813637841009196
+          },
+          "corporate_credit": {
+            "primary_score": 0.717576128396105,
+            "sensitivity_score": 0.7535017918868933
+          },
+          "developed_ex_us_market": {
+            "primary_score": 0.6465293428126653,
+            "sensitivity_score": 0.6669277487624831
+          },
+          "developed_market": {
+            "primary_score": 0.7278521170108363,
+            "sensitivity_score": 0.7545827323939075
+          },
+          "digital_asset_spot": {
+            "primary_score": 0.6000115378153058,
+            "sensitivity_score": 0.6443477335712658
+          },
+          "energy": {
+            "primary_score": 0.5066657533222679,
+            "sensitivity_score": 0.517365993265414
+          },
+          "europe_investment": {
+            "primary_score": 0.8505758594356001,
+            "sensitivity_score": 0.8886499382320527
+          },
+          "europe_market": {
+            "primary_score": 0.6291810337640688,
+            "sensitivity_score": 0.6527028319497081
+          },
+          "europe_momentum": {
+            "primary_score": 0.826040981306402,
+            "sensitivity_score": 0.8455725368919834
+          },
+          "europe_profitability": {
+            "primary_score": 0.8654727251324265,
+            "sensitivity_score": 0.8894468589464267
+          },
+          "europe_size_value": {
+            "primary_score": 0.9937034466203156,
+            "sensitivity_score": 1.0363969628530032
+          },
+          "grains": {
+            "primary_score": 0.4621599431029382,
+            "sensitivity_score": 0.48102698187669546
+          },
+          "high_yield": {
+            "primary_score": 0.4464670356694468,
+            "sensitivity_score": 0.474019081772333
+          },
+          "industrial_metals": {
+            "primary_score": 0.2968236447336987,
+            "sensitivity_score": 0.3109167603120081
+          },
+          "inflation_linked_bonds": {
+            "primary_score": 0.7984472729694065,
+            "sensitivity_score": 0.8278992624379615
+          },
+          "international_bonds": {
+            "primary_score": 0.7140163773692904,
+            "sensitivity_score": 0.7494592586061948
+          },
+          "japan_investment": {
+            "primary_score": 0.4130040109672393,
+            "sensitivity_score": 0.4276121064862277
+          },
+          "japan_market": {
+            "primary_score": 0.5103099745773172,
+            "sensitivity_score": 0.5280436629847138
+          },
+          "japan_momentum": {
+            "primary_score": 0.6593553123093441,
+            "sensitivity_score": 0.6851942547076422
+          },
+          "japan_profitability": {
+            "primary_score": 0.5196467029686959,
+            "sensitivity_score": 0.5399962484167113
+          },
+          "japan_size_value": {
+            "primary_score": 0.4310810488806995,
+            "sensitivity_score": 0.4476895857243074
+          },
+          "municipal": {
+            "primary_score": 0.46910176049716173,
+            "sensitivity_score": 0.4938575644537484
+          },
+          "nominal_treasury": {
+            "primary_score": 1.2607055142639494,
+            "sensitivity_score": 1.4117410593810478
+          },
+          "north_america_investment": {
+            "primary_score": 0.7192796004379711,
+            "sensitivity_score": 0.743876627496428
+          },
+          "north_america_market": {
+            "primary_score": 0.7012091475344202,
+            "sensitivity_score": 0.7487837093389895
+          },
+          "north_america_momentum": {
+            "primary_score": 1.3442598017539944,
+            "sensitivity_score": 1.384853915113525
+          },
+          "north_america_profitability": {
+            "primary_score": 0.7964984640292035,
+            "sensitivity_score": 0.8656094280065487
+          },
+          "north_america_size_value": {
+            "primary_score": 0.7143223853554397,
+            "sensitivity_score": 0.7557219683115927
+          },
+          "precious_metals": {
+            "primary_score": 0.509989335419111,
+            "sensitivity_score": 0.5396277536284726
+          },
+          "softs": {
+            "primary_score": 0.5750634543139042,
+            "sensitivity_score": 0.6144143271289061
+          },
+          "us_broad_market": {
+            "primary_score": 0.6787786979102207,
+            "sensitivity_score": 0.7153745570654955
+          },
+          "us_industries": {
+            "primary_score": 0.5374034797917272,
+            "sensitivity_score": 0.5675926081965251
+          },
+          "us_investment": {
+            "primary_score": 0.6326329219350274,
+            "sensitivity_score": 0.6815834666474276
+          },
+          "us_listed_real_estate": {
+            "primary_score": 0.2545718313688118,
+            "sensitivity_score": 0.26560097528448234
+          },
+          "us_long_term_reversal": {
+            "primary_score": 0.5994406441368059,
+            "sensitivity_score": 0.6159187826362367
+          },
+          "us_momentum": {
+            "primary_score": 0.43938428704107774,
+            "sensitivity_score": 0.45837593047304226
+          },
+          "us_profitability": {
+            "primary_score": 0.5383822787883451,
+            "sensitivity_score": 0.5816410808723187
+          },
+          "us_short_term_reversal": {
+            "primary_score": 0.8755215546410577,
+            "sensitivity_score": 0.9248673388052481
+          },
+          "us_size": {
+            "primary_score": 0.5614079537790808,
+            "sensitivity_score": 0.5859770464245763
+          },
+          "us_size_value": {
+            "primary_score": 0.599596665321808,
+            "sensitivity_score": 0.6302723805123183
+          },
+          "us_value": {
+            "primary_score": 0.5809057354880293,
+            "sensitivity_score": 0.6198352314334917
+          }
+        },
+        "primary_score": 0.6126779669284411,
+        "sensitivity_score": 0.6451667432187116
+      },
+      "Incumbent": {
+        "by_class": {
+          "commodities": {
+            "primary_score": 0.5245473394064202,
+            "sensitivity_score": 0.5450684755267599
+          },
+          "cryptocurrencies": {
+            "primary_score": 0.6000485139937265,
+            "sensitivity_score": 0.6444386318760296
+          },
+          "equities": {
+            "primary_score": 0.5962798148400461,
+            "sensitivity_score": 0.6185560427940392
+          },
+          "fixed_income": {
+            "primary_score": 0.7551273694400211,
+            "sensitivity_score": 0.8082393508767451
+          },
+          "foreign_exchange": {
+            "primary_score": 0.8065051822856647,
+            "sensitivity_score": 0.857364245153363
+          },
+          "real_estate": {
+            "primary_score": 0.2574841248351013,
+            "sensitivity_score": 0.2686601963000626
+          }
+        },
+        "by_family": {
+          "aggregate_bonds": {
+            "primary_score": 0.5348557379872663,
+            "sensitivity_score": 0.5720738912486381
+          },
+          "asia_pacific_ex_japan_investment": {
+            "primary_score": 1.1084272213672948,
+            "sensitivity_score": 1.143929373470543
+          },
+          "asia_pacific_ex_japan_market": {
+            "primary_score": 0.6770091693266076,
+            "sensitivity_score": 0.6960783380822061
+          },
+          "asia_pacific_ex_japan_momentum": {
+            "primary_score": 0.8860052117287381,
+            "sensitivity_score": 0.906407981554775
+          },
+          "asia_pacific_ex_japan_profitability": {
+            "primary_score": 0.6716409021870225,
+            "sensitivity_score": 0.6931180806271819
+          },
+          "asia_pacific_ex_japan_size_value": {
+            "primary_score": 0.6535243436837879,
+            "sensitivity_score": 0.674856258823618
+          },
+          "bilateral_spot_currency": {
+            "primary_score": 0.8065051822856647,
+            "sensitivity_score": 0.857364245153363
+          },
+          "broad_agriculture": {
+            "primary_score": 0.33672305765731575,
+            "sensitivity_score": 0.35239686639967316
+          },
+          "broad_commodity": {
+            "primary_score": 0.9469515212169408,
+            "sensitivity_score": 0.9820536424636759
+          },
+          "corporate_credit": {
+            "primary_score": 0.7212303895702343,
+            "sensitivity_score": 0.7573305003112815
+          },
+          "developed_ex_us_market": {
+            "primary_score": 0.6431433461997393,
+            "sensitivity_score": 0.6634311022875711
+          },
+          "developed_market": {
+            "primary_score": 0.7170702957824668,
+            "sensitivity_score": 0.7437728225929437
+          },
+          "digital_asset_spot": {
+            "primary_score": 0.6000485139937265,
+            "sensitivity_score": 0.6444386318760296
+          },
+          "energy": {
+            "primary_score": 0.5060528463808396,
+            "sensitivity_score": 0.5168049652212522
+          },
+          "europe_investment": {
+            "primary_score": 0.8489272877149577,
+            "sensitivity_score": 0.8870307334273144
+          },
+          "europe_market": {
+            "primary_score": 0.6286517629977744,
+            "sensitivity_score": 0.652163234457871
+          },
+          "europe_momentum": {
+            "primary_score": 0.8263620681418395,
+            "sensitivity_score": 0.8459007388323363
+          },
+          "europe_profitability": {
+            "primary_score": 0.8644108729490365,
+            "sensitivity_score": 0.8883558183042396
+          },
+          "europe_size_value": {
+            "primary_score": 0.9980223772683698,
+            "sensitivity_score": 1.0408431883501514
+          },
+          "grains": {
+            "primary_score": 0.46174525563956337,
+            "sensitivity_score": 0.4806586120725074
+          },
+          "high_yield": {
+            "primary_score": 0.4472494693469854,
+            "sensitivity_score": 0.47481128179125953
+          },
+          "industrial_metals": {
+            "primary_score": 0.2982548581650617,
+            "sensitivity_score": 0.31215075546833865
+          },
+          "inflation_linked_bonds": {
+            "primary_score": 0.8004502937677463,
+            "sensitivity_score": 0.8299570082286041
+          },
+          "international_bonds": {
+            "primary_score": 0.7164670604416222,
+            "sensitivity_score": 0.7519798091007203
+          },
+          "japan_investment": {
+            "primary_score": 0.4131982262446231,
+            "sensitivity_score": 0.427771185517169
+          },
+          "japan_market": {
+            "primary_score": 0.510555336703927,
+            "sensitivity_score": 0.5282426843989323
+          },
+          "japan_momentum": {
+            "primary_score": 0.6470297208789242,
+            "sensitivity_score": 0.6727000935881003
+          },
+          "japan_profitability": {
+            "primary_score": 0.5127228130348982,
+            "sensitivity_score": 0.5327002693050367
+          },
+          "japan_size_value": {
+            "primary_score": 0.43101975324021413,
+            "sensitivity_score": 0.44757373223453933
+          },
+          "municipal": {
+            "primary_score": 0.47172850655846404,
+            "sensitivity_score": 0.49643597169773646
+          },
+          "nominal_treasury": {
+            "primary_score": 1.272125016963221,
+            "sensitivity_score": 1.4234448262047938
+          },
+          "north_america_investment": {
+            "primary_score": 0.7135326486207084,
+            "sensitivity_score": 0.7378527134562045
+          },
+          "north_america_market": {
+            "primary_score": 0.7030324330537905,
+            "sensitivity_score": 0.7508416469609622
+          },
+          "north_america_momentum": {
+            "primary_score": 1.3404169551181575,
+            "sensitivity_score": 1.3812080676223215
+          },
+          "north_america_profitability": {
+            "primary_score": 0.7980465534986533,
+            "sensitivity_score": 0.8674917803212654
+          },
+          "north_america_size_value": {
+            "primary_score": 0.7165144071902942,
+            "sensitivity_score": 0.7580842818896905
+          },
+          "precious_metals": {
+            "primary_score": 0.5096882427967989,
+            "sensitivity_score": 0.5393437971040012
+          },
+          "softs": {
+            "primary_score": 0.5744410932495772,
+            "sensitivity_score": 0.613006405709825
+          },
+          "us_broad_market": {
+            "primary_score": 0.6815532626580639,
+            "sensitivity_score": 0.7183765462847029
+          },
+          "us_industries": {
+            "primary_score": 0.5366650481871137,
+            "sensitivity_score": 0.5668691026380688
+          },
+          "us_investment": {
+            "primary_score": 0.6383626455982906,
+            "sensitivity_score": 0.6877371002187103
+          },
+          "us_listed_real_estate": {
+            "primary_score": 0.2574841248351013,
+            "sensitivity_score": 0.2686601963000626
+          },
+          "us_long_term_reversal": {
+            "primary_score": 0.5898680565657107,
+            "sensitivity_score": 0.606018688971998
+          },
+          "us_momentum": {
+            "primary_score": 0.42865781437910516,
+            "sensitivity_score": 0.4475459879038451
+          },
+          "us_profitability": {
+            "primary_score": 0.5402182914603388,
+            "sensitivity_score": 0.5836303606844296
+          },
+          "us_short_term_reversal": {
+            "primary_score": 0.8925754668589612,
+            "sensitivity_score": 0.9421601574353147
+          },
+          "us_size": {
+            "primary_score": 0.5695178892478373,
+            "sensitivity_score": 0.5941690097812851
+          },
+          "us_size_value": {
+            "primary_score": 0.6009831825013823,
+            "sensitivity_score": 0.6317493392929775
+          },
+          "us_value": {
+            "primary_score": 0.582558486755965,
+            "sensitivity_score": 0.6216283622608012
+          }
+        },
+        "primary_score": 0.6134022371901219,
+        "sensitivity_score": 0.6459081423733957
+      },
+      "Public": {
+        "by_class": {
+          "commodities": {
+            "primary_score": 0.5407625199407259,
+            "sensitivity_score": 0.5654862610890913
+          },
+          "cryptocurrencies": {
+            "primary_score": 0.6394910810357797,
+            "sensitivity_score": 0.6984370158748612
+          },
+          "equities": {
+            "primary_score": 0.6030571286508275,
+            "sensitivity_score": 0.6262083340011247
+          },
+          "fixed_income": {
+            "primary_score": 0.7803734220698029,
+            "sensitivity_score": 0.8388837923438911
+          },
+          "foreign_exchange": {
+            "primary_score": 0.8492243871561431,
+            "sensitivity_score": 0.9129537081475689
+          },
+          "real_estate": {
+            "primary_score": 0.2681627399351486,
+            "sensitivity_score": 0.2779819988276762
+          }
+        },
+        "by_family": {
+          "aggregate_bonds": {
+            "primary_score": 0.5713132274445528,
+            "sensitivity_score": 0.6166708326971514
+          },
+          "asia_pacific_ex_japan_investment": {
+            "primary_score": 1.1183916516084476,
+            "sensitivity_score": 1.1496939452534298
+          },
+          "asia_pacific_ex_japan_market": {
+            "primary_score": 0.7137926629096075,
+            "sensitivity_score": 0.7364949910647958
+          },
+          "asia_pacific_ex_japan_momentum": {
+            "primary_score": 0.8939493873808437,
+            "sensitivity_score": 0.9126700823511328
+          },
+          "asia_pacific_ex_japan_profitability": {
+            "primary_score": 0.682126488955533,
+            "sensitivity_score": 0.7033790783900504
+          },
+          "asia_pacific_ex_japan_size_value": {
+            "primary_score": 0.6963249604569461,
+            "sensitivity_score": 0.7231385722175503
+          },
+          "bilateral_spot_currency": {
+            "primary_score": 0.8492243871561431,
+            "sensitivity_score": 0.9129537081475689
+          },
+          "broad_agriculture": {
+            "primary_score": 0.35515152235613784,
+            "sensitivity_score": 0.3725466894570995
+          },
+          "broad_commodity": {
+            "primary_score": 0.9843410102358241,
+            "sensitivity_score": 1.03042770559331
+          },
+          "corporate_credit": {
+            "primary_score": 0.7335226296637645,
+            "sensitivity_score": 0.7766079904606451
+          },
+          "developed_ex_us_market": {
+            "primary_score": 0.6607484019569887,
+            "sensitivity_score": 0.6802128995648288
+          },
+          "developed_market": {
+            "primary_score": 0.7485631699213919,
+            "sensitivity_score": 0.7840157688501406
+          },
+          "digital_asset_spot": {
+            "primary_score": 0.6394910810357797,
+            "sensitivity_score": 0.6984370158748612
+          },
+          "energy": {
+            "primary_score": 0.5032203592265279,
+            "sensitivity_score": 0.5121935811873503
+          },
+          "europe_investment": {
+            "primary_score": 0.8495081826679046,
+            "sensitivity_score": 0.8845020951714352
+          },
+          "europe_market": {
+            "primary_score": 0.6620568252827795,
+            "sensitivity_score": 0.6942965563407498
+          },
+          "europe_momentum": {
+            "primary_score": 0.8755694893655155,
+            "sensitivity_score": 0.9012930263315748
+          },
+          "europe_profitability": {
+            "primary_score": 0.8740174243520537,
+            "sensitivity_score": 0.8990616352083513
+          },
+          "europe_size_value": {
+            "primary_score": 1.0347238307098814,
+            "sensitivity_score": 1.0764969399053965
+          },
+          "grains": {
+            "primary_score": 0.44957861221180584,
+            "sensitivity_score": 0.4693699644313217
+          },
+          "high_yield": {
+            "primary_score": 0.4698997116574791,
+            "sensitivity_score": 0.5025264499869377
+          },
+          "industrial_metals": {
+            "primary_score": 0.3122808739264501,
+            "sensitivity_score": 0.33303620079559454
+          },
+          "inflation_linked_bonds": {
+            "primary_score": 0.8304421212622554,
+            "sensitivity_score": 0.8685530360959243
+          },
+          "international_bonds": {
+            "primary_score": 0.7549368457043517,
+            "sensitivity_score": 0.7952551512034235
+          },
+          "japan_investment": {
+            "primary_score": 0.4273441312652417,
+            "sensitivity_score": 0.4410192975024219
+          },
+          "japan_market": {
+            "primary_score": 0.5264984904841261,
+            "sensitivity_score": 0.5443944002916441
+          },
+          "japan_momentum": {
+            "primary_score": 0.6514916635508478,
+            "sensitivity_score": 0.6821060508632641
+          },
+          "japan_profitability": {
+            "primary_score": 0.5319585450023114,
+            "sensitivity_score": 0.5597365528125227
+          },
+          "japan_size_value": {
+            "primary_score": 0.44912334762224476,
+            "sensitivity_score": 0.46569779156816143
+          },
+          "municipal": {
+            "primary_score": 0.4850661350434546,
+            "sensitivity_score": 0.5127585834781492
+          },
+          "nominal_treasury": {
+            "primary_score": 1.2872099888407462,
+            "sensitivity_score": 1.441062544702811
+          },
+          "north_america_investment": {
+            "primary_score": 0.7530216267976491,
+            "sensitivity_score": 0.7875823267011964
+          },
+          "north_america_market": {
+            "primary_score": 0.7234996109743403,
+            "sensitivity_score": 0.7810288803164068
+          },
+          "north_america_momentum": {
+            "primary_score": 1.442457232932134,
+            "sensitivity_score": 1.4918883253313378
+          },
+          "north_america_profitability": {
+            "primary_score": 0.8249441024689801,
+            "sensitivity_score": 0.9049351464820967
+          },
+          "north_america_size_value": {
+            "primary_score": 0.7310192621261719,
+            "sensitivity_score": 0.7770126082383936
+          },
+          "precious_metals": {
+            "primary_score": 0.5325828346874107,
+            "sensitivity_score": 0.5690668945497057
+          },
+          "softs": {
+            "primary_score": 0.6108486484866827,
+            "sensitivity_score": 0.6601628367282075
+          },
+          "us_broad_market": {
+            "primary_score": 0.6608330527827148,
+            "sensitivity_score": 0.6917101269032667
+          },
+          "us_industries": {
+            "primary_score": 0.5334779664799942,
+            "sensitivity_score": 0.5688385105071687
+          },
+          "us_investment": {
+            "primary_score": 0.6046079372933371,
+            "sensitivity_score": 0.649206208058253
+          },
+          "us_listed_real_estate": {
+            "primary_score": 0.2681627399351486,
+            "sensitivity_score": 0.2779819988276762
+          },
+          "us_long_term_reversal": {
+            "primary_score": 0.6041709815580036,
+            "sensitivity_score": 0.6215508514199406
+          },
+          "us_momentum": {
+            "primary_score": 0.43134306071654205,
+            "sensitivity_score": 0.4468134427760517
+          },
+          "us_profitability": {
+            "primary_score": 0.5008232361661402,
+            "sensitivity_score": 0.5367348329028848
+          },
+          "us_short_term_reversal": {
+            "primary_score": 0.9560469517039735,
+            "sensitivity_score": 1.0195539492507841
+          },
+          "us_size": {
+            "primary_score": 0.5556729128734248,
+            "sensitivity_score": 0.5753831340712937
+          },
+          "us_size_value": {
+            "primary_score": 0.5881453063939304,
+            "sensitivity_score": 0.6132182803395662
+          },
+          "us_value": {
+            "primary_score": 0.5806702588726698,
+            "sensitivity_score": 0.6148414958150002
+          }
+        },
+        "primary_score": 0.6288913658726556,
+        "sensitivity_score": 0.6652198584149235
+      }
+    },
+    "candidate_pct_better": {
+      "Incumbent": {
+        "primary_score": 0.11807427781784785,
+        "sensitivity_score": 0.11478399265254513
+      },
+      "Public": {
+        "primary_score": 2.5780921513712696,
+        "sensitivity_score": 3.014509405055066
+      }
+    },
+    "complete": true,
+    "exact_historical_baseline_hashes_replayed": 490,
+    "forecasts": 735,
+    "independent_holdout": false,
+    "native_failures": 0,
+    "origins": 245,
+    "phase": "development",
+    "scoring_integrity_errors": 0,
+    "utc": "2026-10-20T19:20:12.913907+00:00"
+  },
+  "reserved": {
+    "adaptive_reused_evidence": true,
+    "arms": {
+      "Candidate": {
+        "by_class": {
+          "commodities": {
+            "primary_score": 0.5085012542240958,
+            "sensitivity_score": 0.5304871694494645
+          },
+          "cryptocurrencies": {
+            "primary_score": 0.45432503093255194,
+            "sensitivity_score": 0.49765353282650376
+          },
+          "equities": {
+            "primary_score": 0.555886411912082,
+            "sensitivity_score": 0.5745430456642925
+          },
+          "fixed_income": {
+            "primary_score": 0.6976292463076418,
+            "sensitivity_score": 0.7398556475566412
+          },
+          "foreign_exchange": {
+            "primary_score": 0.5919497935054018,
+            "sensitivity_score": 0.6129074556676286
+          },
+          "real_estate": {
+            "primary_score": 0.41170411436416254,
+            "sensitivity_score": 0.4313630186960511
+          }
+        },
+        "by_family": {
+          "aggregate_bonds": {
+            "primary_score": 0.49820016926422184,
+            "sensitivity_score": 0.5276462549528523
+          },
+          "asia_pacific_ex_japan_investment": {
+            "primary_score": 1.0277448729449736,
+            "sensitivity_score": 1.0607043256735575
+          },
+          "asia_pacific_ex_japan_market": {
+            "primary_score": 0.7289728449589025,
+            "sensitivity_score": 0.7515904654538177
+          },
+          "asia_pacific_ex_japan_momentum": {
+            "primary_score": 0.7774193649282668,
+            "sensitivity_score": 0.7966688817520813
+          },
+          "asia_pacific_ex_japan_profitability": {
+            "primary_score": 0.6518153464426542,
+            "sensitivity_score": 0.6708277226869623
+          },
+          "asia_pacific_ex_japan_size_value": {
+            "primary_score": 0.9463490768471192,
+            "sensitivity_score": 0.9778088330517243
+          },
+          "bilateral_spot_currency": {
+            "primary_score": 0.5919497935054018,
+            "sensitivity_score": 0.6129074556676286
+          },
+          "broad_agriculture": {
+            "primary_score": 0.37940721534301974,
+            "sensitivity_score": 0.39542904428387854
+          },
+          "broad_commodity": {
+            "primary_score": 0.893708696728132,
+            "sensitivity_score": 0.9295243861722913
+          },
+          "corporate_credit": {
+            "primary_score": 0.7850735927405041,
+            "sensitivity_score": 0.8219772189272818
+          },
+          "developed_ex_us_market": {
+            "primary_score": 0.8436559460598371,
+            "sensitivity_score": 0.8655813541858862
+          },
+          "developed_market": {
+            "primary_score": 0.9044104574630392,
+            "sensitivity_score": 0.9351101454701979
+          },
+          "digital_asset_spot": {
+            "primary_score": 0.45432503093255194,
+            "sensitivity_score": 0.49765353282650376
+          },
+          "energy": {
+            "primary_score": 0.5591553364960149,
+            "sensitivity_score": 0.5772011160755698
+          },
+          "europe_investment": {
+            "primary_score": 0.6065916479739812,
+            "sensitivity_score": 0.6301625571762003
+          },
+          "europe_market": {
+            "primary_score": 0.6162263844455211,
+            "sensitivity_score": 0.6408248802569633
+          },
+          "europe_momentum": {
+            "primary_score": 1.146138862939726,
+            "sensitivity_score": 1.1735647804536644
+          },
+          "europe_profitability": {
+            "primary_score": 0.7073905325279257,
+            "sensitivity_score": 0.731364877398451
+          },
+          "europe_size_value": {
+            "primary_score": 0.6721455643570315,
+            "sensitivity_score": 0.6978356633024395
+          },
+          "grains": {
+            "primary_score": 0.5269430726977914,
+            "sensitivity_score": 0.5538253206708883
+          },
+          "high_yield": {
+            "primary_score": 0.48702617565329903,
+            "sensitivity_score": 0.5150140493018078
+          },
+          "industrial_metals": {
+            "primary_score": 0.2854379964278374,
+            "sensitivity_score": 0.29938847363988197
+          },
+          "inflation_linked_bonds": {
+            "primary_score": 0.7810868357449811,
+            "sensitivity_score": 0.8106477227660133
+          },
+          "international_bonds": {
+            "primary_score": 0.7914871752853351,
+            "sensitivity_score": 0.8284164706829102
+          },
+          "japan_investment": {
+            "primary_score": 0.3728484841223272,
+            "sensitivity_score": 0.38843457199680176
+          },
+          "japan_market": {
+            "primary_score": 0.4418929507533604,
+            "sensitivity_score": 0.4569043375098591
+          },
+          "japan_momentum": {
+            "primary_score": 0.560799237704227,
+            "sensitivity_score": 0.5764552209978528
+          },
+          "japan_profitability": {
+            "primary_score": 0.5196197182868683,
+            "sensitivity_score": 0.5411085815317211
+          },
+          "japan_size_value": {
+            "primary_score": 0.6337967817352611,
+            "sensitivity_score": 0.6561503627154313
+          },
+          "municipal": {
+            "primary_score": 0.5322494785883449,
+            "sensitivity_score": 0.5581148487996467
+          },
+          "nominal_treasury": {
+            "primary_score": 0.7686795140513006,
+            "sensitivity_score": 0.8600611364823069
+          },
+          "north_america_investment": {
+            "primary_score": 0.7671230289605878,
+            "sensitivity_score": 0.8136597585611567
+          },
+          "north_america_market": {
+            "primary_score": 0.6822927239188811,
+            "sensitivity_score": 0.7294705457781383
+          },
+          "north_america_momentum": {
+            "primary_score": 1.0937516864321162,
+            "sensitivity_score": 1.1163682224177465
+          },
+          "north_america_profitability": {
+            "primary_score": 0.7362609300397309,
+            "sensitivity_score": 0.7656975935467375
+          },
+          "north_america_size_value": {
+            "primary_score": 0.7690310530199124,
+            "sensitivity_score": 0.8121156287126887
+          },
+          "precious_metals": {
+            "primary_score": 0.39566439824446586,
+            "sensitivity_score": 0.40927555414252825
+          },
+          "softs": {
+            "primary_score": 0.591132719805454,
+            "sensitivity_score": 0.6315599921707745
+          },
+          "us_broad_market": {
+            "primary_score": 0.6376109832196334,
+            "sensitivity_score": 0.6745718036244713
+          },
+          "us_industries": {
+            "primary_score": 0.5550587751277789,
+            "sensitivity_score": 0.5954803309785247
+          },
+          "us_investment": {
+            "primary_score": 0.572350907995466,
+            "sensitivity_score": 0.5932023874850767
+          },
+          "us_listed_real_estate": {
+            "primary_score": 0.41170411436416254,
+            "sensitivity_score": 0.4313630186960511
+          },
+          "us_long_term_reversal": {
+            "primary_score": 0.43759369245110813,
+            "sensitivity_score": 0.4697233272997788
+          },
+          "us_momentum": {
+            "primary_score": 0.3711937215777553,
+            "sensitivity_score": 0.3878833413559529
+          },
+          "us_profitability": {
+            "primary_score": 0.8142636024056962,
+            "sensitivity_score": 0.8575179930142719
+          },
+          "us_short_term_reversal": {
+            "primary_score": 0.41300401232846334,
+            "sensitivity_score": 0.43150555609762337
+          },
+          "us_size": {
+            "primary_score": 0.5731354574911471,
+            "sensitivity_score": 0.598965565874949
+          },
+          "us_size_value": {
+            "primary_score": 0.46393535055690593,
+            "sensitivity_score": 0.4913856625118024
+          },
+          "us_value": {
+            "primary_score": 0.5190942599500182,
+            "sensitivity_score": 0.542695390189013
+          }
+        },
+        "primary_score": 0.5617789845517998,
+        "sensitivity_score": 0.5865014793909306
+      },
+      "Incumbent": {
+        "by_class": {
+          "commodities": {
+            "primary_score": 0.5087218379948596,
+            "sensitivity_score": 0.5306367639539415
+          },
+          "cryptocurrencies": {
+            "primary_score": 0.45317108002551443,
+            "sensitivity_score": 0.4965311780769682
+          },
+          "equities": {
+            "primary_score": 0.5539773833310695,
+            "sensitivity_score": 0.5726268389373255
+          },
+          "fixed_income": {
+            "primary_score": 0.6979841938727095,
+            "sensitivity_score": 0.740299396548402
+          },
+          "foreign_exchange": {
+            "primary_score": 0.5918131051053672,
+            "sensitivity_score": 0.6127611724255957
+          },
+          "real_estate": {
+            "primary_score": 0.41260547705384915,
+            "sensitivity_score": 0.4322193463823867
+          }
+        },
+        "by_family": {
+          "aggregate_bonds": {
+            "primary_score": 0.49661154046704564,
+            "sensitivity_score": 0.5260350544072411
+          },
+          "asia_pacific_ex_japan_investment": {
+            "primary_score": 1.0334449319204217,
+            "sensitivity_score": 1.0664921025196017
+          },
+          "asia_pacific_ex_japan_market": {
+            "primary_score": 0.724184916609431,
+            "sensitivity_score": 0.7466400509961025
+          },
+          "asia_pacific_ex_japan_momentum": {
+            "primary_score": 0.7857933079169739,
+            "sensitivity_score": 0.8049596732491715
+          },
+          "asia_pacific_ex_japan_profitability": {
+            "primary_score": 0.6488330289609854,
+            "sensitivity_score": 0.6676188132660166
+          },
+          "asia_pacific_ex_japan_size_value": {
+            "primary_score": 0.9493765257696026,
+            "sensitivity_score": 0.9808357349863955
+          },
+          "bilateral_spot_currency": {
+            "primary_score": 0.5918131051053672,
+            "sensitivity_score": 0.6127611724255957
+          },
+          "broad_agriculture": {
+            "primary_score": 0.3810737075818277,
+            "sensitivity_score": 0.39718181159700194
+          },
+          "broad_commodity": {
+            "primary_score": 0.8931449703373595,
+            "sensitivity_score": 0.9289777053505581
+          },
+          "corporate_credit": {
+            "primary_score": 0.7880216635248078,
+            "sensitivity_score": 0.8250749836072281
+          },
+          "developed_ex_us_market": {
+            "primary_score": 0.8508494826793009,
+            "sensitivity_score": 0.8727704328146814
+          },
+          "developed_market": {
+            "primary_score": 0.89408515002053,
+            "sensitivity_score": 0.9248839244516563
+          },
+          "digital_asset_spot": {
+            "primary_score": 0.45317108002551443,
+            "sensitivity_score": 0.4965311780769682
+          },
+          "energy": {
+            "primary_score": 0.5595256802231269,
+            "sensitivity_score": 0.5775094325887038
+          },
+          "europe_investment": {
+            "primary_score": 0.6059426781015755,
+            "sensitivity_score": 0.6294969044983488
+          },
+          "europe_market": {
+            "primary_score": 0.616090506596898,
+            "sensitivity_score": 0.6406861086821095
+          },
+          "europe_momentum": {
+            "primary_score": 1.1472308361818395,
+            "sensitivity_score": 1.174637818677041
+          },
+          "europe_profitability": {
+            "primary_score": 0.7073080824553489,
+            "sensitivity_score": 0.7312932313662374
+          },
+          "europe_size_value": {
+            "primary_score": 0.6709132993768956,
+            "sensitivity_score": 0.6965874168279184
+          },
+          "grains": {
+            "primary_score": 0.5243634892009414,
+            "sensitivity_score": 0.5512604384575548
+          },
+          "high_yield": {
+            "primary_score": 0.48619748375411226,
+            "sensitivity_score": 0.5141954544369145
+          },
+          "industrial_metals": {
+            "primary_score": 0.2855043326731478,
+            "sensitivity_score": 0.2992853496349926
+          },
+          "inflation_linked_bonds": {
+            "primary_score": 0.7829012528714072,
+            "sensitivity_score": 0.812487973831274
+          },
+          "international_bonds": {
+            "primary_score": 0.7935885179318827,
+            "sensitivity_score": 0.8306215562106836
+          },
+          "japan_investment": {
+            "primary_score": 0.37163706262946616,
+            "sensitivity_score": 0.38709583112721424
+          },
+          "japan_market": {
+            "primary_score": 0.44185692025288137,
+            "sensitivity_score": 0.45678791258777585
+          },
+          "japan_momentum": {
+            "primary_score": 0.5614243989115417,
+            "sensitivity_score": 0.5769732223065882
+          },
+          "japan_profitability": {
+            "primary_score": 0.5172032175858181,
+            "sensitivity_score": 0.538426881658913
+          },
+          "japan_size_value": {
+            "primary_score": 0.6304309522582704,
+            "sensitivity_score": 0.6524333958442023
+          },
+          "municipal": {
+            "primary_score": 0.5312058553820792,
+            "sensitivity_score": 0.5570590172877727
+          },
+          "nominal_treasury": {
+            "primary_score": 0.7688709013096083,
+            "sensitivity_score": 0.860552208233878
+          },
+          "north_america_investment": {
+            "primary_score": 0.7651511969519929,
+            "sensitivity_score": 0.8118462591771054
+          },
+          "north_america_market": {
+            "primary_score": 0.6808704362307232,
+            "sensitivity_score": 0.7282591300863802
+          },
+          "north_america_momentum": {
+            "primary_score": 1.1004450596231123,
+            "sensitivity_score": 1.1229526642024699
+          },
+          "north_america_profitability": {
+            "primary_score": 0.7378134085413579,
+            "sensitivity_score": 0.7673358764179115
+          },
+          "north_america_size_value": {
+            "primary_score": 0.7695131271969633,
+            "sensitivity_score": 0.8126361084434516
+          },
+          "precious_metals": {
+            "primary_score": 0.4011226983848858,
+            "sensitivity_score": 0.4148948500914374
+          },
+          "softs": {
+            "primary_score": 0.5880622888590852,
+            "sensitivity_score": 0.6276604889792691
+          },
+          "us_broad_market": {
+            "primary_score": 0.6405236820060691,
+            "sensitivity_score": 0.6777227551017275
+          },
+          "us_industries": {
+            "primary_score": 0.558249631396351,
+            "sensitivity_score": 0.5989369764374468
+          },
+          "us_investment": {
+            "primary_score": 0.5621173927561307,
+            "sensitivity_score": 0.5825623322871977
+          },
+          "us_listed_real_estate": {
+            "primary_score": 0.41260547705384915,
+            "sensitivity_score": 0.4322193463823867
+          },
+          "us_long_term_reversal": {
+            "primary_score": 0.4383117814745045,
+            "sensitivity_score": 0.4707895316680478
+          },
+          "us_momentum": {
+            "primary_score": 0.3570197043861646,
+            "sensitivity_score": 0.3733606485345716
+          },
+          "us_profitability": {
+            "primary_score": 0.8189465330879901,
+            "sensitivity_score": 0.8628287524076445
+          },
+          "us_short_term_reversal": {
+            "primary_score": 0.41558200257132843,
+            "sensitivity_score": 0.43395622531647204
+          },
+          "us_size": {
+            "primary_score": 0.5675408225643805,
+            "sensitivity_score": 0.5931281172655141
+          },
+          "us_size_value": {
+            "primary_score": 0.4621940261818784,
+            "sensitivity_score": 0.48960667647399714
+          },
+          "us_value": {
+            "primary_score": 0.5169288904072127,
+            "sensitivity_score": 0.54041063330731
+          }
+        },
+        "primary_score": 0.5610765157296752,
+        "sensitivity_score": 0.5857948319001285
+      },
+      "Public": {
+        "by_class": {
+          "commodities": {
+            "primary_score": 0.5360030488766434,
+            "sensitivity_score": 0.5632271392191778
+          },
+          "cryptocurrencies": {
+            "primary_score": 0.4903529715885723,
+            "sensitivity_score": 0.5475526280410284
+          },
+          "equities": {
+            "primary_score": 0.5556520650346736,
+            "sensitivity_score": 0.5742781922336754
+          },
+          "fixed_income": {
+            "primary_score": 0.7247484606810497,
+            "sensitivity_score": 0.7717067191804245
+          },
+          "foreign_exchange": {
+            "primary_score": 0.5935236408378195,
+            "sensitivity_score": 0.6181554655209752
+          },
+          "real_estate": {
+            "primary_score": 0.4306094183242909,
+            "sensitivity_score": 0.4568431542977559
+          }
+        },
+        "by_family": {
+          "aggregate_bonds": {
+            "primary_score": 0.5290022328023016,
+            "sensitivity_score": 0.5641046473724328
+          },
+          "asia_pacific_ex_japan_investment": {
+            "primary_score": 1.0841400136843924,
+            "sensitivity_score": 1.1249919280088176
+          },
+          "asia_pacific_ex_japan_market": {
+            "primary_score": 0.7554248072950953,
+            "sensitivity_score": 0.7808646144348456
+          },
+          "asia_pacific_ex_japan_momentum": {
+            "primary_score": 0.8272653709601199,
+            "sensitivity_score": 0.8494794842378057
+          },
+          "asia_pacific_ex_japan_profitability": {
+            "primary_score": 0.6757188252635993,
+            "sensitivity_score": 0.6961534383299361
+          },
+          "asia_pacific_ex_japan_size_value": {
+            "primary_score": 1.0021371348767625,
+            "sensitivity_score": 1.0376894707160766
+          },
+          "bilateral_spot_currency": {
+            "primary_score": 0.5935236408378195,
+            "sensitivity_score": 0.6181554655209752
+          },
+          "broad_agriculture": {
+            "primary_score": 0.41906127260121034,
+            "sensitivity_score": 0.4373867098982357
+          },
+          "broad_commodity": {
+            "primary_score": 0.9285271606991017,
+            "sensitivity_score": 0.9749381306319126
+          },
+          "corporate_credit": {
+            "primary_score": 0.8098170871967103,
+            "sensitivity_score": 0.8541926541808202
+          },
+          "developed_ex_us_market": {
+            "primary_score": 0.8765247848625879,
+            "sensitivity_score": 0.8977607341678777
+          },
+          "developed_market": {
+            "primary_score": 0.9072934091491461,
+            "sensitivity_score": 0.9469308028193163
+          },
+          "digital_asset_spot": {
+            "primary_score": 0.4903529715885723,
+            "sensitivity_score": 0.5475526280410284
+          },
+          "energy": {
+            "primary_score": 0.5925115402887524,
+            "sensitivity_score": 0.6124120513182606
+          },
+          "europe_investment": {
+            "primary_score": 0.6310279660566611,
+            "sensitivity_score": 0.6624990934801192
+          },
+          "europe_market": {
+            "primary_score": 0.638895820168705,
+            "sensitivity_score": 0.6718702263387729
+          },
+          "europe_momentum": {
+            "primary_score": 1.2160352578790903,
+            "sensitivity_score": 1.2510003198927044
+          },
+          "europe_profitability": {
+            "primary_score": 0.729003887113882,
+            "sensitivity_score": 0.761196506972386
+          },
+          "europe_size_value": {
+            "primary_score": 0.6907953406597616,
+            "sensitivity_score": 0.7251925148728376
+          },
+          "grains": {
+            "primary_score": 0.5477222069466616,
+            "sensitivity_score": 0.5793954614587863
+          },
+          "high_yield": {
+            "primary_score": 0.4927272518245978,
+            "sensitivity_score": 0.5259441133979389
+          },
+          "industrial_metals": {
+            "primary_score": 0.29193134409274857,
+            "sensitivity_score": 0.31230823317709333
+          },
+          "inflation_linked_bonds": {
+            "primary_score": 0.8486513203310292,
+            "sensitivity_score": 0.8876136559126195
+          },
+          "international_bonds": {
+            "primary_score": 0.8154822339152602,
+            "sensitivity_score": 0.8578543875713016
+          },
+          "japan_investment": {
+            "primary_score": 0.38482981980347375,
+            "sensitivity_score": 0.40210143430069795
+          },
+          "japan_market": {
+            "primary_score": 0.44790714480182736,
+            "sensitivity_score": 0.46225404733659053
+          },
+          "japan_momentum": {
+            "primary_score": 0.5747882534672251,
+            "sensitivity_score": 0.5897930270585489
+          },
+          "japan_profitability": {
+            "primary_score": 0.5293485171587493,
+            "sensitivity_score": 0.556768829347349
+          },
+          "japan_size_value": {
+            "primary_score": 0.648497664380204,
+            "sensitivity_score": 0.6783999435575696
+          },
+          "municipal": {
+            "primary_score": 0.5358496842114343,
+            "sensitivity_score": 0.5644412469575549
+          },
+          "nominal_treasury": {
+            "primary_score": 0.7793158320665006,
+            "sensitivity_score": 0.8699517660618543
+          },
+          "north_america_investment": {
+            "primary_score": 0.8051340280526904,
+            "sensitivity_score": 0.8614551295893363
+          },
+          "north_america_market": {
+            "primary_score": 0.7106294529601815,
+            "sensitivity_score": 0.7678412737192751
+          },
+          "north_america_momentum": {
+            "primary_score": 1.187639204217854,
+            "sensitivity_score": 1.2197270127068514
+          },
+          "north_america_profitability": {
+            "primary_score": 0.7452913160647976,
+            "sensitivity_score": 0.7797519996988937
+          },
+          "north_america_size_value": {
+            "primary_score": 0.8248865151904321,
+            "sensitivity_score": 0.8794008376060175
+          },
+          "precious_metals": {
+            "primary_score": 0.40602706597567745,
+            "sensitivity_score": 0.422052068081541
+          },
+          "softs": {
+            "primary_score": 0.6149850405373283,
+            "sensitivity_score": 0.6651779955803749
+          },
+          "us_broad_market": {
+            "primary_score": 0.624169275360488,
+            "sensitivity_score": 0.6543584534200668
+          },
+          "us_industries": {
+            "primary_score": 0.5464531016476283,
+            "sensitivity_score": 0.5815365643512763
+          },
+          "us_investment": {
+            "primary_score": 0.5644729379608485,
+            "sensitivity_score": 0.5832459167567275
+          },
+          "us_listed_real_estate": {
+            "primary_score": 0.4306094183242909,
+            "sensitivity_score": 0.4568431542977559
+          },
+          "us_long_term_reversal": {
+            "primary_score": 0.4164002777996334,
+            "sensitivity_score": 0.4403682612120031
+          },
+          "us_momentum": {
+            "primary_score": 0.38132586879952957,
+            "sensitivity_score": 0.3994278000371287
+          },
+          "us_profitability": {
+            "primary_score": 0.7814626133546094,
+            "sensitivity_score": 0.8186644643880138
+          },
+          "us_short_term_reversal": {
+            "primary_score": 0.450023388605681,
+            "sensitivity_score": 0.47385155811233765
+          },
+          "us_size": {
+            "primary_score": 0.576206292523925,
+            "sensitivity_score": 0.6073915584259528
+          },
+          "us_size_value": {
+            "primary_score": 0.45845687294926274,
+            "sensitivity_score": 0.48053403946531936
+          },
+          "us_value": {
+            "primary_score": 0.5136380031323405,
+            "sensitivity_score": 0.5374615419400675
+          }
+        },
+        "primary_score": 0.5740297308489268,
+        "sensitivity_score": 0.6013020771189883
+      }
+    },
+    "candidate_pct_better": {
+      "Incumbent": {
+        "primary_score": -0.12520018258310728,
+        "sensitivity_score": -0.12063054371953541
+      },
+      "Public": {
+        "primary_score": 2.1341658173365974,
+        "sensitivity_score": 2.46142468008288
+      }
+    },
+    "complete": true,
+    "exact_historical_baseline_hashes_replayed": 0,
+    "forecasts": 735,
+    "independent_holdout": false,
+    "native_failures": 0,
+    "origins": 245,
+    "phase": "reserved",
+    "scoring_integrity_errors": 0,
+    "utc": "2026-10-20T19:21:07.908852+00:00"
+  }
+}

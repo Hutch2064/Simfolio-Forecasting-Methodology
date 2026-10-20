@@ -1,0 +1,764 @@
+{
+  "utc": "2026-10-20T19:25:49.320536+00:00",
+  "training_prefixes": 12,
+  "classes": 6,
+  "forecast_scores_or_targets_read": false,
+  "minimum_replica_ESS": 1712.9910461476463,
+  "maximum_replicated_coefficient_mean_abs_difference": 2.3882939214403542e-05,
+  "nodes_per_scramble": 4096,
+  "scrambles_per_prefix": 2,
+  "source_hashes": {
+    "test_posterior.py": "bff183e207a699d0195a328adfb470b04b318e8d7bac860c8013576a366fe880",
+    "posterior.py": "108422b240cf78721ccf25c26a180f1704721cbe19c3e66696990c36ebaa1e36",
+    "qualify.py": "12f8a321c409d51f7306e0e7f07bc16607bf91b948f550309c631fd22f6116ba"
+  },
+  "roster_sha256": "75bb790b6b45160795fcbd14c84a75be939c27a8cccb4bed3c91869befd625aa",
+  "records": [
+    {
+      "series_id": "DBA",
+      "asset_class": "commodities",
+      "origin_label": "train_first_quarter_test_remaining",
+      "training_n": 1244,
+      "prefix_sha256": "888dc61ee42d911ed3dda9f316ac72e7910639dfbf061215c324bb1b5dc3ee0e",
+      "mode": [
+        1.7757616141173262,
+        4.6435903856668945
+      ],
+      "proposal_base_covariance": [
+        [
+          0.14532495604707432,
+          0.16701399593734761
+        ],
+        [
+          0.16701399593734761,
+          0.2543617967485666
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.05345338646336236,
+            0.9376395376278006
+          ],
+          "covariance": [
+            [
+              0.00015554281990254017,
+              -0.00019206949136189435
+            ],
+            [
+              -0.00019206949136189435,
+              0.0002501286136638921
+            ]
+          ],
+          "ESS": 1792.1017201864977,
+          "largest_normalized_weight": 0.0009313892425714805,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.05345700542382989,
+            0.93764021276201
+          ],
+          "covariance": [
+            [
+              0.00015546677822657643,
+              -0.00019198078646741988
+            ],
+            [
+              -0.0001919807864674199,
+              0.0002500001127291
+            ]
+          ],
+          "ESS": 1791.4555033762495,
+          "largest_normalized_weight": 0.0009314678157551339,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 3.618960467528798e-06
+    },
+    {
+      "series_id": "DBA",
+      "asset_class": "commodities",
+      "origin_label": "rolling_40",
+      "training_n": 4149,
+      "prefix_sha256": "1b5f23f0072e11a1fa8beb567fcc74d6403ee13bfe1060894563629c165c8443",
+      "mode": [
+        2.4794025911997872,
+        5.283849279404079
+      ],
+      "proposal_base_covariance": [
+        [
+          0.05043581125119511,
+          0.054096914196872285
+        ],
+        [
+          0.05409691419687228,
+          0.06917606969452128
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.056788360756613164,
+            0.9385285601748806
+          ],
+          "covariance": [
+            [
+              3.24990317143691e-05,
+              -3.614515122173109e-05
+            ],
+            [
+              -3.614515122173109e-05,
+              4.135649475542596e-05
+            ]
+          ],
+          "ESS": 1760.9153561890755,
+          "largest_normalized_weight": 0.0009494244852593777,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.05679200550442353,
+            0.9385254586771399
+          ],
+          "covariance": [
+            [
+              3.247794996731526e-05,
+              -3.61203616861713e-05
+            ],
+            [
+              -3.6120361686171295e-05,
+              4.132557810455414e-05
+            ]
+          ],
+          "ESS": 1759.3837184559054,
+          "largest_normalized_weight": 0.0009498317927315819,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 3.644747810366278e-06
+    },
+    {
+      "series_id": "ETH",
+      "asset_class": "cryptocurrencies",
+      "origin_label": "train_first_quarter_test_remaining",
+      "training_n": 1022,
+      "prefix_sha256": "6eeec14f3f9e54f3575a1da822103574627c7672943b7d1ca7e01b60d0fe8e78",
+      "mode": [
+        1.4135047738171587,
+        2.6382673206979352
+      ],
+      "proposal_base_covariance": [
+        [
+          0.045107018448082285,
+          0.052247504401662745
+        ],
+        [
+          0.052247504401662745,
+          0.08400660887324032
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.21546610094158009,
+            0.7303857370582155
+          ],
+          "covariance": [
+            [
+              0.0005967448506868626,
+              -0.0007841256731779749
+            ],
+            [
+              -0.000784125673177975,
+              0.0011684636883711567
+            ]
+          ],
+          "ESS": 1734.6507841993503,
+          "largest_normalized_weight": 0.0009637934808673765,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.21548984237516955,
+            0.7303633855478255
+          ],
+          "covariance": [
+            [
+              0.0005963820294474429,
+              -0.0007835834377274357
+            ],
+            [
+              -0.0007835834377274357,
+              0.0011673049006082322
+            ]
+          ],
+          "ESS": 1731.3600822377646,
+          "largest_normalized_weight": 0.0009645742168848632,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 2.374143358946368e-05
+    },
+    {
+      "series_id": "ETH",
+      "asset_class": "cryptocurrencies",
+      "origin_label": "train_first_three_quarters_test_final_quarter",
+      "training_n": 3067,
+      "prefix_sha256": "f189577d24c319f30bdae53da1f06320ea29e4018af1e596aac9df4c780ca4eb",
+      "mode": [
+        1.3400700821984555,
+        3.1555541810473753
+      ],
+      "proposal_base_covariance": [
+        [
+          0.01650795758092198,
+          0.021393723790055514
+        ],
+        [
+          0.021393723790055517,
+          0.03827183209119269
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.1346653284460773,
+            0.829834087838904
+          ],
+          "covariance": [
+            [
+              0.00014781153612971414,
+              -0.00020399239194328543
+            ],
+            [
+              -0.00020399239194328545,
+              0.0003008265316079434
+            ]
+          ],
+          "ESS": 1731.0329684034364,
+          "largest_normalized_weight": 0.0009650573369354445,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.13467260658495106,
+            0.8298276553725814
+          ],
+          "covariance": [
+            [
+              0.00014771773124957254,
+              -0.00020382833989846926
+            ],
+            [
+              -0.00020382833989846926,
+              0.00030050540456484946
+            ]
+          ],
+          "ESS": 1728.2316293358351,
+          "largest_normalized_weight": 0.0009657659504485602,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 7.2781388737730435e-06
+    },
+    {
+      "series_id": "EQX0094",
+      "asset_class": "equities",
+      "origin_label": "rolling_05",
+      "training_n": 1305,
+      "prefix_sha256": "4af87a70c943c4a6bbbece74ae2097e692e6d52a9865ed378ecc50632613fea9",
+      "mode": [
+        0.739783755186209,
+        3.13954463325747
+      ],
+      "proposal_base_covariance": [
+        [
+          0.10360973136928674,
+          0.12472165044445695
+        ],
+        [
+          0.12472165044445695,
+          0.20173130400369102
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.08171379775544171,
+            0.8747352964640902
+          ],
+          "covariance": [
+            [
+              0.0003344159867375506,
+              -0.0006605644925051007
+            ],
+            [
+              -0.0006605644925051007,
+              0.0016475224922294284
+            ]
+          ],
+          "ESS": 1843.8241755326055,
+          "largest_normalized_weight": 0.0009207116178940716,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.08172273682988795,
+            0.8747561170214152
+          ],
+          "covariance": [
+            [
+              0.00033351680677836163,
+              -0.0006564464252872408
+            ],
+            [
+              -0.0006564464252872408,
+              0.001630934029443812
+            ]
+          ],
+          "ESS": 1841.096797279512,
+          "largest_normalized_weight": 0.000921349227132965,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 2.0820557324996436e-05
+    },
+    {
+      "series_id": "EQX0094",
+      "asset_class": "equities",
+      "origin_label": "rolling_37",
+      "training_n": 7305,
+      "prefix_sha256": "8dec00268c0df348fd011a5774f59c591447d0027fe5497464c13783b6b81a7b",
+      "mode": [
+        1.8297058891058873,
+        3.55282484539273
+      ],
+      "proposal_base_covariance": [
+        [
+          0.008872414553986222,
+          0.011176403593665367
+        ],
+        [
+          0.011176403593665365,
+          0.01894170340391253
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.14769987419780428,
+            0.8285588130242899
+          ],
+          "covariance": [
+            [
+              8.005836404568108e-05,
+              -9.893176923407512e-05
+            ],
+            [
+              -9.893176923407512e-05,
+              0.00012685426155444764
+            ]
+          ],
+          "ESS": 1715.7806101519373,
+          "largest_normalized_weight": 0.0009717848195021049,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.14770565747046988,
+            0.8285532288250336
+          ],
+          "covariance": [
+            [
+              7.999813252661084e-05,
+              -9.884410716706836e-05
+            ],
+            [
+              -9.884410716706836e-05,
+              0.00012671961866682008
+            ]
+          ],
+          "ESS": 1712.9910461476463,
+          "largest_normalized_weight": 0.0009724934638527384,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 5.783272665593753e-06
+    },
+    {
+      "series_id": "BNDSIM",
+      "asset_class": "fixed_income",
+      "origin_label": "train_first_quarter_test_remaining",
+      "training_n": 2482,
+      "prefix_sha256": "c77461a3c018a0fe0aeaa1719a6901c2ac670ac459ba449e1dc094d0cec82410",
+      "mode": [
+        0.03929866501396272,
+        4.787452675771309
+      ],
+      "proposal_base_covariance": [
+        [
+          0.14913516673304764,
+          0.11606514618564787
+        ],
+        [
+          0.11606514618564787,
+          0.15094105896383267
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.00832399888687592,
+            0.9830588830301553
+          ],
+          "covariance": [
+            [
+              5.030809537308926e-06,
+              -7.817581468126769e-06
+            ],
+            [
+              -7.817581468126769e-06,
+              5.433510630819807e-05
+            ]
+          ],
+          "ESS": 1890.7442126285148,
+          "largest_normalized_weight": 0.0008987730831278872,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.008325624322011348,
+            0.9830827659693697
+          ],
+          "covariance": [
+            [
+              5.0329099937759955e-06,
+              -7.794286204056218e-06
+            ],
+            [
+              -7.794286204056218e-06,
+              3.154463361624512e-05
+            ]
+          ],
+          "ESS": 1888.0357269275855,
+          "largest_normalized_weight": 0.0008994242715009573,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 2.3882939214403542e-05
+    },
+    {
+      "series_id": "BNDSIM",
+      "asset_class": "fixed_income",
+      "origin_label": "train_first_three_quarters_test_final_quarter",
+      "training_n": 7446,
+      "prefix_sha256": "0e696cf85dc3568b6e14e9ebf82b3f7f72abce881fb8ebf7a99ed21277e97fbf",
+      "mode": [
+        1.6627448925607993,
+        5.303301689362948
+      ],
+      "proposal_base_covariance": [
+        [
+          0.03970040180270604,
+          0.04042657666018362
+        ],
+        [
+          0.04042657666018363,
+          0.047918576777812166
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.025459246963833972,
+            0.9697427178349253
+          ],
+          "covariance": [
+            [
+              4.1099444514939174e-06,
+              -4.959923419068191e-06
+            ],
+            [
+              -4.959923419068191e-06,
+              6.937281360241289e-06
+            ]
+          ],
+          "ESS": 1738.6334334031112,
+          "largest_normalized_weight": 0.0009605476299384171,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.025460844324447243,
+            0.9697415253061039
+          ],
+          "covariance": [
+            [
+              4.107359523589773e-06,
+              -4.956318922873685e-06
+            ],
+            [
+              -4.956318922873684e-06,
+              6.930692148835413e-06
+            ]
+          ],
+          "ESS": 1736.613003985168,
+          "largest_normalized_weight": 0.0009610833660644852,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 1.5973606132708984e-06
+    },
+    {
+      "series_id": "FX_CAD_USD",
+      "asset_class": "foreign_exchange",
+      "origin_label": "train_first_quarter_test_remaining",
+      "training_n": 3498,
+      "prefix_sha256": "e3bdd7d5db4879f0bee6a72290365fea03b81756f2d8da66f5bf18372d586cf4",
+      "mode": [
+        1.9202087366116976,
+        3.519260001377044
+      ],
+      "proposal_base_covariance": [
+        [
+          0.020003198503498035,
+          0.02236142302479653
+        ],
+        [
+          0.02236142302479653,
+          0.03360026748451893
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.16330066139394808,
+            0.8126904902622034
+          ],
+          "covariance": [
+            [
+              0.00015644778469884365,
+              -0.00018529170636365336
+            ],
+            [
+              -0.0001852917063636533,
+              0.00023097444895275315
+            ]
+          ],
+          "ESS": 1729.0583916605228,
+          "largest_normalized_weight": 0.0009656001973086871,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.16330902259524407,
+            0.8126829863052069
+          ],
+          "covariance": [
+            [
+              0.0001564071794799469,
+              -0.00018522655619488182
+            ],
+            [
+              -0.00018522655619488185,
+              0.00023084906826153237
+            ]
+          ],
+          "ESS": 1726.499683019895,
+          "largest_normalized_weight": 0.0009662639270140447,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 8.36120129599216e-06
+    },
+    {
+      "series_id": "FX_CAD_USD",
+      "asset_class": "foreign_exchange",
+      "origin_label": "train_first_three_quarters_test_final_quarter",
+      "training_n": 10496,
+      "prefix_sha256": "ba2c738750e9b41c9a4c7eba429ab2d946202a8559fec4e1f6bb7e2b053c7238",
+      "mode": [
+        3.4330238796486925,
+        5.874867437360686
+      ],
+      "proposal_base_covariance": [
+        [
+          0.014880999407699403,
+          0.016308853313801518
+        ],
+        [
+          0.016308853313801518,
+          0.02123819133533651
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.07981365864769412,
+            0.9176152972679386
+          ],
+          "covariance": [
+            [
+              1.873686922480378e-05,
+              -1.9606587991636956e-05
+            ],
+            [
+              -1.9606587991636956e-05,
+              2.0612651373874586e-05
+            ]
+          ],
+          "ESS": 1718.8154090734017,
+          "largest_normalized_weight": 0.000969980769820381,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.07981664695588025,
+            0.9176123846007022
+          ],
+          "covariance": [
+            [
+              1.8723332534105653e-05,
+              -1.959176381828997e-05
+            ],
+            [
+              -1.959176381828997e-05,
+              2.0596273646644008e-05
+            ]
+          ],
+          "ESS": 1716.370056013998,
+          "largest_normalized_weight": 0.0009706155458183264,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 2.9883081861387106e-06
+    },
+    {
+      "series_id": "FR0544",
+      "asset_class": "real_estate",
+      "origin_label": "train_first_quarter_test_remaining",
+      "training_n": 6579,
+      "prefix_sha256": "37653f091ce63e07b3483df6677841364adcc3eb6716b80fd0a5a18105ba784d",
+      "mode": [
+        2.960112439421863,
+        6.036153323223593
+      ],
+      "proposal_base_covariance": [
+        [
+          0.017714325240851654,
+          0.021553515204768052
+        ],
+        [
+          0.021553515204768052,
+          0.0341261236512581
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.04397832929944958,
+            0.953742044912021
+          ],
+          "covariance": [
+            [
+              1.5417461685253885e-05,
+              -1.6589852109107954e-05
+            ],
+            [
+              -1.6589852109107954e-05,
+              1.793622418887461e-05
+            ]
+          ],
+          "ESS": 1722.6624031580664,
+          "largest_normalized_weight": 0.0009682360219313415,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.04398067896554971,
+            0.953739760467854
+          ],
+          "covariance": [
+            [
+              1.5403976359381403e-05,
+              -1.657472580511815e-05
+            ],
+            [
+              -1.657472580511815e-05,
+              1.7919124375173323e-05
+            ]
+          ],
+          "ESS": 1720.224145608968,
+          "largest_normalized_weight": 0.0009688713571145562,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 2.3496661001320973e-06
+    },
+    {
+      "series_id": "FR0544",
+      "asset_class": "real_estate",
+      "origin_label": "train_first_three_quarters_test_final_quarter",
+      "training_n": 19737,
+      "prefix_sha256": "efea6acb59c5093d0934409308c7a04f0859cfbafd2ab27bc9423f5fc0f3e32f",
+      "mode": [
+        3.8264767656011527,
+        6.741640017738384
+      ],
+      "proposal_base_covariance": [
+        [
+          0.009101896691335442,
+          0.011229111530335255
+        ],
+        [
+          0.011229111530335255,
+          0.016393674925437644
+        ]
+      ],
+      "replicas": [
+        {
+          "mean": [
+            0.051322778344019535,
+            0.9475616028560441
+          ],
+          "covariance": [
+            [
+              7.1958717715320335e-06,
+              -7.468842946193842e-06
+            ],
+            [
+              -7.468842946193842e-06,
+              7.761769605748185e-06
+            ]
+          ],
+          "ESS": 1718.70001264009,
+          "largest_normalized_weight": 0.0009699877433702044,
+          "nodes": 4096
+        },
+        {
+          "mean": [
+            0.05132428415958757,
+            0.9475601211740466
+          ],
+          "covariance": [
+            [
+              7.188683840204989e-06,
+              -7.461206991863967e-06
+            ],
+            [
+              -7.461206991863967e-06,
+              7.75364764812094e-06
+            ]
+          ],
+          "ESS": 1716.273813694462,
+          "largest_normalized_weight": 0.0009706096722602258,
+          "nodes": 4096
+        }
+      ],
+      "replicated_coefficient_mean_max_abs_difference": 1.5058155680355845e-06
+    }
+  ],
+  "financial_model_not_yet_admitted": true,
+  "limitation": "Working Gaussian likelihood, fixed sample mean and unconditional variance. Stationarity-constrained flat coefficient prior; empirical-shock predictive integration and all245-prefix precision checks remain unimplemented."
+}
