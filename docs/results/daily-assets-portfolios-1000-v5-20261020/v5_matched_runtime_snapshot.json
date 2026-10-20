@@ -1,0 +1,4388 @@
+{
+  "utc": "2026-10-20T22:41:49.261170+00:00",
+  "scope": "Deterministic SHA256-first256 cases from exact four-way completed intersection, current full-run timings. Training-fit + simulation + exact CRPS; no checkpoint IO. Warmup/OS contention not controlled; neither production latency nor full-work speedup claim.",
+  "common_successful_tasks_available": 13225,
+  "matched_sample_tasks": 256,
+  "paths": 1000,
+  "seconds_by_model": {
+    "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": {
+      "sum": 15.609758085920475,
+      "mean": 0.06097561752312686,
+      "median": 0.039539896009955555
+    },
+    "model_testing_joint_stationary_bootstrap_v1": {
+      "sum": 16.796125955646858,
+      "mean": 0.06560986701424554,
+      "median": 0.04168212501099333
+    },
+    "model_testing_joint_uniform_bounded_block_bootstrap_v1": {
+      "sum": 13.165763366501778,
+      "mean": 0.05142876315039757,
+      "median": 0.03366781253134832
+    },
+    "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": {
+      "sum": 16.063443459570408,
+      "mean": 0.0627478260139469,
+      "median": 0.03685343801043928
+    }
+  },
+  "records": [
+    {
+      "series_id": "EQX0177",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1152,
+        "origin_date": "2022-03-31",
+        "origin_label": "rolling_42",
+        "position": 8283,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.047861416009254754,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05188462499063462,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03948220901656896,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.045367208076640964
+      }
+    },
+    {
+      "series_id": "P_3f9ffb1370b89576",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 331,
+        "origin_date": "1992-03-31",
+        "origin_label": "rolling_05",
+        "position": 1323,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01733299996703863,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01899020792916417,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.014874208020046353,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0212186670396477
+      }
+    },
+    {
+      "series_id": "EQX0093",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1875,
+        "origin_date": "2019-03-29",
+        "origin_label": "rolling_38",
+        "position": 7499,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.08023412502370775,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0665975840529427,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.051733791013248265,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05363762506749481
+      }
+    },
+    {
+      "series_id": "P_24111cf7926843f9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1024,
+        "origin_date": "2022-03-31",
+        "origin_label": "rolling_43",
+        "position": 8809,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04846883309073746,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04461358394473791,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.040714874980039895,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04843254201114178
+      }
+    },
+    {
+      "series_id": "P_a97e55668c9b5131",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 379,
+        "origin_date": "2017-09-29",
+        "origin_label": "rolling_16",
+        "position": 1516,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.019936042022891343,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01791687507648021,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.018373333965428174,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.023464083089493215
+      }
+    },
+    {
+      "series_id": "P_2da9338db7849fa4",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1908,
+        "origin_date": "2010-03-31",
+        "origin_label": "rolling_31",
+        "position": 7632,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07457312510814518,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08916216704528779,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06806087505538017,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06881833297666162
+      }
+    },
+    {
+      "series_id": "TPINX_YAHOO_DAILY",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1267,
+        "origin_date": "2021-09-30",
+        "origin_label": "rolling_42",
+        "position": 8829,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.051835833000950515,
+        "model_testing_joint_stationary_bootstrap_v1": 0.050924165989272296,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04216149996500462,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.043220166000537574
+      }
+    },
+    {
+      "series_id": "P_4d4024345602d4bc",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 280,
+        "origin_date": "2014-12-31",
+        "origin_label": "rolling_09",
+        "position": 1121,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.014820458949543536,
+        "model_testing_joint_stationary_bootstrap_v1": 0.013716000015847385,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.013579207938164473,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.018130833050236106
+      }
+    },
+    {
+      "series_id": "P_ef6e2220fd6ef6b2",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 498,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_21",
+        "position": 1992,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.028669832972809672,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02118608308956027,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.020066750003024936,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02481083304155618
+      }
+    },
+    {
+      "series_id": "EQX0129",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1353,
+        "origin_date": "2011-03-31",
+        "origin_label": "rolling_27",
+        "position": 5413,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.060151124955154955,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06005345901940018,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.045586416963487864,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04807137500029057
+      }
+    },
+    {
+      "series_id": "P_1500af4fa1498cb8",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 637,
+        "origin_date": "1981-03-31",
+        "origin_label": "rolling_08",
+        "position": 2547,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0264308339683339,
+        "model_testing_joint_stationary_bootstrap_v1": 0.027831499930471182,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02727479103486985,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02768354199361056
+      }
+    },
+    {
+      "series_id": "EQX0116",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1402,
+        "origin_date": "2011-12-30",
+        "origin_label": "rolling_28",
+        "position": 5609,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05934387492015958,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06800324993673712,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05767129105515778,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0526877089869231
+      }
+    },
+    {
+      "series_id": "EQX0094",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 929,
+        "origin_date": "2004-09-30",
+        "origin_label": "rolling_18",
+        "position": 3718,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03721966699231416,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0411727080354467,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03503412497229874,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03710741701070219
+      }
+    },
+    {
+      "series_id": "EQX0071",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4972,
+        "origin_date": "2001-06-29",
+        "origin_label": "rolling_36",
+        "position": 19887,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.1949117499170825,
+        "model_testing_joint_stationary_bootstrap_v1": 0.24140804097987711,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.16355679195839912,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.18267170910257846
+      }
+    },
+    {
+      "series_id": "P_a1a384a0d4ca9dc2",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2375,
+        "origin_date": "2005-12-30",
+        "origin_label": "rolling_31",
+        "position": 9501,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0919608750846237,
+        "model_testing_joint_stationary_bootstrap_v1": 0.1062373329186812,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.08061170799192041,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.08116233395412564
+      }
+    },
+    {
+      "series_id": "P_35d42d015b6771e4",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2669,
+        "origin_date": "2015-09-30",
+        "origin_label": "rolling_40",
+        "position": 13527,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.111445666057989,
+        "model_testing_joint_stationary_bootstrap_v1": 0.11455720802769065,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.09318341698963195,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.09615354205016047
+      }
+    },
+    {
+      "series_id": "P_34d50933422fb094",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 198,
+        "origin_date": "2025-12-31",
+        "origin_label": "rolling_46",
+        "position": 3551,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01196941698435694,
+        "model_testing_joint_stationary_bootstrap_v1": 0.009283917024731636,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0112989580957219,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.014436875004321337
+      }
+    },
+    {
+      "series_id": "EQX0070",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 459,
+        "origin_date": "1932-12-31",
+        "origin_label": "rolling_03",
+        "position": 1835,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.027265166048891842,
+        "model_testing_joint_stationary_bootstrap_v1": 0.020458500017412007,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.020708292024210095,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.024074500077404082
+      }
+    },
+    {
+      "series_id": "EQX0142",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 554,
+        "origin_date": "1998-12-31",
+        "origin_label": "rolling_10",
+        "position": 2218,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.023851374979130924,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02480954199563712,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.023591834004037082,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.025175999966450036
+      }
+    },
+    {
+      "series_id": "EQX0058",
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3975,
+        "origin_date": "2010-11-08",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 11921,
+        "train_fraction": 0.75
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.15674770798068494,
+        "model_testing_joint_stationary_bootstrap_v1": 0.1816140409791842,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.14207075000740588,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.13341645803302526
+      }
+    },
+    {
+      "series_id": "EQX0184",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 891,
+        "origin_date": "2004-06-30",
+        "origin_label": "rolling_17",
+        "position": 3564,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03869533305987716,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03868420806247741,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03226570796687156,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03616891603451222
+      }
+    },
+    {
+      "series_id": "IEISIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2353,
+        "origin_date": "2016-12-30",
+        "origin_label": "rolling_41",
+        "position": 13844,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0952559580327943,
+        "model_testing_joint_stationary_bootstrap_v1": 0.10084020893555135,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.08051629096735269,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.08357604197226465
+      }
+    },
+    {
+      "series_id": "EQX0091",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1152,
+        "origin_date": "2022-03-31",
+        "origin_label": "rolling_42",
+        "position": 8283,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04877308406867087,
+        "model_testing_joint_stationary_bootstrap_v1": 0.052733708056621253,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03753199998755008,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04279008402954787
+      }
+    },
+    {
+      "series_id": "EQX0133",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1119,
+        "origin_date": "2007-12-31",
+        "origin_label": "rolling_22",
+        "position": 4477,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04641845799051225,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04687858303077519,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04014804202597588,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04194383299909532
+      }
+    },
+    {
+      "series_id": "P_248e1b578707e988",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2139,
+        "origin_date": "1995-12-29",
+        "origin_label": "rolling_25",
+        "position": 8555,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0846958749461919,
+        "model_testing_joint_stationary_bootstrap_v1": 0.09608645807020366,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.07115770899690688,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.07461016706656665
+      }
+    },
+    {
+      "series_id": "CORN",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 444,
+        "origin_date": "2017-06-30",
+        "origin_label": "rolling_18",
+        "position": 1777,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0188673340016976,
+        "model_testing_joint_stationary_bootstrap_v1": 0.018019250012002885,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0189108750782907,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.021560875000432134
+      }
+    },
+    {
+      "series_id": "EQX0173",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 826,
+        "origin_date": "2023-06-30",
+        "origin_label": "rolling_44",
+        "position": 8609,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.036881334031932056,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03745883295778185,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.030918125063180923,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.033423083019442856
+      }
+    },
+    {
+      "series_id": "EQX0101",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1174,
+        "origin_date": "2008-06-30",
+        "origin_label": "rolling_23",
+        "position": 4695,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.045674416003748775,
+        "model_testing_joint_stationary_bootstrap_v1": 0.051276707905344665,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04394620796665549,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05056895804591477
+      }
+    },
+    {
+      "series_id": "EQX0088",
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.16988829209003597,
+        "model_testing_joint_stationary_bootstrap_v1": 0.20607045793440193,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.15352725004777312,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.27323158306535333
+      }
+    },
+    {
+      "series_id": "P_c86e327a0650f3b2",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 486,
+        "origin_date": "2014-09-30",
+        "origin_label": "rolling_16",
+        "position": 1945,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.026189749944023788,
+        "model_testing_joint_stationary_bootstrap_v1": 0.023908875067718327,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02114829095080495,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02362258406355977
+      }
+    },
+    {
+      "series_id": "P_60e05c753336ca74",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1838,
+        "origin_date": "2000-06-30",
+        "origin_label": "rolling_25",
+        "position": 7352,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0714805000461638,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08437337505165488,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0642690829699859,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0683263330720365
+      }
+    },
+    {
+      "series_id": "P_f7a6df004cf7785f",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1040,
+        "origin_date": "2006-12-29",
+        "origin_label": "rolling_21",
+        "position": 4159,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04135012498591095,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04568812495563179,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03737500007264316,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.040271874982863665
+      }
+    },
+    {
+      "series_id": "FR0260",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4822,
+        "origin_date": "2007-06-29",
+        "origin_label": "rolling_39",
+        "position": 21623,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.18302070803474635,
+        "model_testing_joint_stationary_bootstrap_v1": 0.20994341699406505,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.1566045000217855,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.1587155000306666
+      }
+    },
+    {
+      "series_id": "BTC",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 977,
+        "origin_date": "2021-03-31",
+        "origin_label": "rolling_31",
+        "position": 3908,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03910629206802696,
+        "model_testing_joint_stationary_bootstrap_v1": 0.034555083024315536,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.028400959097780287,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03126362501643598
+      }
+    },
+    {
+      "series_id": "P_97dceb4f4807bf7f",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 658,
+        "origin_date": "2020-12-31",
+        "origin_label": "rolling_29",
+        "position": 2632,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02994074998423457,
+        "model_testing_joint_stationary_bootstrap_v1": 0.028567624976858497,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.027007750002667308,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.027378124999813735
+      }
+    },
+    {
+      "series_id": "P_34d50933422fb094",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 508,
+        "origin_date": "2024-09-30",
+        "origin_label": "rolling_42",
+        "position": 3241,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.025245666969567537,
+        "model_testing_joint_stationary_bootstrap_v1": 0.023229041951708496,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.022543333005160093,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.024499916937202215
+      }
+    },
+    {
+      "series_id": "P_755654bea2f760a0",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 253,
+        "origin_date": "2019-06-28",
+        "origin_label": "rolling_08",
+        "position": 1013,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.015859666978940368,
+        "model_testing_joint_stationary_bootstrap_v1": 0.011078124982304871,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.016090041026473045,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.01571874995715916
+      }
+    },
+    {
+      "series_id": "FR0076",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 131,
+        "origin_date": "1928-03-31",
+        "origin_label": "rolling_01",
+        "position": 525,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.010554499924182892,
+        "model_testing_joint_stationary_bootstrap_v1": 0.007493250072002411,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.008818833041004837,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.012799749965779483
+      }
+    },
+    {
+      "series_id": "P_4db059fdf2b5d7e3",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1634,
+        "origin_date": "2016-06-30",
+        "origin_label": "rolling_34",
+        "position": 6535,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0618327499832958,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07470066705718637,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.055418542004190385,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05919795797672123
+      }
+    },
+    {
+      "series_id": "EQX0063",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2345,
+        "origin_date": "2000-09-29",
+        "origin_label": "rolling_28",
+        "position": 9380,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.08725283306557685,
+        "model_testing_joint_stationary_bootstrap_v1": 0.10846941592171788,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.07976583403069526,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0829655829584226
+      }
+    },
+    {
+      "series_id": "P_e4b7a1fc2492e5c9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1362,
+        "origin_date": "2008-09-30",
+        "origin_label": "rolling_26",
+        "position": 5448,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05296066706068814,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05821408296469599,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.051359749981202185,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05313899996690452
+      }
+    },
+    {
+      "series_id": "EQX0158",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 956,
+        "origin_date": "2022-12-30",
+        "origin_label": "rolling_43",
+        "position": 8391,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03924354200717062,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04543433303479105,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.037654166924767196,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04054137505590916
+      }
+    },
+    {
+      "series_id": "EQX0095",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 130,
+        "origin_date": "1992-06-30",
+        "origin_label": "rolling_01",
+        "position": 521,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.008503166027367115,
+        "model_testing_joint_stationary_bootstrap_v1": 0.007386707933619618,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.008742874953895807,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.011756209074519575
+      }
+    },
+    {
+      "series_id": "DHHNGSP",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 444,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_45",
+        "position": 5262,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.024753374978899956,
+        "model_testing_joint_stationary_bootstrap_v1": 0.019346582936123013,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.01859012502245605,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.024367625010199845
+      }
+    },
+    {
+      "series_id": "EQX0124",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 326,
+        "origin_date": "1995-06-30",
+        "origin_label": "rolling_05",
+        "position": 1304,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.014297957997769117,
+        "model_testing_joint_stationary_bootstrap_v1": 0.014363083988428116,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.01537454198114574,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.017688125022687018
+      }
+    },
+    {
+      "series_id": "EQX0057",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1603,
+        "origin_date": "1988-12-30",
+        "origin_label": "rolling_19",
+        "position": 6411,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06331474997568876,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07027670904062688,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06015129201114178,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05872654099948704
+      }
+    },
+    {
+      "series_id": "P_eb24624214c94bac",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 572,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_41",
+        "position": 3177,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0247475829673931,
+        "model_testing_joint_stationary_bootstrap_v1": 0.022655333043076098,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.024449208984151483,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02530329197179526
+      }
+    },
+    {
+      "series_id": "P_abfe86a33db46b50",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1900,
+        "origin_date": "2001-06-29",
+        "origin_label": "rolling_26",
+        "position": 7602,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.08205770910717547,
+        "model_testing_joint_stationary_bootstrap_v1": 0.09007920895237476,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06827187503222376,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.07147829094901681
+      }
+    },
+    {
+      "series_id": "P_b5ba6d14a3972372",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 638,
+        "origin_date": "1972-03-30",
+        "origin_label": "rolling_07",
+        "position": 2554,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.027101958985440433,
+        "model_testing_joint_stationary_bootstrap_v1": 0.029635125072672963,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.026241083978675306,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02895204199012369
+      }
+    },
+    {
+      "series_id": "EQX0065",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1681,
+        "origin_date": "1990-03-30",
+        "origin_label": "rolling_20",
+        "position": 6726,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06816162506584078,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07812862505670637,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06290945899672806,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06604641699232161
+      }
+    },
+    {
+      "series_id": "EQX0087",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1647,
+        "origin_date": "2015-09-30",
+        "origin_label": "rolling_33",
+        "position": 6587,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06233491702005267,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06767591601237655,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05293737491592765,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05797899991739541
+      }
+    },
+    {
+      "series_id": "P_9e52c534bb7b149a",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 280,
+        "origin_date": "2014-12-31",
+        "origin_label": "rolling_09",
+        "position": 1121,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.013714040978811681,
+        "model_testing_joint_stationary_bootstrap_v1": 0.011417167028412223,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.012690208968706429,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.014524542028084397
+      }
+    },
+    {
+      "series_id": "EQX0147",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 750,
+        "origin_date": "2001-12-31",
+        "origin_label": "rolling_14",
+        "position": 3000,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.030196667066775262,
+        "model_testing_joint_stationary_bootstrap_v1": 0.031713792006485164,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.030299582984298468,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.032648749998770654
+      }
+    },
+    {
+      "series_id": "P_de5f98ffdc9cf23f",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 375,
+        "origin_date": "1993-06-30",
+        "origin_label": "rolling_06",
+        "position": 1501,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01866841607261449,
+        "model_testing_joint_stationary_bootstrap_v1": 0.018219082965515554,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.019153250032104552,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.01961054198909551
+      }
+    },
+    {
+      "series_id": "P_a997e384dd6b3f13",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 127,
+        "origin_date": "2013-09-30",
+        "origin_label": "rolling_01",
+        "position": 508,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.009107041987590492,
+        "model_testing_joint_stationary_bootstrap_v1": 0.005449916003271937,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.008283624891191721,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.01253837498370558
+      }
+    },
+    {
+      "series_id": "P_c036444ef2cfc16b",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1380,
+        "origin_date": "1983-12-30",
+        "origin_label": "rolling_16",
+        "position": 5522,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06150674994569272,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05851104203611612,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04965041589457542,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.047183332964777946
+      }
+    },
+    {
+      "series_id": "P_a204f936cd12bdc1",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 665,
+        "origin_date": "2021-03-31",
+        "origin_label": "rolling_31",
+        "position": 2662,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.027332708006724715,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03114437498152256,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.027834082953631878,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02886341605335474
+      }
+    },
+    {
+      "series_id": "EQX0186",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1625,
+        "origin_date": "2015-09-30",
+        "origin_label": "rolling_33",
+        "position": 6499,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06821045896504074,
+        "model_testing_joint_stationary_bootstrap_v1": 0.11927916703280061,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05734283407218754,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05837495799642056
+      }
+    },
+    {
+      "series_id": "FR0038",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2621,
+        "origin_date": "1963-09-30",
+        "origin_label": "rolling_18",
+        "position": 10483,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.10295362491160631,
+        "model_testing_joint_stationary_bootstrap_v1": 0.11479658295866102,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.09005925001110882,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.09323929192032665
+      }
+    },
+    {
+      "series_id": "EQX0135",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 190,
+        "origin_date": "1993-09-30",
+        "origin_label": "rolling_02",
+        "position": 760,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.016702165943570435,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0081539589446038,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0108357920544222,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.014232542016543448
+      }
+    },
+    {
+      "series_id": "SOYB",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 300,
+        "origin_date": "2016-06-30",
+        "origin_label": "rolling_11",
+        "position": 1202,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.013505083974450827,
+        "model_testing_joint_stationary_bootstrap_v1": 0.012495500035583973,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.014205457991920412,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0187417920678854
+      }
+    },
+    {
+      "series_id": "EQX0167",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 799,
+        "origin_date": "2002-09-30",
+        "origin_label": "rolling_15",
+        "position": 3195,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03788458299823105,
+        "model_testing_joint_stationary_bootstrap_v1": 0.035729542025364935,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.030395125038921833,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03522066702134907
+      }
+    },
+    {
+      "series_id": "P_a94b8ea4528f2b4b",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1554,
+        "origin_date": "1995-12-29",
+        "origin_label": "rolling_21",
+        "position": 6218,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05960154195781797,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06925654108636081,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05477299995254725,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.058475792058743536
+      }
+    },
+    {
+      "series_id": "EQX0081",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4066,
+        "origin_date": "2010-06-30",
+        "origin_label": "rolling_40",
+        "position": 21149,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.16570991708431393,
+        "model_testing_joint_stationary_bootstrap_v1": 0.1848302079597488,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.13348991598468274,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.14113937504589558
+      }
+    },
+    {
+      "series_id": "P_2da9338db7849fa4",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1138,
+        "origin_date": "1997-12-31",
+        "origin_label": "rolling_18",
+        "position": 4552,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0449034160701558,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05059187498409301,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04232758400030434,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04512337502092123
+      }
+    },
+    {
+      "series_id": "P_557b439001e3e5f4",
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 695,
+        "origin_date": "2023-11-20",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 2084,
+        "train_fraction": 0.75
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03631762508302927,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03167770791333169,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.027359082945622504,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02956987509969622
+      }
+    },
+    {
+      "series_id": "P_6721920621f07832",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 43,
+        "origin_date": "2026-06-30",
+        "origin_label": "rolling_48",
+        "position": 9030,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.006410749978385866,
+        "model_testing_joint_stationary_bootstrap_v1": 0.002152833971194923,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.007405332988128066,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.009697332978248596
+      }
+    },
+    {
+      "series_id": "P_e4b7a1fc2492e5c9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1861,
+        "origin_date": "2016-09-30",
+        "origin_label": "rolling_36",
+        "position": 7445,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06743658403865993,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08632374997250736,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06318749999627471,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06850637495517731
+      }
+    },
+    {
+      "series_id": "P_4db059fdf2b5d7e3",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1476,
+        "origin_date": "2020-09-30",
+        "origin_label": "rolling_40",
+        "position": 7597,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05467258405406028,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06537375005427748,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.050233750022016466,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05688724992796779
+      }
+    },
+    {
+      "series_id": "FX_JPY_USD",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1760,
+        "origin_date": "2019-09-30",
+        "origin_label": "rolling_42",
+        "position": 12222,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06845512497238815,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07787987496703863,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05552629102021456,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06446937494911253
+      }
+    },
+    {
+      "series_id": "FR0002",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4729,
+        "origin_date": "1997-03-31",
+        "origin_label": "rolling_34",
+        "position": 18915,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.18730166694149375,
+        "model_testing_joint_stationary_bootstrap_v1": 0.20908779092133045,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.1541362500283867,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.1563664999557659
+      }
+    },
+    {
+      "series_id": "P_d8cb7807cc8b1f13",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 728,
+        "origin_date": "2022-03-31",
+        "origin_label": "rolling_34",
+        "position": 2912,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.040807583020068705,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03002362500410527,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03081820800434798,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03219699999317527
+      }
+    },
+    {
+      "series_id": "EQX0082",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2503,
+        "origin_date": "1966-03-31",
+        "origin_label": "rolling_18",
+        "position": 10012,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.097565166070126,
+        "model_testing_joint_stationary_bootstrap_v1": 0.11662441701628268,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.08346329105552286,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0872562499716878
+      }
+    },
+    {
+      "series_id": "P_ef6e2220fd6ef6b2",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 511,
+        "origin_date": "2024-09-30",
+        "origin_label": "rolling_42",
+        "position": 3551,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.026526917004957795,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02092516701668501,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.022042333032004535,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.022702125017531216
+      }
+    },
+    {
+      "series_id": "P_2039e676ccee0d83",
+      "origin": {
+        "evaluation_split": "train_first_quarter_test_remaining",
+        "max_horizon": 12148,
+        "origin_date": "1978-03-03",
+        "origin_label": "train_first_quarter_test_remaining",
+        "position": 4048,
+        "train_fraction": 0.25
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.45603791694156826,
+        "model_testing_joint_stationary_bootstrap_v1": 0.5617122499970719,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.398223333992064,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.8177315420471132
+      }
+    },
+    {
+      "series_id": "P_cfb4aa3c4c51b9c2",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 579,
+        "origin_date": "2019-09-30",
+        "origin_label": "rolling_25",
+        "position": 2315,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.029897209024056792,
+        "model_testing_joint_stationary_bootstrap_v1": 0.026314749964512885,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02358529099728912,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02739420800935477
+      }
+    },
+    {
+      "series_id": "EQX0178",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1223,
+        "origin_date": "2009-03-31",
+        "origin_label": "rolling_24",
+        "position": 4891,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05105224996805191,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05730474996380508,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04014262498822063,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04863654193468392
+      }
+    },
+    {
+      "series_id": "P_90c7b9be21528644",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 759,
+        "origin_date": "2022-09-30",
+        "origin_label": "rolling_36",
+        "position": 3038,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.032387583050876856,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03461150010116398,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02808483294211328,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03356720902957022
+      }
+    },
+    {
+      "series_id": "FR0073",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3275,
+        "origin_date": "1974-03-29",
+        "origin_label": "rolling_23",
+        "position": 13101,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.12756512500345707,
+        "model_testing_joint_stationary_bootstrap_v1": 0.141490500071086,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.11299508402589709,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.11451399989891797
+      }
+    },
+    {
+      "series_id": "P_70cc4e240c59f6af",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 43,
+        "origin_date": "2026-06-30",
+        "origin_label": "rolling_48",
+        "position": 4010,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.006736250012181699,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0022734589874744415,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.00665491702966392,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.00920187495648861
+      }
+    },
+    {
+      "series_id": "FR0039",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2116,
+        "origin_date": "2018-03-29",
+        "origin_label": "rolling_44",
+        "position": 24200,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0980093339458108,
+        "model_testing_joint_stationary_bootstrap_v1": 0.09924316697288305,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.07079879206139594,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.07189883291721344
+      }
+    },
+    {
+      "series_id": "EQX0091",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 505,
+        "origin_date": "1998-03-31",
+        "origin_label": "rolling_09",
+        "position": 2021,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.025089291972108185,
+        "model_testing_joint_stationary_bootstrap_v1": 0.026901792036369443,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02243133308365941,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0272941249422729
+      }
+    },
+    {
+      "series_id": "BNDSIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1851,
+        "origin_date": "2018-12-31",
+        "origin_label": "rolling_39",
+        "position": 8077,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06987333402503282,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06745012500323355,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05111562495585531,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.054266541032120585
+      }
+    },
+    {
+      "series_id": "EQX0056",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1523,
+        "origin_date": "1987-09-30",
+        "origin_label": "rolling_18",
+        "position": 6094,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06380683300085366,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06736445799469948,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.053029750008136034,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05351074994541705
+      }
+    },
+    {
+      "series_id": "EQX0139",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1402,
+        "origin_date": "2011-12-30",
+        "origin_label": "rolling_28",
+        "position": 5609,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05770916701294482,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06180408305954188,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05128425010479987,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05628629098646343
+      }
+    },
+    {
+      "series_id": "PPLT",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 391,
+        "origin_date": "2016-03-31",
+        "origin_label": "rolling_14",
+        "position": 1565,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.017382250051014125,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01737962500192225,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.018031790968962014,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.021520000067539513
+      }
+    },
+    {
+      "series_id": "EQX0127",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1152,
+        "origin_date": "2022-03-31",
+        "origin_label": "rolling_42",
+        "position": 8283,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.046376582933589816,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04984174994751811,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.043062750017270446,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.046493166009895504
+      }
+    },
+    {
+      "series_id": "P_e4b7a1fc2492e5c9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1211,
+        "origin_date": "2021-06-30",
+        "origin_label": "rolling_42",
+        "position": 8622,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04619212506804615,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0554800839163363,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.044367625028826296,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04659625003114343
+      }
+    },
+    {
+      "series_id": "P_7e134df2093ac0a9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 199,
+        "origin_date": "2025-12-31",
+        "origin_label": "rolling_46",
+        "position": 3863,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.014065082999877632,
+        "model_testing_joint_stationary_bootstrap_v1": 0.00899329106323421,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.010945625021122396,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.014507833984680474
+      }
+    },
+    {
+      "series_id": "P_1485a4631f335216",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 192,
+        "origin_date": "2013-06-28",
+        "origin_label": "rolling_04",
+        "position": 768,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.010397583013400435,
+        "model_testing_joint_stationary_bootstrap_v1": 0.010027999989688396,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.01194791600573808,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.014341333066113293
+      }
+    },
+    {
+      "series_id": "P_6721920621f07832",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 314,
+        "origin_date": "1995-06-30",
+        "origin_label": "rolling_05",
+        "position": 1256,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.015759500092826784,
+        "model_testing_joint_stationary_bootstrap_v1": 0.016477666911669075,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.015632292022928596,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.019773707957938313
+      }
+    },
+    {
+      "series_id": "P_4db059fdf2b5d7e3",
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4537,
+        "origin_date": "2008-07-14",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4536,
+        "train_fraction": 0.5
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.1664630409795791,
+        "model_testing_joint_stationary_bootstrap_v1": 0.20679808396380395,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.14424574992153794,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.29398941597901285
+      }
+    },
+    {
+      "series_id": "P_adced410418f18d7",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1139,
+        "origin_date": "1998-03-31",
+        "origin_label": "rolling_18",
+        "position": 4557,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05057133291848004,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0531374589772895,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04134399991016835,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.048400833969935775
+      }
+    },
+    {
+      "series_id": "FR0002",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4759,
+        "origin_date": "2007-09-28",
+        "origin_label": "rolling_39",
+        "position": 21557,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.1812854999443516,
+        "model_testing_joint_stationary_bootstrap_v1": 0.21276083402335644,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.14979791594669223,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.2294875419465825
+      }
+    },
+    {
+      "series_id": "P_d445e8b9967221a0",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 584,
+        "origin_date": "1999-09-30",
+        "origin_label": "rolling_11",
+        "position": 2336,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.024280834011733532,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02700783300679177,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.021852083038538694,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.024937791982665658
+      }
+    },
+    {
+      "series_id": "P_a0a341ff14f57ba1",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 453,
+        "origin_date": "2017-09-29",
+        "origin_label": "rolling_18",
+        "position": 1813,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02070250001270324,
+        "model_testing_joint_stationary_bootstrap_v1": 0.022520333994179964,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.01863975008018315,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.025109499925747514
+      }
+    },
+    {
+      "series_id": "EQX0058",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1045,
+        "origin_date": "2022-06-30",
+        "origin_label": "rolling_45",
+        "position": 14851,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04714879102539271,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04604741604998708,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.039253916940651834,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04442220903001726
+      }
+    },
+    {
+      "series_id": "P_b5ba6d14a3972372",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 314,
+        "origin_date": "1966-12-30",
+        "origin_label": "rolling_03",
+        "position": 1257,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.014188040979206562,
+        "model_testing_joint_stationary_bootstrap_v1": 0.015384332975372672,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.014564707991667092,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.017780749942176044
+      }
+    },
+    {
+      "series_id": "EQX0147",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1027,
+        "origin_date": "2006-03-31",
+        "origin_label": "rolling_20",
+        "position": 4109,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04395745799411088,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04495587490964681,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.038056000019423664,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03766037500463426
+      }
+    },
+    {
+      "series_id": "P_929b14b90cc648d2",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 324,
+        "origin_date": "2025-06-30",
+        "origin_label": "rolling_44",
+        "position": 3425,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01520162494853139,
+        "model_testing_joint_stationary_bootstrap_v1": 0.013615458039566875,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.014589375001378357,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.019509458914399147
+      }
+    },
+    {
+      "series_id": "CANE",
+      "origin": {
+        "evaluation_split": "train_first_quarter_test_remaining",
+        "max_horizon": 2844,
+        "origin_date": "2015-06-26",
+        "origin_label": "train_first_quarter_test_remaining",
+        "position": 947,
+        "train_fraction": 0.25
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.11133074993267655,
+        "model_testing_joint_stationary_bootstrap_v1": 0.11880225001368672,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.09830170799978077,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.2706917499890551
+      }
+    },
+    {
+      "series_id": "P_29699d1efc576384",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 244,
+        "origin_date": "2019-06-28",
+        "origin_label": "rolling_08",
+        "position": 977,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.012606041971594095,
+        "model_testing_joint_stationary_bootstrap_v1": 0.011481583002023399,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.011958666029386222,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.016440499923191965
+      }
+    },
+    {
+      "series_id": "EQX0135",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "1994-06-30",
+        "origin_label": "rolling_03",
+        "position": 955,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01467095804400742,
+        "model_testing_joint_stationary_bootstrap_v1": 0.010949790943413973,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.01380537508521229,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.014146667090244591
+      }
+    },
+    {
+      "series_id": "EQX0099",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1348,
+        "origin_date": "2021-06-30",
+        "origin_label": "rolling_41",
+        "position": 8087,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05456366599537432,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05623895803000778,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.046938540996052325,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0479996670037508
+      }
+    },
+    {
+      "series_id": "EQX0129",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 456,
+        "origin_date": "1997-06-30",
+        "origin_label": "rolling_08",
+        "position": 1825,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.022060666931793094,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01824825000949204,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.01982858299743384,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.023354041972197592
+      }
+    },
+    {
+      "series_id": "P_07c4c4d5e035a4bb",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 105,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_35",
+        "position": 2674,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.00917558406945318,
+        "model_testing_joint_stationary_bootstrap_v1": 0.004461875068955123,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.010186333092860878,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.011260165949352086
+      }
+    },
+    {
+      "series_id": "EQX0093",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 358,
+        "origin_date": "1995-12-29",
+        "origin_label": "rolling_06",
+        "position": 1434,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.017227041069418192,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01204850000794977,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.014922917005605996,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.015389375039376318
+      }
+    },
+    {
+      "series_id": "FR0337",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3150,
+        "origin_date": "1972-03-30",
+        "origin_label": "rolling_22",
+        "position": 12599,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.12363070901483297,
+        "model_testing_joint_stationary_bootstrap_v1": 0.13789608306251466,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.10143812489695847,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.10985983302816749
+      }
+    },
+    {
+      "series_id": "P_248e1b578707e988",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1222,
+        "origin_date": "1981-06-30",
+        "origin_label": "rolling_14",
+        "position": 4888,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0520594579866156,
+        "model_testing_joint_stationary_bootstrap_v1": 0.055649542016908526,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04414958297275007,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.07739383401349187
+      }
+    },
+    {
+      "series_id": "CORN",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 77,
+        "origin_date": "2026-06-30",
+        "origin_label": "rolling_48",
+        "position": 4037,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.007714334060437977,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0038872919976711273,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0075740000465884805,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.009784208028577268
+      }
+    },
+    {
+      "series_id": "EQX0059",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 142,
+        "origin_date": "1965-09-30",
+        "origin_label": "rolling_01",
+        "position": 567,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.013525207992643118,
+        "model_testing_joint_stationary_bootstrap_v1": 0.007113417028449476,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.009836499928496778,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.012524791993200779
+      }
+    },
+    {
+      "series_id": "P_7311bd2ac1eecdb5",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 671,
+        "origin_date": "2009-09-30",
+        "origin_label": "rolling_17",
+        "position": 2683,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.025653290911577642,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03003787505440414,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02469925000332296,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.026502583059482276
+      }
+    },
+    {
+      "series_id": "FR0340",
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6580,
+        "origin_date": "2000-06-29",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19736,
+        "train_fraction": 0.75
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.33820304193068296,
+        "model_testing_joint_stationary_bootstrap_v1": 0.3046155000338331,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.22180770803242922,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.22418766701593995
+      }
+    },
+    {
+      "series_id": "P_d8cb7807cc8b1f13",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 604,
+        "origin_date": "2020-03-31",
+        "origin_label": "rolling_27",
+        "position": 2415,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.029795332928188145,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0285330000333488,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.023050000076182187,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.028367666993290186
+      }
+    },
+    {
+      "series_id": "P_5487afeb8eae7962",
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 1969,
+        "origin_date": "2018-06-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 1967,
+        "train_fraction": 0.5
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06975245801731944,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08493520796764642,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06821520905941725,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.14426091697532684
+      }
+    },
+    {
+      "series_id": "P_cb6e206ff93c982b",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 216,
+        "origin_date": "2013-12-31",
+        "origin_label": "rolling_05",
+        "position": 865,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.010893540922552347,
+        "model_testing_joint_stationary_bootstrap_v1": 0.009385291021317244,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.011975041008554399,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.014604708063416183
+      }
+    },
+    {
+      "series_id": "P_c0098fb3384ad41c",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1118,
+        "origin_date": "2008-03-31",
+        "origin_label": "rolling_23",
+        "position": 4471,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.043742208974435925,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05066733295097947,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04331783298403025,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.044589916011318564
+      }
+    },
+    {
+      "series_id": "P_81effad461cf77b7",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 638,
+        "origin_date": "1972-03-30",
+        "origin_label": "rolling_07",
+        "position": 2554,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02843795798253268,
+        "model_testing_joint_stationary_bootstrap_v1": 0.028495792066678405,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.023499540984630585,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.029301458038389683
+      }
+    },
+    {
+      "series_id": "P_69c0a91dc306c9c9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 494,
+        "origin_date": "2019-09-30",
+        "origin_label": "rolling_23",
+        "position": 1977,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.028643666999414563,
+        "model_testing_joint_stationary_bootstrap_v1": 0.023455665912479162,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02292833395767957,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02647425001487136
+      }
+    },
+    {
+      "series_id": "EQX0108",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1853,
+        "origin_date": "2019-03-29",
+        "origin_label": "rolling_38",
+        "position": 7411,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07563158392440528,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08042295800987631,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0734036659123376,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06920899997930974
+      }
+    },
+    {
+      "series_id": "DCOILBRENTEU",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1120,
+        "origin_date": "2008-06-30",
+        "origin_label": "rolling_25",
+        "position": 4480,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04906200000550598,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0457145000109449,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03631616604980081,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.043809541035443544
+      }
+    },
+    {
+      "series_id": "EQX0147",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1598,
+        "origin_date": "2014-12-31",
+        "origin_label": "rolling_32",
+        "position": 6392,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06577241595368832,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07052016700617969,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.058471292024478316,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05872379208449274
+      }
+    },
+    {
+      "series_id": "FR0040",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4729,
+        "origin_date": "1997-03-31",
+        "origin_label": "rolling_34",
+        "position": 18915,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.21224283403716981,
+        "model_testing_joint_stationary_bootstrap_v1": 0.22978470905218273,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.15860454097855836,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.17563520895782858
+      }
+    },
+    {
+      "series_id": "P_755654bea2f760a0",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 352,
+        "origin_date": "2020-12-31",
+        "origin_label": "rolling_14",
+        "position": 1407,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01874866697471589,
+        "model_testing_joint_stationary_bootstrap_v1": 0.015183458919636905,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.016597749898210168,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.019613582990132272
+      }
+    },
+    {
+      "series_id": "P_c630fc45e84800eb",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1683,
+        "origin_date": "1949-03-31",
+        "origin_label": "rolling_11",
+        "position": 6733,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06229975004680455,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07315400009974837,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.059631583048030734,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.057034917059354484
+      }
+    },
+    {
+      "series_id": "EQX0142",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1125,
+        "origin_date": "2007-09-28",
+        "origin_label": "rolling_22",
+        "position": 4499,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.046607290976680815,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04980325000360608,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0402415000135079,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04867625003680587
+      }
+    },
+    {
+      "series_id": "FX_EUR_USD",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 75,
+        "origin_date": "2026-06-30",
+        "origin_label": "rolling_48",
+        "position": 6892,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.00864641705993563,
+        "model_testing_joint_stationary_bootstrap_v1": 0.005285582970827818,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.008617207990027964,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.009613332920707762
+      }
+    },
+    {
+      "series_id": "EQX0133",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 973,
+        "origin_date": "2005-09-30",
+        "origin_label": "rolling_19",
+        "position": 3891,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04180125007405877,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04138162499293685,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03474029107019305,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03927441604901105
+      }
+    },
+    {
+      "series_id": "GSGSIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1436,
+        "origin_date": "2002-09-30",
+        "origin_label": "rolling_23",
+        "position": 5745,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05624075001105666,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05714245804119855,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04193333303555846,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0471147500211373
+      }
+    },
+    {
+      "series_id": "P_920cb7079dfee5ed",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1907,
+        "origin_date": "2017-06-30",
+        "origin_label": "rolling_37",
+        "position": 7630,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07586083305068314,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0845274159219116,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06529025000054389,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06195891706738621
+      }
+    },
+    {
+      "series_id": "FR0001",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4334,
+        "origin_date": "1990-12-31",
+        "origin_label": "rolling_31",
+        "position": 17336,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.16859683394432068,
+        "model_testing_joint_stationary_bootstrap_v1": 0.1898447920102626,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.14290108298882842,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.1439163750037551
+      }
+    },
+    {
+      "series_id": "VWEHX_YAHOO_DAILY",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 726,
+        "origin_date": "1991-06-28",
+        "origin_label": "rolling_11",
+        "position": 2904,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02835758402943611,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03045162500347942,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.026196083053946495,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02948308305349201
+      }
+    },
+    {
+      "series_id": "P_9e52c534bb7b149a",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 784,
+        "origin_date": "2022-12-30",
+        "origin_label": "rolling_37",
+        "position": 3135,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.033309541060589254,
+        "model_testing_joint_stationary_bootstrap_v1": 0.030684790923260152,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02385862497612834,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.028961375006474555
+      }
+    },
+    {
+      "series_id": "EQX0086",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1255,
+        "origin_date": "2009-09-30",
+        "origin_label": "rolling_25",
+        "position": 5022,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.052099958062171936,
+        "model_testing_joint_stationary_bootstrap_v1": 0.048459541983902454,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04637154203373939,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04183124995324761
+      }
+    },
+    {
+      "series_id": "EQX0121",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06950395798776299,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07830325001850724,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06282187509350479,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.07029225002042949
+      }
+    },
+    {
+      "series_id": "VWEHX_YAHOO_DAILY",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1625,
+        "origin_date": "2005-09-30",
+        "origin_label": "rolling_26",
+        "position": 6499,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06913704099133611,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07056625001132488,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05496145796496421,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05730708292685449
+      }
+    },
+    {
+      "series_id": "P_2bfecf56d9102bf2",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_44",
+        "position": 3637,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.017043374944478273,
+        "model_testing_joint_stationary_bootstrap_v1": 0.016819083015434444,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.015759125002659857,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.01907300006132573
+      }
+    },
+    {
+      "series_id": "P_531742fb3228a575",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 464,
+        "origin_date": "1969-06-30",
+        "origin_label": "rolling_05",
+        "position": 1857,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02323066594544798,
+        "model_testing_joint_stationary_bootstrap_v1": 0.022862125071696937,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.021392624941654503,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02287149999756366
+      }
+    },
+    {
+      "series_id": "P_6721920621f07832",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 675,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2702,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.029394041979685426,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03044029197189957,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.027059708023443818,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.029626457951962948
+      }
+    },
+    {
+      "series_id": "P_c7408fcea0e97877",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 529,
+        "origin_date": "2018-12-31",
+        "origin_label": "rolling_22",
+        "position": 2115,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.022540915990248322,
+        "model_testing_joint_stationary_bootstrap_v1": 0.026544291991740465,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02230045897886157,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02610233298037201
+      }
+    },
+    {
+      "series_id": "P_cb6e206ff93c982b",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 700,
+        "origin_date": "2021-09-30",
+        "origin_label": "rolling_32",
+        "position": 2802,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.031049291021190584,
+        "model_testing_joint_stationary_bootstrap_v1": 0.029391332995146513,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.028331666020676494,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.030358040938153863
+      }
+    },
+    {
+      "series_id": "P_69c0a91dc306c9c9",
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 1858,
+        "origin_date": "2019-04-09",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 1857,
+        "train_fraction": 0.5
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07617025007493794,
+        "model_testing_joint_stationary_bootstrap_v1": 0.082487458945252,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0641769589856267,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.1494639579905197
+      }
+    },
+    {
+      "series_id": "P_929b14b90cc648d2",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 717,
+        "origin_date": "2023-03-31",
+        "origin_label": "rolling_36",
+        "position": 2867,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02910062507726252,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02904866705648601,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.029644542024470866,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.031056582927703857
+      }
+    },
+    {
+      "series_id": "EQX0106",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 842,
+        "origin_date": "2003-09-30",
+        "origin_label": "rolling_16",
+        "position": 3368,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.035478917066939175,
+        "model_testing_joint_stationary_bootstrap_v1": 0.037619375041686,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03510270803235471,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.034047040971927345
+      }
+    },
+    {
+      "series_id": "P_3711f90b8caa93b6",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 183,
+        "origin_date": "2013-06-28",
+        "origin_label": "rolling_04",
+        "position": 734,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01013104198500514,
+        "model_testing_joint_stationary_bootstrap_v1": 0.007015833049081266,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.012307874974794686,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.012954083038493991
+      }
+    },
+    {
+      "series_id": "EQX0080",
+      "origin": {
+        "evaluation_split": "train_first_quarter_test_remaining",
+        "max_horizon": 18912,
+        "origin_date": "1951-08-20",
+        "origin_label": "train_first_quarter_test_remaining",
+        "position": 6303,
+        "train_fraction": 0.25
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.7795069999992847,
+        "model_testing_joint_stationary_bootstrap_v1": 0.8197862500092015,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.617192417033948,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 1.0379959170240909
+      }
+    },
+    {
+      "series_id": "P_de5f98ffdc9cf23f",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 455,
+        "origin_date": "1995-09-29",
+        "origin_label": "rolling_09",
+        "position": 1819,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02150158293079585,
+        "model_testing_joint_stationary_bootstrap_v1": 0.019936583004891872,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.020086082979105413,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0250977500109002
+      }
+    },
+    {
+      "series_id": "P_08b8636d3e1321a8",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 460,
+        "origin_date": "2017-09-29",
+        "origin_label": "rolling_19",
+        "position": 1839,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.022074459004215896,
+        "model_testing_joint_stationary_bootstrap_v1": 0.021126750041730702,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.020059000002220273,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.022272666916251183
+      }
+    },
+    {
+      "series_id": "P_248e1b578707e988",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1380,
+        "origin_date": "1983-12-30",
+        "origin_label": "rolling_16",
+        "position": 5522,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.055795959080569446,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06316458294168115,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04746608401183039,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0643047500634566
+      }
+    },
+    {
+      "series_id": "P_6439b5f2003fc9d9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 595,
+        "origin_date": "2019-12-31",
+        "origin_label": "rolling_26",
+        "position": 2379,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0236912090331316,
+        "model_testing_joint_stationary_bootstrap_v1": 0.025912625016644597,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02180366707034409,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.028768832911737263
+      }
+    },
+    {
+      "series_id": "EQX0068",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2753,
+        "origin_date": "1966-03-31",
+        "origin_label": "rolling_19",
+        "position": 11012,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.12244054197799414,
+        "model_testing_joint_stationary_bootstrap_v1": 0.1199989999877289,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.09762258303817362,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0980880829738453
+      }
+    },
+    {
+      "series_id": "P_90c7b9be21528644",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 464,
+        "origin_date": "2017-12-29",
+        "origin_label": "rolling_19",
+        "position": 1857,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.022748167044483125,
+        "model_testing_joint_stationary_bootstrap_v1": 0.021920375060290098,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.01992150000296533,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02177470806054771
+      }
+    },
+    {
+      "series_id": "EQX0139",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1777,
+        "origin_date": "2017-09-29",
+        "origin_label": "rolling_36",
+        "position": 7109,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07449599995743483,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08260666695423424,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06121949991211295,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06995333393570036
+      }
+    },
+    {
+      "series_id": "FR0037",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1683,
+        "origin_date": "1949-03-31",
+        "origin_label": "rolling_11",
+        "position": 6734,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07149033294990659,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07521837495733052,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.057717708055861294,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05981866596266627
+      }
+    },
+    {
+      "series_id": "CORN",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 806,
+        "origin_date": "2023-03-31",
+        "origin_label": "rolling_37",
+        "position": 3224,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.030277124955318868,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03359791589900851,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.029396917088888586,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03217766701709479
+      }
+    },
+    {
+      "series_id": "P_5487afeb8eae7962",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 402,
+        "origin_date": "2016-12-30",
+        "origin_label": "rolling_16",
+        "position": 1609,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02370820799842477,
+        "model_testing_joint_stationary_bootstrap_v1": 0.017567666945979,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.017385291983373463,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.022320999996736646
+      }
+    },
+    {
+      "series_id": "TLTSIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1807,
+        "origin_date": "1990-09-28",
+        "origin_label": "rolling_21",
+        "position": 7228,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07688549999147654,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08301179204136133,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06047124997712672,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06402975006494671
+      }
+    },
+    {
+      "series_id": "P_5487afeb8eae7962",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 465,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_42",
+        "position": 3471,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02084579097572714,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01822508394252509,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.019690999994054437,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.024142791982740164
+      }
+    },
+    {
+      "series_id": "P_de5f98ffdc9cf23f",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1223,
+        "origin_date": "2010-06-30",
+        "origin_label": "rolling_28",
+        "position": 4892,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0504551250487566,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05251958407461643,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.041629625018686056,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05013104202225804
+      }
+    },
+    {
+      "series_id": "ZROZSIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2470,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_29",
+        "position": 9881,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.09856295806821436,
+        "model_testing_joint_stationary_bootstrap_v1": 0.12028491694945842,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.08985837490763515,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.09238845808431506
+      }
+    },
+    {
+      "series_id": "P_2125ed58c7d7c264",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 721,
+        "origin_date": "2021-12-31",
+        "origin_label": "rolling_33",
+        "position": 2884,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03213904099538922,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03340729093179107,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02959129202645272,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03118279203772545
+      }
+    },
+    {
+      "series_id": "P_d9c116c0bcead76e",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 658,
+        "origin_date": "2020-12-31",
+        "origin_label": "rolling_30",
+        "position": 2632,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.027289291960187256,
+        "model_testing_joint_stationary_bootstrap_v1": 0.041381207993254066,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.025957125006243587,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.028445874922908843
+      }
+    },
+    {
+      "series_id": "EQX0059",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 299,
+        "origin_date": "1968-03-29",
+        "origin_label": "rolling_03",
+        "position": 1195,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01753516704775393,
+        "model_testing_joint_stationary_bootstrap_v1": 0.013713249936699867,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.013945834012702107,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.018701332970522344
+      }
+    },
+    {
+      "series_id": "FR0340",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4759,
+        "origin_date": "2007-09-28",
+        "origin_label": "rolling_39",
+        "position": 21557,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.21292066609021276,
+        "model_testing_joint_stationary_bootstrap_v1": 0.21947916701901704,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.1568212079582736,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.16991645807866007
+      }
+    },
+    {
+      "series_id": "FR0073",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3544,
+        "origin_date": "1978-06-30",
+        "origin_label": "rolling_25",
+        "position": 14176,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.14686033292673528,
+        "model_testing_joint_stationary_bootstrap_v1": 0.16598233301192522,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.11475179193075746,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.11909745901357383
+      }
+    },
+    {
+      "series_id": "FR0338",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3402,
+        "origin_date": "1976-03-31",
+        "origin_label": "rolling_24",
+        "position": 13608,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.12790241709444672,
+        "model_testing_joint_stationary_bootstrap_v1": 0.14777391694951802,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.11206337495241314,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.11400108400266618
+      }
+    },
+    {
+      "series_id": "EQX0116",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1076,
+        "origin_date": "2006-12-29",
+        "origin_label": "rolling_21",
+        "position": 4304,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0429901669267565,
+        "model_testing_joint_stationary_bootstrap_v1": 0.051512207952328026,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03950499999336898,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.044288292061537504
+      }
+    },
+    {
+      "series_id": "EQX0135",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 288,
+        "origin_date": "1995-03-31",
+        "origin_label": "rolling_04",
+        "position": 1151,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01645887503400445,
+        "model_testing_joint_stationary_bootstrap_v1": 0.013401958043687046,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.019818582921288908,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.01896141702309251
+      }
+    },
+    {
+      "series_id": "EQX0102",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03191108303144574,
+        "model_testing_joint_stationary_bootstrap_v1": 0.031811875058338046,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02942825003992766,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.031574083026498556
+      }
+    },
+    {
+      "series_id": "P_ba695698ae8a83e1",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1712,
+        "origin_date": "1989-03-31",
+        "origin_label": "rolling_20",
+        "position": 6848,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0644698750693351,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07576845795847476,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06432808306999505,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.061843583011068404
+      }
+    },
+    {
+      "series_id": "P_a47fbdfc69a1120e",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1442,
+        "origin_date": "2013-12-31",
+        "origin_label": "rolling_32",
+        "position": 5767,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06045295798685402,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06238329201005399,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05008229101076722,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05359845899511129
+      }
+    },
+    {
+      "series_id": "P_fbe58c39d6e1b2ed",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 794,
+        "origin_date": "2023-06-30",
+        "origin_label": "rolling_38",
+        "position": 3259,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03589004196692258,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06079516699537635,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.031244875048287213,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.043138999957591295
+      }
+    },
+    {
+      "series_id": "EQX0082",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4390,
+        "origin_date": "1996-03-29",
+        "origin_label": "rolling_33",
+        "position": 17562,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.18316416593734175,
+        "model_testing_joint_stationary_bootstrap_v1": 0.19937262509483844,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.14763033296912909,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.1506527920719236
+      }
+    },
+    {
+      "series_id": "EQX0166",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 130,
+        "origin_date": "1992-06-30",
+        "origin_label": "rolling_01",
+        "position": 521,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.010692832991480827,
+        "model_testing_joint_stationary_bootstrap_v1": 0.006262499955482781,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.009086041012778878,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.012830832973122597
+      }
+    },
+    {
+      "series_id": "EQX0065",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 876,
+        "origin_date": "1977-06-30",
+        "origin_label": "rolling_10",
+        "position": 3504,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.037771415896713734,
+        "model_testing_joint_stationary_bootstrap_v1": 0.041982625029049814,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.028480625012889504,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0410821249242872
+      }
+    },
+    {
+      "series_id": "P_94961412368aca83",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 314,
+        "origin_date": "1995-06-30",
+        "origin_label": "rolling_05",
+        "position": 1256,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.017841916996985674,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01419712498318404,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.01647024997510016,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.017171917017549276
+      }
+    },
+    {
+      "series_id": "EQX0177",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1875,
+        "origin_date": "2019-03-29",
+        "origin_label": "rolling_38",
+        "position": 7499,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07499595801346004,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07918495789635926,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06983595807105303,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06613583292346448
+      }
+    },
+    {
+      "series_id": "EQX0101",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 652,
+        "origin_date": "2000-06-30",
+        "origin_label": "rolling_12",
+        "position": 2609,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02715479105245322,
+        "model_testing_joint_stationary_bootstrap_v1": 0.028593708062544465,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.026316917035728693,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03012624999973923
+      }
+    },
+    {
+      "series_id": "FX_EUR_USD",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 439,
+        "origin_date": "2005-12-30",
+        "origin_label": "rolling_10",
+        "position": 1758,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02132229204289615,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01779549999628216,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.018421250046230853,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.01984904205892235
+      }
+    },
+    {
+      "series_id": "P_6721920621f07832",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 722,
+        "origin_date": "2001-12-31",
+        "origin_label": "rolling_14",
+        "position": 2890,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0300682500237599,
+        "model_testing_joint_stationary_bootstrap_v1": 0.033599416026845574,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.028102915966883302,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03295933292247355
+      }
+    },
+    {
+      "series_id": "P_c104d458c2d8a5c4",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 768,
+        "origin_date": "2022-09-30",
+        "origin_label": "rolling_35",
+        "position": 3072,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03337837499566376,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03269616689067334,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02936404198408127,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03174270805902779
+      }
+    },
+    {
+      "series_id": "EQX0064",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1191,
+        "origin_date": "1982-06-30",
+        "origin_label": "rolling_14",
+        "position": 4766,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.047632207977585495,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05785766604822129,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04741324996575713,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04657612496521324
+      }
+    },
+    {
+      "series_id": "FX_CAD_USD",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 949,
+        "origin_date": "2022-12-30",
+        "origin_label": "rolling_45",
+        "position": 13045,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04351829190272838,
+        "model_testing_joint_stationary_bootstrap_v1": 0.042074458906427026,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03136541706044227,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.035276041948236525
+      }
+    },
+    {
+      "series_id": "P_9914bf743e206135",
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1020,
+        "origin_date": "2022-08-05",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 3059,
+        "train_fraction": 0.75
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04169758304487914,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04530783393420279,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03816358302719891,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03659945901017636
+      }
+    },
+    {
+      "series_id": "EQX0096",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 44,
+        "origin_date": "2026-06-30",
+        "origin_label": "rolling_48",
+        "position": 9391,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.007537334109656513,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0021632080897688866,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.007028832915239036,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.009048584033735096
+      }
+    },
+    {
+      "series_id": "EQX0179",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 326,
+        "origin_date": "1995-06-30",
+        "origin_label": "rolling_05",
+        "position": 1304,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.019249584060162306,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01564237498678267,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.017167957965284586,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.018413958023302257
+      }
+    },
+    {
+      "series_id": "P_5487afeb8eae7962",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 541,
+        "origin_date": "2019-03-29",
+        "origin_label": "rolling_24",
+        "position": 2164,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.024682249990291893,
+        "model_testing_joint_stationary_bootstrap_v1": 0.023538958048447967,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.022167625022120774,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.026473000063560903
+      }
+    },
+    {
+      "series_id": "EQX0167",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 434,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_46",
+        "position": 9001,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02211062505375594,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02037737495265901,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02093870798125863,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02277466596569866
+      }
+    },
+    {
+      "series_id": "EQX0095",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 277,
+        "origin_date": "1994-09-30",
+        "origin_label": "rolling_04",
+        "position": 1109,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.014336167019791901,
+        "model_testing_joint_stationary_bootstrap_v1": 0.017427750048227608,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.013073083944618702,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.019627208006568253
+      }
+    },
+    {
+      "series_id": "P_dd6bd8cde6aab8b6",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4997,
+        "origin_date": "2001-06-29",
+        "origin_label": "rolling_36",
+        "position": 19987,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.19131970894522965,
+        "model_testing_joint_stationary_bootstrap_v1": 0.22897491697221994,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.17532995902001858,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.16471333301160485
+      }
+    },
+    {
+      "series_id": "FX_GBP_USD",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 639,
+        "origin_date": "1981-03-31",
+        "origin_label": "rolling_08",
+        "position": 2558,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02689249999821186,
+        "model_testing_joint_stationary_bootstrap_v1": 0.026577958022244275,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.022730875061824918,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02822583296801895
+      }
+    },
+    {
+      "series_id": "EQX0111",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.028624750091694295,
+        "model_testing_joint_stationary_bootstrap_v1": 0.030897999997250736,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.028602874954231083,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02962062507867813
+      }
+    },
+    {
+      "series_id": "FR0039",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1824,
+        "origin_date": "1951-03-31",
+        "origin_label": "rolling_12",
+        "position": 7297,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.08616924996022135,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07622212497517467,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06302879203576595,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06501274998299778
+      }
+    },
+    {
+      "series_id": "P_23dcd6d91ece22a5",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 690,
+        "origin_date": "2021-06-30",
+        "origin_label": "rolling_31",
+        "position": 2759,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03050583298318088,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03507687500678003,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.022267624968662858,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.031203499995172024
+      }
+    },
+    {
+      "series_id": "P_eb24624214c94bac",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 608,
+        "origin_date": "2021-06-30",
+        "origin_label": "rolling_30",
+        "position": 2431,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.024734791019000113,
+        "model_testing_joint_stationary_bootstrap_v1": 0.026597500080242753,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.023591084056533873,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.025637459009885788
+      }
+    },
+    {
+      "series_id": "EQX0153",
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.08810954203363508,
+        "model_testing_joint_stationary_bootstrap_v1": 0.10262708296068013,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0839379170211032,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.08109387499280274
+      }
+    },
+    {
+      "series_id": "IEISIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3209,
+        "origin_date": "2012-12-31",
+        "origin_label": "rolling_38",
+        "position": 12836,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.12667675002012402,
+        "model_testing_joint_stationary_bootstrap_v1": 0.14200579200405627,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.10652962501626462,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.11462716700043529
+      }
+    },
+    {
+      "series_id": "IEFSIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1222,
+        "origin_date": "1981-06-30",
+        "origin_label": "rolling_14",
+        "position": 4889,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05006287503056228,
+        "model_testing_joint_stationary_bootstrap_v1": 0.053418415947817266,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03990724997129291,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04716320801526308
+      }
+    },
+    {
+      "series_id": "SHYSIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3051,
+        "origin_date": "2010-06-30",
+        "origin_label": "rolling_36",
+        "position": 12206,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.12608912505675107,
+        "model_testing_joint_stationary_bootstrap_v1": 0.12552879098802805,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0976879169465974,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.09969554201234132
+      }
+    },
+    {
+      "series_id": "P_24111cf7926843f9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 768,
+        "origin_date": "1999-03-31",
+        "origin_label": "rolling_14",
+        "position": 3073,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03637958306353539,
+        "model_testing_joint_stationary_bootstrap_v1": 0.030171166989021003,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03259533399250358,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02998908399604261
+      }
+    },
+    {
+      "series_id": "P_c036444ef2cfc16b",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2669,
+        "origin_date": "2015-09-30",
+        "origin_label": "rolling_40",
+        "position": 13527,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.10435462498571724,
+        "model_testing_joint_stationary_bootstrap_v1": 0.11958825006149709,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.08933779201470315,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.09722908295225352
+      }
+    },
+    {
+      "series_id": "EQX0099",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1598,
+        "origin_date": "2014-12-31",
+        "origin_label": "rolling_32",
+        "position": 6392,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06006008293479681,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06624279101379216,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.051594499964267015,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.054637708934023976
+      }
+    },
+    {
+      "series_id": "EQX0146",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01318950008135289,
+        "model_testing_joint_stationary_bootstrap_v1": 0.012439124984666705,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.013718542060814798,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.016112041077576578
+      }
+    },
+    {
+      "series_id": "FR0073",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1824,
+        "origin_date": "1951-03-31",
+        "origin_label": "rolling_12",
+        "position": 7297,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0701324159745127,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08034183306153864,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06429374997969717,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0628522919723764
+      }
+    },
+    {
+      "series_id": "EQX0080",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1032,
+        "origin_date": "1943-12-31",
+        "origin_label": "rolling_07",
+        "position": 4128,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04097124992404133,
+        "model_testing_joint_stationary_bootstrap_v1": 0.044852708000689745,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03937566699460149,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04093725001439452
+      }
+    },
+    {
+      "series_id": "P_2da9338db7849fa4",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1311,
+        "origin_date": "2000-09-29",
+        "origin_label": "rolling_21",
+        "position": 5245,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0554766251007095,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05330204195342958,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.046111834002658725,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.049888416077010334
+      }
+    },
+    {
+      "series_id": "FR0073",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25772,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02887129201553762,
+        "model_testing_joint_stationary_bootstrap_v1": 0.024255291908048093,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02323825005441904,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02659587503876537
+      }
+    },
+    {
+      "series_id": "FR0337",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4461,
+        "origin_date": "1992-12-31",
+        "origin_label": "rolling_32",
+        "position": 17843,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.18247633299324661,
+        "model_testing_joint_stationary_bootstrap_v1": 0.20027416700031608,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.1490328749641776,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.15605841705109924
+      }
+    },
+    {
+      "series_id": "EQX0122",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1875,
+        "origin_date": "2019-03-29",
+        "origin_label": "rolling_38",
+        "position": 7499,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07282883301377296,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08432637492660433,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06603058299515396,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06321070902049541
+      }
+    },
+    {
+      "series_id": "P_94961412368aca83",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1445,
+        "origin_date": "2013-06-28",
+        "origin_label": "rolling_30",
+        "position": 5782,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06137120793573558,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06922354199923575,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.05120300000999123,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05243320902809501
+      }
+    },
+    {
+      "series_id": "EQX0109",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1543,
+        "origin_date": "2014-06-30",
+        "origin_label": "rolling_31",
+        "position": 6172,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06324291706550866,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06732966704294086,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.051441082963719964,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06974174990318716
+      }
+    },
+    {
+      "series_id": "P_eb24624214c94bac",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 313,
+        "origin_date": "2016-09-30",
+        "origin_label": "rolling_12",
+        "position": 1254,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.015138917020522058,
+        "model_testing_joint_stationary_bootstrap_v1": 0.012161082937382162,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.015298415906727314,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.01848116598557681
+      }
+    },
+    {
+      "series_id": "CANE",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 143,
+        "origin_date": "2013-12-31",
+        "origin_label": "rolling_02",
+        "position": 573,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01262491603847593,
+        "model_testing_joint_stationary_bootstrap_v1": 0.006239915965124965,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.009433375089429319,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.011293208925053477
+      }
+    },
+    {
+      "series_id": "FR0075",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1232,
+        "origin_date": "1942-12-31",
+        "origin_label": "rolling_08",
+        "position": 4928,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.05518479202874005,
+        "model_testing_joint_stationary_bootstrap_v1": 0.05481429200153798,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.043543375097215176,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04598704201634973
+      }
+    },
+    {
+      "series_id": "P_1485a4631f335216",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 290,
+        "origin_date": "2014-12-31",
+        "origin_label": "rolling_09",
+        "position": 1161,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.015323790954425931,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01290891703683883,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.014654041966423392,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.01803229097276926
+      }
+    },
+    {
+      "series_id": "P_e4757d2ca5025405",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 784,
+        "origin_date": "2022-12-30",
+        "origin_label": "rolling_37",
+        "position": 3135,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03374495904427022,
+        "model_testing_joint_stationary_bootstrap_v1": 0.031241999939084053,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.027104125008918345,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0292120830854401
+      }
+    },
+    {
+      "series_id": "P_248e1b578707e988",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 970,
+        "origin_date": "1977-06-30",
+        "origin_label": "rolling_11",
+        "position": 3879,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04482279205694795,
+        "model_testing_joint_stationary_bootstrap_v1": 0.044903957983478904,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.03554845799226314,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06157012504991144
+      }
+    },
+    {
+      "series_id": "P_91c49a9750484b2c",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 879,
+        "origin_date": "2012-12-31",
+        "origin_label": "rolling_23",
+        "position": 3518,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.03976379206869751,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04121091705746949,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.032116291928105056,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03532087488565594
+      }
+    },
+    {
+      "series_id": "FR0040",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2495,
+        "origin_date": "1961-09-29",
+        "origin_label": "rolling_17",
+        "position": 9980,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.10373816697392613,
+        "model_testing_joint_stationary_bootstrap_v1": 0.12068204197566956,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.07999654102604836,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.08522154204547405
+      }
+    },
+    {
+      "series_id": "TIPSIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 833,
+        "origin_date": "2013-09-30",
+        "origin_label": "rolling_23",
+        "position": 3331,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.033162749954499304,
+        "model_testing_joint_stationary_bootstrap_v1": 0.035448582959361374,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.028346249950118363,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03119866701308638
+      }
+    },
+    {
+      "series_id": "EQX0168",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 554,
+        "origin_date": "1998-12-31",
+        "origin_label": "rolling_10",
+        "position": 2218,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.026558084064163268,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02793008298613131,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.022461999906226993,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.028122583054937422
+      }
+    },
+    {
+      "series_id": "CPER",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 589,
+        "origin_date": "2021-03-31",
+        "origin_label": "rolling_28",
+        "position": 2356,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.026423833915032446,
+        "model_testing_joint_stationary_bootstrap_v1": 0.030639625038020313,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.022376082953996956,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.024851334048435092
+      }
+    },
+    {
+      "series_id": "P_07c4c4d5e035a4bb",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 433,
+        "origin_date": "2022-06-30",
+        "origin_label": "rolling_20",
+        "position": 1734,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.020778125035576522,
+        "model_testing_joint_stationary_bootstrap_v1": 0.018731416086666286,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0200365410419181,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.022968915989622474
+      }
+    },
+    {
+      "series_id": "EQX0117",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 554,
+        "origin_date": "1998-12-31",
+        "origin_label": "rolling_10",
+        "position": 2218,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.023483124910853803,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02637708291877061,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0232745420653373,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.026840041973628104
+      }
+    },
+    {
+      "series_id": "FR0337",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 446,
+        "origin_date": "1932-06-30",
+        "origin_label": "rolling_03",
+        "position": 1785,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.019620000035502017,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01802116702310741,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.019466875004582107,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02180891705211252
+      }
+    },
+    {
+      "series_id": "EQX0141",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1739,
+        "origin_date": "2019-12-31",
+        "origin_label": "rolling_39",
+        "position": 7696,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07026833295822144,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07621791702695191,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.060618082992732525,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0623293329263106
+      }
+    },
+    {
+      "series_id": "FX_EUR_USD",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1193,
+        "origin_date": "2017-12-29",
+        "origin_label": "rolling_32",
+        "position": 4771,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.04546666704118252,
+        "model_testing_joint_stationary_bootstrap_v1": 0.051407875027507544,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04280604200903326,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.04623291699681431
+      }
+    },
+    {
+      "series_id": "EQX0133",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1494,
+        "origin_date": "2013-09-30",
+        "origin_label": "rolling_30",
+        "position": 5977,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.061014708946458995,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06793058395851403,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04871870798524469,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05342695792205632
+      }
+    },
+    {
+      "series_id": "P_19938e5352fe6bfa",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 469,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_42",
+        "position": 3509,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.023605499998666346,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02189408300910145,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.019548083073459566,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.0222404160303995
+      }
+    },
+    {
+      "series_id": "EQX0186",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1119,
+        "origin_date": "2007-12-31",
+        "origin_label": "rolling_22",
+        "position": 4477,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.054038040922023356,
+        "model_testing_joint_stationary_bootstrap_v1": 0.04877791600301862,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.041009875014424324,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.047647541970945895
+      }
+    },
+    {
+      "series_id": "P_90c7b9be21528644",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 183,
+        "origin_date": "2013-06-28",
+        "origin_label": "rolling_04",
+        "position": 734,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.012681375024840236,
+        "model_testing_joint_stationary_bootstrap_v1": 0.008952999953180552,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.013180749956518412,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.013865749933756888
+      }
+    },
+    {
+      "series_id": "P_c77cb1122fc431db",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1965,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_23",
+        "position": 7860,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0986325420672074,
+        "model_testing_joint_stationary_bootstrap_v1": 0.08661429199855775,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.07363766699563712,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.07670504203997552
+      }
+    },
+    {
+      "series_id": "EQX0166",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1739,
+        "origin_date": "2019-12-31",
+        "origin_label": "rolling_39",
+        "position": 7696,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06939045898616314,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07795495900791138,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0604956669267267,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.06482291698921472
+      }
+    },
+    {
+      "series_id": "P_922c2a6b2ba999fe",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 738,
+        "origin_date": "2012-03-30",
+        "origin_label": "rolling_20",
+        "position": 2954,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.029144874890334904,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03534337505698204,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.024759290972724557,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.032888540998101234
+      }
+    },
+    {
+      "series_id": "FR0259",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3184,
+        "origin_date": "2013-12-31",
+        "origin_label": "rolling_42",
+        "position": 23261,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.13196504197549075,
+        "model_testing_joint_stationary_bootstrap_v1": 0.13918333302717656,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.10825612500775605,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.1128673329949379
+      }
+    },
+    {
+      "series_id": "P_f7a6df004cf7785f",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 489,
+        "origin_date": "1998-03-31",
+        "origin_label": "rolling_09",
+        "position": 1957,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.020120875095017254,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02259670803323388,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02006729191634804,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.024714916944503784
+      }
+    },
+    {
+      "series_id": "EQX0112",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1451,
+        "origin_date": "2012-09-28",
+        "origin_label": "rolling_29",
+        "position": 5804,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.06389358395244926,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06305274995975196,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04693704110104591,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.05000770802143961
+      }
+    },
+    {
+      "series_id": "EQX0128",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 799,
+        "origin_date": "2002-09-30",
+        "origin_label": "rolling_15",
+        "position": 3195,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.031115124933421612,
+        "model_testing_joint_stationary_bootstrap_v1": 0.03680512495338917,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.028835957986302674,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.035415375023148954
+      }
+    },
+    {
+      "series_id": "P_ba695698ae8a83e1",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2041,
+        "origin_date": "2018-03-29",
+        "origin_label": "rolling_42",
+        "position": 14155,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.088372458005324,
+        "model_testing_joint_stationary_bootstrap_v1": 0.09502749994862825,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.07339062506798655,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.07237087492831051
+      }
+    },
+    {
+      "series_id": "P_23dcd6d91ece22a5",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 799,
+        "origin_date": "2023-03-31",
+        "origin_label": "rolling_37",
+        "position": 3198,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0393159999512136,
+        "model_testing_joint_stationary_bootstrap_v1": 0.037844124948605895,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.028987625031732023,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.03646716696675867
+      }
+    },
+    {
+      "series_id": "P_bd19fe7ec1bff509",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 589,
+        "origin_date": "2021-03-31",
+        "origin_label": "rolling_28",
+        "position": 2355,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.030127584002912045,
+        "model_testing_joint_stationary_bootstrap_v1": 0.025033999932929873,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.024875042028725147,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02285420906264335
+      }
+    },
+    {
+      "series_id": "P_0fea853f6c09779f",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 343,
+        "origin_date": "2015-12-31",
+        "origin_label": "rolling_12",
+        "position": 1373,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.016568875056691468,
+        "model_testing_joint_stationary_bootstrap_v1": 0.01421991700772196,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.01732312492094934,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.01819783402606845
+      }
+    },
+    {
+      "series_id": "P_24111cf7926843f9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 518,
+        "origin_date": "1995-03-31",
+        "origin_label": "rolling_09",
+        "position": 2073,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.02575050003360957,
+        "model_testing_joint_stationary_bootstrap_v1": 0.02444874995853752,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.019365958054549992,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.027604667004197836
+      }
+    },
+    {
+      "series_id": "P_24111cf7926843f9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1767,
+        "origin_date": "2015-03-31",
+        "origin_label": "rolling_34",
+        "position": 7067,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.07507370901294053,
+        "model_testing_joint_stationary_bootstrap_v1": 0.07486270903609693,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.0608923330437392,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.07240449998062104
+      }
+    },
+    {
+      "series_id": "EQX0057",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2345,
+        "origin_date": "2000-09-29",
+        "origin_label": "rolling_28",
+        "position": 9380,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.09370441699866205,
+        "model_testing_joint_stationary_bootstrap_v1": 0.10869129200000316,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.08418600005097687,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.08139262499753386
+      }
+    },
+    {
+      "series_id": "EQX0174",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1348,
+        "origin_date": "2021-06-30",
+        "origin_label": "rolling_41",
+        "position": 8087,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.08688499999698251,
+        "model_testing_joint_stationary_bootstrap_v1": 0.06785583309829235,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.04862675000913441,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.053854540921747684
+      }
+    },
+    {
+      "series_id": "P_c036444ef2cfc16b",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2353,
+        "origin_date": "2016-12-30",
+        "origin_label": "rolling_41",
+        "position": 13843,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.10090716695412993,
+        "model_testing_joint_stationary_bootstrap_v1": 0.10612191609106958,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.08151612489018589,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.08375145797617733
+      }
+    },
+    {
+      "series_id": "EQX0122",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 326,
+        "origin_date": "1995-06-30",
+        "origin_label": "rolling_05",
+        "position": 1304,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.01489116600714624,
+        "model_testing_joint_stationary_bootstrap_v1": 0.015193125000223517,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.014569290913641453,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.020390166086144745
+      }
+    },
+    {
+      "series_id": "P_755654bea2f760a0",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 109,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_35",
+        "position": 2775,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.00790404190775007,
+        "model_testing_joint_stationary_bootstrap_v1": 0.005312749999575317,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.008204166078940034,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.010216791066341102
+      }
+    },
+    {
+      "series_id": "P_6439b5f2003fc9d9",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 169,
+        "origin_date": "2013-03-28",
+        "origin_label": "rolling_03",
+        "position": 677,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.009205874986946583,
+        "model_testing_joint_stationary_bootstrap_v1": 0.008439500001259148,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.011184167000465095,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.013406499987468123
+      }
+    },
+    {
+      "series_id": "IEFSIM",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2139,
+        "origin_date": "1995-12-29",
+        "origin_label": "rolling_25",
+        "position": 8556,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.0881725000217557,
+        "model_testing_joint_stationary_bootstrap_v1": 0.09691287495661527,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.06709358398802578,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.07320008298847824
+      }
+    },
+    {
+      "series_id": "P_941535fc2cc760c1",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 617,
+        "origin_date": "2020-03-31",
+        "origin_label": "rolling_27",
+        "position": 2467,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.026465750066563487,
+        "model_testing_joint_stationary_bootstrap_v1": 0.027619290980510414,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.02429933298844844,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.02761516603641212
+      }
+    },
+    {
+      "series_id": "EQX0057",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2423,
+        "origin_date": "2001-12-31",
+        "origin_label": "rolling_29",
+        "position": 9691,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.09916799992788583,
+        "model_testing_joint_stationary_bootstrap_v1": 0.10523433401249349,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.08936837501823902,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.08613241696730256
+      }
+    },
+    {
+      "series_id": "FR0076",
+      "origin": {
+        "evaluation_split": "train_first_quarter_test_remaining",
+        "max_horizon": 19738,
+        "origin_date": "1948-09-20",
+        "origin_label": "train_first_quarter_test_remaining",
+        "position": 6578,
+        "train_fraction": 0.25
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.808340625022538,
+        "model_testing_joint_stationary_bootstrap_v1": 0.9694914590800181,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.6269292499637231,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 1.148346250061877
+      }
+    },
+    {
+      "series_id": "P_9914bf743e206135",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 680,
+        "origin_date": "2021-03-31",
+        "origin_label": "rolling_30",
+        "position": 2719,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.029466916108503938,
+        "model_testing_joint_stationary_bootstrap_v1": 0.030747334007173777,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.026510167052038014,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.030098291928879917
+      }
+    },
+    {
+      "series_id": "P_502ff360fe5538bb",
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 30,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_48",
+        "position": 11537,
+        "train_fraction": null
+      },
+      "seconds": {
+        "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1": 0.011876916978508234,
+        "model_testing_joint_stationary_bootstrap_v1": 0.0017987919272854924,
+        "model_testing_joint_uniform_bounded_block_bootstrap_v1": 0.005903417011722922,
+        "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.009135875036008656
+      }
+    }
+  ],
+  "best_to_baseline_total_time_ratio": {
+    "model_testing_joint_stationary_bootstrap_v1": 0.9293665769797633,
+    "model_testing_joint_uniform_bounded_block_bootstrap_v1": 1.1856325874454845,
+    "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": 0.9717566551162085
+  }
+}
