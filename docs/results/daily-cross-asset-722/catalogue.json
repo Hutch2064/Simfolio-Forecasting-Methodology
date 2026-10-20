@@ -1,0 +1,2242 @@
+{
+  "schema": "full-panel-catalogue-v1",
+  "scope": "Expanded daily 722-series panel, fixed v3 scoring",
+  "counting_rule": "Unique original model ID plus source-bound implementation digest; identical reruns and verified no-op factory aliases count once. Pilots and partially attempted panels are excluded. Full attempted panels with native failures remain counted and labelled.",
+  "models": {
+    "f76f53f99b040bb2ab30dc4e2427d43b3620333835c1c74f30cde1f3d6c80a0e": {
+      "identity": {
+        "model_id": "model_testing_variance_targeted_fhs_batch_student_mean_v1",
+        "implementation_digest": "60dda89f70a61d26b304253815d2c8cca659c94c809727f9c960b8ef1e485879"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_variance_targeted_fhs_batch_student_mean_v1",
+            "implementation_digest": "60dda89f70a61d26b304253815d2c8cca659c94c809727f9c960b8ef1e485879"
+          },
+          "display_name": "Variance-targeted GARCH FHS + Batch Student Mean",
+          "definition": "Training-fitted variance-targeted symmetric GARCH(1,1), empirical standardized innovations, and training batch-mean Student-t uncertainty.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "1a398c1504c23aabb8243b6d7bb22cbd8d638ccb5e2112e346e0a390095246c0",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.5991611113810209,
+            "sensitivity": 0.6139405965634824
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 0.030548880739122986,
+              "sensitivity": 0.023152725906361304
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 891.9022254713345,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "fhs_batch_candidate:build_fhs_batch",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "6e3195534df0b32c4916ba2baa1b3947102668e5874d089239c0a08f8fabf9c8",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/research/resumed-full-fhs-20261020/results/models/61cb9943b49aa3e30ce7f4e9cf62fa5b72092276aa26a656e4a0bc122549de2e/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/research/resumed-full-fhs-20261020/results/models/61cb9943b49aa3e30ce7f4e9cf62fa5b72092276aa26a656e4a0bc122549de2e/tasks/",
+            "numerical_contract": "evidence/61cb9943b49a/numerical_contract.json",
+            "native_summary": "evidence/61cb9943b49a/native_summary.json",
+            "native_summary_sha256": "fca36829ccfdd3081545910a0b78d95a621cbb64f9a02c3a55def8efb43840ac",
+            "exact_score_source": "research/resumed-full-fhs-20261020/summary.json",
+            "exact_score_source_snapshot": "evidence/61cb9943b49a/score_source.json",
+            "exact_score_source_sha256": "63932e1e2b4f01d6f883203cff8f423d133f123a145276d16df21769848d052b"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            },
+            {
+              "release_tag": "research-resumed-trials-20261020T0810Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "fabcbe2a50006344e8a42c74f5fbd5613fe0b6cc7f6c8935f1fa8d09f9d19f3e",
+              "manifest_sha256": "b00172fcaae48a04a9d7494e279bfd6dc95b93783dfabf7a8aee3d4203fe0806",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-resumed-trials-20261020T0810Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-resumed-trials-20261020T0810Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 57384
+            }
+          ]
+        }
+      ]
+    },
+    "a5dc85416b9ada536e309e7c825d577d98c13ef8824e56ec6562a005fca247ce": {
+      "identity": {
+        "model_id": "model_testing_equal_bootstrap_fhs_stratified_matched_Gaussian_mean_pool_v1",
+        "implementation_digest": "c0749aa42f0bd222cd403bf4e1680d6c44b5fa0246964c171e2a6a927e7ec56d"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_equal_bootstrap_fhs_stratified_matched_Gaussian_mean_pool_v1",
+            "implementation_digest": "c0749aa42f0bd222cd403bf4e1680d6c44b5fa0246964c171e2a6a927e7ec56d"
+          },
+          "display_name": "Public \u2014 Equal Mix / Gaussian Mean Uncertainty",
+          "definition": "Same stratified 120/120 pool with Gaussian mean draws whose variance matches the batch-Student law: sd = batch_scale * sqrt(df/(df-2)); unchanged component fitting and innovation indices.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": true,
+          "execution_fingerprint": "3fab0ef7519a797860be589c5522f19c32e79ff411c0d3499288b05f90be0dff",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.5924398958508662,
+            "sensitivity": 0.6069236896555463
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 1.151977182143904,
+              "sensitivity": 1.1658173976971664
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 950.6103804530576,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "candidate:build_candidate",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "2e1d3d3d216b8912f278dd9dfea9105c3a9bd0e86fe989a1f4cd1e41bcd7334d",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/research/resumed-full-gaussian-pool-20261020/results/models/3b703fcacf92912bf905c7f8fdd29eb507a7cc378e261c31f99df8819591c823/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/research/resumed-full-gaussian-pool-20261020/results/models/3b703fcacf92912bf905c7f8fdd29eb507a7cc378e261c31f99df8819591c823/tasks/",
+            "numerical_contract": "evidence/3b703fcacf92/numerical_contract.json",
+            "native_summary": "evidence/3b703fcacf92/native_summary.json",
+            "native_summary_sha256": "3a2e8d457e5ccc75bf6a5cdec704ae8e39b200d0336d563af732f29ee58b84ce",
+            "exact_score_source": "research/resumed-full-gaussian-pool-20261020/summary.json",
+            "exact_score_source_snapshot": "evidence/3b703fcacf92/score_source.json",
+            "exact_score_source_sha256": "53f6bd293bebed750c8b3ce749a449b71ff2f99a7bb0bbebd259846354ed5217"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            },
+            {
+              "release_tag": "research-resumed-trials-20261020T0810Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "fabcbe2a50006344e8a42c74f5fbd5613fe0b6cc7f6c8935f1fa8d09f9d19f3e",
+              "manifest_sha256": "b00172fcaae48a04a9d7494e279bfd6dc95b93783dfabf7a8aee3d4203fe0806",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-resumed-trials-20261020T0810Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-resumed-trials-20261020T0810Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 57384
+            },
+            {
+              "release_tag": "research-expanded-pool-win-20261020T0852Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "f21e56c9d3d776787b9fbcd0387e8f94815a377e2833aad78f2ef80a11730931",
+              "manifest_sha256": "8ea7ca3952354d2c0e6ef70ec198e54eb0d3071539ebfac7a727ec3c5a3508ec",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-pool-win-20261020T0852Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-pool-win-20261020T0852Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 56435
+            },
+            {
+              "release_tag": "research-expanded-stratified-win-20261020T0929Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "bf93149c6968fa7529a6b8460b1f364fb49df1a85189c10f0d345914d3de55fe",
+              "manifest_sha256": "51121bb25f04082b44bd24c0ea5cdd0b67016409191f3985e435035cc5f4d5b1",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-stratified-win-20261020T0929Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-stratified-win-20261020T0929Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 50786
+            },
+            {
+              "release_tag": "research-expanded-gaussian-win-20261020T1008Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "b87880f5fa8a4fea9d3f732d4ceb06ed121330bedc1d954be5fb81f7667d5aac",
+              "manifest_sha256": "1f6abe9dcd78d3fb34833307759cedd3319162be501e2d697f157d71b22f4838",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-gaussian-win-20261020T1008Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-gaussian-win-20261020T1008Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 50784
+            }
+          ]
+        }
+      ]
+    },
+    "b58b529422baef3902270779163c164fe2a37927ddfcfc08709e0e24ea9f0885": {
+      "identity": {
+        "model_id": "model_testing_equal_uniform_batch_student_fhs_batch_student_pool_v1",
+        "implementation_digest": "314c06f0db998f82a9591eff6c63b622a53b2c9c1d53939791b3fdc8bd1017d0"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_equal_uniform_batch_student_fhs_batch_student_pool_v1",
+            "implementation_digest": "314c06f0db998f82a9591eff6c63b622a53b2c9c1d53939791b3fdc8bd1017d0"
+          },
+          "display_name": "Equal Bootstrap / GARCH FHS Student Mean Pool",
+          "definition": "Fixed whole-path 50/50 predictive-distribution pool: 120 replacement-bootstrap paths and 120 GARCH-FHS paths, both with independent training batch-mean Student-t draws.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "aa80ca7ee96496924cd64b445a1cc817b98fec3d74c038cad7594a93c6c60e8a",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.592588913725674,
+            "sensitivity": 0.607091273477807
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 1.1271136940627757,
+              "sensitivity": 1.13852729455437
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 932.4330831400584,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "candidate:build_candidate",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "f5d7d97bf28faf4623a55c81ea9a53ff976afdacc259996a712f759e30da8813",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/research/resumed-full-pool-20261020/results/models/7d6ac091f8c9d1d8474a61d5fee9fe0047fd3f89359b9b9aa5ef943d87f08166/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/research/resumed-full-pool-20261020/results/models/7d6ac091f8c9d1d8474a61d5fee9fe0047fd3f89359b9b9aa5ef943d87f08166/tasks/",
+            "numerical_contract": "evidence/7d6ac091f8c9/numerical_contract.json",
+            "native_summary": "evidence/7d6ac091f8c9/native_summary.json",
+            "native_summary_sha256": "f35c12ab3e4a0b5746e8879a0001fd558fb7b91055f9d37a76db3dd42c1f86ab",
+            "exact_score_source": "research/resumed-full-pool-20261020/summary.json",
+            "exact_score_source_snapshot": "evidence/7d6ac091f8c9/score_source.json",
+            "exact_score_source_sha256": "a886d1f365a9c2a7f4915db0d21fc55ccc58a4d21ca122ad9ab31c99f3e461be"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            },
+            {
+              "release_tag": "research-resumed-trials-20261020T0810Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "fabcbe2a50006344e8a42c74f5fbd5613fe0b6cc7f6c8935f1fa8d09f9d19f3e",
+              "manifest_sha256": "b00172fcaae48a04a9d7494e279bfd6dc95b93783dfabf7a8aee3d4203fe0806",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-resumed-trials-20261020T0810Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-resumed-trials-20261020T0810Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 57384
+            },
+            {
+              "release_tag": "research-expanded-pool-win-20261020T0852Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "f21e56c9d3d776787b9fbcd0387e8f94815a377e2833aad78f2ef80a11730931",
+              "manifest_sha256": "8ea7ca3952354d2c0e6ef70ec198e54eb0d3071539ebfac7a727ec3c5a3508ec",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-pool-win-20261020T0852Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-pool-win-20261020T0852Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 56435
+            }
+          ]
+        }
+      ]
+    },
+    "bd428369271ca9f738d5de7191591655949dc1018768a02fda4aca0ecca7f677": {
+      "identity": {
+        "model_id": "model_testing_equal_bootstrap_fhs_stratified_student_mean_pool_v1",
+        "implementation_digest": "8f282363da72c1c6fbe8e060268a92c6e78be4204346ac2983433f06a5a3c112"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_equal_bootstrap_fhs_stratified_student_mean_pool_v1",
+            "implementation_digest": "8f282363da72c1c6fbe8e060268a92c6e78be4204346ac2983433f06a5a3c112"
+          },
+          "display_name": "Equal Mix / Stratified Student Mean Uncertainty",
+          "definition": "Same fixed 120/120 whole-path pool; randomized probability strata, mirrored antithetic pairs and permutation for the Student-t mean draws; no fitted pool weights.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "0c465b66b33d62cbcd1fc306ed08b758c49d3995694e4731ee3d1eecde71c5cc",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.5924404841366924,
+            "sensitivity": 0.606925326408691
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 1.1518790272235901,
+              "sensitivity": 1.1655508614555665
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 974.5548985444475,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "candidate:build_candidate",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "f0fe99cc8e847d600c0961c5a6fcc416257ef04cf4e5bc3184ed7b1d6a3eaba6",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/research/resumed-full-stratified-pool-20261020/results/models/6ee661b25640997939bd0cd25a627e4a0996716f25cf4133c996fc6c3a88d904/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/research/resumed-full-stratified-pool-20261020/results/models/6ee661b25640997939bd0cd25a627e4a0996716f25cf4133c996fc6c3a88d904/tasks/",
+            "numerical_contract": "evidence/6ee661b25640/numerical_contract.json",
+            "native_summary": "evidence/6ee661b25640/native_summary.json",
+            "native_summary_sha256": "323281e4f145a2616db016b4d5e4f2a588e17e6b42cf7035bf5d049722bdbc18",
+            "exact_score_source": "research/resumed-full-stratified-pool-20261020/summary.json",
+            "exact_score_source_snapshot": "evidence/6ee661b25640/score_source.json",
+            "exact_score_source_sha256": "cb6a441f1e8370f4a5c2bebc0a5a4870d416a8e9f54db86aa4ccae3ca56a2ee5"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            },
+            {
+              "release_tag": "research-resumed-trials-20261020T0810Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "fabcbe2a50006344e8a42c74f5fbd5613fe0b6cc7f6c8935f1fa8d09f9d19f3e",
+              "manifest_sha256": "b00172fcaae48a04a9d7494e279bfd6dc95b93783dfabf7a8aee3d4203fe0806",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-resumed-trials-20261020T0810Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-resumed-trials-20261020T0810Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 57384
+            },
+            {
+              "release_tag": "research-expanded-pool-win-20261020T0852Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "f21e56c9d3d776787b9fbcd0387e8f94815a377e2833aad78f2ef80a11730931",
+              "manifest_sha256": "8ea7ca3952354d2c0e6ef70ec198e54eb0d3071539ebfac7a727ec3c5a3508ec",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-pool-win-20261020T0852Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-pool-win-20261020T0852Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 56435
+            },
+            {
+              "release_tag": "research-expanded-stratified-win-20261020T0929Z",
+              "archive_name": "resumed-trials.tar.gz",
+              "archive_sha256": "bf93149c6968fa7529a6b8460b1f364fb49df1a85189c10f0d345914d3de55fe",
+              "manifest_sha256": "51121bb25f04082b44bd24c0ea5cdd0b67016409191f3985e435035cc5f4d5b1",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-stratified-win-20261020T0929Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-stratified-win-20261020T0929Z",
+              "manifest_asset": "resumed-trials-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 50786
+            }
+          ]
+        }
+      ]
+    },
+    "654a7faeb7374c48eea06b6aec83377ccee83babdf5fcb71e8488b77e02472eb": {
+      "identity": {
+        "model_id": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+        "implementation_digest": "2c3c3c8f2ce9864eb3e6a1b473047aff9dacb83486f89b5e1f01299fe8ca686c"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+            "implementation_digest": "2c3c3c8f2ce9864eb3e6a1b473047aff9dacb83486f89b5e1f01299fe8ca686c"
+          },
+          "display_name": "Public \u2014 Random Blocks (Replacement)",
+          "definition": "Circular blocks with replacement; each length is uniform on 1..min(training rows, requested horizon); unshifted historical returns.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": true,
+          "execution_fingerprint": "cccae70873682eb56b8f29d0e9c78cbd219a7f9575f7a48bbea1814fa8b46b6c",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.5978771249044772,
+            "sensitivity": 0.612663191657428
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 0.24478078075140797,
+              "sensitivity": 0.23117108454666635
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 853.3909772583283,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "bounded_public:build_bounded_public",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "e9490e345bdb5d7d4ce0777d19e2dca848d1ddf526d9aa0bc98caed0a13b74cd",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/results/models/4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/results/models/4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831/tasks/",
+            "numerical_contract": "evidence/4d2883345249/numerical_contract.json",
+            "native_summary": "evidence/4d2883345249/native_summary.json",
+            "native_summary_sha256": "e3b88659ec5d3b27454da51a9636b2479a90fbad51ce0f450aab262a3a39d140",
+            "exact_score_source": "results/scoreboard.json",
+            "exact_score_source_snapshot": "evidence/4d2883345249/score_source.json",
+            "exact_score_source_sha256": "d3be6cd412788c0bd9b427fead00ccf4ae2db41bf77672d25131fe9f33ebfa4c"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "model-01-4d288334.tar.gz",
+              "archive_sha256": "3558570e1201d20a6c58ccff75a20614d3e580c9f19f3a0f8cdf0f03c8e0b764",
+              "manifest_sha256": "8fe31ddaeb8c5d6acc1aae25a22d142075a4ddb14a8361e4d46c2fba927a52d0",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "model-01-4d288334-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 36817
+            },
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            }
+          ]
+        }
+      ]
+    },
+    "a483a314840e1028ff332be0adba8cd1fff5e7a057ae294774e30898f703b7ae": {
+      "identity": {
+        "model_id": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+        "implementation_digest": "8effadc7a5345ef10280ab77949c3a5b7f53557ff5a9ed00c4fc5735ecfe2364"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+            "implementation_digest": "8effadc7a5345ef10280ab77949c3a5b7f53557ff5a9ed00c4fc5735ecfe2364"
+          },
+          "display_name": "FAST \u2014 Exact 52-panel accuracy winner",
+          "definition": "Unmodified sealed R52 RMS continuous-variance node-correction forecasting model; exact original research implementation and fitting guards.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": true,
+          "execution_fingerprint": "77d2710e97f677e4104e74d6de736438cfbb10a0c3c47bdd69b4480072e4de83",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36796,
+            "native_failed_tasks": 17,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "incomplete_preliminary_native_failures"
+          },
+          "scores": {
+            "primary": 0.6078421858071302,
+            "sensitivity": 0.6229908013480762
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36796,
+            "public_scores": {
+              "primary": 0.6002963449711853,
+              "sensitivity": 0.6150607453847691
+            },
+            "preliminary": true,
+            "percent_better": {
+              "primary": -1.2570192870834607,
+              "sensitivity": -1.2893126447772518
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 6555.203488912783,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "simfolio_forecasting_methodology.french_panel.refinement_adapters:build_fast",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "cc1760a2d5faf30a3f15d4c536b343d60fce0867c7e785a030c5073f21cf1f5b",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/results/models/82622052dcc7395d2a17fd10780bae42270702c5a0f8d70d390e3f737aa3f1cb/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/results/models/82622052dcc7395d2a17fd10780bae42270702c5a0f8d70d390e3f737aa3f1cb/tasks/",
+            "numerical_contract": "evidence/82622052dcc7/numerical_contract.json",
+            "native_summary": "evidence/82622052dcc7/native_summary.json",
+            "native_summary_sha256": "b1118d74699f1bd047adba03a7efa9ba2bacbda52d7eac89e6545695f3f2af3a",
+            "exact_score_source": "results/scoreboard.json",
+            "exact_score_source_snapshot": "evidence/82622052dcc7/score_source.json",
+            "exact_score_source_sha256": "d3be6cd412788c0bd9b427fead00ccf4ae2db41bf77672d25131fe9f33ebfa4c"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "model-02-82622052.tar.gz",
+              "archive_sha256": "b03fbedb3f257145786d81472741a435c826532561897ec7a5c72e9447f6d9d4",
+              "manifest_sha256": "9dd8c3185f13c189f6d0a3bff9796711af606aa6df2bbc6b3cd0fa7f0a182376",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "model-02-82622052-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 36817
+            },
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            }
+          ]
+        }
+      ]
+    },
+    "48e1446524ff73d3b023cbc960c6bc43062bfc2a88691ed843c791f980fe2b72": {
+      "identity": {
+        "model_id": "model_testing_joint_stationary_bootstrap_hac_mean_uncertainty_v1",
+        "implementation_digest": "66209ea7456046d6d1608cd47b70c7463af81c092a5912add1714952363325d1"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_joint_stationary_bootstrap_hac_mean_uncertainty_v1",
+            "implementation_digest": "66209ea7456046d6d1608cd47b70c7463af81c092a5912add1714952363325d1"
+          },
+          "display_name": "Public Adaptive + Gaussian HAC Mean Uncertainty",
+          "definition": "Adaptive stationary bootstrap plus a per-path Gaussian mean draw using a training-only HAC long-run mean standard error.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "4c1bfc226162991aeadef26cedd99cd5a75fe41a30a98b2ffbcbd2062f0e8257",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.5989199350684594,
+            "sensitivity": 0.6134626280059339
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 0.07078891489983308,
+              "sensitivity": 0.10098727496099524
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 931.6549051449401,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "expanded_public_hac_live:build_public_hac",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "95d9eb937b6bfb61c70faf8496d18843466eb40405bcf258ef49c4d3e0e836f8",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/results/models/88d375f7fe9545e84f5ff149db891cd4cd375284401545b23a3a7571b3301438/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/results/models/88d375f7fe9545e84f5ff149db891cd4cd375284401545b23a3a7571b3301438/tasks/",
+            "numerical_contract": "evidence/88d375f7fe95/numerical_contract.json",
+            "native_summary": "evidence/88d375f7fe95/native_summary.json",
+            "native_summary_sha256": "4645ebea58e1732cff287db559374a72d860eb03c44aefe59c42f14e75fb035b",
+            "exact_score_source": "research/first_full_evaluation/scoreboard.json",
+            "exact_score_source_snapshot": "evidence/88d375f7fe95/score_source.json",
+            "exact_score_source_sha256": "34cf3a99f5177a247bb3fccd50487f6c25835cdc1e9118944ab655795bbf16a5"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "model-03-88d375f7.tar.gz",
+              "archive_sha256": "3e68f4cbdd9a56b54bc7991b67f963b2d35e2f5ceced335bf5396bb8768f3476",
+              "manifest_sha256": "2397754e7b7b2c8d0f9b8cf138dc59213f499b0cee862a638619b25b9fa3dfd1",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "model-03-88d375f7-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 36817
+            },
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            }
+          ]
+        }
+      ]
+    },
+    "113678bafae8dd553bf69f0fc92ee830430965a8c2ad4b12115f1a7fad070cc0": {
+      "identity": {
+        "model_id": "model_testing_public_batch_student_mean_uncertainty_v1",
+        "implementation_digest": "e4933b5479220759bcce2eec900244c8e61afa4d34d46f054102302143a07e6c"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_public_batch_student_mean_uncertainty_v1",
+            "implementation_digest": "e4933b5479220759bcce2eec900244c8e61afa4d34d46f054102302143a07e6c"
+          },
+          "display_name": "Public Adaptive + Batch Student Mean Uncertainty",
+          "definition": "Adaptive stationary bootstrap plus per-path Student-t mean uncertainty from floor(sqrt(n)) contiguous training batches, weighted for unequal batch sizes.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "4f293ca58c23510ad0ec0bd149bbe31a5cc17afc9ed5ec761cdb848d88cf3f20",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.5988836430150243,
+            "sensitivity": 0.6133917925243179
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 0.0768442088649901,
+              "sensitivity": 0.11252244329283956
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 832.1230875918409,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "expanded_public_batch_student_live:build_public_batch_student",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "6e402fe9078dc95b4816dc541198dbe703e18dc83f4000ebb30a3f930ff26968",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/results/models/89a9872320b2a5f40c300fd4eb86628aceb930cee82086ece93092ed5c0ac940/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/results/models/89a9872320b2a5f40c300fd4eb86628aceb930cee82086ece93092ed5c0ac940/tasks/",
+            "numerical_contract": "evidence/89a9872320b2/numerical_contract.json",
+            "native_summary": "evidence/89a9872320b2/native_summary.json",
+            "native_summary_sha256": "0dd9a890798eaa6f6976ddf262d1db8588ced7a3ea311f84c91093d932508774",
+            "exact_score_source": "research/uniform_gaussian_full/full_evaluation/scoreboard.json",
+            "exact_score_source_snapshot": "evidence/89a9872320b2/score_source.json",
+            "exact_score_source_sha256": "5709319c1105101600063a97290db92ddbffd7e74712531efced1fd1d9c1137c"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "model-04-89a98723.tar.gz",
+              "archive_sha256": "9f2f648c9c81b82faa1dbfc8a0806852d9296067edb0ef4f42e1f0c89ab13292",
+              "manifest_sha256": "0656090d51376fb4a7b989d142594e08824af66cc362373ab77e36238e036f59",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "model-04-89a98723-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 36817
+            },
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            }
+          ]
+        }
+      ]
+    },
+    "72d2e6fa30aa43802453d3a89b880804ac2791db63daea9e92ab6b2ea702343f": {
+      "identity": {
+        "model_id": "model_testing_joint_uniform_bounded_block_bootstrap_hac_mean_uncertainty_v1",
+        "implementation_digest": "1b6f5d2452f415b3ec5c78b2efe4b159bfa77539b3ca31ebf587c75ccf840e3f"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_joint_uniform_bounded_block_bootstrap_hac_mean_uncertainty_v1",
+            "implementation_digest": "1b6f5d2452f415b3ec5c78b2efe4b159bfa77539b3ca31ebf587c75ccf840e3f"
+          },
+          "display_name": "Random Blocks + Gaussian HAC Mean Uncertainty",
+          "definition": "Bounded replacement bootstrap plus Gaussian HAC mean uncertainty; the legacy ID contains HAC, and this is the final Gaussian comparison.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "464e5b0db4eefc97e038efdaf6986a006561f666250ddd36df1cc2b9250d2278",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.5969565005000361,
+            "sensitivity": 0.6113658403317602
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 0.39838607096598366,
+              "sensitivity": 0.442437607844115
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 1104.2011861428618,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "expanded_public_uniform_gaussian_live:build_public_uniform_gaussian",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "b2097e7d818225c351943b7426d28a29f6be54eea0b54c2335ffddf865d8fc3e",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/results/models/9684bcb3f6307eb0b31a01c42e12792205a3af941ec4fc17834c608b0c983f78/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/results/models/9684bcb3f6307eb0b31a01c42e12792205a3af941ec4fc17834c608b0c983f78/tasks/",
+            "numerical_contract": "evidence/9684bcb3f630/numerical_contract.json",
+            "native_summary": "evidence/9684bcb3f630/native_summary.json",
+            "native_summary_sha256": "aa9b615f5eec42a94d8a029e7607e59e2bfa573a3bc484c6d8bfd3f0ddbfd726",
+            "exact_score_source": "research/uniform_gaussian_full/full_evaluation/scoreboard.json",
+            "exact_score_source_snapshot": "evidence/9684bcb3f630/score_source.json",
+            "exact_score_source_sha256": "5709319c1105101600063a97290db92ddbffd7e74712531efced1fd1d9c1137c"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "model-05-9684bcb3.tar.gz",
+              "archive_sha256": "a27846210169de8d7ef9f5caad64138017fda7d69ffed01b003780363c3a8e78",
+              "manifest_sha256": "2a7f92a622ce39a984ed9b88c7f45f5cf2acb9a422eda93303c4162450b98d55",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "model-05-9684bcb3-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 36817
+            },
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            }
+          ]
+        }
+      ]
+    },
+    "8a6ea31b13c57f19b5ac55ecb54a4f593006a19c4d7452ddf74fc1836b4b12a3": {
+      "identity": {
+        "model_id": "model_testing_uniform_block_batch_student_mean_uncertainty_v1",
+        "implementation_digest": "ea0f734a980b556d51ab2e45719b369a8c6f28d826314e2be561e46a9802223b"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_uniform_block_batch_student_mean_uncertainty_v1",
+            "implementation_digest": "ea0f734a980b556d51ab2e45719b369a8c6f28d826314e2be561e46a9802223b"
+          },
+          "display_name": "Random Blocks + Batch Student Mean Uncertainty",
+          "definition": "Bounded replacement bootstrap plus the same training-only batch-mean Student-t uncertainty law.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "206f47510986f52644a9f308183d5c57ed18d2920f5151c82b12828406c9369c",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.596953113002838,
+            "sensitivity": 0.6113375810197778
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 0.3989512715925403,
+              "sensitivity": 0.4470394812728373
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 778.4545900390949,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "expanded_public_uniform_batch_student_live:build_public_uniform_batch_student",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "2438f97940951bae8ff760e97f4786e40f8f5da5deebe05a099dc8ab9b0fd513",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/results/models/bf04653d9f3fd83bb377d58f599908a7e22cf7db8ea9299f0e8f0e99ab397b55/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/results/models/bf04653d9f3fd83bb377d58f599908a7e22cf7db8ea9299f0e8f0e99ab397b55/tasks/",
+            "numerical_contract": "evidence/bf04653d9f3f/numerical_contract.json",
+            "native_summary": "evidence/bf04653d9f3f/native_summary.json",
+            "native_summary_sha256": "532e1a7ca7be05a5a87cf2c751d0ae035aa1344e165c23418e0b0e3ab511efbe",
+            "exact_score_source": "results/scoreboard.json",
+            "exact_score_source_snapshot": "evidence/bf04653d9f3f/score_source.json",
+            "exact_score_source_sha256": "d3be6cd412788c0bd9b427fead00ccf4ae2db41bf77672d25131fe9f33ebfa4c"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "model-06-bf04653d.tar.gz",
+              "archive_sha256": "9ef43d3125ff33dbc626674e4cec3f46bf7387c3153cbe209b8c84b6588231cc",
+              "manifest_sha256": "f4df1a1888002d49d342085277a61d3284ef47b20405534a5c58caefe323b019",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "model-06-bf04653d-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 36817
+            },
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            }
+          ]
+        }
+      ]
+    },
+    "56832b80e8bbdb3ab8e70653af9b72f3a7ea9be72925f92354eb985edbc01be0": {
+      "identity": {
+        "model_id": "model_testing_joint_stationary_bootstrap_v1",
+        "implementation_digest": "bb7185aef9f555bed5a16280584b750794cb242c5286a2ec430884ba58ee9cba"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "implementation_digest": "bb7185aef9f555bed5a16280584b750794cb242c5286a2ec430884ba58ee9cba"
+          },
+          "display_name": "Public \u2014 Adaptive Blocks",
+          "definition": "Stationary bootstrap with replacement, geometric block lengths and a training-only Politis\u2013White-style plug-in average; unshifted historical returns.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": true,
+          "execution_fingerprint": "6d0203e74d45adbe62c5b71f4272e1511818076f93a1d02af940ccfc088d10a0",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.5993442043272177,
+            "sensitivity": 0.614082773464861
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 0.0,
+              "sensitivity": 0.0
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 1329.2767943900544,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "simfolio_forecasting_methodology.french_panel.selected:build_public",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "51b99aff78a1401b00a7473c7000d594d3f3351d27e34fe3ae977c678ae341a3",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/results/models/c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/results/models/c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c/tasks/",
+            "numerical_contract": "evidence/c4710038c2bb/numerical_contract.json",
+            "native_summary": "evidence/c4710038c2bb/native_summary.json",
+            "native_summary_sha256": "ae705c59489fabd075211676e83dd1a39855a5e243d66661ffd6cfb7557df722",
+            "exact_score_source": "results/scoreboard.json",
+            "exact_score_source_snapshot": "evidence/c4710038c2bb/score_source.json",
+            "exact_score_source_sha256": "d3be6cd412788c0bd9b427fead00ccf4ae2db41bf77672d25131fe9f33ebfa4c"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "model-07-c4710038.tar.gz",
+              "archive_sha256": "5b03268471a9419cff4fd9f9be37f72e7fb45777dd3463a5478c424854b5b380",
+              "manifest_sha256": "7653bfb97ea4a482b49bf16f091cc6cdad72ee5e7e2b7f1b5f529d5882f23e3f",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "model-07-c4710038-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 36817
+            },
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            }
+          ]
+        }
+      ]
+    },
+    "3770c7cf07aabe807098e336245f3812587eacf9e295e38f652284d7f797f5f4": {
+      "identity": {
+        "model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+        "implementation_digest": "c99b4e72698f30e19ac124f14bcdd257ceefca1dc047760754ed80c5ba009939"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+            "implementation_digest": "c99b4e72698f30e19ac124f14bcdd257ceefca1dc047760754ed80c5ba009939"
+          },
+          "display_name": "Public \u2014 Random Blocks (History Cycles)",
+          "definition": "Bounded random contiguous blocks without replacement within a complete history cycle; refill only after every historical day is used.",
+          "version": "v1 / exact original implementation digest",
+          "retained_in_active_set": true,
+          "execution_fingerprint": "7a2faf9265130fe142ee5b3222aff30b76f4f19675b94227be4ba963a54ecbae",
+          "coverage": {
+            "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+            "series": 722,
+            "expected_tasks": 36813,
+            "successful_tasks": 36813,
+            "native_failed_tasks": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "primary": 0.5985754059683229,
+            "sensitivity": 0.6136614721302787
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "matched_successful_tasks": 36813,
+            "public_scores": {
+              "primary": 0.5993442043272177,
+              "sensitivity": 0.614082773464861
+            },
+            "preliminary": false,
+            "percent_better": {
+              "primary": 0.12827326156557017,
+              "sensitivity": 0.06860660366764249
+            }
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 1016.0739883439383,
+            "scope": "Sum of successful forecast fitting/simulation/native scoring durations; includes no failed-fit repair. Not wall elapsed time or a paired speed benchmark.",
+            "wall_elapsed_seconds": null,
+            "wall_elapsed_reason": "Not independently retained in this native per-model summary."
+          },
+          "reproducibility": {
+            "original_factory": "bounded_public_without_replacement:build_bounded_cycle_public",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,240)",
+            "paths_per_forecast": 240,
+            "protocol_id": "daily-cross-asset-ragged-native-crps-v1",
+            "scorer_sha256": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+            "sweep_sha256": "09f7b64c69592941593780e1e2c156b6f410badc6da4d2cde0e665aa95b9bf20",
+            "source_closure_sha256": "8dbeac12f1bf65099203e8404cb7e9683463c28ce4809707fe3bffd7be193682",
+            "full_execution_manifest_sha256": "5b46d314190f5f6811b4b54784990d8cad3244e832308b0c5aaa7f3f5deecf24",
+            "full_execution_archive_member": "tmp/daily-cross-asset-panel-20261020/results/models/de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886/execution.json",
+            "source_environment": {
+              "interpreter": {
+                "build": [
+                  "main",
+                  "Apr 14 2026 14:33:40"
+                ],
+                "cache_tag": "cpython-312",
+                "compiler": "Clang 22.1.3",
+                "implementation": "CPython",
+                "version": "3.12.13"
+              },
+              "packages": {
+                "numpy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "system",
+                      "found": true,
+                      "name": "accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "2.5.3"
+                },
+                "scipy": {
+                  "blas_lapack": {
+                    "blas": {
+                      "cython blas ilp64": false,
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    },
+                    "lapack": {
+                      "detection method": "extraframeworks",
+                      "found": true,
+                      "has ilp64": false,
+                      "name": "Accelerate",
+                      "openblas configuration": "unknown",
+                      "version": "unknown"
+                    }
+                  },
+                  "version": "1.18.1"
+                }
+              },
+              "platform": {
+                "machine": "arm64",
+                "release": "27.0.0",
+                "system": "Darwin",
+                "version": "<redacted>"
+              },
+              "thread_settings": {
+                "environment": {
+                  "BLIS_NUM_THREADS": null,
+                  "GOTO_NUM_THREADS": null,
+                  "MKL_DYNAMIC": null,
+                  "MKL_NUM_THREADS": "1",
+                  "NUMBA_NUM_THREADS": "1",
+                  "NUMBA_THREADING_LAYER": null,
+                  "NUMEXPR_NUM_THREADS": "1",
+                  "OMP_DYNAMIC": null,
+                  "OMP_NUM_THREADS": "1",
+                  "OMP_PLACES": null,
+                  "OMP_PROC_BIND": null,
+                  "OPENBLAS_NUM_THREADS": "1",
+                  "VECLIB_MAXIMUM_THREADS": "1"
+                },
+                "numpy_seterr": {
+                  "divide": "warn",
+                  "invalid": "warn",
+                  "over": "warn",
+                  "under": "ignore"
+                }
+              }
+            },
+            "complete_losses_archive_member_prefix": "tmp/daily-cross-asset-panel-20261020/results/models/de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886/tasks/",
+            "numerical_contract": "evidence/de117487a264/numerical_contract.json",
+            "native_summary": "evidence/de117487a264/native_summary.json",
+            "native_summary_sha256": "5e579c223f8e75b1dbe9f24380f31567fc48ea512000a032cf898818a886f34f",
+            "exact_score_source": "results/scoreboard.json",
+            "exact_score_source_snapshot": "evidence/de117487a264/score_source.json",
+            "exact_score_source_sha256": "d3be6cd412788c0bd9b427fead00ccf4ae2db41bf77672d25131fe9f33ebfa4c"
+          },
+          "archives": [
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "model-08-de117487.tar.gz",
+              "archive_sha256": "94764a07588317b23a76daed46f94168f7308088413b54c31ef9eef75fd0e435",
+              "manifest_sha256": "3c4a32b00f995835cf65fa65139b9953bae3ca629516e7c5f996f2710f980f2e",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "model-08-de117487-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 36817
+            },
+            {
+              "release_tag": "research-expanded-full-win-20261020T0452Z",
+              "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+              "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+              "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-expanded-full-win-20261020T0452Z",
+              "asset_api": "https://api.github.com/repos/Hutch2064/simfolio-engine/releases/tags/research-expanded-full-win-20261020T0452Z",
+              "manifest_asset": "sources-manifest.json",
+              "prior_download_and_full_restore_verified": true,
+              "prior_files_disk_restored_and_sha256_verified": 16923
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "unique_full_panel_models": 12,
+  "full_panel_executions": 12,
+  "failure_free_models": 11
+}

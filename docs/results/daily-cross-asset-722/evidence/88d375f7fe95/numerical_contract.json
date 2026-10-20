@@ -1,0 +1,67 @@
+{
+  "arch": "8.0.0",
+  "asset_or_horizon_gates": false,
+  "existing_implementation_path": "/Users/aidanhutchison/simfolio/tmp/french551-public-search-20261019/research/public_hac.py",
+  "expanded_panel_adapter_sha256": "7063e13eb8dff6ae9a56145be5350ba6bce298739af108bc501c24adf0a2b078",
+  "extra_parameters_fit": 0,
+  "full_hac_dependency_module_sha256": "55b286becd8a7413f4a6a2af955836fe2843e67621439b1569adccc473a14ca3",
+  "hac_helper_source_sha256": "6ce27b55a378d73532e4c58f9be1e93e2279790febd91f22476d7eb8eaab2314",
+  "historical_scores_inherited": false,
+  "input_contract": "one observed daily series; all native training dates; unchanged shared forecast helper supplies business-date future policy labels",
+  "mean": "unchanged_public_sample_log_mean_in_expectation",
+  "metadata_capture": "last simulate_with_metadata result; no numerical transformation",
+  "method": "model_testing_joint_stationary_bootstrap_hac_mean_uncertainty_v1",
+  "numba": "0.67.0",
+  "numeric_method_changed": false,
+  "numpy": "2.5.3",
+  "pandas": "2.3.3",
+  "parameter_seed": "deterministic_seed(public_hac_mean_parameter_v1,original_context_seed)",
+  "parameter_uncertainty": "independent_normal_zero_centered_training_HAC_mean_SE_per_path",
+  "prior_french_scores_inherited": false,
+  "public_controls": {
+    "engine_revision": "8090a1142d57335b3afd266483ae156ff051a9e6",
+    "extracted_engine_functions": {
+      "_politis_white_block_length": "64f8b67b59aca3ebb0c0c679afa83083e640b29dbf34c80d6b71ccdb23c45b41",
+      "_simulate_smart_iid_forecast_log_paths": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+      "_stationary_bootstrap_indices_from_draws_fast": "fb470d89bce179c6d52d1ac52a23dacc6cb888e762a38129d41704268cb32599",
+      "_stationary_bootstrap_indices_from_draws_numba": "5eb3793f561450e58ba4851443e93ee4cedb3b4afe54eeb10ef68e830ca5c42f"
+    },
+    "files": {
+      "__init__.py": "0497462b74aa9c96877998f3efe8199a625c5b1162690d6761e70e7e5df627f8",
+      "engine_helpers.py": "cdb41f9a94c640a6d0238fca332b240b4cb133c560769a1904ab02667927fed2",
+      "engine_testing_route.py.txt": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+      "forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+      "historical_ewma_reference.py.txt": "39e910e21d966024af3074230fecf5cc5bfbaeb73be8f162d25958e5a2f44626",
+      "model_testing.original.py.txt": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+      "smart_iid_forecast.original.py.txt": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42",
+      "smart_iid_forecast.py": "e90f102da7ab28dec38606d1e157945339aa135b7ee2ad45c6a9c571f3e9c66e"
+    },
+    "historical_ewma_comparison": {
+      "catalog_path": "docs/forecast_oos_publication_master_catalog.json",
+      "model_id": "bayesian_sbb_overlay_ewma_qmle",
+      "new_model_id": "FRENCH1926-EWMA-QMLE",
+      "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "scores_inherited": false
+    },
+    "native_models": [
+      "asset_level_naive_iid_mean_shrunk_rebalanced",
+      "model_testing_joint_stationary_bootstrap_v1"
+    ],
+    "schema": "french-control-source-v1",
+    "smart_source_transformations": [
+      "from app.forecast_allocation_composition import -> from .forecast_allocation_composition import",
+      "from app.engine import -> from .engine_helpers import"
+    ],
+    "upstream_source_sha256": {
+      "app/engine.py": "0f98c42aa5e03df658dabddb1894083c3b7755fed748026742fbfbbe30b2ab6d",
+      "app/forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+      "app/model_testing.py": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+      "app/smart_iid_forecast.py": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42"
+    }
+  },
+  "python": "3.12.13",
+  "scikit-learn": "1.9.0",
+  "scipy": "1.18.1",
+  "source_sha256": "ced2face3c705ccbba53c6b16dd0b88322e749eccf9e706a6e3a9458c19e593b",
+  "statsmodels": "0.15.0"
+}

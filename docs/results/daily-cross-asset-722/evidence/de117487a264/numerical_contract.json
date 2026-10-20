@@ -1,0 +1,69 @@
+{
+  "adaptation": "one_French_series_as_unit_weight_asset_no_costs_no_rebalancing",
+  "arch": "8.0.0",
+  "block_length": "integer_uniform_1_to_min_training_rows_requested_horizon_longest_unused_run",
+  "draw_order": "path_major_then_per_block_length_then_ranked_feasible_historical_start",
+  "fitted_block_calibration": false,
+  "frozen_native_control": {
+    "engine_revision": "8090a1142d57335b3afd266483ae156ff051a9e6",
+    "extracted_engine_functions": {
+      "_politis_white_block_length": "64f8b67b59aca3ebb0c0c679afa83083e640b29dbf34c80d6b71ccdb23c45b41",
+      "_simulate_smart_iid_forecast_log_paths": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+      "_stationary_bootstrap_indices_from_draws_fast": "fb470d89bce179c6d52d1ac52a23dacc6cb888e762a38129d41704268cb32599",
+      "_stationary_bootstrap_indices_from_draws_numba": "5eb3793f561450e58ba4851443e93ee4cedb3b4afe54eeb10ef68e830ca5c42f"
+    },
+    "files": {
+      "__init__.py": "0497462b74aa9c96877998f3efe8199a625c5b1162690d6761e70e7e5df627f8",
+      "engine_helpers.py": "cdb41f9a94c640a6d0238fca332b240b4cb133c560769a1904ab02667927fed2",
+      "engine_testing_route.py.txt": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+      "forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+      "historical_ewma_reference.py.txt": "39e910e21d966024af3074230fecf5cc5bfbaeb73be8f162d25958e5a2f44626",
+      "model_testing.original.py.txt": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+      "smart_iid_forecast.original.py.txt": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42",
+      "smart_iid_forecast.py": "e90f102da7ab28dec38606d1e157945339aa135b7ee2ad45c6a9c571f3e9c66e"
+    },
+    "historical_ewma_comparison": {
+      "catalog_path": "docs/forecast_oos_publication_master_catalog.json",
+      "model_id": "bayesian_sbb_overlay_ewma_qmle",
+      "new_model_id": "FRENCH1926-EWMA-QMLE",
+      "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+      "scores_inherited": false
+    },
+    "native_models": [
+      "asset_level_naive_iid_mean_shrunk_rebalanced",
+      "model_testing_joint_stationary_bootstrap_v1"
+    ],
+    "schema": "french-control-source-v1",
+    "smart_source_transformations": [
+      "from app.forecast_allocation_composition import -> from .forecast_allocation_composition import",
+      "from app.engine import -> from .engine_helpers import"
+    ],
+    "upstream_source_sha256": {
+      "app/engine.py": "0f98c42aa5e03df658dabddb1894083c3b7755fed748026742fbfbbe30b2ab6d",
+      "app/forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+      "app/model_testing.py": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+      "app/smart_iid_forecast.py": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42"
+    }
+  },
+  "historical_scores_inherited": false,
+  "horizon_conditional": true,
+  "last_block": "truncate_only_after_length_and_feasible_start_draw",
+  "mean": "unshifted_historical_log_returns",
+  "method": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+  "native_adapter_sha256": "fa091c3308bcaeadf3fa816736b28e7616df7f3e202403b13edad1bc01014eb5",
+  "numba": "0.67.0",
+  "numpy": "2.5.3",
+  "pandas": "2.3.3",
+  "politis_white": false,
+  "pool_refill": "only_after_all_training_observations_have_been_consumed_once_per_path",
+  "prefix_coherence_across_requested_horizons": false,
+  "python": "3.12.13",
+  "resampling": "joint_rows_circular_blocks_without_observation_reuse_per_history_cycle",
+  "scikit-learn": "1.9.0",
+  "scipy": "1.18.1",
+  "source_sha256": "6a871fc2984539ad1d72c8edbdd4a5a5414a052a4beddcb41decfb8e115bf4a0",
+  "start_selection": "uniform_among_all_length_feasible_unused_starts_in_history_index_order",
+  "statsmodels": "0.15.0",
+  "training_validation_sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac",
+  "with_replacement_base_sha256": "db9842aeab1c42febc37f4e1d4a7cf85d7393b08abfe67ac4cb4e040c19c7e61"
+}

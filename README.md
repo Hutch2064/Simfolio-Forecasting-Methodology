@@ -1,5 +1,13 @@
 # Simfolio Forecasting Methodology
 
+The [expanded daily 722-series full-panel catalogue](docs/results/daily-cross-asset-722/README.md)
+retains every fully attempted model version, including unsuccessful methods and
+native fitting failures, with both scoring profiles, exact coverage, runtime,
+source identities and verified repository-linked recovery archives. Its running
+count is separate from the older canonical80, 52-asset and French551 inventories.
+See the [maintenance contract](tools/full_panel_catalogue/README.md) for registering
+new full-panel methods without counting identical reruns twice.
+
 The user-cancelled French551 official sweep is retired; only its completed public adaptive-block reference is retained. The restarted public-only search has two validated comparator implementations, but neither has scores; representative development is authorized while the full-panel control remains stopped. See the [current public-search status](docs/french551-public-search-metadata.json), [comparator definitions](docs/results/french551-public-search-20261020/COMPARATORS.md), and [scoring-v2 methodology](docs/french551-scoring-v2-methodology.md). No production behavior changed.
 The retired historical [French551 public refinement pilot](docs/results/french551-public-refinement-pilot-20261019/README.md) tested two bounded volatility refinements; both underperformed the exact public baseline, neither enters a catalogue ranking, and the pilot is excluded from the restarted public-only comparison.
 

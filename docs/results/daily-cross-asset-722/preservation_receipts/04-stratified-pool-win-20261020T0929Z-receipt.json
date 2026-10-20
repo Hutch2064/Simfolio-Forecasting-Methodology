@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-20T09:30:46.246628+00:00",
+  "private_repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-expanded-stratified-win-20261020T0929Z",
+  "archive_name": "resumed-trials.tar.gz",
+  "archive_sha256": "bf93149c6968fa7529a6b8460b1f364fb49df1a85189c10f0d345914d3de55fe",
+  "manifest_sha256": "51121bb25f04082b44bd24c0ea5cdd0b67016409191f3985e435035cc5f4d5b1",
+  "all_assets_fresh_download_verified": true,
+  "all_regular_files_disk_restored_and_SHA256_verified": 50786,
+  "uncompressed_bytes": 1473999266,
+  "compressed_bytes": 1105383961,
+  "scope": [
+    "resumed-stratified-mean-pool-20261020",
+    "resumed-stratified-validation-20261020",
+    "resumed-full-stratified-pool-20261020",
+    "baseline-promotion-stratified-pool-20261020",
+    "residual-mean-diagnostic-20261020"
+  ],
+  "free_before_bytes": 639457734656,
+  "retirement_scope": "only closed-trial raw NPZ; compact source/plans/summaries retained",
+  "restore_command": "gh release download research-expanded-stratified-win-20261020T0929Z --repo Hutch2064/simfolio-engine --pattern resumed-trials.tar.gz --dir <destination>; verify SHA256 then tar -xzf resumed-trials.tar.gz -C /Users/aidanhutchison/simfolio",
+  "retired_raw_files": 50667,
+  "retired_raw_bytes": 1341307626,
+  "free_after_bytes": 640920342528
+}

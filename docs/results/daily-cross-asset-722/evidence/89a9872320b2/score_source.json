@@ -1,0 +1,460 @@
+{
+  "commonleaderboard": null,
+  "control": {
+    "enabled_model_ids": [
+      "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+      "model_testing_joint_stationary_bootstrap_v1",
+      "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+      "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+      "model_testing_public_batch_student_mean_uncertainty_v1",
+      "model_testing_uniform_block_batch_student_mean_uncertainty_v1",
+      "model_testing_joint_uniform_bounded_block_bootstrap_hac_mean_uncertainty_v1"
+    ],
+    "included_model_ids": [
+      "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+      "model_testing_joint_stationary_bootstrap_v1",
+      "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+      "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+      "model_testing_public_batch_student_mean_uncertainty_v1",
+      "model_testing_uniform_block_batch_student_mean_uncertainty_v1",
+      "model_testing_joint_uniform_bounded_block_bootstrap_hac_mean_uncertainty_v1"
+    ],
+    "sha256": "558caba600657e8c188cc1d03c2fc4d9c3c400bc93c2a577047b21c4ffa33f72"
+  },
+  "generated_at_utc": "2026-10-20T04:51:23.202239+00:00",
+  "ingestion": {
+    "errors": 17,
+    "latest_checkpoint_lag_seconds": 12.233215462,
+    "processed": 36813
+  },
+  "models": {
+    "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION": {
+      "completed_tasks": 36796,
+      "coverage": {
+        "complete": false,
+        "completed_tasks": 36796,
+        "expected_tasks": 36813,
+        "failed_tasks": 17,
+        "fraction": 0.9995382066117947,
+        "missing_tasks": 0
+      },
+      "errors": [
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1997-03-31",
+          "series_id": "FR0059"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "2017-09-29",
+          "series_id": "EQX0101"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1982-09-30",
+          "series_id": "ZROZSIM"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1978-12-29",
+          "series_id": "FX_AUD_USD"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "2000-06-30",
+          "series_id": "FX_JPY_USD"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1981-12-31",
+          "series_id": "VWEHX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1982-12-31",
+          "series_id": "VWEHX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1983-12-30",
+          "series_id": "VWEHX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1997-12-31",
+          "series_id": "VWEHX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "2001-12-31",
+          "series_id": "VWEHX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "2024-06-28",
+          "series_id": "VWEHX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1981-12-31",
+          "series_id": "VWITX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1982-12-31",
+          "series_id": "VWITX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1983-12-30",
+          "series_id": "VWITX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1984-09-28",
+          "series_id": "VWITX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1987-09-30",
+          "series_id": "VWITX_YAHOO_DAILY"
+        },
+        {
+          "kind": "task_error_recorded",
+          "origin_date": "1991-08-29",
+          "series_id": "VWITX_YAHOO_DAILY"
+        }
+      ],
+      "expected_tasks": 36813,
+      "failed_tasks": 17,
+      "id": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+      "missing_tasks": 0,
+      "quarter_count": 343,
+      "score_on_own_coverage": 0.6078421858071302,
+      "sensitivity_score_on_own_coverage": 0.6229908013480763
+    },
+    "model_testing_joint_stationary_bootstrap_v1": {
+      "completed_tasks": 36813,
+      "coverage": {
+        "complete": true,
+        "completed_tasks": 36813,
+        "expected_tasks": 36813,
+        "failed_tasks": 0,
+        "fraction": 1.0,
+        "missing_tasks": 0
+      },
+      "errors": [],
+      "expected_tasks": 36813,
+      "failed_tasks": 0,
+      "id": "model_testing_joint_stationary_bootstrap_v1",
+      "missing_tasks": 0,
+      "quarter_count": 343,
+      "score_on_own_coverage": 0.5993442043272177,
+      "sensitivity_score_on_own_coverage": 0.614082773464861
+    },
+    "model_testing_joint_uniform_bounded_block_bootstrap_hac_mean_uncertainty_v1": {
+      "completed_tasks": 36813,
+      "coverage": {
+        "complete": true,
+        "completed_tasks": 36813,
+        "expected_tasks": 36813,
+        "failed_tasks": 0,
+        "fraction": 1.0,
+        "missing_tasks": 0
+      },
+      "errors": [],
+      "expected_tasks": 36813,
+      "failed_tasks": 0,
+      "id": "model_testing_joint_uniform_bounded_block_bootstrap_hac_mean_uncertainty_v1",
+      "missing_tasks": 0,
+      "quarter_count": 343,
+      "score_on_own_coverage": 0.5969565005000361,
+      "sensitivity_score_on_own_coverage": 0.6113658403317602
+    },
+    "model_testing_joint_uniform_bounded_block_bootstrap_v1": {
+      "completed_tasks": 36813,
+      "coverage": {
+        "complete": true,
+        "completed_tasks": 36813,
+        "expected_tasks": 36813,
+        "failed_tasks": 0,
+        "fraction": 1.0,
+        "missing_tasks": 0
+      },
+      "errors": [],
+      "expected_tasks": 36813,
+      "failed_tasks": 0,
+      "id": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+      "missing_tasks": 0,
+      "quarter_count": 343,
+      "score_on_own_coverage": 0.5978771249044772,
+      "sensitivity_score_on_own_coverage": 0.612663191657428
+    },
+    "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": {
+      "completed_tasks": 36813,
+      "coverage": {
+        "complete": true,
+        "completed_tasks": 36813,
+        "expected_tasks": 36813,
+        "failed_tasks": 0,
+        "fraction": 1.0,
+        "missing_tasks": 0
+      },
+      "errors": [],
+      "expected_tasks": 36813,
+      "failed_tasks": 0,
+      "id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+      "missing_tasks": 0,
+      "quarter_count": 343,
+      "score_on_own_coverage": 0.5985754059683229,
+      "sensitivity_score_on_own_coverage": 0.6136614721302787
+    },
+    "model_testing_public_batch_student_mean_uncertainty_v1": {
+      "completed_tasks": 36813,
+      "coverage": {
+        "complete": true,
+        "completed_tasks": 36813,
+        "expected_tasks": 36813,
+        "failed_tasks": 0,
+        "fraction": 1.0,
+        "missing_tasks": 0
+      },
+      "errors": [],
+      "expected_tasks": 36813,
+      "failed_tasks": 0,
+      "id": "model_testing_public_batch_student_mean_uncertainty_v1",
+      "missing_tasks": 0,
+      "quarter_count": 343,
+      "score_on_own_coverage": 0.5988836430150243,
+      "sensitivity_score_on_own_coverage": 0.6133917925243179
+    },
+    "model_testing_uniform_block_batch_student_mean_uncertainty_v1": {
+      "completed_tasks": 36813,
+      "coverage": {
+        "complete": true,
+        "completed_tasks": 36813,
+        "expected_tasks": 36813,
+        "failed_tasks": 0,
+        "fraction": 1.0,
+        "missing_tasks": 0
+      },
+      "errors": [],
+      "expected_tasks": 36813,
+      "failed_tasks": 0,
+      "id": "model_testing_uniform_block_batch_student_mean_uncertainty_v1",
+      "missing_tasks": 0,
+      "quarter_count": 343,
+      "score_on_own_coverage": 0.596953113002838,
+      "sensitivity_score_on_own_coverage": 0.6113375810197778
+    }
+  },
+  "pairwise_public": {
+    "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION": {
+      "expected_tasks": 36813,
+      "matched_series": 722,
+      "matched_tasks": 36796,
+      "model_score": 0.6078421858071302,
+      "pct_better": -1.2570192870834656,
+      "preliminary": true,
+      "public_score": 0.6002963449711853,
+      "quarter_count": 343
+    },
+    "model_testing_joint_uniform_bounded_block_bootstrap_hac_mean_uncertainty_v1": {
+      "expected_tasks": 36813,
+      "matched_series": 722,
+      "matched_tasks": 36813,
+      "model_score": 0.5969565005000361,
+      "pct_better": 0.39838607096600626,
+      "preliminary": false,
+      "public_score": 0.5993442043272178,
+      "quarter_count": 343
+    },
+    "model_testing_joint_uniform_bounded_block_bootstrap_v1": {
+      "expected_tasks": 36813,
+      "matched_series": 722,
+      "matched_tasks": 36813,
+      "model_score": 0.5978771249044771,
+      "pct_better": 0.24478078075144735,
+      "preliminary": false,
+      "public_score": 0.5993442043272178,
+      "quarter_count": 343
+    },
+    "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": {
+      "expected_tasks": 36813,
+      "matched_series": 722,
+      "matched_tasks": 36813,
+      "model_score": 0.5985754059683229,
+      "pct_better": 0.12827326156559282,
+      "preliminary": false,
+      "public_score": 0.5993442043272178,
+      "quarter_count": 343
+    },
+    "model_testing_public_batch_student_mean_uncertainty_v1": {
+      "expected_tasks": 36813,
+      "matched_series": 722,
+      "matched_tasks": 36813,
+      "model_score": 0.5988836430150242,
+      "pct_better": 0.07684420886502513,
+      "preliminary": false,
+      "public_score": 0.5993442043272178,
+      "quarter_count": 343
+    },
+    "model_testing_uniform_block_batch_student_mean_uncertainty_v1": {
+      "expected_tasks": 36813,
+      "matched_series": 722,
+      "matched_tasks": 36813,
+      "model_score": 0.596953113002838,
+      "pct_better": 0.3989512715925618,
+      "preliminary": false,
+      "public_score": 0.5993442043272178,
+      "quarter_count": 343
+    }
+  },
+  "panel_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+  "score_protocol_id": "daily_cross_asset_panel_crps_v3_logcalendar_hierarchical",
+  "sensitivity": {
+    "commonleaderboard": null,
+    "models": {
+      "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION": {
+        "coverage": {
+          "complete": false,
+          "completed_tasks": 36796,
+          "expected_tasks": 36813,
+          "failed_tasks": 17,
+          "fraction": 0.9995382066117947,
+          "missing_tasks": 0
+        },
+        "score_on_own_coverage": 0.6229908013480763
+      },
+      "model_testing_joint_stationary_bootstrap_v1": {
+        "coverage": {
+          "complete": true,
+          "completed_tasks": 36813,
+          "expected_tasks": 36813,
+          "failed_tasks": 0,
+          "fraction": 1.0,
+          "missing_tasks": 0
+        },
+        "score_on_own_coverage": 0.614082773464861
+      },
+      "model_testing_joint_uniform_bounded_block_bootstrap_hac_mean_uncertainty_v1": {
+        "coverage": {
+          "complete": true,
+          "completed_tasks": 36813,
+          "expected_tasks": 36813,
+          "failed_tasks": 0,
+          "fraction": 1.0,
+          "missing_tasks": 0
+        },
+        "score_on_own_coverage": 0.6113658403317602
+      },
+      "model_testing_joint_uniform_bounded_block_bootstrap_v1": {
+        "coverage": {
+          "complete": true,
+          "completed_tasks": 36813,
+          "expected_tasks": 36813,
+          "failed_tasks": 0,
+          "fraction": 1.0,
+          "missing_tasks": 0
+        },
+        "score_on_own_coverage": 0.612663191657428
+      },
+      "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": {
+        "coverage": {
+          "complete": true,
+          "completed_tasks": 36813,
+          "expected_tasks": 36813,
+          "failed_tasks": 0,
+          "fraction": 1.0,
+          "missing_tasks": 0
+        },
+        "score_on_own_coverage": 0.6136614721302787
+      },
+      "model_testing_public_batch_student_mean_uncertainty_v1": {
+        "coverage": {
+          "complete": true,
+          "completed_tasks": 36813,
+          "expected_tasks": 36813,
+          "failed_tasks": 0,
+          "fraction": 1.0,
+          "missing_tasks": 0
+        },
+        "score_on_own_coverage": 0.6133917925243179
+      },
+      "model_testing_uniform_block_batch_student_mean_uncertainty_v1": {
+        "coverage": {
+          "complete": true,
+          "completed_tasks": 36813,
+          "expected_tasks": 36813,
+          "failed_tasks": 0,
+          "fraction": 1.0,
+          "missing_tasks": 0
+        },
+        "score_on_own_coverage": 0.6113375810197778
+      }
+    },
+    "pairwise_public": {
+      "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION": {
+        "expected_tasks": 36813,
+        "matched_series": 722,
+        "matched_tasks": 36796,
+        "model_score": 0.6229908013480762,
+        "pct_better": -1.2893126447772596,
+        "preliminary": true,
+        "public_score": 0.6150607453847691,
+        "quarter_count": 343
+      },
+      "model_testing_joint_uniform_bounded_block_bootstrap_hac_mean_uncertainty_v1": {
+        "expected_tasks": 36813,
+        "matched_series": 722,
+        "matched_tasks": 36813,
+        "model_score": 0.6113658403317603,
+        "pct_better": 0.4424376078440974,
+        "preliminary": false,
+        "public_score": 0.614082773464861,
+        "quarter_count": 343
+      },
+      "model_testing_joint_uniform_bounded_block_bootstrap_v1": {
+        "expected_tasks": 36813,
+        "matched_series": 722,
+        "matched_tasks": 36813,
+        "model_score": 0.612663191657428,
+        "pct_better": 0.23117108454666466,
+        "preliminary": false,
+        "public_score": 0.614082773464861,
+        "quarter_count": 343
+      },
+      "model_testing_joint_uniform_bounded_cycle_bootstrap_v1": {
+        "expected_tasks": 36813,
+        "matched_series": 722,
+        "matched_tasks": 36813,
+        "model_score": 0.6136614721302787,
+        "pct_better": 0.06860660366764043,
+        "preliminary": false,
+        "public_score": 0.614082773464861,
+        "quarter_count": 343
+      },
+      "model_testing_public_batch_student_mean_uncertainty_v1": {
+        "expected_tasks": 36813,
+        "matched_series": 722,
+        "matched_tasks": 36813,
+        "model_score": 0.6133917925243177,
+        "pct_better": 0.1125224432928578,
+        "preliminary": false,
+        "public_score": 0.614082773464861,
+        "quarter_count": 343
+      },
+      "model_testing_uniform_block_batch_student_mean_uncertainty_v1": {
+        "expected_tasks": 36813,
+        "matched_series": 722,
+        "matched_tasks": 36813,
+        "model_score": 0.6113375810197776,
+        "pct_better": 0.44703948127286075,
+        "preliminary": false,
+        "public_score": 0.614082773464861,
+        "quarter_count": 343
+      }
+    },
+    "score_protocol_id": "daily_cross_asset_panel_crps_v3_logcalendar_hierarchical_sqrt_h"
+  }
+}

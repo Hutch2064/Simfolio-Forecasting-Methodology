@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-20T08:14:33.489439+00:00",
+  "private_repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-resumed-trials-20261020T0810Z",
+  "archive_name": "resumed-trials.tar.gz",
+  "archive_sha256": "fabcbe2a50006344e8a42c74f5fbd5613fe0b6cc7f6c8935f1fa8d09f9d19f3e",
+  "manifest_sha256": "b00172fcaae48a04a9d7494e279bfd6dc95b93783dfabf7a8aee3d4203fe0806",
+  "all_assets_fresh_download_verified": true,
+  "all_regular_files_disk_restored_and_SHA256_verified": 57384,
+  "uncompressed_bytes": 1718609496,
+  "compressed_bytes": 1261968103,
+  "scope": [
+    "resumed-20261020",
+    "resumed-fhs-batch-20261020",
+    "resumed-coverage-20261020",
+    "resumed-full-fhs-20261020",
+    "resumed-dirichlet-20261020"
+  ],
+  "free_before_bytes": 644322926592,
+  "retirement_scope": "only closed-trial raw NPZ; compact source/plans/summaries retained",
+  "restore_command": "gh release download research-resumed-trials-20261020T0810Z --repo Hutch2064/simfolio-engine --pattern resumed-trials.tar.gz --dir <destination>; verify SHA256 then tar -xzf resumed-trials.tar.gz -C /Users/aidanhutchison/simfolio",
+  "retired_raw_files": 57245,
+  "retired_raw_bytes": 1564706610,
+  "free_after_bytes": 646047678464
+}

@@ -1,0 +1,20 @@
+{
+  "verified_utc": "2026-10-20T05:03:35.252824+00:00",
+  "private_repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-expanded-full-win-20261020T0452Z",
+  "archive_name": "expanded-sources-inputs-evidence.tar.gz",
+  "archive_sha256": "1d4430e8c305af81facb39857290313935a26151cb226f30ed79f379ef1a0005",
+  "manifest_sha256": "5820bc1706f879cde75e0eca93ee746d9a7e65324360ba8b2879639671db309a",
+  "compressed_bytes": 523823883,
+  "uncompressed_bytes": 1628471190,
+  "regular_files_fresh_disk_restored_and_sha256_verified": 16923,
+  "source_snapshot_unchanged_during_pack": true,
+  "input_fingerprint": "1c0b7714ec6f2581750fe214927cf03e887a8bbe52674f5488272c26965dd105",
+  "restore_command": "gh release download research-expanded-full-win-20261020T0452Z --repo Hutch2064/simfolio-engine --pattern expanded-sources-inputs-evidence.tar.gz --dir <destination>; verify SHA256 then tar -xzf expanded-sources-inputs-evidence.tar.gz -C /Users/aidanhutchison/simfolio",
+  "all_unique_source_input_trial_evidence_preserved": true,
+  "source_worktree_and_shared_venv_retained": true,
+  "local_prototype_npz_retired": 11103,
+  "local_redundant_bytes_retired": 939444247,
+  "regenerable_score_cache_archived_then_retired": true,
+  "retained_inputs_and_all_source": true
+}
