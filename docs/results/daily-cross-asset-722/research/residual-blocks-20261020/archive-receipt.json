@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T18:05:52.566744+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-residual-blocks-20261020T1807Z",
+  "archive_name": "residual-block-evidence.tar.gz",
+  "archive_sha256": "0e008e67fb050df8226732e6b01e9d15c55ffa6e45a37fe322ddc2583e2055b1",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "0aa1bdb473aa7ae7fae197121cf87578f293394499ad7b7f75d7c167c096342a",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 754,
+  "archive_bytes": 25956402,
+  "restore_command": "gh release download research-accuracy-residual-blocks-20261020T1807Z --repo Hutch2064/simfolio-engine --pattern residual-block-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 735,
+  "free_before_cleanup": 644267569152,
+  "free_after_cleanup": 644353032192
+}
