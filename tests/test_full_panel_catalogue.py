@@ -89,8 +89,8 @@ def test_upload_or_server_digest_is_not_full_recovery():
 
 def test_backfill_counts_native_coverage_and_both_exact_profiles():
     ledger = json.loads(LEDGER.read_text())
-    assert ledger['unique_full_panel_models'] == len(ledger['models']) == 12
-    assert ledger['failure_free_models'] == 11
+    assert ledger['unique_full_panel_models'] == len(ledger['models']) == 13
+    assert ledger['failure_free_models'] == 12
     for model in ledger['models'].values():
         for record in model['executions']:
             catalogue.validate(record)
@@ -119,3 +119,13 @@ def test_frozen_scoring_and_remote_archives_are_bound_to_catalogue():
                 assert remote[archive['archive_sha256']]['archive_server_digest_verified']
                 assert remote[archive['archive_sha256']]['manifest_fresh_download_sha256_verified']
                 assert archive['prior_files_disk_restored_and_sha256_verified'] > 0
+
+
+def test_incumbent_replacement_preserves_previous_full_execution():
+    ledger = json.loads(LEDGER.read_text())
+    active = set(ledger['active_model_ids'])
+    assert len(active) == 5 and ledger['current_best_model_id'] in active
+    previous = 'model_testing_equal_bootstrap_fhs_stratified_matched_Gaussian_mean_pool_v1'
+    assert previous not in active
+    assert any(m['identity']['model_id'] == previous for m in ledger['models'].values())
+    assert 'R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION' in active

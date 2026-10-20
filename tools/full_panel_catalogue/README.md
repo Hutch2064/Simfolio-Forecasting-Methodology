@@ -24,6 +24,11 @@ with an alias to inflate the count. Multiple executions are retained under the
 same version; changes to an existing execution are rejected rather than silently
 overwriting its evidence. Historical corrections must retain their audit trail.
 
+`active_model_ids` is the current retained set. An execution's
+`retained_in_active_set` is its historical recording-time snapshot. Replacing
+the incumbent changes the active list, never removes the preceding model's
+execution, definition or results.
+
 A full-panel attempt means every frozen scheduled task was attempted. Native
 fitting failures remain explicit, and do not remove the method from the count.
 Partially attempted panels and pilots cannot enter this count. Full-panel scores

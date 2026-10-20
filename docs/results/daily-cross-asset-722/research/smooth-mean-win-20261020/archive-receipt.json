@@ -1,0 +1,20 @@
+{
+  "verified_utc": "2026-10-20T18:32:46.349791+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-mean-shrinkage-win-20261020T183043Z",
+  "archive_name": "mean-shrinkage-complete-evidence.tar.gz",
+  "archive_sha256": "9f2cb11bf662a488cf46fe0b1753e7710c5e3b623ea6abc03e8df5521d96468c",
+  "manifest_asset": "manifest.json",
+  "manifest_sha256": "e52842168d1045536bbbb21f1c8ebe7ad94bbdd83babac7cd8118cfe276ad756",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 50726,
+  "archive_bytes": 1109025143,
+  "uncompressed_bytes": 1454561225,
+  "restore_command": "gh release download research-accuracy-mean-shrinkage-win-20261020T183043Z --repo Hutch2064/simfolio-engine --pattern mean-shrinkage-complete-evidence.tar.gz --pattern manifest.json --dir <download>; compare both SHA256 values, restore under an owned workspace and verify all manifest files.",
+  "full_panel_native_tasks": 36813,
+  "complete_new_loss_vectors": 50649,
+  "two_prior_reference_indexes_preserved_in_original_archives": true,
+  "free_before_cleanup_bytes": 639806779392,
+  "retired_raw_files": 50649,
+  "retired_raw_bytes": 1368111666,
+  "free_after_cleanup_bytes": 643589423104
+}

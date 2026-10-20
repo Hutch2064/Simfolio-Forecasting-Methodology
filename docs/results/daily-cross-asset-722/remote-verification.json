@@ -1,5 +1,5 @@
 {
-  "verified_utc": "2026-10-20T17:47:15.744482+00:00",
+  "verified_utc": "2026-10-20T18:33:45.727369+00:00",
   "scope": "Remote archive existence/server digest plus fresh manifest download. Historical full-recovery receipts remain separate.",
   "local_outputs_removed": 0,
   "archives": [
@@ -183,6 +183,20 @@
       "manifest_sha256": "3c4a32b00f995835cf65fa65139b9953bae3ca629516e7c5f996f2710f980f2e",
       "manifest_fresh_download_sha256_verified": true,
       "prior_full_disk_recovery_files": 36817,
+      "new_full_archive_download_or_recovery_performed": false
+    },
+    {
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-accuracy-mean-shrinkage-win-20261020T183043Z",
+      "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/untagged-c9d6510382e5316ffe47",
+      "archive_name": "mean-shrinkage-complete-evidence.tar.gz",
+      "archive_asset_id": 660133748,
+      "archive_sha256": "9f2cb11bf662a488cf46fe0b1753e7710c5e3b623ea6abc03e8df5521d96468c",
+      "archive_server_digest_verified": true,
+      "manifest_asset": "manifest.json",
+      "manifest_sha256": "e52842168d1045536bbbb21f1c8ebe7ad94bbdd83babac7cd8118cfe276ad756",
+      "manifest_fresh_download_sha256_verified": true,
+      "prior_full_disk_recovery_files": 50726,
       "new_full_archive_download_or_recovery_performed": false
     }
   ]

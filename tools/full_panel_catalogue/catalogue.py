@@ -81,12 +81,13 @@ def render(ledger):
              "This is an evidence inventory, not a shared-coverage leaderboard. "
              "Scores are lower-is-better. Public deltas use the exact matched successful tasks. "
              "The FAST comparison is incomplete/preliminary because of native fitting failures.", "",
-             "| Model | Successful / attempted | Native failures | Primary Q | Sensitivity Q | Worker seconds |",
-             "|---|---:|---:|---:|---:|---:|"]
+             "| Model | Active | Successful / attempted | Native failures | Primary Q | Sensitivity Q | Worker seconds |",
+             "|---|---|---:|---:|---:|---:|---:|"]
     for model in ledger["models"].values():
         e = model["executions"][-1]
         c = e["coverage"]
-        lines.append(f"| {e['display_name']} | {c['successful_tasks']} / {c['expected_tasks']} | "
+        active = e['identity']['model_id'] in ledger.get('active_model_ids', [])
+        lines.append(f"| {e['display_name']} | {'yes' if active else 'no'} | {c['successful_tasks']} / {c['expected_tasks']} | "
                      f"{c['native_failed_tasks']} | {e['scores']['primary']:.12f} | "
                      f"{e['scores']['sensitivity']:.12f} | "
                      f"{e['runtime']['forecast_and_score_worker_seconds']:.3f} |")
@@ -95,6 +96,12 @@ def render(ledger):
               "See [catalogue.json](catalogue.json) for exact values, model definitions, source versions, "
               "both profiles, matched Public scores, failures, runtime, execution fingerprints and archive links. "
               "[SCORING.md](SCORING.md) freezes the scoring contract; [RESTORE.md](RESTORE.md) explains recovery.", ""]
+    if ledger.get('current_best_model_id'):
+        best = next(m for m in ledger['models'].values() if m['identity']['model_id'] == ledger['current_best_model_id'])
+        report = ledger.get('current_best_report', 'catalogue.json')
+        lines += ["Current research baseline: **"+best['executions'][-1]['display_name']+"**. "
+                  f"Its [full-panel evidence]({report}) includes "
+                  "all class/family/horizon results and limitations. The accuracy-maximization search remains active.", ""]
     return "\n".join(lines)
 
 
