@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T19:05:22.470553+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-crps-fit-20261020T1906Z",
+  "archive_name": "crps-fit-evidence.tar.gz",
+  "archive_sha256": "7ceadf1a9189db22e7fe4a3bd1de5fdb9294c5a5c09f85cef912514a49d1748f",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "93705810789927f63c20919ca4b8f63dfced1fc62a44fc73b5e12530d0377782",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 751,
+  "archive_bytes": 26018890,
+  "restore_command": "gh release download research-accuracy-crps-fit-20261020T1906Z --repo Hutch2064/simfolio-engine --pattern crps-fit-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 735,
+  "free_before_cleanup": 643395084288,
+  "free_after_cleanup": 643480866816
+}
