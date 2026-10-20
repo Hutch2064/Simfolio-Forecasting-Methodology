@@ -1,6 +1,6 @@
 # Versioned full-panel model catalogue
 
-**13 unique model versions across preserved benchmarks; 5 with completed attempts on the current benchmark.**
+**18 unique model versions across preserved benchmarks; 5 with completed attempts on the current benchmark.**
 
 The current benchmark has one main score. Historical normalizations and all older executions remain in catalogue.json; scores from different benchmarks are not compared.
 
@@ -10,18 +10,18 @@ This is an evidence inventory, not a mixed-coverage ranking.
 
 | Model | Successful / attempted | Native failures | Main Q | Worker seconds |
 |---|---:|---:|---:|---:|
-| Public — Random Blocks (Replacement) | 64049 / 64049 | 0 | 0.622556569111 | 1123.164 |
-| Public — Adaptive Blocks | 64049 / 64049 | 0 | 0.623504537655 | 1696.626 |
-| Public — Random Blocks (History Cycles) | 64049 / 64049 | 0 | 0.623475021676 | 1353.680 |
-| Equal Mix — Shrunk Mean / Gaussian Uncertainty | 64049 / 64049 | 0 | 0.615397619320 | 1328.921 |
+| Equal Mix — Stable Wealth Execution [V5 portfolio 1000] | 64049 / 64049 | 0 | 0.613773001182 | 5982.243 |
+| Public — Adaptive Blocks [V5 portfolio 1000] | 64049 / 64049 | 0 | 0.621396240135 | 6080.621 |
+| Public — Random Blocks Replacement [V5 portfolio 1000] | 64049 / 64049 | 0 | 0.621041673589 | 4668.629 |
+| Public — History Cycles [V5 portfolio 1000] | 64049 / 64049 | 0 | 0.622044083318 | 5659.065 |
 
-## Incomplete paired results: native fitting failures
+## Incomplete paired results: native forecast failures
 
 This is an evidence inventory, not a mixed-coverage ranking.
 
 | Model | Successful / attempted | Native failures | Main Q | Worker seconds |
 |---|---:|---:|---:|---:|
-| FAST — Exact R52 Accuracy Winner | 64019 / 64049 | 30 | 0.623936560374 | 8793.238 |
+| Equal Mix — Original Wealth Execution [V5 portfolio 1000] | 64048 / 64049 | 1 | 0.613773021864 | 5359.706 |
 
 Worker seconds are recorded compute, not a controlled speed comparison or production latency.
 

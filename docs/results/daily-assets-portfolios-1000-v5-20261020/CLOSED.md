@@ -1,0 +1,5 @@
+# Historical portfolio-level V5 campaign closed
+
+All256196 active tasks succeeded with zero scoring integrity errors. The original Equal Mix version separately attempted64049 tasks:64048 succeeded and one native forecast-generation wealth overflow was preserved. The repaired numerical version reproduced all64048 ordinary loss vectors exactly and repaired the known origin. All five versions and complete recovery evidence remain in the append-only catalogue.
+
+These are historical portfolio-level implementations. The active goal now starts from two joint asset-level TestFolio-style configurations; their full run has not yet been launched by this publication. Do not use old Public references for future candidate comparisons. [closed-archive-receipt.json](closed-archive-receipt.json) links the complete private per-file recovery-verified archives; [closed_audit](closed_audit) holds the independent score and numerical evidence. Restore original paths at the research owner root and verify archive/manifest/file SHA256 values before rerunning archived evidence.

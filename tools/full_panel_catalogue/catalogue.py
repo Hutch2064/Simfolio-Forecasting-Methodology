@@ -127,7 +127,7 @@ def render_single_score(ledger):
         f"{len(records)} with completed attempts on the current benchmark.**", "",
         "The current benchmark has one main score. Historical normalizations and all older "
         "executions remain in catalogue.json; scores from different benchmarks are not compared.", ""]
-    for failed, title in [(False, "Complete successful coverage"), (True, "Incomplete paired results: native fitting failures")]:
+    for failed, title in [(False, "Complete successful coverage"), (True, "Incomplete paired results: native forecast failures")]:
         selected = [e for e in records if bool(e['coverage']['native_failed_tasks']) == failed]
         if not selected:
             continue

@@ -1,6 +1,6 @@
 {
   "schema": "full-panel-catalogue-v1",
-  "scope": "Versioned daily individual-assets and portfolio benchmarks; historical v3 retained, v4 single main score current",
+  "scope": "Append-only historical full-panel versions; current joint-asset references not yet complete. Version count distinguishes numerical execution sources, not independent financial model families.",
   "counting_rule": "Unique original model ID plus source-bound implementation digest; identical reruns and verified no-op factory aliases count once. Pilots and partially attempted panels are excluded. Full attempted panels with native failures remain counted and labelled.",
   "models": {
     "f76f53f99b040bb2ab30dc4e2427d43b3620333835c1c74f30cde1f3d6c80a0e": {
@@ -4316,23 +4316,2856 @@
           ]
         }
       ]
+    },
+    "78171723239e687383aee6121f3fe7fb08599e60cc3e48b16e072aa5e44b828b": {
+      "identity": {
+        "model_id": "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1",
+        "implementation_digest": "4bb9d87aa35381d486bcac05a8c2c54f798dc655e2cc3f82ef12d6b71bad1118"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1",
+            "implementation_digest": "4bb9d87aa35381d486bcac05a8c2c54f798dc655e2cc3f82ef12d6b71bad1118"
+          },
+          "display_name": "Equal Mix \u2014 Stable Wealth Execution [V5 portfolio 1000]",
+          "definition": "Same financial law and seeds as original Equal Mix; only positive wealth overflow switches to log arithmetic. All64048 ordinary loss vectors verified bitwise identical; failed origin repaired without changing caps or resampling.",
+          "version": "v5_streaming_1000_source_bound_execution",
+          "forecast_level": "portfolio",
+          "historical_superseded_by_asset_level_requirement": true,
+          "score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "e9c0723aa5688d2a532b5f1c5611f2daaaed741dd98800cb422baaf948fd47f0",
+          "coverage": {
+            "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+            "series": 1264,
+            "expected_tasks": 64049,
+            "successful_tasks": 64049,
+            "native_failed_tasks": 0,
+            "native_fit_failures": 0,
+            "native_generation_failures": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "main": 0.6137730011821314
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+            "matched_successful_tasks": 64049,
+            "public_scores": {
+              "main": 0.6220440833181418
+            },
+            "percent_better": {
+              "main": 1.3296617326364224
+            },
+            "preliminary": false,
+            "reference_rule": "Historical V5 worst of three Public comparators; exact identical successful subset. Not the current asset-level goal reference."
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 5982.242776059429,
+            "scope": "Recorded successful training, simulation and scoring; no IO/setup/queue or failed-origin repair; not a controlled speed claim",
+            "wall_elapsed_seconds": null
+          },
+          "reproducibility": {
+            "actual_factory": "research_stable_wealth.adapter:build",
+            "actual_implementation_digest": "4bb9d87aa35381d486bcac05a8c2c54f798dc655e2cc3f82ef12d6b71bad1118",
+            "full_execution_manifest_sha256": "53d0d32d9ca9660cf1f542ab669f167c43ad5662243c7c243f9718a1cb68de33",
+            "full_execution_archive_member": "simulation_1000_v5/results/models/987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846/execution.json",
+            "source_environment": {
+              "adapter_sha256": "bad3f26c79014ec17c3150d781f99af3786395590fe03ead80a74cff211d3e69",
+              "all_regular_native_paths_bitwise_unchanged": true,
+              "arch": "8.0.0",
+              "change": "Switch to log wealth only after positive native product overflow",
+              "clipping_floor_absorbing_underflow_unchanged": true,
+              "french_native_dependencies": {
+                "pybind11": {
+                  "native_artifacts": {
+                    "pybind11/include/pybind11/attr.h": "e2e0386a4b0bd6b95e4d8d501dd57ab2d5cd2b6c2e0d9a89b4f616805f532265",
+                    "pybind11/include/pybind11/buffer_info.h": "90849dec6781145edf27817f9a0bccf2d16dd75f9e7d72afded9857c1e9011aa",
+                    "pybind11/include/pybind11/cast.h": "54cfdb09535529c4b33f5cb06312ea008260d43e71289b5221897c9c8dc8efed",
+                    "pybind11/include/pybind11/chrono.h": "e07c05145da261cdbb4d53d80eaba7dea8a3985deda8b91434315998c70f53d4",
+                    "pybind11/include/pybind11/common.h": "01383d06dd69c05f2a9cdb88d3ce9fa6b3380944ddad9764fe0d875c4d527fa0",
+                    "pybind11/include/pybind11/complex.h": "d9275367b53c34f6de865cee6ece6fc358820911c9fd574e9c016df9437a728b",
+                    "pybind11/include/pybind11/conduit/pybind11_conduit_v1.h": "19af7d983107690a0250e53de0257ab2f394c99d2b2046cbf0cdb84643ffdcfc",
+                    "pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h": "554656e07ee2cbdbd553380b749d7df76c25e0d9cdeac30259db599f563177f6",
+                    "pybind11/include/pybind11/conduit/wrap_include_python_h.h": "b86c91eda51e381e8411919f6f5f5367cb3270fede6d9db0e7131a2013226d33",
+                    "pybind11/include/pybind11/critical_section.h": "625cb959703218fe72f72f97d038f21801f676d12a5ee5a723e4eb9d63077589",
+                    "pybind11/include/pybind11/detail/argument_vector.h": "ca7ae47c63d6c57b40b64c620c53bea040be9a23d1e29b2a9ff647bd94f9269c",
+                    "pybind11/include/pybind11/detail/class.h": "91087ad1b3e785f9839784f6d71016fcf09d6822e5e4d05118a1d0a4ff8ebbcf",
+                    "pybind11/include/pybind11/detail/common.h": "a455fde97288d2cacb50b2d21282064e4340349352fc0b3be2208e61e54ad62e",
+                    "pybind11/include/pybind11/detail/cpp_conduit.h": "9c68646e446b107f69304ab1af7b57057ef8fa24b22c308eb046af296f4a6aee",
+                    "pybind11/include/pybind11/detail/descr.h": "8b225ac30dcaea0540fe5c5e83af6f359c8de375eb3d5b7251b8665cc0625459",
+                    "pybind11/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h": "d6a59a3651fafa3f67e55a0417bd3308eacdcfa26914b16eea0a9d62d3452f7e",
+                    "pybind11/include/pybind11/detail/exception_translation.h": "32c88bbf1a9017a0acf3a11692603d754d0549ced257b54e18f71398d747ab07",
+                    "pybind11/include/pybind11/detail/function_record_pyobject.h": "aeb3e88f60b1f09e96790b6f1a42bbe87df33d45db2f499b68634f1cdc595736",
+                    "pybind11/include/pybind11/detail/function_ref.h": "8b071de14ad618f70115f20ebe44b70b5242b176bbc0710ac8b842895a498ebb",
+                    "pybind11/include/pybind11/detail/holder_caster_foreign_helpers.h": "02602538206cc5a04f957866a3c4e97b7e1442c8968c53d6e174eb6c6471e443",
+                    "pybind11/include/pybind11/detail/init.h": "d43866489b09546b95d251df34c04015b4a82474e2f38a64bc20733259a8f1f4",
+                    "pybind11/include/pybind11/detail/internals.h": "5eefa6b72e435277a3e75378597e13c295aefb6ff8d0943fa2220ed9efb54fbc",
+                    "pybind11/include/pybind11/detail/native_enum_data.h": "d301c7a82b82a87c03eb9b01ceafbffc53347b9003821ec426a6cb0d3659d195",
+                    "pybind11/include/pybind11/detail/pybind11_namespace_macros.h": "60a5e35a5b0807d0cc142d4af298d5c982ad84f95ddfbf65f54e36b140ddba77",
+                    "pybind11/include/pybind11/detail/struct_smart_holder.h": "18305bcedae4792e32047d6d8f1b16b6e6a72014aad56827ee0b9a976ca2becc",
+                    "pybind11/include/pybind11/detail/type_caster_base.h": "ea9dc652f3f5d09b1ac7994d00f2c3ea82c6c763c1d218c5c2851956f593178f",
+                    "pybind11/include/pybind11/detail/typeid.h": "8f0e69afd9bbdaf903b25a13f2fc65f708f5ed52467047570f2ce2065b7cf49b",
+                    "pybind11/include/pybind11/detail/using_smart_holder.h": "b03da16159791f8bbc5089aa9a2e524fda1fb434143e427ac91dea47795e4244",
+                    "pybind11/include/pybind11/detail/value_and_holder.h": "12ddc263339c3ebbbfdfbe69c23665b0c56c0783c19f35f7c1f2d9fae0ca8afe",
+                    "pybind11/include/pybind11/eigen.h": "f87992035920c0243e18752decf1ed4c473ebf1ab0f71011a45f0f1d6262a76f",
+                    "pybind11/include/pybind11/eigen/common.h": "7487aa98aec8cd6e4ae24da56ab3e703503ceb7ac3a77f14f586cd230888c989",
+                    "pybind11/include/pybind11/eigen/matrix.h": "4773e9f41c04a4f28241c97a01e39740181e46a289566437e340fb8201b50dc6",
+                    "pybind11/include/pybind11/eigen/tensor.h": "ce6d0e1e1e6b8c9296937474d43de3cbe3c50ac6ad9088dffc60373e1d44c8b4",
+                    "pybind11/include/pybind11/embed.h": "006d15a971426c64c8337dea55012fb1469b6566d2ec0eb9a81006d402e6f30b",
+                    "pybind11/include/pybind11/eval.h": "6e9e8707574efe460b479c6ba7f3026107d5173fbdf0414c049497ff97abc708",
+                    "pybind11/include/pybind11/functional.h": "11f144d71cb258e2ff0c9495bddbf180ecee15f6b4bc473b20b128b2dc9c7aad",
+                    "pybind11/include/pybind11/gil.h": "3eedfee721a938121823320d3215c197e7b4a6e7c01c3db89057872648f1f2d5",
+                    "pybind11/include/pybind11/gil_safe_call_once.h": "afa1b440b7710ba35c071d0ce98e72b7401fa5b8257a199770a2f98ffdd24609",
+                    "pybind11/include/pybind11/gil_simple.h": "02e3bd982d5d7af7634e75ce7b46891ac9c9b920b79dead69c6d7b1d54105fd9",
+                    "pybind11/include/pybind11/iostream.h": "7acf4b5b2ceae7f7b86d5cdaef7b72daa4a09d3548c4f9d9639cc67995e9c582",
+                    "pybind11/include/pybind11/native_enum.h": "8bcb62bcebe84b076f5d2d2d495f34026ca2b8d853ddfa6f64b6c4b1332a1860",
+                    "pybind11/include/pybind11/numpy.h": "a9bba1f0976acd7e7597daef1abd398a1e0b81213747278cffef6b325979fee1",
+                    "pybind11/include/pybind11/operators.h": "db6e11a005dcbf595ae0d358f6b437683fc0782f12f592b1dc754ad4ef01e0c5",
+                    "pybind11/include/pybind11/options.h": "a97be69e3fbef5f652a79e8d61e7e70775b9575ee9a47958d52ae0a370cd069c",
+                    "pybind11/include/pybind11/pybind11.h": "ba323b835ef91eb85342057db2353cbac3da9040eac9f0b83891a3ce66911a75",
+                    "pybind11/include/pybind11/pytypes.h": "c74dd04fb339a272cc725c374d46edef05f4e213896da70c90015dcd9fda312e",
+                    "pybind11/include/pybind11/stl.h": "ea83b4a2027b1063393f9546e1d32c6630ca9ebd7022e0911dc0210e4259c9ce",
+                    "pybind11/include/pybind11/stl/filesystem.h": "c20e3212879de83e21503a731210707521c5c70b36d5781621092b232c3fdd98",
+                    "pybind11/include/pybind11/stl_bind.h": "a9d8a61f0671044e0f3bc4a0063c7d61ac9101f3faa9d1d035be0b31dc89f2df",
+                    "pybind11/include/pybind11/subinterpreter.h": "3a31eb3436d40b40345b413775c79b12ced0fc82e73d539355905619c1fc08f0",
+                    "pybind11/include/pybind11/trampoline_self_life_support.h": "f935fdc394f12355d7dc01b6e7994c2dd882c91f9d664337db5c05b1e7729f1f",
+                    "pybind11/include/pybind11/type_caster_pyobject_ptr.h": "1fba4a0584ef52589b88940470a99e024ca0490c280a4b88cae90d483995abe5",
+                    "pybind11/include/pybind11/typing.h": "e872df48d4e4dbd2b3c76abbc3bfec3e0fd66605d8fcd2633cfac4510fd0176a",
+                    "pybind11/include/pybind11/warnings.h": "89d70134ae5e117c5805f3de56ec9c2f172032b2aebd1cd0237dc16a927c1b88"
+                  },
+                  "version": "3.1.0"
+                },
+                "pyvinecopulib": {
+                  "native_artifacts": {
+                    "pyvinecopulib/pyvinecopulib_ext.abi3.so": "9f043410421beab5de4c901ac971380472b30229fc5c8026b8e590a9bd0cee1a"
+                  },
+                  "version": "0.7.5"
+                }
+              },
+              "kernel_sha256": "32568a9d8220ccbd85cc5596f88bf859469f7ff9418b2c8464dc656afc1b9b97",
+              "mean_fit_variance_fit_sampling_seeds_path_counts_unchanged": true,
+              "method": "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1",
+              "no_outcome_fit_or_arbitrary_tail_cap": true,
+              "numba": "0.67.0",
+              "numerical_environment": {
+                "interpreter": {
+                  "build": [
+                    "main",
+                    "Apr 14 2026 14:33:40"
+                  ],
+                  "cache_tag": "cpython-312",
+                  "compiler": "Clang 22.1.3",
+                  "implementation": "CPython",
+                  "version": "3.12.13"
+                },
+                "packages": {
+                  "numpy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "2.5.3"
+                  },
+                  "scipy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "cython blas ilp64": false,
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "1.18.1"
+                  }
+                },
+                "platform": {
+                  "machine": "arm64",
+                  "release": "27.0.0",
+                  "system": "Darwin",
+                  "version": "<redacted>"
+                },
+                "thread_settings": {
+                  "environment": {
+                    "BLIS_NUM_THREADS": null,
+                    "GOTO_NUM_THREADS": null,
+                    "MKL_DYNAMIC": null,
+                    "MKL_NUM_THREADS": "1",
+                    "NUMBA_NUM_THREADS": "1",
+                    "NUMBA_THREADING_LAYER": null,
+                    "NUMEXPR_NUM_THREADS": "1",
+                    "OMP_DYNAMIC": null,
+                    "OMP_NUM_THREADS": "1",
+                    "OMP_PLACES": null,
+                    "OMP_PROC_BIND": null,
+                    "OPENBLAS_NUM_THREADS": "1",
+                    "VECLIB_MAXIMUM_THREADS": "1"
+                  },
+                  "numpy_seterr": {
+                    "divide": "warn",
+                    "invalid": "warn",
+                    "over": "warn",
+                    "under": "ignore"
+                  }
+                }
+              },
+              "numpy": "2.5.3",
+              "pandas": "2.3.3",
+              "parent": {
+                "factory_source_sha256": "5840e03f2e4b435dd50b37d72f520938e58e8a330b1c136fd500a2d5d2f54d19",
+                "financial_law_change": false,
+                "forecast_source_sha256": "4738d6166f0b904d158d3b68a1c6f2e89b58e0048fc6c087bfff024e5ceaf826",
+                "method": "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
+                "new_numerical_sampling_version": true,
+                "original_financial_law": {
+                  "change": "sample_mean_times_t_squared_over_one_plus_t_squared",
+                  "family_or_horizon_routes": false,
+                  "mean_parameter_uncertainty_variance_unchanged": true,
+                  "method": "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
+                  "oos_fit": false,
+                  "parent": {
+                    "Gaussian_sd": "batch_scale*sqrt(batch_df/(batch_df-2))",
+                    "exact_incumbent": {
+                      "component_fit_indices_wealth_kernels_unchanged": true,
+                      "component_paths": 120,
+                      "ensemble_members_now_dependent": true,
+                      "exact_parent_pool": {
+                        "component_identities": [
+                          {
+                            "batch_count": "floor_sqrt_training_n",
+                            "batch_helper_sha256": "b94fb543eb7984be66856db96e4da20cf605e32013183ae48a44f3feb8d39145",
+                            "bounded_wr": {
+                              "adaptation": "one_French_series_as_unit_weight_asset_no_costs_no_rebalancing",
+                              "block_length": "integer_uniform_inclusive_1_to_min_training_rows_requested_horizon",
+                              "draw_order": "path_major_then_per_block_length_then_historical_start",
+                              "fitted_block_calibration": false,
+                              "frozen_native_control": {
+                                "engine_revision": "8090a1142d57335b3afd266483ae156ff051a9e6",
+                                "extracted_engine_functions": {
+                                  "_politis_white_block_length": "64f8b67b59aca3ebb0c0c679afa83083e640b29dbf34c80d6b71ccdb23c45b41",
+                                  "_simulate_smart_iid_forecast_log_paths": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                                  "_stationary_bootstrap_indices_from_draws_fast": "fb470d89bce179c6d52d1ac52a23dacc6cb888e762a38129d41704268cb32599",
+                                  "_stationary_bootstrap_indices_from_draws_numba": "5eb3793f561450e58ba4851443e93ee4cedb3b4afe54eeb10ef68e830ca5c42f"
+                                },
+                                "files": {
+                                  "__init__.py": "0497462b74aa9c96877998f3efe8199a625c5b1162690d6761e70e7e5df627f8",
+                                  "engine_helpers.py": "cdb41f9a94c640a6d0238fca332b240b4cb133c560769a1904ab02667927fed2",
+                                  "engine_testing_route.py.txt": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                                  "forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                                  "historical_ewma_reference.py.txt": "39e910e21d966024af3074230fecf5cc5bfbaeb73be8f162d25958e5a2f44626",
+                                  "model_testing.original.py.txt": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                                  "smart_iid_forecast.original.py.txt": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42",
+                                  "smart_iid_forecast.py": "e90f102da7ab28dec38606d1e157945339aa135b7ee2ad45c6a9c571f3e9c66e"
+                                },
+                                "historical_ewma_comparison": {
+                                  "catalog_path": "docs/forecast_oos_publication_master_catalog.json",
+                                  "model_id": "bayesian_sbb_overlay_ewma_qmle",
+                                  "new_model_id": "FRENCH1926-EWMA-QMLE",
+                                  "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+                                  "scores_inherited": false
+                                },
+                                "native_models": [
+                                  "asset_level_naive_iid_mean_shrunk_rebalanced",
+                                  "model_testing_joint_stationary_bootstrap_v1"
+                                ],
+                                "schema": "french-control-source-v1",
+                                "smart_source_transformations": [
+                                  "from app.forecast_allocation_composition import -> from .forecast_allocation_composition import",
+                                  "from app.engine import -> from .engine_helpers import"
+                                ],
+                                "upstream_source_sha256": {
+                                  "app/engine.py": "0f98c42aa5e03df658dabddb1894083c3b7755fed748026742fbfbbe30b2ab6d",
+                                  "app/forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                                  "app/model_testing.py": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                                  "app/smart_iid_forecast.py": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42"
+                                }
+                              },
+                              "historical_scores_inherited": false,
+                              "horizon_conditional": true,
+                              "last_block": "truncate_only_after_drawing_from_fixed_full_horizon_bound",
+                              "mean": "unshifted_historical_log_returns",
+                              "method": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+                              "native_adapter_sha256": "fa091c3308bcaeadf3fa816736b28e7616df7f3e202403b13edad1bc01014eb5",
+                              "politis_white": false,
+                              "prefix_coherence_across_requested_horizons": false,
+                              "resampling": "joint_rows_circular_blocks_with_replacement",
+                              "source_sha256": "db9842aeab1c42febc37f4e1d4a7cf85d7393b08abfe67ac4cb4e040c19c7e61",
+                              "training_validation_sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac"
+                            },
+                            "method": "model_testing_uniform_block_batch_student_mean_uncertainty_v1",
+                            "numeric_components_unchanged": true,
+                            "oos_route": false,
+                            "parameter_law": "same_fixed_weighted_batch_Student_mean_as_isolated_fullpanel_candidate",
+                            "parameter_multiplier": 1.0,
+                            "parameter_namespace": "public_batch_student_mean_parameter_v1",
+                            "prior_helper_sha256": "ced2face3c705ccbba53c6b16dd0b88322e749eccf9e706a6e3a9458c19e593b",
+                            "source_sha256": "c707334b0b5b67e8ef3c0907601edab309b40b57e513851276089c7e5670265e"
+                          },
+                          {
+                            "FHS_exact_component": {
+                              "accounting": "canonical_simple_return_clip_and_native_wealth_log_differences",
+                              "fit_starts": [
+                                [
+                                  0.05,
+                                  0.9
+                                ],
+                                [
+                                  0.1,
+                                  0.5
+                                ]
+                              ],
+                              "fit_success_required": true,
+                              "fitted_oos_weights": false,
+                              "horizon_family_routes": false,
+                              "innovation": "IID_empirical_filtered_training_residual_zero_mean_unit_population_variance",
+                              "mean": "historical_sample_log_mean_unchanged",
+                              "method": "model_testing_variance_targeted_garch_filtered_historical_v1",
+                              "native_adapter_sha256": "fa091c3308bcaeadf3fa816736b28e7616df7f3e202403b13edad1bc01014eb5",
+                              "native_controls": {
+                                "engine_revision": "8090a1142d57335b3afd266483ae156ff051a9e6",
+                                "extracted_engine_functions": {
+                                  "_politis_white_block_length": "64f8b67b59aca3ebb0c0c679afa83083e640b29dbf34c80d6b71ccdb23c45b41",
+                                  "_simulate_smart_iid_forecast_log_paths": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                                  "_stationary_bootstrap_indices_from_draws_fast": "fb470d89bce179c6d52d1ac52a23dacc6cb888e762a38129d41704268cb32599",
+                                  "_stationary_bootstrap_indices_from_draws_numba": "5eb3793f561450e58ba4851443e93ee4cedb3b4afe54eeb10ef68e830ca5c42f"
+                                },
+                                "files": {
+                                  "__init__.py": "0497462b74aa9c96877998f3efe8199a625c5b1162690d6761e70e7e5df627f8",
+                                  "engine_helpers.py": "cdb41f9a94c640a6d0238fca332b240b4cb133c560769a1904ab02667927fed2",
+                                  "engine_testing_route.py.txt": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                                  "forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                                  "historical_ewma_reference.py.txt": "39e910e21d966024af3074230fecf5cc5bfbaeb73be8f162d25958e5a2f44626",
+                                  "model_testing.original.py.txt": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                                  "smart_iid_forecast.original.py.txt": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42",
+                                  "smart_iid_forecast.py": "e90f102da7ab28dec38606d1e157945339aa135b7ee2ad45c6a9c571f3e9c66e"
+                                },
+                                "historical_ewma_comparison": {
+                                  "catalog_path": "docs/forecast_oos_publication_master_catalog.json",
+                                  "model_id": "bayesian_sbb_overlay_ewma_qmle",
+                                  "new_model_id": "FRENCH1926-EWMA-QMLE",
+                                  "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+                                  "scores_inherited": false
+                                },
+                                "native_models": [
+                                  "asset_level_naive_iid_mean_shrunk_rebalanced",
+                                  "model_testing_joint_stationary_bootstrap_v1"
+                                ],
+                                "schema": "french-control-source-v1",
+                                "smart_source_transformations": [
+                                  "from app.forecast_allocation_composition import -> from .forecast_allocation_composition import",
+                                  "from app.engine import -> from .engine_helpers import"
+                                ],
+                                "upstream_source_sha256": {
+                                  "app/engine.py": "0f98c42aa5e03df658dabddb1894083c3b7755fed748026742fbfbbe30b2ab6d",
+                                  "app/forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                                  "app/model_testing.py": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                                  "app/smart_iid_forecast.py": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42"
+                                }
+                              },
+                              "no_fallback_to_failed_fit": true,
+                              "source_sha256": "38da8df3436c78fa46f47c5d9185dac7bfc306ea77eda319006c3710a30c0423",
+                              "stationarity_margin": 1e-08,
+                              "volatility": "two_parameter_variance_targeted_GARCH_1_1_QMLE"
+                            },
+                            "batch_mean_component_sha256": "b94fb543eb7984be66856db96e4da20cf605e32013183ae48a44f3feb8d39145",
+                            "mean_scale_multiplier": 1.0,
+                            "method": "model_testing_variance_targeted_fhs_batch_student_mean_v1",
+                            "oos_route": false,
+                            "parameter_innovation_independence_working_assumption": true,
+                            "parameter_namespace": "public_batch_student_mean_parameter_v1",
+                            "source_sha256": "24ae46b7aa79b8a9627c274caec73e4a9442c3e9dfefe0e79291de972324a421",
+                            "volatility_fit_and_innovation_law_unchanged": true
+                          }
+                        ],
+                        "component_seed_namespaces": [
+                          "equal_WR_FHS_pool_uniform_component_v1",
+                          "equal_WR_FHS_pool_FHS_component_v1"
+                        ],
+                        "family_or_horizon_routes": false,
+                        "fit_or_forecast_code_changed": false,
+                        "generated_paths_per_component": 120,
+                        "method": "model_testing_equal_uniform_batch_student_fhs_batch_student_pool_v1",
+                        "oos_fit": false,
+                        "sampling": "fixed_count_stratified_whole_path_linear_pool",
+                        "source_sha256": "f6b8cc6d8ab016a0d9470bff4ae180a48b6301685c5d030f8d7f03e1c7942408",
+                        "total_generated_paths": 240,
+                        "weight_fit": false,
+                        "weights": [
+                          0.5,
+                          0.5
+                        ]
+                      },
+                      "family_or_horizon_routes": false,
+                      "marginal_predictive_law_unchanged_in_ideal_continuous_arithmetic": true,
+                      "mean_sampling": "randomized_t_probability_strata_symmetric_pairs_random_permutation",
+                      "mean_scale_df_unchanged": true,
+                      "mean_seed_namespace_unchanged": true,
+                      "method": "model_testing_equal_bootstrap_fhs_stratified_student_mean_pool_v1",
+                      "no_empirical_variance_rescaling": true,
+                      "numerical_sampling_variant_not_new_financial_process": true,
+                      "oos_fit": false,
+                      "quantile_implementation": "scipy.stats.t.ppf",
+                      "source_sha256": "2d2b88fea6b85578adeaeee1db08cf33c4ba1053945da3e41be397c908bbe5f3",
+                      "total_paths": 240
+                    },
+                    "family_or_horizon_routes": false,
+                    "financial_marginal_law_changed": true,
+                    "mean_draw_law": "zero_mean_Gaussian_matching_retained_Student_population_variance",
+                    "method": "model_testing_equal_bootstrap_fhs_stratified_matched_Gaussian_mean_pool_v1",
+                    "no_AR_addition": true,
+                    "no_empirical_variance_rescaling_or_fitted_multiplier": true,
+                    "oos_fit": false,
+                    "same_native_accounting_and_clips": true,
+                    "same_training_scale_df_fit_and_shock_indices": true,
+                    "source_sha256": "04c6a401e161cab2456c351b9faaa98d9ce27562eafdde4ac23b383fe436d99b",
+                    "strata_antithetic_pairs_permutations_namespaces_unchanged": true,
+                    "total_paths": 240,
+                    "weights": [
+                      0.5,
+                      0.5
+                    ]
+                  },
+                  "paths": 240,
+                  "posterior_optimality_claim": false,
+                  "source_sha256": "913d27d1070e93f72e8bcd67f2b997b96a2398f08e882a50506a0bf82ce19b94",
+                  "t_standard_error": "unchanged_training_batch_matched_Gaussian_mean_sd",
+                  "volatility_fits_resampling_namespaces_weights_native_accounting_unchanged": true,
+                  "weights": [
+                    0.5,
+                    0.5
+                  ]
+                },
+                "simulation_execution": {
+                  "FHS_and_adaptive_time_major_streams": true,
+                  "WR_and_cycles_original_draw_order": true,
+                  "empirical_law_all_paths_no_subsampling": true,
+                  "horizon_chunk": 64,
+                  "mean_variance_volatility_fits_unchanged": true,
+                  "paths": 1000,
+                  "rng_version": "one_thousand_streaming_horizon_columns_v5",
+                  "source_sha256": "baf09529460ca3a3679b7dee8e2e3589aeaabdc55e3f06e88b1aca0eff54dcce"
+                }
+              },
+              "paths_per_forecast": 1000,
+              "python": "3.12.13",
+              "scikit-learn": "1.9.0",
+              "scipy": "1.18.1",
+              "statsmodels": "0.15.0"
+            },
+            "input_manifest_sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+            "main_score_source_sha256": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,1000)",
+            "paths_per_forecast": 1000,
+            "full_independent_audit_sha256": "3742764f341583b4f458993048f25b55be18dd485a536f4a8df806007d638f1d",
+            "stable_parity_audit_sha256": "8372256eba34af0485dab4ed10edd07e0aed92f2ad771de63e1de77fb071a7a5",
+            "old_failed_version_score_reconstruction": "Parity proves old successful losses bitwise equal to repaired losses; use exact64048-key subset from immutable verified main-score index, excluding repaired-origin key from BOTH candidate and reference",
+            "evidence_root": "../daily-assets-portfolios-1000-v5-20261020",
+            "preservation_receipt": "../daily-assets-portfolios-1000-v5-20261020/closed-archive-receipt.json"
+          },
+          "archives": [
+            {
+              "utc": "2026-10-20T23:06:02.236447+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846",
+              "part": 1,
+              "parts": 6,
+              "archive_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-01.tar.gz",
+              "archive_sha256": "fc924dce56134631992898d8038a0a5f551fb42c4bf8a43a469a91922559d60f",
+              "manifest_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-01-manifest.json",
+              "manifest_sha256": "784286f670222a44e58ed9c56944a689e2c3dfe67b662733d480815327c01560",
+              "archive_bytes": 212516913,
+              "files": 7865,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:06:37.087872+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846",
+              "part": 2,
+              "parts": 6,
+              "archive_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-02.tar.gz",
+              "archive_sha256": "a100f3fa83b2bc5d2b6111f9fe37824665c3b2cff0bbf6316a3d5ecbd58a8bb2",
+              "manifest_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-02-manifest.json",
+              "manifest_sha256": "69a0733cea70df50afbd8b9dc3d8bc6da8db0f03abd31f104fde6c4e6324f762",
+              "archive_bytes": 222338144,
+              "files": 8263,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:07:11.322167+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846",
+              "part": 3,
+              "parts": 6,
+              "archive_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-03.tar.gz",
+              "archive_sha256": "c63e2117a328f664e93e617613d084799a1c777eef8bf4a3b91f1dc3fb24f48e",
+              "manifest_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-03-manifest.json",
+              "manifest_sha256": "ce142f12425ac3d8f704f7b1d574a5005257edae973e933491f5bd350ac9a16c",
+              "archive_bytes": 222917697,
+              "files": 8273,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:07:49.185532+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846",
+              "part": 4,
+              "parts": 6,
+              "archive_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-04.tar.gz",
+              "archive_sha256": "33ba0f14801c7541e7ea75b9abf94487b0ed9990bcca5c1b3418d63a80979c5b",
+              "manifest_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-04-manifest.json",
+              "manifest_sha256": "9f1857037c5adb96c6ad525bc1913b7b6e4df8d91e8ae9374dcd005efce30c41",
+              "archive_bytes": 209732750,
+              "files": 11750,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:08:44.808476+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846",
+              "part": 5,
+              "parts": 6,
+              "archive_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-05.tar.gz",
+              "archive_sha256": "7fad1c653729d1c6ea86868140a3775a433df2ccf7885280249cf7c85b326ef0",
+              "manifest_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-05-manifest.json",
+              "manifest_sha256": "4199b191f5af1d5ef04fcccce7b03e84b0b0b339e3e8a9603cb7d6dd6f3652e4",
+              "archive_bytes": 177841750,
+              "files": 19824,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:08:58.844277+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846",
+              "part": 6,
+              "parts": 6,
+              "archive_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-06.tar.gz",
+              "archive_sha256": "ea133294257f756f4688f6bbcc4087963168370061fbd2890b638c7e414e45ef",
+              "manifest_name": "987fb056f010597d25b572d96ca7bcaa2805aba9b0793ffff0ef9e897cfc3846-part-06-manifest.json",
+              "manifest_sha256": "80dc375510cfe4f47963fef02458a4c704bfbdd42062029777257e50a2377ec4",
+              "archive_bytes": 81704198,
+              "files": 8078,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:08.493451+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 1,
+              "parts": 4,
+              "archive_name": "shared-part-01.tar.gz",
+              "archive_sha256": "1a25686ae168bd66144d67dc42d9aae9d3a7367822dd80f422cc4d49f6abdb0d",
+              "manifest_name": "shared-part-01-manifest.json",
+              "manifest_sha256": "c16fd2553a5b10f1b57439e40e0b3e6cee906124e6934ac90c3ade531fa58a95",
+              "archive_bytes": 55283910,
+              "files": 2831,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:18.537675+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 2,
+              "parts": 4,
+              "archive_name": "shared-part-02.tar.gz",
+              "archive_sha256": "561669823186210997d27e8f598e1555c5554f9110c6983c95f8b0185e3b0f1b",
+              "manifest_name": "shared-part-02-manifest.json",
+              "manifest_sha256": "8dd2871d4346ae9a4491ba3a21ac4c1ab092b3fe5ba32ac05c5e0073bfb3c243",
+              "archive_bytes": 58183575,
+              "files": 3562,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:27.568195+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 3,
+              "parts": 4,
+              "archive_name": "shared-part-03.tar.gz",
+              "archive_sha256": "b338cedbf0bffcad1f99a32a54201aa3bb89d2012f509ce1417e2814dad2b360",
+              "manifest_name": "shared-part-03-manifest.json",
+              "manifest_sha256": "87c07e4b5d3af00d93015ed0d883db3d15df1249385fe84a1a55545f93a10921",
+              "archive_bytes": 59208879,
+              "files": 1,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:30.348628+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 4,
+              "parts": 4,
+              "archive_name": "shared-part-04.tar.gz",
+              "archive_sha256": "03fe2b1c991ad32af5b446747361ef35f762e4312c6761ebd347daea3d328781",
+              "manifest_name": "shared-part-04-manifest.json",
+              "manifest_sha256": "4a658ed7e63d0c8f194bdd96d3f43a4ec003b4a234ef69f53c9774e4f80822dd",
+              "archive_bytes": 44224,
+              "files": 12,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:33.614274+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "audit",
+              "part": 1,
+              "parts": 1,
+              "archive_name": "audit-part-01.tar.gz",
+              "archive_sha256": "22e4492cdbd1575e3eba27edfbbf305959d417b9c13d9a06f3b06a47bd38bf3f",
+              "manifest_name": "audit-part-01-manifest.json",
+              "manifest_sha256": "30cb9db2695afa1888c1acfc972cff20f463d2507a8d4ffb083fd87305eb76a6",
+              "archive_bytes": 3285858,
+              "files": 10,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            }
+          ]
+        }
+      ]
+    },
+    "d14f43fe9c60322692aa4f95daa2685c9a913d64646332392dba6b073a23dfd9": {
+      "identity": {
+        "model_id": "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
+        "implementation_digest": "f62226feb64b3c94cc412dbfedfc1d3174e1d62f3c73f7b00a920f5363d76163"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
+            "implementation_digest": "f62226feb64b3c94cc412dbfedfc1d3174e1d62f3c73f7b00a920f5363d76163"
+          },
+          "display_name": "Equal Mix \u2014 Original Wealth Execution [V5 portfolio 1000]",
+          "definition": "Equal whole-path pool of raw random-block portfolio bootstrap and symmetric variance-targeted GARCH(1,1) filtered historical simulation, smooth training mean shrinkage and Gaussian batch mean uncertainty. Original wealth multiplication can overflow.",
+          "version": "v5_streaming_1000_source_bound_execution",
+          "forecast_level": "portfolio",
+          "historical_superseded_by_asset_level_requirement": true,
+          "score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "0e3134d51d74b1be18931d8206f58c990658904fc349a1d4f9f83e4ddc5940c0",
+          "coverage": {
+            "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+            "series": 1264,
+            "expected_tasks": 64049,
+            "successful_tasks": 64048,
+            "native_failed_tasks": 1,
+            "native_fit_failures": 0,
+            "native_generation_failures": 1,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "fully_attempted_with_native_generation_failure"
+          },
+          "scores": {
+            "main": 0.6137730218644946
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+            "matched_successful_tasks": 64048,
+            "public_scores": {
+              "main": 0.622044107239199
+            },
+            "percent_better": {
+              "main": 1.3296622021569782
+            },
+            "preliminary": true,
+            "reference_rule": "Historical V5 worst of three Public comparators; exact identical successful subset. Not the current asset-level goal reference."
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 5359.70633125538,
+            "scope": "Recorded successful training, simulation and scoring; no IO/setup/queue or failed-origin repair; not a controlled speed claim",
+            "wall_elapsed_seconds": null
+          },
+          "reproducibility": {
+            "actual_factory": "retained_models:build_best",
+            "actual_implementation_digest": "f62226feb64b3c94cc412dbfedfc1d3174e1d62f3c73f7b00a920f5363d76163",
+            "full_execution_manifest_sha256": "a352a92fbd07d765de4877bb218429ebcb7af5ecf62f88864a9dffa9104f02ec",
+            "full_execution_archive_member": "simulation_1000_v5/results/models/f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d/execution.json",
+            "source_environment": {
+              "arch": "8.0.0",
+              "factory_source_sha256": "5840e03f2e4b435dd50b37d72f520938e58e8a330b1c136fd500a2d5d2f54d19",
+              "financial_law_change": false,
+              "forecast_source_sha256": "4738d6166f0b904d158d3b68a1c6f2e89b58e0048fc6c087bfff024e5ceaf826",
+              "french_native_dependencies": {
+                "pybind11": {
+                  "native_artifacts": {
+                    "pybind11/include/pybind11/attr.h": "e2e0386a4b0bd6b95e4d8d501dd57ab2d5cd2b6c2e0d9a89b4f616805f532265",
+                    "pybind11/include/pybind11/buffer_info.h": "90849dec6781145edf27817f9a0bccf2d16dd75f9e7d72afded9857c1e9011aa",
+                    "pybind11/include/pybind11/cast.h": "54cfdb09535529c4b33f5cb06312ea008260d43e71289b5221897c9c8dc8efed",
+                    "pybind11/include/pybind11/chrono.h": "e07c05145da261cdbb4d53d80eaba7dea8a3985deda8b91434315998c70f53d4",
+                    "pybind11/include/pybind11/common.h": "01383d06dd69c05f2a9cdb88d3ce9fa6b3380944ddad9764fe0d875c4d527fa0",
+                    "pybind11/include/pybind11/complex.h": "d9275367b53c34f6de865cee6ece6fc358820911c9fd574e9c016df9437a728b",
+                    "pybind11/include/pybind11/conduit/pybind11_conduit_v1.h": "19af7d983107690a0250e53de0257ab2f394c99d2b2046cbf0cdb84643ffdcfc",
+                    "pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h": "554656e07ee2cbdbd553380b749d7df76c25e0d9cdeac30259db599f563177f6",
+                    "pybind11/include/pybind11/conduit/wrap_include_python_h.h": "b86c91eda51e381e8411919f6f5f5367cb3270fede6d9db0e7131a2013226d33",
+                    "pybind11/include/pybind11/critical_section.h": "625cb959703218fe72f72f97d038f21801f676d12a5ee5a723e4eb9d63077589",
+                    "pybind11/include/pybind11/detail/argument_vector.h": "ca7ae47c63d6c57b40b64c620c53bea040be9a23d1e29b2a9ff647bd94f9269c",
+                    "pybind11/include/pybind11/detail/class.h": "91087ad1b3e785f9839784f6d71016fcf09d6822e5e4d05118a1d0a4ff8ebbcf",
+                    "pybind11/include/pybind11/detail/common.h": "a455fde97288d2cacb50b2d21282064e4340349352fc0b3be2208e61e54ad62e",
+                    "pybind11/include/pybind11/detail/cpp_conduit.h": "9c68646e446b107f69304ab1af7b57057ef8fa24b22c308eb046af296f4a6aee",
+                    "pybind11/include/pybind11/detail/descr.h": "8b225ac30dcaea0540fe5c5e83af6f359c8de375eb3d5b7251b8665cc0625459",
+                    "pybind11/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h": "d6a59a3651fafa3f67e55a0417bd3308eacdcfa26914b16eea0a9d62d3452f7e",
+                    "pybind11/include/pybind11/detail/exception_translation.h": "32c88bbf1a9017a0acf3a11692603d754d0549ced257b54e18f71398d747ab07",
+                    "pybind11/include/pybind11/detail/function_record_pyobject.h": "aeb3e88f60b1f09e96790b6f1a42bbe87df33d45db2f499b68634f1cdc595736",
+                    "pybind11/include/pybind11/detail/function_ref.h": "8b071de14ad618f70115f20ebe44b70b5242b176bbc0710ac8b842895a498ebb",
+                    "pybind11/include/pybind11/detail/holder_caster_foreign_helpers.h": "02602538206cc5a04f957866a3c4e97b7e1442c8968c53d6e174eb6c6471e443",
+                    "pybind11/include/pybind11/detail/init.h": "d43866489b09546b95d251df34c04015b4a82474e2f38a64bc20733259a8f1f4",
+                    "pybind11/include/pybind11/detail/internals.h": "5eefa6b72e435277a3e75378597e13c295aefb6ff8d0943fa2220ed9efb54fbc",
+                    "pybind11/include/pybind11/detail/native_enum_data.h": "d301c7a82b82a87c03eb9b01ceafbffc53347b9003821ec426a6cb0d3659d195",
+                    "pybind11/include/pybind11/detail/pybind11_namespace_macros.h": "60a5e35a5b0807d0cc142d4af298d5c982ad84f95ddfbf65f54e36b140ddba77",
+                    "pybind11/include/pybind11/detail/struct_smart_holder.h": "18305bcedae4792e32047d6d8f1b16b6e6a72014aad56827ee0b9a976ca2becc",
+                    "pybind11/include/pybind11/detail/type_caster_base.h": "ea9dc652f3f5d09b1ac7994d00f2c3ea82c6c763c1d218c5c2851956f593178f",
+                    "pybind11/include/pybind11/detail/typeid.h": "8f0e69afd9bbdaf903b25a13f2fc65f708f5ed52467047570f2ce2065b7cf49b",
+                    "pybind11/include/pybind11/detail/using_smart_holder.h": "b03da16159791f8bbc5089aa9a2e524fda1fb434143e427ac91dea47795e4244",
+                    "pybind11/include/pybind11/detail/value_and_holder.h": "12ddc263339c3ebbbfdfbe69c23665b0c56c0783c19f35f7c1f2d9fae0ca8afe",
+                    "pybind11/include/pybind11/eigen.h": "f87992035920c0243e18752decf1ed4c473ebf1ab0f71011a45f0f1d6262a76f",
+                    "pybind11/include/pybind11/eigen/common.h": "7487aa98aec8cd6e4ae24da56ab3e703503ceb7ac3a77f14f586cd230888c989",
+                    "pybind11/include/pybind11/eigen/matrix.h": "4773e9f41c04a4f28241c97a01e39740181e46a289566437e340fb8201b50dc6",
+                    "pybind11/include/pybind11/eigen/tensor.h": "ce6d0e1e1e6b8c9296937474d43de3cbe3c50ac6ad9088dffc60373e1d44c8b4",
+                    "pybind11/include/pybind11/embed.h": "006d15a971426c64c8337dea55012fb1469b6566d2ec0eb9a81006d402e6f30b",
+                    "pybind11/include/pybind11/eval.h": "6e9e8707574efe460b479c6ba7f3026107d5173fbdf0414c049497ff97abc708",
+                    "pybind11/include/pybind11/functional.h": "11f144d71cb258e2ff0c9495bddbf180ecee15f6b4bc473b20b128b2dc9c7aad",
+                    "pybind11/include/pybind11/gil.h": "3eedfee721a938121823320d3215c197e7b4a6e7c01c3db89057872648f1f2d5",
+                    "pybind11/include/pybind11/gil_safe_call_once.h": "afa1b440b7710ba35c071d0ce98e72b7401fa5b8257a199770a2f98ffdd24609",
+                    "pybind11/include/pybind11/gil_simple.h": "02e3bd982d5d7af7634e75ce7b46891ac9c9b920b79dead69c6d7b1d54105fd9",
+                    "pybind11/include/pybind11/iostream.h": "7acf4b5b2ceae7f7b86d5cdaef7b72daa4a09d3548c4f9d9639cc67995e9c582",
+                    "pybind11/include/pybind11/native_enum.h": "8bcb62bcebe84b076f5d2d2d495f34026ca2b8d853ddfa6f64b6c4b1332a1860",
+                    "pybind11/include/pybind11/numpy.h": "a9bba1f0976acd7e7597daef1abd398a1e0b81213747278cffef6b325979fee1",
+                    "pybind11/include/pybind11/operators.h": "db6e11a005dcbf595ae0d358f6b437683fc0782f12f592b1dc754ad4ef01e0c5",
+                    "pybind11/include/pybind11/options.h": "a97be69e3fbef5f652a79e8d61e7e70775b9575ee9a47958d52ae0a370cd069c",
+                    "pybind11/include/pybind11/pybind11.h": "ba323b835ef91eb85342057db2353cbac3da9040eac9f0b83891a3ce66911a75",
+                    "pybind11/include/pybind11/pytypes.h": "c74dd04fb339a272cc725c374d46edef05f4e213896da70c90015dcd9fda312e",
+                    "pybind11/include/pybind11/stl.h": "ea83b4a2027b1063393f9546e1d32c6630ca9ebd7022e0911dc0210e4259c9ce",
+                    "pybind11/include/pybind11/stl/filesystem.h": "c20e3212879de83e21503a731210707521c5c70b36d5781621092b232c3fdd98",
+                    "pybind11/include/pybind11/stl_bind.h": "a9d8a61f0671044e0f3bc4a0063c7d61ac9101f3faa9d1d035be0b31dc89f2df",
+                    "pybind11/include/pybind11/subinterpreter.h": "3a31eb3436d40b40345b413775c79b12ced0fc82e73d539355905619c1fc08f0",
+                    "pybind11/include/pybind11/trampoline_self_life_support.h": "f935fdc394f12355d7dc01b6e7994c2dd882c91f9d664337db5c05b1e7729f1f",
+                    "pybind11/include/pybind11/type_caster_pyobject_ptr.h": "1fba4a0584ef52589b88940470a99e024ca0490c280a4b88cae90d483995abe5",
+                    "pybind11/include/pybind11/typing.h": "e872df48d4e4dbd2b3c76abbc3bfec3e0fd66605d8fcd2633cfac4510fd0176a",
+                    "pybind11/include/pybind11/warnings.h": "89d70134ae5e117c5805f3de56ec9c2f172032b2aebd1cd0237dc16a927c1b88"
+                  },
+                  "version": "3.1.0"
+                },
+                "pyvinecopulib": {
+                  "native_artifacts": {
+                    "pyvinecopulib/pyvinecopulib_ext.abi3.so": "9f043410421beab5de4c901ac971380472b30229fc5c8026b8e590a9bd0cee1a"
+                  },
+                  "version": "0.7.5"
+                }
+              },
+              "method": "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
+              "new_numerical_sampling_version": true,
+              "numba": "0.67.0",
+              "numerical_environment": {
+                "interpreter": {
+                  "build": [
+                    "main",
+                    "Apr 14 2026 14:33:40"
+                  ],
+                  "cache_tag": "cpython-312",
+                  "compiler": "Clang 22.1.3",
+                  "implementation": "CPython",
+                  "version": "3.12.13"
+                },
+                "packages": {
+                  "numpy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "2.5.3"
+                  },
+                  "scipy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "cython blas ilp64": false,
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "1.18.1"
+                  }
+                },
+                "platform": {
+                  "machine": "arm64",
+                  "release": "27.0.0",
+                  "system": "Darwin",
+                  "version": "<redacted>"
+                },
+                "thread_settings": {
+                  "environment": {
+                    "BLIS_NUM_THREADS": null,
+                    "GOTO_NUM_THREADS": null,
+                    "MKL_DYNAMIC": null,
+                    "MKL_NUM_THREADS": "1",
+                    "NUMBA_NUM_THREADS": "1",
+                    "NUMBA_THREADING_LAYER": null,
+                    "NUMEXPR_NUM_THREADS": "1",
+                    "OMP_DYNAMIC": null,
+                    "OMP_NUM_THREADS": "1",
+                    "OMP_PLACES": null,
+                    "OMP_PROC_BIND": null,
+                    "OPENBLAS_NUM_THREADS": "1",
+                    "VECLIB_MAXIMUM_THREADS": "1"
+                  },
+                  "numpy_seterr": {
+                    "divide": "warn",
+                    "invalid": "warn",
+                    "over": "warn",
+                    "under": "ignore"
+                  }
+                }
+              },
+              "numpy": "2.5.3",
+              "original_financial_law": {
+                "change": "sample_mean_times_t_squared_over_one_plus_t_squared",
+                "family_or_horizon_routes": false,
+                "mean_parameter_uncertainty_variance_unchanged": true,
+                "method": "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
+                "oos_fit": false,
+                "parent": {
+                  "Gaussian_sd": "batch_scale*sqrt(batch_df/(batch_df-2))",
+                  "exact_incumbent": {
+                    "component_fit_indices_wealth_kernels_unchanged": true,
+                    "component_paths": 120,
+                    "ensemble_members_now_dependent": true,
+                    "exact_parent_pool": {
+                      "component_identities": [
+                        {
+                          "batch_count": "floor_sqrt_training_n",
+                          "batch_helper_sha256": "b94fb543eb7984be66856db96e4da20cf605e32013183ae48a44f3feb8d39145",
+                          "bounded_wr": {
+                            "adaptation": "one_French_series_as_unit_weight_asset_no_costs_no_rebalancing",
+                            "block_length": "integer_uniform_inclusive_1_to_min_training_rows_requested_horizon",
+                            "draw_order": "path_major_then_per_block_length_then_historical_start",
+                            "fitted_block_calibration": false,
+                            "frozen_native_control": {
+                              "engine_revision": "8090a1142d57335b3afd266483ae156ff051a9e6",
+                              "extracted_engine_functions": {
+                                "_politis_white_block_length": "64f8b67b59aca3ebb0c0c679afa83083e640b29dbf34c80d6b71ccdb23c45b41",
+                                "_simulate_smart_iid_forecast_log_paths": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                                "_stationary_bootstrap_indices_from_draws_fast": "fb470d89bce179c6d52d1ac52a23dacc6cb888e762a38129d41704268cb32599",
+                                "_stationary_bootstrap_indices_from_draws_numba": "5eb3793f561450e58ba4851443e93ee4cedb3b4afe54eeb10ef68e830ca5c42f"
+                              },
+                              "files": {
+                                "__init__.py": "0497462b74aa9c96877998f3efe8199a625c5b1162690d6761e70e7e5df627f8",
+                                "engine_helpers.py": "cdb41f9a94c640a6d0238fca332b240b4cb133c560769a1904ab02667927fed2",
+                                "engine_testing_route.py.txt": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                                "forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                                "historical_ewma_reference.py.txt": "39e910e21d966024af3074230fecf5cc5bfbaeb73be8f162d25958e5a2f44626",
+                                "model_testing.original.py.txt": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                                "smart_iid_forecast.original.py.txt": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42",
+                                "smart_iid_forecast.py": "e90f102da7ab28dec38606d1e157945339aa135b7ee2ad45c6a9c571f3e9c66e"
+                              },
+                              "historical_ewma_comparison": {
+                                "catalog_path": "docs/forecast_oos_publication_master_catalog.json",
+                                "model_id": "bayesian_sbb_overlay_ewma_qmle",
+                                "new_model_id": "FRENCH1926-EWMA-QMLE",
+                                "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+                                "scores_inherited": false
+                              },
+                              "native_models": [
+                                "asset_level_naive_iid_mean_shrunk_rebalanced",
+                                "model_testing_joint_stationary_bootstrap_v1"
+                              ],
+                              "schema": "french-control-source-v1",
+                              "smart_source_transformations": [
+                                "from app.forecast_allocation_composition import -> from .forecast_allocation_composition import",
+                                "from app.engine import -> from .engine_helpers import"
+                              ],
+                              "upstream_source_sha256": {
+                                "app/engine.py": "0f98c42aa5e03df658dabddb1894083c3b7755fed748026742fbfbbe30b2ab6d",
+                                "app/forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                                "app/model_testing.py": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                                "app/smart_iid_forecast.py": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42"
+                              }
+                            },
+                            "historical_scores_inherited": false,
+                            "horizon_conditional": true,
+                            "last_block": "truncate_only_after_drawing_from_fixed_full_horizon_bound",
+                            "mean": "unshifted_historical_log_returns",
+                            "method": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+                            "native_adapter_sha256": "fa091c3308bcaeadf3fa816736b28e7616df7f3e202403b13edad1bc01014eb5",
+                            "politis_white": false,
+                            "prefix_coherence_across_requested_horizons": false,
+                            "resampling": "joint_rows_circular_blocks_with_replacement",
+                            "source_sha256": "db9842aeab1c42febc37f4e1d4a7cf85d7393b08abfe67ac4cb4e040c19c7e61",
+                            "training_validation_sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac"
+                          },
+                          "method": "model_testing_uniform_block_batch_student_mean_uncertainty_v1",
+                          "numeric_components_unchanged": true,
+                          "oos_route": false,
+                          "parameter_law": "same_fixed_weighted_batch_Student_mean_as_isolated_fullpanel_candidate",
+                          "parameter_multiplier": 1.0,
+                          "parameter_namespace": "public_batch_student_mean_parameter_v1",
+                          "prior_helper_sha256": "ced2face3c705ccbba53c6b16dd0b88322e749eccf9e706a6e3a9458c19e593b",
+                          "source_sha256": "c707334b0b5b67e8ef3c0907601edab309b40b57e513851276089c7e5670265e"
+                        },
+                        {
+                          "FHS_exact_component": {
+                            "accounting": "canonical_simple_return_clip_and_native_wealth_log_differences",
+                            "fit_starts": [
+                              [
+                                0.05,
+                                0.9
+                              ],
+                              [
+                                0.1,
+                                0.5
+                              ]
+                            ],
+                            "fit_success_required": true,
+                            "fitted_oos_weights": false,
+                            "horizon_family_routes": false,
+                            "innovation": "IID_empirical_filtered_training_residual_zero_mean_unit_population_variance",
+                            "mean": "historical_sample_log_mean_unchanged",
+                            "method": "model_testing_variance_targeted_garch_filtered_historical_v1",
+                            "native_adapter_sha256": "fa091c3308bcaeadf3fa816736b28e7616df7f3e202403b13edad1bc01014eb5",
+                            "native_controls": {
+                              "engine_revision": "8090a1142d57335b3afd266483ae156ff051a9e6",
+                              "extracted_engine_functions": {
+                                "_politis_white_block_length": "64f8b67b59aca3ebb0c0c679afa83083e640b29dbf34c80d6b71ccdb23c45b41",
+                                "_simulate_smart_iid_forecast_log_paths": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                                "_stationary_bootstrap_indices_from_draws_fast": "fb470d89bce179c6d52d1ac52a23dacc6cb888e762a38129d41704268cb32599",
+                                "_stationary_bootstrap_indices_from_draws_numba": "5eb3793f561450e58ba4851443e93ee4cedb3b4afe54eeb10ef68e830ca5c42f"
+                              },
+                              "files": {
+                                "__init__.py": "0497462b74aa9c96877998f3efe8199a625c5b1162690d6761e70e7e5df627f8",
+                                "engine_helpers.py": "cdb41f9a94c640a6d0238fca332b240b4cb133c560769a1904ab02667927fed2",
+                                "engine_testing_route.py.txt": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                                "forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                                "historical_ewma_reference.py.txt": "39e910e21d966024af3074230fecf5cc5bfbaeb73be8f162d25958e5a2f44626",
+                                "model_testing.original.py.txt": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                                "smart_iid_forecast.original.py.txt": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42",
+                                "smart_iid_forecast.py": "e90f102da7ab28dec38606d1e157945339aa135b7ee2ad45c6a9c571f3e9c66e"
+                              },
+                              "historical_ewma_comparison": {
+                                "catalog_path": "docs/forecast_oos_publication_master_catalog.json",
+                                "model_id": "bayesian_sbb_overlay_ewma_qmle",
+                                "new_model_id": "FRENCH1926-EWMA-QMLE",
+                                "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+                                "scores_inherited": false
+                              },
+                              "native_models": [
+                                "asset_level_naive_iid_mean_shrunk_rebalanced",
+                                "model_testing_joint_stationary_bootstrap_v1"
+                              ],
+                              "schema": "french-control-source-v1",
+                              "smart_source_transformations": [
+                                "from app.forecast_allocation_composition import -> from .forecast_allocation_composition import",
+                                "from app.engine import -> from .engine_helpers import"
+                              ],
+                              "upstream_source_sha256": {
+                                "app/engine.py": "0f98c42aa5e03df658dabddb1894083c3b7755fed748026742fbfbbe30b2ab6d",
+                                "app/forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                                "app/model_testing.py": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                                "app/smart_iid_forecast.py": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42"
+                              }
+                            },
+                            "no_fallback_to_failed_fit": true,
+                            "source_sha256": "38da8df3436c78fa46f47c5d9185dac7bfc306ea77eda319006c3710a30c0423",
+                            "stationarity_margin": 1e-08,
+                            "volatility": "two_parameter_variance_targeted_GARCH_1_1_QMLE"
+                          },
+                          "batch_mean_component_sha256": "b94fb543eb7984be66856db96e4da20cf605e32013183ae48a44f3feb8d39145",
+                          "mean_scale_multiplier": 1.0,
+                          "method": "model_testing_variance_targeted_fhs_batch_student_mean_v1",
+                          "oos_route": false,
+                          "parameter_innovation_independence_working_assumption": true,
+                          "parameter_namespace": "public_batch_student_mean_parameter_v1",
+                          "source_sha256": "24ae46b7aa79b8a9627c274caec73e4a9442c3e9dfefe0e79291de972324a421",
+                          "volatility_fit_and_innovation_law_unchanged": true
+                        }
+                      ],
+                      "component_seed_namespaces": [
+                        "equal_WR_FHS_pool_uniform_component_v1",
+                        "equal_WR_FHS_pool_FHS_component_v1"
+                      ],
+                      "family_or_horizon_routes": false,
+                      "fit_or_forecast_code_changed": false,
+                      "generated_paths_per_component": 120,
+                      "method": "model_testing_equal_uniform_batch_student_fhs_batch_student_pool_v1",
+                      "oos_fit": false,
+                      "sampling": "fixed_count_stratified_whole_path_linear_pool",
+                      "source_sha256": "f6b8cc6d8ab016a0d9470bff4ae180a48b6301685c5d030f8d7f03e1c7942408",
+                      "total_generated_paths": 240,
+                      "weight_fit": false,
+                      "weights": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    "family_or_horizon_routes": false,
+                    "marginal_predictive_law_unchanged_in_ideal_continuous_arithmetic": true,
+                    "mean_sampling": "randomized_t_probability_strata_symmetric_pairs_random_permutation",
+                    "mean_scale_df_unchanged": true,
+                    "mean_seed_namespace_unchanged": true,
+                    "method": "model_testing_equal_bootstrap_fhs_stratified_student_mean_pool_v1",
+                    "no_empirical_variance_rescaling": true,
+                    "numerical_sampling_variant_not_new_financial_process": true,
+                    "oos_fit": false,
+                    "quantile_implementation": "scipy.stats.t.ppf",
+                    "source_sha256": "2d2b88fea6b85578adeaeee1db08cf33c4ba1053945da3e41be397c908bbe5f3",
+                    "total_paths": 240
+                  },
+                  "family_or_horizon_routes": false,
+                  "financial_marginal_law_changed": true,
+                  "mean_draw_law": "zero_mean_Gaussian_matching_retained_Student_population_variance",
+                  "method": "model_testing_equal_bootstrap_fhs_stratified_matched_Gaussian_mean_pool_v1",
+                  "no_AR_addition": true,
+                  "no_empirical_variance_rescaling_or_fitted_multiplier": true,
+                  "oos_fit": false,
+                  "same_native_accounting_and_clips": true,
+                  "same_training_scale_df_fit_and_shock_indices": true,
+                  "source_sha256": "04c6a401e161cab2456c351b9faaa98d9ce27562eafdde4ac23b383fe436d99b",
+                  "strata_antithetic_pairs_permutations_namespaces_unchanged": true,
+                  "total_paths": 240,
+                  "weights": [
+                    0.5,
+                    0.5
+                  ]
+                },
+                "paths": 240,
+                "posterior_optimality_claim": false,
+                "source_sha256": "913d27d1070e93f72e8bcd67f2b997b96a2398f08e882a50506a0bf82ce19b94",
+                "t_standard_error": "unchanged_training_batch_matched_Gaussian_mean_sd",
+                "volatility_fits_resampling_namespaces_weights_native_accounting_unchanged": true,
+                "weights": [
+                  0.5,
+                  0.5
+                ]
+              },
+              "pandas": "2.3.3",
+              "python": "3.12.13",
+              "scikit-learn": "1.9.0",
+              "scipy": "1.18.1",
+              "simulation_execution": {
+                "FHS_and_adaptive_time_major_streams": true,
+                "WR_and_cycles_original_draw_order": true,
+                "empirical_law_all_paths_no_subsampling": true,
+                "horizon_chunk": 64,
+                "mean_variance_volatility_fits_unchanged": true,
+                "paths": 1000,
+                "rng_version": "one_thousand_streaming_horizon_columns_v5",
+                "source_sha256": "baf09529460ca3a3679b7dee8e2e3589aeaabdc55e3f06e88b1aca0eff54dcce"
+              },
+              "statsmodels": "0.15.0"
+            },
+            "input_manifest_sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+            "main_score_source_sha256": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,1000)",
+            "paths_per_forecast": 1000,
+            "full_independent_audit_sha256": "3742764f341583b4f458993048f25b55be18dd485a536f4a8df806007d638f1d",
+            "stable_parity_audit_sha256": "8372256eba34af0485dab4ed10edd07e0aed92f2ad771de63e1de77fb071a7a5",
+            "old_failed_version_score_reconstruction": "Parity proves old successful losses bitwise equal to repaired losses; use exact64048-key subset from immutable verified main-score index, excluding repaired-origin key from BOTH candidate and reference",
+            "evidence_root": "../daily-assets-portfolios-1000-v5-20261020",
+            "preservation_receipt": "../daily-assets-portfolios-1000-v5-20261020/closed-archive-receipt.json"
+          },
+          "archives": [
+            {
+              "utc": "2026-10-20T23:14:53.789460+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d",
+              "part": 1,
+              "parts": 6,
+              "archive_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-01.tar.gz",
+              "archive_sha256": "44e1ebce52c38eb7dca2c7b343be897333d81c86b918f4474465e07f18a36037",
+              "manifest_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-01-manifest.json",
+              "manifest_sha256": "8a62df853a91f98f7cd5b9cc1bda78fc0315f7dc658ff1522e73d58b328a05d0",
+              "archive_bytes": 213080590,
+              "files": 7857,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:15:20.511410+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d",
+              "part": 2,
+              "parts": 6,
+              "archive_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-02.tar.gz",
+              "archive_sha256": "e431cac913d13a6aabd4bfa70936067d8e7ac9547e2a028f54cce61691e83e23",
+              "manifest_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-02-manifest.json",
+              "manifest_sha256": "65605ac807878e953b28522de5d4d680a8e5359fb4b7f591178220f180c956d5",
+              "archive_bytes": 222927181,
+              "files": 8256,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:15:46.616186+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d",
+              "part": 3,
+              "parts": 6,
+              "archive_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-03.tar.gz",
+              "archive_sha256": "fb68fadbdc1800626f5cf32ea6f8ef57e6a211581fd39c6eed30c84387c8e5c7",
+              "manifest_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-03-manifest.json",
+              "manifest_sha256": "429fd485f07d1155a448188a20443c0020ad89b265941c57c3a936b5b9a666fd",
+              "archive_bytes": 223501069,
+              "files": 8261,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:16:15.557893+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d",
+              "part": 4,
+              "parts": 6,
+              "archive_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-04.tar.gz",
+              "archive_sha256": "bf9793978c6d0d7c5768e96ed48bc62f0266e40f0aed00e2b60041a71585fc23",
+              "manifest_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-04-manifest.json",
+              "manifest_sha256": "effe129bd2300c773c017b6c575940db307e2e56d4e1cc569272aa84ee3563bc",
+              "archive_bytes": 211321621,
+              "files": 11708,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:16:43.945019+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d",
+              "part": 5,
+              "parts": 6,
+              "archive_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-05.tar.gz",
+              "archive_sha256": "0cbb299d2ec2d5214158f3d174e881d354252160491965aee698db6cfcf23722",
+              "manifest_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-05-manifest.json",
+              "manifest_sha256": "31ae65ad55485154f4e022c0e9693137d2a5e2ad57130ffc28a62255c787368b",
+              "archive_bytes": 181209647,
+              "files": 19793,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:16:59.096506+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d",
+              "part": 6,
+              "parts": 6,
+              "archive_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-06.tar.gz",
+              "archive_sha256": "aa8de6c987204e4b9429fcd7b7fb125f2d9b161c6b3660383d7fe598a0dcaae4",
+              "manifest_name": "f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d-part-06-manifest.json",
+              "manifest_sha256": "19b5d0dfdb9191c6dcae6837ed0181c07b8fb039450184517bd462f627faf5b9",
+              "archive_bytes": 84505197,
+              "files": 8178,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:08.493451+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 1,
+              "parts": 4,
+              "archive_name": "shared-part-01.tar.gz",
+              "archive_sha256": "1a25686ae168bd66144d67dc42d9aae9d3a7367822dd80f422cc4d49f6abdb0d",
+              "manifest_name": "shared-part-01-manifest.json",
+              "manifest_sha256": "c16fd2553a5b10f1b57439e40e0b3e6cee906124e6934ac90c3ade531fa58a95",
+              "archive_bytes": 55283910,
+              "files": 2831,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:18.537675+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 2,
+              "parts": 4,
+              "archive_name": "shared-part-02.tar.gz",
+              "archive_sha256": "561669823186210997d27e8f598e1555c5554f9110c6983c95f8b0185e3b0f1b",
+              "manifest_name": "shared-part-02-manifest.json",
+              "manifest_sha256": "8dd2871d4346ae9a4491ba3a21ac4c1ab092b3fe5ba32ac05c5e0073bfb3c243",
+              "archive_bytes": 58183575,
+              "files": 3562,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:27.568195+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 3,
+              "parts": 4,
+              "archive_name": "shared-part-03.tar.gz",
+              "archive_sha256": "b338cedbf0bffcad1f99a32a54201aa3bb89d2012f509ce1417e2814dad2b360",
+              "manifest_name": "shared-part-03-manifest.json",
+              "manifest_sha256": "87c07e4b5d3af00d93015ed0d883db3d15df1249385fe84a1a55545f93a10921",
+              "archive_bytes": 59208879,
+              "files": 1,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:30.348628+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 4,
+              "parts": 4,
+              "archive_name": "shared-part-04.tar.gz",
+              "archive_sha256": "03fe2b1c991ad32af5b446747361ef35f762e4312c6761ebd347daea3d328781",
+              "manifest_name": "shared-part-04-manifest.json",
+              "manifest_sha256": "4a658ed7e63d0c8f194bdd96d3f43a4ec003b4a234ef69f53c9774e4f80822dd",
+              "archive_bytes": 44224,
+              "files": 12,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:33.614274+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "audit",
+              "part": 1,
+              "parts": 1,
+              "archive_name": "audit-part-01.tar.gz",
+              "archive_sha256": "22e4492cdbd1575e3eba27edfbbf305959d417b9c13d9a06f3b06a47bd38bf3f",
+              "manifest_name": "audit-part-01-manifest.json",
+              "manifest_sha256": "30cb9db2695afa1888c1acfc972cff20f463d2507a8d4ffb083fd87305eb76a6",
+              "archive_bytes": 3285858,
+              "files": 10,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            }
+          ]
+        }
+      ]
+    },
+    "23d5e15f5179a2a76b544653875c6a6c843516aa1a766bb6bdcefaea283869f7": {
+      "identity": {
+        "model_id": "model_testing_joint_stationary_bootstrap_v1",
+        "implementation_digest": "a39d5300bd6ae91b42d2f13a944d00ceac868dbad8d91860d8194ddddecc88dd"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_joint_stationary_bootstrap_v1",
+            "implementation_digest": "a39d5300bd6ae91b42d2f13a944d00ceac868dbad8d91860d8194ddddecc88dd"
+          },
+          "display_name": "Public \u2014 Adaptive Blocks [V5 portfolio 1000]",
+          "definition": "Training-selected Politis\u2013White-style mean block length, geometric stationary portfolio bootstrap.",
+          "version": "v5_streaming_1000_source_bound_execution",
+          "forecast_level": "portfolio",
+          "historical_superseded_by_asset_level_requirement": true,
+          "score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "6eb4efc349b0e7aadb8bae5bbaf946091fa82314e92240b1ae70c217ce9e487d",
+          "coverage": {
+            "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+            "series": 1264,
+            "expected_tasks": 64049,
+            "successful_tasks": 64049,
+            "native_failed_tasks": 0,
+            "native_fit_failures": 0,
+            "native_generation_failures": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "main": 0.6213962401354369
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+            "matched_successful_tasks": 64049,
+            "public_scores": {
+              "main": 0.6220440833181418
+            },
+            "percent_better": {
+              "main": 0.10414747122889922
+            },
+            "preliminary": false,
+            "reference_rule": "Historical V5 worst of three Public comparators; exact identical successful subset. Not the current asset-level goal reference."
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 6080.6206149074715,
+            "scope": "Recorded successful training, simulation and scoring; no IO/setup/queue or failed-origin repair; not a controlled speed claim",
+            "wall_elapsed_seconds": null
+          },
+          "reproducibility": {
+            "actual_factory": "retained_models:build_adaptive",
+            "actual_implementation_digest": "a39d5300bd6ae91b42d2f13a944d00ceac868dbad8d91860d8194ddddecc88dd",
+            "full_execution_manifest_sha256": "eeb8cc2205b4c34fffc9885d54d1ff479cc95191fd02d5b4fef62eff2876f21d",
+            "full_execution_archive_member": "simulation_1000_v5/results/models/c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c/execution.json",
+            "source_environment": {
+              "arch": "8.0.0",
+              "factory_source_sha256": "5840e03f2e4b435dd50b37d72f520938e58e8a330b1c136fd500a2d5d2f54d19",
+              "financial_law_change": false,
+              "forecast_source_sha256": "4738d6166f0b904d158d3b68a1c6f2e89b58e0048fc6c087bfff024e5ceaf826",
+              "french_native_dependencies": {
+                "pybind11": {
+                  "native_artifacts": {
+                    "pybind11/include/pybind11/attr.h": "e2e0386a4b0bd6b95e4d8d501dd57ab2d5cd2b6c2e0d9a89b4f616805f532265",
+                    "pybind11/include/pybind11/buffer_info.h": "90849dec6781145edf27817f9a0bccf2d16dd75f9e7d72afded9857c1e9011aa",
+                    "pybind11/include/pybind11/cast.h": "54cfdb09535529c4b33f5cb06312ea008260d43e71289b5221897c9c8dc8efed",
+                    "pybind11/include/pybind11/chrono.h": "e07c05145da261cdbb4d53d80eaba7dea8a3985deda8b91434315998c70f53d4",
+                    "pybind11/include/pybind11/common.h": "01383d06dd69c05f2a9cdb88d3ce9fa6b3380944ddad9764fe0d875c4d527fa0",
+                    "pybind11/include/pybind11/complex.h": "d9275367b53c34f6de865cee6ece6fc358820911c9fd574e9c016df9437a728b",
+                    "pybind11/include/pybind11/conduit/pybind11_conduit_v1.h": "19af7d983107690a0250e53de0257ab2f394c99d2b2046cbf0cdb84643ffdcfc",
+                    "pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h": "554656e07ee2cbdbd553380b749d7df76c25e0d9cdeac30259db599f563177f6",
+                    "pybind11/include/pybind11/conduit/wrap_include_python_h.h": "b86c91eda51e381e8411919f6f5f5367cb3270fede6d9db0e7131a2013226d33",
+                    "pybind11/include/pybind11/critical_section.h": "625cb959703218fe72f72f97d038f21801f676d12a5ee5a723e4eb9d63077589",
+                    "pybind11/include/pybind11/detail/argument_vector.h": "ca7ae47c63d6c57b40b64c620c53bea040be9a23d1e29b2a9ff647bd94f9269c",
+                    "pybind11/include/pybind11/detail/class.h": "91087ad1b3e785f9839784f6d71016fcf09d6822e5e4d05118a1d0a4ff8ebbcf",
+                    "pybind11/include/pybind11/detail/common.h": "a455fde97288d2cacb50b2d21282064e4340349352fc0b3be2208e61e54ad62e",
+                    "pybind11/include/pybind11/detail/cpp_conduit.h": "9c68646e446b107f69304ab1af7b57057ef8fa24b22c308eb046af296f4a6aee",
+                    "pybind11/include/pybind11/detail/descr.h": "8b225ac30dcaea0540fe5c5e83af6f359c8de375eb3d5b7251b8665cc0625459",
+                    "pybind11/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h": "d6a59a3651fafa3f67e55a0417bd3308eacdcfa26914b16eea0a9d62d3452f7e",
+                    "pybind11/include/pybind11/detail/exception_translation.h": "32c88bbf1a9017a0acf3a11692603d754d0549ced257b54e18f71398d747ab07",
+                    "pybind11/include/pybind11/detail/function_record_pyobject.h": "aeb3e88f60b1f09e96790b6f1a42bbe87df33d45db2f499b68634f1cdc595736",
+                    "pybind11/include/pybind11/detail/function_ref.h": "8b071de14ad618f70115f20ebe44b70b5242b176bbc0710ac8b842895a498ebb",
+                    "pybind11/include/pybind11/detail/holder_caster_foreign_helpers.h": "02602538206cc5a04f957866a3c4e97b7e1442c8968c53d6e174eb6c6471e443",
+                    "pybind11/include/pybind11/detail/init.h": "d43866489b09546b95d251df34c04015b4a82474e2f38a64bc20733259a8f1f4",
+                    "pybind11/include/pybind11/detail/internals.h": "5eefa6b72e435277a3e75378597e13c295aefb6ff8d0943fa2220ed9efb54fbc",
+                    "pybind11/include/pybind11/detail/native_enum_data.h": "d301c7a82b82a87c03eb9b01ceafbffc53347b9003821ec426a6cb0d3659d195",
+                    "pybind11/include/pybind11/detail/pybind11_namespace_macros.h": "60a5e35a5b0807d0cc142d4af298d5c982ad84f95ddfbf65f54e36b140ddba77",
+                    "pybind11/include/pybind11/detail/struct_smart_holder.h": "18305bcedae4792e32047d6d8f1b16b6e6a72014aad56827ee0b9a976ca2becc",
+                    "pybind11/include/pybind11/detail/type_caster_base.h": "ea9dc652f3f5d09b1ac7994d00f2c3ea82c6c763c1d218c5c2851956f593178f",
+                    "pybind11/include/pybind11/detail/typeid.h": "8f0e69afd9bbdaf903b25a13f2fc65f708f5ed52467047570f2ce2065b7cf49b",
+                    "pybind11/include/pybind11/detail/using_smart_holder.h": "b03da16159791f8bbc5089aa9a2e524fda1fb434143e427ac91dea47795e4244",
+                    "pybind11/include/pybind11/detail/value_and_holder.h": "12ddc263339c3ebbbfdfbe69c23665b0c56c0783c19f35f7c1f2d9fae0ca8afe",
+                    "pybind11/include/pybind11/eigen.h": "f87992035920c0243e18752decf1ed4c473ebf1ab0f71011a45f0f1d6262a76f",
+                    "pybind11/include/pybind11/eigen/common.h": "7487aa98aec8cd6e4ae24da56ab3e703503ceb7ac3a77f14f586cd230888c989",
+                    "pybind11/include/pybind11/eigen/matrix.h": "4773e9f41c04a4f28241c97a01e39740181e46a289566437e340fb8201b50dc6",
+                    "pybind11/include/pybind11/eigen/tensor.h": "ce6d0e1e1e6b8c9296937474d43de3cbe3c50ac6ad9088dffc60373e1d44c8b4",
+                    "pybind11/include/pybind11/embed.h": "006d15a971426c64c8337dea55012fb1469b6566d2ec0eb9a81006d402e6f30b",
+                    "pybind11/include/pybind11/eval.h": "6e9e8707574efe460b479c6ba7f3026107d5173fbdf0414c049497ff97abc708",
+                    "pybind11/include/pybind11/functional.h": "11f144d71cb258e2ff0c9495bddbf180ecee15f6b4bc473b20b128b2dc9c7aad",
+                    "pybind11/include/pybind11/gil.h": "3eedfee721a938121823320d3215c197e7b4a6e7c01c3db89057872648f1f2d5",
+                    "pybind11/include/pybind11/gil_safe_call_once.h": "afa1b440b7710ba35c071d0ce98e72b7401fa5b8257a199770a2f98ffdd24609",
+                    "pybind11/include/pybind11/gil_simple.h": "02e3bd982d5d7af7634e75ce7b46891ac9c9b920b79dead69c6d7b1d54105fd9",
+                    "pybind11/include/pybind11/iostream.h": "7acf4b5b2ceae7f7b86d5cdaef7b72daa4a09d3548c4f9d9639cc67995e9c582",
+                    "pybind11/include/pybind11/native_enum.h": "8bcb62bcebe84b076f5d2d2d495f34026ca2b8d853ddfa6f64b6c4b1332a1860",
+                    "pybind11/include/pybind11/numpy.h": "a9bba1f0976acd7e7597daef1abd398a1e0b81213747278cffef6b325979fee1",
+                    "pybind11/include/pybind11/operators.h": "db6e11a005dcbf595ae0d358f6b437683fc0782f12f592b1dc754ad4ef01e0c5",
+                    "pybind11/include/pybind11/options.h": "a97be69e3fbef5f652a79e8d61e7e70775b9575ee9a47958d52ae0a370cd069c",
+                    "pybind11/include/pybind11/pybind11.h": "ba323b835ef91eb85342057db2353cbac3da9040eac9f0b83891a3ce66911a75",
+                    "pybind11/include/pybind11/pytypes.h": "c74dd04fb339a272cc725c374d46edef05f4e213896da70c90015dcd9fda312e",
+                    "pybind11/include/pybind11/stl.h": "ea83b4a2027b1063393f9546e1d32c6630ca9ebd7022e0911dc0210e4259c9ce",
+                    "pybind11/include/pybind11/stl/filesystem.h": "c20e3212879de83e21503a731210707521c5c70b36d5781621092b232c3fdd98",
+                    "pybind11/include/pybind11/stl_bind.h": "a9d8a61f0671044e0f3bc4a0063c7d61ac9101f3faa9d1d035be0b31dc89f2df",
+                    "pybind11/include/pybind11/subinterpreter.h": "3a31eb3436d40b40345b413775c79b12ced0fc82e73d539355905619c1fc08f0",
+                    "pybind11/include/pybind11/trampoline_self_life_support.h": "f935fdc394f12355d7dc01b6e7994c2dd882c91f9d664337db5c05b1e7729f1f",
+                    "pybind11/include/pybind11/type_caster_pyobject_ptr.h": "1fba4a0584ef52589b88940470a99e024ca0490c280a4b88cae90d483995abe5",
+                    "pybind11/include/pybind11/typing.h": "e872df48d4e4dbd2b3c76abbc3bfec3e0fd66605d8fcd2633cfac4510fd0176a",
+                    "pybind11/include/pybind11/warnings.h": "89d70134ae5e117c5805f3de56ec9c2f172032b2aebd1cd0237dc16a927c1b88"
+                  },
+                  "version": "3.1.0"
+                },
+                "pyvinecopulib": {
+                  "native_artifacts": {
+                    "pyvinecopulib/pyvinecopulib_ext.abi3.so": "9f043410421beab5de4c901ac971380472b30229fc5c8026b8e590a9bd0cee1a"
+                  },
+                  "version": "0.7.5"
+                }
+              },
+              "method": "model_testing_joint_stationary_bootstrap_v1",
+              "new_numerical_sampling_version": true,
+              "numba": "0.67.0",
+              "numerical_environment": {
+                "interpreter": {
+                  "build": [
+                    "main",
+                    "Apr 14 2026 14:33:40"
+                  ],
+                  "cache_tag": "cpython-312",
+                  "compiler": "Clang 22.1.3",
+                  "implementation": "CPython",
+                  "version": "3.12.13"
+                },
+                "packages": {
+                  "numpy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "2.5.3"
+                  },
+                  "scipy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "cython blas ilp64": false,
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "1.18.1"
+                  }
+                },
+                "platform": {
+                  "machine": "arm64",
+                  "release": "27.0.0",
+                  "system": "Darwin",
+                  "version": "<redacted>"
+                },
+                "thread_settings": {
+                  "environment": {
+                    "BLIS_NUM_THREADS": null,
+                    "GOTO_NUM_THREADS": null,
+                    "MKL_DYNAMIC": null,
+                    "MKL_NUM_THREADS": "1",
+                    "NUMBA_NUM_THREADS": "1",
+                    "NUMBA_THREADING_LAYER": null,
+                    "NUMEXPR_NUM_THREADS": "1",
+                    "OMP_DYNAMIC": null,
+                    "OMP_NUM_THREADS": "1",
+                    "OMP_PLACES": null,
+                    "OMP_PROC_BIND": null,
+                    "OPENBLAS_NUM_THREADS": "1",
+                    "VECLIB_MAXIMUM_THREADS": "1"
+                  },
+                  "numpy_seterr": {
+                    "divide": "warn",
+                    "invalid": "warn",
+                    "over": "warn",
+                    "under": "ignore"
+                  }
+                }
+              },
+              "numpy": "2.5.3",
+              "original_financial_law": {
+                "adaptation": "one_French_series_as_unit_weight_asset_no_costs",
+                "frozen_product_control": {
+                  "engine_revision": "8090a1142d57335b3afd266483ae156ff051a9e6",
+                  "extracted_engine_functions": {
+                    "_politis_white_block_length": "64f8b67b59aca3ebb0c0c679afa83083e640b29dbf34c80d6b71ccdb23c45b41",
+                    "_simulate_smart_iid_forecast_log_paths": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                    "_stationary_bootstrap_indices_from_draws_fast": "fb470d89bce179c6d52d1ac52a23dacc6cb888e762a38129d41704268cb32599",
+                    "_stationary_bootstrap_indices_from_draws_numba": "5eb3793f561450e58ba4851443e93ee4cedb3b4afe54eeb10ef68e830ca5c42f"
+                  },
+                  "files": {
+                    "__init__.py": "0497462b74aa9c96877998f3efe8199a625c5b1162690d6761e70e7e5df627f8",
+                    "engine_helpers.py": "cdb41f9a94c640a6d0238fca332b240b4cb133c560769a1904ab02667927fed2",
+                    "engine_testing_route.py.txt": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                    "forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                    "historical_ewma_reference.py.txt": "39e910e21d966024af3074230fecf5cc5bfbaeb73be8f162d25958e5a2f44626",
+                    "model_testing.original.py.txt": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                    "smart_iid_forecast.original.py.txt": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42",
+                    "smart_iid_forecast.py": "e90f102da7ab28dec38606d1e157945339aa135b7ee2ad45c6a9c571f3e9c66e"
+                  },
+                  "historical_ewma_comparison": {
+                    "catalog_path": "docs/forecast_oos_publication_master_catalog.json",
+                    "model_id": "bayesian_sbb_overlay_ewma_qmle",
+                    "new_model_id": "FRENCH1926-EWMA-QMLE",
+                    "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+                    "scores_inherited": false
+                  },
+                  "native_models": [
+                    "asset_level_naive_iid_mean_shrunk_rebalanced",
+                    "model_testing_joint_stationary_bootstrap_v1"
+                  ],
+                  "schema": "french-control-source-v1",
+                  "smart_source_transformations": [
+                    "from app.forecast_allocation_composition import -> from .forecast_allocation_composition import",
+                    "from app.engine import -> from .engine_helpers import"
+                  ],
+                  "upstream_source_sha256": {
+                    "app/engine.py": "0f98c42aa5e03df658dabddb1894083c3b7755fed748026742fbfbbe30b2ab6d",
+                    "app/forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                    "app/model_testing.py": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                    "app/smart_iid_forecast.py": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42"
+                  }
+                }
+              },
+              "pandas": "2.3.3",
+              "python": "3.12.13",
+              "scikit-learn": "1.9.0",
+              "scipy": "1.18.1",
+              "simulation_execution": {
+                "FHS_and_adaptive_time_major_streams": true,
+                "WR_and_cycles_original_draw_order": true,
+                "empirical_law_all_paths_no_subsampling": true,
+                "horizon_chunk": 64,
+                "mean_variance_volatility_fits_unchanged": true,
+                "paths": 1000,
+                "rng_version": "one_thousand_streaming_horizon_columns_v5",
+                "source_sha256": "baf09529460ca3a3679b7dee8e2e3589aeaabdc55e3f06e88b1aca0eff54dcce"
+              },
+              "statsmodels": "0.15.0"
+            },
+            "input_manifest_sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+            "main_score_source_sha256": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,1000)",
+            "paths_per_forecast": 1000,
+            "full_independent_audit_sha256": "3742764f341583b4f458993048f25b55be18dd485a536f4a8df806007d638f1d",
+            "stable_parity_audit_sha256": "8372256eba34af0485dab4ed10edd07e0aed92f2ad771de63e1de77fb071a7a5",
+            "old_failed_version_score_reconstruction": "Parity proves old successful losses bitwise equal to repaired losses; use exact64048-key subset from immutable verified main-score index, excluding repaired-origin key from BOTH candidate and reference",
+            "evidence_root": "../daily-assets-portfolios-1000-v5-20261020",
+            "preservation_receipt": "../daily-assets-portfolios-1000-v5-20261020/closed-archive-receipt.json"
+          },
+          "archives": [
+            {
+              "utc": "2026-10-20T23:09:26.682302+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c",
+              "part": 1,
+              "parts": 6,
+              "archive_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-01.tar.gz",
+              "archive_sha256": "dd552aa55c5a19a20ce6360d9bb1f028cbed977ddcde22b06934ef603a941a87",
+              "manifest_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-01-manifest.json",
+              "manifest_sha256": "0a2a6090a85bdeb22d4840764353e45e6163dee246eceb41feb40fb2fcaaa5ba",
+              "archive_bytes": 212157697,
+              "files": 7894,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:09:53.782549+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c",
+              "part": 2,
+              "parts": 6,
+              "archive_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-02.tar.gz",
+              "archive_sha256": "1447e9662b83ad178a5b95902061f610bc0b0bf84e07eabb7ff1b1ae8aa68506",
+              "manifest_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-02-manifest.json",
+              "manifest_sha256": "d49853b29c77d3434b16e8b97aeb3bd07d829d6ce606e4930ff38ffbc686dd15",
+              "archive_bytes": 222163462,
+              "files": 8293,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:10:20.434131+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c",
+              "part": 3,
+              "parts": 6,
+              "archive_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-03.tar.gz",
+              "archive_sha256": "f79ff299650bfeccac1ccb4c706a5b0ae9903ce2c2654953f110b3661f8d63d6",
+              "manifest_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-03-manifest.json",
+              "manifest_sha256": "581d38304c67385a79aa4f46a522e4f4eaa8c4ab3ea7a8437c8759a9cabb7f70",
+              "archive_bytes": 222703870,
+              "files": 8294,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:10:49.442281+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c",
+              "part": 4,
+              "parts": 6,
+              "archive_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-04.tar.gz",
+              "archive_sha256": "5e73ed07acbfd59a276ea2b70471527e6c70216631bdedcabd50f28b4ae58f20",
+              "manifest_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-04-manifest.json",
+              "manifest_sha256": "eb7aa36fcd61099ce9b0ac55675e06f6691eb4ab4f3d071c8f2778348a6ef17a",
+              "archive_bytes": 208642219,
+              "files": 12048,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:11:25.719889+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c",
+              "part": 5,
+              "parts": 6,
+              "archive_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-05.tar.gz",
+              "archive_sha256": "3a5c8231d82ed0818aef2f5c02a31798b3430fff135a1ab5eca614682bf7f2ab",
+              "manifest_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-05-manifest.json",
+              "manifest_sha256": "221ac3251ff1051cb2687ec11f5c26ef2b76359248f9be005d5f544ef27b0e87",
+              "archive_bytes": 178328313,
+              "files": 19806,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:11:40.136696+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c",
+              "part": 6,
+              "parts": 6,
+              "archive_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-06.tar.gz",
+              "archive_sha256": "2bb249017fedd88d2f2b515ea970254ebcfe6aa36055028caf591dcdcb4b097c",
+              "manifest_name": "c4710038c2bb35b4181c134fe874dd036f8e9b6d2235524be41f779d69e6533c-part-06-manifest.json",
+              "manifest_sha256": "cd10d7332b8e002969ce95a38dfd62666911276c6f0b009e2182c08c07392c10",
+              "archive_bytes": 76392778,
+              "files": 7718,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:08.493451+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 1,
+              "parts": 4,
+              "archive_name": "shared-part-01.tar.gz",
+              "archive_sha256": "1a25686ae168bd66144d67dc42d9aae9d3a7367822dd80f422cc4d49f6abdb0d",
+              "manifest_name": "shared-part-01-manifest.json",
+              "manifest_sha256": "c16fd2553a5b10f1b57439e40e0b3e6cee906124e6934ac90c3ade531fa58a95",
+              "archive_bytes": 55283910,
+              "files": 2831,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:18.537675+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 2,
+              "parts": 4,
+              "archive_name": "shared-part-02.tar.gz",
+              "archive_sha256": "561669823186210997d27e8f598e1555c5554f9110c6983c95f8b0185e3b0f1b",
+              "manifest_name": "shared-part-02-manifest.json",
+              "manifest_sha256": "8dd2871d4346ae9a4491ba3a21ac4c1ab092b3fe5ba32ac05c5e0073bfb3c243",
+              "archive_bytes": 58183575,
+              "files": 3562,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:27.568195+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 3,
+              "parts": 4,
+              "archive_name": "shared-part-03.tar.gz",
+              "archive_sha256": "b338cedbf0bffcad1f99a32a54201aa3bb89d2012f509ce1417e2814dad2b360",
+              "manifest_name": "shared-part-03-manifest.json",
+              "manifest_sha256": "87c07e4b5d3af00d93015ed0d883db3d15df1249385fe84a1a55545f93a10921",
+              "archive_bytes": 59208879,
+              "files": 1,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:30.348628+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 4,
+              "parts": 4,
+              "archive_name": "shared-part-04.tar.gz",
+              "archive_sha256": "03fe2b1c991ad32af5b446747361ef35f762e4312c6761ebd347daea3d328781",
+              "manifest_name": "shared-part-04-manifest.json",
+              "manifest_sha256": "4a658ed7e63d0c8f194bdd96d3f43a4ec003b4a234ef69f53c9774e4f80822dd",
+              "archive_bytes": 44224,
+              "files": 12,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:33.614274+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "audit",
+              "part": 1,
+              "parts": 1,
+              "archive_name": "audit-part-01.tar.gz",
+              "archive_sha256": "22e4492cdbd1575e3eba27edfbbf305959d417b9c13d9a06f3b06a47bd38bf3f",
+              "manifest_name": "audit-part-01-manifest.json",
+              "manifest_sha256": "30cb9db2695afa1888c1acfc972cff20f463d2507a8d4ffb083fd87305eb76a6",
+              "archive_bytes": 3285858,
+              "files": 10,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            }
+          ]
+        }
+      ]
+    },
+    "ff9504fe93c89c6064b1c575616b3d2fdcf9d44dc38391b6e2dd35d1cd8215fc": {
+      "identity": {
+        "model_id": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+        "implementation_digest": "670302737ee7121112beba7d6e1561f346bb4aee7c0808fa637b89211c4888bd"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+            "implementation_digest": "670302737ee7121112beba7d6e1561f346bb4aee7c0808fa637b89211c4888bd"
+          },
+          "display_name": "Public \u2014 Random Blocks Replacement [V5 portfolio 1000]",
+          "definition": "Uniform bounded circular portfolio blocks, with replacement.",
+          "version": "v5_streaming_1000_source_bound_execution",
+          "forecast_level": "portfolio",
+          "historical_superseded_by_asset_level_requirement": true,
+          "score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "a212029b9b28b67f3c8b956a68f35a0bc90e3dcbf9fc9f780361cb4d6e03e378",
+          "coverage": {
+            "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+            "series": 1264,
+            "expected_tasks": 64049,
+            "successful_tasks": 64049,
+            "native_failed_tasks": 0,
+            "native_fit_failures": 0,
+            "native_generation_failures": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "main": 0.6210416735886476
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+            "matched_successful_tasks": 64049,
+            "public_scores": {
+              "main": 0.6220440833181418
+            },
+            "percent_better": {
+              "main": 0.16114769939568063
+            },
+            "preliminary": false,
+            "reference_rule": "Historical V5 worst of three Public comparators; exact identical successful subset. Not the current asset-level goal reference."
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 4668.628834175761,
+            "scope": "Recorded successful training, simulation and scoring; no IO/setup/queue or failed-origin repair; not a controlled speed claim",
+            "wall_elapsed_seconds": null
+          },
+          "reproducibility": {
+            "actual_factory": "retained_models:build_replacement",
+            "actual_implementation_digest": "670302737ee7121112beba7d6e1561f346bb4aee7c0808fa637b89211c4888bd",
+            "full_execution_manifest_sha256": "07472dfe8d1083a56253722a87adad1cfa70c12328b57cddc3c721dd504a5ca1",
+            "full_execution_archive_member": "simulation_1000_v5/results/models/4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831/execution.json",
+            "source_environment": {
+              "arch": "8.0.0",
+              "factory_source_sha256": "5840e03f2e4b435dd50b37d72f520938e58e8a330b1c136fd500a2d5d2f54d19",
+              "financial_law_change": false,
+              "forecast_source_sha256": "4738d6166f0b904d158d3b68a1c6f2e89b58e0048fc6c087bfff024e5ceaf826",
+              "french_native_dependencies": {
+                "pybind11": {
+                  "native_artifacts": {
+                    "pybind11/include/pybind11/attr.h": "e2e0386a4b0bd6b95e4d8d501dd57ab2d5cd2b6c2e0d9a89b4f616805f532265",
+                    "pybind11/include/pybind11/buffer_info.h": "90849dec6781145edf27817f9a0bccf2d16dd75f9e7d72afded9857c1e9011aa",
+                    "pybind11/include/pybind11/cast.h": "54cfdb09535529c4b33f5cb06312ea008260d43e71289b5221897c9c8dc8efed",
+                    "pybind11/include/pybind11/chrono.h": "e07c05145da261cdbb4d53d80eaba7dea8a3985deda8b91434315998c70f53d4",
+                    "pybind11/include/pybind11/common.h": "01383d06dd69c05f2a9cdb88d3ce9fa6b3380944ddad9764fe0d875c4d527fa0",
+                    "pybind11/include/pybind11/complex.h": "d9275367b53c34f6de865cee6ece6fc358820911c9fd574e9c016df9437a728b",
+                    "pybind11/include/pybind11/conduit/pybind11_conduit_v1.h": "19af7d983107690a0250e53de0257ab2f394c99d2b2046cbf0cdb84643ffdcfc",
+                    "pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h": "554656e07ee2cbdbd553380b749d7df76c25e0d9cdeac30259db599f563177f6",
+                    "pybind11/include/pybind11/conduit/wrap_include_python_h.h": "b86c91eda51e381e8411919f6f5f5367cb3270fede6d9db0e7131a2013226d33",
+                    "pybind11/include/pybind11/critical_section.h": "625cb959703218fe72f72f97d038f21801f676d12a5ee5a723e4eb9d63077589",
+                    "pybind11/include/pybind11/detail/argument_vector.h": "ca7ae47c63d6c57b40b64c620c53bea040be9a23d1e29b2a9ff647bd94f9269c",
+                    "pybind11/include/pybind11/detail/class.h": "91087ad1b3e785f9839784f6d71016fcf09d6822e5e4d05118a1d0a4ff8ebbcf",
+                    "pybind11/include/pybind11/detail/common.h": "a455fde97288d2cacb50b2d21282064e4340349352fc0b3be2208e61e54ad62e",
+                    "pybind11/include/pybind11/detail/cpp_conduit.h": "9c68646e446b107f69304ab1af7b57057ef8fa24b22c308eb046af296f4a6aee",
+                    "pybind11/include/pybind11/detail/descr.h": "8b225ac30dcaea0540fe5c5e83af6f359c8de375eb3d5b7251b8665cc0625459",
+                    "pybind11/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h": "d6a59a3651fafa3f67e55a0417bd3308eacdcfa26914b16eea0a9d62d3452f7e",
+                    "pybind11/include/pybind11/detail/exception_translation.h": "32c88bbf1a9017a0acf3a11692603d754d0549ced257b54e18f71398d747ab07",
+                    "pybind11/include/pybind11/detail/function_record_pyobject.h": "aeb3e88f60b1f09e96790b6f1a42bbe87df33d45db2f499b68634f1cdc595736",
+                    "pybind11/include/pybind11/detail/function_ref.h": "8b071de14ad618f70115f20ebe44b70b5242b176bbc0710ac8b842895a498ebb",
+                    "pybind11/include/pybind11/detail/holder_caster_foreign_helpers.h": "02602538206cc5a04f957866a3c4e97b7e1442c8968c53d6e174eb6c6471e443",
+                    "pybind11/include/pybind11/detail/init.h": "d43866489b09546b95d251df34c04015b4a82474e2f38a64bc20733259a8f1f4",
+                    "pybind11/include/pybind11/detail/internals.h": "5eefa6b72e435277a3e75378597e13c295aefb6ff8d0943fa2220ed9efb54fbc",
+                    "pybind11/include/pybind11/detail/native_enum_data.h": "d301c7a82b82a87c03eb9b01ceafbffc53347b9003821ec426a6cb0d3659d195",
+                    "pybind11/include/pybind11/detail/pybind11_namespace_macros.h": "60a5e35a5b0807d0cc142d4af298d5c982ad84f95ddfbf65f54e36b140ddba77",
+                    "pybind11/include/pybind11/detail/struct_smart_holder.h": "18305bcedae4792e32047d6d8f1b16b6e6a72014aad56827ee0b9a976ca2becc",
+                    "pybind11/include/pybind11/detail/type_caster_base.h": "ea9dc652f3f5d09b1ac7994d00f2c3ea82c6c763c1d218c5c2851956f593178f",
+                    "pybind11/include/pybind11/detail/typeid.h": "8f0e69afd9bbdaf903b25a13f2fc65f708f5ed52467047570f2ce2065b7cf49b",
+                    "pybind11/include/pybind11/detail/using_smart_holder.h": "b03da16159791f8bbc5089aa9a2e524fda1fb434143e427ac91dea47795e4244",
+                    "pybind11/include/pybind11/detail/value_and_holder.h": "12ddc263339c3ebbbfdfbe69c23665b0c56c0783c19f35f7c1f2d9fae0ca8afe",
+                    "pybind11/include/pybind11/eigen.h": "f87992035920c0243e18752decf1ed4c473ebf1ab0f71011a45f0f1d6262a76f",
+                    "pybind11/include/pybind11/eigen/common.h": "7487aa98aec8cd6e4ae24da56ab3e703503ceb7ac3a77f14f586cd230888c989",
+                    "pybind11/include/pybind11/eigen/matrix.h": "4773e9f41c04a4f28241c97a01e39740181e46a289566437e340fb8201b50dc6",
+                    "pybind11/include/pybind11/eigen/tensor.h": "ce6d0e1e1e6b8c9296937474d43de3cbe3c50ac6ad9088dffc60373e1d44c8b4",
+                    "pybind11/include/pybind11/embed.h": "006d15a971426c64c8337dea55012fb1469b6566d2ec0eb9a81006d402e6f30b",
+                    "pybind11/include/pybind11/eval.h": "6e9e8707574efe460b479c6ba7f3026107d5173fbdf0414c049497ff97abc708",
+                    "pybind11/include/pybind11/functional.h": "11f144d71cb258e2ff0c9495bddbf180ecee15f6b4bc473b20b128b2dc9c7aad",
+                    "pybind11/include/pybind11/gil.h": "3eedfee721a938121823320d3215c197e7b4a6e7c01c3db89057872648f1f2d5",
+                    "pybind11/include/pybind11/gil_safe_call_once.h": "afa1b440b7710ba35c071d0ce98e72b7401fa5b8257a199770a2f98ffdd24609",
+                    "pybind11/include/pybind11/gil_simple.h": "02e3bd982d5d7af7634e75ce7b46891ac9c9b920b79dead69c6d7b1d54105fd9",
+                    "pybind11/include/pybind11/iostream.h": "7acf4b5b2ceae7f7b86d5cdaef7b72daa4a09d3548c4f9d9639cc67995e9c582",
+                    "pybind11/include/pybind11/native_enum.h": "8bcb62bcebe84b076f5d2d2d495f34026ca2b8d853ddfa6f64b6c4b1332a1860",
+                    "pybind11/include/pybind11/numpy.h": "a9bba1f0976acd7e7597daef1abd398a1e0b81213747278cffef6b325979fee1",
+                    "pybind11/include/pybind11/operators.h": "db6e11a005dcbf595ae0d358f6b437683fc0782f12f592b1dc754ad4ef01e0c5",
+                    "pybind11/include/pybind11/options.h": "a97be69e3fbef5f652a79e8d61e7e70775b9575ee9a47958d52ae0a370cd069c",
+                    "pybind11/include/pybind11/pybind11.h": "ba323b835ef91eb85342057db2353cbac3da9040eac9f0b83891a3ce66911a75",
+                    "pybind11/include/pybind11/pytypes.h": "c74dd04fb339a272cc725c374d46edef05f4e213896da70c90015dcd9fda312e",
+                    "pybind11/include/pybind11/stl.h": "ea83b4a2027b1063393f9546e1d32c6630ca9ebd7022e0911dc0210e4259c9ce",
+                    "pybind11/include/pybind11/stl/filesystem.h": "c20e3212879de83e21503a731210707521c5c70b36d5781621092b232c3fdd98",
+                    "pybind11/include/pybind11/stl_bind.h": "a9d8a61f0671044e0f3bc4a0063c7d61ac9101f3faa9d1d035be0b31dc89f2df",
+                    "pybind11/include/pybind11/subinterpreter.h": "3a31eb3436d40b40345b413775c79b12ced0fc82e73d539355905619c1fc08f0",
+                    "pybind11/include/pybind11/trampoline_self_life_support.h": "f935fdc394f12355d7dc01b6e7994c2dd882c91f9d664337db5c05b1e7729f1f",
+                    "pybind11/include/pybind11/type_caster_pyobject_ptr.h": "1fba4a0584ef52589b88940470a99e024ca0490c280a4b88cae90d483995abe5",
+                    "pybind11/include/pybind11/typing.h": "e872df48d4e4dbd2b3c76abbc3bfec3e0fd66605d8fcd2633cfac4510fd0176a",
+                    "pybind11/include/pybind11/warnings.h": "89d70134ae5e117c5805f3de56ec9c2f172032b2aebd1cd0237dc16a927c1b88"
+                  },
+                  "version": "3.1.0"
+                },
+                "pyvinecopulib": {
+                  "native_artifacts": {
+                    "pyvinecopulib/pyvinecopulib_ext.abi3.so": "9f043410421beab5de4c901ac971380472b30229fc5c8026b8e590a9bd0cee1a"
+                  },
+                  "version": "0.7.5"
+                }
+              },
+              "method": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+              "new_numerical_sampling_version": true,
+              "numba": "0.67.0",
+              "numerical_environment": {
+                "interpreter": {
+                  "build": [
+                    "main",
+                    "Apr 14 2026 14:33:40"
+                  ],
+                  "cache_tag": "cpython-312",
+                  "compiler": "Clang 22.1.3",
+                  "implementation": "CPython",
+                  "version": "3.12.13"
+                },
+                "packages": {
+                  "numpy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "2.5.3"
+                  },
+                  "scipy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "cython blas ilp64": false,
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "1.18.1"
+                  }
+                },
+                "platform": {
+                  "machine": "arm64",
+                  "release": "27.0.0",
+                  "system": "Darwin",
+                  "version": "<redacted>"
+                },
+                "thread_settings": {
+                  "environment": {
+                    "BLIS_NUM_THREADS": null,
+                    "GOTO_NUM_THREADS": null,
+                    "MKL_DYNAMIC": null,
+                    "MKL_NUM_THREADS": "1",
+                    "NUMBA_NUM_THREADS": "1",
+                    "NUMBA_THREADING_LAYER": null,
+                    "NUMEXPR_NUM_THREADS": "1",
+                    "OMP_DYNAMIC": null,
+                    "OMP_NUM_THREADS": "1",
+                    "OMP_PLACES": null,
+                    "OMP_PROC_BIND": null,
+                    "OPENBLAS_NUM_THREADS": "1",
+                    "VECLIB_MAXIMUM_THREADS": "1"
+                  },
+                  "numpy_seterr": {
+                    "divide": "warn",
+                    "invalid": "warn",
+                    "over": "warn",
+                    "under": "ignore"
+                  }
+                }
+              },
+              "numpy": "2.5.3",
+              "original_financial_law": {
+                "adaptation": "one_French_series_as_unit_weight_asset_no_costs_no_rebalancing",
+                "block_length": "integer_uniform_inclusive_1_to_min_training_rows_requested_horizon",
+                "draw_order": "path_major_then_per_block_length_then_historical_start",
+                "fitted_block_calibration": false,
+                "frozen_native_control": {
+                  "engine_revision": "8090a1142d57335b3afd266483ae156ff051a9e6",
+                  "extracted_engine_functions": {
+                    "_politis_white_block_length": "64f8b67b59aca3ebb0c0c679afa83083e640b29dbf34c80d6b71ccdb23c45b41",
+                    "_simulate_smart_iid_forecast_log_paths": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                    "_stationary_bootstrap_indices_from_draws_fast": "fb470d89bce179c6d52d1ac52a23dacc6cb888e762a38129d41704268cb32599",
+                    "_stationary_bootstrap_indices_from_draws_numba": "5eb3793f561450e58ba4851443e93ee4cedb3b4afe54eeb10ef68e830ca5c42f"
+                  },
+                  "files": {
+                    "__init__.py": "0497462b74aa9c96877998f3efe8199a625c5b1162690d6761e70e7e5df627f8",
+                    "engine_helpers.py": "cdb41f9a94c640a6d0238fca332b240b4cb133c560769a1904ab02667927fed2",
+                    "engine_testing_route.py.txt": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                    "forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                    "historical_ewma_reference.py.txt": "39e910e21d966024af3074230fecf5cc5bfbaeb73be8f162d25958e5a2f44626",
+                    "model_testing.original.py.txt": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                    "smart_iid_forecast.original.py.txt": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42",
+                    "smart_iid_forecast.py": "e90f102da7ab28dec38606d1e157945339aa135b7ee2ad45c6a9c571f3e9c66e"
+                  },
+                  "historical_ewma_comparison": {
+                    "catalog_path": "docs/forecast_oos_publication_master_catalog.json",
+                    "model_id": "bayesian_sbb_overlay_ewma_qmle",
+                    "new_model_id": "FRENCH1926-EWMA-QMLE",
+                    "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+                    "scores_inherited": false
+                  },
+                  "native_models": [
+                    "asset_level_naive_iid_mean_shrunk_rebalanced",
+                    "model_testing_joint_stationary_bootstrap_v1"
+                  ],
+                  "schema": "french-control-source-v1",
+                  "smart_source_transformations": [
+                    "from app.forecast_allocation_composition import -> from .forecast_allocation_composition import",
+                    "from app.engine import -> from .engine_helpers import"
+                  ],
+                  "upstream_source_sha256": {
+                    "app/engine.py": "0f98c42aa5e03df658dabddb1894083c3b7755fed748026742fbfbbe30b2ab6d",
+                    "app/forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                    "app/model_testing.py": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                    "app/smart_iid_forecast.py": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42"
+                  }
+                },
+                "historical_scores_inherited": false,
+                "horizon_conditional": true,
+                "last_block": "truncate_only_after_drawing_from_fixed_full_horizon_bound",
+                "mean": "unshifted_historical_log_returns",
+                "method": "model_testing_joint_uniform_bounded_block_bootstrap_v1",
+                "native_adapter_sha256": "fa091c3308bcaeadf3fa816736b28e7616df7f3e202403b13edad1bc01014eb5",
+                "politis_white": false,
+                "prefix_coherence_across_requested_horizons": false,
+                "resampling": "joint_rows_circular_blocks_with_replacement",
+                "source_sha256": "db9842aeab1c42febc37f4e1d4a7cf85d7393b08abfe67ac4cb4e040c19c7e61",
+                "training_validation_sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac"
+              },
+              "pandas": "2.3.3",
+              "python": "3.12.13",
+              "scikit-learn": "1.9.0",
+              "scipy": "1.18.1",
+              "simulation_execution": {
+                "FHS_and_adaptive_time_major_streams": true,
+                "WR_and_cycles_original_draw_order": true,
+                "empirical_law_all_paths_no_subsampling": true,
+                "horizon_chunk": 64,
+                "mean_variance_volatility_fits_unchanged": true,
+                "paths": 1000,
+                "rng_version": "one_thousand_streaming_horizon_columns_v5",
+                "source_sha256": "baf09529460ca3a3679b7dee8e2e3589aeaabdc55e3f06e88b1aca0eff54dcce"
+              },
+              "statsmodels": "0.15.0"
+            },
+            "input_manifest_sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+            "main_score_source_sha256": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,1000)",
+            "paths_per_forecast": 1000,
+            "full_independent_audit_sha256": "3742764f341583b4f458993048f25b55be18dd485a536f4a8df806007d638f1d",
+            "stable_parity_audit_sha256": "8372256eba34af0485dab4ed10edd07e0aed92f2ad771de63e1de77fb071a7a5",
+            "old_failed_version_score_reconstruction": "Parity proves old successful losses bitwise equal to repaired losses; use exact64048-key subset from immutable verified main-score index, excluding repaired-origin key from BOTH candidate and reference",
+            "evidence_root": "../daily-assets-portfolios-1000-v5-20261020",
+            "preservation_receipt": "../daily-assets-portfolios-1000-v5-20261020/closed-archive-receipt.json"
+          },
+          "archives": [
+            {
+              "utc": "2026-10-20T23:03:10.158699+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831",
+              "part": 1,
+              "parts": 6,
+              "archive_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-01.tar.gz",
+              "archive_sha256": "ac59a738d9d2f30e65a005cc3bff04ae6197f8e77e45ac1ffbfd6370fdcdbd3e",
+              "manifest_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-01-manifest.json",
+              "manifest_sha256": "4f436d1cedab8abcdafcdfd9b105b6498cdbb68d1b869ca45d59e4edfd833776",
+              "archive_bytes": 212776055,
+              "files": 7885,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:03:42.341592+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831",
+              "part": 2,
+              "parts": 6,
+              "archive_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-02.tar.gz",
+              "archive_sha256": "04655ce0e6bed057dc3469070b057eeaffc05f230923e29b70e25948ffc62e60",
+              "manifest_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-02-manifest.json",
+              "manifest_sha256": "db4b82dea8a21de38d797646d10cc137bdc1dffdd0edcd9c5d170357ebc9b328",
+              "archive_bytes": 222626938,
+              "files": 8275,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:04:14.127245+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831",
+              "part": 3,
+              "parts": 6,
+              "archive_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-03.tar.gz",
+              "archive_sha256": "a1716d2b5e1d4c0031c5e1cfba284c7672148ee0359b9fe0008fdb18f1c516e7",
+              "manifest_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-03-manifest.json",
+              "manifest_sha256": "750713075307a4aad5962f8db544c93e90ee23b95431388dd52e7270afba47c1",
+              "archive_bytes": 223117941,
+              "files": 8291,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:04:44.157625+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831",
+              "part": 4,
+              "parts": 6,
+              "archive_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-04.tar.gz",
+              "archive_sha256": "d6aa7c4302caa2cd16fb622a7c7741a1805df9b76a02c96f99c88fbdcb0d3f9e",
+              "manifest_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-04-manifest.json",
+              "manifest_sha256": "a9bc1ff640de7b0522bad097acc42e892dd6f5ea8d44591e7354e0f6ffa0bc38",
+              "archive_bytes": 209414040,
+              "files": 11924,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:05:19.682296+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831",
+              "part": 5,
+              "parts": 6,
+              "archive_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-05.tar.gz",
+              "archive_sha256": "9db155b85697f04c3f519dda88f79b72773d37ad3cb83c0ca15ef4c915e3c1ab",
+              "manifest_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-05-manifest.json",
+              "manifest_sha256": "069bf03e61311a1df8408edb0581746b3bc792746a0dc6b716c8dd1771e4c237",
+              "archive_bytes": 178063388,
+              "files": 19806,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:05:34.094919+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831",
+              "part": 6,
+              "parts": 6,
+              "archive_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-06.tar.gz",
+              "archive_sha256": "778e86a9fd470e54d5aee19f9d98b01d2856a03de8c7cf1d522c574fdea06949",
+              "manifest_name": "4d288334524943a2793a834ad8b7392a936c6fecff0db6e8456d432713921831-part-06-manifest.json",
+              "manifest_sha256": "43cf701dcc831874bce262284a31794f55b48b03cd081cacc89e2ded5f803dc4",
+              "archive_bytes": 78349729,
+              "files": 7872,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:08.493451+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 1,
+              "parts": 4,
+              "archive_name": "shared-part-01.tar.gz",
+              "archive_sha256": "1a25686ae168bd66144d67dc42d9aae9d3a7367822dd80f422cc4d49f6abdb0d",
+              "manifest_name": "shared-part-01-manifest.json",
+              "manifest_sha256": "c16fd2553a5b10f1b57439e40e0b3e6cee906124e6934ac90c3ade531fa58a95",
+              "archive_bytes": 55283910,
+              "files": 2831,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:18.537675+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 2,
+              "parts": 4,
+              "archive_name": "shared-part-02.tar.gz",
+              "archive_sha256": "561669823186210997d27e8f598e1555c5554f9110c6983c95f8b0185e3b0f1b",
+              "manifest_name": "shared-part-02-manifest.json",
+              "manifest_sha256": "8dd2871d4346ae9a4491ba3a21ac4c1ab092b3fe5ba32ac05c5e0073bfb3c243",
+              "archive_bytes": 58183575,
+              "files": 3562,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:27.568195+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 3,
+              "parts": 4,
+              "archive_name": "shared-part-03.tar.gz",
+              "archive_sha256": "b338cedbf0bffcad1f99a32a54201aa3bb89d2012f509ce1417e2814dad2b360",
+              "manifest_name": "shared-part-03-manifest.json",
+              "manifest_sha256": "87c07e4b5d3af00d93015ed0d883db3d15df1249385fe84a1a55545f93a10921",
+              "archive_bytes": 59208879,
+              "files": 1,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:30.348628+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 4,
+              "parts": 4,
+              "archive_name": "shared-part-04.tar.gz",
+              "archive_sha256": "03fe2b1c991ad32af5b446747361ef35f762e4312c6761ebd347daea3d328781",
+              "manifest_name": "shared-part-04-manifest.json",
+              "manifest_sha256": "4a658ed7e63d0c8f194bdd96d3f43a4ec003b4a234ef69f53c9774e4f80822dd",
+              "archive_bytes": 44224,
+              "files": 12,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:33.614274+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "audit",
+              "part": 1,
+              "parts": 1,
+              "archive_name": "audit-part-01.tar.gz",
+              "archive_sha256": "22e4492cdbd1575e3eba27edfbbf305959d417b9c13d9a06f3b06a47bd38bf3f",
+              "manifest_name": "audit-part-01-manifest.json",
+              "manifest_sha256": "30cb9db2695afa1888c1acfc972cff20f463d2507a8d4ffb083fd87305eb76a6",
+              "archive_bytes": 3285858,
+              "files": 10,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            }
+          ]
+        }
+      ]
+    },
+    "f3563703b1c5a386a5e979c5bab1615ef91041ebe94b4276fdf350edafc4e130": {
+      "identity": {
+        "model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+        "implementation_digest": "7f8ec876378e32dee5b380d1cb1e8ca4d959147a6d06d55692683edd80f0b3a5"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+            "implementation_digest": "7f8ec876378e32dee5b380d1cb1e8ca4d959147a6d06d55692683edd80f0b3a5"
+          },
+          "display_name": "Public \u2014 History Cycles [V5 portfolio 1000]",
+          "definition": "Uniform bounded portfolio blocks without reuse of a history day within each complete refill cycle.",
+          "version": "v5_streaming_1000_source_bound_execution",
+          "forecast_level": "portfolio",
+          "historical_superseded_by_asset_level_requirement": true,
+          "score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+          "retained_in_active_set": false,
+          "execution_fingerprint": "75917f4dc0d9eda537fda334c209448a22993ce3d45823b38fb9cd4aae0c850a",
+          "coverage": {
+            "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+            "series": 1264,
+            "expected_tasks": 64049,
+            "successful_tasks": 64049,
+            "native_failed_tasks": 0,
+            "native_fit_failures": 0,
+            "native_generation_failures": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "main": 0.6220440833181418
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+            "matched_successful_tasks": 64049,
+            "public_scores": {
+              "main": 0.6220440833181418
+            },
+            "percent_better": {
+              "main": 0.0
+            },
+            "preliminary": false,
+            "reference_rule": "Historical V5 worst of three Public comparators; exact identical successful subset. Not the current asset-level goal reference."
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 5659.064564791508,
+            "scope": "Recorded successful training, simulation and scoring; no IO/setup/queue or failed-origin repair; not a controlled speed claim",
+            "wall_elapsed_seconds": null
+          },
+          "reproducibility": {
+            "actual_factory": "retained_models:build_cycles",
+            "actual_implementation_digest": "7f8ec876378e32dee5b380d1cb1e8ca4d959147a6d06d55692683edd80f0b3a5",
+            "full_execution_manifest_sha256": "53c2c14147e626d8fb3f6720e406ca8f6de8344a7de2f506ee32e72fd5547c95",
+            "full_execution_archive_member": "simulation_1000_v5/results/models/de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886/execution.json",
+            "source_environment": {
+              "arch": "8.0.0",
+              "factory_source_sha256": "5840e03f2e4b435dd50b37d72f520938e58e8a330b1c136fd500a2d5d2f54d19",
+              "financial_law_change": false,
+              "forecast_source_sha256": "4738d6166f0b904d158d3b68a1c6f2e89b58e0048fc6c087bfff024e5ceaf826",
+              "french_native_dependencies": {
+                "pybind11": {
+                  "native_artifacts": {
+                    "pybind11/include/pybind11/attr.h": "e2e0386a4b0bd6b95e4d8d501dd57ab2d5cd2b6c2e0d9a89b4f616805f532265",
+                    "pybind11/include/pybind11/buffer_info.h": "90849dec6781145edf27817f9a0bccf2d16dd75f9e7d72afded9857c1e9011aa",
+                    "pybind11/include/pybind11/cast.h": "54cfdb09535529c4b33f5cb06312ea008260d43e71289b5221897c9c8dc8efed",
+                    "pybind11/include/pybind11/chrono.h": "e07c05145da261cdbb4d53d80eaba7dea8a3985deda8b91434315998c70f53d4",
+                    "pybind11/include/pybind11/common.h": "01383d06dd69c05f2a9cdb88d3ce9fa6b3380944ddad9764fe0d875c4d527fa0",
+                    "pybind11/include/pybind11/complex.h": "d9275367b53c34f6de865cee6ece6fc358820911c9fd574e9c016df9437a728b",
+                    "pybind11/include/pybind11/conduit/pybind11_conduit_v1.h": "19af7d983107690a0250e53de0257ab2f394c99d2b2046cbf0cdb84643ffdcfc",
+                    "pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h": "554656e07ee2cbdbd553380b749d7df76c25e0d9cdeac30259db599f563177f6",
+                    "pybind11/include/pybind11/conduit/wrap_include_python_h.h": "b86c91eda51e381e8411919f6f5f5367cb3270fede6d9db0e7131a2013226d33",
+                    "pybind11/include/pybind11/critical_section.h": "625cb959703218fe72f72f97d038f21801f676d12a5ee5a723e4eb9d63077589",
+                    "pybind11/include/pybind11/detail/argument_vector.h": "ca7ae47c63d6c57b40b64c620c53bea040be9a23d1e29b2a9ff647bd94f9269c",
+                    "pybind11/include/pybind11/detail/class.h": "91087ad1b3e785f9839784f6d71016fcf09d6822e5e4d05118a1d0a4ff8ebbcf",
+                    "pybind11/include/pybind11/detail/common.h": "a455fde97288d2cacb50b2d21282064e4340349352fc0b3be2208e61e54ad62e",
+                    "pybind11/include/pybind11/detail/cpp_conduit.h": "9c68646e446b107f69304ab1af7b57057ef8fa24b22c308eb046af296f4a6aee",
+                    "pybind11/include/pybind11/detail/descr.h": "8b225ac30dcaea0540fe5c5e83af6f359c8de375eb3d5b7251b8665cc0625459",
+                    "pybind11/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h": "d6a59a3651fafa3f67e55a0417bd3308eacdcfa26914b16eea0a9d62d3452f7e",
+                    "pybind11/include/pybind11/detail/exception_translation.h": "32c88bbf1a9017a0acf3a11692603d754d0549ced257b54e18f71398d747ab07",
+                    "pybind11/include/pybind11/detail/function_record_pyobject.h": "aeb3e88f60b1f09e96790b6f1a42bbe87df33d45db2f499b68634f1cdc595736",
+                    "pybind11/include/pybind11/detail/function_ref.h": "8b071de14ad618f70115f20ebe44b70b5242b176bbc0710ac8b842895a498ebb",
+                    "pybind11/include/pybind11/detail/holder_caster_foreign_helpers.h": "02602538206cc5a04f957866a3c4e97b7e1442c8968c53d6e174eb6c6471e443",
+                    "pybind11/include/pybind11/detail/init.h": "d43866489b09546b95d251df34c04015b4a82474e2f38a64bc20733259a8f1f4",
+                    "pybind11/include/pybind11/detail/internals.h": "5eefa6b72e435277a3e75378597e13c295aefb6ff8d0943fa2220ed9efb54fbc",
+                    "pybind11/include/pybind11/detail/native_enum_data.h": "d301c7a82b82a87c03eb9b01ceafbffc53347b9003821ec426a6cb0d3659d195",
+                    "pybind11/include/pybind11/detail/pybind11_namespace_macros.h": "60a5e35a5b0807d0cc142d4af298d5c982ad84f95ddfbf65f54e36b140ddba77",
+                    "pybind11/include/pybind11/detail/struct_smart_holder.h": "18305bcedae4792e32047d6d8f1b16b6e6a72014aad56827ee0b9a976ca2becc",
+                    "pybind11/include/pybind11/detail/type_caster_base.h": "ea9dc652f3f5d09b1ac7994d00f2c3ea82c6c763c1d218c5c2851956f593178f",
+                    "pybind11/include/pybind11/detail/typeid.h": "8f0e69afd9bbdaf903b25a13f2fc65f708f5ed52467047570f2ce2065b7cf49b",
+                    "pybind11/include/pybind11/detail/using_smart_holder.h": "b03da16159791f8bbc5089aa9a2e524fda1fb434143e427ac91dea47795e4244",
+                    "pybind11/include/pybind11/detail/value_and_holder.h": "12ddc263339c3ebbbfdfbe69c23665b0c56c0783c19f35f7c1f2d9fae0ca8afe",
+                    "pybind11/include/pybind11/eigen.h": "f87992035920c0243e18752decf1ed4c473ebf1ab0f71011a45f0f1d6262a76f",
+                    "pybind11/include/pybind11/eigen/common.h": "7487aa98aec8cd6e4ae24da56ab3e703503ceb7ac3a77f14f586cd230888c989",
+                    "pybind11/include/pybind11/eigen/matrix.h": "4773e9f41c04a4f28241c97a01e39740181e46a289566437e340fb8201b50dc6",
+                    "pybind11/include/pybind11/eigen/tensor.h": "ce6d0e1e1e6b8c9296937474d43de3cbe3c50ac6ad9088dffc60373e1d44c8b4",
+                    "pybind11/include/pybind11/embed.h": "006d15a971426c64c8337dea55012fb1469b6566d2ec0eb9a81006d402e6f30b",
+                    "pybind11/include/pybind11/eval.h": "6e9e8707574efe460b479c6ba7f3026107d5173fbdf0414c049497ff97abc708",
+                    "pybind11/include/pybind11/functional.h": "11f144d71cb258e2ff0c9495bddbf180ecee15f6b4bc473b20b128b2dc9c7aad",
+                    "pybind11/include/pybind11/gil.h": "3eedfee721a938121823320d3215c197e7b4a6e7c01c3db89057872648f1f2d5",
+                    "pybind11/include/pybind11/gil_safe_call_once.h": "afa1b440b7710ba35c071d0ce98e72b7401fa5b8257a199770a2f98ffdd24609",
+                    "pybind11/include/pybind11/gil_simple.h": "02e3bd982d5d7af7634e75ce7b46891ac9c9b920b79dead69c6d7b1d54105fd9",
+                    "pybind11/include/pybind11/iostream.h": "7acf4b5b2ceae7f7b86d5cdaef7b72daa4a09d3548c4f9d9639cc67995e9c582",
+                    "pybind11/include/pybind11/native_enum.h": "8bcb62bcebe84b076f5d2d2d495f34026ca2b8d853ddfa6f64b6c4b1332a1860",
+                    "pybind11/include/pybind11/numpy.h": "a9bba1f0976acd7e7597daef1abd398a1e0b81213747278cffef6b325979fee1",
+                    "pybind11/include/pybind11/operators.h": "db6e11a005dcbf595ae0d358f6b437683fc0782f12f592b1dc754ad4ef01e0c5",
+                    "pybind11/include/pybind11/options.h": "a97be69e3fbef5f652a79e8d61e7e70775b9575ee9a47958d52ae0a370cd069c",
+                    "pybind11/include/pybind11/pybind11.h": "ba323b835ef91eb85342057db2353cbac3da9040eac9f0b83891a3ce66911a75",
+                    "pybind11/include/pybind11/pytypes.h": "c74dd04fb339a272cc725c374d46edef05f4e213896da70c90015dcd9fda312e",
+                    "pybind11/include/pybind11/stl.h": "ea83b4a2027b1063393f9546e1d32c6630ca9ebd7022e0911dc0210e4259c9ce",
+                    "pybind11/include/pybind11/stl/filesystem.h": "c20e3212879de83e21503a731210707521c5c70b36d5781621092b232c3fdd98",
+                    "pybind11/include/pybind11/stl_bind.h": "a9d8a61f0671044e0f3bc4a0063c7d61ac9101f3faa9d1d035be0b31dc89f2df",
+                    "pybind11/include/pybind11/subinterpreter.h": "3a31eb3436d40b40345b413775c79b12ced0fc82e73d539355905619c1fc08f0",
+                    "pybind11/include/pybind11/trampoline_self_life_support.h": "f935fdc394f12355d7dc01b6e7994c2dd882c91f9d664337db5c05b1e7729f1f",
+                    "pybind11/include/pybind11/type_caster_pyobject_ptr.h": "1fba4a0584ef52589b88940470a99e024ca0490c280a4b88cae90d483995abe5",
+                    "pybind11/include/pybind11/typing.h": "e872df48d4e4dbd2b3c76abbc3bfec3e0fd66605d8fcd2633cfac4510fd0176a",
+                    "pybind11/include/pybind11/warnings.h": "89d70134ae5e117c5805f3de56ec9c2f172032b2aebd1cd0237dc16a927c1b88"
+                  },
+                  "version": "3.1.0"
+                },
+                "pyvinecopulib": {
+                  "native_artifacts": {
+                    "pyvinecopulib/pyvinecopulib_ext.abi3.so": "9f043410421beab5de4c901ac971380472b30229fc5c8026b8e590a9bd0cee1a"
+                  },
+                  "version": "0.7.5"
+                }
+              },
+              "method": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+              "new_numerical_sampling_version": true,
+              "numba": "0.67.0",
+              "numerical_environment": {
+                "interpreter": {
+                  "build": [
+                    "main",
+                    "Apr 14 2026 14:33:40"
+                  ],
+                  "cache_tag": "cpython-312",
+                  "compiler": "Clang 22.1.3",
+                  "implementation": "CPython",
+                  "version": "3.12.13"
+                },
+                "packages": {
+                  "numpy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "2.5.3"
+                  },
+                  "scipy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "cython blas ilp64": false,
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "1.18.1"
+                  }
+                },
+                "platform": {
+                  "machine": "arm64",
+                  "release": "27.0.0",
+                  "system": "Darwin",
+                  "version": "<redacted>"
+                },
+                "thread_settings": {
+                  "environment": {
+                    "BLIS_NUM_THREADS": null,
+                    "GOTO_NUM_THREADS": null,
+                    "MKL_DYNAMIC": null,
+                    "MKL_NUM_THREADS": "1",
+                    "NUMBA_NUM_THREADS": "1",
+                    "NUMBA_THREADING_LAYER": null,
+                    "NUMEXPR_NUM_THREADS": "1",
+                    "OMP_DYNAMIC": null,
+                    "OMP_NUM_THREADS": "1",
+                    "OMP_PLACES": null,
+                    "OMP_PROC_BIND": null,
+                    "OPENBLAS_NUM_THREADS": "1",
+                    "VECLIB_MAXIMUM_THREADS": "1"
+                  },
+                  "numpy_seterr": {
+                    "divide": "warn",
+                    "invalid": "warn",
+                    "over": "warn",
+                    "under": "ignore"
+                  }
+                }
+              },
+              "numpy": "2.5.3",
+              "original_financial_law": {
+                "adaptation": "one_French_series_as_unit_weight_asset_no_costs_no_rebalancing",
+                "block_length": "integer_uniform_1_to_min_training_rows_requested_horizon_longest_unused_run",
+                "draw_order": "path_major_then_per_block_length_then_ranked_feasible_historical_start",
+                "fitted_block_calibration": false,
+                "frozen_native_control": {
+                  "engine_revision": "8090a1142d57335b3afd266483ae156ff051a9e6",
+                  "extracted_engine_functions": {
+                    "_politis_white_block_length": "64f8b67b59aca3ebb0c0c679afa83083e640b29dbf34c80d6b71ccdb23c45b41",
+                    "_simulate_smart_iid_forecast_log_paths": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                    "_stationary_bootstrap_indices_from_draws_fast": "fb470d89bce179c6d52d1ac52a23dacc6cb888e762a38129d41704268cb32599",
+                    "_stationary_bootstrap_indices_from_draws_numba": "5eb3793f561450e58ba4851443e93ee4cedb3b4afe54eeb10ef68e830ca5c42f"
+                  },
+                  "files": {
+                    "__init__.py": "0497462b74aa9c96877998f3efe8199a625c5b1162690d6761e70e7e5df627f8",
+                    "engine_helpers.py": "cdb41f9a94c640a6d0238fca332b240b4cb133c560769a1904ab02667927fed2",
+                    "engine_testing_route.py.txt": "8183ace166e7ed6ce84113a683d6d118cb3ef345915b70becf06baaf552ba780",
+                    "forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                    "historical_ewma_reference.py.txt": "39e910e21d966024af3074230fecf5cc5bfbaeb73be8f162d25958e5a2f44626",
+                    "model_testing.original.py.txt": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                    "smart_iid_forecast.original.py.txt": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42",
+                    "smart_iid_forecast.py": "e90f102da7ab28dec38606d1e157945339aa135b7ee2ad45c6a9c571f3e9c66e"
+                  },
+                  "historical_ewma_comparison": {
+                    "catalog_path": "docs/forecast_oos_publication_master_catalog.json",
+                    "model_id": "bayesian_sbb_overlay_ewma_qmle",
+                    "new_model_id": "FRENCH1926-EWMA-QMLE",
+                    "revision": "773bc1c325559e6bf57a567f1d8bf473a3427fbc",
+                    "scores_inherited": false
+                  },
+                  "native_models": [
+                    "asset_level_naive_iid_mean_shrunk_rebalanced",
+                    "model_testing_joint_stationary_bootstrap_v1"
+                  ],
+                  "schema": "french-control-source-v1",
+                  "smart_source_transformations": [
+                    "from app.forecast_allocation_composition import -> from .forecast_allocation_composition import",
+                    "from app.engine import -> from .engine_helpers import"
+                  ],
+                  "upstream_source_sha256": {
+                    "app/engine.py": "0f98c42aa5e03df658dabddb1894083c3b7755fed748026742fbfbbe30b2ab6d",
+                    "app/forecast_allocation_composition.py": "b8c2d3f37d5efef9558890b231e767d0e102f0543b5ea7e435fcf195f67a22ab",
+                    "app/model_testing.py": "c81d0ae1f9ed1bb3f143578b75859df8d209efad973288073986930346ca82ba",
+                    "app/smart_iid_forecast.py": "764d4a43eca2709d072619c14365af47501f7dcf1bdcf6b73e0104bc2d9c4e42"
+                  }
+                },
+                "historical_scores_inherited": false,
+                "horizon_conditional": true,
+                "last_block": "truncate_only_after_length_and_feasible_start_draw",
+                "mean": "unshifted_historical_log_returns",
+                "method": "model_testing_joint_uniform_bounded_cycle_bootstrap_v1",
+                "native_adapter_sha256": "fa091c3308bcaeadf3fa816736b28e7616df7f3e202403b13edad1bc01014eb5",
+                "politis_white": false,
+                "pool_refill": "only_after_all_training_observations_have_been_consumed_once_per_path",
+                "prefix_coherence_across_requested_horizons": false,
+                "resampling": "joint_rows_circular_blocks_without_observation_reuse_per_history_cycle",
+                "source_sha256": "6a871fc2984539ad1d72c8edbdd4a5a5414a052a4beddcb41decfb8e115bf4a0",
+                "start_selection": "uniform_among_all_length_feasible_unused_starts_in_history_index_order",
+                "training_validation_sha256": "c9dea88409c8cf010808b87c809243272191bff8dedb51d738d3f67497f029ac",
+                "with_replacement_base_sha256": "db9842aeab1c42febc37f4e1d4a7cf85d7393b08abfe67ac4cb4e040c19c7e61"
+              },
+              "pandas": "2.3.3",
+              "python": "3.12.13",
+              "scikit-learn": "1.9.0",
+              "scipy": "1.18.1",
+              "simulation_execution": {
+                "FHS_and_adaptive_time_major_streams": true,
+                "WR_and_cycles_original_draw_order": true,
+                "empirical_law_all_paths_no_subsampling": true,
+                "horizon_chunk": 64,
+                "mean_variance_volatility_fits_unchanged": true,
+                "paths": 1000,
+                "rng_version": "one_thousand_streaming_horizon_columns_v5",
+                "source_sha256": "baf09529460ca3a3679b7dee8e2e3589aeaabdc55e3f06e88b1aca0eff54dcce"
+              },
+              "statsmodels": "0.15.0"
+            },
+            "input_manifest_sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+            "main_score_source_sha256": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,1000)",
+            "paths_per_forecast": 1000,
+            "full_independent_audit_sha256": "3742764f341583b4f458993048f25b55be18dd485a536f4a8df806007d638f1d",
+            "stable_parity_audit_sha256": "8372256eba34af0485dab4ed10edd07e0aed92f2ad771de63e1de77fb071a7a5",
+            "old_failed_version_score_reconstruction": "Parity proves old successful losses bitwise equal to repaired losses; use exact64048-key subset from immutable verified main-score index, excluding repaired-origin key from BOTH candidate and reference",
+            "evidence_root": "../daily-assets-portfolios-1000-v5-20261020",
+            "preservation_receipt": "../daily-assets-portfolios-1000-v5-20261020/closed-archive-receipt.json"
+          },
+          "archives": [
+            {
+              "utc": "2026-10-20T23:12:07.774003+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886",
+              "part": 1,
+              "parts": 6,
+              "archive_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-01.tar.gz",
+              "archive_sha256": "d4811a527a7d01c62e5c767288f6a890c484d297c5eed0ccd7df9817db7e43f7",
+              "manifest_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-01-manifest.json",
+              "manifest_sha256": "5ee22aa9675417757c49f0f9f369ba8a8e86ad3b25423de9d8c25bcb8ce01452",
+              "archive_bytes": 212497407,
+              "files": 7885,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:12:38.193621+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886",
+              "part": 2,
+              "parts": 6,
+              "archive_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-02.tar.gz",
+              "archive_sha256": "358da462c1a8a43b0f33ca52383fcd9b8507b18461c8122308b1907eb6888895",
+              "manifest_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-02-manifest.json",
+              "manifest_sha256": "aa79e93ed5a4418c658d7f78efda43e9e9f537efeefef0e75e1aebffd735ade9",
+              "archive_bytes": 222397869,
+              "files": 8276,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:13:10.356482+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886",
+              "part": 3,
+              "parts": 6,
+              "archive_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-03.tar.gz",
+              "archive_sha256": "02c8888a85ecb240096b59bcdbbeb614c5375c946e06fb5e93f0506c51bd5c36",
+              "manifest_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-03-manifest.json",
+              "manifest_sha256": "0bc4da1da85e6329a81d224c2f82594a1700c7f11ab3f4d24bae185752e0f51a",
+              "archive_bytes": 222832080,
+              "files": 8291,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:13:40.593253+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886",
+              "part": 4,
+              "parts": 6,
+              "archive_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-04.tar.gz",
+              "archive_sha256": "0ce9154d73afb853373fe4e130414e72b886c198cab45c35fa27ecd6e26f861a",
+              "manifest_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-04-manifest.json",
+              "manifest_sha256": "ed390a995f88d80413a5d9d81d221b678e98e15952a0598468485a464b5494bf",
+              "archive_bytes": 208656952,
+              "files": 11926,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:14:12.658767+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886",
+              "part": 5,
+              "parts": 6,
+              "archive_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-05.tar.gz",
+              "archive_sha256": "a46769d428715674328226af89fe8fad1bd2c46c03030a7af7a42e0442110e2a",
+              "manifest_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-05-manifest.json",
+              "manifest_sha256": "005891f2c8706598a304e52754c88371562b2090c87404a9dcb4e9d0d21bb92b",
+              "archive_bytes": 176497636,
+              "files": 19805,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:14:26.342426+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886",
+              "part": 6,
+              "parts": 6,
+              "archive_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-06.tar.gz",
+              "archive_sha256": "0c3f819c0794a9277a39ed0c5fe3b52eda0d94b6b5909e74b697b24da0110b45",
+              "manifest_name": "de117487a26466eb1c226fe05f6ee83fd90a95ffb7b3de9bd4e6c4c496092886-part-06-manifest.json",
+              "manifest_sha256": "f4e87161e62029dfe53f779e241d952c688e46ae5a4da51267a1a5830e70507e",
+              "archive_bytes": 77684782,
+              "files": 7870,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:08.493451+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 1,
+              "parts": 4,
+              "archive_name": "shared-part-01.tar.gz",
+              "archive_sha256": "1a25686ae168bd66144d67dc42d9aae9d3a7367822dd80f422cc4d49f6abdb0d",
+              "manifest_name": "shared-part-01-manifest.json",
+              "manifest_sha256": "c16fd2553a5b10f1b57439e40e0b3e6cee906124e6934ac90c3ade531fa58a95",
+              "archive_bytes": 55283910,
+              "files": 2831,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:18.537675+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 2,
+              "parts": 4,
+              "archive_name": "shared-part-02.tar.gz",
+              "archive_sha256": "561669823186210997d27e8f598e1555c5554f9110c6983c95f8b0185e3b0f1b",
+              "manifest_name": "shared-part-02-manifest.json",
+              "manifest_sha256": "8dd2871d4346ae9a4491ba3a21ac4c1ab092b3fe5ba32ac05c5e0073bfb3c243",
+              "archive_bytes": 58183575,
+              "files": 3562,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:27.568195+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 3,
+              "parts": 4,
+              "archive_name": "shared-part-03.tar.gz",
+              "archive_sha256": "b338cedbf0bffcad1f99a32a54201aa3bb89d2012f509ce1417e2814dad2b360",
+              "manifest_name": "shared-part-03-manifest.json",
+              "manifest_sha256": "87c07e4b5d3af00d93015ed0d883db3d15df1249385fe84a1a55545f93a10921",
+              "archive_bytes": 59208879,
+              "files": 1,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:30.348628+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "shared",
+              "part": 4,
+              "parts": 4,
+              "archive_name": "shared-part-04.tar.gz",
+              "archive_sha256": "03fe2b1c991ad32af5b446747361ef35f762e4312c6761ebd347daea3d328781",
+              "manifest_name": "shared-part-04-manifest.json",
+              "manifest_sha256": "4a658ed7e63d0c8f194bdd96d3f43a4ec003b4a234ef69f53c9774e4f80822dd",
+              "archive_bytes": 44224,
+              "files": 12,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-20T23:17:33.614274+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-portfolio-v5-1000-20261020",
+              "group": "audit",
+              "part": 1,
+              "parts": 1,
+              "archive_name": "audit-part-01.tar.gz",
+              "archive_sha256": "22e4492cdbd1575e3eba27edfbbf305959d417b9c13d9a06f3b06a47bd38bf3f",
+              "manifest_name": "audit-part-01-manifest.json",
+              "manifest_sha256": "30cb9db2695afa1888c1acfc972cff20f463d2507a8d4ffb083fd87305eb76a6",
+              "archive_bytes": 3285858,
+              "files": 10,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-portfolio-v5-1000-20261020",
+              "scientific_originals_removed": false
+            }
+          ]
+        }
+      ]
     }
   },
-  "unique_full_panel_models": 13,
-  "full_panel_executions": 18,
-  "failure_free_models": 12,
+  "unique_full_panel_models": 18,
+  "full_panel_executions": 23,
+  "failure_free_models": 16,
   "active_model_ids": [
-    "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
-    "model_testing_joint_stationary_bootstrap_v1",
-    "model_testing_joint_uniform_bounded_block_bootstrap_v1",
-    "model_testing_joint_uniform_bounded_cycle_bootstrap_v1"
+    "model_testing_asset_joint_blocks_replacement_v6",
+    "model_testing_asset_joint_blocks_history_partition_v6"
   ],
-  "current_best_model_id": "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
-  "current_best_report": "../daily-assets-portfolios-v4-20261020/RESULTS.md",
+  "current_best_model_id": null,
+  "current_best_report": "../daily-assets-portfolios-asset-v6-20261020/README.md",
   "retention_note": "retained_in_active_set inside each execution is its historical recording-time snapshot; active_model_ids is authoritative for the current retained set.",
   "current_score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
-  "current_panel_fingerprint": "0d5a3c70f34a2bc2523e3a67ca1a38ebf04bd1612192dfadc3d71f8ea9510023",
-  "updated_utc": "2026-10-20T21:51:54.525535+00:00",
+  "current_panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+  "updated_utc": "2026-10-20T23:18:36.452588+00:00",
   "pending_benchmark_reset": {
     "paths_per_forecast": 1000,
     "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",

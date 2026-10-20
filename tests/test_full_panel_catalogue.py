@@ -131,7 +131,13 @@ def test_frozen_scoring_and_remote_archives_are_bound_to_catalogue():
 def test_incumbent_replacement_preserves_previous_full_execution():
     ledger = json.loads(LEDGER.read_text())
     active = set(ledger['active_model_ids'])
-    assert len(active) == 4 and ledger['current_best_model_id'] in active
+    required = {'model_testing_asset_joint_blocks_replacement_v6',
+                'model_testing_asset_joint_blocks_history_partition_v6'}
+    assert required <= active and len(active) in (2, 3)
+    if ledger['current_best_model_id'] is None:
+        assert active == required  # New references await their first full result.
+    else:
+        assert ledger['current_best_model_id'] in active
     previous = 'model_testing_equal_bootstrap_fhs_stratified_matched_Gaussian_mean_pool_v1'
     assert previous not in active
     assert any(m['identity']['model_id'] == previous for m in ledger['models'].values())
