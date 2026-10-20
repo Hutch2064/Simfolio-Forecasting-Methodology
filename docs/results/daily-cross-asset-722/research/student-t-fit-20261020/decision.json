@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-20T17:58:29.044359+00:00",
+  "model_id": "model_testing_equal_bootstrap_student_fit_FHS_Gaussian_mean_pool_v1",
+  "stage": "development",
+  "decision": "reject_this_frozen_likelihood_contrast",
+  "reason": "Does not beat current winner on frozen matched development primary score; no reserved/broad/full escalation or retuning.",
+  "origins": 245,
+  "forecasts": 735,
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "exact_historical_baseline_hashes_replayed": 490,
+  "percent_better_vs_Public": {
+    "Candidate": {
+      "primary_score": 1.3912177108375445,
+      "sensitivity_score": 1.576535653491673
+    },
+    "Incumbent": {
+      "primary_score": 1.4455818768541073,
+      "sensitivity_score": 1.6333549721551321
+    },
+    "Public": {
+      "primary_score": 0.0,
+      "sensitivity_score": 0.0
+    }
+  },
+  "full_panel_candidate": false,
+  "full_panel_catalogue_count_unchanged": 12,
+  "adaptive_reused_evidence": true,
+  "independent_holdout": false,
+  "development_summary_sha256": "a79b52ffd491437dd6acdc739ee2ba16377079b3f57e38538a2771403d9f4c56",
+  "wider_goal_remains_active": true
+}

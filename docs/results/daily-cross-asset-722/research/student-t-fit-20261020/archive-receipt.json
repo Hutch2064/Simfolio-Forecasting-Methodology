@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T17:59:18.375490+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-student-fit-20261020T1759Z",
+  "archive_name": "student-fit-evidence.tar.gz",
+  "archive_sha256": "0b3981284b0c284bd96c44fde2f37b0bd5fdec5ae639d810600381181a68cfc7",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "512d4a06f7fa60d01321c8a7be49b58e5e19ecf8cf34a06d3d1e573478e8dc27",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 755,
+  "archive_bytes": 26119734,
+  "restore_command": "gh release download research-accuracy-student-fit-20261020T1759Z --repo Hutch2064/simfolio-engine --pattern student-fit-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 735,
+  "free_before_cleanup": 644285386752,
+  "free_after_cleanup": 644371746816
+}
