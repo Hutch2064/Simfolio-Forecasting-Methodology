@@ -1,0 +1,7 @@
+# Positive wealth overflow: execution repair, not a new financial model
+
+The initial 1,000-path best-method execution attempted all64,049 tasks:64,048 succeeded and one forecast-generation failure occurred on FR0496, rolling19,1965-12-31. The training fit succeeded. A rare simulated wealth product overflowed binary64; this was not a fitting failure or score-integrity error. Its original error and execution remain preserved.
+
+The stable-wealth execution switches to log wealth only after positive multiplication overflow. All return limits, variance recursion, means, mixture weights, seeds and1,000 paths are unchanged. Ordinary representable paths retain exact native arithmetic, and native underflow-to-zero remains absorbing. No failed path is removed or resampled. Five numeric tests passed. A55-task real-data qualification matched54 full native loss vectors bitwise and made the reproduced failing origin finite, with no forecast failures or scoring-integrity errors.
+
+The main scheduler drained at checkpoint boundaries for qualification, then continued with the same controller. Public queues were not reset. The original completed best execution was disabled and retained; the separately source-bound repaired execution started all64,049 tasks from the beginning without pilot imports. The active target remains256,196 tasks across three Public comparators and this current method. Full1,000-path scores and a scientific promotion are still pending. See verification/admission receipts.

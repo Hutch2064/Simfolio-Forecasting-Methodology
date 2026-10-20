@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T22:08:05.703862+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-constant-mean-regime-20261020T2208Z",
+  "archive_name": "constant-mean-regime-evidence.tar.gz",
+  "archive_sha256": "b0b54f550a2b50165def0452966eb33e08f3fb951f2557ebb0c51f91546fbf39",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "f2900487af5568b4bcd865134d65411ee456ccdbad020e1c88a61b7c9425310c",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 377,
+  "archive_bytes": 10213488,
+  "restore_command": "gh release download research-accuracy-constant-mean-regime-20261020T2208Z --repo Hutch2064/simfolio-engine --pattern constant-mean-regime-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 355,
+  "free_before_cleanup": 634590007296,
+  "free_after_cleanup": 634623496192
+}

@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-20T22:16:06.540400+00:00",
+  "source_error_sha256": "07fd1fbcf145e62c00f264972fefd4e1a98e17b31a05b5f16b8fddc26e7f1e2f",
+  "identity": {
+    "execution_fingerprint": "0e3134d51d74b1be18931d8206f58c990658904fc349a1d4f9f83e4ddc5940c0",
+    "model_id": "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
+    "origin": {
+      "evaluation_split": "rolling_origin",
+      "max_horizon": 2762,
+      "origin_date": "1965-12-31",
+      "origin_label": "rolling_19",
+      "position": 11050,
+      "train_fraction": null
+    },
+    "seed": 2741872417,
+    "series_id": "FR0496",
+    "training_observations": 11051
+  },
+  "new_model_id": "model_testing_equal_bootstrap_FHS_smooth_mean_Gaussian_stable_wealth_v1",
+  "all_1000_paths_and_2762_horizons_finite_and_scored": true,
+  "loss_sha256": "c57f3487a277f10ab7c8de438c8db888b9780b01532e03f725612ae98e477e80",
+  "main_score": 0.3652288131915549,
+  "diagnostics": {
+    "forecast_and_score_seconds": 0.3184176249196753,
+    "timing_scope": "training-only native-law forecast and exact1,000-member CRPS; excludes checkpoint IO",
+    "horizon_days": 2762,
+    "simulations": 1000,
+    "horizon_chunk": 64,
+    "all_paths_scored_at_every_horizon": true,
+    "annualization_days": 252,
+    "forecast_mean_cagr": 5.596899596058247e+33,
+    "forecast_median_cagr": 0.21216280277703908,
+    "training_historical_cagr": 0.2439488959169451,
+    "nonfinite_cagr_paths": 0,
+    "diagnostic_only_no_exclusions": true,
+    "execution_version": "one_thousand_streaming_horizon_columns_v5"
+  },
+  "old_error_and_checkpoint_state_unchanged": true,
+  "full_panel_result_or_promotion_claim": false
+}

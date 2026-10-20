@@ -1,0 +1,145 @@
+{
+  "utc": "2026-10-20T22:11:37.303460+00:00",
+  "records": [
+    {
+      "error_record": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/simulation_1000_v5/results/models/f85cafc807d8d4248c078829aac0b69b3385fd3db33a57af8cf31ac71f1b789d/errors/000495/018.json",
+      "error_sha256": "07fd1fbcf145e62c00f264972fefd4e1a98e17b31a05b5f16b8fddc26e7f1e2f",
+      "identity": {
+        "execution_fingerprint": "0e3134d51d74b1be18931d8206f58c990658904fc349a1d4f9f83e4ddc5940c0",
+        "model_id": "model_testing_equal_bootstrap_FHS_smooth_mean_shrinkage_Gaussian_uncertainty_v1",
+        "origin": {
+          "evaluation_split": "rolling_origin",
+          "max_horizon": 2762,
+          "origin_date": "1965-12-31",
+          "origin_label": "rolling_19",
+          "position": 11050,
+          "train_fraction": null
+        },
+        "seed": 2741872417,
+        "series_id": "FR0496",
+        "training_observations": 11051
+      },
+      "fit": {
+        "mean": 0.0008662337818275647,
+        "target_variance": 0.000450774056115316,
+        "alpha": 0.063103837831001,
+        "beta": 0.9352532688009845,
+        "omega": 0.0016428933680144864,
+        "next_variance_normalized": 0.13825797785379929,
+        "objective": 0.09580236046096526,
+        "constant_variance_objective": 0.5000000000000001,
+        "fixed_start_results": [
+          {
+            "success": true,
+            "eligible": true,
+            "objective": 0.09580236046097042,
+            "gradient_max": 4.321396945775985e-08,
+            "iterations": 12
+          },
+          {
+            "success": true,
+            "eligible": true,
+            "objective": 0.09580236046096526,
+            "gradient_max": 1.8406220979851012e-08,
+            "iterations": 11
+          }
+        ],
+        "fit_seconds": 0.1587452080566436,
+        "training_n": 11051
+      },
+      "training_history_sha256": "45fa831d0b9f5dec5f842f23488752285bee4da0b271cf67197f5430db794dfb",
+      "failure_reproduced": true,
+      "failure": {
+        "component": "FHS",
+        "path_index": 417,
+        "first_nonfinite_horizon": 1792,
+        "chunk_daily_clips": 17,
+        "chunk_floor_events": 0,
+        "trace": [
+          {
+            "horizon": 1785,
+            "conditional_variance_normalized": 2003259.7763175135,
+            "normalized_shock": 735.2715629982961,
+            "raw_daily_log_return": 15.611703155324841,
+            "simple_return": 6026656.813889438,
+            "wealth_before": 2.656333700700692e+281,
+            "wealth_after": 1.6008814253625673e+288,
+            "wealth_overflow": false
+          },
+          {
+            "horizon": 1786,
+            "conditional_variance_normalized": 1907670.7220484,
+            "normalized_shock": -4237.37896006034,
+            "raw_daily_log_return": -89.96482942927594,
+            "simple_return": -0.999999,
+            "wealth_before": 1.6008814253625673e+288,
+            "wealth_after": 1.6008814254086016e+282,
+            "wealth_overflow": false
+          },
+          {
+            "horizon": 1787,
+            "conditional_variance_normalized": 2917208.6964186495,
+            "normalized_shock": -1064.8679745482634,
+            "raw_daily_log_return": -22.607851921252866,
+            "simple_return": -0.999999,
+            "wealth_before": 1.6008814254086016e+282,
+            "wealth_after": 1.600881425454636e+276,
+            "wealth_overflow": false
+          },
+          {
+            "horizon": 1788,
+            "conditional_variance_normalized": 2799885.176610864,
+            "normalized_shock": 969.468316810903,
+            "raw_daily_log_return": 20.58403754629987,
+            "simple_return": 870029385.2139438,
+            "wealth_before": 1.600881425454636e+276,
+            "wealth_after": 1.3928138839896005e+285,
+            "wealth_overflow": false
+          },
+          {
+            "horizon": 1789,
+            "conditional_variance_normalized": 2677911.0947649498,
+            "normalized_shock": 405.0228057697868,
+            "raw_daily_log_return": 8.60004639061146,
+            "simple_return": 5430.911575217466,
+            "wealth_before": 1.3928138839896005e+285,
+            "wealth_after": 7.565641858566707e+288,
+            "wealth_overflow": false
+          },
+          {
+            "horizon": 1790,
+            "conditional_variance_normalized": 2514876.8793098805,
+            "normalized_shock": 507.06376751299825,
+            "raw_daily_log_return": 10.766522975380523,
+            "simple_return": 47405.89567039113,
+            "wealth_before": 7.565641858566707e+288,
+            "wealth_after": 3.58663594268616e+293,
+            "wealth_overflow": false
+          },
+          {
+            "horizon": 1791,
+            "conditional_variance_normalized": 2368271.6826271443,
+            "normalized_shock": -115.81261470078962,
+            "raw_daily_log_return": -2.4580397317777307,
+            "simple_return": -0.9143974093575441,
+            "wealth_before": 3.58663594268616e+293,
+            "wealth_after": 3.0702532838528224e+292,
+            "wealth_overflow": false
+          },
+          {
+            "horizon": 1792,
+            "conditional_variance_normalized": 2215780.218348657,
+            "normalized_shock": 1824.8388296515536,
+            "raw_daily_log_return": 38.74478550195562,
+            "simple_return": 6.70882627584841e+16,
+            "wealth_before": 3.0702532838528224e+292,
+            "wealth_after": null,
+            "wealth_overflow": true
+          }
+        ]
+      },
+      "no_checkpoints_or_scores_modified": true
+    }
+  ],
+  "scope": "Exact replay diagnostic only, not a new model or repaired-score claim"
+}
