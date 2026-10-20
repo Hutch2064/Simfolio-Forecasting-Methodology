@@ -1,0 +1,7 @@
+# Training-only persistent mean-regime qualification
+
+Six numerical tests and one roster test pass. The existing native model is reproduced exactly when the added between-batch variance is zero. Paule–Mandel roots agree with statsmodels on thirty synthetic heteroskedastic examples using its documented convergence tolerance; equal-variance cases also match the analytic solution. Training-only preflight covered710prefixes across70original/portfolio families:608had a positive fitted between-batch component. None of these are field forecast score results.
+
+The frozen development and reserved rosters each contain355native tasks, covering all70families with matched individual-asset support for every portfolio quarter and no shared native task between stages. They are adaptive benchmark gates, not independent validation. All financial changes and the roster were frozen before any candidate field forecast. The runner was added under a separate source receipt afterward; it must use the completed initial v4 references and verify the actual parent remains the best complete v4 model.
+
+This is a qualified hypothesis, not a new best model or full-panel admission. Only lower single main CRPS on the prescribed matched gates and broader/full evaluation can promote it. Calibration indicators have zero selection influence. Complete plans, training records and future native losses remain owner-held active research evidence until the stage closes and is privately archived with fresh recovery proof.
