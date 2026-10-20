@@ -1,6 +1,6 @@
 # Simfolio Forecasting Methodology
 
-The [fresh French 1926 panel](docs/french1926-panel.md) contains 551 equity series and one cash control on a common century-long daily history. Its frozen data, exact whitepaper scoring contract and resumable harness are prepared separately; no models or scores are registered for it.
+The [French 1926 panel notes](docs/french1926-panel.md) document an earlier preparation with a cash-control series. The current user-authorized French551 campaign uses a frozen equity-only input with 551 series and zero cash controls. See the [timestamped partial-run metadata](docs/french551-partial-campaign-metadata.json) and the [scoring-v2 methodology](METHODOLOGY.md). The captured state is `RUNNING PARTIAL`; no full-panel ranking is published.
 
 This repository is a standalone, public-safe research package for the
 out-of-sample comparison of probabilistic portfolio forecasts. It contains
