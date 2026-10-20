@@ -1,6 +1,6 @@
 Find a model that maximizes forecasting accuracy on the full expanded 1,264-series panel. Accuracy is the primary objective. Speed is secondary: optimize runtime without sacrificing forecasting performance. Additional complexity or compute is acceptable when it improves accuracy.
 
-Start from the new asset-level baseline and improve it. Each stronger validated model becomes the new baseline. Run both asset-level TestFolio-style configurations, with and without replacement. Use whichever scores worse on identical coverage as the sole baseline; preserve prior results and remove FAST. Use 1,000 simulations per model per forecast and recompute all baselines at that count.
+Start from the better new asset configuration. Test the prior best at asset level; promote each stronger model. Run both asset-level TestFolio-style configurations, with and without replacement. Use whichever scores worse on identical coverage as the sole baseline; preserve prior results and remove FAST. Use 1,000 simulations per model per forecast and recompute all baselines at that count.
 
 Keep the search open. Ideas may come from this panel’s results, weaknesses in existing models, earlier panels, academic papers, credible internet sources, diagnostics, or other promising reasoning. Earlier panels are optional supporting evidence. Prefer simple, intuitive solutions, while considering more complex approaches when warranted.
 

@@ -1,7 +1,8 @@
 # Joint asset-level reference configurations, 1,000 simulations
 
-The goal remains active. Improvement research starts from the newly measured
-asset-level baseline. Earlier portfolio-level runs are preserved historical
+The goal remains active. Improvement research starts from the better new asset configuration.
+The worse configuration remains the sole scoring reference. The prior best
+portfolio approach must also be tested as an asset-level counterpart. Earlier portfolio-level runs are preserved historical
 experiments, not asset-level implementations or current reference scores.
 
 Both configurations use the same frozen 1,264 target streams, 64,049 origins per

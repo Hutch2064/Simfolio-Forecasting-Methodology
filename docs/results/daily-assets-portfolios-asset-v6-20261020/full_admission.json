@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-20T23:20:34.821682+00:00",
+  "admitted": true,
+  "models": [
+    "model_testing_asset_joint_blocks_history_partition_v6",
+    "model_testing_asset_joint_blocks_replacement_v6"
+  ],
+  "workers": 12,
+  "paths": 1000,
+  "expected_attempts": 128098,
+  "full_baseline_pair_not_goal_completion": true,
+  "closed_v5_archive_verified": true,
+  "closed_v5_public_catalogue_recovery_commit": "abf732561c1a4f15e2c414590eb384a9ce663cc9",
+  "closed_v5_verified_retirement_receipt": "../v5_verified_local_loss_retirement.json",
+  "source_publication_recovery": "../v6_asset_source_public_recovery.json",
+  "integration_receipt_sha256": "1aca0bcabd39f50a5ef5b9a4e2ee31368960dd3b5b0a87918ecd09e0b7d4bf7d",
+  "storage_preflight_output": "Available: 591.4 GiB; expected growth: 3.5 GiB; required remaining reserve: 100 GiB\nArtifact root: 3.5 GiB now; budget: 12.0 GiB\n"
+}
