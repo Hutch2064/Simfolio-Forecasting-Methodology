@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-20T19:48:27.012232+00:00",
+  "model_id": "model_testing_equal_bootstrap_FHS_Huber_location_smooth_Gaussian_uncertainty_v1",
+  "decision": "reject_this_frozen_Huber_location_contrast",
+  "phase": "development",
+  "reason": "Fixed Huber location changes the drift functional under skewed returns; both development profiles regress versus Public and current winner. No reserved/broad/full escalation, cutoff/scale retuning or claim that actual large returns are errors.",
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "total_origins_each_arm": 245,
+  "total_forecasts": 735,
+  "exact_historical_baseline_hashes_replayed": 490,
+  "full_panel_candidate": false,
+  "full_panel_catalogue_count_unchanged": 13,
+  "adaptive_reused_evidence": true,
+  "independent_holdout": false,
+  "summary_sha256": "b05921d1530b0bf09b921caa3112134c7faac123227820d1c524a47642f48567",
+  "wider_goal_remains_active": true,
+  "percent_better_vs_Public": {
+    "Candidate": {
+      "primary_score": -0.8246950395810249,
+      "sensitivity_score": -0.6378699259746989
+    },
+    "Incumbent": {
+      "primary_score": 2.4629259555886684,
+      "sensitivity_score": 2.9030576578912615
+    },
+    "Public": {
+      "primary_score": 0.0,
+      "sensitivity_score": 0.0
+    }
+  }
+}

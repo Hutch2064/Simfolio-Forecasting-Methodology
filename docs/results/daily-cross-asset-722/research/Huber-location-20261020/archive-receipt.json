@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T19:48:34.511960+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-Huber-location-20261020T1949Z",
+  "archive_name": "Huber-location-evidence.tar.gz",
+  "archive_sha256": "b7b1524030a640ab5ddf9effc5cab07296b728670a9bf459417e7cf4524d6bbe",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "0d655cfdee33a1006c4b54e4c952e07deab25167315112cd2583245c7a838fbc",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 751,
+  "archive_bytes": 25772387,
+  "restore_command": "gh release download research-accuracy-Huber-location-20261020T1949Z --repo Hutch2064/simfolio-engine --pattern Huber-location-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 735,
+  "free_before_cleanup": 643320131584,
+  "free_after_cleanup": 643404910592
+}

@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T19:43:18.977500+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-volatility-posterior-20261020T1945Z",
+  "archive_name": "volatility-posterior-evidence.tar.gz",
+  "archive_sha256": "6f81703aaecde4deefd439f3d9e22ea17814e599be38e198f263ec0fc5ed25d8",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "dbdfa368bda32e71e5a857b1e4486f3190a2e12fb301aad6540b52f98ebfe5b8",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 774,
+  "archive_bytes": 29422303,
+  "restore_command": "gh release download research-accuracy-volatility-posterior-20261020T1945Z --repo Hutch2064/simfolio-engine --pattern volatility-posterior-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 735,
+  "free_before_cleanup": 643355389952,
+  "free_after_cleanup": 643453009920
+}
