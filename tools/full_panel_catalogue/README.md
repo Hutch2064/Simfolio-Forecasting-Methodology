@@ -35,12 +35,21 @@ Partially attempted panels and pilots cannot enter this count. Full-panel scores
 and matched comparisons remain separate when successful coverage differs.
 
 Preserve the implementation closure, definitions, exact source versions, fixed
-inputs, seeds, environment, raw task losses, both scoring profiles and all result
+inputs, seeds, environment, raw task losses, the declared scoring profile(s) and all result
 summaries in the research repository or its linked lossless archives. Large and
 provider/private payloads use private repository release assets, not Git history
 or the public research tree. Record archive and manifest SHA-256 values and exact
 member paths. Removing a model from active control never removes its catalogue
 entry, source or results.
+
+The human-authorized v4 asset/portfolio benchmark has exactly one `scores.main`
+and one matched `comparison.public_scores.main`, declared by its
+`score_protocol_id`. Historical v3 records retain both original profiles without
+rewriting their evidence. Version keys do not change for the same numerical model
+on a new benchmark; append a new execution and bind its own panel fingerprint,
+score protocol, scorer source and archives. Set `current_score_protocol_id` and
+`current_panel_fingerprint` for a current-only single-score rendering. Incomplete
+paired results are rendered separately from complete successful coverage.
 
 Before removing any completed local outputs, download the remote archive afresh,
 verify its SHA-256, restore every manifest file to disk, and verify every file's

@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T20:19:36.383105+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-HARCH-20261020T2019Z",
+  "archive_name": "HARCH-evidence.tar.gz",
+  "archive_sha256": "b90632a80aa090ee83950758cce67bcd21e67640e6d47ef3b2d3ca586ff52df3",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "a316ca125377b8d145420168215522ab042b9298223e1ff1dd0dec17f7c481e8",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 757,
+  "archive_bytes": 25976578,
+  "restore_command": "gh release download research-accuracy-HARCH-20261020T2019Z --repo Hutch2064/simfolio-engine --pattern HARCH-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 735,
+  "free_before_cleanup": 643371442176,
+  "free_after_cleanup": 643457007616
+}

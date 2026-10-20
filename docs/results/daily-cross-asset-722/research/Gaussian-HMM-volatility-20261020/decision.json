@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-20T20:09:55.409604+00:00",
+  "model_id": "model_testing_equal_bootstrap_MAP_Gaussian_HMM_smooth_mean_uncertainty_v1",
+  "decision": "reject_this_frozen_Gaussian_HMM_contrast",
+  "phase": "development",
+  "reason": "Both profiles regress versus unchanged current winner; fixed income improves, but real estate and other classes regress. No reserved/broad/full escalation or state-count/prior/seed retuning; this rejects this regularized two-state Gaussian law, not all latent state models.",
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "total_origins_each_arm": 245,
+  "total_forecasts": 735,
+  "exact_historical_baseline_hashes_replayed": 490,
+  "full_panel_candidate": false,
+  "full_panel_catalogue_count_unchanged": 13,
+  "adaptive_reused_evidence": true,
+  "independent_holdout": false,
+  "summary_sha256": "e98fa9cf0ba4a4d384566e4df12980d0a7f5ccb70f9c06c42c01d8c8838467e2",
+  "audit_sha256": "62f4f2edcf2743741560db91e73fb7a176c73ac6ba74ceede0392d7291fa0d52",
+  "wider_goal_remains_active": true,
+  "percent_better_vs_Public": {
+    "Candidate": {
+      "primary_score": 1.9565331621047233,
+      "sensitivity_score": 2.4376609079083345
+    },
+    "Incumbent": {
+      "primary_score": 2.4629259555886684,
+      "sensitivity_score": 2.9030576578912615
+    },
+    "Public": {
+      "primary_score": 0.0,
+      "sensitivity_score": 0.0
+    }
+  }
+}

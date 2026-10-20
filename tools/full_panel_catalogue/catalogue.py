@@ -31,11 +31,16 @@ def validate(record):
         raise ValueError("Invalid task counts")
     if record["comparison"]["matched_successful_tasks"] != coverage["successful_tasks"]:
         raise ValueError("Comparison must cover the identical successful task set")
-    for profile in ("primary", "sensitivity"):
+    single = record.get("score_protocol_id") == "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch"
+    profiles = ("main",) if single else ("primary", "sensitivity")
+    if single and (set(record["scores"]) != {"main"} or set(record["comparison"]["public_scores"]) != {"main"}):
+        raise ValueError("V4 records require exactly one main score and matched Public score")
+    for profile in profiles:
         score = record["scores"][profile]
         reference = record["comparison"]["public_scores"][profile]
-        if not all(math.isfinite(x) and x > 0 for x in (score, reference)):
-            raise ValueError("Both score profiles and matched Public scores are required")
+        if (not math.isfinite(score) or score < 0 or not math.isfinite(reference) or reference <= 0
+                or not single and score == 0):
+            raise ValueError("Declared score profiles and matched Public scores are required")
     if record["runtime"]["forecast_and_score_worker_seconds"] < 0:
         raise ValueError("Invalid measured runtime")
     if not record["archives"] or not record["reproducibility"]:
@@ -75,6 +80,8 @@ def retirement_allowed(record, receipt):
 
 
 def render(ledger):
+    if ledger.get("current_score_protocol_id") == "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch":
+        return render_single_score(ledger)
     lines = ["# Expanded daily panel: full-panel model catalogue", "",
              f"**{ledger['unique_full_panel_models']} unique model versions; "
              f"{ledger['failure_free_models']} with a failure-free full-panel result.**", "",
@@ -102,6 +109,41 @@ def render(ledger):
         lines += ["Current research baseline: **"+best['executions'][-1]['display_name']+"**. "
                   f"Its [full-panel evidence]({report}) includes "
                   "all class/family/horizon results and limitations. The accuracy-maximization search remains active.", ""]
+    return "\n".join(lines)
+
+
+def render_single_score(ledger):
+    """Current benchmark only; historical definitions/results remain in JSON."""
+    panel = ledger["current_panel_fingerprint"]
+    protocol = ledger["current_score_protocol_id"]
+    records = []
+    for model in ledger["models"].values():
+        matching = [e for e in model["executions"] if e.get("score_protocol_id") == protocol
+                    and e["coverage"]["panel_fingerprint"] == panel]
+        if matching:
+            records.append(matching[-1])
+    lines = ["# Versioned full-panel model catalogue", "",
+        f"**{ledger['unique_full_panel_models']} unique model versions across preserved benchmarks; "
+        f"{len(records)} with completed attempts on the current benchmark.**", "",
+        "The current benchmark has one main score. Historical normalizations and all older "
+        "executions remain in catalogue.json; scores from different benchmarks are not compared.", ""]
+    for failed, title in [(False, "Complete successful coverage"), (True, "Incomplete paired results: native fitting failures")]:
+        selected = [e for e in records if bool(e['coverage']['native_failed_tasks']) == failed]
+        if not selected:
+            continue
+        lines += ["## "+title, "", "This is an evidence inventory, not a mixed-coverage ranking.", "",
+            "| Model | Successful / attempted | Native failures | Main Q | Worker seconds |",
+            "|---|---:|---:|---:|---:|"]
+        for e in selected:
+            c = e['coverage']
+            lines.append(f"| {e['display_name']} | {c['successful_tasks']} / {c['expected_tasks']} | "
+                         f"{c['native_failed_tasks']} | {e['scores']['main']:.12f} | "
+                         f"{e['runtime']['forecast_and_score_worker_seconds']:.3f} |")
+        lines.append("")
+    lines += ["Worker seconds are recorded compute, not a controlled speed comparison or production latency.", "",
+        "[catalogue.json](catalogue.json) retains every historical model definition, version, benchmark, "
+        "matched reference, failure, runtime and complete repository-linked recovery evidence. "
+        "Identical models rerun on another panel add executions, not model counts.", ""]
     return "\n".join(lines)
 
 

@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T20:28:40.277291+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-calibration-20261020T2028Z",
+  "archive_name": "calibration-evidence.tar.gz",
+  "archive_sha256": "71559c1fa26a121c4c70041483a52f684b87c2e16fbe51ec680063e68fbc0b83",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "de095bd52d563d113c5f9832e7443f6cdb312fd9b9aa44127cb2a51de3e45a8f",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 15,
+  "archive_bytes": 697456,
+  "restore_command": "gh release download research-accuracy-calibration-20261020T2028Z --repo Hutch2064/simfolio-engine --pattern calibration-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 0,
+  "free_before_cleanup": 643430723584,
+  "free_after_cleanup": 643432120320
+}

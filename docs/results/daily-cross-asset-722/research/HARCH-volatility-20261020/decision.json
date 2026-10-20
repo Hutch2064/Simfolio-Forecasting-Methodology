@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-20T20:19:30.068153+00:00",
+  "model_id": "model_testing_equal_bootstrap_HARCH_1_5_22_FHS_smooth_Gaussian_mean_pool_v1",
+  "decision": "reject_this_frozen_HARCH_contrast",
+  "phase": "development",
+  "reason": "Near tie but both profiles regress versus unchanged current winner. No reserved/broad/full escalation or lag-window/seed/objective retuning. Weak residual-memory training diagnostics and this result do not justify a window grid; no universal HARCH inferiority claim.",
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "total_origins_each_arm": 245,
+  "total_forecasts": 735,
+  "exact_historical_baseline_hashes_replayed": 490,
+  "full_panel_candidate": false,
+  "full_panel_catalogue_count_unchanged": 13,
+  "adaptive_reused_evidence": true,
+  "independent_holdout": false,
+  "summary_sha256": "c70bc7d614b9f0cd2f35d653db6937b491feafc3d3d72f32abb2520cffd84d4e",
+  "audit_sha256": "4526019a158abab71b5de864938b97fbb9a8b9b373f07c13f6c3184721fe9325",
+  "wider_goal_remains_active": true,
+  "percent_better_vs_Public": {
+    "Candidate": {
+      "primary_score": 2.430364945170438,
+      "sensitivity_score": 2.8691939968202407
+    },
+    "Incumbent": {
+      "primary_score": 2.4629259555886684,
+      "sensitivity_score": 2.9030576578912615
+    },
+    "Public": {
+      "primary_score": 0.0,
+      "sensitivity_score": 0.0
+    }
+  }
+}

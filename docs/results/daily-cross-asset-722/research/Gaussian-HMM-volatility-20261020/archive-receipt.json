@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T20:10:02.661804+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-Gaussian-HMM-20261020T2011Z",
+  "archive_name": "Gaussian-HMM-evidence.tar.gz",
+  "archive_sha256": "8a8b471b7743ab5ced8ce595b827c5384b4e8f87b81fdd2c652ec150182f3b8e",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "f3b47ab07d9bd1ebe10293c11e30e6a21d1db7af511dc46f248135391c71474c",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 758,
+  "archive_bytes": 26168006,
+  "restore_command": "gh release download research-accuracy-Gaussian-HMM-20261020T2011Z --repo Hutch2064/simfolio-engine --pattern Gaussian-HMM-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 735,
+  "free_before_cleanup": 643350278144,
+  "free_after_cleanup": 643436679168
+}
