@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-20T18:48:14.839569+00:00",
+  "model_id": "model_testing_equal_bootstrap_FHS_smooth_mean_contracted_Gaussian_uncertainty_v1",
+  "decision": "reject_this_frozen_variance_contraction_contrast",
+  "phase": "development",
+  "reason": "Near tie but no lower primary than current shrunk-mean winner on fixed development; no reserved/broad/full escalation or scale retuning. This does not prove universal inferiority or close the whole prior-uncertainty question.",
+  "origins": 245,
+  "forecasts": 735,
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "exact_historical_baseline_hashes_replayed": 490,
+  "percent_better_vs_Public": {
+    "Candidate": {
+      "primary_score": 2.4453679347694712,
+      "sensitivity_score": 2.8845031907619445
+    },
+    "Incumbent": {
+      "primary_score": 2.4629259555886684,
+      "sensitivity_score": 2.9030576578912615
+    },
+    "Public": {
+      "primary_score": 0.0,
+      "sensitivity_score": 0.0
+    }
+  },
+  "full_panel_candidate": false,
+  "full_panel_catalogue_count_unchanged": 13,
+  "adaptive_reused_evidence": true,
+  "independent_holdout": false,
+  "summary_sha256": "0274cfe4fd20432b961ff52081a9c0ea9330e59f8fce3f83231836ac41b40f27",
+  "wider_goal_remains_active": true
+}

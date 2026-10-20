@@ -1,0 +1,15 @@
+{
+  "verified_utc": "2026-10-20T18:48:21.479060+00:00",
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-accuracy-mean-contraction-20261020T1845Z",
+  "archive_name": "mean-contraction-evidence.tar.gz",
+  "archive_sha256": "5c3c1e35c4a8dba81fcce18432cde7d869efc105aef602feb649027ee22d512d",
+  "manifest_name": "manifest.json",
+  "manifest_sha256": "a479c80c27f21df3f7e18b1a0efcc377c1cb7a45ffcec77dc066fa7eb83cf650",
+  "files_fresh_downloaded_disk_restored_sha256_verified": 754,
+  "archive_bytes": 25816373,
+  "restore_command": "gh release download research-accuracy-mean-contraction-20261020T1845Z --repo Hutch2064/simfolio-engine --pattern mean-contraction-evidence.tar.gz --pattern manifest.json --dir <download>; verify both SHA256 values, restore into an owned folder and verify every manifest entry.",
+  "model_outputs_retired": 735,
+  "free_before_cleanup": 643390164992,
+  "free_after_cleanup": 643474956288
+}
