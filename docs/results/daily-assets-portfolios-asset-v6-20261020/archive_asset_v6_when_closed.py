@@ -69,8 +69,8 @@ def main():
     recovered = O/'v6_catalogue_public_recovery'/commit[:12]
     rows = []
     for rel in [*allowed[1:], *[str(p.relative_to(R)) for p in sorted(D.rglob('*')) if p.is_file() and '__pycache__' not in p.parts]]:
-        response = subprocess.check_output(['gh', 'api', f'repos/Hutch2064/Simfolio-Forecasting-Methodology/contents/{rel}?ref={commit}'], env=env, text=True)
-        data = base64.b64decode(json.loads(response)['content'])
+        data = subprocess.check_output(['gh', 'api', '-H', 'Accept: application/vnd.github.raw+json',
+                                        f'repos/Hutch2064/Simfolio-Forecasting-Methodology/contents/{rel}?ref={commit}'], env=env)
         assert hashlib.sha256(data).hexdigest() == sha(R/rel)
         path = recovered/rel
         path.parent.mkdir(parents=True, exist_ok=True)
