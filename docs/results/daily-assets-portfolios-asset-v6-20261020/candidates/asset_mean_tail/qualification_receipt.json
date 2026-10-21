@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-21T06:01:36.920361+00:00",
+  "tests_passed": 6,
+  "log": "mean_tail_qualification.log",
+  "log_sha256": "6b23b33197d5b8dd45af63acd7836afc5570d163393587f0b7ec5fbb7d6a0657",
+  "sources": {
+    "__init__.py": "87568b6f35d99b232f15f98610d9dbcac177c9504d3955d6dffa56198876c6ac",
+    "mean.py": "d6f62f192f7bfea7d1b6f3529b041e3ba31e8b6bddfd2b85896396d70bec1f9e",
+    "DESIGN.md": "6e1f3241e57fbabc7314862c413aa3a6fcf59eb963d26d26e8b5b8a802434c9b",
+    "candidate.py": "f7d3eaa120ed6cfda2f35a280dc44afa473ac076294d2437fe964fedd8c6b704"
+  },
+  "test_source_sha256": "45c9983958bc6387e6a3a62c34e2b6082d9daeb54d41eb86071cf0732d8fda1c",
+  "checks": [
+    "Student marginal distribution and matched covariance",
+    "exact finite ensemble mean",
+    "exact joint Gaussian infinite-df limit",
+    "byte-identical parent draw/model control at100/1000paths",
+    "joint accounting, counts, chunk and history identity",
+    "unchanged training-fitted mixture, covariance and batch-derived degrees of freedom"
+  ],
+  "field_accuracy_not_yet_known": true
+}

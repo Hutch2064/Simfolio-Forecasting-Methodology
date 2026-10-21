@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-21T06:28:36.542766+00:00",
+  "selected": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "mean": "empirical_Bayes_posterior"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8170847667990039,
+      "model_id": "model_testing_asset_joint_EB_mean_v1_36464e9eb5be9c75",
+      "percent_better_vs_same100path_fixed_reference": 15.575968412232777,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "mean": "empirical_Bayes_center"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8172262062067217,
+      "model_id": "model_testing_asset_joint_EB_mean_v1_8cbefd37d0e23e72",
+      "percent_better_vs_same100path_fixed_reference": 15.561354402144566,
+      "successful_cases": 72
+    }
+  ],
+  "basis": "Both frozen training-only empirical-Bayes contrasts improve main score on identical100path72case screen; resolve on unchanged355case development at1000paths; no full-panel admission",
+  "no_parameter_retuning": true
+}

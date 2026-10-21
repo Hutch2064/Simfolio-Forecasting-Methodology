@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-21T06:26:01.176847+00:00",
+  "decision": "reject_current_R52_dependence_transfer_after_1000path_precision_confirmation",
+  "requested_old_model": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+  "transferred_scope": "Student rank corrected-DCC copula of filtered innovations only, keeping current Gaussian marginal construction, raw rows/fade, mean and learned blend unchanged",
+  "candidate_model_id": "model_testing_asset_R52_Student_copula_v1_ad556cbf9f3f75e4",
+  "main_Q": 0.822220408148306,
+  "parent_main_Q": 0.8214554222471507,
+  "matched_reference_main_Q": 0.9660201133857566,
+  "paths": 1000,
+  "matched_cases": 72,
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "worse_than_parent_percent": 0.09312567431383201,
+  "candidate_percent_better_vs_fixed_WR": 14.885787909058546,
+  "parent_percent_better_vs_fixed_WR": 14.964977347306785,
+  "promotion": false,
+  "full_panel_escalation": false,
+  "full_panel_catalogue_increment": 0,
+  "no_independence_or_significance_claim": true,
+  "future_reconsideration_requires_new_evidence_or_materially_distinct_mechanism": true
+}

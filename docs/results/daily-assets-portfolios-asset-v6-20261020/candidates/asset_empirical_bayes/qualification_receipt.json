@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-21T06:30:58.878099+00:00",
+  "tests_passed": 7,
+  "log": "empirical_bayes_qualification.log",
+  "scope": [
+    "Direct correlated marginal-likelihood optimum",
+    "Zero prior and zero-noise mean directions",
+    "Duplicate and scalar formulas",
+    "Center-only original covariance and input immutability",
+    "Exact parent100and1000path controls",
+    "Joint-path counting/accounting/chunk/prefix guard",
+    "Unchanged volatility/raw fits and exact training-CRPS weight refit"
+  ],
+  "source_hashes": {
+    "__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "mean.py": "f1df2f4d5bef28a529faa76c582e5cb46d30ccef897f7e9eb529b0603beb1ba9",
+    "DESIGN.md": "4373c826970e7b3a8f1d1f79e9c052e52fb046848949de63a1c7997e2e0b0545",
+    "candidate.py": "635c623a48f7d73a47029f24c05026ff2f7d6bddb497720d017b02ddc03ff4bc"
+  }
+}

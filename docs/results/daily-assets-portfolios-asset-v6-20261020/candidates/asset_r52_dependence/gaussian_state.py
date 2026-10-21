@@ -1,0 +1,92 @@
+"""Scalar cDCC likelihood with a fixed estimated correlation target.
+
+This implements Aielli's corrected recursion, not a claim that the fixed
+Ledoit-Wolf target is his consistent target estimator. Parameters are conditional
+Gaussian copula QMLE; no latent-parameter MCMC or posterior compression.
+"""
+import numpy as np
+from numba import njit
+from scipy.optimize import minimize
+from scipy.special import expit, softmax
+
+
+@njit(cache=True)
+def likelihood(z,s,a,b,q0):
+    q=q0.copy(); da=np.zeros_like(q);db=np.zeros_like(q)
+    loss=0.;gradient=np.zeros(2);p=len(s)
+    eye=np.eye(p)
+    for t in range(len(z)):
+        d=np.diag(q).copy();sd=np.sqrt(d);w=sd*z[t]
+        root=np.linalg.cholesky(q)
+        inv=np.linalg.solve(root.T,np.linalg.solve(root,eye))
+        v=inv@w
+        logdet=2*np.log(np.diag(root)).sum()-np.log(d).sum()
+        loss+=.5*(logdet+w@v-z[t]@z[t])
+        g=.5*inv-.5*np.outer(v,v)
+        for j in range(p):g[j,j]+=-.5/d[j]+.5*v[j]*z[t,j]/sd[j]
+        gradient[0]+=np.sum(g*da);gradient[1]+=np.sum(g*db)
+        wa=.5*z[t]/sd*np.diag(da);wb=.5*z[t]/sd*np.diag(db)
+        outer=np.outer(w,w)
+        da=outer-s+a*(np.outer(wa,w)+np.outer(w,wa))+b*da
+        db=q-s+a*(np.outer(wb,w)+np.outer(w,wb))+b*db
+        q=(1-a-b)*s+a*outer+b*q
+    return loss,gradient,q
+
+def fit(z,s,evaluator=likelihood):
+    """Conditional Gaussian copula QMLE with fixed training shrinkage target."""
+    n=len(z)
+    def physical(x):
+        if len(s)>=32:
+            fraction,total=expit(x)
+            return np.array([fraction*total,(1-fraction)*total])
+        return softmax(np.r_[x,0.])[:2]
+    def fun(x):
+        theta=physical(x);a,b=theta
+        if theta.sum()>=1.:
+            return 1e100,np.zeros(2)
+        try:loss,grad,_=evaluator(z,s,a,b,s)
+        except np.linalg.LinAlgError:return 1e100,np.zeros(2)
+        if len(s)>=32:
+            total=a+b;fraction=a/total if total>0 else float(expit(x[0]));shock=total*fraction*(1-fraction)
+            jac=np.array([[shock,-shock],[a*(1-total),b*(1-total)]])
+        else:jac=np.array([[a*(1-a),-a*b],[-a*b,b*(1-b)]])
+        return loss/n,jac@grad/n
+    def boundary(x):
+        a=float(expit(x[0]));loss,gradient,_=evaluator(z,s,a,0.,s)
+        return loss/n,np.array([gradient[0]*a*(1-a)/n])
+    def optimize(job):
+        kind,start=job
+        if kind=='boundary':
+            result=minimize(boundary,np.array(start),jac=True,method='L-BFGS-B',
+                            options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
+            if result.success and np.max(np.abs(result.jac))<=1e-5:
+                return float(result.fun),np.array([float(expit(result.x[0])),0.]),{
+                    'success':True,'b_zero_boundary':True,'iterations':int(result.nit),
+                    'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
+            return None
+        start=np.array(start)
+        if len(s)>=32:
+            total=start.sum();fraction=start[0]/total
+            probabilities=np.array([fraction,total]);coords=np.log(probabilities/(1-probabilities))
+        else:coords=np.log(start/(1-start.sum()))
+        result=minimize(fun,coords,jac=True,method='L-BFGS-B',options={'ftol':1e-12,'gtol':1e-7,'maxiter':500,'maxls':40})
+        theta=physical(result.x)
+        if result.success and theta.sum()<1. and np.isfinite(result.fun) and np.max(np.abs(result.jac))<=1e-5:
+            return float(result.fun),theta,{'success':bool(result.success),'iterations':int(result.nit),'evaluations':int(result.nfev),'transformed_mean_gradient':result.jac.tolist()}
+        return None
+    jobs=(('interior',[.02,.95]),('interior',[.05,.5]),('interior',[.2,.2]),('boundary',[-2.]))
+    if len(s)>=16:
+        from concurrent.futures import ThreadPoolExecutor
+
+        from numba import get_num_threads
+        with ThreadPoolExecutor(max_workers=min(4,get_num_threads())) as pool:
+            results=list(pool.map(optimize,jobs))
+    else:results=list(map(optimize,jobs))
+    solutions=[result for result in results if result is not None]
+    if not solutions:raise ArithmeticError('no converged cDCC parameter fit')
+    constant=evaluator(z,s,0.,0.,s)[0]/n
+    solutions.append((constant,np.zeros(2),{'success':True,'constant_endpoint':True}))
+    best=min(solutions,key=lambda x:x[0])
+    loss,grad,q=evaluator(z,s,*best[1],s)
+    return best[1],q,{'training_nll':float(loss),'static_training_nll':float(constant*n),'gradient':grad.tolist(),'optimizer':best[2]}
+

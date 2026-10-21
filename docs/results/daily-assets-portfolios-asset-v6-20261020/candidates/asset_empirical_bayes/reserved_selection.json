@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-21T06:30:23.655228+00:00",
+  "selected": [
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "mean": "empirical_Bayes_center"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.7096088445913684,
+      "model_id": "model_testing_asset_joint_EB_mean_v1_8cbefd37d0e23e72",
+      "percent_better_vs_same1000path_fixed_reference": 11.343476055388768,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "mean": "empirical_Bayes_posterior"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.7096345370695889,
+      "model_id": "model_testing_asset_joint_EB_mean_v1_36464e9eb5be9c75",
+      "percent_better_vs_same1000path_fixed_reference": 11.340266109757579,
+      "successful_cases": 355
+    }
+  ],
+  "basis": "Both frozen empirical-Bayes variants improve same355case1000path development; test both on existing separate355prefix block without parameter retuning. These are adaptively reused research cases, not independent unseen validation.",
+  "no_parameter_retuning": true
+}

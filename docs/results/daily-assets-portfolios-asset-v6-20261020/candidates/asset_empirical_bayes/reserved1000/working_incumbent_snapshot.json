@@ -1,0 +1,55 @@
+{
+  "config": {
+    "family": "SV_RMS",
+    "innovations": "Gaussian",
+    "mean_shrinkage": true,
+    "mean_uncertainty": true,
+    "raw_fade": "EWMA"
+  },
+  "development_evidence": {
+    "broad1000": {
+      "fixed_WR_Q": 0.6809035594773647,
+      "main_Q": 0.6469412535998392,
+      "percent_better_vs_fixed_WR": 4.987829099262397,
+      "prior_working_Q": 0.6472385110030847,
+      "successful_cases": 7418,
+      "summary_sha256": "d6860e8fc1202c62de25ec6bc9a40a56345cd27f9f1807e3d190ee5d78fdfefe"
+    },
+    "development1000": {
+      "fixed_WR_Q": 0.800402286282622,
+      "main_Q": 0.713198729800907,
+      "percent_better_vs_fixed_WR": 10.894965941029733,
+      "prior_working_Q": 0.7154353661786275,
+      "successful_cases": 355,
+      "summary_sha256": "05df6ca662dc279290f06d19e69215b932e1823b590092ccb878e911c1da87ba"
+    },
+    "reserved1000": {
+      "fixed_WR_Q": 0.7011252079796684,
+      "main_Q": 0.6728170835804873,
+      "percent_better_vs_fixed_WR": 4.037527687922182,
+      "prior_working_Q": 0.6731199642115648,
+      "successful_cases": 355,
+      "summary_sha256": "7b6f32826cf7523aa5f91dba8c08ace5c11634af632b78cf5aeaf9d0548d7ed4"
+    }
+  },
+  "display_name": "Asset Training-CRPS Pool / EWMA Fade / RMS Volatility / Joint Mean Uncertainty",
+  "factory_class": "TrainedPool",
+  "factory_module": "candidates.asset_trained_pool.candidate",
+  "full_panel_launch_requires_stopping_review": true,
+  "full_panel_verified": false,
+  "learned_component_weight": true,
+  "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+  "prior_full_verified_best_id": "model_testing_asset_circular_raw_GARCH_fade_FHS_mean_v1",
+  "prior_working_model_id": "model_testing_asset_features_v1_3763052f64159e6e",
+  "sample_stages": {
+    "broad1000": "asset_level_v6/candidates/asset_trained_pool/broad1000",
+    "development1000": "asset_level_v6/candidates/asset_trained_pool/development1000",
+    "reserved1000": "asset_level_v6/candidates/asset_trained_pool/reserved1000",
+    "screen100": "asset_level_v6/candidates/asset_trained_pool/screen100"
+  },
+  "source_candidate": "asset_level_v6/candidates/asset_trained_pool",
+  "utc": "2026-10-21T05:06:21.896647+00:00",
+  "validation_receipt": "asset_level_v6/candidates/asset_trained_pool/validation_receipt.json",
+  "validation_receipt_sha256": "b767c8416417f4f81f448301e5f67f0198fc233c6e8819090121bdc9537ec24a",
+  "validation_scope": "355development+355reserved+7418broad cases at1000paths; all8128loss hashes and independent score reductions verified, with fresh native replay. No full-panel result claimed."
+}

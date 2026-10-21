@@ -1,0 +1,76 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "mean": "empirical_Bayes_posterior"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8170847667990039,
+      "model_id": "model_testing_asset_joint_EB_mean_v1_36464e9eb5be9c75",
+      "percent_better_vs_same100path_fixed_reference": 15.575968412232777,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "mean": "empirical_Bayes_center"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8172262062067217,
+      "model_id": "model_testing_asset_joint_EB_mean_v1_8cbefd37d0e23e72",
+      "percent_better_vs_same100path_fixed_reference": 15.561354402144566,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 2,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_joint_EB_mean_v1_36464e9eb5be9c75": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "mean": "empirical_Bayes_posterior"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8170847667990039,
+      "percent_better_vs_same100path_fixed_reference": 15.575968412232777,
+      "successful_cases": 72
+    },
+    "model_testing_asset_joint_EB_mean_v1_8cbefd37d0e23e72": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "mean": "empirical_Bayes_center"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8172262062067217,
+      "percent_better_vs_same100path_fixed_reference": 15.561354402144566,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 144,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8235702227265657,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 21.917105377768166,
+  "utc": "2026-10-21T06:27:54.227786+00:00"
+}

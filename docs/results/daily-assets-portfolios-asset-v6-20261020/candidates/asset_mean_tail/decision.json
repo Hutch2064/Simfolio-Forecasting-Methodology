@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-21T06:08:24.633456+00:00",
+  "decision": "Do not promote mean-tail variants. Both lose the72-case100-path screen and its1000-path precision confirmation; all72reference prefixes were reused from the existing355-case1000-path development evidence.",
+  "screen100_successful": 144,
+  "precision1000_successful": 144,
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "working_precision_main_Q": 0.8214554222471507,
+  "fixed_WR_precision_main_Q": 0.9660201133857566,
+  "precision_models": {
+    "model_testing_asset_joint_mean_tail_v1_118e2b0c34bbbc55": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "mean_law": "Gaussian_joint"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8221770615984306,
+      "percent_better_vs_same1000path_fixed_reference": 14.890275036114664,
+      "successful_cases": 72
+    },
+    "model_testing_asset_joint_mean_tail_v1_213ae58e22ec5a8c": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "mean_law": "Student_joint"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8221655863531211,
+      "percent_better_vs_same1000path_fixed_reference": 14.891462924974386,
+      "successful_cases": 72
+    }
+  },
+  "working_incumbent_unchanged": true,
+  "full_panel_catalogue_increment": 0,
+  "scope": "Covariance-matched batch-df Student posterior means and joint-Gaussian numerical construction; no blanket rejection of all mean models."
+}

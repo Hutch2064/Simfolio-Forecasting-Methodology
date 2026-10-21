@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-21T06:22:04.769301+00:00",
+  "tests_passed": 8,
+  "log": "r52_dependence_qualification.log",
+  "pre_screen_scope": "Numerical source fidelity, native path and likelihood recursion, Gaussian margins with Student joint copula, parent/scalar parity100/1000, joint asset accounting and unchanged marginal/mean/blend fits",
+  "earlier_test_failure": "Cross Python3.9/3.12 empty FunctionDef.type_params AST representation; canonical normalization only, no numeric source changed",
+  "candidate_source_hashes": {
+    "student_cdf.py": "8de9366730915f4f39620f4cf6eaeed2dc6906b0a86126daa20efac35b7ab601",
+    "likelihood_lapack.cpp": "0e92f63b9c677e40e9933afd5545df8c22d2ef9eff2a136bc164f5eb434ee712",
+    "likelihood_kernel.py": "485070fd58ed6a9c0803660c391b5030b4a47ecaa0f19a73e147fe58270ee05c",
+    "lapack_native.py": "72c049d0a6359402c5043a00b7385d02477a4b483bb609d6f2f0ece822f7efe9",
+    "__init__.py": "e684e3ae6e1074c6ae15546d1bf3c65f7f733475422a7fa3e42364561b3d072c",
+    "path_native.py": "aad298798668a426deb313dcd34b4241580169f899b05f0c782ca5ff28aa088a",
+    "source_derivation.json": "73cebf276cb92205ffd7a9af4ab190668dbfc14c476d8f0616ff3d71df234133",
+    "gaussian_state.py": "2a82a60c4ca8e7edd6c2a0966953f385f8cc8493c6616980c48c7874204a30a8",
+    "shrinkage.py": "eee40dd1662a8460ee31066a60f30bf7e4af74814b4164420f7904a129db634a",
+    "student_state.py": "8310cb744bffe8cc491ba88a3bb2feca1d6e3978033a709d14e1ea36b43f0820",
+    "dependence.py": "a093a07482a46f550e3c9d3b3e249ec9a33a20ecb315128be9a87ab4806ea950",
+    "DESIGN.md": "b814dc4cbb4485f7ae277ea14b8edf72b67632d8804409f2789557d6ae5742e8",
+    "paths.cpp": "633262e5823e372ff51fbfdf7135df37bdf8b417abbf75824a184634562e8382",
+    "candidate.py": "da0cac88d3bf02024e5c6f1561501102f2506f5d1abeff0173c10c95e123764d",
+    "ranks.py": "4319714124214a9ec8dd59bd48ffee75f1638a5eec25edc313ed13448613cb31"
+  }
+}

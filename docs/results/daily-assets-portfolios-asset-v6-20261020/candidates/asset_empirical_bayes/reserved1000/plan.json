@@ -1,0 +1,4004 @@
+{
+  "anchor_replays_expected": 355,
+  "case_selection": "Same frozen355case/70family sample; adaptively reused, no independence or significance claim",
+  "cases": [
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 177,
+        "origin_date": "1989-09-29",
+        "origin_label": "rolling_02",
+        "position": 707,
+        "train_fraction": null
+      },
+      "series_id": "BNDSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 729,
+        "origin_date": "1998-06-30",
+        "origin_label": "rolling_13",
+        "position": 2918,
+        "train_fraction": null
+      },
+      "series_id": "BNDSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1925,
+        "origin_date": "2017-06-30",
+        "origin_label": "rolling_37",
+        "position": 7700,
+        "train_fraction": null
+      },
+      "series_id": "BNDSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 219,
+        "origin_date": "2025-06-30",
+        "origin_label": "rolling_47",
+        "position": 9709,
+        "train_fraction": null
+      },
+      "series_id": "BNDSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2483,
+        "origin_date": "2016-06-27",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7445,
+        "train_fraction": 0.75
+      },
+      "series_id": "BNDSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 155,
+        "origin_date": "2012-03-31",
+        "origin_label": "rolling_02",
+        "position": 621,
+        "train_fraction": null
+      },
+      "series_id": "BTC"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 475,
+        "origin_date": "2015-09-30",
+        "origin_label": "rolling_13",
+        "position": 1899,
+        "train_fraction": null
+      },
+      "series_id": "BTC"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1137,
+        "origin_date": "2022-12-31",
+        "origin_label": "rolling_37",
+        "position": 4548,
+        "train_fraction": null
+      },
+      "series_id": "BTC"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 292,
+        "origin_date": "2025-12-31",
+        "origin_label": "rolling_46",
+        "position": 5644,
+        "train_fraction": null
+      },
+      "series_id": "BTC"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 202,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 5734,
+        "train_fraction": null
+      },
+      "series_id": "BTC"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1485,
+        "origin_date": "2022-09-25",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 4451,
+        "train_fraction": 0.75
+      },
+      "series_id": "BTC"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 143,
+        "origin_date": "2013-12-31",
+        "origin_label": "rolling_02",
+        "position": 573,
+        "train_fraction": null
+      },
+      "series_id": "CANE"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 332,
+        "origin_date": "2016-12-30",
+        "origin_label": "rolling_13",
+        "position": 1329,
+        "train_fraction": null
+      },
+      "series_id": "CANE"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 741,
+        "origin_date": "2023-06-30",
+        "origin_label": "rolling_37",
+        "position": 2963,
+        "train_fraction": null
+      },
+      "series_id": "CANE"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 139,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 3652,
+        "train_fraction": null
+      },
+      "series_id": "CANE"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 948,
+        "origin_date": "2023-01-06",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 2843,
+        "train_fraction": 0.75
+      },
+      "series_id": "CANE"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 145,
+        "origin_date": "2012-09-28",
+        "origin_label": "rolling_02",
+        "position": 582,
+        "train_fraction": null
+      },
+      "series_id": "CORN"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 350,
+        "origin_date": "2015-12-31",
+        "origin_label": "rolling_13",
+        "position": 1400,
+        "train_fraction": null
+      },
+      "series_id": "CORN"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 806,
+        "origin_date": "2023-03-31",
+        "origin_label": "rolling_37",
+        "position": 3224,
+        "train_fraction": null
+      },
+      "series_id": "CORN"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 139,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 3975,
+        "train_fraction": null
+      },
+      "series_id": "CORN"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1029,
+        "origin_date": "2022-09-12",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 3085,
+        "train_fraction": 0.75
+      },
+      "series_id": "CORN"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 148,
+        "origin_date": "2014-03-31",
+        "origin_label": "rolling_02",
+        "position": 593,
+        "train_fraction": null
+      },
+      "series_id": "CPER"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 337,
+        "origin_date": "2017-03-31",
+        "origin_label": "rolling_13",
+        "position": 1350,
+        "train_fraction": null
+      },
+      "series_id": "CPER"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 730,
+        "origin_date": "2023-06-30",
+        "origin_label": "rolling_37",
+        "position": 2922,
+        "train_fraction": null
+      },
+      "series_id": "CPER"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 139,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 3611,
+        "train_fraction": null
+      },
+      "series_id": "CPER"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 938,
+        "origin_date": "2023-01-23",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 2812,
+        "train_fraction": 0.75
+      },
+      "series_id": "CPER"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 156,
+        "origin_date": "2009-06-30",
+        "origin_label": "rolling_02",
+        "position": 624,
+        "train_fraction": null
+      },
+      "series_id": "DBA"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 423,
+        "origin_date": "2013-09-30",
+        "origin_label": "rolling_13",
+        "position": 1694,
+        "train_fraction": null
+      },
+      "series_id": "DBA"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 974,
+        "origin_date": "2022-06-30",
+        "origin_label": "rolling_37",
+        "position": 3897,
+        "train_fraction": null
+      },
+      "series_id": "DBA"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 139,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 4837,
+        "train_fraction": null
+      },
+      "series_id": "DBA"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1245,
+        "origin_date": "2021-11-01",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 3731,
+        "train_fraction": 0.75
+      },
+      "series_id": "DBA"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 180,
+        "origin_date": "1990-03-30",
+        "origin_label": "rolling_02",
+        "position": 721,
+        "train_fraction": null
+      },
+      "series_id": "DCOILBRENTEU"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 611,
+        "origin_date": "1998-12-31",
+        "origin_label": "rolling_13",
+        "position": 2446,
+        "train_fraction": null
+      },
+      "series_id": "DCOILBRENTEU"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1704,
+        "origin_date": "2017-09-29",
+        "origin_label": "rolling_37",
+        "position": 6817,
+        "train_fraction": null
+      },
+      "series_id": "DCOILBRENTEU"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 263,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 8843,
+        "train_fraction": null
+      },
+      "series_id": "DCOILBRENTEU"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2277,
+        "origin_date": "2017-10-17",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 6829,
+        "train_fraction": 0.75
+      },
+      "series_id": "DCOILBRENTEU"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 220,
+        "origin_date": "1966-12-30",
+        "origin_label": "rolling_02",
+        "position": 882,
+        "train_fraction": null
+      },
+      "series_id": "EQX0056"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1112,
+        "origin_date": "1981-03-31",
+        "origin_label": "rolling_13",
+        "position": 4450,
+        "train_fraction": null
+      },
+      "series_id": "EQX0056"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3068,
+        "origin_date": "2012-03-30",
+        "origin_label": "rolling_37",
+        "position": 12272,
+        "train_fraction": null
+      },
+      "series_id": "EQX0056"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2619,
+        "origin_date": "2016-03-31",
+        "origin_label": "rolling_40",
+        "position": 13277,
+        "train_fraction": null
+      },
+      "series_id": "EQX0056"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 356,
+        "origin_date": "2025-03-31",
+        "origin_label": "rolling_47",
+        "position": 15540,
+        "train_fraction": null
+      },
+      "series_id": "EQX0056"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3975,
+        "origin_date": "2010-11-08",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 11921,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0056"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 220,
+        "origin_date": "1966-12-30",
+        "origin_label": "rolling_02",
+        "position": 882,
+        "train_fraction": null
+      },
+      "series_id": "EQX0062"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1112,
+        "origin_date": "1981-03-31",
+        "origin_label": "rolling_13",
+        "position": 4450,
+        "train_fraction": null
+      },
+      "series_id": "EQX0062"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3068,
+        "origin_date": "2012-03-30",
+        "origin_label": "rolling_37",
+        "position": 12272,
+        "train_fraction": null
+      },
+      "series_id": "EQX0062"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 356,
+        "origin_date": "2025-03-31",
+        "origin_label": "rolling_47",
+        "position": 15540,
+        "train_fraction": null
+      },
+      "series_id": "EQX0062"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3975,
+        "origin_date": "2010-11-08",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 11921,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0062"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 289,
+        "origin_date": "1930-09-30",
+        "origin_label": "rolling_02",
+        "position": 1158,
+        "train_fraction": null
+      },
+      "series_id": "EQX0068"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1966,
+        "origin_date": "1953-09-30",
+        "origin_label": "rolling_13",
+        "position": 7866,
+        "train_fraction": null
+      },
+      "series_id": "EQX0068"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5096,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20386,
+        "train_fraction": null
+      },
+      "series_id": "EQX0068"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25671,
+        "train_fraction": null
+      },
+      "series_id": "EQX0068"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6554,
+        "origin_date": "2000-08-07",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19661,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0068"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 280,
+        "origin_date": "1933-12-30",
+        "origin_label": "rolling_02",
+        "position": 1120,
+        "train_fraction": null
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1873,
+        "origin_date": "1956-03-29",
+        "origin_label": "rolling_13",
+        "position": 7493,
+        "train_fraction": null
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 4909,
+        "origin_date": "2004-06-30",
+        "origin_label": "rolling_37",
+        "position": 19638,
+        "train_fraction": null
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3561,
+        "origin_date": "2012-06-29",
+        "origin_label": "rolling_41",
+        "position": 21654,
+        "train_fraction": null
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 24671,
+        "train_fraction": null
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6304,
+        "origin_date": "2001-08-03",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 18911,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0086"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0086"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0086"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0086"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0086"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0087"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0087"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0087"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0087"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0087"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0093"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0093"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0093"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0093"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0093"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0099"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0099"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0099"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0099"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0099"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 190,
+        "origin_date": "1993-09-30",
+        "origin_label": "rolling_02",
+        "position": 760,
+        "train_fraction": null
+      },
+      "series_id": "EQX0105"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 695,
+        "origin_date": "2001-06-29",
+        "origin_label": "rolling_13",
+        "position": 2781,
+        "train_fraction": null
+      },
+      "series_id": "EQX0105"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1820,
+        "origin_date": "2018-09-28",
+        "origin_label": "rolling_37",
+        "position": 7281,
+        "train_fraction": null
+      },
+      "series_id": "EQX0105"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9108,
+        "train_fraction": null
+      },
+      "series_id": "EQX0105"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2337,
+        "origin_date": "2017-09-14",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7010,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0105"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0111"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0111"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0111"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0111"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0111"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0112"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0112"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0112"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0112"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0112"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0113"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0113"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0113"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0113"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0113"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0114"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0114"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0114"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0114"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0114"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0120"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0120"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0120"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0120"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0120"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0126"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0126"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0126"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0126"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0126"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 190,
+        "origin_date": "1993-09-30",
+        "origin_label": "rolling_02",
+        "position": 760,
+        "train_fraction": null
+      },
+      "series_id": "EQX0132"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 695,
+        "origin_date": "2001-06-29",
+        "origin_label": "rolling_13",
+        "position": 2781,
+        "train_fraction": null
+      },
+      "series_id": "EQX0132"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1820,
+        "origin_date": "2018-09-28",
+        "origin_label": "rolling_37",
+        "position": 7281,
+        "train_fraction": null
+      },
+      "series_id": "EQX0132"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9108,
+        "train_fraction": null
+      },
+      "series_id": "EQX0132"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2337,
+        "origin_date": "2017-09-14",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7010,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0132"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0139"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0139"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0139"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0139"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0139"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0140"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0140"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0140"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0140"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0140"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0146"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0146"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0146"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0146"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0146"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0152"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0152"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0152"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0152"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0152"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 190,
+        "origin_date": "1993-09-30",
+        "origin_label": "rolling_02",
+        "position": 760,
+        "train_fraction": null
+      },
+      "series_id": "EQX0158"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 695,
+        "origin_date": "2001-06-29",
+        "origin_label": "rolling_13",
+        "position": 2781,
+        "train_fraction": null
+      },
+      "series_id": "EQX0158"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1820,
+        "origin_date": "2018-09-28",
+        "origin_label": "rolling_37",
+        "position": 7281,
+        "train_fraction": null
+      },
+      "series_id": "EQX0158"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9108,
+        "train_fraction": null
+      },
+      "series_id": "EQX0158"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2337,
+        "origin_date": "2017-09-14",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7010,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0158"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0164"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0164"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0164"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0164"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0164"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0165"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0165"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0165"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0165"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0165"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0171"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0171"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0171"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0171"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0171"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 179,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_02",
+        "position": 717,
+        "train_fraction": null
+      },
+      "series_id": "EQX0177"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 701,
+        "origin_date": "2001-03-30",
+        "origin_label": "rolling_13",
+        "position": 2804,
+        "train_fraction": null
+      },
+      "series_id": "EQX0177"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1826,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_37",
+        "position": 7304,
+        "train_fraction": null
+      },
+      "series_id": "EQX0177"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9196,
+        "train_fraction": null
+      },
+      "series_id": "EQX0177"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2359,
+        "origin_date": "2017-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7076,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0177"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 190,
+        "origin_date": "1993-09-30",
+        "origin_label": "rolling_02",
+        "position": 760,
+        "train_fraction": null
+      },
+      "series_id": "EQX0183"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 695,
+        "origin_date": "2001-06-29",
+        "origin_label": "rolling_13",
+        "position": 2781,
+        "train_fraction": null
+      },
+      "series_id": "EQX0183"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1820,
+        "origin_date": "2018-09-28",
+        "origin_label": "rolling_37",
+        "position": 7281,
+        "train_fraction": null
+      },
+      "series_id": "EQX0183"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 239,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9108,
+        "train_fraction": null
+      },
+      "series_id": "EQX0183"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2337,
+        "origin_date": "2017-09-14",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7010,
+        "train_fraction": 0.75
+      },
+      "series_id": "EQX0183"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 277,
+        "origin_date": "1930-03-31",
+        "origin_label": "rolling_02",
+        "position": 1110,
+        "train_fraction": null
+      },
+      "series_id": "FR0001"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1959,
+        "origin_date": "1953-03-31",
+        "origin_label": "rolling_13",
+        "position": 7838,
+        "train_fraction": null
+      },
+      "series_id": "FR0001"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5122,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20487,
+        "train_fraction": null
+      },
+      "series_id": "FR0001"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25772,
+        "train_fraction": null
+      },
+      "series_id": "FR0001"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6580,
+        "origin_date": "2000-06-29",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19736,
+        "train_fraction": 0.75
+      },
+      "series_id": "FR0001"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 277,
+        "origin_date": "1930-03-31",
+        "origin_label": "rolling_02",
+        "position": 1110,
+        "train_fraction": null
+      },
+      "series_id": "FR0037"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1959,
+        "origin_date": "1953-03-31",
+        "origin_label": "rolling_13",
+        "position": 7838,
+        "train_fraction": null
+      },
+      "series_id": "FR0037"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5122,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20487,
+        "train_fraction": null
+      },
+      "series_id": "FR0037"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25772,
+        "train_fraction": null
+      },
+      "series_id": "FR0037"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6580,
+        "origin_date": "2000-06-29",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19736,
+        "train_fraction": 0.75
+      },
+      "series_id": "FR0037"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 277,
+        "origin_date": "1930-03-31",
+        "origin_label": "rolling_02",
+        "position": 1110,
+        "train_fraction": null
+      },
+      "series_id": "FR0073"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1959,
+        "origin_date": "1953-03-31",
+        "origin_label": "rolling_13",
+        "position": 7838,
+        "train_fraction": null
+      },
+      "series_id": "FR0073"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5122,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20487,
+        "train_fraction": null
+      },
+      "series_id": "FR0073"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25772,
+        "train_fraction": null
+      },
+      "series_id": "FR0073"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6580,
+        "origin_date": "2000-06-29",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19736,
+        "train_fraction": 0.75
+      },
+      "series_id": "FR0073"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 274,
+        "origin_date": "1929-09-30",
+        "origin_label": "rolling_02",
+        "position": 1097,
+        "train_fraction": null
+      },
+      "series_id": "FR0259"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1976,
+        "origin_date": "1952-12-31",
+        "origin_label": "rolling_13",
+        "position": 7906,
+        "train_fraction": null
+      },
+      "series_id": "FR0259"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5154,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20616,
+        "train_fraction": null
+      },
+      "series_id": "FR0259"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25901,
+        "train_fraction": null
+      },
+      "series_id": "FR0259"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6612,
+        "origin_date": "2000-05-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19833,
+        "train_fraction": 0.75
+      },
+      "series_id": "FR0259"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 277,
+        "origin_date": "1930-03-31",
+        "origin_label": "rolling_02",
+        "position": 1110,
+        "train_fraction": null
+      },
+      "series_id": "FR0337"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1959,
+        "origin_date": "1953-03-31",
+        "origin_label": "rolling_13",
+        "position": 7838,
+        "train_fraction": null
+      },
+      "series_id": "FR0337"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5122,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20487,
+        "train_fraction": null
+      },
+      "series_id": "FR0337"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25772,
+        "train_fraction": null
+      },
+      "series_id": "FR0337"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6580,
+        "origin_date": "2000-06-29",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19736,
+        "train_fraction": 0.75
+      },
+      "series_id": "FR0337"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 277,
+        "origin_date": "1930-03-31",
+        "origin_label": "rolling_02",
+        "position": 1110,
+        "train_fraction": null
+      },
+      "series_id": "FR0525"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1959,
+        "origin_date": "1953-03-31",
+        "origin_label": "rolling_13",
+        "position": 7838,
+        "train_fraction": null
+      },
+      "series_id": "FR0525"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5122,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20487,
+        "train_fraction": null
+      },
+      "series_id": "FR0525"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25772,
+        "train_fraction": null
+      },
+      "series_id": "FR0525"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6580,
+        "origin_date": "2000-06-29",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19736,
+        "train_fraction": 0.75
+      },
+      "series_id": "FR0525"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 277,
+        "origin_date": "1930-03-31",
+        "origin_label": "rolling_02",
+        "position": 1110,
+        "train_fraction": null
+      },
+      "series_id": "FR0551"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1959,
+        "origin_date": "1953-03-31",
+        "origin_label": "rolling_13",
+        "position": 7838,
+        "train_fraction": null
+      },
+      "series_id": "FR0551"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5122,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20487,
+        "train_fraction": null
+      },
+      "series_id": "FR0551"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25772,
+        "train_fraction": null
+      },
+      "series_id": "FR0551"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6580,
+        "origin_date": "2000-06-29",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19736,
+        "train_fraction": 0.75
+      },
+      "series_id": "FR0551"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 219,
+        "origin_date": "1974-06-28",
+        "origin_label": "rolling_02",
+        "position": 875,
+        "train_fraction": null
+      },
+      "series_id": "FX_CAD_USD"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 986,
+        "origin_date": "1986-09-30",
+        "origin_label": "rolling_13",
+        "position": 3945,
+        "train_fraction": null
+      },
+      "series_id": "FX_CAD_USD"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2699,
+        "origin_date": "2013-12-31",
+        "origin_label": "rolling_37",
+        "position": 10797,
+        "train_fraction": null
+      },
+      "series_id": "FX_CAD_USD"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 388,
+        "origin_date": "2025-03-31",
+        "origin_label": "rolling_47",
+        "position": 13606,
+        "train_fraction": null
+      },
+      "series_id": "FX_CAD_USD"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3499,
+        "origin_date": "2012-10-16",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 10495,
+        "train_fraction": 0.75
+      },
+      "series_id": "FX_CAD_USD"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 190,
+        "origin_date": "1982-12-31",
+        "origin_label": "rolling_02",
+        "position": 760,
+        "train_fraction": null
+      },
+      "series_id": "GSGSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 838,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_13",
+        "position": 3351,
+        "train_fraction": null
+      },
+      "series_id": "GSGSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2270,
+        "origin_date": "2015-12-31",
+        "origin_label": "rolling_37",
+        "position": 9082,
+        "train_fraction": null
+      },
+      "series_id": "GSGSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 281,
+        "origin_date": "2025-03-31",
+        "origin_label": "rolling_47",
+        "position": 11406,
+        "train_fraction": null
+      },
+      "series_id": "GSGSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2922,
+        "origin_date": "2014-09-29",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 8765,
+        "train_fraction": 0.75
+      },
+      "series_id": "GSGSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 220,
+        "origin_date": "1965-06-30",
+        "origin_label": "rolling_02",
+        "position": 879,
+        "train_fraction": null
+      },
+      "series_id": "IEFSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1128,
+        "origin_date": "1979-12-31",
+        "origin_label": "rolling_13",
+        "position": 4511,
+        "train_fraction": null
+      },
+      "series_id": "IEFSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3131,
+        "origin_date": "2011-09-30",
+        "origin_label": "rolling_37",
+        "position": 12523,
+        "train_fraction": null
+      },
+      "series_id": "IEFSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 15856,
+        "train_fraction": null
+      },
+      "series_id": "IEFSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 4050,
+        "origin_date": "2010-04-07",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 12147,
+        "train_fraction": 0.75
+      },
+      "series_id": "IEFSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 213,
+        "origin_date": "1971-06-30",
+        "origin_label": "rolling_02",
+        "position": 852,
+        "train_fraction": null
+      },
+      "series_id": "P_03fa0f01a5da3f84"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1034,
+        "origin_date": "1984-06-29",
+        "origin_label": "rolling_13",
+        "position": 4137,
+        "train_fraction": null
+      },
+      "series_id": "P_03fa0f01a5da3f84"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2846,
+        "origin_date": "2013-03-28",
+        "origin_label": "rolling_37",
+        "position": 11384,
+        "train_fraction": null
+      },
+      "series_id": "P_03fa0f01a5da3f84"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 14344,
+        "train_fraction": null
+      },
+      "series_id": "P_03fa0f01a5da3f84"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3672,
+        "origin_date": "2011-10-04",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 11013,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_03fa0f01a5da3f84"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 154,
+        "origin_date": "2012-12-31",
+        "origin_label": "rolling_02",
+        "position": 617,
+        "train_fraction": null
+      },
+      "series_id": "P_045c407fb16056fc"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 358,
+        "origin_date": "2016-03-31",
+        "origin_label": "rolling_13",
+        "position": 1434,
+        "train_fraction": null
+      },
+      "series_id": "P_045c407fb16056fc"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 799,
+        "origin_date": "2023-03-31",
+        "origin_label": "rolling_37",
+        "position": 3197,
+        "train_fraction": null
+      },
+      "series_id": "P_045c407fb16056fc"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 105,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 3948,
+        "train_fraction": null
+      },
+      "series_id": "P_045c407fb16056fc"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1014,
+        "origin_date": "2022-08-15",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 3039,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_045c407fb16056fc"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 154,
+        "origin_date": "2012-12-31",
+        "origin_label": "rolling_02",
+        "position": 617,
+        "train_fraction": null
+      },
+      "series_id": "P_0b32490ee03db3bf"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 358,
+        "origin_date": "2016-03-31",
+        "origin_label": "rolling_13",
+        "position": 1434,
+        "train_fraction": null
+      },
+      "series_id": "P_0b32490ee03db3bf"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 799,
+        "origin_date": "2023-03-31",
+        "origin_label": "rolling_37",
+        "position": 3197,
+        "train_fraction": null
+      },
+      "series_id": "P_0b32490ee03db3bf"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 139,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 3948,
+        "train_fraction": null
+      },
+      "series_id": "P_0b32490ee03db3bf"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1022,
+        "origin_date": "2022-09-21",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 3065,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_0b32490ee03db3bf"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 213,
+        "origin_date": "1971-06-30",
+        "origin_label": "rolling_02",
+        "position": 852,
+        "train_fraction": null
+      },
+      "series_id": "P_0b4cd6d9522059a3"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1034,
+        "origin_date": "1984-06-29",
+        "origin_label": "rolling_13",
+        "position": 4137,
+        "train_fraction": null
+      },
+      "series_id": "P_0b4cd6d9522059a3"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2846,
+        "origin_date": "2013-03-28",
+        "origin_label": "rolling_37",
+        "position": 11384,
+        "train_fraction": null
+      },
+      "series_id": "P_0b4cd6d9522059a3"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 14344,
+        "train_fraction": null
+      },
+      "series_id": "P_0b4cd6d9522059a3"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3672,
+        "origin_date": "2011-10-04",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 11013,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_0b4cd6d9522059a3"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 143,
+        "origin_date": "2012-09-28",
+        "origin_label": "rolling_02",
+        "position": 573,
+        "train_fraction": null
+      },
+      "series_id": "P_1485a4631f335216"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 355,
+        "origin_date": "2015-12-31",
+        "origin_label": "rolling_13",
+        "position": 1422,
+        "train_fraction": null
+      },
+      "series_id": "P_1485a4631f335216"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 828,
+        "origin_date": "2023-03-31",
+        "origin_label": "rolling_37",
+        "position": 3313,
+        "train_fraction": null
+      },
+      "series_id": "P_1485a4631f335216"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 109,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 4095,
+        "train_fraction": null
+      },
+      "series_id": "P_1485a4631f335216"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1052,
+        "origin_date": "2022-08-18",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 3152,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_1485a4631f335216"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 219,
+        "origin_date": "1965-06-30",
+        "origin_label": "rolling_02",
+        "position": 878,
+        "train_fraction": null
+      },
+      "series_id": "P_14f94f665defe660"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1127,
+        "origin_date": "1979-12-31",
+        "origin_label": "rolling_13",
+        "position": 4510,
+        "train_fraction": null
+      },
+      "series_id": "P_14f94f665defe660"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3130,
+        "origin_date": "2011-09-30",
+        "origin_label": "rolling_37",
+        "position": 12522,
+        "train_fraction": null
+      },
+      "series_id": "P_14f94f665defe660"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 15855,
+        "train_fraction": null
+      },
+      "series_id": "P_14f94f665defe660"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 4050,
+        "origin_date": "2010-04-07",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 12146,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_14f94f665defe660"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 217,
+        "origin_date": "1974-06-28",
+        "origin_label": "rolling_02",
+        "position": 867,
+        "train_fraction": null
+      },
+      "series_id": "P_1500af4fa1498cb8"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 980,
+        "origin_date": "1986-09-30",
+        "origin_label": "rolling_13",
+        "position": 3919,
+        "train_fraction": null
+      },
+      "series_id": "P_1500af4fa1498cb8"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2682,
+        "origin_date": "2013-12-31",
+        "origin_label": "rolling_37",
+        "position": 10727,
+        "train_fraction": null
+      },
+      "series_id": "P_1500af4fa1498cb8"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 354,
+        "origin_date": "2025-03-31",
+        "origin_label": "rolling_47",
+        "position": 13524,
+        "train_fraction": null
+      },
+      "series_id": "P_1500af4fa1498cb8"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3470,
+        "origin_date": "2012-09-17",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 10408,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_1500af4fa1498cb8"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 219,
+        "origin_date": "1965-06-30",
+        "origin_label": "rolling_02",
+        "position": 878,
+        "train_fraction": null
+      },
+      "series_id": "P_2039e676ccee0d83"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1127,
+        "origin_date": "1979-12-31",
+        "origin_label": "rolling_13",
+        "position": 4510,
+        "train_fraction": null
+      },
+      "series_id": "P_2039e676ccee0d83"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3130,
+        "origin_date": "2011-09-30",
+        "origin_label": "rolling_37",
+        "position": 12522,
+        "train_fraction": null
+      },
+      "series_id": "P_2039e676ccee0d83"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 15855,
+        "train_fraction": null
+      },
+      "series_id": "P_2039e676ccee0d83"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 4050,
+        "origin_date": "2010-04-07",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 12146,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_2039e676ccee0d83"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 219,
+        "origin_date": "1965-06-30",
+        "origin_label": "rolling_02",
+        "position": 878,
+        "train_fraction": null
+      },
+      "series_id": "P_248e1b578707e988"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1127,
+        "origin_date": "1979-12-31",
+        "origin_label": "rolling_13",
+        "position": 4510,
+        "train_fraction": null
+      },
+      "series_id": "P_248e1b578707e988"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3130,
+        "origin_date": "2011-09-30",
+        "origin_label": "rolling_37",
+        "position": 12522,
+        "train_fraction": null
+      },
+      "series_id": "P_248e1b578707e988"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 15855,
+        "train_fraction": null
+      },
+      "series_id": "P_248e1b578707e988"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 4050,
+        "origin_date": "2010-04-07",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 12146,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_248e1b578707e988"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 153,
+        "origin_date": "2012-12-31",
+        "origin_label": "rolling_02",
+        "position": 614,
+        "train_fraction": null
+      },
+      "series_id": "P_26f8f7e4a6fdc0c1"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 357,
+        "origin_date": "2016-03-31",
+        "origin_label": "rolling_13",
+        "position": 1428,
+        "train_fraction": null
+      },
+      "series_id": "P_26f8f7e4a6fdc0c1"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 794,
+        "origin_date": "2023-03-31",
+        "origin_label": "rolling_37",
+        "position": 3175,
+        "train_fraction": null
+      },
+      "series_id": "P_26f8f7e4a6fdc0c1"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 138,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 3924,
+        "train_fraction": null
+      },
+      "series_id": "P_26f8f7e4a6fdc0c1"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1016,
+        "origin_date": "2022-09-22",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 3046,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_26f8f7e4a6fdc0c1"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 152,
+        "origin_date": "2012-12-31",
+        "origin_label": "rolling_02",
+        "position": 610,
+        "train_fraction": null
+      },
+      "series_id": "P_467cf63e71a6e1f6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 355,
+        "origin_date": "2016-03-31",
+        "origin_label": "rolling_13",
+        "position": 1420,
+        "train_fraction": null
+      },
+      "series_id": "P_467cf63e71a6e1f6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 775,
+        "origin_date": "2022-12-30",
+        "origin_label": "rolling_37",
+        "position": 3099,
+        "train_fraction": null
+      },
+      "series_id": "P_467cf63e71a6e1f6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 91,
+        "origin_date": "2025-12-31",
+        "origin_label": "rolling_47",
+        "position": 3845,
+        "train_fraction": null
+      },
+      "series_id": "P_467cf63e71a6e1f6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 985,
+        "origin_date": "2022-05-26",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 2951,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_467cf63e71a6e1f6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 203,
+        "origin_date": "1983-03-31",
+        "origin_label": "rolling_02",
+        "position": 811,
+        "train_fraction": null
+      },
+      "series_id": "P_502ff360fe5538bb"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 842,
+        "origin_date": "1993-06-30",
+        "origin_label": "rolling_13",
+        "position": 3370,
+        "train_fraction": null
+      },
+      "series_id": "P_502ff360fe5538bb"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2247,
+        "origin_date": "2015-12-31",
+        "origin_label": "rolling_37",
+        "position": 8990,
+        "train_fraction": null
+      },
+      "series_id": "P_502ff360fe5538bb"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 279,
+        "origin_date": "2025-03-31",
+        "origin_label": "rolling_47",
+        "position": 11288,
+        "train_fraction": null
+      },
+      "series_id": "P_502ff360fe5538bb"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2892,
+        "origin_date": "2014-09-24",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 8675,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_502ff360fe5538bb"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 219,
+        "origin_date": "1965-06-30",
+        "origin_label": "rolling_02",
+        "position": 878,
+        "train_fraction": null
+      },
+      "series_id": "P_522d5b99705e97e6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1127,
+        "origin_date": "1979-12-31",
+        "origin_label": "rolling_13",
+        "position": 4510,
+        "train_fraction": null
+      },
+      "series_id": "P_522d5b99705e97e6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3130,
+        "origin_date": "2011-09-30",
+        "origin_label": "rolling_37",
+        "position": 12522,
+        "train_fraction": null
+      },
+      "series_id": "P_522d5b99705e97e6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 15855,
+        "train_fraction": null
+      },
+      "series_id": "P_522d5b99705e97e6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 4050,
+        "origin_date": "2010-04-07",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 12146,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_522d5b99705e97e6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 277,
+        "origin_date": "1930-03-31",
+        "origin_label": "rolling_02",
+        "position": 1109,
+        "train_fraction": null
+      },
+      "series_id": "P_59cb61c77cdec836"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1959,
+        "origin_date": "1953-03-31",
+        "origin_label": "rolling_13",
+        "position": 7837,
+        "train_fraction": null
+      },
+      "series_id": "P_59cb61c77cdec836"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 5121,
+        "origin_date": "2003-06-30",
+        "origin_label": "rolling_37",
+        "position": 20486,
+        "train_fraction": null
+      },
+      "series_id": "P_59cb61c77cdec836"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 544,
+        "origin_date": "2024-06-28",
+        "origin_label": "rolling_47",
+        "position": 25771,
+        "train_fraction": null
+      },
+      "series_id": "P_59cb61c77cdec836"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 6579,
+        "origin_date": "2000-06-30",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 19736,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_59cb61c77cdec836"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 217,
+        "origin_date": "1974-06-28",
+        "origin_label": "rolling_02",
+        "position": 867,
+        "train_fraction": null
+      },
+      "series_id": "P_652e1a27537beced"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 980,
+        "origin_date": "1986-09-30",
+        "origin_label": "rolling_13",
+        "position": 3919,
+        "train_fraction": null
+      },
+      "series_id": "P_652e1a27537beced"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2682,
+        "origin_date": "2013-12-31",
+        "origin_label": "rolling_37",
+        "position": 10727,
+        "train_fraction": null
+      },
+      "series_id": "P_652e1a27537beced"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 354,
+        "origin_date": "2025-03-31",
+        "origin_label": "rolling_47",
+        "position": 13524,
+        "train_fraction": null
+      },
+      "series_id": "P_652e1a27537beced"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3470,
+        "origin_date": "2012-09-17",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 10408,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_652e1a27537beced"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 217,
+        "origin_date": "1974-06-28",
+        "origin_label": "rolling_02",
+        "position": 867,
+        "train_fraction": null
+      },
+      "series_id": "P_66e3e28fd1eb5a70"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 980,
+        "origin_date": "1986-09-30",
+        "origin_label": "rolling_13",
+        "position": 3919,
+        "train_fraction": null
+      },
+      "series_id": "P_66e3e28fd1eb5a70"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2666,
+        "origin_date": "2013-09-30",
+        "origin_label": "rolling_37",
+        "position": 10665,
+        "train_fraction": null
+      },
+      "series_id": "P_66e3e28fd1eb5a70"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 339,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 13464,
+        "train_fraction": null
+      },
+      "series_id": "P_66e3e28fd1eb5a70"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3451,
+        "origin_date": "2012-06-27",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 10352,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_66e3e28fd1eb5a70"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 153,
+        "origin_date": "2012-12-31",
+        "origin_label": "rolling_02",
+        "position": 612,
+        "train_fraction": null
+      },
+      "series_id": "P_6bf9a99697f4e14c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 358,
+        "origin_date": "2016-03-31",
+        "origin_label": "rolling_13",
+        "position": 1434,
+        "train_fraction": null
+      },
+      "series_id": "P_6bf9a99697f4e14c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 804,
+        "origin_date": "2023-03-31",
+        "origin_label": "rolling_37",
+        "position": 3216,
+        "train_fraction": null
+      },
+      "series_id": "P_6bf9a99697f4e14c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 136,
+        "origin_date": "2026-03-31",
+        "origin_label": "rolling_47",
+        "position": 3973,
+        "train_fraction": null
+      },
+      "series_id": "P_6bf9a99697f4e14c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1028,
+        "origin_date": "2022-09-20",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 3081,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_6bf9a99697f4e14c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 217,
+        "origin_date": "1974-06-28",
+        "origin_label": "rolling_02",
+        "position": 867,
+        "train_fraction": null
+      },
+      "series_id": "P_6cdc6e3ed62da44b"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 980,
+        "origin_date": "1986-09-30",
+        "origin_label": "rolling_13",
+        "position": 3919,
+        "train_fraction": null
+      },
+      "series_id": "P_6cdc6e3ed62da44b"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2666,
+        "origin_date": "2013-09-30",
+        "origin_label": "rolling_37",
+        "position": 10665,
+        "train_fraction": null
+      },
+      "series_id": "P_6cdc6e3ed62da44b"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 339,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 13464,
+        "train_fraction": null
+      },
+      "series_id": "P_6cdc6e3ed62da44b"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3451,
+        "origin_date": "2012-06-27",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 10352,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_6cdc6e3ed62da44b"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 213,
+        "origin_date": "1971-06-30",
+        "origin_label": "rolling_02",
+        "position": 852,
+        "train_fraction": null
+      },
+      "series_id": "P_6edf99327247877c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1034,
+        "origin_date": "1984-06-29",
+        "origin_label": "rolling_13",
+        "position": 4137,
+        "train_fraction": null
+      },
+      "series_id": "P_6edf99327247877c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2846,
+        "origin_date": "2013-03-28",
+        "origin_label": "rolling_37",
+        "position": 11384,
+        "train_fraction": null
+      },
+      "series_id": "P_6edf99327247877c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 14344,
+        "train_fraction": null
+      },
+      "series_id": "P_6edf99327247877c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3672,
+        "origin_date": "2011-10-04",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 11013,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_6edf99327247877c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 212,
+        "origin_date": "1974-06-28",
+        "origin_label": "rolling_02",
+        "position": 848,
+        "train_fraction": null
+      },
+      "series_id": "P_d9696c1fc9c42b4e"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 975,
+        "origin_date": "1986-09-30",
+        "origin_label": "rolling_13",
+        "position": 3900,
+        "train_fraction": null
+      },
+      "series_id": "P_d9696c1fc9c42b4e"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2661,
+        "origin_date": "2013-09-30",
+        "origin_label": "rolling_37",
+        "position": 10646,
+        "train_fraction": null
+      },
+      "series_id": "P_d9696c1fc9c42b4e"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 339,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 13445,
+        "train_fraction": null
+      },
+      "series_id": "P_d9696c1fc9c42b4e"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3447,
+        "origin_date": "2012-07-03",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 10337,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_d9696c1fc9c42b4e"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 219,
+        "origin_date": "1965-06-30",
+        "origin_label": "rolling_02",
+        "position": 878,
+        "train_fraction": null
+      },
+      "series_id": "P_f12dc676c64a5527"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1127,
+        "origin_date": "1979-12-31",
+        "origin_label": "rolling_13",
+        "position": 4510,
+        "train_fraction": null
+      },
+      "series_id": "P_f12dc676c64a5527"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3130,
+        "origin_date": "2011-09-30",
+        "origin_label": "rolling_37",
+        "position": 12522,
+        "train_fraction": null
+      },
+      "series_id": "P_f12dc676c64a5527"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 15855,
+        "train_fraction": null
+      },
+      "series_id": "P_f12dc676c64a5527"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 4050,
+        "origin_date": "2010-04-07",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 12146,
+        "train_fraction": 0.75
+      },
+      "series_id": "P_f12dc676c64a5527"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 213,
+        "origin_date": "1971-06-30",
+        "origin_label": "rolling_02",
+        "position": 853,
+        "train_fraction": null
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 955,
+        "origin_date": "1983-03-31",
+        "origin_label": "rolling_12",
+        "position": 3822,
+        "train_fraction": null
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1034,
+        "origin_date": "1984-06-29",
+        "origin_label": "rolling_13",
+        "position": 4138,
+        "train_fraction": null
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2846,
+        "origin_date": "2013-03-28",
+        "origin_label": "rolling_37",
+        "position": 11385,
+        "train_fraction": null
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 341,
+        "origin_date": "2024-12-31",
+        "origin_label": "rolling_47",
+        "position": 14345,
+        "train_fraction": null
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 3672,
+        "origin_date": "2011-10-04",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 11014,
+        "train_fraction": 0.75
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 172,
+        "origin_date": "2003-03-31",
+        "origin_label": "rolling_02",
+        "position": 687,
+        "train_fraction": null
+      },
+      "series_id": "TIPSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 518,
+        "origin_date": "2008-09-30",
+        "origin_label": "rolling_13",
+        "position": 2073,
+        "train_fraction": null
+      },
+      "series_id": "TIPSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1273,
+        "origin_date": "2020-09-30",
+        "origin_label": "rolling_37",
+        "position": 5094,
+        "train_fraction": null
+      },
+      "series_id": "TIPSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 155,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 6349,
+        "train_fraction": null
+      },
+      "series_id": "TIPSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 1627,
+        "origin_date": "2019-11-19",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 4877,
+        "train_fraction": 0.75
+      },
+      "series_id": "TIPSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 176,
+        "origin_date": "1989-06-30",
+        "origin_label": "rolling_02",
+        "position": 703,
+        "train_fraction": null
+      },
+      "series_id": "TPINX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 428,
+        "origin_date": "1993-06-30",
+        "origin_label": "rolling_07",
+        "position": 1714,
+        "train_fraction": null
+      },
+      "series_id": "TPINX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 744,
+        "origin_date": "1998-06-30",
+        "origin_label": "rolling_13",
+        "position": 2977,
+        "train_fraction": null
+      },
+      "series_id": "TPINX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1955,
+        "origin_date": "2017-09-29",
+        "origin_label": "rolling_37",
+        "position": 7822,
+        "train_fraction": null
+      },
+      "series_id": "TPINX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 264,
+        "origin_date": "2025-09-30",
+        "origin_label": "rolling_47",
+        "position": 9832,
+        "train_fraction": null
+      },
+      "series_id": "TPINX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2525,
+        "origin_date": "2016-09-30",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 7571,
+        "train_fraction": 0.75
+      },
+      "series_id": "TPINX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 189,
+        "origin_date": "1982-12-31",
+        "origin_label": "rolling_02",
+        "position": 757,
+        "train_fraction": null
+      },
+      "series_id": "VWEHX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 837,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_13",
+        "position": 3348,
+        "train_fraction": null
+      },
+      "series_id": "VWEHX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2270,
+        "origin_date": "2015-12-31",
+        "origin_label": "rolling_37",
+        "position": 9079,
+        "train_fraction": null
+      },
+      "series_id": "VWEHX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 328,
+        "origin_date": "2025-06-30",
+        "origin_label": "rolling_47",
+        "position": 11465,
+        "train_fraction": null
+      },
+      "series_id": "VWEHX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2949,
+        "origin_date": "2015-01-27",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 8844,
+        "train_fraction": 0.75
+      },
+      "series_id": "VWEHX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 189,
+        "origin_date": "1982-12-31",
+        "origin_label": "rolling_02",
+        "position": 757,
+        "train_fraction": null
+      },
+      "series_id": "VWESX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 837,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_13",
+        "position": 3348,
+        "train_fraction": null
+      },
+      "series_id": "VWESX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2270,
+        "origin_date": "2015-12-31",
+        "origin_label": "rolling_37",
+        "position": 9079,
+        "train_fraction": null
+      },
+      "series_id": "VWESX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 328,
+        "origin_date": "2025-06-30",
+        "origin_label": "rolling_47",
+        "position": 11465,
+        "train_fraction": null
+      },
+      "series_id": "VWESX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2949,
+        "origin_date": "2015-01-27",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 8844,
+        "train_fraction": 0.75
+      },
+      "series_id": "VWESX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 189,
+        "origin_date": "1982-12-31",
+        "origin_label": "rolling_02",
+        "position": 757,
+        "train_fraction": null
+      },
+      "series_id": "VWITX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 837,
+        "origin_date": "1993-03-31",
+        "origin_label": "rolling_13",
+        "position": 3348,
+        "train_fraction": null
+      },
+      "series_id": "VWITX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2270,
+        "origin_date": "2015-12-31",
+        "origin_label": "rolling_37",
+        "position": 9079,
+        "train_fraction": null
+      },
+      "series_id": "VWITX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 328,
+        "origin_date": "2025-06-30",
+        "origin_label": "rolling_47",
+        "position": 11465,
+        "train_fraction": null
+      },
+      "series_id": "VWITX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_three_quarters_test_final_quarter",
+        "max_horizon": 2949,
+        "origin_date": "2015-01-27",
+        "origin_label": "train_first_three_quarters_test_final_quarter",
+        "position": 8844,
+        "train_fraction": 0.75
+      },
+      "series_id": "VWITX_YAHOO_DAILY"
+    }
+  ],
+  "configs": [
+    {
+      "mean": "empirical_Bayes_center"
+    },
+    {
+      "mean": "empirical_Bayes_posterior"
+    }
+  ],
+  "diagnostics_zero_selection_weight": true,
+  "expected_forecasts": 710,
+  "fixed_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+  "full_panel_catalogue_count_unchanged": true,
+  "full_panel_launch_requires_stopping_review": true,
+  "no_hardcoded_component_mixtures": true,
+  "official": false,
+  "paths": 1000,
+  "selected_families": 70,
+  "source_hashes": {
+    "asset_level_v6/asset_forecast.py": "5688896c8aee66f60ce852f447e1ac3b3819f40caf19139c0577c8909cbaaa7a",
+    "asset_level_v6/asset_models.py": "74ba418a5b35d967f629a86dc21e649bac7f48fbda685889b6256e1501407c2b",
+    "asset_level_v6/asset_paths.py": "5c4a109518e6193d2c240ba3b9d51de0b803f992c70bad7670cc15a75e8f9e84",
+    "asset_level_v6/blocks.py": "4eb1aba602dea9dd9c4d48aea64104a4a9fa50babe5d13ce906cfdc737600f06",
+    "asset_level_v6/candidates/asset_AR1_mean/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_AR1_mean/candidate.py": "fa90656844c4451ba69c393aa2e3acd03f021a953b82fb9de3f26a9efb1c0f50",
+    "asset_level_v6/candidates/asset_AR1_mean/fit_ar.py": "da9d0b8f67c6d9b8cb8f033eb2c0f4af862d74aec338da402ecd989aecb88b30",
+    "asset_level_v6/candidates/asset_AR1_mean/kernels.py": "a0009d78410907c2fcae9ffddf88b89ffe79e2f0f80fb48f88e325c30d48cc07",
+    "asset_level_v6/candidates/asset_circular_blocks/DESIGN.md": "b2636460f2595ee872126fac74809043aea5e2d69cb936e97a12ad40fafa298f",
+    "asset_level_v6/candidates/asset_circular_blocks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_circular_blocks/candidate.py": "fbc3e613d6f25b8ce01c643a18dfc3fdc6637990721e915d1836dd854b9c986c",
+    "asset_level_v6/candidates/asset_circular_blocks/circular.py": "13fa077d5aa0b1f91e969235505fb0a9406331fd953938f16575ae08a4a604db",
+    "asset_level_v6/candidates/asset_empirical_bayes/DESIGN.md": "4373c826970e7b3a8f1d1f79e9c052e52fb046848949de63a1c7997e2e0b0545",
+    "asset_level_v6/candidates/asset_empirical_bayes/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "asset_level_v6/candidates/asset_empirical_bayes/candidate.py": "635c623a48f7d73a47029f24c05026ff2f7d6bddb497720d017b02ddc03ff4bc",
+    "asset_level_v6/candidates/asset_empirical_bayes/mean.py": "f1df2f4d5bef28a529faa76c582e5cb46d30ccef897f7e9eb529b0603beb1ba9",
+    "asset_level_v6/candidates/asset_empirical_bayes/reserved1000/working_incumbent_snapshot.json": "63c3ab8c0fcc991945f020b5992121016e8a03f536029abea516bbbdcb0d24b3",
+    "asset_level_v6/candidates/asset_empirical_bayes/reserved_selection.json": "d32d4b17d53e4d8f31aa2e6df78b84c364665df3627cf2f78a5e4b762330ef87",
+    "asset_level_v6/candidates/asset_empirical_bayes/screen100/working_incumbent_snapshot.json": "63c3ab8c0fcc991945f020b5992121016e8a03f536029abea516bbbdcb0d24b3",
+    "asset_level_v6/candidates/asset_fading_vol/DESIGN.md": "78e2482ae2b751a1dbec6c0f88e6a302c1801d12f6bf2e9e9c21cd3b08b00ad6",
+    "asset_level_v6/candidates/asset_fading_vol/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_fading_vol/candidate.py": "a6214cd886b696178ebd6f209941badc5e9c55a7357cbd72c91661faf1dc59d7",
+    "asset_level_v6/candidates/asset_fading_vol/fade.py": "fdcdbf58a3e0e5b698ec7efae5b4d4de24e2f5871d1fe708b90cbdaa2a624464",
+    "asset_level_v6/candidates/asset_fading_vol/kernels.py": "f80e32db47d0a7e4adda220b616ad17a063850d16caf48b11f83858ce613e4f8",
+    "asset_level_v6/candidates/asset_feature_batch/DESIGN.md": "9ce3870302a7442e260bf4f6fe6c686bfbdd380ba236587c7051cca559bc9655",
+    "asset_level_v6/candidates/asset_feature_batch/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_feature_batch/candidate.py": "48ca47c07cb4d4c618ab76db0d7f89da02668a4b38e4cd5f0d6a80385494b570",
+    "asset_level_v6/candidates/asset_feature_batch/fits.py": "d0812ded6ee5b6384163d43e999ceeec13a39f901304e6112caf21326b0cacb2",
+    "asset_level_v6/candidates/asset_feature_batch/kernels.py": "01b131c2d918cf1904070ed17eacf1787c91dcf4b1dd9d728712a6d8dc896700",
+    "asset_level_v6/candidates/asset_feature_batch/reserved_selection.json": "30d172b3e9b0d1cc7eda0d0560f35bba0f07f0cb8578ea0cbd0e611ed06f295e",
+    "asset_level_v6/candidates/asset_gjr/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_gjr/candidate.py": "e1e08173ac52993e3aac59df2bee54c54d9da390ac67ee6b9dce3f1c74449a26",
+    "asset_level_v6/candidates/asset_gjr/fit.py": "ef8ea42291f8b3c3c045ca281a0da4522070779ac0ee8c1f75e65da3e0581bf4",
+    "asset_level_v6/candidates/asset_gjr/kernels.py": "662402a7b8a580cf1db59db888f2fb5dffe64e90d276bd58b35039bf65918393",
+    "asset_level_v6/candidates/asset_gjr/pilot_run.py": "364a81e01c1a251370e1681c0121423f387178ab040e9edf83d65a20152387af",
+    "asset_level_v6/candidates/asset_mean_uncertainty/fhs_only.py": "ab8f291ccb6b9e063b015f461ecccea61fd074f455cc18e6503cf6ea031871bc",
+    "asset_level_v6/candidates/asset_mean_uncertainty/model.py": "ddf68113745c614ddb61dff316e9072c0c0eda8c9044309cddc744f5b1da94dc",
+    "asset_level_v6/candidates/asset_prior_best/candidate.py": "19e1ce86d88466c94eb6177351ba54089c500a4e5e710529219ecb49ac39fb14",
+    "asset_level_v6/candidates/asset_prior_best/fit.py": "df629481a544832e0dd50e5d09813d127e6d75ae179a430f0452cfdbb07a9329",
+    "asset_level_v6/candidates/asset_prior_best/kernels.py": "fb608b9c1a7776d6b99f093c83a2779e11c1741270506d0405bb7b7f33d8b2f9",
+    "asset_level_v6/candidates/asset_prior_best/mean.py": "a39968c4c95a8679f0ed3d422f3d7fb8e83fd4479db10fe1319f8e08727e45f5",
+    "asset_level_v6/candidates/asset_trained_pool/DESIGN.md": "9fe1e122cce44793ab267487aef7459e08ac8a385c43ba3bc71cbddbe7eae95a",
+    "asset_level_v6/candidates/asset_trained_pool/__init__.py": "cf7ecbacaf2dcad8da3bf0f003136e87cd6bf1c757b1fb2b8d3c1a5f36c51a63",
+    "asset_level_v6/candidates/asset_trained_pool/candidate.py": "989b0cf7ad94cb4ed1ad85e95c623e2f96a1812eef3dd83a4936010a2cb17e2b",
+    "asset_level_v6/candidates/asset_trained_pool/reserved1000/working_incumbent_snapshot.json": "6194310b77b452a6e302b40349b51f67e73dad7dd7af42c095f21569ebb885ef",
+    "asset_level_v6/candidates/asset_trained_pool/reserved_selection.json": "0507d411c4187717a09d5ab6a56bcdc84bc8424e4496b6b5b57bdff4c38c702b",
+    "asset_level_v6/candidates/asset_trained_pool/screen100/working_incumbent_snapshot.json": "6194310b77b452a6e302b40349b51f67e73dad7dd7af42c095f21569ebb885ef",
+    "asset_level_v6/candidates/asset_trained_pool/weight.py": "b9cd5f7da5a250ba14c4f2c7d354d94a088a412a8f9410cddedbfe36a4481c26",
+    "asset_level_v6/common.py": "5ec8ab8afec8dcff490c86d290708a156ae0d7c2f57c62460be8295fbe12bfa0",
+    "asset_level_v6/inputs.py": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9",
+    "asset_level_v6/native_index.py": "c1ff806397eedb85362b1246d30a13dd1e7eadf22edd81d27ef3d7e4924b63e8",
+    "asset_level_v6/prepare.py": "44d34c6f61275b48300710d6da95b625efe97408c6ce9fdace574e91ff87ef74",
+    "asset_level_v6/profile.json": "7a560dddb1ddf1134b71b00db39be18ca83b0ad9d2921f405e66a51807830f2c",
+    "asset_level_v6/qualify.py": "6109ec116413d440dd873658fa0c6f3fb4f431f149d04f36e600c14c86304b11",
+    "asset_level_v6/reporter.py": "c252b7d2220cfc690371dfc060ca2b835592621854910ae3eaf0d1400f45744e",
+    "asset_level_v6/run.py": "51bf796fe32980b2c417e78ff500c3426ad2176f4e3b07ef8b8dc6c10f8bcc21",
+    "asset_level_v6/score_main.py": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+    "asset_level_v6/sweep_v6.py": "c2e51dee86eedbad1e03061019b4a7e7c4fab274cb9f4b2b0f9aadaaf320acc1",
+    "asset_level_v6/test_asset_paths.py": "816afa461243763cbdd7b9d8f25f81b59719c0c9358c000db99c94e3241e856d",
+    "run_asset_empirical_bayes_validation.py": "bf4dd9288f73e20764ac29479a7cf3d95aeb41ac5e08b3a8fd20700b3f1f8fa8",
+    "run_asset_feature_batch.py": "ee4cd658f4a74a0b59a4dfee5b97f39b0972e51c532eb746fd849174696ac37e",
+    "run_asset_feature_reserved.py": "161bde91b484c64b42bfa2e2c236f444ca87f527992b29bf4a18f2379209a336",
+    "run_asset_trained_pool_validation.py": "595bc5e426e0f00d6c4328f9f38e984442543d6b0ec4e13dd6e8fadf4d94a639",
+    "screen_asset_circular.py": "2b2ee8e4531a3f9abe0e7ab7a1d788231ae4322eec63f241c818d1496e45d237",
+    "screen_asset_components.py": "7a88144203e7a348440ff9a35c266a62d9552863702e1e65a8b3a9cb1c20895e",
+    "screen_asset_empirical_bayes.py": "d175aa10d5de665d610cfcf4c087f6fb1582ead8b4ac8ecd17cb111e03d1694e",
+    "screen_asset_fading_vol.py": "fbc18edc1d8ecb6601e9e634d7e21f10b4b229a7bdea8288ffbcc86c2d6fb78f",
+    "screen_asset_means.py": "045bca7b7c8371dbda3f7583e3ff9f0594f9b12707d46440d3ee1391fed35fde",
+    "screen_asset_trained_pool.py": "93aa67b8830c3aa2a2a939fabbbd47ec454b7b6dbe29bab5ea0bcf583bd81ee0",
+    "test_asset_empirical_bayes.py": "7c450ee7f5ef258c210a09fc85c44565804cdf46e154d2c0ca34651328b84fdc",
+    "test_asset_trained_pool.py": "bd07d074f5450603606e21dbed11eeab93ef761829acea66ce3baf5c83ca6080"
+  },
+  "utc": "2026-10-21T06:30:27.498660+00:00",
+  "workers": 12,
+  "working_incumbent_model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a"
+}

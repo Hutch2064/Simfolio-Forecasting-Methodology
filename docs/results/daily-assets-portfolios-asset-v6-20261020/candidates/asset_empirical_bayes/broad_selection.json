@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-21T06:31:46.416703+00:00",
+  "selected": [
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "mean": "empirical_Bayes_center"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.672182002107346,
+      "model_id": "model_testing_asset_joint_EB_mean_v1_8cbefd37d0e23e72",
+      "percent_better_vs_same1000path_fixed_reference": 4.128108010225995,
+      "successful_cases": 355
+    }
+  ],
+  "basis": "Center-only improves current parent and scores better than added posterior contraction on both355case1000path blocks; advance the simpler frozen law to existing7418case broad sample. No retuning, new holdout allocation or full-panel admission.",
+  "no_parameter_retuning": true,
+  "diagnostics_zero_selection_weight": true
+}

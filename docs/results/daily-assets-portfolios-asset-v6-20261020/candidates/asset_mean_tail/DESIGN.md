@@ -1,0 +1,11 @@
+# Joint posterior mean uncertainty contrast
+
+Preserve the working learned EWMA-fading raw-block / SV-RMS Gaussian pool, all training-only fits, blend weight, mean shrinkage, current mean covariance and native asset/portfolio accounting. Change only the shape and numerical construction of the once-per-scenario mean perturbation, which remains fixed through that path.
+
+The current mean covariance is the weighted batch-mean estimate with q=floor(sqrt(n)), df=q-1 and its existing df/(df-2) adjustment. Draw a multivariate Student perturbation with the same covariance by multiplying a correlated standard-normal vector by sqrt((df-2)/chi_square(df)). The radial draw is shared across assets within a scenario, preserving joint covariance and elliptical tails. Degrees of freedom come from training batch count, without an outer-score tuned tail parameter. Keep the same mean-shrinkage center and covariance: do not add the variance adjustment a second time.
+
+Use randomized Latin-hypercube normal/radial coordinates and complete-vector antithetic pairs so the declared finite ensemble has the exact fitted mean. Include a Gaussian version with the same joint numerical construction to distinguish a shape change from an ensemble-construction effect. Parent mode is an exact byte-level control. All methods are evaluated using the same sole main Q; no diagnostic metric receives selection weight. An apparent numerical gain still needs higher-precision and broader matched evaluation, not a one-seed distributional-performance claim.
+
+Earlier portfolio-level Student mean uncertainty was competitive, while empirical batch-vector perturbations on an older asset-level hybrid lost validation. This is a covariance-matched elliptical mean-uncertainty contrast, distinct from daily Student shocks and from re-tuning a rejected empirical mean law. It does not imply a new best model or an unseen-data gain.
+
+Qualify marginal Student shape, covariance, exact finite-ensemble center, Gaussian limit, exact parent replay at100/1000paths, exact path counts, joint accounting and chunk invariance before a small matched field. No automatic full-panel escalation. The blend learner remains historical daily marginal CRPS, not an internal rolling out-of-sample test.

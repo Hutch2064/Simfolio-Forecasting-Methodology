@@ -1,0 +1,890 @@
+{
+  "anchor_replays_expected": 72,
+  "case_selection": "Same frozen72case/70family sample; adaptively reused, no independence or significance claim",
+  "cases": [
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2489,
+        "origin_date": "2016-11-21",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2487,
+        "train_fraction": 0.5
+      },
+      "series_id": "DBA"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5844,
+        "origin_date": "2003-02-20",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5843,
+        "train_fraction": 0.5
+      },
+      "series_id": "GSGSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1120,
+        "origin_date": "2008-06-30",
+        "origin_label": "rolling_25",
+        "position": 4480,
+        "train_fraction": null
+      },
+      "series_id": "DCOILBRENTEU"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2058,
+        "origin_date": "2018-08-09",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2056,
+        "train_fraction": 0.5
+      },
+      "series_id": "CORN"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 1876,
+        "origin_date": "2019-05-02",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 1874,
+        "train_fraction": 0.5
+      },
+      "series_id": "CPER"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1935,
+        "origin_date": "1998-09-30",
+        "origin_label": "rolling_25",
+        "position": 7740,
+        "train_fraction": null
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7344,
+        "origin_date": "1997-03-04",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7342,
+        "train_fraction": 0.5
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 1896,
+        "origin_date": "2019-04-03",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 1895,
+        "train_fraction": 0.5
+      },
+      "series_id": "CANE"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2969,
+        "origin_date": "2018-09-02",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2967,
+        "train_fraction": 0.5
+      },
+      "series_id": "BTC"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0093"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0086"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4674,
+        "origin_date": "2008-09-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4673,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0105"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0099"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0087"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0112"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0111"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0120"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0113"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4674,
+        "origin_date": "2008-09-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4673,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0132"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0126"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0114"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0146"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0139"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4674,
+        "origin_date": "2008-09-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4673,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0158"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0152"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0140"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0171"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0164"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4674,
+        "origin_date": "2008-09-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4673,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0183"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0177"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0165"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0551"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0337"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7949,
+        "origin_date": "1995-01-27",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7947,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0056"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3505,
+        "origin_date": "1982-03-31",
+        "origin_label": "rolling_26",
+        "position": 14022,
+        "train_fraction": null
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2052,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_44",
+        "position": 23163,
+        "train_fraction": null
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13108,
+        "origin_date": "1974-08-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13107,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0068"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7949,
+        "origin_date": "1995-01-27",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7947,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0062"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13223,
+        "origin_date": "1974-03-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13222,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0259"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0001"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0073"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0037"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4965,
+        "origin_date": "2006-08-16",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4963,
+        "train_fraction": 0.5
+      },
+      "series_id": "BNDSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5897,
+        "origin_date": "2003-05-12",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5896,
+        "train_fraction": 0.5
+      },
+      "series_id": "VWESX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5897,
+        "origin_date": "2003-05-12",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5896,
+        "train_fraction": 0.5
+      },
+      "series_id": "VWEHX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 3253,
+        "origin_date": "2013-06-06",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 3251,
+        "train_fraction": 0.5
+      },
+      "series_id": "TIPSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1342,
+        "origin_date": "2007-12-31",
+        "origin_label": "rolling_25",
+        "position": 5367,
+        "train_fraction": null
+      },
+      "series_id": "TPINX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5897,
+        "origin_date": "2003-05-12",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5896,
+        "train_fraction": 0.5
+      },
+      "series_id": "VWITX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8098,
+        "train_fraction": 0.5
+      },
+      "series_id": "IEFSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6998,
+        "origin_date": "1998-11-18",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6996,
+        "train_fraction": 0.5
+      },
+      "series_id": "FX_CAD_USD"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_f12dc676c64a5527"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6893,
+        "origin_date": "1998-09-16",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6891,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_d9696c1fc9c42b4e"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5784,
+        "origin_date": "2003-02-28",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5783,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_502ff360fe5538bb"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 1969,
+        "origin_date": "2018-06-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 1967,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_467cf63e71a6e1f6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2055,
+        "origin_date": "2018-09-03",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2054,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_6bf9a99697f4e14c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7343,
+        "origin_date": "1997-03-05",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7342,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_6edf99327247877c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7343,
+        "origin_date": "1997-03-05",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7342,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_03fa0f01a5da3f84"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6902,
+        "origin_date": "1998-09-02",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6901,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_66e3e28fd1eb5a70"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7343,
+        "origin_date": "1997-03-05",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7342,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_0b4cd6d9522059a3"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2103,
+        "origin_date": "2018-08-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2101,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_1485a4631f335216"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2044,
+        "origin_date": "2018-08-29",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2043,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_0b32490ee03db3bf"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2032,
+        "origin_date": "2018-08-23",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2030,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_26f8f7e4a6fdc0c1"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2027,
+        "origin_date": "2018-08-06",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2026,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_045c407fb16056fc"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_522d5b99705e97e6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6940,
+        "origin_date": "1998-10-27",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6938,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_652e1a27537beced"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13158,
+        "origin_date": "1974-06-20",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_59cb61c77cdec836"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6902,
+        "origin_date": "1998-09-02",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6901,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_6cdc6e3ed62da44b"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_2039e676ccee0d83"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6940,
+        "origin_date": "1998-10-27",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6938,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_1500af4fa1498cb8"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_248e1b578707e988"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_14f94f665defe660"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0525"
+    }
+  ],
+  "configs": [
+    {
+      "mean_law": "Gaussian_joint"
+    },
+    {
+      "mean_law": "Student_joint"
+    }
+  ],
+  "diagnostics_zero_selection_weight": true,
+  "expected_forecasts": 144,
+  "fixed_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+  "full_panel_catalogue_count_unchanged": true,
+  "full_panel_launch_requires_stopping_review": true,
+  "no_hardcoded_component_mixtures": true,
+  "official": false,
+  "paths": 1000,
+  "selected_families": 70,
+  "source_hashes": {
+    "asset_level_v6/asset_forecast.py": "5688896c8aee66f60ce852f447e1ac3b3819f40caf19139c0577c8909cbaaa7a",
+    "asset_level_v6/asset_models.py": "74ba418a5b35d967f629a86dc21e649bac7f48fbda685889b6256e1501407c2b",
+    "asset_level_v6/asset_paths.py": "5c4a109518e6193d2c240ba3b9d51de0b803f992c70bad7670cc15a75e8f9e84",
+    "asset_level_v6/blocks.py": "4eb1aba602dea9dd9c4d48aea64104a4a9fa50babe5d13ce906cfdc737600f06",
+    "asset_level_v6/candidates/asset_AR1_mean/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_AR1_mean/candidate.py": "fa90656844c4451ba69c393aa2e3acd03f021a953b82fb9de3f26a9efb1c0f50",
+    "asset_level_v6/candidates/asset_AR1_mean/fit_ar.py": "da9d0b8f67c6d9b8cb8f033eb2c0f4af862d74aec338da402ecd989aecb88b30",
+    "asset_level_v6/candidates/asset_AR1_mean/kernels.py": "a0009d78410907c2fcae9ffddf88b89ffe79e2f0f80fb48f88e325c30d48cc07",
+    "asset_level_v6/candidates/asset_circular_blocks/DESIGN.md": "b2636460f2595ee872126fac74809043aea5e2d69cb936e97a12ad40fafa298f",
+    "asset_level_v6/candidates/asset_circular_blocks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_circular_blocks/candidate.py": "fbc3e613d6f25b8ce01c643a18dfc3fdc6637990721e915d1836dd854b9c986c",
+    "asset_level_v6/candidates/asset_circular_blocks/circular.py": "13fa077d5aa0b1f91e969235505fb0a9406331fd953938f16575ae08a4a604db",
+    "asset_level_v6/candidates/asset_fading_vol/DESIGN.md": "78e2482ae2b751a1dbec6c0f88e6a302c1801d12f6bf2e9e9c21cd3b08b00ad6",
+    "asset_level_v6/candidates/asset_fading_vol/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_fading_vol/candidate.py": "a6214cd886b696178ebd6f209941badc5e9c55a7357cbd72c91661faf1dc59d7",
+    "asset_level_v6/candidates/asset_fading_vol/fade.py": "fdcdbf58a3e0e5b698ec7efae5b4d4de24e2f5871d1fe708b90cbdaa2a624464",
+    "asset_level_v6/candidates/asset_fading_vol/kernels.py": "f80e32db47d0a7e4adda220b616ad17a063850d16caf48b11f83858ce613e4f8",
+    "asset_level_v6/candidates/asset_feature_batch/DESIGN.md": "9ce3870302a7442e260bf4f6fe6c686bfbdd380ba236587c7051cca559bc9655",
+    "asset_level_v6/candidates/asset_feature_batch/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_feature_batch/candidate.py": "48ca47c07cb4d4c618ab76db0d7f89da02668a4b38e4cd5f0d6a80385494b570",
+    "asset_level_v6/candidates/asset_feature_batch/confirmation_selection.json": "8d101b0673c69918b67084d0eda6bae66fc237fd90d2996c362ef9927bafa441",
+    "asset_level_v6/candidates/asset_feature_batch/fits.py": "d0812ded6ee5b6384163d43e999ceeec13a39f901304e6112caf21326b0cacb2",
+    "asset_level_v6/candidates/asset_feature_batch/kernels.py": "01b131c2d918cf1904070ed17eacf1787c91dcf4b1dd9d728712a6d8dc896700",
+    "asset_level_v6/candidates/asset_gjr/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_gjr/candidate.py": "e1e08173ac52993e3aac59df2bee54c54d9da390ac67ee6b9dce3f1c74449a26",
+    "asset_level_v6/candidates/asset_gjr/fit.py": "ef8ea42291f8b3c3c045ca281a0da4522070779ac0ee8c1f75e65da3e0581bf4",
+    "asset_level_v6/candidates/asset_gjr/kernels.py": "662402a7b8a580cf1db59db888f2fb5dffe64e90d276bd58b35039bf65918393",
+    "asset_level_v6/candidates/asset_gjr/pilot_run.py": "364a81e01c1a251370e1681c0121423f387178ab040e9edf83d65a20152387af",
+    "asset_level_v6/candidates/asset_mean_tail/DESIGN.md": "6e1f3241e57fbabc7314862c413aa3a6fcf59eb963d26d26e8b5b8a802434c9b",
+    "asset_level_v6/candidates/asset_mean_tail/__init__.py": "87568b6f35d99b232f15f98610d9dbcac177c9504d3955d6dffa56198876c6ac",
+    "asset_level_v6/candidates/asset_mean_tail/candidate.py": "f7d3eaa120ed6cfda2f35a280dc44afa473ac076294d2437fe964fedd8c6b704",
+    "asset_level_v6/candidates/asset_mean_tail/mean.py": "d6f62f192f7bfea7d1b6f3529b041e3ba31e8b6bddfd2b85896396d70bec1f9e",
+    "asset_level_v6/candidates/asset_mean_tail/screen100/working_incumbent_snapshot.json": "63c3ab8c0fcc991945f020b5992121016e8a03f536029abea516bbbdcb0d24b3",
+    "asset_level_v6/candidates/asset_mean_tail/screen1000/working_incumbent_snapshot.json": "63c3ab8c0fcc991945f020b5992121016e8a03f536029abea516bbbdcb0d24b3",
+    "asset_level_v6/candidates/asset_mean_uncertainty/fhs_only.py": "ab8f291ccb6b9e063b015f461ecccea61fd074f455cc18e6503cf6ea031871bc",
+    "asset_level_v6/candidates/asset_mean_uncertainty/model.py": "ddf68113745c614ddb61dff316e9072c0c0eda8c9044309cddc744f5b1da94dc",
+    "asset_level_v6/candidates/asset_prior_best/candidate.py": "19e1ce86d88466c94eb6177351ba54089c500a4e5e710529219ecb49ac39fb14",
+    "asset_level_v6/candidates/asset_prior_best/fit.py": "df629481a544832e0dd50e5d09813d127e6d75ae179a430f0452cfdbb07a9329",
+    "asset_level_v6/candidates/asset_prior_best/kernels.py": "fb608b9c1a7776d6b99f093c83a2779e11c1741270506d0405bb7b7f33d8b2f9",
+    "asset_level_v6/candidates/asset_prior_best/mean.py": "a39968c4c95a8679f0ed3d422f3d7fb8e83fd4479db10fe1319f8e08727e45f5",
+    "asset_level_v6/candidates/asset_trained_pool/DESIGN.md": "9fe1e122cce44793ab267487aef7459e08ac8a385c43ba3bc71cbddbe7eae95a",
+    "asset_level_v6/candidates/asset_trained_pool/__init__.py": "cf7ecbacaf2dcad8da3bf0f003136e87cd6bf1c757b1fb2b8d3c1a5f36c51a63",
+    "asset_level_v6/candidates/asset_trained_pool/candidate.py": "989b0cf7ad94cb4ed1ad85e95c623e2f96a1812eef3dd83a4936010a2cb17e2b",
+    "asset_level_v6/candidates/asset_trained_pool/confirmation_selection.json": "8d475c6fe0d0993d788152d161317e1f1c435386f59c4da15931182a24292578",
+    "asset_level_v6/candidates/asset_trained_pool/development1000/working_incumbent_snapshot.json": "6194310b77b452a6e302b40349b51f67e73dad7dd7af42c095f21569ebb885ef",
+    "asset_level_v6/candidates/asset_trained_pool/screen100/working_incumbent_snapshot.json": "6194310b77b452a6e302b40349b51f67e73dad7dd7af42c095f21569ebb885ef",
+    "asset_level_v6/candidates/asset_trained_pool/weight.py": "b9cd5f7da5a250ba14c4f2c7d354d94a088a412a8f9410cddedbfe36a4481c26",
+    "asset_level_v6/common.py": "5ec8ab8afec8dcff490c86d290708a156ae0d7c2f57c62460be8295fbe12bfa0",
+    "asset_level_v6/inputs.py": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9",
+    "asset_level_v6/native_index.py": "c1ff806397eedb85362b1246d30a13dd1e7eadf22edd81d27ef3d7e4924b63e8",
+    "asset_level_v6/prepare.py": "44d34c6f61275b48300710d6da95b625efe97408c6ce9fdace574e91ff87ef74",
+    "asset_level_v6/profile.json": "7a560dddb1ddf1134b71b00db39be18ca83b0ad9d2921f405e66a51807830f2c",
+    "asset_level_v6/qualify.py": "6109ec116413d440dd873658fa0c6f3fb4f431f149d04f36e600c14c86304b11",
+    "asset_level_v6/reporter.py": "c252b7d2220cfc690371dfc060ca2b835592621854910ae3eaf0d1400f45744e",
+    "asset_level_v6/run.py": "51bf796fe32980b2c417e78ff500c3426ad2176f4e3b07ef8b8dc6c10f8bcc21",
+    "asset_level_v6/score_main.py": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+    "asset_level_v6/sweep_v6.py": "c2e51dee86eedbad1e03061019b4a7e7c4fab274cb9f4b2b0f9aadaaf320acc1",
+    "asset_level_v6/test_asset_paths.py": "816afa461243763cbdd7b9d8f25f81b59719c0c9358c000db99c94e3241e856d",
+    "run_asset_feature_batch.py": "ee4cd658f4a74a0b59a4dfee5b97f39b0972e51c532eb746fd849174696ac37e",
+    "run_asset_feature_confirmation.py": "e3e3d2ac7268535e78a1e7612eaa982f4c30b3e9aabbb6350d9d4102f7a83908",
+    "run_asset_trained_pool_validation.py": "595bc5e426e0f00d6c4328f9f38e984442543d6b0ec4e13dd6e8fadf4d94a639",
+    "screen_asset_circular.py": "2b2ee8e4531a3f9abe0e7ab7a1d788231ae4322eec63f241c818d1496e45d237",
+    "screen_asset_components.py": "7a88144203e7a348440ff9a35c266a62d9552863702e1e65a8b3a9cb1c20895e",
+    "screen_asset_fading_vol.py": "fbc18edc1d8ecb6601e9e634d7e21f10b4b229a7bdea8288ffbcc86c2d6fb78f",
+    "screen_asset_mean_tail.py": "b1940136945ee021aa54a8486e0f52ab14ce09bef47278d11f3014de34bff206",
+    "screen_asset_mean_tail_precision.py": "806c057e8fab63da74094f6a2c51f054b661e2deba6214789ea317018b3ce385",
+    "screen_asset_means.py": "045bca7b7c8371dbda3f7583e3ff9f0594f9b12707d46440d3ee1391fed35fde",
+    "screen_asset_trained_pool.py": "93aa67b8830c3aa2a2a939fabbbd47ec454b7b6dbe29bab5ea0bcf583bd81ee0",
+    "test_asset_mean_tail.py": "45c9983958bc6387e6a3a62c34e2b6082d9daeb54d41eb86071cf0732d8fda1c",
+    "test_asset_trained_pool.py": "bd07d074f5450603606e21dbed11eeab93ef761829acea66ce3baf5c83ca6080"
+  },
+  "utc": "2026-10-21T06:03:20.132333+00:00",
+  "workers": 12,
+  "working_incumbent_model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a"
+}

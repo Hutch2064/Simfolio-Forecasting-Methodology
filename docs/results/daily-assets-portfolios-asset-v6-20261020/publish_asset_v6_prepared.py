@@ -16,7 +16,7 @@ REL = 'docs/results/daily-assets-portfolios-asset-v6-20261020'
 D = R/REL
 env = {**os.environ, 'GODEBUG': 'http2client=0', 'OPENBLAS_NUM_THREADS': '1',
        'OMP_NUM_THREADS': '1', 'NUMBA_NUM_THREADS': '1',
-       'PYTHONDONTWRITEBYTECODE': '1', 'NUMBA_CACHE_DIR': str(O/'v6_public_test_cache')}
+       'PYTHONDONTWRITEBYTECODE': '1', 'NUMBA_CACHE_DIR': str(O/'v6_public_test_cache'), 'SIMFOLIO_R52_DEPENDENCE_NATIVE_CACHE':str(O/'v6_r52_native_cache')}
 PY = '/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python'
 sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
 
@@ -43,7 +43,7 @@ def main():
         subprocess.run([PY, str(O/'catalogue_asset_fading_closed.py')], cwd=O, env=env, check=True)
         shutil.copy2(fading_archive,D/'closed-fading-archive-receipt.json')
     subprocess.run([PY, str(O/'refresh_asset_v6_research_doc.py')], cwd=O, env=env, check=True)
-    for name in ['test_asset_prior_best.py', 'audit_asset_v6_full_pair.py',
+    for name in ['test_asset_mean_tail.py','screen_asset_mean_tail.py','screen_asset_mean_tail_precision.py','preserve_asset_mean_tail.py','test_asset_r52_dependence.py','r52_dependence_qualification_receipt.json','screen_asset_r52_dependence.py','screen_asset_r52_dependence_precision.py','screen_asset_r52_dependence_pre_admission.py','preserve_asset_r52_dependence.py','test_asset_empirical_bayes.py','screen_asset_empirical_bayes.py','run_asset_empirical_bayes_validation.py','run_asset_empirical_bayes_broad.py','verify_asset_empirical_bayes.py','diagnose_asset_empirical_bayes.py','goal_ideation_amendment_receipt.json','methodology_idea_discovery_20261021.json', 'test_asset_prior_best.py', 'audit_asset_v6_full_pair.py',
                  'bind_asset_prior_parent.py', 'publish_asset_v6_prepared.py',
                  'continue_asset_v6_research.py', 'diagnose_asset_v6_pair.py',
                  'test_asset_v6_decomposition.py', 'preserve_asset_v6_closed.py',
@@ -140,12 +140,12 @@ def main():
         if path.exists():
             compact = {k: v for k, v in json.loads(path.read_text()).items() if k != 'records'}
             (mean_target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
-    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks','asset_AR1_mean','asset_feature_batch','asset_dynamic_correlation','asset_component_weights','asset_training_blocks','asset_likelihood_sv','asset_trained_pool','asset_regime_rows','asset_random_measure','asset_latent_mean','asset_stochastic_correlation','asset_trained_student'):
+    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks','asset_AR1_mean','asset_feature_batch','asset_dynamic_correlation','asset_component_weights','asset_training_blocks','asset_likelihood_sv','asset_trained_pool','asset_regime_rows','asset_random_measure','asset_latent_mean','asset_stochastic_correlation','asset_trained_student','asset_mean_tail','asset_r52_dependence','asset_empirical_bayes'):
         source = V/'candidates'/name
         dest = D/'candidates'/name
         dest.mkdir(exist_ok=True)
         for path in source.iterdir():
-            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','admission_preforecast_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','development_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json','transitive_source_receipt.json','full_selection.json','source_derivation.json','qualification_receipt.json','combined710_diagnostic.json','validation_label_note.json','validation_receipt.json','working_promotion.json','prior_working_incumbent.json','source_replay_aliases.json'):
+            if path.suffix in ('.py','.md','.cpp') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','admission_preforecast_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','development_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json','transitive_source_receipt.json','full_selection.json','source_derivation.json','qualification_receipt.json','combined710_diagnostic.json','diagnostics.json','validation_label_note.json','validation_receipt.json','working_promotion.json','prior_working_incumbent.json','source_replay_aliases.json'):
                 shutil.copy2(path,dest/path.name)
         for phase in ('development','reserved','broad'):
             path = source/phase/'summary.json'
@@ -172,7 +172,7 @@ def main():
             (gjr_target/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
     if (gjr/'decision.json').exists():
         shutil.copy2(gjr/'decision.json',gjr_target/'decision.json')
-    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021','asset-v6-feature-broad-20261021','asset-v6-sample-refocus-20261021','asset-v6-training-laws-20261021','asset-v6-learned-pool-pilots-20261021','asset-v6-learned-pool-broad-20261021','asset-v6-latent-mean-20261021','asset-v6-stochastic-correlation-20261021','asset-v6-trained-Student-20261021'):
+    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021','asset-v6-feature-broad-20261021','asset-v6-sample-refocus-20261021','asset-v6-training-laws-20261021','asset-v6-learned-pool-pilots-20261021','asset-v6-learned-pool-broad-20261021','asset-v6-latent-mean-20261021','asset-v6-stochastic-correlation-20261021','asset-v6-trained-Student-20261021','asset-v6-mean-tail-20261021','asset-v6-r52-dependence-20261021'):
         path = O/'archives'/folder/'receipt.json'
         if path.exists():
             shutil.copy2(path,D/(folder+'-archive-receipt.json'))
@@ -217,7 +217,7 @@ def main():
             if path.exists():
                 compact={k:v for k,v in json.loads(path.read_text()).items() if k not in ('records','fit_packets')}
                 (destination/name).write_text(json.dumps(compact,indent=2)+'\n')
-    for candidate,phases in [('asset_dynamic_correlation',('screen100',)),('asset_component_weights',('screen120','development1000','reserved1000')),('asset_training_blocks',('screen100','development1000','reserved1000')),('asset_likelihood_sv',('screen100',)),('asset_trained_pool',('screen100','development1000','reserved1000','broad1000')),('asset_regime_rows',('screen100',)),('asset_random_measure',('screen100',)),('asset_latent_mean',('screen100','development1000','reserved1000')),('asset_stochastic_correlation',('screen100','screen100_v2','development1000','reserved1000')),('asset_trained_student',('screen100','development1000','reserved1000'))]:
+    for candidate,phases in [('asset_dynamic_correlation',('screen100',)),('asset_component_weights',('screen120','development1000','reserved1000')),('asset_training_blocks',('screen100','development1000','reserved1000')),('asset_likelihood_sv',('screen100',)),('asset_trained_pool',('screen100','development1000','reserved1000','broad1000')),('asset_regime_rows',('screen100',)),('asset_random_measure',('screen100',)),('asset_latent_mean',('screen100','development1000','reserved1000')),('asset_stochastic_correlation',('screen100','screen100_v2','development1000','reserved1000')),('asset_trained_student',('screen100','development1000','reserved1000')),('asset_mean_tail',('screen100','screen1000')),('asset_r52_dependence',('screen100','screen1000')),('asset_empirical_bayes',('screen100','development1000','reserved1000','broad1000'))]:
         for phase in phases:
             source=V/'candidates'/candidate/phase
             destination=D/'candidates'/candidate/phase
@@ -258,7 +258,7 @@ def main():
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
                            'test_asset_iid_component.py', 'test_asset_gjr.py',
-                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py','test_asset_feature_admission.py','test_asset_dynamic_correlation.py','test_asset_component_weights.py','test_asset_training_blocks.py','test_asset_likelihood_sv.py','test_asset_trained_pool.py','test_asset_regime_rows.py','test_asset_random_measure.py','test_asset_latent_mean_fit.py','test_asset_latent_mean.py','test_asset_stochastic_correlation.py','test_asset_trained_student.py'],
+                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py','test_asset_feature_admission.py','test_asset_dynamic_correlation.py','test_asset_component_weights.py','test_asset_training_blocks.py','test_asset_likelihood_sv.py','test_asset_trained_pool.py','test_asset_regime_rows.py','test_asset_random_measure.py','test_asset_latent_mean_fit.py','test_asset_latent_mean.py','test_asset_stochastic_correlation.py','test_asset_trained_student.py','test_asset_mean_tail.py','test_asset_r52_dependence.py','test_asset_empirical_bayes.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr

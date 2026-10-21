@@ -1,0 +1,49 @@
+{
+  "utc": "2026-10-21T06:34:24.286643+00:00",
+  "purpose": "Extend the amended goal with explicit mechanism and synergy evidence, not a new scoring or stopping rule",
+  "sources": [
+    {
+      "url": "https://faculty.wharton.upenn.edu/wp-content/uploads/2013/05/Brown_2013_SURE_Estimates_5.pdf",
+      "authors": "Xie, Kou, Brown (2012)",
+      "evidence": "Normal empirical-Bayes noise-aware mean shrinkage; estimation-risk results, not guarantees for our correlated plug-in covariance or CRPS."
+    },
+    {
+      "url": "https://arxiv.org/abs/1203.5617",
+      "authors": "George, Liang, Xu (2012)",
+      "evidence": "Distinguishes mean shrinkage from predictive-density improvement; KL-risk theory is not a claim about our CRPS."
+    },
+    {
+      "url": "https://www.cambridge.org/core/journals/econometric-theory/article/residualbased-garch-bootstrap-and-second-order-asymptotic-refinement/F3A0E3623CC27E67640640195B0F267F",
+      "evidence": "Residual-bootstrap refinement theory supports checking conditional innovation laws, not automatic forecasting superiority."
+    }
+  ],
+  "cross_panel_driver_review": [
+    {
+      "source": "R52 Student corrected-DCC transfer",
+      "result": "The exact old dependence fit tested at100and1000paths on matched72prefixes; loses, parent unchanged. Old single-series winning rank did not identify multivariate dependence advantage."
+    },
+    {
+      "source": "Current learned pool",
+      "result": "Variance fading, correlated mean uncertainty and training-derived shared blend have combined development evidence. Current center is a separate heuristic from covariance; the new EB law isolates principled drift shrinkage and optional posterior contraction while refitting training blend."
+    }
+  ],
+  "admitted_new_mechanism": {
+    "path": "asset_level_v6/candidates/asset_empirical_bayes",
+    "status": "100path screen and355+355case1000path checks improve; simpler center-only on7418case broad test; not promoted."
+  },
+  "additional_distinct_research_leads": [
+    {
+      "method": "Smoothed residual bootstrap",
+      "relation_to_tests": "Raw empirical filtered innovations and Gaussian/Student laws have been tested, not a fully training-derived variance-preserving smoothed innovation density. Its gain must be established on matched screens; do not infer improvement from bootstrap estimation theory."
+    },
+    {
+      "method": "Posterior future latent return-state uncertainty",
+      "relation_to_tests": "Prior latent point-mean curve lost development. A full future-state distribution differs, but investigate estimated state variance and identifiability before admission; no automatic retry of rejected point curves."
+    },
+    {
+      "method": "Training objective across forecast leads",
+      "relation_to_tests": "Current blend fits daily marginal CRPS. A training-only multilead fit could align with cumulative-return scoring, but must avoid arbitrary lead cutoffs, outer score dependence, excessive per-forecast computation or unacknowledged distribution approximations."
+    }
+  ],
+  "frozen_constraints": "Existing1264series, one canonical score, baseline WR reference,1000official paths, joint assets/in-path accounting,12shared workers, diagnostics0selectionweight; no full escalation before stopping review."
+}

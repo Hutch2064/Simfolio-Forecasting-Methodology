@@ -1,0 +1,51 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "copula": "R52_Student_cDCC"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.822220408148306,
+      "model_id": "model_testing_asset_R52_Student_copula_v1_ad556cbf9f3f75e4",
+      "percent_better_vs_same1000path_fixed_reference": 14.885787909058546,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 1,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_R52_Student_copula_v1_ad556cbf9f3f75e4": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "copula": "R52_Student_cDCC"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.822220408148306,
+      "percent_better_vs_same1000path_fixed_reference": 14.885787909058546,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 72,
+  "official": false,
+  "paths": 1000,
+  "reference_main_Q": {
+    "current_best": 0.8214554222471507,
+    "fixed_reference": 0.9660201133857566
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 15.738532044109888,
+  "utc": "2026-10-21T06:23:51.763952+00:00"
+}

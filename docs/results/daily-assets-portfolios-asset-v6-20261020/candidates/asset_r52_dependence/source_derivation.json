@@ -1,0 +1,125 @@
+{
+  "utc": "2026-10-21T06:09:09.686868+00:00",
+  "source_model_id": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+  "requested_change": "Use that model dependence infrastructure with current leading marginal/mean/blend/raw laws unchanged",
+  "inheritance_trace": "R52 variance-node adapter -> initialized M261 data_selected_timescales -> student_corrected_dcc_innovation_copula -> coupled_multiscale_rough._return_uniforms -> installed Student cDCC uniforms",
+  "provenance_files": {
+    "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/french_panel/refinement_adapters.py": "3892f37a6eee17dc2a5c472e172847976202186a3b4ae5371a8c7878018fa65d",
+    "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/data_selected_timescales/models.py": "478bdd30149a1ec545b1e20b562e64d338c13170493ba9514bfa1094cc3bc51c",
+    "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/coupled_multiscale_rough/models.py": "27cbbc58b354836986385b402b4c73ac9b0fe7f0b72cb8db88aadd1d4bd521d4",
+    "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/student_corrected_dcc_innovation_copula/models.py": "23923b51e8008aa0e3f7a55924afbb6d70f10f822e32f50fe7e628c4e79d2831"
+  },
+  "copied_modules": [
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/corrected_dcc_innovation_copula/cdcc_state.py",
+      "target": "gaussian_state.py",
+      "original_sha256": "2a82a60c4ca8e7edd6c2a0966953f385f8cc8493c6616980c48c7874204a30a8",
+      "adapted_sha256": "2a82a60c4ca8e7edd6c2a0966953f385f8cc8493c6616980c48c7874204a30a8",
+      "adaptation": "byte-identical copied source",
+      "original_function_ast_sha256": {
+        "likelihood": "6f5f480aab9e96f0d2149ac1295fe4cf05a988323e470bd703bcaa858342c605",
+        "fit": "a70121c0452aed9c3623351e7e5e6b825b05dd2abd54c0ba0626ccabcea4dde5"
+      }
+    },
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/student_corrected_dcc_innovation_copula/student_state.py",
+      "target": "student_state.py",
+      "original_sha256": "03a12a624ebdb22a1f4b908c97d82cac956d9ad82233acef492e6ea09fbe53da",
+      "adapted_sha256": "8310cb744bffe8cc491ba88a3bb2feca1d6e3978033a709d14e1ea36b43f0820",
+      "adaptation": "module-local imports/cache location only",
+      "original_function_ast_sha256": {
+        "copula_constant": "79c4534445ce67ffe2373699c47f232503e7b7f8c70d6233311bfa1bd8515496",
+        "likelihood": "74db0a99b8b173b9bdb35f2af4b8f4e9130b6fa7bbc68821daceb3e7378cc577",
+        "standardized_scores": "ce26b8e512f7453dd164e9cd65c4a32fef3b00be5883e6940ff43490969f0264",
+        "fit": "975f23133a58cfc2c72a2e371dc18d89a684ba1fd442423a67bca1dd6aa0a30d"
+      }
+    },
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/student_corrected_dcc_innovation_copula/student_cdf.py",
+      "target": "student_cdf.py",
+      "original_sha256": "8de9366730915f4f39620f4cf6eaeed2dc6906b0a86126daa20efac35b7ab601",
+      "adapted_sha256": "8de9366730915f4f39620f4cf6eaeed2dc6906b0a86126daa20efac35b7ab601",
+      "adaptation": "byte-identical copied source",
+      "original_function_ast_sha256": {
+        "resolution": "8e59c4bffa610a6142deb92bc4f917acf495cf78f77d12defec11a9af43a336f",
+        "grid": "0cd301fdec9ea043baaff2f3391e05a4b188938aab1e9f11a4f7ad805954aa91",
+        "interpolate": "77803a0fc7a166330fc6d5bfd9ea2503a4c2b3a6e6c420771e887c85e9703d55",
+        "probabilities": "6b4893fe71b5e89a2652132cd3ed1de5fc6e3c3935ccee858cc220f3346ef044",
+        "inverse_grid": "d248987b47c8d28af091141a4a26d6b65da6be1bbde1f2222cd02433918a505e",
+        "inverse_interpolate": "4d1981ccbd75b0a4fcdbc6f3185b07f990489b0e3d5ddd5df28e8e72593eee4a",
+        "quantiles": "36f841e17b111e273cd19db7153aefc9a6e7a789184d421d0e77f8daaabb9036"
+      }
+    },
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/student_corrected_dcc_innovation_copula/likelihood_kernel.py",
+      "target": "likelihood_kernel.py",
+      "original_sha256": "80948b2feba1f73edbf60f50df84e1cc5e7a285d2f62e5b3fad218c0ae46c299",
+      "adapted_sha256": "485070fd58ed6a9c0803660c391b5030b4a47ecaa0f19a73e147fe58270ee05c",
+      "adaptation": "module-local imports/cache location only",
+      "original_function_ast_sha256": {
+        "_evaluate": "ebb26f8244aa5298beeb83e16605b54e663028a5613c6daaef74ad59b5d5a340",
+        "compiled": "7e73b120986c98e54127571436edae956d5292e0076608a217adb8056617606b",
+        "evaluate": "1c6446f158c0132afcdf9bdb95a8acdbd359b054ef18a460866a8100bc0ff272",
+        "gaussian_likelihood": "4180fda6395fb7c16861eaf5d3182a09d3354e009e50fb0e14dd7708fb7b3e97",
+        "legacy_gaussian_likelihood": "bb57a85a71724d67827573fcf4d71c23a737a1800c2b2b46ac1c5dfd909493ed"
+      }
+    },
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/student_corrected_dcc_innovation_copula/lapack_native.py",
+      "target": "lapack_native.py",
+      "original_sha256": "ab12f37e430ac44f9cc5597aba4f55a2d34b204916c7be2e9e83c70e7e51d8b3",
+      "adapted_sha256": "72c049d0a6359402c5043a00b7385d02477a4b483bb609d6f2f0ece822f7efe9",
+      "adaptation": "module-local imports/cache location only"
+    },
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/corrected_dcc_innovation_copula/cdcc_native.py",
+      "target": "path_native.py",
+      "original_sha256": "12d866fb72682c1754764bf5785e470a977ae48ab8a81f02a8c74864725bca09",
+      "adapted_sha256": "aad298798668a426deb313dcd34b4241580169f899b05f0c782ca5ff28aa088a",
+      "adaptation": "module-local imports/cache location only"
+    },
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/student_corrected_dcc_innovation_copula/likelihood_lapack.cpp",
+      "target": "likelihood_lapack.cpp",
+      "original_sha256": "0e92f63b9c677e40e9933afd5545df8c22d2ef9eff2a136bc164f5eb434ee712",
+      "adapted_sha256": "0e92f63b9c677e40e9933afd5545df8c22d2ef9eff2a136bc164f5eb434ee712",
+      "adaptation": "byte-identical copied source"
+    },
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/corrected_dcc_innovation_copula/paths.cpp",
+      "target": "paths.cpp",
+      "original_sha256": "633262e5823e372ff51fbfdf7135df37bdf8b417abbf75824a184634562e8382",
+      "adapted_sha256": "633262e5823e372ff51fbfdf7135df37bdf8b417abbf75824a184634562e8382",
+      "adaptation": "byte-identical copied source"
+    },
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/resources/french1926/refinement_source/tools/static_shrinkage_copula_rough/dependence.py",
+      "target": "shrinkage.py",
+      "original_sha256": "eee40dd1662a8460ee31066a60f30bf7e4af74814b4164420f7904a129db634a",
+      "adapted_sha256": "eee40dd1662a8460ee31066a60f30bf7e4af74814b4164420f7904a129db634a",
+      "adaptation": "byte-identical copied source",
+      "original_function_ast_sha256": {
+        "shrunk_correlation": "be3a22fcb8894fb7c7d9cc3390d19387e5b0c703a86d1b6f27d02c7002d4a5d2"
+      }
+    },
+    {
+      "source": "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/models/numerical/dynamic_gaussian.py",
+      "target": "ranks.py",
+      "source_file_sha256": "b1cbbbd00b6323a15eafb3603a5884efdad1952adac0eb0893fd110b023b2c76",
+      "original_function_ast_sha256": "c7cd67cfe034e952638ac0b0066953b3c5f1a48422563fbe64834fe8983a0d27",
+      "adaptation": "Exact pseudo_observations function copied with only required imports"
+    }
+  ],
+  "numerical_estimator_changed": false,
+  "new_training_input": "Current leader chronological SV-RMS innovation pool, rather than old M261 marginal innovations",
+  "seed_mapping": "Current harness context seed; preserve current raw and filtered RNG namespaces. Native recursion/CDF/fit laws inherited, not a full old-model byte-parity claim.",
+  "legacy_probability_guard": [
+    1e-08,
+    0.99999999
+  ],
+  "source_52_score_is_not_cross_asset_dependence_evidence": true,
+  "no_other_financial_components_changed": true,
+  "verified_sealed_source_manifest_sha256": "c6496588c819fe9dbe845d8e7e643b1c6aee7ff8cb824987a5e1b1c4d4f2289f",
+  "sealed_source_files_verified": 184,
+  "verification_AST_normalization": "Ignore empty Python3.12 type_params and module-relative lapack_native import level; preserve all numerical function nodes unchanged."
+}
