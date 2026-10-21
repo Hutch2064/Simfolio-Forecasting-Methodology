@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-21T19:05:55.096917+00:00",
+  "original_verifier": "verify_selector_endpoint_components72.py",
+  "original_sha256": "6b5961628350924ad9da82be5907a55db5ede94d73a164360c4329ab900acf2b",
+  "replacement_verifier": "verify_selector_endpoint_components72_v2.py",
+  "replacement_sha256": "28e3655b78f0029220967894d34629959f1de570b6daf42a27c1421a0106ffb6",
+  "reason": "Shared preparation CPU is recorded once per precision/seed bundle and its diagnostics are reused by all five menus. Check its new shared-fit CPU against shared_prepare_cpu_seconds, not the later menu local near-zero preparation CPU. Numerical sources, forecasts and scores unchanged.",
+  "scientific_jobs_restarted": false,
+  "forecast_count": 3240,
+  "original_frozen_verifier_preserved": true
+}

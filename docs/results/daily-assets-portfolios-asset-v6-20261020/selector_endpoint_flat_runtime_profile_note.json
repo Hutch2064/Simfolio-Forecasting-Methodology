@@ -1,0 +1,154 @@
+{
+  "utc": "2026-10-21T19:27:40.078053+00:00",
+  "scope": "One previously scored request, case350/inner2/seed2; selection prepare only",
+  "weights_replay_assertion_passed_before_dump": true,
+  "profiler_saved_before_JSON_serialization_failure": true,
+  "profile_file": "selector_endpoint_flat_slow_case.pstats",
+  "profile_sha256": "a63c536a8136498c0931707f42268e405d98c6b046898902491f1969a97d9e2e",
+  "non_scientific_reporting_failure": "Original profiler tried JSON serialization of numpy solver weights after exact replay and pstats persistence; no forecast or score changed",
+  "profile_overhead_included": true,
+  "no_production_or_all_work_speedup_claim": true,
+  "profile_total_seconds": 6.547278039999993,
+  "functions": [
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_flat/candidate.py",
+      "line": 19,
+      "name": "prepare",
+      "self_seconds": 0.001104584,
+      "cumulative_seconds": 6.549399542000001
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/scipy/optimize/_minimize.py",
+      "line": 54,
+      "name": "minimize",
+      "self_seconds": 0.00023810600000000003,
+      "cumulative_seconds": 6.467456289
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_universe_certified/energy.py",
+      "line": 6,
+      "name": "fit",
+      "self_seconds": 5.2626e-05,
+      "cumulative_seconds": 6.318100875000001
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py",
+      "line": 220,
+      "name": "_minimize_slsqp",
+      "self_seconds": 0.007115570000000001,
+      "cumulative_seconds": 6.317803583000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method scipy.optimize._slsqplib.slsqp>",
+      "self_seconds": 6.1568932080000005,
+      "cumulative_seconds": 6.1568932080000005
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/scipy/optimize/_differentiable_functions.py",
+      "line": 360,
+      "name": "_update_fun",
+      "self_seconds": 0.0028455200000000003,
+      "cumulative_seconds": 0.18318284
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/scipy/_lib/_util.py",
+      "line": 541,
+      "name": "__call__",
+      "self_seconds": 0.007645732000000001,
+      "cumulative_seconds": 0.18033732000000002
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_menu_components/bank.py",
+      "line": 27,
+      "name": "prefix_fits",
+      "self_seconds": 5.3292000000000004e-05,
+      "cumulative_seconds": 0.18013762500000002
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_universe/bank.py",
+      "line": 37,
+      "name": "prefix_fits",
+      "self_seconds": 5.7875000000000004e-05,
+      "cumulative_seconds": 0.180033833
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/numba/core/dispatcher.py",
+      "line": 342,
+      "name": "_compile_for_args",
+      "self_seconds": 5.284e-05,
+      "cumulative_seconds": 0.150371208
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/scipy/optimize/_lbfgsb_py.py",
+      "line": 272,
+      "name": "_minimize_lbfgsb",
+      "self_seconds": 0.001164372,
+      "cumulative_seconds": 0.14903037400000002
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/numba/core/dispatcher.py",
+      "line": 860,
+      "name": "compile",
+      "self_seconds": 0.00010390900000000001,
+      "cumulative_seconds": 0.144900165
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/numba/core/caching.py",
+      "line": 713,
+      "name": "load_overload",
+      "self_seconds": 1.8044000000000002e-05,
+      "cumulative_seconds": 0.144133959
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_prior_best/fit.py",
+      "line": 38,
+      "name": "fit_variance_target",
+      "self_seconds": 0.00032315500000000005,
+      "cumulative_seconds": 0.140132542
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/scipy/optimize/_optimize.py",
+      "line": 71,
+      "name": "_compute_if_needed",
+      "self_seconds": 0.001339455,
+      "cumulative_seconds": 0.13755904100000002
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/scipy/optimize/_optimize.py",
+      "line": 78,
+      "name": "__call__",
+      "self_seconds": 0.00018671100000000002,
+      "cumulative_seconds": 0.136490828
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_feature_batch/fits.py",
+      "line": 65,
+      "name": "base_fit",
+      "self_seconds": 2.0125e-05,
+      "cumulative_seconds": 0.132673542
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/scipy/optimize/_optimize.py",
+      "line": 204,
+      "name": "_prepare_scalar_function",
+      "self_seconds": 4.1208e-05,
+      "cumulative_seconds": 0.130923751
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/lib/python3.12/site-packages/scipy/optimize/_differentiable_functions.py",
+      "line": 218,
+      "name": "__init__",
+      "self_seconds": 0.000163379,
+      "cumulative_seconds": 0.13088046
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_prior_best/fit.py",
+      "line": 31,
+      "name": "objective",
+      "self_seconds": 0.0015394800000000002,
+      "cumulative_seconds": 0.130737708
+    }
+  ]
+}
