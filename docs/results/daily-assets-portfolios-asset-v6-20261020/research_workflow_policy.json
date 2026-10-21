@@ -1,0 +1,19 @@
+{
+  "active": true,
+  "ambition": "30\u201340%better than the fixed baseline is an informal aspiration; it is neither a required threshold nor a stopping condition.",
+  "breadth": "Broader representative checks at meaningful milestones or to investigate inconsistent/uncertain gains, rather than automatic full-panel evaluation after every improvement.",
+  "development_anchor": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/working_incumbent.json",
+  "existing_full_checkpoints": "Preserve all completed native checkpoints for potential final resume after the stopping review; do not classify partial evaluation as a full-panel completed model.",
+  "final_full_regressions": "If the final full check contradicts the stopping judgment or reveals an unresolved credible improvement, reopen development rather than declare success.",
+  "full_panel_gate": "A documented evidence-based stopping review is satisfied before final retained suite launch. Reaching a small win, losing a few variants, or an aspiration percentage does not satisfy the gate.",
+  "full_panel_launch_requires_stopping_review": true,
+  "iterations": "Explore concurrent mechanism contrasts and small variants around the working incumbent using shared fits and cheap matched samples; promote sample-validated improvements as working incumbents and continue iterating.",
+  "methodology_scope": "Any credible methodology is allowed, including structural changes and other model families. Prefer simple improvements but do not restrict the search to a family or neighbourhood.",
+  "model_parameters": "Prefer training-derived parameters; avoid arbitrary fixed component percentages. Frozen panel and score remain unchanged.",
+  "research_goal_still_active": true,
+  "screen_simulations": "Lower counts allowed for exploratory credibility screens;1000for declared validated scores.",
+  "selection": "Single fixed canonical overall distributional score, identical coverage and simulation counts; no diagnostic/horizon routing or extra weights.",
+  "single_cohesive_global_asset_model": true,
+  "utc": "2026-10-21T04:26:47.885386+00:00",
+  "worker_limit": 12
+}

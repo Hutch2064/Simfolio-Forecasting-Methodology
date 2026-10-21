@@ -1,0 +1,72 @@
+{
+  "utc": "2026-10-21T04:36:03.253795+00:00",
+  "complete": true,
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-asset-v6-training-laws-20261021",
+  "archives": [
+    {
+      "utc": "2026-10-21T04:35:54.353036+00:00",
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-asset-v6-training-laws-20261021",
+      "group": "training_blocks",
+      "part": 1,
+      "parts": 1,
+      "archive_name": "training_blocks-part-01.tar.gz",
+      "archive_sha256": "cb3f291b0c53622724380b2aa2574b59efff11fb45a7861cced8c673e41f0026",
+      "manifest_name": "training_blocks-part-01-manifest.json",
+      "manifest_sha256": "a642ce5761fc3697c9acf004e2f9a0c8f456a08dfc35d2a2f552b6606c9f0961",
+      "archive_bytes": 109323263,
+      "files": 4694,
+      "remote_download_sha256_verified": true,
+      "all_files_disk_restored_and_sha256_verified": true,
+      "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-training-laws-20261021",
+      "scientific_originals_removed": false
+    },
+    {
+      "utc": "2026-10-21T04:36:00.953060+00:00",
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-asset-v6-training-laws-20261021",
+      "group": "likelihood_SV",
+      "part": 1,
+      "parts": 1,
+      "archive_name": "likelihood_SV-part-01.tar.gz",
+      "archive_sha256": "883d177f1c0ff4c0e70a211b6552d555a41a0bb6b200a8b801e43132fee955b4",
+      "manifest_name": "likelihood_SV-part-01-manifest.json",
+      "manifest_sha256": "5b7578e4e1f52c47b1cdb2da42b6b3344e1c663fe3457243d4ebfa8bd89eb0f0",
+      "archive_bytes": 38651113,
+      "files": 959,
+      "remote_download_sha256_verified": true,
+      "all_files_disk_restored_and_sha256_verified": true,
+      "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-training-laws-20261021",
+      "scientific_originals_removed": false
+    },
+    {
+      "utc": "2026-10-21T04:36:03.253389+00:00",
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-asset-v6-training-laws-20261021",
+      "group": "audit_sources",
+      "part": 1,
+      "parts": 1,
+      "archive_name": "audit_sources-part-01.tar.gz",
+      "archive_sha256": "637385d5153c58822589960a783ce59aa0f5be1b88fb6636860d9257f9cf1a2e",
+      "manifest_name": "audit_sources-part-01-manifest.json",
+      "manifest_sha256": "bec4a182579475c1db9c366ca81b31b484303f7e64b8ccaa346d5e2402131e32",
+      "archive_bytes": 14408,
+      "files": 6,
+      "remote_download_sha256_verified": true,
+      "all_files_disk_restored_and_sha256_verified": true,
+      "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-training-laws-20261021",
+      "scientific_originals_removed": false
+    }
+  ],
+  "files_fresh_downloaded_disk_restored_sha256_verified": 5659,
+  "scientific_originals_removed": false,
+  "full_panel_catalogue_increment": 0,
+  "dependency_releases": [
+    "research-asset-v6-baselines-1000-20261020",
+    "research-asset-v6-feature-development-20261021",
+    "research-asset-v6-feature-broad-20261021",
+    "research-asset-v6-fading-1000-20261021"
+  ],
+  "recovery": "Download and SHA256verify all archive and manifest pairs; disk restore at research owner root and check every per-file manifest hash. Restore referenced baseline inputs and sealed parent dependencies first."
+}

@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-21T03:54:07.592726+00:00",
+  "complete_checkpoint_handoff": true,
+  "intentional_partial_evaluation": true,
+  "successful_native_checkpoints_preserved": 40710,
+  "expected_full_tasks": 64049,
+  "native_failures": 0,
+  "active_workers": 0,
+  "scoring_index_integrity_check": "ok",
+  "full_evaluation_complete": false,
+  "automatic_full_escalation_disabled": true,
+  "scientific_sources_or_checkpoints_deleted": false,
+  "control_stop": true,
+  "wrapper_exit_note": "After a handled drain, the old full-only wrapper asserts incomplete coverage. That expected orchestration exit is preserved in its log; it is not a forecast/fitting or scoring integrity failure.",
+  "next": "Iterate from the sample-validated working incumbent. Resume/complete final full evaluation only after the stopping review."
+}

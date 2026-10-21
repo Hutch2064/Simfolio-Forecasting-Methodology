@@ -1,0 +1,766 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 12,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8331047424912109,
+      "model_id": "model_testing_asset_conditional_correlation_v1_3822ce43722be881",
+      "percent_better_vs_same100path_fixed_reference": 13.92072896972969,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 13,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8335799151149414,
+      "model_id": "model_testing_asset_conditional_correlation_v1_29ad2f075b794ced",
+      "percent_better_vs_same100path_fixed_reference": 13.87163248644483,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 14,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8335818347849113,
+      "model_id": "model_testing_asset_conditional_correlation_v1_7dbfcce7804ca9c6",
+      "percent_better_vs_same100path_fixed_reference": 13.871434139486515,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 6,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8336112085870822,
+      "model_id": "model_testing_asset_conditional_correlation_v1_46498b835dc5ea8b",
+      "percent_better_vs_same100path_fixed_reference": 13.868399136383914,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 8,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8342286571469704,
+      "model_id": "model_testing_asset_conditional_correlation_v1_4d84e8839d642083",
+      "percent_better_vs_same100path_fixed_reference": 13.804602209991524,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 7,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8342438343573508,
+      "model_id": "model_testing_asset_conditional_correlation_v1_428bc50e4af10fe7",
+      "percent_better_vs_same100path_fixed_reference": 13.803034047983564,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 1,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.83657568422247,
+      "model_id": "model_testing_asset_conditional_correlation_v1_5c5269364ab71a86",
+      "percent_better_vs_same100path_fixed_reference": 13.562099233543224,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 2,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8365989965506673,
+      "model_id": "model_testing_asset_conditional_correlation_v1_9f93eda2c53f9cf7",
+      "percent_better_vs_same100path_fixed_reference": 13.559690522951506,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 0,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8369517349677557,
+      "model_id": "model_testing_asset_conditional_correlation_v1_2c0d6f8dae485f9e",
+      "percent_better_vs_same100path_fixed_reference": 13.523244366473575,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 4,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8377449175140945,
+      "model_id": "model_testing_asset_conditional_correlation_v1_6c232805537c40d9",
+      "percent_better_vs_same100path_fixed_reference": 13.441289995191742,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 15,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8377469655137115,
+      "model_id": "model_testing_asset_conditional_correlation_v1_cac5f0d104c7e121",
+      "percent_better_vs_same100path_fixed_reference": 13.441078388769267,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 5,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8377574152431974,
+      "model_id": "model_testing_asset_conditional_correlation_v1_dc37c90d10e0040f",
+      "percent_better_vs_same100path_fixed_reference": 13.43999868648128,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 9,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8379869167753393,
+      "model_id": "model_testing_asset_conditional_correlation_v1_b82387a4cd56b8bf",
+      "percent_better_vs_same100path_fixed_reference": 13.416285792316218,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 3,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.838303326209424,
+      "model_id": "model_testing_asset_conditional_correlation_v1_450452d55c004252",
+      "percent_better_vs_same100path_fixed_reference": 13.383593272343674,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 16,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8386024634731035,
+      "model_id": "model_testing_asset_conditional_correlation_v1_5f7a52e3fb887d8a",
+      "percent_better_vs_same100path_fixed_reference": 13.352685372913742,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 17,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8386186715583183,
+      "model_id": "model_testing_asset_conditional_correlation_v1_28ad043746e4d9ab",
+      "percent_better_vs_same100path_fixed_reference": 13.351010697343046,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 10,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8386956650326098,
+      "model_id": "model_testing_asset_conditional_correlation_v1_429c65ce7129ce74",
+      "percent_better_vs_same100path_fixed_reference": 13.343055464581688,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 11,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8386983362420498,
+      "model_id": "model_testing_asset_conditional_correlation_v1_0aec33914685df3d",
+      "percent_better_vs_same100path_fixed_reference": 13.342779465959143,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 18,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8411395119779435,
+      "model_id": "model_testing_asset_conditional_correlation_v1_937c3de22130720a",
+      "percent_better_vs_same100path_fixed_reference": 13.090548723430718,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 19,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_conditional_correlation_v1_0aec33914685df3d": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 11,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8386983362420498,
+      "percent_better_vs_same100path_fixed_reference": 13.342779465959143,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_28ad043746e4d9ab": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 17,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8386186715583183,
+      "percent_better_vs_same100path_fixed_reference": 13.351010697343046,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_29ad2f075b794ced": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 13,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8335799151149414,
+      "percent_better_vs_same100path_fixed_reference": 13.87163248644483,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_2c0d6f8dae485f9e": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 0,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8369517349677557,
+      "percent_better_vs_same100path_fixed_reference": 13.523244366473575,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_3822ce43722be881": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 12,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8331047424912109,
+      "percent_better_vs_same100path_fixed_reference": 13.92072896972969,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_428bc50e4af10fe7": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 7,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8342438343573508,
+      "percent_better_vs_same100path_fixed_reference": 13.803034047983564,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_429c65ce7129ce74": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 10,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8386956650326098,
+      "percent_better_vs_same100path_fixed_reference": 13.343055464581688,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_450452d55c004252": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 3,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.838303326209424,
+      "percent_better_vs_same100path_fixed_reference": 13.383593272343674,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_46498b835dc5ea8b": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 6,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8336112085870822,
+      "percent_better_vs_same100path_fixed_reference": 13.868399136383914,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_4d84e8839d642083": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 8,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8342286571469704,
+      "percent_better_vs_same100path_fixed_reference": 13.804602209991524,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_5c5269364ab71a86": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 1,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.83657568422247,
+      "percent_better_vs_same100path_fixed_reference": 13.562099233543224,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_5f7a52e3fb887d8a": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 16,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8386024634731035,
+      "percent_better_vs_same100path_fixed_reference": 13.352685372913742,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_6c232805537c40d9": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 4,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8377449175140945,
+      "percent_better_vs_same100path_fixed_reference": 13.441289995191742,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_7dbfcce7804ca9c6": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 14,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8335818347849113,
+      "percent_better_vs_same100path_fixed_reference": 13.871434139486515,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_937c3de22130720a": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 18,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8411395119779435,
+      "percent_better_vs_same100path_fixed_reference": 13.090548723430718,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_9f93eda2c53f9cf7": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 2,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8365989965506673,
+      "percent_better_vs_same100path_fixed_reference": 13.559690522951506,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_b82387a4cd56b8bf": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 9,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8379869167753393,
+      "percent_better_vs_same100path_fixed_reference": 13.416285792316218,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_cac5f0d104c7e121": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "sample",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 15,
+      "eligible_as_new_dependence_hypothesis": false,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": true,
+      "main_Q": 0.8377469655137115,
+      "percent_better_vs_same100path_fixed_reference": 13.441078388769267,
+      "successful_cases": 72
+    },
+    "model_testing_asset_conditional_correlation_v1_dc37c90d10e0040f": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 5,
+      "eligible_as_new_dependence_hypothesis": true,
+      "expected_cases": 72,
+      "is_existing_static_sample_control": false,
+      "main_Q": 0.8377574152431974,
+      "percent_better_vs_same100path_fixed_reference": 13.43999868648128,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 1368,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8331047424912109,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "scoring_protocol_unchanged": true,
+  "utc": "2026-10-21T03:54:24.751594+00:00"
+}

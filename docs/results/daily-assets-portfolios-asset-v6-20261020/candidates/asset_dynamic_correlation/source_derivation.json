@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-21T03:42:26.358706+00:00",
+  "scope": "Development-only prototype, not qualified, not admitted and not currently forecasting.",
+  "copied_unchanged": {
+    "state.py": {
+      "source": "tools/corrected_dcc_innovation_copula/cdcc_state.py",
+      "sha256": "2a82a60c4ca8e7edd6c2a0966953f385f8cc8493c6616980c48c7874204a30a8"
+    },
+    "shrinkage.py": {
+      "source": "tools/static_shrinkage_copula_rough/dependence.py",
+      "sha256": "eee40dd1662a8460ee31066a60f30bf7e4af74814b4164420f7904a129db634a"
+    }
+  },
+  "academic_sources": [
+    "https://www.nber.org/papers/w8554",
+    "https://doi.org/10.1080/07350015.2013.771027"
+  ],
+  "claim_limits": "Corrected DCC recurrence with fixed estimated shrinkage target, not a claim of Aielli consistent target estimation. Proposed conditional-mean covariance projection is an approximation, not exact integration of the entire stochastic path law."
+}

@@ -1,0 +1,9 @@
+from pathlib import Path
+import json,hashlib,datetime
+O=Path(__file__).resolve().parent;C=O/'asset_level_v6/candidates/asset_component_weights';read=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();s=read(C/'development1000/summary.json');assert s['complete_execution']and not s['errors']and s['paths']==1000 and s['anchor_loss_vectors_bitwise_equal_each_case']
+selected=[r for r in s['complete_identical_coverage_screen_ranking']if r['main_Q']<s['reference_main_Q']['current_best']or(r['config']['family']=='SV_RMS'and r['config']['raw_fraction']==.5)];assert len(selected)==5
+P=C/'reserved_selection.json';assert not P.exists();P.write_text(json.dumps({'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'development_summary_sha256':sha(C/'development1000/summary.json'),'selected':selected,'paths':1000,'case_count':355,'no_full_panel_escalation':True,'selection':'Four development improvements plus exact incumbent. Final adoption requires reserved matched overall score; no individual horizon selection.'},indent=2)+'\n')
+x=(O/'run_asset_component_confirmation.py').read_text().replace("D=C/'development1000'","D=C/'reserved1000'").replace("C/'confirmation_selection.json'","C/'reserved_selection.json'").replace("source=V/'candidates/asset_feature_batch/confirmation1000'","source=V/'candidates/asset_feature_batch/reserved1000'")
+x=x.replace('All355 previously frozen development cases. The72-case120-path screen is an adaptively reused subset, not independent validation; no full-panel escalation.','All355 previously frozen reserved cases; adaptively reused from earlier research, not independent validation. Sample-first policy: no full-panel escalation.')
+(O/'run_asset_component_reserved.py').write_text(x)
+print('Prepared five-model1000-path reserved validation. Full sweep remains gated on stopping review.')

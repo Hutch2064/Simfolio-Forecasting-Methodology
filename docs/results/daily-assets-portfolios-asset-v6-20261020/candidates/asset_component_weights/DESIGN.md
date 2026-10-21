@@ -1,0 +1,9 @@
+# Component-weight simplification around the working RMS model
+
+The working incumbent uses a fixed equal mixture of faded raw circular blocks and a filtered asset simulator. The original216-law batch varied filter/innovation/mean features while keeping that mixture fixed. It therefore has not answered whether either component should be reduced or removed.
+
+Freeze13 distinct global laws: SV conditional RMS, stochastic-volatility paths and constant historical volatility with Gaussian innovations, crossed with raw path fractions0,1/4,1/2,3/4; one shared pure raw law at fraction1. Pure raw aliases are counted once. Means, mean uncertainty, raw fade, covariance and in-path portfolio accounting are unchanged. No weights are fitted per asset, horizon or held-out case. Fractions are globally fixed candidate definitions, selected only by the unchanged matched overall score.
+
+Every evaluated ensemble contains exactly its declared simulation count, with real raw/filter counts summing to that count. Zero components generate zero paths. No weighted CRPS, importance weights, hidden double-size bank, path exclusion or new score is used. Both mean-uncertainty ensembles are antithetic, so each nonzero component must have an even number of paths.120-path exploratory screens support quarter fractions; official validation uses1,000paths. The half/half control must exactly reproduce the working parent at identical seeds and precision.
+
+Fitting is shared across the small grid. Different component sizes necessarily use different stratified mean nodes and random array widths, so tiny improvements require confirmation at1,000paths and across the frozen development/reserved cases. The constant-volatility and endpoint laws test simplification as well as accuracy. This is not a new full-panel admission; full evaluation remains gated on the stopping review.

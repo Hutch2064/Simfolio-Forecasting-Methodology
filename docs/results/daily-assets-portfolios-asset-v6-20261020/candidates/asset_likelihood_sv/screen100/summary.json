@@ -1,0 +1,374 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Gaussian",
+        "law": "SV_RMS",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 3,
+      "expected_cases": 72,
+      "main_Q": 0.8522866319665384,
+      "model_id": "model_testing_asset_likelihood_SV_v1_9bc42b47ea932857",
+      "percent_better_vs_same100path_fixed_reference": 11.93878963028724,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Gaussian",
+        "law": "SV_path",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 9,
+      "expected_cases": 72,
+      "main_Q": 0.8528445967975327,
+      "model_id": "model_testing_asset_likelihood_SV_v1_44e02cf991350509",
+      "percent_better_vs_same100path_fixed_reference": 11.881138769041522,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student",
+        "law": "SV_RMS",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 5,
+      "expected_cases": 72,
+      "main_Q": 0.8545451322154916,
+      "model_id": "model_testing_asset_likelihood_SV_v1_811a9667a35ac679",
+      "percent_better_vs_same100path_fixed_reference": 11.70543355255057,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student",
+        "law": "SV_path",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 11,
+      "expected_cases": 72,
+      "main_Q": 0.8549545027288626,
+      "model_id": "model_testing_asset_likelihood_SV_v1_3ed86bc0b86923a4",
+      "percent_better_vs_same100path_fixed_reference": 11.66313597149623,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "empirical",
+        "law": "SV_RMS",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.855810724600827,
+      "model_id": "model_testing_asset_likelihood_SV_v1_2fe3ec0a4bb83eab",
+      "percent_better_vs_same100path_fixed_reference": 11.574668158483348,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "empirical",
+        "law": "SV_path",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 7,
+      "expected_cases": 72,
+      "main_Q": 0.8601347386535941,
+      "model_id": "model_testing_asset_likelihood_SV_v1_32e9755659c59aa8",
+      "percent_better_vs_same100path_fixed_reference": 11.12789603175911,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Gaussian",
+        "law": "SV_RMS",
+        "mean_covariance": "batch"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.8638194870504716,
+      "model_id": "model_testing_asset_likelihood_SV_v1_31bdd25a0bcc8957",
+      "percent_better_vs_same100path_fixed_reference": 10.747175049443358,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Gaussian",
+        "law": "SV_path",
+        "mean_covariance": "batch"
+      },
+      "config_index": 8,
+      "expected_cases": 72,
+      "main_Q": 0.8642231172885797,
+      "model_id": "model_testing_asset_likelihood_SV_v1_dee08f0770dce6c2",
+      "percent_better_vs_same100path_fixed_reference": 10.705470573535292,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student",
+        "law": "SV_RMS",
+        "mean_covariance": "batch"
+      },
+      "config_index": 4,
+      "expected_cases": 72,
+      "main_Q": 0.8658556962644038,
+      "model_id": "model_testing_asset_likelihood_SV_v1_440a42ab1fac0e16",
+      "percent_better_vs_same100path_fixed_reference": 10.53678685230468,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student",
+        "law": "SV_path",
+        "mean_covariance": "batch"
+      },
+      "config_index": 10,
+      "expected_cases": 72,
+      "main_Q": 0.8661318275508956,
+      "model_id": "model_testing_asset_likelihood_SV_v1_bcbc18d9685a5b7d",
+      "percent_better_vs_same100path_fixed_reference": 10.508256010217787,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "empirical",
+        "law": "SV_RMS",
+        "mean_covariance": "batch"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8670406075058004,
+      "model_id": "model_testing_asset_likelihood_SV_v1_1c3b0bee278375e5",
+      "percent_better_vs_same100path_fixed_reference": 10.414357713814859,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "empirical",
+        "law": "SV_path",
+        "mean_covariance": "batch"
+      },
+      "config_index": 6,
+      "expected_cases": 72,
+      "main_Q": 0.8713424488757273,
+      "model_id": "model_testing_asset_likelihood_SV_v1_3b85776b978ef6a3",
+      "percent_better_vs_same100path_fixed_reference": 9.969876545571987,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 12,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_likelihood_SV_v1_1c3b0bee278375e5": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "empirical",
+        "law": "SV_RMS",
+        "mean_covariance": "batch"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8670406075058004,
+      "percent_better_vs_same100path_fixed_reference": 10.414357713814859,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_2fe3ec0a4bb83eab": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "empirical",
+        "law": "SV_RMS",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.855810724600827,
+      "percent_better_vs_same100path_fixed_reference": 11.574668158483348,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_31bdd25a0bcc8957": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Gaussian",
+        "law": "SV_RMS",
+        "mean_covariance": "batch"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.8638194870504716,
+      "percent_better_vs_same100path_fixed_reference": 10.747175049443358,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_32e9755659c59aa8": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "empirical",
+        "law": "SV_path",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 7,
+      "expected_cases": 72,
+      "main_Q": 0.8601347386535941,
+      "percent_better_vs_same100path_fixed_reference": 11.12789603175911,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_3b85776b978ef6a3": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "empirical",
+        "law": "SV_path",
+        "mean_covariance": "batch"
+      },
+      "config_index": 6,
+      "expected_cases": 72,
+      "main_Q": 0.8713424488757273,
+      "percent_better_vs_same100path_fixed_reference": 9.969876545571987,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_3ed86bc0b86923a4": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student",
+        "law": "SV_path",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 11,
+      "expected_cases": 72,
+      "main_Q": 0.8549545027288626,
+      "percent_better_vs_same100path_fixed_reference": 11.66313597149623,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_440a42ab1fac0e16": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student",
+        "law": "SV_RMS",
+        "mean_covariance": "batch"
+      },
+      "config_index": 4,
+      "expected_cases": 72,
+      "main_Q": 0.8658556962644038,
+      "percent_better_vs_same100path_fixed_reference": 10.53678685230468,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_44e02cf991350509": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Gaussian",
+        "law": "SV_path",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 9,
+      "expected_cases": 72,
+      "main_Q": 0.8528445967975327,
+      "percent_better_vs_same100path_fixed_reference": 11.881138769041522,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_811a9667a35ac679": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student",
+        "law": "SV_RMS",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 5,
+      "expected_cases": 72,
+      "main_Q": 0.8545451322154916,
+      "percent_better_vs_same100path_fixed_reference": 11.70543355255057,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_9bc42b47ea932857": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Gaussian",
+        "law": "SV_RMS",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 3,
+      "expected_cases": 72,
+      "main_Q": 0.8522866319665384,
+      "percent_better_vs_same100path_fixed_reference": 11.93878963028724,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_bcbc18d9685a5b7d": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student",
+        "law": "SV_path",
+        "mean_covariance": "batch"
+      },
+      "config_index": 10,
+      "expected_cases": 72,
+      "main_Q": 0.8661318275508956,
+      "percent_better_vs_same100path_fixed_reference": 10.508256010217787,
+      "successful_cases": 72
+    },
+    "model_testing_asset_likelihood_SV_v1_dee08f0770dce6c2": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Gaussian",
+        "law": "SV_path",
+        "mean_covariance": "batch"
+      },
+      "config_index": 8,
+      "expected_cases": 72,
+      "main_Q": 0.8642231172885797,
+      "percent_better_vs_same100path_fixed_reference": 10.705470573535292,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 864,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8331047424912109,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 7.648809834616259,
+  "utc": "2026-10-21T04:34:13.922150+00:00"
+}

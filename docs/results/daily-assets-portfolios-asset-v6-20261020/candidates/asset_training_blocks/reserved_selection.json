@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-21T04:30:03.850377+00:00",
+  "development_summary_sha256": "396debe8df7d4f53e7c91561eeb689da8c2261781c6a8953d3da176bdbeaa7ec",
+  "selected": [
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "law": "raw_GARCH_fade",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.7154566997602994,
+      "model_id": "model_testing_asset_training_blocks_v1_0939335749b23fef",
+      "percent_better_vs_same100path_fixed_reference": 106.12861554511888,
+      "successful_cases": 355
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "law": "raw_EWMA_fade",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.7155421051359769,
+      "model_id": "model_testing_asset_training_blocks_v1_534ca337f8cb93d2",
+      "percent_better_vs_same100path_fixed_reference": 106.0219124819951,
+      "successful_cases": 355
+    }
+  ],
+  "paths": 1000,
+  "case_count": 355,
+  "selection": "Controlled simplification review of both leading pure faded raw laws. Neither beat development incumbent; GARCH and EWMA are practically close in this sample, so avoid interpreting a tiny development difference as conclusive mechanism rejection. Frozen laws unchanged, no significance claim or full admission.",
+  "development_improvement_claim": false,
+  "official": false,
+  "independent_validation_claim": false
+}

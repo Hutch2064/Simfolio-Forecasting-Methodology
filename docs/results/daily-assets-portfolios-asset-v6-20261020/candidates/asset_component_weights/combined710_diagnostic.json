@@ -1,0 +1,72 @@
+{
+  "same_canonical_score_on_combined710_matched_cases": [
+    {
+      "model_id": "model_testing_asset_component_weight_v1_ab3aeb44488cefa8",
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true,
+        "raw_fraction": 0.75
+      },
+      "main_Q": 0.6954113108250626,
+      "matched_cases": 710
+    },
+    {
+      "model_id": "model_testing_asset_component_weight_v1_4e35d8e63e7cdd7a",
+      "config": {
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true,
+        "raw_fraction": 0.75
+      },
+      "main_Q": 0.6955331830935066,
+      "matched_cases": 710
+    },
+    {
+      "model_id": "model_testing_asset_component_weight_v1_670bad4f8cff839f",
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true,
+        "raw_fraction": 1.0
+      },
+      "main_Q": 0.6956910133215616,
+      "matched_cases": 710
+    },
+    {
+      "model_id": "model_testing_asset_component_weight_v1_5279e3232ab32a0b",
+      "config": {
+        "family": "constant",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true,
+        "raw_fraction": 0.75
+      },
+      "main_Q": 0.6968905813418604,
+      "matched_cases": 710
+    },
+    {
+      "model_id": "model_testing_asset_component_weight_v1_6451536104b30499",
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true,
+        "raw_fraction": 0.5
+      },
+      "main_Q": 0.6987142418913376,
+      "matched_cases": 710
+    }
+  ],
+  "independent_validation_claim": false,
+  "working_promotion": false,
+  "purpose": "Resolve mixed development/reserved evidence by inspecting the unchanged overall Q over their union. Not a new score or a claim of reserved improvement."
+}

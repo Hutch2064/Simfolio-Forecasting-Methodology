@@ -86,6 +86,11 @@ def main():
                  'retire_closed_feature_fit_caches.py','preserve_asset_feature_cache_retirement_metadata.py',
                  'run_asset_feature_full.py','report_asset_feature_full.py','promote_asset_feature.py',
                  'continue_asset_feature_batch.py','bind_asset_feature_transitive_sources.py','test_asset_feature_admission.py',
+                 'prepare_asset_dynamic_correlation_screen.py','screen_asset_dynamic_correlation.py','screen_asset_dynamic_correlation_v2.py','test_asset_dynamic_correlation.py','preserve_asset_feature_broad.py',
+                 'screen_asset_component_weights.py','prepare_asset_component_confirmation.py','run_asset_component_confirmation.py','prepare_asset_component_reserved.py','run_asset_component_reserved.py','test_asset_component_weights.py',
+                 'screen_asset_training_blocks.py','run_asset_training_blocks_validation.py','test_asset_training_blocks.py','preserve_asset_sample_refocus.py',
+                 'screen_asset_likelihood_sv.py','test_asset_likelihood_sv.py','preserve_asset_training_laws.py','retire_closed_sample_fit_caches.py','preserve_sample_fit_retirement_metadata.py',
+                 'research_workflow_policy.json','working_incumbent.json',
                  'retire_closed_asset_circular_losses.py','preserve_asset_circular_retirement_metadata.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
@@ -132,12 +137,12 @@ def main():
         if path.exists():
             compact = {k: v for k, v in json.loads(path.read_text()).items() if k != 'records'}
             (mean_target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
-    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks','asset_AR1_mean','asset_feature_batch'):
+    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks','asset_AR1_mean','asset_feature_batch','asset_dynamic_correlation','asset_component_weights','asset_training_blocks','asset_likelihood_sv'):
         source = V/'candidates'/name
         dest = D/'candidates'/name
         dest.mkdir(exist_ok=True)
         for path in source.iterdir():
-            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json','transitive_source_receipt.json','full_selection.json'):
+            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json','transitive_source_receipt.json','full_selection.json','source_derivation.json','qualification_receipt.json','combined710_diagnostic.json','validation_label_note.json'):
                 shutil.copy2(path,dest/path.name)
         for phase in ('development','reserved','broad'):
             path = source/phase/'summary.json'
@@ -164,7 +169,7 @@ def main():
             (gjr_target/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
     if (gjr/'decision.json').exists():
         shutil.copy2(gjr/'decision.json',gjr_target/'decision.json')
-    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021'):
+    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021','asset-v6-feature-broad-20261021','asset-v6-sample-refocus-20261021','asset-v6-training-laws-20261021'):
         path = O/'archives'/folder/'receipt.json'
         if path.exists():
             shutil.copy2(path,D/(folder+'-archive-receipt.json'))
@@ -209,6 +214,22 @@ def main():
             if path.exists():
                 compact={k:v for k,v in json.loads(path.read_text()).items() if k not in ('records','fit_packets')}
                 (destination/name).write_text(json.dumps(compact,indent=2)+'\n')
+    for candidate,phases in [('asset_dynamic_correlation',('screen100',)),('asset_component_weights',('screen120','development1000','reserved1000')),('asset_training_blocks',('screen100','development1000','reserved1000')),('asset_likelihood_sv',('screen100',))]:
+        for phase in phases:
+            source=V/'candidates'/candidate/phase
+            destination=D/'candidates'/candidate/phase
+            if not source.exists():continue
+            destination.mkdir(parents=True,exist_ok=True)
+            for name in ('plan.json','summary.json','working_incumbent_snapshot.json'):
+                path=source/name
+                if path.exists():
+                    compact={k:v for k,v in json.loads(path.read_text()).items()if k not in('records','fit_packets','reference_records')}
+                    (destination/name).write_text(json.dumps(compact,indent=2)+'\n')
+    receipt=O/'development_workflow_refocus/checkpoint_receipt.json'
+    if receipt.exists():shutil.copy2(receipt,D/'feature-partial-full-checkpoint-receipt.json')
+    for name in ('receipt.json','metadata_remote_recovery.json'):
+        path=O/'archives/asset-v6-sample-fit-cache-retirement-20261021'/name
+        if path.exists():shutil.copy2(path,D/('sample-fit-cache-retirement-'+name))
     screen = mean_source/'screen100/summary.json'
     if screen.exists():
         compact = {k: v for k, v in json.loads(screen.read_text()).items() if k != 'records'}
@@ -234,7 +255,7 @@ def main():
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
                            'test_asset_iid_component.py', 'test_asset_gjr.py',
-                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py','test_asset_feature_admission.py'],
+                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py','test_asset_feature_admission.py','test_asset_dynamic_correlation.py','test_asset_component_weights.py','test_asset_training_blocks.py','test_asset_likelihood_sv.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
@@ -244,7 +265,7 @@ def main():
         assert line[3:].startswith((REL+'/', 'docs/results/daily-cross-asset-722/catalogue.json', 'docs/results/daily-cross-asset-722/CATALOGUE.md')), line
     if changes.strip():
         subprocess.run(['git', 'add', REL, 'docs/results/daily-cross-asset-722/catalogue.json', 'docs/results/daily-cross-asset-722/CATALOGUE.md'], cwd=R, env=env, check=True)
-        subprocess.run(['git', 'commit', '-m', 'Expand joint-asset feature research and verify frozen full admission'], cwd=R, env=env, check=True)
+        subprocess.run(['git', 'commit', '-m', 'Record sample-first joint-asset research and training-derived block candidates'], cwd=R, env=env, check=True)
         subprocess.run(['git', '-c', 'http.version=HTTP/1.1', 'push', 'origin', 'HEAD:main'], cwd=R, env=env, check=True)
     old = O/'v6_candidate_source_public_recovery.json'
     if old.exists():
