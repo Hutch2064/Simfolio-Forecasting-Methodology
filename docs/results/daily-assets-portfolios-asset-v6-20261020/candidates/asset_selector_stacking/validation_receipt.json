@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-21T08:18:43.518348+00:00",
+  "verified": true,
+  "selected_checkpoints_verified": 144,
+  "reference_checkpoints_verified": 144,
+  "cases_per_model": 72,
+  "outer_paths": 1000,
+  "main_Q_recomputed": {
+    "0": 0.8820768417915955,
+    "1": 0.8709965039754616
+  },
+  "reference_main_Q": {
+    "current_best": 0.8214554222471507,
+    "fixed_reference": 0.9660201133857566
+  },
+  "fresh_multivariate_replay": {
+    "case": 53,
+    "constituents": [
+      "BTC",
+      "FR0525",
+      "FR0551",
+      "FX_AUD_USD",
+      "FX_CAD_USD",
+      "FX_CHF_USD",
+      "FX_GBP_USD",
+      "FX_JPY_USD",
+      "GSGSIM",
+      "IEFSIM"
+    ],
+    "both_configurations_bitwise_equal": true
+  },
+  "source_closure_verified": true,
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "no_promotion": true,
+  "full_panel_catalogue_increment": 0,
+  "independence_or_significance_claim": false
+}

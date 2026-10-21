@@ -1,0 +1,71 @@
+{
+  "utc": "2026-10-21T08:26:13.121746+00:00",
+  "scope": "Descriptive unweighted request-average learned weights on adaptively reused72case100path screen. Not score decomposition, no score or selection weight, no causal claim.",
+  "diagnostics_zero_additional_selection_weight": true,
+  "profiles": {
+    "0": {
+      "mean_ideal_request_weight_by_family": {
+        "GJR": 0.06944444444444445,
+        "HARCH": 0.08333333333333334,
+        "AR1_GARCH": 0.26388888888888895,
+        "constant": 0.15277777777777782,
+        "SV_RMS": 0.06944444444444445,
+        "EWMA_recursive": 0.1944444444444445,
+        "EWMA_reverting": 0.06944444444444445,
+        "SV_path": 0.041666666666666664,
+        "GARCH": 0.027777777777777776,
+        "blocks:uniform": 0.027777777777777776
+      },
+      "by_mean": {
+        "sample": 0.12500000000000003,
+        "zero": 0.6111111111111108,
+        "shrink": 0.2361111111111112,
+        "not_filtered": 0.027777777777777776
+      },
+      "by_innovations": {
+        "empirical": 0.3611111111111112,
+        "Gaussian": 0.27777777777777785,
+        "Student": 0.3333333333333334,
+        "raw_or_parent": 0.027777777777777776
+      },
+      "by_uncertainty": {
+        "False": 0.7361111111111104,
+        "True": 0.2361111111111112,
+        "raw_or_parent": 0.027777777777777776
+      }
+    },
+    "1": {
+      "mean_ideal_request_weight_by_family": {
+        "GJR": 0.07552498922371906,
+        "parent:": 0.00219649869462126,
+        "blocks:uniform": 0.038983450653841525,
+        "blocks:IID": 0.006959786762945223,
+        "constant": 0.09996954913048287,
+        "EWMA_reverting": 0.07829483081450325,
+        "GARCH": 0.05630361922766806,
+        "HARCH": 0.04640792988748891,
+        "SV_path": 0.04409950528125081,
+        "SV_RMS": 0.05931556418479041,
+        "AR1_GARCH": 0.24803843213528892,
+        "EWMA_recursive": 0.2439058440033981
+      },
+      "by_mean": {
+        "sample": 0.13817532916374733,
+        "not_filtered": 0.04813973611140799,
+        "zero": 0.5724581386921527,
+        "shrink": 0.24122679603268943
+      },
+      "by_innovations": {
+        "empirical": 0.3704751183460968,
+        "raw_or_parent": 0.04813973611140799,
+        "Gaussian": 0.2211434345469799,
+        "Student": 0.36024171099551283
+      },
+      "by_uncertainty": {
+        "False": 0.7002595510835702,
+        "raw_or_parent": 0.04813973611140799,
+        "True": 0.25160071280501906
+      }
+    }
+  }
+}

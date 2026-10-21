@@ -1,0 +1,76 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "pool": "stack"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.7741087467314782,
+      "model_id": "model_testing_asset_broad_horizon_pool_v1_917e342cc8872cc9",
+      "percent_better_vs_same100path_fixed_reference": 20.01639983761734,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "pool": "select"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8120426969079203,
+      "model_id": "model_testing_asset_broad_horizon_pool_v1_e18df64b17120d05",
+      "percent_better_vs_same100path_fixed_reference": 16.09693255824198,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 2,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_broad_horizon_pool_v1_917e342cc8872cc9": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "pool": "stack"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.7741087467314782,
+      "percent_better_vs_same100path_fixed_reference": 20.01639983761734,
+      "successful_cases": 72
+    },
+    "model_testing_asset_broad_horizon_pool_v1_e18df64b17120d05": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "pool": "select"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8120426969079203,
+      "percent_better_vs_same100path_fixed_reference": 16.09693255824198,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 144,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8235702227265657,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 522.2274959118804,
+  "utc": "2026-10-21T08:23:42.910452+00:00"
+}

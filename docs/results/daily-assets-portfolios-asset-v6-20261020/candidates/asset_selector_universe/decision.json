@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-21T08:27:22.222737+00:00",
+  "decision": "Both broader-universe policies improve exploratory100path72case screen; advance frozen definition to1000inner/outer paths on355development cases",
+  "results": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "pool": "stack"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.7741087467314782,
+      "model_id": "model_testing_asset_broad_horizon_pool_v1_917e342cc8872cc9",
+      "percent_better_vs_same100path_fixed_reference": 20.01639983761734,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "pool": "select"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8120426969079203,
+      "model_id": "model_testing_asset_broad_horizon_pool_v1_e18df64b17120d05",
+      "percent_better_vs_same100path_fixed_reference": 16.09693255824198,
+      "successful_cases": 72
+    }
+  ],
+  "matched_parent_Q": 0.8235702227265657,
+  "official": false,
+  "no_promotion_yet": true,
+  "full_panel_catalogue_increment": 0,
+  "adaptively_reused_evidence": true,
+  "no_independence_or_significance_claim": true
+}

@@ -1,0 +1,36 @@
+{
+  "utc": "2026-10-21T08:28:10.057878+00:00",
+  "status": "future_components_researched_not_implemented_or_admitted",
+  "current_universe": {
+    "options": 166,
+    "volatility_families": 9,
+    "innovations": 3,
+    "mean_modes": 3,
+    "mean_uncertainty_modes": 2,
+    "raw_samplers": 3,
+    "unchanged_parent_options": 1
+  },
+  "credible_next": [
+    {
+      "mechanism": "CorrectedPolitis-White stationary and circular block alternatives within adaptive universe",
+      "primary_sources": [
+        "https://www.math.ucsd.edu/~politis/SBblock-revER.pdf",
+        "https://public.econ.duke.edu/~ap172/Patton_Politis_White_2009.pdf",
+        "https://bashtage.github.io/arch/bootstrap/generated/arch.bootstrap.optimal_block_length.html"
+      ],
+      "distinction": "Original asymptotic sample-mean variance estimation optimum, not guaranteed optimal financial forecast length. Corrected stationary constant2 and circular4/3; inspect installed implementation/version before qualification. Joint-row alignment must remain intact.",
+      "reason_new": "Current166option menu hasIID and uniform block methods, not corrected plug-in stationary/circular options. No change to fixed reporting reference."
+    },
+    {
+      "mechanism": "EGARCH/asymmetric power volatility alternatives",
+      "primary_sources": [
+        "https://web.pdx.edu/~crkl/ec572/readings/Nelson91.pdf"
+      ],
+      "status": "Not implemented in current nine-family menu. Likelihood fitting, distribution-specific centering, joint innovation coherence and finite-path validation required before admission."
+    }
+  ],
+  "validation_design_open": "Terminal-horizon nonoverlapping folds can have only two long blocks with early fitted prefixes. Greater rolling support and/or historical predictive aggregation regularization warrant separate source-bound tests, without outer look-ahead or assumed improvements.",
+  "no_final_stopping_judgment": true,
+  "no_method_excluded_solely_for_cost": true,
+  "no_current_job_changed": true
+}

@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-21T08:19:39.681983+00:00",
+  "decision": "reject_both_initial19_option_terminal_horizon_blocked_policies_on_frozen72case_screen",
+  "main_Q_parent": 0.8214554222471507,
+  "main_Q_fixed_reference": 0.9660201133857566,
+  "results": [
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "pool": "stack"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8709965039754616,
+      "model_id": "model_testing_asset_horizon_rolling_CRPS_pool_v1_917e342cc8872cc9",
+      "percent_better_vs_same1000path_fixed_reference": 9.836607757291038,
+      "successful_cases": 72
+    },
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "pool": "select"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8820768417915955,
+      "model_id": "model_testing_asset_horizon_rolling_CRPS_pool_v1_e18df64b17120d05",
+      "percent_better_vs_same1000path_fixed_reference": 8.68959873930082,
+      "successful_cases": 72
+    }
+  ],
+  "no_promotion": true,
+  "no_full_panel_escalation": true,
+  "full_panel_catalogue_increment": 0,
+  "scope": "Reject these frozen configurations; not proof against predictive pooling or every adaptive selection procedure. Sparse two-block long-horizon validation and limited component universe remain distinct questions.",
+  "future_reconsideration_requires": "New evidence or materially different mechanism, not retuning these same scores"
+}
