@@ -9340,13 +9340,32 @@
   "retention_note": "retained_in_active_set inside each execution is its historical recording-time snapshot; active_model_ids is authoritative for the current retained set.",
   "current_score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
   "current_panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
-  "updated_utc": "2026-10-21T06:37:45.596915+00:00",
-  "pending_benchmark_reset": {
+  "updated_utc": "2026-10-21T13:58:12.723771+00:00",
+  "historical_status_snapshots": [
+    {
+      "recorded_context": "Superseded scalar-portfolio V5 launch snapshot; not current work",
+      "status": {
+        "paths_per_forecast": 1000,
+        "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+        "full_attempts_expected": 256196,
+        "stage": "full_baseline_reset_running",
+        "FAST_removed": true,
+        "launch_evidence": "../daily-assets-portfolios-1000-v5-20261020/live_launch_verification.json"
+      },
+      "superseded_by": "Verified completed joint-asset V6 pair; source launch snapshot retained without edits"
+    }
+  ],
+  "current_benchmark_status": {
+    "updated_utc": "2026-10-21T13:58:12.723503+00:00",
+    "baseline_pair": "complete_independently_verified",
+    "baseline_attempts": 128098,
     "paths_per_forecast": 1000,
-    "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
-    "full_attempts_expected": 256196,
-    "stage": "full_baseline_reset_running",
-    "FAST_removed": true,
-    "launch_evidence": "../daily-assets-portfolios-1000-v5-20261020/live_launch_verification.json"
+    "series": 1264,
+    "official_best_model_id": "model_testing_asset_circular_raw_GARCH_fade_FHS_mean_v1",
+    "source_report": "../daily-assets-portfolios-asset-v6-20261020/official_scoreboard.json",
+    "goal_status": "active",
+    "research_stage": "selector_path_objective_development355",
+    "research_partial_scores_are_not_full_panel_results": true,
+    "final_selector_suite_pending": true
   }
 }
