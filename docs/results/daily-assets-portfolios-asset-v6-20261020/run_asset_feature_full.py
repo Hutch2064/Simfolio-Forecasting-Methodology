@@ -23,6 +23,9 @@ def main():
             assert sha(O/name)==digest
             if name.startswith('asset_level_v6/'):source_files[name[len('asset_level_v6/'):]]=digest
         evidence.append({'phase':phase,'summary_sha256':sha(d/'summary.json'),'plan_sha256':sha(d/'plan.json')})
+    supplement=read(C/'transitive_source_receipt.json');assert supplement['complete']
+    for name,value in supplement['source_files_relative_to_v6'].items():
+        assert sha(V/name)==value;source_files[name]=value
     assert not (F/'active.json').exists(),'Inspect an earlier full evaluation instead of restarting'
     subprocess.run([sys.executable,'/Users/aidanhutchison/simfolio/storage_preflight.py','--expected-gib','1.8','--artifact-root',str(O),'--budget-gib','16'],check=True)
     F.mkdir(exist_ok=True);factory=f'candidates.asset_feature_batch.candidate:build_{CONFIGS.index(config):03d}';model=FeaturePool(config)

@@ -7,6 +7,7 @@ import os
 import shutil
 import subprocess
 import fcntl
+import sys
 
 O = Path(__file__).resolve().parent
 V = O/'asset_level_v6'
@@ -23,7 +24,12 @@ sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
     lock = (O/'asset_v6_publication.lock').open('a')
     fcntl.flock(lock, fcntl.LOCK_EX)
-    assert not subprocess.check_output(['git', 'status', '--porcelain'], cwd=R, text=True).strip(), 'Preserve unrelated repository edits'
+    dirty=subprocess.check_output(['git','status','--porcelain'],cwd=R,text=True)
+    if dirty.strip():
+        assert '--resume-owned-prepared' in sys.argv,'Preserve unrelated repository edits'
+        for line in dirty.splitlines():
+            assert line[3:].startswith((REL+'/', 'docs/results/daily-cross-asset-722/catalogue.json','docs/results/daily-cross-asset-722/CATALOGUE.md')), 'Partial publication includes unrelated edits'
+
     archive = O/'archives/asset-v6-hybrid-1000-20261021/receipt.json'
     if archive.exists():
         subprocess.run([PY, str(O/'catalogue_asset_hybrid_closed.py')], cwd=O, env=env, check=True)
@@ -79,6 +85,7 @@ def main():
                  'prepare_asset_feature_broad.py','run_asset_feature_broad.py','run_asset_feature_broad_v2.py','asset_feature_storage_budget.json',
                  'retire_closed_feature_fit_caches.py','preserve_asset_feature_cache_retirement_metadata.py',
                  'run_asset_feature_full.py','report_asset_feature_full.py','promote_asset_feature.py',
+                 'continue_asset_feature_batch.py','bind_asset_feature_transitive_sources.py','test_asset_feature_admission.py',
                  'retire_closed_asset_circular_losses.py','preserve_asset_circular_retirement_metadata.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
@@ -130,7 +137,7 @@ def main():
         dest = D/'candidates'/name
         dest.mkdir(exist_ok=True)
         for path in source.iterdir():
-            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json'):
+            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json','transitive_source_receipt.json','full_selection.json'):
                 shutil.copy2(path,dest/path.name)
         for phase in ('development','reserved','broad'):
             path = source/phase/'summary.json'
@@ -227,7 +234,7 @@ def main():
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
                            'test_asset_iid_component.py', 'test_asset_gjr.py',
-                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py'],
+                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py','test_asset_feature_admission.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
@@ -237,7 +244,7 @@ def main():
         assert line[3:].startswith((REL+'/', 'docs/results/daily-cross-asset-722/catalogue.json', 'docs/results/daily-cross-asset-722/CATALOGUE.md')), line
     if changes.strip():
         subprocess.run(['git', 'add', REL, 'docs/results/daily-cross-asset-722/catalogue.json', 'docs/results/daily-cross-asset-722/CATALOGUE.md'], cwd=R, env=env, check=True)
-        subprocess.run(['git', 'commit', '-m', 'Preserve audited asset-pair handoff and matched prior-best pilot'], cwd=R, env=env, check=True)
+        subprocess.run(['git', 'commit', '-m', 'Expand joint-asset feature research and verify frozen full admission'], cwd=R, env=env, check=True)
         subprocess.run(['git', '-c', 'http.version=HTTP/1.1', 'push', 'origin', 'HEAD:main'], cwd=R, env=env, check=True)
     old = O/'v6_candidate_source_public_recovery.json'
     if old.exists():

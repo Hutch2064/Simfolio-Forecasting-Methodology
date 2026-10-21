@@ -1,0 +1,30 @@
+{
+  "complete": true,
+  "financial_source_changes": false,
+  "prior_sealed_evidence": [
+    {
+      "plan_sha256": "bb075de071841e986ffa28686a18d776b26f36c00942adc408163500ccb6f58d",
+      "previous_frozen_plan": "asset_level_v6/candidates/asset_mean_uncertainty/AR1_mean_screen100/plan.json",
+      "source_sealed_before_feature_screen": "2026-10-21T02:56:36.230745+00:00"
+    },
+    {
+      "plan_sha256": "8b8dd8c9de979e80db24a29ad948c48b4259fb7b894a55c049714be9e98cef28",
+      "previous_frozen_plan": "asset_level_v6/candidates/asset_gjr/plan.json",
+      "source_sealed_before_feature_screen": "2026-10-21T01:16:24.192164+00:00"
+    }
+  ],
+  "publication_recovery_receipt_sha256": "daa630b5a285e6fee64085f03bbeca4806e1c08da4ed172fdf37d6172afa75b0",
+  "scope": "The initial feature plan bound direct batch sources and the prior fading/mean law. AR1 and GJR transitive fit modules were separately sealed in earlier experiments; this supplement verifies those exact pre-existing bytes without rewriting any original feature plan or result.",
+  "source_files_relative_to_v6": {
+    "candidates/asset_AR1_mean/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidates/asset_AR1_mean/candidate.py": "fa90656844c4451ba69c393aa2e3acd03f021a953b82fb9de3f26a9efb1c0f50",
+    "candidates/asset_AR1_mean/fit_ar.py": "da9d0b8f67c6d9b8cb8f033eb2c0f4af862d74aec338da402ecd989aecb88b30",
+    "candidates/asset_AR1_mean/kernels.py": "a0009d78410907c2fcae9ffddf88b89ffe79e2f0f80fb48f88e325c30d48cc07",
+    "candidates/asset_gjr/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidates/asset_gjr/candidate.py": "e1e08173ac52993e3aac59df2bee54c54d9da390ac67ee6b9dce3f1c74449a26",
+    "candidates/asset_gjr/fit.py": "ef8ea42291f8b3c3c045ca281a0da4522070779ac0ee8c1f75e65da3e0581bf4",
+    "candidates/asset_gjr/kernels.py": "662402a7b8a580cf1db59db888f2fb5dffe64e90d276bd58b35039bf65918393",
+    "candidates/asset_gjr/pilot_run.py": "364a81e01c1a251370e1681c0121423f387178ab040e9edf83d65a20152387af"
+  },
+  "utc": "2026-10-21T03:33:07.034085+00:00"
+}
