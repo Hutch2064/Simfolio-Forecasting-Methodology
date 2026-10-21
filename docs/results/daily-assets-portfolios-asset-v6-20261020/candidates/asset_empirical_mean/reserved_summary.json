@@ -1,0 +1,48 @@
+{
+  "advance_to_next_stage": false,
+  "advancing_model_ids": [],
+  "candidate_model_ids": [
+    "model_testing_asset_circular_FHS_empirical_paired_batch_mean_v1"
+  ],
+  "cases_per_model": 355,
+  "checkpoint_identities_verified": 1065,
+  "complete": true,
+  "current_best_reference_model_id": "model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1",
+  "diagnostics_have_zero_promotion_influence": true,
+  "forecast_successes": 355,
+  "independent_validation_claim": false,
+  "missing": [],
+  "native_failures": 0,
+  "new_full_panel_admission": false,
+  "peak_workers": 12,
+  "percent_better_vs_worse_asset_baseline": {
+    "model_testing_asset_circular_FHS_empirical_paired_batch_mean_v1": 3.387025023533674,
+    "model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1": 3.4098411744707957,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.0
+  },
+  "phase": "reserved",
+  "scoring_integrity_errors": 0,
+  "sole_main_scores": {
+    "model_testing_asset_circular_FHS_empirical_paired_batch_mean_v1": 0.6773779217390945,
+    "model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1": 0.6772179519533836,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.7011252079796684
+  },
+  "total_expected_selected_forecasts": 355,
+  "utc": "2026-10-21T02:00:46.550783+00:00",
+  "worker_pids": [
+    57328,
+    57329,
+    57330,
+    57331,
+    57332,
+    57333,
+    57334,
+    57335,
+    57336,
+    57337,
+    57338,
+    57339
+  ],
+  "workers_requested": 12,
+  "worse_asset_baseline_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6"
+}

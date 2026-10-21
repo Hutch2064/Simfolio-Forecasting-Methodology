@@ -53,7 +53,14 @@ def main():
                  'screen_asset_iid_component.py', 'test_asset_iid_component.py',
                  'preserve_asset_circular_closed.py', 'catalogue_asset_circular_closed.py',
                  'finish_asset_circular.py', 'qualify_asset_gjr.py', 'test_asset_gjr.py',
-                 'refresh_asset_v6_research_doc.py']:
+                 'refresh_asset_v6_research_doc.py', 'screen_asset_gjr.py',
+                 'screen_asset_adaptive_blocks.py', 'test_asset_adaptive_blocks.py',
+                 'screen_asset_empirical_mean.py', 'test_asset_empirical_mean.py',
+                 'continue_asset_empirical_mean.py', 'screen_asset_fading_vol.py',
+                 'test_asset_fading_vol.py', 'run_asset_fading_pilot.py',
+                 'continue_asset_fading_vol.py', 'preserve_asset_gjr_pilot.py',
+                 'preserve_asset_adaptive_pilot.py', 'preserve_asset_empirical_mean_pilot.py',
+                 'retire_closed_asset_hybrid_losses.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -99,6 +106,40 @@ def main():
         if path.exists():
             compact = {k: v for k, v in json.loads(path.read_text()).items() if k != 'records'}
             (mean_target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
+    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol'):
+        source = V/'candidates'/name
+        dest = D/'candidates'/name
+        dest.mkdir(exist_ok=True)
+        for path in source.iterdir():
+            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json'):
+                shutil.copy2(path,dest/path.name)
+        for phase in ('development','reserved','broad'):
+            path = source/phase/'summary.json'
+            if path.exists():
+                compact = {k:v for k,v in json.loads(path.read_text()).items() if k!='records'}
+                (dest/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
+    for phase in ('iid_component_screen100','gjr_screen100','adaptive_blocks_screen100','empirical_mean_screen100','fading_vol_screen100'):
+        path = mean_source/phase/'summary.json'
+        if path.exists():
+            compact = {k:v for k,v in json.loads(path.read_text()).items() if k!='records'}
+            (mean_target/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
+    for phase in ('development','reserved'):
+        path = gjr/phase/'summary.json'
+        if path.exists():
+            compact = {k:v for k,v in json.loads(path.read_text()).items() if k!='records'}
+            (gjr_target/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
+    if (gjr/'decision.json').exists():
+        shutil.copy2(gjr/'decision.json',gjr_target/'decision.json')
+    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021'):
+        path = O/'archives'/folder/'receipt.json'
+        if path.exists():
+            shutil.copy2(path,D/(folder+'-archive-receipt.json'))
+    retirement = O/'archives/asset-v6-hybrid-raw-retirement-20261021'
+    for name in ('receipt.json','metadata_remote_recovery.json'):
+        if (retirement/name).exists():
+            shutil.copy2(retirement/name,D/('old-hybrid-raw-retirement-'+name))
+    if (c/'ARCHIVED_LOSSES.json').exists():
+        shutil.copy2(c/'ARCHIVED_LOSSES.json',target/'ARCHIVED_LOSSES.json')
     full_target = target/'full'
     full_target.mkdir(exist_ok=True)
     for name in ('verification_receipt.json', 'scoreboard.json', 'admission.json'):
@@ -137,7 +178,8 @@ def main():
                            'test_v6_reporting.py', 'test_asset_prior_best.py',
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
-                           'test_asset_iid_component.py', 'test_asset_gjr.py'],
+                           'test_asset_iid_component.py', 'test_asset_gjr.py',
+                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
@@ -171,7 +213,7 @@ def main():
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 33}), flush=True)
+                      'tests': 45}), flush=True)
 
 
 if __name__ == '__main__':

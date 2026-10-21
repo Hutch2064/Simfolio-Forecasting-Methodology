@@ -1,0 +1,64 @@
+{
+  "advance_to_next_stage": true,
+  "advancing_model_ids": [
+    "model_testing_asset_circular_FHS_empirical_paired_batch_mean_v1"
+  ],
+  "candidate_model_ids": [
+    "model_testing_asset_circular_FHS_empirical_centered_batch_mean_v1",
+    "model_testing_asset_circular_FHS_empirical_paired_batch_mean_v1"
+  ],
+  "cases_per_model": 355,
+  "checkpoint_identities_verified": 1420,
+  "complete": true,
+  "current_best_reference_model_id": "model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1",
+  "diagnostics_have_zero_promotion_influence": true,
+  "forecast_successes": 710,
+  "independent_validation_claim": false,
+  "missing": [],
+  "native_failures": 0,
+  "new_full_panel_admission": false,
+  "peak_workers": 12,
+  "percent_better_vs_worse_asset_baseline": {
+    "model_testing_asset_circular_FHS_empirical_centered_batch_mean_v1": 10.460938087068039,
+    "model_testing_asset_circular_FHS_empirical_paired_batch_mean_v1": 10.466954126319916,
+    "model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1": 10.466785392786493,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.0
+  },
+  "phase": "development",
+  "scoring_integrity_errors": 0,
+  "sole_main_scores": {
+    "model_testing_asset_circular_FHS_empirical_centered_batch_mean_v1": 0.7166726986671197,
+    "model_testing_asset_circular_FHS_empirical_paired_batch_mean_v1": 0.716624546151404,
+    "model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1": 0.7166258966984633,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.8004022862826219
+  },
+  "total_expected_selected_forecasts": 710,
+  "utc": "2026-10-21T01:57:53.167648+00:00",
+  "worker_pids": [
+    30988,
+    30989,
+    30990,
+    30991,
+    30992,
+    30993,
+    30994,
+    30995,
+    30996,
+    30997,
+    30998,
+    30999,
+    32238,
+    32247,
+    32249,
+    32257,
+    32258,
+    32269,
+    32281,
+    32299,
+    32300,
+    32301,
+    32302
+  ],
+  "workers_requested": 12,
+  "worse_asset_baseline_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6"
+}

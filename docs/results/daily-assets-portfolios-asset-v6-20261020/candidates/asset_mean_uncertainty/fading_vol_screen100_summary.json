@@ -1,0 +1,43 @@
+{
+  "cases_per_arm": 355,
+  "complete": true,
+  "eligible_for_promotion": false,
+  "exploratory_main_Q": {
+    "circular_hybrid": 0.7237407318572695,
+    "ewma": 0.722904747103041,
+    "fixed_reference": 0.8054055469184839,
+    "garch": 0.7237629650563521,
+    "hybrid": 0.7320147132429888
+  },
+  "independent_validation_claim": false,
+  "is_official_panel_score": false,
+  "native_failures": 0,
+  "new_forecasts": 710,
+  "paths": 100,
+  "percent_better_vs_same100path_fixed_reference": {
+    "circular_hybrid": 10.139589350193512,
+    "ewma": 10.243386096742746,
+    "fixed_reference": 0.0,
+    "garch": 10.136828852805868,
+    "hybrid": 9.11228311703235
+  },
+  "promising_arms_for1000path_confirmation": [
+    "ewma"
+  ],
+  "reused_forecasts": 1065,
+  "utc": "2026-10-21T02:15:57.871988+00:00",
+  "worker_pids": [
+    95728,
+    95730,
+    95731,
+    95733,
+    95734,
+    95736,
+    95738,
+    95740,
+    95742,
+    95744,
+    95746,
+    95748
+  ]
+}

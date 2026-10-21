@@ -1,0 +1,11 @@
+# Empirical joint batch-mean uncertainty
+
+Use one cohesive circular raw-block/GARCH filtered hybrid with the same fixed half/half mixture, point-mean shrinkage, training covariance, joint shock rows, asset paths and portfolio accounting as the verified best. Change only the shape/construction of joint uncertainty around the mean. No fitted extra parameter, horizon/family/asset route, clipping or benchmark change.
+
+Let q=floor(sqrt(n)), df=q-1, batch sizes n_j, batch means b_j and global training mean mu. The current inflated weighted-batch covariance is C=sum[n_j(b_j-mu)(b_j-mu)']/[n(df-2)]. Therefore support vectors d_j=(b_j-mu)/sqrt(df-2), with probabilities p_j=n_j/n, have exactly zero population mean and covariance C. Unequal batch sizes are included. The point-mean center is unchanged.
+
+Two globally fixed variants are screened together. Centered empirical draws preserve the historical batch directions/asymmetry; stratified category draws are recentered to the known target finite-ensemble mean. Paired empirical draws symmetrize complete joint vectors using antithetic pairs. Both have the incumbent's intended population covariance; finite empirical-ensemble covariance is approximate, as with the Gaussian sampler. They are bounded nonparametric uncertainty approximations, not an exact Bayesian posterior or a confidence-coverage guarantee.
+
+The mechanism tests information lost by a Gaussian covariance ellipse without changing estimated width or point drift. Historical joint mean-regime directions can matter to nonlinear multi-asset portfolio outcomes. It also avoids introducing additional optimization or MCMC. Four numerical tests establish exact weighted population moments for unequal batches, unchanged finite-ensemble target means, complete recovery of incumbent paths when original Gaussian draws are substituted, and chunk invariance.
+
+Initial evaluation: both variants on the same355development cases at100paths, interleaved within one12worker pool. Reuse the verified same-count reference and incumbent losses. Promising variants require1000path confirmation, reserved/broad checks and complete full-panel verification before promotion. No official scores or full-panel catalogue count changes at this screening stage.
