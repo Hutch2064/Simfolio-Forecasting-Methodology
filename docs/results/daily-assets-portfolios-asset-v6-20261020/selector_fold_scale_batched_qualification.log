@@ -1,0 +1,13 @@
+test_all166_coefficients_weights_and_paths_match_prior_fold_normalization (test_selector_fold_scale_batched.FoldScaleBatchedTests.test_all166_coefficients_weights_and_paths_match_prior_fold_normalization) ... ok
+test_coefficients_match_independent_canonical_fold_scores (test_selector_fold_scale_batched.FoldScaleBatchedTests.test_coefficients_match_independent_canonical_fold_scores) ... ok
+test_financial_fixture_chunk_invariance_and_final1000_paths (test_selector_fold_scale_batched.FoldScaleBatchedTests.test_financial_fixture_chunk_invariance_and_final1000_paths) ... ok
+test_incompatible_unscaled_bundle_is_rejected (test_selector_fold_scale_batched.FoldScaleBatchedTests.test_incompatible_unscaled_bundle_is_rejected) ... ok
+test_normalized_objective_is_invariant_to_uniform_log_return_units (test_selector_fold_scale_batched.FoldScaleBatchedTests.test_normalized_objective_is_invariant_to_uniform_log_return_units) ... ok
+test_scale_uses_each_prefix_not_its_validation_or_full_request (test_selector_fold_scale_batched.FoldScaleBatchedTests.test_scale_uses_each_prefix_not_its_validation_or_full_request) ... ok
+test_seed_replication_changes_draws_without_changing_prefix_scale (test_selector_fold_scale_batched.FoldScaleBatchedTests.test_seed_replication_changes_draws_without_changing_prefix_scale) ... ok
+test_zero_prefix_scale_has_no_epsilon_or_fallback (test_selector_fold_scale_batched.FoldScaleBatchedTests.test_zero_prefix_scale_has_no_epsilon_or_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 3.909s
+
+OK
