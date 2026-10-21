@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-21T05:49:21.523505+00:00",
+  "decision": "Do not advance this Student-CRPS learned blend; its complete72-case100-path score loses to the current Gaussian learned blend.",
+  "main_Q": 0.8381526412366063,
+  "working_main_Q": 0.8235702227265657,
+  "fixed_WR_main_Q": 0.967834337489039,
+  "successful_forecasts": 72,
+  "paths": 100,
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "prior_evidence": "Earlier fixed-half Student feature also lost; new law was justified by fitting the blend to its actual Student distribution, but did not improve the screen.",
+  "scope": "No higher-precision improvement claimed; this does not reject all heavy-tail families. Do not retune df or fractions against outer losses.",
+  "working_incumbent_unchanged": true,
+  "full_panel_catalogue_increment": 0,
+  "stopping_condition_met": false
+}

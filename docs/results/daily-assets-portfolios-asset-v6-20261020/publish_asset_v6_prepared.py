@@ -91,7 +91,7 @@ def main():
                  'screen_asset_training_blocks.py','run_asset_training_blocks_validation.py','test_asset_training_blocks.py','preserve_asset_sample_refocus.py',
                  'screen_asset_likelihood_sv.py','test_asset_likelihood_sv.py','preserve_asset_training_laws.py',
                  'screen_asset_trained_pool.py','run_asset_trained_pool_validation.py','run_asset_trained_pool_broad.py','test_asset_trained_pool.py','screen_asset_regime_rows.py','test_asset_regime_rows.py','screen_asset_random_measure.py','test_asset_random_measure.py','preserve_asset_learned_pool_pilots.py','preserve_asset_learned_pool_broad.py','verify_asset_trained_pool.py','recover_v6_candidate_publication.py','retire_closed_sample_fit_caches.py','preserve_sample_fit_retirement_metadata.py',
-                 'screen_asset_trained_student.py','test_asset_trained_student.py','preserve_asset_stochastic_correlation.py','run_asset_stochastic_correlation_validation.py','screen_asset_stochastic_correlation.py','screen_asset_stochastic_correlation_v2.py','test_asset_stochastic_correlation.py','preserve_asset_latent_mean.py','latent_mean_closed_metadata_recovery.json',
+                 'preserve_asset_trained_student.py','screen_asset_trained_student.py','test_asset_trained_student.py','preserve_asset_stochastic_correlation.py','run_asset_stochastic_correlation_validation.py','screen_asset_stochastic_correlation.py','screen_asset_stochastic_correlation_v2.py','test_asset_stochastic_correlation.py','preserve_asset_latent_mean.py','latent_mean_closed_metadata_recovery.json',
                  'screen_asset_latent_mean.py','run_asset_latent_mean_validation.py','test_asset_latent_mean_fit.py','test_asset_latent_mean.py','latent_mean_prototype_public_recovery.json',
                  'research_workflow_policy.json','working_incumbent.json',
                  'retire_closed_asset_circular_losses.py','preserve_asset_circular_retirement_metadata.py']:
@@ -172,7 +172,7 @@ def main():
             (gjr_target/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
     if (gjr/'decision.json').exists():
         shutil.copy2(gjr/'decision.json',gjr_target/'decision.json')
-    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021','asset-v6-feature-broad-20261021','asset-v6-sample-refocus-20261021','asset-v6-training-laws-20261021','asset-v6-learned-pool-pilots-20261021','asset-v6-learned-pool-broad-20261021','asset-v6-latent-mean-20261021','asset-v6-stochastic-correlation-20261021'):
+    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021','asset-v6-feature-broad-20261021','asset-v6-sample-refocus-20261021','asset-v6-training-laws-20261021','asset-v6-learned-pool-pilots-20261021','asset-v6-learned-pool-broad-20261021','asset-v6-latent-mean-20261021','asset-v6-stochastic-correlation-20261021','asset-v6-trained-Student-20261021'):
         path = O/'archives'/folder/'receipt.json'
         if path.exists():
             shutil.copy2(path,D/(folder+'-archive-receipt.json'))
