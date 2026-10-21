@@ -1,0 +1,137 @@
+{
+  "requested_utc": "2026-10-21T15:50:22.563197+00:00",
+  "reason": "Direct user instruction: stop the slow implementation and prioritize the faster setup",
+  "old_stage": {
+    "active_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_path_objective/development1000/active.json",
+    "expected_forecasts": 710,
+    "folder": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_path_objective/development1000",
+    "inner_paths": 1000,
+    "name": "selector_path_objective_development355",
+    "new_outer_forecasts_expected": 566,
+    "official": false,
+    "paths": 1000,
+    "reused_forecasts": 144,
+    "shared_worker_limit": 12,
+    "status_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_path_objective/development1000/progress.json",
+    "summary_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_path_objective/development1000/summary.json"
+  },
+  "old_progress": {
+    "active_workers": 12,
+    "completed_cases": 135,
+    "completed_forecasts": 270,
+    "expected_cases": 355,
+    "expected_forecasts": 710,
+    "measured_workload_projection": {
+      "basis": "Measured processCPU per member-training-row-option-pair work, ideal12core lower bound; first request per process excluded; not wall ETA; full in-flight cost included; excludes setup/IO/contention/fit repair",
+      "mean_seconds_lower_bound": 8048.041902683643,
+      "median_seconds_lower_bound": 8339.198287843705,
+      "utc": "2026-10-21T15:50:17.971844+00:00"
+    },
+    "native_failures": 0,
+    "new_forecasts": 126,
+    "preliminary": true,
+    "reused_forecasts": 144,
+    "scoring_integrity_errors": 0,
+    "utc": "2026-10-21T15:50:17.971948+00:00",
+    "workers": [
+      {
+        "case": 245,
+        "phase": "prepare",
+        "pid": 55002,
+        "utc": "2026-10-21T15:42:08.568043+00:00"
+      },
+      {
+        "case": 255,
+        "phase": "prepare",
+        "pid": 55018,
+        "utc": "2026-10-21T15:43:50.442948+00:00"
+      },
+      {
+        "case": 151,
+        "phase": "prepare",
+        "pid": 55023,
+        "utc": "2026-10-21T15:28:09.354956+00:00"
+      },
+      {
+        "case": 161,
+        "phase": "prepare",
+        "pid": 55015,
+        "utc": "2026-10-21T15:30:47.592569+00:00"
+      },
+      {
+        "case": 141,
+        "phase": "prepare",
+        "pid": 55008,
+        "utc": "2026-10-21T15:35:33.965323+00:00"
+      },
+      {
+        "case": 166,
+        "phase": "prepare",
+        "pid": 55028,
+        "utc": "2026-10-21T15:38:44.986569+00:00"
+      },
+      {
+        "case": 32,
+        "phase": "prepare",
+        "pid": 55013,
+        "utc": "2026-10-21T15:40:29.728582+00:00"
+      },
+      {
+        "case": 156,
+        "phase": "prepare",
+        "pid": 55005,
+        "utc": "2026-10-21T15:29:15.302149+00:00"
+      },
+      {
+        "case": 116,
+        "phase": "prepare",
+        "pid": 55026,
+        "utc": "2026-10-21T15:32:17.268462+00:00"
+      },
+      {
+        "case": 260,
+        "phase": "prepare",
+        "pid": 55010,
+        "utc": "2026-10-21T15:46:36.881840+00:00"
+      },
+      {
+        "case": 81,
+        "phase": "prepare",
+        "pid": 55000,
+        "utc": "2026-10-21T15:32:08.597655+00:00"
+      },
+      {
+        "case": 320,
+        "phase": "prepare",
+        "pid": 55020,
+        "utc": "2026-10-21T15:43:12.591818+00:00"
+      }
+    ]
+  },
+  "old_plan_sha256": "a8a54977a1ff5e9b9edd73f8320225116ecaec2f6309297344365c385fe229d7",
+  "verified_process_commands": {
+    "56986": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -u verify_selector_path_development_after_writer.py",
+    "41685": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -u qualify_selector_sweep_after_development.py",
+    "51958": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -u verify_selector_sweep_after_handoff.py",
+    "30916": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -u /Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/qualify_selector_inner_precision_after_sweep.py",
+    "53623": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -u run_selector_path_development355.py",
+    "55000": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=18) --multiprocessing-fork",
+    "55002": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=20) --multiprocessing-fork",
+    "55005": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=22) --multiprocessing-fork",
+    "55008": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=24) --multiprocessing-fork",
+    "55010": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=26) --multiprocessing-fork",
+    "55013": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=28) --multiprocessing-fork",
+    "55015": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=30) --multiprocessing-fork",
+    "55018": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=32) --multiprocessing-fork",
+    "55020": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=34) --multiprocessing-fork",
+    "55023": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=36) --multiprocessing-fork",
+    "55026": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=38) --multiprocessing-fork",
+    "55028": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=40) --multiprocessing-fork"
+  },
+  "completed_case_records_before_stop": 135,
+  "scientific_sources_changed": false,
+  "outputs_deleted": false,
+  "stopped_utc": "2026-10-21T15:50:22.919195+00:00",
+  "all_exact_old_handles_exited": true,
+  "completed_case_records_after_stop": 135
+}

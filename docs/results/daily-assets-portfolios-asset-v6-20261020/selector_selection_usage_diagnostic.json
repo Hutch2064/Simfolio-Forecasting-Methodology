@@ -1,0 +1,552 @@
+{
+  "utc": "2026-10-21T15:55:17.948444+00:00",
+  "completed_requests": 135,
+  "expected_requests": 355,
+  "diagnostic_only": true,
+  "zero_score_or_selection_weight": true,
+  "coverage_warning": "Partial adaptively reused development set; completion is not random and these frequencies are not full-panel frequencies",
+  "models": {
+    "terminal": {
+      "requests": 135,
+      "reused_requests": 72,
+      "reused72_main_Q": 0.7675923678464208,
+      "unique_allocation_vectors": 135,
+      "unique_active_component_sets": 135,
+      "active_components_min": 1,
+      "active_components_median": 3,
+      "active_components_max": 9,
+      "families": [
+        {
+          "family": "AR1_GARCH",
+          "requests_present": 69,
+          "percent_requests_present": 51.11111111111111,
+          "mean_percent_final_paths": 26.441481481481482
+        },
+        {
+          "family": "EWMA_recursive",
+          "requests_present": 78,
+          "percent_requests_present": 57.77777777777777,
+          "mean_percent_final_paths": 23.785185185185185
+        },
+        {
+          "family": "GJR",
+          "requests_present": 30,
+          "percent_requests_present": 22.22222222222222,
+          "mean_percent_final_paths": 10.552592592592593
+        },
+        {
+          "family": "SV_RMS",
+          "requests_present": 27,
+          "percent_requests_present": 20.0,
+          "mean_percent_final_paths": 5.777777777777778
+        },
+        {
+          "family": "SV_path",
+          "requests_present": 32,
+          "percent_requests_present": 23.703703703703706,
+          "mean_percent_final_paths": 5.651851851851852
+        },
+        {
+          "family": "SV/RMS parent mixture",
+          "requests_present": 17,
+          "percent_requests_present": 12.592592592592592,
+          "mean_percent_final_paths": 4.980740740740741
+        },
+        {
+          "family": "HARCH",
+          "requests_present": 17,
+          "percent_requests_present": 12.592592592592592,
+          "mean_percent_final_paths": 4.795555555555556
+        },
+        {
+          "family": "constant",
+          "requests_present": 16,
+          "percent_requests_present": 11.851851851851853,
+          "mean_percent_final_paths": 4.586666666666667
+        },
+        {
+          "family": "Raw blocks replacement",
+          "requests_present": 24,
+          "percent_requests_present": 17.77777777777778,
+          "mean_percent_final_paths": 4.533333333333333
+        },
+        {
+          "family": "EWMA_reverting",
+          "requests_present": 12,
+          "percent_requests_present": 8.88888888888889,
+          "mean_percent_final_paths": 4.355555555555556
+        },
+        {
+          "family": "Raw blocks history cycles",
+          "requests_present": 22,
+          "percent_requests_present": 16.296296296296298,
+          "mean_percent_final_paths": 3.0474074074074076
+        },
+        {
+          "family": "Raw IID",
+          "requests_present": 4,
+          "percent_requests_present": 2.9629629629629632,
+          "mean_percent_final_paths": 1.031111111111111
+        },
+        {
+          "family": "GARCH",
+          "requests_present": 5,
+          "percent_requests_present": 3.7037037037037033,
+          "mean_percent_final_paths": 0.4607407407407408
+        }
+      ],
+      "components_used": 115,
+      "top_components": [
+        {
+          "index": 0,
+          "spec": {
+            "kind": "parent"
+          },
+          "requests_present": 17,
+          "percent_requests_present": 12.592592592592592,
+          "mean_percent_final_paths": 4.980740740740741
+        },
+        {
+          "index": 158,
+          "spec": {
+            "kind": "filtered",
+            "family": "EWMA_recursive",
+            "innovations": "empirical",
+            "mean_mode": "zero",
+            "mean_uncertainty": false
+          },
+          "requests_present": 16,
+          "percent_requests_present": 11.851851851851853,
+          "mean_percent_final_paths": 4.677037037037037
+        },
+        {
+          "index": 1,
+          "spec": {
+            "kind": "blocks",
+            "sampling": "uniform",
+            "replacement": true
+          },
+          "requests_present": 24,
+          "percent_requests_present": 17.77777777777778,
+          "mean_percent_final_paths": 4.533333333333333
+        },
+        {
+          "index": 140,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "empirical",
+            "mean_mode": "zero",
+            "mean_uncertainty": false
+          },
+          "requests_present": 15,
+          "percent_requests_present": 11.11111111111111,
+          "mean_percent_final_paths": 3.819259259259259
+        },
+        {
+          "index": 137,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "empirical",
+            "mean_mode": "sample",
+            "mean_uncertainty": true
+          },
+          "requests_present": 19,
+          "percent_requests_present": 14.074074074074074,
+          "mean_percent_final_paths": 3.5644444444444447
+        },
+        {
+          "index": 157,
+          "spec": {
+            "kind": "filtered",
+            "family": "EWMA_recursive",
+            "innovations": "empirical",
+            "mean_mode": "shrink",
+            "mean_uncertainty": true
+          },
+          "requests_present": 14,
+          "percent_requests_present": 10.37037037037037,
+          "mean_percent_final_paths": 3.066666666666667
+        },
+        {
+          "index": 2,
+          "spec": {
+            "kind": "blocks",
+            "sampling": "uniform",
+            "replacement": false
+          },
+          "requests_present": 22,
+          "percent_requests_present": 16.296296296296298,
+          "mean_percent_final_paths": 3.0474074074074076
+        },
+        {
+          "index": 135,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "Gaussian",
+            "mean_mode": "zero",
+            "mean_uncertainty": true
+          },
+          "requests_present": 14,
+          "percent_requests_present": 10.37037037037037,
+          "mean_percent_final_paths": 2.985185185185185
+        },
+        {
+          "index": 134,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "Gaussian",
+            "mean_mode": "zero",
+            "mean_uncertainty": false
+          },
+          "requests_present": 10,
+          "percent_requests_present": 7.4074074074074066,
+          "mean_percent_final_paths": 2.428148148148148
+        },
+        {
+          "index": 132,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "Gaussian",
+            "mean_mode": "shrink",
+            "mean_uncertainty": false
+          },
+          "requests_present": 5,
+          "percent_requests_present": 3.7037037037037033,
+          "mean_percent_final_paths": 2.354074074074074
+        },
+        {
+          "index": 164,
+          "spec": {
+            "kind": "filtered",
+            "family": "EWMA_recursive",
+            "innovations": "Student",
+            "mean_mode": "zero",
+            "mean_uncertainty": false
+          },
+          "requests_present": 9,
+          "percent_requests_present": 6.666666666666667,
+          "mean_percent_final_paths": 2.3007407407407405
+        },
+        {
+          "index": 155,
+          "spec": {
+            "kind": "filtered",
+            "family": "EWMA_recursive",
+            "innovations": "empirical",
+            "mean_mode": "sample",
+            "mean_uncertainty": true
+          },
+          "requests_present": 10,
+          "percent_requests_present": 7.4074074074074066,
+          "mean_percent_final_paths": 1.9288888888888889
+        }
+      ],
+      "mean_modes": [
+        {
+          "mean_mode": "zero",
+          "requests_present": 98,
+          "mean_percent_all_final_paths": 43.72296296296297
+        },
+        {
+          "mean_mode": "shrink",
+          "requests_present": 55,
+          "mean_percent_all_final_paths": 20.288888888888888
+        },
+        {
+          "mean_mode": "sample",
+          "requests_present": 68,
+          "mean_percent_all_final_paths": 22.395555555555553
+        }
+      ],
+      "mean_uncertainty": [
+        {
+          "mean_uncertainty": false,
+          "mean_percent_all_final_paths": 50.4637037037037,
+          "requests_present": 102
+        },
+        {
+          "mean_uncertainty": true,
+          "mean_percent_all_final_paths": 35.943703703703704,
+          "requests_present": 104
+        }
+      ]
+    },
+    "path": {
+      "requests": 135,
+      "reused_requests": 72,
+      "reused72_main_Q": 0.760166312792511,
+      "unique_allocation_vectors": 134,
+      "unique_active_component_sets": 132,
+      "active_components_min": 1,
+      "active_components_median": 4,
+      "active_components_max": 12,
+      "families": [
+        {
+          "family": "AR1_GARCH",
+          "requests_present": 84,
+          "percent_requests_present": 62.22222222222222,
+          "mean_percent_final_paths": 38.528888888888886
+        },
+        {
+          "family": "EWMA_recursive",
+          "requests_present": 53,
+          "percent_requests_present": 39.25925925925926,
+          "mean_percent_final_paths": 13.88
+        },
+        {
+          "family": "GJR",
+          "requests_present": 37,
+          "percent_requests_present": 27.40740740740741,
+          "mean_percent_final_paths": 10.559999999999999
+        },
+        {
+          "family": "SV_RMS",
+          "requests_present": 32,
+          "percent_requests_present": 23.703703703703706,
+          "mean_percent_final_paths": 6.940740740740741
+        },
+        {
+          "family": "HARCH",
+          "requests_present": 19,
+          "percent_requests_present": 14.074074074074074,
+          "mean_percent_final_paths": 5.7659259259259255
+        },
+        {
+          "family": "SV_path",
+          "requests_present": 34,
+          "percent_requests_present": 25.185185185185183,
+          "mean_percent_final_paths": 5.41037037037037
+        },
+        {
+          "family": "EWMA_reverting",
+          "requests_present": 31,
+          "percent_requests_present": 22.962962962962962,
+          "mean_percent_final_paths": 5.111111111111112
+        },
+        {
+          "family": "SV/RMS parent mixture",
+          "requests_present": 27,
+          "percent_requests_present": 20.0,
+          "mean_percent_final_paths": 4.671111111111111
+        },
+        {
+          "family": "constant",
+          "requests_present": 13,
+          "percent_requests_present": 9.62962962962963,
+          "mean_percent_final_paths": 3.579259259259259
+        },
+        {
+          "family": "Raw blocks history cycles",
+          "requests_present": 27,
+          "percent_requests_present": 20.0,
+          "mean_percent_final_paths": 2.722962962962963
+        },
+        {
+          "family": "Raw blocks replacement",
+          "requests_present": 13,
+          "percent_requests_present": 9.62962962962963,
+          "mean_percent_final_paths": 1.657777777777778
+        },
+        {
+          "family": "GARCH",
+          "requests_present": 10,
+          "percent_requests_present": 7.4074074074074066,
+          "mean_percent_final_paths": 1.171851851851852
+        },
+        {
+          "family": "Raw IID",
+          "requests_present": 0,
+          "percent_requests_present": 0.0,
+          "mean_percent_final_paths": 0.0
+        }
+      ],
+      "components_used": 133,
+      "top_components": [
+        {
+          "index": 134,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "Gaussian",
+            "mean_mode": "zero",
+            "mean_uncertainty": false
+          },
+          "requests_present": 15,
+          "percent_requests_present": 11.11111111111111,
+          "mean_percent_final_paths": 5.601481481481481
+        },
+        {
+          "index": 140,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "empirical",
+            "mean_mode": "zero",
+            "mean_uncertainty": false
+          },
+          "requests_present": 17,
+          "percent_requests_present": 12.592592592592592,
+          "mean_percent_final_paths": 4.783703703703703
+        },
+        {
+          "index": 0,
+          "spec": {
+            "kind": "parent"
+          },
+          "requests_present": 27,
+          "percent_requests_present": 20.0,
+          "mean_percent_final_paths": 4.671111111111111
+        },
+        {
+          "index": 137,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "empirical",
+            "mean_mode": "sample",
+            "mean_uncertainty": true
+          },
+          "requests_present": 24,
+          "percent_requests_present": 17.77777777777778,
+          "mean_percent_final_paths": 4.303703703703704
+        },
+        {
+          "index": 135,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "Gaussian",
+            "mean_mode": "zero",
+            "mean_uncertainty": true
+          },
+          "requests_present": 21,
+          "percent_requests_present": 15.555555555555555,
+          "mean_percent_final_paths": 3.954074074074074
+        },
+        {
+          "index": 131,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "Gaussian",
+            "mean_mode": "sample",
+            "mean_uncertainty": true
+          },
+          "requests_present": 22,
+          "percent_requests_present": 16.296296296296298,
+          "mean_percent_final_paths": 2.9451851851851854
+        },
+        {
+          "index": 136,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "empirical",
+            "mean_mode": "sample",
+            "mean_uncertainty": false
+          },
+          "requests_present": 12,
+          "percent_requests_present": 8.88888888888889,
+          "mean_percent_final_paths": 2.905185185185185
+        },
+        {
+          "index": 141,
+          "spec": {
+            "kind": "filtered",
+            "family": "AR1_GARCH",
+            "innovations": "empirical",
+            "mean_mode": "zero",
+            "mean_uncertainty": true
+          },
+          "requests_present": 17,
+          "percent_requests_present": 12.592592592592592,
+          "mean_percent_final_paths": 2.768888888888889
+        },
+        {
+          "index": 2,
+          "spec": {
+            "kind": "blocks",
+            "sampling": "uniform",
+            "replacement": false
+          },
+          "requests_present": 27,
+          "percent_requests_present": 20.0,
+          "mean_percent_final_paths": 2.722962962962963
+        },
+        {
+          "index": 165,
+          "spec": {
+            "kind": "filtered",
+            "family": "EWMA_recursive",
+            "innovations": "Student",
+            "mean_mode": "zero",
+            "mean_uncertainty": true
+          },
+          "requests_present": 5,
+          "percent_requests_present": 3.7037037037037033,
+          "mean_percent_final_paths": 2.405925925925926
+        },
+        {
+          "index": 122,
+          "spec": {
+            "kind": "filtered",
+            "family": "SV_RMS",
+            "innovations": "empirical",
+            "mean_mode": "zero",
+            "mean_uncertainty": false
+          },
+          "requests_present": 5,
+          "percent_requests_present": 3.7037037037037033,
+          "mean_percent_final_paths": 2.3822222222222225
+        },
+        {
+          "index": 158,
+          "spec": {
+            "kind": "filtered",
+            "family": "EWMA_recursive",
+            "innovations": "empirical",
+            "mean_mode": "zero",
+            "mean_uncertainty": false
+          },
+          "requests_present": 14,
+          "percent_requests_present": 10.37037037037037,
+          "mean_percent_final_paths": 2.08
+        }
+      ],
+      "mean_modes": [
+        {
+          "mean_mode": "zero",
+          "requests_present": 103,
+          "mean_percent_all_final_paths": 46.81185185185185
+        },
+        {
+          "mean_mode": "shrink",
+          "requests_present": 45,
+          "mean_percent_all_final_paths": 15.872592592592593
+        },
+        {
+          "mean_mode": "sample",
+          "requests_present": 75,
+          "mean_percent_all_final_paths": 28.263703703703705
+        }
+      ],
+      "mean_uncertainty": [
+        {
+          "mean_uncertainty": false,
+          "mean_percent_all_final_paths": 47.83111111111111,
+          "requests_present": 99
+        },
+        {
+          "mean_uncertainty": true,
+          "mean_percent_all_final_paths": 43.117037037037036,
+          "requests_present": 117
+        }
+      ]
+    }
+  }
+}
