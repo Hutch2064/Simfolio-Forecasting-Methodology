@@ -20,7 +20,7 @@ with (O/'asset_v6_publication.lock').open('a') as lock:
  source_map={f['recovered_path']:f['sha256'] for f in read(O/'selector_online_public_recovery.json')['files'] if f['recovered_path'].startswith('asset_level_v6/') or f['recovered_path'].startswith('test_selector_')}
  source_map.update(q['source_hashes'])
  source_map.update({'asset_level_v6/'+p:h for p,h in read(V/'candidates/asset_selector_native_adapter/numerical_sources.json')['source_files'].items()})
- names=set(source_map)|{'selector_inner_precision_batched_qualification.log','publish_selector_inner_precision_batched.py','run_selector_inner_precision_batched72.py','asset_level_v6/candidates/asset_selector_inner_precision_batched/study1000/plan.json','runtime_target_20261021.json'}|{str(p.relative_to(O)) for p in C.iterdir() if p.is_file() and p.suffix in ('.py','.json','.md')}
+ names=set(source_map)|{'score_percentage.py','selector_inner_precision_batched_qualification.log','publish_selector_inner_precision_batched.py','run_selector_inner_precision_batched72.py','asset_level_v6/candidates/asset_selector_inner_precision_batched/study1000/plan.json','runtime_target_20261021.json'}|{str(p.relative_to(O)) for p in C.iterdir() if p.is_file() and p.suffix in ('.py','.json','.md')}
  original_by_public={p.removeprefix('asset_level_v6/'):p for p in names}
  for public,original in original_by_public.items():
   source=O/original;target=D/public
