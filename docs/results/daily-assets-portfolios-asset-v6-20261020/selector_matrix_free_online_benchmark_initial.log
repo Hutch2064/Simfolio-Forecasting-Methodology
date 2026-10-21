@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-21T14:14:23.533276+00:00",
+  "options": 166,
+  "members": 1000,
+  "leads": 16,
+  "cpu_median_ratios": {
+    "uniform166": 1.5271852426431363,
+    "three_positive_options": 1.5185227203662808
+  },
+  "reference": "Already optimized global-sweep dense coefficient reducer followed by B@w",
+  "scope": "Synthetic historical coefficient/gradient phase only; no component simulation, fitting, fold choice, final paths or outer score",
+  "dense_option_objective_A_byte_exact": true,
+  "weighted_cross_matches_dense_within_declared_float_tolerance": true,
+  "bit_exact_solver_or_forecast_claim": false,
+  "scientific12worker_study_running_concurrently": true,
+  "wall_timings_confounded_by_existing_shared_workload": true,
+  "no_full_request_or_production_speedup_claim": true,
+  "source_hashes": {
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/gradient.py": "fff7c9e751f00650bedcb2ce9b37a53c963371841c970ef56c14645446b54227",
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/__init__.py": "902eab85c0c20438454971f38e90ef072325152a6dba31fa5e20cd37a637b260",
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/state.py": "a658cb55f8a2303aa4ce4b0252551fecc3a6b45c25df5851849dd93a1b4bea7e",
+    "benchmark_selector_matrix_free_online.py": "7e7993ebde0ff6eccd556b88915b3fc9fca46f0a413ea7fd6b1051002e8f3b60"
+  }
+}

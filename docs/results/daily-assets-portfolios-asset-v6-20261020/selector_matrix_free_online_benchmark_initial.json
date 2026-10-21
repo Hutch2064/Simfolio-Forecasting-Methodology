@@ -1,0 +1,104 @@
+{
+  "utc": "2026-10-21T14:14:23.533276+00:00",
+  "options": 166,
+  "members": 1000,
+  "leads": 16,
+  "pairs": [
+    {
+      "mixture": "uniform166",
+      "repeat": 0,
+      "dense": {
+        "cpu_seconds": 0.38181,
+        "wall_seconds": 0.39652854192536324
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.251479,
+        "wall_seconds": 0.27045562502462417
+      },
+      "cpu_ratio": 1.518257985756266
+    },
+    {
+      "mixture": "uniform166",
+      "repeat": 1,
+      "matrix_free": {
+        "cpu_seconds": 0.24752400000000008,
+        "wall_seconds": 0.2546958749881014
+      },
+      "dense": {
+        "cpu_seconds": 0.37801499999999977,
+        "wall_seconds": 0.39435304200742394
+      },
+      "cpu_ratio": 1.5271852426431363
+    },
+    {
+      "mixture": "uniform166",
+      "repeat": 2,
+      "dense": {
+        "cpu_seconds": 0.3728419999999999,
+        "wall_seconds": 0.3956160000525415
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.24401200000000012,
+        "wall_seconds": 0.2474499159725383
+      },
+      "cpu_ratio": 1.5279658377456835
+    },
+    {
+      "mixture": "three_positive_options",
+      "repeat": 0,
+      "dense": {
+        "cpu_seconds": 0.3747790000000002,
+        "wall_seconds": 0.3918868750333786
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.24680500000000016,
+        "wall_seconds": 0.26086675003170967
+      },
+      "cpu_ratio": 1.5185227203662808
+    },
+    {
+      "mixture": "three_positive_options",
+      "repeat": 1,
+      "matrix_free": {
+        "cpu_seconds": 0.24631899999999973,
+        "wall_seconds": 0.2581073750043288
+      },
+      "dense": {
+        "cpu_seconds": 0.37016899999999975,
+        "wall_seconds": 0.3852594170020893
+      },
+      "cpu_ratio": 1.5028032754273934
+    },
+    {
+      "mixture": "three_positive_options",
+      "repeat": 2,
+      "dense": {
+        "cpu_seconds": 0.38221599999999967,
+        "wall_seconds": 0.39588158298283815
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.24057999999999957,
+        "wall_seconds": 0.24452408298384398
+      },
+      "cpu_ratio": 1.5887272424972996
+    }
+  ],
+  "cpu_median_ratios": {
+    "uniform166": 1.5271852426431363,
+    "three_positive_options": 1.5185227203662808
+  },
+  "reference": "Already optimized global-sweep dense coefficient reducer followed by B@w",
+  "scope": "Synthetic historical coefficient/gradient phase only; no component simulation, fitting, fold choice, final paths or outer score",
+  "dense_option_objective_A_byte_exact": true,
+  "weighted_cross_matches_dense_within_declared_float_tolerance": true,
+  "bit_exact_solver_or_forecast_claim": false,
+  "scientific12worker_study_running_concurrently": true,
+  "wall_timings_confounded_by_existing_shared_workload": true,
+  "no_full_request_or_production_speedup_claim": true,
+  "source_hashes": {
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/gradient.py": "fff7c9e751f00650bedcb2ce9b37a53c963371841c970ef56c14645446b54227",
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/__init__.py": "902eab85c0c20438454971f38e90ef072325152a6dba31fa5e20cd37a637b260",
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/state.py": "a658cb55f8a2303aa4ce4b0252551fecc3a6b45c25df5851849dd93a1b4bea7e",
+    "benchmark_selector_matrix_free_online.py": "7e7993ebde0ff6eccd556b88915b3fc9fca46f0a413ea7fd6b1051002e8f3b60"
+  }
+}

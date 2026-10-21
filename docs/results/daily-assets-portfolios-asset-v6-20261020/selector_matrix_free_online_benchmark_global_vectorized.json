@@ -1,0 +1,139 @@
+{
+  "utc": "2026-10-21T14:16:38.998725+00:00",
+  "options": 166,
+  "members": 1000,
+  "leads": 16,
+  "pairs": [
+    {
+      "mixture": "uniform166",
+      "repeat": 0,
+      "dense": {
+        "cpu_seconds": 0.377945,
+        "wall_seconds": 0.3913457499584183
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.24398500000000012,
+        "wall_seconds": 0.24807658302597702
+      },
+      "vectorized": {
+        "cpu_seconds": 0.24082899999999974,
+        "wall_seconds": 0.24959016602952033
+      },
+      "cpu_ratio": 1.5490501465254003,
+      "vectorized_cpu_ratio": 1.5693500367480677
+    },
+    {
+      "mixture": "uniform166",
+      "repeat": 1,
+      "vectorized": {
+        "cpu_seconds": 0.243541,
+        "wall_seconds": 0.253707249998115
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.2483909999999998,
+        "wall_seconds": 0.25922545802313834
+      },
+      "dense": {
+        "cpu_seconds": 0.3813939999999998,
+        "wall_seconds": 0.41986858390737325
+      },
+      "cpu_ratio": 1.5354582090333388,
+      "vectorized_cpu_ratio": 1.5660361089097925
+    },
+    {
+      "mixture": "uniform166",
+      "repeat": 2,
+      "dense": {
+        "cpu_seconds": 0.37445600000000034,
+        "wall_seconds": 0.38898883294314146
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.25149399999999966,
+        "wall_seconds": 0.2593228330370039
+      },
+      "vectorized": {
+        "cpu_seconds": 0.23591600000000001,
+        "wall_seconds": 0.2387420830782503
+      },
+      "cpu_ratio": 1.4889261771652638,
+      "vectorized_cpu_ratio": 1.5872429169704485
+    },
+    {
+      "mixture": "three_positive_options",
+      "repeat": 0,
+      "dense": {
+        "cpu_seconds": 0.38606300000000005,
+        "wall_seconds": 0.41535379202105105
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.25199899999999964,
+        "wall_seconds": 0.2671619999455288
+      },
+      "vectorized": {
+        "cpu_seconds": 0.2379340000000001,
+        "wall_seconds": 0.2500170839484781
+      },
+      "cpu_ratio": 1.532002111119491,
+      "vectorized_cpu_ratio": 1.622563399934435
+    },
+    {
+      "mixture": "three_positive_options",
+      "repeat": 1,
+      "vectorized": {
+        "cpu_seconds": 0.24368999999999996,
+        "wall_seconds": 0.2485234159976244
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.25150499999999987,
+        "wall_seconds": 0.26650129200425
+      },
+      "dense": {
+        "cpu_seconds": 0.3740540000000001,
+        "wall_seconds": 0.3835749579593539
+      },
+      "cpu_ratio": 1.4872626786743814,
+      "vectorized_cpu_ratio": 1.5349583487217373
+    },
+    {
+      "mixture": "three_positive_options",
+      "repeat": 2,
+      "dense": {
+        "cpu_seconds": 0.3835179999999996,
+        "wall_seconds": 0.47648620791733265
+      },
+      "matrix_free": {
+        "cpu_seconds": 0.2529589999999997,
+        "wall_seconds": 0.265738874906674
+      },
+      "vectorized": {
+        "cpu_seconds": 0.23537800000000075,
+        "wall_seconds": 0.25113091606181115
+      },
+      "cpu_ratio": 1.5161271194146089,
+      "vectorized_cpu_ratio": 1.6293706293706223
+    }
+  ],
+  "cpu_median_ratios": {
+    "uniform166": 1.5354582090333388,
+    "three_positive_options": 1.5161271194146089
+  },
+  "vectorized_cpu_median_ratios": {
+    "uniform166": 1.5693500367480677,
+    "three_positive_options": 1.622563399934435
+  },
+  "reference": "Already optimized global-sweep dense coefficient reducer followed by B@w",
+  "scope": "Synthetic historical coefficient/gradient phase only; no component simulation, fitting, fold choice, final paths or outer score",
+  "dense_option_objective_A_byte_exact": true,
+  "weighted_cross_matches_dense_within_declared_float_tolerance": true,
+  "bit_exact_solver_or_forecast_claim": false,
+  "scientific12worker_study_running_concurrently": true,
+  "wall_timings_confounded_by_existing_shared_workload": true,
+  "no_full_request_or_production_speedup_claim": true,
+  "source_hashes": {
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/gradient.py": "fff7c9e751f00650bedcb2ce9b37a53c963371841c970ef56c14645446b54227",
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/__init__.py": "902eab85c0c20438454971f38e90ef072325152a6dba31fa5e20cd37a637b260",
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/gradient_numpy.py": "22c63b63d1b4858d4439fae4685a17770a8ffb96362ab154b101359dc640e50c",
+    "asset_level_v6/candidates/asset_selector_matrix_free_online/state.py": "a658cb55f8a2303aa4ce4b0252551fecc3a6b45c25df5851849dd93a1b4bea7e",
+    "benchmark_selector_matrix_free_online.py": "d10616354642419475ac1fead416f6402ff01ea809138513f29be8094d44c060"
+  }
+}
