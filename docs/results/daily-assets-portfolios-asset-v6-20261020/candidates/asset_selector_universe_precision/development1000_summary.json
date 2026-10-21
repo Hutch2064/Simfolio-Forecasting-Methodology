@@ -1,0 +1,68 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 355,
+  "cases_per_model": 355,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [],
+  "configurations": 2,
+  "errors": [
+    {
+      "case": 49,
+      "message": "Uncertified convex CRPS fit: Iteration limit reached; gap=8.398053086278168e-12",
+      "stage": "training_fit",
+      "type": "ArithmeticError"
+    },
+    {
+      "case": 233,
+      "message": "Uncertified convex CRPS fit: Iteration limit reached; gap=1.558231321752146e-11",
+      "stage": "training_fit",
+      "type": "ArithmeticError"
+    },
+    {
+      "case": 227,
+      "message": "Uncertified convex CRPS fit: Iteration limit reached; gap=9.629658181964373e-13",
+      "stage": "training_fit",
+      "type": "ArithmeticError"
+    }
+  ],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_broad_horizon_pool_precision_v1_917e342cc8872cc9": {
+      "beats_same1000path_current_best": false,
+      "complete": false,
+      "config": {
+        "pool": "stack"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": null,
+      "percent_better_vs_same1000path_fixed_reference": null,
+      "successful_cases": 352
+    },
+    "model_testing_asset_broad_horizon_pool_precision_v1_e18df64b17120d05": {
+      "beats_same1000path_current_best": false,
+      "complete": false,
+      "config": {
+        "pool": "select"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": null,
+      "percent_better_vs_same1000path_fixed_reference": null,
+      "successful_cases": 352
+    }
+  },
+  "native_failures": 3,
+  "new_successful_forecasts": 704,
+  "official": false,
+  "paths": 1000,
+  "reference_main_Q": {
+    "current_best": 0.7131987298009069,
+    "fixed_reference": 0.8004022862826219
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 36083.96825650043,
+  "utc": "2026-10-21T09:18:06.572332+00:00"
+}

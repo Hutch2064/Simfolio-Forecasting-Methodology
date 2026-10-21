@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-21T08:51:34.357814+00:00",
+  "status": "Primary-source review; no numerical score, implementation admission or scoring change",
+  "fixed_main_score_unchanged": true,
+  "question": "Whether finite internal simulation noise or representation can be improved without invalid fairness assumptions",
+  "evidence": [
+    {
+      "source": "https://empslocal.ex.ac.uk/people/staff/ferro/Publications/ferro2013.pdf",
+      "publication": "Ferro2014 Fair scores for ensemble forecasts,doi10.1002/qj.2270",
+      "finding": "Finite-ensemble score and underlying-distribution score differ; fair correction requires appropriate assumptions on member law/dependence."
+    },
+    {
+      "source": "https://arxiv.org/abs/2602.15830",
+      "publication": "Roberts2026 Ensemble-size-dependence of methods minimizing (un)fair score",
+      "finding": "Exchangeability/conditional independence assumptions matter; structural member dependence can invalidate naive fairCRPS corrections. Do not apply an iid adjustment blindly to correlated/antithetic mean ensembles."
+    }
+  ],
+  "decision": "Do not change panel score or admit a naive fairCRPS inner replacement from this review. Current mean ensembles are stratified/antithetic and share fitted parameters; derive applicability before any correction.",
+  "credible_followup": {
+    "mechanism": "Antithetic Gaussian/Student innovation sampling as a coherent joint-path component option",
+    "why_distinct": "Existing mean uncertainty uses stratification but forecast innovations currently use ordinary Gaussian/radial RNG. A source prototype asset_antithetic exists but is unqualified/unadmitted, not a prior losing screen.",
+    "requirements": [
+      "Preserve joint innovation and marginal path laws; Student radial draw shared within a sign pair",
+      "Do not sign-flip empirical residuals or raw rows, which would alter their asymmetric distribution",
+      "Check seeded/chunk invariance and full asset/portfolio accounting",
+      "Same empirical mixture CRPS and1000official members; only representative/broader matched tests can establish improvement"
+    ],
+    "source": "https://onlinelibrary.wiley.com/doi/10.1002/sapm1957361289",
+    "no_claim_of_improvement_or_guarantee": true
+  },
+  "stopping_requirement_still_unmet": true
+}

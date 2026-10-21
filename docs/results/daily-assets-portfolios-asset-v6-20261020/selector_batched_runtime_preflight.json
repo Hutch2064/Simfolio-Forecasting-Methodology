@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-21T09:05:34.956456+00:00",
+  "protocol": "click_to_visible_optimization_protocol.md",
+  "version": "1.5",
+  "current_origin_main_complete_protocol_read": true,
+  "protocol_sha256": "106f3ef7e0168c0160adbf267c8ebd80119f8ed372ab3159507e4349b2b3a353",
+  "repos": {
+    "engine": {
+      "origin_main": "93a68cbe434652780ffce943b1890389e2b66518",
+      "dirty_work_preserved": true,
+      "changes_by_this_stage": false
+    },
+    "web": {
+      "origin_main": "7c92dc194019e2a0d782a4d2db9452a5a3626098",
+      "dirty_work_preserved": true,
+      "changes_by_this_stage": false
+    }
+  },
+  "scope": "Frozen research-harness numerical correctness and local phase timing only, no production/API/browser CTV claim. Production deployment/browser gates not exercised. User-authorized frozen inputs and numerical source take precedence over adopting live engine source as a different research baseline.",
+  "new_implementation_isolated": "asset_level_v6/candidates/asset_selector_batched",
+  "reference_implementation_frozen": "asset_level_v6/candidates/asset_fast_selector/bank.py and asset_feature_batch/kernels.py",
+  "publication_worktree": "repository (clean detached research-only commit; no production checkout edits)",
+  "required_before_retention": "Exact component/joint-state and all-work inner ensemble hash validation; same options/origins/members. Paired local numerical timing only after correctness."
+}

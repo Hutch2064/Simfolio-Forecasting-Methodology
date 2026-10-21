@@ -1,0 +1,104 @@
+{
+  "all_component_ensembles_and_joint_terminal_matrix_bitwise_equal": true,
+  "assets": 8,
+  "case": 316,
+  "checkpoint_sha256": "2135aba15fe412386e99f1f1e23eb2bc00e0a0ebc6140cdf35ebd6efc89edc33",
+  "cpu_seconds": {
+    "median_ratio": 1.8758211811092134,
+    "reference_median": 0.6470270000000005,
+    "reference_worst": 0.6622329999999996,
+    "shared_median": 0.34492999999999974,
+    "shared_worst": 0.3584380000000005
+  },
+  "full_development_workload_parity_still_required": true,
+  "history_rows": 13725,
+  "horizon": 30,
+  "matrix_reused_by_hash_no_identical_output_discarded": true,
+  "matrix_sha256": "ebe343bc2f2244b0a58f8798ce034c6e035b39aaa9fec0f72e5036c8ed819058",
+  "paths": 1000,
+  "raw_unfiltered_methods_unchanged": true,
+  "samples": [
+    {
+      "cpu_seconds": 0.629,
+      "pair": -1,
+      "terminal_matrix_sha256": "ebe343bc2f2244b0a58f8798ce034c6e035b39aaa9fec0f72e5036c8ed819058",
+      "variant": "reference",
+      "wall_seconds": 0.6301068329485133,
+      "warmup": true
+    },
+    {
+      "cpu_seconds": 0.332541,
+      "pair": -1,
+      "terminal_matrix_sha256": "ebe343bc2f2244b0a58f8798ce034c6e035b39aaa9fec0f72e5036c8ed819058",
+      "variant": "shared",
+      "wall_seconds": 0.33409570797812194,
+      "warmup": true
+    },
+    {
+      "cpu_seconds": 0.6416339999999998,
+      "pair": 0,
+      "terminal_matrix_sha256": "ebe343bc2f2244b0a58f8798ce034c6e035b39aaa9fec0f72e5036c8ed819058",
+      "variant": "reference",
+      "wall_seconds": 0.6433309169951826,
+      "warmup": false
+    },
+    {
+      "cpu_seconds": 0.3314320000000004,
+      "pair": 0,
+      "terminal_matrix_sha256": "ebe343bc2f2244b0a58f8798ce034c6e035b39aaa9fec0f72e5036c8ed819058",
+      "variant": "shared",
+      "wall_seconds": 0.33189320808742195,
+      "warmup": false
+    },
+    {
+      "cpu_seconds": 0.34492999999999974,
+      "pair": 1,
+      "terminal_matrix_sha256": "ebe343bc2f2244b0a58f8798ce034c6e035b39aaa9fec0f72e5036c8ed819058",
+      "variant": "shared",
+      "wall_seconds": 0.3452947090845555,
+      "warmup": false
+    },
+    {
+      "cpu_seconds": 0.6470270000000005,
+      "pair": 1,
+      "terminal_matrix_sha256": "ebe343bc2f2244b0a58f8798ce034c6e035b39aaa9fec0f72e5036c8ed819058",
+      "variant": "reference",
+      "wall_seconds": 0.6502933329902589,
+      "warmup": false
+    },
+    {
+      "cpu_seconds": 0.6622329999999996,
+      "pair": 2,
+      "terminal_matrix_sha256": "ebe343bc2f2244b0a58f8798ce034c6e035b39aaa9fec0f72e5036c8ed819058",
+      "variant": "reference",
+      "wall_seconds": 0.679459708975628,
+      "warmup": false
+    },
+    {
+      "cpu_seconds": 0.3584380000000005,
+      "pair": 2,
+      "terminal_matrix_sha256": "ebe343bc2f2244b0a58f8798ce034c6e035b39aaa9fec0f72e5036c8ed819058",
+      "variant": "shared",
+      "wall_seconds": 0.3604309589136392,
+      "warmup": false
+    }
+  ],
+  "scope": "One actual historical inner fold; all166components and1000members, warm-code interleaved paired local numerical simulation only. No full-request/production/browser claim.",
+  "shared_fits_excluded_from_both_simulation_timings": true,
+  "source_profile": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/selector_component_runtime_profile.json",
+  "source_profile_sha256": "116736605637612007bf8bcbf7db070660a54a4e5f4c9653121575fa4168ee37",
+  "sources": {
+    "asset_level_v6/candidates/asset_selector_batched/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "asset_level_v6/candidates/asset_selector_batched/candidate.py": "866928cf09f6f02e9ad3ba8133df2b5559bbb7c5a72f514346a46e424b9acce1",
+    "asset_level_v6/candidates/asset_selector_batched/kernels.py": "0bb8610cbef73c7ecbe0f90a2110db4a1f7c72d9c6b4585bf906aa2aa3178bc5",
+    "asset_level_v6/candidates/asset_selector_batched/terminal.py": "9fd74881c3703e9ccb366f7d114c5cb12fb44798bf5b40c03f1c8cb93ccfad6a"
+  },
+  "utc": "2026-10-21T09:34:46.103596+00:00",
+  "wall_seconds": {
+    "median_ratio": 1.8832994421325338,
+    "reference_median": 0.6502933329902589,
+    "reference_worst": 0.679459708975628,
+    "shared_median": 0.3452947090845555,
+    "shared_worst": 0.3604309589136392
+  }
+}

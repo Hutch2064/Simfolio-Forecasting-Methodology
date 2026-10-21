@@ -1,3 +1,5 @@
+Current adaptive-selector evidence: [CURRENT_SELECTOR_STATUS.md](CURRENT_SELECTOR_STATUS.md). The historical snapshot below is retained.
+
 # Adaptive selector and learned-pool research
 
 The actual goal remains active: maximize canonical full-panel accuracy regardless of compute cost/complexity, with runtime secondary. Frozen1264series, main scoring, fixed worse asset reference and stopping/catalogue requirements are unchanged. No production change.

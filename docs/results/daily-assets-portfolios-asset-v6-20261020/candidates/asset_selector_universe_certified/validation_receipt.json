@@ -1,0 +1,53 @@
+{
+  "utc": "2026-10-21T09:44:52.846381+00:00",
+  "verified": true,
+  "selected_loss_checkpoints_verified": 710,
+  "reference_loss_checkpoints_verified": 710,
+  "all_origin_and_main_scores_recomputed": true,
+  "source_checkpoint_aliases_all_verified": true,
+  "cases_per_model": 355,
+  "paths": 1000,
+  "inner_paths": 1000,
+  "repaired_original_fit_failures": 3,
+  "fresh_successful_multivariate_replay_case": 221,
+  "fresh_replay_hash_equality_verified": true,
+  "independent_saved_convex_coefficients_verified": [
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_universe_certified/repair_qualification/internal-coefficients-049.npz",
+      "sha256": "3fbd2f63d898544fa38a0c4872b9c5dcf29c5f9a1691241d689b018fad858a7f",
+      "objective": 0.007879203172431709,
+      "best_vertex": 0.00831454844943362,
+      "global_simplex_gap": 4.836196547397531e-13,
+      "projected_hessian_min_eigenvalue": -8.548718224834427e-17
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_universe_certified/repair_qualification/internal-coefficients-221.npz",
+      "sha256": "19be2a266905980aa88fd434da932aef9e530e021ed2140961ddbf90dd8bc68f",
+      "objective": 0.005055622012430094,
+      "best_vertex": 0.0050817683300279776,
+      "global_simplex_gap": 1.2193688983877515e-12,
+      "projected_hessian_min_eigenvalue": -2.83692109305144e-17
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_universe_certified/repair_qualification/internal-coefficients-227.npz",
+      "sha256": "3653a50a6cd08cefcc36fda417eb2b651e058fbd1fd6a0b377201fac7a781e37",
+      "objective": 0.055216626931805596,
+      "best_vertex": 0.06255210568154766,
+      "global_simplex_gap": 2.8555630082749417e-13,
+      "projected_hessian_min_eigenvalue": -5.471083251767256e-16
+    },
+    {
+      "file": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_universe_certified/repair_qualification/internal-coefficients-233.npz",
+      "sha256": "412b6849a2d332e1d532911248f0b3070df2f502c590d47e21a327f95f9c1eb5",
+      "objective": 0.04513162997063662,
+      "best_vertex": 0.05035611050587995,
+      "global_simplex_gap": 4.042974288687162e-12,
+      "projected_hessian_min_eigenvalue": 2.567674066737473e-16
+    }
+  ],
+  "no_full_panel_or_independence_claim": true,
+  "full_panel_catalogue_increment": 0,
+  "native_failures_after_repair": 0,
+  "scoring_integrity_errors": 0,
+  "legacy_nominal_parent_replays355_corrected_to_actual352": true
+}

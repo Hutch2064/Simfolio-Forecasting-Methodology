@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-21T09:20:10.820703+00:00",
+  "status": "Credible future algorithm hypothesis, not admitted or claimed better",
+  "mechanism": "History-only adaptive probabilistic-mixture weights emphasizing relevant regimes or recency, with any forgetting/smoothing learned through chronological prequential validation rather than a fixed decay",
+  "motivation": "Current pool estimates one set of mixture weights from equally averaged historical nonoverlapping target-horizon forecasts. Regime changes may make relevance time-dependent. Initial richer pooling improves provisional development whereas hard selection loses; no conclusion about later validation.",
+  "primary_source": "https://arxiv.org/abs/2102.00968",
+  "source_scope": "CRPS learning supports online/adaptive forecast combination; its quantile-wise method is not copied blindly because coherent joint asset-path distributions must be retained.",
+  "requirements": [
+    "Only origin outcomes already realized within outer training history may train weighting or tune adaptation",
+    "No outer panel scores or ticker-specific routing",
+    "Learn a whole joint-path component mixture, not independently rearranged asset/quantile paths",
+    "No arbitrary rolling-history/origin caps or automatic prior-winner fallback",
+    "Reuse per-fold coefficient sufficient statistics without materializing unbounded history x options-squared caches",
+    "Support and uncertainty must be disclosed for only-two-block long-horizon validation; do not call it stable by assumption",
+    "Test unchanged single main score on exact same successful cases before any promotion"
+  ],
+  "why_not_speculative_by_default": "Different selection infrastructure/temporal weighting mechanism not previously tested here; evidence review and qualification needed before numerical admission",
+  "current_working_candidate_unchanged": true,
+  "fixed_panel_and_score_unchanged": true,
+  "no_stopping_judgment": true
+}

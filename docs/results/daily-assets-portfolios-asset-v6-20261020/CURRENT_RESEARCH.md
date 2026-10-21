@@ -1,3 +1,5 @@
+Current adaptive-selector evidence: [CURRENT_SELECTOR_STATUS.md](CURRENT_SELECTOR_STATUS.md). The historical snapshot below is retained.
+
 # Current asset-level accuracy research
 
 The accuracy-maximization goal remains active. A verified winner is not the research stopping point.

@@ -1,0 +1,97 @@
+{
+  "cases_per_model": 355,
+  "complete_execution": true,
+  "complete_identical_coverage_development_ranking": [
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "pool": "stack"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6901704242531206,
+      "model_id": "model_testing_asset_broad_horizon_pool_certified_v1_917e342cc8872cc9",
+      "percent_better_vs_same1000path_fixed_reference": 13.772057366485136,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "pool": "select"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.7217006277337663,
+      "model_id": "model_testing_asset_broad_horizon_pool_certified_v1_e18df64b17120d05",
+      "percent_better_vs_same1000path_fixed_reference": 9.832762836595155,
+      "successful_cases": 355
+    }
+  ],
+  "component_options": 166,
+  "configurations": 2,
+  "errors": [],
+  "full_panel_catalogue_increment": 0,
+  "historical_initial_failures_preserved": true,
+  "historical_initial_precision_fit_failures": 3,
+  "independence_or_significance_claim": false,
+  "inner_paths": 1000,
+  "models": {
+    "model_testing_asset_broad_horizon_pool_certified_v1_917e342cc8872cc9": {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "pool": "stack"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6901704242531206,
+      "model_id": "model_testing_asset_broad_horizon_pool_certified_v1_917e342cc8872cc9",
+      "percent_better_vs_same1000path_fixed_reference": 13.772057366485136,
+      "successful_cases": 355
+    },
+    "model_testing_asset_broad_horizon_pool_certified_v1_e18df64b17120d05": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "pool": "select"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.7217006277337663,
+      "model_id": "model_testing_asset_broad_horizon_pool_certified_v1_e18df64b17120d05",
+      "percent_better_vs_same1000path_fixed_reference": 9.832762836595155,
+      "successful_cases": 355
+    }
+  },
+  "native_failures": 0,
+  "newly_repaired_forecasts": 6,
+  "no_official_promotion": true,
+  "official": false,
+  "parent_reference_verification": {
+    "financial_score_unchanged_by_metadata_correction": true,
+    "initial_parent_replay_successes_proven_by_forecast_records": 352,
+    "legacy_nominal_count_includes_fit_failures_before_anchor_and_is_not_a_verified_replay_count": true,
+    "legacy_summary_nominal_anchor_count": 355,
+    "reference_loss_checkpoints_hash_verified_this_phase": 710
+  },
+  "paths": 1000,
+  "reference_main_Q": {
+    "current_best": 0.7131987298009069,
+    "fixed_reference": 0.8004022862826219
+  },
+  "reused_verified_compatible_forecasts": 704,
+  "runtime": {
+    "fit_cost_includes_both_policies_shared": true,
+    "full_panel_runtime_not_measured": true,
+    "initial_execution_shared_fit_seconds_including_failed_fits": 36083.96825650043,
+    "initial_saved_forecast_simulation_CRPS_seconds": 220.74439281318337,
+    "repair_and_successful_replay_wall_seconds_including_IO": 392.968202,
+    "scope": "Local numerical experiment timing; shared selection/refit costs are not per-mode standalone timings or website latency",
+    "successful_request_shared_fit_seconds": 36021.55803512549
+  },
+  "scoring_integrity_errors": 0,
+  "successful_selected_forecasts": 710,
+  "utc": "2026-10-21T09:24:49.530187+00:00"
+}

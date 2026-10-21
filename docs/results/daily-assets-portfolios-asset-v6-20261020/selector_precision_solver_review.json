@@ -1,0 +1,23 @@
+{
+  "utc": "2026-10-21T08:36:04.174021+00:00",
+  "status": "Prepared numerical repair, not qualified or admitted yet",
+  "actual_error": {
+    "case": 49,
+    "type": "ArithmeticError",
+    "message": "Uncertified convex CRPS fit: Iteration limit reached; gap=8.398053086278168e-12"
+  },
+  "running_initial_precision_sources_unchanged": true,
+  "running_stage": "asset_level_v6/candidates/asset_selector_universe_precision/development1000",
+  "repair_source": "asset_level_v6/candidates/asset_selector_universe_certified",
+  "repair_tests": "test_selector_convex_certificate.py",
+  "mechanism": "Same objective, same first solver call and projected weights. Accept globally certified empirical convex optimum regardless of solver success flag; continue uncertified iteration-limited solves in larger chunks without total cap. Other numerical failures visible.",
+  "next_required": [
+    "Let current writer close without mutation; preserve all completed and failed evidence",
+    "Acquire shared scientific slots and run numerical-certificate regression tests plus joint-option qualification",
+    "Fresh replay actual failed case and a successful multivariate case",
+    "Complete same355case1000path comparison, reusing only source-compatible/hash-verified successful outputs with explicit provenance; no dropped cases or mixed-coverage ranking",
+    "Advance only if complete matched canonical score improves; no promotion or full-panel launch based on current partial evidence"
+  ],
+  "goal_remains_active": true,
+  "no_stopping_judgment": true
+}
