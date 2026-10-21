@@ -1,0 +1,23 @@
+{
+  "utc": "2026-10-21T06:47:13.633839+00:00",
+  "decision": "reject_empirical_Bayes_center_after_broad_regression",
+  "scope": "Both frozen variants improved100path72cases and two355case1000path blocks; simpler center-only lost unchanged7418case1000path broad test. No retuning or extra full sweep.",
+  "candidate_model_id": "model_testing_asset_joint_EB_mean_v1_8cbefd37d0e23e72",
+  "broad_main_Q": 0.6485213622069326,
+  "matched_parent_main_Q": 0.6469412535998392,
+  "matched_fixed_WR_main_Q": 0.6809035594773647,
+  "candidate_percent_better_vs_fixed_WR": 4.755768540156769,
+  "parent_percent_better_vs_fixed_WR": 4.987829099262397,
+  "worse_than_parent_percent": 0.24424298161556113,
+  "matched_broad_cases": 7418,
+  "paths": 1000,
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "working_incumbent_unchanged": true,
+  "official_scoreboard_unchanged": true,
+  "promotion": false,
+  "full_panel_escalation": false,
+  "full_panel_catalogue_increment": 0,
+  "independence_or_significance_claim": false,
+  "future_reconsideration_requires_new_evidence_or_materially_distinct_mechanism": true
+}

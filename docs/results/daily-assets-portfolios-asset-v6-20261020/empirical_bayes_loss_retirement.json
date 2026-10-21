@@ -1,0 +1,31 @@
+{
+  "utc": "2026-10-21T06:52:03.193385+00:00",
+  "scope": "Only8982lossNPZ files from completed rejected empirical-Bayes contrasts; all sources/summaries and current-parent/baseline evidence retained",
+  "archive_receipt": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/archives/asset-v6-empirical-Bayes-20261021/receipt.json",
+  "closed_candidate_only": true,
+  "no_active_scientific_processes_affected": true,
+  "files_removed": 8982,
+  "bytes_removed": 274344547,
+  "verified_path_hash_commitment": "29f51db3439eacdb634a81c48516ca38c5c30b00dfaa1ebefe6ebb5ab6092daa",
+  "free_bytes_before": 616449167360,
+  "free_bytes_after": 616749412352,
+  "phases": {
+    "screen100": {
+      "loss_files_retired": 144,
+      "bytes_retired": 6357502
+    },
+    "development1000": {
+      "loss_files_retired": 710,
+      "bytes_retired": 18473503
+    },
+    "reserved1000": {
+      "loss_files_retired": 710,
+      "bytes_retired": 7588527
+    },
+    "broad1000": {
+      "loss_files_retired": 7418,
+      "bytes_retired": 241925015
+    }
+  },
+  "release_condition": "Retired only after complete private fresh download, physical restore and per-file SHA256 verification."
+}

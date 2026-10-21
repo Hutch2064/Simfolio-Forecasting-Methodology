@@ -43,7 +43,7 @@ def main():
         subprocess.run([PY, str(O/'catalogue_asset_fading_closed.py')], cwd=O, env=env, check=True)
         shutil.copy2(fading_archive,D/'closed-fading-archive-receipt.json')
     subprocess.run([PY, str(O/'refresh_asset_v6_research_doc.py')], cwd=O, env=env, check=True)
-    for name in ['test_asset_mean_tail.py','screen_asset_mean_tail.py','screen_asset_mean_tail_precision.py','preserve_asset_mean_tail.py','test_asset_r52_dependence.py','r52_dependence_qualification_receipt.json','screen_asset_r52_dependence.py','screen_asset_r52_dependence_precision.py','screen_asset_r52_dependence_pre_admission.py','preserve_asset_r52_dependence.py','test_asset_empirical_bayes.py','screen_asset_empirical_bayes.py','run_asset_empirical_bayes_validation.py','run_asset_empirical_bayes_broad.py','verify_asset_empirical_bayes.py','diagnose_asset_empirical_bayes.py','goal_ideation_amendment_receipt.json','methodology_idea_discovery_20261021.json', 'test_asset_prior_best.py', 'audit_asset_v6_full_pair.py',
+    for name in ['test_asset_mean_tail.py','screen_asset_mean_tail.py','screen_asset_mean_tail_precision.py','preserve_asset_mean_tail.py','test_asset_r52_dependence.py','r52_dependence_qualification_receipt.json','screen_asset_r52_dependence.py','screen_asset_r52_dependence_precision.py','screen_asset_r52_dependence_pre_admission.py','preserve_asset_r52_dependence.py','test_asset_empirical_bayes.py','screen_asset_empirical_bayes.py','run_asset_empirical_bayes_validation.py','run_asset_empirical_bayes_broad.py','verify_asset_empirical_bayes.py','verify_asset_empirical_bayes_winner_assumption.py','preserve_asset_empirical_bayes.py','research_ci_trigger_fix_receipt.json','research_ci_live_verification.json','diagnose_asset_empirical_bayes.py','goal_ideation_amendment_receipt.json','methodology_idea_discovery_20261021.json', 'test_asset_prior_best.py', 'audit_asset_v6_full_pair.py',
                  'bind_asset_prior_parent.py', 'publish_asset_v6_prepared.py',
                  'continue_asset_v6_research.py', 'diagnose_asset_v6_pair.py',
                  'test_asset_v6_decomposition.py', 'preserve_asset_v6_closed.py',
@@ -145,7 +145,7 @@ def main():
         dest = D/'candidates'/name
         dest.mkdir(exist_ok=True)
         for path in source.iterdir():
-            if path.suffix in ('.py','.md','.cpp') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','admission_preforecast_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','development_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json','transitive_source_receipt.json','full_selection.json','source_derivation.json','qualification_receipt.json','combined710_diagnostic.json','diagnostics.json','validation_label_note.json','validation_receipt.json','working_promotion.json','prior_working_incumbent.json','source_replay_aliases.json'):
+            if path.suffix in ('.py','.md','.cpp') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','admission_preforecast_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','development_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json','transitive_source_receipt.json','full_selection.json','source_derivation.json','qualification_receipt.json','combined710_diagnostic.json','verification_scope_fix.json','diagnostics.json','validation_label_note.json','validation_receipt.json','working_promotion.json','prior_working_incumbent.json','source_replay_aliases.json'):
                 shutil.copy2(path,dest/path.name)
         for phase in ('development','reserved','broad'):
             path = source/phase/'summary.json'
@@ -172,7 +172,7 @@ def main():
             (gjr_target/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
     if (gjr/'decision.json').exists():
         shutil.copy2(gjr/'decision.json',gjr_target/'decision.json')
-    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021','asset-v6-feature-broad-20261021','asset-v6-sample-refocus-20261021','asset-v6-training-laws-20261021','asset-v6-learned-pool-pilots-20261021','asset-v6-learned-pool-broad-20261021','asset-v6-latent-mean-20261021','asset-v6-stochastic-correlation-20261021','asset-v6-trained-Student-20261021','asset-v6-mean-tail-20261021','asset-v6-r52-dependence-20261021'):
+    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021','asset-v6-feature-broad-20261021','asset-v6-sample-refocus-20261021','asset-v6-training-laws-20261021','asset-v6-learned-pool-pilots-20261021','asset-v6-learned-pool-broad-20261021','asset-v6-latent-mean-20261021','asset-v6-stochastic-correlation-20261021','asset-v6-trained-Student-20261021','asset-v6-mean-tail-20261021','asset-v6-r52-dependence-20261021','asset-v6-empirical-Bayes-20261021'):
         path = O/'archives'/folder/'receipt.json'
         if path.exists():
             shutil.copy2(path,D/(folder+'-archive-receipt.json'))
@@ -223,7 +223,7 @@ def main():
             destination=D/'candidates'/candidate/phase
             if not source.exists():continue
             destination.mkdir(parents=True,exist_ok=True)
-            for name in ('plan.json','summary.json','working_incumbent_snapshot.json'):
+            for name in ('plan.json','summary.json','working_incumbent_snapshot.json','ARCHIVED_LOSSES.json'):
                 path=source/name
                 if path.exists():
                     compact={k:v for k,v in json.loads(path.read_text()).items()if k not in('records','fit_packets','reference_records')}

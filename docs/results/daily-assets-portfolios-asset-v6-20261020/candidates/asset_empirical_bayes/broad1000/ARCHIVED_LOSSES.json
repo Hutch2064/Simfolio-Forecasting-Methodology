@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-21T06:52:03.192651+00:00",
+  "status": "INTENTIONALLY_ARCHIVED_LOSSES",
+  "release_tag": "research-asset-v6-empirical-Bayes-20261021",
+  "repository": "Hutch2064/simfolio-engine",
+  "archive_receipt": "archives/asset-v6-empirical-Bayes-20261021/receipt.json",
+  "phase": "broad1000",
+  "loss_files": 7418,
+  "bytes": 241925015,
+  "fresh_download_and_every_member_disk_restore_SHA256_verified_before_retirement": true,
+  "scope": "Rejected closed candidate raw loss NPZ only; parent/baseline sources, losses and all inputs retained.",
+  "restore": "Download archive/manifest pairs listed in receipt, verify SHA256, restore matching asset_level_v6/candidates/asset_empirical_bayes paths under research root; verify every manifest path before recomputation. Never silently rerun this rejected study."
+}
