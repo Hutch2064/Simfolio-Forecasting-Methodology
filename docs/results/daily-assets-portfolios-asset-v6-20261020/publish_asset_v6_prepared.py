@@ -30,12 +30,27 @@ def main():
                  'test_asset_v6_decomposition.py', 'preserve_asset_v6_closed.py',
                  'catalogue_asset_v6_closed.py', 'archive_asset_v6_when_closed.py',
                  'prepare_asset_prior_broad.py', 'goal_objective_updated.txt',
-                 'goal_screen_parallel_receipt.json']:
+                 'goal_screen_parallel_receipt.json', 'run_asset_prior_full.py',
+                 'screen_asset_means.py', 'test_asset_mean_screen.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
     for path in c.glob('*.py'):
         shutil.copy2(path, target/path.name)
+    mean_source = V/'candidates/asset_mean_uncertainty'
+    mean_target = D/'candidates/asset_mean_uncertainty'
+    mean_target.mkdir(exist_ok=True)
+    for path in mean_source.glob('*.py'):
+        shutil.copy2(path, mean_target/path.name)
+    screen = mean_source/'screen100/summary.json'
+    if screen.exists():
+        compact = {k: v for k, v in json.loads(screen.read_text()).items() if k != 'records'}
+        (mean_target/'screen100_summary.json').write_text(json.dumps(compact, indent=2)+'\n')
+    for phase in ('development', 'reserved', 'broad'):
+        path = c/phase/'summary.json'
+        if path.exists():
+            compact = {k: v for k, v in json.loads(path.read_text()).items() if k not in ('records', 'worker_pids')}
+            (target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
     for name in ['plan.json', 'parent_selection.json', 'plan_receipt.json',
                  'broad_case_selection_receipt.json', 'DESIGN.md']:
         if (c/name).exists():
@@ -49,7 +64,7 @@ def main():
     (D/'PUBLIC_FILES.json').write_text(json.dumps(manifest, indent=2)+'\n')
     test = subprocess.run([PY, '-m', 'unittest', '-v', 'test_asset_paths.py',
                            'test_v6_reporting.py', 'test_asset_prior_best.py',
-                           'test_asset_v6_decomposition.py'],
+                           'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
@@ -72,7 +87,7 @@ def main():
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 21}), flush=True)
+                      'tests': 23}), flush=True)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,29 @@
+{
+  "advance_to_next_stage": true,
+  "cases_per_model": 355,
+  "checkpoint_identities_verified": 1065,
+  "complete": true,
+  "current_best_reference_model_id": "model_testing_asset_joint_blocks_history_partition_v6",
+  "diagnostics_have_zero_promotion_influence": true,
+  "forecast_successes": 355,
+  "independent_validation_claim": false,
+  "missing": [],
+  "native_failures": 0,
+  "new_full_panel_admission": false,
+  "peak_workers": 12,
+  "percent_better_vs_worse_asset_baseline": {
+    "model_testing_asset_equal_joint_blocks_FHS_smooth_joint_mean_uncertainty_v1": 9.104470824934442,
+    "model_testing_asset_joint_blocks_history_partition_v6": 0.629091420445016,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.0
+  },
+  "phase": "development",
+  "scoring_integrity_errors": 0,
+  "sole_main_scores": {
+    "model_testing_asset_equal_joint_blocks_FHS_smooth_joint_mean_uncertainty_v1": 0.7275298936459124,
+    "model_testing_asset_joint_blocks_history_partition_v6": 0.7953670241705721,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.8004022862826219
+  },
+  "utc": "2026-10-21T00:04:43.158867+00:00",
+  "workers_requested": 12,
+  "worse_asset_baseline_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6"
+}
