@@ -1,0 +1,97 @@
+{
+  "scope": "Serial local dated-array to full1000path request entry; no browserCTV or productiondeployment claim",
+  "rows": [
+    {
+      "case": "week0",
+      "pairs": [
+        {
+          "repeat": 0,
+          "process_state": "fresh process; existing numerical disk caches",
+          "reference_wall": 4.909592583077028,
+          "compiled_wall": 1.1732362910406664,
+          "reference_cpu": 4.847368,
+          "compiled_cpu": 1.1565659999999998,
+          "wall_ratio": 4.184657958988121,
+          "wall_seconds_saved": 3.736356292036362,
+          "all_numerical_hashes_match": true
+        },
+        {
+          "repeat": 1,
+          "process_state": "same process warm; all request fits recomputed",
+          "reference_wall": 4.77660800004378,
+          "compiled_wall": 0.9504690419416875,
+          "reference_cpu": 4.724826999999999,
+          "compiled_cpu": 0.9328580000000004,
+          "wall_ratio": 5.025527175809721,
+          "wall_seconds_saved": 3.826138958102092,
+          "all_numerical_hashes_match": true
+        }
+      ]
+    },
+    {
+      "case": "broad350",
+      "pairs": [
+        {
+          "repeat": 0,
+          "process_state": "fresh process; existing numerical disk caches",
+          "reference_wall": 5.148421291029081,
+          "compiled_wall": 0.882702959002927,
+          "reference_cpu": 5.111327,
+          "compiled_cpu": 0.854691,
+          "wall_ratio": 5.83256376170368,
+          "wall_seconds_saved": 4.265718332026154,
+          "all_numerical_hashes_match": true
+        },
+        {
+          "repeat": 1,
+          "process_state": "same process warm; all request fits recomputed",
+          "reference_wall": 5.044785457896069,
+          "compiled_wall": 0.5601217079674825,
+          "reference_cpu": 5.00902,
+          "compiled_cpu": 0.5552839999999999,
+          "wall_ratio": 9.006588007813724,
+          "wall_seconds_saved": 4.484663749928586,
+          "all_numerical_hashes_match": true
+        }
+      ]
+    },
+    {
+      "case": "portfolio9",
+      "pairs": [
+        {
+          "repeat": 0,
+          "process_state": "fresh process; existing numerical disk caches",
+          "reference_wall": 11.36949641595129,
+          "compiled_wall": 1.4625165830366313,
+          "reference_cpu": 11.27014,
+          "compiled_cpu": 1.443985,
+          "wall_ratio": 7.7739264961664505,
+          "wall_seconds_saved": 9.906979832914658,
+          "all_numerical_hashes_match": true
+        },
+        {
+          "repeat": 1,
+          "process_state": "same process warm; all request fits recomputed",
+          "reference_wall": 11.250229333993047,
+          "compiled_wall": 1.2100896670017391,
+          "reference_cpu": 11.157495999999998,
+          "compiled_cpu": 1.199519,
+          "wall_ratio": 9.297021237994654,
+          "wall_seconds_saved": 10.040139666991308,
+          "all_numerical_hashes_match": true
+        }
+      ]
+    }
+  ],
+  "profile_overhead_included": true,
+  "request_selection_and_refit_included": true,
+  "precomputed_bundle_supplied": false,
+  "first_call_state": "Fresh process with existing numerical disk caches; newouterloopJITcompilation included; no all-layer-cold claim",
+  "warm_state": "Same process; no request fits or forecast outputs reused",
+  "samples": "One first and one warm sample per implementation/request; not a general median/tail estimate",
+  "source_attestation_sha256": "ba63488758de6aeee52f37e48c40d489dfaff1c23e8e42afa5e8c823289a8d0e",
+  "timing_completed_before_bulkIO_release": true,
+  "scientific_threads": 1,
+  "nice": 15,
+  "exclusive_scientific_lock": true
+}

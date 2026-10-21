@@ -1,0 +1,64 @@
+{
+  "checkpoint_npz_files_reopened": 0,
+  "claim_boundary": "Independent reduction of stored origin scores; not a second CRPS-from-loss recomputation or significance test.",
+  "created_utc": "2026-10-21T22:23:55.743323+00:00",
+  "forecast_calls": 0,
+  "index_rows_verified": 128098,
+  "infrastructure_failure_notes": [
+    "First one-shot attempt exited before checkpoint iteration on a stale variable name; corrected and preserved its log.",
+    "Second one-shot attempt was deliberately SIGTERM-stopped before the requested bounded smoke; no output artifact was published."
+  ],
+  "infrastructure_failures_before_successful_run": 2,
+  "models": {
+    "model_testing_asset_joint_blocks_history_partition_v6": {
+      "absolute_v7_Q_difference": 0.0,
+      "frozen_audit_v6_Q": 0.6310508866260718,
+      "independently_reduced_v6_Q": 0.6310508866260718,
+      "independently_reduced_v7_Q": 0.7529818660401508,
+      "portfolio_supported_quarters": 232,
+      "quarter_count": 343,
+      "reported_v7_Q": 0.7529818660401508,
+      "task_count": 64049
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "absolute_v7_Q_difference": 2.220446049250313e-16,
+      "frozen_audit_v6_Q": 0.6320715457043177,
+      "independently_reduced_v6_Q": 0.6320715457043176,
+      "independently_reduced_v7_Q": 0.769149799324999,
+      "portfolio_supported_quarters": 232,
+      "quarter_count": 343,
+      "reported_v7_Q": 0.7691497993249988,
+      "task_count": 64049
+    }
+  },
+  "native_failures": 0,
+  "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+  "protocol_id": "daily_portfolio_panel_crps_v7_train_sd_sqrt_native_lead_equal_days_two_branch",
+  "reference_model_id_under_v7": "model_testing_asset_joint_blocks_replacement_v6",
+  "reference_rule": "higher direct v7 Q of the frozen WR/WOR pair on exact scheduled task-key coverage",
+  "scheduled_origin_files_sha256_verified": 1264,
+  "score_index_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/full_pair_rescore_v7_scores.sqlite3",
+  "score_index_sha256": "06cbb2148018af109fb40dd62d1d99e7b2d7ff5d8403a6096b6f3a3f262c1658",
+  "score_integrity_errors": 0,
+  "source_hashes_reverified": {
+    "execution_manifests": {
+      "model_testing_asset_joint_blocks_history_partition_v6": "557797ec7a9782cdc0d83273fbf71abfaf79411092b2c9b739b65e3ff607914d",
+      "model_testing_asset_joint_blocks_replacement_v6": "2fbfdcdd2706d25f42b7be009e43f5719fca7553dc05bb6eb1753374dffbe8fd"
+    },
+    "full_pair_audit": "8a5559e9b366b5facc0f635a04d018baa27d573d305c6da2a196f541ddc8f269",
+    "launch_plan": "765531cf8e5e5f985d42edd2688607be3339387a79d9831b5ac7cb3b79c3817f",
+    "legacy_aggregator": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+    "legacy_checkpoint_reader": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+    "legacy_indexer": "c1ff806397eedb85362b1246d30a13dd1e7eadf22edd81d27ef3d7e4924b63e8",
+    "legacy_scoreboard": "dc95225e5947981a8c507dcc22d1c07c8f1d88e96f0ed6a4cca787e1603e269a",
+    "panel_metadata": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "protocol": "bdbaa25e28939e19bc2c2460a226ef1382e8fd4101e2b61e8961529aa37e728d",
+    "runner": "60e779e38f599a3f29e71b9219ba9b72c0ae605b0aba4e074cb3b271bdba6346",
+    "sweep_api": "c2e51dee86eedbad1e03061019b4a7e7c4fab274cb9f4b2b0f9aadaaf320acc1",
+    "v7_scorer": "085e22bbe9b6aeb6ce07369250c884e71a08ee908c033853e9ec67ee6966e003"
+  },
+  "sqlite_integrity": "ok",
+  "status": "independent_index_coverage_source_hash_and_hierarchy_check_passed",
+  "tasks_per_model": 64049,
+  "verifier_sha256": "40378cebc60dc6204af77326271944689e0cddad5abdc321fca79fa795c4e56a"
+}

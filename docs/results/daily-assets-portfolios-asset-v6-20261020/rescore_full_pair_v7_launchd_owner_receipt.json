@@ -1,0 +1,150 @@
+{
+  "created_utc": "2026-10-21T22:24:37.670693+00:00",
+  "error_accounting": {
+    "infrastructure_attempts": [
+      {
+        "exit_code": 1,
+        "kind": "runner NameError on stale expected_keys reference before checkpoint loop",
+        "label": "com.simfolio.assetv6.rescorev7.20261021",
+        "output_artifacts_published": false,
+        "owner_snapshot_sha256": "cb3756eb4eb77b70249e044fb7248074424dd50356c56f1aec6943c495d05816",
+        "pid": 12527,
+        "stderr_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/rescore_full_pair_v7.launchd.stderr.log",
+        "stderr_sha256": "6540ddb1443f447312bcf8487e9f454e26365b834117b0cd1ccdd399feea6e91",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "exit_code": null,
+        "kind": "deliberately stopped before bounded real-data smoke, as directed",
+        "label": "com.simfolio.assetv6.rescorev7.retry1.20261021",
+        "output_artifacts_published": false,
+        "owner_snapshot_sha256": "1f939444ee8648dbe8d7a6a899de9b097c2d69c4e138672bc9ec83baac153d69",
+        "pid": 19941,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "terminating_signal": "SIGTERM 15"
+      }
+    ],
+    "infrastructure_failures_before_success": 2,
+    "native_failures": 0,
+    "scoring_integrity_errors": 0
+  },
+  "immutability_checks": {
+    "baseline_checkpoint_deletion": 0,
+    "canonical_score_promotion": false,
+    "checkpoint_writes": 0,
+    "forecast_calls": 0,
+    "old_v6_scoreboard_sha256": "dc95225e5947981a8c507dcc22d1c07c8f1d88e96f0ed6a4cca787e1603e269a",
+    "source_or_control_mutations": 0
+  },
+  "launchd": {
+    "completion_owner_snapshot_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/rescore_full_pair_v7_final.launchctl.txt",
+    "completion_owner_snapshot_sha256": "8df860a97ed266a65dc074900350dd79ee131c694bdce6805a3fbdef9cd1f948",
+    "domain": "gui/501",
+    "exit_code": 0,
+    "final_state": "not running; one-shot job booted out after preserving completion status",
+    "keep_alive": false,
+    "label": "com.simfolio.assetv6.rescorev7.final.20261021",
+    "low_priority_io": true,
+    "nice_verified_while_running": 19,
+    "owner_name": "aidanhutchison",
+    "owner_uid": 501,
+    "pid_verified_while_running": 37245,
+    "plist_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/rescore_full_pair_v7_final.launchd.plist",
+    "plist_sha256": "54fa7ba48444f3fcf16c57ca87ba4c3d30527e2b704c900322555da8b6171383",
+    "process_type": "Background",
+    "program_arguments": [
+      "/usr/bin/nice",
+      "-n",
+      "19",
+      "/Users/aidanhutchison/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/rescore_full_pair_v7.py",
+      "--execute",
+      "--profile-clearance"
+    ],
+    "run_at_load": true,
+    "runs": 1,
+    "thread_environment": {
+      "MKL_NUM_THREADS": "1",
+      "NUMBA_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "PYTHONUNBUFFERED": "1"
+    },
+    "uid_verified_while_running": 501,
+    "working_directory": "/Users/aidanhutchison/simfolio"
+  },
+  "rescore": {
+    "coverage": {
+      "native_failures": 0,
+      "new_forecasts": 0,
+      "paths_per_forecast": 1000,
+      "same_task_keys_each_model": true,
+      "score_integrity_errors": 0,
+      "series": 1264,
+      "tasks_per_model": 64049,
+      "total_checkpoints_verified": 128098
+    },
+    "diagnostic_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/full_pair_rescore_v7_diagnostic.json",
+    "diagnostic_sha256": "8cdfa2d903a82bd30315029fdf4a37ed8eda66d9bf43a508e48ac1a1fa139a00",
+    "model_scores": {
+      "model_testing_asset_joint_blocks_history_partition_v6": {
+        "checkpoint_commitment_verified": "7d10d70ae147cf240a0178a8c6254b299cfe6b6215f69c1715fd2671f8dd40da",
+        "maximum_portfolio_weight": 0.5,
+        "old_v6_Q_from_independent_audit": 0.6310508866260718,
+        "percent_better_vs_v7_reference": 2.102052590930516,
+        "portfolio_supported_quarters": 232,
+        "quarter_count": 343,
+        "task_count_verified": 64049,
+        "v6_Q_replayed": 0.6310508866260719,
+        "v7_Q": 0.7529818660401508
+      },
+      "model_testing_asset_joint_blocks_replacement_v6": {
+        "checkpoint_commitment_verified": "25405531f49e1e8fb5ee5668f015b38e1e9e683884b5307ae5fac717c6ebc278",
+        "maximum_portfolio_weight": 0.5,
+        "old_v6_Q_from_independent_audit": 0.6320715457043177,
+        "percent_better_vs_v7_reference": 0.0,
+        "portfolio_supported_quarters": 232,
+        "quarter_count": 343,
+        "task_count_verified": 64049,
+        "v6_Q_replayed": 0.6320715457043177,
+        "v7_Q": 0.7691497993249988
+      }
+    },
+    "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+    "protocol_id": "daily_portfolio_panel_crps_v7_train_sd_sqrt_native_lead_equal_days_two_branch",
+    "reference_model_id_under_v7": "model_testing_asset_joint_blocks_replacement_v6",
+    "runtime": {
+      "checkpoint_read_and_identity_verification_wall_seconds": 82.53811681421939,
+      "forecast_worker_compute_seconds_from_old_run_not_rescore_runtime": {
+        "model_testing_asset_joint_blocks_history_partition_v6": 12956.481747099664,
+        "model_testing_asset_joint_blocks_replacement_v6": 13316.043103705393
+      },
+      "hierarchy_reduction_cpu_seconds": 2.31633699999999,
+      "index_read_wall_seconds": 2.009410582948476,
+      "old_v6_row_score_replay_cpu_seconds": 20.239534999998703,
+      "panel_metadata_validation_wall_seconds": 0.03696979198139161,
+      "rescore_process_cpu_seconds": 112.319834,
+      "rescore_wall_seconds": 143.45937491604127,
+      "series_input_validation_wall_seconds": 8.815126061672345,
+      "v7_origin_score_cpu_seconds": 13.582388000000208
+    },
+    "stderr_bytes": 0,
+    "stderr_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/rescore_full_pair_v7_final.stderr.log",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/rescore_full_pair_v7_final.stdout.log",
+    "stdout_sha256": "1f9fc6755bb23644a3d76f97d9ef467343c979ede8f766b104089e5d2a38a039"
+  },
+  "score_index": {
+    "independent_verification_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/full_pair_rescore_v7_independent_verification.json",
+    "independent_verification_sha256": "329ece4509f8cd0f7271d4186bdc662d0d46c7be110aec4bdc8618d4f0b6735f",
+    "path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/full_pair_rescore_v7_scores.sqlite3",
+    "rows": 128098,
+    "rows_per_model": {
+      "model_testing_asset_joint_blocks_history_partition_v6": 64049,
+      "model_testing_asset_joint_blocks_replacement_v6": 64049
+    },
+    "sha256": "06cbb2148018af109fb40dd62d1d99e7b2d7ff5d8403a6096b6f3a3f262c1658"
+  },
+  "status": "completed_successfully_and_independently_verified"
+}

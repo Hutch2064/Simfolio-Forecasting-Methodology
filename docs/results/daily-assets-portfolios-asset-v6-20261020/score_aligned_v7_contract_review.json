@@ -1,0 +1,47 @@
+{
+  "asset_quarters": 343,
+  "calendar_gap_independence_verified": true,
+  "dummy_actual_score": 1.6763848396501457,
+  "dummy_branch_scores": {
+    "assets": 1.0,
+    "portfolios": 3.0
+  },
+  "dummy_expected_score": 1.6763848396501457,
+  "dummy_full_catalogue_origin_records": 64049,
+  "formula_exact_check": true,
+  "higher_hierarchy_exact_function_reuse": true,
+  "invalid_input_cases_rejected": 6,
+  "limitations": [
+    "Dummy positive-score aggregation checks support/weighting, not model performance/calibration.",
+    "Scorer cannot prove its caller supplied training-only history; execution-binding audit remains required.",
+    "Current full catalogue has no actual requestedH<=21; early-lead scoring does not close short-request selection gap."
+  ],
+  "matched_branch_quarters": 232,
+  "maximum_portfolio_weight": 0.5,
+  "no_goal_or_old_scorer_changes": true,
+  "no_official_promotion_or_full_panel_launch": true,
+  "no_simulations_refits_or_benchmarks": true,
+  "origin_file_hashes_verified": 1264,
+  "pointwise_formula": "mean_h(CRPS_h/(training_portfolio_SD_ddof1*sqrt(nativeh)))",
+  "portfolio_quarters": 232,
+  "scope": "Independent formula/source contract review and dummy full-catalogue aggregation; no forecasts or empirical accuracy claim",
+  "score_protocol_id": "daily_portfolio_panel_crps_v7_train_sd_sqrt_native_lead_equal_days_two_branch",
+  "series": 1264,
+  "source_findings": [
+    "Training scale uses only supplied history, sampleSD(ddof1).",
+    "Lead normalization uses native1..H; dates validate ordering but do not weight losses.",
+    "No log-calendar mass or training-length adjustment enters origin_score.",
+    "Aggregation imports existing score_main.aggregate_records unchanged; complete frozen catalogue has matched support.",
+    "Old score_main/scoring sources remain byte-unchanged; historical log-calendar results preserved."
+  ],
+  "source_sha256": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/score_aligned_v7.py": "085e22bbe9b6aeb6ce07369250c884e71a08ee908c033853e9ec67ee6966e003",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/score_main.py": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/test_score_aligned_v7.py": "f95f4ff0aa76875ad8c9e7d254fae44d77b11c133380253ffb92c3dc22d2666e",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/scoring.py": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf"
+  },
+  "unsupported_portfolio_only_quarter_rejected": true,
+  "unsupported_portfolio_quarters": [],
+  "utc": "2026-10-21T22:01:40.179967+00:00",
+  "verified": true
+}

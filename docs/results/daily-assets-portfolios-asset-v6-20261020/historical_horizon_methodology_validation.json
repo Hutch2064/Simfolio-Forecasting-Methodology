@@ -1,0 +1,114 @@
+{
+  "claimed_88_panel": {
+    "exact88_named_artifact_verified": false,
+    "scope": "Bounded search of local catalogue52 methodology source/resources/docs and tmp top-level names found original80 and single52/expanded132; do not assume88 refers to80 or invent an88 mapping"
+  },
+  "current_panel": {
+    "actual_requested_H_le21": 0,
+    "all_leads_scored_1_through_H": true,
+    "all_saved_origin_descriptors_equal_original52_rule": true,
+    "branch_requests": {
+      "assets": 36813,
+      "portfolios": 27236
+    },
+    "descriptor_mismatches": [],
+    "exact_series_origin_descriptor_mapping_sha256": "9b720da0310ad6bd0fef96e4aa5eb97393b5bd14e7a28627e45a9c8af06ec922",
+    "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+    "requested_native_H_minmax": [
+      28,
+      19835
+    ],
+    "requests": 64049,
+    "rolling_origin_count_distribution_by_series": {
+      "35": 10,
+      "36": 23,
+      "39": 1,
+      "48": 1230
+    },
+    "series": 1264,
+    "total_native_lead_targets": 133441050,
+    "unique_calendar_rules_replayed": 121
+  },
+  "historical_original52_and80": {
+    "canonical_calendar_observations": 11687,
+    "canonical_max_H": 8766,
+    "canonical_origins_per_series": 51,
+    "found": true,
+    "meaning": "Original52 actual assets and original80 constructed portfolios, also combined as expanded132; they share original origin rules and calendar",
+    "original52_and_current_origins_source_byte_identical": true,
+    "original80_tasks": 4080,
+    "reference_descriptor_rows_exactly_replayed": true,
+    "score_difference_explicit": "Original dense score equally averages series/horizon cells after averaging origins; newv7 equally averages training-SD/sqrt(nativelead) normalized daily CRPS within request then preserves current two-branch hierarchy. Horizon methodology is preserved; score arithmetic is deliberately changed.",
+    "single52_tasks": 2652
+  },
+  "matches_horizon_selection_methodology": true,
+  "no_forecasts_or_horizon_changes": true,
+  "official_scope": "Keep all existing64049 requests unchanged; any trueH7 qualification is diagnosticseparate, not an official grid addition",
+  "portfolio_quarter_filter": {
+    "actual_effect_on_current_panel": "None if complete replay matches; source has additional restriction but all saved1264 schedules compared directly to unfiltered original52 algorithm",
+    "declared": "Native original schedule restricted to preknown individual-asset evaluation quarters",
+    "frozen_exclusion_receipt_count": 0,
+    "source": "portfolio_expansion_v4/build_inputs.py:83-86"
+  },
+  "preserved_rules": {
+    "all_leads": "Each one requestedH forecast scores every native lead1..H; a lead7 within H>7 is not a separate requestedH7 adaptive forecast",
+    "eligibility_horizon_tuple": [
+      21,
+      42,
+      63,
+      126,
+      189,
+      252,
+      378,
+      504,
+      756,
+      1008,
+      1260,
+      1512,
+      1764,
+      2016,
+      2268,
+      2520,
+      3780,
+      5040,
+      7560
+    ],
+    "eligibility_tuple_is_not_requested_H_grid": true,
+    "native_lead_and_calendar": "origin positions/H count actual native observed rows; eligible origins chosen by calendar quarters; no 252-day conversion or forced calendar-day grid",
+    "rolling": "Up to48 full_history_even origins from eligible calendar-quarter last native rows; np.linspace plus Pythonround; position>=504 and at least one eligibility horizon with future realization and trainingN>=4*h",
+    "rolling_requested_H": "min(n-position-1,(position+1)//4)",
+    "temporal_position": "max(79,min(floor(n*fraction)-1,n-2))",
+    "temporal_requested_H": "n-position-1, entire held-out remainder",
+    "temporal_splits": [
+      [
+        "train_first_quarter_test_remaining",
+        0.25
+      ],
+      [
+        "train_first_half_test_remaining",
+        0.5
+      ],
+      [
+        "train_first_three_quarters_test_final_quarter",
+        0.75
+      ]
+    ]
+  },
+  "read_only_scientific_validation": true,
+  "schema": "historical-horizon-methodology-validation-v1",
+  "source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/methodology/docs/results/expanded132/README.md": "15019ec91fc37669d8c712ea3532ba4c2e58f9757cc8480a6fc43bf43abaa5a8",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/methodology/src/simfolio_forecasting_methodology/origins.py": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/methodology/src/simfolio_forecasting_methodology/panel.py": "bfafa680bcbb6780aaa1d5d455e160c4c1098ca6482cbcd94a4d6a4b7d78a97b",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/methodology/src/simfolio_forecasting_methodology/resources/data/canonical_calendar.csv": "8204fbf08e1664a8f254d935052b34c2b4ec9f088ee91f414e7e72c95fb32e04",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/methodology/src/simfolio_forecasting_methodology/resources/panels/scored52_portfolio_panel.csv": "fc42d3a5b7b0272cab1b4fc5db998d059a3f8fed93f6275295331fdc744f2f36",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/methodology/src/simfolio_forecasting_methodology/resources/protocols/canonical_dense_oos.yaml": "23c3aeb8c26689457f16593ba494cccc5dbd3ac395b8b13db3679ab863a67e9c",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/methodology/src/simfolio_forecasting_methodology/resources/protocols/origin_reference_digests.json": "b0534bbf0b1bbd16b0f64fd6368bb58e810d23b81da55f872c1ffe5fa41ce59e",
+    "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/methodology/src/simfolio_forecasting_methodology/resources/protocols/portfolio80_asset52_equal_weight_v1.yaml": "1c6a66468ff825a3df2ddb719feeaa15c8b18c16e92382d2eba2555706811df0",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/panel_inputs.py": "45bd89dfce9abaa4a0627d15865a9b97fe2ee92144d3c885bd3ccb922f6a149f",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs/panel.json": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/portfolio_expansion_v4/build_inputs.py": "11f89d02db3c050f8f703b1a7e003110d9774a5babba66165192876f4815ed24",
+    "/Users/aidanhutchison/simfolio/tmp/french551-full-20261019/code/src/simfolio_forecasting_methodology/origins.py": "866866ad737700dfa61b7cc51646ac3de8fc40039a2f829219dbd25b1c8788b8"
+  },
+  "utc": "2026-10-21T22:19:32.822200+00:00"
+}

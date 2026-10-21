@@ -1,0 +1,108 @@
+{
+  "aggregation": "unchanged asset_level_v6.score_main.aggregate_records; equal origins within series/quarter, then equal series/family/class/branch/quarter; portfolio branch capped at 50% where supported",
+  "execution_gate": "Runner requires both --execute and --profile-clearance; parent controls execution after profile and formula review.",
+  "index_schema": {
+    "case_index": "zero-padded series_index/origin_index in frozen panel order",
+    "metadata_table": "metadata",
+    "primary_key": [
+      "model_id",
+      "task_key"
+    ],
+    "table": "task_scores_v7",
+    "task_fields": [
+      "model_id",
+      "task_key",
+      "panel_fingerprint",
+      "protocol_id",
+      "execution_fingerprint",
+      "case_index",
+      "series_index",
+      "origin_index",
+      "series_id",
+      "origin_date",
+      "native_horizon",
+      "training_observations",
+      "task_identity_json",
+      "source_checkpoint_sha256",
+      "loss_sha256",
+      "score_v7",
+      "legacy_score_v6"
+    ],
+    "task_key": "canonical JSON of [series_id, full origin dictionary]"
+  },
+  "inputs": {
+    "frozen_panel": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs/panel.json",
+    "full_pair_audit": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/full_pair_independent_audit.json",
+    "launch_plan": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/launch_plan.json",
+    "legacy_scoreboard": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/results/scoreboard.json",
+    "protocol": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/final_scoring_protocol_v7.json",
+    "readonly_checkpoint_index": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/results/native-loss-index.sqlite3"
+  },
+  "models": {
+    "model_testing_asset_joint_blocks_history_partition_v6": {
+      "audited_checkpoint_commitment": "7d10d70ae147cf240a0178a8c6254b299cfe6b6215f69c1715fd2671f8dd40da",
+      "audited_tasks": 64049,
+      "execution_fingerprint": "f9263d42137db6d7ea2f1fe986c996227c9ea2b11e4fa8a524d46b9fcd1040de",
+      "execution_manifest_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/results/models/97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5/execution.json",
+      "execution_manifest_sha256": "557797ec7a9782cdc0d83273fbf71abfaf79411092b2c9b739b65e3ff607914d",
+      "path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/results/models/97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5"
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "audited_checkpoint_commitment": "25405531f49e1e8fb5ee5668f015b38e1e9e683884b5307ae5fac717c6ebc278",
+      "audited_tasks": 64049,
+      "execution_fingerprint": "c78b20f5ab72dc1e4e33ad2e9ed3bad4316807a84e32cba3962c9e05dc859f20",
+      "execution_manifest_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/results/models/9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be/execution.json",
+      "execution_manifest_sha256": "2fbfdcdd2706d25f42b7be009e43f5719fca7553dc05bb6eb1753374dffbe8fd",
+      "path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/results/models/9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be"
+    }
+  },
+  "no_cross_protocol_percent_comparison": true,
+  "not_executed_reason": "Preparation only: do not consume checkpoint/input I/O or interfere with the live profiler.",
+  "output_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/full_pair_rescore_v7_diagnostic.json",
+  "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+  "paths_per_checkpoint": 1000,
+  "prepared_utc": "2026-10-21T22:05:48.488752+00:00",
+  "prior_outputs_preserved": true,
+  "protocol_id": "daily_portfolio_panel_crps_v7_train_sd_sqrt_native_lead_equal_days_two_branch",
+  "reference_rule": "after scoring both frozen references, select the higher Q (worse) under v7 on exactly matched complete coverage; tie breaks to with-replacement",
+  "score_formula": "origin score = mean_{d=1..H}[daily CRPS_d / (sample SD of training log returns, ddof=1 * sqrt(d))]; equal 1/H per native observed lead",
+  "score_index_output_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/full_pair_rescore_v7_scores.sqlite3",
+  "series": 1264,
+  "side_effect_boundary": {
+    "checkpoint_writes": 0,
+    "forecast_calls": 0,
+    "legacy_scoreboard_changes": 0,
+    "legacy_v6_index_writes": 0,
+    "new_diagnostic_outputs": 2,
+    "output": "one compact diagnostic JSON plus one new compact 128,098-row SQLite per-task v7 score index; old checkpoints and v6 results remain preserved",
+    "source_or_control_changes": 0
+  },
+  "source_hashes": {
+    "execution_manifests": {
+      "model_testing_asset_joint_blocks_history_partition_v6": "557797ec7a9782cdc0d83273fbf71abfaf79411092b2c9b739b65e3ff607914d",
+      "model_testing_asset_joint_blocks_replacement_v6": "2fbfdcdd2706d25f42b7be009e43f5719fca7553dc05bb6eb1753374dffbe8fd"
+    },
+    "full_pair_audit": "8a5559e9b366b5facc0f635a04d018baa27d573d305c6da2a196f541ddc8f269",
+    "launch_plan": "765531cf8e5e5f985d42edd2688607be3339387a79d9831b5ac7cb3b79c3817f",
+    "legacy_aggregator": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+    "legacy_checkpoint_reader": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf",
+    "legacy_indexer": "c1ff806397eedb85362b1246d30a13dd1e7eadf22edd81d27ef3d7e4924b63e8",
+    "legacy_scoreboard": "dc95225e5947981a8c507dcc22d1c07c8f1d88e96f0ed6a4cca787e1603e269a",
+    "panel_metadata": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "protocol": "bdbaa25e28939e19bc2c2460a226ef1382e8fd4101e2b61e8961529aa37e728d",
+    "runner": "60e779e38f599a3f29e71b9219ba9b72c0ae605b0aba4e074cb3b271bdba6346",
+    "sweep_api": "c2e51dee86eedbad1e03061019b4a7e7c4fab274cb9f4b2b0f9aadaaf320acc1",
+    "v7_scorer": "085e22bbe9b6aeb6ce07369250c884e71a08ee908c033853e9ec67ee6966e003"
+  },
+  "status": "prepared_not_executed_waiting_for_profiler_clearance_and_formula_review",
+  "tasks_per_model": 64049,
+  "total_checkpoints": 128098,
+  "verification_before_output": [
+    "Verify frozen panel, v7 protocol/scorer, v6 aggregator/indexer/checkpoint reader/sweep API, full-pair audit, launch plan, legacy scoreboard, and both execution-manifest hashes.",
+    "Read the frozen v6 score index in read-only mode; require exactly 64,049 unique task keys per model.",
+    "For every task, verify the indexed checkpoint path and byte SHA, checkpoint envelope, seed/task identity, native horizon, finite nonnegative losses, and loss-vector SHA.",
+    "Recompute v6 origin scores and reaggregate them through the unchanged hierarchy to reconcile with the independent full-pair audit.",
+    "Score v7 from the same verified losses and dated training prefix; require exact 64,049 task-key coverage for both baselines and audit checkpoint commitments.",
+    "Write a separate v7 per-task SQLite index and diagnostic receipt only after full verification; run SQLite integrity and per-model row-count checks; bind output index SHA in the receipt."
+  ]
+}

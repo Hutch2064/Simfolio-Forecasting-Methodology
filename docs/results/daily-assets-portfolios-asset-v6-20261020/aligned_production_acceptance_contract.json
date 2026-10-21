@@ -1,0 +1,89 @@
+{
+  "authority": "Latest direct user instruction freezes uniform native-day normalized CRPS internally and externally; optimize runtime without accuracy loss before full suite",
+  "coverage_receipt_sha256": "52950c3d3ac3c85c06e9908d3bc07ff29aac8f57684b7bda09b40bbcf0f0766a",
+  "coverage_warning": "Current full catalogue has no actual requestedH<=21; minimumH28. Early days of a long forecast do not validate selection fitted for a one-day or one-week request.",
+  "ctv_protocol": {
+    "engine_origin_main": "7b89cd42078b590dcf4e1ad57beb9c47c734c032",
+    "read_completely": true,
+    "sha256": "106f3ef7e0168c0160adbf267c8ebd80119f8ed372ab3159507e4349b2b3a353",
+    "version": "1.5"
+  },
+  "historical_metadata": {
+    "finding": "Local goal/scorer snapshots name former log-calendar objective. Latest direct user instruction governs new aligned objective; this audit changes no goal/scorer/history and does not relabel old results.",
+    "goal_progress_sha256": "daf0dfb794d1043180f6e8e855339294afa8f9c24f6bd038ae145a5892ee49cd",
+    "old_goal_objective_sha256": "55dc9a9452b4b2512a7acb5267dbd2d3633fc6432c4477387978054cc48cca55"
+  },
+  "invariants": [
+    "All167 active recipes remain eligible under unchanged history-support rules; no cost-based pruning or forced insufficient-history recipe.",
+    "Identical joint asset history/weights/dates/requestedH and within-path portfolio accounting; no portfolio proxy.",
+    "Identical half_doubling folds, horizon adaptation, chronological completion and represented-origin counts; no new origin/lead/candidate cap.",
+    "Identical deterministic inner seeds/replications and requested inner count: match2to2 and8to8; no count reduction.",
+    "Complete float64 empirical CRPS cross-pair matrices at every native lead; no sampling, diagonal approximation or reduced precision.",
+    "Identical certified simplex solver/scaling/KKT tolerance and no total iteration cap.",
+    "Identical stable-validity/numerical failures; no fixed-model fallback or silently excluded failed forecasts.",
+    "Full-prefix fit covers every component needed by target forecast. Other35unusedvariant fits may be omitted only with exact target-state/path proof.",
+    "Identical1000 final paths, even/antithetic allocation, component order, RNG sequences, chunk positions, native arrays and joint accounting."
+  ],
+  "module_review_pending": true,
+  "no_forecasts_refits_or_duplicate_benchmark": true,
+  "no_full_panel_launch_or_official_promotion": true,
+  "no_goal_change_or_completion": true,
+  "no_new_horizon_grid_authorized": true,
+  "numerical_acceptance": [
+    "Freeze sources/input hashes/dates/weights/H/inner count/seeds/chunk widths/cases before testing.",
+    "Exact valid IDs/fold traces and target-stream float64A/B; compare normalized solver inputs/certificate, simplex weights and final allocation.",
+    "Compare target component fit state and complete final paths at every native lead, then loss vectors and frozen external scores.",
+    "Check chunk-width behavior and every inner count/seed in matched authorized admission.",
+    "Actual short request must call prepare(shortH) and forecast(shortH); do not substitute early leads of a long request.",
+    "Cover assets/joint portfolios and actual short/long requestedH using authorized contexts. Existingfull64049 has noH<=21: disclose gap and retain separately authorized requested-week evidence.",
+    "Only reviewed timing/run-ID envelope differences allowed; never normalize arrays, settings, dates, failures, counts or seeds.",
+    "Fixture/sample equality is bounded evidence, not all64049 parity or independent full-panel accuracy."
+  ],
+  "objective": {
+    "external": "mean_{h=1..H}[CRPS_h/(s_train*sqrt(h))]",
+    "forbidden": [
+      "log-calendar weights",
+      "endpoint-only criterion",
+      "sqrt(h+h*h/n) denominator",
+      "outer-score-dependent weights"
+    ],
+    "higher_hierarchy": "Preserve origin->series/quarter->family->class within each branch; asset/portfolio50/50 where both supported; equal quarter weights; reject unsupported portfolio-only quarters.",
+    "internal_fold": "U_f(w)=mean_{h=1..h_f}[CRPS_f,h(w)/(s_f,train*sqrt(h))]",
+    "native_lead": "Observed target indexh, not calendar days; uniform1/H weight per target.",
+    "reference_sum_mean_disclosure": "Core18 stores a SUM of normalized daily CRPS. Existing schedule has common internalh within a request, so this equals h*U_f and preserves the mathematical simplex optimum. Preserve exact reference coefficient/solver arithmetic for byteexact control parity, or independently prove a literal-mean arithmetic rewrite. External score must actually be a mean.",
+    "scale": "Training-only portfolio daily log-return sampleSD(ddof1) from that fit prefix. Reject zero/nonfiniteSD; no epsilon or held-out observations."
+  },
+  "performance_acceptance": {
+    "claims": "Local compute evidence is not deployed productionCTV; literal authenticated browserRun proof is required for a CTV claim.",
+    "evidence": "Measured stage/profiler attribution; paired matched reference/candidate CPU+wall samples with cold/warm/JIT/cache state and every sample retained.",
+    "forbidden_shortcuts": [
+      "recipe/origin/lead caps",
+      "path/innercount reductions",
+      "solver precision changes",
+      "output or methodology reductions",
+      "hidden cross-request learned state"
+    ],
+    "resources": "Canonical scientific lock, shared12workers maximum, threads1, storage preflight/budget and request-owned cache expiry."
+  },
+  "reference_config_index": 18,
+  "reference_configuration": {
+    "criterion": "uniform_days",
+    "inner_paths": 2,
+    "learner": "batch",
+    "scale": "train_SD_sqrt_lead",
+    "schedule": "half_doubling"
+  },
+  "reference_source_sha256": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_information_origins/validation.py": "dc74a92fd0ef1312abfac919037f18a74dd0b6a3195eca7517926a7ccc3471ab",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_menu_components/bank.py": "e361601003ce9d2fb4529683188b2c03218049a6a31fd7d5077e90e5fdc38374",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_score_alignment/candidate.py": "a23949df3200c92ce985ad629d3d694ccb0fece17b73d800a16e5341b756730a",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_stacking/energy.py": "e0e6a56ebad28ba2237bd9dcccc87d41ed35cc0a66c010af5a467c914a9a09f1",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_universe_certified/energy.py": "b9e3da46f0f8b5b19d8c124f40d4169ac53dcda9fdba4edd86fb84785292458b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs.py": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/profile.json": "7a560dddb1ddf1134b71b00db39be18ca83b0ad9d2921f405e66a51807830f2c",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/score_main.py": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/scoring.py": "696790da25e954b4e4d2640e160ba8efeb134e8cf858d8bbc4d8977d52b869bf"
+  },
+  "status": "Acceptance draft; optimized module not yet reviewed or admitted",
+  "utc": "2026-10-21T22:00:14.466423+00:00"
+}

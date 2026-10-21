@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "aligned-equal-day-horizons",
+      "title": "Where does the aligned equal-day selector\u2019s improvement come from?",
+      "queries": [
+        {
+          "id": "saved-loss-horizon-attribution",
+          "source": {
+            "label": "Verified quick100 saved forecasts and exact score decomposition",
+            "files": [
+              {
+                "label": "aligned_equal_day_horizon_attribution72.json"
+              },
+              {
+                "label": "decompose_aligned_equal_day_horizons72.py"
+              },
+              {
+                "label": "quick100_score_alignment_rescore_receipt.json"
+              }
+            ],
+            "metricDefinitions": [
+              {
+                "label": "Relative improvement",
+                "definition": "Improvement is100times the baseline weighted loss minus candidate weighted loss, divided by baseline weighted loss."
+              },
+              {
+                "label": "Improvement contribution",
+                "definition": "Each lead band contributes its weighted baseline-minus-candidate loss to the total difference. Band contributions sum to the52.7335percent headline gain."
+              }
+            ],
+            "filters": [
+              "Internal selector: unscaled equal-day CRPS, batch mixture",
+              "External score: unscaled equal-day CRPS",
+              "Requests:72",
+              "Final paths:100",
+              "Internal seed:one"
+            ],
+            "caveats": [
+              "This is reused development evidence, not a full-panel or independent validation result.",
+              "These are forecast leads inside requests spanning4.47\u201352.45calendar years; they do not measure models selected for separate one-week requests.",
+              "The existing class, family, asset/portfolio and quarter hierarchy is retained; each request has1/Hday weights."
+            ],
+            "executedAt": "2026-10-21T21:07:52.640227+00:00"
+          },
+          "columns": [
+            {
+              "field": "band",
+              "label": "Forecast lead"
+            },
+            {
+              "field": "baseline_loss_share_percent",
+              "label": "Baseline loss share (%)"
+            },
+            {
+              "field": "net_improvement_share_percent",
+              "label": "Improvement share (%)"
+            },
+            {
+              "field": "within_band_percent_better",
+              "label": "Within-band improvement (%)"
+            }
+          ],
+          "rows": [
+            {
+              "band": "Up to1week",
+              "baseline_loss_share_percent": 0.0014805830507445149,
+              "net_improvement_share_percent": 0.0001186773180656575,
+              "within_band_percent_better": 4.226899187180762
+            },
+            {
+              "band": "1week\u20131month",
+              "baseline_loss_share_percent": 0.012701963792724985,
+              "net_improvement_share_percent": 0.0012575791583621999,
+              "within_band_percent_better": 5.220972441208174
+            },
+            {
+              "band": "1\u20133months",
+              "baseline_loss_share_percent": 0.08399882373006386,
+              "net_improvement_share_percent": 0.020052761462801792,
+              "within_band_percent_better": 12.588904041813596
+            },
+            {
+              "band": "3\u20136months",
+              "baseline_loss_share_percent": 0.3433286286388098,
+              "net_improvement_share_percent": 0.07239453875787369,
+              "within_band_percent_better": 11.11943515783899
+            },
+            {
+              "band": "6\u201312months",
+              "baseline_loss_share_percent": 0.7686160387167948,
+              "net_improvement_share_percent": 0.2168478288366822,
+              "within_band_percent_better": 14.877589635314694
+            },
+            {
+              "band": "1\u20133years",
+              "baseline_loss_share_percent": 3.4313348895271827,
+              "net_improvement_share_percent": 1.7521449731957375,
+              "within_band_percent_better": 26.927365843096815
+            },
+            {
+              "band": "3\u20135years",
+              "baseline_loss_share_percent": 4.648376549261192,
+              "net_improvement_share_percent": 4.098493731257999,
+              "within_band_percent_better": 46.49539200223553
+            },
+            {
+              "band": "5\u201310years",
+              "baseline_loss_share_percent": 12.323792070038214,
+              "net_improvement_share_percent": 12.998018093504221,
+              "within_band_percent_better": 55.61855672788749
+            },
+            {
+              "band": "10\u201320years",
+              "baseline_loss_share_percent": 15.846241858945275,
+              "net_improvement_share_percent": 12.31864135933898,
+              "within_band_percent_better": 40.99429964740577
+            },
+            {
+              "band": "20\u201330years",
+              "baseline_loss_share_percent": 15.271680080848695,
+              "net_improvement_share_percent": 12.52518601220458,
+              "within_band_percent_better": 43.24982022974854
+            },
+            {
+              "band": "30\u201350years",
+              "baseline_loss_share_percent": 40.72052481983021,
+              "net_improvement_share_percent": 47.76196743412427,
+              "within_band_percent_better": 61.85228971291129
+            },
+            {
+              "band": "50\u2013100years",
+              "baseline_loss_share_percent": 6.547923693620086,
+              "net_improvement_share_percent": 8.234877010840423,
+              "within_band_percent_better": 66.31937848651677
+            }
+          ],
+          "methods": [
+            {
+              "language": "calculation",
+              "code": "day_weight = exact_hierarchy_weight(request) / number_of_forecast_days(request)\nbaseline_contribution = day_weight * baseline_CRPS\ncandidate_contribution = day_weight * candidate_CRPS\nband_improvement_share = sum_band(baseline_contribution-candidate_contribution) / sum_all(baseline_contribution-candidate_contribution)"
+            }
+          ],
+          "preview": {
+            "kind": "aggregate",
+            "note": "Complete mutually exclusive forecast-lead bands for this72-request screen.",
+            "totalRows": 12
+          }
+        }
+      ]
+    }
+  ]
+}

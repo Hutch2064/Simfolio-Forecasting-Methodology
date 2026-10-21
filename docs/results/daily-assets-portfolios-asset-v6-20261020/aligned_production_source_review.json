@@ -1,0 +1,183 @@
+{
+  "candidate_source_sha256": "609c9157aad8f420f6ba8c51914a7f328ef3743ff10e16fa80576c40680989fa",
+  "code_blockers": [],
+  "existing_profile_evidence": {
+    "candidate_source_provenance_limitation": "Profile manifest.source_hashes comes from parent experiment and omits new aligned candidate.py. Current-code timing proof needs immutable prior freeze evidence/author attestation or candidate source binding in the next already-planned timing/parity manifest.",
+    "matched_recorded_pairs": [
+      {
+        "candidate_profile_json_sha256": "5c1fbed237119c823a84f76012ad65c16e88d5b52eeb1ec2963c7d5d6426e518",
+        "case": "week0",
+        "final_paths": 1000,
+        "inner_paths": 2,
+        "matched_recorded_path_loss_weight_A_B_hashes": true,
+        "reference_profile_json_sha256": "1d5f7c61199c9ccda520d4e3d643bd4fa8cdb6319095453583c474bef3691e6e",
+        "repeat": 0,
+        "requested_H": 5
+      },
+      {
+        "candidate_profile_json_sha256": "541f76969a980cd22a19bdf57c22320c5b42529cc0101d56fac67340811ffe19",
+        "case": "week0",
+        "final_paths": 1000,
+        "inner_paths": 2,
+        "matched_recorded_path_loss_weight_A_B_hashes": true,
+        "reference_profile_json_sha256": "1646ca11bf71626ac6cab6f768c865fe0d2932781aff6e8d1d7bd5497a12a2d5",
+        "repeat": 1,
+        "requested_H": 5
+      },
+      {
+        "candidate_profile_json_sha256": "48ccf8566139386479dbaefa066160ffd7342e94f2e98de084be284ad3f02156",
+        "case": "portfolio9",
+        "final_paths": 1000,
+        "inner_paths": 2,
+        "matched_recorded_path_loss_weight_A_B_hashes": true,
+        "reference_profile_json_sha256": "1242b5838cc51a0411624ab9ea471a922cb5e5822ee26b43dbcefc4a6eae1e97",
+        "repeat": 0,
+        "requested_H": 1969
+      },
+      {
+        "candidate_profile_json_sha256": "68c68756f24a1245c06d876588a574f2779f9eb959b8ad84604a5563f4e414c4",
+        "case": "portfolio9",
+        "final_paths": 1000,
+        "inner_paths": 2,
+        "matched_recorded_path_loss_weight_A_B_hashes": true,
+        "reference_profile_json_sha256": "b11c4613efd5bcb4c82fe85f8cf1af9420de2951166e2f9f6c62b62d3260a2df",
+        "repeat": 1,
+        "requested_H": 1969
+      },
+      {
+        "candidate_profile_json_sha256": "47d4f18d50a4ae33f4d2ec0d15599f86689b27623ba24199585752e5028fa0da",
+        "case": "broad350",
+        "final_paths": 1000,
+        "inner_paths": 2,
+        "matched_recorded_path_loss_weight_A_B_hashes": true,
+        "reference_profile_json_sha256": "c2da28238cc5e154244d5c91522a4b35fc407def11e11aa95597842fba128af2",
+        "repeat": 0,
+        "requested_H": 126
+      },
+      {
+        "candidate_profile_json_sha256": "519160de17ee63b1d953237c8aad16300adf145e7f9aa05668f33f06d15c7097",
+        "case": "broad350",
+        "final_paths": 1000,
+        "inner_paths": 2,
+        "matched_recorded_path_loss_weight_A_B_hashes": true,
+        "reference_profile_json_sha256": "d3b8911e6f67883362df42f63a8a788c7fb71e584847f6b87384574a84444c3f",
+        "repeat": 1,
+        "requested_H": 126
+      }
+    ],
+    "production_CTV_proven": false,
+    "profile_file_sha256": {
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-broad350-0.json": "47d4f18d50a4ae33f4d2ec0d15599f86689b27623ba24199585752e5028fa0da",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-broad350-0.pstats": "9a4985a48291c1279ef2d7ea06f4033464f0601447a718d92feb17a6de196543",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-broad350-1.json": "519160de17ee63b1d953237c8aad16300adf145e7f9aa05668f33f06d15c7097",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-broad350-1.pstats": "a671b17a9c4bd4304f9f1c8f1b52ca10c69fc0cf62b80eced049f7d631a33198",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-portfolio9-0.json": "48ccf8566139386479dbaefa066160ffd7342e94f2e98de084be284ad3f02156",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-portfolio9-0.pstats": "0a6ff5abe906ec0def0b9737131c8419cdcadf315f8c1d053857aae89450b7a9",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-portfolio9-1.json": "68c68756f24a1245c06d876588a574f2779f9eb959b8ad84604a5563f4e414c4",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-portfolio9-1.pstats": "a377a4749a4d5f213b2c435bd5b6a38d80c655009d3395511be0ba8ac2138ed6",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-week0-0.json": "5c1fbed237119c823a84f76012ad65c16e88d5b52eeb1ec2963c7d5d6426e518",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-week0-0.pstats": "c670b957759d44a90c249abb9ebe50e83ed9d755d81cf42e1abcfbb1d63932bf",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-week0-1.json": "541f76969a980cd22a19bdf57c22320c5b42529cc0101d56fac67340811ffe19",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/candidate-week0-1.pstats": "04dd962e4a26fde82ae38e7434dadb09d6283a3ce5806921d2f36888bd240f9a",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-broad350-0.json": "c2da28238cc5e154244d5c91522a4b35fc407def11e11aa95597842fba128af2",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-broad350-0.pstats": "95f5327f828e0fd46d98f1675c47b6b338aa0068202db7413bc54ed3a5b08937",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-broad350-1.json": "d3b8911e6f67883362df42f63a8a788c7fb71e584847f6b87384574a84444c3f",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-broad350-1.pstats": "2a14296e0bc7b4213376c34435056c156d29b1080fd6f77ae56dd5b2968f8f54",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-portfolio9-0.json": "1242b5838cc51a0411624ab9ea471a922cb5e5822ee26b43dbcefc4a6eae1e97",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-portfolio9-0.pstats": "1575f1b947bef0877a8c984396e950b258127d97c44ac2d65180e6bfa98524ed",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-portfolio9-1.json": "b11c4613efd5bcb4c82fe85f8cf1af9420de2951166e2f9f6c62b62d3260a2df",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-portfolio9-1.pstats": "6c62c40bd12c9032d5c8056cd3a7af0178ef56794f5b91116c0568c355dc21d1",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-week0-0.json": "1d5f7c61199c9ccda520d4e3d643bd4fa8cdb6319095453583c474bef3691e6e",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-week0-0.pstats": "d4628bef66afbb2de970f4baa1e774e0c1ccec3cf172e7039de12f49e38e67ce",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-week0-1.json": "1646ca11bf71626ac6cab6f768c865fe0d2932781aff6e8d1d7bd5497a12a2d5",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/profiles/reference-week0-1.pstats": "6576fc213701471cd594135f70f8e149a0b4159cb7b518ecb745ad98ada41411"
+    },
+    "profile_overhead_included": true,
+    "scope": "Rechecked saved exact hashes and profile artifacts only; paths/coefficient arrays were not recomputed in this review."
+  },
+  "findings": [
+    {
+      "finding": "Same schedule,167active eligible recipes/history rules, stable validity, prefix-onlySD and exact inner seed formula/replication.",
+      "lines": "28-44"
+    },
+    {
+      "finding": "Same full path cubes and all native leads; same exact energy coefficients, denominator function and1.*(a/divisor) accumulation. Representation weighting and chronological accumulation match reference replay.",
+      "lines": "45-61"
+    },
+    {
+      "finding": "Same represented-origin normalization and certified solver called once for aligned target instead of12different objectives; no tolerance/cap change.",
+      "lines": "67-69"
+    },
+    {
+      "finding": "Full-prefix fit covers sorted stablevalid recipes, matching reference all36support union because progressive weights include a positive uniform prior.",
+      "lines": "70-73"
+    },
+    {
+      "finding": "History/date/weights/H/innercount/schedule metadata and frozen sequential path adapter preserved; same even allocation,RNG/component ordering, joint portfolio paths and dated guards. Interface deliberately supports only fixed inner2config18.",
+      "lines": "74-101"
+    },
+    {
+      "finding": "InternalSUM arithmetic explicitly declared; common internalh makes this proportional to equal-dayMEAN without altering optimum. External scorer must still use actualMEAN.",
+      "lines": "80-85"
+    }
+  ],
+  "intentionally_removed_work": [
+    "Other11criterion/scale coefficient streams",
+    "Other11batch fits",
+    "BOA/progressive learners for unused objectives",
+    "Per-fold replay-cache packaging for unused learners"
+  ],
+  "no_goal_or_official_promotion": true,
+  "no_scientific_lock_simulations_refits_or_benchmarks": true,
+  "no_source_changes": true,
+  "profile_supported_next_optimization": {
+    "coefficient_cumulative_profile_seconds": 7.321469995,
+    "entry_cumulative_profile_seconds": 8.427034041,
+    "evidence_case": "candidate-portfolio9-1",
+    "not_supported_shortcuts": [
+      "P2closed-form arithmetic rewrite without exact comparison",
+      "pair/recipe/lead sampling",
+      "solver relaxation",
+      "lower inner or final path counts"
+    ],
+    "qualification": "Profile-supported target, not a claimed achievable saving. Separate parity and matched timing required.",
+    "target": "Move existing completeB-pair outer Python loops into compiled code while retaining current sorted samples and cross_absolute_sorted scalar arithmetic. Keep float64, nofastmath, same pair order, full matrix and byteexact acceptance."
+  },
+  "reference_config_index": 18,
+  "reference_configuration": {
+    "criterion": "uniform_days",
+    "inner_paths": 2,
+    "learner": "batch",
+    "scale": "train_SD_sqrt_lead",
+    "schedule": "half_doubling"
+  },
+  "remaining_admission_gates": [
+    "Pending36real context/seed pair audit across complete traces,coefficients,weights,allocations and full paths/losses.",
+    "Bind frozen candidate source to timing evidence before claiming exact-current-code speed.",
+    "Full catalogue lacks actualH<=21; disclose coverage gap and use only already authorized short-request contexts."
+  ],
+  "scientific_work_preserved": [
+    "All eligible167recipe historical fits",
+    "All selected completed represented folds and counts",
+    "All native lead CRPS full pair matrices",
+    "Inner2matched seeds and identical final1000paths",
+    "Same solver precision/certificate",
+    "Full current-prefix context fits and asset/portfolio accounting"
+  ],
+  "scope": "Independent read-only review of one-objective config18 runtime specialization; no new simulations/tests/benchmark",
+  "source_review_verified": true,
+  "source_sha256": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/candidate.py": "609c9157aad8f420f6ba8c51914a7f328ef3743ff10e16fa80576c40680989fa",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/test_candidate.py": "ebdf8def51aecf291774c0f73cec7f3989192935e5d5ed34f3c8d36d80778b0a",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_menu_components/bank.py": "e361601003ce9d2fb4529683188b2c03218049a6a31fd7d5077e90e5fdc38374",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_score_alignment/candidate.py": "a23949df3200c92ce985ad629d3d694ccb0fece17b73d800a16e5341b756730a",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_sequential_learning/candidate.py": "44f3b932afcd34ef4c8993ad03c5aedd37d595134e0357ae42d466f2a4297103",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_stacking/energy.py": "e0e6a56ebad28ba2237bd9dcccc87d41ed35cc0a66c010af5a467c914a9a09f1",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_universe_certified/energy.py": "b9e3da46f0f8b5b19d8c124f40d4169ac53dcda9fdba4edd86fb84785292458b"
+  },
+  "unit_tests": {
+    "implementation_agent_reported_passed": 3,
+    "independently_rerun_here": false
+  },
+  "utc": "2026-10-21T22:04:21.672672+00:00"
+}

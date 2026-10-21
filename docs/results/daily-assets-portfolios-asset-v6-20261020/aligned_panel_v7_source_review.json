@@ -1,0 +1,134 @@
+{
+  "blocking_findings": [],
+  "bound_models_at_review": {
+    "aligned": {
+      "class": "ScorePool",
+      "config": {
+        "criterion": "uniform_days",
+        "inner_paths": 2,
+        "learner": "batch",
+        "scale": "train_SD_sqrt_lead",
+        "schedule": "half_doubling"
+      },
+      "module": "candidates.asset_selector_aligned_production.candidate"
+    },
+    "endpoint": {
+      "class": "MenuPool",
+      "config": {
+        "inner_paths": 2,
+        "menu": "flat",
+        "schedule": "half_doubling"
+      },
+      "module": "candidates.asset_selector_endpoint_flat.candidate"
+    }
+  },
+  "environment_package_versions": {
+    "PyYAML": "6.0.3",
+    "Pygments": "2.21.0",
+    "arch": "8.0.0",
+    "certifi": "2026.10.18",
+    "charset-normalizer": "3.5.2",
+    "cloudpickle": "3.1.2",
+    "contourpy": "1.4.0",
+    "cycler": "0.12.1",
+    "et_xmlfile": "2.0.0",
+    "fonttools": "4.67.0",
+    "formulaic": "1.2.2",
+    "idna": "3.20",
+    "iniconfig": "2.3.1",
+    "interface_meta": "2.0.1",
+    "joblib": "1.6.0",
+    "kiwisolver": "1.5.1",
+    "llvmlite": "0.49.0",
+    "matplotlib": "3.11.2",
+    "narwhals": "2.27.1",
+    "networkx": "3.7",
+    "numba": "0.67.0",
+    "numpy": "2.5.3",
+    "openpyxl": "3.1.5",
+    "packaging": "26.3",
+    "pandas": "2.3.3",
+    "patsy": "1.0.3",
+    "pillow": "13.0.0",
+    "pluggy": "1.7.0",
+    "pybind11": "3.1.0",
+    "pydot": "4.0.1",
+    "pyparsing": "3.3.3",
+    "pytest": "8.4.2",
+    "python-dateutil": "2.9.0.post0",
+    "pytz": "2026.5",
+    "pyvinecopulib": "0.7.5",
+    "requests": "2.34.2",
+    "ruff": "0.17.1",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1",
+    "six": "1.17.0",
+    "statsmodels": "0.15.0",
+    "threadpoolctl": "3.7.0",
+    "typing_extensions": "4.16.0",
+    "tzdata": "2026.5",
+    "urllib3": "2.8.0",
+    "wrapt": "2.5.1"
+  },
+  "future_factory_rule": "Current declaration is explicitV1. Any chosen qualifiedV2must replace the aligned factory declaration before preparing a new plan; plan/source fingerprints and exact root admission then bind that factory. No implicit latest lookup.",
+  "implementation_agent_tests": {
+    "independently_rerun_here": false,
+    "reported_passed": 10
+  },
+  "independent_no_science_checks": {
+    "incremental_hierarchy_full_catalogue": {
+      "absolute_roundoff_difference": 3.064215547965432e-14,
+      "canonical_Q": 2.3754601611954502,
+      "dummy_positive_records": 64049,
+      "incremental_reverse_order_Q": 2.3754601611954196,
+      "portfolio_only_pending_quarter_score": null
+    },
+    "source_closure": {
+      "files": 91,
+      "missing_loaded_local_modules": 0
+    }
+  },
+  "limitations": [
+    "Incremental live hierarchy is mathematically same but can differ by floataccumulation roundoff; final comparison uses unchanged canonical aggregator.",
+    "Live comparisons exclude pending unsupported quarters and are explicitly preliminary; no mixed-coverage final leaderboard.",
+    "Currentcatalogue requestedH28..19835 still does not qualify actualday/week selection.",
+    "Currentclosure audit covers the explicit reviewedfactories; a future factory requires reclosure/review.",
+    "No forecast/refit, numericalbenchmark or fullsuite launch occurred."
+  ],
+  "loaded_local_modules_missing_from_closure": [],
+  "no_goal_mutation_or_promotion": true,
+  "no_scientific_lock_or_forecasts": true,
+  "no_source_edits_by_reviewer": true,
+  "remaining_gates": [
+    "Choose and qualify exactproductionfactory including pendingV2decision before final plan.",
+    "Root-owned optimization/storage/independentreview/baseline-rescore gate completion and explicit plan admission.",
+    "Complete-run independent loss/score/coverage audit before retention or promotion."
+  ],
+  "resolved_review_findings": [
+    "Initialresume full7GiB preflight falsely reserved already-completed work: corrected to actualmissing growth.",
+    "Inheritednice15 previously incremented toward19: corrected to absoluteatleast15.",
+    "Baselineindex lacked exactoriginlabel/split/trainfraction comparison: corrected using decoded task_key equality."
+  ],
+  "review_passed": true,
+  "reviewed_source_closure_digest": "982d9e40e3246ca81f3b76f9036f4fc11d513c19c0cd5fafaa7a16b6af323eca",
+  "reviewed_source_closure_files": 91,
+  "runner_sha256": "390309f07ed7276630f027159898116759de5d16266924d3047a2d5952e525bd",
+  "scope": "Independent read-only full-panel runner review; preparation/launch not performed",
+  "tests_sha256": "4ade182542b0ad1432ce48778ffa0c68b08f68cc1039f0a1544c729660cdaec6",
+  "utc": "2026-10-21T22:12:37.330768+00:00",
+  "validated_source_behaviors": [
+    "Selection receives only prefix-only jointAssetInputs history/weights/dates and requestedH; outer targets are used after preparation solely for empiricalCRPS.",
+    "Both models get exact64049catalogue origins, inner2/rep0, final1000 and same origin/H/1000 seed; chunks must cover exact nativeH.",
+    "Newv7 scorer uses mean(CRPS/(prefixSDddof1*sqrt(nativelead))); unchanged canonical final hierarchy.",
+    "Closure traverses absolute/relative/function-local imports and packageinitializers, explicitdynamic model modules; Python/executable/packageversions bound and revalidated.",
+    "Root admission requires exactplanfingerprint and allfour immutable gate receipts. No plan or run was created by this review.",
+    "Completed resume checkpoints require matched recorddigest, identity, sourceclosure and exactloss dtype/shape/hash; orphan/failure/uncertain attempt checkpoints failclosed.",
+    "Canonical scientific lock, per-controller lock,12workers maximum and atmost24pending tasks; threadlimits1; worker nice remains at least15 without double increment.",
+    "Partialresume andperiodic preflight use remaining rawHbytes+metadata allowance; freshfull reserve7GiB and16GiBbudget remain.",
+    "Read-only immutable baselineSQLite index requires full both-model coverage and exacttask_key fullorigin/series/date/H/trainN/panel/protocol binding; candidate and baselines share successful-case intersections.",
+    "Compactparent records, incremental timing/hierarchy and5secondprogress avoid repeated fullrecord/remainingtask work.",
+    "Processpool drains before finalreport. Reporter failure retains qualification_validfalse and explicit reporterfailed/controllererror terminal receipts.",
+    "Failures remain classified as native, score/inputintegrity, or IO/workerinfrastructure; fullcomparison requires all128098successful tasks.",
+    "worker_states filters stale phase files against actual live PIDs; dead workers cannot inflate active-worker count."
+  ]
+}

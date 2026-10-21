@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.0",
+  "created": "2026-10-21",
+  "status": "research_only",
+  "scope": "Adaptive forecast validation and mixture infrastructure for Simfolio; no numerical-source or production changes.",
+  "snapshot": {
+    "menu_recipes": 167,
+    "forecast_unit": "joint asset portfolio path with within-path accounting",
+    "inner_mixture_objective": "endpoint CRPS represented by w^T A - 0.5 w^T B w",
+    "external_decision_score": "Unchanged canonical lead-weighted marginal CRPS over cumulative portfolio-return distributions: training-SD times square-root-lead normalization and normalized log-calendar lead weights; the marginals are generated from coherent joint asset paths and within-path accounting, but the score does not directly assess cross-horizon or cross-asset dependence.",
+    "reported_development": "14.61% better on 355 reused development requests; exploratory, not broad or full-panel proof"
+  },
+  "already_tested_and_excluded": [
+    "endpoint versus path objective",
+    "select versus stack",
+    "doubling versus half-doubling origins",
+    "2/4/8/30 internal paths",
+    "nested versus flat organization"
+  ],
+  "historical_scope_note": "Local selector receipts describe a prior capped-origin prototype and diagnostic-only full-history selector. Keep those separate from the current user-supplied 355-request result.",
+  "experiments": [
+    {
+      "rank": 1,
+      "id": "exact_horizon_origin_geometry",
+      "contrast": "Current horizon-shortening/non-overlap scheme versus rolling-origin training on all available origins at the actual requested horizon, with time-block/HAC uncertainty for overlap.",
+      "hypothesis": "More observations at the actual target horizon can reduce weight-estimation variance without changing the forecasting task; shorter-H validation may choose weights that do not transfer to requested H.",
+      "training_protocol": "At every historical forecast origin, use only the then-available fit history and candidate predictions for the exact requested H. Maintain overlapping and non-overlapping score summaries separately.",
+      "outer_gate": "Matched requested-H requests scored by the unchanged canonical lead-weighted marginal CRPS over cumulative portfolio-return distributions, generated from coherent joint asset paths and within-path accounting, at the final path count.",
+      "cost": "Forecast generation scales with added origin coverage when forecasts are absent; cached predictions make weight fitting and re-indexing cheap.",
+      "risks": [
+        "Overlapping windows are dependent",
+        "Two non-overlapping folds give weak uncertainty information",
+        "Do not count assets as independent observations"
+      ],
+      "sources": [
+        "Tashman 2000",
+        "Hyndman and Athanasopoulos FPP3 section 5.10"
+      ]
+    },
+    {
+      "rank": 2,
+      "id": "family_balanced_partial_pooling",
+      "contrast": "Current per-request simplex weights versus training-estimated, partially pooled family masses and within-family weights over the frozen menu.",
+      "hypothesis": "A hierarchical penalty can stabilize request-specific mixtures and avoid menu-multiplicity bias when similar recipes/families are correlated.",
+      "training_protocol": "Use the existing recipe-family map; estimate a pooled center only from training origins; fit pooling strength with chronological inner folds; do not use last-winner fallback.",
+      "outer_gate": "One locked mixture scored at the same matched requests and exact horizons with the unchanged canonical external marginal score.",
+      "cost": "Low if paths are cached; solve a grouped convex optimization and record weight dispersion/effective recipe count.",
+      "risks": [
+        "Excess pooling biases away from genuinely request-specific winners",
+        "Recipe-family taxonomy can be arbitrary",
+        "Equal-weight point forecast evidence does not prove CRPS gains"
+      ],
+      "sources": [
+        "Yao et al. 2021",
+        "Smith and Wallis 2009"
+      ]
+    },
+    {
+      "rank": 3,
+      "id": "smooth_requested_horizon_gate",
+      "contrast": "Shared mixture vector versus a low-dimensional, partially pooled weight function of requested horizon, starting with log(H) and a small spline/random effect.",
+      "hypothesis": "A smooth horizon gate may borrow evidence across sparse horizons while allowing stable changes in model performance.",
+      "training_protocol": "One as-of-origin feature at a time; optionally add trailing volatility only after loss-difference diagnostics show repeatable heterogeneity. Use one gate per request and one expert selection for each complete joint portfolio path.",
+      "outer_gate": "Same-horizon outer requests; unchanged canonical marginal score and coherent path/accounting contract.",
+      "cost": "Small fit overhead on cached path forecasts; new forecasts needed only for absent horizon/origin cells.",
+      "risks": [
+        "Flexible gates memorize reused 355 requests",
+        "Per-asset or per-day weighting may invalidate joint paths",
+        "The canonical marginal CRPS does not assess cross-horizon or cross-asset dependence"
+      ],
+      "sources": [
+        "Yao et al. 2021",
+        "Berrisch and Ziel 2024 multivariate CRPS learning"
+      ]
+    },
+    {
+      "rank": 4,
+      "id": "prequential_boa_with_matured_feedback",
+      "contrast": "Existing batch learner versus in-progress BOA using identical candidate paths and score definitions, with outcomes applied only when full-H labels mature.",
+      "hypothesis": "A sequential learner may adapt more quickly to changing relative model skill than a batch fit over the full training history.",
+      "training_protocol": "Replay each origin chronologically; process completed labels by maturity; when horizons overlap, use an explicitly delayed-feedback update. This is a validation design note for the parallel BOA implementation, not an implementation task here.",
+      "outer_gate": "One same-origin, same-H paired comparison; the unchanged canonical marginal score selects. Path-dependence diagnostics have zero score weight.",
+      "cost": "Weight update approximately scales with experts times matured origins; forecasting dominates when cache is absent.",
+      "risks": [
+        "Immediate-feedback BOA leaks when H-step scores have not matured",
+        "Regret guarantees do not imply better absolute CRPS",
+        "Univariate quantile BOA may not match joint path scoring assumptions",
+        "Exponential forgetting can improve adaptation under drift but may remove standard asymptotic regret guarantees; only test it when drift is evidenced."
+      ],
+      "sources": [
+        "Berrisch and Ziel 2021 CRPS Learning",
+        "Flaspohler et al. 2021 Online Learning with Optimism and Delay",
+        "West 1996 predictive ability inference",
+        "Diebold and Mariano 1995 predictive accuracy"
+      ]
+    },
+    {
+      "rank": 5,
+      "id": "hpo_on_frozen_forecast_tensor",
+      "contrast": "Training-only TPE search of a small set of meta-parameters over frozen candidate path forecasts/loss tensors; use deterministic profiling or a small grid for one parameter.",
+      "hypothesis": "Search can reduce hand-tuned meta-parameter effort without regenerating candidate forecasts for every trial.",
+      "training_protocol": "Keep menu and predictions frozen; search at most pooling strength, horizon smoothness, and a justified forgetting scale using chronological inner folds; evaluate one locked setting on the next reserved block.",
+      "outer_gate": "No trial selection uses reserved or full-panel outcomes; the unchanged canonical marginal score evaluates the locked result.",
+      "cost": "Trials become weight/score reductions when forecast artifacts are cached; otherwise cost grows with trial count.",
+      "risks": [
+        "TPE does not generate forecasts or prevent leakage",
+        "Many trials overfit repeated development requests",
+        "Pruning on noisy early-fold scores can discard good candidates"
+      ],
+      "sources": [
+        "Akiba et al. 2019 Optuna",
+        "Berrisch and Ziel 2024 multivariate CRPS learning"
+      ]
+    }
+  ],
+  "stopping_rule": [
+    "Freeze recipe menu, score, origins, feature definitions, and contrasts before evaluation.",
+    "Allow one training-only tuning run per method family and one locked paired comparison on a predeclared reserved time block; record prior block reuse and do not call it independent if it has been inspected before.",
+    "Advance only candidates that improve the canonical external marginal score without forecast-integrity or within-path accounting failures; run broad checks only for survivors and a complete panel only for a survivor.",
+    "If none survives after the predeclared contrasts, close the infrastructure phase with no promotion; do not re-tune on the same 355 requests or claim universal optimality."
+  ],
+  "sources": [
+    {
+      "title": "CRPS Learning",
+      "authors": "Berrisch and Ziel",
+      "year": 2021,
+      "url": "https://arxiv.org/html/2102.00968",
+      "use": "Batch and online CRPS aggregation, BOA, smoothing, forgetting, shrinkage."
+    },
+    {
+      "title": "Multivariate Probabilistic CRPS Learning with an Application to Day-Ahead Electricity Prices",
+      "authors": "Berrisch and Ziel",
+      "year": 2024,
+      "url": "https://arxiv.org/pdf/2303.10019",
+      "use": "Weight smoothing across probability and marginal dimensions; method leaves copula untouched."
+    },
+    {
+      "title": "Bayesian hierarchical stacking: Some models are (somewhere) useful",
+      "authors": "Yao, Pirš, Vehtari, Gelman",
+      "year": 2021,
+      "url": "https://arxiv.org/html/2101.08954",
+      "use": "Input-dependent simplex weights and partial pooling; time series extension."
+    },
+    {
+      "title": "Out-of-sample tests of forecasting accuracy: an analysis and review",
+      "authors": "Tashman",
+      "year": 2000,
+      "url": "https://doi.org/10.1016/S0169-2070(00)00065-0",
+      "use": "Rolling origins, multiple test periods, evaluation design."
+    },
+    {
+      "title": "Time series cross-validation",
+      "authors": "Hyndman and Athanasopoulos",
+      "year": "FPP3",
+      "url": "https://otexts.com/fpp3/tscv.html",
+      "use": "Rolling-origin CV and multi-step horizon scoring."
+    },
+    {
+      "title": "A Simple Explanation of the Forecast Combination Puzzle",
+      "authors": "Smith and Wallis",
+      "year": 2009,
+      "url": "https://doi.org/10.1111/j.1468-0084.2008.00541.x",
+      "use": "Finite-sample estimated-weight variance; point forecast evidence only motivates shrinkage test."
+    },
+    {
+      "title": "Online Learning with Optimism and Delay",
+      "authors": "Flaspohler et al.",
+      "year": 2021,
+      "url": "https://proceedings.mlr.press/v139/flaspohler21a.html",
+      "use": "Delayed feedback online learning and regret."
+    },
+    {
+      "title": "Tests of Conditional Predictive Ability",
+      "authors": "Giacomini and White",
+      "year": 2006,
+      "url": "https://doi.org/10.1111/j.1468-0262.2006.00718.x",
+      "use": "Conditional forecast selection under misspecification."
+    },
+    {
+      "title": "Optuna: A Next-generation Hyperparameter Optimization Framework",
+      "authors": "Akiba et al.",
+      "year": 2019,
+      "url": "https://arxiv.org/abs/1907.10902",
+      "use": "Search and pruning infrastructure, not a forecasting method."
+    },
+    {
+      "title": "Asymptotic Inference about Predictive Ability",
+      "authors": "West",
+      "year": 1996,
+      "url": "https://doi.org/10.2307/2171956",
+      "use": "Inference for moments of time-ordered out-of-sample predictions and errors."
+    },
+    {
+      "title": "Comparing Predictive Accuracy",
+      "authors": "Diebold and Mariano",
+      "year": 1995,
+      "url": "https://doi.org/10.1080/07350015.1995.10524599",
+      "use": "Paired loss-differential testing with serially correlated forecast errors."
+    }
+  ]
+}
