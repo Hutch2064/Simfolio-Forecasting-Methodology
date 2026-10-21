@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-21T14:42:17.528990+00:00",
+  "worker_tests_passed": 1,
+  "synthetic_joint_portfolio_assets": 3,
+  "training_rows": 40,
+  "native_future_rows": 4,
+  "synthetic_forecasts": 12,
+  "outer_paths_per_forecast": 1000,
+  "internal_counts": [
+    10,
+    30,
+    100,
+    300
+  ],
+  "seed_repetitions": 3,
+  "checkpoint_reuses_without_fitting": 12,
+  "altered_simulation_count_rejected": true,
+  "unique_configuration_model_ids": 4,
+  "seed_repetitions_are_not_new_models": true,
+  "source_hashes": {
+    "test_selector_inner_precision_worker.py": "5d0ba61bbb691f320c5c42603fe81dad9e6a517840476c7c4679ae355daa6b24",
+    "run_selector_inner_precision72.py": "7366296b5ea6d5c5d592a382c2c31c6c3eb97ccc188b9dafdde707cd1c5a1d48"
+  },
+  "test_log_sha256": "fb9ab715069d7f0f01bc4a8c9b7bbdafc85d6f5b150269b61e7a33e348485789",
+  "no_real_panel_accuracy_or_stability_result": true,
+  "no_full_request_runtime_claim": true,
+  "no_new_scientific_process_pool": true
+}
