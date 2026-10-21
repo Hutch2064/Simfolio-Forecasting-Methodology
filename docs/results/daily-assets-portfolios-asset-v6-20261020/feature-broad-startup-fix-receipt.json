@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-21T03:27:26.568759+00:00",
+  "original_pid": 65936,
+  "termination": "SIGTERM while serial reference setup only",
+  "forecasts_generated": 0,
+  "scientific_model_sources_changed": false,
+  "cause": "13.48MB immutable execution manifests were parsed for each of14836 reference tasks. Cache the two immutable execution fingerprints once; checkpoint identity/hash checks and canonical scoring remain unchanged.",
+  "original_runner_sha256": "958ea60f5880edb1679db989f1c57a53be8df361918aa064f6fa8e6cf556de7b",
+  "replacement_runner_sha256": "15ebcf379fafbc51be93d06d25a7dfa82224ab29f4d58015631e4a595063fa1c",
+  "restart_guard": "No active.json, fit or lossNPZ existed in this new phase."
+}

@@ -76,7 +76,9 @@ def main():
                  'run_asset_feature_batch.py','test_asset_feature_batch.py',
                  'prepare_asset_feature_confirmation.py','run_asset_feature_confirmation.py',
                  'prepare_asset_feature_reserved.py','run_asset_feature_reserved.py','preserve_asset_feature_development.py',
-                 'prepare_asset_feature_broad.py','run_asset_feature_broad.py','asset_feature_storage_budget.json',
+                 'prepare_asset_feature_broad.py','run_asset_feature_broad.py','run_asset_feature_broad_v2.py','asset_feature_storage_budget.json',
+                 'retire_closed_feature_fit_caches.py','preserve_asset_feature_cache_retirement_metadata.py',
+                 'run_asset_feature_full.py','report_asset_feature_full.py','promote_asset_feature.py',
                  'retire_closed_asset_circular_losses.py','preserve_asset_circular_retirement_metadata.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
@@ -155,7 +157,7 @@ def main():
             (gjr_target/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
     if (gjr/'decision.json').exists():
         shutil.copy2(gjr/'decision.json',gjr_target/'decision.json')
-    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021'):
+    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021'):
         path = O/'archives'/folder/'receipt.json'
         if path.exists():
             shutil.copy2(path,D/(folder+'-archive-receipt.json'))
@@ -179,6 +181,12 @@ def main():
             shutil.copy2(circular/'full'/name, circular_full/name)
     if (circular/'promotion_receipt.json').exists():
         shutil.copy2(circular/'promotion_receipt.json', circular_target/'promotion_receipt.json')
+    cache_retirement=O/'archives/asset-v6-feature-fit-cache-retirement-20261021/receipt.json'
+    cache_recovery=cache_retirement.parent/'metadata_remote_recovery.json'
+    if cache_recovery.exists():shutil.copy2(cache_recovery,D/'feature-fit-cache-retirement-remote-recovery.json')
+    if cache_retirement.exists():shutil.copy2(cache_retirement,D/'feature-fit-cache-retirement-receipt.json')
+    startup_fix=O/'asset_feature_broad_startup_fix/receipt.json'
+    if startup_fix.exists():shutil.copy2(startup_fix,D/'feature-broad-startup-fix-receipt.json')
     retirement_circular=O/'archives/asset-v6-circular-raw-retirement-20261021'
     for name in ('receipt.json','metadata_remote_recovery.json'):
         if (retirement_circular/name).exists():
@@ -189,7 +197,7 @@ def main():
         source=V/'candidates/asset_feature_batch'/phase
         destination=D/'candidates/asset_feature_batch'/phase
         destination.mkdir(exist_ok=True)
-        for name in ('plan.json','summary.json'):
+        for name in ('plan.json','summary.json','ARCHIVED_FIT_CACHE.json'):
             path=source/name
             if path.exists():
                 compact={k:v for k,v in json.loads(path.read_text()).items() if k not in ('records','fit_packets')}
@@ -253,7 +261,7 @@ def main():
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 52}), flush=True)
+                      'tests': receipt['recovered_source_tests_passed']}), flush=True)
 
 
 if __name__ == '__main__':
