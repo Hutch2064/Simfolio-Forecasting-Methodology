@@ -1,0 +1,224 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8235702227265659,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+      "percent_better_vs_same100path_fixed_reference": 14.905868615568407,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "GARCH"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8255927782797812,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243",
+      "percent_better_vs_same100path_fixed_reference": 14.696891162003102,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "none"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.8405164242847631,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_d26694e813a0c6c6",
+      "percent_better_vs_same100path_fixed_reference": 13.154928304630209,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 4,
+      "expected_cases": 72,
+      "main_Q": 0.8422310298741136,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_165dcbff058eda0e",
+      "percent_better_vs_same100path_fixed_reference": 12.977769309238617,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "GARCH"
+      },
+      "config_index": 3,
+      "expected_cases": 72,
+      "main_Q": 0.8443323919123198,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_11b23f358b3548ed",
+      "percent_better_vs_same100path_fixed_reference": 12.76064929635935,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "none"
+      },
+      "config_index": 5,
+      "expected_cases": 72,
+      "main_Q": 0.8461206167647093,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_62ed6359e639a8aa",
+      "percent_better_vs_same100path_fixed_reference": 12.575883703414082,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 6,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_trained_CRPS_pool_v1_11b23f358b3548ed": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "GARCH"
+      },
+      "config_index": 3,
+      "expected_cases": 72,
+      "main_Q": 0.8443323919123198,
+      "percent_better_vs_same100path_fixed_reference": 12.76064929635935,
+      "successful_cases": 72
+    },
+    "model_testing_asset_trained_CRPS_pool_v1_165dcbff058eda0e": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 4,
+      "expected_cases": 72,
+      "main_Q": 0.8422310298741136,
+      "percent_better_vs_same100path_fixed_reference": 12.977769309238617,
+      "successful_cases": 72
+    },
+    "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8235702227265659,
+      "percent_better_vs_same100path_fixed_reference": 14.905868615568407,
+      "successful_cases": 72
+    },
+    "model_testing_asset_trained_CRPS_pool_v1_62ed6359e639a8aa": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "none"
+      },
+      "config_index": 5,
+      "expected_cases": 72,
+      "main_Q": 0.8461206167647093,
+      "percent_better_vs_same100path_fixed_reference": 12.575883703414082,
+      "successful_cases": 72
+    },
+    "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "GARCH"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8255927782797812,
+      "percent_better_vs_same100path_fixed_reference": 14.696891162003102,
+      "successful_cases": 72
+    },
+    "model_testing_asset_trained_CRPS_pool_v1_d26694e813a0c6c6": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "none"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.8405164242847631,
+      "percent_better_vs_same100path_fixed_reference": 13.154928304630209,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 432,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8331047424912109,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 28.094495878438465,
+  "utc": "2026-10-21T04:45:03.329498+00:00"
+}

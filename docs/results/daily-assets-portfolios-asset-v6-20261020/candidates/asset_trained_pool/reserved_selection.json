@@ -1,0 +1,45 @@
+{
+  "utc": "2026-10-21T04:48:17.406851+00:00",
+  "development_summary_sha256": "05df6ca662dc279290f06d19e69215b932e1823b590092ccb878e911c1da87ba",
+  "selected": [
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "GARCH"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.7124273752459596,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243",
+      "percent_better_vs_same1000path_fixed_reference": 109.91336799555118,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.7131987298009068,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+      "percent_better_vs_same1000path_fixed_reference": 108.94965941029744,
+      "successful_cases": 355
+    }
+  ],
+  "paths": 1000,
+  "case_count": 355,
+  "selection": "Both development-improving training-weight rules, frozen unchanged. All355 reserved cases, no full-panel admission",
+  "official": false,
+  "independent_validation_claim": false
+}

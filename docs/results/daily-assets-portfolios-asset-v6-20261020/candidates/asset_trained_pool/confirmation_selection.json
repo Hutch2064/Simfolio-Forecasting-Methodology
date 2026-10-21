@@ -1,0 +1,45 @@
+{
+  "utc": "2026-10-21T04:46:56.471719+00:00",
+  "screen_summary_sha256": "4c7d951fe34834727fbc1942a5f90c58d0365c9b84a0cf1b7c1bbc4672cd15e8",
+  "selected": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8235702227265659,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+      "percent_better_vs_same100path_fixed_reference": 14.905868615568407,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "GARCH"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8255927782797812,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243",
+      "percent_better_vs_same100path_fixed_reference": 14.696891162003102,
+      "successful_cases": 72
+    }
+  ],
+  "paths": 1000,
+  "case_count": 355,
+  "selection": "Both improving learned-weight rules, without retuning; all355 frozen development cases. No full-panel admission.",
+  "official": false,
+  "independent_validation_claim": false
+}

@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-21T04:51:49.773446+00:00",
+  "reserved_summary_sha256": "7b6f32826cf7523aa5f91dba8c08ace5c11634af632b78cf5aeaf9d0548d7ed4",
+  "selected": [
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6728170835804874,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+      "percent_better_vs_same1000path_fixed_reference": 40.3752768792216,
+      "successful_cases": 355
+    }
+  ],
+  "paths": 1000,
+  "case_count": 7418,
+  "selection": "Only EWMA-faded training-weight rule improved both355development and355reserved. Broader check of a changed training-estimation procedure; no full-panel admission or retuning.",
+  "official": false,
+  "independent_validation_claim": false
+}

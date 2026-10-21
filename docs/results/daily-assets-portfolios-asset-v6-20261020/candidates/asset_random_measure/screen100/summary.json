@@ -1,0 +1,188 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "concentration": "training_matched",
+        "raw_fade": "EWMA"
+      },
+      "config_index": 5,
+      "expected_cases": 72,
+      "main_Q": 0.8303838948363833,
+      "model_id": "model_testing_asset_random_joint_measure_v1_fc7ee333118830d8",
+      "percent_better_vs_same100path_fixed_reference": 14.201856384767131,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "concentration": "training_matched",
+        "raw_fade": "GARCH"
+      },
+      "config_index": 3,
+      "expected_cases": 72,
+      "main_Q": 0.8329302952973728,
+      "model_id": "model_testing_asset_random_joint_measure_v1_58561cd4a3f5a027",
+      "percent_better_vs_same100path_fixed_reference": 13.938753458744069,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "concentration": "training_matched",
+        "raw_fade": "none"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8352405260022586,
+      "model_id": "model_testing_asset_random_joint_measure_v1_3e3a8d6eb4ce5455",
+      "percent_better_vs_same100path_fixed_reference": 13.700052410909846,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "concentration": "Rubin",
+        "raw_fade": "EWMA"
+      },
+      "config_index": 4,
+      "expected_cases": 72,
+      "main_Q": 0.8658595814375738,
+      "model_id": "model_testing_asset_random_joint_measure_v1_50226b0cfb45f536",
+      "percent_better_vs_same100path_fixed_reference": 10.53638542273978,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "concentration": "Rubin",
+        "raw_fade": "GARCH"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.8691675050118393,
+      "model_id": "model_testing_asset_random_joint_measure_v1_92735152497758d1",
+      "percent_better_vs_same100path_fixed_reference": 10.19459928784736,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "concentration": "Rubin",
+        "raw_fade": "none"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8698385153019055,
+      "model_id": "model_testing_asset_random_joint_measure_v1_01cdf55c2dfa0935",
+      "percent_better_vs_same100path_fixed_reference": 10.12526817775189,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 6,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_random_joint_measure_v1_01cdf55c2dfa0935": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "concentration": "Rubin",
+        "raw_fade": "none"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8698385153019055,
+      "percent_better_vs_same100path_fixed_reference": 10.12526817775189,
+      "successful_cases": 72
+    },
+    "model_testing_asset_random_joint_measure_v1_3e3a8d6eb4ce5455": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "concentration": "training_matched",
+        "raw_fade": "none"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8352405260022586,
+      "percent_better_vs_same100path_fixed_reference": 13.700052410909846,
+      "successful_cases": 72
+    },
+    "model_testing_asset_random_joint_measure_v1_50226b0cfb45f536": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "concentration": "Rubin",
+        "raw_fade": "EWMA"
+      },
+      "config_index": 4,
+      "expected_cases": 72,
+      "main_Q": 0.8658595814375738,
+      "percent_better_vs_same100path_fixed_reference": 10.53638542273978,
+      "successful_cases": 72
+    },
+    "model_testing_asset_random_joint_measure_v1_58561cd4a3f5a027": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "concentration": "training_matched",
+        "raw_fade": "GARCH"
+      },
+      "config_index": 3,
+      "expected_cases": 72,
+      "main_Q": 0.8329302952973728,
+      "percent_better_vs_same100path_fixed_reference": 13.938753458744069,
+      "successful_cases": 72
+    },
+    "model_testing_asset_random_joint_measure_v1_92735152497758d1": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "concentration": "Rubin",
+        "raw_fade": "GARCH"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.8691675050118393,
+      "percent_better_vs_same100path_fixed_reference": 10.19459928784736,
+      "successful_cases": 72
+    },
+    "model_testing_asset_random_joint_measure_v1_fc7ee333118830d8": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "concentration": "training_matched",
+        "raw_fade": "EWMA"
+      },
+      "config_index": 5,
+      "expected_cases": 72,
+      "main_Q": 0.8303838948363833,
+      "percent_better_vs_same100path_fixed_reference": 14.201856384767131,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 432,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8331047424912109,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 7.256212253123522,
+  "utc": "2026-10-21T05:01:30.904357+00:00"
+}
