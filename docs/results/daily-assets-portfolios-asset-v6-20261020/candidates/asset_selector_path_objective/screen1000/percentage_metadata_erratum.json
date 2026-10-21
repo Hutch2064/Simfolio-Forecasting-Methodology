@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-21T12:12:18.001630+00:00",
+  "scope": "Derived percentage display metadata only; original driver, summary, forecasts and canonical score audit remain immutable",
+  "cause": "Simulation-count text replacement also replaced the display multiplier100with1000 in this one-time precision driver",
+  "original_summary_sha256": "bb99b40b66af0ca84dd04eef36bc0a74054909ed472c8f5b64ace5bfbfce75a5",
+  "canonical_score_verification_receipt_sha256": "d5dcad560465fffd8d9b26c9a65ce49ec1b90d64189476b36d05e7b3b4dac8dc",
+  "corrected_fields": [
+    {
+      "model_id": "model_testing_asset_calendar_path_CRPS_pool_v1_af30d2b0e51999b5",
+      "field": "percent_better_vs_fixed_reference",
+      "original": 213.09473554516245,
+      "corrected": 21.309473554516245
+    },
+    {
+      "model_id": "model_testing_asset_calendar_path_CRPS_pool_v1_c826dd727ac7f2bc",
+      "field": "percent_better_vs_fixed_reference",
+      "original": 205.40746801210574,
+      "corrected": 20.540746801210574
+    }
+  ],
+  "normalizer_source_sha256": "0a9499252dab5e9fd7f630f63534f24fbb57085da17302ddcfe15bbea6d8f256",
+  "correction_source_sha256": "3e7f340df0efcdcd9537de3a53115dbdacf353209f8514a851d6d782a8c36b45",
+  "main_Q_reference_Q_coverage_and_ranking_unchanged": true,
+  "no_forecast_or_fitting_reruns": true,
+  "corrected_summary_sha256": "4926aeddb548e8f63701973b66fd69c1fb96b35da20e9f5c415c16d01911ecb2"
+}

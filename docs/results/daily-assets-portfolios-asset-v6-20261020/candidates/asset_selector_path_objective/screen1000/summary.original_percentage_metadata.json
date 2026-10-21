@@ -1,0 +1,47 @@
+{
+  "complete_execution": true,
+  "control_replays": 72,
+  "errors": [],
+  "expected_forecasts": 144,
+  "full_panel_catalogue_increment": 0,
+  "independence_or_significance_claim": false,
+  "inner_paths": 1000,
+  "models": {
+    "model_testing_asset_calendar_path_CRPS_pool_v1_af30d2b0e51999b5": {
+      "beats_matched_old_working": true,
+      "beats_matched_terminal_pool": true,
+      "complete": true,
+      "config": {
+        "criterion": "path",
+        "inner_paths": 1000
+      },
+      "main_Q": 0.7601663127925109,
+      "percent_better_vs_fixed_reference": 213.09473554516245,
+      "successful_cases": 72
+    },
+    "model_testing_asset_calendar_path_CRPS_pool_v1_c826dd727ac7f2bc": {
+      "beats_matched_old_working": true,
+      "beats_matched_terminal_pool": false,
+      "complete": true,
+      "config": {
+        "criterion": "terminal",
+        "inner_paths": 1000
+      },
+      "main_Q": 0.767592367846421,
+      "percent_better_vs_fixed_reference": 205.40746801210574,
+      "successful_cases": 72
+    }
+  },
+  "new_path_candidate_forecasts": 72,
+  "new_successful_forecasts": 144,
+  "no_full_panel_promotion_from_this_precision_test": true,
+  "official": false,
+  "paths": 1000,
+  "qualification_valid": true,
+  "reference_main_Q": {
+    "current_best": 0.8214554222471507,
+    "fixed_reference": 0.9660201133857566,
+    "terminal_pool": 0.7675923678464209
+  },
+  "utc": "2026-10-21T12:07:41.311914+00:00"
+}

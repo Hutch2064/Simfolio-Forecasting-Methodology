@@ -1,0 +1,105 @@
+{
+  "utc": "2026-10-21T12:40:33.263948+00:00",
+  "profiled_requests": 13,
+  "inner_and_final_paths": 100,
+  "profile_scope": "First request per process: one cheap qualification request and twelve initially large requests; not an unbiased complete-workload sample",
+  "preparation_cpu_seconds": 1601.91235,
+  "coefficient_cpu_seconds": 1261.310016995,
+  "coefficient_fraction_of_profiled_preparation": 0.7873776720648917,
+  "rows": [
+    {
+      "case": 39,
+      "profile_sha256": "a19ab84a7ebaefb8a6be6dfe87cf0e33aa87c1e18b12d0f81e56be85edabf424",
+      "summary_sha256": "baadba380bc637ad04f6a76388638e44e778748ce0efbf512651a86880836362",
+      "total_preparation_cpu_seconds": 129.674476,
+      "coefficient_cpu_seconds": 102.619602998
+    },
+    {
+      "case": 31,
+      "profile_sha256": "37eec005f104ed7fcf15c37b09134033e132a88d515decedbe8519cec413570b",
+      "summary_sha256": "e14ea2b30e43a51466451f3bebd2f52e12f6129f347d5a59f0b3de2db6180e86",
+      "total_preparation_cpu_seconds": 122.55562400000001,
+      "coefficient_cpu_seconds": 96.090919997
+    },
+    {
+      "case": 32,
+      "profile_sha256": "14a37d11f4871244631745d8e08f278dec33c22ddc7a63fc61cec18e5e4bcf57",
+      "summary_sha256": "f897348e8fa72e5a047544fa4d96a0a61a603aa08a792f83e5c3d63115ed46a8",
+      "total_preparation_cpu_seconds": 122.36328300000001,
+      "coefficient_cpu_seconds": 96.575657999
+    },
+    {
+      "case": 50,
+      "profile_sha256": "38bf2cee02f26bbe2496d6d9605959592b3085d6f041cc63aeab22235ce73453",
+      "summary_sha256": "3a8f3eef7be04ddf7423cc3b4cfd41a206dd0ad22a5aedfcfba04beb0266e228",
+      "total_preparation_cpu_seconds": 84.709466,
+      "coefficient_cpu_seconds": 62.02431300200001
+    },
+    {
+      "case": 71,
+      "profile_sha256": "3139774c8e3f6c6d7105441426c1d5fb39afa0df81ac3b474aea6bffda2d062a",
+      "summary_sha256": "98eb266fa6ac75b489d5bb810fdac5482d40f90d30202d61cd166f2c0eb52052",
+      "total_preparation_cpu_seconds": 124.21625100000001,
+      "coefficient_cpu_seconds": 98.037252002
+    },
+    {
+      "case": 65,
+      "profile_sha256": "f1c8ce66c6e3f3dafcd50f37ac03f28b1f729299959df00f1ef53f28d66a45c5",
+      "summary_sha256": "797518eba2f64598a45d0222d4dda8e5c2cdd1e246b109696efd15bca68648b3",
+      "total_preparation_cpu_seconds": 137.69243300000002,
+      "coefficient_cpu_seconds": 106.08753500300001
+    },
+    {
+      "case": 35,
+      "profile_sha256": "9c144ed9952532780fa769dec77f7b579f608f971b7f30b883084f14f7050029",
+      "summary_sha256": "060f4a470afa2b8bea95caef97c86b042782a99054a65016aca7c5e5bccc8f49",
+      "total_preparation_cpu_seconds": 284.00449000000003,
+      "coefficient_cpu_seconds": 233.311879994
+    },
+    {
+      "case": 36,
+      "profile_sha256": "a2418159c7c7347ee4d93fb5a3062d964ea9321472a8d2e6505fc76760909d9d",
+      "summary_sha256": "753d03da7b291e44222bef163d7d19ce149d00e106ab320cc06d66967bc612a7",
+      "total_preparation_cpu_seconds": 114.966306,
+      "coefficient_cpu_seconds": 89.73822300200001
+    },
+    {
+      "case": 40,
+      "profile_sha256": "aa21418e084a8f3a4ffa0f45c4286dcdf4812478684ce6c807126f1eedd38b80",
+      "summary_sha256": "7fc1d78dd3e3cc5ffd8254938af6672b6a40fd3e227a519311659e9923acdb11",
+      "total_preparation_cpu_seconds": 129.954069,
+      "coefficient_cpu_seconds": 102.674853002
+    },
+    {
+      "case": 41,
+      "profile_sha256": "b1a8d2e53999d7e54c27dbcac0b4fe7e0fd7ef1a2ee56e8422e93d6f8700bf8c",
+      "summary_sha256": "0a13cc6e3d9b10320adf31c3c19edf5f165a96e7c8b2d26c66d69f4c82dd907b",
+      "total_preparation_cpu_seconds": 121.95900300000001,
+      "coefficient_cpu_seconds": 95.25430999800001
+    },
+    {
+      "case": 34,
+      "profile_sha256": "a5da022d45a52d0e2a6dd823fca1d020afb771c2d9dfe830f0c7ec73210ff27b",
+      "summary_sha256": "b20517cfd3bdb0fe12eeabfdba16f0d7c9498ebc1f65517f0764d400f306b5cf",
+      "total_preparation_cpu_seconds": 124.36250700000001,
+      "coefficient_cpu_seconds": 103.512410996
+    },
+    {
+      "case": 38,
+      "profile_sha256": "66f50734878c9b29d8755b461f30791fe446ab2959f7400f882b52382dbb084c",
+      "summary_sha256": "5b1bbd1866e8e0231ae16cd6d4d6e9182ec16fa46c33c9134b411d8eaad33547",
+      "total_preparation_cpu_seconds": 91.247229,
+      "coefficient_cpu_seconds": 64.83004400200001
+    },
+    {
+      "case": 4,
+      "profile_sha256": "6bdf564ff889c334f6cefe251cbe81563e2432df554787c5fb8354cbb7f5fda0",
+      "summary_sha256": "e65f3da87357fd12715eaff353450f1f6ff119d5b88401fdd9aac24fcf0f782d",
+      "total_preparation_cpu_seconds": 14.207213000000001,
+      "coefficient_cpu_seconds": 10.553015
+    }
+  ],
+  "measured_bottleneck": "Dense pairwise CRPS coefficient assembly through historical forecast paths",
+  "scientific_implication": "Prioritize exact coefficient/statistic reuse and consider certified column methods; do not drop options, leads, origins or simulations",
+  "claims": "No whole-request,1000path,production,independence or significance claim; inclusive per-call rows are used once at the preparation and coefficient boundaries"
+}
