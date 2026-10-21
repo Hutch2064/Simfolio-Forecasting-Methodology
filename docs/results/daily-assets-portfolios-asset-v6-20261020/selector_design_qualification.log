@@ -1,0 +1,17 @@
+test_all166_inner_option_paths_are_exact (test_selector_fast_iid.ExactIIDTests.test_all166_inner_option_paths_are_exact) ... ok
+test_full_asset_and_portfolio_paths_match_all_rebalance_policies_and_chunks (test_selector_fast_iid.ExactIIDTests.test_full_asset_and_portfolio_paths_match_all_rebalance_policies_and_chunks) ... ok
+test_full_selection_coefficients_weights_and1000_final_paths_are_exact (test_selector_fast_iid.ExactIIDTests.test_full_selection_coefficients_weights_and1000_final_paths_are_exact) ... ok
+test_other_block_streams_delegate_without_changing_outputs (test_selector_fast_iid.ExactIIDTests.test_other_block_streams_delegate_without_changing_outputs) ... ok
+test_vector_rows_match_original_scalar_seed_stream (test_selector_fast_iid.ExactIIDTests.test_vector_rows_match_original_scalar_seed_stream) ... ok
+test_balanced_history_and_requested_horizon_designs_change_support (test_selector_design.DesignTests.test_balanced_history_and_requested_horizon_designs_change_support) ... ok
+test_established_stack_is_exact_to_current_selector (test_selector_design.DesignTests.test_established_stack_is_exact_to_current_selector) ... ok
+test_every_validation_design_is_chronological_complete_and_uncapped (test_selector_design.DesignTests.test_every_validation_design_is_chronological_complete_and_uncapped) ... ok
+test_overlap_adds_midpoints_without_removing_existing_origins (test_selector_design.DesignTests.test_overlap_adds_midpoints_without_removing_existing_origins) ... ok
+test_pick_one_is_the_lowest_scoring_vertex_and_gets_all_final_paths (test_selector_design.DesignTests.test_pick_one_is_the_lowest_scoring_vertex_and_gets_all_final_paths) ... ok
+test_request_binding_and_seed_repetition (test_selector_design.DesignTests.test_request_binding_and_seed_repetition) ... ok
+test_joint_portfolio_all_precisions_and_seed_repeats_resume_without_refitting (test_selector_design_worker.WorkerTests.test_joint_portfolio_all_precisions_and_seed_repeats_resume_without_refitting) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 7.305s
+
+OK

@@ -1,0 +1,824 @@
+{
+  "source_files": {
+    "src/simfolio_forecasting_methodology/resources/catalogs/canonical_175_part1.csv": "63912dd66c82e2d466dd52ac10545e94c912d5ef68460616bce7bbdcca2f3eeb",
+    "src/simfolio_forecasting_methodology/resources/catalogs/canonical_175_part2.csv": "0ba9cc6eb55992a9bdd1f7a371031da50547e55c1332b93589076572db7ae20d"
+  },
+  "scope": "Historical80catalogue ranks/scores under its own frozen240path/rawCRPS protocol, not comparable numerically with the current1264-series score. Multi-component recipe associations do not isolate causal feature effects.",
+  "models_in_checked_catalogue": 263,
+  "matched_keyword_groups": {
+    "egarch": [
+      {
+        "canonical_rank": "64",
+        "source_rank": "75",
+        "model_id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+        "exact_empirical_crps": "0.3857705",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "91",
+        "source_rank": "102",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39396099",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "92",
+        "source_rank": "103",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39445454",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "93",
+        "source_rank": "104",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39594003",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "94",
+        "source_rank": "105",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39773308",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "103",
+        "source_rank": "114",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39800376",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "107",
+        "source_rank": "118",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39816009",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "110",
+        "source_rank": "121",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39818147",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "112",
+        "source_rank": "123",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39826282",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "113",
+        "source_rank": "124",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39826976",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "137",
+        "source_rank": "148",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39863823",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "139",
+        "source_rank": "150",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39864773",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "140",
+        "source_rank": "151",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39865391",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "142",
+        "source_rank": "153",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39865527",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "143",
+        "source_rank": "154",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39867593",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "144",
+        "source_rank": "155",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39867724",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "148",
+        "source_rank": "159",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39871316",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "149",
+        "source_rank": "160",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39872984",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "151",
+        "source_rank": "162",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39873901",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "152",
+        "source_rank": "163",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39874462",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "174",
+        "source_rank": "185",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39934064",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "175",
+        "source_rank": "186",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39988609",
+        "cells": "701280"
+      }
+    ],
+    "garch": [
+      {
+        "canonical_rank": "6",
+        "source_rank": "17",
+        "model_id": "bayesian_sbb_overlay_gjr_garch_1_1",
+        "exact_empirical_crps": "0.262244982",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "7",
+        "source_rank": "18",
+        "model_id": "bayesian_sbb_overlay_figarch_1_d_1",
+        "exact_empirical_crps": "0.262458952",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "31",
+        "source_rank": "42",
+        "model_id": "bayesian_sbb_overlay_garch_1_1_merton_positive_sample_mean",
+        "exact_empirical_crps": "0.334801974",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "45",
+        "source_rank": "56",
+        "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_merton_positive_sample_mean",
+        "exact_empirical_crps": "0.346829116",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "52",
+        "source_rank": "63",
+        "model_id": "portfolio_gjr_garch_eb_sampler_stationary_sbb_optimal",
+        "exact_empirical_crps": "0.379849473",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "59",
+        "source_rank": "70",
+        "model_id": "bayesian_sbb_overlay_garch_1_1_empirical_bayes_sharpe",
+        "exact_empirical_crps": "0.383370954",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "61",
+        "source_rank": "72",
+        "model_id": "bayesian_sbb_overlay_gjr_garch_1_1_empirical_bayes_sharpe",
+        "exact_empirical_crps": "0.384481351",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "64",
+        "source_rank": "75",
+        "model_id": "bayesian_sbb_overlay_egarch_1_1_empirical_bayes_sharpe",
+        "exact_empirical_crps": "0.3857705",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "65",
+        "source_rank": "76",
+        "model_id": "bayesian_sbb_overlay_garch_1_1_hierarchical_empirical_bayes_sharpe",
+        "exact_empirical_crps": "0.386044101",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "83",
+        "source_rank": "94",
+        "model_id": "bayesian_sbb_overlay_garch_1_1_prequential_crps_shrinkage",
+        "exact_empirical_crps": "0.649725333",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "91",
+        "source_rank": "102",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39396099",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "92",
+        "source_rank": "103",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39445454",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "93",
+        "source_rank": "104",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39594003",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "94",
+        "source_rank": "105",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39773308",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "103",
+        "source_rank": "114",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39800376",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "107",
+        "source_rank": "118",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39816009",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "110",
+        "source_rank": "121",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39818147",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "112",
+        "source_rank": "123",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39826282",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "113",
+        "source_rank": "124",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39826976",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "114",
+        "source_rank": "125",
+        "model_id": "portfolio_gjr_garch_eb_sampler_moving_block_optimal",
+        "exact_empirical_crps": "1.3983256",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "115",
+        "source_rank": "126",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.3983353",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "116",
+        "source_rank": "127",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39834708",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "117",
+        "source_rank": "128",
+        "model_id": "expanding_sample_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.3983787",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "118",
+        "source_rank": "129",
+        "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39838676",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "123",
+        "source_rank": "134",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39853226",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "124",
+        "source_rank": "135",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39855419",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "125",
+        "source_rank": "136",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39855589",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "126",
+        "source_rank": "137",
+        "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39856596",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "128",
+        "source_rank": "139",
+        "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39859132",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "129",
+        "source_rank": "140",
+        "model_id": "expanding_sample_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.3985956",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "131",
+        "source_rank": "142",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39860392",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "136",
+        "source_rank": "147",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39863429",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "137",
+        "source_rank": "148",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39863823",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "138",
+        "source_rank": "149",
+        "model_id": "expanding_sample_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39864127",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "139",
+        "source_rank": "150",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39864773",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "140",
+        "source_rank": "151",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39865391",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "141",
+        "source_rank": "152",
+        "model_id": "expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39865497",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "142",
+        "source_rank": "153",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39865527",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "143",
+        "source_rank": "154",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39867593",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "144",
+        "source_rank": "155",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39867724",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "148",
+        "source_rank": "159",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39871316",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "149",
+        "source_rank": "160",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39872984",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "151",
+        "source_rank": "162",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|student_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39873901",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "152",
+        "source_rank": "163",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39874462",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "156",
+        "source_rank": "167",
+        "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39883756",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "160",
+        "source_rank": "171",
+        "model_id": "bic_auto_arma_mean|garch_1_1_volatility|gaussian_iid_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39886045",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "165",
+        "source_rank": "176",
+        "model_id": "bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.3989039",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "169",
+        "source_rank": "180",
+        "model_id": "bic_auto_arma_mean|garch_1_1_volatility|student_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39891848",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "171",
+        "source_rank": "182",
+        "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39895289",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "172",
+        "source_rank": "183",
+        "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39895934",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "173",
+        "source_rank": "184",
+        "model_id": "bic_auto_arma_mean|garch_1_1_volatility|empirical|iid|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39896547",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "174",
+        "source_rank": "185",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|automated_evt_pot_gpd_tail",
+        "exact_empirical_crps": "1.39934064",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "175",
+        "source_rank": "186",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|empirical|stationary_bootstrap|filtered_empirical_tail",
+        "exact_empirical_crps": "1.39988609",
+        "cells": "701280"
+      }
+    ],
+    "ewma": [
+      {
+        "canonical_rank": "5",
+        "source_rank": "16",
+        "model_id": "bayesian_sbb_overlay_ewma_absolute",
+        "exact_empirical_crps": "0.258011651",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "26",
+        "source_rank": "37",
+        "model_id": "bayesian_sbb_overlay_ewma_absolute_historical_realized_sharpe",
+        "exact_empirical_crps": "0.33149111",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "28",
+        "source_rank": "39",
+        "model_id": "factor_ff6_ridge_residual_sbb_absolute_ewma",
+        "exact_empirical_crps": "0.332126155",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "30",
+        "source_rank": "41",
+        "model_id": "bayesian_sbb_overlay_ewma_absolute_merton_positive_sample_mean",
+        "exact_empirical_crps": "0.332711426",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "50",
+        "source_rank": "61",
+        "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe",
+        "exact_empirical_crps": "0.378474817",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "57",
+        "source_rank": "68",
+        "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_positive_sharpe_mu_uncertainty",
+        "exact_empirical_crps": "0.383129661",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "69",
+        "source_rank": "80",
+        "model_id": "bayesian_sbb_overlay_ewma_absolute_empirical_bayes_sharpe",
+        "exact_empirical_crps": "0.388503125",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "86",
+        "source_rank": "97",
+        "model_id": "bayesian_sbb_overlay_ewma_absolute_zero_sharpe",
+        "exact_empirical_crps": "1.09351404",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "262",
+        "source_rank": "",
+        "model_id": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+        "exact_empirical_crps": "0.220135787",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "263",
+        "source_rank": "",
+        "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+        "exact_empirical_crps": "0.227451325",
+        "cells": "701280"
+      }
+    ],
+    "skew": [
+      {
+        "canonical_rank": "33",
+        "source_rank": "44",
+        "model_id": "gas_score_driven_skewt",
+        "exact_empirical_crps": "0.335222175",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "77",
+        "source_rank": "88",
+        "model_id": "sv_live_baseline_empirical_bayes_mean_jf_skewt_adaptive_mcmc",
+        "exact_empirical_crps": "0.412729016",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "79",
+        "source_rank": "90",
+        "model_id": "sv_live_baseline_hierarchical_eb_mean_jf_skewt_adaptive_mcmc",
+        "exact_empirical_crps": "0.417681575",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "90",
+        "source_rank": "101",
+        "model_id": "sv_live_baseline_zero_mean_jf_skewt_adaptive_mcmc",
+        "exact_empirical_crps": "1.15907218",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "93",
+        "source_rank": "104",
+        "model_id": "bic_auto_arma_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39594003",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "98",
+        "source_rank": "109",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39784158",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "101",
+        "source_rank": "112",
+        "model_id": "expanding_sample_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39788093",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "136",
+        "source_rank": "147",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39863429",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "141",
+        "source_rank": "152",
+        "model_id": "expanding_sample_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39865497",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "145",
+        "source_rank": "156",
+        "model_id": "expanding_sample_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39868503",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "146",
+        "source_rank": "157",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39869491",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "149",
+        "source_rank": "160",
+        "model_id": "factor_premium_near_zero_alpha_shrinkage|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39872984",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "152",
+        "source_rank": "163",
+        "model_id": "expanding_sample_mean|egarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39874462",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "157",
+        "source_rank": "168",
+        "model_id": "bic_auto_arma_mean|gjr_tarch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.39884948",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "159",
+        "source_rank": "170",
+        "model_id": "bic_auto_arma_mean|constant_sample_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.3988592",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "165",
+        "source_rank": "176",
+        "model_id": "bic_auto_arma_mean|garch_1_1_volatility|skew_t_standardized_innovations|parametric",
+        "exact_empirical_crps": "1.3989039",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "214",
+        "source_rank": "",
+        "model_id": "asset_map_multiscale_consistent_noise_hansen_skew_t_rough_map",
+        "exact_empirical_crps": "0.249753518",
+        "cells": "701280"
+      }
+    ],
+    "constant_mean": [
+      {
+        "canonical_rank": "34",
+        "source_rank": "45",
+        "model_id": "constant_mean_gaussian",
+        "exact_empirical_crps": "0.335418604",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "35",
+        "source_rank": "46",
+        "model_id": "constant_mean_student_t",
+        "exact_empirical_crps": "0.33622274",
+        "cells": "701280"
+      }
+    ],
+    "kalman": [
+      {
+        "canonical_rank": "1",
+        "source_rank": "12",
+        "model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+        "exact_empirical_crps": "0.255725517",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "8",
+        "source_rank": "19",
+        "model_id": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+        "exact_empirical_crps": "0.277164142",
+        "cells": "701280"
+      }
+    ],
+    "sv_ar1": [
+      {
+        "canonical_rank": "2",
+        "source_rank": "13",
+        "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+        "exact_empirical_crps": "0.255822806",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "24",
+        "source_rank": "35",
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty",
+        "exact_empirical_crps": "0.331269405",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "32",
+        "source_rank": "43",
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_merton_positive_sample_mean",
+        "exact_empirical_crps": "0.335201266",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "39",
+        "source_rank": "50",
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_merton_positive_sample_mean",
+        "exact_empirical_crps": "0.339516385",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "42",
+        "source_rank": "53",
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_merton_positive_sample_mean",
+        "exact_empirical_crps": "0.342422982",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "46",
+        "source_rank": "57",
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_hac_drift_uncertainty_adaptive_mcmc",
+        "exact_empirical_crps": "0.347570325",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "47",
+        "source_rank": "58",
+        "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected_hac_drift_uncertainty_harx_ff6_vol_anchor",
+        "exact_empirical_crps": "0.348272631",
+        "cells": "701280"
+      },
+      {
+        "canonical_rank": "78",
+        "source_rank": "89",
+        "model_id": "bayesian_sbb_overlay_mcmc_sv_ar1_leverage_transformed_raw_innovations_horizon_credibility_hac_drift_uncertainty_adaptive_mcmc",
+        "exact_empirical_crps": "0.415303824",
+        "cells": "701280"
+      }
+    ]
+  },
+  "new_candidate_or_family_rejection_from_this_scan": false,
+  "zero_score_or_selection_weight": true
+}
