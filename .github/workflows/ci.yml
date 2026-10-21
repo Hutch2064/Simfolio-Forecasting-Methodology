@@ -3,6 +3,10 @@ name: methodology-ci
 on:
   push:
     branches: [main]
+    # Result publications have dedicated numerical and remote-recovery checks.
+    # Do not rerun package CI for those archives, catalogues and research records.
+    paths-ignore:
+      - 'docs/results/**'
   pull_request:
     branches: [main]
   workflow_dispatch:
