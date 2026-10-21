@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-21T02:25:34.403707+00:00",
+  "model_id": "model_testing_asset_circular_raw_GARCH_fade_FHS_mean_v1",
+  "mode": "garch",
+  "rule": "Lowest unchanged overall main Q among frozen recipes passing all three matched gates; no horizon/family score enters selection.",
+  "broad_summary_sha256": "9e967b36ece24355675f1a68280dc18f78a8b73407403e28c70fd568238a1750",
+  "all_broad_scores": {
+    "model_testing_asset_circular_raw_EWMA_fade_FHS_mean_v1": 0.648661392608802,
+    "model_testing_asset_circular_raw_GARCH_fade_FHS_mean_v1": 0.6485664597681876,
+    "model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1": 0.6501223113996497,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.6809035594773647
+  },
+  "paths": 1000,
+  "official_promotion_requires_complete_independent_full_audit": true,
+  "goal_complete": false
+}

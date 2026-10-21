@@ -7,7 +7,9 @@ read=lambda p:json.loads(p.read_text())
 def main():
     official=read(V/'official_scoreboard.json')
     assert official['official_retained_set_only'] and official['same_successful_tasks_per_model']==64049
-    names={'model_testing_asset_joint_blocks_replacement_v6':'Asset Blocks — With Replacement',
+    names={'model_testing_asset_circular_raw_EWMA_fade_FHS_mean_v1':'Asset EWMA Fade / Equal Mix / Gaussian Mean Uncertainty',
+           'model_testing_asset_circular_raw_GARCH_fade_FHS_mean_v1':'Asset GARCH Fade / Equal Mix / Gaussian Mean Uncertainty',
+           'model_testing_asset_joint_blocks_replacement_v6':'Asset Blocks — With Replacement',
            'model_testing_asset_joint_blocks_history_partition_v6':'Asset Blocks — Without Replacement',
            'model_testing_asset_equal_joint_blocks_FHS_smooth_joint_mean_uncertainty_v1':'Asset Equal Mix / Smooth Gaussian Mean Uncertainty',
            'model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1':'Asset Circular Equal Mix / Smooth Gaussian Mean Uncertainty'}
@@ -28,7 +30,7 @@ def main():
             'The circular raw-block contrast passed355-case development,355-case reserved and7,418-case broad checks at1,000paths before full admission. Official promotion occurs only after complete matched full results and independent verification. Low-simulation component and sampler screens remain exploratory and separate from official results and full-panel catalogue counts. The additive diagnostic reconciles to canonical Q and has zero additional score or model-selection weight.','',
             'Closed exploratory contrasts include an IID raw-component simplification, a nested sign-asymmetric variance filter, training-adaptive stationary blocks and empirical joint batch-mean uncertainty. None earned full admission. The current fading-volatility contrast conditions raw circular deviations using either the existing GARCH state/persistence or a training-fitted EWMA state/decay, returning toward historical variance without scaling the mean. Its development/reserved/broad evidence remains separate from official results; improvements on one horizon cannot qualify a candidate. All scientific forecast/qualification pools share12worker slots; no small win or a few rejected variants closes the goal.','',
             '## Preservation and recovery','']
-    for name in ['asset-v6-baselines-1000-20261020','asset-v6-hybrid-1000-20261021','asset-v6-circular-1000-20261021','asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021']:
+    for name in ['asset-v6-baselines-1000-20261020','asset-v6-hybrid-1000-20261021','asset-v6-circular-1000-20261021','asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-fading-1000-20261021']:
         p=O/'archives'/name/'receipt.json'
         if p.exists():
             d=read(p);assert d['complete']

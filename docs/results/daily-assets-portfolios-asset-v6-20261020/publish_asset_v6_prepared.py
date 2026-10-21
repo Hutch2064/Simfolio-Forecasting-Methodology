@@ -32,6 +32,10 @@ def main():
     if circular_archive.exists():
         subprocess.run([PY, str(O/'catalogue_asset_circular_closed.py')], cwd=O, env=env, check=True)
         shutil.copy2(circular_archive, D/'closed-circular-archive-receipt.json')
+    fading_archive = O/'archives/asset-v6-fading-1000-20261021/receipt.json'
+    if fading_archive.exists():
+        subprocess.run([PY, str(O/'catalogue_asset_fading_closed.py')], cwd=O, env=env, check=True)
+        shutil.copy2(fading_archive,D/'closed-fading-archive-receipt.json')
     subprocess.run([PY, str(O/'refresh_asset_v6_research_doc.py')], cwd=O, env=env, check=True)
     for name in ['test_asset_prior_best.py', 'audit_asset_v6_full_pair.py',
                  'bind_asset_prior_parent.py', 'publish_asset_v6_prepared.py',
@@ -60,7 +64,11 @@ def main():
                  'test_asset_fading_vol.py', 'run_asset_fading_pilot.py',
                  'continue_asset_fading_vol.py', 'preserve_asset_gjr_pilot.py',
                  'preserve_asset_adaptive_pilot.py', 'preserve_asset_empirical_mean_pilot.py',
-                 'retire_closed_asset_hybrid_losses.py']:
+                 'retire_closed_asset_hybrid_losses.py', 'run_asset_fading_full.py',
+                 'report_asset_fading_full.py', 'promote_asset_fading.py',
+                 'preserve_asset_fading_closed.py', 'catalogue_asset_fading_closed.py',
+                 'finish_asset_fading.py', 'launch_asset_fading_full_when_ready.py',
+                 'diagnose_asset_fading_pilots.py', 'asset_fading_storage_budget.json']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -111,13 +119,21 @@ def main():
         dest = D/'candidates'/name
         dest.mkdir(exist_ok=True)
         for path in source.iterdir():
-            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json'):
+            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','full_selection.json','horizon_diagnostics.json'):
                 shutil.copy2(path,dest/path.name)
         for phase in ('development','reserved','broad'):
             path = source/phase/'summary.json'
             if path.exists():
                 compact = {k:v for k,v in json.loads(path.read_text()).items() if k!='records'}
                 (dest/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
+    fading_source=V/'candidates/asset_fading_vol'
+    fading_target=D/'candidates/asset_fading_vol'
+    (fading_target/'full').mkdir(exist_ok=True)
+    for name in ('verification_receipt.json','scoreboard.json','admission.json'):
+        if (fading_source/'full'/name).exists():
+            shutil.copy2(fading_source/'full'/name,fading_target/'full'/name)
+    if (fading_source/'promotion_receipt.json').exists():
+        shutil.copy2(fading_source/'promotion_receipt.json',fading_target/'promotion_receipt.json')
     for phase in ('iid_component_screen100','gjr_screen100','adaptive_blocks_screen100','empirical_mean_screen100','fading_vol_screen100'):
         path = mean_source/phase/'summary.json'
         if path.exists():
