@@ -41,7 +41,11 @@ def main():
                  'test_asset_sampler_parent.py', 'test_asset_circular.py',
                  'promote_asset_hybrid.py', 'preserve_asset_hybrid_closed.py',
                  'archive_asset_hybrid_closed.py', 'catalogue_asset_hybrid_closed.py',
-                 'diagnose_asset_hybrid_full.py', 'asset_prior_full_idle_drain_receipt.json']:
+                 'diagnose_asset_hybrid_full.py', 'asset_prior_full_idle_drain_receipt.json',
+                 'continue_asset_circular.py', 'asset_circular_handoff_syntax_fix.json',
+                 'run_asset_circular_full.py', 'report_asset_circular_full.py',
+                 'promote_asset_circular.py', 'launch_asset_circular_full_when_ready.py',
+                 'screen_asset_iid_component.py', 'test_asset_iid_component.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -58,6 +62,12 @@ def main():
     for path in circular.iterdir():
         if path.suffix in ('.py', '.md'):
             shutil.copy2(path, circular_target/path.name)
+    iid = V/'candidates/asset_iid_component'
+    iid_target = D/'candidates/asset_iid_component'
+    iid_target.mkdir(exist_ok=True)
+    for path in iid.iterdir():
+        if path.suffix in ('.py', '.md'):
+            shutil.copy2(path, iid_target/path.name)
     for name in ('plan.json', 'plan_receipt.json'):
         if (circular/name).exists():
             shutil.copy2(circular/name, circular_target/name)
@@ -101,7 +111,8 @@ def main():
     test = subprocess.run([PY, '-m', 'unittest', '-v', 'test_asset_paths.py',
                            'test_v6_reporting.py', 'test_asset_prior_best.py',
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
-                           'test_asset_sampler_parent.py', 'test_asset_circular.py'],
+                           'test_asset_sampler_parent.py', 'test_asset_circular.py',
+                           'test_asset_iid_component.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
@@ -135,7 +146,7 @@ def main():
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 27}), flush=True)
+                      'tests': 29}), flush=True)
 
 
 if __name__ == '__main__':
