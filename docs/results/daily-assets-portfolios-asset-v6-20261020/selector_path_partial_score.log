@@ -1,0 +1,44 @@
+{
+  "utc": "2026-10-21T15:32:40.119148+00:00",
+  "preliminary": true,
+  "official": false,
+  "phase": "development_partial",
+  "matched_requests": 128,
+  "expected_requests": 355,
+  "distinct_series": 70,
+  "completed_requests_by_branch": {
+    "assets": 91,
+    "portfolios": 37
+  },
+  "all_completed_snapshot_requests_included": true,
+  "score_protocol": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+  "paths": 1000,
+  "inner_paths": 1000,
+  "scoring_integrity_errors": 0,
+  "saved_candidate_forecasts_verified": 256,
+  "saved_baseline_forecasts_verified": 128,
+  "models": {
+    "fixed_reference": {
+      "main_Q": 0.8495262801592627,
+      "percent_better_vs_fixed_reference": 0.0,
+      "quarter_count": 29
+    },
+    "terminal": {
+      "main_Q": 0.7037403597502027,
+      "percent_better_vs_fixed_reference": 17.16084879466344,
+      "quarter_count": 29
+    },
+    "path": {
+      "main_Q": 0.704690893140503,
+      "percent_better_vs_fixed_reference": 17.048958978833117,
+      "quarter_count": 29
+    }
+  },
+  "whole_path_percent_better_vs_endpoint_same_requests": -0.13506876181406113,
+  "coverage_warning": "Changing completion coverage can change cumulative scores. This is not the64,049-request official panel or an independent validation. No comparison with differently covered historical scores is warranted.",
+  "promotion_or_admission": false,
+  "canonical_aggregation_unchanged": true,
+  "references_sha256": "a9b7d2c7b67429e466d41023ce35450371a2bc40db0ef2c0fe6a83a3f52f3d19",
+  "plan_sha256": "a8a54977a1ff5e9b9edd73f8320225116ecaec2f6309297344365c385fe229d7",
+  "verifier_sha256": "6b83f41acfaa6dfd6635546727079d923ca207ba774175dd18f75a486f0f5988"
+}
