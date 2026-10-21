@@ -1,0 +1,51 @@
+{
+  "utc": "2026-10-21T05:29:39.189289+00:00",
+  "decision": "Do not promote or broaden either point-latent-mean adjustment; both lose 355-case 1000-path development validation against the unchanged working parent.",
+  "screen100": {
+    "configs": 4,
+    "forecasts": 288,
+    "native_failures": 0,
+    "scoring_integrity_errors": 0
+  },
+  "development1000": {
+    "configs": 2,
+    "forecasts": 710,
+    "native_failures": 0,
+    "scoring_integrity_errors": 0,
+    "working_Q": 0.7131987298009069,
+    "fixed_WR_Q": 0.8004022862826219,
+    "models": {
+      "model_testing_asset_fading_latent_mean_v1_e177502153a58807": {
+        "beats_same1000path_current_best": false,
+        "complete": true,
+        "config": {
+          "noise": "constant",
+          "selection": "training_BIC"
+        },
+        "config_index": 1,
+        "expected_cases": 355,
+        "main_Q": 0.7147843811041508,
+        "percent_better_vs_same1000path_fixed_reference": 10.696859147681081,
+        "successful_cases": 355
+      },
+      "model_testing_asset_fading_latent_mean_v1_fa674566af7c76fc": {
+        "beats_same1000path_current_best": false,
+        "complete": true,
+        "config": {
+          "noise": "constant",
+          "selection": "likelihood"
+        },
+        "config_index": 0,
+        "expected_cases": 355,
+        "main_Q": 0.7152965701325638,
+        "percent_better_vs_same1000path_fixed_reference": 10.632867697732607,
+        "successful_cases": 355
+      }
+    }
+  },
+  "working_incumbent_unchanged": true,
+  "full_panel_catalogue_increment": 0,
+  "scope": "Point conditional AR latent-mean curve only; this is not an exact integrated stochastic-mean model and does not reject all latent mean or stochastic volatility methods.",
+  "next_research": "Review prior-panel joint-dependence evidence and test a distinct mechanism only after qualification; no further tuning of rejected point curves without new evidence.",
+  "stopping_condition_met": false
+}
