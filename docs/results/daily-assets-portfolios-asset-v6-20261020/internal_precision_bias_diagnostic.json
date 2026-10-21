@@ -1,0 +1,69 @@
+{
+  "utc": "2026-10-21T14:46:05.245671+00:00",
+  "scope": "Independent Gaussian finite-ensemble analytic illustration plus dependent-component convexity counterexample; no panel forecast or selection result",
+  "primary_reference": "https://empslocal.ex.ac.uk/people/staff/ferro/Publications/ferro2013.pdf",
+  "expected_empirical_CRPS_formula": "sqrt(2/pi)*sqrt(1+sigma^2) - (1-1/M)*sigma/sqrt(pi)",
+  "assumptions": [
+    "Independent Gaussian ensemble members and verifying standard normal outcome for the analytic example",
+    "Known mean zero; only forecast standard deviation varies",
+    "These assumptions do not describe all antithetic/stratified/shared draws in the actual option bank"
+  ],
+  "records": [
+    {
+      "iid_members": 10,
+      "expected_empirical_CRPS_optimal_forecast_sd": 0.8250286473253902,
+      "true_sd": 1.0,
+      "sd_percent_below_true": 17.497135267460983,
+      "expected_empirical_CRPS_at_its_optimum": 0.6154581744998687,
+      "expected_empirical_CRPS_at_true_sd": 0.6206085419025321,
+      "root_crosscheck_absolute_error": 3.3306690738754696e-16
+    },
+    {
+      "iid_members": 30,
+      "expected_empirical_CRPS_optimal_forecast_sd": 0.9364588413949086,
+      "true_sd": 1.0,
+      "sd_percent_below_true": 6.354115860509135,
+      "expected_empirical_CRPS_at_its_optimum": 0.5823889315666935,
+      "expected_empirical_CRPS_at_true_sd": 0.5829959029993483,
+      "root_crosscheck_absolute_error": 3.3306690738754696e-16
+    },
+    {
+      "iid_members": 100,
+      "expected_empirical_CRPS_optimal_forecast_sd": 0.9802941223581993,
+      "true_sd": 1.0,
+      "sd_percent_below_true": 1.970587764180065,
+      "expected_empirical_CRPS_at_its_optimum": 0.5697756162901745,
+      "expected_empirical_CRPS_at_true_sd": 0.569831479383234,
+      "root_crosscheck_absolute_error": 0.0
+    },
+    {
+      "iid_members": 300,
+      "expected_empirical_CRPS_optimal_forecast_sd": 0.9933664459766243,
+      "true_sd": 1.0,
+      "sd_percent_below_true": 0.6633554023375732,
+      "expected_empirical_CRPS_at_its_optimum": 0.5660639675117729,
+      "expected_empirical_CRPS_at_true_sd": 0.5660702154929156,
+      "root_crosscheck_absolute_error": 2.2248869413488137e-13
+    },
+    {
+      "iid_members": 1000,
+      "expected_empirical_CRPS_optimal_forecast_sd": 0.9980029940124729,
+      "true_sd": 1.0,
+      "sd_percent_below_true": 0.19970059875270563,
+      "expected_empirical_CRPS_at_its_optimum": 0.5647532095050651,
+      "expected_empirical_CRPS_at_true_sd": 0.5647537731313043,
+      "root_crosscheck_absolute_error": 5.551115123125783e-16
+    }
+  ],
+  "naive_diagonal_correction_counterexample": {
+    "identical_common_samples": true,
+    "original_tangent_quadratic": 0.0,
+    "adjusted_tangent_quadratic": 0.36666666666666636,
+    "positive_value_invalidates_conditional_negative_semidefiniteness": true
+  },
+  "interpretation": "Small counts can change expected rankings as well as add noise. The correct actual-bank adjustment needs a dependence-aware argument; do not apply a naive fair-score diagonal multiplier to the certified convex mixture.",
+  "single_main_score_unchanged": true,
+  "diagnostic_weight_in_score_or_selection": 0,
+  "no_internal_correction_admitted": true,
+  "no_new_forecast_pool": true
+}
