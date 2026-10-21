@@ -1,0 +1,45 @@
+{
+  "complete_execution": true,
+  "errors": [],
+  "expected_forecasts": 144,
+  "full_panel_catalogue_increment": 0,
+  "independence_or_significance_claim": false,
+  "inner_paths": 100,
+  "models": {
+    "model_testing_asset_calendar_path_CRPS_pool_v1_9504df1456aa5d91": {
+      "beats_matched_old_working": true,
+      "beats_matched_terminal_pool": true,
+      "complete": true,
+      "config": {
+        "criterion": "path",
+        "inner_paths": 100
+      },
+      "main_Q": 0.7587879853116555,
+      "percent_better_vs_fixed_reference": 21.59939403676624,
+      "successful_cases": 72
+    },
+    "model_testing_asset_calendar_path_CRPS_pool_v1_b47ca03b45b36c77": {
+      "beats_matched_old_working": true,
+      "beats_matched_terminal_pool": false,
+      "complete": true,
+      "config": {
+        "criterion": "terminal",
+        "inner_paths": 100
+      },
+      "main_Q": 0.7741087467314783,
+      "percent_better_vs_fixed_reference": 20.016399837617314,
+      "successful_cases": 72
+    }
+  },
+  "new_successful_forecasts": 144,
+  "no_promotion_from_this_screen": true,
+  "official": false,
+  "paths": 100,
+  "qualification_valid": true,
+  "reference_main_Q": {
+    "current_best": 0.8235702227265657,
+    "fixed_reference": 0.967834337489039,
+    "terminal_pool": 0.7741087467314782
+  },
+  "utc": "2026-10-21T10:46:29.494486+00:00"
+}

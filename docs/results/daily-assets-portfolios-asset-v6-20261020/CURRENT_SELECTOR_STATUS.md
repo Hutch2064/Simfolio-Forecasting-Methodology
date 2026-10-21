@@ -1,3 +1,5 @@
+Latest dated evidence and running stage: [SELECTOR_RESERVED_AND_PATH_UPDATE.md](SELECTOR_RESERVED_AND_PATH_UPDATE.md). The earlier snapshot below is retained.
+
 # Current selector research status
 
 Goal active. Frozen1,264-series panel and single main scoring protocol unchanged. Maximize full-panel accuracy regardless of cost/complexity; runtime secondary. Both TestFolio-style joint-asset references remain unchanged at1,000paths; with replacement remains the fixed worse reporting reference. No new full-panel winner or catalogue entry is claimed here.
