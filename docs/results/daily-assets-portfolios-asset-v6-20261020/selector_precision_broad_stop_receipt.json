@@ -1,0 +1,413 @@
+{
+  "utc": "2026-10-21T17:44:32.296029+00:00",
+  "decision": "Stop the measured expensive all-origin implementation; preserve all completed and partial evidence. No model score/panel or numerical source changed.",
+  "reason": "Completed four-path requests already exceed140CPU seconds, with hundreds of training-prefix fits. Repeating this implementation for30paths and all355requests is not an efficient next step. Qualify an uncapped information-spaced historical-origin learner and compare its actual accuracy/cost.",
+  "owned_processes": {
+    "37058": {
+      "ppid": 39698,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python run_selector_precision_broad_stage.py"
+    },
+    "37062": {
+      "ppid": 37058,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python /Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/run_selector_precision_broad355.py --run"
+    },
+    "38087": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.resource_tracker import main;main(9)"
+    },
+    "38088": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=18) --multiprocessing-fork"
+    },
+    "38089": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=20) --multiprocessing-fork"
+    },
+    "38090": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=22) --multiprocessing-fork"
+    },
+    "38091": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=24) --multiprocessing-fork"
+    },
+    "38092": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=26) --multiprocessing-fork"
+    },
+    "38093": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=28) --multiprocessing-fork"
+    },
+    "38094": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=30) --multiprocessing-fork"
+    },
+    "38095": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=32) --multiprocessing-fork"
+    },
+    "38096": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=34) --multiprocessing-fork"
+    },
+    "38097": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=36) --multiprocessing-fork"
+    },
+    "38098": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=38) --multiprocessing-fork"
+    },
+    "38099": {
+      "ppid": 37062,
+      "command": "/Users/aidanhutchison/simfolio/tmp/catalogue52-20261018/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=10, pipe_handle=40) --multiprocessing-fork"
+    }
+  },
+  "completed_records": [
+    {
+      "case": 171,
+      "config_index": 0,
+      "inner_paths": 4,
+      "cpu_seconds": 142.674813,
+      "prefix_fit_cpu_seconds": 133.38225399999993,
+      "inner_origins": 610,
+      "checkpoint_sha256": "44a303fc36f6a7fc58a5d65eed1f611a2ed4abee36a76375d63b18ba6015295c",
+      "loss_sha256": "f052dc97f3391f083af2e467917b1ef42f97cefad38757c4cc6e2740cc044af4"
+    },
+    {
+      "case": 176,
+      "config_index": 0,
+      "inner_paths": 4,
+      "cpu_seconds": 140.047937,
+      "prefix_fit_cpu_seconds": 130.70954700000004,
+      "inner_origins": 610,
+      "checkpoint_sha256": "a8d061d3bad6e8ade1256974a51c6a78c6f0a93dd15ed1ab06a0dbf61f98d67e",
+      "loss_sha256": "041ff915af6fe38d65cbc4dd742338b8bc39478f06399a4622060a4a06d7cd6b"
+    },
+    {
+      "case": 181,
+      "config_index": 0,
+      "inner_paths": 4,
+      "cpu_seconds": 142.739644,
+      "prefix_fit_cpu_seconds": 133.586394,
+      "inner_origins": 610,
+      "checkpoint_sha256": "5722a2344c7dae8117ac7c1c51134f757caa22823358ac31aee8c582b71c5200",
+      "loss_sha256": "14bfd52c378ca3cd0c80468e939a6dc361c8e357678402bd8c0e7f5413fb5dda"
+    },
+    {
+      "case": 186,
+      "config_index": 0,
+      "inner_paths": 4,
+      "cpu_seconds": 163.396529,
+      "prefix_fit_cpu_seconds": 154.06842800000007,
+      "inner_origins": 613,
+      "checkpoint_sha256": "bebf1b17a4d2e7264bde073b25f1d20db24e4e8c1f59c38f62ddd6cb0d11f16f",
+      "loss_sha256": "85be8e9da19c9c013e55f86854a5b60b5f8980b0f6f79b6755fd8f5b1640a12a"
+    },
+    {
+      "case": 246,
+      "config_index": 0,
+      "inner_paths": 4,
+      "cpu_seconds": 215.907355,
+      "prefix_fit_cpu_seconds": 204.20311000000024,
+      "inner_origins": 538,
+      "checkpoint_sha256": "0a5c74ce9d8d7432709eaafd4a8bdddaf147feb63b069a5c82049dd0a0a3f8c0",
+      "loss_sha256": "68dde2fbf46276e1b4fd94dc861cebcd27b64942c2dae9941ca97941bc057e40"
+    },
+    {
+      "case": 256,
+      "config_index": 0,
+      "inner_paths": 4,
+      "cpu_seconds": 144.794538,
+      "prefix_fit_cpu_seconds": 135.19584499999993,
+      "inner_origins": 538,
+      "checkpoint_sha256": "6e245324c467396471f4bb4bcd415df76c13eb07e090d2a2bfb026202833a83b",
+      "loss_sha256": "01b85f8ee6ce8a8ae0016413211c07aacac0e198050b94be4f2cd885e1cff417"
+    },
+    {
+      "case": 261,
+      "config_index": 0,
+      "inner_paths": 4,
+      "cpu_seconds": 154.06032100000002,
+      "prefix_fit_cpu_seconds": 144.48751699999997,
+      "inner_origins": 538,
+      "checkpoint_sha256": "e17830ff78473869abd9b694c0389bfbeec5265bcc0088cbfd21a0c0bb8ccc51",
+      "loss_sha256": "1fbb7c934390dff74448b4a4c510bed81e25057c0061eabd586d509bf583bd27"
+    },
+    {
+      "case": 281,
+      "config_index": 0,
+      "inner_paths": 4,
+      "cpu_seconds": 172.238248,
+      "prefix_fit_cpu_seconds": 162.58977700000008,
+      "inner_origins": 538,
+      "checkpoint_sha256": "12ea706f01c2bf75f28949dc471454e1ab8246166aaa77a95a6b90d6cfac404a",
+      "loss_sha256": "699ab3f691c20bb770cd9f06ab53009f3fb4f8002b05feae6f899131df17554e"
+    }
+  ],
+  "worker_snapshots": [
+    {
+      "case": 286,
+      "config_index": 0,
+      "last_training_rows": 22446,
+      "phase": "prepare_prefix_fits",
+      "pid": 38089,
+      "prefix_fit_cpu_seconds": 209.96667199999993,
+      "prefix_fits_completed": 522,
+      "utc": "2026-10-21T17:44:32.037925+00:00"
+    },
+    {
+      "case": 186,
+      "config_index": 1,
+      "last_training_rows": 13718,
+      "phase": "prepare_prefix_fits",
+      "pid": 38093,
+      "prefix_fit_cpu_seconds": 43.13278400000016,
+      "prefix_fits_completed": 319,
+      "utc": "2026-10-21T17:44:31.986968+00:00"
+    },
+    {
+      "case": 181,
+      "config_index": 1,
+      "last_training_rows": 17459,
+      "phase": "prepare_prefix_fits",
+      "pid": 38092,
+      "prefix_fit_cpu_seconds": 58.94876700000006,
+      "prefix_fits_completed": 406,
+      "utc": "2026-10-21T17:44:30.789639+00:00"
+    },
+    {
+      "case": 171,
+      "config_index": 1,
+      "last_training_rows": 17545,
+      "phase": "prepare_prefix_fits",
+      "pid": 38088,
+      "prefix_fit_cpu_seconds": 59.1130900000002,
+      "prefix_fits_completed": 408,
+      "utc": "2026-10-21T17:44:30.842925+00:00"
+    },
+    {
+      "case": 316,
+      "config_index": 0,
+      "last_training_rows": 9465,
+      "phase": "prepare_prefix_fits",
+      "pid": 38095,
+      "prefix_fit_cpu_seconds": 206.60004000000006,
+      "prefix_fits_completed": 315,
+      "utc": "2026-10-21T17:44:30.269075+00:00"
+    },
+    {
+      "case": 246,
+      "config_index": 1,
+      "last_training_rows": 897,
+      "phase": "prepare_prefix_fits",
+      "pid": 38099,
+      "prefix_fit_cpu_seconds": 0.9199350000000663,
+      "prefix_fits_completed": 30,
+      "utc": "2026-10-21T17:44:30.631670+00:00"
+    },
+    {
+      "case": 321,
+      "config_index": 0,
+      "last_training_rows": 15927,
+      "phase": "prepare_prefix_fits",
+      "pid": 38098,
+      "prefix_fit_cpu_seconds": 208.828416,
+      "prefix_fits_completed": 531,
+      "utc": "2026-10-21T17:44:32.067007+00:00"
+    },
+    {
+      "case": 176,
+      "config_index": 1,
+      "last_training_rows": 17760,
+      "phase": "prepare_prefix_fits",
+      "pid": 38094,
+      "prefix_fit_cpu_seconds": 62.10547699999961,
+      "prefix_fits_completed": 413,
+      "utc": "2026-10-21T17:44:31.515403+00:00"
+    },
+    {
+      "case": 261,
+      "config_index": 1,
+      "last_training_rows": 9687,
+      "phase": "prepare_prefix_fits",
+      "pid": 38097,
+      "prefix_fit_cpu_seconds": 53.72845299999989,
+      "prefix_fits_completed": 323,
+      "utc": "2026-10-21T17:44:32.102565+00:00"
+    },
+    {
+      "case": 281,
+      "config_index": 1,
+      "last_training_rows": 7617,
+      "phase": "prepare_prefix_fits",
+      "pid": 38096,
+      "prefix_fit_cpu_seconds": 36.37108499999994,
+      "prefix_fits_completed": 254,
+      "utc": "2026-10-21T17:44:30.422216+00:00"
+    },
+    {
+      "case": 276,
+      "config_index": 0,
+      "last_training_rows": 9798,
+      "phase": "prepare_prefix_fits",
+      "pid": 38091,
+      "prefix_fit_cpu_seconds": 205.41217299999994,
+      "prefix_fits_completed": 326,
+      "utc": "2026-10-21T17:44:30.371531+00:00"
+    },
+    {
+      "case": 256,
+      "config_index": 1,
+      "last_training_rows": 10587,
+      "phase": "prepare_prefix_fits",
+      "pid": 38090,
+      "prefix_fit_cpu_seconds": 61.01392100000015,
+      "prefix_fits_completed": 353,
+      "utc": "2026-10-21T17:44:31.382965+00:00"
+    }
+  ],
+  "progress_snapshot": {
+    "active_workers": 12,
+    "completed_cases": 0,
+    "completed_forecasts": 7,
+    "expected_cases": 355,
+    "expected_forecasts": 710,
+    "infrastructure_failures": 0,
+    "native_failures": 0,
+    "preliminary": true,
+    "projection_reason": "No calibrated within-stage workload estimate yet; do not use old timing probes",
+    "remaining_compute_projection": null,
+    "scoring_integrity_errors": 0,
+    "utc": "2026-10-21T17:44:27.536844+00:00",
+    "workers": [
+      {
+        "case": 286,
+        "config_index": 0,
+        "last_training_rows": 22188,
+        "phase": "prepare_prefix_fits",
+        "pid": 38089,
+        "prefix_fit_cpu_seconds": 205.11805699999994,
+        "prefix_fits_completed": 516,
+        "utc": "2026-10-21T17:44:27.006736+00:00"
+      },
+      {
+        "case": 186,
+        "config_index": 1,
+        "last_training_rows": 12815,
+        "phase": "prepare_prefix_fits",
+        "pid": 38093,
+        "prefix_fit_cpu_seconds": 37.603741000000184,
+        "prefix_fits_completed": 298,
+        "utc": "2026-10-21T17:44:25.527919+00:00"
+      },
+      {
+        "case": 181,
+        "config_index": 1,
+        "last_training_rows": 16943,
+        "phase": "prepare_prefix_fits",
+        "pid": 38092,
+        "prefix_fit_cpu_seconds": 55.16833200000002,
+        "prefix_fits_completed": 394,
+        "utc": "2026-10-21T17:44:26.449628+00:00"
+      },
+      {
+        "case": 171,
+        "config_index": 1,
+        "last_training_rows": 17029,
+        "phase": "prepare_prefix_fits",
+        "pid": 38088,
+        "prefix_fit_cpu_seconds": 55.29874500000025,
+        "prefix_fits_completed": 396,
+        "utc": "2026-10-21T17:44:26.477490+00:00"
+      },
+      {
+        "case": 316,
+        "config_index": 0,
+        "last_training_rows": 9405,
+        "phase": "prepare_prefix_fits",
+        "pid": 38095,
+        "prefix_fit_cpu_seconds": 203.80762100000004,
+        "prefix_fits_completed": 313,
+        "utc": "2026-10-21T17:44:27.375066+00:00"
+      },
+      {
+        "case": 246,
+        "config_index": 0,
+        "last_training_rows": 16137,
+        "phase": "prepare_prefix_fits",
+        "pid": 38099,
+        "prefix_fit_cpu_seconds": 203.43249600000024,
+        "prefix_fits_completed": 538,
+        "utc": "2026-10-21T17:44:26.729786+00:00"
+      },
+      {
+        "case": 321,
+        "config_index": 0,
+        "last_training_rows": 15747,
+        "phase": "prepare_prefix_fits",
+        "pid": 38098,
+        "prefix_fit_cpu_seconds": 203.924713,
+        "prefix_fits_completed": 525,
+        "utc": "2026-10-21T17:44:26.976356+00:00"
+      },
+      {
+        "case": 176,
+        "config_index": 1,
+        "last_training_rows": 17244,
+        "phase": "prepare_prefix_fits",
+        "pid": 38094,
+        "prefix_fit_cpu_seconds": 58.42597499999965,
+        "prefix_fits_completed": 401,
+        "utc": "2026-10-21T17:44:27.302689+00:00"
+      },
+      {
+        "case": 261,
+        "config_index": 1,
+        "last_training_rows": 9177,
+        "phase": "prepare_prefix_fits",
+        "pid": 38097,
+        "prefix_fit_cpu_seconds": 47.728552999999835,
+        "prefix_fits_completed": 306,
+        "utc": "2026-10-21T17:44:25.400798+00:00"
+      },
+      {
+        "case": 281,
+        "config_index": 1,
+        "last_training_rows": 7257,
+        "phase": "prepare_prefix_fits",
+        "pid": 38096,
+        "prefix_fit_cpu_seconds": 32.765418999999866,
+        "prefix_fits_completed": 242,
+        "utc": "2026-10-21T17:44:26.348347+00:00"
+      },
+      {
+        "case": 276,
+        "config_index": 0,
+        "last_training_rows": 9678,
+        "phase": "prepare_prefix_fits",
+        "pid": 38091,
+        "prefix_fit_cpu_seconds": 200.15702799999997,
+        "prefix_fits_completed": 322,
+        "utc": "2026-10-21T17:44:24.898665+00:00"
+      },
+      {
+        "case": 256,
+        "config_index": 1,
+        "last_training_rows": 10287,
+        "phase": "prepare_prefix_fits",
+        "pid": 38090,
+        "prefix_fit_cpu_seconds": 57.262890000000226,
+        "prefix_fits_completed": 343,
+        "utc": "2026-10-21T17:44:27.209756+00:00"
+      }
+    ]
+  },
+  "plan_sha256": "bb9b9fc556233b4914347b36cd27b997e6ae1abd43f69fc39fd8a7167c1cee75",
+  "native_forecast_failures_before_stop": 0,
+  "scoring_integrity_errors_before_stop": 0,
+  "all_scientific_files_preserved": true,
+  "goal_remains_active": true,
+  "intentional_stop_not_a_scientific_fitting_failure": true
+}
