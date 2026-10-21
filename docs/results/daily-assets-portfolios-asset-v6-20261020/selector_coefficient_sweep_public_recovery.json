@@ -1,0 +1,704 @@
+{
+  "utc": "2026-10-21T13:09:50.115094+00:00",
+  "commit": "67a458671d71c8abce152d3a230c7bf1a8cd93a4",
+  "remote_main_verified": true,
+  "fresh_remote_files_disk_restored_SHA256_verified": 100,
+  "files": [
+    {
+      "public_path": "COEFFICIENT_SWEEP_PROTOTYPE.md",
+      "recovered_path": "COEFFICIENT_SWEEP_PROTOTYPE.md",
+      "sha256": "b007eba121280d72164be2479217cd7ce8e5ac1cf37ce83edbd3d9455e3ea566",
+      "bytes": 2663
+    },
+    {
+      "public_path": "asset_forecast.py",
+      "recovered_path": "asset_level_v6/asset_forecast.py",
+      "sha256": "5688896c8aee66f60ce852f447e1ac3b3819f40caf19139c0577c8909cbaaa7a",
+      "bytes": 1615
+    },
+    {
+      "public_path": "asset_models.py",
+      "recovered_path": "asset_level_v6/asset_models.py",
+      "sha256": "74ba418a5b35d967f629a86dc21e649bac7f48fbda685889b6256e1501407c2b",
+      "bytes": 1226
+    },
+    {
+      "public_path": "asset_paths.py",
+      "recovered_path": "asset_level_v6/asset_paths.py",
+      "sha256": "5c4a109518e6193d2c240ba3b9d51de0b803f992c70bad7670cc15a75e8f9e84",
+      "bytes": 3312
+    },
+    {
+      "public_path": "benchmark_selector_coefficient_sweep.py",
+      "recovered_path": "benchmark_selector_coefficient_sweep.py",
+      "sha256": "383341ff6e39d723dfc47d74e7e13f5438a62c6e3d421dc0cdda3dc2438a1cc3",
+      "bytes": 3013
+    },
+    {
+      "public_path": "blocks.py",
+      "recovered_path": "asset_level_v6/blocks.py",
+      "sha256": "4eb1aba602dea9dd9c4d48aea64104a4a9fa50babe5d13ce906cfdc737600f06",
+      "bytes": 4061
+    },
+    {
+      "public_path": "candidates/asset_AR1_mean/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_AR1_mean/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "public_path": "candidates/asset_AR1_mean/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_AR1_mean/candidate.py",
+      "sha256": "fa90656844c4451ba69c393aa2e3acd03f021a953b82fb9de3f26a9efb1c0f50",
+      "bytes": 5820
+    },
+    {
+      "public_path": "candidates/asset_AR1_mean/fit_ar.py",
+      "recovered_path": "asset_level_v6/candidates/asset_AR1_mean/fit_ar.py",
+      "sha256": "da9d0b8f67c6d9b8cb8f033eb2c0f4af862d74aec338da402ecd989aecb88b30",
+      "bytes": 1092
+    },
+    {
+      "public_path": "candidates/asset_AR1_mean/kernels.py",
+      "recovered_path": "asset_level_v6/candidates/asset_AR1_mean/kernels.py",
+      "sha256": "a0009d78410907c2fcae9ffddf88b89ffe79e2f0f80fb48f88e325c30d48cc07",
+      "bytes": 1531
+    },
+    {
+      "public_path": "candidates/asset_circular_blocks/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_circular_blocks/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "public_path": "candidates/asset_circular_blocks/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_circular_blocks/candidate.py",
+      "sha256": "fbc3e613d6f25b8ce01c643a18dfc3fdc6637990721e915d1836dd854b9c986c",
+      "bytes": 4599
+    },
+    {
+      "public_path": "candidates/asset_circular_blocks/circular.py",
+      "recovered_path": "asset_level_v6/candidates/asset_circular_blocks/circular.py",
+      "sha256": "13fa077d5aa0b1f91e969235505fb0a9406331fd953938f16575ae08a4a604db",
+      "bytes": 1202
+    },
+    {
+      "public_path": "candidates/asset_fading_vol/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_fading_vol/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "public_path": "candidates/asset_fading_vol/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_fading_vol/candidate.py",
+      "sha256": "a6214cd886b696178ebd6f209941badc5e9c55a7357cbd72c91661faf1dc59d7",
+      "bytes": 5619
+    },
+    {
+      "public_path": "candidates/asset_fading_vol/fade.py",
+      "recovered_path": "asset_level_v6/candidates/asset_fading_vol/fade.py",
+      "sha256": "fdcdbf58a3e0e5b698ec7efae5b4d4de24e2f5871d1fe708b90cbdaa2a624464",
+      "bytes": 1704
+    },
+    {
+      "public_path": "candidates/asset_fading_vol/kernels.py",
+      "recovered_path": "asset_level_v6/candidates/asset_fading_vol/kernels.py",
+      "sha256": "f80e32db47d0a7e4adda220b616ad17a063850d16caf48b11f83858ce613e4f8",
+      "bytes": 1236
+    },
+    {
+      "public_path": "candidates/asset_fast_selector/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_fast_selector/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "public_path": "candidates/asset_fast_selector/bank.py",
+      "recovered_path": "asset_level_v6/candidates/asset_fast_selector/bank.py",
+      "sha256": "44b63207541c7df6891c9b45a55e537c9bfc8fd7015e273f49ffd4a26002afcd",
+      "bytes": 7355
+    },
+    {
+      "public_path": "candidates/asset_fast_selector/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_fast_selector/candidate.py",
+      "sha256": "d19906db2f9d72239e39938b1a4ce24e16a94509801d73ed7052815425f4abcc",
+      "bytes": 7345
+    },
+    {
+      "public_path": "candidates/asset_feature_batch/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_feature_batch/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "public_path": "candidates/asset_feature_batch/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_feature_batch/candidate.py",
+      "sha256": "48ca47c07cb4d4c618ab76db0d7f89da02668a4b38e4cd5f0d6a80385494b570",
+      "bytes": 6332
+    },
+    {
+      "public_path": "candidates/asset_feature_batch/fits.py",
+      "recovered_path": "asset_level_v6/candidates/asset_feature_batch/fits.py",
+      "sha256": "d0812ded6ee5b6384163d43e999ceeec13a39f901304e6112caf21326b0cacb2",
+      "bytes": 6135
+    },
+    {
+      "public_path": "candidates/asset_feature_batch/kernels.py",
+      "recovered_path": "asset_level_v6/candidates/asset_feature_batch/kernels.py",
+      "sha256": "01b131c2d918cf1904070ed17eacf1787c91dcf4b1dd9d728712a6d8dc896700",
+      "bytes": 2919
+    },
+    {
+      "public_path": "candidates/asset_gjr/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_gjr/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "public_path": "candidates/asset_gjr/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_gjr/candidate.py",
+      "sha256": "e1e08173ac52993e3aac59df2bee54c54d9da390ac67ee6b9dce3f1c74449a26",
+      "bytes": 5044
+    },
+    {
+      "public_path": "candidates/asset_gjr/fit.py",
+      "recovered_path": "asset_level_v6/candidates/asset_gjr/fit.py",
+      "sha256": "ef8ea42291f8b3c3c045ca281a0da4522070779ac0ee8c1f75e65da3e0581bf4",
+      "bytes": 6348
+    },
+    {
+      "public_path": "candidates/asset_gjr/kernels.py",
+      "recovered_path": "asset_level_v6/candidates/asset_gjr/kernels.py",
+      "sha256": "662402a7b8a580cf1db59db888f2fb5dffe64e90d276bd58b35039bf65918393",
+      "bytes": 1538
+    },
+    {
+      "public_path": "candidates/asset_gjr/pilot_run.py",
+      "recovered_path": "asset_level_v6/candidates/asset_gjr/pilot_run.py",
+      "sha256": "364a81e01c1a251370e1681c0121423f387178ab040e9edf83d65a20152387af",
+      "bytes": 7828
+    },
+    {
+      "public_path": "candidates/asset_mean_uncertainty/fhs_only.py",
+      "recovered_path": "asset_level_v6/candidates/asset_mean_uncertainty/fhs_only.py",
+      "sha256": "ab8f291ccb6b9e063b015f461ecccea61fd074f455cc18e6503cf6ea031871bc",
+      "bytes": 2250
+    },
+    {
+      "public_path": "candidates/asset_mean_uncertainty/model.py",
+      "recovered_path": "asset_level_v6/candidates/asset_mean_uncertainty/model.py",
+      "sha256": "ddf68113745c614ddb61dff316e9072c0c0eda8c9044309cddc744f5b1da94dc",
+      "bytes": 2146
+    },
+    {
+      "public_path": "candidates/asset_prior_best/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_prior_best/candidate.py",
+      "sha256": "19e1ce86d88466c94eb6177351ba54089c500a4e5e710529219ecb49ac39fb14",
+      "bytes": 5024
+    },
+    {
+      "public_path": "candidates/asset_prior_best/fit.py",
+      "recovered_path": "asset_level_v6/candidates/asset_prior_best/fit.py",
+      "sha256": "df629481a544832e0dd50e5d09813d127e6d75ae179a430f0452cfdbb07a9329",
+      "bytes": 3120
+    },
+    {
+      "public_path": "candidates/asset_prior_best/kernels.py",
+      "recovered_path": "asset_level_v6/candidates/asset_prior_best/kernels.py",
+      "sha256": "fb608b9c1a7776d6b99f093c83a2779e11c1741270506d0405bb7b7f33d8b2f9",
+      "bytes": 1445
+    },
+    {
+      "public_path": "candidates/asset_prior_best/mean.py",
+      "recovered_path": "asset_level_v6/candidates/asset_prior_best/mean.py",
+      "sha256": "a39968c4c95a8679f0ed3d422f3d7fb8e83fd4479db10fe1319f8e08727e45f5",
+      "bytes": 1975
+    },
+    {
+      "public_path": "candidates/asset_selector_coefficient_sweep/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_coefficient_sweep/__init__.py",
+      "sha256": "e46000fa502a7cfe168afb1eec0f992a28cc767369bf8b473878289eed66fde0",
+      "bytes": 61
+    },
+    {
+      "public_path": "candidates/asset_selector_coefficient_sweep/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_coefficient_sweep/candidate.py",
+      "sha256": "cb3ea66ab7ccbdb095f21476d67c2c1d4576d2feb9e5f442ec85499e0be1f7ef",
+      "bytes": 6894
+    },
+    {
+      "public_path": "candidates/asset_selector_coefficient_sweep/coefficients.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_coefficient_sweep/coefficients.py",
+      "sha256": "3c8acd0f82089ea339d778b5bada82973f7535b6355f50dc1ed343ece25487a0",
+      "bytes": 2343
+    },
+    {
+      "public_path": "candidates/asset_selector_coefficient_sweep/prototype_basis.json",
+      "recovered_path": "candidates/asset_selector_coefficient_sweep/prototype_basis.json",
+      "sha256": "b5b482387fbea264a8ef1e24350fb2b2fff1acbcd738c48846431294566255ce",
+      "bytes": 444
+    },
+    {
+      "public_path": "candidates/asset_selector_coefficient_sweep/qualification_receipt.json",
+      "recovered_path": "candidates/asset_selector_coefficient_sweep/qualification_receipt.json",
+      "sha256": "e947384f887b4292bfc420b58cc351e589f96cf075556af2b12e68084c44c643",
+      "bytes": 1330
+    },
+    {
+      "public_path": "candidates/asset_selector_path_objective/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_path_objective/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "public_path": "candidates/asset_selector_path_objective/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_path_objective/candidate.py",
+      "sha256": "211bb69953ba2ba5955e847507a71e57b073d44ac47fcb71c5c7828f0d9bf002",
+      "bytes": 6828
+    },
+    {
+      "public_path": "candidates/asset_selector_path_objective/coefficients.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_path_objective/coefficients.py",
+      "sha256": "ae330527dd7fa7fcb6720d6ea50134f82f4f2c54bcf082cf801c9ca431c57806",
+      "bytes": 2141
+    },
+    {
+      "public_path": "candidates/asset_selector_stacking/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_stacking/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "public_path": "candidates/asset_selector_stacking/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_stacking/candidate.py",
+      "sha256": "bb30a07250aa2fce543257458ada13305fcfb8f458b8e9bf9ac1b8fa33ccfce0",
+      "bytes": 8004
+    },
+    {
+      "public_path": "candidates/asset_selector_stacking/energy.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_stacking/energy.py",
+      "sha256": "e0e6a56ebad28ba2237bd9dcccc87d41ed35cc0a66c010af5a467c914a9a09f1",
+      "bytes": 3043
+    },
+    {
+      "public_path": "candidates/asset_selector_universe/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_universe/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "public_path": "candidates/asset_selector_universe/bank.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_universe/bank.py",
+      "sha256": "1de29f7ed6d3392e3977facb01555284ff6c4c4425d660469da43cf5ef47e17d",
+      "bytes": 3475
+    },
+    {
+      "public_path": "candidates/asset_selector_universe/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_universe/candidate.py",
+      "sha256": "c6faab7140f472dc705bd7d762109b11ff2886834a9e18b5eb35932f7b508890",
+      "bytes": 7059
+    },
+    {
+      "public_path": "candidates/asset_selector_universe_certified/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_universe_certified/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "public_path": "candidates/asset_selector_universe_certified/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_universe_certified/candidate.py",
+      "sha256": "ebd6f5ed5c332e5f19d9dab0ee5207b72ea38129cbc69382fd86dbcaa22904fd",
+      "bytes": 7071
+    },
+    {
+      "public_path": "candidates/asset_selector_universe_certified/energy.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_universe_certified/energy.py",
+      "sha256": "b9e3da46f0f8b5b19d8c124f40d4169ac53dcda9fdba4edd86fb84785292458b",
+      "bytes": 2331
+    },
+    {
+      "public_path": "candidates/asset_selector_universe_precision/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_universe_precision/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "public_path": "candidates/asset_selector_universe_precision/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_selector_universe_precision/candidate.py",
+      "sha256": "99998a71ff80f8ef3239a6b923b92bc67b092b292f6e29e10558f6178cb1be36",
+      "bytes": 7104
+    },
+    {
+      "public_path": "candidates/asset_trained_pool/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_trained_pool/__init__.py",
+      "sha256": "cf7ecbacaf2dcad8da3bf0f003136e87cd6bf1c757b1fb2b8d3c1a5f36c51a63",
+      "bytes": 84
+    },
+    {
+      "public_path": "candidates/asset_trained_pool/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_trained_pool/candidate.py",
+      "sha256": "989b0cf7ad94cb4ed1ad85e95c623e2f96a1812eef3dd83a4936010a2cb17e2b",
+      "bytes": 7639
+    },
+    {
+      "public_path": "candidates/asset_trained_pool/weight.py",
+      "recovered_path": "asset_level_v6/candidates/asset_trained_pool/weight.py",
+      "sha256": "b9cd5f7da5a250ba14c4f2c7d354d94a088a412a8f9410cddedbfe36a4481c26",
+      "bytes": 5404
+    },
+    {
+      "public_path": "candidates/asset_uncapped_selector/__init__.py",
+      "recovered_path": "asset_level_v6/candidates/asset_uncapped_selector/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "public_path": "candidates/asset_uncapped_selector/candidate.py",
+      "recovered_path": "asset_level_v6/candidates/asset_uncapped_selector/candidate.py",
+      "sha256": "e931fe75d937e6bc09872982a58aa3bacd81ba926e5b250227f1b1a52ffdb78f",
+      "bytes": 6615
+    },
+    {
+      "public_path": "common.py",
+      "recovered_path": "asset_level_v6/common.py",
+      "sha256": "5ec8ab8afec8dcff490c86d290708a156ae0d7c2f57c62460be8295fbe12bfa0",
+      "bytes": 422
+    },
+    {
+      "public_path": "complete_certified_selector_development.py",
+      "recovered_path": "complete_certified_selector_development.py",
+      "sha256": "8bf16c47800cc97e073a8a55d71da93b2da2fa64266e4a1f4f6a78ee7ba56ed5",
+      "bytes": 8941
+    },
+    {
+      "public_path": "inputs.py",
+      "recovered_path": "asset_level_v6/inputs.py",
+      "sha256": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9",
+      "bytes": 2397
+    },
+    {
+      "public_path": "native_index.py",
+      "recovered_path": "asset_level_v6/native_index.py",
+      "sha256": "c1ff806397eedb85362b1246d30a13dd1e7eadf22edd81d27ef3d7e4924b63e8",
+      "bytes": 6448
+    },
+    {
+      "public_path": "prepare.py",
+      "recovered_path": "asset_level_v6/prepare.py",
+      "sha256": "44d34c6f61275b48300710d6da95b625efe97408c6ce9fdace574e91ff87ef74",
+      "bytes": 4818
+    },
+    {
+      "public_path": "publish_selector_coefficient_sweep.py",
+      "recovered_path": "publish_selector_coefficient_sweep.py",
+      "sha256": "c53cd6d00c94c8bdfc144dd4f597e2ae57f51e8d3ef4ea364accb52ce8bfa912",
+      "bytes": 7606
+    },
+    {
+      "public_path": "qualify.py",
+      "recovered_path": "asset_level_v6/qualify.py",
+      "sha256": "6109ec116413d440dd873658fa0c6f3fb4f431f149d04f36e600c14c86304b11",
+      "bytes": 8120
+    },
+    {
+      "public_path": "qualify_selector_sweep_after_development.py",
+      "recovered_path": "qualify_selector_sweep_after_development.py",
+      "sha256": "5e780fcd006177c492b9eb8073b8b9803201dcef9d6155be3ca7f3cf0e3a256e",
+      "bytes": 2299
+    },
+    {
+      "public_path": "reporter.py",
+      "recovered_path": "asset_level_v6/reporter.py",
+      "sha256": "c252b7d2220cfc690371dfc060ca2b835592621854910ae3eaf0d1400f45744e",
+      "bytes": 8594
+    },
+    {
+      "public_path": "run.py",
+      "recovered_path": "asset_level_v6/run.py",
+      "sha256": "51bf796fe32980b2c417e78ff500c3426ad2176f4e3b07ef8b8dc6c10f8bcc21",
+      "bytes": 3152
+    },
+    {
+      "public_path": "run_asset_feature_batch.py",
+      "recovered_path": "run_asset_feature_batch.py",
+      "sha256": "ee4cd658f4a74a0b59a4dfee5b97f39b0972e51c532eb746fd849174696ac37e",
+      "bytes": 14855
+    },
+    {
+      "public_path": "run_asset_feature_confirmation.py",
+      "recovered_path": "run_asset_feature_confirmation.py",
+      "sha256": "e3e3d2ac7268535e78a1e7612eaa982f4c30b3e9aabbb6350d9d4102f7a83908",
+      "bytes": 14703
+    },
+    {
+      "public_path": "run_asset_selector_universe_precision.py",
+      "recovered_path": "run_asset_selector_universe_precision.py",
+      "sha256": "cf01498cd7656098d33f9f068207ce989385a1d8eac8e91a3dbdc57c779fde7f",
+      "bytes": 13868
+    },
+    {
+      "public_path": "run_asset_trained_pool_validation.py",
+      "recovered_path": "run_asset_trained_pool_validation.py",
+      "sha256": "595bc5e426e0f00d6c4328f9f38e984442543d6b0ec4e13dd6e8fadf4d94a639",
+      "bytes": 13389
+    },
+    {
+      "public_path": "run_selector_path_development355.py",
+      "recovered_path": "run_selector_path_development355.py",
+      "sha256": "6ba590510fff0b8bce813ef78fbc89a0d01cab7edaca39f8e9c5e984bd29d3f4",
+      "bytes": 14916
+    },
+    {
+      "public_path": "run_selector_path_precision72.py",
+      "recovered_path": "run_selector_path_precision72.py",
+      "sha256": "74ccf104815635549e754296be9f34c64cd65b10bf54fb44b4c8481510961491",
+      "bytes": 12997
+    },
+    {
+      "public_path": "run_selector_sweep_validation_reserved.py",
+      "recovered_path": "run_selector_sweep_validation_reserved.py",
+      "sha256": "e8a7753b85026ba5a461f2137c883c8641a75f62389499caddfc6e5cb87d1ea2",
+      "bytes": 14312
+    },
+    {
+      "public_path": "score_main.py",
+      "recovered_path": "asset_level_v6/score_main.py",
+      "sha256": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+      "bytes": 1826
+    },
+    {
+      "public_path": "score_percentage.py",
+      "recovered_path": "score_percentage.py",
+      "sha256": "0a9499252dab5e9fd7f630f63534f24fbb57085da17302ddcfe15bbea6d8f256",
+      "bytes": 1277
+    },
+    {
+      "public_path": "screen_asset_circular.py",
+      "recovered_path": "screen_asset_circular.py",
+      "sha256": "2b2ee8e4531a3f9abe0e7ab7a1d788231ae4322eec63f241c818d1496e45d237",
+      "bytes": 6887
+    },
+    {
+      "public_path": "screen_asset_components.py",
+      "recovered_path": "screen_asset_components.py",
+      "sha256": "7a88144203e7a348440ff9a35c266a62d9552863702e1e65a8b3a9cb1c20895e",
+      "bytes": 8033
+    },
+    {
+      "public_path": "screen_asset_fading_vol.py",
+      "recovered_path": "screen_asset_fading_vol.py",
+      "sha256": "fbc18edc1d8ecb6601e9e634d7e21f10b4b229a7bdea8288ffbcc86c2d6fb78f",
+      "bytes": 7977
+    },
+    {
+      "public_path": "screen_asset_means.py",
+      "recovered_path": "screen_asset_means.py",
+      "sha256": "045bca7b7c8371dbda3f7583e3ff9f0594f9b12707d46440d3ee1391fed35fde",
+      "bytes": 6544
+    },
+    {
+      "public_path": "screen_asset_selector_universe.py",
+      "recovered_path": "screen_asset_selector_universe.py",
+      "sha256": "fcaa49394721b6e7cb725e739fcf5ae13c78ba6847794916309d09d7689e6932",
+      "bytes": 13411
+    },
+    {
+      "public_path": "screen_asset_trained_pool.py",
+      "recovered_path": "screen_asset_trained_pool.py",
+      "sha256": "93aa67b8830c3aa2a2a939fabbbd47ec454b7b6dbe29bab5ea0bcf583bd81ee0",
+      "bytes": 12958
+    },
+    {
+      "public_path": "screen_selector_path_objective.py",
+      "recovered_path": "screen_selector_path_objective.py",
+      "sha256": "5d6148a9ffe5015cdd8fb9b64481b5a011a26431ef938d11d0355634b9f89b6a",
+      "bytes": 11764
+    },
+    {
+      "public_path": "selector_coefficient_sweep_benchmark.json",
+      "recovered_path": "selector_coefficient_sweep_benchmark.json",
+      "sha256": "b4813330f5381b1d76d361a0eebb63160fb05ea54d7e8cce0b0bfc79ca849de1",
+      "bytes": 5356
+    },
+    {
+      "public_path": "selector_coefficient_sweep_qualification.log",
+      "recovered_path": "selector_coefficient_sweep_qualification.log",
+      "sha256": "6aa90efa87011794eb83d6f9bc2ce1fd93a1c352066f9f9bbb7168ada52f5a72",
+      "bytes": 104
+    },
+    {
+      "public_path": "selector_coefficient_sweep_runtime_preflight.json",
+      "recovered_path": "selector_coefficient_sweep_runtime_preflight.json",
+      "sha256": "2b6d76dfe4ce3a744bea27844a872132d0ad729e9fe76b4b36a1edc686b7b4c0",
+      "bytes": 659
+    },
+    {
+      "public_path": "selector_weight_stability_research.md",
+      "recovered_path": "selector_weight_stability_research.md",
+      "sha256": "88190d763bb4876e36a2634186bf9e70572188b7b542335ae7701d4026d9afea",
+      "bytes": 3003
+    },
+    {
+      "public_path": "sweep_v6.py",
+      "recovered_path": "asset_level_v6/sweep_v6.py",
+      "sha256": "c2e51dee86eedbad1e03061019b4a7e7c4fab274cb9f4b2b0f9aadaaf320acc1",
+      "bytes": 37864
+    },
+    {
+      "public_path": "test_asset_paths.py",
+      "recovered_path": "asset_level_v6/test_asset_paths.py",
+      "sha256": "816afa461243763cbdd7b9d8f25f81b59719c0c9358c000db99c94e3241e856d",
+      "bytes": 6479
+    },
+    {
+      "public_path": "test_asset_selector_universe.py",
+      "recovered_path": "test_asset_selector_universe.py",
+      "sha256": "5dcd34d00c3c1961f1a9f30b32914eff114f92106fa7e18db6207bd61fb4ac60",
+      "bytes": 4078
+    },
+    {
+      "public_path": "test_asset_selector_universe_precision.py",
+      "recovered_path": "test_asset_selector_universe_precision.py",
+      "sha256": "d9e35cf15b516b93c59917f990aaab064275dc86db35a0b29df90db8b4c84ae1",
+      "bytes": 4196
+    },
+    {
+      "public_path": "test_asset_trained_pool.py",
+      "recovered_path": "test_asset_trained_pool.py",
+      "sha256": "bd07d074f5450603606e21dbed11eeab93ef761829acea66ce3baf5c83ca6080",
+      "bytes": 4976
+    },
+    {
+      "public_path": "test_selector_coefficient_sweep.py",
+      "recovered_path": "test_selector_coefficient_sweep.py",
+      "sha256": "c6b707b6c90f4ab893f7764bf387327851bb77aee2299753503617f488b68bac",
+      "bytes": 2107
+    },
+    {
+      "public_path": "test_selector_coefficient_sweep_integration.py",
+      "recovered_path": "test_selector_coefficient_sweep_integration.py",
+      "sha256": "db9963a35af0017176ce86804c498e28a9f681687cdb939de378c728770dd592",
+      "bytes": 2398
+    },
+    {
+      "public_path": "test_selector_path_candidate.py",
+      "recovered_path": "test_selector_path_candidate.py",
+      "sha256": "7715083508c452a2bfc5824420f628a74daad7565d7a2e7068e4a121f9047c85",
+      "bytes": 3521
+    },
+    {
+      "public_path": "test_selector_path_coefficients.py",
+      "recovered_path": "test_selector_path_coefficients.py",
+      "sha256": "810d2757721218788e74f2350980f6bd550106bbd9b65f4ca686adb1d9002d9d",
+      "bytes": 2443
+    },
+    {
+      "public_path": "verify_selector_path_development355.py",
+      "recovered_path": "verify_selector_path_development355.py",
+      "sha256": "7adc1410aa92b362b6a2c248b6b4b2973b25ce0589b716cdf6412dbf72c382f1",
+      "bytes": 7739
+    },
+    {
+      "public_path": "verify_selector_path_development_after_writer.py",
+      "recovered_path": "verify_selector_path_development_after_writer.py",
+      "sha256": "dc94c62eb8a6566d182e791c001cba6d2870da96cedd3dcf7bd3e6419eac953f",
+      "bytes": 1294
+    }
+  ],
+  "verified_source_hashes": {
+    "asset_level_v6/asset_forecast.py": "5688896c8aee66f60ce852f447e1ac3b3819f40caf19139c0577c8909cbaaa7a",
+    "asset_level_v6/asset_models.py": "74ba418a5b35d967f629a86dc21e649bac7f48fbda685889b6256e1501407c2b",
+    "asset_level_v6/asset_paths.py": "5c4a109518e6193d2c240ba3b9d51de0b803f992c70bad7670cc15a75e8f9e84",
+    "asset_level_v6/blocks.py": "4eb1aba602dea9dd9c4d48aea64104a4a9fa50babe5d13ce906cfdc737600f06",
+    "asset_level_v6/candidates/asset_AR1_mean/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_AR1_mean/candidate.py": "fa90656844c4451ba69c393aa2e3acd03f021a953b82fb9de3f26a9efb1c0f50",
+    "asset_level_v6/candidates/asset_AR1_mean/fit_ar.py": "da9d0b8f67c6d9b8cb8f033eb2c0f4af862d74aec338da402ecd989aecb88b30",
+    "asset_level_v6/candidates/asset_AR1_mean/kernels.py": "a0009d78410907c2fcae9ffddf88b89ffe79e2f0f80fb48f88e325c30d48cc07",
+    "asset_level_v6/candidates/asset_circular_blocks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_circular_blocks/candidate.py": "fbc3e613d6f25b8ce01c643a18dfc3fdc6637990721e915d1836dd854b9c986c",
+    "asset_level_v6/candidates/asset_circular_blocks/circular.py": "13fa077d5aa0b1f91e969235505fb0a9406331fd953938f16575ae08a4a604db",
+    "asset_level_v6/candidates/asset_fading_vol/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_fading_vol/candidate.py": "a6214cd886b696178ebd6f209941badc5e9c55a7357cbd72c91661faf1dc59d7",
+    "asset_level_v6/candidates/asset_fading_vol/fade.py": "fdcdbf58a3e0e5b698ec7efae5b4d4de24e2f5871d1fe708b90cbdaa2a624464",
+    "asset_level_v6/candidates/asset_fading_vol/kernels.py": "f80e32db47d0a7e4adda220b616ad17a063850d16caf48b11f83858ce613e4f8",
+    "asset_level_v6/candidates/asset_fast_selector/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_fast_selector/bank.py": "44b63207541c7df6891c9b45a55e537c9bfc8fd7015e273f49ffd4a26002afcd",
+    "asset_level_v6/candidates/asset_fast_selector/candidate.py": "d19906db2f9d72239e39938b1a4ce24e16a94509801d73ed7052815425f4abcc",
+    "asset_level_v6/candidates/asset_feature_batch/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_feature_batch/candidate.py": "48ca47c07cb4d4c618ab76db0d7f89da02668a4b38e4cd5f0d6a80385494b570",
+    "asset_level_v6/candidates/asset_feature_batch/fits.py": "d0812ded6ee5b6384163d43e999ceeec13a39f901304e6112caf21326b0cacb2",
+    "asset_level_v6/candidates/asset_feature_batch/kernels.py": "01b131c2d918cf1904070ed17eacf1787c91dcf4b1dd9d728712a6d8dc896700",
+    "asset_level_v6/candidates/asset_gjr/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_gjr/candidate.py": "e1e08173ac52993e3aac59df2bee54c54d9da390ac67ee6b9dce3f1c74449a26",
+    "asset_level_v6/candidates/asset_gjr/fit.py": "ef8ea42291f8b3c3c045ca281a0da4522070779ac0ee8c1f75e65da3e0581bf4",
+    "asset_level_v6/candidates/asset_gjr/kernels.py": "662402a7b8a580cf1db59db888f2fb5dffe64e90d276bd58b35039bf65918393",
+    "asset_level_v6/candidates/asset_gjr/pilot_run.py": "364a81e01c1a251370e1681c0121423f387178ab040e9edf83d65a20152387af",
+    "asset_level_v6/candidates/asset_mean_uncertainty/fhs_only.py": "ab8f291ccb6b9e063b015f461ecccea61fd074f455cc18e6503cf6ea031871bc",
+    "asset_level_v6/candidates/asset_mean_uncertainty/model.py": "ddf68113745c614ddb61dff316e9072c0c0eda8c9044309cddc744f5b1da94dc",
+    "asset_level_v6/candidates/asset_prior_best/candidate.py": "19e1ce86d88466c94eb6177351ba54089c500a4e5e710529219ecb49ac39fb14",
+    "asset_level_v6/candidates/asset_prior_best/fit.py": "df629481a544832e0dd50e5d09813d127e6d75ae179a430f0452cfdbb07a9329",
+    "asset_level_v6/candidates/asset_prior_best/kernels.py": "fb608b9c1a7776d6b99f093c83a2779e11c1741270506d0405bb7b7f33d8b2f9",
+    "asset_level_v6/candidates/asset_prior_best/mean.py": "a39968c4c95a8679f0ed3d422f3d7fb8e83fd4479db10fe1319f8e08727e45f5",
+    "asset_level_v6/candidates/asset_selector_path_objective/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "asset_level_v6/candidates/asset_selector_path_objective/candidate.py": "211bb69953ba2ba5955e847507a71e57b073d44ac47fcb71c5c7828f0d9bf002",
+    "asset_level_v6/candidates/asset_selector_path_objective/coefficients.py": "ae330527dd7fa7fcb6720d6ea50134f82f4f2c54bcf082cf801c9ca431c57806",
+    "asset_level_v6/candidates/asset_selector_stacking/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_selector_stacking/candidate.py": "bb30a07250aa2fce543257458ada13305fcfb8f458b8e9bf9ac1b8fa33ccfce0",
+    "asset_level_v6/candidates/asset_selector_stacking/energy.py": "e0e6a56ebad28ba2237bd9dcccc87d41ed35cc0a66c010af5a467c914a9a09f1",
+    "asset_level_v6/candidates/asset_selector_universe/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "asset_level_v6/candidates/asset_selector_universe/bank.py": "1de29f7ed6d3392e3977facb01555284ff6c4c4425d660469da43cf5ef47e17d",
+    "asset_level_v6/candidates/asset_selector_universe/candidate.py": "c6faab7140f472dc705bd7d762109b11ff2886834a9e18b5eb35932f7b508890",
+    "asset_level_v6/candidates/asset_selector_universe_certified/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "asset_level_v6/candidates/asset_selector_universe_certified/candidate.py": "ebd6f5ed5c332e5f19d9dab0ee5207b72ea38129cbc69382fd86dbcaa22904fd",
+    "asset_level_v6/candidates/asset_selector_universe_certified/energy.py": "b9e3da46f0f8b5b19d8c124f40d4169ac53dcda9fdba4edd86fb84785292458b",
+    "asset_level_v6/candidates/asset_selector_universe_precision/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_selector_universe_precision/candidate.py": "99998a71ff80f8ef3239a6b923b92bc67b092b292f6e29e10558f6178cb1be36",
+    "asset_level_v6/candidates/asset_trained_pool/__init__.py": "cf7ecbacaf2dcad8da3bf0f003136e87cd6bf1c757b1fb2b8d3c1a5f36c51a63",
+    "asset_level_v6/candidates/asset_trained_pool/candidate.py": "989b0cf7ad94cb4ed1ad85e95c623e2f96a1812eef3dd83a4936010a2cb17e2b",
+    "asset_level_v6/candidates/asset_trained_pool/weight.py": "b9cd5f7da5a250ba14c4f2c7d354d94a088a412a8f9410cddedbfe36a4481c26",
+    "asset_level_v6/candidates/asset_uncapped_selector/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_uncapped_selector/candidate.py": "e931fe75d937e6bc09872982a58aa3bacd81ba926e5b250227f1b1a52ffdb78f",
+    "asset_level_v6/common.py": "5ec8ab8afec8dcff490c86d290708a156ae0d7c2f57c62460be8295fbe12bfa0",
+    "asset_level_v6/inputs.py": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9",
+    "asset_level_v6/native_index.py": "c1ff806397eedb85362b1246d30a13dd1e7eadf22edd81d27ef3d7e4924b63e8",
+    "asset_level_v6/prepare.py": "44d34c6f61275b48300710d6da95b625efe97408c6ce9fdace574e91ff87ef74",
+    "asset_level_v6/qualify.py": "6109ec116413d440dd873658fa0c6f3fb4f431f149d04f36e600c14c86304b11",
+    "asset_level_v6/reporter.py": "c252b7d2220cfc690371dfc060ca2b835592621854910ae3eaf0d1400f45744e",
+    "asset_level_v6/run.py": "51bf796fe32980b2c417e78ff500c3426ad2176f4e3b07ef8b8dc6c10f8bcc21",
+    "asset_level_v6/score_main.py": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+    "asset_level_v6/sweep_v6.py": "c2e51dee86eedbad1e03061019b4a7e7c4fab274cb9f4b2b0f9aadaaf320acc1",
+    "asset_level_v6/test_asset_paths.py": "816afa461243763cbdd7b9d8f25f81b59719c0c9358c000db99c94e3241e856d",
+    "complete_certified_selector_development.py": "8bf16c47800cc97e073a8a55d71da93b2da2fa64266e4a1f4f6a78ee7ba56ed5",
+    "run_asset_feature_batch.py": "ee4cd658f4a74a0b59a4dfee5b97f39b0972e51c532eb746fd849174696ac37e",
+    "run_asset_feature_confirmation.py": "e3e3d2ac7268535e78a1e7612eaa982f4c30b3e9aabbb6350d9d4102f7a83908",
+    "run_asset_selector_universe_precision.py": "cf01498cd7656098d33f9f068207ce989385a1d8eac8e91a3dbdc57c779fde7f",
+    "run_asset_trained_pool_validation.py": "595bc5e426e0f00d6c4328f9f38e984442543d6b0ec4e13dd6e8fadf4d94a639",
+    "run_selector_path_development355.py": "6ba590510fff0b8bce813ef78fbc89a0d01cab7edaca39f8e9c5e984bd29d3f4",
+    "run_selector_path_precision72.py": "74ccf104815635549e754296be9f34c64cd65b10bf54fb44b4c8481510961491",
+    "score_percentage.py": "0a9499252dab5e9fd7f630f63534f24fbb57085da17302ddcfe15bbea6d8f256",
+    "screen_asset_circular.py": "2b2ee8e4531a3f9abe0e7ab7a1d788231ae4322eec63f241c818d1496e45d237",
+    "screen_asset_components.py": "7a88144203e7a348440ff9a35c266a62d9552863702e1e65a8b3a9cb1c20895e",
+    "screen_asset_fading_vol.py": "fbc18edc1d8ecb6601e9e634d7e21f10b4b229a7bdea8288ffbcc86c2d6fb78f",
+    "screen_asset_means.py": "045bca7b7c8371dbda3f7583e3ff9f0594f9b12707d46440d3ee1391fed35fde",
+    "screen_asset_selector_universe.py": "fcaa49394721b6e7cb725e739fcf5ae13c78ba6847794916309d09d7689e6932",
+    "screen_asset_trained_pool.py": "93aa67b8830c3aa2a2a939fabbbd47ec454b7b6dbe29bab5ea0bcf583bd81ee0",
+    "screen_selector_path_objective.py": "5d6148a9ffe5015cdd8fb9b64481b5a011a26431ef938d11d0355634b9f89b6a",
+    "test_asset_selector_universe.py": "5dcd34d00c3c1961f1a9f30b32914eff114f92106fa7e18db6207bd61fb4ac60",
+    "test_asset_selector_universe_precision.py": "d9e35cf15b516b93c59917f990aaab064275dc86db35a0b29df90db8b4c84ae1",
+    "test_asset_trained_pool.py": "bd07d074f5450603606e21dbed11eeab93ef761829acea66ce3baf5c83ca6080",
+    "test_selector_path_candidate.py": "7715083508c452a2bfc5824420f628a74daad7565d7a2e7068e4a121f9047c85",
+    "test_selector_path_coefficients.py": "810d2757721218788e74f2350980f6bd550106bbd9b65f4ca686adb1d9002d9d",
+    "asset_level_v6/candidates/asset_selector_coefficient_sweep/__init__.py": "e46000fa502a7cfe168afb1eec0f992a28cc767369bf8b473878289eed66fde0",
+    "asset_level_v6/candidates/asset_selector_coefficient_sweep/coefficients.py": "3c8acd0f82089ea339d778b5bada82973f7535b6355f50dc1ed343ece25487a0",
+    "asset_level_v6/candidates/asset_selector_coefficient_sweep/candidate.py": "cb3ea66ab7ccbdb095f21476d67c2c1d4576d2feb9e5f442ec85499e0be1f7ef",
+    "test_selector_coefficient_sweep.py": "c6b707b6c90f4ab893f7764bf387327851bb77aee2299753503617f488b68bac",
+    "test_selector_coefficient_sweep_integration.py": "db9963a35af0017176ce86804c498e28a9f681687cdb939de378c728770dd592"
+  },
+  "recovered_tests_passed": 6,
+  "recovered_test_log_sha256": "7dc6f0f540d2e5c17ab4cda1f2b31e1a426b0529446031927128d9c92f70ee04",
+  "source_recovery_scope": "Published research numerical source closure; sealed original financial dependencies remain bound to existing verified archives and active local dependency roots",
+  "all_real355_request_backend_replay_pending": true,
+  "new_financial_full_panel_models": 0,
+  "goal_active": true,
+  "scientific_originals_removed": false
+}
