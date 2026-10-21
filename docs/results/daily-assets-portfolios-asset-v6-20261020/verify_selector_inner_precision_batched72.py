@@ -114,7 +114,8 @@ def main():
     assert high == summary['preserved1000inner_reference_Q_by_criterion']
     models = []
     for j, cfg in enumerate(configs):
-        selected = [recalculated[i, j] for i in range(len(cases))]
+        # Preserve the report's reduction order; every scalar was rebuilt above.
+        selected = [recalculated[r['case'], j] for r in records if r['config_index'] == j]
         q = score_main.aggregate_records(selected, rows)['score']
         old = next(m for m in summary['models'] if m['config_index'] == j)
         assert q == old['main_Q'] and percent_better(q, baseline) == old['percent_better_vs_fixed_reference']
