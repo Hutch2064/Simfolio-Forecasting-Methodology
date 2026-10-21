@@ -1,0 +1,97 @@
+{
+  "utc": "2026-10-21T03:20:48.623467+00:00",
+  "confirmation_summary_sha256": "e0914268ccd752cb69366e293817b0876973ce46ea0c9b8535101d3590151af3",
+  "selection": "All four configurations improving the unchanged incumbent on355matched1000-path development cases, plus exact incumbent. Frozen before reserved forecasts.",
+  "selected": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 11,
+      "expected_cases": 355,
+      "main_Q": 0.7149215138509261,
+      "model_id": "model_testing_asset_features_v1_7a88321a283e746c",
+      "percent_better_vs_same100path_fixed_reference": 10.679726169786651,
+      "successful_cases": 355
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 7,
+      "expected_cases": 355,
+      "main_Q": 0.7152942704243773,
+      "model_id": "model_testing_asset_features_v1_c71bf41a429ad1b2",
+      "percent_better_vs_same100path_fixed_reference": 10.633155016775275,
+      "successful_cases": 355
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 6,
+      "expected_cases": 355,
+      "main_Q": 0.7154353661786275,
+      "model_id": "model_testing_asset_features_v1_3763052f64159e6e",
+      "percent_better_vs_same100path_fixed_reference": 10.615526911924967,
+      "successful_cases": 355
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": false
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.7157717909990011,
+      "model_id": "model_testing_asset_features_v1_7e8e82aa1f307abc",
+      "percent_better_vs_same100path_fixed_reference": 10.573494945482675,
+      "successful_cases": 355
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 9,
+      "expected_cases": 355,
+      "main_Q": 0.7159646136699346,
+      "model_id": "model_testing_asset_features_v1_010bf70201e07751",
+      "percent_better_vs_same100path_fixed_reference": 10.549404225823555,
+      "successful_cases": 355
+    }
+  ],
+  "paths": 1000,
+  "case_count": 355,
+  "official": false,
+  "independent_validation_claim": false,
+  "legacy_confirmation_field_note": "The confirmation file inherited same100path in two field names; actual plan, context seeds, loss generation and summary paths are1000. Values are1000-path only."
+}

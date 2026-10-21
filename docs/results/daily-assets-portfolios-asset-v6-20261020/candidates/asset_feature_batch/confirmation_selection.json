@@ -1,0 +1,215 @@
+{
+  "development_cases": 355,
+  "independent_validation_claim": false,
+  "later_reserved_required": true,
+  "official": false,
+  "paths": 1000,
+  "screen_summary_sha256": "158d2c4d8b360cf9755eea1c61464fbf4cbf9e87bab5ee6142c3d026dd138f7e",
+  "selected": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "AR1_GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": false
+      },
+      "config_index": 179,
+      "expected_cases": 72,
+      "main_Q": 0.8344261631946954,
+      "model_id": "model_testing_asset_features_v1_c8c6385a11f9a9c5",
+      "percent_better_vs_same100path_fixed_reference": 13.784195200230176,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": false
+      },
+      "config_index": 195,
+      "expected_cases": 72,
+      "main_Q": 0.8382144734858631,
+      "model_id": "model_testing_asset_features_v1_7e8e82aa1f307abc",
+      "percent_better_vs_same100path_fixed_reference": 13.39277384386498,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "EWMA_reverting",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 39,
+      "expected_cases": 72,
+      "main_Q": 0.8365869467117131,
+      "model_id": "model_testing_asset_features_v1_1937df02d5c4e90e",
+      "percent_better_vs_same100path_fixed_reference": 13.560935554098618,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": false
+      },
+      "config_index": 59,
+      "expected_cases": 72,
+      "main_Q": 0.8360248975862845,
+      "model_id": "model_testing_asset_features_v1_dad272e51e53491e",
+      "percent_better_vs_same100path_fixed_reference": 13.619008418808786,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "GJR",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": false
+      },
+      "config_index": 83,
+      "expected_cases": 72,
+      "main_Q": 0.834865825495245,
+      "model_id": "model_testing_asset_features_v1_eb6ad1f8f3eff447",
+      "percent_better_vs_same100path_fixed_reference": 13.738767766678862,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "HARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 111,
+      "expected_cases": 72,
+      "main_Q": 0.8348881316763214,
+      "model_id": "model_testing_asset_features_v1_32131ad804158eca",
+      "percent_better_vs_same100path_fixed_reference": 13.736463014696799,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 159,
+      "expected_cases": 72,
+      "main_Q": 0.8331047424912109,
+      "model_id": "model_testing_asset_features_v1_3763052f64159e6e",
+      "percent_better_vs_same100path_fixed_reference": 13.92072896972969,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 135,
+      "expected_cases": 72,
+      "main_Q": 0.8336112085870822,
+      "model_id": "model_testing_asset_features_v1_c71bf41a429ad1b2",
+      "percent_better_vs_same100path_fixed_reference": 13.868399136383914,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "constant",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 15,
+      "expected_cases": 72,
+      "main_Q": 0.8342532309245488,
+      "model_id": "model_testing_asset_features_v1_9525be4083c0c182",
+      "percent_better_vs_same100path_fixed_reference": 13.802063162075296,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 55,
+      "expected_cases": 72,
+      "main_Q": 0.8411395119779435,
+      "model_id": "model_testing_asset_features_v1_010bf70201e07751",
+      "percent_better_vs_same100path_fixed_reference": 13.090548723430718,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 63,
+      "expected_cases": 72,
+      "main_Q": 0.8369517349677557,
+      "model_id": "model_testing_asset_features_v1_e81d80a04d702d9b",
+      "percent_better_vs_same100path_fixed_reference": 13.523244366473575,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 151,
+      "expected_cases": 72,
+      "main_Q": 0.8366467990261844,
+      "model_id": "model_testing_asset_features_v1_7a88321a283e746c",
+      "percent_better_vs_same100path_fixed_reference": 13.554751405411913,
+      "successful_cases": 72
+    }
+  ],
+  "selection": "One best100-path configuration per filter family, plus exact incumbent and two single-factor innovation contrasts. Frozen before1000-path forecasts; no horizon or class routing."
+}

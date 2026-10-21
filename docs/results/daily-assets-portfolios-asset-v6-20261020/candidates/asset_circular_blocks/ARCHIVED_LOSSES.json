@@ -1,0 +1,15 @@
+{
+  "utc": "2026-10-21T02:59:12.685140+00:00",
+  "complete": true,
+  "raw_checkpoint_files_retired": 72177,
+  "raw_bytes_retired": 1750680046,
+  "raw_scientific_outputs_already_fresh_downloaded_disk_restored_SHA256_verified": true,
+  "fresh_server_archive_digests_and_downloaded_manifests_verified": true,
+  "archive_release": "research-asset-v6-circular-1000-20261021",
+  "archive_repository": "Hutch2064/simfolio-engine",
+  "pre_retirement_manifest_sha256": "bf9256bf87f669a069a4de26b23dc219673b3e858dfbbebd91f55d3e052e6c27",
+  "disk_free_before_bytes": 622766084096,
+  "disk_free_after_bytes": 624676683776,
+  "sources_inputs_current_best_and_metadata_preserved": true,
+  "restore": "Download candidate-part-*.tar.gz and matching manifests from the private release, verify archive/manifest SHA256, extract at the research owner root and verify each file size/hash. Restore sealed dependencies as described in the original archive receipt before rerunning anything."
+}

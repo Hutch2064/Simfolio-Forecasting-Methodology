@@ -1,0 +1,2366 @@
+{
+  "case_selection": "Training-position median per existing family, with the minimum predeclared asset-quarter support needed by the unchanged canonical reducer. No loss values enter selection.",
+  "cases": [
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2489,
+        "origin_date": "2016-11-21",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2487,
+        "train_fraction": 0.5
+      },
+      "series_id": "DBA"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5844,
+        "origin_date": "2003-02-20",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5843,
+        "train_fraction": 0.5
+      },
+      "series_id": "GSGSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1120,
+        "origin_date": "2008-06-30",
+        "origin_label": "rolling_25",
+        "position": 4480,
+        "train_fraction": null
+      },
+      "series_id": "DCOILBRENTEU"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2058,
+        "origin_date": "2018-08-09",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2056,
+        "train_fraction": 0.5
+      },
+      "series_id": "CORN"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 1876,
+        "origin_date": "2019-05-02",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 1874,
+        "train_fraction": 0.5
+      },
+      "series_id": "CPER"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1935,
+        "origin_date": "1998-09-30",
+        "origin_label": "rolling_25",
+        "position": 7740,
+        "train_fraction": null
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7344,
+        "origin_date": "1997-03-04",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7342,
+        "train_fraction": 0.5
+      },
+      "series_id": "SLVSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 1896,
+        "origin_date": "2019-04-03",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 1895,
+        "train_fraction": 0.5
+      },
+      "series_id": "CANE"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2969,
+        "origin_date": "2018-09-02",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2967,
+        "train_fraction": 0.5
+      },
+      "series_id": "BTC"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0093"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0086"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4674,
+        "origin_date": "2008-09-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4673,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0105"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0099"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0087"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0112"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0111"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0120"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0113"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4674,
+        "origin_date": "2008-09-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4673,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0132"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0126"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0114"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0146"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0139"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4674,
+        "origin_date": "2008-09-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4673,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0158"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0152"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0140"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0171"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0164"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4674,
+        "origin_date": "2008-09-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4673,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0183"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0177"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4718,
+        "origin_date": "2008-07-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4717,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0165"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0551"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0337"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7949,
+        "origin_date": "1995-01-27",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7947,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0056"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 3505,
+        "origin_date": "1982-03-31",
+        "origin_label": "rolling_26",
+        "position": 14022,
+        "train_fraction": null
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 2052,
+        "origin_date": "2018-06-29",
+        "origin_label": "rolling_44",
+        "position": 23163,
+        "train_fraction": null
+      },
+      "series_id": "EQX0080"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13108,
+        "origin_date": "1974-08-30",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13107,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0068"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7949,
+        "origin_date": "1995-01-27",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7947,
+        "train_fraction": 0.5
+      },
+      "series_id": "EQX0062"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13223,
+        "origin_date": "1974-03-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13222,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0259"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0001"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0073"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0037"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 4965,
+        "origin_date": "2006-08-16",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 4963,
+        "train_fraction": 0.5
+      },
+      "series_id": "BNDSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5897,
+        "origin_date": "2003-05-12",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5896,
+        "train_fraction": 0.5
+      },
+      "series_id": "VWESX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5897,
+        "origin_date": "2003-05-12",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5896,
+        "train_fraction": 0.5
+      },
+      "series_id": "VWEHX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 3253,
+        "origin_date": "2013-06-06",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 3251,
+        "train_fraction": 0.5
+      },
+      "series_id": "TIPSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "rolling_origin",
+        "max_horizon": 1342,
+        "origin_date": "2007-12-31",
+        "origin_label": "rolling_25",
+        "position": 5367,
+        "train_fraction": null
+      },
+      "series_id": "TPINX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5897,
+        "origin_date": "2003-05-12",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5896,
+        "train_fraction": 0.5
+      },
+      "series_id": "VWITX_YAHOO_DAILY"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8098,
+        "train_fraction": 0.5
+      },
+      "series_id": "IEFSIM"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6998,
+        "origin_date": "1998-11-18",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6996,
+        "train_fraction": 0.5
+      },
+      "series_id": "FX_CAD_USD"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_f12dc676c64a5527"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6893,
+        "origin_date": "1998-09-16",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6891,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_d9696c1fc9c42b4e"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 5784,
+        "origin_date": "2003-02-28",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 5783,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_502ff360fe5538bb"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 1969,
+        "origin_date": "2018-06-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 1967,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_467cf63e71a6e1f6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2055,
+        "origin_date": "2018-09-03",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2054,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_6bf9a99697f4e14c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7343,
+        "origin_date": "1997-03-05",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7342,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_6edf99327247877c"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7343,
+        "origin_date": "1997-03-05",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7342,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_03fa0f01a5da3f84"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6902,
+        "origin_date": "1998-09-02",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6901,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_66e3e28fd1eb5a70"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 7343,
+        "origin_date": "1997-03-05",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 7342,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_0b4cd6d9522059a3"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2103,
+        "origin_date": "2018-08-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2101,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_1485a4631f335216"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2044,
+        "origin_date": "2018-08-29",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2043,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_0b32490ee03db3bf"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2032,
+        "origin_date": "2018-08-23",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2030,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_26f8f7e4a6fdc0c1"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 2027,
+        "origin_date": "2018-08-06",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 2026,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_045c407fb16056fc"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_522d5b99705e97e6"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6940,
+        "origin_date": "1998-10-27",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6938,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_652e1a27537beced"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13158,
+        "origin_date": "1974-06-20",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_59cb61c77cdec836"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6902,
+        "origin_date": "1998-09-02",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6901,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_6cdc6e3ed62da44b"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_2039e676ccee0d83"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 6940,
+        "origin_date": "1998-10-27",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 6938,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_1500af4fa1498cb8"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_248e1b578707e988"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 8099,
+        "origin_date": "1994-03-08",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 8097,
+        "train_fraction": 0.5
+      },
+      "series_id": "P_14f94f665defe660"
+    },
+    {
+      "origin": {
+        "evaluation_split": "train_first_half_test_remaining",
+        "max_horizon": 13159,
+        "origin_date": "1974-06-19",
+        "origin_label": "train_first_half_test_remaining",
+        "position": 13157,
+        "train_fraction": 0.5
+      },
+      "series_id": "FR0525"
+    }
+  ],
+  "configs": [
+    {
+      "family": "constant",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "constant",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "constant",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_reverting",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "GJR",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "GJR",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "HARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_path",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "SV_RMS",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "AR1_GARCH",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "empirical",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "empirical",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Gaussian",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Gaussian",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": false
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Student",
+      "mean_shrinkage": false,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": false,
+      "raw_fade": true
+    },
+    {
+      "family": "EWMA_recursive",
+      "innovations": "Student",
+      "mean_shrinkage": true,
+      "mean_uncertainty": true,
+      "raw_fade": true
+    }
+  ],
+  "diagnostics_zero_selection_weight": true,
+  "exact_incumbent_anchor_required_each_case": true,
+  "expected_forecasts": 15552,
+  "full_panel_catalogue_count_unchanged": true,
+  "official": false,
+  "paths": 100,
+  "reference_models": [
+    "current_best",
+    "fixed_reference"
+  ],
+  "selected_families": 70,
+  "source_hashes": {
+    "asset_level_v6/asset_forecast.py": "5688896c8aee66f60ce852f447e1ac3b3819f40caf19139c0577c8909cbaaa7a",
+    "asset_level_v6/asset_models.py": "74ba418a5b35d967f629a86dc21e649bac7f48fbda685889b6256e1501407c2b",
+    "asset_level_v6/asset_paths.py": "5c4a109518e6193d2c240ba3b9d51de0b803f992c70bad7670cc15a75e8f9e84",
+    "asset_level_v6/blocks.py": "4eb1aba602dea9dd9c4d48aea64104a4a9fa50babe5d13ce906cfdc737600f06",
+    "asset_level_v6/candidates/asset_circular_blocks/DESIGN.md": "b2636460f2595ee872126fac74809043aea5e2d69cb936e97a12ad40fafa298f",
+    "asset_level_v6/candidates/asset_circular_blocks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_circular_blocks/candidate.py": "fbc3e613d6f25b8ce01c643a18dfc3fdc6637990721e915d1836dd854b9c986c",
+    "asset_level_v6/candidates/asset_circular_blocks/circular.py": "13fa077d5aa0b1f91e969235505fb0a9406331fd953938f16575ae08a4a604db",
+    "asset_level_v6/candidates/asset_fading_vol/DESIGN.md": "78e2482ae2b751a1dbec6c0f88e6a302c1801d12f6bf2e9e9c21cd3b08b00ad6",
+    "asset_level_v6/candidates/asset_fading_vol/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_fading_vol/candidate.py": "a6214cd886b696178ebd6f209941badc5e9c55a7357cbd72c91661faf1dc59d7",
+    "asset_level_v6/candidates/asset_fading_vol/fade.py": "fdcdbf58a3e0e5b698ec7efae5b4d4de24e2f5871d1fe708b90cbdaa2a624464",
+    "asset_level_v6/candidates/asset_fading_vol/kernels.py": "f80e32db47d0a7e4adda220b616ad17a063850d16caf48b11f83858ce613e4f8",
+    "asset_level_v6/candidates/asset_feature_batch/DESIGN.md": "9ce3870302a7442e260bf4f6fe6c686bfbdd380ba236587c7051cca559bc9655",
+    "asset_level_v6/candidates/asset_feature_batch/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_feature_batch/candidate.py": "48ca47c07cb4d4c618ab76db0d7f89da02668a4b38e4cd5f0d6a80385494b570",
+    "asset_level_v6/candidates/asset_feature_batch/fits.py": "d0812ded6ee5b6384163d43e999ceeec13a39f901304e6112caf21326b0cacb2",
+    "asset_level_v6/candidates/asset_feature_batch/kernels.py": "01b131c2d918cf1904070ed17eacf1787c91dcf4b1dd9d728712a6d8dc896700",
+    "asset_level_v6/candidates/asset_mean_uncertainty/fhs_only.py": "ab8f291ccb6b9e063b015f461ecccea61fd074f455cc18e6503cf6ea031871bc",
+    "asset_level_v6/candidates/asset_mean_uncertainty/model.py": "ddf68113745c614ddb61dff316e9072c0c0eda8c9044309cddc744f5b1da94dc",
+    "asset_level_v6/candidates/asset_prior_best/candidate.py": "19e1ce86d88466c94eb6177351ba54089c500a4e5e710529219ecb49ac39fb14",
+    "asset_level_v6/candidates/asset_prior_best/fit.py": "df629481a544832e0dd50e5d09813d127e6d75ae179a430f0452cfdbb07a9329",
+    "asset_level_v6/candidates/asset_prior_best/kernels.py": "fb608b9c1a7776d6b99f093c83a2779e11c1741270506d0405bb7b7f33d8b2f9",
+    "asset_level_v6/candidates/asset_prior_best/mean.py": "a39968c4c95a8679f0ed3d422f3d7fb8e83fd4479db10fe1319f8e08727e45f5",
+    "asset_level_v6/common.py": "5ec8ab8afec8dcff490c86d290708a156ae0d7c2f57c62460be8295fbe12bfa0",
+    "asset_level_v6/inputs.py": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9",
+    "asset_level_v6/native_index.py": "c1ff806397eedb85362b1246d30a13dd1e7eadf22edd81d27ef3d7e4924b63e8",
+    "asset_level_v6/prepare.py": "44d34c6f61275b48300710d6da95b625efe97408c6ce9fdace574e91ff87ef74",
+    "asset_level_v6/profile.json": "7a560dddb1ddf1134b71b00db39be18ca83b0ad9d2921f405e66a51807830f2c",
+    "asset_level_v6/qualify.py": "6109ec116413d440dd873658fa0c6f3fb4f431f149d04f36e600c14c86304b11",
+    "asset_level_v6/reporter.py": "c252b7d2220cfc690371dfc060ca2b835592621854910ae3eaf0d1400f45744e",
+    "asset_level_v6/run.py": "51bf796fe32980b2c417e78ff500c3426ad2176f4e3b07ef8b8dc6c10f8bcc21",
+    "asset_level_v6/score_main.py": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+    "asset_level_v6/sweep_v6.py": "c2e51dee86eedbad1e03061019b4a7e7c4fab274cb9f4b2b0f9aadaaf320acc1",
+    "asset_level_v6/test_asset_paths.py": "816afa461243763cbdd7b9d8f25f81b59719c0c9358c000db99c94e3241e856d",
+    "run_asset_feature_batch.py": "ee4cd658f4a74a0b59a4dfee5b97f39b0972e51c532eb746fd849174696ac37e",
+    "screen_asset_circular.py": "2b2ee8e4531a3f9abe0e7ab7a1d788231ae4322eec63f241c818d1496e45d237",
+    "screen_asset_components.py": "7a88144203e7a348440ff9a35c266a62d9552863702e1e65a8b3a9cb1c20895e",
+    "screen_asset_fading_vol.py": "fbc18edc1d8ecb6601e9e634d7e21f10b4b229a7bdea8288ffbcc86c2d6fb78f",
+    "screen_asset_means.py": "045bca7b7c8371dbda3f7583e3ff9f0594f9b12707d46440d3ee1391fed35fde"
+  },
+  "utc": "2026-10-21T03:11:17.008164+00:00",
+  "workers": 12
+}

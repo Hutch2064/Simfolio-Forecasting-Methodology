@@ -1,0 +1,190 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "cases_per_model": 355,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 2,
+      "expected_cases": 355,
+      "main_Q": 0.6731199642115648,
+      "model_id": "model_testing_asset_features_v1_3763052f64159e6e",
+      "percent_better_vs_same1000path_fixed_reference": 3.994328466494912,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6732895223548349,
+      "model_id": "model_testing_asset_features_v1_c71bf41a429ad1b2",
+      "percent_better_vs_same1000path_fixed_reference": 3.9701447484741803,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.6753275938359053,
+      "model_id": "model_testing_asset_features_v1_7a88321a283e746c",
+      "percent_better_vs_same1000path_fixed_reference": 3.6794589397377786,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 4,
+      "expected_cases": 355,
+      "main_Q": 0.6761403763853409,
+      "model_id": "model_testing_asset_features_v1_010bf70201e07751",
+      "percent_better_vs_same1000path_fixed_reference": 3.5635334901625737,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": false
+      },
+      "config_index": 3,
+      "expected_cases": 355,
+      "main_Q": 0.6780037373348087,
+      "model_id": "model_testing_asset_features_v1_7e8e82aa1f307abc",
+      "percent_better_vs_same1000path_fixed_reference": 3.2977662736568103,
+      "successful_cases": 355
+    }
+  ],
+  "configurations": 5,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_features_v1_010bf70201e07751": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 4,
+      "expected_cases": 355,
+      "main_Q": 0.6761403763853409,
+      "percent_better_vs_same1000path_fixed_reference": 3.5635334901625737,
+      "successful_cases": 355
+    },
+    "model_testing_asset_features_v1_3763052f64159e6e": {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 2,
+      "expected_cases": 355,
+      "main_Q": 0.6731199642115648,
+      "percent_better_vs_same1000path_fixed_reference": 3.994328466494912,
+      "successful_cases": 355
+    },
+    "model_testing_asset_features_v1_7a88321a283e746c": {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.6753275938359053,
+      "percent_better_vs_same1000path_fixed_reference": 3.6794589397377786,
+      "successful_cases": 355
+    },
+    "model_testing_asset_features_v1_7e8e82aa1f307abc": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": false
+      },
+      "config_index": 3,
+      "expected_cases": 355,
+      "main_Q": 0.6780037373348087,
+      "percent_better_vs_same1000path_fixed_reference": 3.2977662736568103,
+      "successful_cases": 355
+    },
+    "model_testing_asset_features_v1_c71bf41a429ad1b2": {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6732895223548349,
+      "percent_better_vs_same1000path_fixed_reference": 3.9701447484741803,
+      "successful_cases": 355
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 1775,
+  "official": false,
+  "paths": 1000,
+  "reference_main_Q": {
+    "current_best": 0.6761403763853409,
+    "fixed_reference": 0.7011252079796684
+  },
+  "scoring_integrity_errors": 0,
+  "scoring_protocol_unchanged": true,
+  "utc": "2026-10-21T03:21:42.744861+00:00"
+}

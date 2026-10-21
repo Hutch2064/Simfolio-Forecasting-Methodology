@@ -1,0 +1,219 @@
+{
+  "source_repository_commit": "018a3a2ba09ed26f40fbdae17b126434986bb39e",
+  "source_files": {
+    "docs/results/combined-176-score-ranking.json": "f657098867c68969de7c785290f0b1a8bc6f522aac02ea391fcca0d7a56562e2",
+    "docs/results/expanded132/score-report.json": "7b4e8bd96b7e7bb46f145a9600bfd460f41bec4acf424bba4ff5025ed2c61eab",
+    "docs/results/catalogue52/refinement52-final-report.md": "8da2585b7800e560f2453e4aeeabbcdd0f3d0252ac8315333aa7d536d6bf8f76",
+    "src/simfolio_forecasting_methodology/resources/results/unified_frontier_bridge_publication/historical_catalogues/master/catalogs/single52_results.json": "87b1c2d646d45ee00c2788a8050dd92a9a8802b6c84cdfa1a73989d37be3baee"
+  },
+  "historical80_recorded_leaders": [
+    {
+      "public_model_id": "equal_path_pool_m261_and_bayesian_ewma_sbb",
+      "display_name": "Equal-weight MAP rough and Bayesian EWMA forecast mixture",
+      "exact_empirical_crps": "0.2201357869781349",
+      "canonical_rank": 262,
+      "historical_rank": null,
+      "display_rank": 1,
+      "score_evidence_origin": "validated_full_canonical_execution",
+      "is_new_execution": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score"
+    },
+    {
+      "public_model_id": "asset_m256_data_timescales_existing_sv_rate",
+      "display_name": "M261 \u2014 M256 Data-selected Timescale: existing_sv_rate",
+      "exact_empirical_crps": "0.22672308848311776",
+      "canonical_rank": 261,
+      "historical_rank": null,
+      "display_rank": 2,
+      "score_evidence_origin": "validated_full_canonical_execution",
+      "is_new_execution": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score"
+    },
+    {
+      "public_model_id": "asset_map_stationary_ar1_innovation_student_corrected_dcc_dynamic_rough",
+      "display_name": "M256 \u2014 Asset MAP Stationary AR1 + Student Corrected Dynamic Correlation + Dynamic Rough",
+      "exact_empirical_crps": "0.22687132859413414",
+      "canonical_rank": 256,
+      "historical_rank": null,
+      "display_rank": 3,
+      "score_evidence_origin": "validated_full_canonical_execution",
+      "is_new_execution": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score"
+    },
+    {
+      "public_model_id": "asset_map_stationary_ar1_innovation_corrected_dcc_dynamic_rough",
+      "display_name": "M255 \u2014 Asset MAP Stationary AR1 + Corrected Dynamic Correlation + Dynamic Rough",
+      "exact_empirical_crps": "0.22705549647165937",
+      "canonical_rank": 255,
+      "historical_rank": null,
+      "display_rank": 4,
+      "score_evidence_origin": "validated_full_canonical_execution",
+      "is_new_execution": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score"
+    },
+    {
+      "public_model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+      "display_name": "Equal-weight stationary OU and Bayesian EWMA forecast mixture",
+      "exact_empirical_crps": "0.22745132492949452",
+      "canonical_rank": 263,
+      "historical_rank": null,
+      "display_rank": 5,
+      "score_evidence_origin": "validated_full_canonical_execution",
+      "is_new_execution": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score"
+    },
+    {
+      "public_model_id": "asset_m256_data_timescales_stationary_one",
+      "display_name": "M260 \u2014 M256 Data-selected Timescale: stationary_one",
+      "exact_empirical_crps": "0.22804312178001787",
+      "canonical_rank": 260,
+      "historical_rank": null,
+      "display_rank": 6,
+      "score_evidence_origin": "validated_full_canonical_execution",
+      "is_new_execution": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score"
+    },
+    {
+      "public_model_id": "asset_map_stationary_ar1_innovation_student_copula_dynamic_rough",
+      "display_name": "M251 \u2014 Asset MAP Stationary AR1 + Innovation Student Copula + Dynamic Rough",
+      "exact_empirical_crps": "0.22827457774792856",
+      "canonical_rank": 251,
+      "historical_rank": null,
+      "display_rank": 7,
+      "score_evidence_origin": "validated_full_canonical_execution",
+      "is_new_execution": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score"
+    },
+    {
+      "public_model_id": "asset_map_stationary_ar1_innovation_shrinkage_copula_dynamic_rough",
+      "display_name": "M250 \u2014 Asset MAP Stationary AR1 + Innovation Gaussian Shrinkage Copula + Dynamic Rough",
+      "exact_empirical_crps": "0.22829160576064347",
+      "canonical_rank": 250,
+      "historical_rank": null,
+      "display_rank": 8,
+      "score_evidence_origin": "validated_full_canonical_execution",
+      "is_new_execution": false,
+      "historical_score_verified": true,
+      "verification_status": "validated_full_canonical_score"
+    }
+  ],
+  "historical52_recorded_top_models": [
+    {
+      "model_id": "asset_m256_data_timescales_existing_sv_rate",
+      "single52_crps": 0.6138695810898457,
+      "historical80_crps": 0.22672308848311776,
+      "historical80_evidence_verified": true
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_sv_ar1_logvol_bias_corrected",
+      "single52_crps": 0.6191351300583814,
+      "historical80_crps": 0.25582280588825473,
+      "historical80_evidence_verified": false
+    },
+    {
+      "model_id": "bayesian_sbb_ml_vol_overlay_rf_harx_ff6",
+      "single52_crps": 0.6191695290200228,
+      "historical80_crps": 0.2558767877509775,
+      "historical80_evidence_verified": false
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_gjr_garch_1_1",
+      "single52_crps": 0.6198766778508095,
+      "historical80_crps": 0.26224498248121614,
+      "historical80_evidence_verified": false
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_ewma_absolute",
+      "single52_crps": 0.6235787199656363,
+      "historical80_crps": 0.25801165086966715,
+      "historical80_evidence_verified": false
+    },
+    {
+      "model_id": "asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced",
+      "single52_crps": 0.6420341742861375,
+      "historical80_crps": 0.2557255171048505,
+      "historical80_evidence_verified": false
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_harch_1_5_22",
+      "single52_crps": 0.6429366506644465,
+      "historical80_crps": 0.2568880640642086,
+      "historical80_evidence_verified": false
+    },
+    {
+      "model_id": "sv_live_baseline_sharpe_dlm_historical_cagr_anchor_bdes_multiscale_vol_conditional_sharpe_full_inla_laplace_quadrature_centered_multiscale",
+      "single52_crps": 0.6853983253371085,
+      "historical80_crps": 0.2928636384101145,
+      "historical80_evidence_verified": false
+    },
+    {
+      "model_id": "asset_level_exact_kalman_dynamic_gaussian_factor_rebalanced",
+      "single52_crps": 0.688097410175415,
+      "historical80_crps": 0.2771641415051672,
+      "historical80_evidence_verified": false
+    },
+    {
+      "model_id": "bayesian_sbb_overlay_figarch_1_d_1",
+      "single52_crps": 0.7288907392692379,
+      "historical80_crps": 0.2624589516546082,
+      "historical80_evidence_verified": false
+    }
+  ],
+  "expanded132_recorded_ranking": [
+    {
+      "candidate": "pool",
+      "equal_block_score": 0.40781825383484904,
+      "evidence": [
+        "pool-original80",
+        "pool-single52"
+      ],
+      "original80": 0.2201357869781349,
+      "rank": 1,
+      "single52": 0.5955007206915632
+    },
+    {
+      "candidate": "ou-pool",
+      "equal_block_score": 0.4132164074012394,
+      "evidence": [
+        "ou-pool-original80",
+        "ou-pool-single52"
+      ],
+      "model_id": "equal_path_pool_stationary_ou_and_bayesian_ewma_sbb",
+      "original80": 0.22745132492949452,
+      "rank": 2,
+      "single52": 0.5989814898729843
+    },
+    {
+      "candidate": "incumbent",
+      "equal_block_score": 0.4202963347864817,
+      "evidence": [
+        "incumbent-original80",
+        "incumbent-single52"
+      ],
+      "original80": 0.22672308848311776,
+      "rank": 3,
+      "single52": 0.6138695810898457
+    },
+    {
+      "candidate": "ewma",
+      "equal_block_score": 0.4407951854176517,
+      "evidence": [
+        "ewma-original80",
+        "ewma-single52"
+      ],
+      "original80": 0.25801165086966715,
+      "rank": 4,
+      "single52": 0.6235787199656363
+    }
+  ],
+  "R52_selected_refinement": "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION",
+  "use": "Mechanism-generation support only. Old raw CRPS protocols, coverage, simulation counts and references differ; do not report these as expanded-panel scores. No new historical52/80 rerun claimed.",
+  "current_goal_objective_text_changed": false
+}

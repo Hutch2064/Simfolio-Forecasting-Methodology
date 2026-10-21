@@ -1,0 +1,79 @@
+{
+  "utc": "2026-10-21T03:23:06.819712+00:00",
+  "reserved_summary_sha256": "8a16e0cf8db7d147b5cfbd575d0a66b5a4e16f759f13a4275d0bd4dd805daa2c",
+  "selection": "All three stochastic-volatility configurations improving both development and reserved overall scores, plus exact incumbent. Frozen before broad forecasts.",
+  "selected": [
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 2,
+      "expected_cases": 355,
+      "main_Q": 0.6731199642115648,
+      "model_id": "model_testing_asset_features_v1_3763052f64159e6e",
+      "percent_better_vs_same1000path_fixed_reference": 3.994328466494912,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6732895223548349,
+      "model_id": "model_testing_asset_features_v1_c71bf41a429ad1b2",
+      "percent_better_vs_same1000path_fixed_reference": 3.9701447484741803,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.6753275938359053,
+      "model_id": "model_testing_asset_features_v1_7a88321a283e746c",
+      "percent_better_vs_same1000path_fixed_reference": 3.6794589397377786,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": true
+      },
+      "config_index": 4,
+      "expected_cases": 355,
+      "main_Q": 0.6761403763853409,
+      "model_id": "model_testing_asset_features_v1_010bf70201e07751",
+      "percent_better_vs_same1000path_fixed_reference": 3.5635334901625737,
+      "successful_cases": 355
+    }
+  ],
+  "paths": 1000,
+  "case_count": 7418,
+  "official": false,
+  "independent_validation_claim": false
+}

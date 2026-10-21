@@ -71,7 +71,13 @@ def main():
                  'diagnose_asset_fading_pilots.py', 'asset_fading_storage_budget.json',
                  'screen_asset_equilibrium_blocks.py','run_asset_equilibrium_pilot.py',
                  'continue_asset_equilibrium_blocks.py','test_asset_equilibrium_blocks.py',
-                 'diagnose_asset_training_memory.py','test_asset_training_memory.py']:
+                 'diagnose_asset_training_memory.py','test_asset_training_memory.py',
+                 'screen_asset_AR1_mean.py','test_asset_AR1_mean.py','preserve_asset_AR1_pilot.py',
+                 'run_asset_feature_batch.py','test_asset_feature_batch.py',
+                 'prepare_asset_feature_confirmation.py','run_asset_feature_confirmation.py',
+                 'prepare_asset_feature_reserved.py','run_asset_feature_reserved.py','preserve_asset_feature_development.py',
+                 'prepare_asset_feature_broad.py','run_asset_feature_broad.py','asset_feature_storage_budget.json',
+                 'retire_closed_asset_circular_losses.py','preserve_asset_circular_retirement_metadata.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -117,12 +123,12 @@ def main():
         if path.exists():
             compact = {k: v for k, v in json.loads(path.read_text()).items() if k != 'records'}
             (mean_target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
-    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks'):
+    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks','asset_AR1_mean','asset_feature_batch'):
         source = V/'candidates'/name
         dest = D/'candidates'/name
         dest.mkdir(exist_ok=True)
         for path in source.iterdir():
-            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','full_selection.json','horizon_diagnostics.json'):
+            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json'):
                 shutil.copy2(path,dest/path.name)
         for phase in ('development','reserved','broad'):
             path = source/phase/'summary.json'
@@ -137,7 +143,7 @@ def main():
             shutil.copy2(fading_source/'full'/name,fading_target/'full'/name)
     if (fading_source/'promotion_receipt.json').exists():
         shutil.copy2(fading_source/'promotion_receipt.json',fading_target/'promotion_receipt.json')
-    for phase in ('iid_component_screen100','gjr_screen100','adaptive_blocks_screen100','empirical_mean_screen100','fading_vol_screen100'):
+    for phase in ('iid_component_screen100','gjr_screen100','adaptive_blocks_screen100','empirical_mean_screen100','fading_vol_screen100','equilibrium_blocks_screen100','AR1_mean_screen100'):
         path = mean_source/phase/'summary.json'
         if path.exists():
             compact = {k:v for k,v in json.loads(path.read_text()).items() if k!='records'}
@@ -149,7 +155,7 @@ def main():
             (gjr_target/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
     if (gjr/'decision.json').exists():
         shutil.copy2(gjr/'decision.json',gjr_target/'decision.json')
-    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021'):
+    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021'):
         path = O/'archives'/folder/'receipt.json'
         if path.exists():
             shutil.copy2(path,D/(folder+'-archive-receipt.json'))
@@ -173,6 +179,21 @@ def main():
             shutil.copy2(circular/'full'/name, circular_full/name)
     if (circular/'promotion_receipt.json').exists():
         shutil.copy2(circular/'promotion_receipt.json', circular_target/'promotion_receipt.json')
+    retirement_circular=O/'archives/asset-v6-circular-raw-retirement-20261021'
+    for name in ('receipt.json','metadata_remote_recovery.json'):
+        if (retirement_circular/name).exists():
+            shutil.copy2(retirement_circular/name,D/('circular-raw-retirement-'+name))
+    if (circular/'ARCHIVED_LOSSES.json').exists():
+        shutil.copy2(circular/'ARCHIVED_LOSSES.json',circular_target/'ARCHIVED_LOSSES.json')
+    for phase in ('screen100','confirmation1000','reserved1000','broad1000'):
+        source=V/'candidates/asset_feature_batch'/phase
+        destination=D/'candidates/asset_feature_batch'/phase
+        destination.mkdir(exist_ok=True)
+        for name in ('plan.json','summary.json'):
+            path=source/name
+            if path.exists():
+                compact={k:v for k,v in json.loads(path.read_text()).items() if k not in ('records','fit_packets')}
+                (destination/name).write_text(json.dumps(compact,indent=2)+'\n')
     screen = mean_source/'screen100/summary.json'
     if screen.exists():
         compact = {k: v for k, v in json.loads(screen.read_text()).items() if k != 'records'}
@@ -186,7 +207,7 @@ def main():
                  'broad_case_selection_receipt.json', 'DESIGN.md']:
         if (c/name).exists():
             shutil.copy2(c/name, target/name)
-    for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json', 'candidate_full_diagnostics.json','training_short_memory_diagnostic.json', 'official_scoreboard.json', 'CURRENT_RESEARCH.md']:
+    for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json', 'candidate_full_diagnostics.json','training_short_memory_diagnostic.json', 'official_scoreboard.json', 'CURRENT_RESEARCH.md','OPEN_RESEARCH.md']:
         if (V/name).exists():
             shutil.copy2(V/name, D/name)
     manifest = {str(p.relative_to(D)): sha(p) for p in sorted(D.rglob('*'))
@@ -198,7 +219,7 @@ def main():
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
                            'test_asset_iid_component.py', 'test_asset_gjr.py',
-                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py'],
+                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
