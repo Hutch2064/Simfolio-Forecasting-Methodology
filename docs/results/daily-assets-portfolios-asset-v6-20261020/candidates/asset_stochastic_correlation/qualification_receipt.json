@@ -1,0 +1,30 @@
+{
+  "utc": "2026-10-21T05:36:37.243489+00:00",
+  "tests_passed": 7,
+  "log": "stochastic_correlation_qualification.log",
+  "log_sha256": "a4c31aafa8e1406e57cdba907c28cdb927d156dd19ce21a420f6f61a57e946ef",
+  "sources": {
+    "asset_level_v6/candidates/asset_stochastic_correlation/__init__.py": "20afabecdca5da209c3e78a174172e4728cd58d279299466b499f0f8edbe4b86",
+    "asset_level_v6/candidates/asset_stochastic_correlation/DESIGN.md": "bfc93baff45e84f5f043c07e7b180464321dd6ecbacb32d788995d4d8e67a3c9",
+    "asset_level_v6/candidates/asset_stochastic_correlation/candidate.py": "f98fa3834698804a8daf5679c94ce251b59dcd0fc38e2d11f1463a0b6f676fec",
+    "asset_level_v6/candidates/asset_stochastic_correlation/states.py": "5b6f7ea964be0a6000c732bfb02b2be5c218455a492608f2d8f23e7c6cb685f9",
+    "asset_level_v6/candidates/asset_dynamic_correlation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "asset_level_v6/candidates/asset_dynamic_correlation/shrinkage.py": "eee40dd1662a8460ee31066a60f30bf7e4af74814b4164420f7904a129db634a",
+    "asset_level_v6/candidates/asset_dynamic_correlation/DESIGN.md": "0fd3593dc84431754b362f78bf2862b103cc42770c5b0b8d9d3d1fbccd986a4b",
+    "asset_level_v6/candidates/asset_dynamic_correlation/candidate.py": "a2be0dc7adeeda87a6baf081476241f824d58c459c78021d55806d4f98013d78",
+    "asset_level_v6/candidates/asset_dynamic_correlation/correlation.py": "5e80e7561291d0567d210ce0d6108c7d4983c88755d5e91b28cc971aa9b57981",
+    "asset_level_v6/candidates/asset_dynamic_correlation/state.py": "2a82a60c4ca8e7edd6c2a0966953f385f8cc8493c6616980c48c7874204a30a8"
+  },
+  "test_source_sha256": "eb7ec3f54a6a9eb778499da70a668f5029b86b705134aadb2548ec90caf51507",
+  "checks": [
+    "independent corrected recursion parity and positive definite states",
+    "exact chunk-state continuity",
+    "Monte Carlo conditional covariance and expected Q recursion",
+    "byte-identical parent at100 and1000paths",
+    "joint paths and exact counts in every mode",
+    "byte-identical scalar-asset forecasts at100 and1000paths",
+    "unchanged parent fitted blend and training-prefix identity"
+  ],
+  "financial_source_unchanged_after_initial_qualification": true,
+  "qualification_only_not_accuracy_evidence": true
+}

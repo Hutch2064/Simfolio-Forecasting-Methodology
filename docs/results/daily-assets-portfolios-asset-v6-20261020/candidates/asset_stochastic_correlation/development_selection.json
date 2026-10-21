@@ -1,0 +1,33 @@
+{
+  "selected": [
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "stochastic"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.824241675540053,
+      "model_id": "model_testing_asset_stochastic_correlation_v1_dac6c988e1f41f59",
+      "percent_better_vs_same100path_fixed_reference": 14.836491782418527,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.824281294634695,
+      "model_id": "model_testing_asset_stochastic_correlation_v1_bddcd6a8e4de59aa",
+      "percent_better_vs_same100path_fixed_reference": 14.832398200169228,
+      "successful_cases": 72
+    }
+  ],
+  "reason": "The full stochastic mechanism differs materially from the earlier conditional-mean approximation and all three100-path scores are near the parent. Resolve this small exploratory difference at1000paths on the unchanged355-case development sample; include static-target control to separate shrinkage from state evolution. No retuning or automatic full escalation.",
+  "paths": 1000,
+  "selection_uses_diagnostics_weight": false
+}

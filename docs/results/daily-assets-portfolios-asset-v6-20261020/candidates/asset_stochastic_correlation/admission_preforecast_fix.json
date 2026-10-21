@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-21T05:37:57.629904+00:00",
+  "failed_attempt": "screen100",
+  "errors": 72,
+  "successful_forecasts": 0,
+  "classification": "Harness integration errors, not failed native numerical fits or scoring-integrity discrepancies",
+  "cause": "Copied runner expected prepared[\"parent\"], but this candidate deliberately exposes the parent-compatible bundle directly.",
+  "correction": "New immutable screen100_v2 runner uses the direct bundle and executes the first highest-work case serially before admitting the remaining shared pool.",
+  "financial_source_changed": false,
+  "failed_records_preserved": true,
+  "full_panel_catalogue_increment": 0
+}

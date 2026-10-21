@@ -1,0 +1,101 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "stochastic"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.824241675540053,
+      "model_id": "model_testing_asset_stochastic_correlation_v1_dac6c988e1f41f59",
+      "percent_better_vs_same100path_fixed_reference": 14.836491782418527,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8242535934694928,
+      "model_id": "model_testing_asset_stochastic_correlation_v1_0e0fa87a2312c6e2",
+      "percent_better_vs_same100path_fixed_reference": 14.835260380619875,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.824281294634695,
+      "model_id": "model_testing_asset_stochastic_correlation_v1_bddcd6a8e4de59aa",
+      "percent_better_vs_same100path_fixed_reference": 14.832398200169228,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 3,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_stochastic_correlation_v1_0e0fa87a2312c6e2": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "conditional_mean"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8242535934694928,
+      "percent_better_vs_same100path_fixed_reference": 14.835260380619875,
+      "successful_cases": 72
+    },
+    "model_testing_asset_stochastic_correlation_v1_bddcd6a8e4de59aa": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.824281294634695,
+      "percent_better_vs_same100path_fixed_reference": 14.832398200169228,
+      "successful_cases": 72
+    },
+    "model_testing_asset_stochastic_correlation_v1_dac6c988e1f41f59": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "stochastic"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.824241675540053,
+      "percent_better_vs_same100path_fixed_reference": 14.836491782418527,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 216,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8235702227265657,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 30.937017829040997,
+  "utc": "2026-10-21T05:38:11.550543+00:00"
+}
