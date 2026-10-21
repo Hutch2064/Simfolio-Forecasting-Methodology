@@ -68,7 +68,9 @@ def main():
                  'report_asset_fading_full.py', 'promote_asset_fading.py',
                  'preserve_asset_fading_closed.py', 'catalogue_asset_fading_closed.py',
                  'finish_asset_fading.py', 'launch_asset_fading_full_when_ready.py',
-                 'diagnose_asset_fading_pilots.py', 'asset_fading_storage_budget.json']:
+                 'diagnose_asset_fading_pilots.py', 'asset_fading_storage_budget.json',
+                 'screen_asset_equilibrium_blocks.py','run_asset_equilibrium_pilot.py',
+                 'continue_asset_equilibrium_blocks.py','test_asset_equilibrium_blocks.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -114,7 +116,7 @@ def main():
         if path.exists():
             compact = {k: v for k, v in json.loads(path.read_text()).items() if k != 'records'}
             (mean_target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
-    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol'):
+    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks'):
         source = V/'candidates'/name
         dest = D/'candidates'/name
         dest.mkdir(exist_ok=True)
@@ -195,7 +197,7 @@ def main():
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
                            'test_asset_iid_component.py', 'test_asset_gjr.py',
-                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py'],
+                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
@@ -229,7 +231,7 @@ def main():
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 45}), flush=True)
+                      'tests': 49}), flush=True)
 
 
 if __name__ == '__main__':
