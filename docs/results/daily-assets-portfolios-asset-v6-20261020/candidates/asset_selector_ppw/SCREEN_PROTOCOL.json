@@ -1,0 +1,54 @@
+{
+  "utc": "2026-10-21T11:43:34.295273+00:00",
+  "status": "prepared protocol; no financial admission yet",
+  "case_manifest": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_path_objective/screen100/plan.json",
+  "case_manifest_sha256": "32eb0017016c7867a163ef770125b57d9ab3b9f0b739e18dcbb1b52145c4c1ec",
+  "same_frozen_cases": 72,
+  "families": 70,
+  "inner_paths": 100,
+  "outer_paths": 100,
+  "variants": [
+    {
+      "menu": "original166",
+      "criterion": "terminal",
+      "role": "control_replay"
+    },
+    {
+      "menu": "original166",
+      "criterion": "path",
+      "role": "control_replay"
+    },
+    {
+      "menu": "expanded168",
+      "criterion": "terminal",
+      "role": "new_candidate"
+    },
+    {
+      "menu": "expanded168",
+      "criterion": "path",
+      "role": "new_candidate"
+    }
+  ],
+  "expected_total_outer_forecasts": 288,
+  "expected_control_replays": 144,
+  "expected_new_candidate_forecasts": 144,
+  "historical_preparation": "comparison.prepare_pair once per request; exact original166principal coefficient block reused from168option curves",
+  "control_checkpoints": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_path_objective/screen100",
+  "reference_checkpoints": "Use that stage plan reference_checkpoints for the fixed100path WR controls; never substitute1000path or differing coverage",
+  "shared_worker_limit": 12,
+  "forecast_slot_lock": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_v6_forecast_slots.lock",
+  "admission_owner": "Active research turn after checking actual goal and current precision stage; no launch from a read-only polling task",
+  "precondition": "Current72case1000path criterion test terminal and integrity verified; finish/diagnose that stage before new admission",
+  "scientific_gate": "Every reconstructed original-control inner trace and full outer loss vector must match its preserved same100path control; archive any failure instead of promoting partial results",
+  "single_main_score_unchanged": true,
+  "percent_delta": "100*(1-Qmodel/Qfixed_WR), exact same successful cases and simulation counts; say better/worse",
+  "diagnostics_zero_selection_weight": true,
+  "independence_or_significance_claim": false,
+  "promotion": "Exploratory screen only. Promising extensions require1000path precision and broader matched validation; no full-panel promotion or stopping from this screen",
+  "full_panel_catalogue_increment": 0,
+  "harness_script": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/screen_selector_ppw_menu.py",
+  "harness_sha256": "6c26c628daefa375698d03378b558ca46d19ad0e29fad4ab39483c796c8cd11a",
+  "orchestration_status": "Syntax checked; actual first-case control replay is a mandatory admission gate before opening the12worker pool",
+  "first_request_per_process_profiled": "CPU cProfile diagnostic; excluded from mean/median remaining-compute rate samples",
+  "integrity_before_admission": "Independent saved-loss reduction of the completed1000path criterion stage must pass"
+}
