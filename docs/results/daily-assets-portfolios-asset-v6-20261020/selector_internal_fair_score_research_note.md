@@ -1,0 +1,7 @@
+# Finite internal ensembles: open research, not an admitted change
+
+Ferro2014Fair scores for ensemble forecasts, https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.2270 ; author manuscript https://empslocal.ex.ac.uk/people/staff/ferro/Publications/ferro2013.pdf , motivates distinguishing finite-ensemble CRPS from the underlying predictive-law score. Under IID Monte Carlo, the usual N-squared self-distance term has finite-N bias; the U-statistic self-distance denominator N(N-1) removes it.
+
+The current mean-uncertainty generator uses per-coordinate stratified antithetic draws and permutations. Members are dependent. Recipes also share random numbers. Therefore simply multiplying every B coefficient by N/(N-1) is not established as unbiased here and is not admitted. Very low-count outer results cannot establish identical recipe selection or absence of internal finite-ensemble bias.
+
+One possible later contrast is independent simulation replicas for cross-replica distance estimates. Each replica may be internally stratified, but cross-replica draws are independent. A symmetrized cross-replica mixture-distance estimate is unbiased under its declared marginal assumptions; its finite-sample quadratic form need not be convex on the simplex. That optimization/conditioning issue needs independent mathematical and numerical qualification before use. No new objective, candidate, production count or outer-score change is implied by this note.
