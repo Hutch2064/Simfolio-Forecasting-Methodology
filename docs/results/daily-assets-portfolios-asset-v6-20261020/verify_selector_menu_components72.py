@@ -18,7 +18,9 @@ def main():
  plan=read(D/'plan.json');summary=read(D/'summary.json');refs=read(D/'references.json')['cases']
  assert summary['complete_execution'] and summary['qualification_valid'] and not summary['errors']
  assert plan['outer_paths']==summary['outer_paths']==1000 and not plan['official'] and plan['full_panel_catalogue_increment']==0
- assert all(sha(O/p)==h for p,h in plan['source_hashes'].items());assert sha(D/'references.json')==plan['references_sha256']
+ assert all(sha(O/p)==h for p,h in plan['source_hashes'].items())
+ supplemental=read(D/'supplemental_sources.json');assert supplemental['stage_plan_unchanged'] and all(sha(O/p)==h for p,h in supplemental['source_hashes'].items())
+ assert sha(D/'references.json')==plan['references_sha256']
  cases,configs=plan['cases'],plan['configs'];records=summary['records'];expected={(i,j)for i in range(len(cases))for j in range(len(configs))}
  assert len(records)==plan['expected_new_forecasts']==len(expected) and {(r['case'],r['config_index'])for r in records}==expected
  rows={r['series_id']:r for r in api.load_panel(V/'inputs',verify_files=False)['series']};cached={};reference_rows={k:[]for k in ('fixed_reference','original_10','original_30')}
@@ -65,7 +67,7 @@ def main():
   selected=[recalculated[r['case'],j]for r in records if r['config_index']==j];q=score_main.aggregate_records(selected,rows)['score'];m=next(m for m in summary['models']if m['config_index']==j)
   assert q==m['main_Q'] and percent_better(q,baseline)==m['percent_better_vs_fixed_reference'] and q-originals[str(cfg['inner_paths'])]==m['main_Q_difference_from_matched_original']
   models.append({**m,'average_final_path_share':{label:float(np.mean([sum(r['selection']['path_counts'][k]for k in indices)/1000 for r in selected]))for label,indices in {'nested_parent':[0],'standalone_raw':[166],'standalone_filtered':[167],'PPW_stationary':[168],'PPW_circular':[169]}.items()}})
- receipt={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'verified':True,'summary_sha256':sha(D/'summary.json'),'plan_sha256':sha(D/'plan.json'),'verifier_sha256':sha(Path(__file__)),'candidate_forecasts_verified':len(verified),'reference_forecasts_verified':len(cases)*len(reference_rows),'original_loss_vectors_byte_exact':2*len(cases),'outer_paths':1000,'main_reference_Q':baseline,'models':models,'no_automatic_promotion_or_production_precision_choice':True,'no_independence_or_significance_claim':True,'verified_checkpoint_identities':verified}
+ receipt={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'verified':True,'summary_sha256':sha(D/'summary.json'),'plan_sha256':sha(D/'plan.json'),'verifier_sha256':sha(Path(__file__)),'supplemental_sources_sha256':sha(D/'supplemental_sources.json'),'candidate_forecasts_verified':len(verified),'reference_forecasts_verified':len(cases)*len(reference_rows),'original_loss_vectors_byte_exact':2*len(cases),'outer_paths':1000,'main_reference_Q':baseline,'models':models,'no_automatic_promotion_or_production_precision_choice':True,'no_independence_or_significance_claim':True,'verified_checkpoint_identities':verified}
  api.original._atomic_json(D/'verification_receipt.json',receipt)
  compact={k:v for k,v in receipt.items()if k!='verified_checkpoint_identities'};api.original._atomic_json(O/'selector_menu_components_verification.json',compact)
  print(json.dumps(compact,indent=2),flush=True)
