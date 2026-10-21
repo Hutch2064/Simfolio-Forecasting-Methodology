@@ -1,29 +1,33 @@
 # Current asset-level accuracy research
 
-The goal remains active. Baseline qualification, both complete baseline evaluations, the first full candidate and its independent audit are complete. This is not the evidence-based research stopping point.
+The accuracy-maximization goal remains active. A verified winner is not the research stopping point.
 
 ## Official retained set: one main score
 
-All methods below use the identical64,049 successful forecasts across1,264 streams at1,000simulations. Lower main Q is better. The fixed reporting reference is the worse completed TestFolio-style asset configuration, With Replacement.
+All retained methods below cover the identical64,049 successful forecasts across1,264streams at1,000simulations. Lower main Q is better. The fixed reporting reference is the worse completed asset-level TestFolio-style configuration, With Replacement.
 
 | Method | Main Q | Better vs fixed reference | Recorded worker compute seconds |
 |---|---:|---:|---:|
-| Asset Blocks — With Replacement |0.6320715457043177|reference|13316.0431|
-| Asset Blocks — Without Replacement |0.6310508866260718|0.1614784%|12956.4817|
-| Asset Equal Mix / Smooth Gaussian Mean Uncertainty |0.6150071135191089|2.6997628%|11721.9583|
+|Asset Blocks — With Replacement|0.6320715457043177|reference|13316.0431|
+|Asset Blocks — Without Replacement|0.6310508866260718|0.1614784%|12956.4817|
+|Asset Circular Equal Mix / Smooth Gaussian Mean Uncertainty|0.6124975796345598|3.0967960%|11948.5294|
 
-Every retained method completed64,049forecasts with zero native failures and zero scoring integrity errors. Source-bound checkpoint identities and unchanged score reduction were independently verified. Recorded worker compute includes input preparation, fitting, joint simulations and empirical CRPS, including identity-verified reused pilot forecasts. It excludes IO/setup/queue and is not a controlled speed comparison. No independence or significance claim is made; these are adaptively reused benchmark cases.
+All retained methods have zero native failures and zero scoring integrity errors. The complete baseline pair and each promoted winner have independently verified source-bound checkpoint identities and canonical score reduction. Recorded worker compute includes input preparation, fitting, joint simulation and CRPS, including identity-verified reused pilot forecasts. It excludes IO/setup/queue and is not a controlled speedup comparison. These adaptively reused cases do not support independence or significance claims.
 
-The current best is one fixed cohesive asset-level law: equal raw joint historical-block paths and per-asset GARCH(1,1) filtered historical simulations, joint empirical innovation rows, smooth training-only mean shrinkage, and jointly correlated Gaussian uncertainty around the mean. It evolves holdings and rebalancing inside each simulated path. There are no test-score-selected class or horizon routes.
+## Cohesive model and continuing research
 
-## Further research
+The winner is a single fixed asset-level procedure. Its frozen implementation and full-panel catalogue specify the raw joint-row sampler, filtered variance law, mean treatment, joint shocks and portfolio accounting. Constituent paths and holdings evolve inside every scenario; no test-score-selected asset-class, family or horizon routing is used.
 
-A100-path355-case screen favored the equal mixture over its filtered-only endpoint. A second same-count screen rejected ordinary nonwrapping replacement for the raw half. A distinct circular-start contrast improved the100-path screen, both355-case1,000-path development/reserved gates and the7,418-case broad gate. It is now running the full64,049-forecast evaluation with12workers, reusing8,128identity/hash-verified pilot checkpoints. The verified current best above is retained until complete independently checked full results justify promotion. An IID raw-component simplification passed2unit tests and is queued for a100-path screen after the shared forecast slots become free; it retains joint asset rows and the unchanged filtered component. All screens are exploratory, separate from official scores and full-panel catalogue counts. Plans freeze sources/cases/seeds before field forecasts. Twelve forecast slots are shared and bulk archival IO is coordinated.
+The circular raw-block contrast passed355-case development,355-case reserved and7,418-case broad checks at1,000paths before full admission. Official promotion occurs only after complete matched full results and independent verification. Low-simulation component and sampler screens remain exploratory and separate from official results and full-panel catalogue counts. The additive diagnostic reconciles to canonical Q and has zero additional score or model-selection weight.
 
-The additive full-score diagnostic reconciles every dimension to canonical Q. It shows broad gains but some remaining family regressions; diagnostics receive zero additional score or selection weight. They guide hypotheses, not weights, routes or model promotion.
+Further evidence-led research includes an IID raw-component simplification and a nested sign-asymmetric variance-filter prototype. Their training qualification or screen outcomes are not full-panel accuracy claims. All scientific forecast/qualification pools share12worker slots; no small win or a few rejected variants closes the goal.
 
 ## Preservation and recovery
 
-The private baseline archive preserves134,653files. The complete hybrid archive preserves72,258files, including all64,049full checkpoints plus pilots, source, controls/registry, seeds, admission and verification evidence. Every archived file was fresh-downloaded, physically restored and SHA256verified. These private releases and exact per-part manifest digests are recorded in closed-baseline-archive-receipt.json and closed-hybrid-archive-receipt.json. No active scientific originals were removed. The full-panel catalogue retains every completed implementation version, including losers; identical reruns count once.
+- Private release research-asset-v6-baselines-1000-20261020: 134,653files fresh-downloaded, physically disk-restored and SHA256verified.
+- Private release research-asset-v6-hybrid-1000-20261021: 72,258files fresh-downloaded, physically disk-restored and SHA256verified.
+- Private release research-asset-v6-circular-1000-20261021: 72,249files fresh-downloaded, physically disk-restored and SHA256verified.
 
-Restore baseline shared/input archives and sealed numerical parents referenced by execution identities, then restore candidate archives at the research owner root. Verify every manifest path, size and SHA256 before use. Public code/evidence is separately fresh-download verified after publication. No production code or deployment was changed.
+Complete raw losses, implementations, fitting/mean kernels, controls/registry, seeds, admission and verification evidence are preserved privately. Public compact receipts provide all archive/manifest digests and dependency releases. Restore baseline shared/input archives and sealed numerical parents, then the hybrid parent source and selected candidate archives at the research owner root; verify every manifest path, size and SHA256 before use. Current V6 scientific originals remain local while needed by active research.
+
+The catalogue retains all fully attempted implementation versions, including losers; identical reruns count once. Source and compact evidence are pushed to the research repository and separately fresh-download/disk-restore verified. No production implementation or deployment is changed.

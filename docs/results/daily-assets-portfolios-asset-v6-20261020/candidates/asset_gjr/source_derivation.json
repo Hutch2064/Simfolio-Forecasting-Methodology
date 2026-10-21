@@ -1,0 +1,17 @@
+{
+  "estimator_source": "simulation_1000_v5/research_gjr/gjr_fit.py",
+  "original_sha256": "f988e2724de5802fbd5de3c8ac3fc76b8a1cd1656dec51d1b17608d485b3f1cc",
+  "copied_functions": [
+    "coordinates",
+    "filter_loss",
+    "fit",
+    "objective",
+    "parameters",
+    "target_pool"
+  ],
+  "changes": [
+    "Current asset-level symmetric parent import; no scalar-wealth or clipping kernel copied",
+    "Apply frozen fitter per constituent; retain current joint log-domain portfolio accounting"
+  ],
+  "field_forecasts_started": false
+}

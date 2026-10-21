@@ -20,7 +20,7 @@ def main():
     definition=('Fixed equal mixture of raw joint history-partition blocks and per-constituent variance-targeted GARCH(1,1) filtered historical simulation. Shared historical innovation rows preserve joint empirical shocks. Both halves add jointly correlated weighted-batch Gaussian mean uncertainty and smooth training-only mean shrinkage. Actual asset paths, portfolio weights and endpoint rebalancing evolve inside each scenario; no outcome-fitted asset/horizon routing. All1000paths scored; no clipping or path exclusion.')
     record={'identity':{'model_id':mid,'implementation_digest':spec['implementation_digest']},
         'display_name':'Asset Equal Mix / Smooth Gaussian Mean Uncertainty','definition':definition,
-        'version':'v1_asset_joint_1000_source_bound','forecast_level':'joint_assets','retained_in_active_set':mid in official['models'],
+        'version':'v1_asset_joint_1000_source_bound','forecast_level':'joint_assets','retained_in_active_set':(C/'promotion_receipt.json').exists(),
         'score_protocol_id':official['score_protocol_id'],'execution_fingerprint':execution['fingerprint'],
         'coverage':{'panel_fingerprint':panel['panel_fingerprint'],'series':1264,'expected_tasks':64049,'successful_tasks':64049,
                     'native_failed_tasks':0,'native_fit_failures':0,'native_generation_failures':0,'missing_tasks':0,'scoring_integrity_errors':0,'status':'complete'},

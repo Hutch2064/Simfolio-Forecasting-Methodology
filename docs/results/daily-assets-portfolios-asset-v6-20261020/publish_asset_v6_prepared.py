@@ -28,6 +28,11 @@ def main():
     if archive.exists():
         subprocess.run([PY, str(O/'catalogue_asset_hybrid_closed.py')], cwd=O, env=env, check=True)
         shutil.copy2(archive, D/'closed-hybrid-archive-receipt.json')
+    circular_archive = O/'archives/asset-v6-circular-1000-20261021/receipt.json'
+    if circular_archive.exists():
+        subprocess.run([PY, str(O/'catalogue_asset_circular_closed.py')], cwd=O, env=env, check=True)
+        shutil.copy2(circular_archive, D/'closed-circular-archive-receipt.json')
+    subprocess.run([PY, str(O/'refresh_asset_v6_research_doc.py')], cwd=O, env=env, check=True)
     for name in ['test_asset_prior_best.py', 'audit_asset_v6_full_pair.py',
                  'bind_asset_prior_parent.py', 'publish_asset_v6_prepared.py',
                  'continue_asset_v6_research.py', 'diagnose_asset_v6_pair.py',
@@ -45,7 +50,10 @@ def main():
                  'continue_asset_circular.py', 'asset_circular_handoff_syntax_fix.json',
                  'run_asset_circular_full.py', 'report_asset_circular_full.py',
                  'promote_asset_circular.py', 'launch_asset_circular_full_when_ready.py',
-                 'screen_asset_iid_component.py', 'test_asset_iid_component.py']:
+                 'screen_asset_iid_component.py', 'test_asset_iid_component.py',
+                 'preserve_asset_circular_closed.py', 'catalogue_asset_circular_closed.py',
+                 'finish_asset_circular.py', 'qualify_asset_gjr.py', 'test_asset_gjr.py',
+                 'refresh_asset_v6_research_doc.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -68,6 +76,16 @@ def main():
     for path in iid.iterdir():
         if path.suffix in ('.py', '.md'):
             shutil.copy2(path, iid_target/path.name)
+    gjr = V/'candidates/asset_gjr'
+    gjr_target = D/'candidates/asset_gjr'
+    gjr_target.mkdir(exist_ok=True)
+    for path in gjr.iterdir():
+        if path.suffix in ('.py', '.md') or path.name == 'source_derivation.json':
+            shutil.copy2(path, gjr_target/path.name)
+    qualification = gjr/'qualification/summary.json'
+    if qualification.exists():
+        compact = {k: v for k, v in json.loads(qualification.read_text()).items() if k != 'records'}
+        (gjr_target/'training_qualification_summary.json').write_text(json.dumps(compact, indent=2)+'\n')
     for name in ('plan.json', 'plan_receipt.json'):
         if (circular/name).exists():
             shutil.copy2(circular/name, circular_target/name)
@@ -88,6 +106,13 @@ def main():
             shutil.copy2(c/'full'/name, full_target/name)
     if (c/'promotion_receipt.json').exists():
         shutil.copy2(c/'promotion_receipt.json', target/'promotion_receipt.json')
+    circular_full = circular_target/'full'
+    circular_full.mkdir(exist_ok=True)
+    for name in ('verification_receipt.json', 'scoreboard.json', 'admission.json'):
+        if (circular/'full'/name).exists():
+            shutil.copy2(circular/'full'/name, circular_full/name)
+    if (circular/'promotion_receipt.json').exists():
+        shutil.copy2(circular/'promotion_receipt.json', circular_target/'promotion_receipt.json')
     screen = mean_source/'screen100/summary.json'
     if screen.exists():
         compact = {k: v for k, v in json.loads(screen.read_text()).items() if k != 'records'}
@@ -112,7 +137,7 @@ def main():
                            'test_v6_reporting.py', 'test_asset_prior_best.py',
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
-                           'test_asset_iid_component.py'],
+                           'test_asset_iid_component.py', 'test_asset_gjr.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
@@ -146,7 +171,7 @@ def main():
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 29}), flush=True)
+                      'tests': 33}), flush=True)
 
 
 if __name__ == '__main__':
