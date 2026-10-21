@@ -1,50 +1,29 @@
-# Joint-asset research: active, not complete
+# Current asset-level accuracy research
 
-The fixed panel contains1264streams (722individual supplied assets/indices and
-542constructed portfolios). All forecast methods simulate constituent asset
-paths jointly and apply weights and rebalancing inside paths. One unchanged
-main score is used. Diagnostics add no selection weight.
+The goal remains active. Baseline qualification, both complete baseline evaluations, the first full candidate and its independent audit are complete. This is not the evidence-based research stopping point.
 
-Both TestFolio-style baselines completed64049forecasts each at1000paths, with no
-native failures or scoring integrity errors. The full independent audit verified
-all128098checkpoint identities/hashes and the score reduction. Without replacement
-has Q=0.6310508866260718; with replacement has Q=0.6320715457043177. The latter is
-the fixed worse reporting reference. Without replacement is0.161478409%better on
-that complete identical coverage. Recorded worker compute is12956.48seconds and
-13316.04seconds respectively; this is not a controlled speed benchmark.
+## Official retained set: one main score
 
-The prior winner was rebuilt at asset level: an equal whole-path pool of raw
-joint blocks and per-asset GARCH(1,1) filtered historical simulation, with smooth
-mean regularization and correlated Gaussian batch mean uncertainty. Its two
-355-case pilots improved main Q versus the fixed reference by9.1045%and2.7760%.
-A frozen7418-case broad test spanning every series and70families improved3.1842%.
-All are matched preliminary subsets, not full-panel winner claims or independent
-validation. No native or scoring failures occurred. Its complete64049-task
-evaluation is now running at1000paths, reusing8128identical qualified checkpoints.
-Official promotion waits for complete matched results and independent audit.
+All methods below use the identical64,049 successful forecasts across1,264 streams at1,000simulations. Lower main Q is better. The fixed reporting reference is the worse completed TestFolio-style asset configuration, With Replacement.
 
-Separately, a100-path screen compared six arms across355cases each, sharing one
-12-worker pool. These are exploratory results, not official scores or full-panel
-catalogue additions. Correlated mean uncertainty improved the raw law in that
-screen; Gaussian mean regularization helped further. The lower-path screen cannot
-establish improvement against the1000-path hybrid. A further natural endpoint
-contrast, filtered simulation without the raw half, is prepared and checked to
-reproduce the hybrid's filtered component exactly without generating unused paths.
-It has not yet produced forecast accuracy evidence.
+| Method | Main Q | Better vs fixed reference | Recorded worker compute seconds |
+|---|---:|---:|---:|
+| Asset Blocks — With Replacement |0.6320715457043177|reference|13316.0431|
+| Asset Blocks — Without Replacement |0.6310508866260718|0.1614784%|12956.4817|
+| Asset Equal Mix / Smooth Gaussian Mean Uncertainty |0.6150071135191089|2.6997628%|11721.9583|
 
-All future official scores use1000paths. Preliminary screens may use fewer.
-Concurrent candidate tests share12available forecast workers. Official retained
-results contain both configurations and the current verified best, while the
-append-only catalogue preserves every fully attempted historical implementation,
-including losers. Current catalogue:20unique implementation versions,25fully
-attempted executions. The running hybrid is not yet a completed catalogue entry.
+Every retained method completed64,049forecasts with zero native failures and zero scoring integrity errors. Source-bound checkpoint identities and unchanged score reduction were independently verified. Recorded worker compute includes input preparation, fitting, joint simulations and empirical CRPS, including identity-verified reused pilot forecasts. It excludes IO/setup/queue and is not a controlled speed comparison. No independence or significance claim is made; these are adaptively reused benchmark cases.
 
-Complete baseline data/source/loss evidence (134653files) was privately archived,
-fresh downloaded, physically restored and SHA256verified. Public catalogue and
-recovery metadata were freshly verified at commit3e1f8e524bd3582766a43fecd0d5c12e04c21197.
-No scientific originals have been removed while they remain active research inputs.
-The catalogue's publication check initially invoked unittest on pytest functions;
-the correct runner passed all10tests. This did not alter forecasts or scores.
+The current best is one fixed cohesive asset-level law: equal raw joint historical-block paths and per-asset GARCH(1,1) filtered historical simulations, joint empirical innovation rows, smooth training-only mean shrinkage, and jointly correlated Gaussian uncertainty around the mean. It evolves holdings and rebalancing inside each simulated path. There are no test-score-selected class or horizon routes.
 
-The goal remains active. A first winner, small gain or a few failed variants does
-not satisfy the stopping requirement. Further credible mechanisms remain to test.
+## Further research
+
+A100-path355-case screen favored the equal mixture over its filtered-only endpoint. A second same-count screen rejected ordinary nonwrapping replacement for the raw half. A distinct circular-start contrast improved the100-path screen and is receiving355-case1,000-path development confirmation before any reserved/broad/full escalation. All screens are exploratory, separate from official scores and full-panel catalogue counts. Plans freeze sources/cases/seeds before field forecasts. Twelve forecast slots are shared and bulk archival IO is coordinated.
+
+The additive full-score diagnostic reconciles every dimension to canonical Q. It shows broad gains but some remaining family regressions; diagnostics receive zero additional score or selection weight. They guide hypotheses, not weights, routes or model promotion.
+
+## Preservation and recovery
+
+The private baseline archive preserves134,653files. The complete hybrid archive preserves72,258files, including all64,049full checkpoints plus pilots, source, controls/registry, seeds, admission and verification evidence. Every archived file was fresh-downloaded, physically restored and SHA256verified. These private releases and exact per-part manifest digests are recorded in closed-baseline-archive-receipt.json and closed-hybrid-archive-receipt.json. No active scientific originals were removed. The full-panel catalogue retains every completed implementation version, including losers; identical reruns count once.
+
+Restore baseline shared/input archives and sealed numerical parents referenced by execution identities, then restore candidate archives at the research owner root. Verify every manifest path, size and SHA256 before use. Public code/evidence is separately fresh-download verified after publication. No production code or deployment was changed.

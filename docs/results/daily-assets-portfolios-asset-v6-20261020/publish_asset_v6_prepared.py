@@ -24,6 +24,10 @@ def main():
     lock = (O/'asset_v6_publication.lock').open('a')
     fcntl.flock(lock, fcntl.LOCK_EX)
     assert not subprocess.check_output(['git', 'status', '--porcelain'], cwd=R, text=True).strip(), 'Preserve unrelated repository edits'
+    archive = O/'archives/asset-v6-hybrid-1000-20261021/receipt.json'
+    if archive.exists():
+        subprocess.run([PY, str(O/'catalogue_asset_hybrid_closed.py')], cwd=O, env=env, check=True)
+        shutil.copy2(archive, D/'closed-hybrid-archive-receipt.json')
     for name in ['test_asset_prior_best.py', 'audit_asset_v6_full_pair.py',
                  'bind_asset_prior_parent.py', 'publish_asset_v6_prepared.py',
                  'continue_asset_v6_research.py', 'diagnose_asset_v6_pair.py',
@@ -33,7 +37,11 @@ def main():
                  'goal_screen_parallel_receipt.json', 'run_asset_prior_full.py',
                  'screen_asset_means.py', 'test_asset_mean_screen.py',
                  'report_asset_prior_full.py', 'asset_v6_shared_slots_receipt.json',
-                 'screen_asset_components.py']:
+                 'screen_asset_components.py', 'screen_asset_parent.py', 'screen_asset_circular.py',
+                 'test_asset_sampler_parent.py', 'test_asset_circular.py',
+                 'promote_asset_hybrid.py', 'preserve_asset_hybrid_closed.py',
+                 'archive_asset_hybrid_closed.py', 'catalogue_asset_hybrid_closed.py',
+                 'diagnose_asset_hybrid_full.py', 'asset_prior_full_idle_drain_receipt.json']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -44,6 +52,32 @@ def main():
     mean_target.mkdir(exist_ok=True)
     for path in mean_source.glob('*.py'):
         shutil.copy2(path, mean_target/path.name)
+    circular = V/'candidates/asset_circular_blocks'
+    circular_target = D/'candidates/asset_circular_blocks'
+    circular_target.mkdir(exist_ok=True)
+    for path in circular.iterdir():
+        if path.suffix in ('.py', '.md'):
+            shutil.copy2(path, circular_target/path.name)
+    for name in ('plan.json', 'plan_receipt.json'):
+        if (circular/name).exists():
+            shutil.copy2(circular/name, circular_target/name)
+    for phase in ('development', 'reserved', 'broad'):
+        path = circular/phase/'summary.json'
+        if path.exists():
+            compact = {k: v for k, v in json.loads(path.read_text()).items() if k != 'records'}
+            (circular_target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
+    for phase in ('components_screen100', 'parent_screen100', 'circular_screen100'):
+        path = mean_source/phase/'summary.json'
+        if path.exists():
+            compact = {k: v for k, v in json.loads(path.read_text()).items() if k != 'records'}
+            (mean_target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
+    full_target = target/'full'
+    full_target.mkdir(exist_ok=True)
+    for name in ('verification_receipt.json', 'scoreboard.json', 'admission.json'):
+        if (c/'full'/name).exists():
+            shutil.copy2(c/'full'/name, full_target/name)
+    if (c/'promotion_receipt.json').exists():
+        shutil.copy2(c/'promotion_receipt.json', target/'promotion_receipt.json')
     screen = mean_source/'screen100/summary.json'
     if screen.exists():
         compact = {k: v for k, v in json.loads(screen.read_text()).items() if k != 'records'}
@@ -57,7 +91,7 @@ def main():
                  'broad_case_selection_receipt.json', 'DESIGN.md']:
         if (c/name).exists():
             shutil.copy2(c/name, target/name)
-    for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json', 'CURRENT_RESEARCH.md']:
+    for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json', 'candidate_full_diagnostics.json', 'official_scoreboard.json', 'CURRENT_RESEARCH.md']:
         if (V/name).exists():
             shutil.copy2(V/name, D/name)
     manifest = {str(p.relative_to(D)): sha(p) for p in sorted(D.rglob('*'))
@@ -66,15 +100,17 @@ def main():
     (D/'PUBLIC_FILES.json').write_text(json.dumps(manifest, indent=2)+'\n')
     test = subprocess.run([PY, '-m', 'unittest', '-v', 'test_asset_paths.py',
                            'test_v6_reporting.py', 'test_asset_prior_best.py',
-                           'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py'],
+                           'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
+                           'test_asset_sampler_parent.py', 'test_asset_circular.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
+    subprocess.run([PY, '-m', 'pytest', '-q', 'tests/test_full_panel_catalogue.py'], cwd=R, env=env, check=True)
     changes = subprocess.check_output(['git', 'status', '--porcelain'], cwd=R, text=True)
     for line in changes.splitlines():
-        assert line[3:].startswith(REL+'/'), line
+        assert line[3:].startswith((REL+'/', 'docs/results/daily-cross-asset-722/catalogue.json', 'docs/results/daily-cross-asset-722/CATALOGUE.md')), line
     if changes.strip():
-        subprocess.run(['git', 'add', REL], cwd=R, env=env, check=True)
+        subprocess.run(['git', 'add', REL, 'docs/results/daily-cross-asset-722/catalogue.json', 'docs/results/daily-cross-asset-722/CATALOGUE.md'], cwd=R, env=env, check=True)
         subprocess.run(['git', 'commit', '-m', 'Preserve audited asset-pair handoff and matched prior-best pilot'], cwd=R, env=env, check=True)
         subprocess.run(['git', '-c', 'http.version=HTTP/1.1', 'push', 'origin', 'HEAD:main'], cwd=R, env=env, check=True)
     old = O/'v6_candidate_source_public_recovery.json'
@@ -85,11 +121,21 @@ def main():
             shutil.copy2(old, saved)
     subprocess.run([PY, str(O/'recover_v6_candidate_publication.py')], cwd=O, env=env, check=True)
     receipt = json.loads(old.read_text())
+    catalogue_files = []
+    for rel in ('docs/results/daily-cross-asset-722/catalogue.json', 'docs/results/daily-cross-asset-722/CATALOGUE.md'):
+        data = subprocess.check_output(['gh', 'api', '-H', 'Accept: application/vnd.github.raw+json', f"repos/Hutch2064/Simfolio-Forecasting-Methodology/contents/{rel}?ref={receipt['commit']}"], env=env)
+        assert hashlib.sha256(data).hexdigest() == sha(R/rel)
+        restored = O/'v6_public_recovery'/receipt['commit'][:12]/'catalogue'/Path(rel).name
+        restored.parent.mkdir(exist_ok=True)
+        restored.write_bytes(data)
+        assert sha(restored) == sha(R/rel)
+        catalogue_files.append({'path': rel, 'sha256': sha(restored)})
+    (O/'v6_hybrid_catalogue_public_recovery.json').write_text(json.dumps({'commit': receipt['commit'], 'fresh_download_disk_restore_SHA256_verified': catalogue_files}, indent=2)+'\n')
     saved = O/'v6_public_recovery'/receipt['commit'][:12]/'recovery_receipt.json'
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 24}), flush=True)
+                      'tests': 27}), flush=True)
 
 
 if __name__ == '__main__':
