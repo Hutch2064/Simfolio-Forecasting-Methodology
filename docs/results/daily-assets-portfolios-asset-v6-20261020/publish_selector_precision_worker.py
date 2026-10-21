@@ -8,7 +8,7 @@ read=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes
 with(O/'asset_v6_publication.lock').open('a')as lock:
  fcntl.flock(lock,fcntl.LOCK_EX);assert not run(['git','status','--porcelain']).strip();run(['git','fetch','origin','main']);run(['git','merge','--ff-only','origin/main'])
  base=read(O/'selector_inner_precision_public_recovery.json');assert base['remote_main_verified']and base['recovered_tests_passed']==6
- names=['test_selector_inner_precision_worker.py','selector_inner_precision_worker_qualification.log','selector_inner_precision_worker_qualification.json','publish_selector_precision_worker.py']
+ names=['test_selector_inner_precision_worker.py','selector_inner_precision_worker_qualification.log','selector_inner_precision_worker_qualification.json','publish_selector_precision_worker.py','score_percentage.py']
  log=(O/names[1]).read_text();assert 'Ran 1 test'in log and log.rstrip().endswith('OK')
  for name in names:shutil.copy2(O/name,D/name)
  manifest={str(p.relative_to(D)):sha(p)for p in sorted(D.rglob('*'))if p.is_file()and p.name!='PUBLIC_FILES.json'and '__pycache__'not in p.parts};(D/'PUBLIC_FILES.json').write_text(json.dumps(manifest,indent=2)+'\n')
