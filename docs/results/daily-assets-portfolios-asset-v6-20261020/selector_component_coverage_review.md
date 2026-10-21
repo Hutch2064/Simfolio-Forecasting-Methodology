@@ -1,31 +1,28 @@
-# Component coverage review and remaining evidence gaps
+# Selector component coverage and open research gaps
 
-The original166-option menu reused qualified implementations. It was a useful starting point, not a literature-complete universe. A large Cartesian recipe count does not prove broad methodological coverage. Earlier52/80panel aggregate scores are supporting evidence, not isolated feature effects or current-panel exclusions.
+This is a finite coverage review, not a certificate that every credible cheap method has been exhausted. The166menu is source-curated from prior fitted numerical kernels and research screens. Library support and academic plausibility do not establish low total fitting cost or superior CRPS. No newly listed family is admitted without numerical qualification and matched evidence.
 
-| Piece | Actually implemented and tested in selector studies | Clear remaining candidates, not yet admitted |
-|---|---|---|
-| Mean | Sample, zero, smooth shrinkage; AR1conditional return dynamics in AR1-GARCH; correlated mean uncertainty on/off | Broader causal AR/MA order selection, inexpensive local-level/Kalman mean; robust mean contrasts |
-| Volatility/dynamics | Constant, mean-reverting EWMA, recursive EWMA, GARCH, GJR, HARCH, SV path, SV RMS, AR1-GARCH | EGARCH, APARCH/power variants, parsimonious ARCH; FIGARCH/MIDAS only after measured cost and proper path-law qualification |
-| Innovation law | Gaussian, fitted standardized Student, jointly resampled empirical residuals; standardized sinh-arcsinh skew extension | Hansen skew Student and generalized-error laws; supported EVT tail splice is distinct, needs stable training-only threshold/tail-moment evidence |
-| Resampling | Joint IID, uniform bounded blocks with replacement, without-replacement history cycles; corrected PPW stationary and circular in explicit extensions | PPW on filtered joint residuals and additional justified block-law interactions; no automatic cross-product of incompatible laws |
-| Dependence | Shared asset row draws for bootstrap; inherited fitted joint dependence for parametric recipes | Additional cheap dependence specifications justified by historical winners and current weaknesses; neither independent assets nor generic correlation substitutes are presumed equivalent |
-| Combination | History-only rolling-origin CRPS simplex mixture; original nested trained hybrid; exact flattened legs | Confirm broader flattened/PPW/skew interactions after learner/precision confirmation |
+| Piece | Active166menu | Other actual research | Open selector coverage |
+|---|---|---|---|
+| Means | sample, zero-level, smooth noise-aware shrinkage; AR1 conditional mean in AR1_GARCH | asset_AR1_mean; asset_empirical_bayes; empirical batch mean and Gaussian/Student mean uncertainty | broader training-derived mean dynamics/order selection; do not repeat failed exact recipes without a new mechanism |
+| Volatility/dynamics | constant, EWMA reverting, EWMA recursive, GARCH, GJR, HARCH, SV_path, SV_RMS, AR1_GARCH | asset_likelihood_sv, asset_gjr, asset_fading_vol | EGARCH, APARCH/power asymmetry and generalized-error laws are absent from the current selector; qualify and measure fit cost before expansion |
+| Innovations | empirical joint residual rows, Gaussian, symmetric Student | asset_SAS_skew, asset_mean_tail | Hansen skewStudent and generalized-error options are not in the active bank; SAS skew is prior researched evidence, not interchangeable with every skew model |
+| Raw sampling | IID joint rows, uniform contiguous blocks with replacement, full-history cycles without replacement | asset_circular_blocks; asset_adaptive_blocks; corrected PPW selector expansion | current menu lacks corrected PPW; current matched component study explicitly includes stationary and circular versions |
+| Dependence | joint rows for empirical laws; fitted joint roots for parametric laws | asset_r52_dependence, asset_dynamic_correlation, asset_stochastic_correlation | previous specific losing approximations do not rule out every dependence mechanism |
+| Fading | parent circular raw leg has training-fitted EWMA fade | asset_fading_vol and trained pool | expose exact parent legs and compare removal/flattening before claiming redundancy |
+| Learning | nonnegative history-only rolling-origin CRPS mixture | endpoint/path, online learning, matrix-free prototype, pick-one, fold scaling | planned validation-design and minimum-path tests remain open; tiny positive ideal weights and expensive coefficients are measured efficiency issues |
 
-## Exact nested-hybrid decomposition
+Active source: asset_level_v6/candidates/asset_selector_universe/bank.py. Prior study definitions are in the named candidate folders' DESIGN.md. Scope claims refer to this active selector, not absence from all historical52/80experiments. That earlier-panel coverage still needs exact source/result mapping where relevant.
 
-The old parent contains a marginal-training-CRPS raw/filtered mixture. Its exact raw leg includes circular joint blocks, EWMA scale fading, shrinkage and correlated mean uncertainty; its exact filtered leg is SV-RMS Gaussian with the same mean treatment. Plain uniform raw blocks are a different law. Setting the parent fraction to1or0 exposes its exact legs; learned mixture weights then come from the outer internal rolling-origin learner. No financial50/50weight is introduced. Tests compare corresponding segment paths byte-for-byte at equal path counts/seeds.
+## Primary sources checked2026-10-21
 
-On72reused development requests,1000final paths,30inner paths and3predeclared seeds: original mean21.709025%better versus fixedWRbaseline; delete-parent21.554401%; exact flattened21.907525%; flattened plus correctedPPW21.921790%. Thus deletion alone is not supported by these results. Flattening is modestly helpful; no broad/full promotion or independent validation follows. Separate skew study expanded the tested menu to223recipes, but was one seed; the active precision study deliberately holds the original166menu fixed to isolate precision rather than silently mixing methodological changes.
+- Corrected automatic block length: https://bashtage.github.io/arch/bootstrap/generated/arch.bootstrap.optimal_block_length.html (Politis-White2004; Patton-Politis-White2009 correction). Automatic block size is not a financial forecasting-optimality guarantee.
+- Component API and implementation: https://arch.readthedocs.io/en/stable/univariate/introduction.html and https://arch.readthedocs.io/en/stable/univariate/distribution.html . These establish available model classes, not that all are cheap or should enter a Cartesian product.
+- Nelson1991, EGARCH: https://www.jstor.org/stable/2938260 . Log-variance/asymmetric shock dynamics are a distinct mechanism from the current GJR law.
+- Ding, Granger and Engle1993, estimated power volatility: https://www.sciencedirect.com/science/article/pii/092753989390006D . This motivates a distinct power-law mechanism, not a guaranteed gain.
+- Hansen1994, skewStudent conditional density: https://users.ssc.wisc.edu/~behansen/papers/ier_94.html . Skew and symmetric heavy tails are separate dimensions.
+- Wang, Hyndman, Li and Kang2023, forecast combinations review: https://robjhyndman.com/publications/combinations/ . Combination benefits and limitations require empirical testing; nesting is not automatically equivalent to free component mixing.
 
-## Primary sources checked
+## Next evidence sequence
 
-- Politis and White, Automatic Block-Length Selection for the Dependent Bootstrap,2004; corrected Patton,Politis,White2009 implementation described at https://arch.readthedocs.io/en/latest/bootstrap/generated/arch.bootstrap.optimal_block_length.html . Current candidate uses the corrected estimator. Taking a common maximum across asset-return/squared-return estimates is our explicit joint-history heuristic, not an optimality theorem for forecastCRPS.
-- Official arch volatility definitions, including EGARCH,APARCH,FIGARCH,HARCH,MIDAS,ARCH: https://bashtage.github.io/arch/univariate/volatility.html . These establish distinct standard specifications, not cheap runtime or superiority in this panel.
-- EGARCH recurrence: https://bashtage.github.io/arch/univariate/generated/arch.univariate.EGARCH.html . The exponential recursion requires innovation/moment qualification; arbitrary heavy-tail combinations are not automatically valid finite-CRPS recipes.
-- APARCH recurrence and estimated power: https://bashtage.github.io/arch/univariate/generated/arch.univariate.APARCH.html . Qualify fitted power, admissibility and joint simulation against a reference before screening.
-- Hansen1994 autoregressive conditional density estimation, author copy: https://users.ssc.wisc.edu/~behansen/papers/ier_94.pdf . SkewStudent is distinct from our current standardized sinh-arcsinh law.
-- Existing skew implementation source: Jones and Pewsey2009 author copy https://oro.open.ac.uk/22510/1/sinhasinh.pdf .
-
-## Admission and efficiency
-
-Document each method as tested, qualified-only, pending or rejected with evidence. Do not reject families from low mixture weight, earlier aggregate ranks or one failed recipe. Fit shared family parameters once per complete historical prefix and reuse across compatible laws/means; batch path generation and exact CRPS reductions. Preserve exact original controls. Additional component menus require numerical smoke qualification before the same frozen matched development screen and broader confirmation. No outer score is ever available to a forecast's inner learner. No stopping condition is met by this review.
+First execute the matched original/removal/exact-leg/PPW study already numerically qualified. In parallel with its computation, design cheap isolated missing-component qualification, beginning with materially distinct skew/power/log-volatility mechanisms after checking historical52/80source evidence. Do not add all cross-products blindly. Continue the already prepared minimum-path and validation-origin methodology tests; neither a small menu gain nor several losses satisfies the goal's stopping condition. Official score, panel, reporting baseline and1000final paths remain unchanged.
