@@ -4,13 +4,13 @@ import concurrent.futures,datetime,fcntl,hashlib,json,os,shutil,subprocess,urlli
 O=Path(__file__).resolve().parent;R=O/'repository';REL='docs/results/daily-assets-portfolios-asset-v6-20261020';D=R/REL;C=O/'asset_level_v6/candidates/asset_selector_ppw';ENV={**os.environ,'GODEBUG':'http2client=0'}
 read=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();run=lambda args:subprocess.check_output(args,cwd=R,env=ENV,text=True)
 lock=(O/'asset_v6_publication.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX)
-assert not run(['git','status','--porcelain']).strip();run(['git','fetch','origin','main']);run(['git','merge','--ff-only','origin/main']);q=read(C/'qualification_receipt.json');assert q['tests_passed']==8 and all(sha(O/p)==h for p,h in q['source_hashes'].items())
+assert not run(['git','status','--porcelain']).strip();run(['git','fetch','origin','main']);run(['git','merge','--ff-only','origin/main']);q=read(C/'qualification_receipt.json');assert q['tests_passed']==9 and all(sha(O/p)==h for p,h in q['source_hashes'].items())
 changed=[]
 def copy(p,target):
     target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,target);changed.append(str(target.relative_to(D)))
 for p in C.iterdir():
     if p.is_file()and p.suffix in('.py','.md','.json'):copy(p,D/'candidates/asset_selector_ppw'/p.name)
-for name in ('test_selector_ppw_components.py','test_selector_ppw_pool.py','selector_ppw_integrated_qualification.log','publish_selector_ppw_prototype.py'):copy(O/name,D/name)
+for name in ('test_selector_ppw_components.py','test_selector_ppw_pool.py','selector_ppw_shared_contrast_qualification.log','publish_selector_ppw_prototype.py'):copy(O/name,D/name)
 manifest={str(p.relative_to(D)):sha(p)for p in sorted(D.rglob('*'))if p.is_file()and p.name!='PUBLIC_FILES.json'and '__pycache__'not in p.parts};(D/'PUBLIC_FILES.json').write_text(json.dumps(manifest,indent=2)+'\n')
 for line in run(['git','status','--porcelain']).splitlines():assert line[3:].startswith(REL+'/')
 run(['git','add','--',REL]);run(['git','commit','-m','Qualify optional correctedPPW components without changing running selector']);run(['git','push','origin','HEAD:main']);commit=run(['git','rev-parse','HEAD']).strip();restore=O/'v6_public_recovery/18c4f734da2e'

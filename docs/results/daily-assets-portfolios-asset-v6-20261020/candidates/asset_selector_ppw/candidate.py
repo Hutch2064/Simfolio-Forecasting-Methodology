@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib,json,time
 import numpy as np
 import common
-from .bank import BANK,model,prefix_fits,schedule
+from .bank import BANK,model,prefix_fits,schedule,BASE_COMPONENT_COUNT
 from candidates.asset_selector_universe_certified import energy
 from candidates.asset_selector_universe_precision.candidate import portfolio_returns,signature
 from candidates.asset_selector_path_objective.coefficients import lead_masses,accumulate
@@ -35,7 +35,7 @@ def prepare(history,weights,horizon,training_dates,*,inner_paths=1000,width=64):
         endpoint_A,endpoint_B=energy.coefficients(last,terminal_y);endpoint_A/=np.sqrt(H);endpoint_B/=np.sqrt(H)
         for mode,a,b in(('terminal',endpoint_A,endpoint_B),('path',A,B)):
             totals[mode][0][valid]+=a;totals[mode][1][np.ix_(valid,valid)]+=b
-        trace.append({'training_rows':stop,'validation_horizon':H,'validation_stop':stop+H,'training_sha256':signature(past),'training_last_date':str(dates[stop-1]),'validation_last_known_date':str(dates[stop+H-1]),'seed':seed,'eligible_this_fold':valid,'terminal_y_sum':terminal_y,'terminal_ensemble_sha256':hashlib.sha256(last.tobytes()).hexdigest(),'PPW_dependence_fit':prepared.get('PPW')})
+        trace.append({'training_rows':stop,'validation_horizon':H,'validation_stop':stop+H,'training_sha256':signature(past),'training_last_date':str(dates[stop-1]),'validation_last_known_date':str(dates[stop+H-1]),'seed':seed,'eligible_this_fold':valid,'terminal_y_sum':terminal_y,'terminal_ensemble_sha256':hashlib.sha256(last.tobytes()).hexdigest(),'PPW_dependence_fit':prepared.get('PPW'),'base_component_terminal_ensemble_sha256':hashlib.sha256(np.ascontiguousarray(last[[j for j,i in enumerate(valid)if i<BASE_COMPONENT_COUNT]]).tobytes()).hexdigest()})
     valid=[i for i in eligible if i not in invalid];fitted={};weights_by_mode={};coefficients={}
     for mode,(a,b)in totals.items():
         A=a[valid]/len(folds);B=b[np.ix_(valid,valid)]/len(folds);fit=energy.fit(A,B);full=np.zeros(len(BANK));full[valid]=fit['weights'];weights_by_mode[mode]=full;fitted[mode]=fit;coefficients[mode]={'A':A,'B':B}

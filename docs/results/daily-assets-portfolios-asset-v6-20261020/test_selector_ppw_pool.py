@@ -6,6 +6,8 @@ import numpy as np
 O=Path(__file__).resolve().parent;V=O/'asset_level_v6'if(O/'asset_level_v6').exists()else O;sys.path.insert(0,str(V))
 from candidates.asset_selector_universe import bank as base
 from candidates.asset_selector_ppw import bank,candidate as c
+from candidates.asset_selector_ppw.comparison import prepare_pair
+from candidates.asset_selector_path_objective import candidate as original_candidate
 
 class PPWMenuIntegration(unittest.TestCase):
     @classmethod
@@ -34,5 +36,16 @@ class PPWMenuIntegration(unittest.TestCase):
         for i in (166,167):
             self.assertIn(i,b['invalid_internal_options']);self.assertIn('lag window',b['invalid_internal_options'][i]['reason'])
             for w in b['weights_by_mode'].values():self.assertEqual(w[i],0.)
+    def test_shared_contrast_exactly_reproduces_original_prepare_and_forecasts(self):
+        native=original_candidate.prepare(self.x,self.w,8,self.dates,inner_paths=4,width=2)
+        control,expanded=prepare_pair(self.x,self.w,8,self.dates,inner_paths=4,width=2)
+        self.assertEqual(control['trace'],native['trace'])
+        for mode in ('terminal','path'):
+            for key in ('A','B'):self.assertEqual(control['coefficients'][mode][key].tobytes(),native['coefficients'][mode][key].tobytes())
+            self.assertEqual(control['weights_by_mode'][mode].tobytes(),native['weights_by_mode'][mode].tobytes())
+            config={'criterion':mode,'inner_paths':4}
+            a=np.concatenate([v for _,v in original_candidate.PathCriterionPool(config,self.dates,native).terminal_chunks(self.x,self.w,8,1000,2100,width=2)],axis=1)
+            b=np.concatenate([v for _,v in original_candidate.PathCriterionPool(config,self.dates,control).terminal_chunks(self.x,self.w,8,1000,2100,width=2)],axis=1)
+            self.assertEqual(a.tobytes(),b.tobytes());self.assertEqual(len(expanded['weights_by_mode'][mode]),168)
 
 if __name__=='__main__':unittest.main()

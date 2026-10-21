@@ -33,9 +33,18 @@ Sources: [official estimator documentation](https://bashtage.github.io/arch/boot
 [authors'2009correction](https://public.econ.duke.edu/~ap172/Patton_Politis_White_2009.pdf).
 No asymptotic bootstrap theorem is a financial forecasting improvement claim.
 
-The integrated168-option prototype passes eight component/integration tests,
+The integrated168-option prototype passes nine component/integration tests,
 including exact output preservation for all166original components on a joint
 fixture, causal prefix/date isolation, full joint-path pooling and explicit
 unsupported-history reasons. A matched financial menu-expansion screen remains
 required. No financial score, promotion, speedup or
 full-panel catalogue increment is claimed.
+
+The comparison helper generates the168-option historical ensembles once and
+reuses their exact166-option principal coefficient block for the control.
+A new test verifies identical original-control coefficients, historical traces,
+learned weights and1000-member output paths on the dated joint fixture. This
+shares work; it is not a measured whole-request speedup or a financial result.
+The next matched screen can evaluate both endpoint/path criteria for both menus
+without duplicating their historical simulation. Full-case controls must still
+replay the preserved loss hashes before any financial conclusion.

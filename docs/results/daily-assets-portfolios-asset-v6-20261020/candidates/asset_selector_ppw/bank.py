@@ -5,6 +5,7 @@ from .blocks import fit_lengths,PPWJointBootstrap
 
 BANK=[*base.BANK,{'kind':'PPW_blocks','sampling':'stationary','replacement':True},
       {'kind':'PPW_blocks','sampling':'circular','replacement':True}]
+BASE_COMPONENT_COUNT=len(base.BANK)
 
 def schedule(n,horizon):
     eligible,folds=base_schedule(n,horizon)
