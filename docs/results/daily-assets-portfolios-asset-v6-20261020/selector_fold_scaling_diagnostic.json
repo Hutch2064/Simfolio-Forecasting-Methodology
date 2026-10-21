@@ -1,0 +1,1847 @@
+{
+  "utc": "2026-10-21T15:23:39.010559+00:00",
+  "source_sha256": "3b08f6cbb5eca15f7178502bfba0cc990333eb653e16a45088143268dfb33a3b",
+  "reference_plan_sha256": "343160f58a26b047b53c18416675b7eca0b19422ef83a2f6311b234f57b1dd66",
+  "cases": 72,
+  "fold_scale_ratio_minimum": 1.007228704495028,
+  "fold_scale_ratio_median": 1.4325703058289938,
+  "fold_scale_ratio_maximum": 4.976510944783476,
+  "all_scales_positive_finite": true,
+  "only_request_history_accessed": true,
+  "no_forecasts_fits_outer_scores_or_new_workers": true,
+  "interpretation": "Current full-request SD would cancel uniformly; normalizing each internal fold by its own prefix SD instead changes relative influence between folds. This is a candidate objective contrast, not evidence of an accuracy gain or invalidity of previous scores.",
+  "records": [
+    {
+      "series_id": "DBA",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 2488,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 1232,
+          "validation_stop": 1256,
+          "training_last_date": "2007-02-09",
+          "known_validation_last_date": "2011-12-29",
+          "training_sd_relative_to_request": 1.677828039859116
+        },
+        {
+          "training_rows": 1256,
+          "validation_horizon": 1232,
+          "validation_stop": 2488,
+          "training_last_date": "2011-12-29",
+          "known_validation_last_date": "2016-11-21",
+          "training_sd_relative_to_request": 1.2835695564647522
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.3071578641053494
+    },
+    {
+      "series_id": "GSGSIM",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 5844,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2910,
+          "validation_stop": 2934,
+          "training_last_date": "1980-01-31",
+          "known_validation_last_date": "1991-08-06",
+          "training_sd_relative_to_request": 0.7947291374581076
+        },
+        {
+          "training_rows": 2934,
+          "validation_horizon": 2910,
+          "validation_stop": 5844,
+          "training_last_date": "1991-08-06",
+          "known_validation_last_date": "2003-02-20",
+          "training_sd_relative_to_request": 0.9766512745350929
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.228910868498986
+    },
+    {
+      "series_id": "DCOILBRENTEU",
+      "origin_label": "rolling_25",
+      "known_rows": 4481,
+      "folds": [
+        {
+          "training_rows": 1121,
+          "validation_horizon": 1120,
+          "validation_stop": 2241,
+          "training_last_date": "1991-10-28",
+          "known_validation_last_date": "1997-11-12",
+          "training_sd_relative_to_request": 1.0957029650144847
+        },
+        {
+          "training_rows": 2241,
+          "validation_horizon": 1120,
+          "validation_stop": 3361,
+          "training_last_date": "1997-11-12",
+          "known_validation_last_date": "2003-09-09",
+          "training_sd_relative_to_request": 0.9549308251722374
+        },
+        {
+          "training_rows": 3361,
+          "validation_horizon": 1120,
+          "validation_stop": 4481,
+          "training_last_date": "2003-09-09",
+          "known_validation_last_date": "2008-06-30",
+          "training_sd_relative_to_request": 1.0536141826375442
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.1474160600238836
+    },
+    {
+      "series_id": "CORN",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 2057,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 1016,
+          "validation_stop": 1041,
+          "training_last_date": "2010-07-15",
+          "known_validation_last_date": "2014-07-29",
+          "training_sd_relative_to_request": 1.4191705954884906
+        },
+        {
+          "training_rows": 1041,
+          "validation_horizon": 1016,
+          "validation_stop": 2057,
+          "training_last_date": "2014-07-29",
+          "known_validation_last_date": "2018-08-09",
+          "training_sd_relative_to_request": 1.171252144586995
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.2116695811805032
+    },
+    {
+      "series_id": "CPER",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 1875,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 925,
+          "validation_stop": 950,
+          "training_last_date": "2011-12-21",
+          "known_validation_last_date": "2015-08-27",
+          "training_sd_relative_to_request": 0.835877712757373
+        },
+        {
+          "training_rows": 950,
+          "validation_horizon": 925,
+          "validation_stop": 1875,
+          "training_last_date": "2015-08-27",
+          "known_validation_last_date": "2019-05-02",
+          "training_sd_relative_to_request": 1.2717302871279694
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.5214310271927416
+    },
+    {
+      "series_id": "SLVSIM",
+      "origin_label": "rolling_25",
+      "known_rows": 7741,
+      "folds": [
+        {
+          "training_rows": 1936,
+          "validation_horizon": 1935,
+          "validation_stop": 3871,
+          "training_last_date": "1975-10-13",
+          "known_validation_last_date": "1983-06-09",
+          "training_sd_relative_to_request": 0.922797876961914
+        },
+        {
+          "training_rows": 3871,
+          "validation_horizon": 1935,
+          "validation_stop": 5806,
+          "training_last_date": "1983-06-09",
+          "known_validation_last_date": "1991-02-04",
+          "training_sd_relative_to_request": 1.1844560595553564
+        },
+        {
+          "training_rows": 5806,
+          "validation_horizon": 1935,
+          "validation_stop": 7741,
+          "training_last_date": "1991-02-04",
+          "known_validation_last_date": "1998-09-30",
+          "training_sd_relative_to_request": 1.081452014761081
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.2835487479174617
+    },
+    {
+      "series_id": "SLVSIM",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 7343,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 3659,
+          "validation_stop": 3684,
+          "training_last_date": "1968-02-06",
+          "known_validation_last_date": "1982-09-14",
+          "training_sd_relative_to_request": 0.6865846623765639
+        },
+        {
+          "training_rows": 3684,
+          "validation_horizon": 3659,
+          "validation_stop": 7343,
+          "training_last_date": "1982-09-14",
+          "known_validation_last_date": "1997-03-04",
+          "training_sd_relative_to_request": 1.1729372291607392
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.7083650326540947
+    },
+    {
+      "series_id": "CANE",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 1896,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 936,
+          "validation_stop": 960,
+          "training_last_date": "2011-10-21",
+          "known_validation_last_date": "2015-07-15",
+          "training_sd_relative_to_request": 1.671670947824882
+        },
+        {
+          "training_rows": 960,
+          "validation_horizon": 936,
+          "validation_stop": 1896,
+          "training_last_date": "2015-07-15",
+          "known_validation_last_date": "2019-04-03",
+          "training_sd_relative_to_request": 1.068996641985804
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.5637756772739062
+    },
+    {
+      "series_id": "BTC",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 2968,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 1472,
+          "validation_stop": 1496,
+          "training_last_date": "2010-08-11",
+          "known_validation_last_date": "2014-08-22",
+          "training_sd_relative_to_request": 1.688295014513479
+        },
+        {
+          "training_rows": 1496,
+          "validation_horizon": 1472,
+          "validation_stop": 2968,
+          "training_last_date": "2014-08-22",
+          "known_validation_last_date": "2018-09-02",
+          "training_sd_relative_to_request": 1.2307583330529481
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.3717518453241684
+    },
+    {
+      "series_id": "EQX0093",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 1.0260172443767488
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.8905705315424028
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.152089821116989
+    },
+    {
+      "series_id": "EQX0086",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.6564347287955103
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 1.0276457341779477
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.5654956831177582
+    },
+    {
+      "series_id": "EQX0105",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4674,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2325,
+          "validation_stop": 2349,
+          "training_last_date": "1990-12-04",
+          "known_validation_last_date": "1999-11-02",
+          "training_sd_relative_to_request": 0.7692090405274318
+        },
+        {
+          "training_rows": 2349,
+          "validation_horizon": 2325,
+          "validation_stop": 4674,
+          "training_last_date": "1999-11-02",
+          "known_validation_last_date": "2008-09-30",
+          "training_sd_relative_to_request": 1.0310427285091788
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.3403934095759102
+    },
+    {
+      "series_id": "EQX0099",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.8961137922615406
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.9036994771431481
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.0084650910934687
+    },
+    {
+      "series_id": "EQX0087",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.9086259488659152
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.8766935331154381
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.0364236925952919
+    },
+    {
+      "series_id": "EQX0112",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.9022386428760675
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.9900429144118391
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.097318234182342
+    },
+    {
+      "series_id": "EQX0111",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.8946155935954091
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.9031555168444018
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.0095459136976042
+    },
+    {
+      "series_id": "EQX0120",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.6469195480440967
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.9233148105720705
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.4272482774150668
+    },
+    {
+      "series_id": "EQX0113",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.5682954319049631
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.8819337987665764
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.551893169034066
+    },
+    {
+      "series_id": "EQX0132",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4674,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2325,
+          "validation_stop": 2349,
+          "training_last_date": "1990-12-04",
+          "known_validation_last_date": "1999-11-02",
+          "training_sd_relative_to_request": 0.8167168802767351
+        },
+        {
+          "training_rows": 2349,
+          "validation_horizon": 2325,
+          "validation_stop": 4674,
+          "training_last_date": "1999-11-02",
+          "known_validation_last_date": "2008-09-30",
+          "training_sd_relative_to_request": 0.8258724721287656
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.0112102395250215
+    },
+    {
+      "series_id": "EQX0126",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.5909604842580547
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.8796451403192551
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.4885007775496888
+    },
+    {
+      "series_id": "EQX0114",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.6411858895894824
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.8010017208657264
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.2492503872450555
+    },
+    {
+      "series_id": "EQX0146",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.9222105480509506
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 1.0631745222165012
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.15285443705179
+    },
+    {
+      "series_id": "EQX0139",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.8363790578986048
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 1.0204091618393334
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.2200319367191026
+    },
+    {
+      "series_id": "EQX0158",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4674,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2325,
+          "validation_stop": 2349,
+          "training_last_date": "1990-12-04",
+          "known_validation_last_date": "1999-11-02",
+          "training_sd_relative_to_request": 1.5915296220157118
+        },
+        {
+          "training_rows": 2349,
+          "validation_horizon": 2325,
+          "validation_stop": 4674,
+          "training_last_date": "1999-11-02",
+          "known_validation_last_date": "2008-09-30",
+          "training_sd_relative_to_request": 1.0454346674768915
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.5223616276823833
+    },
+    {
+      "series_id": "EQX0152",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.9065772628078432
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 1.0849962665452297
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.1968050722834023
+    },
+    {
+      "series_id": "EQX0140",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.9217664889258935
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.9570166927202182
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.0382420105501997
+    },
+    {
+      "series_id": "EQX0171",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.5088940321643156
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.6842607549555308
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.3446036143229745
+    },
+    {
+      "series_id": "EQX0164",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.7079641832958263
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.8301487568254028
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.172585812125076
+    },
+    {
+      "series_id": "EQX0183",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4674,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2325,
+          "validation_stop": 2349,
+          "training_last_date": "1990-12-04",
+          "known_validation_last_date": "1999-11-02",
+          "training_sd_relative_to_request": 0.6070013461008769
+        },
+        {
+          "training_rows": 2349,
+          "validation_horizon": 2325,
+          "validation_stop": 4674,
+          "training_last_date": "1999-11-02",
+          "known_validation_last_date": "2008-09-30",
+          "training_sd_relative_to_request": 0.6326288465686439
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.0422198412448134
+    },
+    {
+      "series_id": "EQX0177",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.5384949048848983
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.699658375378091
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.2992850424975533
+    },
+    {
+      "series_id": "EQX0165",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4718,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2347,
+          "validation_stop": 2371,
+          "training_last_date": "1990-08-02",
+          "known_validation_last_date": "1999-08-02",
+          "training_sd_relative_to_request": 0.6182285791925768
+        },
+        {
+          "training_rows": 2371,
+          "validation_horizon": 2347,
+          "validation_stop": 4718,
+          "training_last_date": "1999-08-02",
+          "known_validation_last_date": "2008-07-30",
+          "training_sd_relative_to_request": 0.7481887316701737
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.2102137572600227
+    },
+    {
+      "series_id": "FR0551",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 13158,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 6567,
+          "validation_stop": 6591,
+          "training_last_date": "1926-07-30",
+          "known_validation_last_date": "1948-10-05",
+          "training_sd_relative_to_request": 0.42208113632640026
+        },
+        {
+          "training_rows": 6591,
+          "validation_horizon": 6567,
+          "validation_stop": 13158,
+          "training_last_date": "1948-10-05",
+          "known_validation_last_date": "1974-06-19",
+          "training_sd_relative_to_request": 1.2685905492284444
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 3.0055608745505
+    },
+    {
+      "series_id": "FR0337",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 13158,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 6567,
+          "validation_stop": 6591,
+          "training_last_date": "1926-07-30",
+          "known_validation_last_date": "1948-10-05",
+          "training_sd_relative_to_request": 0.545173787806763
+        },
+        {
+          "training_rows": 6591,
+          "validation_horizon": 6567,
+          "validation_stop": 13158,
+          "training_last_date": "1948-10-05",
+          "known_validation_last_date": "1974-06-19",
+          "training_sd_relative_to_request": 1.2510581093488864
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 2.2947877123401326
+    },
+    {
+      "series_id": "EQX0056",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 7948,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 3962,
+          "validation_stop": 3986,
+          "training_last_date": "1963-08-02",
+          "known_validation_last_date": "1979-05-29",
+          "training_sd_relative_to_request": 0.5459381321557414
+        },
+        {
+          "training_rows": 3986,
+          "validation_horizon": 3962,
+          "validation_stop": 7948,
+          "training_last_date": "1979-05-29",
+          "known_validation_last_date": "1995-01-27",
+          "training_sd_relative_to_request": 1.0098466514336633
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.8497455882887137
+    },
+    {
+      "series_id": "EQX0080",
+      "origin_label": "rolling_26",
+      "known_rows": 14023,
+      "folds": [
+        {
+          "training_rows": 3508,
+          "validation_horizon": 3505,
+          "validation_stop": 7013,
+          "training_last_date": "1941-12-08",
+          "known_validation_last_date": "1954-05-04",
+          "training_sd_relative_to_request": 1.6676797677107742
+        },
+        {
+          "training_rows": 7013,
+          "validation_horizon": 3505,
+          "validation_stop": 10518,
+          "training_last_date": "1954-05-04",
+          "known_validation_last_date": "1968-04-03",
+          "training_sd_relative_to_request": 1.286465241045247
+        },
+        {
+          "training_rows": 10518,
+          "validation_horizon": 3505,
+          "validation_stop": 14023,
+          "training_last_date": "1968-04-03",
+          "known_validation_last_date": "1982-03-31",
+          "training_sd_relative_to_request": 1.0901298298703208
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.5297992239228582
+    },
+    {
+      "series_id": "EQX0080",
+      "origin_label": "rolling_44",
+      "known_rows": 23164,
+      "folds": [
+        {
+          "training_rows": 592,
+          "validation_horizon": 2052,
+          "validation_stop": 2644,
+          "training_last_date": "1932-03-11",
+          "known_validation_last_date": "1939-01-25",
+          "training_sd_relative_to_request": 1.5816983755172562
+        },
+        {
+          "training_rows": 2644,
+          "validation_horizon": 2052,
+          "validation_stop": 4696,
+          "training_last_date": "1939-01-25",
+          "known_validation_last_date": "1945-12-08",
+          "training_sd_relative_to_request": 1.841585290904375
+        },
+        {
+          "training_rows": 4696,
+          "validation_horizon": 2052,
+          "validation_stop": 6748,
+          "training_last_date": "1945-12-08",
+          "known_validation_last_date": "1953-04-15",
+          "training_sd_relative_to_request": 1.5742564551553566
+        },
+        {
+          "training_rows": 6748,
+          "validation_horizon": 2052,
+          "validation_stop": 8800,
+          "training_last_date": "1953-04-15",
+          "known_validation_last_date": "1961-06-07",
+          "training_sd_relative_to_request": 1.3699924395632934
+        },
+        {
+          "training_rows": 8800,
+          "validation_horizon": 2052,
+          "validation_stop": 10852,
+          "training_last_date": "1961-06-07",
+          "known_validation_last_date": "1969-09-11",
+          "training_sd_relative_to_request": 1.2223069052803046
+        },
+        {
+          "training_rows": 10852,
+          "validation_horizon": 2052,
+          "validation_stop": 12904,
+          "training_last_date": "1969-09-11",
+          "known_validation_last_date": "1977-10-25",
+          "training_sd_relative_to_request": 1.1266462862940345
+        },
+        {
+          "training_rows": 12904,
+          "validation_horizon": 2052,
+          "validation_stop": 14956,
+          "training_last_date": "1977-10-25",
+          "known_validation_last_date": "1985-12-06",
+          "training_sd_relative_to_request": 1.0760418222777983
+        },
+        {
+          "training_rows": 14956,
+          "validation_horizon": 2052,
+          "validation_stop": 17008,
+          "training_last_date": "1985-12-06",
+          "known_validation_last_date": "1994-01-18",
+          "training_sd_relative_to_request": 1.0195466633261185
+        },
+        {
+          "training_rows": 17008,
+          "validation_horizon": 2052,
+          "validation_stop": 19060,
+          "training_last_date": "1994-01-18",
+          "known_validation_last_date": "2002-03-13",
+          "training_sd_relative_to_request": 0.983174616407889
+        },
+        {
+          "training_rows": 19060,
+          "validation_horizon": 2052,
+          "validation_stop": 21112,
+          "training_last_date": "2002-03-13",
+          "known_validation_last_date": "2010-05-06",
+          "training_sd_relative_to_request": 0.9573189547780468
+        },
+        {
+          "training_rows": 21112,
+          "validation_horizon": 2052,
+          "validation_stop": 23164,
+          "training_last_date": "2010-05-06",
+          "known_validation_last_date": "2018-06-29",
+          "training_sd_relative_to_request": 0.9963923309948478
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.9236904082102335
+    },
+    {
+      "series_id": "EQX0068",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 13108,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 6542,
+          "validation_stop": 6566,
+          "training_last_date": "1926-12-01",
+          "known_validation_last_date": "1949-01-08",
+          "training_sd_relative_to_request": 0.44740166688451366
+        },
+        {
+          "training_rows": 6566,
+          "validation_horizon": 6542,
+          "validation_stop": 13108,
+          "training_last_date": "1949-01-08",
+          "known_validation_last_date": "1974-08-30",
+          "training_sd_relative_to_request": 1.2907953282927773
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 2.8850928010198187
+    },
+    {
+      "series_id": "EQX0062",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 7948,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 3962,
+          "validation_stop": 3986,
+          "training_last_date": "1963-08-02",
+          "known_validation_last_date": "1979-05-29",
+          "training_sd_relative_to_request": 0.4619577302376827
+        },
+        {
+          "training_rows": 3986,
+          "validation_horizon": 3962,
+          "validation_stop": 7948,
+          "training_last_date": "1979-05-29",
+          "known_validation_last_date": "1995-01-27",
+          "training_sd_relative_to_request": 1.0008805118819524
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 2.166606263666131
+    },
+    {
+      "series_id": "FR0259",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 13223,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 6599,
+          "validation_stop": 6624,
+          "training_last_date": "1926-02-25",
+          "known_validation_last_date": "1948-05-21",
+          "training_sd_relative_to_request": 0.6206985554554528
+        },
+        {
+          "training_rows": 6624,
+          "validation_horizon": 6599,
+          "validation_stop": 13223,
+          "training_last_date": "1948-05-21",
+          "known_validation_last_date": "1974-03-19",
+          "training_sd_relative_to_request": 1.281270291623569
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 2.064239203333421
+    },
+    {
+      "series_id": "FR0001",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 13158,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 6567,
+          "validation_stop": 6591,
+          "training_last_date": "1926-07-30",
+          "known_validation_last_date": "1948-10-05",
+          "training_sd_relative_to_request": 0.36815043214909265
+        },
+        {
+          "training_rows": 6591,
+          "validation_horizon": 6567,
+          "validation_stop": 13158,
+          "training_last_date": "1948-10-05",
+          "known_validation_last_date": "1974-06-19",
+          "training_sd_relative_to_request": 1.293294207168937
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 3.5129503980730954
+    },
+    {
+      "series_id": "FR0073",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 13158,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 6567,
+          "validation_stop": 6591,
+          "training_last_date": "1926-07-30",
+          "known_validation_last_date": "1948-10-05",
+          "training_sd_relative_to_request": 0.441875070378649
+        },
+        {
+          "training_rows": 6591,
+          "validation_horizon": 6567,
+          "validation_stop": 13158,
+          "training_last_date": "1948-10-05",
+          "known_validation_last_date": "1974-06-19",
+          "training_sd_relative_to_request": 1.2369907687759485
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 2.7994128922366084
+    },
+    {
+      "series_id": "FR0037",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 13158,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 6567,
+          "validation_stop": 6591,
+          "training_last_date": "1926-07-30",
+          "known_validation_last_date": "1948-10-05",
+          "training_sd_relative_to_request": 0.5564878228498374
+        },
+        {
+          "training_rows": 6591,
+          "validation_horizon": 6567,
+          "validation_stop": 13158,
+          "training_last_date": "1948-10-05",
+          "known_validation_last_date": "1974-06-19",
+          "training_sd_relative_to_request": 1.2473109470468007
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 2.241398456230685
+    },
+    {
+      "series_id": "BNDSIM",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 4964,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2470,
+          "validation_stop": 2494,
+          "training_last_date": "1987-01-16",
+          "known_validation_last_date": "1996-10-22",
+          "training_sd_relative_to_request": 0.8941403011955146
+        },
+        {
+          "training_rows": 2494,
+          "validation_horizon": 2470,
+          "validation_stop": 4964,
+          "training_last_date": "1996-10-22",
+          "known_validation_last_date": "2006-08-16",
+          "training_sd_relative_to_request": 1.068738815734253
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.195269706896435
+    },
+    {
+      "series_id": "VWESX_YAHOO_DAILY",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 5897,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 2936,
+          "validation_stop": 2961,
+          "training_last_date": "1980-02-06",
+          "known_validation_last_date": "1991-09-18",
+          "training_sd_relative_to_request": 0.724577223225151
+        },
+        {
+          "training_rows": 2961,
+          "validation_horizon": 2936,
+          "validation_stop": 5897,
+          "training_last_date": "1991-09-18",
+          "known_validation_last_date": "2003-05-12",
+          "training_sd_relative_to_request": 0.9278592139870122
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.2805525542978524
+    },
+    {
+      "series_id": "VWEHX_YAHOO_DAILY",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 5897,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 2936,
+          "validation_stop": 2961,
+          "training_last_date": "1980-02-06",
+          "known_validation_last_date": "1991-09-18",
+          "training_sd_relative_to_request": 0.24927763728158384
+        },
+        {
+          "training_rows": 2961,
+          "validation_horizon": 2936,
+          "validation_stop": 5897,
+          "training_last_date": "1991-09-18",
+          "known_validation_last_date": "2003-05-12",
+          "training_sd_relative_to_request": 1.2405328902215673
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 4.976510944783476
+    },
+    {
+      "series_id": "TIPSIM",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 3252,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 1614,
+          "validation_stop": 1638,
+          "training_last_date": "2000-08-03",
+          "known_validation_last_date": "2007-01-08",
+          "training_sd_relative_to_request": 0.2411630021347611
+        },
+        {
+          "training_rows": 1638,
+          "validation_horizon": 1614,
+          "validation_stop": 3252,
+          "training_last_date": "2007-01-08",
+          "known_validation_last_date": "2013-06-06",
+          "training_sd_relative_to_request": 0.8153137374570029
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 3.3807579530852254
+    },
+    {
+      "series_id": "TPINX_YAHOO_DAILY",
+      "origin_label": "rolling_25",
+      "known_rows": 5368,
+      "folds": [
+        {
+          "training_rows": 1342,
+          "validation_horizon": 1342,
+          "validation_stop": 2684,
+          "training_last_date": "1992-01-09",
+          "known_validation_last_date": "1997-04-30",
+          "training_sd_relative_to_request": 0.8362015462643467
+        },
+        {
+          "training_rows": 2684,
+          "validation_horizon": 1342,
+          "validation_stop": 4026,
+          "training_last_date": "1997-04-30",
+          "known_validation_last_date": "2002-08-30",
+          "training_sd_relative_to_request": 0.8127038782681991
+        },
+        {
+          "training_rows": 4026,
+          "validation_horizon": 1342,
+          "validation_stop": 5368,
+          "training_last_date": "2002-08-30",
+          "known_validation_last_date": "2007-12-31",
+          "training_sd_relative_to_request": 0.8666727243874109
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.066406532025188
+    },
+    {
+      "series_id": "VWITX_YAHOO_DAILY",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 5897,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 2936,
+          "validation_stop": 2961,
+          "training_last_date": "1980-02-06",
+          "known_validation_last_date": "1991-09-18",
+          "training_sd_relative_to_request": 0.42626364773082187
+        },
+        {
+          "training_rows": 2961,
+          "validation_horizon": 2936,
+          "validation_stop": 5897,
+          "training_last_date": "1991-09-18",
+          "known_validation_last_date": "2003-05-12",
+          "training_sd_relative_to_request": 1.317788603993604
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 3.0914871840672764
+    },
+    {
+      "series_id": "IEFSIM",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 8099,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 4037,
+          "validation_stop": 4062,
+          "training_last_date": "1962-02-06",
+          "known_validation_last_date": "1978-03-21",
+          "training_sd_relative_to_request": 0.28967080369460135
+        },
+        {
+          "training_rows": 4062,
+          "validation_horizon": 4037,
+          "validation_stop": 8099,
+          "training_last_date": "1978-03-21",
+          "known_validation_last_date": "1994-03-08",
+          "training_sd_relative_to_request": 0.578708911826723
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.9978158117614548
+    },
+    {
+      "series_id": "FX_CAD_USD",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 6997,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 3486,
+          "validation_stop": 3511,
+          "training_last_date": "1971-02-08",
+          "known_validation_last_date": "1985-01-07",
+          "training_sd_relative_to_request": 0.5005495215960207
+        },
+        {
+          "training_rows": 3511,
+          "validation_horizon": 3486,
+          "validation_stop": 6997,
+          "training_last_date": "1985-01-07",
+          "known_validation_last_date": "1998-11-18",
+          "training_sd_relative_to_request": 0.8275185072103394
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.6532200541751911
+    },
+    {
+      "series_id": "P_f12dc676c64a5527",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 8098,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 4037,
+          "validation_stop": 4061,
+          "training_last_date": "1962-02-06",
+          "known_validation_last_date": "1978-03-21",
+          "training_sd_relative_to_request": 0.9106697904508613
+        },
+        {
+          "training_rows": 4061,
+          "validation_horizon": 4037,
+          "validation_stop": 8098,
+          "training_last_date": "1978-03-21",
+          "known_validation_last_date": "1994-03-08",
+          "training_sd_relative_to_request": 1.0085895599638042
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.1075250003236234
+    },
+    {
+      "series_id": "P_d9696c1fc9c42b4e",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 6892,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 3434,
+          "validation_stop": 3458,
+          "training_last_date": "1971-02-08",
+          "known_validation_last_date": "1984-12-19",
+          "training_sd_relative_to_request": 0.5821329105769005
+        },
+        {
+          "training_rows": 3458,
+          "validation_horizon": 3434,
+          "validation_stop": 6892,
+          "training_last_date": "1984-12-19",
+          "known_validation_last_date": "1998-09-16",
+          "training_sd_relative_to_request": 1.08157085570722
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.8579448714476057
+    },
+    {
+      "series_id": "P_502ff360fe5538bb",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 5784,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 2880,
+          "validation_stop": 2904,
+          "training_last_date": "1980-02-01",
+          "known_validation_last_date": "1991-08-16",
+          "training_sd_relative_to_request": 0.7430347113031543
+        },
+        {
+          "training_rows": 2904,
+          "validation_horizon": 2880,
+          "validation_stop": 5784,
+          "training_last_date": "1991-08-16",
+          "known_validation_last_date": "2003-02-28",
+          "training_sd_relative_to_request": 1.0684039154592073
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.4378923342429206
+    },
+    {
+      "series_id": "P_467cf63e71a6e1f6",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 1968,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 972,
+          "validation_stop": 996,
+          "training_last_date": "2010-08-20",
+          "known_validation_last_date": "2014-07-16",
+          "training_sd_relative_to_request": 1.1236183804599877
+        },
+        {
+          "training_rows": 996,
+          "validation_horizon": 972,
+          "validation_stop": 1968,
+          "training_last_date": "2014-07-16",
+          "known_validation_last_date": "2018-06-08",
+          "training_sd_relative_to_request": 1.2107017574205505
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.077502627649178
+    },
+    {
+      "series_id": "P_6bf9a99697f4e14c",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 2055,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 1015,
+          "validation_stop": 1040,
+          "training_last_date": "2010-08-23",
+          "known_validation_last_date": "2014-09-09",
+          "training_sd_relative_to_request": 1.2683306313430716
+        },
+        {
+          "training_rows": 1040,
+          "validation_horizon": 1015,
+          "validation_stop": 2055,
+          "training_last_date": "2014-09-09",
+          "known_validation_last_date": "2018-09-03",
+          "training_sd_relative_to_request": 1.1956234962915522
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.0608110624097253
+    },
+    {
+      "series_id": "P_6edf99327247877c",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 7343,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 3659,
+          "validation_stop": 3684,
+          "training_last_date": "1968-02-07",
+          "known_validation_last_date": "1982-09-15",
+          "training_sd_relative_to_request": 0.6849286250000604
+        },
+        {
+          "training_rows": 3684,
+          "validation_horizon": 3659,
+          "validation_stop": 7343,
+          "training_last_date": "1982-09-15",
+          "known_validation_last_date": "1997-03-05",
+          "training_sd_relative_to_request": 1.1621770118663848
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.6967855765500857
+    },
+    {
+      "series_id": "P_03fa0f01a5da3f84",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 7343,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 3659,
+          "validation_stop": 3684,
+          "training_last_date": "1968-02-07",
+          "known_validation_last_date": "1982-09-15",
+          "training_sd_relative_to_request": 0.6264116911996631
+        },
+        {
+          "training_rows": 3684,
+          "validation_horizon": 3659,
+          "validation_stop": 7343,
+          "training_last_date": "1982-09-15",
+          "known_validation_last_date": "1997-03-05",
+          "training_sd_relative_to_request": 1.1735075396576151
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.8733806474942851
+    },
+    {
+      "series_id": "P_66e3e28fd1eb5a70",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 6902,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 3439,
+          "validation_stop": 3463,
+          "training_last_date": "1971-02-08",
+          "known_validation_last_date": "1984-11-29",
+          "training_sd_relative_to_request": 0.35832906904778844
+        },
+        {
+          "training_rows": 3463,
+          "validation_horizon": 3439,
+          "validation_stop": 6902,
+          "training_last_date": "1984-11-29",
+          "known_validation_last_date": "1998-09-02",
+          "training_sd_relative_to_request": 1.26159157787581
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 3.520762580686855
+    },
+    {
+      "series_id": "P_0b4cd6d9522059a3",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 7343,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 3659,
+          "validation_stop": 3684,
+          "training_last_date": "1968-02-07",
+          "known_validation_last_date": "1982-09-15",
+          "training_sd_relative_to_request": 0.7716698175751684
+        },
+        {
+          "training_rows": 3684,
+          "validation_horizon": 3659,
+          "validation_stop": 7343,
+          "training_last_date": "1982-09-15",
+          "known_validation_last_date": "1997-03-05",
+          "training_sd_relative_to_request": 1.174689308379223
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.522269345807083
+    },
+    {
+      "series_id": "P_1485a4631f335216",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 2102,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 1039,
+          "validation_stop": 1063,
+          "training_last_date": "2010-08-20",
+          "known_validation_last_date": "2014-08-14",
+          "training_sd_relative_to_request": 1.3560731973911209
+        },
+        {
+          "training_rows": 1063,
+          "validation_horizon": 1039,
+          "validation_stop": 2102,
+          "training_last_date": "2014-08-14",
+          "known_validation_last_date": "2018-08-08",
+          "training_sd_relative_to_request": 1.2174788042427973
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.113837212332022
+    },
+    {
+      "series_id": "P_0b32490ee03db3bf",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 2044,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 1010,
+          "validation_stop": 1034,
+          "training_last_date": "2010-08-20",
+          "known_validation_last_date": "2014-08-26",
+          "training_sd_relative_to_request": 1.3530599541315182
+        },
+        {
+          "training_rows": 1034,
+          "validation_horizon": 1010,
+          "validation_stop": 2044,
+          "training_last_date": "2014-08-26",
+          "known_validation_last_date": "2018-08-29",
+          "training_sd_relative_to_request": 1.2188517472260747
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.110110361831028
+    },
+    {
+      "series_id": "P_26f8f7e4a6fdc0c1",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 2031,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 1003,
+          "validation_stop": 1028,
+          "training_last_date": "2010-08-23",
+          "known_validation_last_date": "2014-08-21",
+          "training_sd_relative_to_request": 1.3192407783528726
+        },
+        {
+          "training_rows": 1028,
+          "validation_horizon": 1003,
+          "validation_stop": 2031,
+          "training_last_date": "2014-08-21",
+          "known_validation_last_date": "2018-08-23",
+          "training_sd_relative_to_request": 1.217768725960039
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.0833262098374528
+    },
+    {
+      "series_id": "P_045c407fb16056fc",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 2027,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 1001,
+          "validation_stop": 1026,
+          "training_last_date": "2010-08-23",
+          "known_validation_last_date": "2014-08-14",
+          "training_sd_relative_to_request": 1.2089300796006164
+        },
+        {
+          "training_rows": 1026,
+          "validation_horizon": 1001,
+          "validation_stop": 2027,
+          "training_last_date": "2014-08-14",
+          "known_validation_last_date": "2018-08-06",
+          "training_sd_relative_to_request": 1.2217518381900017
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.0106058727512357
+    },
+    {
+      "series_id": "P_522d5b99705e97e6",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 8098,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 4037,
+          "validation_stop": 4061,
+          "training_last_date": "1962-02-06",
+          "known_validation_last_date": "1978-03-21",
+          "training_sd_relative_to_request": 0.31005754472463853
+        },
+        {
+          "training_rows": 4061,
+          "validation_horizon": 4037,
+          "validation_stop": 8098,
+          "training_last_date": "1978-03-21",
+          "known_validation_last_date": "1994-03-08",
+          "training_sd_relative_to_request": 0.5816302360203828
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.8758783519908457
+    },
+    {
+      "series_id": "P_652e1a27537beced",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 6939,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 3457,
+          "validation_stop": 3482,
+          "training_last_date": "1971-02-09",
+          "known_validation_last_date": "1984-12-27",
+          "training_sd_relative_to_request": 0.44360146700811887
+        },
+        {
+          "training_rows": 3482,
+          "validation_horizon": 3457,
+          "validation_stop": 6939,
+          "training_last_date": "1984-12-27",
+          "known_validation_last_date": "1998-10-27",
+          "training_sd_relative_to_request": 0.9588994128064459
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 2.161623628690335
+    },
+    {
+      "series_id": "P_59cb61c77cdec836",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 13158,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 6567,
+          "validation_stop": 6591,
+          "training_last_date": "1926-07-31",
+          "known_validation_last_date": "1948-10-06",
+          "training_sd_relative_to_request": 0.2823733182746757
+        },
+        {
+          "training_rows": 6591,
+          "validation_horizon": 6567,
+          "validation_stop": 13158,
+          "training_last_date": "1948-10-06",
+          "known_validation_last_date": "1974-06-20",
+          "training_sd_relative_to_request": 1.3172993132681874
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 4.665098392854519
+    },
+    {
+      "series_id": "P_6cdc6e3ed62da44b",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 6902,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 3439,
+          "validation_stop": 3463,
+          "training_last_date": "1971-02-08",
+          "known_validation_last_date": "1984-11-29",
+          "training_sd_relative_to_request": 0.3120737258145744
+        },
+        {
+          "training_rows": 3463,
+          "validation_horizon": 3439,
+          "validation_stop": 6902,
+          "training_last_date": "1984-11-29",
+          "known_validation_last_date": "1998-09-02",
+          "training_sd_relative_to_request": 1.1256428226585513
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 3.6069772286032733
+    },
+    {
+      "series_id": "P_2039e676ccee0d83",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 8098,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 4037,
+          "validation_stop": 4061,
+          "training_last_date": "1962-02-06",
+          "known_validation_last_date": "1978-03-21",
+          "training_sd_relative_to_request": 1.083880037962111
+        },
+        {
+          "training_rows": 4061,
+          "validation_horizon": 4037,
+          "validation_stop": 8098,
+          "training_last_date": "1978-03-21",
+          "known_validation_last_date": "1994-03-08",
+          "training_sd_relative_to_request": 1.076101220234298
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.007228704495028
+    },
+    {
+      "series_id": "P_1500af4fa1498cb8",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 6939,
+      "folds": [
+        {
+          "training_rows": 25,
+          "validation_horizon": 3457,
+          "validation_stop": 3482,
+          "training_last_date": "1971-02-09",
+          "known_validation_last_date": "1984-12-27",
+          "training_sd_relative_to_request": 0.7358210756360487
+        },
+        {
+          "training_rows": 3482,
+          "validation_horizon": 3457,
+          "validation_stop": 6939,
+          "training_last_date": "1984-12-27",
+          "known_validation_last_date": "1998-10-27",
+          "training_sd_relative_to_request": 1.0724824499267698
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.457531573147329
+    },
+    {
+      "series_id": "P_248e1b578707e988",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 8098,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 4037,
+          "validation_stop": 4061,
+          "training_last_date": "1962-02-06",
+          "known_validation_last_date": "1978-03-21",
+          "training_sd_relative_to_request": 0.5694903607235812
+        },
+        {
+          "training_rows": 4061,
+          "validation_horizon": 4037,
+          "validation_stop": 8098,
+          "training_last_date": "1978-03-21",
+          "known_validation_last_date": "1994-03-08",
+          "training_sd_relative_to_request": 0.9434502854112178
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.6566571631036773
+    },
+    {
+      "series_id": "P_14f94f665defe660",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 8098,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 4037,
+          "validation_stop": 4061,
+          "training_last_date": "1962-02-06",
+          "known_validation_last_date": "1978-03-21",
+          "training_sd_relative_to_request": 0.561636318832089
+        },
+        {
+          "training_rows": 4061,
+          "validation_horizon": 4037,
+          "validation_stop": 8098,
+          "training_last_date": "1978-03-21",
+          "known_validation_last_date": "1994-03-08",
+          "training_sd_relative_to_request": 0.7711561692869521
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 1.3730525313793012
+    },
+    {
+      "series_id": "FR0525",
+      "origin_label": "train_first_half_test_remaining",
+      "known_rows": 13158,
+      "folds": [
+        {
+          "training_rows": 24,
+          "validation_horizon": 6567,
+          "validation_stop": 6591,
+          "training_last_date": "1926-07-30",
+          "known_validation_last_date": "1948-10-05",
+          "training_sd_relative_to_request": 0.28944663283871636
+        },
+        {
+          "training_rows": 6591,
+          "validation_horizon": 6567,
+          "validation_stop": 13158,
+          "training_last_date": "1948-10-05",
+          "known_validation_last_date": "1974-06-19",
+          "training_sd_relative_to_request": 1.3188658663208193
+        }
+      ],
+      "largest_to_smallest_fold_sd_ratio": 4.556507890197878
+    }
+  ]
+}

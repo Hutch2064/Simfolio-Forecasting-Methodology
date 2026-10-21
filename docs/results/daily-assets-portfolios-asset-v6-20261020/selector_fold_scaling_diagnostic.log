@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-21T15:23:39.010559+00:00",
+  "source_sha256": "3b08f6cbb5eca15f7178502bfba0cc990333eb653e16a45088143268dfb33a3b",
+  "reference_plan_sha256": "343160f58a26b047b53c18416675b7eca0b19422ef83a2f6311b234f57b1dd66",
+  "cases": 72,
+  "fold_scale_ratio_minimum": 1.007228704495028,
+  "fold_scale_ratio_median": 1.4325703058289938,
+  "fold_scale_ratio_maximum": 4.976510944783476,
+  "all_scales_positive_finite": true,
+  "only_request_history_accessed": true,
+  "no_forecasts_fits_outer_scores_or_new_workers": true,
+  "interpretation": "Current full-request SD would cancel uniformly; normalizing each internal fold by its own prefix SD instead changes relative influence between folds. This is a candidate objective contrast, not evidence of an accuracy gain or invalidity of previous scores."
+}
