@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-21T15:43:36.705888+00:00",
+  "source_sha256": "f52a22f8b2132f37dd79f2ae52eaeff22ccce1702b248c1f329af45d5e9d479a",
+  "input_diagnostic_sha256": "eb74d45dc686eff6359a09c7d499a7c075971ebde4c9135f42505630e4521d5d",
+  "cases": 72,
+  "first_internal_training_rows_minimum": 24,
+  "first_internal_training_rows_median": 24.0,
+  "first_internal_training_rows_maximum": 3508,
+  "cases_first_prefix24_or25": 67,
+  "cases_first_validation_longer_than_training": 68,
+  "maximum_first_fold_horizon_to_training_rows": 273.625,
+  "fold_counts": {
+    "2": 67,
+    "3": 4,
+    "11": 1
+  },
+  "interpretation": "Two completed validation blocks and a legal fitting prefix are not a stability certificate. This support mismatch may influence learned weights; the diagnostic does not establish an accuracy loss, a look-ahead error or an invalid outer score. Monte Carlo replication does not resolve limited historical information.",
+  "no_outer_losses_or_scores_used": true,
+  "no_fits_forecasts_new_workers_or_admission": true
+}
