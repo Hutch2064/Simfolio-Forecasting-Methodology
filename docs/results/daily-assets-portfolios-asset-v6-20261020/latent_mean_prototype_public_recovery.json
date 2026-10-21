@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-21T05:16:31.175404+00:00",
+  "commit": "d0a28a3ce1e237f683e921d39bbacb148cbf3d12",
+  "parent_full_source_recovery_receipt": "v6_candidate_source_public_recovery.json",
+  "parent_source_tests_passed": 103,
+  "additional_recovered_prototype_fit_tests_passed": 3,
+  "files_fresh_remote_disk_recovered_SHA256_verified": [
+    {
+      "path": "docs/results/daily-assets-portfolios-asset-v6-20261020/candidates/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/results/daily-assets-portfolios-asset-v6-20261020/test_asset_latent_mean_fit.py",
+      "sha256": "7334c7a96706a9db7c3fb7c7ac24248b95baeba4cf4287af20ec6960eeb1e8e8"
+    },
+    {
+      "path": "docs/results/daily-assets-portfolios-asset-v6-20261020/candidates/asset_latent_mean/__init__.py",
+      "sha256": "38ad1a4ca35db64b695dcbbf7c1ece6f3ddaea53a014b0cb6dff1bb403fe6d8b"
+    },
+    {
+      "path": "docs/results/daily-assets-portfolios-asset-v6-20261020/candidates/asset_latent_mean/fit.py",
+      "sha256": "920517200997f071fd8d97f28b149ab135306ac3034b574af422458f4ed0abb3"
+    },
+    {
+      "path": "docs/results/daily-assets-portfolios-asset-v6-20261020/candidates/asset_latent_mean/PROTOTYPE.md",
+      "sha256": "8e3cf2368060def4f069a6a4dac38c555eb63918e648cc2a5f664d1c12981c35"
+    },
+    {
+      "path": "docs/results/daily-assets-portfolios-asset-v6-20261020/candidates/asset_latent_mean/qualification_receipt.json",
+      "sha256": "9eae287016872332709dc5628d30106151a9f36c32e893440264a079344cbf98"
+    },
+    {
+      "path": "docs/results/daily-assets-portfolios-asset-v6-20261020/PUBLIC_FILES.json",
+      "sha256": "c70fce45b6eda239c8996e53864d42871c1ffd6e4ee706cb94189218b60c0477"
+    }
+  ],
+  "recovery_packaging_fix": "Fresh downloaded parent candidates/__init__.py so the partial recovered tree is a regular package; no scientific source change or field rerun.",
+  "field_forecasts": 0,
+  "prototype_only": true
+}

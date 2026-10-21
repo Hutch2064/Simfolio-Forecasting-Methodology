@@ -1,0 +1,134 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "noise": "constant",
+        "selection": "likelihood"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8215925129588623,
+      "model_id": "model_testing_asset_fading_latent_mean_v1_fa674566af7c76fc",
+      "percent_better_vs_same100path_fixed_reference": 15.110212447058691,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "noise": "constant",
+        "selection": "training_BIC"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8219097955583778,
+      "model_id": "model_testing_asset_fading_latent_mean_v1_e177502153a58807",
+      "percent_better_vs_same100path_fixed_reference": 15.077429708605871,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "noise": "parent_variance",
+        "selection": "training_BIC"
+      },
+      "config_index": 3,
+      "expected_cases": 72,
+      "main_Q": 0.8420095237355699,
+      "model_id": "model_testing_asset_fading_latent_mean_v1_da12acef9bb4a076",
+      "percent_better_vs_same100path_fixed_reference": 13.000656091610729,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "noise": "parent_variance",
+        "selection": "likelihood"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.8454489133464016,
+      "model_id": "model_testing_asset_fading_latent_mean_v1_9a379c19df7c2a2d",
+      "percent_better_vs_same100path_fixed_reference": 12.645286429923086,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 4,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_fading_latent_mean_v1_9a379c19df7c2a2d": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "noise": "parent_variance",
+        "selection": "likelihood"
+      },
+      "config_index": 2,
+      "expected_cases": 72,
+      "main_Q": 0.8454489133464016,
+      "percent_better_vs_same100path_fixed_reference": 12.645286429923086,
+      "successful_cases": 72
+    },
+    "model_testing_asset_fading_latent_mean_v1_da12acef9bb4a076": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "noise": "parent_variance",
+        "selection": "training_BIC"
+      },
+      "config_index": 3,
+      "expected_cases": 72,
+      "main_Q": 0.8420095237355699,
+      "percent_better_vs_same100path_fixed_reference": 13.000656091610729,
+      "successful_cases": 72
+    },
+    "model_testing_asset_fading_latent_mean_v1_e177502153a58807": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "noise": "constant",
+        "selection": "training_BIC"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8219097955583778,
+      "percent_better_vs_same100path_fixed_reference": 15.077429708605871,
+      "successful_cases": 72
+    },
+    "model_testing_asset_fading_latent_mean_v1_fa674566af7c76fc": {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "noise": "constant",
+        "selection": "likelihood"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8215925129588623,
+      "percent_better_vs_same100path_fixed_reference": 15.110212447058691,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 288,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8235702227265657,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 28.776436248677783,
+  "utc": "2026-10-21T05:22:45.790593+00:00"
+}

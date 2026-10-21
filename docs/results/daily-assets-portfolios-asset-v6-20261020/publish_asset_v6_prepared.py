@@ -91,6 +91,7 @@ def main():
                  'screen_asset_training_blocks.py','run_asset_training_blocks_validation.py','test_asset_training_blocks.py','preserve_asset_sample_refocus.py',
                  'screen_asset_likelihood_sv.py','test_asset_likelihood_sv.py','preserve_asset_training_laws.py',
                  'screen_asset_trained_pool.py','run_asset_trained_pool_validation.py','run_asset_trained_pool_broad.py','test_asset_trained_pool.py','screen_asset_regime_rows.py','test_asset_regime_rows.py','screen_asset_random_measure.py','test_asset_random_measure.py','preserve_asset_learned_pool_pilots.py','preserve_asset_learned_pool_broad.py','verify_asset_trained_pool.py','recover_v6_candidate_publication.py','retire_closed_sample_fit_caches.py','preserve_sample_fit_retirement_metadata.py',
+                 'screen_asset_latent_mean.py','run_asset_latent_mean_validation.py','test_asset_latent_mean_fit.py','test_asset_latent_mean.py','latent_mean_prototype_public_recovery.json',
                  'research_workflow_policy.json','working_incumbent.json',
                  'retire_closed_asset_circular_losses.py','preserve_asset_circular_retirement_metadata.py']:
         shutil.copy2(O/name, D/name)
@@ -138,12 +139,12 @@ def main():
         if path.exists():
             compact = {k: v for k, v in json.loads(path.read_text()).items() if k != 'records'}
             (mean_target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
-    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks','asset_AR1_mean','asset_feature_batch','asset_dynamic_correlation','asset_component_weights','asset_training_blocks','asset_likelihood_sv','asset_trained_pool','asset_regime_rows','asset_random_measure'):
+    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks','asset_AR1_mean','asset_feature_batch','asset_dynamic_correlation','asset_component_weights','asset_training_blocks','asset_likelihood_sv','asset_trained_pool','asset_regime_rows','asset_random_measure','asset_latent_mean'):
         source = V/'candidates'/name
         dest = D/'candidates'/name
         dest.mkdir(exist_ok=True)
         for path in source.iterdir():
-            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json','transitive_source_receipt.json','full_selection.json','source_derivation.json','qualification_receipt.json','combined710_diagnostic.json','validation_label_note.json','validation_receipt.json','working_promotion.json','prior_working_incumbent.json','source_replay_aliases.json'):
+            if path.suffix in ('.py','.md') or path.name in ('plan.json','plan_receipt.json','selector_provenance.json','decision.json','admission_source_registration_fix.json','full_selection.json','horizon_diagnostics.json','prior_evidence.json','confirmation_selection.json','development_selection.json','confirmation_preforecast_fix.json','reserved_selection.json','broad_selection.json','transitive_source_receipt.json','full_selection.json','source_derivation.json','qualification_receipt.json','combined710_diagnostic.json','validation_label_note.json','validation_receipt.json','working_promotion.json','prior_working_incumbent.json','source_replay_aliases.json'):
                 shutil.copy2(path,dest/path.name)
         for phase in ('development','reserved','broad'):
             path = source/phase/'summary.json'
@@ -215,7 +216,7 @@ def main():
             if path.exists():
                 compact={k:v for k,v in json.loads(path.read_text()).items() if k not in ('records','fit_packets')}
                 (destination/name).write_text(json.dumps(compact,indent=2)+'\n')
-    for candidate,phases in [('asset_dynamic_correlation',('screen100',)),('asset_component_weights',('screen120','development1000','reserved1000')),('asset_training_blocks',('screen100','development1000','reserved1000')),('asset_likelihood_sv',('screen100',)),('asset_trained_pool',('screen100','development1000','reserved1000','broad1000')),('asset_regime_rows',('screen100',)),('asset_random_measure',('screen100',))]:
+    for candidate,phases in [('asset_dynamic_correlation',('screen100',)),('asset_component_weights',('screen120','development1000','reserved1000')),('asset_training_blocks',('screen100','development1000','reserved1000')),('asset_likelihood_sv',('screen100',)),('asset_trained_pool',('screen100','development1000','reserved1000','broad1000')),('asset_regime_rows',('screen100',)),('asset_random_measure',('screen100',)),('asset_latent_mean',('screen100','development1000','reserved1000'))]:
         for phase in phases:
             source=V/'candidates'/candidate/phase
             destination=D/'candidates'/candidate/phase
@@ -256,7 +257,7 @@ def main():
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
                            'test_asset_iid_component.py', 'test_asset_gjr.py',
-                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py','test_asset_feature_admission.py','test_asset_dynamic_correlation.py','test_asset_component_weights.py','test_asset_training_blocks.py','test_asset_likelihood_sv.py','test_asset_trained_pool.py','test_asset_regime_rows.py','test_asset_random_measure.py'],
+                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py','test_asset_feature_admission.py','test_asset_dynamic_correlation.py','test_asset_component_weights.py','test_asset_training_blocks.py','test_asset_likelihood_sv.py','test_asset_trained_pool.py','test_asset_regime_rows.py','test_asset_random_measure.py','test_asset_latent_mean_fit.py','test_asset_latent_mean.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr

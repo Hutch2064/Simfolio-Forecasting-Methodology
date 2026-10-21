@@ -1,12 +1,24 @@
 {
-  "utc": "2026-10-21T05:15:39.994643+00:00",
-  "prototype_fit_tests_passed": 3,
-  "financial_forecast_model_admitted": false,
-  "field_forecasts": 0,
-  "source_sha256": {
+  "utc": "2026-10-21T05:28:28.720132+00:00",
+  "tests_passed": 7,
+  "log": "latent_mean_combined_qualification.log",
+  "log_sha256": "6c73d02a4b80a6482ebadc4cf0833820435a78dff0207cdf4016125f49b58c09",
+  "model_source_sha256": {
     "fit.py": "920517200997f071fd8d97f28b149ab135306ac3034b574af422458f4ed0abb3",
     "__init__.py": "38ad1a4ca35db64b695dcbbf7c1ece6f3ddaea53a014b0cb6dff1bb403fe6d8b",
-    "PROTOTYPE.md": "8e3cf2368060def4f069a6a4dac38c555eb63918e648cc2a5f664d1c12981c35"
+    "PROTOTYPE.md": "8e3cf2368060def4f069a6a4dac38c555eb63918e648cc2a5f664d1c12981c35",
+    "kernels.py": "93d3dc230f5ecc6ecac9f926fec38864b7a9541379042cacfa5afb7208a7c927",
+    "candidate.py": "0a8668c83d2b805d2b56d38af262213d9967a2a10a77a064f7e8bb52f452fd0d",
+    "ADAPTER.md": "4a763931d019f80fde60a1a46f6283c9eb81ef31227516045a1ed147b2db8a8f"
   },
-  "tests_log_sha256": "f7789ad09ce4cf7224b8b95dc5908f00bccbbe2c557e339e0e4b70d83483d54c"
+  "checks": [
+    "zero-curve byte-identical working-parent replay at 100 and 1000 paths",
+    "joint asset accounting and exact declared path count",
+    "chunk-size invariance",
+    "one-asset terminal mean-curve effect",
+    "prefix-only fitting and parent learned weight preserved",
+    "analytic likelihood gradient and null boundary",
+    "training likelihood fitting and stationary mean reversion"
+  ],
+  "scope": "Qualification, not held-out performance or a full-panel score."
 }

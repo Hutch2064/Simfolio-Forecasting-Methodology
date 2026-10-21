@@ -1,0 +1,35 @@
+{
+  "source": "screen100/summary.json",
+  "paths": 1000,
+  "selected": [
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "noise": "constant",
+        "selection": "likelihood"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8215925129588623,
+      "model_id": "model_testing_asset_fading_latent_mean_v1_fa674566af7c76fc",
+      "percent_better_vs_same100path_fixed_reference": 15.110212447058691,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": true,
+      "complete": true,
+      "config": {
+        "noise": "constant",
+        "selection": "training_BIC"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8219097955583778,
+      "model_id": "model_testing_asset_fading_latent_mean_v1_e177502153a58807",
+      "percent_better_vs_same100path_fixed_reference": 15.077429708605871,
+      "successful_cases": 72
+    }
+  ],
+  "reason": "Both constant-noise latent-mean fits improve the same-coverage 100-path screen; validate unchanged configs against the learned-weight working parent, no full escalation."
+}
