@@ -1,4 +1,4 @@
-Develop a forecasting selection algorithm maximizing accuracy on the 1,264-series panel. Automatically select, fit and forecast for each asset/portfolio, history and requested horizon. Accuracy is primary; optimize speed without sacrificing accuracy. Expand/remove components for accuracy, redundancy and search cost. Keep selection intuitive and data-driven; no arbitrary caps that reduce accuracy. Use fast methods; no MCMC.
+Develop a forecasting selection algorithm maximizing accuracy on the 1,264-series panel. Automatically select, fit and forecast for each asset/portfolio, history and requested horizon. Maximize full-panel score regardless of compute cost or complexity; speed is secondary. Expand/remove components for accuracy, redundancy and search cost. Keep selection intuitive and data-driven; no arbitrary caps that reduce accuracy.
 
 Use the worse of both TestFolio-style configurations, with and without replacement, on identical coverage as the sole baseline. Preserve prior results. Official scores and recomputed baselines use 1,000 sims; screens may use fewer. Promote each stronger algorithm iteration.
 

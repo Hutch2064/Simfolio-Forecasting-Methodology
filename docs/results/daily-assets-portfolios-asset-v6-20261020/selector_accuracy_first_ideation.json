@@ -1,0 +1,31 @@
+{
+  "utc": "2026-10-21T07:58:36.859216+00:00",
+  "status": "researched_not_yet_admitted",
+  "mechanism": "Horizon-aware training-only probabilistic stacking/convex aggregation as an adaptive selector alternative, rather than selecting only one noisy inner winner.",
+  "why_new": "Initial capped hard selectors lost current leader on355matched cases. This is a different selection mechanism, not another fixed mixture weight or a retuned rejected component.",
+  "proper_objective": "Minimize inner empirical CRPS of learned convex predictive mixture, using history-only chronological validation. Then evaluate the entire procedure on untouched outer outcomes under unchanged canonical main score.",
+  "mathematical_basis": "For mixture F=sum w_i F_i: CRPS(F,y)=sum w_i E|X_i-y|-.5sum w_i w_j E|X_i-X_j|. The simplex includes single-model vertices; this only guarantees inner optimum no worse than a vertex for the same predictive distributions and numerical precision, not improved outer performance.",
+  "primary_sources": [
+    {
+      "url": "https://arxiv.org/abs/1704.02030",
+      "scope": "Predictive-distribution stacking with proper scoring rules; adapt to chronological validation, not ordinary random/LOO time-leaking folds."
+    },
+    {
+      "url": "https://arxiv.org/abs/2411.13974",
+      "scope": "CRPS validation selection and convex aggregation bounds; statistical assumptions must be checked, not blindly transferred to overlapping financial histories."
+    },
+    {
+      "url": "https://arxiv.org/abs/2102.00968",
+      "scope": "CRPS-targeted probabilistic forecast combination and quantile aggregation; future coherent joint-path construction must be preserved or explicitly qualify authorized portfolio-level alternative."
+    }
+  ],
+  "qualification_needed": [
+    "Independent brute-force empirical pair-distance and convex objective checks",
+    "Simplex/KKT numerical convergence and exact vertex controls",
+    "Training-prefix-only temporal validation and horizon-support disclosure",
+    "Exactly1000final joint paths from selected mixture with documented allocation/MonteCarlo effects",
+    "Representative matched then broader validation; no full-panel promotion from inner score or pilot alone"
+  ],
+  "no_exclusion_for_compute_cost_or_complexity": true,
+  "remaining_open": "Expand valid mean/volatility/dependence/sampling/block/PW/uncertainty/fading components; select by actual score, not runtime alone. Existing costly families only revisited with a new mechanism/evidence, not speculation."
+}
