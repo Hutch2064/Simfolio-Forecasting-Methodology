@@ -1,12 +1,12 @@
 {
-  "utc": "2026-10-21T01:08:40.790533+00:00",
+  "utc": "2026-10-21T02:40:31.056068+00:00",
   "official_retained_set_only": true,
   "series": 1264,
   "paths": 1000,
   "same_successful_tasks_per_model": 64049,
   "score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
   "sole_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
-  "current_best_model_id": "model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1",
+  "current_best_model_id": "model_testing_asset_circular_raw_GARCH_fade_FHS_mean_v1",
   "models": {
     "model_testing_asset_joint_blocks_history_partition_v6": {
       "main_score": 0.6310508866260718,
@@ -24,18 +24,18 @@
       "scoring_integrity_errors": 0,
       "percent_better_vs_fixed_reference": 0.0
     },
-    "model_testing_asset_equal_circular_blocks_FHS_smooth_joint_mean_uncertainty_v1": {
-      "main_score": 0.6124975796345598,
-      "worker_compute_seconds": 11948.52941739303,
+    "model_testing_asset_circular_raw_GARCH_fade_FHS_mean_v1": {
+      "main_score": 0.611810828993398,
+      "worker_compute_seconds": 10604.135006045923,
       "successful_tasks": 64049,
       "native_failures": 0,
       "scoring_integrity_errors": 0,
-      "percent_better_vs_fixed_reference": 3.096795956531573
+      "percent_better_vs_fixed_reference": 3.2054467328288205
     }
   },
   "independent_validation_or_significance_claim": false,
   "runtime_scope": "Recorded successful worker compute including input preparation, fitting, simulation and CRPS; no controlled speedup claim",
-  "full_candidate_verification_receipt_sha256": "70f0cb97627ff52be4e1c75218db873b978299b27e02320fcc4dd4c824274296",
+  "full_candidate_verification_receipt_sha256": "1b7c45daba547ca5006c454198aac49e03f7e60707feee6d4b0d50bc7b8ad0b0",
   "complete_baseline_pair_audit_sha256": "8a5559e9b366b5facc0f635a04d018baa27d573d305c6da2a196f541ddc8f269",
   "goal_complete": false
 }

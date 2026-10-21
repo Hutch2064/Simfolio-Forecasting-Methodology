@@ -10,7 +10,7 @@ All retained methods below cover the identical64,049 successful forecasts across
 |---|---:|---:|---:|
 |Asset Blocks — With Replacement|0.6320715457043177|reference|13316.0431|
 |Asset Blocks — Without Replacement|0.6310508866260718|0.1614784%|12956.4817|
-|Asset Circular Equal Mix / Smooth Gaussian Mean Uncertainty|0.6124975796345598|3.0967960%|11948.5294|
+|Asset GARCH Fade / Equal Mix / Gaussian Mean Uncertainty|0.6118108289933980|3.2054467%|10604.1350|
 
 All retained methods have zero native failures and zero scoring integrity errors. The complete baseline pair and each promoted winner have independently verified source-bound checkpoint identities and canonical score reduction. Recorded worker compute includes input preparation, fitting, joint simulation and CRPS, including identity-verified reused pilot forecasts. It excludes IO/setup/queue and is not a controlled speedup comparison. These adaptively reused cases do not support independence or significance claims.
 
@@ -30,6 +30,7 @@ Closed exploratory contrasts include an IID raw-component simplification, a nest
 - Private release research-asset-v6-GJR-pilot-20261021: 747files fresh-downloaded, physically disk-restored and SHA256verified.
 - Private release research-asset-v6-adaptive-pilot-20261021: 368files fresh-downloaded, physically disk-restored and SHA256verified.
 - Private release research-asset-v6-empirical-mean-pilot-20261021: 1,822files fresh-downloaded, physically disk-restored and SHA256verified.
+- Private release research-asset-v6-fading-1000-20261021: 81,122files fresh-downloaded, physically disk-restored and SHA256verified.
 
 Complete raw losses, implementations, fitting/mean kernels, controls/registry, seeds, admission and verification evidence are preserved privately. Public compact receipts provide all archive/manifest digests and dependency releases. Restore baseline shared/input archives and sealed numerical parents, then the hybrid parent source and selected candidate archives at the research owner root; verify every manifest path, size and SHA256 before use. The prior hybrid raw checkpoints were intentionally retired only after complete fresh remote recovery and file-level SHA256 verification; the separate retirement receipt and ARCHIVED_LOSSES marker document this. The baseline inputs and checkpoints and currently needed candidate checkpoints remain local active research dependencies. Their archived prior versions must not be treated as missing data or silently recomputed.
 

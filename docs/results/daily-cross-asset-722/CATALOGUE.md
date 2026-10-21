@@ -1,6 +1,6 @@
 # Versioned full-panel model catalogue
 
-**22 unique model versions across preserved benchmarks; 9 with completed attempts on the current benchmark.**
+**23 unique model versions across preserved benchmarks; 10 with completed attempts on the current benchmark.**
 
 The current benchmark has one main score. Historical normalizations and all older executions remain in catalogue.json; scores from different benchmarks are not compared.
 
@@ -18,6 +18,7 @@ This is an evidence inventory, not a mixed-coverage ranking.
 | TestFolio-style Asset Blocks — With Replacement | 64049 / 64049 | 0 | 0.632071545704 | 13316.043 |
 | Asset Equal Mix / Smooth Gaussian Mean Uncertainty | 64049 / 64049 | 0 | 0.615007113519 | 11721.958 |
 | Asset Circular Equal Mix / Smooth Gaussian Mean Uncertainty | 64049 / 64049 | 0 | 0.612497579635 | 11948.529 |
+| Asset Fading Volatility / Equal Mix / Smooth Gaussian Mean Uncertainty | 64049 / 64049 | 0 | 0.611810828993 | 10604.135 |
 
 ## Incomplete paired results: native forecast failures
 

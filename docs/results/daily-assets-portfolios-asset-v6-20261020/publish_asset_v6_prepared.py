@@ -70,7 +70,8 @@ def main():
                  'finish_asset_fading.py', 'launch_asset_fading_full_when_ready.py',
                  'diagnose_asset_fading_pilots.py', 'asset_fading_storage_budget.json',
                  'screen_asset_equilibrium_blocks.py','run_asset_equilibrium_pilot.py',
-                 'continue_asset_equilibrium_blocks.py','test_asset_equilibrium_blocks.py']:
+                 'continue_asset_equilibrium_blocks.py','test_asset_equilibrium_blocks.py',
+                 'diagnose_asset_training_memory.py','test_asset_training_memory.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -185,7 +186,7 @@ def main():
                  'broad_case_selection_receipt.json', 'DESIGN.md']:
         if (c/name).exists():
             shutil.copy2(c/name, target/name)
-    for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json', 'candidate_full_diagnostics.json', 'official_scoreboard.json', 'CURRENT_RESEARCH.md']:
+    for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json', 'candidate_full_diagnostics.json','training_short_memory_diagnostic.json', 'official_scoreboard.json', 'CURRENT_RESEARCH.md']:
         if (V/name).exists():
             shutil.copy2(V/name, D/name)
     manifest = {str(p.relative_to(D)): sha(p) for p in sorted(D.rglob('*'))
@@ -197,7 +198,7 @@ def main():
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
                            'test_asset_iid_component.py', 'test_asset_gjr.py',
-                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py'],
+                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr
@@ -231,7 +232,7 @@ def main():
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 49}), flush=True)
+                      'tests': 52}), flush=True)
 
 
 if __name__ == '__main__':
