@@ -1,0 +1,57 @@
+{
+  "utc": "2026-10-21T07:39:30.682021+00:00",
+  "complete": true,
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-asset-v6-uncapped-selector-reference-20261021",
+  "archives": [
+    {
+      "utc": "2026-10-21T07:39:28.140116+00:00",
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-asset-v6-uncapped-selector-reference-20261021",
+      "group": "uncapped_selector_closed_sources_and_results",
+      "part": 1,
+      "parts": 1,
+      "archive_name": "uncapped_selector_closed_sources_and_results-part-01.tar.gz",
+      "archive_sha256": "0044925455c1478e703c5d68e9ba56f3c442cd1b619381bbe25a3b0e4107cc2d",
+      "manifest_name": "uncapped_selector_closed_sources_and_results-part-01-manifest.json",
+      "manifest_sha256": "4db07717f99b88180345c95c9df4bb8d280d725dfafdf412be89b00278cef28b",
+      "archive_bytes": 243092,
+      "files": 23,
+      "remote_download_sha256_verified": true,
+      "all_files_disk_restored_and_sha256_verified": true,
+      "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-uncapped-selector-reference-20261021",
+      "scientific_originals_removed": false
+    },
+    {
+      "utc": "2026-10-21T07:39:30.681675+00:00",
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-asset-v6-uncapped-selector-reference-20261021",
+      "group": "audit_sources",
+      "part": 1,
+      "parts": 1,
+      "archive_name": "audit_sources-part-01.tar.gz",
+      "archive_sha256": "a168688c05452e40c3f37a4e35e7f48190b3b01eda9570441bc81c4e41dd3345",
+      "manifest_name": "audit_sources-part-01-manifest.json",
+      "manifest_sha256": "ece3a3cf1aa0d0e2ade9435dbed5e053500e9a23ff6e2fe96f549621149fd2b3",
+      "archive_bytes": 9484,
+      "files": 10,
+      "remote_download_sha256_verified": true,
+      "all_files_disk_restored_and_sha256_verified": true,
+      "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-uncapped-selector-reference-20261021",
+      "scientific_originals_removed": false
+    }
+  ],
+  "files_fresh_downloaded_disk_restored_sha256_verified": 33,
+  "scientific_originals_removed": false,
+  "full_panel_catalogue_increment": 0,
+  "dependency_releases": [
+    "research-asset-v6-baselines-1000-20261020",
+    "research-asset-v6-feature-development-20261021",
+    "research-asset-v6-feature-broad-20261021",
+    "research-asset-v6-fading-1000-20261021",
+    "research-asset-v6-learned-pool-broad-20261021",
+    "research-asset-v6-learned-pool-pilots-20261021",
+    "research-asset-v6-sample-refocus-20261021"
+  ],
+  "recovery": "Download and SHA256verify all archive and manifest pairs; disk restore at research owner root and check every per-file manifest hash. Restore referenced baseline inputs and sealed parent dependencies first."
+}

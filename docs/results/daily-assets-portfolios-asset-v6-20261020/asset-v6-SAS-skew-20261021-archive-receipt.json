@@ -1,0 +1,57 @@
+{
+  "utc": "2026-10-21T07:09:13.055582+00:00",
+  "complete": true,
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-asset-v6-SAS-skew-20261021",
+  "archives": [
+    {
+      "utc": "2026-10-21T07:09:10.645412+00:00",
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-asset-v6-SAS-skew-20261021",
+      "group": "SAS_skew_closed_sources_and_results",
+      "part": 1,
+      "parts": 1,
+      "archive_name": "SAS_skew_closed_sources_and_results-part-01.tar.gz",
+      "archive_sha256": "87fa4061fcdaf542ff706c3a488704ceff7f0b9711be97e5cbb2705f6ce234cf",
+      "manifest_name": "SAS_skew_closed_sources_and_results-part-01-manifest.json",
+      "manifest_sha256": "c464e1b44780e1718a201799839db58e92f16e1a7b4a0dfc93169e5041bf76cd",
+      "archive_bytes": 12957903,
+      "files": 479,
+      "remote_download_sha256_verified": true,
+      "all_files_disk_restored_and_sha256_verified": true,
+      "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-SAS-skew-20261021",
+      "scientific_originals_removed": false
+    },
+    {
+      "utc": "2026-10-21T07:09:13.054555+00:00",
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-asset-v6-SAS-skew-20261021",
+      "group": "audit_sources",
+      "part": 1,
+      "parts": 1,
+      "archive_name": "audit_sources-part-01.tar.gz",
+      "archive_sha256": "961fb5a350559fab8351987e6fc8d2357d16bc93418d727bb663e37998f6fc34",
+      "manifest_name": "audit_sources-part-01-manifest.json",
+      "manifest_sha256": "e0b3a37d3e2768479f8434d9a7281f28a6607423329e7845f19fbaaeaafa0f57",
+      "archive_bytes": 12282,
+      "files": 6,
+      "remote_download_sha256_verified": true,
+      "all_files_disk_restored_and_sha256_verified": true,
+      "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-SAS-skew-20261021",
+      "scientific_originals_removed": false
+    }
+  ],
+  "files_fresh_downloaded_disk_restored_sha256_verified": 485,
+  "scientific_originals_removed": false,
+  "full_panel_catalogue_increment": 0,
+  "dependency_releases": [
+    "research-asset-v6-baselines-1000-20261020",
+    "research-asset-v6-feature-development-20261021",
+    "research-asset-v6-feature-broad-20261021",
+    "research-asset-v6-fading-1000-20261021",
+    "research-asset-v6-learned-pool-broad-20261021",
+    "research-asset-v6-learned-pool-pilots-20261021",
+    "research-asset-v6-sample-refocus-20261021"
+  ],
+  "recovery": "Download and SHA256verify all archive and manifest pairs; disk restore at research owner root and check every per-file manifest hash. Restore referenced baseline inputs and sealed parent dependencies first."
+}

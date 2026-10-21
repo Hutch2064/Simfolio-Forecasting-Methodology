@@ -1,0 +1,83 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "cases_per_model": 355,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "inner_paths": 32,
+        "maximum_inner_origins": 3
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.7155095951729757,
+      "model_id": "model_testing_asset_fast_rolling_selector_v1_ed2ec691d9e90a4f",
+      "percent_better_vs_same1000path_fixed_reference": 10.606252951115458,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "inner_paths": 32,
+        "maximum_inner_origins": 1
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.7161946945202958,
+      "model_id": "model_testing_asset_fast_rolling_selector_v1_727c5902d4160456",
+      "percent_better_vs_same1000path_fixed_reference": 10.520658574504916,
+      "successful_cases": 355
+    }
+  ],
+  "configurations": 2,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_fast_rolling_selector_v1_727c5902d4160456": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "inner_paths": 32,
+        "maximum_inner_origins": 1
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.7161946945202958,
+      "percent_better_vs_same1000path_fixed_reference": 10.520658574504916,
+      "successful_cases": 355
+    },
+    "model_testing_asset_fast_rolling_selector_v1_ed2ec691d9e90a4f": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "inner_paths": 32,
+        "maximum_inner_origins": 3
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.7155095951729757,
+      "percent_better_vs_same1000path_fixed_reference": 10.606252951115458,
+      "successful_cases": 355
+    }
+  },
+  "native_failures": 0,
+  "new_anchor_replays": 75,
+  "newly_simulated_forecasts": 150,
+  "official": false,
+  "paths": 1000,
+  "reference_main_Q": {
+    "current_best": 0.7131987298009069,
+    "fixed_reference": 0.8004022862826219
+  },
+  "reused_exact_parent_fallback_forecasts": 420,
+  "reused_verified_screen_forecasts": 140,
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 64.01586424838752,
+  "successful_selected_forecasts": 710,
+  "utc": "2026-10-21T07:24:20.846879+00:00"
+}

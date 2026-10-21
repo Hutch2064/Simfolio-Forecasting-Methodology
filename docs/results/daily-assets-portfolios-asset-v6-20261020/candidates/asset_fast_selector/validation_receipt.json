@@ -1,0 +1,75 @@
+{
+  "utc": "2026-10-21T07:26:48.618413+00:00",
+  "verified": true,
+  "selected_checkpoints_verified": 710,
+  "reference_checkpoints_verified": 710,
+  "cases_per_model": 355,
+  "outer_paths": 1000,
+  "main_Q_recomputed": {
+    "0": 0.7161946945202958,
+    "1": 0.7155095951729757
+  },
+  "reference_main_Q": {
+    "current_best": 0.7131987298009069,
+    "fixed_reference": 0.8004022862826219
+  },
+  "selection_counts_by_config": {
+    "0": {
+      "0": 221,
+      "2": 18,
+      "10": 7,
+      "15": 4,
+      "18": 8,
+      "8": 4,
+      "1": 17,
+      "13": 14,
+      "6": 6,
+      "11": 12,
+      "9": 7,
+      "5": 2,
+      "14": 9,
+      "16": 6,
+      "12": 3,
+      "3": 2,
+      "7": 7,
+      "4": 6,
+      "17": 2
+    },
+    "1": {
+      "0": 232,
+      "9": 7,
+      "10": 7,
+      "5": 5,
+      "8": 7,
+      "14": 12,
+      "13": 8,
+      "2": 13,
+      "11": 10,
+      "12": 13,
+      "1": 8,
+      "7": 4,
+      "6": 3,
+      "4": 5,
+      "3": 3,
+      "18": 3,
+      "17": 10,
+      "16": 3,
+      "15": 2
+    }
+  },
+  "fresh_multivariate_replay": {
+    "case": 220,
+    "series_id": "P_03fa0f01a5da3f84",
+    "constituents": [
+      "IEISIM",
+      "SLVSIM"
+    ],
+    "both_configurations_bitwise_equal": true
+  },
+  "outer_future_accessible_to_selector": false,
+  "source_closure_verified": true,
+  "native_failures": 0,
+  "scoring_integrity_errors": 0,
+  "independent_validation_or_significance_claim": false,
+  "scope": "Initial19option prototype; all355cases including210exactparentfallbacks. No claim of complete future option universe."
+}

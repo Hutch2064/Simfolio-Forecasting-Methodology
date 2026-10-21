@@ -1,0 +1,14 @@
+{
+  "utc": "2026-10-21T06:59:01.770481+00:00",
+  "parent_source": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_trained_pool/candidate.py",
+  "parent_source_sha256": "989b0cf7ad94cb4ed1ad85e95c623e2f96a1812eef3dd83a4936010a2cb17e2b",
+  "adaptations": [
+    "Add training standardized innovation skew fit",
+    "Apply monotone standardized skew transform to filtered Gaussian innovations only",
+    "New config/identity; preserve all raw, variance, mean, blend and accounting code"
+  ],
+  "latent_Gaussian_copula_unchanged": true,
+  "Pearson_covariance_unchanged_claim": false,
+  "training_blend_is_frozen_parent_law_not_optimized_for_skew": true,
+  "no_fitting_or_candidate_selection_from_outer_future_scores": true
+}

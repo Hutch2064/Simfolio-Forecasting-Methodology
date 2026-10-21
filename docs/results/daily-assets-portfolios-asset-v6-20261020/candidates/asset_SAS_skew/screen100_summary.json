@@ -1,0 +1,76 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "skew": "likelihood"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8237672689787061,
+      "model_id": "model_testing_asset_SAS_skew_v1_f3d38f8c62942def",
+      "percent_better_vs_same100path_fixed_reference": 14.885509113481366,
+      "successful_cases": 72
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "skew": "BIC"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8237718024198492,
+      "model_id": "model_testing_asset_SAS_skew_v1_fca8c566791126d7",
+      "percent_better_vs_same100path_fixed_reference": 14.88504070262142,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 2,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_SAS_skew_v1_f3d38f8c62942def": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "skew": "likelihood"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8237672689787061,
+      "percent_better_vs_same100path_fixed_reference": 14.885509113481366,
+      "successful_cases": 72
+    },
+    "model_testing_asset_SAS_skew_v1_fca8c566791126d7": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "skew": "BIC"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8237718024198492,
+      "percent_better_vs_same100path_fixed_reference": 14.88504070262142,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 144,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8235702227265657,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 10.497613832587376,
+  "utc": "2026-10-21T07:00:57.200276+00:00"
+}

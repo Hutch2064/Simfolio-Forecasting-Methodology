@@ -1,0 +1,87 @@
+{
+  "utc": "2026-10-21T07:09:02.199691+00:00",
+  "status": "rejected_after_precision_confirmation",
+  "reason": "Both training-likelihood and BIC innovation-skew contrasts lose the unchanged parent on identical72case sample at100and1000paths. No held-out retuning or full-panel escalation. Gaussian-trained blend deliberately held fixed; this does not establish optimality of a skew-aware refit.",
+  "phases": [
+    {
+      "cases_per_model": 72,
+      "complete_identical_coverage_screen_ranking": [
+        {
+          "beats_same100path_current_best": false,
+          "complete": true,
+          "config": {
+            "skew": "likelihood"
+          },
+          "config_index": 0,
+          "expected_cases": 72,
+          "main_Q": 0.8237672689787061,
+          "model_id": "model_testing_asset_SAS_skew_v1_f3d38f8c62942def",
+          "percent_better_vs_same100path_fixed_reference": 14.885509113481366,
+          "successful_cases": 72
+        },
+        {
+          "beats_same100path_current_best": false,
+          "complete": true,
+          "config": {
+            "skew": "BIC"
+          },
+          "config_index": 1,
+          "expected_cases": 72,
+          "main_Q": 0.8237718024198492,
+          "model_id": "model_testing_asset_SAS_skew_v1_fca8c566791126d7",
+          "percent_better_vs_same100path_fixed_reference": 14.88504070262142,
+          "successful_cases": 72
+        }
+      ],
+      "native_failures": 0,
+      "new_successful_forecasts": 144,
+      "paths": 100,
+      "reference_main_Q": {
+        "current_best": 0.8235702227265657,
+        "fixed_reference": 0.967834337489039
+      },
+      "scoring_integrity_errors": 0
+    },
+    {
+      "cases_per_model": 72,
+      "complete_identical_coverage_screen_ranking": [
+        {
+          "beats_same1000path_current_best": false,
+          "complete": true,
+          "config": {
+            "skew": "likelihood"
+          },
+          "config_index": 0,
+          "expected_cases": 72,
+          "main_Q": 0.8214649111940858,
+          "model_id": "model_testing_asset_SAS_skew_v1_f3d38f8c62942def",
+          "percent_better_vs_same1000path_fixed_reference": 14.9639950751156,
+          "successful_cases": 72
+        },
+        {
+          "beats_same1000path_current_best": false,
+          "complete": true,
+          "config": {
+            "skew": "BIC"
+          },
+          "config_index": 1,
+          "expected_cases": 72,
+          "main_Q": 0.8214886321958019,
+          "model_id": "model_testing_asset_SAS_skew_v1_fca8c566791126d7",
+          "percent_better_vs_same1000path_fixed_reference": 14.961539536003377,
+          "successful_cases": 72
+        }
+      ],
+      "native_failures": 0,
+      "new_successful_forecasts": 144,
+      "paths": 1000,
+      "reference_main_Q": {
+        "current_best": 0.8214554222471507,
+        "fixed_reference": 0.9660201133857566
+      },
+      "scoring_integrity_errors": 0
+    }
+  ],
+  "full_panel_catalogue_increment": 0,
+  "scientific_originals_removed": false
+}

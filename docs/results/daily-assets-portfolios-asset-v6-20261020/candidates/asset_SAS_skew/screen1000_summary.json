@@ -1,0 +1,76 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "skew": "likelihood"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8214649111940858,
+      "model_id": "model_testing_asset_SAS_skew_v1_f3d38f8c62942def",
+      "percent_better_vs_same1000path_fixed_reference": 14.9639950751156,
+      "successful_cases": 72
+    },
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "skew": "BIC"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8214886321958019,
+      "model_id": "model_testing_asset_SAS_skew_v1_fca8c566791126d7",
+      "percent_better_vs_same1000path_fixed_reference": 14.961539536003377,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 2,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_SAS_skew_v1_f3d38f8c62942def": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "skew": "likelihood"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8214649111940858,
+      "percent_better_vs_same1000path_fixed_reference": 14.9639950751156,
+      "successful_cases": 72
+    },
+    "model_testing_asset_SAS_skew_v1_fca8c566791126d7": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "skew": "BIC"
+      },
+      "config_index": 1,
+      "expected_cases": 72,
+      "main_Q": 0.8214886321958019,
+      "percent_better_vs_same1000path_fixed_reference": 14.961539536003377,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 144,
+  "official": false,
+  "paths": 1000,
+  "reference_main_Q": {
+    "current_best": 0.8214554222471507,
+    "fixed_reference": 0.9660201133857566
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 9.72613982798066,
+  "utc": "2026-10-21T07:08:05.414335+00:00"
+}

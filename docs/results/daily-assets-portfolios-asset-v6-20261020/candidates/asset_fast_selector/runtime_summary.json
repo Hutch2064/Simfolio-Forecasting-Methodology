@@ -1,0 +1,63 @@
+{
+  "cases": 6,
+  "complete": true,
+  "paired_requests": 36,
+  "scope": "Local whole numerical request only; no web latency or production speedup claim; no CRPS scoring in runtime fixture",
+  "summary": [
+    {
+      "assets": 1,
+      "horizon": 21,
+      "parent_mean_seconds": 0.02829337496465693,
+      "parent_median_seconds": 0.027893666992895305,
+      "selector_mean_seconds": 0.11400149968297531,
+      "selector_median_seconds": 0.11369683302473277,
+      "selector_over_parent_median_ratio": 4.076080533036122
+    },
+    {
+      "assets": 1,
+      "horizon": 252,
+      "parent_mean_seconds": 0.03427034697961062,
+      "parent_median_seconds": 0.03397237497847527,
+      "selector_mean_seconds": 0.12142029171809554,
+      "selector_median_seconds": 0.12043704208917916,
+      "selector_over_parent_median_ratio": 3.5451463774754477
+    },
+    {
+      "assets": 10,
+      "horizon": 21,
+      "parent_mean_seconds": 0.21413886096949378,
+      "parent_median_seconds": 0.21349858294706792,
+      "selector_mean_seconds": 0.8707556803710759,
+      "selector_median_seconds": 0.8700798329664394,
+      "selector_over_parent_median_ratio": 4.075342425959594
+    },
+    {
+      "assets": 10,
+      "horizon": 252,
+      "parent_mean_seconds": 0.22763287466174612,
+      "parent_median_seconds": 0.2276590410619974,
+      "selector_mean_seconds": 0.8026036249939352,
+      "selector_median_seconds": 0.8028433339204639,
+      "selector_over_parent_median_ratio": 3.5265163648907274
+    },
+    {
+      "assets": 200,
+      "horizon": 21,
+      "parent_mean_seconds": 4.129792999980661,
+      "parent_median_seconds": 4.131964124972001,
+      "selector_mean_seconds": 16.975141166360117,
+      "selector_median_seconds": 16.9964662080165,
+      "selector_over_parent_median_ratio": 4.1134108849823745
+    },
+    {
+      "assets": 200,
+      "horizon": 252,
+      "parent_mean_seconds": 4.3544266113312915,
+      "parent_median_seconds": 4.349036292056553,
+      "selector_mean_seconds": 15.463116694979059,
+      "selector_median_seconds": 15.463277666945942,
+      "selector_over_parent_median_ratio": 3.555564182159017
+    }
+  ],
+  "utc": "2026-10-21T07:29:51.200256+00:00"
+}
