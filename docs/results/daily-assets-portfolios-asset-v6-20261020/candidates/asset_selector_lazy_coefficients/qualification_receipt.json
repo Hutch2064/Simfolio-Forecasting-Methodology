@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-21T14:08:37.098815+00:00",
+  "tests_passed": 6,
+  "source_hashes": {
+    "asset_level_v6/candidates/asset_selector_lazy_coefficients/solver.py": "1477220522056064f750f1b266a15599a3613fabce1d6a53fbee59f7f6c87380",
+    "asset_level_v6/candidates/asset_selector_lazy_coefficients/__init__.py": "d033bced371db905a475299bd96a9a37999770e1f109b7b2e696e5b687b3377a",
+    "asset_level_v6/candidates/asset_selector_lazy_coefficients/columns.py": "eb507abc5b48d7b8fa5d5523f8d8d247ddfcfdfd83c21df86f2d7e46b2a14f8a",
+    "test_selector_lazy_coefficients.py": "fa75ad46b9e48ec40329c10aaaf633c5ca374183fad6726c1c343f891e4c00cb",
+    "verify_selector_lazy_closed_coefficients.py": "85a72d82b8f5213daa8c5f9180b4c601cbb666c6323477cde4b847da290fd6f0"
+  },
+  "qualification_log_sha256": "117fdaae367833c4b144db79a89bffba937fe21d8d5c2533b76757cb215aa704",
+  "closed_coefficient_replay_sha256": "2975bfc3b356b7d1fdf2d89f5f4f78c02cb17a28937e3435fe7c33e753de19ee",
+  "closed_objectives_certified": 28,
+  "requested_columns_median": 7,
+  "allocation_mismatches_against_dense": 7,
+  "not_bit_exact_weight_solver_replacement": true,
+  "exact_selected_coefficient_columns_tested": true,
+  "full_request_runtime_and_accuracy_unproven": true,
+  "no_new_forecast_pool_started": true
+}

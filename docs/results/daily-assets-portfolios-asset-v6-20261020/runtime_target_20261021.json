@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-21T14:07:30.411081+00:00",
+  "source": "Direct human request: radically faster runtime while preserving and continuing accuracy improvements",
+  "local_target_seconds": [
+    5,
+    10
+  ],
+  "target_scope": "Complete per-portfolio selection, fitting and 1,000-path forecast, including 75- and 100-year requested horizons and portfolio scaling up to the previously stated 200 assets",
+  "is_measured_or_achieved": false,
+  "do_not_assume_production_slowdown_factor": true,
+  "current_local_21_portfolio_elapsed_median_minutes_approximately": 14,
+  "measured_constituent_range": [
+    2,
+    10
+  ],
+  "required_median_speed_ratio_to10seconds_approximately": 84,
+  "do_not_prune_options_from_outer_panel_outcomes": true,
+  "no_automatic_fixed_winner_or_accuracy_reducing_time_cap": true,
+  "preserve_frozen_main_score_and_current_scientific_workers": true,
+  "accuracy_remains_part_of_acceptance": true,
+  "exact_work_changes_require_complete_forecast_parity": "Exact coefficient kernel currently queued for all355-case replay; no full-request speedup established",
+  "methodological_changes_require_matched_accuracy_validation": [
+    "Demand-driven solver and any altered integer allocation",
+    "Any adaptive internal Monte Carlo precision or temporal quadrature",
+    "Any screened component menu or analytic predictive approximation"
+  ],
+  "work_tracks": [
+    "Qualify exact shared coefficient and simulation reuse on complete existing requests",
+    "Measure causal historical data, prefix-fit, component generation, coefficient construction, solver, final simulation and CRPS separately",
+    "Investigate demand-driven complete-menu gradient certification, including replay or storage costs",
+    "Test data-driven internal precision and lead integration only as explicit accuracy candidates if exact changes remain insufficient"
+  ],
+  "future_timing_matrix": {
+    "asset_counts": [
+      1,
+      2,
+      10,
+      50,
+      200
+    ],
+    "training_histories": "Two years, ten years and longest compatible observed history; actual dates recorded",
+    "forecast_horizons_years": [
+      1,
+      10,
+      75,
+      100
+    ],
+    "timing_states": [
+      "Warm numerical code with novel request",
+      "First use and reusable causal-prefix fits recorded separately"
+    ],
+    "pool_policy": "One shared12-worker scientific budget; do not create a competing pool while the current12 are busy"
+  },
+  "goal_stopping_condition_unchanged": true
+}
