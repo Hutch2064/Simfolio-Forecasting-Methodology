@@ -14,6 +14,7 @@ from . import candidate as adapter
 import sweep_v6 as api
 import score_main
 import reporter
+import fcntl
 
 OWN = Path(__file__).resolve().parent
 V5 = OWN.parents[1]
@@ -55,6 +56,8 @@ def wait_for_baseline_completion():
 
 
 def run(phase):
+    slots = (V5.parent/'asset_v6_forecast_slots.lock').open('a')
+    fcntl.flock(slots, fcntl.LOCK_EX)
     plan = guard()
     baseline_report = wait_for_baseline_completion()
     if phase == 'reserved':

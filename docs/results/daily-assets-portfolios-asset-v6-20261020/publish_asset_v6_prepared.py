@@ -29,7 +29,8 @@ def main():
                  'continue_asset_v6_research.py', 'diagnose_asset_v6_pair.py',
                  'test_asset_v6_decomposition.py', 'preserve_asset_v6_closed.py',
                  'catalogue_asset_v6_closed.py', 'archive_asset_v6_when_closed.py',
-                 'prepare_asset_prior_broad.py']:
+                 'prepare_asset_prior_broad.py', 'goal_objective_updated.txt',
+                 'goal_screen_parallel_receipt.json']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
