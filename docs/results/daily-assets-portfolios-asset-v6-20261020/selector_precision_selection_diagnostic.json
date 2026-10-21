@@ -111,6 +111,239 @@
       "mean_percent_final_paths": 0.925
     }
   ],
+  "dimensions": {
+    "innovations": [
+      {
+        "category": "Gaussian",
+        "percent_executions_present": 51.85185185185185,
+        "mean_percent_all_final_paths": 21.516666666666666
+      },
+      {
+        "category": "Student",
+        "percent_executions_present": 60.64814814814815,
+        "mean_percent_all_final_paths": 31.260185185185186
+      },
+      {
+        "category": "empirical",
+        "percent_executions_present": 70.37037037037037,
+        "mean_percent_all_final_paths": 41.06203703703704
+      }
+    ],
+    "mean_mode": [
+      {
+        "category": "sample",
+        "percent_executions_present": 36.574074074074076,
+        "mean_percent_all_final_paths": 12.91851851851852
+      },
+      {
+        "category": "shrink",
+        "percent_executions_present": 44.44444444444444,
+        "mean_percent_all_final_paths": 21.651851851851852
+      },
+      {
+        "category": "zero",
+        "percent_executions_present": 78.70370370370371,
+        "mean_percent_all_final_paths": 59.26851851851852
+      }
+    ],
+    "mean_uncertainty": [
+      {
+        "category": "False",
+        "percent_executions_present": 92.12962962962963,
+        "mean_percent_all_final_paths": 63.78055555555555
+      },
+      {
+        "category": "True",
+        "percent_executions_present": 88.88888888888889,
+        "mean_percent_all_final_paths": 30.05833333333333
+      }
+    ],
+    "sampling": [
+      {
+        "category": "Gaussian",
+        "percent_executions_present": 51.85185185185185,
+        "mean_percent_all_final_paths": 21.516666666666666
+      },
+      {
+        "category": "Student",
+        "percent_executions_present": 60.64814814814815,
+        "mean_percent_all_final_paths": 31.260185185185186
+      },
+      {
+        "category": "empirical",
+        "percent_executions_present": 70.37037037037037,
+        "mean_percent_all_final_paths": 41.06203703703704
+      },
+      {
+        "category": "raw IID",
+        "percent_executions_present": 6.018518518518518,
+        "mean_percent_all_final_paths": 1.950925925925926
+      },
+      {
+        "category": "raw blocks with replacement",
+        "percent_executions_present": 7.87037037037037,
+        "mean_percent_all_final_paths": 1.8953703703703701
+      },
+      {
+        "category": "raw history cycles without replacement",
+        "percent_executions_present": 12.037037037037036,
+        "mean_percent_all_final_paths": 0.925
+      },
+      {
+        "category": "nested parent mixture",
+        "percent_executions_present": 7.4074074074074066,
+        "mean_percent_all_final_paths": 1.3898148148148148
+      }
+    ]
+  },
+  "innovation_mean_uncertainty_combinations": [
+    {
+      "category": "('empirical', 'zero', False)",
+      "percent_executions_present": 40.74074074074074,
+      "mean_percent_all_final_paths": 16.48148148148148,
+      "innovations": "empirical",
+      "mean_mode": "zero",
+      "mean_uncertainty": false
+    },
+    {
+      "category": "('Student', 'zero', False)",
+      "percent_executions_present": 35.648148148148145,
+      "mean_percent_all_final_paths": 14.658333333333335,
+      "innovations": "Student",
+      "mean_mode": "zero",
+      "mean_uncertainty": false
+    },
+    {
+      "category": "('Gaussian', 'zero', False)",
+      "percent_executions_present": 32.407407407407405,
+      "mean_percent_all_final_paths": 9.075925925925926,
+      "innovations": "Gaussian",
+      "mean_mode": "zero",
+      "mean_uncertainty": false
+    },
+    {
+      "category": "('empirical', 'zero', True)",
+      "percent_executions_present": 27.77777777777778,
+      "mean_percent_all_final_paths": 8.885185185185184,
+      "innovations": "empirical",
+      "mean_mode": "zero",
+      "mean_uncertainty": true
+    },
+    {
+      "category": "('empirical', 'shrink', False)",
+      "percent_executions_present": 20.833333333333336,
+      "mean_percent_all_final_paths": 7.469444444444444,
+      "innovations": "empirical",
+      "mean_mode": "shrink",
+      "mean_uncertainty": false
+    },
+    {
+      "category": "('Student', 'zero', True)",
+      "percent_executions_present": 25.925925925925924,
+      "mean_percent_all_final_paths": 6.3462962962962965,
+      "innovations": "Student",
+      "mean_mode": "zero",
+      "mean_uncertainty": true
+    },
+    {
+      "category": "('Student', 'shrink', False)",
+      "percent_executions_present": 15.74074074074074,
+      "mean_percent_all_final_paths": 4.610185185185186,
+      "innovations": "Student",
+      "mean_mode": "shrink",
+      "mean_uncertainty": false
+    },
+    {
+      "category": "('Gaussian', 'zero', True)",
+      "percent_executions_present": 18.98148148148148,
+      "mean_percent_all_final_paths": 3.821296296296296,
+      "innovations": "Gaussian",
+      "mean_mode": "zero",
+      "mean_uncertainty": true
+    },
+    {
+      "category": "('empirical', 'sample', False)",
+      "percent_executions_present": 9.25925925925926,
+      "mean_percent_all_final_paths": 3.3620370370370374,
+      "innovations": "empirical",
+      "mean_mode": "sample",
+      "mean_uncertainty": false
+    },
+    {
+      "category": "('Gaussian', 'sample', False)",
+      "percent_executions_present": 7.87037037037037,
+      "mean_percent_all_final_paths": 3.2490740740740742,
+      "innovations": "Gaussian",
+      "mean_mode": "sample",
+      "mean_uncertainty": false
+    },
+    {
+      "category": "('empirical', 'shrink', True)",
+      "percent_executions_present": 8.796296296296296,
+      "mean_percent_all_final_paths": 3.1083333333333334,
+      "innovations": "empirical",
+      "mean_mode": "shrink",
+      "mean_uncertainty": true
+    },
+    {
+      "category": "('Student', 'shrink', True)",
+      "percent_executions_present": 10.185185185185185,
+      "mean_percent_all_final_paths": 2.751851851851852,
+      "innovations": "Student",
+      "mean_mode": "shrink",
+      "mean_uncertainty": true
+    },
+    {
+      "category": "('Gaussian', 'shrink', False)",
+      "percent_executions_present": 7.87037037037037,
+      "mean_percent_all_final_paths": 2.676851851851852,
+      "innovations": "Gaussian",
+      "mean_mode": "shrink",
+      "mean_uncertainty": false
+    },
+    {
+      "category": "('Student', 'sample', False)",
+      "percent_executions_present": 9.722222222222223,
+      "mean_percent_all_final_paths": 2.197222222222222,
+      "innovations": "Student",
+      "mean_mode": "sample",
+      "mean_uncertainty": false
+    },
+    {
+      "category": "('empirical', 'sample', True)",
+      "percent_executions_present": 12.962962962962962,
+      "mean_percent_all_final_paths": 1.7555555555555558,
+      "innovations": "empirical",
+      "mean_mode": "sample",
+      "mean_uncertainty": true
+    },
+    {
+      "category": "('Gaussian', 'sample', True)",
+      "percent_executions_present": 10.648148148148149,
+      "mean_percent_all_final_paths": 1.6583333333333332,
+      "innovations": "Gaussian",
+      "mean_mode": "sample",
+      "mean_uncertainty": true
+    },
+    {
+      "category": "('Gaussian', 'shrink', True)",
+      "percent_executions_present": 8.796296296296296,
+      "mean_percent_all_final_paths": 1.0351851851851852,
+      "innovations": "Gaussian",
+      "mean_mode": "shrink",
+      "mean_uncertainty": true
+    },
+    {
+      "category": "('Student', 'sample', True)",
+      "percent_executions_present": 6.944444444444445,
+      "mean_percent_all_final_paths": 0.6962962962962963,
+      "innovations": "Student",
+      "mean_mode": "sample",
+      "mean_uncertainty": true
+    }
+  ],
+  "filtered_dimension_shares_exclude_raw_and_nested_parent": true,
+  "presence_percentages_can_exceed100_in_sum_because_forecasts_are_mixtures": true,
   "components_unused": [
     {
       "index": 16,
@@ -2251,5 +2484,5 @@
   ],
   "family_costs_not_profiled_here": true,
   "pruning_requires_matched_main_score_ablation_and_broader_confirmation": true,
-  "verifier_sha256": "1e00b44e47e6fd89548be89aeb420d031e43fb33b00ac074d582edc1214dfaba"
+  "verifier_sha256": "f06c35070e42fc519877409f49e1feadb6a65bf9d38859fa61463971b1d506ba"
 }

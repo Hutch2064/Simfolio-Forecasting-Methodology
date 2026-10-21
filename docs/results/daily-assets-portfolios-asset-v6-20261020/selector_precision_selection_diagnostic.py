@@ -41,6 +41,23 @@ def main():
         family_rows.append({'family': name, 'percent_executions_present': float(100*(totals > 0).mean()),
                             'mean_percent_final_paths': float(totals.mean()/10)})
     family_rows.sort(key=lambda r: -r['mean_percent_final_paths'])
+    def describe(label, indices):
+        values = selected[:, indices].sum(axis=1)
+        return {'category': str(label), 'percent_executions_present': float(100*(values > 0).mean()),
+                'mean_percent_all_final_paths': float(values.mean()/10)}
+    dimensions = {}
+    for dimension in ('innovations', 'mean_mode', 'mean_uncertainty'):
+        dimensions[dimension] = [describe(value, [i for i, spec in enumerate(BANK) if spec['kind'] == 'filtered' and spec[dimension] == value])
+                                 for value in sorted({spec[dimension] for spec in BANK if spec['kind'] == 'filtered'})]
+    dimensions['sampling'] = dimensions['innovations'] + [describe('raw IID', [3]), describe('raw blocks with replacement', [1]),
+                                                          describe('raw history cycles without replacement', [2]), describe('nested parent mixture', [0])]
+    combinations = {}
+    for i, spec in enumerate(BANK):
+        if spec['kind'] == 'filtered':
+            combinations.setdefault((spec['innovations'], spec['mean_mode'], spec['mean_uncertainty']), []).append(i)
+    joint_rows = [{**describe(str(key), indices), 'innovations': key[0], 'mean_mode': key[1], 'mean_uncertainty': key[2]}
+                  for key, indices in combinations.items()]
+    joint_rows.sort(key=lambda r: -r['mean_percent_all_final_paths'])
     presence = (selected > 0).sum(axis=0)
     out = {'verified_summary_sha256': sha(d / 'summary.json'), 'audit_sha256': sha(d / 'verification_receipt.json'),
            'diagnostic_only': True, 'zero_score_or_selection_weight': True, 'full_panel_frequencies': False,
@@ -48,6 +65,9 @@ def main():
            'no_independence_or_significance_claim': True, 'stability': stability,
            'usage_scope': 'Path-scoring selector at30internal paths on the72reused development requests;216executions',
            'components_used': int((presence > 0).sum()), 'families': family_rows,
+           'dimensions': dimensions, 'innovation_mean_uncertainty_combinations': joint_rows,
+           'filtered_dimension_shares_exclude_raw_and_nested_parent': True,
+           'presence_percentages_can_exceed100_in_sum_because_forecasts_are_mixtures': True,
            'components_unused': [{'index': i, 'specification': BANK[i]} for i in np.flatnonzero(presence == 0).tolist()],
            'components_present_in_at_most_one_percent_of_executions': int((presence/len(selected) <= .01).sum()),
            'one_percent_is_descriptive_not_a_pruning_rule': True,
