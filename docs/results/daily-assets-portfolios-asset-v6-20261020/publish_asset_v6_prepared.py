@@ -32,7 +32,8 @@ def main():
                  'prepare_asset_prior_broad.py', 'goal_objective_updated.txt',
                  'goal_screen_parallel_receipt.json', 'run_asset_prior_full.py',
                  'screen_asset_means.py', 'test_asset_mean_screen.py',
-                 'report_asset_prior_full.py', 'asset_v6_shared_slots_receipt.json']:
+                 'report_asset_prior_full.py', 'asset_v6_shared_slots_receipt.json',
+                 'screen_asset_components.py']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
