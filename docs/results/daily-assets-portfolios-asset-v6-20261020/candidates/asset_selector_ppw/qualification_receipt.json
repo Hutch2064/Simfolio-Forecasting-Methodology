@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-21T11:10:28.749348+00:00",
+  "tests_passed": 8,
+  "qualification_log_sha256": "037bfc614cc844c09d335b968da830c2445a428515494ccb46793a2d7d6e48a8",
+  "source_hashes": {
+    "asset_level_v6/candidates/asset_selector_ppw/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "asset_level_v6/candidates/asset_selector_ppw/bank.py": "93f9ede19bb21faabb1acb1820d069f72a1829dc0e02ed8d98e5d84990490fdf",
+    "asset_level_v6/candidates/asset_selector_ppw/candidate.py": "0d31624d22f0e7bdfe366c154b1fa7545f59c8a8a13079a89f82a6a05e17b417",
+    "asset_level_v6/candidates/asset_selector_ppw/blocks.py": "da756a38d0139cc811f07c5ada3cd9863bc419e3b99ebd5f29173ef8c0059d32",
+    "test_selector_ppw_components.py": "c7ab5733ee460eb9167e94494fe1bd4e3593707acfb20b13e5291b3a7e621127",
+    "test_selector_ppw_pool.py": "3dd9d1bc488b274d15c55400fefd74b836bca08e18829b3abc24a296ebe0e3bd"
+  },
+  "existing166component_fixture_outputs_exactly_preserved": true,
+  "new_universe_size": 168,
+  "joint_asset_paths_and_within_path_accounting_tested": true,
+  "source_fits_receive_only_historical_prefixes_and_past_dates": true,
+  "unsupported_internal_options_explicit_no_forecaster_fallback": true,
+  "zero_weight_assets_do_not_set_block_length": true,
+  "no_financial_panel_evaluation_or_promotion": true,
+  "full_panel_catalogue_increment": 0
+}
