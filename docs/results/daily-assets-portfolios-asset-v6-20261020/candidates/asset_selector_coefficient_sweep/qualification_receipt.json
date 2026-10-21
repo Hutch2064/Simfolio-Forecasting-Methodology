@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-21T13:06:15.895819+00:00",
+  "tests_passed": 6,
+  "source_hashes": {
+    "asset_level_v6/candidates/asset_selector_coefficient_sweep/__init__.py": "e46000fa502a7cfe168afb1eec0f992a28cc767369bf8b473878289eed66fde0",
+    "asset_level_v6/candidates/asset_selector_coefficient_sweep/coefficients.py": "3c8acd0f82089ea339d778b5bada82973f7535b6355f50dc1ed343ece25487a0",
+    "asset_level_v6/candidates/asset_selector_coefficient_sweep/candidate.py": "cb3ea66ab7ccbdb095f21476d67c2c1d4576d2feb9e5f442ec85499e0be1f7ef",
+    "test_selector_coefficient_sweep.py": "c6b707b6c90f4ab893f7764bf387327851bb77aee2299753503617f488b68bac",
+    "test_selector_coefficient_sweep_integration.py": "db9963a35af0017176ce86804c498e28a9f681687cdb939de378c728770dd592"
+  },
+  "qualification_log_sha256": "6aa90efa87011794eb83d6f9bc2ce1fd93a1c352066f9f9bbb7168ada52f5a72",
+  "synthetic_all_fold_all_coefficient_all_weight_and_forecast_path_byte_parity": true,
+  "all355_real_request_replay_pending": true,
+  "not_full_panel_admitted": true,
+  "active_scientific_sources_unchanged": true,
+  "benchmark_scope": "Synthetic166-option/all-pair coefficient reducer,16leads,3interleaved warm-code pairs per member count; twelve concurrent scientific workers are a wall-time confounder",
+  "no_whole_request_or_production_speedup_claim": true
+}
