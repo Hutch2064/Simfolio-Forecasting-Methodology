@@ -1,0 +1,44 @@
+{
+  "utc": "2026-10-21T15:05:37.730388+00:00",
+  "synthetic_training_rows": 160,
+  "assets": 3,
+  "options": 166,
+  "native_horizon": 128,
+  "median_cpu_ratios": [
+    {
+      "paths_per_option": 10,
+      "includes_fast_coefficient_accumulation": false,
+      "ratio": 1.9703873306620832
+    },
+    {
+      "paths_per_option": 10,
+      "includes_fast_coefficient_accumulation": true,
+      "ratio": 1.5220266666666664
+    },
+    {
+      "paths_per_option": 1000,
+      "includes_fast_coefficient_accumulation": false,
+      "ratio": 1.6578306019186675
+    },
+    {
+      "paths_per_option": 1000,
+      "includes_fast_coefficient_accumulation": true,
+      "ratio": 1.1797346470300756
+    }
+  ],
+  "all_compared_native_leads_and_coefficients_byte_exact": true,
+  "scope": "Synthetic inner component simulation, separately with and without the already optimized coefficient kernel; excludes fitting, weight optimization, final1000path forecast, CRPS and IO",
+  "digest_cost_excluded_equally_from_timing": true,
+  "warm_code": true,
+  "three_interleaved_pairs_per_workload": true,
+  "concurrent_existing12scientific_workers": true,
+  "wall_timings_have_shared_workload_contention": true,
+  "no_complete_request_or_production_speedup_claim": true,
+  "source_hashes": {
+    "asset_level_v6/candidates/asset_selector_batched_paths/paths.py": "bb6b3a1ededf7778e7f4b1418d415b17e83ce0ba84b3008a5f3fb99d7a106d84",
+    "asset_level_v6/candidates/asset_selector_batched_paths/__init__.py": "052ee8e976ddd57f993770cf71d7b80feeaf7293afe05bd7624d825654c3efe0",
+    "asset_level_v6/candidates/asset_selector_batched_paths/kernels.py": "1920b57619a90a3e5f06d49d848c8f7b7bea7f08b234406363b203a86dfa7f4f",
+    "asset_level_v6/candidates/asset_selector_batched_paths/candidate.py": "557965f3d9bc7a0acbc62e33446584514e79c4c2188cc2095de12d96792f2932",
+    "benchmark_selector_batched_paths.py": "b37b5f18002a3f292a4da8a9af51cfb9f966607136a41fdfec18679a8d56fde6"
+  }
+}
