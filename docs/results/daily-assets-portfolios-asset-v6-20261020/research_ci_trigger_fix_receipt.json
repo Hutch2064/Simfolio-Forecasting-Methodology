@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-21T06:45:37.787973+00:00",
+  "request": "Stop repeated methodology-ci failure emails from routine research publication and continue research",
+  "fix_commit": "457874a21e4faf13229c06e27e9fc6d72aff7209",
+  "workflow": ".github/workflows/ci.yml",
+  "change": "Pushes to main touching only docs/results/** no longer launch package methodology-ci. Other push changes, all pull-request checks, workflow_dispatch and every job are unchanged.",
+  "validation": {
+    "yaml_parsed": true,
+    "package_jobs_byte_equivalent_after_YAML_parse": true,
+    "seven_filter_scenarios_passed": true,
+    "last_three_research_push_file_sets_would_be_skipped": true,
+    "remote_workflow_bytes_verified": true
+  },
+  "prior_failure": {
+    "run_id": 39556632823,
+    "url": "https://github.com/Hutch2064/Simfolio-Forecasting-Methodology/actions/runs/39556632823",
+    "step": "Lint source and tests",
+    "errors": 118,
+    "scope": "Existing style violations in retained/frozen source adapters and tooling, not current simulation or scoring failures. Not restyled or hidden as successful. Source-change CI still exposes them."
+  },
+  "research_unchanged": true,
+  "broad_scientific_run_finished_while_fixing_trigger": true,
+  "numeric_sources_or_scores_changed": false
+}
