@@ -9,8 +9,8 @@ changed=[]
 def copy(p,target):
     target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,target);changed.append(str(target.relative_to(D)))
 for p in C.iterdir():
-    if p.is_file()and p.suffix in('.py','.md','.json'):copy(p,D/'candidates/asset_selector_ppw'/p.name)
-for name in ('test_selector_ppw_components.py','test_selector_ppw_pool.py','selector_ppw_shared_contrast_qualification.log','screen_selector_ppw_menu.py','publish_selector_ppw_prototype.py'):copy(O/name,D/name)
+    if p.is_file()and(p.suffix in('.py','.md')or p.name in('qualification_receipt.json','research_basis.json','SCREEN_PROTOCOL.json','preflight_receipt.json')):copy(p,D/'candidates/asset_selector_ppw'/p.name)
+for name in ('test_selector_ppw_components.py','test_selector_ppw_pool.py','selector_ppw_shared_contrast_qualification.log','screen_selector_ppw_menu.py','preflight_selector_ppw_screen.py','publish_selector_ppw_prototype.py'):copy(O/name,D/name)
 manifest={str(p.relative_to(D)):sha(p)for p in sorted(D.rglob('*'))if p.is_file()and p.name!='PUBLIC_FILES.json'and '__pycache__'not in p.parts};(D/'PUBLIC_FILES.json').write_text(json.dumps(manifest,indent=2)+'\n')
 for line in run(['git','status','--porcelain']).splitlines():assert line[3:].startswith(REL+'/')
 run(['git','add','--',REL]);run(['git','commit','-m','Qualify optional correctedPPW components without changing running selector']);run(['git','push','origin','HEAD:main']);commit=run(['git','rev-parse','HEAD']).strip();restore=O/'v6_public_recovery/18c4f734da2e'

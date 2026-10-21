@@ -1,6 +1,6 @@
 {
   "utc": "2026-10-21T11:43:34.295273+00:00",
-  "status": "prepared protocol; no financial admission yet",
+  "status": "conditionally queued; no financial forecasts admitted yet",
   "case_manifest": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_path_objective/screen100/plan.json",
   "case_manifest_sha256": "32eb0017016c7867a163ef770125b57d9ab3b9f0b739e18dcbb1b52145c4c1ec",
   "same_frozen_cases": 72,
@@ -47,8 +47,9 @@
   "promotion": "Exploratory screen only. Promising extensions require1000path precision and broader matched validation; no full-panel promotion or stopping from this screen",
   "full_panel_catalogue_increment": 0,
   "harness_script": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/screen_selector_ppw_menu.py",
-  "harness_sha256": "6c26c628daefa375698d03378b558ca46d19ad0e29fad4ab39483c796c8cd11a",
-  "orchestration_status": "Syntax checked; actual first-case control replay is a mandatory admission gate before opening the12worker pool",
+  "harness_sha256": "ab0ae0a827ce70dc43f62506b6e5d40ec24de40bf48c8cc0efd8aa3b80df6594",
+  "orchestration_status": "Cached288control/reference checkpoints and source identity preflight passed; conditional queue live, actual first-case control replay remains mandatory",
   "first_request_per_process_profiled": "CPU cProfile diagnostic; excluded from mean/median remaining-compute rate samples",
-  "integrity_before_admission": "Independent saved-loss reduction of the completed1000path criterion stage must pass"
+  "integrity_before_admission": "Independent saved-loss reduction of the completed1000path criterion stage must pass",
+  "loaded_source_binding_sha256": "0d00a58a347eb64532c30403df9257f98f4d6cb7886223ee82d3baa05519587e"
 }

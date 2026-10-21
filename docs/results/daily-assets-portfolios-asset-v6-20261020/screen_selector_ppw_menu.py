@@ -49,7 +49,9 @@ def evaluate(number):
     write(D/'case_records'/f'{number:03d}.json',result);state('idle');return result
 
 def main():
-    write(C/'handoff.json',{'pid':os.getpid(),'status':'waiting_for_shared_forecast_slots','utc':now(),'worker_limit':12})
+    startup_sources={**read(PRE/'plan.json')['source_hashes'],**read(C/'qualification_receipt.json')['source_hashes'],str(Path(__file__).relative_to(O)):sha(Path(__file__))}
+    assert all(sha(O/p)==h for p,h in startup_sources.items())
+    write(C/'handoff.json',{'pid':os.getpid(),'status':'waiting_for_shared_forecast_slots','utc':now(),'worker_limit':12,'loaded_source_binding_sha256':hashlib.sha256(json.dumps(startup_sources,sort_keys=True).encode()).hexdigest()})
     slots=(O/'asset_v6_forecast_slots.lock').open('a');fcntl.flock(slots,fcntl.LOCK_EX)
     assert not D.exists(),'Inspect previous execution instead of overwriting it'
     assert read(O/'goal_progress.json')['goal_status']=='active'
@@ -60,6 +62,7 @@ def main():
     assert prior['qualification_valid']and prior['paths']==100 and len(plan['cases'])==72
     assert q['tests_passed']==9 and recovered['recovered_tests']['tests_passed']==9 and all(sha(O/p)==h for p,h in q['source_hashes'].items())
     closure={**plan['source_hashes'],**q['source_hashes'],str(Path(__file__).relative_to(O)):sha(Path(__file__))};assert all(sha(O/p)==h for p,h in closure.items())
+    assert closure==startup_sources,'Sources changed while waiting; loaded code must be rebound and requalified before admission'
     subprocess.run([sys.executable,'/Users/aidanhutchison/simfolio/storage_preflight.py','--expected-gib','.2','--artifact-root',str(O),'--budget-gib','16'],check=True)
     old={(r['case'],r['config_index']):r for r in prior['records']};fixed=read(Path(plan['reference_checkpoints']))['cases'];references={};reference_rows={'terminal':[],'path':[],'current_best':[],'fixed_reference':[]}
     for number in range(72):
