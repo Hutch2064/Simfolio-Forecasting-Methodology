@@ -1,0 +1,23 @@
+{
+  "utc": "2026-10-21T05:46:40.718233+00:00",
+  "tests_passed": 6,
+  "log": "trained_student_qualification.log",
+  "log_sha256": "465d47de33e176c3808661a53c72c7c1d6ea860222d13090a8e75a077c577ac3",
+  "sources": {
+    "__init__.py": "8a6b8c3befad1a9ca1b23f2eed3220babd20a77996e9dae7977c56a4c313e0f6",
+    "PROTOTYPE.md": "aeb9834285eecf23b230384648f441d95ab2d8fc63d12a2ea3bcfe78d5f0eb52",
+    "weight.py": "25bb27b179f8b08ee5b91c74b99291adf7c82a964f9f89811b4282b4f0e34ce6",
+    "candidate.py": "4f0676d13da58bdcd7ef2851596fbd49330bb1c761c33952d032df4c80cb594a"
+  },
+  "test_source_sha256": "e66db7c82eeb6b3e63a1dd30503ea6e277dc0c1d70c013bbcb27ec2223e0f15a",
+  "checks": [
+    "Student analytic CRPS vs independent integrated CDF",
+    "derived convex interpolation error bound",
+    "exact leave-one-out mixture vs independently integrated mixed CDF",
+    "Gaussian endpoint exact parent at100 and1000paths",
+    "joint Student paths with exact count/chunk/history identity",
+    "training-fitted weight minimizes its convex distributional objective"
+  ],
+  "official_scoring_unchanged": true,
+  "field_accuracy_not_yet_known": true
+}

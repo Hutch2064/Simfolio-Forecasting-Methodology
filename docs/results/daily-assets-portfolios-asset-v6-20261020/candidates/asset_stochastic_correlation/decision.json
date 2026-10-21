@@ -1,0 +1,44 @@
+{
+  "utc": "2026-10-21T05:43:18.854100+00:00",
+  "decision": "Do not promote or expand corrected-DCC correlation contrasts; the full stochastic and static-target controls both lose unchanged1000-path development to the current learned-weight working parent.",
+  "screen100_valid_forecasts": 216,
+  "development1000_valid_forecasts": 710,
+  "native_model_failures": 0,
+  "scoring_integrity_errors": 0,
+  "historical_harness_errors_before_any_forecasts": 72,
+  "historical_failed_attempt": "screen100",
+  "valid_screen": "screen100_v2",
+  "development_main_Q": {
+    "model_testing_asset_stochastic_correlation_v1_bddcd6a8e4de59aa": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "static_shrinkage"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.713553283662213,
+      "percent_better_vs_same1000path_fixed_reference": 10.850668983439471,
+      "successful_cases": 355
+    },
+    "model_testing_asset_stochastic_correlation_v1_dac6c988e1f41f59": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "correlation": "stochastic"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.7135792465430598,
+      "percent_better_vs_same1000path_fixed_reference": 10.847425254468213,
+      "successful_cases": 355
+    }
+  },
+  "working_development_main_Q": 0.7131987298009069,
+  "fixed_WR_development_main_Q": 0.8004022862826219,
+  "scope": "Full simulated corrected-DCC and its fixed-target controls on the current SV-RMS/EWMA Gaussian pool; no blanket rejection of every factor or dependence model.",
+  "no_full_panel_escalation": true,
+  "working_incumbent_unchanged": true,
+  "full_panel_catalogue_increment": 0,
+  "stopping_condition_met": false
+}

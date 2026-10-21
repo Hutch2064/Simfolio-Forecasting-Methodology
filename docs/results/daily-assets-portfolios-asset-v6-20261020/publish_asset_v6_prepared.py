@@ -91,7 +91,7 @@ def main():
                  'screen_asset_training_blocks.py','run_asset_training_blocks_validation.py','test_asset_training_blocks.py','preserve_asset_sample_refocus.py',
                  'screen_asset_likelihood_sv.py','test_asset_likelihood_sv.py','preserve_asset_training_laws.py',
                  'screen_asset_trained_pool.py','run_asset_trained_pool_validation.py','run_asset_trained_pool_broad.py','test_asset_trained_pool.py','screen_asset_regime_rows.py','test_asset_regime_rows.py','screen_asset_random_measure.py','test_asset_random_measure.py','preserve_asset_learned_pool_pilots.py','preserve_asset_learned_pool_broad.py','verify_asset_trained_pool.py','recover_v6_candidate_publication.py','retire_closed_sample_fit_caches.py','preserve_sample_fit_retirement_metadata.py',
-                 'run_asset_stochastic_correlation_validation.py','screen_asset_stochastic_correlation.py','screen_asset_stochastic_correlation_v2.py','test_asset_stochastic_correlation.py','preserve_asset_latent_mean.py','latent_mean_closed_metadata_recovery.json',
+                 'screen_asset_trained_student.py','test_asset_trained_student.py','preserve_asset_stochastic_correlation.py','run_asset_stochastic_correlation_validation.py','screen_asset_stochastic_correlation.py','screen_asset_stochastic_correlation_v2.py','test_asset_stochastic_correlation.py','preserve_asset_latent_mean.py','latent_mean_closed_metadata_recovery.json',
                  'screen_asset_latent_mean.py','run_asset_latent_mean_validation.py','test_asset_latent_mean_fit.py','test_asset_latent_mean.py','latent_mean_prototype_public_recovery.json',
                  'research_workflow_policy.json','working_incumbent.json',
                  'retire_closed_asset_circular_losses.py','preserve_asset_circular_retirement_metadata.py']:
@@ -140,7 +140,7 @@ def main():
         if path.exists():
             compact = {k: v for k, v in json.loads(path.read_text()).items() if k != 'records'}
             (mean_target/(phase+'_summary.json')).write_text(json.dumps(compact, indent=2)+'\n')
-    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks','asset_AR1_mean','asset_feature_batch','asset_dynamic_correlation','asset_component_weights','asset_training_blocks','asset_likelihood_sv','asset_trained_pool','asset_regime_rows','asset_random_measure','asset_latent_mean','asset_stochastic_correlation'):
+    for name in ('asset_adaptive_blocks','asset_empirical_mean','asset_fading_vol','asset_equilibrium_blocks','asset_AR1_mean','asset_feature_batch','asset_dynamic_correlation','asset_component_weights','asset_training_blocks','asset_likelihood_sv','asset_trained_pool','asset_regime_rows','asset_random_measure','asset_latent_mean','asset_stochastic_correlation','asset_trained_student'):
         source = V/'candidates'/name
         dest = D/'candidates'/name
         dest.mkdir(exist_ok=True)
@@ -172,7 +172,7 @@ def main():
             (gjr_target/(phase+'_summary.json')).write_text(json.dumps(compact,indent=2)+'\n')
     if (gjr/'decision.json').exists():
         shutil.copy2(gjr/'decision.json',gjr_target/'decision.json')
-    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021','asset-v6-feature-broad-20261021','asset-v6-sample-refocus-20261021','asset-v6-training-laws-20261021','asset-v6-learned-pool-pilots-20261021','asset-v6-learned-pool-broad-20261021','asset-v6-latent-mean-20261021'):
+    for folder in ('asset-v6-GJR-pilot-20261021','asset-v6-adaptive-pilot-20261021','asset-v6-empirical-mean-pilot-20261021','asset-v6-equilibrium-pilot-20261021','asset-v6-AR1-pilot-20261021','asset-v6-feature-development-20261021','asset-v6-feature-broad-20261021','asset-v6-sample-refocus-20261021','asset-v6-training-laws-20261021','asset-v6-learned-pool-pilots-20261021','asset-v6-learned-pool-broad-20261021','asset-v6-latent-mean-20261021','asset-v6-stochastic-correlation-20261021'):
         path = O/'archives'/folder/'receipt.json'
         if path.exists():
             shutil.copy2(path,D/(folder+'-archive-receipt.json'))
@@ -217,7 +217,7 @@ def main():
             if path.exists():
                 compact={k:v for k,v in json.loads(path.read_text()).items() if k not in ('records','fit_packets')}
                 (destination/name).write_text(json.dumps(compact,indent=2)+'\n')
-    for candidate,phases in [('asset_dynamic_correlation',('screen100',)),('asset_component_weights',('screen120','development1000','reserved1000')),('asset_training_blocks',('screen100','development1000','reserved1000')),('asset_likelihood_sv',('screen100',)),('asset_trained_pool',('screen100','development1000','reserved1000','broad1000')),('asset_regime_rows',('screen100',)),('asset_random_measure',('screen100',)),('asset_latent_mean',('screen100','development1000','reserved1000')),('asset_stochastic_correlation',('screen100','screen100_v2','development1000','reserved1000'))]:
+    for candidate,phases in [('asset_dynamic_correlation',('screen100',)),('asset_component_weights',('screen120','development1000','reserved1000')),('asset_training_blocks',('screen100','development1000','reserved1000')),('asset_likelihood_sv',('screen100',)),('asset_trained_pool',('screen100','development1000','reserved1000','broad1000')),('asset_regime_rows',('screen100',)),('asset_random_measure',('screen100',)),('asset_latent_mean',('screen100','development1000','reserved1000')),('asset_stochastic_correlation',('screen100','screen100_v2','development1000','reserved1000')),('asset_trained_student',('screen100','development1000','reserved1000'))]:
         for phase in phases:
             source=V/'candidates'/candidate/phase
             destination=D/'candidates'/candidate/phase
@@ -258,7 +258,7 @@ def main():
                            'test_asset_v6_decomposition.py', 'test_asset_mean_screen.py',
                            'test_asset_sampler_parent.py', 'test_asset_circular.py',
                            'test_asset_iid_component.py', 'test_asset_gjr.py',
-                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py','test_asset_feature_admission.py','test_asset_dynamic_correlation.py','test_asset_component_weights.py','test_asset_training_blocks.py','test_asset_likelihood_sv.py','test_asset_trained_pool.py','test_asset_regime_rows.py','test_asset_random_measure.py','test_asset_latent_mean_fit.py','test_asset_latent_mean.py','test_asset_stochastic_correlation.py'],
+                           'test_asset_adaptive_blocks.py','test_asset_empirical_mean.py','test_asset_fading_vol.py','test_asset_equilibrium_blocks.py','test_asset_training_memory.py','test_asset_AR1_mean.py','test_asset_feature_batch.py','test_asset_feature_admission.py','test_asset_dynamic_correlation.py','test_asset_component_weights.py','test_asset_training_blocks.py','test_asset_likelihood_sv.py','test_asset_trained_pool.py','test_asset_regime_rows.py','test_asset_random_measure.py','test_asset_latent_mean_fit.py','test_asset_latent_mean.py','test_asset_stochastic_correlation.py','test_asset_trained_student.py'],
                           cwd=D, env=env, capture_output=True, text=True)
     (O/'v6_prepared_publication_tests.log').write_text(test.stdout+test.stderr)
     assert test.returncode == 0, test.stdout+test.stderr

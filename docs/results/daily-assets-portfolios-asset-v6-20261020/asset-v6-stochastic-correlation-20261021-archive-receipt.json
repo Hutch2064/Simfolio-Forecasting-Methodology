@@ -1,0 +1,57 @@
+{
+  "utc": "2026-10-21T05:43:34.650533+00:00",
+  "complete": true,
+  "repository": "Hutch2064/simfolio-engine",
+  "release_tag": "research-asset-v6-stochastic-correlation-20261021",
+  "archives": [
+    {
+      "utc": "2026-10-21T05:43:32.387055+00:00",
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-asset-v6-stochastic-correlation-20261021",
+      "group": "stochastic_correlation_closed_sources_and_results",
+      "part": 1,
+      "parts": 1,
+      "archive_name": "stochastic_correlation_closed_sources_and_results-part-01.tar.gz",
+      "archive_sha256": "74c0958448a85b0eb3d1410aab27a344432014f34f904ecaeaa4f316fcbeb540",
+      "manifest_name": "stochastic_correlation_closed_sources_and_results-part-01-manifest.json",
+      "manifest_sha256": "15587828ba931648d507d45a59b000a265b338708ac3bfde282ac393e83dfeee",
+      "archive_bytes": 28611721,
+      "files": 1420,
+      "remote_download_sha256_verified": true,
+      "all_files_disk_restored_and_sha256_verified": true,
+      "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-stochastic-correlation-20261021",
+      "scientific_originals_removed": false
+    },
+    {
+      "utc": "2026-10-21T05:43:34.650029+00:00",
+      "repository": "Hutch2064/simfolio-engine",
+      "release_tag": "research-asset-v6-stochastic-correlation-20261021",
+      "group": "audit_sources",
+      "part": 1,
+      "parts": 1,
+      "archive_name": "audit_sources-part-01.tar.gz",
+      "archive_sha256": "337cace7c1f0cf8c58091b179952bad982f115483848c4568468ecf10769745d",
+      "manifest_name": "audit_sources-part-01-manifest.json",
+      "manifest_sha256": "fff5512c9a657ab760a3f2301b0ba0b78289ad72eb4cbb159910a1a08a083270",
+      "archive_bytes": 12845,
+      "files": 7,
+      "remote_download_sha256_verified": true,
+      "all_files_disk_restored_and_sha256_verified": true,
+      "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-stochastic-correlation-20261021",
+      "scientific_originals_removed": false
+    }
+  ],
+  "files_fresh_downloaded_disk_restored_sha256_verified": 1427,
+  "scientific_originals_removed": false,
+  "full_panel_catalogue_increment": 0,
+  "dependency_releases": [
+    "research-asset-v6-baselines-1000-20261020",
+    "research-asset-v6-feature-development-20261021",
+    "research-asset-v6-feature-broad-20261021",
+    "research-asset-v6-fading-1000-20261021",
+    "research-asset-v6-learned-pool-broad-20261021",
+    "research-asset-v6-learned-pool-pilots-20261021",
+    "research-asset-v6-sample-refocus-20261021"
+  ],
+  "recovery": "Download and SHA256verify all archive and manifest pairs; disk restore at research owner root and check every per-file manifest hash. Restore referenced baseline inputs and sealed parent dependencies first."
+}

@@ -1,0 +1,51 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 72,
+  "cases_per_model": 72,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8381526412366063,
+      "model_id": "model_testing_asset_trained_Student_CRPS_pool_v1_db5c283dcb76683a",
+      "percent_better_vs_same100path_fixed_reference": 13.399162566279731,
+      "successful_cases": 72
+    }
+  ],
+  "configurations": 1,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_trained_Student_CRPS_pool_v1_db5c283dcb76683a": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "innovations": "Student"
+      },
+      "config_index": 0,
+      "expected_cases": 72,
+      "main_Q": 0.8381526412366063,
+      "percent_better_vs_same100path_fixed_reference": 13.399162566279731,
+      "successful_cases": 72
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 72,
+  "official": false,
+  "paths": 100,
+  "reference_main_Q": {
+    "current_best": 0.8235702227265657,
+    "fixed_reference": 0.967834337489039
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 68.38730382686481,
+  "utc": "2026-10-21T05:47:20.414187+00:00"
+}
