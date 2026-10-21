@@ -31,7 +31,8 @@ def main():
                  'catalogue_asset_v6_closed.py', 'archive_asset_v6_when_closed.py',
                  'prepare_asset_prior_broad.py', 'goal_objective_updated.txt',
                  'goal_screen_parallel_receipt.json', 'run_asset_prior_full.py',
-                 'screen_asset_means.py', 'test_asset_mean_screen.py']:
+                 'screen_asset_means.py', 'test_asset_mean_screen.py',
+                 'report_asset_prior_full.py', 'asset_v6_shared_slots_receipt.json']:
         shutil.copy2(O/name, D/name)
     c = V/'candidates/asset_prior_best'
     target = D/'candidates/asset_prior_best'
@@ -55,7 +56,7 @@ def main():
                  'broad_case_selection_receipt.json', 'DESIGN.md']:
         if (c/name).exists():
             shutil.copy2(c/name, target/name)
-    for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json']:
+    for name in ['full_pair_independent_audit.json', 'full_pair_diagnostics.json', 'CURRENT_RESEARCH.md']:
         if (V/name).exists():
             shutil.copy2(V/name, D/name)
     manifest = {str(p.relative_to(D)): sha(p) for p in sorted(D.rglob('*'))
@@ -87,7 +88,7 @@ def main():
     shutil.copy2(old, saved)
     print(json.dumps({'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                       'commit': receipt['commit'], 'fresh_remote_recovery_verified': True,
-                      'tests': 23}), flush=True)
+                      'tests': 24}), flush=True)
 
 
 if __name__ == '__main__':

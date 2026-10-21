@@ -9,9 +9,21 @@ O = Path(__file__).resolve().parent
 sys.path.insert(0, str(O/'asset_level_v6'))
 from asset_paths import JointAssetBootstrap
 from candidates.asset_mean_uncertainty.model import JointMeanBootstrap
+from candidates.asset_mean_uncertainty.fhs_only import JointFilteredSimulation
+from candidates.asset_prior_best.candidate import AssetPool
 
 
 class MeanScreenTests(unittest.TestCase):
+    def test_filtered_endpoint_matches_hybrid_component_without_extra_paths(self):
+        x = np.random.default_rng(17).normal(.0002, .01, (160, 2))
+        endpoint = JointFilteredSimulation()
+        got = np.concatenate([p for _, p in endpoint.terminal_chunks(x, [.7, .3], 83, 20, 123)], axis=1)
+        for replacement in (True, False):
+            hybrid = AssetPool(replacement)
+            expected = np.concatenate([p[20:] for _, p in hybrid.terminal_chunks(x, [.7, .3], 83, 40, 123)], axis=1)
+            np.testing.assert_array_equal(got, expected)
+        self.assertEqual(endpoint.last_asset_log_paths.shape, (20, 2))
+
     def test_unshrunk_single_asset_adds_only_fixed_path_mean_delta(self):
         x = np.random.default_rng(61).normal(.001, .01, (520, 1))
         for replacement in (True, False):
