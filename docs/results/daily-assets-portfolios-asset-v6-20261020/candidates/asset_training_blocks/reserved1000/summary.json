@@ -15,7 +15,7 @@
       "expected_cases": 355,
       "main_Q": 0.6762730716509783,
       "model_id": "model_testing_asset_training_blocks_v1_534ca337f8cb93d2",
-      "percent_better_vs_same100path_fixed_reference": 35.446074461226274,
+      "percent_better_vs_same100path_fixed_reference": 3.5446074461226273,
       "successful_cases": 355
     },
     {
@@ -29,7 +29,7 @@
       "expected_cases": 355,
       "main_Q": 0.6766636943824224,
       "model_id": "model_testing_asset_training_blocks_v1_0939335749b23fef",
-      "percent_better_vs_same100path_fixed_reference": 34.88893755187217,
+      "percent_better_vs_same100path_fixed_reference": 3.488893755187217,
       "successful_cases": 355
     }
   ],
@@ -49,7 +49,7 @@
       "config_index": 0,
       "expected_cases": 355,
       "main_Q": 0.6766636943824224,
-      "percent_better_vs_same100path_fixed_reference": 34.88893755187217,
+      "percent_better_vs_same100path_fixed_reference": 3.488893755187217,
       "successful_cases": 355
     },
     "model_testing_asset_training_blocks_v1_534ca337f8cb93d2": {
@@ -62,7 +62,7 @@
       "config_index": 1,
       "expected_cases": 355,
       "main_Q": 0.6762730716509783,
-      "percent_better_vs_same100path_fixed_reference": 35.446074461226274,
+      "percent_better_vs_same100path_fixed_reference": 3.5446074461226273,
       "successful_cases": 355
     }
   },
@@ -76,5 +76,7 @@
   },
   "scoring_integrity_errors": 0,
   "shared_fit_compute_seconds": 21.87178853491787,
-  "utc": "2026-10-21T04:30:18.635014+00:00"
+  "utc": "2026-10-21T04:30:18.635014+00:00",
+  "percentage_metadata_erratum": "PERCENTAGE_METADATA_ERRATA.json at the study root; original generated summary retained alongside this corrected compact copy. Frozen paths/seed/loss/source artifacts unchanged.",
+  "comparison_simulation_count": 1000
 }

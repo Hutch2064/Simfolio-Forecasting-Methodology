@@ -1,0 +1,80 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 355,
+  "cases_per_model": 355,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "law": "raw_EWMA_fade",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6762730716509783,
+      "model_id": "model_testing_asset_training_blocks_v1_534ca337f8cb93d2",
+      "percent_better_vs_same100path_fixed_reference": 35.446074461226274,
+      "successful_cases": 355
+    },
+    {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "law": "raw_GARCH_fade",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.6766636943824224,
+      "model_id": "model_testing_asset_training_blocks_v1_0939335749b23fef",
+      "percent_better_vs_same100path_fixed_reference": 34.88893755187217,
+      "successful_cases": 355
+    }
+  ],
+  "configurations": 2,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_training_blocks_v1_0939335749b23fef": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "law": "raw_GARCH_fade",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.6766636943824224,
+      "percent_better_vs_same100path_fixed_reference": 34.88893755187217,
+      "successful_cases": 355
+    },
+    "model_testing_asset_training_blocks_v1_534ca337f8cb93d2": {
+      "beats_same100path_current_best": false,
+      "complete": true,
+      "config": {
+        "law": "raw_EWMA_fade",
+        "mean_covariance": "stationary"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6762730716509783,
+      "percent_better_vs_same100path_fixed_reference": 35.446074461226274,
+      "successful_cases": 355
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 710,
+  "official": false,
+  "paths": 1000,
+  "reference_main_Q": {
+    "current_best": 0.673119964211565,
+    "fixed_reference": 0.7011252079796684
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 21.87178853491787,
+  "utc": "2026-10-21T04:30:18.635014+00:00"
+}

@@ -1,0 +1,157 @@
+{
+  "utc": "2026-10-21T10:44:35.020432+00:00",
+  "checked_models": 371,
+  "affected_compact_summaries": 5,
+  "affected_unique_model_stage_results": 13,
+  "cause": "Three historical driver versions multiplied1-Qmodel/Qreference by1000 rather than100. Correct reporting is100*(1-Qmodel/Qreference).",
+  "frozen_scientific_sources_losses_and_local_summaries_unchanged": true,
+  "main_Q_reference_Q_ranks_fitting_and_promotion_unchanged": true,
+  "current_working_incumbent_already_used_correct_percentages": true,
+  "field_label_caveat": "Historical asset_training_blocks field name says same100path even in1000path stages; declared paths/comparison_simulation_count are authoritative. Existing key names are retained for compatibility.",
+  "changes": [
+    {
+      "path": "candidates/asset_trained_pool/broad1000/summary.json",
+      "original_compact_sha256": "3b428b2d3df294ba72a73ef4ff06ebc17d0d4e1dddb1323d96448fcc9574d0bb",
+      "corrected_compact_sha256": "d31f71cb46566d9920610bb1a55c376e392da0dd412295df0d6cd151dbc376d6",
+      "paths": 1000,
+      "changes": [
+        {
+          "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+          "field": "percent_better_vs_same1000path_fixed_reference",
+          "original": 49.878290992623974,
+          "corrected": 4.987829099262397,
+          "main_Q": 0.6469412535998392,
+          "reference_main_Q": 0.6809035594773647
+        }
+      ]
+    },
+    {
+      "path": "candidates/asset_trained_pool/development1000/summary.json",
+      "original_compact_sha256": "93b94735dcec6887ab4b0957c0ed7744dadaaa5d4ec7dd34e9a702c337f8947b",
+      "corrected_compact_sha256": "8caada894edf209047f14d28aa7bc120b36c23c6a8997e8aa3ad3b7111ce9bc7",
+      "paths": 1000,
+      "changes": [
+        {
+          "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+          "field": "percent_better_vs_same1000path_fixed_reference",
+          "original": 108.94965941029744,
+          "corrected": 10.894965941029744,
+          "main_Q": 0.7131987298009068,
+          "reference_main_Q": 0.8004022862826219
+        },
+        {
+          "model_id": "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243",
+          "field": "percent_better_vs_same1000path_fixed_reference",
+          "original": 109.91336799555118,
+          "corrected": 10.991336799555118,
+          "main_Q": 0.7124273752459596,
+          "reference_main_Q": 0.8004022862826219
+        }
+      ]
+    },
+    {
+      "path": "candidates/asset_trained_pool/reserved1000/summary.json",
+      "original_compact_sha256": "6aa7e6c2046dbeedfcec6ed347089568ad60d3bcd8ed471d1a40e67e18e4808a",
+      "corrected_compact_sha256": "e02f68acbcd37b45932a1711c3c1cd38814cddacd544261aa3b3fce6ea31dd20",
+      "paths": 1000,
+      "changes": [
+        {
+          "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+          "field": "percent_better_vs_same1000path_fixed_reference",
+          "original": 40.3752768792216,
+          "corrected": 4.03752768792216,
+          "main_Q": 0.6728170835804874,
+          "reference_main_Q": 0.7011252079796684
+        },
+        {
+          "model_id": "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243",
+          "field": "percent_better_vs_same1000path_fixed_reference",
+          "original": 39.01833475841199,
+          "corrected": 3.9018334758411988,
+          "main_Q": 0.6737684699071564,
+          "reference_main_Q": 0.7011252079796684
+        }
+      ]
+    },
+    {
+      "path": "candidates/asset_training_blocks/development1000/summary.json",
+      "original_compact_sha256": "9581101ecd0333317184a5c76565f016b68dd916e9361279310e814033fce89e",
+      "corrected_compact_sha256": "e11f88580e7b5273113f5a95774e109d6c1ec6380d87994827c081f5cfc9d9c3",
+      "paths": 1000,
+      "changes": [
+        {
+          "model_id": "model_testing_asset_training_blocks_v1_0939335749b23fef",
+          "field": "percent_better_vs_same100path_fixed_reference",
+          "original": 106.12861554511888,
+          "corrected": 10.612861554511888,
+          "main_Q": 0.7154566997602994,
+          "reference_main_Q": 0.8004022862826219
+        },
+        {
+          "model_id": "model_testing_asset_training_blocks_v1_0a3350f38d5140cd",
+          "field": "percent_better_vs_same100path_fixed_reference",
+          "original": 104.30506553365015,
+          "corrected": 10.430506553365015,
+          "main_Q": 0.7169162733586296,
+          "reference_main_Q": 0.8004022862826219
+        },
+        {
+          "model_id": "model_testing_asset_training_blocks_v1_534ca337f8cb93d2",
+          "field": "percent_better_vs_same100path_fixed_reference",
+          "original": 106.0219124819951,
+          "corrected": 10.60219124819951,
+          "main_Q": 0.7155421051359769,
+          "reference_main_Q": 0.8004022862826219
+        },
+        {
+          "model_id": "model_testing_asset_training_blocks_v1_85fa3b3c27bee8bd",
+          "field": "percent_better_vs_same100path_fixed_reference",
+          "original": 104.19516720085554,
+          "corrected": 10.419516720085554,
+          "main_Q": 0.7170042362354571,
+          "reference_main_Q": 0.8004022862826219
+        },
+        {
+          "model_id": "model_testing_asset_training_blocks_v1_9ad945f2a992611b",
+          "field": "percent_better_vs_same100path_fixed_reference",
+          "original": 97.91905057323768,
+          "corrected": 9.791905057323769,
+          "main_Q": 0.7220276543331787,
+          "reference_main_Q": 0.8004022862826219
+        },
+        {
+          "model_id": "model_testing_asset_training_blocks_v1_fe0362bba0bcf312",
+          "field": "percent_better_vs_same100path_fixed_reference",
+          "original": 104.17410358748913,
+          "corrected": 10.417410358748914,
+          "main_Q": 0.7170210955997529,
+          "reference_main_Q": 0.8004022862826219
+        }
+      ]
+    },
+    {
+      "path": "candidates/asset_training_blocks/reserved1000/summary.json",
+      "original_compact_sha256": "bc2f171e6d585307d2a55fe059ee5e35094f1eaf3be9888ede934cd5362e818f",
+      "corrected_compact_sha256": "a81b6474a51e16f6a9869d4eb43cd60978b9fefa0d2dca3da16f0c0c2d303dbb",
+      "paths": 1000,
+      "changes": [
+        {
+          "model_id": "model_testing_asset_training_blocks_v1_0939335749b23fef",
+          "field": "percent_better_vs_same100path_fixed_reference",
+          "original": 34.88893755187217,
+          "corrected": 3.488893755187217,
+          "main_Q": 0.6766636943824224,
+          "reference_main_Q": 0.7011252079796684
+        },
+        {
+          "model_id": "model_testing_asset_training_blocks_v1_534ca337f8cb93d2",
+          "field": "percent_better_vs_same100path_fixed_reference",
+          "original": 35.446074461226274,
+          "corrected": 3.5446074461226273,
+          "main_Q": 0.6762730716509783,
+          "reference_main_Q": 0.7011252079796684
+        }
+      ]
+    }
+  ]
+}

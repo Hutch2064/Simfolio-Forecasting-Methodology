@@ -1,0 +1,59 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 7418,
+  "cases_per_model": 7418,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 0,
+      "expected_cases": 7418,
+      "main_Q": 0.6469412535998392,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+      "percent_better_vs_same1000path_fixed_reference": 49.878290992623974,
+      "successful_cases": 7418
+    }
+  ],
+  "configurations": 1,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a": {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 0,
+      "expected_cases": 7418,
+      "main_Q": 0.6469412535998392,
+      "percent_better_vs_same1000path_fixed_reference": 49.878290992623974,
+      "successful_cases": 7418
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 7418,
+  "official": false,
+  "paths": 1000,
+  "reference_main_Q": {
+    "current_best": 0.6472385110030847,
+    "fixed_reference": 0.6809035594773647
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 1412.0544911784818,
+  "utc": "2026-10-21T05:01:20.513436+00:00"
+}

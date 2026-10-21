@@ -1,0 +1,92 @@
+{
+  "anchor_loss_vectors_bitwise_equal_each_case": true,
+  "anchor_replays": 355,
+  "cases_per_model": 355,
+  "complete_execution": true,
+  "complete_identical_coverage_screen_ranking": [
+    {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6728170835804874,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
+      "percent_better_vs_same1000path_fixed_reference": 40.3752768792216,
+      "successful_cases": 355
+    },
+    {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "GARCH"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.6737684699071564,
+      "model_id": "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243",
+      "percent_better_vs_same1000path_fixed_reference": 39.01833475841199,
+      "successful_cases": 355
+    }
+  ],
+  "configurations": 2,
+  "errors": [],
+  "families": 70,
+  "full_panel_catalogue_count_unchanged": true,
+  "independent_validation_or_significance_claim": false,
+  "models": {
+    "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a": {
+      "beats_same1000path_current_best": true,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "EWMA"
+      },
+      "config_index": 1,
+      "expected_cases": 355,
+      "main_Q": 0.6728170835804874,
+      "percent_better_vs_same1000path_fixed_reference": 40.3752768792216,
+      "successful_cases": 355
+    },
+    "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243": {
+      "beats_same1000path_current_best": false,
+      "complete": true,
+      "config": {
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_shrinkage": true,
+        "mean_uncertainty": true,
+        "raw_fade": "GARCH"
+      },
+      "config_index": 0,
+      "expected_cases": 355,
+      "main_Q": 0.6737684699071564,
+      "percent_better_vs_same1000path_fixed_reference": 39.01833475841199,
+      "successful_cases": 355
+    }
+  },
+  "native_failures": 0,
+  "new_successful_forecasts": 710,
+  "official": false,
+  "paths": 1000,
+  "reference_main_Q": {
+    "current_best": 0.673119964211565,
+    "fixed_reference": 0.7011252079796684
+  },
+  "scoring_integrity_errors": 0,
+  "shared_fit_compute_seconds": 109.36172024428379,
+  "utc": "2026-10-21T04:48:43.536001+00:00"
+}

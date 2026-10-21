@@ -18,7 +18,7 @@
       "expected_cases": 355,
       "main_Q": 0.7124273752459596,
       "model_id": "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243",
-      "percent_better_vs_same1000path_fixed_reference": 109.91336799555118,
+      "percent_better_vs_same1000path_fixed_reference": 10.991336799555118,
       "successful_cases": 355
     },
     {
@@ -35,7 +35,7 @@
       "expected_cases": 355,
       "main_Q": 0.7131987298009068,
       "model_id": "model_testing_asset_trained_CRPS_pool_v1_4f4380ce7d60673a",
-      "percent_better_vs_same1000path_fixed_reference": 108.94965941029744,
+      "percent_better_vs_same1000path_fixed_reference": 10.894965941029744,
       "successful_cases": 355
     }
   ],
@@ -58,7 +58,7 @@
       "config_index": 0,
       "expected_cases": 355,
       "main_Q": 0.7131987298009068,
-      "percent_better_vs_same1000path_fixed_reference": 108.94965941029744,
+      "percent_better_vs_same1000path_fixed_reference": 10.894965941029744,
       "successful_cases": 355
     },
     "model_testing_asset_trained_CRPS_pool_v1_7408b54bfe2cb243": {
@@ -74,7 +74,7 @@
       "config_index": 1,
       "expected_cases": 355,
       "main_Q": 0.7124273752459596,
-      "percent_better_vs_same1000path_fixed_reference": 109.91336799555118,
+      "percent_better_vs_same1000path_fixed_reference": 10.991336799555118,
       "successful_cases": 355
     }
   },
@@ -88,5 +88,7 @@
   },
   "scoring_integrity_errors": 0,
   "shared_fit_compute_seconds": 88.04602762567811,
-  "utc": "2026-10-21T04:47:32.935264+00:00"
+  "utc": "2026-10-21T04:47:32.935264+00:00",
+  "percentage_metadata_erratum": "PERCENTAGE_METADATA_ERRATA.json at the study root; original generated summary retained alongside this corrected compact copy. Frozen paths/seed/loss/source artifacts unchanged.",
+  "comparison_simulation_count": 1000
 }
