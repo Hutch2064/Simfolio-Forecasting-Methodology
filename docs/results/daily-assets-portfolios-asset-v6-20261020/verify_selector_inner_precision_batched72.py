@@ -147,7 +147,7 @@ def main():
            'high_precision_reference_seed_variation_not_established': True,
            'no_full_panel_promotion_or_production_precision_choice': True,
            'no_independence_or_significance_claim': True,
-           'runtime_scope': 'Process CPU per request with shared two-criterion preparation charged to either standalone output. Includes both objective optimizations and union refits, excludes setup/IO, includes warmup; not a standalone production latency or a causal speed ratio against older 1000-inner kernels.',
+           'runtime_scope': 'Process CPU per request with shared two-criterion preparation charged to either standalone output. Includes both objective optimizations and union refits, final simulation, scoring, checkpoint compression and hashing, and warmup. Excludes blocked IO wait and record writing after the measurement. Not end-to-end production latency or a causal speed ratio against older 1000-inner kernels.',
            'verified_checkpoint_identities': verified, 'verifier_sha256': sha(Path(__file__))}
     api.original._atomic_json(D / 'verification_receipt.json', out)
     print(json.dumps({k: v for k, v in out.items() if k != 'verified_checkpoint_identities'}, indent=2), flush=True)

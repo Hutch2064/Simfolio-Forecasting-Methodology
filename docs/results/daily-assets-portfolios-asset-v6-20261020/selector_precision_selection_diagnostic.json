@@ -1,0 +1,2255 @@
+{
+  "verified_summary_sha256": "c14957951a8c9b753c9e65a4e9d7801aa0b4d16731182aa249e8892fe360ea77",
+  "audit_sha256": "05bad9d5dc4ce97c8b643b53f51e1b911981072c0d923e4e5fe42d35573d15d9",
+  "diagnostic_only": true,
+  "zero_score_or_selection_weight": true,
+  "full_panel_frequencies": false,
+  "requests": 72,
+  "Monte_Carlo_repetitions": 3,
+  "outer_paths": 1000,
+  "no_independence_or_significance_claim": true,
+  "stability": [
+    {
+      "inner_paths": 10,
+      "executions": 216,
+      "mean_allocation_total_variation_vs1000inner": 0.8196203703703703,
+      "dominant_component_matches1000inner_percent": 15.277777777777779,
+      "identical_allocations_percent": 0.0,
+      "median_active_components": 6.0
+    },
+    {
+      "inner_paths": 30,
+      "executions": 216,
+      "mean_allocation_total_variation_vs1000inner": 0.773425925925926,
+      "dominant_component_matches1000inner_percent": 21.296296296296298,
+      "identical_allocations_percent": 0.0,
+      "median_active_components": 4.0
+    },
+    {
+      "inner_paths": 100,
+      "executions": 216,
+      "mean_allocation_total_variation_vs1000inner": 0.704824074074074,
+      "dominant_component_matches1000inner_percent": 25.462962962962965,
+      "identical_allocations_percent": 0.4629629629629629,
+      "median_active_components": 4.0
+    },
+    {
+      "inner_paths": 300,
+      "executions": 216,
+      "mean_allocation_total_variation_vs1000inner": 0.6324907407407407,
+      "dominant_component_matches1000inner_percent": 36.11111111111111,
+      "identical_allocations_percent": 0.9259259259259258,
+      "median_active_components": 3.0
+    }
+  ],
+  "usage_scope": "Path-scoring selector at30internal paths on the72reused development requests;216executions",
+  "components_used": 151,
+  "families": [
+    {
+      "family": "AR1_GARCH",
+      "percent_executions_present": 52.77777777777778,
+      "mean_percent_final_paths": 29.762962962962963
+    },
+    {
+      "family": "HARCH",
+      "percent_executions_present": 29.166666666666668,
+      "mean_percent_final_paths": 14.687037037037038
+    },
+    {
+      "family": "EWMA_recursive",
+      "percent_executions_present": 36.574074074074076,
+      "mean_percent_final_paths": 13.080555555555554
+    },
+    {
+      "family": "EWMA_reverting",
+      "percent_executions_present": 23.61111111111111,
+      "mean_percent_final_paths": 7.59074074074074
+    },
+    {
+      "family": "GJR",
+      "percent_executions_present": 23.61111111111111,
+      "mean_percent_final_paths": 7.263888888888888
+    },
+    {
+      "family": "constant",
+      "percent_executions_present": 22.685185185185187,
+      "mean_percent_final_paths": 7.234259259259259
+    },
+    {
+      "family": "SV_path",
+      "percent_executions_present": 20.833333333333336,
+      "mean_percent_final_paths": 5.617592592592592
+    },
+    {
+      "family": "SV_RMS",
+      "percent_executions_present": 18.51851851851852,
+      "mean_percent_final_paths": 5.03425925925926
+    },
+    {
+      "family": "GARCH",
+      "percent_executions_present": 13.425925925925927,
+      "mean_percent_final_paths": 3.567592592592592
+    },
+    {
+      "family": "raw IID",
+      "percent_executions_present": 6.018518518518518,
+      "mean_percent_final_paths": 1.950925925925926
+    },
+    {
+      "family": "raw with replacement",
+      "percent_executions_present": 7.87037037037037,
+      "mean_percent_final_paths": 1.8953703703703701
+    },
+    {
+      "family": "parent mixture",
+      "percent_executions_present": 7.4074074074074066,
+      "mean_percent_final_paths": 1.3898148148148148
+    },
+    {
+      "family": "raw history cycles",
+      "percent_executions_present": 12.037037037037036,
+      "mean_percent_final_paths": 0.925
+    }
+  ],
+  "components_unused": [
+    {
+      "index": 16,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      }
+    },
+    {
+      "index": 17,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      }
+    },
+    {
+      "index": 35,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      }
+    },
+    {
+      "index": 42,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      }
+    },
+    {
+      "index": 43,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      }
+    },
+    {
+      "index": 46,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      }
+    },
+    {
+      "index": 48,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      }
+    },
+    {
+      "index": 49,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      }
+    },
+    {
+      "index": 58,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      }
+    },
+    {
+      "index": 60,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      }
+    },
+    {
+      "index": 76,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      }
+    },
+    {
+      "index": 94,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      }
+    },
+    {
+      "index": 97,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      }
+    },
+    {
+      "index": 115,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      }
+    },
+    {
+      "index": 121,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      }
+    }
+  ],
+  "components_present_in_at_most_one_percent_of_executions": 64,
+  "one_percent_is_descriptive_not_a_pruning_rule": true,
+  "component_usage": [
+    {
+      "index": 0,
+      "specification": {
+        "kind": "parent"
+      },
+      "executions_present": 16,
+      "mean_percent_final_paths": 1.3898148148148148
+    },
+    {
+      "index": 1,
+      "specification": {
+        "kind": "blocks",
+        "sampling": "uniform",
+        "replacement": true
+      },
+      "executions_present": 17,
+      "mean_percent_final_paths": 1.8953703703703701
+    },
+    {
+      "index": 2,
+      "specification": {
+        "kind": "blocks",
+        "sampling": "uniform",
+        "replacement": false
+      },
+      "executions_present": 26,
+      "mean_percent_final_paths": 0.925
+    },
+    {
+      "index": 3,
+      "specification": {
+        "kind": "blocks",
+        "sampling": "IID",
+        "replacement": true
+      },
+      "executions_present": 13,
+      "mean_percent_final_paths": 1.950925925925926
+    },
+    {
+      "index": 4,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.7472222222222222
+    },
+    {
+      "index": 5,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.07222222222222222
+    },
+    {
+      "index": 6,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.09351851851851853
+    },
+    {
+      "index": 7,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.09074074074074075
+    },
+    {
+      "index": 8,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.4305555555555555
+    },
+    {
+      "index": 9,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.0009259259259259259
+    },
+    {
+      "index": 10,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.2675925925925926
+    },
+    {
+      "index": 11,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.17685185185185187
+    },
+    {
+      "index": 12,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 7,
+      "mean_percent_final_paths": 0.912962962962963
+    },
+    {
+      "index": 13,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.3731481481481481
+    },
+    {
+      "index": 14,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 11,
+      "mean_percent_final_paths": 1.7287037037037039
+    },
+    {
+      "index": 15,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.3574074074074074
+    },
+    {
+      "index": 16,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 17,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 18,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.14351851851851852
+    },
+    {
+      "index": 19,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.016666666666666666
+    },
+    {
+      "index": 20,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 11,
+      "mean_percent_final_paths": 1.5814814814814815
+    },
+    {
+      "index": 21,
+      "specification": {
+        "kind": "filtered",
+        "family": "constant",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 8,
+      "mean_percent_final_paths": 0.24074074074074076
+    },
+    {
+      "index": 22,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.075
+    },
+    {
+      "index": 23,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.2740740740740741
+    },
+    {
+      "index": 24,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.11666666666666667
+    },
+    {
+      "index": 25,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.1814814814814815
+    },
+    {
+      "index": 26,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.31851851851851853
+    },
+    {
+      "index": 27,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.13425925925925924
+    },
+    {
+      "index": 28,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.3037037037037037
+    },
+    {
+      "index": 29,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.08611111111111111
+    },
+    {
+      "index": 30,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 13,
+      "mean_percent_final_paths": 1.213888888888889
+    },
+    {
+      "index": 31,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.1462962962962963
+    },
+    {
+      "index": 32,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 12,
+      "mean_percent_final_paths": 1.547222222222222
+    },
+    {
+      "index": 33,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.5518518518518518
+    },
+    {
+      "index": 34,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.5305555555555556
+    },
+    {
+      "index": 35,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 36,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 6,
+      "mean_percent_final_paths": 0.34444444444444444
+    },
+    {
+      "index": 37,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.44907407407407407
+    },
+    {
+      "index": 38,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 6,
+      "mean_percent_final_paths": 0.826851851851852
+    },
+    {
+      "index": 39,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_reverting",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 6,
+      "mean_percent_final_paths": 0.49074074074074076
+    },
+    {
+      "index": 40,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.008333333333333333
+    },
+    {
+      "index": 41,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.06481481481481481
+    },
+    {
+      "index": 42,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 43,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 44,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.17777777777777776
+    },
+    {
+      "index": 45,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.10925925925925925
+    },
+    {
+      "index": 46,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 47,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.007407407407407407
+    },
+    {
+      "index": 48,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 49,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 50,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.16944444444444445
+    },
+    {
+      "index": 51,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.08518518518518518
+    },
+    {
+      "index": 52,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.24074074074074076
+    },
+    {
+      "index": 53,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.054629629629629625
+    },
+    {
+      "index": 54,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.35833333333333334
+    },
+    {
+      "index": 55,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.024074074074074074
+    },
+    {
+      "index": 56,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 10,
+      "mean_percent_final_paths": 1.759259259259259
+    },
+    {
+      "index": 57,
+      "specification": {
+        "kind": "filtered",
+        "family": "GARCH",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 11,
+      "mean_percent_final_paths": 0.5083333333333333
+    },
+    {
+      "index": 58,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 59,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.008333333333333333
+    },
+    {
+      "index": 60,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 61,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.06666666666666667
+    },
+    {
+      "index": 62,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.2759259259259259
+    },
+    {
+      "index": 63,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 6,
+      "mean_percent_final_paths": 0.8166666666666667
+    },
+    {
+      "index": 64,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.09074074074074075
+    },
+    {
+      "index": 65,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.008333333333333333
+    },
+    {
+      "index": 66,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 7,
+      "mean_percent_final_paths": 0.5944444444444444
+    },
+    {
+      "index": 67,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.07592592592592592
+    },
+    {
+      "index": 68,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 11,
+      "mean_percent_final_paths": 0.8009259259259259
+    },
+    {
+      "index": 69,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 7,
+      "mean_percent_final_paths": 1.1083333333333334
+    },
+    {
+      "index": 70,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.06388888888888888
+    },
+    {
+      "index": 71,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.18888888888888888
+    },
+    {
+      "index": 72,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 7,
+      "mean_percent_final_paths": 0.3712962962962963
+    },
+    {
+      "index": 73,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.4916666666666667
+    },
+    {
+      "index": 74,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 14,
+      "mean_percent_final_paths": 1.8981481481481481
+    },
+    {
+      "index": 75,
+      "specification": {
+        "kind": "filtered",
+        "family": "GJR",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.40370370370370373
+    },
+    {
+      "index": 76,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 77,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.019444444444444445
+    },
+    {
+      "index": 78,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 1.0722222222222222
+    },
+    {
+      "index": 79,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 7,
+      "mean_percent_final_paths": 0.20370370370370372
+    },
+    {
+      "index": 80,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 15,
+      "mean_percent_final_paths": 1.3462962962962963
+    },
+    {
+      "index": 81,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 11,
+      "mean_percent_final_paths": 1.4092592592592594
+    },
+    {
+      "index": 82,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.32037037037037036
+    },
+    {
+      "index": 83,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.024074074074074074
+    },
+    {
+      "index": 84,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 7,
+      "mean_percent_final_paths": 0.5740740740740741
+    },
+    {
+      "index": 85,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.6685185185185185
+    },
+    {
+      "index": 86,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 15,
+      "mean_percent_final_paths": 2.564814814814815
+    },
+    {
+      "index": 87,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 12,
+      "mean_percent_final_paths": 1.2342592592592594
+    },
+    {
+      "index": 88,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.1
+    },
+    {
+      "index": 89,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.11388888888888889
+    },
+    {
+      "index": 90,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.6611111111111111
+    },
+    {
+      "index": 91,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.625925925925926
+    },
+    {
+      "index": 92,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 16,
+      "mean_percent_final_paths": 2.246296296296296
+    },
+    {
+      "index": 93,
+      "specification": {
+        "kind": "filtered",
+        "family": "HARCH",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 8,
+      "mean_percent_final_paths": 1.5027777777777778
+    },
+    {
+      "index": 94,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 95,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.08518518518518518
+    },
+    {
+      "index": 96,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.062037037037037036
+    },
+    {
+      "index": 97,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 98,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 6,
+      "mean_percent_final_paths": 0.4851851851851852
+    },
+    {
+      "index": 99,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.1648148148148148
+    },
+    {
+      "index": 100,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.4527777777777778
+    },
+    {
+      "index": 101,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.11759259259259258
+    },
+    {
+      "index": 102,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.10740740740740742
+    },
+    {
+      "index": 103,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.025
+    },
+    {
+      "index": 104,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 10,
+      "mean_percent_final_paths": 1.4407407407407407
+    },
+    {
+      "index": 105,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 9,
+      "mean_percent_final_paths": 0.5194444444444445
+    },
+    {
+      "index": 106,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.23148148148148148
+    },
+    {
+      "index": 107,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.03518518518518519
+    },
+    {
+      "index": 108,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.27129629629629626
+    },
+    {
+      "index": 109,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.046296296296296294
+    },
+    {
+      "index": 110,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 9,
+      "mean_percent_final_paths": 0.8231481481481481
+    },
+    {
+      "index": 111,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_path",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 10,
+      "mean_percent_final_paths": 0.75
+    },
+    {
+      "index": 112,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.24166666666666664
+    },
+    {
+      "index": 113,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.06851851851851852
+    },
+    {
+      "index": 114,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.006481481481481481
+    },
+    {
+      "index": 115,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 116,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.45
+    },
+    {
+      "index": 117,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.030555555555555558
+    },
+    {
+      "index": 118,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.25833333333333336
+    },
+    {
+      "index": 119,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.29166666666666663
+    },
+    {
+      "index": 120,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.06018518518518519
+    },
+    {
+      "index": 121,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 0,
+      "mean_percent_final_paths": 0.0
+    },
+    {
+      "index": 122,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 8,
+      "mean_percent_final_paths": 1.199074074074074
+    },
+    {
+      "index": 123,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 8,
+      "mean_percent_final_paths": 0.825925925925926
+    },
+    {
+      "index": 124,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.15833333333333333
+    },
+    {
+      "index": 125,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.015740740740740743
+    },
+    {
+      "index": 126,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.1824074074074074
+    },
+    {
+      "index": 127,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 3,
+      "mean_percent_final_paths": 0.18981481481481483
+    },
+    {
+      "index": 128,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.787962962962963
+    },
+    {
+      "index": 129,
+      "specification": {
+        "kind": "filtered",
+        "family": "SV_RMS",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.2675925925925926
+    },
+    {
+      "index": 130,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 8,
+      "mean_percent_final_paths": 1.849074074074074
+    },
+    {
+      "index": 131,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 13,
+      "mean_percent_final_paths": 0.587037037037037
+    },
+    {
+      "index": 132,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.7425925925925926
+    },
+    {
+      "index": 133,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 6,
+      "mean_percent_final_paths": 0.43240740740740746
+    },
+    {
+      "index": 134,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 31,
+      "mean_percent_final_paths": 4.217592592592593
+    },
+    {
+      "index": 135,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 14,
+      "mean_percent_final_paths": 0.7777777777777778
+    },
+    {
+      "index": 136,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 7,
+      "mean_percent_final_paths": 1.4296296296296296
+    },
+    {
+      "index": 137,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 12,
+      "mean_percent_final_paths": 0.5509259259259259
+    },
+    {
+      "index": 138,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 18,
+      "mean_percent_final_paths": 3.3120370370370376
+    },
+    {
+      "index": 139,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 8,
+      "mean_percent_final_paths": 0.8953703703703704
+    },
+    {
+      "index": 140,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 35,
+      "mean_percent_final_paths": 5.525
+    },
+    {
+      "index": 141,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 20,
+      "mean_percent_final_paths": 2.3916666666666666
+    },
+    {
+      "index": 142,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.4981481481481482
+    },
+    {
+      "index": 143,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.17314814814814813
+    },
+    {
+      "index": 144,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 11,
+      "mean_percent_final_paths": 1.3814814814814815
+    },
+    {
+      "index": 145,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.11944444444444444
+    },
+    {
+      "index": 146,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 24,
+      "mean_percent_final_paths": 3.5398148148148145
+    },
+    {
+      "index": 147,
+      "specification": {
+        "kind": "filtered",
+        "family": "AR1_GARCH",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 14,
+      "mean_percent_final_paths": 1.3398148148148148
+    },
+    {
+      "index": 148,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.3277777777777778
+    },
+    {
+      "index": 149,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Gaussian",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.47870370370370374
+    },
+    {
+      "index": 150,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.5833333333333333
+    },
+    {
+      "index": 151,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Gaussian",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 1,
+      "mean_percent_final_paths": 0.06018518518518519
+    },
+    {
+      "index": 152,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 14,
+      "mean_percent_final_paths": 1.374074074074074
+    },
+    {
+      "index": 153,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Gaussian",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 9,
+      "mean_percent_final_paths": 0.37777777777777777
+    },
+    {
+      "index": 154,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 4,
+      "mean_percent_final_paths": 0.23888888888888887
+    },
+    {
+      "index": 155,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.4925925925925926
+    },
+    {
+      "index": 156,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 8,
+      "mean_percent_final_paths": 0.6944444444444444
+    },
+    {
+      "index": 157,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 7,
+      "mean_percent_final_paths": 0.924074074074074
+    },
+    {
+      "index": 158,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 19,
+      "mean_percent_final_paths": 1.5055555555555555
+    },
+    {
+      "index": 159,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "empirical",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 17,
+      "mean_percent_final_paths": 1.8111111111111111
+    },
+    {
+      "index": 160,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": false
+      },
+      "executions_present": 5,
+      "mean_percent_final_paths": 0.3740740740740741
+    },
+    {
+      "index": 161,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Student",
+        "mean_mode": "sample",
+        "mean_uncertainty": true
+      },
+      "executions_present": 2,
+      "mean_percent_final_paths": 0.11481481481481481
+    },
+    {
+      "index": 162,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": false
+      },
+      "executions_present": 13,
+      "mean_percent_final_paths": 0.8962962962962964
+    },
+    {
+      "index": 163,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Student",
+        "mean_mode": "shrink",
+        "mean_uncertainty": true
+      },
+      "executions_present": 9,
+      "mean_percent_final_paths": 0.788888888888889
+    },
+    {
+      "index": 164,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": false
+      },
+      "executions_present": 15,
+      "mean_percent_final_paths": 1.1953703703703704
+    },
+    {
+      "index": 165,
+      "specification": {
+        "kind": "filtered",
+        "family": "EWMA_recursive",
+        "innovations": "Student",
+        "mean_mode": "zero",
+        "mean_uncertainty": true
+      },
+      "executions_present": 11,
+      "mean_percent_final_paths": 0.8425925925925926
+    }
+  ],
+  "family_costs_not_profiled_here": true,
+  "pruning_requires_matched_main_score_ablation_and_broader_confirmation": true,
+  "verifier_sha256": "1e00b44e47e6fd89548be89aeb420d031e43fb33b00ac074d582edc1214dfaba"
+}

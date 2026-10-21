@@ -1,0 +1,449 @@
+{
+  "all_candidate_and_reference_scores_recomputed": true,
+  "all_internal_seeds_and_causal_prefixes_verified": true,
+  "high_precision_reference_seed_variation_not_established": true,
+  "main_reference_Q": 0.9660201133857566,
+  "models": [
+    {
+      "config_index": 0,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 10,
+        "seed_replication": 0
+      },
+      "main_Q": 0.7638536508210663,
+      "main_Q_difference_from_preserved1000inner_reference": -0.0037387170253546653,
+      "mean_final_allocation_total_variation_vs1000inner": 0.8627777777777778,
+      "percent_better_vs_fixed_reference": 20.927769490857383,
+      "standalone_attributed_cpu_seconds_median": 2.3920479999999884,
+      "standalone_attributed_cpu_seconds_total": 209.12053199999949
+    },
+    {
+      "config_index": 1,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 10,
+        "seed_replication": 0
+      },
+      "main_Q": 0.7604917268840555,
+      "main_Q_difference_from_preserved1000inner_reference": 0.00032541409154451806,
+      "mean_final_allocation_total_variation_vs1000inner": 0.8094722222222223,
+      "percent_better_vs_fixed_reference": 21.275787496945032,
+      "standalone_attributed_cpu_seconds_median": 2.3634859999999662,
+      "standalone_attributed_cpu_seconds_total": 253.32017100000064
+    },
+    {
+      "config_index": 2,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 10,
+        "seed_replication": 1
+      },
+      "main_Q": 0.7699986386221372,
+      "main_Q_difference_from_preserved1000inner_reference": 0.0024062707757163126,
+      "mean_final_allocation_total_variation_vs1000inner": 0.8349444444444445,
+      "percent_better_vs_fixed_reference": 20.291655634021243,
+      "standalone_attributed_cpu_seconds_median": 2.304573999999988,
+      "standalone_attributed_cpu_seconds_total": 232.64238599999956
+    },
+    {
+      "config_index": 3,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 10,
+        "seed_replication": 1
+      },
+      "main_Q": 0.7648440762671109,
+      "main_Q_difference_from_preserved1000inner_reference": 0.004677763474599916,
+      "mean_final_allocation_total_variation_vs1000inner": 0.8193888888888888,
+      "percent_better_vs_fixed_reference": 20.825243111507653,
+      "standalone_attributed_cpu_seconds_median": 2.3666849999999755,
+      "standalone_attributed_cpu_seconds_total": 249.73217900000017
+    },
+    {
+      "config_index": 4,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 10,
+        "seed_replication": 2
+      },
+      "main_Q": 0.7667853523176211,
+      "main_Q_difference_from_preserved1000inner_reference": -0.0008070155287998038,
+      "mean_final_allocation_total_variation_vs1000inner": 0.8343333333333334,
+      "percent_better_vs_fixed_reference": 20.624287042000322,
+      "standalone_attributed_cpu_seconds_median": 2.2040849999999637,
+      "standalone_attributed_cpu_seconds_total": 229.84179200000048
+    },
+    {
+      "config_index": 5,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 10,
+        "seed_replication": 2
+      },
+      "main_Q": 0.7706492125881628,
+      "main_Q_difference_from_preserved1000inner_reference": 0.010482899795651757,
+      "mean_final_allocation_total_variation_vs1000inner": 0.83,
+      "percent_better_vs_fixed_reference": 20.224309834797115,
+      "standalone_attributed_cpu_seconds_median": 2.2989835000000163,
+      "standalone_attributed_cpu_seconds_total": 235.59109100000052
+    },
+    {
+      "config_index": 6,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 30,
+        "seed_replication": 0
+      },
+      "main_Q": 0.763857473743345,
+      "main_Q_difference_from_preserved1000inner_reference": -0.0037348941030759253,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7943333333333333,
+      "percent_better_vs_fixed_reference": 20.927373751449295,
+      "standalone_attributed_cpu_seconds_median": 4.579965499999986,
+      "standalone_attributed_cpu_seconds_total": 444.74458300000026
+    },
+    {
+      "config_index": 7,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 30,
+        "seed_replication": 0
+      },
+      "main_Q": 0.755672500385357,
+      "main_Q_difference_from_preserved1000inner_reference": -0.004493812407153963,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7849722222222222,
+      "percent_better_vs_fixed_reference": 21.774661840441656,
+      "standalone_attributed_cpu_seconds_median": 4.555650999999983,
+      "standalone_attributed_cpu_seconds_total": 451.73882100000037
+    },
+    {
+      "config_index": 8,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 30,
+        "seed_replication": 1
+      },
+      "main_Q": 0.7682703376129154,
+      "main_Q_difference_from_preserved1000inner_reference": 0.0006779697664944795,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7615277777777778,
+      "percent_better_vs_fixed_reference": 20.470565056845214,
+      "standalone_attributed_cpu_seconds_median": 5.1256424999999695,
+      "standalone_attributed_cpu_seconds_total": 462.19231700000046
+    },
+    {
+      "config_index": 9,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 30,
+        "seed_replication": 1
+      },
+      "main_Q": 0.7617385148926813,
+      "main_Q_difference_from_preserved1000inner_reference": 0.0015722021001702835,
+      "mean_final_allocation_total_variation_vs1000inner": 0.8175,
+      "percent_better_vs_fixed_reference": 21.146723102596553,
+      "standalone_attributed_cpu_seconds_median": 5.0252370000000735,
+      "standalone_attributed_cpu_seconds_total": 497.7411300000003
+    },
+    {
+      "config_index": 10,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 30,
+        "seed_replication": 2
+      },
+      "main_Q": 0.7641944250094919,
+      "main_Q_difference_from_preserved1000inner_reference": -0.0033979428369290687,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7656944444444445,
+      "percent_better_vs_fixed_reference": 20.892493394251975,
+      "standalone_attributed_cpu_seconds_median": 4.863694000000008,
+      "standalone_attributed_cpu_seconds_total": 455.79173399999996
+    },
+    {
+      "config_index": 11,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 30,
+        "seed_replication": 2
+      },
+      "main_Q": 0.7515086673979863,
+      "main_Q_difference_from_preserved1000inner_reference": -0.008657645394524738,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7178055555555556,
+      "percent_better_vs_fixed_reference": 22.205691477368894,
+      "standalone_attributed_cpu_seconds_median": 4.8636835000000005,
+      "standalone_attributed_cpu_seconds_total": 430.0350369999999
+    },
+    {
+      "config_index": 12,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 100,
+        "seed_replication": 0
+      },
+      "main_Q": 0.7675963424087444,
+      "main_Q_difference_from_preserved1000inner_reference": 3.974562323483255e-06,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7829444444444444,
+      "percent_better_vs_fixed_reference": 20.54033536440213,
+      "standalone_attributed_cpu_seconds_median": 14.601812499999985,
+      "standalone_attributed_cpu_seconds_total": 1319.4890349999994
+    },
+    {
+      "config_index": 13,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 100,
+        "seed_replication": 0
+      },
+      "main_Q": 0.7588036590548333,
+      "main_Q_difference_from_preserved1000inner_reference": -0.0013626537376777437,
+      "mean_final_allocation_total_variation_vs1000inner": 0.6766944444444445,
+      "percent_better_vs_fixed_reference": 21.4505320810206,
+      "standalone_attributed_cpu_seconds_median": 15.316599499999882,
+      "standalone_attributed_cpu_seconds_total": 1332.1578359999992
+    },
+    {
+      "config_index": 14,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 100,
+        "seed_replication": 1
+      },
+      "main_Q": 0.7655876709888602,
+      "main_Q_difference_from_preserved1000inner_reference": -0.0020046968575607726,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7364722222222222,
+      "percent_better_vs_fixed_reference": 20.748268034959494,
+      "standalone_attributed_cpu_seconds_median": 13.627938499999992,
+      "standalone_attributed_cpu_seconds_total": 1282.5169859999996
+    },
+    {
+      "config_index": 15,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 100,
+        "seed_replication": 1
+      },
+      "main_Q": 0.7640931087148497,
+      "main_Q_difference_from_preserved1000inner_reference": 0.003926795922338688,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7591388888888889,
+      "percent_better_vs_fixed_reference": 20.902981405136877,
+      "standalone_attributed_cpu_seconds_median": 13.627351499999982,
+      "standalone_attributed_cpu_seconds_total": 1284.4736629999986
+    },
+    {
+      "config_index": 16,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 100,
+        "seed_replication": 2
+      },
+      "main_Q": 0.7678279381821372,
+      "main_Q_difference_from_preserved1000inner_reference": 0.00023557033571630637,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7431388888888889,
+      "percent_better_vs_fixed_reference": 20.51636114583425,
+      "standalone_attributed_cpu_seconds_median": 14.787201000000003,
+      "standalone_attributed_cpu_seconds_total": 1295.3686559999992
+    },
+    {
+      "config_index": 17,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 100,
+        "seed_replication": 2
+      },
+      "main_Q": 0.7597444593587039,
+      "main_Q_difference_from_preserved1000inner_reference": -0.0004218534338070734,
+      "mean_final_allocation_total_variation_vs1000inner": 0.6786388888888889,
+      "percent_better_vs_fixed_reference": 21.353142772989187,
+      "standalone_attributed_cpu_seconds_median": 14.786234,
+      "standalone_attributed_cpu_seconds_total": 1296.8120639999997
+    },
+    {
+      "config_index": 18,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 300,
+        "seed_replication": 0
+      },
+      "main_Q": 0.7692260896280321,
+      "main_Q_difference_from_preserved1000inner_reference": 0.0016337217816111416,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7523888888888889,
+      "percent_better_vs_fixed_reference": 20.37162798484503,
+      "standalone_attributed_cpu_seconds_median": 40.973511500000015,
+      "standalone_attributed_cpu_seconds_total": 3976.6855020000003
+    },
+    {
+      "config_index": 19,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 300,
+        "seed_replication": 0
+      },
+      "main_Q": 0.7631001734142376,
+      "main_Q_difference_from_preserved1000inner_reference": 0.002933860621726625,
+      "mean_final_allocation_total_variation_vs1000inner": 0.6659166666666667,
+      "percent_better_vs_fixed_reference": 21.005767598390346,
+      "standalone_attributed_cpu_seconds_median": 40.93989499999998,
+      "standalone_attributed_cpu_seconds_total": 3930.0756690000007
+    },
+    {
+      "config_index": 20,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 300,
+        "seed_replication": 1
+      },
+      "main_Q": 0.7690144352983774,
+      "main_Q_difference_from_preserved1000inner_reference": 0.001422067451956499,
+      "mean_final_allocation_total_variation_vs1000inner": 0.7496388888888889,
+      "percent_better_vs_fixed_reference": 20.393537914744197,
+      "standalone_attributed_cpu_seconds_median": 41.18341350000004,
+      "standalone_attributed_cpu_seconds_total": 3900.4103390000005
+    },
+    {
+      "config_index": 21,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 300,
+        "seed_replication": 1
+      },
+      "main_Q": 0.7575279992143388,
+      "main_Q_difference_from_preserved1000inner_reference": -0.0026383135781722356,
+      "mean_final_allocation_total_variation_vs1000inner": 0.6516944444444445,
+      "percent_better_vs_fixed_reference": 21.58258521561047,
+      "standalone_attributed_cpu_seconds_median": 43.14276799999999,
+      "standalone_attributed_cpu_seconds_total": 3888.1174130000018
+    },
+    {
+      "config_index": 22,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 300,
+        "seed_replication": 2
+      },
+      "main_Q": 0.7659191316399064,
+      "main_Q_difference_from_preserved1000inner_reference": -0.0016732362065144946,
+      "mean_final_allocation_total_variation_vs1000inner": 0.6200833333333333,
+      "percent_better_vs_fixed_reference": 20.713956052584248,
+      "standalone_attributed_cpu_seconds_median": 45.237993999999986,
+      "standalone_attributed_cpu_seconds_total": 3913.6414600000007
+    },
+    {
+      "config_index": 23,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 300,
+        "seed_replication": 2
+      },
+      "main_Q": 0.7647613476983253,
+      "main_Q_difference_from_preserved1000inner_reference": 0.004595034905814255,
+      "mean_final_allocation_total_variation_vs1000inner": 0.5798611111111112,
+      "percent_better_vs_fixed_reference": 20.833806967232725,
+      "standalone_attributed_cpu_seconds_median": 41.085643499999975,
+      "standalone_attributed_cpu_seconds_total": 3864.006370000002
+    }
+  ],
+  "no_full_panel_promotion_or_production_precision_choice": true,
+  "no_independence_or_significance_claim": true,
+  "outer_paths": 1000,
+  "plan_sha256": "2d262a95c1ce729894bad61edb1f2aacfd33441959fb718fb23900ef2942e483",
+  "preserved1000inner_reference_Q_by_criterion": {
+    "path": 0.760166312792511,
+    "terminal": 0.7675923678464209
+  },
+  "reference_forecasts_verified": 216,
+  "runtime_scope": "Process CPU per request with shared two-criterion preparation charged to either standalone output. Includes both objective optimizations and union refits, final simulation, scoring, checkpoint compression and hashing, and warmup. Excludes blocked IO wait and record writing after the measurement. Not end-to-end production latency or a causal speed ratio against older 1000-inner kernels.",
+  "saved_candidate_forecasts_verified": 1728,
+  "seed_variation": [
+    {
+      "criterion": "terminal",
+      "inner_paths": 10,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.7699986386221372,
+      "mean_main_Q": 0.7668792139202749,
+      "median_main_Q": 0.7667853523176211,
+      "minimum_main_Q": 0.7638536508210663,
+      "sample_standard_deviation_of_main_Q": 0.0030735689790807254,
+      "seed_repetitions": 3
+    },
+    {
+      "criterion": "terminal",
+      "inner_paths": 30,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.7682703376129154,
+      "mean_main_Q": 0.7654407454552508,
+      "median_main_Q": 0.7641944250094919,
+      "minimum_main_Q": 0.763857473743345,
+      "sample_standard_deviation_of_main_Q": 0.002456283345417923,
+      "seed_repetitions": 3
+    },
+    {
+      "criterion": "terminal",
+      "inner_paths": 100,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.7678279381821372,
+      "mean_main_Q": 0.767003983859914,
+      "median_main_Q": 0.7675963424087444,
+      "minimum_main_Q": 0.7655876709888602,
+      "sample_standard_deviation_of_main_Q": 0.0012320169487867454,
+      "seed_repetitions": 3
+    },
+    {
+      "criterion": "terminal",
+      "inner_paths": 300,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.7692260896280321,
+      "mean_main_Q": 0.7680532188554386,
+      "median_main_Q": 0.7690144352983774,
+      "minimum_main_Q": 0.7659191316399064,
+      "sample_standard_deviation_of_main_Q": 0.0018512011158809583,
+      "seed_repetitions": 3
+    },
+    {
+      "criterion": "path",
+      "inner_paths": 10,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.7706492125881628,
+      "mean_main_Q": 0.7653283385797764,
+      "median_main_Q": 0.7648440762671109,
+      "minimum_main_Q": 0.7604917268840555,
+      "sample_standard_deviation_of_main_Q": 0.005096028988132507,
+      "seed_repetitions": 3
+    },
+    {
+      "criterion": "path",
+      "inner_paths": 30,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.7617385148926813,
+      "mean_main_Q": 0.7563065608920082,
+      "median_main_Q": 0.755672500385357,
+      "minimum_main_Q": 0.7515086673979863,
+      "sample_standard_deviation_of_main_Q": 0.005144314287225319,
+      "seed_repetitions": 3
+    },
+    {
+      "criterion": "path",
+      "inner_paths": 100,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.7640931087148497,
+      "mean_main_Q": 0.7608804090427956,
+      "median_main_Q": 0.7597444593587039,
+      "minimum_main_Q": 0.7588036590548333,
+      "sample_standard_deviation_of_main_Q": 0.0028217646411515273,
+      "seed_repetitions": 3
+    },
+    {
+      "criterion": "path",
+      "inner_paths": 300,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.7647613476983253,
+      "mean_main_Q": 0.7617965067756339,
+      "median_main_Q": 0.7631001734142376,
+      "minimum_main_Q": 0.7575279992143388,
+      "sample_standard_deviation_of_main_Q": 0.0037887983056839676,
+      "seed_repetitions": 3
+    }
+  ],
+  "summary_sha256": "c14957951a8c9b753c9e65a4e9d7801aa0b4d16731182aa249e8892fe360ea77",
+  "utc": "2026-10-21T16:25:41.726996+00:00",
+  "verified": true,
+  "verifier_sha256": "c6be4068b812a4a55eb6a660a1329b7038a19df1afc8288f4f2f5d55d006d2fe"
+}

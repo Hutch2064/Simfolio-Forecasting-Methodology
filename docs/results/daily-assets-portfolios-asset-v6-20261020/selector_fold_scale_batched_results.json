@@ -1,0 +1,52 @@
+{
+  "additional_replications_and_reserved_confirmation_may_be_needed": true,
+  "automatic_stability_or_promotion_decision": false,
+  "complete_execution": true,
+  "errors": [],
+  "full_panel_catalogue_increment": 0,
+  "main_reference_Q": 0.9660201133857566,
+  "matched_internal_count_and_seed_with_unscaled_controls": true,
+  "matched_unscaled_reference_Q_by_criterion": {
+    "path": 0.755672500385357,
+    "terminal": 0.7638574737433449
+  },
+  "models": [
+    {
+      "complete": true,
+      "config_index": 0,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 30,
+        "seed_replication": 0
+      },
+      "main_Q": 0.7611115028028832,
+      "main_Q_difference_from_matched_unscaled_control": -0.002745970940461695,
+      "matched_cases": 72,
+      "percent_better_vs_fixed_reference": 21.21162983498337,
+      "worker_cpu_seconds": 421.241249
+    },
+    {
+      "complete": true,
+      "config_index": 1,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 30,
+        "seed_replication": 0
+      },
+      "main_Q": 0.758466504528263,
+      "main_Q_difference_from_matched_unscaled_control": 0.0027940041429059814,
+      "matched_cases": 72,
+      "percent_better_vs_fixed_reference": 21.48543347923151,
+      "worker_cpu_seconds": 65.37657200000001
+    }
+  ],
+  "no_independence_or_significance_claim": true,
+  "official": false,
+  "outer_paths": 1000,
+  "qualification_valid": true,
+  "utc": "2026-10-21T16:28:01.762620+00:00",
+  "complete_private_summary_sha256": "f19dcb04c86f8df5d615721c0de80e0f9bcd7eda93d95ceca7e38648b4c3e736",
+  "verification_sha256": "2a1ce9484aa8ba319a96c211dcb729bb72932fc78660bb73a2b9262a423c5ae0",
+  "complete_local_evidence_retained_for_active_research": true,
+  "private_raw_evidence_remote_recovery_not_claimed_by_this_publication": true
+}

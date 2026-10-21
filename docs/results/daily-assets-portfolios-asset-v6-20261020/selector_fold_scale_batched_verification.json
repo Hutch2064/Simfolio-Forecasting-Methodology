@@ -1,0 +1,75 @@
+{
+  "all_candidate_and_reference_scores_recomputed": true,
+  "all_internal_seeds_and_causal_prefixes_verified": true,
+  "main_reference_Q": 0.9660201133857566,
+  "matched_internal_precision_and_predeclared_seed": true,
+  "matched_unscaled_reference_Q_by_criterion": {
+    "path": 0.755672500385357,
+    "terminal": 0.7638574737433449
+  },
+  "models": [
+    {
+      "config_index": 0,
+      "configuration": {
+        "criterion": "terminal",
+        "inner_paths": 30,
+        "seed_replication": 0
+      },
+      "main_Q": 0.7611115028028832,
+      "main_Q_difference_from_matched_unscaled_control": -0.002745970940461695,
+      "mean_final_allocation_total_variation_vs_matched_unscaled_control": 0.15438888888888888,
+      "percent_better_vs_fixed_reference": 21.21162983498337,
+      "standalone_attributed_cpu_seconds_median": 4.3436544999999995,
+      "standalone_attributed_cpu_seconds_total": 421.241249
+    },
+    {
+      "config_index": 1,
+      "configuration": {
+        "criterion": "path",
+        "inner_paths": 30,
+        "seed_replication": 0
+      },
+      "main_Q": 0.758466504528263,
+      "main_Q_difference_from_matched_unscaled_control": 0.0027940041429059814,
+      "mean_final_allocation_total_variation_vs_matched_unscaled_control": 0.15688888888888888,
+      "percent_better_vs_fixed_reference": 21.48543347923151,
+      "standalone_attributed_cpu_seconds_median": 4.335331,
+      "standalone_attributed_cpu_seconds_total": 447.726425
+    }
+  ],
+  "no_full_panel_promotion_or_production_precision_choice": true,
+  "no_independence_or_significance_claim": true,
+  "outer_paths": 1000,
+  "plan_sha256": "1eb3a68c0a9555e6a3550a0c17c026bd71abc389d568bdba7d3c84af9b678183",
+  "reference_forecasts_verified": 216,
+  "runtime_scope": "Process CPU per request with shared two-criterion preparation charged to either standalone output. Includes both objective optimizations and union refits, final simulation, scoring, checkpoint compression and hashing, and warmup. Excludes blocked IO wait and record writing after the measurement. Not end-to-end production latency or a causal speed ratio against the matched unscaled control.",
+  "saved_candidate_forecasts_verified": 144,
+  "seed_variation": [
+    {
+      "criterion": "terminal",
+      "inner_paths": 30,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.7611115028028832,
+      "mean_main_Q": 0.7611115028028832,
+      "median_main_Q": 0.7611115028028832,
+      "minimum_main_Q": 0.7611115028028832,
+      "sample_standard_deviation_of_main_Q": null,
+      "seed_repetitions": 1
+    },
+    {
+      "criterion": "path",
+      "inner_paths": 30,
+      "interpretation": "Descriptive Monte Carlo variation on reused development cases; no independence or stability certificate",
+      "maximum_main_Q": 0.758466504528263,
+      "mean_main_Q": 0.758466504528263,
+      "median_main_Q": 0.758466504528263,
+      "minimum_main_Q": 0.758466504528263,
+      "sample_standard_deviation_of_main_Q": null,
+      "seed_repetitions": 1
+    }
+  ],
+  "summary_sha256": "f19dcb04c86f8df5d615721c0de80e0f9bcd7eda93d95ceca7e38648b4c3e736",
+  "utc": "2026-10-21T16:28:23.971225+00:00",
+  "verified": true,
+  "verifier_sha256": "19eaccfee7e36ceec7ca908801574b4b08d67fc105443223f84625bbdac8d582"
+}

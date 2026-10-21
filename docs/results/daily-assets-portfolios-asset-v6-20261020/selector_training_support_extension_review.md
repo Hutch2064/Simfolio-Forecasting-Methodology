@@ -1,0 +1,9 @@
+# Historical support: a justified possible contrast, not a result
+
+The existing training-only support diagnostic found that 67 of the 72 representative requests start their first internal fit with 24 or 25 observations and have only two historical validation folds. Increasing Monte Carlo paths cannot increase that historical information. A legal fit and two folds do not establish reliable model-selection support.
+
+[Forecasting: Principles and Practice, section 5.5, benchmark methods](https://otexts.com/fpp3/toolbox.html#benchmark-methods) gives the drift forecast standard deviation as `sigma * sqrt(h * (1 + h/(T-1)))`. With `N = T-1` observed increments, this is `sigma * sqrt(h + h*h/N)`. Its assumptions are those of that drift benchmark; it is not a general result for dependent financial returns.
+
+Our inference for a possible later experiment is to use that history-and-lead factor in the **internal** CRPS normalization. Relative to the prepared per-fold SD contrast, multiply each historical lead's weight by `1/sqrt(1+h/N)`. This reduces the influence of long extrapolations from very short prefixes without setting a minimum number of years or choosing a fixed winner. All quantities are available within the historical fold. A positive scaling determined from training information preserves conditional scoring propriety; whether this weighting improves our selected forecasts remains an empirical question.
+
+This would leave the panel, final 1,000 paths and single canonical **outer** score unchanged. No such experiment is admitted, implemented or used to select a production precision here. First finish and independently audit the controlled precision study, then test the already-qualified per-fold SD contrast. Reconsider this extension using those results, with matched coverage, simulation counts and seeds. Do not claim that it resolves the outstanding historical-support issue or maximizes performance without that evidence.
