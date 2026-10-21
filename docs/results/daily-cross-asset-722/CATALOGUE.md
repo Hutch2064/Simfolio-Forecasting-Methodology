@@ -1,6 +1,6 @@
 # Versioned full-panel model catalogue
 
-**18 unique model versions across preserved benchmarks; 5 with completed attempts on the current benchmark.**
+**20 unique model versions across preserved benchmarks; 7 with completed attempts on the current benchmark.**
 
 The current benchmark has one main score. Historical normalizations and all older executions remain in catalogue.json; scores from different benchmarks are not compared.
 
@@ -14,6 +14,8 @@ This is an evidence inventory, not a mixed-coverage ranking.
 | Public — Adaptive Blocks [V5 portfolio 1000] | 64049 / 64049 | 0 | 0.621396240135 | 6080.621 |
 | Public — Random Blocks Replacement [V5 portfolio 1000] | 64049 / 64049 | 0 | 0.621041673589 | 4668.629 |
 | Public — History Cycles [V5 portfolio 1000] | 64049 / 64049 | 0 | 0.622044083318 | 5659.065 |
+| TestFolio-style Asset Blocks — Without Replacement | 64049 / 64049 | 0 | 0.631050886626 | 12956.482 |
+| TestFolio-style Asset Blocks — With Replacement | 64049 / 64049 | 0 | 0.632071545704 | 13316.043 |
 
 ## Incomplete paired results: native forecast failures
 

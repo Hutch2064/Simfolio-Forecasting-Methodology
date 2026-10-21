@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import time
 import traceback
+import sys
 
 O = Path(__file__).resolve().parent
 V = O/'asset_level_v6'
@@ -34,20 +35,29 @@ def state(stage, **details):
 def main():
     lock = (O/'asset_v6_archive.lock').open('a')
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    while not (V/'full_pair_independent_audit.json').exists():
+    resume_publication = sys.argv[1:] == ['--finish-publication']
+    while not resume_publication and not (V/'full_pair_independent_audit.json').exists():
         handoff = read(O/'asset_v6_research_handoff_active.json')
         assert handoff['stage'] != 'attention_required', handoff
         proc = subprocess.run(['ps', '-p', str(handoff['pid']), '-o', 'command='], capture_output=True, text=True)
         assert 'continue_asset_v6_research.py' in proc.stdout, 'Audit owner ended before full-pair proof'
         state('waiting_for_live_audit_owner', owner_pid=handoff['pid'])
         time.sleep(20)
-    state('preserving_closed_pair')
-    subprocess.run([PY, '/Users/aidanhutchison/simfolio/storage_preflight.py',
-                    '--expected-gib', '1', '--artifact-root', str(O), '--budget-gib', '12'], check=True)
-    subprocess.run([PY, str(O/'preserve_asset_v6_closed.py')], cwd=O, env=env, check=True)
+    if resume_publication:
+        receipt = read(O/'archives/asset-v6-baselines-1000-20261020/receipt.json')
+        assert receipt['complete'] and receipt['files_fresh_downloaded_disk_restored_sha256_verified'] == 134653
+    else:
+        state('preserving_closed_pair')
+        subprocess.run([PY, '/Users/aidanhutchison/simfolio/storage_preflight.py',
+                        '--expected-gib', '1', '--artifact-root', str(O), '--budget-gib', '12'], check=True)
+        subprocess.run([PY, str(O/'preserve_asset_v6_closed.py')], cwd=O, env=env, check=True)
     publication = (O/'asset_v6_publication.lock').open('a')
     fcntl.flock(publication, fcntl.LOCK_EX)
-    assert not subprocess.check_output(['git', 'status', '--porcelain'], cwd=R, text=True).strip()
+    dirty = subprocess.check_output(['git', 'status', '--porcelain'], cwd=R, text=True)
+    if resume_publication:
+        assert all(line[3:].startswith((REL+'/', 'docs/results/daily-cross-asset-722/')) for line in dirty.splitlines())
+    else:
+        assert not dirty.strip()
     subprocess.run([PY, str(O/'catalogue_asset_v6_closed.py')], cwd=O, env=env, check=True)
     shutil.copy2(O/'archives/asset-v6-baselines-1000-20261020/receipt.json', D/'closed-baseline-archive-receipt.json')
     for name in ['preserve_asset_v6_closed.py', 'catalogue_asset_v6_closed.py', 'archive_asset_v6_when_closed.py']:
@@ -55,7 +65,7 @@ def main():
     manifest = {str(p.relative_to(D)): sha(p) for p in sorted(D.rglob('*'))
                 if p.is_file() and p.name != 'PUBLIC_FILES.json' and '__pycache__' not in p.parts}
     (D/'PUBLIC_FILES.json').write_text(json.dumps(manifest, indent=2)+'\n')
-    subprocess.run([PY, '-m', 'unittest', '-v', 'tests.test_full_panel_catalogue'], cwd=R, env=env, check=True)
+    subprocess.run([PY, '-m', 'pytest', '-q', 'tests/test_full_panel_catalogue.py'], cwd=R, env=env, check=True)
     allowed = [REL+'/', 'docs/results/daily-cross-asset-722/catalogue.json',
                'docs/results/daily-cross-asset-722/CATALOGUE.md']
     changes = subprocess.check_output(['git', 'status', '--porcelain'], cwd=R, text=True)

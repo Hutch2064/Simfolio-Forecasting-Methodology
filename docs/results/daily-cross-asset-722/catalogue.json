@@ -1,6 +1,6 @@
 {
   "schema": "full-panel-catalogue-v1",
-  "scope": "Append-only historical full-panel versions; current joint-asset references not yet complete. Version count distinguishes numerical execution sources, not independent financial model families.",
+  "scope": "Append-only full-panel implementation versions, including losers; identical executions count once. Current asset baseline pair complete; improvement research remains active.",
   "counting_rule": "Unique original model ID plus source-bound implementation digest; identical reruns and verified no-op factory aliases count once. Pilots and partially attempted panels are excluded. Full attempted panels with native failures remain counted and labelled.",
   "models": {
     "f76f53f99b040bb2ab30dc4e2427d43b3620333835c1c74f30cde1f3d6c80a0e": {
@@ -7151,21 +7151,895 @@
           ]
         }
       ]
+    },
+    "c8801b27af2ea96851509a8464c6cac6cc09d247addfb146c699866e9e9fffdd": {
+      "identity": {
+        "model_id": "model_testing_asset_joint_blocks_history_partition_v6",
+        "implementation_digest": "43f51be6acbaecac0812e5fb6a9c843bf24cb18d9f140a71f3e3174d538b2694"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_asset_joint_blocks_history_partition_v6",
+            "implementation_digest": "43f51be6acbaecac0812e5fb6a9c843bf24cb18d9f140a71f3e3174d538b2694"
+          },
+          "display_name": "TestFolio-style Asset Blocks \u2014 Without Replacement",
+          "definition": "Random contiguous chronological partition, shuffled without reusing a day within each history cycle; repartition and refill after exhaustion. Joint constituent rows, actual asset paths and portfolio holdings, fixed target rebalancing inside every path. Uniform block lengths1..min(training rows,forecast observations); no Politis\u2013White.",
+          "version": "v6_joint_assets_1000_source_bound_execution",
+          "forecast_level": "joint_assets",
+          "retained_in_active_set": true,
+          "score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+          "execution_fingerprint": "f9263d42137db6d7ea2f1fe986c996227c9ea2b11e4fa8a524d46b9fcd1040de",
+          "coverage": {
+            "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+            "series": 1264,
+            "expected_tasks": 64049,
+            "successful_tasks": 64049,
+            "native_failed_tasks": 0,
+            "native_fit_failures": 0,
+            "native_generation_failures": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "main": 0.6310508866260718
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+            "matched_successful_tasks": 64049,
+            "public_scores": {
+              "main": 0.6320715457043177
+            },
+            "percent_better": {
+              "main": 0.1614784093956545
+            },
+            "preliminary": false,
+            "reference_rule": "Worse of the two completed joint-asset TestFolio-style configurations on identical full coverage; one main score."
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 12956.481747099664,
+            "scope": "Recorded successful causal preparation, joint simulation and1000-path exact CRPS; excludes IO/setup/queue. No controlled speedup claim.",
+            "wall_elapsed_seconds": null
+          },
+          "reproducibility": {
+            "actual_factory": "asset_models:build_without_replacement",
+            "actual_implementation_digest": "43f51be6acbaecac0812e5fb6a9c843bf24cb18d9f140a71f3e3174d538b2694",
+            "full_execution_manifest_sha256": "557797ec7a9782cdc0d83273fbf71abfaf79411092b2c9b739b65e3ff607914d",
+            "full_execution_archive_member": "asset_level_v6/results/models/97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5/execution.json",
+            "source_environment": {
+              "arch": "8.0.0",
+              "forecast_level": "joint_assets",
+              "french_native_dependencies": {
+                "pybind11": {
+                  "native_artifacts": {
+                    "pybind11/include/pybind11/attr.h": "e2e0386a4b0bd6b95e4d8d501dd57ab2d5cd2b6c2e0d9a89b4f616805f532265",
+                    "pybind11/include/pybind11/buffer_info.h": "90849dec6781145edf27817f9a0bccf2d16dd75f9e7d72afded9857c1e9011aa",
+                    "pybind11/include/pybind11/cast.h": "54cfdb09535529c4b33f5cb06312ea008260d43e71289b5221897c9c8dc8efed",
+                    "pybind11/include/pybind11/chrono.h": "e07c05145da261cdbb4d53d80eaba7dea8a3985deda8b91434315998c70f53d4",
+                    "pybind11/include/pybind11/common.h": "01383d06dd69c05f2a9cdb88d3ce9fa6b3380944ddad9764fe0d875c4d527fa0",
+                    "pybind11/include/pybind11/complex.h": "d9275367b53c34f6de865cee6ece6fc358820911c9fd574e9c016df9437a728b",
+                    "pybind11/include/pybind11/conduit/pybind11_conduit_v1.h": "19af7d983107690a0250e53de0257ab2f394c99d2b2046cbf0cdb84643ffdcfc",
+                    "pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h": "554656e07ee2cbdbd553380b749d7df76c25e0d9cdeac30259db599f563177f6",
+                    "pybind11/include/pybind11/conduit/wrap_include_python_h.h": "b86c91eda51e381e8411919f6f5f5367cb3270fede6d9db0e7131a2013226d33",
+                    "pybind11/include/pybind11/critical_section.h": "625cb959703218fe72f72f97d038f21801f676d12a5ee5a723e4eb9d63077589",
+                    "pybind11/include/pybind11/detail/argument_vector.h": "ca7ae47c63d6c57b40b64c620c53bea040be9a23d1e29b2a9ff647bd94f9269c",
+                    "pybind11/include/pybind11/detail/class.h": "91087ad1b3e785f9839784f6d71016fcf09d6822e5e4d05118a1d0a4ff8ebbcf",
+                    "pybind11/include/pybind11/detail/common.h": "a455fde97288d2cacb50b2d21282064e4340349352fc0b3be2208e61e54ad62e",
+                    "pybind11/include/pybind11/detail/cpp_conduit.h": "9c68646e446b107f69304ab1af7b57057ef8fa24b22c308eb046af296f4a6aee",
+                    "pybind11/include/pybind11/detail/descr.h": "8b225ac30dcaea0540fe5c5e83af6f359c8de375eb3d5b7251b8665cc0625459",
+                    "pybind11/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h": "d6a59a3651fafa3f67e55a0417bd3308eacdcfa26914b16eea0a9d62d3452f7e",
+                    "pybind11/include/pybind11/detail/exception_translation.h": "32c88bbf1a9017a0acf3a11692603d754d0549ced257b54e18f71398d747ab07",
+                    "pybind11/include/pybind11/detail/function_record_pyobject.h": "aeb3e88f60b1f09e96790b6f1a42bbe87df33d45db2f499b68634f1cdc595736",
+                    "pybind11/include/pybind11/detail/function_ref.h": "8b071de14ad618f70115f20ebe44b70b5242b176bbc0710ac8b842895a498ebb",
+                    "pybind11/include/pybind11/detail/holder_caster_foreign_helpers.h": "02602538206cc5a04f957866a3c4e97b7e1442c8968c53d6e174eb6c6471e443",
+                    "pybind11/include/pybind11/detail/init.h": "d43866489b09546b95d251df34c04015b4a82474e2f38a64bc20733259a8f1f4",
+                    "pybind11/include/pybind11/detail/internals.h": "5eefa6b72e435277a3e75378597e13c295aefb6ff8d0943fa2220ed9efb54fbc",
+                    "pybind11/include/pybind11/detail/native_enum_data.h": "d301c7a82b82a87c03eb9b01ceafbffc53347b9003821ec426a6cb0d3659d195",
+                    "pybind11/include/pybind11/detail/pybind11_namespace_macros.h": "60a5e35a5b0807d0cc142d4af298d5c982ad84f95ddfbf65f54e36b140ddba77",
+                    "pybind11/include/pybind11/detail/struct_smart_holder.h": "18305bcedae4792e32047d6d8f1b16b6e6a72014aad56827ee0b9a976ca2becc",
+                    "pybind11/include/pybind11/detail/type_caster_base.h": "ea9dc652f3f5d09b1ac7994d00f2c3ea82c6c763c1d218c5c2851956f593178f",
+                    "pybind11/include/pybind11/detail/typeid.h": "8f0e69afd9bbdaf903b25a13f2fc65f708f5ed52467047570f2ce2065b7cf49b",
+                    "pybind11/include/pybind11/detail/using_smart_holder.h": "b03da16159791f8bbc5089aa9a2e524fda1fb434143e427ac91dea47795e4244",
+                    "pybind11/include/pybind11/detail/value_and_holder.h": "12ddc263339c3ebbbfdfbe69c23665b0c56c0783c19f35f7c1f2d9fae0ca8afe",
+                    "pybind11/include/pybind11/eigen.h": "f87992035920c0243e18752decf1ed4c473ebf1ab0f71011a45f0f1d6262a76f",
+                    "pybind11/include/pybind11/eigen/common.h": "7487aa98aec8cd6e4ae24da56ab3e703503ceb7ac3a77f14f586cd230888c989",
+                    "pybind11/include/pybind11/eigen/matrix.h": "4773e9f41c04a4f28241c97a01e39740181e46a289566437e340fb8201b50dc6",
+                    "pybind11/include/pybind11/eigen/tensor.h": "ce6d0e1e1e6b8c9296937474d43de3cbe3c50ac6ad9088dffc60373e1d44c8b4",
+                    "pybind11/include/pybind11/embed.h": "006d15a971426c64c8337dea55012fb1469b6566d2ec0eb9a81006d402e6f30b",
+                    "pybind11/include/pybind11/eval.h": "6e9e8707574efe460b479c6ba7f3026107d5173fbdf0414c049497ff97abc708",
+                    "pybind11/include/pybind11/functional.h": "11f144d71cb258e2ff0c9495bddbf180ecee15f6b4bc473b20b128b2dc9c7aad",
+                    "pybind11/include/pybind11/gil.h": "3eedfee721a938121823320d3215c197e7b4a6e7c01c3db89057872648f1f2d5",
+                    "pybind11/include/pybind11/gil_safe_call_once.h": "afa1b440b7710ba35c071d0ce98e72b7401fa5b8257a199770a2f98ffdd24609",
+                    "pybind11/include/pybind11/gil_simple.h": "02e3bd982d5d7af7634e75ce7b46891ac9c9b920b79dead69c6d7b1d54105fd9",
+                    "pybind11/include/pybind11/iostream.h": "7acf4b5b2ceae7f7b86d5cdaef7b72daa4a09d3548c4f9d9639cc67995e9c582",
+                    "pybind11/include/pybind11/native_enum.h": "8bcb62bcebe84b076f5d2d2d495f34026ca2b8d853ddfa6f64b6c4b1332a1860",
+                    "pybind11/include/pybind11/numpy.h": "a9bba1f0976acd7e7597daef1abd398a1e0b81213747278cffef6b325979fee1",
+                    "pybind11/include/pybind11/operators.h": "db6e11a005dcbf595ae0d358f6b437683fc0782f12f592b1dc754ad4ef01e0c5",
+                    "pybind11/include/pybind11/options.h": "a97be69e3fbef5f652a79e8d61e7e70775b9575ee9a47958d52ae0a370cd069c",
+                    "pybind11/include/pybind11/pybind11.h": "ba323b835ef91eb85342057db2353cbac3da9040eac9f0b83891a3ce66911a75",
+                    "pybind11/include/pybind11/pytypes.h": "c74dd04fb339a272cc725c374d46edef05f4e213896da70c90015dcd9fda312e",
+                    "pybind11/include/pybind11/stl.h": "ea83b4a2027b1063393f9546e1d32c6630ca9ebd7022e0911dc0210e4259c9ce",
+                    "pybind11/include/pybind11/stl/filesystem.h": "c20e3212879de83e21503a731210707521c5c70b36d5781621092b232c3fdd98",
+                    "pybind11/include/pybind11/stl_bind.h": "a9d8a61f0671044e0f3bc4a0063c7d61ac9101f3faa9d1d035be0b31dc89f2df",
+                    "pybind11/include/pybind11/subinterpreter.h": "3a31eb3436d40b40345b413775c79b12ced0fc82e73d539355905619c1fc08f0",
+                    "pybind11/include/pybind11/trampoline_self_life_support.h": "f935fdc394f12355d7dc01b6e7994c2dd882c91f9d664337db5c05b1e7729f1f",
+                    "pybind11/include/pybind11/type_caster_pyobject_ptr.h": "1fba4a0584ef52589b88940470a99e024ca0490c280a4b88cae90d483995abe5",
+                    "pybind11/include/pybind11/typing.h": "e872df48d4e4dbd2b3c76abbc3bfec3e0fd66605d8fcd2633cfac4510fd0176a",
+                    "pybind11/include/pybind11/warnings.h": "89d70134ae5e117c5805f3de56ec9c2f172032b2aebd1cd0237dc16a927c1b88"
+                  },
+                  "version": "3.1.0"
+                },
+                "pyvinecopulib": {
+                  "native_artifacts": {
+                    "pyvinecopulib/pyvinecopulib_ext.abi3.so": "9f043410421beab5de4c901ac971380472b30229fc5c8026b8e590a9bd0cee1a"
+                  },
+                  "version": "0.7.5"
+                }
+              },
+              "method": "model_testing_asset_joint_blocks_history_partition_v6",
+              "numba": "0.67.0",
+              "numerical_environment": {
+                "interpreter": {
+                  "build": [
+                    "main",
+                    "Apr 14 2026 14:33:40"
+                  ],
+                  "cache_tag": "cpython-312",
+                  "compiler": "Clang 22.1.3",
+                  "implementation": "CPython",
+                  "version": "3.12.13"
+                },
+                "packages": {
+                  "numpy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "2.5.3"
+                  },
+                  "scipy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "cython blas ilp64": false,
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "1.18.1"
+                  }
+                },
+                "platform": {
+                  "machine": "arm64",
+                  "release": "27.0.0",
+                  "system": "Darwin",
+                  "version": "<redacted>"
+                },
+                "thread_settings": {
+                  "environment": {
+                    "BLIS_NUM_THREADS": null,
+                    "GOTO_NUM_THREADS": null,
+                    "MKL_DYNAMIC": null,
+                    "MKL_NUM_THREADS": "1",
+                    "NUMBA_NUM_THREADS": "1",
+                    "NUMBA_THREADING_LAYER": null,
+                    "NUMEXPR_NUM_THREADS": "1",
+                    "OMP_DYNAMIC": null,
+                    "OMP_NUM_THREADS": "1",
+                    "OMP_PLACES": null,
+                    "OMP_PROC_BIND": null,
+                    "OPENBLAS_NUM_THREADS": "1",
+                    "VECLIB_MAXIMUM_THREADS": "1"
+                  },
+                  "numpy_seterr": {
+                    "divide": "warn",
+                    "invalid": "warn",
+                    "over": "warn",
+                    "under": "ignore"
+                  }
+                }
+              },
+              "numpy": "2.5.3",
+              "pandas": "2.3.3",
+              "paths_per_forecast": 1000,
+              "portfolio_accounting": "inside each path, after shared asset row selection",
+              "profile": {
+                "effective_maximum": "min(training_rows, forecast_observations)",
+                "effective_minimum": "min(configured_minimum, effective_maximum)",
+                "final_partition_block": "truncate to history end if remaining rows are shorter than minimum",
+                "length_distribution": "discrete_uniform_inclusive",
+                "maximum_block_observations": null,
+                "minimum_block_observations": 1,
+                "portfolio_policy": "fixed target weights restored at each common observed endpoint, matching unchanged panel construction",
+                "reference_selection": "Higher (worse) canonical main score of the two configurations on identical successful coverage; final choice after both complete",
+                "simulations": 1000,
+                "testfolio_approximation": "Joint asset block resampling and within-path portfolio accounting. Public block bounds are configurable. This frozen support-bounded profile is not a claim to reproduce their one-to-five-year UI defaults or unpublished RNG/start-index code.",
+                "version": "asset_joint_blocks_v6",
+                "with_replacement": "uniform valid contiguous nonwrapping starting point for each drawn block",
+                "without_replacement": "chronologically partition history into random-length contiguous blocks; shuffle blocks; use every row once; repartition and reshuffle after complete history cycle",
+                "workers": 12
+              },
+              "python": "3.12.13",
+              "replacement": false,
+              "scikit-learn": "1.9.0",
+              "scipy": "1.18.1",
+              "source_hashes": {
+                "asset_forecast.py": "5688896c8aee66f60ce852f447e1ac3b3819f40caf19139c0577c8909cbaaa7a",
+                "asset_models.py": "74ba418a5b35d967f629a86dc21e649bac7f48fbda685889b6256e1501407c2b",
+                "asset_paths.py": "5c4a109518e6193d2c240ba3b9d51de0b803f992c70bad7670cc15a75e8f9e84",
+                "blocks.py": "4eb1aba602dea9dd9c4d48aea64104a4a9fa50babe5d13ce906cfdc737600f06",
+                "inputs.py": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9"
+              },
+              "statsmodels": "0.15.0"
+            },
+            "input_manifest_sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+            "main_score_source_sha256": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+            "paths_per_forecast": 1000,
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,1000)",
+            "full_independent_audit_sha256": "8a5559e9b366b5facc0f635a04d018baa27d573d305c6da2a196f541ddc8f269",
+            "evidence_root": "../daily-assets-portfolios-asset-v6-20261020",
+            "preservation_receipt": "../daily-assets-portfolios-asset-v6-20261020/closed-baseline-archive-receipt.json"
+          },
+          "archives": [
+            {
+              "utc": "2026-10-21T00:09:53.528494+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5",
+              "part": 1,
+              "parts": 6,
+              "archive_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-01.tar.gz",
+              "archive_sha256": "f2f1be35f7ccb40e5d5c6f9625535b8c7752e852da0a57b33a9f6a4d91356c49",
+              "manifest_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-01-manifest.json",
+              "manifest_sha256": "1ade53ebf62752412cce080469252fb103696c7fc54ce1696c277c7d8ca25dae",
+              "archive_bytes": 215235665,
+              "files": 7976,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:10:36.569519+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5",
+              "part": 2,
+              "parts": 6,
+              "archive_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-02.tar.gz",
+              "archive_sha256": "c51be37192b91f2ea4c304550afad2b38023b46103da8ddab0a6fbc58fc15ae8",
+              "manifest_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-02-manifest.json",
+              "manifest_sha256": "4f83082d82f6b4e21c5fea8aa357b020bc59f5a431e9dfba16e82edc9da97922",
+              "archive_bytes": 225060561,
+              "files": 8375,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:11:07.300687+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5",
+              "part": 3,
+              "parts": 6,
+              "archive_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-03.tar.gz",
+              "archive_sha256": "ddbb3fd776b16b57c9f828d49d1fdcfc7b766092f3ed5f110a6d9dc909860359",
+              "manifest_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-03-manifest.json",
+              "manifest_sha256": "d7e282f8fc3f109a49f4f5292a6f78b96f5b4760505b70a7c82a90256ecdd0b3",
+              "archive_bytes": 225705307,
+              "files": 8379,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:11:41.455616+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5",
+              "part": 4,
+              "parts": 6,
+              "archive_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-04.tar.gz",
+              "archive_sha256": "0418b6d5661eeed535b341031ba042d58f7e53107037b09bcab1abcff409338a",
+              "manifest_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-04-manifest.json",
+              "manifest_sha256": "f760af62c2742e08a9d9cf4ece18e0f9e2870291e2d6f7df997b4baaf44d6958",
+              "archive_bytes": 211127461,
+              "files": 12716,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:13:19.900589+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5",
+              "part": 5,
+              "parts": 6,
+              "archive_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-05.tar.gz",
+              "archive_sha256": "cc79db03a7fb1f03d96a4f0a5f84ac5715d0dc86630a8697027690b423ca040d",
+              "manifest_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-05-manifest.json",
+              "manifest_sha256": "d36a0ceddbf07a62758531d619a05936b4dc160f16a264ee62e00f5b19a9ef5e",
+              "archive_bytes": 183414301,
+              "files": 20384,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:14:04.156503+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5",
+              "part": 6,
+              "parts": 6,
+              "archive_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-06.tar.gz",
+              "archive_sha256": "a902329b9497989bd4724306392c2722004cf95127ad869884a1f9677a207757",
+              "manifest_name": "97e3ce3816cad8627f76333a73b47270a206794b3acf17d75c4fb362abd65ac5-part-06-manifest.json",
+              "manifest_sha256": "24bb1f4df1bc2afa674dee9306bbc2a9523171ae7af7af5db5141c9b24b506c3",
+              "archive_bytes": 65677463,
+              "files": 6223,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:14:26.147220+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "shared",
+              "part": 1,
+              "parts": 3,
+              "archive_name": "shared-part-01.tar.gz",
+              "archive_sha256": "974b6abcecd541690be209edbd9f683f7821a5642bff5939c87dbd5242bb495d",
+              "manifest_name": "shared-part-01-manifest.json",
+              "manifest_sha256": "1e06c6d4915acbc950ea55c893f38c14842124cce76e937765c2588b838c75b6",
+              "archive_bytes": 55290810,
+              "files": 2832,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:14:53.107675+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "shared",
+              "part": 2,
+              "parts": 3,
+              "archive_name": "shared-part-02.tar.gz",
+              "archive_sha256": "0b8b1180d215432ed1739949717a78cb2181e8f699e89f6025668872b4e50b20",
+              "manifest_name": "shared-part-02-manifest.json",
+              "manifest_sha256": "5440faad9328b2d8a2d55073cf2df57310bc749aceccfadcd41732c2c3fd278e",
+              "archive_bytes": 59283921,
+              "files": 3693,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:15:01.153787+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "shared",
+              "part": 3,
+              "parts": 3,
+              "archive_name": "shared-part-03.tar.gz",
+              "archive_sha256": "ee8591b5d3daa9cb56f304c1f17a3196d53f61e49e0528f0f92f2fae5fc13833",
+              "manifest_name": "shared-part-03-manifest.json",
+              "manifest_sha256": "bcd4fdb0833875f26064b0217495ba57d71592ef60831a2cbe21eba26a3816a9",
+              "archive_bytes": 23603215,
+              "files": 16,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:15:04.131529+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "audit",
+              "part": 1,
+              "parts": 1,
+              "archive_name": "audit-part-01.tar.gz",
+              "archive_sha256": "2e7e3e7e8085036894bbb0f3198a975144fbb385b2f036186f7fe8804f1327a5",
+              "manifest_name": "audit-part-01-manifest.json",
+              "manifest_sha256": "7dbc77698055fbca39a4b18a4ef72e310358ae67d735e9026cfafe4158ddd3d4",
+              "archive_bytes": 10787,
+              "files": 6,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            }
+          ]
+        }
+      ]
+    },
+    "6c331e40a55c7e8e62be57731f4cc39e0769fec53e049ea1c9ff2a288d845726": {
+      "identity": {
+        "model_id": "model_testing_asset_joint_blocks_replacement_v6",
+        "implementation_digest": "94b6b8c8e6084e64cbae8805d92a76d6561aafc47b6d8f2e85fcce4cc403d214"
+      },
+      "executions": [
+        {
+          "identity": {
+            "model_id": "model_testing_asset_joint_blocks_replacement_v6",
+            "implementation_digest": "94b6b8c8e6084e64cbae8805d92a76d6561aafc47b6d8f2e85fcce4cc403d214"
+          },
+          "display_name": "TestFolio-style Asset Blocks \u2014 With Replacement",
+          "definition": "Uniform bounded contiguous nonwrapping historical blocks, sampled with replacement. Joint constituent rows, actual asset paths and portfolio holdings, fixed target rebalancing inside every path. Uniform block lengths1..min(training rows,forecast observations); no Politis\u2013White.",
+          "version": "v6_joint_assets_1000_source_bound_execution",
+          "forecast_level": "joint_assets",
+          "retained_in_active_set": true,
+          "score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+          "execution_fingerprint": "c78b20f5ab72dc1e4e33ad2e9ed3bad4316807a84e32cba3962c9e05dc859f20",
+          "coverage": {
+            "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
+            "series": 1264,
+            "expected_tasks": 64049,
+            "successful_tasks": 64049,
+            "native_failed_tasks": 0,
+            "native_fit_failures": 0,
+            "native_generation_failures": 0,
+            "missing_tasks": 0,
+            "scoring_integrity_errors": 0,
+            "status": "complete"
+          },
+          "scores": {
+            "main": 0.6320715457043177
+          },
+          "comparison": {
+            "reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+            "matched_successful_tasks": 64049,
+            "public_scores": {
+              "main": 0.6320715457043177
+            },
+            "percent_better": {
+              "main": 0.0
+            },
+            "preliminary": false,
+            "reference_rule": "Worse of the two completed joint-asset TestFolio-style configurations on identical full coverage; one main score."
+          },
+          "runtime": {
+            "forecast_and_score_worker_seconds": 13316.043103705393,
+            "scope": "Recorded successful causal preparation, joint simulation and1000-path exact CRPS; excludes IO/setup/queue. No controlled speedup claim.",
+            "wall_elapsed_seconds": null
+          },
+          "reproducibility": {
+            "actual_factory": "asset_models:build_replacement",
+            "actual_implementation_digest": "94b6b8c8e6084e64cbae8805d92a76d6561aafc47b6d8f2e85fcce4cc403d214",
+            "full_execution_manifest_sha256": "2fbfdcdd2706d25f42b7be009e43f5719fca7553dc05bb6eb1753374dffbe8fd",
+            "full_execution_archive_member": "asset_level_v6/results/models/9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be/execution.json",
+            "source_environment": {
+              "arch": "8.0.0",
+              "forecast_level": "joint_assets",
+              "french_native_dependencies": {
+                "pybind11": {
+                  "native_artifacts": {
+                    "pybind11/include/pybind11/attr.h": "e2e0386a4b0bd6b95e4d8d501dd57ab2d5cd2b6c2e0d9a89b4f616805f532265",
+                    "pybind11/include/pybind11/buffer_info.h": "90849dec6781145edf27817f9a0bccf2d16dd75f9e7d72afded9857c1e9011aa",
+                    "pybind11/include/pybind11/cast.h": "54cfdb09535529c4b33f5cb06312ea008260d43e71289b5221897c9c8dc8efed",
+                    "pybind11/include/pybind11/chrono.h": "e07c05145da261cdbb4d53d80eaba7dea8a3985deda8b91434315998c70f53d4",
+                    "pybind11/include/pybind11/common.h": "01383d06dd69c05f2a9cdb88d3ce9fa6b3380944ddad9764fe0d875c4d527fa0",
+                    "pybind11/include/pybind11/complex.h": "d9275367b53c34f6de865cee6ece6fc358820911c9fd574e9c016df9437a728b",
+                    "pybind11/include/pybind11/conduit/pybind11_conduit_v1.h": "19af7d983107690a0250e53de0257ab2f394c99d2b2046cbf0cdb84643ffdcfc",
+                    "pybind11/include/pybind11/conduit/pybind11_platform_abi_id.h": "554656e07ee2cbdbd553380b749d7df76c25e0d9cdeac30259db599f563177f6",
+                    "pybind11/include/pybind11/conduit/wrap_include_python_h.h": "b86c91eda51e381e8411919f6f5f5367cb3270fede6d9db0e7131a2013226d33",
+                    "pybind11/include/pybind11/critical_section.h": "625cb959703218fe72f72f97d038f21801f676d12a5ee5a723e4eb9d63077589",
+                    "pybind11/include/pybind11/detail/argument_vector.h": "ca7ae47c63d6c57b40b64c620c53bea040be9a23d1e29b2a9ff647bd94f9269c",
+                    "pybind11/include/pybind11/detail/class.h": "91087ad1b3e785f9839784f6d71016fcf09d6822e5e4d05118a1d0a4ff8ebbcf",
+                    "pybind11/include/pybind11/detail/common.h": "a455fde97288d2cacb50b2d21282064e4340349352fc0b3be2208e61e54ad62e",
+                    "pybind11/include/pybind11/detail/cpp_conduit.h": "9c68646e446b107f69304ab1af7b57057ef8fa24b22c308eb046af296f4a6aee",
+                    "pybind11/include/pybind11/detail/descr.h": "8b225ac30dcaea0540fe5c5e83af6f359c8de375eb3d5b7251b8665cc0625459",
+                    "pybind11/include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h": "d6a59a3651fafa3f67e55a0417bd3308eacdcfa26914b16eea0a9d62d3452f7e",
+                    "pybind11/include/pybind11/detail/exception_translation.h": "32c88bbf1a9017a0acf3a11692603d754d0549ced257b54e18f71398d747ab07",
+                    "pybind11/include/pybind11/detail/function_record_pyobject.h": "aeb3e88f60b1f09e96790b6f1a42bbe87df33d45db2f499b68634f1cdc595736",
+                    "pybind11/include/pybind11/detail/function_ref.h": "8b071de14ad618f70115f20ebe44b70b5242b176bbc0710ac8b842895a498ebb",
+                    "pybind11/include/pybind11/detail/holder_caster_foreign_helpers.h": "02602538206cc5a04f957866a3c4e97b7e1442c8968c53d6e174eb6c6471e443",
+                    "pybind11/include/pybind11/detail/init.h": "d43866489b09546b95d251df34c04015b4a82474e2f38a64bc20733259a8f1f4",
+                    "pybind11/include/pybind11/detail/internals.h": "5eefa6b72e435277a3e75378597e13c295aefb6ff8d0943fa2220ed9efb54fbc",
+                    "pybind11/include/pybind11/detail/native_enum_data.h": "d301c7a82b82a87c03eb9b01ceafbffc53347b9003821ec426a6cb0d3659d195",
+                    "pybind11/include/pybind11/detail/pybind11_namespace_macros.h": "60a5e35a5b0807d0cc142d4af298d5c982ad84f95ddfbf65f54e36b140ddba77",
+                    "pybind11/include/pybind11/detail/struct_smart_holder.h": "18305bcedae4792e32047d6d8f1b16b6e6a72014aad56827ee0b9a976ca2becc",
+                    "pybind11/include/pybind11/detail/type_caster_base.h": "ea9dc652f3f5d09b1ac7994d00f2c3ea82c6c763c1d218c5c2851956f593178f",
+                    "pybind11/include/pybind11/detail/typeid.h": "8f0e69afd9bbdaf903b25a13f2fc65f708f5ed52467047570f2ce2065b7cf49b",
+                    "pybind11/include/pybind11/detail/using_smart_holder.h": "b03da16159791f8bbc5089aa9a2e524fda1fb434143e427ac91dea47795e4244",
+                    "pybind11/include/pybind11/detail/value_and_holder.h": "12ddc263339c3ebbbfdfbe69c23665b0c56c0783c19f35f7c1f2d9fae0ca8afe",
+                    "pybind11/include/pybind11/eigen.h": "f87992035920c0243e18752decf1ed4c473ebf1ab0f71011a45f0f1d6262a76f",
+                    "pybind11/include/pybind11/eigen/common.h": "7487aa98aec8cd6e4ae24da56ab3e703503ceb7ac3a77f14f586cd230888c989",
+                    "pybind11/include/pybind11/eigen/matrix.h": "4773e9f41c04a4f28241c97a01e39740181e46a289566437e340fb8201b50dc6",
+                    "pybind11/include/pybind11/eigen/tensor.h": "ce6d0e1e1e6b8c9296937474d43de3cbe3c50ac6ad9088dffc60373e1d44c8b4",
+                    "pybind11/include/pybind11/embed.h": "006d15a971426c64c8337dea55012fb1469b6566d2ec0eb9a81006d402e6f30b",
+                    "pybind11/include/pybind11/eval.h": "6e9e8707574efe460b479c6ba7f3026107d5173fbdf0414c049497ff97abc708",
+                    "pybind11/include/pybind11/functional.h": "11f144d71cb258e2ff0c9495bddbf180ecee15f6b4bc473b20b128b2dc9c7aad",
+                    "pybind11/include/pybind11/gil.h": "3eedfee721a938121823320d3215c197e7b4a6e7c01c3db89057872648f1f2d5",
+                    "pybind11/include/pybind11/gil_safe_call_once.h": "afa1b440b7710ba35c071d0ce98e72b7401fa5b8257a199770a2f98ffdd24609",
+                    "pybind11/include/pybind11/gil_simple.h": "02e3bd982d5d7af7634e75ce7b46891ac9c9b920b79dead69c6d7b1d54105fd9",
+                    "pybind11/include/pybind11/iostream.h": "7acf4b5b2ceae7f7b86d5cdaef7b72daa4a09d3548c4f9d9639cc67995e9c582",
+                    "pybind11/include/pybind11/native_enum.h": "8bcb62bcebe84b076f5d2d2d495f34026ca2b8d853ddfa6f64b6c4b1332a1860",
+                    "pybind11/include/pybind11/numpy.h": "a9bba1f0976acd7e7597daef1abd398a1e0b81213747278cffef6b325979fee1",
+                    "pybind11/include/pybind11/operators.h": "db6e11a005dcbf595ae0d358f6b437683fc0782f12f592b1dc754ad4ef01e0c5",
+                    "pybind11/include/pybind11/options.h": "a97be69e3fbef5f652a79e8d61e7e70775b9575ee9a47958d52ae0a370cd069c",
+                    "pybind11/include/pybind11/pybind11.h": "ba323b835ef91eb85342057db2353cbac3da9040eac9f0b83891a3ce66911a75",
+                    "pybind11/include/pybind11/pytypes.h": "c74dd04fb339a272cc725c374d46edef05f4e213896da70c90015dcd9fda312e",
+                    "pybind11/include/pybind11/stl.h": "ea83b4a2027b1063393f9546e1d32c6630ca9ebd7022e0911dc0210e4259c9ce",
+                    "pybind11/include/pybind11/stl/filesystem.h": "c20e3212879de83e21503a731210707521c5c70b36d5781621092b232c3fdd98",
+                    "pybind11/include/pybind11/stl_bind.h": "a9d8a61f0671044e0f3bc4a0063c7d61ac9101f3faa9d1d035be0b31dc89f2df",
+                    "pybind11/include/pybind11/subinterpreter.h": "3a31eb3436d40b40345b413775c79b12ced0fc82e73d539355905619c1fc08f0",
+                    "pybind11/include/pybind11/trampoline_self_life_support.h": "f935fdc394f12355d7dc01b6e7994c2dd882c91f9d664337db5c05b1e7729f1f",
+                    "pybind11/include/pybind11/type_caster_pyobject_ptr.h": "1fba4a0584ef52589b88940470a99e024ca0490c280a4b88cae90d483995abe5",
+                    "pybind11/include/pybind11/typing.h": "e872df48d4e4dbd2b3c76abbc3bfec3e0fd66605d8fcd2633cfac4510fd0176a",
+                    "pybind11/include/pybind11/warnings.h": "89d70134ae5e117c5805f3de56ec9c2f172032b2aebd1cd0237dc16a927c1b88"
+                  },
+                  "version": "3.1.0"
+                },
+                "pyvinecopulib": {
+                  "native_artifacts": {
+                    "pyvinecopulib/pyvinecopulib_ext.abi3.so": "9f043410421beab5de4c901ac971380472b30229fc5c8026b8e590a9bd0cee1a"
+                  },
+                  "version": "0.7.5"
+                }
+              },
+              "method": "model_testing_asset_joint_blocks_replacement_v6",
+              "numba": "0.67.0",
+              "numerical_environment": {
+                "interpreter": {
+                  "build": [
+                    "main",
+                    "Apr 14 2026 14:33:40"
+                  ],
+                  "cache_tag": "cpython-312",
+                  "compiler": "Clang 22.1.3",
+                  "implementation": "CPython",
+                  "version": "3.12.13"
+                },
+                "packages": {
+                  "numpy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "system",
+                        "found": true,
+                        "name": "accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "2.5.3"
+                  },
+                  "scipy": {
+                    "blas_lapack": {
+                      "blas": {
+                        "cython blas ilp64": false,
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      },
+                      "lapack": {
+                        "detection method": "extraframeworks",
+                        "found": true,
+                        "has ilp64": false,
+                        "name": "Accelerate",
+                        "openblas configuration": "unknown",
+                        "version": "unknown"
+                      }
+                    },
+                    "version": "1.18.1"
+                  }
+                },
+                "platform": {
+                  "machine": "arm64",
+                  "release": "27.0.0",
+                  "system": "Darwin",
+                  "version": "<redacted>"
+                },
+                "thread_settings": {
+                  "environment": {
+                    "BLIS_NUM_THREADS": null,
+                    "GOTO_NUM_THREADS": null,
+                    "MKL_DYNAMIC": null,
+                    "MKL_NUM_THREADS": "1",
+                    "NUMBA_NUM_THREADS": "1",
+                    "NUMBA_THREADING_LAYER": null,
+                    "NUMEXPR_NUM_THREADS": "1",
+                    "OMP_DYNAMIC": null,
+                    "OMP_NUM_THREADS": "1",
+                    "OMP_PLACES": null,
+                    "OMP_PROC_BIND": null,
+                    "OPENBLAS_NUM_THREADS": "1",
+                    "VECLIB_MAXIMUM_THREADS": "1"
+                  },
+                  "numpy_seterr": {
+                    "divide": "warn",
+                    "invalid": "warn",
+                    "over": "warn",
+                    "under": "ignore"
+                  }
+                }
+              },
+              "numpy": "2.5.3",
+              "pandas": "2.3.3",
+              "paths_per_forecast": 1000,
+              "portfolio_accounting": "inside each path, after shared asset row selection",
+              "profile": {
+                "effective_maximum": "min(training_rows, forecast_observations)",
+                "effective_minimum": "min(configured_minimum, effective_maximum)",
+                "final_partition_block": "truncate to history end if remaining rows are shorter than minimum",
+                "length_distribution": "discrete_uniform_inclusive",
+                "maximum_block_observations": null,
+                "minimum_block_observations": 1,
+                "portfolio_policy": "fixed target weights restored at each common observed endpoint, matching unchanged panel construction",
+                "reference_selection": "Higher (worse) canonical main score of the two configurations on identical successful coverage; final choice after both complete",
+                "simulations": 1000,
+                "testfolio_approximation": "Joint asset block resampling and within-path portfolio accounting. Public block bounds are configurable. This frozen support-bounded profile is not a claim to reproduce their one-to-five-year UI defaults or unpublished RNG/start-index code.",
+                "version": "asset_joint_blocks_v6",
+                "with_replacement": "uniform valid contiguous nonwrapping starting point for each drawn block",
+                "without_replacement": "chronologically partition history into random-length contiguous blocks; shuffle blocks; use every row once; repartition and reshuffle after complete history cycle",
+                "workers": 12
+              },
+              "python": "3.12.13",
+              "replacement": true,
+              "scikit-learn": "1.9.0",
+              "scipy": "1.18.1",
+              "source_hashes": {
+                "asset_forecast.py": "5688896c8aee66f60ce852f447e1ac3b3819f40caf19139c0577c8909cbaaa7a",
+                "asset_models.py": "74ba418a5b35d967f629a86dc21e649bac7f48fbda685889b6256e1501407c2b",
+                "asset_paths.py": "5c4a109518e6193d2c240ba3b9d51de0b803f992c70bad7670cc15a75e8f9e84",
+                "blocks.py": "4eb1aba602dea9dd9c4d48aea64104a4a9fa50babe5d13ce906cfdc737600f06",
+                "inputs.py": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9"
+              },
+              "statsmodels": "0.15.0"
+            },
+            "input_manifest_sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+            "main_score_source_sha256": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+            "paths_per_forecast": 1000,
+            "seed_contract": "coherent_daily_seed(origin_date,max_horizon,1000)",
+            "full_independent_audit_sha256": "8a5559e9b366b5facc0f635a04d018baa27d573d305c6da2a196f541ddc8f269",
+            "evidence_root": "../daily-assets-portfolios-asset-v6-20261020",
+            "preservation_receipt": "../daily-assets-portfolios-asset-v6-20261020/closed-baseline-archive-receipt.json"
+          },
+          "archives": [
+            {
+              "utc": "2026-10-21T00:05:06.703920+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be",
+              "part": 1,
+              "parts": 6,
+              "archive_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-01.tar.gz",
+              "archive_sha256": "82e1fed2082abdeaa81d06c389e223c7c81543d2d4e06e4bfa7e629fb8037056",
+              "manifest_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-01-manifest.json",
+              "manifest_sha256": "a4eb6cde13533744d13dd9d19f1c7ec929726bae79100dec269ddc55e76528c5",
+              "archive_bytes": 214745307,
+              "files": 7983,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:05:34.436382+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be",
+              "part": 2,
+              "parts": 6,
+              "archive_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-02.tar.gz",
+              "archive_sha256": "fd7c5053eb43bed392b11bf282e90f60e7ebb8bd95372c11e7659cbc3dd076b4",
+              "manifest_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-02-manifest.json",
+              "manifest_sha256": "11a871296bb83e686fe1d728064ddc69354c2b684dd2343abbd5ebc463108ccb",
+              "archive_bytes": 224518394,
+              "files": 8377,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:06:09.920956+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be",
+              "part": 3,
+              "parts": 6,
+              "archive_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-03.tar.gz",
+              "archive_sha256": "93a35952dc61eb20b916ca991316e40b6cc4831045206b83eb2619ab640a99f7",
+              "manifest_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-03-manifest.json",
+              "manifest_sha256": "0a2416c8e37b663058b54b2269dad96020050e72db8a1af8e6738c793a5685f0",
+              "archive_bytes": 225136491,
+              "files": 8391,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:07:21.497632+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be",
+              "part": 4,
+              "parts": 6,
+              "archive_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-04.tar.gz",
+              "archive_sha256": "881bfb3d60add3d59baa8113621db3c0fb8ed57a7666bf8ad079c78c2c25c95f",
+              "manifest_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-04-manifest.json",
+              "manifest_sha256": "5c76a76f20a02add5aa1b8e6f07ecab8ee155b13c460dcd00b850a89bd38c702",
+              "archive_bytes": 210550260,
+              "files": 12751,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:08:41.402653+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be",
+              "part": 5,
+              "parts": 6,
+              "archive_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-05.tar.gz",
+              "archive_sha256": "d24563fe573f47ea0bb731f3355069934bf89483d0cfcc9c4a7c19f2f96b0944",
+              "manifest_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-05-manifest.json",
+              "manifest_sha256": "1f221257710a991225fe163afa1ad73bf67c1839fe169cb0fecbd9bc62190854",
+              "archive_bytes": 183210898,
+              "files": 20428,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:09:07.155607+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be",
+              "part": 6,
+              "parts": 6,
+              "archive_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-06.tar.gz",
+              "archive_sha256": "756186f424c71fdaae238603a24c41967a50206b9f49a5342838540f268e1a27",
+              "manifest_name": "9223779562f1e4f212a35bbdae84868618264ab9c0ca88f172910d6fc24263be-part-06-manifest.json",
+              "manifest_sha256": "b30715897452921adc3ea7faf5ca0a351c689972f8474538b5cce56b9c0b99b2",
+              "archive_bytes": 64587447,
+              "files": 6123,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:14:26.147220+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "shared",
+              "part": 1,
+              "parts": 3,
+              "archive_name": "shared-part-01.tar.gz",
+              "archive_sha256": "974b6abcecd541690be209edbd9f683f7821a5642bff5939c87dbd5242bb495d",
+              "manifest_name": "shared-part-01-manifest.json",
+              "manifest_sha256": "1e06c6d4915acbc950ea55c893f38c14842124cce76e937765c2588b838c75b6",
+              "archive_bytes": 55290810,
+              "files": 2832,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:14:53.107675+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "shared",
+              "part": 2,
+              "parts": 3,
+              "archive_name": "shared-part-02.tar.gz",
+              "archive_sha256": "0b8b1180d215432ed1739949717a78cb2181e8f699e89f6025668872b4e50b20",
+              "manifest_name": "shared-part-02-manifest.json",
+              "manifest_sha256": "5440faad9328b2d8a2d55073cf2df57310bc749aceccfadcd41732c2c3fd278e",
+              "archive_bytes": 59283921,
+              "files": 3693,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:15:01.153787+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "shared",
+              "part": 3,
+              "parts": 3,
+              "archive_name": "shared-part-03.tar.gz",
+              "archive_sha256": "ee8591b5d3daa9cb56f304c1f17a3196d53f61e49e0528f0f92f2fae5fc13833",
+              "manifest_name": "shared-part-03-manifest.json",
+              "manifest_sha256": "bcd4fdb0833875f26064b0217495ba57d71592ef60831a2cbe21eba26a3816a9",
+              "archive_bytes": 23603215,
+              "files": 16,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            },
+            {
+              "utc": "2026-10-21T00:15:04.131529+00:00",
+              "repository": "Hutch2064/simfolio-engine",
+              "release_tag": "research-asset-v6-baselines-1000-20261020",
+              "group": "audit",
+              "part": 1,
+              "parts": 1,
+              "archive_name": "audit-part-01.tar.gz",
+              "archive_sha256": "2e7e3e7e8085036894bbb0f3198a975144fbb385b2f036186f7fe8804f1327a5",
+              "manifest_name": "audit-part-01-manifest.json",
+              "manifest_sha256": "7dbc77698055fbca39a4b18a4ef72e310358ae67d735e9026cfafe4158ddd3d4",
+              "archive_bytes": 10787,
+              "files": 6,
+              "remote_download_sha256_verified": true,
+              "all_files_disk_restored_and_sha256_verified": true,
+              "remote_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-asset-v6-baselines-1000-20261020",
+              "scientific_originals_removed": false
+            }
+          ]
+        }
+      ]
     }
   },
-  "unique_full_panel_models": 18,
-  "full_panel_executions": 23,
-  "failure_free_models": 16,
+  "unique_full_panel_models": 20,
+  "full_panel_executions": 25,
+  "failure_free_models": 18,
   "active_model_ids": [
-    "model_testing_asset_joint_blocks_replacement_v6",
-    "model_testing_asset_joint_blocks_history_partition_v6"
+    "model_testing_asset_joint_blocks_history_partition_v6",
+    "model_testing_asset_joint_blocks_replacement_v6"
   ],
-  "current_best_model_id": null,
+  "current_best_model_id": "model_testing_asset_joint_blocks_history_partition_v6",
   "current_best_report": "../daily-assets-portfolios-asset-v6-20261020/README.md",
   "retention_note": "retained_in_active_set inside each execution is its historical recording-time snapshot; active_model_ids is authoritative for the current retained set.",
   "current_score_protocol_id": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
   "current_panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
-  "updated_utc": "2026-10-20T23:18:36.452588+00:00",
+  "updated_utc": "2026-10-21T00:16:35.519502+00:00",
   "pending_benchmark_reset": {
     "paths_per_forecast": 1000,
     "panel_fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80",
