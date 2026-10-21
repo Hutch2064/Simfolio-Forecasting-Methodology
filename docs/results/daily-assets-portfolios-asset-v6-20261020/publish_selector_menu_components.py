@@ -17,8 +17,8 @@ with (O/'asset_v6_publication.lock').open('a') as lock:
  assert not run(['git','status','--porcelain']).strip()
  run(['git','fetch','origin','main']);run(['git','merge','--ff-only','origin/main'])
  q=read(C/'qualification_receipt.json');assert q['tests_passed']==5 and q['worker_tests_passed']==1
- source_map=plan['source_hashes']
- names=set(source_map)|{'publish_selector_menu_components.py','verify_selector_menu_components72.py','selector_menu_components_qualification.log','asset_level_v6/candidates/asset_selector_menu_components/qualification_receipt.json','asset_level_v6/candidates/asset_selector_menu_components/study1000/plan.json','selector_precision_selection_diagnostic.py','selector_precision_selection_diagnostic.json','selector_batched_family_runtime_profile.json','profile_selector_batched_families.py'}
+ source_map={**plan['source_hashes'],**read(C/'study1000/supplemental_sources.json')['source_hashes']}
+ names=set(source_map)|{'publish_selector_menu_components.py','verify_selector_menu_components72.py','selector_menu_components_qualification.log','asset_level_v6/candidates/asset_selector_menu_components/study1000/supplemental_sources.json','asset_level_v6/candidates/asset_selector_menu_components/qualification_receipt.json','asset_level_v6/candidates/asset_selector_menu_components/study1000/plan.json','selector_precision_selection_diagnostic.py','selector_precision_selection_diagnostic.json','selector_batched_family_runtime_profile.json','profile_selector_batched_families.py'}
  original_by_public={p.removeprefix('asset_level_v6/'):p for p in names}
  for public,original in original_by_public.items():
   source=O/original;target=D/public
