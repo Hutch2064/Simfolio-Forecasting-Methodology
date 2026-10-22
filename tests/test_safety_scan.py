@@ -113,3 +113,18 @@ def test_binary_scanner_preserves_strict_secret_rules(tmp_path):
 def test_secret_checks_include_unknown_file_extensions(tmp_path):
     (tmp_path / "credential.pem").write_text("-----BEGIN " + "PRIVATE KEY-----")
     assert scan_tree(tmp_path, approvals={})["credential.pem"]
+
+
+def test_secret_checks_include_file_and_archive_member_names(tmp_path):
+    secret = "gh" + "p_" + "a" * 36
+    path = tmp_path / (secret + ".txt")
+    path.write_text("ordinary text")
+    assert "github credential" in scan_tree(tmp_path, approvals={})[path.name]
+    path.unlink()
+    output = io.BytesIO()
+    with zipfile.ZipFile(output, "w") as archive:
+        archive.writestr(secret + ".txt", "ordinary text")
+    data = output.getvalue()
+    (tmp_path / "fixture.zip").write_bytes(data)
+    approval = reviewed(data, payload="published_source_or_evidence_archive")
+    assert "github credential" in scan_tree(tmp_path, approvals={"fixture.zip": approval})["fixture.zip"]

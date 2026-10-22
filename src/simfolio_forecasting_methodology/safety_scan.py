@@ -122,7 +122,8 @@ def _content_findings(data: bytes, suffix: str) -> list[str]:
     if suffix in {".zip", ".npz", ".xlsx"}:
         with zipfile.ZipFile(io.BytesIO(data)) as archive:
             return [finding for name in archive.namelist() if not name.endswith("/")
-                    for finding in _content_findings(archive.read(name), Path(name).suffix)]
+                    for finding in (scan_text(name)
+                                    + _content_findings(archive.read(name), Path(name).suffix))]
     if suffix == ".gz":
         return _content_findings(gzip.decompress(data), "")
     if suffix not in _TEXT_SUFFIXES and suffix:
@@ -166,7 +167,7 @@ def scan_tree(root: str | Path, *, approvals: dict | None = None) -> dict[str, l
         categories = (set(approval.get("provenance_categories", [])) & set(_PROVENANCE.values())
                       if exact else set())
         try:
-            findings = _content_findings(data, path.suffix.lower())
+            findings = scan_text(name) + _content_findings(data, path.suffix.lower())
         except (zipfile.BadZipFile, OSError, EOFError):
             findings = ["invalid payload archive"]
         findings = [finding for finding in findings
