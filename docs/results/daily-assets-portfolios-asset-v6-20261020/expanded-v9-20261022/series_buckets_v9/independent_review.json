@@ -1,0 +1,88 @@
+{
+  "schema": "simfolio_v9_independent_external_score_review_v1",
+  "review_status": "independent_replay_passed",
+  "scope": "Read-only scoring-method and arithmetic review on the frozen observed request cohort. No forecasts, source updates, or canonical score changes.",
+  "protocol": {
+    "id": "daily_portfolio_panel_crps_v9_fixed_planned_series_equal_calendar_buckets_no_quarters",
+    "selected_primary_definition": "For each planned request, arithmetic mean of its raw daily-lead CRPS values in return units (no training-SD or sqrt-lead divisor). Freeze within-bucket weights from the planned schedule: equal asset/portfolio branch weight where both exist, then equal class, family, and series weights, then equal planned requests within series. Give short, medium, and long calendar-horizon buckets 1/3 each. No quarter level.",
+    "headline": "100 * (1 - Q_candidate / Q_fixed_WR), where Q is the equal-third mean of the three bucket mean losses.",
+    "bucket_definition": "Short: requested end through 3 calendar years; medium: more than 3 and less than 20 years; long: 20 years or more.",
+    "posthoc_selection": true,
+    "interpretation": "Chosen as the most defensible score for the stated same-unit absolute daily-CRPS objective. Positive forecast-independent weights preserve CRPS propriety. This does not make raw CRPS universally superior: fixed positive SD and sqrt-lead rescaling also define proper but different objectives. The relative headline is a presentation against a fixed baseline, not itself a proper scoring rule."
+  },
+  "coverage": {
+    "observed_requests": 147863,
+    "planned_requests": 320017,
+    "complete": false,
+    "observed_request_fraction": 0.4620473287356609,
+    "observed_requests_by_bucket": {
+      "short": 122424,
+      "medium": 22606,
+      "long": 2833
+    },
+    "observed_planned_weight_support_fraction_by_bucket": {
+      "short": 0.10583669458530422,
+      "medium": 0.10590277777777779,
+      "long": 0.12697916666666667
+    },
+    "request_path_count_mix": {
+      "1000": 59906,
+      "240": 87957
+    },
+    "pairing_checks": {
+      "candidate_and_WR_path_count_matched_per_request": true,
+      "unique_observed_request_identities": 147863,
+      "recovered_original_1000_path_WR_raw_means": 24574,
+      "recovered_WR_identity_checked_by_case_horizon_series_origin": true,
+      "planned_schedule_fallback_key_collisions": 0
+    },
+    "disclosure": "Current values are conditional partial-support development diagnostics, not the completed 320,017-request panel score. Coverage is incomplete and its support is not shown to be representative; do not extrapolate or promote as a full-panel result."
+  },
+  "matched_results": {
+    "cohort_requests": 147863,
+    "fixed_baseline": "model_testing_asset_joint_blocks_replacement_v6",
+    "headline_percent_better": {
+      "raw_mean_crps": {
+        "root_report": 14.400961046016992,
+        "independent_replay": 14.40096104601719,
+        "bucket_percent_skill": {
+          "short": 5.076303349702882,
+          "medium": -1.7487500695430702,
+          "long": 19.4972497960735
+        },
+        "candidate_bucket_Q": [0.028430369210619887, 0.39422609489546656, 1.0325275070506457],
+        "WR_bucket_Q": [0.029950760678187725, 0.3874505530790519, 1.2825990471568836]
+      },
+      "training_SD_times_sqrt_native_lead": {
+        "root_report": 5.9131989513697025,
+        "independent_replay": 5.913198951370746
+      },
+      "training_SD_only": {
+        "root_report": 11.479586899438788,
+        "independent_replay": 11.479586899439088
+      }
+    },
+    "distinct_alternative_estimand": {
+      "raw_mean_of_three_bucket_percentage_skills": 7.608267692077283,
+      "note": "This gives each bucket's percentage change equal influence and is not the selected equal-third mean-loss ratio."
+    },
+    "max_absolute_difference_from_root_report": 2.5e-12
+  },
+  "checks": {
+    "independent_plan_weight_reconstruction": "Passed: branch/class/family/series/request denominators reconstructed from full plan and calendar mapping; 320,017 requests total.",
+    "same_cohort_membership": "Passed: 139,812-request historical membership exact; 147,863 unique current requests.",
+    "weighted_bucket_reduction": "Passed for raw, training-SD-only, and training-SD-times-sqrt-lead vectors against comparison_root.json.",
+    "v9_unit_tests": "5 passed using Python 3.11, NumPy, and pytest.",
+    "canonical_score_changed": false
+  },
+  "sha256": {
+    "raw_request_rows_npz": "da220537224ef50832233fd6a49776eae63e671792c13f9dec55c926c6c249b7",
+    "original_WR_raw_mean_recovery_jsonl": "baf29c83bf04b22714f4f21ecc1aec5dec3b840ee6947a3b5c5ee7cb76dcf334",
+    "historical_membership_json": "45563d201c2257ef8f5593969b438ace48c97f4e9663960e20754821b623ee51",
+    "calendar_mapping_npz": "91220b130fa20068c85dd2d7afede68451927555c250238a81085a026b681c80",
+    "scientific_plan_json": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e",
+    "panel_json": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "comparison_source_py": "648e883e16a57a5dec75f61e5eccf85e39eac27394e763ca7bd5458940216c54",
+    "comparison_root_json": "105d29d23905f1ab2413ad27b73412ab8853f75e2a9aee34227ee2fc1267b8a3"
+  }
+}

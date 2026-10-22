@@ -40,9 +40,20 @@ def verify(ledger, token):
                 break
             page += 1
     checked = []
+    asset_lists = {}
     for archive in refs.values():
         release = releases[archive['repository'], archive['release_tag']]
-        assets = {a['name']: a for a in release['assets']}
+        release_key = (archive['repository'], release['id'])
+        if release_key not in asset_lists:
+            assets = {}; page = 1
+            while True:
+                items = json.loads(fetch(f'https://api.github.com/repos/{archive["repository"]}/releases/{release["id"]}/assets?per_page=100&page={page}', token))
+                assets.update((a['name'], a) for a in items)
+                if len(items) < 100:
+                    break
+                page += 1
+            asset_lists[release_key] = assets
+        assets = asset_lists[release_key]
         payload = assets[archive['archive_name']]
         if payload.get('digest') != 'sha256:' + archive['archive_sha256']:
             raise ValueError('Remote archive digest differs or is unavailable: ' + archive['archive_name'])

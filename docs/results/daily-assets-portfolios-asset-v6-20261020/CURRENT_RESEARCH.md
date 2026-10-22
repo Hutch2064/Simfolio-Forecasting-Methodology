@@ -1,3 +1,5 @@
+Current completed expanded result: [endpoint mixture / V9](expanded-v9-20261022/README.md). This supersedes the current-best references in the historical snapshot below; older panels and their scores remain preserved. Independent full replay and private recovery are verified; the completed V9 catalogue is admitted.
+
 Current adaptive-selector evidence: [CURRENT_SELECTOR_STATUS.md](CURRENT_SELECTOR_STATUS.md). The historical snapshot below is retained.
 
 # Current asset-level accuracy research

@@ -1,0 +1,38 @@
+{
+  "blocking_findings": [],
+  "checks": [
+    "EWMA_reverting/recursive and SV_path/RMS reuse only identical fitting branches. Separate family labels and path kind/RNG laws are preserved.",
+    "GJR supplied symmetric base is from exact same prefix; AR1 innovation_fit leaves original base unmodified. GJR optimizer/objective/startpoints remain original.",
+    "Completed mean-draw memo key includes root/sample arrayidentity, exact centerbytes/dtype/shape, paths and seed. Prepared bundles keep array references alive during generator, preventing identity recycling. No caller/kernel mutates returned draws.",
+    "ndtri replaces norm.ppf only on strictly positive probabilities at most.5; all antithetic ordering/RNG calls and final matrix+bias arithmetic remain literal original. Installed-library delegation and144exact synthetic drawpairs bound by qualification receipt.",
+    "No whole-dict family alias mutation or financial-kernel reassociation; inherited explicit parent-unused-calibration guard removal policy unchanged from V2."
+  ],
+  "limits": [
+    "Bounded source and synthetic-qualification review; broad355x3 actual V3 parity audit remains separate pending results.",
+    "Fitted-state/mean-array immutability is established for these bound sources, not a guarantee for arbitrary external mutable callers.",
+    "No fits/forecasts/process mutation by reviewer."
+  ],
+  "qualification_receipts": [
+    {
+      "path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/qualification_receipt.json",
+      "sha256": "ffc6706035967527625719471b2cb8d1a49aa082fd22ea183aeb6b2bd01c9e3d"
+    },
+    {
+      "path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_mean_draws_v1/qualification_receipt.json",
+      "sha256": "2a5d488b61add573dcade70a4ab375d1f70e751311c52d0de956f32ee62ccd92"
+    }
+  ],
+  "source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_mean_draws_v1/mean_draws.py": "63c1f27207b11f234acc715e12aca6ec65e81e97420363b73a9f3ed8ffdd89c4",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/__init__.py": "c747370baa981f90b9b536915bf7ced7232ca6bf2a0a3f72922429adee8043f0",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/candidate.py": "7151aa9b8057df18eeebb7205b44635b3b7b69475b9796d8a2d028789671d689",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/fast_fits.py": "703f92480f339e42643d1b778def2f8bc22bbabf5bc6af7577049f79b718240b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/fits_cache.py": "23a436268b77f6d09a0629a6ab4e9f32e83d682adb6982a6a193cfa44d8adebf",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/gjr_with_base.py": "2606748aad75f8ff0d9d18f69eed13090364d264223ce8401a2b59dd8359d3b0",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/paths.py": "0d3d723d2d817d06314f84bcd62e3824009f299b38fa37758bf7f1b7c9817430",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/test_financial_reuse.py": "ec50e261aa5d98fedf0bc99b2ddc7db9dc803eb02b89aa6f0bf57c7557bce7ec",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/test_source_reuse.py": "84a76ca2d79b69ec86646b171adbc3d453b572d82d5ec1c1c5558cefaf449485"
+  },
+  "source_review_pass": true,
+  "utc": "2026-10-22T04:29:59.418461+00:00"
+}

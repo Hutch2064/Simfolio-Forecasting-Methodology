@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-22T04:26:05.096560+00:00",
+  "passed": true,
+  "tests": 7,
+  "cpu_seconds": 0.269687,
+  "source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/__init__.py": "c747370baa981f90b9b536915bf7ced7232ca6bf2a0a3f72922429adee8043f0",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/candidate.py": "7151aa9b8057df18eeebb7205b44635b3b7b69475b9796d8a2d028789671d689",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/fast_fits.py": "703f92480f339e42643d1b778def2f8bc22bbabf5bc6af7577049f79b718240b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/fits_cache.py": "23a436268b77f6d09a0629a6ab4e9f32e83d682adb6982a6a193cfa44d8adebf",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/gjr_with_base.py": "2606748aad75f8ff0d9d18f69eed13090364d264223ce8401a2b59dd8359d3b0",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/paths.py": "0d3d723d2d817d06314f84bcd62e3824009f299b38fa37758bf7f1b7c9817430",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/test_financial_reuse.py": "ec50e261aa5d98fedf0bc99b2ddc7db9dc803eb02b89aa6f0bf57c7557bce7ec",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_reuse_v3/test_source_reuse.py": "84a76ca2d79b69ec86646b171adbc3d453b572d82d5ec1c1c5558cefaf449485"
+  },
+  "readme_sha256": "7263151881f193ffee821905d8a665014989b513f439e3d622f61066bb76caa8",
+  "draw_helper_sha256": "63c1f27207b11f234acc715e12aca6ec65e81e97420363b73a9f3ed8ffdd89c4",
+  "draw_helper_qualification_sha256": "2a5d488b61add573dcade70a4ab375d1f70e751311c52d0de956f32ee62ccd92",
+  "postV2_profile_sha256": "07835b328fec4981968f8d2bf7ecfcadc959d815a2fd2b0c8a23dbcb7def50c6",
+  "scope": "mock and small synthetic financial states/paths only; no V3catalogue request forecasts",
+  "all9_family_and_GJR_financial_bits_equal": true,
+  "all167_grouped_cubes_bits_equal_all_modes_laws_uncertainty": true,
+  "draw_calls_per_full_filtered_cube": 3,
+  "only_GJR_diagnostic_fit_seconds_ignored": true,
+  "actual_catalogue_qualification": "root pending"
+}

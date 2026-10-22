@@ -1,0 +1,47 @@
+{
+  "counting_rule": "Original financial-method identity plus canonical source digest; verified optimization implementations remain aliases, whose actual source closure is independently bound. Each completed expanded model execution adds one execution; rerendering/rescoring it adds none.",
+  "final_paths": {
+    "requests_at_1000": 59906,
+    "requests_at_240": 260111,
+    "same_count_within_every_pair": true
+  },
+  "models": {
+    "endpoint": {
+      "actual_adapter_module": "candidates.asset_selector_endpoint_fit_reuse_v3.candidate",
+      "actual_scientific_closure_digest": "091b662a510f9588f26b539d9f502376afa4f548ff8675b5fe23c1d7ac0b15aa",
+      "canonical_source_identity": "original_endpoint_source_identity.json",
+      "execution_generation": "endpoint_execution_final240_v3:endpoint_execution_v2:candidates.asset_selector_endpoint_fit_reuse_v3.candidate:active_qp_unique_v3:unused_guard_skipped=True:fast_baselines=True",
+      "financial_method_unchanged_by_optimization": true,
+      "identity": {
+        "implementation_digest": "53d6278e1448d16eb88a71f8ed9c4b7617ed9cd4748d7a8b5167587298158d49",
+        "model_id": "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d"
+      },
+      "optimization_equivalence_evidence": "optimization_alias_evidence.json",
+      "universal_byte_parity_claim": false
+    },
+    "model_testing_asset_joint_blocks_history_partition_v6": {
+      "actual_adapter_module": "candidates.asset_exact_blocks_v1.model",
+      "actual_scientific_closure_digest": "091b662a510f9588f26b539d9f502376afa4f548ff8675b5fe23c1d7ac0b15aa",
+      "execution_generation": "endpoint_execution_final240_v3:endpoint_execution_v2:candidates.asset_selector_endpoint_fit_reuse_v3.candidate:active_qp_unique_v3:unused_guard_skipped=True:fast_baselines=True",
+      "financial_method_unchanged_by_optimization": true,
+      "identity": {
+        "implementation_digest": "43f51be6acbaecac0812e5fb6a9c843bf24cb18d9f140a71f3e3174d538b2694",
+        "model_id": "model_testing_asset_joint_blocks_history_partition_v6"
+      }
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "actual_adapter_module": "candidates.asset_exact_blocks_v1.model",
+      "actual_scientific_closure_digest": "091b662a510f9588f26b539d9f502376afa4f548ff8675b5fe23c1d7ac0b15aa",
+      "execution_generation": "endpoint_execution_final240_v3:endpoint_execution_v2:candidates.asset_selector_endpoint_fit_reuse_v3.candidate:active_qp_unique_v3:unused_guard_skipped=True:fast_baselines=True",
+      "financial_method_unchanged_by_optimization": true,
+      "identity": {
+        "implementation_digest": "94b6b8c8e6084e64cbae8805d92a76d6561aafc47b6d8f2e85fcce4cc403d214",
+        "model_id": "model_testing_asset_joint_blocks_replacement_v6"
+      }
+    }
+  },
+  "reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+  "schema": "expanded-v9-logical-method-registry-v1",
+  "selected_algorithm": "Request-local endpoint-CRPS mixture over167 flattened recipes,2 internal paths,half_doubling historical origins; optimized V3 fit/path reuse and certified active-set solver preserve the financial algorithm.",
+  "source_scope": "109 frozen scientific files, plus separately bound V9 external scorer/reporting sources"
+}

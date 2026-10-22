@@ -1,0 +1,33 @@
+{
+  "scope": "Numerical/runtime qualification against saved broad355 historical selections;1000fullpaths,threeinternal seeds",
+  "complete": true,
+  "cases": 355,
+  "forecasts": 1065,
+  "module": "candidates.asset_selector_endpoint_fit_reuse_v3.candidate",
+  "solver": "candidates.asset_selector_endpoint_active_qp_unique_v3.energy",
+  "original_receipt_sha256": "f88865410cb1450ca7dbffd02fcf31268f13faa4cc4044f11a7b99361fac187c",
+  "all_invalid_masks_exact": true,
+  "all_traces_exact": true,
+  "all_full_paths_exact": false,
+  "all_raw_losses_exact": false,
+  "pairs_with_full_paths_exact": 1064,
+  "pairs_with_raw_losses_exact": 1064,
+  "maximum_L1_weight_drift": 1.7110234384698055e-05,
+  "maximum_component_weight_drift": 5.7355346596080214e-06,
+  "scores": {
+    "0": {
+      "new": 0.9237641615774725,
+      "reference": 0.9237641615774725
+    },
+    "1": {
+      "new": 0.9203712891036512,
+      "reference": 0.9203715148952768
+    },
+    "2": {
+      "new": 0.9078597568414204,
+      "reference": 0.9078597568414204
+    }
+  },
+  "claim_boundary": "Same financial recipe/learning objective, numerically qualified optimization alias; not universal bitwise solver or path parity. Logical-count alias does not erase actual source-version differences.",
+  "all_pairs_have_exact_path_counts": false
+}

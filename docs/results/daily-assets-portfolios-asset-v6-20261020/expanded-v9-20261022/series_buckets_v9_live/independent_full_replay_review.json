@@ -1,0 +1,439 @@
+{
+  "coverage": {
+    "cache_checkpoint_hash_vs_sidecar_or_handoff_mismatch_count": 0,
+    "checkpoint_sidecar_pairs": 128041,
+    "final_path_count_requests": {
+      "1000": 59906,
+      "240": 260111
+    },
+    "full_schedule_requests_per_model": 320017,
+    "generation_groups": {
+      "inherited_short_groups_1000": 8833,
+      "new_long_groups_240": 39475,
+      "new_short_groups_240": 55159,
+      "saved_old_slots_1000": 24574
+    },
+    "per_bucket": {
+      "long": 3429,
+      "medium": 37695,
+      "short": 278893
+    },
+    "per_bucket_branch_support": {
+      "long:assets": 0.5000000000000009,
+      "long:portfolios": 0.5000000000000002,
+      "medium:assets": 0.49999999999999967,
+      "medium:portfolios": 0.5000000000000229,
+      "short:assets": 0.5000000000000318,
+      "short:portfolios": 0.5000000000000939
+    },
+    "per_bucket_fixed_weight_support": {
+      "long": 1.0,
+      "medium": 1.0,
+      "short": 1.0
+    },
+    "request_ids_complete_unique_and_planned": true,
+    "same_three_model_coverage": true,
+    "source_stat_signature_mismatch_count": 0
+  },
+  "interpretation": {
+    "current_weaknesses": [
+      "Relative gain is uneven by calendar bucket: 11.84% short versus 31.77% medium and 19.21% long.",
+      "The fixed-weight medium-equity asset cell is essentially tied with WR: 0.151% endpoint gain; medium real-estate assets and long mixed portfolios slightly favor WR (-4.10% and -0.64%).",
+      "The assets branch supplies 64.31% of the absolute endpoint-versus-WR Q gap and portfolios 35.69%; strongest current contributions are medium mixed portfolios (35.51% of net gap) and medium crypto assets (26.38%), the latter based on only 9 planned requests and therefore a fragile cell diagnosis."
+    ],
+    "main_finding": "Independent raw-cache reduction reproduces the V9 endpoint Q and fixed-WR gain exactly under the published frozen weight hierarchy. It is not directly comparable as a skill percentage to earlier v6/v7 score definitions.",
+    "next_cheap_contrast": "If further development is authorized, run one predeclared exact-matched screen for the already-studied SV_RMS/Gaussian trained-CRPS-pool with mean uncertainty and EWMA raw-volatility fade, concentrating on short and medium equity cases where endpoint gains are lowest. Keep WR and endpoint controls; no feature/learner sweep. Prior trained-pool broad1000 had 7,418 complete cases and reserved1000 had 355 complete cases under the older v7 criterion; those results motivate a bounded contrast but do not establish a V9 win. Do not rerun uniform shrinkage (broader355 was weaker under v7), MVD/geometry variants (MVD worsened both completed feature-smoke cases), or the tree family absent a new mechanism."
+  },
+  "protocol": {
+    "definition": "For each calendar bucket: equal branches (assets, portfolios); within branch equal asset_class; within class equal family; within family equal series; within series equal planned requests in that bucket. Then average short, medium, long bucket raw mean CRPS equally. No quarter weights; no train-SD or horizon normalization. Gain is 100*(1-Q_endpoint/Q_fixed_WR).",
+    "fixed_WOR_model_id": "model_testing_asset_joint_blocks_history_partition_v6",
+    "fixed_WR_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+    "posthoc_disclosure": "Raw CRPS and no-quarter fixed hierarchy chosen posthoc after inspecting alternatives; adaptive development, not untouched holdout. Partial support changes can move the conditional headline; final result unknown.",
+    "protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+    "protocol_sha256": "a1afd47e29015997c541b8a1d2455173e2353471f49467fed689abdd44dcd5be",
+    "scorer_sha256": "c598301b977fb1d8405de640476289d071107633e8ba72fbedf3ef8712d4796c",
+    "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+  },
+  "provenance": {
+    "calendar_mapping_sha256": "91220b130fa20068c85dd2d7afede68451927555c250238a81085a026b681c80",
+    "current_terminal_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/terminal.json",
+    "current_terminal_sha256": "15d6a513a9c5b5a29cd0c3e98feef60ece830accf7ffddceb6d962bf8ffff9a7",
+    "handoff_sha256": "7b8ebabf1d4c0852c9a717f97621429fc1d8b340e4b652bc5c2cc2464fa4c2f9",
+    "input_record_digest": "e0b9fac2a383a6dfd39f0c16bf141cb20f4c8926380bb76cf5709d60677eead8",
+    "panel_sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "raw_cache_bytes": 108863488,
+    "raw_cache_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_live/raw_cache.sqlite3",
+    "raw_cache_quick_check": "ok",
+    "raw_cache_rows": 128041,
+    "raw_cache_sha256": "dfd0f22316f90eeac159e1acc66b83d9954a342afe02cd4ac2c72997f155f2c3",
+    "scientific_plan_fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
+    "scientific_plan_sha256": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e",
+    "scoreboard_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_live/scoreboard.json",
+    "scoreboard_sha256": "84f1b3e0fb1849b5bd91e09c4fadb76b3e1ad974673ce3a45b85bdf68699ab5d",
+    "scoreboard_terminal_sha256": "15d6a513a9c5b5a29cd0c3e98feef60ece830accf7ffddceb6d962bf8ffff9a7",
+    "source_hash_mismatch_count": 0,
+    "source_hashes": {
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs/panel.json": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/score_aligned_v7.py": "085e22bbe9b6aeb6ce07369250c884e71a08ee908c033853e9ec67ee6966e003",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/score_main.py": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/freeze.json": "ebc9299c506229b14567dc77d8583e992b322acb2358b7fa3ba6cb5c6df1214c",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/frozen_pairs.jsonl.gz": "3e68215e6985be85169c8e2f27b2c246efd12cfa365b551df4c912b89ed61dc2",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/raw_request_rows.npz": "da220537224ef50832233fd6a49776eae63e671792c13f9dec55c926c6c249b7",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/recovery/wor_original_raw_means.jsonl": "dc7d692a567ac401190b41891fa2dcc801070c97d769de64b0a0e847e00de587",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/recovery/wor_original_raw_means.recovery_receipt.json": "607ec553da8043b464ce62fa45291ca287ce01ab391aa6d588a80310a15f96c9",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/recovery/wr_original_raw_means.jsonl": "baf29c83bf04b22714f4f21ecc1aec5dec3b840ee6947a3b5c5ee7cb76dcf334",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/recovery/wr_original_raw_means.recovery_receipt.json": "147796b35f5d1cf329f5a85342d5f29fadb6a67b56b55cf06a703c6c03cd6fd5",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/rows_manifest.json": "59701fcc7d4d01c391b5780508a53eee27331c782206215f06d4f3740a2df2b4",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8/input_definition.json": "35e167414007211d6667a5851ac994d778896c15fb26e21c9baa293604e06bb9",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8/protocol.json": "5ef1331b417ef520fc226776550476962fdf28fa2726c2ca61673333b3738bac",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8/requested_calendar_mapping.npz": "91220b130fa20068c85dd2d7afede68451927555c250238a81085a026b681c80",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8_reporter.py": "4f41a5732bf4a7a7b86b22e921acc31dd6b05963a61aa41851472bb170cfb5ae",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_horizon_buckets_v8.py": "9a1222c60dc7adc7261fd467bfab835ab33681793e3baa8995597d690be1b70b",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_series_buckets_v9.py": "c598301b977fb1d8405de640476289d071107633e8ba72fbedf3ef8712d4796c",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9/protocol.json": "a1afd47e29015997c541b8a1d2455173e2353471f49467fed689abdd44dcd5be",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_reporter.py": "3aee8432dca2c149bbfa3842dd346d1e38f1e3a6458712459fc872feb410612b",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/handoff.json": "7b8ebabf1d4c0852c9a717f97621429fc1d8b340e4b652bc5c2cc2464fa4c2f9",
+      "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/plan.json": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e"
+    },
+    "terminal_errors": [],
+    "terminal_sha_match": true,
+    "terminal_status": "complete",
+    "workers_terminal": true
+  },
+  "results": {
+    "Q": {
+      "endpoint": 0.3732134377688732,
+      "model_testing_asset_joint_blocks_history_partition_v6": 0.5069609928754524,
+      "model_testing_asset_joint_blocks_replacement_v6": 0.5008534683031683
+    },
+    "Q_replay_abs_difference": {
+      "endpoint": 0.0,
+      "model_testing_asset_joint_blocks_history_partition_v6": 0.0,
+      "model_testing_asset_joint_blocks_replacement_v6": 0.0
+    },
+    "branch_Q_contributions": [
+      {
+        "WR_minus_endpoint_contribution": 0.08208152591311538,
+        "branch": "assets",
+        "endpoint_Q_contribution": 0.21378005686128257,
+        "endpoint_conditional_Q": 0.42756011372258323,
+        "fixed_WOR_Q_contribution": 0.29310212958462917,
+        "fixed_WOR_conditional_Q": 0.5862042591692831,
+        "fixed_WR_Q_contribution": 0.29586158277439795,
+        "fixed_WR_conditional_Q": 0.5917231655488209,
+        "overall_weight_mass": 0.49999999999997885,
+        "share_of_total_WR_minus_endpoint": 0.6430704033015818
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.04555850462117905,
+        "branch": "portfolios",
+        "endpoint_Q_contribution": 0.15943338090759113,
+        "endpoint_conditional_Q": 0.318866761815208,
+        "fixed_WOR_Q_contribution": 0.2138588632908231,
+        "fixed_WOR_conditional_Q": 0.4277177265816808,
+        "fixed_WR_Q_contribution": 0.20499188552877018,
+        "fixed_WR_conditional_Q": 0.4099837710575735,
+        "overall_weight_mass": 0.4999999999999596,
+        "share_of_total_WR_minus_endpoint": 0.3569295966984128
+      }
+    ],
+    "bucket_Q": {
+      "long": {
+        "endpoint": 0.5579648538726074,
+        "fixed_WOR": 0.6880875534555161,
+        "fixed_WR": 0.6905965320086578,
+        "gain_vs_WR_pct": 19.20537853705695
+      },
+      "medium": {
+        "endpoint": 0.5276379845767439,
+        "fixed_WOR": 0.7938481323298461,
+        "fixed_WR": 0.77335630823858,
+        "gain_vs_WR_pct": 31.772977222037756
+      },
+      "short": {
+        "endpoint": 0.03403747485726843,
+        "fixed_WOR": 0.03894729284099501,
+        "fixed_WR": 0.03860756466226725,
+        "gain_vs_WR_pct": 11.837291072299516
+      }
+    },
+    "bucket_branch_asset_class_Q_contributions": [
+      {
+        "WR_minus_endpoint_contribution": 0.017164807598151775,
+        "asset_class": "commodities",
+        "branch": "assets",
+        "bucket": "long",
+        "endpoint_Q_contribution": 0.02409073672007704,
+        "endpoint_relative_gain_pct": 41.606062607608074,
+        "fixed_WOR_Q_contribution": 0.04192349728883718,
+        "fixed_WR_Q_contribution": 0.041255544318228816,
+        "overall_weight_mass": 0.03333333333333333,
+        "request_count": 7,
+        "share_of_total_WR_minus_endpoint": 0.1344782473515613
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.009468899064958729,
+        "asset_class": "equities",
+        "branch": "assets",
+        "bucket": "long",
+        "endpoint_Q_contribution": 0.0230489200541366,
+        "endpoint_relative_gain_pct": 29.119108604052535,
+        "fixed_WOR_Q_contribution": 0.031812576283801894,
+        "fixed_WR_Q_contribution": 0.03251781911909533,
+        "overall_weight_mass": 0.03333333333333318,
+        "request_count": 2960,
+        "share_of_total_WR_minus_endpoint": 0.07418439987300508
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.006136838257190249,
+        "asset_class": "fixed_income",
+        "branch": "assets",
+        "bucket": "long",
+        "endpoint_Q_contribution": 0.01211539816764697,
+        "endpoint_relative_gain_pct": 33.62239078187363,
+        "fixed_WOR_Q_contribution": 0.015642620216435272,
+        "fixed_WR_Q_contribution": 0.01825223642483722,
+        "overall_weight_mass": 0.03333333333333333,
+        "request_count": 19,
+        "share_of_total_WR_minus_endpoint": 0.04807926033472206
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.005252267813565265,
+        "asset_class": "foreign_exchange",
+        "branch": "assets",
+        "bucket": "long",
+        "endpoint_Q_contribution": 0.006886716205775623,
+        "endpoint_relative_gain_pct": 43.267771052312895,
+        "fixed_WOR_Q_contribution": 0.01131066957097637,
+        "fixed_WR_Q_contribution": 0.012138984019340888,
+        "overall_weight_mass": 0.03333333333333333,
+        "request_count": 11,
+        "share_of_total_WR_minus_endpoint": 0.0411490642205233
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.006739463160979779,
+        "asset_class": "real_estate",
+        "branch": "assets",
+        "bucket": "long",
+        "endpoint_Q_contribution": 0.033115375403389276,
+        "endpoint_relative_gain_pct": 16.91002499005223,
+        "fixed_WOR_Q_contribution": 0.04009235709157242,
+        "fixed_WR_Q_contribution": 0.039854838564369055,
+        "overall_weight_mass": 0.03333333333333333,
+        "request_count": 10,
+        "share_of_total_WR_minus_endpoint": 0.05280054488210874
+      },
+      {
+        "WR_minus_endpoint_contribution": -0.000551716516162315,
+        "asset_class": "mixed_portfolios",
+        "branch": "portfolios",
+        "bucket": "long",
+        "endpoint_Q_contribution": 0.08673113807317699,
+        "endpoint_relative_gain_pct": -0.6401951953197038,
+        "fixed_WOR_Q_contribution": 0.0885807973668822,
+        "fixed_WR_Q_contribution": 0.08617942155701468,
+        "overall_weight_mass": 0.16666666666666727,
+        "request_count": 422,
+        "share_of_total_WR_minus_endpoint": -0.004322441117044988
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.002681668394212142,
+        "asset_class": "commodities",
+        "branch": "assets",
+        "bucket": "medium",
+        "endpoint_Q_contribution": 0.007004603091906354,
+        "endpoint_relative_gain_pct": 27.685249149327174,
+        "fixed_WOR_Q_contribution": 0.010075427954242431,
+        "fixed_WR_Q_contribution": 0.009686271486118496,
+        "overall_weight_mass": 0.027777777777777752,
+        "request_count": 219,
+        "share_of_total_WR_minus_endpoint": 0.021009618871029763
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.03367425017231836,
+        "asset_class": "cryptocurrencies",
+        "branch": "assets",
+        "bucket": "medium",
+        "endpoint_Q_contribution": 0.0787864601187595,
+        "endpoint_relative_gain_pct": 29.943124212145335,
+        "fixed_WOR_Q_contribution": 0.11294999702663307,
+        "fixed_WR_Q_contribution": 0.11246071029107786,
+        "overall_weight_mass": 0.027777777777777776,
+        "request_count": 9,
+        "share_of_total_WR_minus_endpoint": 0.26382201595658933
+      },
+      {
+        "WR_minus_endpoint_contribution": 8.85217919131126e-06,
+        "asset_class": "equities",
+        "branch": "assets",
+        "bucket": "medium",
+        "endpoint_Q_contribution": 0.0058385329400892335,
+        "endpoint_relative_gain_pct": 0.1513869705985882,
+        "fixed_WOR_Q_contribution": 0.0058494043048657515,
+        "fixed_WR_Q_contribution": 0.005847385119280545,
+        "overall_weight_mass": 0.027777777777776853,
+        "request_count": 26080,
+        "share_of_total_WR_minus_endpoint": 6.93526878225934e-05
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.0005303321512997073,
+        "asset_class": "fixed_income",
+        "branch": "assets",
+        "bucket": "medium",
+        "endpoint_Q_contribution": 0.0024728150377753486,
+        "endpoint_relative_gain_pct": 17.659212749510456,
+        "fixed_WOR_Q_contribution": 0.0027812745987953425,
+        "fixed_WR_Q_contribution": 0.003003147189075056,
+        "overall_weight_mass": 0.027777777777777832,
+        "request_count": 385,
+        "share_of_total_WR_minus_endpoint": 0.0041549046100957665
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.00014772419462542137,
+        "asset_class": "foreign_exchange",
+        "branch": "assets",
+        "bucket": "medium",
+        "endpoint_Q_contribution": 0.0025989446217683054,
+        "endpoint_relative_gain_pct": 5.3783038473265155,
+        "fixed_WOR_Q_contribution": 0.002742703904078126,
+        "fixed_WR_Q_contribution": 0.0027466688163937268,
+        "overall_weight_mass": 0.027777777777777887,
+        "request_count": 212,
+        "share_of_total_WR_minus_endpoint": 0.0011573500414176876
+      },
+      {
+        "WR_minus_endpoint_contribution": -0.0004589121979490761,
+        "asset_class": "real_estate",
+        "branch": "assets",
+        "bucket": "medium",
+        "endpoint_Q_contribution": 0.01166361920044444,
+        "endpoint_relative_gain_pct": -4.095709043055495,
+        "fixed_WOR_Q_contribution": 0.0110217738389959,
+        "fixed_WR_Q_contribution": 0.011204707002495365,
+        "overall_weight_mass": 0.0277777777777778,
+        "request_count": 78,
+        "share_of_total_WR_minus_endpoint": -0.0035953626462489185
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.04532219299358005,
+        "asset_class": "mixed_portfolios",
+        "branch": "portfolios",
+        "bucket": "medium",
+        "endpoint_Q_contribution": 0.06751435318150523,
+        "endpoint_relative_gain_pct": 40.16623561240069,
+        "fixed_WOR_Q_contribution": 0.11919546248233814,
+        "fixed_WR_Q_contribution": 0.11283654617508528,
+        "overall_weight_mass": 0.16666666666666127,
+        "request_count": 10712,
+        "share_of_total_WR_minus_endpoint": 0.35507820551173086
+      },
+      {
+        "WR_minus_endpoint_contribution": 3.4417314396336675e-05,
+        "asset_class": "commodities",
+        "branch": "assets",
+        "bucket": "short",
+        "endpoint_Q_contribution": 0.0009441685451648043,
+        "endpoint_relative_gain_pct": 3.517045955658049,
+        "fixed_WOR_Q_contribution": 0.0009736511867485952,
+        "fixed_WR_Q_contribution": 0.000978585859561141,
+        "overall_weight_mass": 0.027777777777776024,
+        "request_count": 3085,
+        "share_of_total_WR_minus_endpoint": 0.0002696435769583212
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.0006366204391456297,
+        "asset_class": "cryptocurrencies",
+        "branch": "assets",
+        "bucket": "short",
+        "endpoint_Q_contribution": 0.0033688261972522433,
+        "endpoint_relative_gain_pct": 15.89386894736281,
+        "fixed_WOR_Q_contribution": 0.004015848709330636,
+        "fixed_WR_Q_contribution": 0.004005446636397873,
+        "overall_weight_mass": 0.02777777777777797,
+        "request_count": 452,
+        "share_of_total_WR_minus_endpoint": 0.004987623682639111
+      },
+      {
+        "WR_minus_endpoint_contribution": 7.970867864410267e-06,
+        "asset_class": "equities",
+        "branch": "assets",
+        "bucket": "short",
+        "endpoint_Q_contribution": 0.0005643421618204844,
+        "endpoint_relative_gain_pct": 1.3927461810189556,
+        "fixed_WOR_Q_contribution": 0.0005712625033225836,
+        "fixed_WR_Q_contribution": 0.0005723130296848947,
+        "overall_weight_mass": 0.027777777777760453,
+        "request_count": 146304,
+        "share_of_total_WR_minus_endpoint": 6.244802536511933e-05
+      },
+      {
+        "WR_minus_endpoint_contribution": 3.6038706239627065e-08,
+        "asset_class": "fixed_income",
+        "branch": "assets",
+        "bucket": "short",
+        "endpoint_Q_contribution": 0.00018093084047877137,
+        "endpoint_relative_gain_pct": 0.019914531544074077,
+        "fixed_WOR_Q_contribution": 0.00018211096501609522,
+        "fixed_WR_Q_contribution": 0.000180966879185011,
+        "overall_weight_mass": 0.027777777777776846,
+        "request_count": 2397,
+        "share_of_total_WR_minus_endpoint": 2.8234642446237865e-07
+      },
+      {
+        "WR_minus_endpoint_contribution": 6.967946115219673e-06,
+        "asset_class": "foreign_exchange",
+        "branch": "assets",
+        "bucket": "short",
+        "endpoint_Q_contribution": 0.00026188600388975686,
+        "endpoint_relative_gain_pct": 2.5917216820101396,
+        "fixed_WOR_Q_contribution": 0.00026853708705661214,
+        "fixed_WR_Q_contribution": 0.00026885395000497654,
+        "overall_weight_mass": 0.027777777777777207,
+        "request_count": 1307,
+        "share_of_total_WR_minus_endpoint": 5.4590602070934806e-05
+      },
+      {
+        "WR_minus_endpoint_contribution": 4.932251834391843e-05,
+        "asset_class": "real_estate",
+        "branch": "assets",
+        "bucket": "short",
+        "endpoint_Q_contribution": 0.0008377815509078004,
+        "endpoint_relative_gain_pct": 5.5599472546126965,
+        "fixed_WOR_Q_contribution": 0.0008884170539209028,
+        "fixed_WR_Q_contribution": 0.0008871040692517188,
+        "overall_weight_mass": 0.02777777777777791,
+        "request_count": 422,
+        "share_of_total_WR_minus_endpoint": 0.0003864188854974157
+      },
+      {
+        "WR_minus_endpoint_contribution": 0.0007880281437613133,
+        "asset_class": "mixed_portfolios",
+        "branch": "portfolios",
+        "bucket": "short",
+        "endpoint_Q_contribution": 0.005187889652908903,
+        "endpoint_relative_gain_pct": 13.18672998146666,
+        "fixed_WOR_Q_contribution": 0.00608260344160277,
+        "fixed_WR_Q_contribution": 0.005975917796670217,
+        "overall_weight_mass": 0.16666666666663105,
+        "request_count": 124926,
+        "share_of_total_WR_minus_endpoint": 0.006173832303726854
+      }
+    ],
+    "gain_vs_fixed_WOR_percent": 26.38221815606977,
+    "gain_vs_fixed_WR_percent": 25.484505671234402
+  },
+  "review_schema": "independent-v9-full-raw-crps-replay-v1",
+  "reviewed_utc": "2026-10-22T14:38:30.436056+00:00",
+  "scope": "Independent score-only replay from the closed local V9 raw-cache rows against the frozen full 64,049-case schedule and 63,992 short groups. No forecasts were rerun. This is posthoc adaptive-development evidence, not an untouched holdout or automatic model promotion.",
+  "status": "verified",
+  "validation": {
+    "all_request_scores_finite_nonnegative": true,
+    "all_source_hashes_match_scoreboard": true,
+    "independent_hierarchical_weight_rebuild_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132",
+    "input_record_digest_matches_scoreboard": true,
+    "input_record_digest_rebuilt": "e0b9fac2a383a6dfd39f0c16bf141cb20f4c8926380bb76cf5709d60677eead8",
+    "scoreboard_file_stable_during_replay": true,
+    "terminal_and_full_coverage_required": true,
+    "weight_plan_matches_scoreboard": true
+  }
+}

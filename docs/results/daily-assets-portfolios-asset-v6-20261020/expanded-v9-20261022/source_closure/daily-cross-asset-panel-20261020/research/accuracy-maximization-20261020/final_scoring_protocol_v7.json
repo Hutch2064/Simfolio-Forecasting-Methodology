@@ -1,0 +1,58 @@
+{
+  "protocol_id": "daily_portfolio_panel_crps_v7_train_sd_sqrt_native_lead_equal_days_two_branch",
+  "status": "human_authorized_definition_pending_full_panel_evaluation",
+  "supersedes_for_future_work": "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+  "prior_sources_and_results_preserved": true,
+  "target": "Marginal distribution of cumulative portfolio log return at every native observed forecast lead",
+  "origin_score": "mean_d(CRPS_d / (sample_SD(training_portfolio_log_returns, ddof=1) * sqrt(d)))",
+  "lead_index": "d=1,...,H indexes native observed endpoints, not elapsed calendar days",
+  "day_weights": "Equal1/H within each requested forecast",
+  "calendar_log_weights": false,
+  "training_length_estimation_uncertainty_divisor": false,
+  "scale_information": "Only the training prefix available at the forecast date; identical scale for candidate and baseline",
+  "zero_or_invalid_training_scale": "Fail closed and disclose; do not substitute held-out statistics or an arbitrary epsilon",
+  "internal_learning": {
+    "criterion": "uniform_days",
+    "scale": "train_SD_sqrt_lead",
+    "learner": "batch",
+    "reference_configuration_index": 18,
+    "information": "Each historical validation forecast is fitted to its own earlier prefix. Outcomes must mature within the outer training history; no outer test data enters selection.",
+    "normalization": "The qualified reference sums daily normalized CRPS over its common-length internal folds. Dividing every coefficient by the common H yields the stated mean and the same mathematical optimum; exact sum arithmetic is preserved for numerical parity.",
+    "requested_horizon": "Requested horizon enters internal validation construction. Any shortening for available history is disclosed.",
+    "internal_simulation_count": 2,
+    "internal_count_scope": "Current qualified reference only; a count change requires matched accuracy qualification, not an untested speed shortcut",
+    "request_local_weights": true
+  },
+  "aggregation": {
+    "order": "Equal origins within series/quarter; equal series within family; equal families within asset class; equal classes within branch; equal asset and portfolio branches in supported quarters; equal quarters",
+    "portfolio_maximum_weight_per_quarter": 0.5,
+    "portfolio_quarter_requires_asset_support": true,
+    "single_branch_quarters": "Asset-only quarters retain full asset weight",
+    "implementation": "asset_level_v6.score_main.aggregate_records reused unchanged",
+    "day_count_pooled_across_requests": false
+  },
+  "comparison": {
+    "baselines": "Both frozen TestFolio-style joint-asset block configurations, with and without replacement",
+    "reference_rule": "Worse full-panel score of the two configurations on identical successful coverage, fixed after pair verification under this protocol",
+    "historical_reference": "With replacement; full-pair reaggregation under the new protocol remains required",
+    "display_percent": "100*(1-Q_candidate/Q_reference); positive means better, negative means worse",
+    "same_coverage_and_path_count_required": true,
+    "official_final_paths": 1000,
+    "no_mixed_coverage_leaderboard": true,
+    "native_failures_separate_from_scoring_errors": true,
+    "diagnostic_selection_weight": 0
+  },
+  "interpretation": {
+    "academic_claim": "Proper marginal CRPS with positive past-only scaling and fixed positive aggregation weights; a defensible application-specific protocol, not a uniquely prescribed academic standard",
+    "not_a_joint_trajectory_dependence_score": true,
+    "sqrt_lead": "A reference uncertainty unit, not an assumption that markets actually follow a random walk",
+    "no_crash_clipping": true,
+    "no_independence_or_significance_claim": true,
+    "past_development_results_not_an_independent_test": true,
+    "no_always_beat_baseline_claim": true
+  },
+  "launch_gate": "Complete-request profiling, numerical parity qualification, scoring/coverage review, and storage admission before full-panel launch",
+  "production_claim_boundary": "Local research request timings do not establish deployed website click-to-visible latency",
+  "implementation": "asset_level_v6/score_aligned_v7.py",
+  "initial_tests": "asset_level_v6/test_score_aligned_v7.py:4passed"
+}

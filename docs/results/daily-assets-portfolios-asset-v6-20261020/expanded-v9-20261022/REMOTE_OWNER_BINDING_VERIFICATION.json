@@ -1,0 +1,23 @@
+{
+  "addendum_receipt_asset_id": 666560716,
+  "addendum_receipt_fresh_download_sha256": "9638326e503bdb03ec9d3ebc9159bf1734ef65870e3afd7a213105bd25a748dd",
+  "all_main_archive_and_manifest_asset_IDs_and_remote_SHA256_digests_checked": true,
+  "canonical_owner_receipt_recovery": {
+    "archive": "bookkeeping-fix-v1-part-0001.tar.gz",
+    "archive_sha256": "c9297abccca3e8236a60805efeba6acf65a8ff5f4d06c06db6a2094242e061e6",
+    "member": "payload/bookkeeping/main_archive_receipt.json",
+    "member_sha256": "2ec2b0734bb6a819ce0a12d8a3791de4b5d269fa0c274eaaa33ec7948ffa3503",
+    "release_id": 421003852
+  },
+  "canonical_owner_receipt_sha256": "2ec2b0734bb6a819ce0a12d8a3791de4b5d269fa0c274eaaa33ec7948ffa3503",
+  "direct_main_receipt_asset_id": 666525243,
+  "direct_main_receipt_fresh_download_sha256": "b4667c948f41517f0c4ff3374db2d1918d646565fb04759b8b336231e5e2e67a",
+  "direct_vs_canonical_receipt_difference": "Only canonical receipt adds its receipt_asset_id self-reference; every archive/scientific field equals freshly downloaded direct receipt. Exact canonical bytes are preserved and owner-disk-restored in the addendum.",
+  "main_assets_returned": 285,
+  "main_parts": 131,
+  "main_release_id": 420875686,
+  "new_bulk_private_archive_recovery_performed": false,
+  "pagination_used": true,
+  "schema": "expanded-v9-catalogue-owner-remote-metadata-verification",
+  "utc": "2026-10-22T17:40:16.818532+00:00"
+}

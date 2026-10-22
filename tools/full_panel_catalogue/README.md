@@ -66,3 +66,19 @@ python tools/full_panel_catalogue/verify_remote.py \
 Publish the updated catalogue, scoring documentation and recovery references to
 the research repository after each new full-panel method. Keep unsuccessful
 methods too. Do not rely on an unpushed local ledger as completed preservation.
+
+The completed expanded V9 request benchmark has a separate raw, equal-calendar-
+bucket main score with no quarter grouping, selected retrospectively. It retains
+WR as its fixed reference even if another baseline scores worse under V9. Each
+model has59,906 requests at1,000 paths and260,111 at240 paths, with identical
+path count within every matched request; simulation counts are not weights.
+`expanded_v9.reconcile` prepares the exact23/28-to24/31 transition only after
+archive/manifest hashes have explicit fresh-download and full disk-recovery
+proof. It returns a new ledger and does not write, commit or publish anything.
+
+The endpoint V3 optimization remains an alias of the original167-recipe/two-inner-
+path method. Its actual optimized closure and qualified numerical differences
+remain execution provenance; this counting decision does not assert universal
+bitwise weight/path parity. PPW and MC discovery studies remain development-only
+and add no full-panel method or execution. Earlier source versions, benchmark
+metadata and every original execution stay preserved.

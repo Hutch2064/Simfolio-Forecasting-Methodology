@@ -1,3 +1,5 @@
+Current completed expanded-panel evidence: [endpoint mixture / V9](expanded-v9-20261022/README.md). Independent full replay and private recovery are verified; the completed V9 catalogue is admitted. The dated transition snapshot below is historical.
+
 # Asset-level baseline transition: qualification complete
 
 The accuracy-maximization goal remains active. Two source-bound asset-level TestFolio-style references passed 154 representative forecasts through 12 worker slots with zero native failures or scoring integrity errors. All542 constructed-portfolio matrices matched the unchanged panel at three causal prefix lengths. Twelve unit/contract tests passed; scheduler resume reused all154 checkpoints with zero new forecasts and identical losses.

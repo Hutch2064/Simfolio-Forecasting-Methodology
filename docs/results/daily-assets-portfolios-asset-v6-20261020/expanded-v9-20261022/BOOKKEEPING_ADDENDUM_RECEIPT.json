@@ -1,0 +1,39 @@
+{
+  "addendum_manifest_sha256": "284c997f52e6b07cd0f349a8b5d250ea327ee00dbb70bc63fa5ea3d51997c04a",
+  "complete": true,
+  "file_count": 17,
+  "fresh_download_and_disk_restore_verified": true,
+  "inventory_asset_id": 666560252,
+  "inventory_sha256": "fcefdefa3ef671d0b8662495de70e87202b77e2f16d17d2eec32febaaa4d84cf",
+  "local_originals_retained": true,
+  "numeric_release_id": 421003852,
+  "parts": [
+    {
+      "archive_asset_id": 666559989,
+      "archive_bytes": 161754,
+      "archive_sha256": "c9297abccca3e8236a60805efeba6acf65a8ff5f4d06c06db6a2094242e061e6",
+      "file_count": 17,
+      "kind": "bookkeeping-fix-v1",
+      "manifest_asset_id": 666560093,
+      "manifest_sha256": "24ec07322f88d22507ec1518c798fa2f331e1b9ee07f1a2241808d0956834396",
+      "name": "bookkeeping-fix-v1-part-0001",
+      "source_bytes": 685307,
+      "verification": {
+        "archive_sha256": "c9297abccca3e8236a60805efeba6acf65a8ff5f4d06c06db6a2094242e061e6",
+        "disk_restore_sha256_and_mode_verified": true,
+        "files_verified": 17,
+        "manifest_sha256": "24ec07322f88d22507ec1518c798fa2f331e1b9ee07f1a2241808d0956834396",
+        "part": "bookkeeping-fix-v1-part-0001",
+        "source_bytes": 685307
+      }
+    }
+  ],
+  "primary_archive_receipt_sha256": "2ec2b0734bb6a819ce0a12d8a3791de4b5d269fa0c274eaaa33ec7948ffa3503",
+  "primary_archive_release_id": 420875686,
+  "primary_archive_tag": "research-paused-v1-c9bd17eeb30bc274-04e7f91137a96096",
+  "receipt_asset_id": 666560384,
+  "repository": "Hutch2064/simfolio-engine",
+  "schema": "pause-archive-addendum-receipt-v1",
+  "source_bytes": 685307,
+  "tag": "research-pause-job-repair-v1-c9bd17eeb30bc274-20261022"
+}

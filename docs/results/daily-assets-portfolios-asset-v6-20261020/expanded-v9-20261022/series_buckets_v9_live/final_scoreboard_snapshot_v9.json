@@ -1,0 +1,206 @@
+{
+  "cache_policy": {
+    "budget_gib": 0.25,
+    "expiry": "Remove derived raw cache after owning full-sweep task closure; preserve sole-copy source evidence"
+  },
+  "complete": true,
+  "cutoff_utc": "2026-10-22T14:40:01.242381+00:00",
+  "final_percent_better_than_fixed_WR": 25.484505671234402,
+  "final_scores": {
+    "endpoint": 0.3732134377688732,
+    "model_testing_asset_joint_blocks_history_partition_v6": 0.5069609928754524,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.5008534683031683
+  },
+  "fixed_reference": "model_testing_asset_joint_blocks_replacement_v6",
+  "forecast_coverage_complete": true,
+  "input_record_digest": "e0b9fac2a383a6dfd39f0c16bf141cb20f4c8926380bb76cf5709d60677eead8",
+  "models": {
+    "endpoint": {
+      "bucket_weights": {
+        "long": 0.3333333333333333,
+        "medium": 0.3333333333333333,
+        "short": 0.3333333333333333
+      },
+      "buckets": {
+        "long": {
+          "complete": true,
+          "observed_requests": 3429,
+          "observed_weight_support": 1.0,
+          "observed_weighted_numerator": 0.5579648538726074,
+          "partial_score": 0.5579648538726074,
+          "planned_requests": 3429
+        },
+        "medium": {
+          "complete": true,
+          "observed_requests": 37695,
+          "observed_weight_support": 1.0,
+          "observed_weighted_numerator": 0.5276379845767439,
+          "partial_score": 0.5276379845767439,
+          "planned_requests": 37695
+        },
+        "short": {
+          "complete": true,
+          "observed_requests": 278893,
+          "observed_weight_support": 1.0,
+          "observed_weighted_numerator": 0.03403747485726843,
+          "partial_score": 0.03403747485726843,
+          "planned_requests": 278893
+        }
+      },
+      "complete": true,
+      "partial_score": 0.3732134377688732,
+      "partial_score_warning": "Conditional observed-support means can move as missing requests arrive; not a final headline",
+      "score": 0.3732134377688732,
+      "score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+      "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+    },
+    "model_testing_asset_joint_blocks_history_partition_v6": {
+      "bucket_weights": {
+        "long": 0.3333333333333333,
+        "medium": 0.3333333333333333,
+        "short": 0.3333333333333333
+      },
+      "buckets": {
+        "long": {
+          "complete": true,
+          "observed_requests": 3429,
+          "observed_weight_support": 1.0,
+          "observed_weighted_numerator": 0.6880875534555161,
+          "partial_score": 0.6880875534555161,
+          "planned_requests": 3429
+        },
+        "medium": {
+          "complete": true,
+          "observed_requests": 37695,
+          "observed_weight_support": 1.0,
+          "observed_weighted_numerator": 0.7938481323298461,
+          "partial_score": 0.7938481323298461,
+          "planned_requests": 37695
+        },
+        "short": {
+          "complete": true,
+          "observed_requests": 278893,
+          "observed_weight_support": 1.0,
+          "observed_weighted_numerator": 0.03894729284099501,
+          "partial_score": 0.03894729284099501,
+          "planned_requests": 278893
+        }
+      },
+      "complete": true,
+      "partial_score": 0.5069609928754524,
+      "partial_score_warning": "Conditional observed-support means can move as missing requests arrive; not a final headline",
+      "score": 0.5069609928754524,
+      "score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+      "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "bucket_weights": {
+        "long": 0.3333333333333333,
+        "medium": 0.3333333333333333,
+        "short": 0.3333333333333333
+      },
+      "buckets": {
+        "long": {
+          "complete": true,
+          "observed_requests": 3429,
+          "observed_weight_support": 1.0,
+          "observed_weighted_numerator": 0.6905965320086578,
+          "partial_score": 0.6905965320086578,
+          "planned_requests": 3429
+        },
+        "medium": {
+          "complete": true,
+          "observed_requests": 37695,
+          "observed_weight_support": 1.0,
+          "observed_weighted_numerator": 0.77335630823858,
+          "partial_score": 0.77335630823858,
+          "planned_requests": 37695
+        },
+        "short": {
+          "complete": true,
+          "observed_requests": 278893,
+          "observed_weight_support": 1.0,
+          "observed_weighted_numerator": 0.03860756466226725,
+          "partial_score": 0.03860756466226725,
+          "planned_requests": 278893
+        }
+      },
+      "complete": true,
+      "partial_score": 0.5008534683031683,
+      "partial_score_warning": "Conditional observed-support means can move as missing requests arrive; not a final headline",
+      "score": 0.5008534683031683,
+      "score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+      "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+    }
+  },
+  "normalization": "raw daily mean CRPS; no train-SD/native-lead normalization",
+  "observed_weight_support_by_bucket_branch": {
+    "long:assets": 0.5000000000000009,
+    "long:portfolios": 0.5000000000000002,
+    "medium:assets": 0.49999999999999967,
+    "medium:portfolios": 0.5000000000000229,
+    "short:assets": 0.5000000000000318,
+    "short:portfolios": 0.5000000000000939
+  },
+  "official": true,
+  "paired_requests_per_model": 320017,
+  "partial_percent_better_than_fixed_WR": 25.484505671234402,
+  "partial_score_change_since_previous_snapshot": null,
+  "partial_scores": {
+    "endpoint": 0.3732134377688732,
+    "model_testing_asset_joint_blocks_history_partition_v6": 0.5069609928754524,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.5008534683031683
+  },
+  "pending_original_WOR_recovery": false,
+  "planned_requests_per_model": 320017,
+  "posthoc_selection_disclosure": "Raw CRPS and no-quarter fixed hierarchy chosen posthoc after inspecting alternatives; adaptive development, not untouched holdout. Partial support changes can move the conditional headline; final result unknown.",
+  "protocol_sha256": "a1afd47e29015997c541b8a1d2455173e2353471f49467fed689abdd44dcd5be",
+  "provisional": false,
+  "quarter_weights": false,
+  "requests_by_bucket": {
+    "long": 3429,
+    "medium": 37695,
+    "short": 278893
+  },
+  "requests_by_final_paths": {
+    "1000": 59906,
+    "240": 260111
+  },
+  "requests_by_model": {
+    "endpoint": 320017,
+    "model_testing_asset_joint_blocks_history_partition_v6": 320017,
+    "model_testing_asset_joint_blocks_replacement_v6": 320017
+  },
+  "same_count_within_every_pair": true,
+  "same_three_model_coverage": true,
+  "scientific_plan_fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
+  "score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+  "scorer_sha256": "c598301b977fb1d8405de640476289d071107633e8ba72fbedf3ef8712d4796c",
+  "snapshot_elapsed_seconds": 13.340827208012342,
+  "source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs/panel.json": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/score_aligned_v7.py": "085e22bbe9b6aeb6ce07369250c884e71a08ee908c033853e9ec67ee6966e003",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/score_main.py": "61c3c34152965c62e15c1bcf50a2de7c6049cc8f0d923656320e58b1621b92e8",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/freeze.json": "ebc9299c506229b14567dc77d8583e992b322acb2358b7fa3ba6cb5c6df1214c",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/frozen_pairs.jsonl.gz": "3e68215e6985be85169c8e2f27b2c246efd12cfa365b551df4c912b89ed61dc2",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/raw_request_rows.npz": "da220537224ef50832233fd6a49776eae63e671792c13f9dec55c926c6c249b7",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/recovery/wor_original_raw_means.jsonl": "dc7d692a567ac401190b41891fa2dcc801070c97d769de64b0a0e847e00de587",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/recovery/wor_original_raw_means.recovery_receipt.json": "607ec553da8043b464ce62fa45291ca287ce01ab391aa6d588a80310a15f96c9",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/recovery/wr_original_raw_means.jsonl": "baf29c83bf04b22714f4f21ecc1aec5dec3b840ee6947a3b5c5ee7cb76dcf334",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/recovery/wr_original_raw_means.recovery_receipt.json": "147796b35f5d1cf329f5a85342d5f29fadb6a67b56b55cf06a703c6c03cd6fd5",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/external_raw_bucket_diagnostic_v1/rows_manifest.json": "59701fcc7d4d01c391b5780508a53eee27331c782206215f06d4f3740a2df2b4",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8/input_definition.json": "35e167414007211d6667a5851ac994d778896c15fb26e21c9baa293604e06bb9",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8/protocol.json": "5ef1331b417ef520fc226776550476962fdf28fa2726c2ca61673333b3738bac",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8/requested_calendar_mapping.npz": "91220b130fa20068c85dd2d7afede68451927555c250238a81085a026b681c80",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8_reporter.py": "4f41a5732bf4a7a7b86b22e921acc31dd6b05963a61aa41851472bb170cfb5ae",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_horizon_buckets_v8.py": "9a1222c60dc7adc7261fd467bfab835ab33681793e3baa8995597d690be1b70b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_series_buckets_v9.py": "c598301b977fb1d8405de640476289d071107633e8ba72fbedf3ef8712d4796c",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9/protocol.json": "a1afd47e29015997c541b8a1d2455173e2353471f49467fed689abdd44dcd5be",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_reporter.py": "3aee8432dca2c149bbfa3842dd346d1e38f1e3a6458712459fc872feb410612b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/handoff.json": "7b8ebabf1d4c0852c9a717f97621429fc1d8b340e4b652bc5c2cc2464fa4c2f9",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/plan.json": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e"
+  },
+  "terminal_sha256": "15d6a513a9c5b5a29cd0c3e98feef60ece830accf7ffddceb6d962bf8ffff9a7",
+  "utc": "2026-10-22T14:40:14.511235+00:00",
+  "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+}

@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "complete": true,
+    "exact_scores": true,
+    "same_bucket_counts": true,
+    "same_full_request_counts": true,
+    "same_input_record_digest": true,
+    "same_path_count_mix": true,
+    "same_source_map": true,
+    "same_terminal": true,
+    "same_weight_plan": true
+  },
+  "current_immutable_final_snapshot": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_live/final_scoreboard_snapshot_v9.json",
+  "current_immutable_final_snapshot_sha256": "a9cb3d217f9e6e95ab4211f98f5b0c97a4e3aaaf34b2951afb72844a2ecb574e",
+  "independent_full_review": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_live/independent_full_replay_review.json",
+  "independent_full_review_sha256": "a8ee3fd14483999737f95537077c75216c4a6afe933ac811d5da7a60e0dcb001",
+  "interpretation": "Archive finalization refreshed report timestamps, producing different JSON bytes. All independently checked scientific results, source hashes, planned coverage, path counts, weights, raw-cache input digest and terminal match exactly. This binds the immutable final display snapshot to the existing full numerical replay without new simulation or changing the score.",
+  "new_forecasts": 0,
+  "new_numerical_replay": false,
+  "original_reviewed_scoreboard_sha256": "84f1b3e0fb1849b5bd91e09c4fadb76b3e1ad974673ce3a45b85bdf68699ab5d",
+  "schema": "v9-final-report-binding-addendum-v1",
+  "utc": "2026-10-22T15:04:15.502678+00:00"
+}

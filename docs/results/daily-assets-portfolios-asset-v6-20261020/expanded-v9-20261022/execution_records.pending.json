@@ -1,0 +1,219 @@
+[
+  {
+    "archives": [],
+    "comparison": {
+      "matched_successful_tasks": 320017,
+      "percent_better": {
+        "main": 25.484505671234402
+      },
+      "preliminary": false,
+      "public_scores": {
+        "main": 0.5008534683031683
+      },
+      "reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+      "reference_rule": "Fixed WR retained from prior full-panel choice; never reselected for V9 or subsets."
+    },
+    "coverage": {
+      "expected_tasks": 320017,
+      "missing_tasks": 0,
+      "native_failed_tasks": 0,
+      "panel_fingerprint": "094309da9cf9ac47509ded84347598e85faee70cc01aec963cca71a2e2105c04",
+      "requests_by_final_paths": {
+        "1000": 59906,
+        "240": 260111
+      },
+      "same_count_within_every_pair": true,
+      "scoring_integrity_errors": 0,
+      "series": 1264,
+      "status": "complete",
+      "successful_tasks": 320017
+    },
+    "definition": "Request-local endpoint-CRPS mixture over167 flattened recipes,2 internal paths,half_doubling historical origins; optimized V3 fit/path reuse and certified active-set solver preserve the financial algorithm.",
+    "display_name": "Asset Request-Specific Endpoint CRPS Mixture \u2014167 Recipes /2 Inner Paths",
+    "execution_fingerprint": "8260abd770dd0c385e5c0cd8bdceecd980fb0246182fd10ac7dadb25a32b38d1",
+    "forecast_level": "joint_assets",
+    "identity": {
+      "implementation_digest": "53d6278e1448d16eb88a71f8ed9c4b7617ed9cd4748d7a8b5167587298158d49",
+      "model_id": "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d"
+    },
+    "publication_admission": "independent full replay verified; awaiting complete remote archive recovery",
+    "reproducibility": {
+      "actual_execution_identity": {
+        "actual_adapter_module": "candidates.asset_selector_endpoint_fit_reuse_v3.candidate",
+        "actual_scientific_closure_digest": "091b662a510f9588f26b539d9f502376afa4f548ff8675b5fe23c1d7ac0b15aa",
+        "canonical_source_identity": "original_endpoint_source_identity.json",
+        "execution_generation": "endpoint_execution_final240_v3:endpoint_execution_v2:candidates.asset_selector_endpoint_fit_reuse_v3.candidate:active_qp_unique_v3:unused_guard_skipped=True:fast_baselines=True",
+        "financial_method_unchanged_by_optimization": true,
+        "identity": {
+          "implementation_digest": "53d6278e1448d16eb88a71f8ed9c4b7617ed9cd4748d7a8b5167587298158d49",
+          "model_id": "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d"
+        }
+      },
+      "evidence_root": "../daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022",
+      "immutable_binding_addendum_sha256": "db03f60e707f7bd1a304ad8f1c441eecaca48d765c5579862475a8b9ba87a725",
+      "independence_claim": false,
+      "independent_full_review_sha256": "a8ee3fd14483999737f95537077c75216c4a6afe933ac811d5da7a60e0dcb001",
+      "paths_per_forecast": "59906requests1000;260111requests240; identical count within each model pair",
+      "posthoc_score_selection": true,
+      "scientific_plan_fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
+      "scientific_plan_sha256": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e",
+      "scoreboard": "series_buckets_v9_live/final_scoreboard_snapshot_v9.json",
+      "scoreboard_sha256": "a9cb3d217f9e6e95ab4211f98f5b0c97a4e3aaaf34b2951afb72844a2ecb574e",
+      "source_closure_sha256": "9ed2d49a97061e146e8bcdb3b20379205f06d55e56b4b63b2fd6b769df03f33a"
+    },
+    "retained_in_active_set": true,
+    "runtime": {
+      "forecast_and_score_worker_seconds": null,
+      "scope": "Total worker compute was not reconstructed across inherited1000-path and new240-path generation. No zero-time or speedup claim."
+    },
+    "score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+    "scores": {
+      "main": 0.3732134377688732
+    },
+    "version": "expanded_v9_mixed_paths_source_bound"
+  },
+  {
+    "archives": [],
+    "comparison": {
+      "matched_successful_tasks": 320017,
+      "percent_better": {
+        "main": -1.219423435955358
+      },
+      "preliminary": false,
+      "public_scores": {
+        "main": 0.5008534683031683
+      },
+      "reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+      "reference_rule": "Fixed WR retained from prior full-panel choice; never reselected for V9 or subsets."
+    },
+    "coverage": {
+      "expected_tasks": 320017,
+      "missing_tasks": 0,
+      "native_failed_tasks": 0,
+      "panel_fingerprint": "094309da9cf9ac47509ded84347598e85faee70cc01aec963cca71a2e2105c04",
+      "requests_by_final_paths": {
+        "1000": 59906,
+        "240": 260111
+      },
+      "same_count_within_every_pair": true,
+      "scoring_integrity_errors": 0,
+      "series": 1264,
+      "status": "complete",
+      "successful_tasks": 320017
+    },
+    "definition": "Frozen joint-asset block bootstrap with chronologically partitioned history and reshuffling; exact joint rows and within-path portfolio accounting. Optimized generation preserves its financial law.",
+    "display_name": "Asset Joint Blocks \u2014 History Partition",
+    "execution_fingerprint": "891d5558eb8b1ad7416ba114a67cec16302950b2efb22fee5dfd88220376e590",
+    "forecast_level": "joint_assets",
+    "identity": {
+      "implementation_digest": "43f51be6acbaecac0812e5fb6a9c843bf24cb18d9f140a71f3e3174d538b2694",
+      "model_id": "model_testing_asset_joint_blocks_history_partition_v6"
+    },
+    "publication_admission": "independent full replay verified; awaiting complete remote archive recovery",
+    "reproducibility": {
+      "actual_execution_identity": {
+        "actual_adapter_module": "candidates.asset_exact_blocks_v1.model",
+        "actual_scientific_closure_digest": "091b662a510f9588f26b539d9f502376afa4f548ff8675b5fe23c1d7ac0b15aa",
+        "execution_generation": "endpoint_execution_final240_v3:endpoint_execution_v2:candidates.asset_selector_endpoint_fit_reuse_v3.candidate:active_qp_unique_v3:unused_guard_skipped=True:fast_baselines=True",
+        "financial_method_unchanged_by_optimization": true,
+        "identity": {
+          "implementation_digest": "43f51be6acbaecac0812e5fb6a9c843bf24cb18d9f140a71f3e3174d538b2694",
+          "model_id": "model_testing_asset_joint_blocks_history_partition_v6"
+        }
+      },
+      "evidence_root": "../daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022",
+      "immutable_binding_addendum_sha256": "db03f60e707f7bd1a304ad8f1c441eecaca48d765c5579862475a8b9ba87a725",
+      "independence_claim": false,
+      "independent_full_review_sha256": "a8ee3fd14483999737f95537077c75216c4a6afe933ac811d5da7a60e0dcb001",
+      "paths_per_forecast": "59906requests1000;260111requests240; identical count within each model pair",
+      "posthoc_score_selection": true,
+      "scientific_plan_fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
+      "scientific_plan_sha256": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e",
+      "scoreboard": "series_buckets_v9_live/final_scoreboard_snapshot_v9.json",
+      "scoreboard_sha256": "a9cb3d217f9e6e95ab4211f98f5b0c97a4e3aaaf34b2951afb72844a2ecb574e",
+      "source_closure_sha256": "9ed2d49a97061e146e8bcdb3b20379205f06d55e56b4b63b2fd6b769df03f33a"
+    },
+    "retained_in_active_set": true,
+    "runtime": {
+      "forecast_and_score_worker_seconds": null,
+      "scope": "Total worker compute was not reconstructed across inherited1000-path and new240-path generation. No zero-time or speedup claim."
+    },
+    "score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+    "scores": {
+      "main": 0.5069609928754524
+    },
+    "version": "expanded_v9_mixed_paths_source_bound"
+  },
+  {
+    "archives": [],
+    "comparison": {
+      "matched_successful_tasks": 320017,
+      "percent_better": {
+        "main": 0.0
+      },
+      "preliminary": false,
+      "public_scores": {
+        "main": 0.5008534683031683
+      },
+      "reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+      "reference_rule": "Fixed WR retained from prior full-panel choice; never reselected for V9 or subsets."
+    },
+    "coverage": {
+      "expected_tasks": 320017,
+      "missing_tasks": 0,
+      "native_failed_tasks": 0,
+      "panel_fingerprint": "094309da9cf9ac47509ded84347598e85faee70cc01aec963cca71a2e2105c04",
+      "requests_by_final_paths": {
+        "1000": 59906,
+        "240": 260111
+      },
+      "same_count_within_every_pair": true,
+      "scoring_integrity_errors": 0,
+      "series": 1264,
+      "status": "complete",
+      "successful_tasks": 320017
+    },
+    "definition": "Frozen joint-asset block bootstrap with replacement; exact joint rows and within-path portfolio accounting. Optimized generation preserves its financial law.",
+    "display_name": "Asset Joint Blocks \u2014 With Replacement",
+    "execution_fingerprint": "0364949e5d70d6f46e0ced7818a2804d0640088e2c2bb34b4bfa6e84cb103195",
+    "forecast_level": "joint_assets",
+    "identity": {
+      "implementation_digest": "94b6b8c8e6084e64cbae8805d92a76d6561aafc47b6d8f2e85fcce4cc403d214",
+      "model_id": "model_testing_asset_joint_blocks_replacement_v6"
+    },
+    "publication_admission": "independent full replay verified; awaiting complete remote archive recovery",
+    "reproducibility": {
+      "actual_execution_identity": {
+        "actual_adapter_module": "candidates.asset_exact_blocks_v1.model",
+        "actual_scientific_closure_digest": "091b662a510f9588f26b539d9f502376afa4f548ff8675b5fe23c1d7ac0b15aa",
+        "execution_generation": "endpoint_execution_final240_v3:endpoint_execution_v2:candidates.asset_selector_endpoint_fit_reuse_v3.candidate:active_qp_unique_v3:unused_guard_skipped=True:fast_baselines=True",
+        "financial_method_unchanged_by_optimization": true,
+        "identity": {
+          "implementation_digest": "94b6b8c8e6084e64cbae8805d92a76d6561aafc47b6d8f2e85fcce4cc403d214",
+          "model_id": "model_testing_asset_joint_blocks_replacement_v6"
+        }
+      },
+      "evidence_root": "../daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022",
+      "immutable_binding_addendum_sha256": "db03f60e707f7bd1a304ad8f1c441eecaca48d765c5579862475a8b9ba87a725",
+      "independence_claim": false,
+      "independent_full_review_sha256": "a8ee3fd14483999737f95537077c75216c4a6afe933ac811d5da7a60e0dcb001",
+      "paths_per_forecast": "59906requests1000;260111requests240; identical count within each model pair",
+      "posthoc_score_selection": true,
+      "scientific_plan_fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
+      "scientific_plan_sha256": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e",
+      "scoreboard": "series_buckets_v9_live/final_scoreboard_snapshot_v9.json",
+      "scoreboard_sha256": "a9cb3d217f9e6e95ab4211f98f5b0c97a4e3aaaf34b2951afb72844a2ecb574e",
+      "source_closure_sha256": "9ed2d49a97061e146e8bcdb3b20379205f06d55e56b4b63b2fd6b769df03f33a"
+    },
+    "retained_in_active_set": true,
+    "runtime": {
+      "forecast_and_score_worker_seconds": null,
+      "scope": "Total worker compute was not reconstructed across inherited1000-path and new240-path generation. No zero-time or speedup claim."
+    },
+    "score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+    "scores": {
+      "main": 0.5008534683031683
+    },
+    "version": "expanded_v9_mixed_paths_source_bound"
+  }
+]

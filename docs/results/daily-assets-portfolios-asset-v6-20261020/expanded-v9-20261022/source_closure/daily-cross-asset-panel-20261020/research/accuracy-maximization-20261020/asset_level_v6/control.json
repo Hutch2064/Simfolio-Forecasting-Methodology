@@ -1,0 +1,16 @@
+{
+  "models": {
+    "model_testing_asset_joint_blocks_history_partition_v6": {
+      "enabled": true,
+      "factory": "asset_models:build_without_replacement",
+      "implementation_digest": "43f51be6acbaecac0812e5fb6a9c843bf24cb18d9f140a71f3e3174d538b2694"
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "enabled": true,
+      "factory": "asset_models:build_replacement",
+      "implementation_digest": "94b6b8c8e6084e64cbae8805d92a76d6561aafc47b6d8f2e85fcce4cc403d214"
+    }
+  },
+  "stop": false,
+  "workers": 12
+}

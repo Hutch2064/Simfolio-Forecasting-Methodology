@@ -95,7 +95,7 @@ def test_backfill_counts_native_coverage_and_both_exact_profiles():
     for model in ledger['models'].values():
         for record in model['executions']:
             catalogue.validate(record)
-            if record.get('score_protocol_id') == 'daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch':
+            if record.get('score_protocol_id') in catalogue.SINGLE_SCORE_PROTOCOLS:
                 continue
             historical.add(catalogue.version_key(record['identity']))
             assert record['coverage']['expected_tasks'] == 36813
@@ -118,7 +118,7 @@ def test_frozen_scoring_and_remote_archives_are_bound_to_catalogue():
     scorer_hash = hashlib.sha256((LEDGER.parent / 'harness/scoring.py').read_bytes()).hexdigest()
     for model in ledger['models'].values():
         for record in model['executions']:
-            if record.get('score_protocol_id') == 'daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch':
+            if record.get('score_protocol_id') in catalogue.SINGLE_SCORE_PROTOCOLS:
                 continue
             assert record['reproducibility']['scorer_sha256'] == scorer_hash
             for archive in record['archives']:
@@ -166,3 +166,202 @@ def test_new_benchmark_has_one_main_score_and_does_not_inflate_unique_model_coun
     updated['scores']['sensitivity'] = .5
     with pytest.raises(ValueError, match='exactly one main'):
         catalogue.validate(updated)
+
+
+def v9_example():
+    record = example()
+    record['score_protocol_id'] = 'daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters'
+    record['scores'] = {'main': .3732134377688732}
+    record['comparison'].update(reference_model_id='model_testing_asset_joint_blocks_replacement_v6',
+        public_scores={'main': .5008534683031683}, matched_successful_tasks=320017)
+    record['coverage'].update(expected_tasks=320017, successful_tasks=320017,
+        native_failed_tasks=0, requests_by_final_paths={'1000': 59906, '240': 260111},
+        same_count_within_every_pair=True)
+    record['runtime'] = {'forecast_and_score_worker_seconds': None,
+                         'scope': 'Not reconstructed across mixed generations; no speed comparison.'}
+    record['reproducibility']['posthoc_score_selection'] = True
+    return record
+
+
+def test_v9_complete_mixed_paths_fixed_reference_and_disclosure():
+    record = v9_example()
+    catalogue.validate(record)
+    for field, value, message in [('same_count_within_every_pair', False, 'matched mixed-path'),
+                                  ('requests_by_final_paths', {'1000': 59906, '240': 1}, 'mixed-path')]:
+        bad = copy.deepcopy(record)
+        bad['coverage'][field] = value
+        with pytest.raises(ValueError, match=message):
+            catalogue.validate(bad)
+    bad = copy.deepcopy(record)
+    bad['comparison']['reference_model_id'] = 'model_testing_asset_joint_blocks_history_partition_v6'
+    with pytest.raises(ValueError, match='fixed WR'):
+        catalogue.validate(bad)
+    bad = copy.deepcopy(record)
+    bad['reproducibility']['posthoc_score_selection'] = False
+    with pytest.raises(ValueError, match='retrospective'):
+        catalogue.validate(bad)
+
+
+def test_verified_optimization_alias_keeps_logical_identity_execution_changes():
+    original = v9_example()
+    ledger = {}
+    catalogue.append(ledger, original)
+    optimized = copy.deepcopy(original)
+    optimized['execution_fingerprint'] = 'optimized-fresh-panel'
+    optimized['reproducibility']['actual_implementation_digest'] = 'e' * 64
+    optimized['reproducibility']['equivalence_receipt_sha256'] = 'f' * 64
+    catalogue.append(ledger, optimized)
+    assert ledger['unique_full_panel_models'] == 1 and ledger['full_panel_executions'] == 2
+    before = copy.deepcopy(ledger)
+    assert not catalogue.append(ledger, optimized)
+    assert ledger == before
+
+
+def test_v9_render_uses_current_panel_and_marks_unmeasured_runtime():
+    record = v9_example()
+    ledger = {}
+    catalogue.append(ledger, record)
+    ledger.update(current_score_protocol_id=record['score_protocol_id'],
+                  current_panel_fingerprint=record['coverage']['panel_fingerprint'])
+    rendered = catalogue.render(ledger)
+    assert 'Main Q' in rendered and 'Sensitivity Q' not in rendered
+    assert 'not reconstructed' in rendered
+    assert '0.373213437769' in rendered
+
+
+def test_prepared_expanded_records_cannot_enter_without_archive_evidence():
+    root = ROOT / 'docs/results/daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022'
+    records = json.loads((root / 'execution_records.pending.json').read_text())
+    assert len(records) == 3
+    assert all(r['coverage']['expected_tasks'] == 320017 for r in records)
+    assert len({r['identity']['model_id'] for r in records}) == 3
+    for record in records:
+        with pytest.raises(ValueError, match='complete evidence'):
+            catalogue.append({}, record)
+
+
+def historical_base_ledger():
+    """Test the same transition before and after the real ledger is admitted."""
+    ledger = json.loads(LEDGER.read_text())
+    protocol = 'daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters'
+    for key, model in list(ledger['models'].items()):
+        model['executions'] = [e for e in model['executions'] if e.get('score_protocol_id') != protocol]
+        if not model['executions']:
+            del ledger['models'][key]
+    ledger['unique_full_panel_models'] = len(ledger['models'])
+    ledger['full_panel_executions'] = sum(len(m['executions']) for m in ledger['models'].values())
+    ledger['failure_free_models'] = sum(any(e['coverage']['native_failed_tasks'] == 0
+        for e in m['executions']) for m in ledger['models'].values())
+    if ledger.get('current_score_protocol_id') == protocol:
+        snapshots = ledger['historical_status_snapshots']
+        previous = next(x for x in reversed(snapshots)
+                        if x.get('status', {}).get('current_score_protocol_id'))
+        ledger.update(copy.deepcopy(previous['status']))
+        snapshots.remove(previous)
+    return ledger
+
+
+def test_expanded_admission_would_add_one_logical_method_three_executions():
+    root = ROOT / 'docs/results/daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022'
+    ledger = historical_base_ledger()
+    before = copy.deepcopy(ledger['models'])
+    records = json.loads((root / 'execution_records.pending.json').read_text())
+    for record in records:
+        # Synthetic archive fixture only exercises catalogue counting; this is
+        # never written into the real ledger or presented as remote recovery.
+        record['archives'] = copy.deepcopy(example()['archives'])
+        catalogue.append(ledger, record)
+    assert ledger['unique_full_panel_models'] == 24
+    assert ledger['full_panel_executions'] == 31
+    assert ledger['failure_free_models'] == 22
+    for key, model in before.items():
+        assert ledger['models'][key]['identity'] == model['identity']
+        assert ledger['models'][key]['executions'][:len(model['executions'])] == model['executions']
+
+
+def expanded_reconciliation_fixture():
+    import sys
+    sys.path.insert(0, str(ROOT / 'tools/full_panel_catalogue'))
+    import expanded_v9
+    root = ROOT / 'docs/results/daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022'
+    records = json.loads((root / 'execution_records.pending.json').read_text())
+    # This synthetic recovery fixture is never materialized as real admission.
+    archive = {'archive_sha256': 'a' * 64, 'manifest_sha256': 'b' * 64}
+    for record in records:
+        record['archives'] = [copy.deepcopy(archive)]
+        record.pop('publication_admission', None)
+    recovery = {'archives': [{**archive, 'remote_download_sha256_verified': True,
+                             'all_files_disk_restored_and_sha256_verified': True}]}
+    snapshot = json.loads((root / 'series_buckets_v9_live/final_scoreboard_snapshot_v9.json').read_text())
+    return expanded_v9, records, recovery, snapshot
+
+
+def test_expanded_reconciliation_preserves_history_corrects_identity_and_is_idempotent():
+    module, records, recovery, snapshot = expanded_reconciliation_fixture()
+    ledger = historical_base_ledger()
+    original = copy.deepcopy(ledger)
+    result = module.reconcile(ledger, records, snapshot, recovery)
+    assert ledger == original
+    assert result['unique_full_panel_models'] == 24 and result['full_panel_executions'] == 31
+    assert result['current_best_model_id'] == module.ENDPOINT
+    assert result['current_benchmark_status']['fixed_reference_model_id'] == module.WR
+    assert result['current_benchmark_status']['percent_better_than_fixed_WR'] == 25.484505671234402
+    assert len(result['active_model_ids']) == 3
+    assert all('PPW' not in model for model in result['active_model_ids'])
+    assert module.reconcile(result, records, snapshot, recovery) == result
+    for key, model in original['models'].items():
+        assert result['models'][key]['executions'][:len(model['executions'])] == model['executions']
+
+
+def test_expanded_reconciliation_rejects_upload_only_wrong_manifest_and_subset_score():
+    module, records, recovery, snapshot = expanded_reconciliation_fixture()
+    ledger = historical_base_ledger()
+    for key, value in [('remote_download_sha256_verified', False),
+                       ('all_files_disk_restored_and_sha256_verified', False),
+                       ('manifest_sha256', 'c' * 64)]:
+        bad = copy.deepcopy(recovery); bad['archives'][0][key] = value
+        with pytest.raises(ValueError, match='Owner archive'):
+            module.reconcile(ledger, records, snapshot, bad)
+    bad = copy.deepcopy(records); bad[0]['scores']['main'] += .01
+    with pytest.raises(ValueError, match='differs'):
+        module.reconcile(ledger, bad, snapshot, recovery)
+    assert ledger['unique_full_panel_models'] == 23 and ledger['full_panel_executions'] == 28
+
+
+def test_remote_archive_metadata_reads_assets_after_the_first_hundred(monkeypatch):
+    spec = importlib.util.spec_from_file_location('catalogue_remote', ROOT / 'tools/full_panel_catalogue/verify_remote.py')
+    remote = importlib.util.module_from_spec(spec); spec.loader.exec_module(remote)
+    payload = b'{"entries": []}'
+    archive = {'repository': 'owner/private', 'release_tag': 'tag', 'archive_name': 'target.tar.gz',
+               'archive_sha256': 'a' * 64, 'manifest_asset': 'target-manifest.json',
+               'manifest_sha256': hashlib.sha256(payload).hexdigest(),
+               'prior_files_disk_restored_and_sha256_verified': 1}
+    calls = []
+    def fetch(url, token, **kwargs):
+        calls.append(url)
+        if '/assets?per_page=100&page=1' in url:
+            return json.dumps([{'name': str(i), 'id': i} for i in range(100)]).encode()
+        if '/assets?per_page=100&page=2' in url:
+            return json.dumps([{'name': 'target.tar.gz', 'id': 101, 'digest': 'sha256:'+'a'*64},
+                               {'name': 'target-manifest.json', 'id': 102, 'url': 'https://manifest'}]).encode()
+        if url.startswith('https://manifest'):
+            return payload
+        return json.dumps([{'id': 1, 'tag_name': 'tag', 'html_url': 'https://release'}]).encode()
+    monkeypatch.setattr(remote, 'fetch', fetch)
+    ledger = {'models': {'method': {'executions': [{'archives': [archive]}]}}}
+    result = remote.verify(ledger, 'synthetic-token')
+    assert result['archives'][0]['archive_asset_id'] == 101
+    assert any('assets?per_page=100&page=2' in url for url in calls)
+
+
+def test_admitted_v9_archive_references_keep_remote_verifier_contract():
+    root = ROOT / 'docs/results/daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022'
+    path = root / 'execution_records.json'
+    if not path.exists():
+        pytest.skip('Real owner archive admission has not been applied')
+    for record in json.loads(path.read_text()):
+        assert len(record['archives']) == 132
+        for archive in record['archives']:
+            assert all(k in archive for k in ('repository', 'release_tag', 'archive_name',
+                'archive_sha256', 'manifest_asset', 'manifest_sha256',
+                'prior_files_disk_restored_and_sha256_verified'))

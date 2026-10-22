@@ -8,6 +8,12 @@ import math
 from pathlib import Path
 
 
+SINGLE_SCORE_PROTOCOLS = {
+    "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
+    "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+}
+
+
 def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"),
                                     allow_nan=False).encode()).hexdigest()
@@ -31,17 +37,32 @@ def validate(record):
         raise ValueError("Invalid task counts")
     if record["comparison"]["matched_successful_tasks"] != coverage["successful_tasks"]:
         raise ValueError("Comparison must cover the identical successful task set")
-    single = record.get("score_protocol_id") == "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch"
+    single = record.get("score_protocol_id") in SINGLE_SCORE_PROTOCOLS
+    expanded_v9 = record.get("score_protocol_id") == "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+    if expanded_v9:
+        counts = coverage["requests_by_final_paths"]
+        if (any(type(n) is not int or n < 0 for n in counts.values())
+                or sum(counts.values()) != coverage["expected_tasks"]
+                or coverage["same_count_within_every_pair"] is not True):
+            raise ValueError("V9 requires complete matched mixed-path counts")
+        if record["comparison"]["reference_model_id"] != "model_testing_asset_joint_blocks_replacement_v6":
+            raise ValueError("V9 retains its fixed WR reference")
+        if not record["reproducibility"].get("posthoc_score_selection"):
+            raise ValueError("V9 requires retrospective selection disclosure")
     profiles = ("main",) if single else ("primary", "sensitivity")
     if single and (set(record["scores"]) != {"main"} or set(record["comparison"]["public_scores"]) != {"main"}):
-        raise ValueError("V4 records require exactly one main score and matched Public score")
+        raise ValueError("Single-score records require exactly one main score and matched Public score")
     for profile in profiles:
         score = record["scores"][profile]
         reference = record["comparison"]["public_scores"][profile]
         if (not math.isfinite(score) or score < 0 or not math.isfinite(reference) or reference <= 0
                 or not single and score == 0):
             raise ValueError("Declared score profiles and matched Public scores are required")
-    if record["runtime"]["forecast_and_score_worker_seconds"] < 0:
+    worker_seconds = record["runtime"]["forecast_and_score_worker_seconds"]
+    if worker_seconds is None:
+        if not expanded_v9 or not record["runtime"].get("scope"):
+            raise ValueError("Unmeasured runtime requires an explicit V9 scope")
+    elif not math.isfinite(worker_seconds) or worker_seconds < 0:
         raise ValueError("Invalid measured runtime")
     if not record["archives"] or not record["reproducibility"]:
         raise ValueError("Repository-linked complete evidence and recovery details are required")
@@ -80,7 +101,7 @@ def retirement_allowed(record, receipt):
 
 
 def render(ledger):
-    if ledger.get("current_score_protocol_id") == "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch":
+    if ledger.get("current_score_protocol_id") in SINGLE_SCORE_PROTOCOLS:
         return render_single_score(ledger)
     lines = ["# Expanded daily panel: full-panel model catalogue", "",
              f"**{ledger['unique_full_panel_models']} unique model versions; "
@@ -97,7 +118,7 @@ def render(ledger):
         lines.append(f"| {e['display_name']} | {'yes' if active else 'no'} | {c['successful_tasks']} / {c['expected_tasks']} | "
                      f"{c['native_failed_tasks']} | {e['scores']['primary']:.12f} | "
                      f"{e['scores']['sensitivity']:.12f} | "
-                     f"{e['runtime']['forecast_and_score_worker_seconds']:.3f} |")
+                     f"{format(e['runtime']['forecast_and_score_worker_seconds'], '.3f') if e['runtime']['forecast_and_score_worker_seconds'] is not None else 'not reconstructed'} |")
     lines += ["", "Worker seconds are summed per-forecast fitting/simulation/scoring measurements, "
               "not elapsed campaign time, website latency, or a controlled speed comparison.", "",
               "See [catalogue.json](catalogue.json) for exact values, model definitions, source versions, "
@@ -124,6 +145,7 @@ def render_single_score(ledger):
             records.append(matching[-1])
     lines = ["# Versioned full-panel model catalogue", "",
         f"**{ledger['unique_full_panel_models']} unique model versions across preserved benchmarks; "
+        f"{ledger['full_panel_executions']} completed executions; "
         f"{len(records)} with completed attempts on the current benchmark.**", "",
         "The current benchmark has one main score. Historical normalizations and all older "
         "executions remain in catalogue.json; scores from different benchmarks are not compared.", ""]
@@ -138,7 +160,7 @@ def render_single_score(ledger):
             c = e['coverage']
             lines.append(f"| {e['display_name']} | {c['successful_tasks']} / {c['expected_tasks']} | "
                          f"{c['native_failed_tasks']} | {e['scores']['main']:.12f} | "
-                         f"{e['runtime']['forecast_and_score_worker_seconds']:.3f} |")
+                         f"{format(e['runtime']['forecast_and_score_worker_seconds'], '.3f') if e['runtime']['forecast_and_score_worker_seconds'] is not None else 'not reconstructed'} |")
         lines.append("")
     lines += ["Worker seconds are recorded compute, not a controlled speed comparison or production latency.", "",
         "[catalogue.json](catalogue.json) retains every historical model definition, version, benchmark, "

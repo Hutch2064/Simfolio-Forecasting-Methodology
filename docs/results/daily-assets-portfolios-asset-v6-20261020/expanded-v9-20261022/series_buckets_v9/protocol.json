@@ -1,0 +1,63 @@
+{
+  "protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+  "status": "user_authorized_definition_frozen_pending_reporter_qualification",
+  "authorized_utc": "2026-10-22T09:08:35.562009+00:00",
+  "user_objective": "Choose a favorable defensible scoring structure without calendar-quarter dependence; identify data or methodology bugs; exclude only confirmed objective data defects consistently for all models.",
+  "selection_disclosure": "Chosen retrospectively after examining same-cohort scaling/hierarchy comparisons. Existing and future panel results are adaptive descriptive research, not untouched independent validation.",
+  "target": "Daily marginal forecast distributions of cumulative portfolio log return, evaluated by raw empirical CRPS in common log-return units.",
+  "request_score": "arithmetic_mean(CRPS_daily_losses), with no training-SD divisor, no sqrt-lead divisor, no calendar-log lead weights, no clipping",
+  "calendar_buckets": {
+    "short": "requested_end_date<=origin+3calendar years",
+    "medium": "origin+3calendar years<requested_end_date<origin+20calendar years",
+    "long": "requested_end_date>=origin+20calendar years"
+  },
+  "calendar_mapping": "Use actual frozen native return dates. February29 anniversary clamps toFebruary28 only in a nonleapyear. No H/252.",
+  "aggregation": "Freeze complete320017-request schedule before reading losses. Within eachbucket equal assets/portfolios branch weights(50/50 whenbothplanned),equalclasses withinbranch,equalfamilies withinclass,equalseries withinfamily,equalplannedrequests withinseriesbucket. No origin-quarter grouping. Mean three completebucketlosses with1/3each.",
+  "headline": "100*(1-Q_algorithm/Q_fixed_WR) once after equal-bucket mean loss; NOT mean of three percentage improvements.",
+  "bucket_weight_interpretation": "Equal coefficients on bucket LOSSES; this does not force equal contributions to percentage skill.",
+  "partial_reporting": "Fixed per-request coefficients retained as new data arrives. Report observed weighted numerator, observed weight support and conditional partial mean separately perbucket. No zeros for unobserved forecasts. Final Q and final headline withheld until fullplanned coverage. Matched partial comparison explicitly preliminary and not a forecast of final result.",
+  "portfolio_maximum_full_weight": 0.5,
+  "quarter_weights": false,
+  "planned_requests_per_model": 320017,
+  "planned_bucket_requests": {
+    "short": 278893,
+    "medium": 37695,
+    "long": 3429
+  },
+  "fixed_reference": "model_testing_asset_joint_blocks_replacement_v6",
+  "baseline_choice_unchanged": true,
+  "models": [
+    "endpoint",
+    "model_testing_asset_joint_blocks_replacement_v6",
+    "model_testing_asset_joint_blocks_history_partition_v6"
+  ],
+  "paths": "All completed1000-path forecasts retained; all new forecasts240; identical final path count within each request/model comparison. Mixedcohorts explicitlyuserauthorized.",
+  "internal_learning_unchanged": "Request-local past-only historical endpoint CRPS/sqrt(internal horizon),2internalpaths,167 flattened recipes,unchanged weights/mean/vol/sampling/forecastsource.",
+  "scientific_plan_fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
+  "scientific_plan_sha256": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e",
+  "mapping_sha256": "91220b130fa20068c85dd2d7afede68451927555c250238a81085a026b681c80",
+  "panel_sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+  "data_audit_summary": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/data_quality_audit_v1/summary.json",
+  "confirmed_data_exclusions": 0,
+  "historical_protocols_and_scores_preserved": true,
+  "full_sweep_restart": false,
+  "financial_forecasts_rerun_for_score_change": 0,
+  "diagnostic_score_weight": 0,
+  "academic_basis": "Raw CRPS is a proper marginal scoring rule. Positive fixed schedule weights preserve its proper-loss objective. Baseline-relative skill is a display transformation, not itself asserted to be a proper scoring rule. Raw units emphasize absolute-return errors; normalized alternatives target different utilities and remain defensible. This profile is not claimed uniquely academically prescribed.",
+  "sources": [
+    "https://sites.stat.washington.edu/people/raftery/Research/PDF/Gneiting2007jasa.pdf",
+    "https://otexts.com/fpp3/accuracy.html"
+  ],
+  "same_frozen_cohort_scaling_comparison": {
+    "requests_per_model": 147863,
+    "raw_CRPS_loss_skill_percent": 14.400961046016992,
+    "SD_only_loss_skill_percent": 11.479586899438788,
+    "SD_sqrt_lead_loss_skill_percent": 5.9131989513697025,
+    "main_score_support_short_medium_long": [
+      0.1058366945851162,
+      0.10590277777777912,
+      0.12697916666666836
+    ],
+    "interpretation": "Partial completed-support comparisons; raw is favorable among these predefined variants, not a forecasting-method change."
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "blocking_numerical_findings": [],
+  "broad_harness_binding_note": "Original verification receipt plan_sha256 was independently checked against current BROAD plan and matches. Harness should bind/assert it, current source/input closure and pre/post immutable hashes for durable final qualification. Partial preflight scores are diagnostic, not canonical full355 aggregate.",
+  "broad_harness_review": "Candidate preparation uses training prefix and seed replication only. Outer actual enters scores and replay comparisons after fit. Reference uses saved historical weights, original prefix fits and original final seed; full raw loss SHA must match saved archive. Sharing old full-prefix fits across seeds does not use outcomes.",
+  "checks": {
+    "all13_allocation_counts_equal_originating_harness": true,
+    "all13_full_path_hashes_equal_originating_harness": true,
+    "all13_past_trace_invalid_mask_equal_originating_harness": true,
+    "all13_saved_coefficients_and_new_weights_pass_fresh_full_simplex_gap": true,
+    "all13_saved_raw_loss_bytes_exact": true,
+    "fast_solutions": 8,
+    "max_L1_weight_drift": 1.1275569142427925e-06
+  },
+  "created_utc": "2026-10-22T04:13:50.828540+00:00",
+  "current_source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_aligned_production/coefficients.py": "845478c6365b12c258acc1d3e2cfd8717cccbd9b2efdc747e8f5927df6195f92",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_active_qp_unique_v3/energy.py": "6cf903d5f641a77b311286962d54ade3aadb2401ea06efaac3787b64a9adafdf",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_acceleration_v2/candidate.py": "2fb29a5fe88ee2be4c1e411e3d2a5a93d0460eca0ead2ece40bee4c0ae908210",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_acceleration_v2/fast_fits.py": "28bd445c7c967385e437b477d1076a2863f68ad29216e952471c2e6d60e8e247",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_fit_acceleration_v2/fits_cache.py": "13b3e4336f8fcceec26ccc8a545cda35c15b2b807d331b894f14db6302262fcf",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_group_reuse_v1/candidate.py": "6f6d51de3068005c7dd895b551b383209cc71e406d1525fb50980bd1baf205ea",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/candidates/asset_selector_endpoint_group_reuse_v1/fits_cache.py": "d0caeb8d858ccea813e6f185e7a3a1b988427fd9a4d310aed9ecefd89e75b537",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/qualify_endpoint_speed_broad_v1.py": "1f5ec47f19896aaed40ff191d645565eb783cb669fce8ee73f08b3801180e55d"
+  },
+  "limitations": [
+    "Full path cubes not retained; their equality is originating harness assertion plus matching hashes.",
+    "Helper source hashes above are current independent source bindings; contemporaneous run attestation is separate.",
+    "Bounded13 includes H1/5/10/21/1032/19835, not all-panel equivalence. Broader355x3 results remain pending.",
+    "Removing unused mixture calibration can change formerly unnecessary failure exclusions on other inputs; no universal old invalid-mask parity claim.",
+    "No fits, forecasts, process mutation or frozen source changes performed by reviewer."
+  ],
+  "qualification_receipt_sha256": "efb80c57929ff9e93648d83240d24bcf0a666cbd84a691d934ca1a7e3a7923f9",
+  "review": "HARCH windows/strict SV loop preserve financial arithmetic; fixed parent-leg calibration removal preserves consumed states conditional on original success and explicitly versions removed unused failure guard. Active-face solver retains original objective, tighter full-menu gap and reference fallback; final support Helmert curvature/residual and strict outside-margin guard is conservative numerical qualification, not directed-rounding proof.",
+  "saved_pairs": [
+    {
+      "H": 1,
+      "L1_weight_drift": 0.0,
+      "acceptance_tolerance": 2.4884939193725586e-06,
+      "case": 0,
+      "new_minus_old_scaled_objective": 0.0,
+      "npz_sha256": "cf93e0658a84fd608fe8ccbc5ba9ac2d0775276dbbd5a4374555cafc87140615",
+      "reference_fallback": true,
+      "scaled_gap_recomputed": 4.443152706867792e-09
+    },
+    {
+      "H": 5,
+      "L1_weight_drift": 0.0,
+      "acceptance_tolerance": 2.4884939193725586e-06,
+      "case": 0,
+      "new_minus_old_scaled_objective": 0.0,
+      "npz_sha256": "7a43185b85fc11f82576791f1c13804dd63307e447343fded02be285b96a5e62",
+      "reference_fallback": true,
+      "scaled_gap_recomputed": 1.7966915177858311e-09
+    },
+    {
+      "H": 10,
+      "L1_weight_drift": 2.1569219987185096e-08,
+      "acceptance_tolerance": 2.3732127374387346e-12,
+      "case": 0,
+      "new_minus_old_scaled_objective": -5.551115123125783e-17,
+      "npz_sha256": "79ff947201344b511e707a81fb743d92aa787d976e4dfe8327f243a8e91315c4",
+      "reference_fallback": false,
+      "scaled_gap_recomputed": 2.7755575615628914e-17
+    },
+    {
+      "H": 21,
+      "L1_weight_drift": 0.0,
+      "acceptance_tolerance": 2.4884939193725586e-06,
+      "case": 0,
+      "new_minus_old_scaled_objective": 0.0,
+      "npz_sha256": "deeb272153cd98d65b01015df2d73ff4e6f0a54ee7c6667825500446e8048e37",
+      "reference_fallback": true,
+      "scaled_gap_recomputed": 3.9094683601526015e-09
+    },
+    {
+      "H": 5,
+      "L1_weight_drift": 8.733921136910165e-07,
+      "acceptance_tolerance": 2.3732127374387346e-12,
+      "case": 35,
+      "new_minus_old_scaled_objective": -1.0269562977782698e-15,
+      "npz_sha256": "53a0bd6fadf4f9e4f9fe8ce13346e0e68e7d02ef9a95b2ec310ad8a7ea0de041",
+      "reference_fallback": false,
+      "scaled_gap_recomputed": 6.245004513516506e-17
+    },
+    {
+      "H": 21,
+      "L1_weight_drift": 8.166414006747871e-08,
+      "acceptance_tolerance": 2.3732127374387346e-12,
+      "case": 350,
+      "new_minus_old_scaled_objective": -2.7755575615628914e-16,
+      "npz_sha256": "dcc67bde62afb7c7c2a8d7245a4cda7133cdd1655192914060f6d8de89ca0351",
+      "reference_fallback": false,
+      "scaled_gap_recomputed": 5.551115123125783e-17
+    },
+    {
+      "H": 1,
+      "L1_weight_drift": 0.0,
+      "acceptance_tolerance": 2.4884939193725586e-06,
+      "case": 36813,
+      "new_minus_old_scaled_objective": 0.0,
+      "npz_sha256": "fafcda39eba8d904839a9d632eff9fbae9981a2d084d9ba0c5377c24bb12fdd4",
+      "reference_fallback": true,
+      "scaled_gap_recomputed": 2.2609226588143905e-08
+    },
+    {
+      "H": 5,
+      "L1_weight_drift": 0.0,
+      "acceptance_tolerance": 2.4884939193725586e-06,
+      "case": 36813,
+      "new_minus_old_scaled_objective": 0.0,
+      "npz_sha256": "050871dce357a5098383a21766815f187b6ed18e6a2836d51b65c6ebd06395e7",
+      "reference_fallback": true,
+      "scaled_gap_recomputed": 5.909468067666346e-09
+    },
+    {
+      "H": 10,
+      "L1_weight_drift": 4.906205302186059e-08,
+      "acceptance_tolerance": 2.3732127374387346e-12,
+      "case": 36813,
+      "new_minus_old_scaled_objective": -5.551115123125783e-16,
+      "npz_sha256": "6f3f87b68db802be85be11ece53ce6e0a13c1504aef32ad8eaf80cdc21ad0c6d",
+      "reference_fallback": false,
+      "scaled_gap_recomputed": 1.1102230246251565e-16
+    },
+    {
+      "H": 21,
+      "L1_weight_drift": 2.66009734809e-08,
+      "acceptance_tolerance": 2.3732127374387346e-12,
+      "case": 36813,
+      "new_minus_old_scaled_objective": -2.7755575615628914e-16,
+      "npz_sha256": "d5574b572ed20c2282ab0fadd18c6262f633b674591b92f1703c94d8a241e7c6",
+      "reference_fallback": false,
+      "scaled_gap_recomputed": 1.1102230246251565e-16
+    },
+    {
+      "H": 21,
+      "L1_weight_drift": 5.22148238726841e-07,
+      "acceptance_tolerance": 2.3732127374387346e-12,
+      "case": 50000,
+      "new_minus_old_scaled_objective": -2.3314683517128287e-15,
+      "npz_sha256": "da548c4e34d57ffdc4da6ddbd66be9e38f099c8dffc7f087a1a024d74b837af8",
+      "reference_fallback": false,
+      "scaled_gap_recomputed": 5.551115123125783e-17
+    },
+    {
+      "H": 1032,
+      "L1_weight_drift": 5.904909301553954e-08,
+      "acceptance_tolerance": 2.3732127374387346e-12,
+      "case": 63991,
+      "new_minus_old_scaled_objective": -7.216449660063518e-16,
+      "npz_sha256": "05fb67dbb6205b3c4a7383324baf09700324357f3d637644a1bf2ede7becfb1b",
+      "reference_fallback": false,
+      "scaled_gap_recomputed": 9.020562075079397e-17
+    },
+    {
+      "H": 19835,
+      "L1_weight_drift": 1.1275569142427925e-06,
+      "acceptance_tolerance": 2.3732127374387346e-12,
+      "case": 13206,
+      "new_minus_old_scaled_objective": -1.3322676295501878e-15,
+      "npz_sha256": "5d2d52f9a412801015b3646ad20f49b0683176e3cf334332a64e759768d8c878",
+      "reference_fallback": false,
+      "scaled_gap_recomputed": 9.71445146547012e-17
+    }
+  ],
+  "source_review_pass": true,
+  "verified": true
+}

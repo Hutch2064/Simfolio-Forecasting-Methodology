@@ -2,11 +2,13 @@
 
 The [expanded daily 722-series full-panel catalogue](docs/results/daily-cross-asset-722/README.md)
 retains every fully attempted model version, including unsuccessful methods and
-native fitting failures, with both scoring profiles, exact coverage, runtime,
+native fitting failures, with versioned scoring profiles, exact coverage, runtime,
 source identities and verified repository-linked recovery archives. Its running
 count is separate from the older canonical80, 52-asset and French551 inventories.
 See the [maintenance contract](tools/full_panel_catalogue/README.md) for registering
 new full-panel methods without counting identical reruns twice.
+
+The [completed expanded joint-asset request panel](docs/results/daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022/README.md) contains320,017 matched requests per model. The request-specific167-recipe endpoint mixture scored0.3732134377688732 versus fixedWR0.5008534683031683 under retrospectively selected V9 raw equal-bucket CRPS, a25.484505671234402% descriptive reduction. Independent full replay and private recovery are verified; the completed V9 catalogue is admitted; earlier panels remain historical.
 
 The user-cancelled French551 official sweep is retired; only its completed public adaptive-block reference is retained. The restarted public-only search has two validated comparator implementations, but neither has scores; representative development is authorized while the full-panel control remains stopped. See the [current public-search status](docs/french551-public-search-metadata.json), [comparator definitions](docs/results/french551-public-search-20261020/COMPARATORS.md), and [scoring-v2 methodology](docs/french551-scoring-v2-methodology.md). No production behavior changed.
 The retired historical [French551 public refinement pilot](docs/results/french551-public-refinement-pilot-20261019/README.md) tested two bounded volatility refinements; both underperformed the exact public baseline, neither enters a catalogue ranking, and the pilot is excluded from the restarted public-only comparison.
