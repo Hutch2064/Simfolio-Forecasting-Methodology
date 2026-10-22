@@ -1,0 +1,40 @@
+{
+  "schema": "expanded-short-horizon-takeover-v7-public-coverage-v1",
+  "status": "running_at_captured_handoff; no_final_score",
+  "score_protocol": "daily_portfolio_panel_crps_v7_train_sd_sqrt_native_lead_equal_days_two_branch",
+  "score_definition": "Per-request equal native-lead mean of CRPS_h divided by training-only portfolio SD (ddof=1) times sqrt(h); existing request-to-series/quarter-to-family-to-class-to-matched-branches hierarchy.",
+  "original_requests_per_model": 64049,
+  "unique_training_prefixes": 63992,
+  "two_descriptor_prefix_alias_groups": 57,
+  "added_native_horizons": [1, 5, 10, 21],
+  "new_short_requests_per_model": 255968,
+  "new_short_forecasts_all_models": 767904,
+  "model_count": 3,
+  "combined_requests_per_model": 320017,
+  "combined_request_rows_all_models": 960051,
+  "inner_paths": 2,
+  "final_joint_paths_per_forecast": 1000,
+  "shared_worker_limit": 12,
+  "schedule_policy": "Catch up only missing original work, then automatically transition to one combined schedule; each unique (series, training prefix, requested horizon) is scored once, with aliases retained for provenance only.",
+  "prior_saved_candidate_forecasts_reused": 24574,
+  "prior_baseline_score_rows_reused": 128098,
+  "handoff_snapshot": {
+    "utc": "2026-10-22T03:19:28.758583Z",
+    "status": "verified_running",
+    "completed_new_short_forecasts": 540,
+    "expected_new_short_forecasts": 767904,
+    "active_workers": 12,
+    "native_failures": 0,
+    "scoring_integrity_errors": 0,
+    "io_errors": 0
+  },
+  "smoke": {
+    "forecast_count": 24,
+    "origins": 2,
+    "models": 3,
+    "horizons": [1, 5, 10, 21],
+    "independent_audit_passed": true
+  },
+  "final_score_available": false,
+  "promotion_or_canonical_score_change": false
+}
