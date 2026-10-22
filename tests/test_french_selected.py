@@ -1,6 +1,10 @@
 """Selection identity and bounded timing arithmetic; never a panel sweep."""
+import base64
+import hashlib
 import json
 from dataclasses import replace
+from importlib.metadata import FileHash, PackagePath
+from types import SimpleNamespace
 
 import pytest
 
@@ -19,6 +23,83 @@ def test_approved_fifteen_and_paused_control(tmp_path):
     assert all(row["enabled"] for row in control["models"].values())
     assert control == json.loads((tmp_path / "control.json").read_text())
     assert all(len(row["implementation_digest"]) == 64 for row in control["models"].values())
+
+
+def wheel_identity_fixture(tmp_path, monkeypatch):
+    package = tmp_path / "installed/simfolio_forecasting_methodology"
+    files = []
+    for name in ["simfolio_forecasting_methodology/french_panel/selected.py",
+                 "simfolio_forecasting_methodology/resources/example.json",
+                 "simfolio_forecasting_methodology-0.3.0.dist-info/METADATA",
+                 "simfolio_forecasting_methodology-0.3.0.dist-info/WHEEL"]:
+        record = PackagePath(name)
+        target = package.parent / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(name)
+        digest = base64.urlsafe_b64encode(hashlib.sha256(target.read_bytes()).digest())
+        record.hash = FileHash("sha256=" + digest.rstrip(b"=").decode())
+        files.append(record)
+    distribution = SimpleNamespace(metadata={"Name": "simfolio-forecasting-methodology"},
+                                   version="0.3.0", files=files,
+                                   locate_file=lambda record: package.parent / str(record))
+    monkeypatch.setattr(selected, "__file__", str(package / "french_panel/selected.py"))
+    monkeypatch.setattr(selected.importlib.metadata, "distribution", lambda _: distribution)
+    return package, distribution
+
+
+def test_installed_identity_has_no_parent_checkout_dependency(tmp_path, monkeypatch):
+    package, _ = wheel_identity_fixture(tmp_path, monkeypatch)
+    assert not (package.parent / "pyproject.toml").exists()
+    identity = selected.source_identity()
+    assert len(identity) == 4
+    assert all(key.startswith("installed-wheel-v1/0.3.0/") for key in identity)
+    (package / "__pycache__").mkdir()
+    (package / "__pycache__/runtime.pyc").write_bytes(b"runtime")
+    assert selected.source_identity() == identity
+
+
+def test_install_target_named_src_is_not_a_checkout(tmp_path, monkeypatch):
+    package, distribution = wheel_identity_fixture(tmp_path, monkeypatch)
+    target = tmp_path / "src"
+    package.parent.rename(target)
+    distribution.locate_file = lambda record: target / str(record)
+    monkeypatch.setattr(selected, "__file__", str(target / package.name / "french_panel/selected.py"))
+    assert all(key.startswith("installed-wheel-v1/") for key in selected.source_identity())
+
+
+@pytest.mark.parametrize("failure", ["modified", "missing_hash", "missing_metadata",
+                                     "missing_record", "wrong_root"])
+def test_installed_identity_rejects_unbound_execution(tmp_path, monkeypatch, failure):
+    package, distribution = wheel_identity_fixture(tmp_path, monkeypatch)
+    if failure == "modified":
+        (package / "resources/example.json").write_text("changed")
+    elif failure == "missing_hash":
+        distribution.files[0].hash = None
+    elif failure == "missing_metadata":
+        distribution.files.pop()
+    elif failure == "missing_record":
+        distribution.files.pop(1)
+    else:
+        monkeypatch.setattr(selected, "__file__", str(tmp_path / "unrelated/french_panel/selected.py"))
+    with pytest.raises(ValueError):
+        selected.source_identity()
+
+
+def test_source_checkout_rejects_wrong_project_metadata(tmp_path, monkeypatch):
+    module = tmp_path / "src/simfolio_forecasting_methodology/french_panel/selected.py"
+    (tmp_path / "pyproject.toml").write_text('[project]\nname="unrelated"\n')
+    monkeypatch.setattr(selected, "__file__", str(module))
+    with pytest.raises(ValueError, match="project identity mismatch"):
+        selected.source_identity()
+
+
+def test_source_checkout_requires_executing_source_bytes(tmp_path, monkeypatch):
+    module = tmp_path / "src/simfolio_forecasting_methodology/french_panel/selected.py"
+    (tmp_path / "pyproject.toml").write_text(
+        '[project]\nname="simfolio-forecasting-methodology"\n')
+    monkeypatch.setattr(selected, "__file__", str(module))
+    with pytest.raises(ValueError, match="executing module"):
+        selected.source_identity()
 
 
 def test_unknown_selection_fails_closed():

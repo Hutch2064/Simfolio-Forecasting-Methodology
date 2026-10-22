@@ -5,9 +5,12 @@ because several retained native implementations install process-local hooks.
 """
 from __future__ import annotations
 
+import base64
 import hashlib
 import importlib
+import importlib.metadata
 import json
+import tomllib
 from pathlib import Path
 
 from ..results.checkpoint import stable_digest
@@ -57,9 +60,22 @@ def build_ewma():
 
 
 def source_identity() -> dict[str, str]:
-    """Bind package, native research tools, and their statistical definitions."""
+    """Bind the executing artifact; source-tree and wheel identities differ.
+
+    Checkout identities include repository tools. Wheel identities include all
+    installed package files plus METADATA/WHEEL, verified against RECORD. They
+    do not claim an unavailable checkout revision or tool-source closure.
+    """
     package = Path(__file__).resolve().parents[1]
     repository = package.parents[1]
+    project_file = repository / "pyproject.toml"
+    if package.parent.name != "src" or not project_file.is_file():
+        return _wheel_source_identity(package)
+    metadata = tomllib.loads(project_file.read_text())
+    if metadata.get("project", {}).get("name") != "simfolio-forecasting-methodology":
+        raise ValueError("source checkout project identity mismatch")
+    if package.name != "simfolio_forecasting_methodology" or not Path(__file__).is_file():
+        raise ValueError("source checkout does not bind executing module")
     paths = set(package.rglob("*.py"))
     paths.update((repository / "tools").rglob("*.py"))
     paths.update((repository / "tools").rglob("*.cpp"))
@@ -71,8 +87,49 @@ def source_identity() -> dict[str, str]:
     for directory in ("control_sources", "refinement_source"):
         paths.update(path for path in (package / "resources/french1926" / directory).rglob("*")
                      if path.is_file() and path.suffix in {".py", ".cpp", ".h", ".json"})
-    return {str(path.relative_to(repository)): hashlib.sha256(path.read_bytes()).hexdigest()
+    return {"source-tree-v1/" + str(path.relative_to(repository)):
+            hashlib.sha256(path.read_bytes()).hexdigest()
             for path in sorted(paths)}
+
+
+def _wheel_source_identity(package: Path) -> dict[str, str]:
+    distribution = importlib.metadata.distribution("simfolio-forecasting-methodology")
+    if distribution.metadata["Name"] != "simfolio-forecasting-methodology":
+        raise ValueError("installed distribution identity mismatch")
+    if not distribution.version or not distribution.files:
+        raise ValueError("installed distribution metadata or RECORD is missing")
+    identity = {}
+    bound_module = False
+    bound_metadata = set()
+    bound_package = set()
+    for record in distribution.files:
+        name = str(record)
+        is_package = name.startswith(package.name + "/")
+        is_metadata = name.endswith((".dist-info/METADATA", ".dist-info/WHEEL"))
+        if not (is_package or is_metadata) or "__pycache__" in record.parts:
+            continue
+        if record.hash is None or record.hash.mode != "sha256":
+            raise ValueError(f"missing SHA256 RECORD binding: {name}")
+        path = Path(distribution.locate_file(record)).resolve()
+        if is_package:
+            if not path.is_relative_to(package):
+                raise ValueError("installed RECORD escapes executing package")
+            bound_package.add(path)
+        digest = hashlib.sha256(path.read_bytes()).digest()
+        encoded = base64.urlsafe_b64encode(digest).rstrip(b"=").decode()
+        if encoded != record.hash.value:
+            raise ValueError(f"installed RECORD hash mismatch: {name}")
+        identity[f"installed-wheel-v1/{distribution.version}/{name}"] = digest.hex()
+        bound_module |= path == Path(__file__).resolve()
+        if is_metadata:
+            bound_metadata.add(record.name)
+    if not bound_module or bound_metadata != {"METADATA", "WHEEL"}:
+        raise ValueError("installed RECORD does not bind executing module and metadata")
+    actual_package = {path.resolve() for path in package.rglob("*")
+                      if path.is_file() and "__pycache__" not in path.parts}
+    if actual_package != bound_package:
+        raise ValueError("installed package has files missing from RECORD")
+    return identity
 
 
 def implementation_digest(model_id: str, sources: dict | None = None) -> str:
