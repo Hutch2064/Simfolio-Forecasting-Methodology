@@ -2,10 +2,10 @@
 import copy
 import json
 import math
-from pathlib import Path
-import tempfile
 import sys
+import tempfile
 import unittest
+from pathlib import Path
 
 import preserve_study as helper
 

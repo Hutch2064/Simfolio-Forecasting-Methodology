@@ -7,7 +7,6 @@ import json
 import math
 from pathlib import Path
 
-
 SINGLE_SCORE_PROTOCOLS = {
     "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
     "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
@@ -104,11 +103,11 @@ def render(ledger):
     if ledger.get("current_score_protocol_id") in SINGLE_SCORE_PROTOCOLS:
         return render_single_score(ledger)
     lines = ["# Expanded daily panel: full-panel model catalogue", "",
-             f"**{ledger['unique_full_panel_models']} unique model versions; "
-             f"{ledger['failure_free_models']} with a failure-free full-panel result.**", "",
-             "This is an evidence inventory, not a shared-coverage leaderboard. "
+             (f"**{ledger['unique_full_panel_models']} unique model versions; "
+             f"{ledger['failure_free_models']} with a failure-free full-panel result.**"), "",
+             ("This is an evidence inventory, not a shared-coverage leaderboard. "
              "Scores are lower-is-better. Public deltas use the exact matched successful tasks. "
-             "The FAST comparison is incomplete/preliminary because of native fitting failures.", "",
+             "The FAST comparison is incomplete/preliminary because of native fitting failures."), "",
              "| Model | Active | Successful / attempted | Native failures | Primary Q | Sensitivity Q | Worker seconds |",
              "|---|---|---:|---:|---:|---:|---:|"]
     for model in ledger["models"].values():
@@ -119,11 +118,11 @@ def render(ledger):
                      f"{c['native_failed_tasks']} | {e['scores']['primary']:.12f} | "
                      f"{e['scores']['sensitivity']:.12f} | "
                      f"{format(e['runtime']['forecast_and_score_worker_seconds'], '.3f') if e['runtime']['forecast_and_score_worker_seconds'] is not None else 'not reconstructed'} |")
-    lines += ["", "Worker seconds are summed per-forecast fitting/simulation/scoring measurements, "
-              "not elapsed campaign time, website latency, or a controlled speed comparison.", "",
-              "See [catalogue.json](catalogue.json) for exact values, model definitions, source versions, "
+    lines += ["", ("Worker seconds are summed per-forecast fitting/simulation/scoring measurements, "
+              "not elapsed campaign time, website latency, or a controlled speed comparison."), "",
+              ("See [catalogue.json](catalogue.json) for exact values, model definitions, source versions, "
               "both profiles, matched Public scores, failures, runtime, execution fingerprints and archive links. "
-              "[SCORING.md](SCORING.md) freezes the scoring contract; [RESTORE.md](RESTORE.md) explains recovery.", ""]
+              "[SCORING.md](SCORING.md) freezes the scoring contract; [RESTORE.md](RESTORE.md) explains recovery."), ""]
     if ledger.get('current_best_model_id'):
         best = next(m for m in ledger['models'].values() if m['identity']['model_id'] == ledger['current_best_model_id'])
         report = ledger.get('current_best_report', 'catalogue.json')
@@ -144,11 +143,11 @@ def render_single_score(ledger):
         if matching:
             records.append(matching[-1])
     lines = ["# Versioned full-panel model catalogue", "",
-        f"**{ledger['unique_full_panel_models']} unique model versions across preserved benchmarks; "
+        (f"**{ledger['unique_full_panel_models']} unique model versions across preserved benchmarks; "
         f"{ledger['full_panel_executions']} completed executions; "
-        f"{len(records)} with completed attempts on the current benchmark.**", "",
-        "The current benchmark has one main score. Historical normalizations and all older "
-        "executions remain in catalogue.json; scores from different benchmarks are not compared.", ""]
+        f"{len(records)} with completed attempts on the current benchmark.**"), "",
+        ("The current benchmark has one main score. Historical normalizations and all older "
+        "executions remain in catalogue.json; scores from different benchmarks are not compared."), ""]
     for failed, title in [(False, "Complete successful coverage"), (True, "Incomplete paired results: native forecast failures")]:
         selected = [e for e in records if bool(e['coverage']['native_failed_tasks']) == failed]
         if not selected:
@@ -163,9 +162,9 @@ def render_single_score(ledger):
                          f"{format(e['runtime']['forecast_and_score_worker_seconds'], '.3f') if e['runtime']['forecast_and_score_worker_seconds'] is not None else 'not reconstructed'} |")
         lines.append("")
     lines += ["Worker seconds are recorded compute, not a controlled speed comparison or production latency.", "",
-        "[catalogue.json](catalogue.json) retains every historical model definition, version, benchmark, "
+        ("[catalogue.json](catalogue.json) retains every historical model definition, version, benchmark, "
         "matched reference, failure, runtime and complete repository-linked recovery evidence. "
-        "Identical models rerun on another panel add executions, not model counts.", ""]
+        "Identical models rerun on another panel add executions, not model counts."), ""]
     return "\n".join(lines)
 
 

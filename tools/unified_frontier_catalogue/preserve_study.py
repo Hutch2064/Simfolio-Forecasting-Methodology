@@ -10,11 +10,10 @@ import copy
 import hashlib
 import json
 import math
-from pathlib import Path
 import re
 import struct
 import sys
-
+from pathlib import Path
 
 SCHEMA = "unified-frontier-studies-v1"
 DATA_SHA256 = "3825258f753ba0a4ec653c56403ef7e163e80ea89eb1c06856b6415160672a76"

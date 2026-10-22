@@ -8,10 +8,10 @@ import argparse
 import ast
 import hashlib
 import json
-from pathlib import Path
 import struct
 import sys
 import zipfile
+from pathlib import Path
 
 U = Path('tmp/catalogue52-20261018/short-horizon-mechanisms/refinement52/unified_frontier')
 OUT = U/'rough_only_conventional_bridge_publication_normalization'
@@ -94,8 +94,8 @@ def build(root):
     assert len(counts) == 701280*8
     values = [item[0] for item in struct.iter_unpack('<q', counts)]
     assert min(values) > 0 and sum(values) == 6006480
-    denominators = dict(origins=4080, portfolios=80, simulations=240, cells_per_model=701280,
-                        origin_horizon_contributions=6006480, horizons=8766, counts_sha256=sha(counts))
+    denominators = {'origins': 4080, 'portfolios': 80, 'simulations': 240, 'cells_per_model': 701280,
+                        'origin_horizon_contributions': 6006480, 'horizons': 8766, 'counts_sha256': sha(counts)}
     assert all(analysis['80'][k] == v for k, v in denominators.items() if k not in ('horizons', 'counts_sha256'))
     controls = {}
     for control in manifest['control_sources']['80']:
@@ -113,50 +113,50 @@ def build(root):
                   'failures': {'80': {}}, 'new52_forecasts': 0,
                   'projection_of_original_completion': ref(RUN/'completion.json')}
     outputs = {'80/normalized-completion.json': encode(completion)}
-    evidence = {role: ref(path) for role, path in dict(manifest=RUN/'manifest.json',
-        reference_manifest=REFERENCE, results=RUN/'80/results.json', analysis=RUN/'analysis.json',
-        cells=RUN/'80/cells.npz').items()}
+    evidence = {role: ref(path) for role, path in {'manifest': RUN/'manifest.json',
+        'reference_manifest': REFERENCE, 'results': RUN/'80/results.json', 'analysis': RUN/'analysis.json',
+        'cells': RUN/'80/cells.npz'}.items()}
     evidence['completion'] = {'path': str(OUT/'80/normalized-completion.json'), 'sha256': sha(outputs['80/normalized-completion.json'])}
     epsilon = sys.float_info.epsilon
     gamma = 701280*epsilon/(1-701280*epsilon)
-    aggregation = dict(schema='unified-frontier-scalar-aggregation-v1', method='float64_gamma_n_mean_absolute_cells',
-        dtype='float64', canonical_order='C', n=701280, epsilon=epsilon, gamma_n=gamma,
-        canonical_scores=scores, raw_results_scores=results['scores'], per_label={label: dict(
-            mean_absolute_cells=score, absolute_difference=0., error_bound=gamma*score,
-            ulp_difference=0, within_bound=True) for label, score in scores.items()})
-    audit = dict(schema='unified-frontier-publication-audit-v1', panel='80', independent_from_runner=True,
-        data_manifest_sha256=DATA_SHA, complete_origins=4080, failures=0,
-        all_task_identities_match_reference=True, all_cells_and_counts_rebuilt_byte_exactly=True,
-        all_saved_controls_byte_equal=True, all_bound_sources_and_controls_match=True,
-        task_identities_sha256=digest(identities), counts_sha256=sha(counts),
-        denominator_sha256=digest(denominators), canonical_denominators=denominators,
-        artifact_sha256={role: row['sha256'] for role, row in evidence.items()},
-        auditor_source=auditor, auditor_dependencies=dependencies,
-        required_publication_source_refs=required, score_aggregation=aggregation,
-        original_independent_audit=ref(REVIEW), original_runner_audit=ref(RUN/'audit.json'),
-        original_private_archive_manifest=ref(ARCHIVE), prior_archive_manifests=prior_manifests, fresh52_forecasts=0,
-        scope='Deterministic schema projection of pinned completed independent saved80 proof434c; no new cell reconstruction, model or numerical execution.')
+    aggregation = {'schema': 'unified-frontier-scalar-aggregation-v1', 'method': 'float64_gamma_n_mean_absolute_cells',
+        'dtype': 'float64', 'canonical_order': 'C', 'n': 701280, 'epsilon': epsilon, 'gamma_n': gamma,
+        'canonical_scores': scores, 'raw_results_scores': results['scores'], 'per_label': {label: {
+            'mean_absolute_cells': score, 'absolute_difference': 0., 'error_bound': gamma*score,
+            'ulp_difference': 0, 'within_bound': True} for label, score in scores.items()}}
+    audit = {'schema': 'unified-frontier-publication-audit-v1', 'panel': '80', 'independent_from_runner': True,
+        'data_manifest_sha256': DATA_SHA, 'complete_origins': 4080, 'failures': 0,
+        'all_task_identities_match_reference': True, 'all_cells_and_counts_rebuilt_byte_exactly': True,
+        'all_saved_controls_byte_equal': True, 'all_bound_sources_and_controls_match': True,
+        'task_identities_sha256': digest(identities), 'counts_sha256': sha(counts),
+        'denominator_sha256': digest(denominators), 'canonical_denominators': denominators,
+        'artifact_sha256': {role: row['sha256'] for role, row in evidence.items()},
+        'auditor_source': auditor, 'auditor_dependencies': dependencies,
+        'required_publication_source_refs': required, 'score_aggregation': aggregation,
+        'original_independent_audit': ref(REVIEW), 'original_runner_audit': ref(RUN/'audit.json'),
+        'original_private_archive_manifest': ref(ARCHIVE), 'prior_archive_manifests': prior_manifests, 'fresh52_forecasts': 0,
+        'scope': 'Deterministic schema projection of pinned completed independent saved80 proof434c; no new cell reconstruction, model or numerical execution.'}
     outputs['80/publication-audit.json'] = encode(audit)
     evidence['audit'] = {'path': str(OUT/'80/publication-audit.json'), 'sha256': sha(outputs['80/publication-audit.json'])}
-    final = dict(schema='unified-frontier-publication-audit-completion-v1', no_fits_or_forecasts=True,
-        panel_audits={'80': evidence['audit']}, normalized_completion=evidence['completion'],
-        normalized_analysis=evidence['analysis'], original_independent_audit=ref(REVIEW),
-        source_hashes={row['path']: row['sha256'] for row in required},
-        required_publication_source_refs=required, auditor_source=auditor,
-        raw_checkpoints_preserved=True, original_private_archive_manifest=ref(ARCHIVE),
-        schema_projection_only=True, fresh_forecasts={'52': 0, '80': 4080},
-        scope='Existing verified private raw evidence plus Git-versioned public normalization source/metadata; no extra private asset required.')
+    final = {'schema': 'unified-frontier-publication-audit-completion-v1', 'no_fits_or_forecasts': True,
+        'panel_audits': {'80': evidence['audit']}, 'normalized_completion': evidence['completion'],
+        'normalized_analysis': evidence['analysis'], 'original_independent_audit': ref(REVIEW),
+        'source_hashes': {row['path']: row['sha256'] for row in required},
+        'required_publication_source_refs': required, 'auditor_source': auditor,
+        'raw_checkpoints_preserved': True, 'original_private_archive_manifest': ref(ARCHIVE),
+        'schema_projection_only': True, 'fresh_forecasts': {'52': 0, '80': 4080},
+        'scope': 'Existing verified private raw evidence plus Git-versioned public normalization source/metadata; no extra private asset required.'}
     outputs['publication-audit-completion.json'] = encode(final)
-    fixture = dict(schema='bridge80-normalized-publication-panel-fixture-v1', evidence_root='.',
-        canonical_data_root='tmp/catalogue52-20261018', sources=required,
-        completion_ref={'path': str(OUT/'publication-audit-completion.json'), 'sha256': sha(outputs['publication-audit-completion.json'])},
-        panels={'52': {'status': 'not_evaluated', 'reason': 'Zero fresh52 forecasts; inherited single-history identity is a separate historical annotation.'},
-                '80': dict(status='complete_scored_and_audited', evidence=evidence, controls=controls,
-                    runner_sources=[ref(U/'rough_only_conventional_bridge/full_run.py')], scores=scores,
-                    raw_results_scores=results['scores'], score_aggregation=aggregation)},
-        historical_annotation={'panel': '52', 'new_forecasts': 0, 'inherited_CRPS': .6022154610545161,
+    fixture = {'schema': 'bridge80-normalized-publication-panel-fixture-v1', 'evidence_root': '.',
+        'canonical_data_root': 'tmp/catalogue52-20261018', 'sources': required,
+        'completion_ref': {'path': str(OUT/'publication-audit-completion.json'), 'sha256': sha(outputs['publication-audit-completion.json'])},
+        'panels': {'52': {'status': 'not_evaluated', 'reason': 'Zero fresh52 forecasts; inherited single-history identity is a separate historical annotation.'},
+                '80': {'status': 'complete_scored_and_audited', 'evidence': evidence, 'controls': controls,
+                    'runner_sources': [ref(U/'rough_only_conventional_bridge/full_run.py')], 'scores': scores,
+                    'raw_results_scores': results['scores'], 'score_aggregation': aggregation}},
+        'historical_annotation': {'panel': '52', 'new_forecasts': 0, 'inherited_CRPS': .6022154610545161,
             'scope': 'Historical one-history identity only; not a newly evaluated52 panel.'},
-        scope='Public-safe aggregate scores, counts, hashes and provenance only; no provider returns or path arrays.')
+        'scope': 'Public-safe aggregate scores, counts, hashes and provenance only; no provider returns or path arrays.'}
     outputs['actual-consumer-panel-fixture.json'] = encode(fixture)
     return outputs
 

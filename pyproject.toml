@@ -44,6 +44,14 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+# Literal, source-hashed scientific resources are evidence, not maintained code.
+# Keep their bytes unchanged; wheel inclusion, source hashes and numerical tests
+# still validate these resources in CI. Maintained loaders/tools remain linted.
+extend-exclude = [
+  "src/simfolio_forecasting_methodology/resources/french1926/control_sources/**",
+  "src/simfolio_forecasting_methodology/resources/french1926/refinement_source/**",
+  "src/simfolio_forecasting_methodology/resources/results/unified_frontier_bridge_publication/closing_evidence/selected_fast_cdcc_literal_bound_speed_actual_audit/**",
+]
 
 [tool.ruff.lint.per-file-ignores]
 # These retained experiment adapters are bound byte-for-byte in published

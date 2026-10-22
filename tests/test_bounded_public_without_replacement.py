@@ -4,18 +4,18 @@ import importlib
 from dataclasses import replace
 from pathlib import Path
 
+import bounded_public
 import numpy as np
 import pytest
-from simfolio_forecasting_methodology.french_panel import control_adapters
-from simfolio_forecasting_methodology.results.checkpoint import stable_digest
-from test_bounded_public import RecordedDraws, inputs
-
-import bounded_public
 from bounded_public_without_replacement import (
     MODEL_ID,
     bounded_cycle_indices,
     build_bounded_cycle_public,
 )
+from test_bounded_public import RecordedDraws, inputs
+
+from simfolio_forecasting_methodology.french_panel import control_adapters
+from simfolio_forecasting_methodology.results.checkpoint import stable_digest
 
 
 def independent_cycle_indices(n, horizon, paths, rng):

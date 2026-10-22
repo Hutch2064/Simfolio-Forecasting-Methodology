@@ -224,11 +224,11 @@ def validate_refinement52_index(payload):
             or any(path not in hashes for path in runtime.get("source_paths", []))):
         raise ValueError("runtime evidence must remain source-bound and local")
     rms_runtime = runtime.get("rms_runtime_matched_benchmark")
-    if rms_runtime is not None:
-        if (rms_runtime.get("status") != "complete_local_matched_compute_trials"
-                or rms_runtime.get("full_panel_or_website_speed_claim") is not False
-                or any(path not in hashes for path in rms_runtime.get("source_paths", []))):
-            raise ValueError("RMS runtime benchmark scope or source bindings are invalid")
+    if rms_runtime is not None and (
+            rms_runtime.get("status") != "complete_local_matched_compute_trials"
+            or rms_runtime.get("full_panel_or_website_speed_claim") is not False
+            or any(path not in hashes for path in rms_runtime.get("source_paths", []))):
+        raise ValueError("RMS runtime benchmark scope or source bindings are invalid")
     winner_gate = runtime.get("best_scoring_candidate_runtime_gate", {})
     winner_benchmark = runtime.get("selected_winner_matched_benchmark", {})
     if (winner_gate.get("research_id") != "R52-RMS-CONTINUOUS-VARIANCE-NODE-CORRECTION"

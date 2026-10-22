@@ -69,7 +69,7 @@ def verify(ledger, token):
             'manifest_sha256': archive['manifest_sha256'], 'manifest_fresh_download_sha256_verified': True,
             'prior_full_disk_recovery_files': archive['prior_files_disk_restored_and_sha256_verified'],
             'new_full_archive_download_or_recovery_performed': False})
-    return {'verified_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    return {'verified_utc': datetime.datetime.now(datetime.UTC).isoformat(),
             'scope': 'Remote archive existence/server digest plus fresh manifest download. Historical full-recovery receipts remain separate.',
             'local_outputs_removed': 0, 'archives': checked}
 

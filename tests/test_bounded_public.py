@@ -8,14 +8,14 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import pytest
+from bounded_public import MODEL_ID, bounded_block_indices, build_bounded_public
+
 from simfolio_forecasting_methodology.french_panel import control_adapters
 from simfolio_forecasting_methodology.runner import (
     ForecastContext,
     PortfolioPolicy,
     TrainingData,
 )
-
-from bounded_public import MODEL_ID, bounded_block_indices, build_bounded_public
 
 
 def inputs(values=None, horizon=17, paths=240, seed=714):

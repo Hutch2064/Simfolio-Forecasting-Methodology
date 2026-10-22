@@ -6,7 +6,6 @@ from pathlib import Path
 import pytest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-import french_score_sidecar as frozen
 from french_score_sidecar_r2 import (
     REGISTRY_SCHEMA,
     ReportingSidecarR2,
@@ -14,8 +13,6 @@ from french_score_sidecar_r2 import (
     load_model_catalogue,
     run_reporting,
 )
-from simfolio_forecasting_methodology.french_panel import selected
-from simfolio_forecasting_methodology.french_panel.sweep import exclusive_lock
 from test_french_score_sidecar import (
     PUBLIC_REFERENCE,
     ZeroOracle,
@@ -27,6 +24,10 @@ from test_french_score_sidecar import panel as panel  # noqa: PLC0414 -- pytest 
 from test_french_score_sidecar import (
     synthetic_native_identity as synthetic_native_identity,  # noqa: PLC0414 -- pytest fixture re-export
 )
+
+import french_score_sidecar as frozen
+from simfolio_forecasting_methodology.french_panel import selected
+from simfolio_forecasting_methodology.french_panel.sweep import exclusive_lock
 
 EXTERNAL='external-synthetic-comparator'
 DISABLED='asset_level_fastmap_kalman_dynamic_gaussian_factor_rebalanced'

@@ -2,10 +2,12 @@
 import copy
 import importlib.util
 import json
-from pathlib import Path
 import unittest
+from pathlib import Path
 from unittest.mock import patch
+
 import normalize as N
+
 ROOT = Path(__file__).resolve().parents[6]
 HERE = ROOT/N.OUT
 s = importlib.util.spec_from_file_location('strict_IID_publication_consumer', ROOT/N.U/'catalogue_support/preserve_study.py')
@@ -46,9 +48,8 @@ class SavedProjection(unittest.TestCase):
         record = list(bad['rough_IID'])
         record[2] = '0'*64
         bad['rough_IID'] = tuple(record)
-        with patch.object(N, 'STUDIES', bad):
-            with self.assertRaises(AssertionError):
-                N.build(ROOT)
+        with patch.object(N, 'STUDIES', bad), self.assertRaises(AssertionError):
+            N.build(ROOT)
 
 
 if __name__ == '__main__':

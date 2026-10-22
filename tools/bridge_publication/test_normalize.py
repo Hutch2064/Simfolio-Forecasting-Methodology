@@ -2,9 +2,10 @@
 import copy
 import importlib.util
 import json
-from pathlib import Path
 import unittest
+from pathlib import Path
 from unittest.mock import patch
+
 import normalize as N
 
 ROOT = Path(__file__).resolve().parents[6]
@@ -42,9 +43,8 @@ class SavedProjection(unittest.TestCase):
     def test_wrong_prior_independent_proof_pin_rejected(self):
         bad = dict(N.PINS)
         bad[str(N.REVIEW)] = '0'*64
-        with patch.object(N, 'PINS', bad):
-            with self.assertRaises(AssertionError):
-                N.build(ROOT)
+        with patch.object(N, 'PINS', bad), self.assertRaises(AssertionError):
+            N.build(ROOT)
 
 
 if __name__ == '__main__':

@@ -1,9 +1,8 @@
 """Synthetic declared-weight tests only; no production formula is selected."""
-import os
-import sys
-from dataclasses import asdict
 import hashlib
 import json
+import os
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -13,13 +12,21 @@ OWN_ROOT = Path(__file__).resolve().parents[1]
 SOURCE = Path(os.environ.get('FRENCH551_TEST_HELPERS_ROOT', OWN_ROOT))
 sys.path.insert(0, str(OWN_ROOT))
 sys.path.insert(0, str(SOURCE / 'tests'))
-from test_french_panel_runner import ZeroOracle, panel  # noqa: E402,F401
-from simfolio_forecasting_methodology.french_panel import selected  # noqa: E402
-from simfolio_forecasting_methodology.french_panel import runner  # noqa: E402
-from simfolio_forecasting_methodology.french_panel.sweep import model_directory  # noqa: E402
-from french_score_sidecar import (  # noqa: E402
-    PUBLIC_REFERENCE, SCHEMA, ScoringPlan, ScoreSidecar, training_standard_deviations,
+from test_french_panel_runner import ZeroOracle
+from test_french_panel_runner import panel as panel  # noqa: PLC0414 -- pytest fixture re-export
+
+from french_score_sidecar import (
+    PUBLIC_REFERENCE,
+    SCHEMA,
+    ScoreSidecar,
+    ScoringPlan,
+    training_standard_deviations,
 )
+from simfolio_forecasting_methodology.french_panel import (
+    runner,
+    selected,
+)
+from simfolio_forecasting_methodology.french_panel.sweep import model_directory
 
 
 @pytest.fixture(autouse=True)
@@ -202,7 +209,7 @@ def test_invalid_origin_never_enters_complete_series(panel, tmp_path):
 
 
 def test_approved_plan_builder_and_origin_specific_reference_formula(panel, tmp_path):
-    from build_scoring_plans import build, PRIMARY, SENSITIVITY
+    from build_scoring_plans import PRIMARY, SENSITIVITY, build
     source = tmp_path/'source'
     generate(panel, source, PUBLIC_REFERENCE)
     manifests = build(panel[0], tmp_path/'plans')

@@ -1,18 +1,20 @@
 """Synthetic CPU-slot and exact loss/score oracles; no native research fitting."""
 import json
-from pathlib import Path
-from dataclasses import astuple
 import sys
 import time
+from dataclasses import astuple
+from pathlib import Path
 
 import numpy as np
 import pytest
-from test_french_panel_runner import ZeroOracle, panel  # noqa: F401
+from test_french_panel_runner import ZeroOracle
+from test_french_panel_runner import panel as panel  # noqa: PLC0414 -- pytest fixture re-export
+
 from simfolio_forecasting_methodology.french_panel import runner
 
 # Make the standalone script importable both in pytest and spawned children.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-import french_parallel_sweep as parallel  # noqa: E402
+import french_parallel_sweep as parallel
 
 
 def spec(factory="synthetic_parallel:make_model"):
@@ -307,9 +309,9 @@ def test_coordinator_and_orphan_worker_locks_prevent_duplicate_parent(tmp_path):
     lock.touch()
     with lock.open("a+") as worker_lock:
         fcntl.flock(worker_lock, fcntl.LOCK_SH)
-        with pytest.raises(RuntimeError, match="another process"):
-            with parallel.exclusive_lock(lock):
-                pytest.fail("orphan worker lock was ignored")
+        with (pytest.raises(RuntimeError, match="another process"),
+              parallel.exclusive_lock(lock)):
+            pytest.fail("orphan worker lock was ignored")
     with parallel.exclusive_lock(lock):
         pass
 
@@ -319,8 +321,8 @@ def test_matched_complete_series_delta_uses_identical_cells(panel, tmp_path):
     models = {parallel.BASELINE: spec(), "candidate": spec()}
     control(path, models, stop=True)
     instance = parallel.ParallelController(panel[0], tmp_path / "out", path)
-    for mid in models:
-        instance.progress[mid] = parallel.ModelProgress(mid, models[mid], panel[5], panel[4],
+    for mid, model_spec in models.items():
+        instance.progress[mid] = parallel.ModelProgress(mid, model_spec, panel[5], panel[4],
                                                         parallel.model_directory(instance.output_root, mid))
     instance.progress[parallel.BASELINE].series_sums = {0: 4., 1: 40.}
     instance.progress["candidate"].series_sums = {1: 20.}
