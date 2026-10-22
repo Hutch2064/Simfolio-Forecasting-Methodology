@@ -1,0 +1,82 @@
+{
+  "aggregate_scores": {
+    "1000_paths": {
+      "endpoint_improvement_vs_fixed_WR_percent": 8.680531671183711,
+      "endpoint_mean_Q": 0.654660315485713,
+      "fixed_WR_mean_Q": 0.7168901959968287,
+      "seed_level_improvement_sd_percentage_points": 0.4162058770402634
+    },
+    "240_paths": {
+      "endpoint_improvement_vs_fixed_WR_percent": 8.791537824666252,
+      "endpoint_mean_Q": 0.6564397270195584,
+      "fixed_WR_mean_Q": 0.7197136223584798,
+      "seed_level_improvement_sd_percentage_points": 1.3452417989703664
+    },
+    "240_relative_advantage_change_percentage_points": 0.11100615348254017,
+    "endpoint_mean_Q_240_vs_1000_worsening_percent": 0.2718068426868392
+  },
+  "archive": {
+    "dependency_archive_tag": "research-speed-lifecycle-v1-20261022T045103Z",
+    "file_count": 41,
+    "fresh_download_and_disk_restore_verified": true,
+    "inventory_sha256": "ac38daecbe28fe474d23c9ff309d9695f74165fa49a46441a9c8f22f6098898f",
+    "part_manifest_sha256": "8b2cd5d1545b1a26f2958002350d01a196244e6990685f43080599c129799221",
+    "part_sha256": "b0fc0172e2cdb39c051ea66c85d018903253b911b03f6f1a6637575d3fd31e18",
+    "plan_sha256": "387c28b691280a527a8bab9fac6ece86f45365da74606b207ea91c1be3523575",
+    "private_access_required": true,
+    "private_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-final-paths-240-check-v1-20261022T060430Z",
+    "receipt_sha256": "2eb8499deef928b3c1b8f08259d13452731b0e4a67ede17f7b61814047930404",
+    "source_bytes": 8762911,
+    "summary_sha256": "5328134d07b14899c051013f6d01fc06d96f63fceb7590a425d1ba6a9fa06cd8",
+    "tag": "research-final-paths-240-check-v1-20261022T060430Z"
+  },
+  "classification": "Small development-side path-count screen; not a full-panel result or promotion decision.",
+  "independent_verification": {
+    "allocation_entries": 170,
+    "allocations_sum_to_paths_and_even": true,
+    "canonical_aggregate_reproduced_all_six_seed_count_cells": true,
+    "main_sweep_unchanged": true,
+    "native_errors": 0,
+    "passed": true,
+    "raw_loss_vectors_replayed": 1020,
+    "same_internal_config_and_sources": true,
+    "scoring_errors": 0,
+    "verification_sha256": "b83dc0f23b6a69204c90a551eb30665d951db0892c3a10c4b6b317db92c5cfe7",
+    "weights_unchanged_across_final_counts_and_outer_seeds": true
+  },
+  "methodology": {
+    "limitations": [
+      "240-path endpoint mean Q is 0.2718% worse than 1000-path endpoint mean Q; relative advantage over fixed WR is 0.1110 percentage points higher because the fixed reference also shifts.",
+      "Three outer seeds show more relative-advantage variation at 240 paths than at 1000 paths.",
+      "Concurrent CPU timing reused selection cost across horizon counts; timing is diagnostic and excluded from this result.",
+      "Small reused development coverage only; no full-panel equivalence or promotion claim."
+    ],
+    "native_source_and_internal_configuration_unchanged": true,
+    "score_formula": "Independent replay of empirical Q over each saved loss vector; relative advantage = (fixed WR mean Q - endpoint mean Q) / fixed WR mean Q."
+  },
+  "schema": "final-path-count-side-screen-v1",
+  "scope": {
+    "asset_contexts": 11,
+    "contexts": 17,
+    "failures": 0,
+    "final_paths": [
+      240,
+      1000
+    ],
+    "fixed_inner_paths": 2,
+    "forecasts": 1020,
+    "full_panel_changed": false,
+    "models": 2,
+    "outer_replicates": 3,
+    "portfolio_contexts": 6,
+    "requested_h_cases": 85,
+    "requested_horizons": [
+      1,
+      5,
+      21,
+      252,
+      "original native horizon"
+    ],
+    "scoring_errors": 0
+  }
+}
