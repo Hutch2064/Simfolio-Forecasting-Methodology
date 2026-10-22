@@ -1,0 +1,131 @@
+{
+  "schema": "simfolio-endpoint-runtime-optimization-evidence-v1",
+  "evidence_date": "2026-10-22",
+  "status": {
+    "bounded_diagnostics_complete": true,
+    "model_promotion": false,
+    "full_panel_completion_claim": false,
+    "full_panel_score_included": false
+  },
+  "protocol": {
+    "catalogue_changed": false,
+    "historical_schedule_changed": false,
+    "inner_paths": 2,
+    "final_paths": 1000,
+    "joint_asset_paths_and_portfolio_accounting_preserved": true,
+    "fixed_with_replacement_reporting_reference_preserved": true,
+    "requested_horizons": [1, 5, 10, 21]
+  },
+  "broad_matched_comparison": {
+    "matched_groups": 355,
+    "forecasts": 1065,
+    "forecast_or_scoring_errors": 0,
+    "training_traces_exact": true,
+    "invalid_masks_exact": true,
+    "raw_loss_vectors_byte_exact": 1064,
+    "raw_loss_vectors_changed": 1,
+    "candidate_mean_q": 0.9173317358408478,
+    "reference_mean_q": 0.9173318111047232,
+    "candidate_minus_reference_mean_q": -7.526387535428114e-8,
+    "interpretation": "One numerical micro-drift crossed an integer final-path allocation boundary after small optimizer-weight drift; not exact parity and not a promotion result.",
+    "independent_receipt_sha256": "ebdcec306e407c0ad177a040477ef63e053c1e249160ee5690d5d031b9fc2a9d"
+  },
+  "saved_short_replay": {
+    "groups_audited": 1293,
+    "horizons": [1, 5, 10, 21],
+    "models": 3,
+    "forecast_records": 15516,
+    "baseline_loss_vectors_byte_exact": 10344,
+    "endpoint_loss_vectors_byte_exact": 5170,
+    "endpoint_loss_vectors_total": 5172,
+    "endpoint_loss_vectors_changed": 2,
+    "canonical_subset": {
+      "scope": "asset-only; no portfolio weighting",
+      "asset_groups": 1292,
+      "requests_per_model": 5168,
+      "forecast_records_all_models": 15504,
+      "excluded_group": "portfolio group 36813, 2012-Q3",
+      "exclusion_reason": "No matched asset support in this partial replay subset.",
+      "excluded_raw_losses_audited_and_byte_exact": 12,
+      "endpoint_q_change_candidate_minus_reference": 1.2862842450056533e-6
+    },
+    "all_1293_aggregate_is_canonical": false,
+    "full_panel_or_promotion_claim": false,
+    "independent_receipt_sha256": "ac18266e6c79740a0a2c84369aff6bf7859ee6455b5b024598e46332bb8ea94d",
+    "scope_correction_sha256": "75a4a9da97c3a6551d5a34dd04fed65036322499e6165982a107d5858dce9423"
+  },
+  "whole_group_serial_timing": {
+    "groups": 4,
+    "complete_forecasts_per_group": 12,
+    "repetitions": 3,
+    "fresh_training_each_repetition": true,
+    "all_12_raw_losses_exact_per_group": true,
+    "cpu_speed_ratios": [
+      1.4012658559491813,
+      4.722124890373698,
+      1.7892575418798782,
+      4.37402824233151
+    ],
+    "scope": "Selected local research groups; not population-wide, production, website, or browser latency.",
+    "receipt_sha256": "5b2d66391d8557a5152180f479d774164c49297ddf6d1dfc4e74f5b70c066c06"
+  },
+  "lifecycle_cycle": {
+    "passed": true,
+    "worker_transition": "4 live -> 0 paused -> 12 live",
+    "preexisting_checkpoint_files_preserved": 51734,
+    "new_checkpoint_files_observed_during_cycle": 16,
+    "plan_fingerprint": "56a6032cb5646d293f54ece7c8e1bbfb528144a7bfefd34fc39d2536f53871f8",
+    "receipt_sha256": "0d9b0a11eb9e0f8b11dc4a0ecb6ccb92d8ecda066614c943c5446b121691d1af",
+    "scope": "Research lifecycle verification only; not a scientific score or production claim."
+  },
+  "launch_smoke": {
+    "passed": true,
+    "forecasts": 24,
+    "errors": 0,
+    "matched_raw_loss_vectors_byte_exact": 24,
+    "receipt_sha256": "49c88a4e6ee587c75a1da5c3950addb0e76cdfe484b823ad856549c4a51abd0d",
+    "review_sha256": "6df3d9e18d025ab8215882b5d572048ad728d007ae4ce6e7561a6712d2a254e2"
+  },
+  "stop_review": {
+    "decision": "No remaining measured, non-speculative implementation improvement was identified in the investigated bottlenecks.",
+    "scope_limit": "Not proof of globally minimal runtime or unchanged outputs on every unseen request.",
+    "full_scientific_goal_complete": false,
+    "receipt_sha256": "796d1f16c9278cfd2ea05fe6f5582be3dd573d6b1d790c499229fee510413432"
+  },
+  "private_recovery": {
+    "repository": "Hutch2064/simfolio-engine",
+    "private": true,
+    "release_tag": "research-speed-lifecycle-v1-20261022T045103Z",
+    "release_id": 420319881,
+    "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-speed-lifecycle-v1-20261022T045103Z",
+    "file_count": 4182,
+    "source_bytes": 105589967,
+    "part_count": 5,
+    "fresh_download_and_disk_restore_verified": true,
+    "file_hash_and_mode_verification": true,
+    "local_originals_retained": true,
+    "excluded": [
+      "active checkpoint/output trees",
+      "baseline and provider inputs",
+      "production state",
+      "mutable goal state"
+    ],
+    "archive_receipt_sha256": "ab842ba6e760cf5175a66ef30a5702bc6deb54817ea2b5aef99d20e937ac8e69",
+    "inventory_sha256": "397686b3054c085783a78736fecf3d7e538bf282a2a45fc5d4f9523459002330"
+  },
+  "frozen_implementation": {
+    "runner_sha256": "4d6d5aee13c4f661bab9d35fd4bfc5acc56811cfc0d44549e9e82ab3ee10a4af",
+    "control_sha256": "0eecc010efcd90a50931403e6f90c29afb65dd80919c80a9c83e4ce551aa2e76",
+    "pause_archive_helper_sha256": "1e5ab1987f5d478155c9089fadc2df6663cb2f194a7938bda1f4a2356188cff6",
+    "candidate_component_sha256": {
+      "endpoint_fit_reuse_v3_candidate": "7151aa9b8057df18eeebb7205b44635b3b7b69475b9796d8a2d028789671d689",
+      "endpoint_active_qp_unique_v3_energy": "6cf903d5f641a77b311286962d54ade3aadb2401ea06efaac3787b64a9adafdf",
+      "mean_draws_v1": "63c1f27207b11f234acc715e12aca6ec65e81e97420363b73a9f3ed8ffdd89c4",
+      "exact_blocks_v1_model": "c53a723514c4b8ad7b782b06a74fb7502041961519a9ad2c6ca273cd75de7a96",
+      "exact_blocks_v1_blocks": "40c9f0640fa8cf71e07b8a599e8e81d21cfe49bf6f5d4d279fcea72afeddad33"
+    },
+    "pause_archive_unit_test_source_sha256": "914043adf784221a354a8d70ac513fc5dbef2be04b6415f2a13fe099c4d776b8",
+    "control_unit_test_source_sha256": "8dcb7648bb9ae548d0747461b184bab271262b974ac74bffa7ecacc6ef9ffef5",
+    "control_and_archive_unit_tests_passed": 21
+  }
+}
