@@ -2,13 +2,13 @@
 import hashlib
 import importlib
 import math
+import sys
 from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
-from bounded_public import MODEL_ID, bounded_block_indices, build_bounded_public
 
 from simfolio_forecasting_methodology.french_panel import control_adapters
 from simfolio_forecasting_methodology.runner import (
@@ -16,6 +16,10 @@ from simfolio_forecasting_methodology.runner import (
     PortfolioPolicy,
     TrainingData,
 )
+
+# CI runs from outside the checkout against the installed wheel.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from bounded_public import MODEL_ID, bounded_block_indices, build_bounded_public
 
 
 def inputs(values=None, horizon=17, paths=240, seed=714):

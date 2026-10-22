@@ -1,21 +1,25 @@
 """Observation-level cycle exhaustion, exact RNG law, and native wealth parity."""
 import hashlib
 import importlib
+import sys
 from dataclasses import replace
 from pathlib import Path
 
-import bounded_public
 import numpy as np
 import pytest
+
+from simfolio_forecasting_methodology.french_panel import control_adapters
+from simfolio_forecasting_methodology.results.checkpoint import stable_digest
+
+# Bind standalone adapters without relying on another test's import side effects.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import bounded_public
 from bounded_public_without_replacement import (
     MODEL_ID,
     bounded_cycle_indices,
     build_bounded_cycle_public,
 )
 from test_bounded_public import RecordedDraws, inputs
-
-from simfolio_forecasting_methodology.french_panel import control_adapters
-from simfolio_forecasting_methodology.results.checkpoint import stable_digest
 
 
 def independent_cycle_indices(n, horizon, paths, rng):
