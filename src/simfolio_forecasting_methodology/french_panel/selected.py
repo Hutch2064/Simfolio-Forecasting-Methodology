@@ -93,9 +93,14 @@ def source_identity() -> dict[str, str]:
 
 
 def _wheel_source_identity(package: Path) -> dict[str, str]:
-    distribution = importlib.metadata.distribution("simfolio-forecasting-methodology")
-    if distribution.metadata["Name"] != "simfolio-forecasting-methodology":
-        raise ValueError("installed distribution identity mismatch")
+    # Global discovery may select checkout egg-info or another installation
+    # introduced by a caller's sys.path. Bind only metadata beside this package.
+    candidates = [distribution for distribution in importlib.metadata.distributions(
+        path=[str(package.parent)])
+        if distribution.metadata["Name"] == "simfolio-forecasting-methodology"]
+    if len(candidates) != 1:
+        raise ValueError("executing package distribution metadata is missing or ambiguous")
+    distribution = candidates[0]
     if not distribution.version or not distribution.files:
         raise ValueError("installed distribution metadata or RECORD is missing")
     identity = {}

@@ -1,5 +1,6 @@
 """Selection identity and bounded timing arithmetic; never a panel sweep."""
 import base64
+import csv
 import hashlib
 import json
 from dataclasses import replace
@@ -43,7 +44,7 @@ def wheel_identity_fixture(tmp_path, monkeypatch):
                                    version="0.3.0", files=files,
                                    locate_file=lambda record: package.parent / str(record))
     monkeypatch.setattr(selected, "__file__", str(package / "french_panel/selected.py"))
-    monkeypatch.setattr(selected.importlib.metadata, "distribution", lambda _: distribution)
+    monkeypatch.setattr(selected.importlib.metadata, "distributions", lambda **_: [distribution])
     return package, distribution
 
 
@@ -58,6 +59,36 @@ def test_installed_identity_has_no_parent_checkout_dependency(tmp_path, monkeypa
     assert selected.source_identity() == identity
 
 
+def test_installed_identity_ignores_global_checkout_metadata(tmp_path, monkeypatch):
+    package = tmp_path / "installed/simfolio_forecasting_methodology"
+    metadata = package.parent / "simfolio_forecasting_methodology-0.3.0.dist-info"
+    metadata.mkdir(parents=True)
+    module = package / "french_panel/selected.py"
+    module.parent.mkdir(parents=True)
+    module.write_text("# executing wheel source\n")
+    (metadata / "METADATA").write_text(
+        "Metadata-Version: 2.1\nName: simfolio-forecasting-methodology\nVersion: 0.3.0\n")
+    (metadata / "WHEEL").write_text("Wheel-Version: 1.0\nTag: py3-none-any\n")
+    with (metadata / "RECORD").open("w", newline="") as stream:
+        writer = csv.writer(stream)
+        for path in [module, metadata / "METADATA", metadata / "WHEEL"]:
+            digest = base64.urlsafe_b64encode(hashlib.sha256(path.read_bytes()).digest())
+            writer.writerow([str(path.relative_to(package.parent)),
+                             "sha256=" + digest.rstrip(b"=").decode(), path.stat().st_size])
+    shadow = tmp_path / "checkout"
+    egg = shadow / "simfolio_forecasting_methodology.egg-info"
+    egg.mkdir(parents=True)
+    (egg / "PKG-INFO").write_text(
+        "Metadata-Version: 2.1\nName: simfolio-forecasting-methodology\nVersion: 9.9.9\n")
+    monkeypatch.syspath_prepend(str(shadow))
+    assert selected.importlib.metadata.distribution(
+        "simfolio-forecasting-methodology").version == "9.9.9"
+    monkeypatch.setattr(selected, "__file__", str(module))
+    identity = selected.source_identity()
+    assert len(identity) == 3
+    assert all(key.startswith("installed-wheel-v1/0.3.0/") for key in identity)
+
+
 def test_install_target_named_src_is_not_a_checkout(tmp_path, monkeypatch):
     package, distribution = wheel_identity_fixture(tmp_path, monkeypatch)
     target = tmp_path / "src"
@@ -68,7 +99,8 @@ def test_install_target_named_src_is_not_a_checkout(tmp_path, monkeypatch):
 
 
 @pytest.mark.parametrize("failure", ["modified", "missing_hash", "missing_metadata",
-                                     "missing_record", "wrong_root"])
+                                     "missing_record", "wrong_root", "missing_distribution",
+                                     "ambiguous_distribution"])
 def test_installed_identity_rejects_unbound_execution(tmp_path, monkeypatch, failure):
     package, distribution = wheel_identity_fixture(tmp_path, monkeypatch)
     if failure == "modified":
@@ -79,6 +111,11 @@ def test_installed_identity_rejects_unbound_execution(tmp_path, monkeypatch, fai
         distribution.files.pop()
     elif failure == "missing_record":
         distribution.files.pop(1)
+    elif failure == "missing_distribution":
+        monkeypatch.setattr(selected.importlib.metadata, "distributions", lambda **_: [])
+    elif failure == "ambiguous_distribution":
+        monkeypatch.setattr(selected.importlib.metadata, "distributions",
+                            lambda **_: [distribution, distribution])
     else:
         monkeypatch.setattr(selected, "__file__", str(tmp_path / "unrelated/french_panel/selected.py"))
     with pytest.raises(ValueError):

@@ -28,6 +28,9 @@ An installed wheel instead uses `installed-wheel-v1/<version>/` keys. Every pack
 and resource plus distribution METADATA/WHEEL must have a matching SHA256 RECORD entry;
 the RECORD must bind the executing module. Missing metadata, missing hashes or modified
 bytes fail closed. Runtime bytecode and installer-only metadata are not scientific sources.
+Metadata discovery is restricted to the executing package's installation directory, so
+unrelated checkout egg-info or another installation on `sys.path` cannot shadow its RECORD.
+Missing or ambiguous metadata in that actual directory fails closed.
 These two identities intentionally differ: neither invents a Git revision, consults an
 unrelated parent directory, nor claims that a wheel contains checkout-only research tools.
 Changing identity metadata does not change a model's forecasting law.
