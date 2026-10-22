@@ -1,0 +1,382 @@
+{
+  "archive": {
+    "archive_receipt_sha256": "487ea6bff883fedcba5744f41aa2e73935f22a5def7169a826982b0fab67e330",
+    "fresh_download_and_disk_restore_verified": true,
+    "inventory_sha256": "992e8eb5f2f6fdf28e492f9c5e99750b245b8888791b5e0607cab19dcc1a86dc",
+    "private_access_required": true,
+    "private_release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-frontier-selector-speed-v1-20261022T053136Z",
+    "release_tag": "research-frontier-selector-speed-v1-20261022T053136Z"
+  },
+  "classification": "Local diagnostic benchmark; not browser click-to-visible, production latency, or a model accuracy/parity result.",
+  "limitations": [
+    "Local model-fit/selection plus simulation/path timing only; no browser, web delivery, result persistence, network, or production request timing.",
+    "Benchmark used a fixed historical input sample and three repeats; findings are workload-specific.",
+    "The wide receipt is intentionally incomplete because the user stopped the final 200-asset, 50-year extension before its six method-runs completed; independent review covers only the 90 finished method-runs.",
+    "A pre-measurement local native warmup initialization issue was fixed before the measured wide runs; the original failure and repair are preserved in the private archive.",
+    "No accuracy comparison, promotion decision, or speed claim for other workloads is supported."
+  ],
+  "measurements": [
+    {
+      "assets": 1,
+      "frontier": {
+        "max_wall_seconds": 0.060821125051006675,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.05657999999999985,
+        "wall_seconds_median": 0.056313375011086464
+      },
+      "frontier_to_selector_process_cpu_ratio": 0.638773482658958,
+      "horizon_trading_days": 5,
+      "paths": 240,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.09589629096444696,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.08857599999999999,
+        "wall_seconds_median": 0.0886682498967275
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 0.6351019116388902
+    },
+    {
+      "assets": 1,
+      "frontier": {
+        "max_wall_seconds": 0.07084437506273389,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.06786899999999996,
+        "wall_seconds_median": 0.0677104169735685
+      },
+      "frontier_to_selector_process_cpu_ratio": 0.6688709741002078,
+      "horizon_trading_days": 5,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.10565370798576623,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.10146800000000011,
+        "wall_seconds_median": 0.1018823329359293
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 0.6645942924780641
+    },
+    {
+      "assets": 1,
+      "frontier": {
+        "max_wall_seconds": 0.061912333010695875,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.062042000000000375,
+        "wall_seconds_median": 0.0610360000282526
+      },
+      "frontier_to_selector_process_cpu_ratio": 1.0573658736110276,
+      "horizon_trading_days": 252,
+      "paths": 240,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.05913012498058379,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.05867599999999973,
+        "wall_seconds_median": 0.05878608301281929
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 1.0382729533951545
+    },
+    {
+      "assets": 1,
+      "frontier": {
+        "max_wall_seconds": 0.08038379205390811,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.08339700000000017,
+        "wall_seconds_median": 0.08007191692013294
+      },
+      "frontier_to_selector_process_cpu_ratio": 1.3841595990108062,
+      "horizon_trading_days": 252,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.060881457990035415,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.060251000000000055,
+        "wall_seconds_median": 0.06028883298859
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 1.3281384453948046
+    },
+    {
+      "assets": 1,
+      "frontier": {
+        "max_wall_seconds": 0.22386787505820394,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.298899,
+        "wall_seconds_median": 0.22084866696968675
+      },
+      "frontier_to_selector_process_cpu_ratio": 3.10318729235882,
+      "horizon_trading_days": 12600,
+      "paths": 240,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.09743533306755126,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.09631999999999952,
+        "wall_seconds_median": 0.09644470806233585
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 2.2898992739647666
+    },
+    {
+      "assets": 1,
+      "frontier": {
+        "max_wall_seconds": 0.6283188329543918,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.9322750000000006,
+        "wall_seconds_median": 0.6217159579973668
+      },
+      "frontier_to_selector_process_cpu_ratio": 3.8032015795764647,
+      "horizon_trading_days": 12600,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.25021795800421387,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.24512900000000037,
+        "wall_seconds_median": 0.24681166699156165
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 2.5189893394246345
+    },
+    {
+      "assets": 3,
+      "frontier": {
+        "max_wall_seconds": 0.10351695900317281,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.2332250000000009,
+        "wall_seconds_median": 0.10170954198110849
+      },
+      "frontier_to_selector_process_cpu_ratio": 1.409674455713643,
+      "horizon_trading_days": 5,
+      "paths": 240,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.1814751250203699,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.1654460000000011,
+        "wall_seconds_median": 0.16552858299110085
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 0.6144530457714158
+    },
+    {
+      "assets": 3,
+      "frontier": {
+        "max_wall_seconds": 0.17441729200072587,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.3046030000000002,
+        "wall_seconds_median": 0.1494667079532519
+      },
+      "frontier_to_selector_process_cpu_ratio": 1.7930480339062969,
+      "horizon_trading_days": 5,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.22847537498455495,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.16987999999999914,
+        "wall_seconds_median": 0.17006329202558845
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 0.8788887135664909
+    },
+    {
+      "assets": 3,
+      "frontier": {
+        "max_wall_seconds": 0.12235329102259129,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.26756599999999864,
+        "wall_seconds_median": 0.1204617079347372
+      },
+      "frontier_to_selector_process_cpu_ratio": 2.4483547454338894,
+      "horizon_trading_days": 252,
+      "paths": 240,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.11563070898409933,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.1092840000000006,
+        "wall_seconds_median": 0.10968970798421651
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 1.0982042905253309
+    },
+    {
+      "assets": 3,
+      "frontier": {
+        "max_wall_seconds": 0.21245700004510581,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.3864459999999994,
+        "wall_seconds_median": 0.2035204169806093
+      },
+      "frontier_to_selector_process_cpu_ratio": 3.258480400010081,
+      "horizon_trading_days": 252,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.12278604099992663,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.11859700000000117,
+        "wall_seconds_median": 0.1193549579475075
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 1.705169357691181
+    },
+    {
+      "assets": 3,
+      "frontier": {
+        "max_wall_seconds": 0.505714499973692,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 1.0096159999999994,
+        "wall_seconds_median": 0.5037999170599505
+      },
+      "frontier_to_selector_process_cpu_ratio": 5.637572799812406,
+      "horizon_trading_days": 12600,
+      "paths": 240,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.1814121250063181,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.1790869999999991,
+        "wall_seconds_median": 0.17922799999359995
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 2.8109442557967546
+    },
+    {
+      "assets": 3,
+      "frontier": {
+        "max_wall_seconds": 1.7386664579389617,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 3.418544999999998,
+        "wall_seconds_median": 1.6908680830383673
+      },
+      "frontier_to_selector_process_cpu_ratio": 7.165949766693091,
+      "horizon_trading_days": 12600,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 0.4863346670754254,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 0.477053999999999,
+        "wall_seconds_median": 0.4820382089819759
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 3.5077470033119122
+    },
+    {
+      "assets": 50,
+      "frontier": {
+        "max_wall_seconds": 6.0272152500692755,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 14.049349000000003,
+        "wall_seconds_median": 3.3947907090187073
+      },
+      "frontier_to_selector_process_cpu_ratio": 11.50823798664493,
+      "horizon_trading_days": 252,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 1.229440875002183,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 1.2208079999999981,
+        "wall_seconds_median": 1.2230615420266986
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 2.7756499508547225
+    },
+    {
+      "assets": 100,
+      "frontier": {
+        "max_wall_seconds": 7.8813695419812575,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 38.35375100000002,
+        "wall_seconds_median": 7.840386957977898
+      },
+      "frontier_to_selector_process_cpu_ratio": 16.347499354262354,
+      "horizon_trading_days": 252,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 2.410964541020803,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 2.3461539999999985,
+        "wall_seconds_median": 2.35003199998755
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 3.3362894454285876
+    },
+    {
+      "assets": 200,
+      "frontier": {
+        "max_wall_seconds": 26.50743462506216,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 166.32532699999996,
+        "wall_seconds_median": 25.091590625001118
+      },
+      "frontier_to_selector_process_cpu_ratio": 33.18856575593253,
+      "horizon_trading_days": 252,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "selector": {
+        "max_wall_seconds": 5.312521291081794,
+        "path_hashes_equal_within_method_cell": true,
+        "process_cpu_seconds_median": 5.011525000000006,
+        "wall_seconds_median": 5.047039583907463
+      },
+      "selector_wall_speedup_ratio_frontier_over_selector": 4.971546231776329
+    }
+  ],
+  "methods": {
+    "cost_and_concurrency": "Frontier applies 15 bps turnover costs; research selector uses zero costs. Internal concurrency settings differ; no equal-core normalization is claimed.",
+    "fit_and_code_state": "Financial-fit caches cleared for each trial; numerical kernels warmed before measurement.",
+    "frontier": "Current live Frontier implementation, serving engine revision 56a7a4d6643f84b1c72a56ed274c76c55b92c6bf.",
+    "measurement": "Per-run wall seconds and process CPU seconds; three interleaved repetitions per method and workload; medians reported.",
+    "path_hashes": "Repeated path hashes matched within each method/workload cell; cross-method path parity was not tested.",
+    "research_selector": "Unreleased research selector; implementation is preserved in the private archive and is not deployed."
+  },
+  "provenance": {
+    "engine_origin_main_revision": "56a7a4d6643f84b1c72a56ed274c76c55b92c6bf",
+    "live_source_match_verified": true,
+    "production_mutated": false,
+    "research_selector_deployed": false,
+    "serving_engine_revision": "56a7a4d6643f84b1c72a56ed274c76c55b92c6bf"
+  },
+  "review": {
+    "base_receipt_complete": true,
+    "canceled_case": {
+      "assets": 200,
+      "horizon_trading_days": 12600,
+      "paths": 1000,
+      "repetitions_per_method": 3,
+      "status": "user-stopped before runs completed; no timing reported"
+    },
+    "independent_review_passed": true,
+    "review_sha256": "d02d599944e33cc3c784f4e44d028ee5d86702fb18d96245365ea7fff01e4029",
+    "reviewed_completed_scope_only": true,
+    "wide_completed_method_runs": 18,
+    "wide_planned_method_runs": 24,
+    "wide_receipt_complete": false,
+    "wide_receipt_user_stopped": true
+  },
+  "schema": "frontier-selector-local-speed-results-v1",
+  "scope": {
+    "base_assets": [
+      1,
+      3
+    ],
+    "base_horizons_trading_days": [
+      5,
+      252,
+      12600
+    ],
+    "base_method_runs": 72,
+    "base_paths": [
+      240,
+      1000
+    ],
+    "paired_repetitions": 45,
+    "repetitions_per_method_per_configuration": 3,
+    "valid_method_runs": 90,
+    "wide_assets": [
+      50,
+      100,
+      200
+    ],
+    "wide_horizon_trading_days": 252,
+    "wide_method_runs": 18,
+    "wide_paths": 1000,
+    "workload_configurations": 15
+  },
+  "title": "Local Frontier vs research selector timing study"
+}
