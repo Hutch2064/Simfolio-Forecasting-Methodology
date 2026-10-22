@@ -1,0 +1,42 @@
+{
+  "blocking_findings": 0,
+  "independent_source_review_sha256": "6b9f024095e05472c9386620f043390d3c91b038b434d9f553f1e698fecbb34e",
+  "mostworthy_runner_private_archive": {
+    "completion_receipt_asset_id": 664327179,
+    "recovery_commands_asset_id": 664327279,
+    "release_id": 420217824,
+    "repository": "Hutch2064/simfolio-engine",
+    "source_closure_file_count": 98,
+    "source_closure_plan_fingerprint": "104fcb33c7aa9e847e53637d7c6d760a6cc0324e3b6070b4481dd29120683748",
+    "stable_asset_locator_id": 664327094,
+    "tag": "research-asset-v7-uniform355-evidence-20261022T0134Z"
+  },
+  "reason": "Frozen runner has absolute local storage-helper paths. Exact source remains unchanged in the private recovery archive; it was not edited for publication.",
+  "review_passed": true,
+  "review_scope": "Source delta review only; not launch authorization and not a full-panel result.",
+  "runner_bytes_included": false,
+  "runner_sha256": "98922a13a05c2574c61990bb9925479c69515067da117ab0310dc0f68b727ffd",
+  "schema": "mostworthy-runner-public-reference-v1",
+  "tree_results_private_archive": {
+    "baseline_input_files_referenced": 403,
+    "baseline_input_payloads_duplicated": false,
+    "completion_receipt_asset_id": 664311828,
+    "contains_matched20_confirmation": true,
+    "recovery_commands_asset_id": 664313701,
+    "release_id": 420202453,
+    "repository": "Hutch2064/simfolio-engine",
+    "stable_asset_locator_id": 664311710,
+    "tag": "research-asset-v7-tree-learners-completed-20261022T0102Z"
+  },
+  "uniform_adapter": {
+    "path": "uniform_shrinkage_full/candidate.py",
+    "scope": "synthetic32x2history, horizon3; actualuncachedhistoricalbuilder+100and1000jointpaths; no realfinancialpanel request",
+    "sha256": "e425b97159d60635a02cfc6666d76db093a9a96cfb5c107d4161fca7dd7763e4",
+    "synthetic_receipt_path": "uniform_shrinkage_full/synthetic_qualification_receipt.json",
+    "synthetic_receipt_sha256": "08946892396a6513b67fb555df7d4fbabe0ab627224d87a9ea81da3c81ff8243",
+    "synthetic_test_count": 3,
+    "synthetic_tests_passed": true,
+    "test_path": "uniform_shrinkage_full/test_candidate.py",
+    "test_sha256": "6c725433c4e8cf407a5f05767a4ce2fc83c15c2803abd70a456a423128380f56"
+  }
+}

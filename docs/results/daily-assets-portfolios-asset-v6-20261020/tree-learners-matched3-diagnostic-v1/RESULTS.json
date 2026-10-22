@@ -1,0 +1,129 @@
+{
+  "aggregates": [
+    {
+      "feature_group": "MVD",
+      "improvement_vs_fixed_WR_percent": 39.421260799704434,
+      "learner": "cart",
+      "mean_q_v7": 0.5346478246057292,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 19.957960299576406
+    },
+    {
+      "feature_group": "MVD",
+      "improvement_vs_fixed_WR_percent": 45.19774123933313,
+      "learner": "extra_trees",
+      "mean_q_v7": 0.4836665275088435,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 8.519379365147227
+    },
+    {
+      "feature_group": "MVD",
+      "improvement_vs_fixed_WR_percent": 35.5624471991381,
+      "learner": "lightgbm",
+      "mean_q_v7": 0.5687044313350375,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 27.59917922903778
+    },
+    {
+      "feature_group": "MVD",
+      "improvement_vs_fixed_WR_percent": 42.4027609184132,
+      "learner": "random_forest",
+      "mean_q_v7": 0.5083340951756921,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 14.053996671500384
+    },
+    {
+      "feature_group": "MVD",
+      "improvement_vs_fixed_WR_percent": 34.7613188273743,
+      "learner": "xgboost",
+      "mean_q_v7": 0.5757749241654884,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 29.18557284969665
+    },
+    {
+      "feature_group": "geometry",
+      "improvement_vs_fixed_WR_percent": 40.501958717023555,
+      "learner": "cart",
+      "mean_q_v7": 0.5251099438545268,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 17.817963337391863
+    },
+    {
+      "feature_group": "geometry",
+      "improvement_vs_fixed_WR_percent": 38.51184512702569,
+      "learner": "extra_trees",
+      "mean_q_v7": 0.5426740251750815,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 21.758784327925916
+    },
+    {
+      "feature_group": "geometry",
+      "improvement_vs_fixed_WR_percent": 34.19611937827451,
+      "learner": "lightgbm",
+      "mean_q_v7": 0.5807631867130206,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 30.304780247729195
+    },
+    {
+      "feature_group": "geometry",
+      "improvement_vs_fixed_WR_percent": 35.354502856648985,
+      "learner": "random_forest",
+      "mean_q_v7": 0.5705396790113432,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 28.010950413287002
+    },
+    {
+      "feature_group": "geometry",
+      "improvement_vs_fixed_WR_percent": 29.473833208873383,
+      "learner": "xgboost",
+      "mean_q_v7": 0.6224405154419704,
+      "valid_matched_requests": 3,
+      "worse_than_endpoint_leader_percent": 39.65584671610323
+    }
+  ],
+  "best_diagnostic_row": {
+    "feature_group": "MVD",
+    "learner": "extra_trees",
+    "mean_q_v7": 0.4836665275088435
+  },
+  "coverage": {
+    "all_30_loss_hashes_and_q_values_recomputed": true,
+    "geometry_cart_exact_parity_check_not_overlaid": 1,
+    "independent_readonly_verification_passed": true,
+    "original_success_cells_retained": 27,
+    "repair_cells_overlaid": 3,
+    "valid_matched_cells": 30
+  },
+  "evidence": {
+    "final_score_report_sha256": "4fc5d6c596e8a3105042df32ec07fcbc0b6d76733e523e6b426e56159fb959a9",
+    "independent_verification_report_sha256": "f12ef6508923b1633053c7f856c37aa9b30233a08c1e3f942cfed662d62f91b5",
+    "roundoff_repair_plan_sha256": "ec49b3fdae4ff8c05890d6912218bf9576c88c48e8d7020444af4bc877c28bc6",
+    "tree_plan_sha256": "a9dd1641b08e5ce316cf059a16808b4a5630ba4922526673a010e14fa9114efa"
+  },
+  "interpretation": "All ten combinations are better than fixed_WR on this cohort and worse than the broad-tested endpoint-leader reference. Diagnostic only.",
+  "protocol": {
+    "feature_groups": [
+      "geometry",
+      "MVD"
+    ],
+    "final_paths": 100,
+    "full_canonical_hierarchy_applied": false,
+    "inner_paths": 2,
+    "learner_families": [
+      "lightgbm",
+      "xgboost",
+      "cart",
+      "random_forest",
+      "extra_trees"
+    ],
+    "lower_is_better": true,
+    "requests": 3,
+    "score": "v7 per-origin Q: mean_h(CRPS_h / (training-history sample SD, ddof=1 * sqrt(native lead h))); equal mean over the same three requests"
+  },
+  "references_mean_q_v7": {
+    "endpoint_leader": 0.44569599488898376,
+    "fixed_WR": 0.882566774521317
+  },
+  "schema": "tree-learners-matched3-v7-public-results-v1",
+  "scope": "Three-request matched development diagnostic only; no full-panel canonical aggregate, promotion, or canonical-score change."
+}

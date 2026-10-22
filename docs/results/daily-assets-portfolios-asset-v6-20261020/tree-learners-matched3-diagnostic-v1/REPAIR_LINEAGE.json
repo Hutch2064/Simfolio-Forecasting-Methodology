@@ -1,0 +1,21 @@
+{
+  "independent_verification_sha256": "f12ef6508923b1633053c7f856c37aa9b30233a08c1e3f942cfed662d62f91b5",
+  "new_models_sha256": "4262a5ec1e306269efeb930e046c841d1378a6ce1d48250fed6f87b9682e0cbc",
+  "numerical_change": "Only finite negative pruning alphas within the conservative cancellation-aware impurity envelope are canonicalized to positive zero; all nonnegative paths remain bit-identical. No financial clipping, optimizer tolerance, or tree architecture changed.",
+  "old_models_sha256": "9a5e4dedc2b5af66fb7e36d07f3c01379ed6036635e0e7c96bb9c5c919defc65",
+  "plan_sha256": "ec49b3fdae4ff8c05890d6912218bf9576c88c48e8d7020444af4bc877c28bc6",
+  "qualification": {
+    "four_repair_jobs_passed": true,
+    "no_promotion": true,
+    "positive_paths_bitexact": true
+  },
+  "repair_scope": "Three failed case-0 MVD cells repaired; 27 prior successes retained; one geometry/CART exact parity run excluded from the score comparison.",
+  "roundoff_case": {
+    "canonical_alpha": 0.0,
+    "envelope": 1.5471448516056786e-11,
+    "raw_alpha": -2.0543252740130515e-33
+  },
+  "schema": "tree-roundoff-repair-public-lineage-v1",
+  "source_delta_receipt_sha256": "04d8b1f7ebceb4798992c7566da51c24fe777c1576ffa7787dd032821171c62d",
+  "source_delta_sha256": "bb92044576402b588353b46c0f8b63a25d11b83763c070a4fdb7024e0f31f34f"
+}

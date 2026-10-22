@@ -1,0 +1,114 @@
+{
+  "final_report_sha256": "4fc5d6c596e8a3105042df32ec07fcbc0b6d76733e523e6b426e56159fb959a9",
+  "full_panel_claim": false,
+  "independent_result_verification_sha256": "f12ef6508923b1633053c7f856c37aa9b30233a08c1e3f942cfed662d62f91b5",
+  "promotion_or_canonical_score_change": false,
+  "public_file_digests": {
+    "PRIVATE_ARCHIVE_LINK.md": {
+      "bytes": 1079,
+      "sha256": "fd0c2bae0296ab311947a5461653a58cc5e88f0ab4689737417fe2e016c22999"
+    },
+    "PUBLICATION_STATUS.md": {
+      "bytes": 625,
+      "sha256": "641ab2d714e8a0e3638acacf8d25fb1c677bd9cf524170e819ff882ec9404d63"
+    },
+    "README.md": {
+      "bytes": 7751,
+      "sha256": "ce48d2571bdbfe97d7cf919a40bf03081c1e0eaf48e316ea5346b611c95036a0"
+    },
+    "REPAIR_LINEAGE.json": {
+      "bytes": 1320,
+      "sha256": "4b45d0512aafe802a409d5470869e5e439c88860d71e8b05e6eff51325fc1959"
+    },
+    "RESULTS.json": {
+      "bytes": 4556,
+      "sha256": "908dea567912bf51154517ef73d57c6cbf6b4b25d4cf3ecd53db9aa147f69db1"
+    },
+    "RESULTS.md": {
+      "bytes": 1750,
+      "sha256": "ad454228c30302ff9e52e08fd7528affa86944642c8c11add90ca4259b825e42"
+    },
+    "RUNNER_AND_UNIFORM_ADAPTER.json": {
+      "bytes": 2227,
+      "sha256": "b4dea5668ba604bf3afef36f304ad135cbbe5a6d1226e68dadebd66ec972a0e8"
+    },
+    "__init__.py": {
+      "bytes": 73,
+      "sha256": "58fc81adcf01455fc9029029e45c93550427e07a3fa866b9d0e1594723fab51f"
+    },
+    "models.py": {
+      "bytes": 14604,
+      "sha256": "9a5e4dedc2b5af66fb7e36d07f3c01379ed6036635e0e7c96bb9c5c919defc65"
+    },
+    "objective.py": {
+      "bytes": 2629,
+      "sha256": "b53b7a3d30051c9e25b055b2666c872f87ddf1289b80d43653f18c86a5d2ea99"
+    },
+    "repaired_roundoff/README.md": {
+      "bytes": 2137,
+      "sha256": "619227b4545b4f476f1b278bdfba8147515f03f439651b0aeec658e6b8763081"
+    },
+    "repaired_roundoff/models.py": {
+      "bytes": 16358,
+      "sha256": "4262a5ec1e306269efeb930e046c841d1378a6ce1d48250fed6f87b9682e0cbc"
+    },
+    "repaired_roundoff/models_source_delta.patch": {
+      "bytes": 6324,
+      "sha256": "bb92044576402b588353b46c0f8b63a25d11b83763c070a4fdb7024e0f31f34f"
+    },
+    "repaired_roundoff/objective.py": {
+      "bytes": 2629,
+      "sha256": "b53b7a3d30051c9e25b055b2666c872f87ddf1289b80d43653f18c86a5d2ea99"
+    },
+    "repaired_roundoff/source_delta_receipt.json": {
+      "bytes": 770,
+      "sha256": "04d8b1f7ebceb4798992c7566da51c24fe777c1576ffa7787dd032821171c62d"
+    },
+    "repaired_roundoff/test_models.py": {
+      "bytes": 5994,
+      "sha256": "ff663e62da8413f7c841d0bbb629f946a81f5d46b8acb75e312f61f628589a6c"
+    },
+    "repaired_roundoff/test_roundoff.py": {
+      "bytes": 1501,
+      "sha256": "c39dd9fd789ab1eb3d44d08f001e43a921e88fc4981dbb2df45e9a567b1af63b"
+    },
+    "requirements.txt": {
+      "bytes": 78,
+      "sha256": "e246dd9ef029b066d68924492d611a267cc2db57cc20b9a89807627e6b9e9ab6"
+    },
+    "runtime_versions.json": {
+      "bytes": 232,
+      "sha256": "c7bf727cc183edf40d2796537541a2853e9d54e4d255dbe6be52aaee7b9f38ac"
+    },
+    "test_models.py": {
+      "bytes": 5994,
+      "sha256": "ff663e62da8413f7c841d0bbb629f946a81f5d46b8acb75e312f61f628589a6c"
+    },
+    "uniform_shrinkage_full/candidate.py": {
+      "bytes": 1733,
+      "sha256": "e425b97159d60635a02cfc6666d76db093a9a96cfb5c107d4161fca7dd7763e4"
+    },
+    "uniform_shrinkage_full/synthetic_qualification_receipt.json": {
+      "bytes": 634,
+      "sha256": "08946892396a6513b67fb555df7d4fbabe0ab627224d87a9ea81da3c81ff8243"
+    },
+    "uniform_shrinkage_full/test_candidate.py": {
+      "bytes": 3549,
+      "sha256": "6c725433c4e8cf407a5f05767a4ce2fc83c15c2803abd70a456a423128380f56"
+    }
+  },
+  "roundoff_repair_plan_sha256": "ec49b3fdae4ff8c05890d6912218bf9576c88c48e8d7020444af4bc877c28bc6",
+  "runner_sha256": "98922a13a05c2574c61990bb9925479c69515067da117ab0310dc0f68b727ffd",
+  "runner_source_review_sha256": "6b9f024095e05472c9386620f043390d3c91b038b434d9f553f1e698fecbb34e",
+  "schema": "simfolio-tree-publication-evidence-digests-v2",
+  "tree_archive_completion_receipt_asset_id": 664311828,
+  "tree_archive_locator_asset_id": 664311710,
+  "tree_plan_sha256": "a9dd1641b08e5ce316cf059a16808b4a5630ba4922526673a010e14fa9114efa",
+  "tree_private_archive_release_id": 420202453,
+  "uniform355_archive_completion_receipt_asset_id": 664327179,
+  "uniform355_archive_locator_asset_id": 664327094,
+  "uniform355_private_archive_release_id": 420217824,
+  "uniform_adapter_sha256": "e425b97159d60635a02cfc6666d76db093a9a96cfb5c107d4161fca7dd7763e4",
+  "uniform_adapter_synthetic_receipt_sha256": "08946892396a6513b67fb555df7d4fbabe0ab627224d87a9ea81da3c81ff8243",
+  "uniform_adapter_test_sha256": "6c725433c4e8cf407a5f05767a4ce2fc83c15c2803abd70a456a423128380f56"
+}

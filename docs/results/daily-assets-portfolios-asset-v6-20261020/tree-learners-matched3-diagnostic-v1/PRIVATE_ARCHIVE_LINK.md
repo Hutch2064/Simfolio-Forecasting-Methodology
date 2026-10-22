@@ -1,0 +1,5 @@
+# Private recovery archives
+
+The frozen tree-learning evidence and matched-20 confirmation are complete in private release `Hutch2064/simfolio-engine`, release ID `420202453`, tag `research-asset-v7-tree-learners-completed-20261022T0102Z`. Its completion receipt is asset `664311828`, stable asset locator `664311710`, and API download commands `664313701`. All 11 archive parts were freshly downloaded, disk-restored, and verified by SHA-256 and POSIX mode. The release references 403 existing baseline input files without duplicating their payloads.
+
+The exact mostworthy runner, uniform adapter, and closed development-355 source closure are in private release `Hutch2064/simfolio-engine`, release ID `420217824`, tag `research-asset-v7-uniform355-evidence-20261022T0134Z`. Its completion receipt is asset `664327179`, stable asset locator `664327094`, and API download commands `664327279`. This archive contains the complete development-355 output and 98 plan-bound source files. The active baseline score index remains local as described by its private dependency locator.

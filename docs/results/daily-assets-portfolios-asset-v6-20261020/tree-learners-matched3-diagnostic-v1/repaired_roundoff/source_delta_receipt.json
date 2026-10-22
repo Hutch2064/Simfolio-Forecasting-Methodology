@@ -1,0 +1,30 @@
+{
+  "old_models_sha256": "9a5e4dedc2b5af66fb7e36d07f3c01379ed6036635e0e7c96bb9c5c919defc65",
+  "new_models_sha256": "4262a5ec1e306269efeb930e046c841d1378a6ce1d48250fed6f87b9682e0cbc",
+  "AST_identical_functions_or_classes": [
+    "features",
+    "preparation",
+    "new_direction",
+    "BoostPath",
+    "vertex_data",
+    "control_preparation",
+    "fit_control",
+    "predict_control",
+    "matured",
+    "blend_cells",
+    "choose",
+    "boost_fit",
+    "fit",
+    "export_model"
+  ],
+  "changed_functions": [
+    "alpha_path",
+    "forest_fit",
+    "fit_impl"
+  ],
+  "added_functions": [
+    "canonical_alphas"
+  ],
+  "scope": "alpha_path repair and diagnostics; forest_fit/fit_impl pass and persist diagnostics; no other AST changes",
+  "objective_bitexact": true
+}

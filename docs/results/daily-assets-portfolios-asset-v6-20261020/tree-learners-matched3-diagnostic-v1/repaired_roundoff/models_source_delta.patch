@@ -1,0 +1,70 @@
+--- frozen_tree_v1/models.py
++++ isolated_roundoff_v1/models.py
+@@ -68,10 +68,29 @@
+     _,context,z,_=preparation(records,groups);x,y,mass=vertex_data(records,z,context)
+     return context,x,y,mass
+ 
+-def alpha_path(records,groups,prepared=None):
++def canonical_alphas(raw,y,mass):
++    """Penalty-metadata repair using cancellation-aware impurity units.
++
++    Conservative arithmetic envelope; no financial input or response clipping.
++    """
++    raw=np.asarray(raw,dtype=float);y=np.asarray(y,dtype=float);mass=np.asarray(mass,dtype=float)
++    if not np.isfinite(raw).all():raise NumericalFailure('Nonfinite pruning path')
++    negative=raw<0
++    if not np.any(negative):return raw.copy(),{'raw_ccp_alphas':raw.tolist(),'canonical_ccp_alphas':raw.tolist(),'roundoff_bound':None,'canonicalized_negative_count':0,'positive_path_unchanged_without_envelope_evaluation':True}
++    if not np.isfinite(y).all() or not np.isfinite(mass).all() or np.any(mass<=0):raise NumericalFailure('Nonfinite pruning target or nonpositive mass')
++    p=mass/mass.sum();mean=float(p@y);second=float(p@(y*y));scale=second+mean*mean
++    bound=64*np.finfo(float).eps*max(1,len(y))*scale
++    if not np.isfinite(scale) or not np.isfinite(bound):raise NumericalFailure('Nonfinite pruning arithmetic envelope')
++    if np.any(-raw[negative]>bound):raise NumericalFailure(f'Material negative pruning alpha; minimum={raw.min()}; roundoff_bound={bound}')
++    clean=raw.copy();clean[negative]=0.
++    return clean,{'raw_ccp_alphas':raw.tolist(),'canonical_ccp_alphas':clean.tolist(),'roundoff_bound':bound,'impurity_scale_M2_plus_mean_squared':scale,'training_rows':len(y),'canonicalized_negative_count':int(negative.sum()),'bound_is_conservative_arithmetic_envelope_not_library_error_proof':True}
++
++def alpha_path(records,groups,prepared=None,diagnostics=None):
+     context,x,y,mass=control_preparation(records,groups) if prepared is None else prepared
+     path=DecisionTreeRegressor(random_state=0).cost_complexity_pruning_path(x,y,sample_weight=mass)
+-    return sorted(set([0.,*map(float,path.ccp_alphas),float('inf')]))
++    clean,receipt=canonical_alphas(path.ccp_alphas,y,mass)
++    if diagnostics is not None:diagnostics.update(receipt)
++    return sorted(set([0.,*map(float,clean),float('inf')]))
+ 
+ def fit_control(kind,records,groups,alpha,count,prepared=None):
+     context,x,y,mass=control_preparation(records,groups) if prepared is None else prepared
+@@ -113,7 +132,7 @@
+     work=gate.RequestWork(groups);episodes=[(i,matured(records,i)) for i in range(len(records)) if matured(records,i)]
+     if not episodes:raise ValueError('No matured chronological assessment')
+     prepared={i:control_preparation(earlier,groups) for i,earlier in episodes}
+-    alphas=alpha_path(episodes[0][1],groups,prepared[episodes[0][0]]);count=1;previous=None;best=None;trace=[];all_labels=[]
++    diagnostics={};alphas=alpha_path(episodes[0][1],groups,prepared[episodes[0][0]],diagnostics);count=1;previous=None;best=None;trace=[];all_labels=[]
+     while True:
+         cells={(a,count):[0.,0.,0.] for a in alphas}
+         for index,earlier in episodes:
+@@ -131,7 +150,7 @@
+     if tau==0.:weights=batch.copy()
+     else:
+         model=fit_control(kind,records,groups,*label);weights=(1-tau)*batch+tau*predict_control(model,current)
+-    return {'weights':weights,'model':model,'kind':kind,'groups':groups,'selected_alpha':label[0],'selected_stage_or_count':label[1],'tau':tau,'validation_risk':risk,'episodes':[{'assessment_index':i,'training_rows':[r['training_rows'] for r in earlier]} for i,earlier in episodes],'candidate_labels':all_labels,'forest_prefix_trace':trace,'forest_count_rule':'1,2,4,...; first nonimproving pooled chronological CRPS ends search; earlier best retained','seed':0,'skipped_zero_blend':tau==0.,'global_optimum_claim':False,'forest_iid_or_OOB_claim':False}
++    return {'weights':weights,'model':model,'kind':kind,'groups':groups,'selected_alpha':label[0],'selected_stage_or_count':label[1],'tau':tau,'validation_risk':risk,'episodes':[{'assessment_index':i,'training_rows':[r['training_rows'] for r in earlier]} for i,earlier in episodes],'candidate_labels':all_labels,'pruning_roundoff':diagnostics,'forest_prefix_trace':trace,'forest_count_rule':'1,2,4,...; first nonimproving pooled chronological CRPS ends search; earlier best retained','seed':0,'skipped_zero_blend':tau==0.,'global_optimum_claim':False,'forest_iid_or_OOB_claim':False}
+ 
+ def boost_fit(kind,records,current,groups,emit):
+     work=gate.RequestWork(groups);episodes=[(i,matured(records,i)) for i in range(len(records)) if matured(records,i)]
+@@ -172,7 +191,7 @@
+         emit(phase='assessment_start',assessment_index=index,training_rows=[r['training_rows'] for r in earlier])
+         if labels is None:
+             first_prepared=control_preparation(earlier,groups)
+-            labels=[(a,1) for a in alpha_path(earlier,groups,first_prepared)]
++            diagnostics={};labels=[(a,1) for a in alpha_path(earlier,groups,first_prepared,diagnostics)]
+             cells={label:[0.,0.,0.] for label in labels}
+         batch=work.batch(earlier)['weights'];b=work.matrix(record)
+         prepared=first_prepared if not episodes else control_preparation(earlier,groups)
+@@ -186,7 +205,7 @@
+     else:
+         trained=fit_control(kind,records,groups,*label);weights=(1-tau)*batch+tau*predict_control(trained,current)
+     if not np.isfinite(weights).all() or weights.min()<0 or abs(weights.sum()-1)>1e-12:raise NumericalFailure('Invalid final simplex')
+-    return {'weights':weights,'model':trained,'kind':kind,'groups':groups,'selected_alpha':label[0],'selected_stage_or_count':label[1],'tau':tau,'validation_risk':risk,'episodes':episodes,'candidate_labels':labels,'skipped_zero_blend':tau==0.,'global_optimum_claim':False,'forest_iid_or_OOB_claim':False}
++    return {'weights':weights,'model':trained,'kind':kind,'groups':groups,'selected_alpha':label[0],'selected_stage_or_count':label[1],'tau':tau,'validation_risk':risk,'episodes':episodes,'candidate_labels':labels,'pruning_roundoff':diagnostics,'skipped_zero_blend':tau==0.,'global_optimum_claim':False,'forest_iid_or_OOB_claim':False}
+ 
+ def fit(kind,records,current,groups=(),emit=lambda **kw:None):
+     # Current A is deliberately not inspected by any learning/selection code.
