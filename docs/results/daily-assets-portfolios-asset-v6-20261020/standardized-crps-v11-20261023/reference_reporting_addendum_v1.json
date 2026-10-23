@@ -1,0 +1,14 @@
+{
+  "schema": "V11-reference-reporting-addendum-v1",
+  "utc": "2026-10-23T15:04:25.379095+00:00",
+  "authorization": "User clarification baseline should be worse of two basic with/without-replacement bootstrap methods; compare newer research candidates too, label them separately.",
+  "scoring_formula_and_panel_weights_changed": false,
+  "protocol_sha256": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+  "definition": "Compute each complete global V11 Q on exactly matched full requests. Select reference with larger global Q; exact tie selects WR. Headline100*(1-Qcandidate/max(QWR,QWOR)); also retain individual comparisons. No per-request or per-bucket maximization.",
+  "partial_reporting": "No full headline or globally-worse-reference selection on incomplete coverage; conditional diagnostics labelled with exactsupport.",
+  "scorer_sha256": "03636a1aff4a873919bdd49d88f9dcf46f5218ab9cb6d09c8f3ed329ec3c080f",
+  "independent_review_sha256": "87eb47fc190ff13bb0982e16436516a1d9bb5e528564865304c63719d30d0b7d",
+  "historical_results": "Never reinterpret a WR-only comparison as versus worse WR/WOR without matching WOR evidence; currentlivecore17395 onlyWRcomplete. Preserve all original score/protocol/coverage labels.",
+  "production_algorithm_changed": false,
+  "full_suite_launched": false
+}

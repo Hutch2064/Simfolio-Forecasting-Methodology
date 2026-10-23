@@ -4,6 +4,8 @@ This supplement records independently reviewed, closed development screens for t
 
 The later replica-gradient follow-up is recorded separately in [replica-gradient-follow-up-v11.md](replica-gradient-follow-up-v11.md), with machine-readable scores and private recovery receipts in [replica-gradient-follow-up-v11.json](replica-gradient-follow-up-v11.json). It preserves the official V11 full-panel headline and adds no full-panel catalogue entries.
 
+The fixed-recipe follow-up is recorded in [fixed-equal41-development-screens-20261023.md](fixed-equal41-development-screens-20261023.md), with compact scores, evidence hashes, and recovery status in [fixed-equal41-development-screens-20261023.json](fixed-equal41-development-screens-20261023.json). The 12-request screen's early static-recipe gains reversed on the 90-request screen: the G2 uniform-lead 2P comparator beat all 41 one-hot recipes and the static equal-41 arm. A separately verified one-row WOR reference completes baseline support for that 90-request comparison; it does not change the frozen screen plan or add candidate forecasts. These screens are exploratory and add no full-panel catalogue entries.
+
 ## Findings
 
 - On 1,775 matched development requests, finite77 improved the finite41 equal-three-bucket conditional score by **8.0546%**. The result is highly concentrated: one BTC request represented **102.72%** of net improvement. Removing that contribution as a diagnostic leaves positive weighted deterioration; this is not a new score or an exclusion.

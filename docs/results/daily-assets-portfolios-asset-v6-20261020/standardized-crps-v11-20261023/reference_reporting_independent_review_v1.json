@@ -1,0 +1,33 @@
+{
+  "blockers": [],
+  "checks": {
+    "V11_losses_scales_hierarchy_coverage_weights_unchanged": true,
+    "both_global_comparisons_retained": true,
+    "fullplan_source_not_edited_by_scorer": true,
+    "headline": "Select greater COMPLETE globalWR/WOR Q, tieWR; reuse matching candidate comparison",
+    "no_per_request_or_bucket_max": true,
+    "partial_coverage_no_selection_no_headline": true
+  },
+  "independent_tests": {
+    "command": "pinned Python3.12 -m unittest -q test_score_full_suite_v11.py",
+    "financial_jobs": 0,
+    "passed": 9,
+    "seconds": 0.09
+  },
+  "passed": true,
+  "preserved_prior_source_sha256": "4c1962fc1f412d30d24747bc5f4cbf7073298d0e4c01fd236918a498aff92260",
+  "readiness_sha256": "0170a123114c9b26b54f211fd03b00673dbb5fd3f9cadce7d04dd4796af0cee0",
+  "scope": "NARROW_GLOBAL_BASELINE_REPORTING_ONLY",
+  "scorer_sha256": "03636a1aff4a873919bdd49d88f9dcf46f5218ab9cb6d09c8f3ed329ec3c080f",
+  "source_delta": {
+    "changed_existing_functions": [
+      "_finalize",
+      "update_once"
+    ],
+    "new_function": "_select_worse_global_baseline",
+    "other_existing_functions_and_ledger_class_AST_identical": true,
+    "schema": "v4 to avoid incompatible oldreport ledger reuse"
+  },
+  "status": "CLEAR",
+  "tests_sha256": "6bb3c3f341ff5c1148d72699650311186497c4b3bd812cf3c6d864e589496709"
+}

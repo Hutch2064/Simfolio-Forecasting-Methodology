@@ -14744,6 +14744,89 @@
   },
   "unique_full_panel_models": 24,
   "full_panel_executions": 31,
+  "pending_full_panel_executions": [
+    {
+      "schema": "planned-full-panel-execution-v1",
+      "status": "RUNNING",
+      "admitted": true,
+      "launched": true,
+      "candidate": {
+        "model_id": "model_testing_uniform_lead_replica_gradient_v1_e52f212160e8e539",
+        "mode": "uniform_lead_2P",
+        "financial_candidate_sha256": "2b0f747ff650da4a55080c9768093644bab7dd93df1d48c4d018d46a3d684bdc",
+        "execution_candidate_sha256": "d1f498f44e1017a904194d2455169c247dc3aaa59f3a2741e868781627086f70",
+        "source_closure_sha256": "be28ba8c8420276ca9093bd92edcc037a06b8312d50d8b8965c1392c07e338cf",
+        "execution_equivalence_sha256": "979241822980871d60f00b1b21ec7cc69dc0ab48bfac4a3bc76c0073426341f1",
+        "target_definition_sha256": "938bf06338557b501a36c7205c205789c2c47600a26c67626e98df39406cf4b4"
+      },
+      "plan_fingerprint": "c83f142d819be8d3e56c523dd0a73c669971dac767a7ca3c9777e57b7eaf5b64",
+      "plan_sha256": "6b05c3df25ec0e63eb4fa94f77a6d3e982f9aa73670087da561bc7ff2f1a0bad",
+      "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+      "series": 1264,
+      "paths_per_forecast": 240,
+      "requests_per_model": 320017,
+      "planned_model_ids": [
+        "model_testing_uniform_lead_replica_gradient_v1_e52f212160e8e539",
+        "model_testing_asset_joint_blocks_replacement_v6",
+        "model_testing_asset_joint_blocks_history_partition_v6"
+      ],
+      "baseline_model_ids": {
+        "WR": "model_testing_asset_joint_blocks_replacement_v6",
+        "WOR": "model_testing_asset_joint_blocks_history_partition_v6"
+      },
+      "scores": null,
+      "completed_catalogue_count_effect": {
+        "unique_full_panel_models": 0,
+        "full_panel_executions": 0
+      },
+      "note": "Admitted and running. At the timestamped start observation, 196 of 64,049 case groups were committed with no failures. No full score is available; unique model and completed execution counts remain unchanged until the run completes and its score is independently checked.",
+      "admission_sha256": "1539bbab847b98f1d06afa85ba05af4c2bc46d3d71ef19739fc3cea2af08f6e5",
+      "terminal_execution_manifest_sha256": "16f68f61e11921232b52a9f19f97bb15c3d0e191c565df7da21a8502eef30514",
+      "source_review": {
+        "schema": "uniform240-full-suite-independent-operational-source-review-v3",
+        "sha256": "efa42ab91cffe99f72ffe8ff909e89e0c88a90073322884bb6c1c04eebb65681",
+        "plan_fingerprint": "c83f142d819be8d3e56c523dd0a73c669971dac767a7ca3c9777e57b7eaf5b64",
+        "scope": "Operational source/plan/scorer delta and receipt linkage; not a full-index re-audit or launch authorization."
+      },
+      "start_observation": {
+        "schema": "uniform240-root-observed-start-v1",
+        "sha256": "3c742d265131faf8be1f07bd5a68b30f28b8323bdafa1230dd9b439e806a949a",
+        "observed_utc": "2026-10-23T16:40:19.257800+00:00",
+        "plan_fingerprint": "c83f142d819be8d3e56c523dd0a73c669971dac767a7ca3c9777e57b7eaf5b64",
+        "workers": 12,
+        "verified_case_groups": 196,
+        "expected_case_groups": 64049,
+        "failed_case_groups": 0,
+        "complete": false,
+        "headline_available": false
+      },
+      "private_archive": {
+        "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-uniform240-reuse-index-7022806fd7a7385a-20261023",
+        "access": "Private, access-controlled recovery archive",
+        "receipt_sha256": "31c8d44b713182f2b1487d35375b5f73073b6be32d917e3ec4f5162b5aaa6e63",
+        "archive_asset_id": "669749345",
+        "manifest_asset_id": "669749604",
+        "receipt_asset_id": "669749854",
+        "manifest_sha256": "1f7564c53f335e123826dbf53068effe16b4b6fbdb8af3f3785cc1f5e3f192cb",
+        "verified_files": 306,
+        "verified_bytes": 6848481,
+        "admitted_bindings_covered": 211,
+        "unresolved_bindings": 0,
+        "verification": "Fresh download and disk restore passed SHA-256, size, and mode checks; staging was removed."
+      },
+      "reproducibility_bindings": {
+        "execution_plan_sha256": "6b05c3df25ec0e63eb4fa94f77a6d3e982f9aa73670087da561bc7ff2f1a0bad",
+        "runner_sha256": "1ed0b0afd704f327b747c469a13e0d365613e3d590e854a15d02ef9b4ec91f20",
+        "scorer_sha256": "2c72f50e47fe2379d43590e2e7bb3a4033b87292edb68264d5ec606ceadfeec2",
+        "independent_reuse_gate_sha256": "91fcd52857e0f7352e5130afb1ec1d0dc8fc7ad863f48d78e54c76ea4b3bbebd",
+        "reuse_index_sha256": "7022806fd7a7385a1478beb4a4093e3d72e97ff4c11166386d31c9545fdd65be",
+        "startup_qualification_sha256": "275656e64729fab76c370eaea1f4719e372a10da21d19267b452d0f368903d7c",
+        "root_admission_sha256": "1539bbab847b98f1d06afa85ba05af4c2bc46d3d71ef19739fc3cea2af08f6e5",
+        "terminal_manifest_sha256": "16f68f61e11921232b52a9f19f97bb15c3d0e191c565df7da21a8502eef30514",
+        "root_start_observation_sha256": "3c742d265131faf8be1f07bd5a68b30f28b8323bdafa1230dd9b439e806a949a"
+      }
+    }
+  ],
   "failure_free_models": 22,
   "active_model_ids": [
     "model_testing_asset_joint_blocks_history_partition_v6",
@@ -14755,7 +14838,7 @@
   "retention_note": "retained_in_active_set inside each execution is its historical recording-time snapshot; active_model_ids is authoritative for the current retained set.",
   "current_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
   "current_panel_fingerprint": "094309da9cf9ac47509ded84347598e85faee70cc01aec963cca71a2e2105c04",
-  "updated_utc": "2026-10-23T05:30:16.485765+00:00",
+  "updated_utc": "2026-10-23T16:48:11+00:00",
   "historical_status_snapshots": [
     {
       "recorded_context": "Superseded scalar-portfolio V5 launch snapshot; not current work",
@@ -14918,6 +15001,51 @@
     "posthoc_score_selection": true,
     "independent_validation_or_significance_claim": false,
     "research_development_candidates_counted": false,
-    "percent_better_than_fixed_WR": 16.41240835383946
+    "percent_better_than_fixed_WR": 16.41240835383946,
+    "canonical_headline_reference_model_id": "model_testing_asset_joint_blocks_history_partition_v6",
+    "canonical_headline_reporting": {
+      "schema": "v11-global-worse-complete-baseline-headline-v1",
+      "reference_rule": "Select the larger complete global Q among WR and WOR on identical matched support; an exact tie selects WR. Do not maximize by request or bucket.",
+      "selected_reference": {
+        "model_id": "model_testing_asset_joint_blocks_history_partition_v6",
+        "Q": 0.652235953173445
+      },
+      "comparisons": {
+        "WR": {
+          "model_id": "model_testing_asset_joint_blocks_replacement_v6",
+          "Q": 0.6510567494403149,
+          "percent_lower_CRPS": 16.41240835383946
+        },
+        "WOR": {
+          "model_id": "model_testing_asset_joint_blocks_history_partition_v6",
+          "Q": 0.652235953173445,
+          "percent_lower_CRPS": 16.563529738106798
+        }
+      },
+      "headline_percent_lower_than_global_worse_complete_baseline": 16.563529738106798,
+      "scope": {
+        "series": 1264,
+        "requests_per_model": 320017,
+        "requests_by_final_paths_per_model": {
+          "1000": 59906,
+          "240": 260111
+        },
+        "same_count_within_every_pair": true,
+        "coverage_note": "Complete matched V11 support with mixed historical 1,000-path and current 240-path requests; forecast outputs and all Q values are unchanged."
+      },
+      "preserved_WR_specific_fields": [
+        "fixed_reference_model_id",
+        "percent_better_than_fixed_WR",
+        "percent_lower_standardized_CRPS_than_fixed_WR"
+      ],
+      "amendment": {
+        "path": "../daily-assets-portfolios-asset-v6-20261020/standardized-crps-v11-20261023/reference_reporting_addendum_v1.json",
+        "sha256": "aabc3ebb2b53179720db266e3c1b05fbd065914cf227e723a41d11a5981b3034",
+        "independent_review_path": "../daily-assets-portfolios-asset-v6-20261020/standardized-crps-v11-20261023/reference_reporting_independent_review_v1.json",
+        "independent_review_sha256": "87eb47fc190ff13bb0982e16436516a1d9bb5e528564865304c63719d30d0b7d",
+        "independent_review_status": "CLEAR"
+      }
+    },
+    "fixed_reference_model_id_role": "Legacy WR-specific V11 comparison field retained for compatibility; the amended canonical headline reference is canonical_headline_reference_model_id."
   }
 }

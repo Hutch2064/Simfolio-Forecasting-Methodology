@@ -21,11 +21,15 @@ This is balance across the three declared calendar regimes and their planned req
 
 ## Baseline interpretation
 
-Retain the same fixed with-replacement (WR) reference forecasts. Report the descriptive matched reduction:
+Retain both fixed reference forecasts: with replacement (WR) and without replacement (WOR). Original V11 reports give the WR-specific descriptive matched reduction:
 
     100 * (1 - Q(candidate) / Q(WR))
 
-Compute one ratio after aggregation, not ratios against each realized baseline loss. The proper primary quantity is Q. Its reported relative reduction has the same observed ranking on the matched dataset; the percentage itself is not a separate proper scoring rule. If the baseline Q is zero, report the absolute scores and the undefined percentage explicitly rather than inserting an epsilon.
+The approved [reporting addendum](reference_reporting_addendum_v1.json) selects the larger complete global Q among WR and WOR on identical support (an exact tie selects WR) for the canonical headline:
+
+    100 * (1 - Q(candidate) / max(Q(WR), Q(WOR)))
+
+Also retain both individual comparisons. Apply the reference choice after global aggregation, never by request or bucket; do not choose a global-worse reference for partial coverage. The amendment changes reporting only, not the score formula, weights, forecasts, or Q values. The proper primary quantity is Q; a relative reduction is descriptive, not a separate proper scoring rule. If the selected reference Q is zero, report the absolute scores and undefined percentage explicitly rather than inserting an epsilon.
 
 ## Grounding and limits
 
@@ -45,7 +49,7 @@ Complete-panel results and representative development estimates must remain sepa
 
 ## Complete expanded-panel result
 
-All320,017 requests per model were rescored without new forecasts. The unchanged167-recipe endpoint mixture scored **0.544202657106937**, versus fixed WR **0.6510567494403149**: **16.41240835383946% lower aggregate standardized CRPS**. History Partition scored0.652235953173445. The historical raw-V9 gain25.484505671234402% is preserved under its old definition.
+All 320,017 requests per model were rescored without new forecasts. The unchanged 167-recipe endpoint mixture scored **0.544202657106937**. Its WR-specific comparison remains **16.41240835383946% lower** than fixed WR (Q **0.6510567494403149**); the History Partition / WOR score is **0.652235953173445**. Under the approved global-worse rule, WOR is the canonical reference, so the headline is **16.563529738106798% lower than WOR**. The forecasts, coverage, and all Q values are unchanged; [the reporting addendum](reference_reporting_addendum_v1.json) records the reference selection and its independent review. The historical raw-V9 gain 25.484505671234402% remains under its original definition.
 
 [Official scoreboard](official_scoreboard_v11.json), [exact full rescore](full_primary_rescore.json), [independent replay](requested_horizon_crps_v11_independent_full_replay_review.json), and [bucket diagnostics](full_score_diagnostics_v11.json) retain identities and hashes. The requested-horizon scale index covers all64,049 training prefixes; raw arrays and the scale database remain private.
 

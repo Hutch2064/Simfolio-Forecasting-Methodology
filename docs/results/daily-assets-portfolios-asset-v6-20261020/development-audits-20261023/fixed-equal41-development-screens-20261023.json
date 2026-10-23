@@ -1,0 +1,165 @@
+{
+  "schema": "simfolio-fixed-equal41-development-screen-public-summary-v1",
+  "status": "closed_development_diagnostics",
+  "official_full_panel_changed": false,
+  "full_panel_catalogue_increment": 0,
+  "method": {
+    "candidate_arms": "41 one-hot fixed recipes plus one static equal-weight-41 arm",
+    "final_paths_per_candidate_arm": 240,
+    "selection_fits_or_inner_qp": false,
+    "score": "raw mean daily CRPS / (training-portfolio sample SD, ddof=1 * sqrt(actual requested H)); renormalize request weights within each horizon bucket; average short, medium, and long bucket Q equally",
+    "worse_baseline_rule": "max(global Q_WR, global Q_WOR) on identical request support; not a per-request maximum",
+    "fixed_reference_definition": "../aligned_panel_v7_fixed_reference_reporting_addendum.json"
+  },
+  "fixed_equal_12": {
+    "requests": 12,
+    "requests_by_bucket": {
+      "long": 3,
+      "medium": 3,
+      "short": 6
+    },
+    "completed_candidate_arms": 504,
+    "G2_Q": 0.6523205401955204,
+    "WR_Q": 0.7532881609121224,
+    "WOR_Q": 0.7365970523607605,
+    "equal41_Q": 0.6099639796284039,
+    "best_fixed_recipe": {
+      "recipe_id": 166,
+      "Q": 0.5860385805894998
+    },
+    "worse_global_baseline": "WR",
+    "interpretation": "Both equal-41 and the best one-hot recipe scored below G2 on this small diagnostic cohort; the result did not persist on the 90-request extension."
+  },
+  "fixed_equal_90": {
+    "requests": 90,
+    "requests_by_bucket": {
+      "long": 30,
+      "medium": 30,
+      "short": 30
+    },
+    "candidate_arms_per_request": 42,
+    "completed_candidate_arms": 3780,
+    "reused_from_12_screen": 12,
+    "new_requests": 78,
+    "unsupported_arms": 0,
+    "Q": {
+      "G2_uniform_lead_2P": 0.47602688889309114,
+      "equal41": 0.5816978758944751,
+      "recipe_123_best_fixed": 0.5744411451999418,
+      "WR": 0.9172562488370479,
+      "WOR": 0.9851885724235973
+    },
+    "equal41_crps_change_vs_G2_percent": 22.19853320620217,
+    "best_fixed_recipe_crps_change_vs_G2_percent": 20.6740960653912,
+    "worse_global_baseline": {
+      "model": "WOR",
+      "Q": 0.9851885724235973
+    },
+    "all_41_one_hot_recipes_and_equal41_worse_than_G2": true,
+    "WOR_completion": {
+      "initial_coverage": 89,
+      "separate_saved_loss_vectors_added": 1,
+      "candidate_forecasts_added": 0,
+      "frozen_plan_or_base_audit_changed": false
+    }
+  },
+  "native_origin_screen": {
+    "requests": 90,
+    "Q": {
+      "G2_uniform_lead_2P": 0.47602688889309114,
+      "native_origin_uniform_2P": 0.5103424746980417,
+      "WR": 0.9172562488370479
+    },
+    "native_origin_crps_change_vs_G2_percent": 7.2087495,
+    "WOR_coverage": 89,
+    "decision": "rejected; further seed follow-up canceled; no promotion"
+  },
+  "conditional_recipe_alias": {
+    "recipes": [
+      115,
+      167
+    ],
+    "finding": "Same generative forecast law conditional on a shared qualified fitted state and successful preparation.",
+    "limits": [
+      "Not a universal fit-eligibility or error identity; recipe 167 has additional finite-value checks and unused EWMA fitting steps that can fail.",
+      "Identical seeded path bytes were not established.",
+      "Both labels remain in the equal-41 specification; deduplicating would alter its prior and finite path allocation."
+    ]
+  },
+  "evidence": {
+    "fixed_equal_12": {
+      "independent_output_audit_sha256": "46c5a064ca24b1214a2be19f210b066b8d8250cb457effec3d619ca86f9dd299",
+      "plan_fingerprint": "2393a662f1b05b083154aa0b695c791a2ff89ed650f0bc43b7126c91c5913bde",
+      "independent_source_plan_review_sha256": "668e64c9a98319554f58038878798382b884a856b580b674b5ee10389dccd8ac",
+      "independent_controller_source_review_sha256": "76654d0810362ee68ede5c624bd98d111d082dddc5ea4df6abd867a7e0da43ef"
+    },
+    "fixed_equal_90": {
+      "independent_output_audit_sha256": "b74575b0f9ebed2dd96fff945176bffbad4a1be14c836c19700fe50f59a3f158",
+      "plan_fingerprint": "062dd34bc9d8e8484a7fd222ae505ba51a79565c5fcfd0409ae8897cda73bd94",
+      "plan_sha256": "01f72fcc412df8af083bbc049c11bffdff7ba5ab4a8c47de7fb70eb1239d5158",
+      "driver_sha256": "5fc6208a983177bfa020409a38e0009277bde06d7296cf66b7dfddabe63ee7e5",
+      "qualification_receipt_sha256": "975e94934c555523034875236af76390e3da51035224370e94dc5a06e36a822e",
+      "independent_source_plan_review_sha256": "d4ea1c33a27731d1c02f5392f4ba8c2d359a63e6ead4873c41834a06aa94d1c1",
+      "audit_script_sha256": "93b648af0da3cad75b1679db999f810f1e2a727d776d8d47396105959cf4a68e",
+      "complete90_baseline_addendum_sha256": "eb683fe3a50184cd596dd98bc4cf19cbfed37c22e94240753efb17b0409a32dd",
+      "supplement_postcheck_sha256": "6e360be7fbd5f606530ca3c6417dbbc169150820c4692c9b69faa78129ed4f69",
+      "supplement_metadata_sha256": "d413d64fe5e980f4b90b39f1382bf41ea5c38987c558786a0d682a09bc006bdf",
+      "supplement_loss_vector_sha256": "17192336eb083b0687e8c3aca00f61304d8e01149028b943588852838ee09712"
+    },
+    "native_origin_90": {
+      "independent_raw_audit_sha256": "520482a47e9437f8fb32a9c3689d31532e5bc9b4030d52d2710b5c58b39119b4",
+      "plan_fingerprint": "13e6d1eb6badf737f62a6b25e9dd8f17b4a026d59ee6bcd0e00a50cf56536411",
+      "promotion": false
+    },
+    "recipe_alias_review_sha256": "f0fde2acbada478e5793bf781fa39e2f1eee3ed8375276101a99d2c6ece762ba"
+  },
+  "private_recovery": {
+    "fixed_equal_12": {
+      "status": "fresh_download, disk restore, SHA-256, size, and mode verified",
+      "release": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-native90-fixed41-screen12-20261023T154807Z",
+      "receipt_sha256": "20649887d0048973d6d70a43a3da658cdc3cb588e463e722d82c6c17d7983f56",
+      "inventory_sha256": "fd8a050367382d9ef340059a1d83a9a3b433f5fcfacd494174dc12c99bb8405b"
+    },
+    "fixed_equal_90": {
+      "status": "fresh remote download and disk restore verified; member SHA-256, size, and file mode checks passed",
+      "release": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-fixed-equal41-screen90-wor-20261023T160617Z",
+      "receipt_sha256": "e5fcf8de5d3a27cd88bda5c2fd8980c0762ee506df7f63de4bc463fcd8e70c01",
+      "inventory_sha256": "84b190026b3ab1b6ac036996a36d47a7eb00a56cba0469d0b5c31eaafca81419",
+      "parts": 19,
+      "files": 212,
+      "source_bindings": 1636,
+      "all_originals_retained": true,
+      "full_panel_catalogue_increment": 0,
+      "logical_cache_reassembly": {
+        "sha256": "c094cf10c384c865a0070db417110b5c0d570923705f64806616fa0825f0b1bd",
+        "bytes": 246362112,
+        "segments": 13,
+        "fresh_download_disk_restore_verified": true
+      }
+    }
+  },
+  "local_retirement": {
+    "status": "closed forecast-loss payload retirement verified against remote recovery copies",
+    "ledger_sha256": "49d1fb3210d2330e067c1265f45c5d944025c6f664b200a299ab9a949bde7970",
+    "retired_npz_files": 90,
+    "retired_bytes": 118024483,
+    "open_handles_at_retirement": 0,
+    "reuse_index_source_intersections": 0,
+    "sources_sidecars_plans_audits_and_remote_copies_retained": true,
+    "remote_ledger_archive": {
+      "release_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-uniform240-reuse-index-7022806fd7a7385a-20261023",
+      "asset_name": "fixed_equal41_screen12_screen90_raw_npz_retirement_v1.json",
+      "verification_receipt_sha256": "a7f66696fefaebdad565d64891c498b8d63ebd01316acb7a69f8b05739fe650a",
+      "fresh_remote_json_download_and_readability_verified": true
+    }
+  },
+  "interpretation": {
+    "development_only": true,
+    "fresh_holdout": false,
+    "statistical_significance_claim": false,
+    "production_qualification": false,
+    "full_panel_winner_claim": false,
+    "full_panel_catalogue_increment": 0,
+    "official_v11_result_unchanged": true
+  }
+}
