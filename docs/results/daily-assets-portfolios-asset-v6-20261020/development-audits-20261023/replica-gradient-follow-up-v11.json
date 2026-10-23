@@ -1,0 +1,247 @@
+{
+  "schema": "replica-gradient-follow-up-v11-public-record-v1",
+  "as_of_date": "2026-10-23",
+  "score_protocol": {
+    "id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+    "primary_quantity": "aggregate standardized CRPS Q; lower is better",
+    "request_normalization": "equal-day mean marginal CRPS / (training-prefix portfolio sample SD * sqrt(actual requested native horizon))",
+    "fixed_weighting": "unchanged V11 planned request weights: one third per short, medium, and long calendar-horizon bucket, with the existing hierarchy within each bucket",
+    "reference": "same fixed with-replacement forecasts"
+  },
+  "official_full_panel_reference_unchanged": {
+    "public_record": "../standardized-crps-v11-20261023/official_scoreboard_v11.json",
+    "scoreboard_sha256": "b9153f062acd115b07ef8e80f39e34748cc53c9a83dc6df65546e08ca458b20a",
+    "endpoint_model_id": "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d",
+    "endpoint_q": 0.544202657106937,
+    "fixed_wr_q": 0.6510567494403149,
+    "percent_lower_than_fixed_wr": 16.41240835383946,
+    "matched_requests_per_model": 320017,
+    "status": "unchanged completed V11 result; follow-up studies are not additional full-panel runs"
+  },
+  "current_development_pointer": {
+    "model_id": "model_testing_independent_replica_gradient_v1_13dbbabdb4f8e389",
+    "method": "replica_2P",
+    "recipe_count": 41,
+    "financial_candidate_source_sha256": "d79c516a2941455ad4a538670f345823b7767f2b1d69f1a5a8858f11a24ee850",
+    "execution_source_sha256": "7f1c419e092e0b3e8a1b0a1eaa87ecc37b196eedcc7d0721f46a0dff6306138c",
+    "execution_equivalence_lineage_sha256": "1e77f73233ce9422997a6287558158876ea698927558e952af45e9abf235838a",
+    "execution_lineage_model_ids": {
+      "new_17080_outputs": "model_testing_independent_replica_gradient_v1_13dbbabdb4f8e389",
+      "reused_315_outputs": "model_testing_independent_replica_gradient_v1_1c3383896bd80d62"
+    },
+    "pointer_snapshot_sha256": "7ab558b2abc1773346092b5a183ef180278349f94c53869b7b17ad1087ed83d5",
+    "v11_q_representative_mass_estimate": 0.5688604761359942,
+    "matched_fixed_wr_q": 0.6971753165410287,
+    "percent_lower_than_fixed_wr_estimate": 18.404960324994978,
+    "percent_lower_than_prior_mapped_ratio_estimate": 1.3349861182943012,
+    "bucket_q": {
+      "long": 0.7916491832261365,
+      "medium": 0.498949430890671,
+      "short": 0.41598281429117534
+    },
+    "coverage": {
+      "matched_requests_per_arm": 17395,
+      "series": 1264,
+      "contexts": 3479,
+      "new_candidate_outputs": 17080,
+      "exact_reused_candidate_outputs": 315,
+      "final_paths": 240,
+      "inner_paths": 2,
+      "outer_seed_start": 0
+    },
+    "source_plan_fingerprint": "e3cdd79a830d15bafe2b5f569121c44b9b7f179e3453b082249f42140d03673b",
+    "source_receipt_sha256": "a87c89fc15e719ff8b8057abed076e3f5544cdaefda002024c046d507379f47d",
+    "independent_replay_sha256": "f088ecb0d6fa7208d5af02cfc5a5132722308ff1b21df41b5b0eb38f6a13a671",
+    "request_local_learning_contract": {
+      "P": "number of eligible mapped-ratio folds for this dated request",
+      "initialization": "this request's normalized mapped-ratio QP weights",
+      "each_update": "sample one fold by represented mass and one recipe by current simplex weight; draw fresh independent full-bank A and single-recipe B replicas; estimate the population terminal-CRPS/sqrt(H) gradient; apply tangent-projected Euclidean AdaGrad",
+      "reported_weights": "mean of pre-update iterates",
+      "replica_2P_budget": "exactly 2P updates per request; no cross-request fitting or shared optimizer state"
+    },
+    "limitations": [
+      "Representative-mass development estimate, not the actual 320017-request headline.",
+      "Uses reused historical origins and seed 0; it is not an untouched holdout or future-performance guarantee.",
+      "No all-horizon dominance: short-bucket Q is 2.177659% higher than mapped-ratio.",
+      "Not promoted to the full panel or production."
+    ]
+  },
+  "prior_development_pointer_preserved_as_history": {
+    "method": "mapped_ratio",
+    "model_id": "model_testing_mapped_ratio_geometry_v1_1086fd958c5bd649",
+    "pointer_snapshot_sha256": "be95a83783a2f084b6646ae74568497a5bcee784c64ea212a89b83403b4bb899",
+    "v11_q_representative_mass_estimate": 0.5765574378958978,
+    "matched_fixed_wr_q": 0.6971753165410287,
+    "percent_lower_than_fixed_wr_estimate": 17.300939345294875,
+    "matched_requests_per_arm": 17395,
+    "series": 1264,
+    "full_panel_promoted": false,
+    "production_promoted": false
+  },
+  "replica_gradient_conditional_screen_1775": {
+    "matched_requests": 1775,
+    "contexts": 355,
+    "native_requests": 1685,
+    "exact_reused_requests": 90,
+    "candidate_methods": [
+      "replica_2P",
+      "replica_4P"
+    ],
+    "final_paths": 240,
+    "inner_paths": 2,
+    "plan_fingerprint": "94b0c1de8259f5dd65eb28291177a0f86d02f35445b39b95fa0e961858417aba",
+    "independent_audit_sha256": "e5ce0b082917c0b1fe7cc889b8e64cd87db665dc8ed68fa63a09c60518115f88",
+    "independent_aggregation_sha256": "ae39e46463e1d1a54932a1149177f65c3da6ea78a396b6d5fc388b69d37ad952",
+    "equal_three_bucket_conditional_q": {
+      "fixed_wr": 0.91926779942164,
+      "mapped_ratio": 0.5127119253506606,
+      "replica_2P": 0.49836403347768665,
+      "replica_4P": 0.5076349047725832
+    },
+    "replica_2p_percent_lower_than_mapped_ratio": 2.79843147068618,
+    "replica_2p_percent_lower_than_fixed_wr": 45.78684973070592,
+    "weighting_note": "Observed support is partial and unequal by bucket; conditional means are renormalized within each bucket before equal one-third aggregation.",
+    "status": "matched conditional development diagnostic; not the representative-mass estimate or full-panel headline; no promotion"
+  },
+  "closed_rejected_or_diagnostic_screens": {
+    "single_path_replica_gradient": {
+      "requests": 90,
+      "requests_per_bucket": 30,
+      "verified_candidate_outputs": 270,
+      "plan_fingerprint": "652f9f4ce9b5b59ac92ead3657d7d4c7cb2f23b39311a5592a4c6ccfaad807f8",
+      "independent_audit_sha256": "42b7e935ebe0895a2df8781cc987ae077f474d693c1df75b683946c0ade6a5df",
+      "equal_three_bucket_conditional_q": {
+        "fixed_wr": 0.9172562488370479,
+        "mapped_ratio": 0.4941070027978826,
+        "replica_P": 0.525312658552862,
+        "replica_2P": 0.47800447040465377,
+        "replica_4P": 0.48155627542710966,
+        "single_path_P": 0.5097053766996125,
+        "single_path_2P": 0.5323102897870053,
+        "single_path_4P": 0.4916197388779217
+      },
+      "single_path_bucket_conditional_q": {
+        "P": {
+          "long": 0.7299279369975481,
+          "medium": 0.3716195492268254,
+          "short": 0.42756864387446397
+        },
+        "2P": {
+          "long": 0.7166280428040501,
+          "medium": 0.4443229390483304,
+          "short": 0.43597988750863537
+        },
+        "4P": {
+          "long": 0.6632254181525912,
+          "medium": 0.3966869507283328,
+          "short": 0.41494684775284096
+        }
+      },
+      "same_budget_percent_change": {
+        "single_path_P_vs_replica_P": -2.971046213933759,
+        "single_path_2P_vs_replica_2P": 11.36094382891002,
+        "single_path_4P_vs_replica_4P": 2.089779318499474
+      },
+      "status": "independently audited; rejected for expansion; selected-cohort conditional Qs only, no full-panel headline"
+    },
+    "full_support_replica_gradient": {
+      "requests": 90,
+      "plan_fingerprint": "c5c78c7c78334df59f9bcfed84b83cbafa31d30ac083ea02528f7f1d705a3062",
+      "independent_audit_sha256": "8d147b8462ee8ce7f76a631fb8e8a286265c49dc24b6c7a87ee0b0ac8a0ada56",
+      "replica_2p_percent_worse_than_matched_2p_parent": 3.0867423856600906,
+      "replica_4p_percent_worse_than_matched_4p_parent": 1.21,
+      "oracle_cpu": "higher than the matched parent",
+      "status": "diagnostic only; rejected for expansion"
+    },
+    "standalone_latent_posterior": {
+      "requests": 90,
+      "plan_fingerprint": "1d3737ac1e3d555795474943f07a489cae11e87900bf80930d6306034e22b732",
+      "independent_audit_sha256": "4cf60636a79fe3ccb95e378d126f056716e1e2f101a34dba337962f44f86eb50",
+      "candidate_q": 0.7661401391067842,
+      "mapped_ratio_q": 0.4941070027978826,
+      "percent_higher_than_mapped_ratio": 55.05551120880965,
+      "status": "matched diagnostic; rejected for expansion"
+    },
+    "standalone_latent_fit_support_triad": {
+      "new_candidate_fit_cells": 3,
+      "plan_fingerprint": "cc281a77a81be6efe6ffcee436c5e41f5a3035f92af70b3f3f33bcad912df1ad",
+      "status": "fit-support and cost check only; no aggregate score or standalone skill inference"
+    }
+  },
+  "execution_diagnostic": {
+    "study": "guarded_source_graph_requested_budget_v1",
+    "selected_cases": 3,
+    "exact_parity_forecasts": 6,
+    "timed_executions": 36,
+    "warmups": 6,
+    "status": "local harness diagnostic only; not a deployed or user-visible speed claim"
+  },
+  "requested_budget_three_case_warm_timing": {
+    "study": "guarded_source_graph_requested_budget_v1",
+    "scope": "full local preparation/refits/final-240 generation/scoring; original full-4P versus guarded requested-2P",
+    "timed_repetitions_per_case_and_arm": 6,
+    "warmups_total": 6,
+    "median_paired_wall_speedup_and_total_seconds": [
+      {
+        "H": 1,
+        "P_folds": 13,
+        "original_full_4P_wall_seconds": 1.3446167289512232,
+        "original_full_4P_cpu_seconds": 1.168867,
+        "guarded_requested_2P_wall_seconds": 0.20406045846175402,
+        "guarded_requested_2P_cpu_seconds": 0.18000100000000008,
+        "median_paired_wall_speedup": 6.151199784099535
+      },
+      {
+        "H": 1824,
+        "P_folds": 3,
+        "original_full_4P_wall_seconds": 1.29059295845218,
+        "original_full_4P_cpu_seconds": 1.1310904999999982,
+        "guarded_requested_2P_wall_seconds": 0.2533575415145606,
+        "guarded_requested_2P_cpu_seconds": 0.22176649999999976,
+        "median_paired_wall_speedup": 4.851535871816912
+      },
+      {
+        "H": 8099,
+        "P_folds": 2,
+        "original_full_4P_wall_seconds": 1.5362941875355318,
+        "original_full_4P_cpu_seconds": 1.3675300000000004,
+        "guarded_requested_2P_wall_seconds": 0.4195509999990463,
+        "guarded_requested_2P_cpu_seconds": 0.3610330000000004,
+        "median_paired_wall_speedup": 3.662337943814498
+      }
+    ],
+    "timing_receipt_sha256": "7b378c0032ccc5ac1bc36b0a81eaf2ef57042227b5412496f10e9abd9ab1bf4b",
+    "limitations": [
+      "Selected three cases only; the comparison changes the budget from full-4P to requested-2P and does not isolate graph-cache savings.",
+      "Local warm execution only; no browser, deployed service, full-panel, or user-visible speed claim."
+    ]
+  },
+  "private_recovery": [
+    {
+      "contains": "all-series replica-gradient confirmation, preserved current and prior development pointers, and rejected single-path N1 screen",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-replica-gradient-allseries-n1-20261023T1057Z",
+      "receipt_sha256": "046ff3732c29f8477f7dd2e23c1b046d749288cd6088512d2b57b1cff5abb023",
+      "inventory_sha256": "63fd098a5391c9bcb3369dfb0935ab5b14fb1d640dc0292d78300d686c4d02f7",
+      "files": 35297,
+      "fresh_download_restore_sha256_and_mode_verified": true
+    },
+    {
+      "contains": "full-support replica-gradient screen and requested-budget graph/cache parity and timing diagnostics",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-replica-gradient-budget-closed-20261023T101810Z",
+      "receipt_sha256": "b308085cfe59548ba67b0fbe8d2cb3d6c44e9fb7d6c3637f7044927300d6afdf",
+      "inventory_sha256": "59a08386b764fd1822c2db2162cfa42f419f963a1b5d60ed947f717f14da2f4b",
+      "files": 1050,
+      "fresh_download_restore_sha256_and_mode_verified": true
+    },
+    {
+      "contains": "latent-posterior triad and 90-request extension, broad replica-gradient comparison, and closed guarded graph-cache/parity evidence",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-replica-latent-graphcache-closed-20261023T095939Z",
+      "receipt_sha256": "de28c977c3463df3b4189f9e5145a72ec235acc55570461e62709a9c4ec9fe01",
+      "inventory_sha256": "20464ffc869509a295e767de9e6e087aa5de3c8d85328689d49cdb28ae16d7ad",
+      "files": 9158,
+      "fresh_download_restore_sha256_and_mode_verified": true
+    }
+  ],
+  "full_panel_catalogue_increment": 0,
+  "data_publication": "No raw provider histories, private portfolio rows, numerical loss vectors, or machine-local paths are included."
+}

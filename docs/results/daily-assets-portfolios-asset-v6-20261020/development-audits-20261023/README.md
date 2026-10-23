@@ -2,6 +2,8 @@
 
 This supplement records independently reviewed, closed development screens for the finite41/finite77 selector, mean-reference controls, and mapped-ratio geometry. The historical V9 results below retain their original definition. The [official V11 full-panel result](../standardized-crps-v11-20261023/README.md) is **16.41% lower standardized CRPS** than the same fixed With Replacement. V10 win rate is diagnostic only. These screens add no full-panel model count.
 
+The later replica-gradient follow-up is recorded separately in [replica-gradient-follow-up-v11.md](replica-gradient-follow-up-v11.md), with machine-readable scores and private recovery receipts in [replica-gradient-follow-up-v11.json](replica-gradient-follow-up-v11.json). It preserves the official V11 full-panel headline and adds no full-panel catalogue entries.
+
 ## Findings
 
 - On 1,775 matched development requests, finite77 improved the finite41 equal-three-bucket conditional score by **8.0546%**. The result is highly concentrated: one BTC request represented **102.72%** of net improvement. Removing that contribution as a diagnostic leaves positive weighted deterioration; this is not a new score or an exclusion.
