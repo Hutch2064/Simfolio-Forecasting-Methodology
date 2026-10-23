@@ -1,5 +1,5 @@
 {
-  "schema": "replica-gradient-follow-up-v11-public-record-v1",
+  "schema": "replica-gradient-follow-up-v11-public-record-v2",
   "as_of_date": "2026-10-23",
   "score_protocol": {
     "id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
@@ -16,28 +16,37 @@
     "fixed_wr_q": 0.6510567494403149,
     "percent_lower_than_fixed_wr": 16.41240835383946,
     "matched_requests_per_model": 320017,
-    "status": "unchanged completed V11 result; follow-up studies are not additional full-panel runs"
+    "status": "unchanged completed V11 result; follow-up studies are not additional full-panel runs",
+    "requests_by_final_paths_per_model": {
+      "1000": 59906,
+      "240": 260111
+    },
+    "same_count_within_every_pair": true,
+    "historical_scope": "Saved historical mixed-count forecast panel, rescored under V11; not a new uniform-lead run"
   },
   "current_development_pointer": {
-    "model_id": "model_testing_independent_replica_gradient_v1_13dbbabdb4f8e389",
-    "method": "replica_2P",
+    "model_id": "model_testing_uniform_lead_replica_gradient_v1_e52f212160e8e539",
+    "method": "uniform_lead_2P",
     "recipe_count": 41,
-    "financial_candidate_source_sha256": "d79c516a2941455ad4a538670f345823b7767f2b1d69f1a5a8858f11a24ee850",
-    "execution_source_sha256": "7f1c419e092e0b3e8a1b0a1eaa87ecc37b196eedcc7d0721f46a0dff6306138c",
-    "execution_equivalence_lineage_sha256": "1e77f73233ce9422997a6287558158876ea698927558e952af45e9abf235838a",
+    "financial_candidate_source_sha256": "2b0f747ff650da4a55080c9768093644bab7dd93df1d48c4d018d46a3d684bdc",
+    "execution_source_sha256": "d1f498f44e1017a904194d2455169c247dc3aaa59f3a2741e868781627086f70",
+    "execution_equivalence_lineage_sha256": "979241822980871d60f00b1b21ec7cc69dc0ab48bfac4a3bc76c0073426341f1",
     "execution_lineage_model_ids": {
-      "new_17080_outputs": "model_testing_independent_replica_gradient_v1_13dbbabdb4f8e389",
-      "reused_315_outputs": "model_testing_independent_replica_gradient_v1_1c3383896bd80d62"
+      "native_17080_outputs": "model_testing_uniform_lead_replica_gradient_v1_e52f212160e8e539",
+      "retained_315_original_model_id_counts": {
+        "model_testing_uniform_lead_replica_gradient_v1_cf97676dcb7c78c7": 19,
+        "model_testing_uniform_lead_replica_gradient_v1_e52f212160e8e539": 296
+      }
     },
-    "pointer_snapshot_sha256": "7ab558b2abc1773346092b5a183ef180278349f94c53869b7b17ad1087ed83d5",
-    "v11_q_representative_mass_estimate": 0.5688604761359942,
+    "pointer_snapshot_sha256": "483da20d3a6e19aa3d25d54c59afb9a1d0d4101e8ba4353b5bee7ce90e6859a8",
+    "v11_q_representative_mass_estimate": 0.5683632016645096,
     "matched_fixed_wr_q": 0.6971753165410287,
-    "percent_lower_than_fixed_wr_estimate": 18.404960324994978,
-    "percent_lower_than_prior_mapped_ratio_estimate": 1.3349861182943012,
+    "percent_lower_than_fixed_wr_estimate": 18.47628735848087,
+    "percent_lower_than_prior_mapped_ratio_estimate": 1.4212350223582915,
     "bucket_q": {
-      "long": 0.7916491832261365,
-      "medium": 0.498949430890671,
-      "short": 0.41598281429117534
+      "long": 0.7827290396943666,
+      "medium": 0.506664165095708,
+      "short": 0.4156964002034541
     },
     "coverage": {
       "matched_requests_per_arm": 17395,
@@ -49,22 +58,24 @@
       "inner_paths": 2,
       "outer_seed_start": 0
     },
-    "source_plan_fingerprint": "e3cdd79a830d15bafe2b5f569121c44b9b7f179e3453b082249f42140d03673b",
-    "source_receipt_sha256": "a87c89fc15e719ff8b8057abed076e3f5544cdaefda002024c046d507379f47d",
-    "independent_replay_sha256": "f088ecb0d6fa7208d5af02cfc5a5132722308ff1b21df41b5b0eb38f6a13a671",
+    "source_plan_fingerprint": "9d90dad59f0c670263c9a62028441cd74121f56db52df4044ce8ec2d43634e77",
+    "source_receipt_sha256": "aafa9998cffc9a30ebcd842f2907ba285c0a53f3a147509e4036e0bf3f76fd0a",
+    "independent_replay_sha256": "5d7992cc3273f69877d9b6503ba030967d4b88feed4608c4dbf9f169ef27da08",
     "request_local_learning_contract": {
       "P": "number of eligible mapped-ratio folds for this dated request",
       "initialization": "this request's normalized mapped-ratio QP weights",
-      "each_update": "sample one fold by represented mass and one recipe by current simplex weight; draw fresh independent full-bank A and single-recipe B replicas; estimate the population terminal-CRPS/sqrt(H) gradient; apply tangent-projected Euclidean AdaGrad",
+      "each_update": "Sample one fold by represented mass, one native daily lead uniformly within that original fold horizon, and one recipe by current simplex weight. Use fresh independent full-bank A and single-recipe B replicas for the lead-marginal population CRPS gradient divided by sqrt(original fold horizon); preserve the original-H generator and apply tangent-projected Euclidean AdaGrad.",
       "reported_weights": "mean of pre-update iterates",
-      "replica_2P_budget": "exactly 2P updates per request; no cross-request fitting or shared optimizer state"
+      "uniform_lead_2P_budget": "Exactly2P updates per request with mean pre-update weights; no cross-request fitting or shared optimizer state"
     },
     "limitations": [
-      "Representative-mass development estimate, not the actual 320017-request headline.",
-      "Uses reused historical origins and seed 0; it is not an untouched holdout or future-performance guarantee.",
-      "No all-horizon dominance: short-bucket Q is 2.177659% higher than mapped-ratio.",
-      "Not promoted to the full panel or production."
-    ]
+      "Only0.0874% lower CRPS than prior development incumbent; not a large forecasting gain; additional90seed diagnostic shows no stable advantage.",
+      "Medium-bucket CRPS1.5462% higher than prior incumbent; short and long improve, so no all-horizon dominance.",
+      "Historical development cohort and inner seed0, final240; not untouched holdout or future guarantee.",
+      "315reusedrequests keep old broad/original90 model/source identities;17080newrequests per method use current qualified execution source."
+    ],
+    "percent_lower_than_prior_endpoint_estimate": 0.08741589411561668,
+    "status": "Highest observed prespecified seed0 development point estimate; tiny advantage not stable across the separate seed90 diagnostic; no full-panel or production promotion"
   },
   "prior_development_pointer_preserved_as_history": {
     "method": "mapped_ratio",
@@ -240,8 +251,181 @@
       "inventory_sha256": "20464ffc869509a295e767de9e6e087aa5de3c8d85328689d49cdb28ae16d7ad",
       "files": 9158,
       "fresh_download_restore_sha256_and_mode_verified": true
+    },
+    {
+      "contains": "uniform-lead all-series development outputs, guarded executors, rejected guard successors, exact-output timing diagnostics and terminal-controller qualification",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-uniform-allseries-runtime-controls-20261023T125428Z",
+      "receipt_sha256": "584e86d4b7909979f828e5ff38baf37f3386c9f88dda4ddaa14ef15632747d4a",
+      "closed_verification_sha256": "66848d0dabbb827c3f9f19917d67d94e987b5370f000ef48e66c93400aba410e",
+      "files": 69057,
+      "fresh_download_restore_sha256_and_mode_verified": true
+    },
+    {
+      "contains": "prespecified seed-stability diagnostic, fold-scale pilot, corrected and superseded crosschecks, detached development pointer snapshots",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-uniform-seed-norm-supplement-20261023T131630Z",
+      "receipt_sha256": "8b9e73e51c2c384974388b1a4891a0e9fe58e7883d3898447f056946a114d695",
+      "closed_verification_sha256": "d6725f1665b3074bd0f320e95cd64c73a0061fe671371b9c27f6f321f5ca1d6e",
+      "files": 1189,
+      "fresh_download_restore_sha256_and_mode_verified": true
     }
   ],
   "full_panel_catalogue_increment": 0,
-  "data_publication": "No raw provider histories, private portfolio rows, numerical loss vectors, or machine-local paths are included."
+  "data_publication": "No raw provider histories, private portfolio rows, numerical loss vectors, or machine-local paths are included.",
+  "update_scope": "2026-10-23 uniform-lead development point estimate, seed sensitivity and rejected guard execution successors; no new official full-panel result",
+  "previous_development_endpoint_pointer_preserved_as_history": {
+    "model_id": "model_testing_independent_replica_gradient_v1_13dbbabdb4f8e389",
+    "method": "replica_2P",
+    "recipe_count": 41,
+    "financial_candidate_source_sha256": "d79c516a2941455ad4a538670f345823b7767f2b1d69f1a5a8858f11a24ee850",
+    "execution_source_sha256": "7f1c419e092e0b3e8a1b0a1eaa87ecc37b196eedcc7d0721f46a0dff6306138c",
+    "execution_equivalence_lineage_sha256": "1e77f73233ce9422997a6287558158876ea698927558e952af45e9abf235838a",
+    "execution_lineage_model_ids": {
+      "new_17080_outputs": "model_testing_independent_replica_gradient_v1_13dbbabdb4f8e389",
+      "reused_315_outputs": "model_testing_independent_replica_gradient_v1_1c3383896bd80d62"
+    },
+    "pointer_snapshot_sha256": "7ab558b2abc1773346092b5a183ef180278349f94c53869b7b17ad1087ed83d5",
+    "v11_q_representative_mass_estimate": 0.5688604761359942,
+    "matched_fixed_wr_q": 0.6971753165410287,
+    "percent_lower_than_fixed_wr_estimate": 18.404960324994978,
+    "percent_lower_than_prior_mapped_ratio_estimate": 1.3349861182943012,
+    "bucket_q": {
+      "long": 0.7916491832261365,
+      "medium": 0.498949430890671,
+      "short": 0.41598281429117534
+    },
+    "coverage": {
+      "matched_requests_per_arm": 17395,
+      "series": 1264,
+      "contexts": 3479,
+      "new_candidate_outputs": 17080,
+      "exact_reused_candidate_outputs": 315,
+      "final_paths": 240,
+      "inner_paths": 2,
+      "outer_seed_start": 0
+    },
+    "source_plan_fingerprint": "e3cdd79a830d15bafe2b5f569121c44b9b7f179e3453b082249f42140d03673b",
+    "source_receipt_sha256": "a87c89fc15e719ff8b8057abed076e3f5544cdaefda002024c046d507379f47d",
+    "independent_replay_sha256": "f088ecb0d6fa7208d5af02cfc5a5132722308ff1b21df41b5b0eb38f6a13a671",
+    "request_local_learning_contract": {
+      "P": "number of eligible mapped-ratio folds for this dated request",
+      "initialization": "this request's normalized mapped-ratio QP weights",
+      "each_update": "sample one fold by represented mass and one recipe by current simplex weight; draw fresh independent full-bank A and single-recipe B replicas; estimate the population terminal-CRPS/sqrt(H) gradient; apply tangent-projected Euclidean AdaGrad",
+      "reported_weights": "mean of pre-update iterates",
+      "replica_2P_budget": "exactly 2P updates per request; no cross-request fitting or shared optimizer state"
+    },
+    "limitations": [
+      "Representative-mass development estimate, not the actual 320017-request headline.",
+      "Uses reused historical origins and seed 0; it is not an untouched holdout or future-performance guarantee.",
+      "No all-horizon dominance: short-bucket Q is 2.177659% higher than mapped-ratio.",
+      "Not promoted to the full panel or production."
+    ],
+    "historical_role": "Prior endpoint2P development pointer as published earlier on2026-10-23; superseded development metadata only"
+  },
+  "uniform_vs_prior_endpoint_bucket_changes_percent": {
+    "short": -0.06885238473355315,
+    "medium": 1.5461956117006626,
+    "long": -1.1267798566302445
+  },
+  "uniform_seed_stability_conditional90": {
+    "scope": "Separate fixed90 selected requests, equal-three-bucket conditional V11 summaries; not the17395 representative-mass estimate",
+    "requests": 90,
+    "requests_per_bucket": 30,
+    "final_paths": 240,
+    "initializer_paths": 2,
+    "fresh_bank_paths": 2,
+    "new_internal_seeds": [
+      1,
+      2
+    ],
+    "new_context_seed_pairs": 180,
+    "new_method_outputs": 360,
+    "retained_seed0_method_outputs": 180,
+    "baseline_forecasts": 0,
+    "best_seed_selected": false,
+    "seed_robust_advantage_found": false,
+    "same90_results": [
+      {
+        "internal_seed": 0,
+        "endpoint_2P_q": 0.47800447040465377,
+        "uniform_lead_2P_q": 0.47602688889309114,
+        "uniform_percent_lower_crps_vs_endpoint": 0.4137161122967137
+      },
+      {
+        "internal_seed": 1,
+        "endpoint_2P_q": 0.4995267515112889,
+        "uniform_lead_2P_q": 0.5300457304342653,
+        "uniform_percent_lower_crps_vs_endpoint": -6.109578482161959
+      },
+      {
+        "internal_seed": 2,
+        "endpoint_2P_q": 0.49907565278612703,
+        "uniform_lead_2P_q": 0.49918815926016363,
+        "uniform_percent_lower_crps_vs_endpoint": -0.022542969870098517
+      }
+    ],
+    "independent_raw_audit_sha256": "4afdc4cdb419f2cc0c21fcef99ab6e520e8bd8070c61fcb096ea76d6e5451f44",
+    "correction_sha256": "0e21660b354bb8359542c0d242b74a03e61436f9671a8e566042a0802fe13c05",
+    "caveats": [
+      "All three prespecified internal seeds reported; no independence or confidence-interval claim.",
+      "Seed1 short-bucket uniform loss is2.4255945% higher than matched endpoint; medium is also worse.",
+      "The corrected narrative supersedes an earlier mismatched comparison; earlier bytes remain privately preserved as SUPERSEDED."
+    ]
+  },
+  "rejected_guard_only_successors": [
+    {
+      "generation": "G3",
+      "decision": "rejected; retain G1/G2 executors",
+      "selected_cases": 3,
+      "native_horizons": [
+        1,
+        1824,
+        8099
+      ],
+      "financial_methods": [
+        "endpoint_2P",
+        "uniform_lead_P",
+        "uniform_lead_2P"
+      ],
+      "total_calls": 126,
+      "timed_calls": 108,
+      "warmups_including_qualification": 18,
+      "own_reference_qualification_calls": 9,
+      "paired_repeats_per_method_case": 6,
+      "min_paired_wall_slowdown_percent": 7.201875616389719,
+      "max_paired_wall_slowdown_percent": 18.14204495609375,
+      "all_nine_method_case_comparisons_slower": true,
+      "own_outputs_byte_exact": true,
+      "independent_closed_audit_sha256": "c77b9beabfd2de5b3c7fd928981cbd6bb945fa9fc393265f7899a2568cd2d8ed",
+      "scope": "Loaded local warm fresh-fit prepare/refits/full240/scoring, balanced old/new orders, one active resident; not all-panel or deployed/browser evidence"
+    },
+    {
+      "generation": "G4",
+      "decision": "rejected; retain G1/G2 executors",
+      "selected_cases": 3,
+      "native_horizons": [
+        1,
+        1824,
+        8099
+      ],
+      "financial_methods": [
+        "endpoint_2P",
+        "uniform_lead_P",
+        "uniform_lead_2P"
+      ],
+      "total_calls": 126,
+      "timed_calls": 108,
+      "warmups_including_qualification": 18,
+      "own_reference_qualification_calls": 9,
+      "paired_repeats_per_method_case": 6,
+      "min_paired_wall_slowdown_percent": 3.589625557933318,
+      "max_paired_wall_slowdown_percent": 7.877765880915155,
+      "all_nine_method_case_comparisons_slower": true,
+      "own_outputs_byte_exact": true,
+      "independent_closed_audit_sha256": "b36f5ddfbeef266e35d253a6352c03246ca2e8828b2768d895be104be5c3d748",
+      "scope": "Loaded local warm fresh-fit prepare/refits/full240/scoring, balanced old/new orders, one active resident; not all-panel or deployed/browser evidence"
+    }
+  ],
+  "new_closed_private_evidence_receipt_sha256": "584e86d4b7909979f828e5ff38baf37f3386c9f88dda4ddaa14ef15632747d4a",
+  "superseded_crosscheck_sha256": "43108ae7bfea0c11dd5b3094891928fbd3d3ec1659cb9ed14bc2a3229ae99451",
+  "corrected_crosscheck_sha256": "0e21660b354bb8359542c0d242b74a03e61436f9671a8e566042a0802fe13c05"
 }
