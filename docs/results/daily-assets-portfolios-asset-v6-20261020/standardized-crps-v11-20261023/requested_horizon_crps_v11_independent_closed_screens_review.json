@@ -1,0 +1,263 @@
+{
+  "all_final_counts240_N2_seed0": true,
+  "all_raw_to_V11_rows_and_group_reductions_verified": 522,
+  "canonical_or_public_edits": false,
+  "financial_fits_QPs_or_forecasts": 0,
+  "incident5_only_long_no_threebucket_headline": true,
+  "native_loss_vectors_verified": 87,
+  "passed": true,
+  "rescore_output_sha256": "3aee7c40ef0d56b5a4f02a876f07bc1798f99a8e6c118e3acbd16e9d30d97411",
+  "rescore_source_bindings_verified": 9,
+  "retained_WR240_physical_vectors_verified": 48,
+  "retained_WR240_scalar_plan_lineage_verified": 10,
+  "retained_empirical_loss_vectors_verified": 116,
+  "same_fixed_V9_weights_and_training_prefix_scale_index": true,
+  "scope": "Two selected closed29development screens, conditional within-observed-support diagnostics only. Not17395representative estimate, actualfull320017headline, freshholdout or promotion. No scorer/runner/model imported.",
+  "separate_screen_results": {
+    "gaussian_mean_cdf_screen29_v2": {
+      "candidate_checkpoint_commitment": "07234ab52ed36b7a95999ab18e849ae4b5382538bdd3c19d2b302d853aa72df8",
+      "groups": {
+        "all29": {
+          "WR": {
+            "Q": 0.9793689730053462,
+            "bucket_Q": {
+              "long": 1.2109830710375842,
+              "medium": 1.258605613275336,
+              "short": 0.4685182347031185
+            }
+          },
+          "current": {
+            "Q": 0.43930551307744076,
+            "bucket_Q": {
+              "long": 0.5725089370057593,
+              "medium": 0.2961047785859481,
+              "short": 0.4493028236406149
+            }
+          },
+          "current__conditional_CDF": {
+            "Q": 0.4675040535695166,
+            "bucket_Q": {
+              "long": 0.6630610078926025,
+              "medium": 0.28217741343000663,
+              "short": 0.4572737393859408
+            }
+          },
+          "mapped_ratio": {
+            "Q": 0.4816150940642157,
+            "bucket_Q": {
+              "long": 0.7073145005165923,
+              "medium": 0.27787569854247524,
+              "short": 0.4596550831335796
+            }
+          },
+          "mapped_ratio__conditional_CDF": {
+            "Q": 0.4766130601450757,
+            "bucket_Q": {
+              "long": 0.6836569969081366,
+              "medium": 0.2889993108862061,
+              "short": 0.4571828726408842
+            }
+          }
+        },
+        "diverse24": {
+          "WR": {
+            "Q": 0.9797953585456837,
+            "bucket_Q": {
+              "long": 1.2122622276585966,
+              "medium": 1.258605613275336,
+              "short": 0.4685182347031185
+            }
+          },
+          "current": {
+            "Q": 0.43891184311767395,
+            "bucket_Q": {
+              "long": 0.571327927126459,
+              "medium": 0.2961047785859481,
+              "short": 0.4493028236406149
+            }
+          },
+          "current__conditional_CDF": {
+            "Q": 0.4671046880178997,
+            "bucket_Q": {
+              "long": 0.6618629112377518,
+              "medium": 0.28217741343000663,
+              "short": 0.4572737393859408
+            }
+          },
+          "mapped_ratio": {
+            "Q": 0.4814661249924906,
+            "bucket_Q": {
+              "long": 0.7068675933014169,
+              "medium": 0.27787569854247524,
+              "short": 0.4596550831335796
+            }
+          },
+          "mapped_ratio__conditional_CDF": {
+            "Q": 0.47636320125265375,
+            "bucket_Q": {
+              "long": 0.682907420230871,
+              "medium": 0.2889993108862061,
+              "short": 0.4571828726408842
+            }
+          }
+        },
+        "incident5": {
+          "WR": {
+            "Q": null,
+            "bucket_Q": {
+              "long": 0.5804738798553651,
+              "medium": null,
+              "short": null
+            }
+          },
+          "current": {
+            "Q": null,
+            "bucket_Q": {
+              "long": 1.1546406099721571,
+              "medium": null,
+              "short": null
+            }
+          },
+          "current__conditional_CDF": {
+            "Q": null,
+            "bucket_Q": {
+              "long": 1.253614924746327,
+              "medium": null,
+              "short": null
+            }
+          },
+          "mapped_ratio": {
+            "Q": null,
+            "bucket_Q": {
+              "long": 0.9275995712773601,
+              "medium": null,
+              "short": null
+            }
+          },
+          "mapped_ratio__conditional_CDF": {
+            "Q": null,
+            "bucket_Q": {
+              "long": 1.0531308961542518,
+              "medium": null,
+              "short": null
+            }
+          }
+        }
+      },
+      "plan_fingerprint": "26654fa09009a76605ef51c3611031f8cc8242cab063f88c26644eec75a5dcb7",
+      "prior_closed_audit_sha256": "9b0f6a4650847b6603fd86f47fd97c0049b807d5b38cb9b4851ff029e21db769",
+      "source_bindings_reverified": 271
+    },
+    "ratio_partition_geometry_screen29_v1": {
+      "candidate_checkpoint_commitment": "12f6f60e3d708e7034573f9cf766f6257f37b5e9b99799133b99fb3a8565f926",
+      "groups": {
+        "all29": {
+          "WR": {
+            "Q": 0.9793689730053462,
+            "bucket_Q": {
+              "long": 1.2109830710375842,
+              "medium": 1.258605613275336,
+              "short": 0.4685182347031185
+            }
+          },
+          "current": {
+            "Q": 0.43930551307744076,
+            "bucket_Q": {
+              "long": 0.5725089370057593,
+              "medium": 0.2961047785859481,
+              "short": 0.4493028236406149
+            }
+          },
+          "mapped_ratio": {
+            "Q": 0.4816150940642157,
+            "bucket_Q": {
+              "long": 0.7073145005165923,
+              "medium": 0.27787569854247524,
+              "short": 0.4596550831335796
+            }
+          },
+          "ratio_partition": {
+            "Q": 0.5454582066102039,
+            "bucket_Q": {
+              "long": 0.7277100021512282,
+              "medium": 0.46941507926943216,
+              "short": 0.43924953840995135
+            }
+          }
+        },
+        "diverse24": {
+          "WR": {
+            "Q": 0.9797953585456837,
+            "bucket_Q": {
+              "long": 1.2122622276585966,
+              "medium": 1.258605613275336,
+              "short": 0.4685182347031185
+            }
+          },
+          "current": {
+            "Q": 0.43891184311767395,
+            "bucket_Q": {
+              "long": 0.571327927126459,
+              "medium": 0.2961047785859481,
+              "short": 0.4493028236406149
+            }
+          },
+          "mapped_ratio": {
+            "Q": 0.4814661249924906,
+            "bucket_Q": {
+              "long": 0.7068675933014169,
+              "medium": 0.27787569854247524,
+              "short": 0.4596550831335796
+            }
+          },
+          "ratio_partition": {
+            "Q": 0.5453772674892892,
+            "bucket_Q": {
+              "long": 0.727467184788484,
+              "medium": 0.46941507926943216,
+              "short": 0.43924953840995135
+            }
+          }
+        },
+        "incident5": {
+          "WR": {
+            "Q": null,
+            "bucket_Q": {
+              "long": 0.5804738798553651,
+              "medium": null,
+              "short": null
+            }
+          },
+          "current": {
+            "Q": null,
+            "bucket_Q": {
+              "long": 1.1546406099721571,
+              "medium": null,
+              "short": null
+            }
+          },
+          "mapped_ratio": {
+            "Q": null,
+            "bucket_Q": {
+              "long": 0.9275995712773601,
+              "medium": null,
+              "short": null
+            }
+          },
+          "ratio_partition": {
+            "Q": null,
+            "bucket_Q": {
+              "long": 0.8473971276165014,
+              "medium": null,
+              "short": null
+            }
+          }
+        }
+      },
+      "plan_fingerprint": "5a35d89127b6dea705a68e7a8cc980d9c1d8978964587143cb21eeab2a9d3171",
+      "prior_closed_audit_sha256": "8cf98d8e619df20529d11ded2ce988b9375eb6d3804012a857220cf09b1cc886",
+      "source_bindings_reverified": 272
+    }
+  },
+  "source_sha256": "6a2905bee035504760c60803babb77653ebd7765940122c5f8b44bd06746167a"
+}

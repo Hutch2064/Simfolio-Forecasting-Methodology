@@ -1,0 +1,32 @@
+{
+  "scope": "Arithmetic diagnostics only; equal fixed bucket coefficients do not force identical realized losses or relative-improvement contributions.",
+  "source_sha256": "1b3bc18d59f1ee72fe9b81b61159af1269751a7bae198edb5bdf69dd374b007a",
+  "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "buckets": {
+    "short": {
+      "candidate_Q": 0.4145318417846459,
+      "baseline_Q": 0.4249389934540763,
+      "percent_lower_CRPS": 2.44909312389453,
+      "headline_gain_contribution_percentage_points": 0.5328338212389307,
+      "baseline_loss_share": 0.2175637243191564,
+      "fixed_objective_weight": 0.3333333333333333
+    },
+    "medium": {
+      "candidate_Q": 0.48775983666367434,
+      "baseline_Q": 0.6281137781286859,
+      "percent_lower_CRPS": 22.345305317638854,
+      "headline_gain_contribution_percentage_points": 7.185955324973215,
+      "baseline_loss_share": 0.321586804155269,
+      "fixed_objective_weight": 0.3333333333333333
+    },
+    "long": {
+      "candidate_Q": 0.7303162928724909,
+      "baseline_Q": 0.9001174767381825,
+      "percent_lower_CRPS": 18.864335851028223,
+      "headline_gain_contribution_percentage_points": 8.693619207627309,
+      "baseline_loss_share": 0.46084947152557454,
+      "fixed_objective_weight": 0.3333333333333333
+    }
+  },
+  "sum_headline_gain_contribution_percentage_points": 16.412408353839457
+}

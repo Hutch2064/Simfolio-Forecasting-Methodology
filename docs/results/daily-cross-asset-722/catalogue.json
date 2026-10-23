@@ -9380,7 +9380,16 @@
           },
           "version": "expanded_v9_mixed_paths_source_bound"
         }
-      ]
+      ],
+      "current_rescored_result": {
+        "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+        "main_Q": 0.652235953173445,
+        "matched_requests": 320017,
+        "full_forecast_execution_version": "expanded_v9_mixed_paths_source_bound",
+        "rescore_only": true,
+        "source_report": "../daily-assets-portfolios-asset-v6-20261020/standardized-crps-v11-20261023/README.md",
+        "source_rescore_sha256": "1b3bc18d59f1ee72fe9b81b61159af1269751a7bae198edb5bdf69dd374b007a"
+      }
     },
     "6c331e40a55c7e8e62be57731f4cc39e0769fec53e049ea1c9ff2a288d845726": {
       "identity": {
@@ -11610,7 +11619,16 @@
           },
           "version": "expanded_v9_mixed_paths_source_bound"
         }
-      ]
+      ],
+      "current_rescored_result": {
+        "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+        "main_Q": 0.6510567494403149,
+        "matched_requests": 320017,
+        "full_forecast_execution_version": "expanded_v9_mixed_paths_source_bound",
+        "rescore_only": true,
+        "source_report": "../daily-assets-portfolios-asset-v6-20261020/standardized-crps-v11-20261023/README.md",
+        "source_rescore_sha256": "1b3bc18d59f1ee72fe9b81b61159af1269751a7bae198edb5bdf69dd374b007a"
+      }
     },
     "30fab03575bf66452e16107c6a85327561a36fe3f59fe408bfd946b38ba95756": {
       "identity": {
@@ -14712,7 +14730,16 @@
           },
           "version": "expanded_v9_mixed_paths_source_bound"
         }
-      ]
+      ],
+      "current_rescored_result": {
+        "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+        "main_Q": 0.544202657106937,
+        "matched_requests": 320017,
+        "full_forecast_execution_version": "expanded_v9_mixed_paths_source_bound",
+        "rescore_only": true,
+        "source_report": "../daily-assets-portfolios-asset-v6-20261020/standardized-crps-v11-20261023/README.md",
+        "source_rescore_sha256": "1b3bc18d59f1ee72fe9b81b61159af1269751a7bae198edb5bdf69dd374b007a"
+      }
     }
   },
   "unique_full_panel_models": 24,
@@ -14724,11 +14751,11 @@
     "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d"
   ],
   "current_best_model_id": "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d",
-  "current_best_report": "../daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022/README.md",
+  "current_best_report": "../daily-assets-portfolios-asset-v6-20261020/standardized-crps-v11-20261023/README.md",
   "retention_note": "retained_in_active_set inside each execution is its historical recording-time snapshot; active_model_ids is authoritative for the current retained set.",
-  "current_score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+  "current_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
   "current_panel_fingerprint": "094309da9cf9ac47509ded84347598e85faee70cc01aec963cca71a2e2105c04",
-  "updated_utc": "2026-10-22T14:40:14.511235+00:00",
+  "updated_utc": "2026-10-23T05:30:16.485765+00:00",
   "historical_status_snapshots": [
     {
       "recorded_context": "Superseded scalar-portfolio V5 launch snapshot; not current work",
@@ -14770,31 +14797,127 @@
         "counting_rule": "Unique original model ID plus source-bound implementation digest; identical reruns and verified no-op factory aliases count once. Pilots and partially attempted panels are excluded. Full attempted panels with native failures remain counted and labelled."
       },
       "superseded_by": "../daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022/README.md"
+    },
+    {
+      "recorded_context": "Completed V9 headline before explicitly approved V11 rescoring; immutable original execution evidence retained.",
+      "status": {
+        "status": "complete_independently_verified_and_private_recovery_verified",
+        "requests_per_model": 320017,
+        "model_executions": 3,
+        "logical_forecast_requests": 960051,
+        "requests_by_final_paths_per_model": {
+          "1000": 59906,
+          "240": 260111
+        },
+        "same_count_within_every_pair": true,
+        "fixed_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+        "best_completed_model_id": "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d",
+        "main_Q_by_model": {
+          "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d": 0.3732134377688732,
+          "model_testing_asset_joint_blocks_replacement_v6": 0.5008534683031683,
+          "model_testing_asset_joint_blocks_history_partition_v6": 0.5069609928754524
+        },
+        "percent_better_than_fixed_WR": 25.484505671234402,
+        "score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+        "posthoc_score_selection": true,
+        "independent_validation_or_significance_claim": false,
+        "quarter_weights": false,
+        "research_development_candidates_counted": false,
+        "source_report": "../daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022/README.md"
+      },
+      "superseded_by": "../daily-assets-portfolios-asset-v6-20261020/standardized-crps-v11-20261023/README.md"
     }
   ],
   "current_benchmark_status": {
-    "status": "complete_independently_verified_and_private_recovery_verified",
-    "requests_per_model": 320017,
-    "model_executions": 3,
-    "logical_forecast_requests": 960051,
+    "schema": "official-expanded-panel-v11-scoreboard-v1",
+    "status": "complete_independently_replayed",
+    "activated_utc": "2026-10-23T05:30:16.485765+00:00",
+    "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+    "primary_quantity": "aggregate standardized CRPS Q; lower is better",
+    "normalization": "mean daily marginal CRPS / (past portfolio sample SD * sqrt(requested native H))",
+    "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132",
+    "fixed_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+    "models": {
+      "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d": {
+        "Q": 0.544202657106937,
+        "bucket_Q": {
+          "long": 0.7303162928724909,
+          "medium": 0.48775983666367434,
+          "short": 0.4145318417846459
+        },
+        "complete": true,
+        "request_counts_by_bucket": {
+          "long": 3429,
+          "medium": 37695,
+          "short": 278893
+        },
+        "scale_data_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969"
+      },
+      "model_testing_asset_joint_blocks_replacement_v6": {
+        "Q": 0.6510567494403149,
+        "bucket_Q": {
+          "long": 0.9001174767381825,
+          "medium": 0.6281137781286859,
+          "short": 0.4249389934540763
+        },
+        "complete": true,
+        "request_counts_by_bucket": {
+          "long": 3429,
+          "medium": 37695,
+          "short": 278893
+        },
+        "scale_data_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969"
+      },
+      "model_testing_asset_joint_blocks_history_partition_v6": {
+        "Q": 0.652235953173445,
+        "bucket_Q": {
+          "long": 0.8793212599072121,
+          "medium": 0.6519305013446471,
+          "short": 0.4254560982684757
+        },
+        "complete": true,
+        "request_counts_by_bucket": {
+          "long": 3429,
+          "medium": 37695,
+          "short": 278893
+        },
+        "scale_data_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969"
+      }
+    },
+    "main_Q_by_model": {
+      "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d": 0.544202657106937,
+      "model_testing_asset_joint_blocks_replacement_v6": 0.6510567494403149,
+      "model_testing_asset_joint_blocks_history_partition_v6": 0.652235953173445
+    },
+    "percent_lower_standardized_CRPS_than_fixed_WR": 16.41240835383946,
+    "matched_requests_per_model": 320017,
+    "series": 1264,
     "requests_by_final_paths_per_model": {
       "1000": 59906,
       "240": 260111
     },
     "same_count_within_every_pair": true,
-    "fixed_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
-    "best_completed_model_id": "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d",
-    "main_Q_by_model": {
-      "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d": 0.3732134377688732,
-      "model_testing_asset_joint_blocks_replacement_v6": 0.5008534683031683,
-      "model_testing_asset_joint_blocks_history_partition_v6": 0.5069609928754524
+    "forecast_reruns": 0,
+    "methodology_changes": 0,
+    "financial_model_promotion": false,
+    "scope": "Actual complete expanded research panel, adaptively reused; approved posthoc scoring amendment, not an untouched holdout or future-performance guarantee.",
+    "historical_V9_role": "Preserved under original raw-CRPS definition; no longer current headline.",
+    "V10_role": "Experimental win-rate diagnostic only.",
+    "independent_review_sha256": {
+      "requested_horizon_crps_v11_independent_source_qualification.json": "2663d329f6abb7b402bd97f514ad87104580caa745cedacccde6de78dd01deeb",
+      "requested_horizon_crps_v11_independent_scale_index_review.json": "33e2ad3e88bb57a36968325d6f4c18c8414163fc7fdb06eda752d0930b9e013d",
+      "requested_horizon_crps_v11_independent_full_replay_review.json": "85d64fa6e90832ce9a13d7288a475b15c2cacd27f8c3f85714224bb9faa09174"
     },
-    "percent_better_than_fixed_WR": 25.484505671234402,
-    "score_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+    "full_saved_rescore_sha256": "1b3bc18d59f1ee72fe9b81b61159af1269751a7bae198edb5bdf69dd374b007a",
+    "protocol_sha256": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+    "scorer_sha256": "6fe6345747292142bb0599c1c3ec0a98b78cc39a54d7cbeb809ef7741218b52a",
+    "scale_index_sha256": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+    "source_report": "../daily-assets-portfolios-asset-v6-20261020/standardized-crps-v11-20261023/README.md",
+    "model_executions": 3,
+    "logical_forecast_requests": 960051,
     "posthoc_score_selection": true,
     "independent_validation_or_significance_claim": false,
-    "quarter_weights": false,
     "research_development_candidates_counted": false,
-    "source_report": "../daily-assets-portfolios-asset-v6-20261020/expanded-v9-20261022/README.md"
+    "percent_better_than_fixed_WR": 16.41240835383946
   }
 }

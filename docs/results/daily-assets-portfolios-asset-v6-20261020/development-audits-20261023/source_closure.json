@@ -386,7 +386,7 @@
       "study": "qualified_dependency_source"
     }
   ],
-  "source_recovery_notes": "Candidate source, provenance and synthetic tests below are copied byte-for-byte from frozen source files. The linked private archives cover only the studies explicitly identified by private_archive_tag in results.json; geometry raw output recovery is not claimed by those archives. The established 109-file V9 base closure remains linked by its exact manifest hash.",
+  "source_recovery_notes": "Candidate source, provenance and synthetic tests below are copied byte-for-byte from frozen source files. The geometry screen29 and broad1775 raw output sets are now preserved in the recovery-verified private release identified in results.json; raw outputs remain private. Other linked private archives cover only the studies explicitly identified by private_archive_tag. The established 109-file V9 base closure remains linked by its exact manifest hash.",
   "qualified_source_coverage": [
     {
       "qualification_id": "asset_selector_no_recursive_ewma_v1",
@@ -2980,5 +2980,51 @@
     "Each qualified transitive source hash and each direct qualification source hash maps to an exact-SHA public file path.",
     "The finite41 audit/documentation hash is retained from its qualification receipt, but the host-specific note itself is omitted because it embeds machine-local paths.",
     "Shared files are linked by exact content hash to the established base closure or a matching public source copy; the supplement is not a standalone execution environment."
-  ]
+  ],
+  "closed_study_bindings": [
+    {
+      "study": "finite_full_series_confirmation_v1",
+      "plan_fingerprint": "03b9e89f4b6268c2467e1425b4653cfa36faaeee8da0a30cd2cd51f6cf6c132a",
+      "independent_closed_review_sha256": "826c91d8043d2d5edaa7d5f88f0c732f06a44a31991c38a80559e7344a0f19d7",
+      "independent_diagnostics_sha256": "75c74d8747a7364914da97d8cf4b7f5be8093de427031af9e81edd7866ab8410",
+      "independent_source_review_sha256": "f487c8aeecd81172d84f22129d80b4ab6d56e938e5b0d9937e0da6a781728c76",
+      "private_recovery_status": "verified_private_archive",
+      "public_source_closure_added": false,
+      "private_archive_tag": "research-finite-full-series-cdf29-20261023T0450Z",
+      "private_archive_inventory_sha256": "d89769cacaec919f8f550c4b31ff0b1494db702f3a2297cd8592fa2bd868ca02",
+      "private_archive_receipt_sha256": "4f4ac9e7d5354f701c8c39fd226c3d757896418ef0bee667baf224c745339963",
+      "private_archive_source_bindings_sha256": "bf6895bcaec9ffb2a99cd36a8633c0320a9355bafad067a0fa388bf402bf05e9",
+      "private_archive_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite-full-series-cdf29-20261023T0450Z",
+      "source_bindings_resolved": true,
+      "source_recovery_note": "Exact plan-bound source hashes resolve to included frozen files or exact prior recovery-verified private archive members; live raw cache remains linked and was not recopied."
+    },
+    {
+      "study": "gaussian_mean_cdf_screen29_v1",
+      "plan_fingerprint": "f80792feb6f52be8c6527b9ee8c0500ac2eef3ab1833d1316d3d0152c02fd382",
+      "independent_source_review_sha256": "ab1bdbd86ac676a4db13a29bcc4d34a1565464c2790f48ca631da519bc9f233e",
+      "private_recovery_status": "verified_private_archive",
+      "public_source_closure_added": false,
+      "scored_new_cdf_cells": 0,
+      "expected_new_cdf_cells": 58,
+      "private_archive_tag": "research-finite-full-series-cdf29-20261023T0450Z",
+      "private_archive_inventory_sha256": "d89769cacaec919f8f550c4b31ff0b1494db702f3a2297cd8592fa2bd868ca02",
+      "private_archive_receipt_sha256": "4f4ac9e7d5354f701c8c39fd226c3d757896418ef0bee667baf224c745339963",
+      "private_archive_source_bindings_sha256": "bf6895bcaec9ffb2a99cd36a8633c0320a9355bafad067a0fa388bf402bf05e9",
+      "private_archive_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite-full-series-cdf29-20261023T0450Z",
+      "source_bindings_resolved": true,
+      "source_recovery_note": "Exact plan-bound source hashes resolve to included frozen files or exact prior recovery-verified private archive members; live raw cache remains linked and was not recopied."
+    }
+  ],
+  "closed_study_source_recovery": {
+    "archive_tag": "research-finite-full-series-cdf29-20261023T0450Z",
+    "archive_url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite-full-series-cdf29-20261023T0450Z",
+    "inventory_sha256": "d89769cacaec919f8f550c4b31ff0b1494db702f3a2297cd8592fa2bd868ca02",
+    "receipt_sha256": "4f4ac9e7d5354f701c8c39fd226c3d757896418ef0bee667baf224c745339963",
+    "dependency_recovery_references_sha256": "bf6895bcaec9ffb2a99cd36a8633c0320a9355bafad067a0fa388bf402bf05e9",
+    "plan_source_binding_rows": 463,
+    "all_source_bindings_resolved": true,
+    "active_v9_raw_cache_copied": false,
+    "originals_retained": true,
+    "public_source_files_added": 0
+  }
 }

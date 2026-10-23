@@ -1,0 +1,92 @@
+{
+  "V11_Q_replay_absolute_differences": {
+    "endpoint": 0.0,
+    "model_testing_asset_joint_blocks_history_partition_v6": 0.0,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.0
+  },
+  "V11_replay": {
+    "endpoint": {
+      "Q": 0.544202657106937,
+      "bucket_Q": {
+        "long": 0.7303162928724909,
+        "medium": 0.48775983666367434,
+        "short": 0.4145318417846459
+      },
+      "gain_vs_fixed_WR_percent": 16.41240835383946
+    },
+    "model_testing_asset_joint_blocks_history_partition_v6": {
+      "Q": 0.652235953173445,
+      "bucket_Q": {
+        "long": 0.8793212599072121,
+        "medium": 0.6519305013446471,
+        "short": 0.4254560982684757
+      },
+      "gain_vs_fixed_WR_percent": -0.18112149734164085
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "Q": 0.6510567494403149,
+      "bucket_Q": {
+        "long": 0.9001174767381825,
+        "medium": 0.6281137781286859,
+        "short": 0.4249389934540763
+      },
+      "gain_vs_fixed_WR_percent": 0.0
+    }
+  },
+  "V9_Q_exact_replay": {
+    "endpoint": 0.3732134377688732,
+    "model_testing_asset_joint_blocks_history_partition_v6": 0.5069609928754524,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.5008534683031683
+  },
+  "V9_fixed_WR_gain_exact_replay": 25.484505671234402,
+  "adapter_static_review": "Frozen revision f0455a724000b6284a14e08629dfa90717d7f0694fe876e57616569fbcd65fb5. Exact handoff paths+old hashes and explicit current groups/new_long_groups resolve task identities; full unique planned coverage and three-value model order checked. No fallback, outcome weights or forecasts. This audit independently enumerates ALL allowed task paths and replays both score definitions without importing adapter/scorer.",
+  "canonical_or_public_edits": false,
+  "checkpoint_groups": 128041,
+  "checkpoint_item_digest": "b08c0e60c86e3f29c0ec1a2b706042bba0c9246ad9a735029ddf57bad4455cc6",
+  "financial_fits_QPs_or_forecasts": 0,
+  "fixed_baseline": "model_testing_asset_joint_blocks_replacement_v6",
+  "fixed_baseline_preserved_replacement_true": true,
+  "full_rescore_sha256": "1b3bc18d59f1ee72fe9b81b61159af1269751a7bae198edb5bdf69dd374b007a",
+  "full_rescore_source_bindings_verified": 17,
+  "groups_and_requests_by_final_paths": {
+    "groups_1000": 33407,
+    "groups_240": 94634,
+    "requests_1000": 59906,
+    "requests_240": 260111
+  },
+  "groups_by_generation": {
+    "inherited_short_groups": 8833,
+    "new_original": 39475,
+    "new_short": 55159,
+    "saved_old_slots": 24574
+  },
+  "immutable_V9_binding_addendum_sha256": "db03f60e707f7bd1a304ad8f1c441eecaca48d765c5579862475a8b9ba87a725",
+  "immutable_V9_snapshot_sha256": "a9cb3d217f9e6e95ab4211f98f5b0c97a4e3aaaf34b2951afb72844a2ecb574e",
+  "matched_requests_per_model": 320017,
+  "missing_duplicate_scale_or_date_errors": 0,
+  "one_outer_third": true,
+  "passed": true,
+  "prior_science_review_sha256": "a8ee3fd14483999737f95537077c75216c4a6afe933ac811d5da7a60e0dcb001",
+  "raw_cache_sha256": "dfd0f22316f90eeac159e1acc66b83d9954a342afe02cd4ac2c72997f155f2c3",
+  "requests_by_bucket": {
+    "long": 3429,
+    "medium": 37695,
+    "short": 278893
+  },
+  "requests_by_kind": {
+    "original": 64049,
+    "short": 255968
+  },
+  "review_source_sha256": "ae2dfb57ad30ebea4fd69090e13cb995926517752b92176df3cfde56f2c0b53f",
+  "scale_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969",
+  "scale_index_sha256": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+  "scale_review_sha256": "33e2ad3e88bb57a36968325d6f4c18c8414163fc7fdb06eda752d0930b9e013d",
+  "schema": "independent_v11_full_saved_replay_v1",
+  "scientific_source_bindings_verified": 109,
+  "scope": "Actual full320017 saved-forecast development-panel rescore, mixed1000/240 matched within each triple. Adaptive/posthoc scoring rule; not untouched holdout or production-model promotion. Previously verified source-bound raw-cache recovery chain retained; no bulk restore or new physical-path validation asserted.",
+  "within_bucket_weight_masses": {
+    "long": 1.0,
+    "medium": 1.0,
+    "short": 1.0
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "WR_source_counts": {
+    "WR_own_physical": 3521,
+    "WR_verified240_scalar": 13874
+  },
+  "actual_final_paths_all4": 240,
+  "adapter_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/rescore_all_series_confirmation_v11.py",
+  "adapter_sha256": "d5ba055a38842933ecc9d1dc26cacca59219078af37111758a21095a518737dd",
+  "audit_source_sha256": "0923b811a5cca22c732cbad0beb76554dcb612f154ffc2378e24ef5a241dcc88",
+  "candidate_physical_alias_retained_counts": {
+    "finite41_own_physical": 17080,
+    "finite41_retained_physical": 315,
+    "finite77_logical_H1_alias": 3416,
+    "finite77_own_physical": 13664,
+    "finite77_retained_physical": 315,
+    "mapped_ratio_logical_H1_alias": 3416,
+    "mapped_ratio_own_physical": 13664,
+    "mapped_ratio_retained_physical": 315
+  },
+  "canonical_or_public_edits": false,
+  "cohort_source_input_hashes_reverified": 195,
+  "exact_canonical_raw_record_stream_sha256": "c90ce3bc4528329031ff0cbabe15e71c89537f73abf0b62412c4342e920985fb",
+  "exact_prior_checkpoint_commitment": "3d66b8ac25c2b94c1a49286f58a1dd740c24d970d2ead0d7d309d0a98879dafe",
+  "financial_fits_QPs_or_forecasts": 0,
+  "fixed_WR_comparisons": {
+    "WR": {
+      "conditional_Q": 0.8709169309602324,
+      "gain_vs_fixed_WR_percent": 0.0
+    },
+    "finite41": {
+      "conditional_Q": 0.6838883963201781,
+      "gain_vs_fixed_WR_percent": 21.474899383784553
+    },
+    "finite77": {
+      "conditional_Q": 0.6791637830119054,
+      "gain_vs_fixed_WR_percent": 22.017386633752643
+    },
+    "mapped_ratio": {
+      "conditional_Q": 0.6548429429288364,
+      "gain_vs_fixed_WR_percent": 24.80994229761533
+    }
+  },
+  "full320017_headline": false,
+  "independent_V11_conditional_Q": {
+    "WR": 0.8709169309602324,
+    "finite41": 0.6838883963201781,
+    "finite77": 0.6791637830119054,
+    "mapped_ratio": 0.6548429429288364
+  },
+  "independent_V11_representative_mass_estimate": {
+    "WR": {
+      "Q": 0.6971753165410287,
+      "bucket_Q": {
+        "long": 1.0390157648779843,
+        "medium": 0.6405530356780179,
+        "short": 0.41195714906708397
+      },
+      "independent_fsum_Q": 0.6971753165410287
+    },
+    "finite41": {
+      "Q": 0.5950764560362948,
+      "bucket_Q": {
+        "long": 0.8541012747132987,
+        "medium": 0.5242138372022386,
+        "short": 0.40691425619334726
+      },
+      "independent_fsum_Q": 0.5950764560362948
+    },
+    "finite77": {
+      "Q": 0.5953589159928813,
+      "bucket_Q": {
+        "long": 0.8554818095072579,
+        "medium": 0.5241949784361989,
+        "short": 0.40639996003518697
+      },
+      "independent_fsum_Q": 0.5953589159928813
+    },
+    "mapped_ratio": {
+      "Q": 0.5765574378958978,
+      "bucket_Q": {
+        "long": 0.8104537220390491,
+        "medium": 0.512101401666765,
+        "short": 0.4071171899818792
+      },
+      "independent_fsum_Q": 0.5765574378958978
+    }
+  },
+  "independent_bucket_conditional_Q": {
+    "WR": {
+      "long": 1.0430547573331512,
+      "medium": 1.1525088009968207,
+      "short": 0.4171872345507253
+    },
+    "finite41": {
+      "long": 0.8510769668350969,
+      "medium": 0.7884445655989144,
+      "short": 0.4121436565265227
+    },
+    "finite77": {
+      "long": 0.8496135700102455,
+      "medium": 0.7766008321841421,
+      "short": 0.4112769468413283
+    },
+    "mapped_ratio": {
+      "long": 0.8160439561026124,
+      "medium": 0.7363423028175067,
+      "short": 0.4121425698663901
+    }
+  },
+  "observed_full_V9_weight_mass_by_bucket": {
+    "long": 0.5858547773985274,
+    "medium": 0.13089385247919733,
+    "short": 0.04814683685887044
+  },
+  "old_V9_conditional_Q_exact_replay": {
+    "WR": 1.1181613672278277,
+    "finite41": 0.8039776747829368,
+    "finite77": 0.791690181971609,
+    "mapped_ratio": 0.7214636110445848
+  },
+  "paired_candidate_diagnostics": {
+    "finite77|finite41": {
+      "conditional_Q_gain_percent": 0.6908456604461488,
+      "unweighted_losses": 6334,
+      "unweighted_ties": 5342,
+      "unweighted_wins": 5719
+    },
+    "mapped_ratio|finite41": {
+      "conditional_Q_gain_percent": 4.247104285966474,
+      "unweighted_losses": 7110,
+      "unweighted_ties": 3479,
+      "unweighted_wins": 6806
+    },
+    "mapped_ratio|finite77": {
+      "conditional_Q_gain_percent": 3.58099779337655,
+      "unweighted_losses": 6971,
+      "unweighted_ties": 3479,
+      "unweighted_wins": 6945
+    }
+  },
+  "passed": true,
+  "prior_complete_rawloss_review_sha256": "826c91d8043d2d5edaa7d5f88f0c732f06a44a31991c38a80559e7344a0f19d7",
+  "prior_exact_canonical_raw_record_stream_review_sha256": "75c74d8747a7364914da97d8cf4b7f5be8093de427031af9e81edd7866ab8410",
+  "request_count_by_bucket": {
+    "long": 952,
+    "medium": 2232,
+    "short": 14211
+  },
+  "requests_per_method": 17395,
+  "rescore_output_sha256": "8750a9ac14bc0c8b8ca835a4b9de5b09ecc3939b4751427f7f8961bea797fe78",
+  "same_scale_commitment_sha256": "17f59032069c5c35ab27a2771bfe061db13aec437d625b12cdf483cd73716ef9",
+  "scale_index_sha256": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+  "scope": "17395 completed metadata-selected development requests. Conditional observed-support Q under full V9 weights; distinct from representative-mass quadrature primary and full320017actualscore. Exact cohort240WR retained13874scalar+own3521physical; NO substitute inherited1000WR. Rawrecordstream/checkpointcommit exactly matches prior independently verified allphysical-loss audit; no repeated broadpath/lossrestore.",
+  "source_binding_count_verified": 21
+}

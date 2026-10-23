@@ -365,3 +365,109 @@ def test_admitted_v9_archive_references_keep_remote_verifier_contract():
             assert all(k in archive for k in ('repository', 'release_tag', 'archive_name',
                 'archive_sha256', 'manifest_asset', 'manifest_sha256',
                 'prior_files_disk_restored_and_sha256_verified'))
+
+
+def v11_ledger():
+    ledger = json.loads(LEDGER.read_text())
+    assert ledger['current_score_protocol_id'] == catalogue.V11
+    return ledger
+
+
+def v11_example():
+    record = v9_example()
+    record['score_protocol_id'] = catalogue.V11
+    record['reproducibility'].update(scale_index_sha256='a' * 64,
+        scale_index_receipt='verified/scale_index_receipt.json')
+    return record
+
+
+@pytest.mark.parametrize('score', [0.0, 0.5])
+def test_v11_zero_reference_preserves_absolute_crps_without_epsilon(score):
+    record = v11_example()
+    record['scores']['main'] = score
+    record['comparison']['public_scores']['main'] = 0.0
+    record['comparison']['percent_better']['main'] = None
+    catalogue.validate(record)
+
+
+def test_v11_render_uses_explicit_rescore_without_changing_history_or_counts():
+    ledger = v11_ledger()
+    before = copy.deepcopy(ledger)
+    rendered = catalogue.render(ledger)
+    models = [m for m in ledger['models'].values() if m.get('current_rescored_result')]
+    assert len(models) == 3
+    for model in models:
+        current = model['current_rescored_result']
+        assert f"{current['main_Q']:.12f}" in rendered
+        source = next(e for e in model['executions']
+                      if e.get('version') == current['full_forecast_execution_version'])
+        assert f"{source['scores']['main']:.12f}" not in rendered
+    assert 'Main Q' in rendered and 'Primary Q' not in rendered
+    assert ledger == before
+    assert ledger['full_panel_executions'] == before['full_panel_executions']
+    assert ledger['unique_full_panel_models'] == before['unique_full_panel_models']
+
+
+@pytest.mark.parametrize('mutation', ['model_id', 'source_identity', 'coverage',
+    'missing_rescore', 'source_hash', 'scale_hash', 'main_Q'])
+def test_v11_rescore_missing_or_mismatched_commitments_rejected(mutation):
+    ledger = v11_ledger()
+    model = next(m for m in ledger['models'].values() if m.get('current_rescored_result'))
+    result = model['current_rescored_result']
+    if mutation == 'model_id':
+        result['model_id'] = 'different-model'
+    elif mutation == 'source_identity':
+        next(e for e in model['executions'] if e.get('version') ==
+             result['full_forecast_execution_version'])['identity']['model_id'] = 'different-model'
+    elif mutation == 'coverage':
+        result['matched_requests'] -= 1
+    elif mutation == 'missing_rescore':
+        del model['current_rescored_result']
+    elif mutation == 'source_hash':
+        result['source_rescore_sha256'] = 'c' * 64
+    elif mutation == 'scale_hash':
+        ledger['current_benchmark_status']['scale_index_sha256'] = None
+    else:
+        result['main_Q'] += .001
+    with pytest.raises(ValueError, match='V11'):
+        catalogue.render(ledger)
+
+
+def test_actual_v11_execution_is_preferred_over_rescore_display_view():
+    ledger = v11_ledger()
+    model = next(m for m in ledger['models'].values() if m.get('current_rescored_result'))
+    record = copy.deepcopy(next(e for e in model['executions'] if e.get('version') ==
+        model['current_rescored_result']['full_forecast_execution_version']))
+    record['score_protocol_id'] = catalogue.V11
+    record['scores']['main'] = .123456789123
+    record['reproducibility'].update(scale_index_sha256='a' * 64,
+        scale_index_receipt='verified/scale_index_receipt.json')
+    model['executions'].append(record)
+    model['current_rescored_result']['source_rescore_sha256'] = 'stale-rescore'
+    assert '0.123456789123' in catalogue.render(ledger)
+
+
+@pytest.mark.parametrize('field,value,message', [
+    ('counts', {'240': 1}, 'mixed-path'),
+    ('same_count', False, 'mixed-path'),
+    ('reference', 'different-reference', 'fixed WR'),
+    ('posthoc', False, 'retrospective'),
+    ('scale_hash', None, 'normalization'),
+    ('scale_hash', 'x' * 64, 'normalization'),
+    ('scale_receipt', None, 'normalization')])
+def test_v11_execution_admission_requires_matched_scale_bound_evidence(field, value, message):
+    record = v11_example()
+    catalogue.validate(record)
+    if field == 'counts':
+        record['coverage']['requests_by_final_paths'] = value
+    elif field == 'same_count':
+        record['coverage']['same_count_within_every_pair'] = value
+    elif field == 'reference':
+        record['comparison']['reference_model_id'] = value
+    elif field == 'posthoc':
+        record['reproducibility']['posthoc_score_selection'] = value
+    else:
+        record['reproducibility']['scale_index_sha256' if field == 'scale_hash'
+                                  else 'scale_index_receipt'] = value
+    with pytest.raises(ValueError, match=message):
+        catalogue.validate(record)

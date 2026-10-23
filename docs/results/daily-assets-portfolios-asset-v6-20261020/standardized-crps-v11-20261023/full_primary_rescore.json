@@ -1,0 +1,153 @@
+{
+  "canonical_pointer_changed": false,
+  "comparisons": {
+    "WOR_vs_fixed_WR": {
+      "algorithm_Q": 0.652235953173445,
+      "baseline_Q": 0.6510567494403149,
+      "complete": true,
+      "hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+      "matched_request_count": 320017,
+      "percent_better_than_baseline": -0.18112149734164085,
+      "relative_gain_defined": true,
+      "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+      "undefined_reason": null,
+      "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+    },
+    "endpoint_vs_fixed_WR": {
+      "algorithm_Q": 0.544202657106937,
+      "baseline_Q": 0.6510567494403149,
+      "complete": true,
+      "hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+      "matched_request_count": 320017,
+      "percent_better_than_baseline": 16.41240835383946,
+      "relative_gain_defined": true,
+      "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+      "undefined_reason": null,
+      "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+    }
+  },
+  "created_utc": "2026-10-23T05:25:02.787118+00:00",
+  "fixed_reference": "model_testing_asset_joint_blocks_replacement_v6",
+  "forecasts_or_fits_run": false,
+  "fullcoverage_not_holdout_warning": "Development-panel rescoring from saved outputs; adaptive/posthoc scoring rule, not untouched independent validation or production model promotion.",
+  "hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+  "matched_request_coverage_complete": true,
+  "models": {
+    "endpoint": {
+      "Q": 0.544202657106937,
+      "bucket_Q": {
+        "long": 0.7303162928724909,
+        "medium": 0.48775983666367434,
+        "short": 0.4145318417846459
+      },
+      "complete": true,
+      "request_counts_by_bucket": {
+        "long": 3429,
+        "medium": 37695,
+        "short": 278893
+      },
+      "scale_data_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969"
+    },
+    "model_testing_asset_joint_blocks_history_partition_v6": {
+      "Q": 0.652235953173445,
+      "bucket_Q": {
+        "long": 0.8793212599072121,
+        "medium": 0.6519305013446471,
+        "short": 0.4254560982684757
+      },
+      "complete": true,
+      "request_counts_by_bucket": {
+        "long": 3429,
+        "medium": 37695,
+        "short": 278893
+      },
+      "scale_data_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969"
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "Q": 0.6510567494403149,
+      "bucket_Q": {
+        "long": 0.9001174767381825,
+        "medium": 0.6281137781286859,
+        "short": 0.4249389934540763
+      },
+      "complete": true,
+      "request_counts_by_bucket": {
+        "long": 3429,
+        "medium": 37695,
+        "short": 278893
+      },
+      "scale_data_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969"
+    }
+  },
+  "observed_requests_per_model": {
+    "endpoint": 320017,
+    "model_testing_asset_joint_blocks_history_partition_v6": 320017,
+    "model_testing_asset_joint_blocks_replacement_v6": 320017
+  },
+  "planned_requests_per_model": 320017,
+  "protocol_sha256": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+  "same_fixed_request_weights": true,
+  "scale_index": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/scale_index.sqlite3",
+    "prefixes": 64049,
+    "receipt_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/scale_index_receipt.json",
+    "receipt_sha256": "c06ed725929778e6b4c887953c018345dfe339392e1d7cf11b69f07916dd63e4",
+    "requests": 320017,
+    "sha256": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278"
+  },
+  "schema": "simfolio_v11_full_saved_score_rescore_v1",
+  "scope": "Complete 320017-request full planned cohort; raw request means reused from the closed V9 saved-score cache; no forecasts/fits rerun; V9 and V10 results are preserved.",
+  "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "scorer_sha256": "6fe6345747292142bb0599c1c3ec0a98b78cc39a54d7cbeb809ef7741218b52a",
+  "source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs/panel.json": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8_reporter.py": "4f41a5732bf4a7a7b86b22e921acc31dd6b05963a61aa41851472bb170cfb5ae",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/build_scale_index_v11.py": "659d0b259a60d513614c87c0ec6d0116e35e45c4e43578fe864f50b7d200e56b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/protocol.json": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/rescore_v9_full_saved_scores.py": "f0455a724000b6284a14e08629dfa90717d7f0694fe876e57616569fbcd65fb5",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/scale_index.sqlite3": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/scale_index_receipt.json": "c06ed725929778e6b4c887953c018345dfe339392e1d7cf11b69f07916dd63e4",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/score_requested_horizon_crps_v11.py": "6fe6345747292142bb0599c1c3ec0a98b78cc39a54d7cbeb809ef7741218b52a",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_horizon_buckets_v8.py": "9a1222c60dc7adc7261fd467bfab835ab33681793e3baa8995597d690be1b70b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_series_buckets_v9.py": "c598301b977fb1d8405de640476289d071107633e8ba72fbedf3ef8712d4796c",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_live/raw_cache.sqlite3": "dfd0f22316f90eeac159e1acc66b83d9954a342afe02cd4ac2c72997f155f2c3",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_live/scoreboard.json": "a9cb3d217f9e6e95ab4211f98f5b0c97a4e3aaaf34b2951afb72844a2ecb574e",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_reporter.py": "3aee8432dca2c149bbfa3842dd346d1e38f1e3a6458712459fc872feb410612b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/handoff.json": "7b8ebabf1d4c0852c9a717f97621429fc1d8b340e4b652bc5c2cc2464fa4c2f9",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/plan.json": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/root_launch_admission.json": "eae42a6044e5fb4532d9085d2e0da5e69ad527041ca038c5c516ac1c468bf842",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/terminal.json": "15d6a513a9c5b5a29cd0c3e98feef60ece830accf7ffddceb6d962bf8ffff9a7"
+  },
+  "status": "complete_pending_independent_score_replay",
+  "v9_saved_raw_means": {
+    "checkpoint_group_count_by_final_paths": {
+      "1000": 33407,
+      "240": 94634
+    },
+    "checkpoint_groups_by_generation": {
+      "handoff": 33407,
+      "new_original": 39475,
+      "new_short": 55159
+    },
+    "raw_cache_bytes": 108863488,
+    "raw_cache_checkpoint_item_digest_sha256": "b08c0e60c86e3f29c0ec1a2b706042bba0c9246ad9a735029ddf57bad4455cc6",
+    "raw_cache_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_live/raw_cache.sqlite3",
+    "raw_cache_paths_by_generation": {
+      "handoff": 33407,
+      "new_original": 39475,
+      "new_short": 55159
+    },
+    "raw_cache_row_count": 128041,
+    "raw_cache_sha256": "dfd0f22316f90eeac159e1acc66b83d9954a342afe02cd4ac2c72997f155f2c3",
+    "raw_mean_request_digest_sha256": {
+      "endpoint": "d7613a6a94de1a8e78833c63af19b830fcb8014b4b48ef584248fca02c997956",
+      "model_testing_asset_joint_blocks_history_partition_v6": "4486b2960741dfc6cf371d98435123a1de003b870ef07aa9479b1ad11fdf164d",
+      "model_testing_asset_joint_blocks_replacement_v6": "913e240cc4e8dffe56004297f1cce44a522cb4757c916dca023c14f89700b06d"
+    },
+    "request_count_by_kind": {
+      "original": 64049,
+      "short": 255968
+    }
+  },
+  "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+}

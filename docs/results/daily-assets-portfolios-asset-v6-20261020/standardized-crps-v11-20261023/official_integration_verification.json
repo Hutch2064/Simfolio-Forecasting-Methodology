@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "current_protocol": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "local_route_count": 5,
+  "all_current_routes_agree": true,
+  "catalogue_renderer_actual_V11_values": true,
+  "historical_execution_validation": true,
+  "render_preserves_ledger_bytes": true,
+  "unique_models": 24,
+  "forecast_executions": 31,
+  "main_Q": {
+    "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d": 0.544202657106937,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.6510567494403149,
+    "model_testing_asset_joint_blocks_history_partition_v6": 0.652235953173445
+  },
+  "fixed_reference": "model_testing_asset_joint_blocks_replacement_v6",
+  "public_catalogue_source_sha256": "719fd90c16d60633012a802dc879f749fb9019b340284a21e6d8fa9729fbad2a",
+  "source_scorer_sha256": "6fe6345747292142bb0599c1c3ec0a98b78cc39a54d7cbeb809ef7741218b52a",
+  "catalogue_tests_passed": 37,
+  "public_source_fixture_tests_passed": 9,
+  "publication_safety_tests_passed": 12,
+  "verification_scope": "Local integration and numerical evidence; publication tracked separately in release receipt"
+}

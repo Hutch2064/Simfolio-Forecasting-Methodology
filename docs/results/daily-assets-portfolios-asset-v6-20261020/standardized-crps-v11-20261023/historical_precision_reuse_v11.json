@@ -1,0 +1,650 @@
+{
+  "archive_restores": 0,
+  "baseline_forecasts": 0,
+  "cohorts": [
+    {
+      "WR1000_identity_hashes_validated": 355,
+      "WR_Q": null,
+      "WR_Q_unavailable_reason": "Historical1000rawmeans absent for330requests; no240substitution or archived-vector restore. N-to-N comparisons have exact matched complete355coverage.",
+      "bucket_counts": {
+        "long": 92,
+        "medium": 112,
+        "short": 151
+      },
+      "candidate": "asset_selector_endpoint_flat",
+      "checkpoint_commitment": "0a365ea961b7e272f049bfc3eab709f527db6209eb8be812421f70ee0f49f566",
+      "configurations": {
+        "N2_seed0": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7014523008287593,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.6401301233810014,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.4030489877129069,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 2,
+            "menu": "flat",
+            "schedule": "half_doubling",
+            "seed_replication": 0
+          },
+          "equal_three_bucket_conditional_Q": 0.5815438039742226,
+          "pooled_fixed_support_subtotal_diagnostic": 0.0846540550669765
+        },
+        "N2_seed1": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7302230793490222,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7650475648755942,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.39722467072938955,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 2,
+            "menu": "flat",
+            "schedule": "half_doubling",
+            "seed_replication": 1
+          },
+          "equal_three_bucket_conditional_Q": 0.6308317716513353,
+          "pooled_fixed_support_subtotal_diagnostic": 0.08973926185529878
+        },
+        "N2_seed2": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7151181028277859,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7505807859688459,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40059329266772636,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 2,
+            "menu": "flat",
+            "schedule": "half_doubling",
+            "seed_replication": 2
+          },
+          "equal_three_bucket_conditional_Q": 0.6220973938214528,
+          "pooled_fixed_support_subtotal_diagnostic": 0.08791841029173147
+        },
+        "N8_seed0": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7422472461694604,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7949352145067843,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40643290614215416,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 8,
+            "menu": "flat",
+            "schedule": "half_doubling",
+            "seed_replication": 0
+          },
+          "equal_three_bucket_conditional_Q": 0.6478717889394663,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09150695068610484
+        },
+        "N8_seed1": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7550616605435125,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7620722127637501,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40672086661629997,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 8,
+            "menu": "flat",
+            "schedule": "half_doubling",
+            "seed_replication": 1
+          },
+          "equal_three_bucket_conditional_Q": 0.6412849133078542,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09230587024984134
+        },
+        "N8_seed2": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7539696487590811,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7868469389002656,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40364997591268315,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 8,
+            "menu": "flat",
+            "schedule": "half_doubling",
+            "seed_replication": 2
+          },
+          "equal_three_bucket_conditional_Q": 0.6481555211906765,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09259919803808593
+        }
+      },
+      "final_paths": 1000,
+      "historical_menu": "flat167",
+      "matched_inner_seed_comparisons": [
+        {
+          "N": 8,
+          "N2_Q": 0.5815438039742226,
+          "inner_seed": 0,
+          "percent_lower_Q_vs_matched_N2": -11.405501101028626,
+          "target_Q": 0.6478717889394663
+        },
+        {
+          "N": 8,
+          "N2_Q": 0.6308317716513353,
+          "inner_seed": 1,
+          "percent_lower_Q_vs_matched_N2": -1.6570410886496134,
+          "target_Q": 0.6412849133078542
+        },
+        {
+          "N": 8,
+          "N2_Q": 0.6220973938214528,
+          "inner_seed": 2,
+          "percent_lower_Q_vs_matched_N2": -4.1887536626946,
+          "target_Q": 0.6481555211906765
+        }
+      ],
+      "plan_sha256": "74d83ac8273af64123f3a9fbed3ba37f5f6cf2d533e636f8e72d6cd44a34713d",
+      "references_sha256": "de9374dc0dee9a356e47f9faf316d7ac8e0eef1290a1e621be71e8508b61a6b7",
+      "requests": 355,
+      "scale_mapping_digest": "57413562fa772b90142fa892574ff3aa488911160d8700f9a5702fcc6ee9599d",
+      "seed_averages_descriptive_not_independent_panel": {
+        "2": 0.6114909898156702,
+        "8": 0.645770741145999
+      },
+      "source_closure_digest": "e7c4568e8df47758bb90b527e95c6a461377fdd8f2429c5138f18311e0b7cd7d",
+      "unique_prefixes": 355,
+      "verification_sha256": "6e5beafa117d82b670fe7a246e0ce3f16df9042ed53d633a2605caf27d92abc4",
+      "verified_rawloss_cells": 2130
+    },
+    {
+      "WR1000_identity_hashes_validated": 355,
+      "WR_Q": null,
+      "WR_Q_unavailable_reason": "Historical1000rawmeans absent for330requests; no240substitution or archived-vector restore. N-to-N comparisons have exact matched complete355coverage.",
+      "bucket_counts": {
+        "long": 92,
+        "medium": 112,
+        "short": 151
+      },
+      "candidate": "asset_selector_endpoint_precision",
+      "checkpoint_commitment": "111e6fbd64307efafdc43ef87bab63ba618148f8846471525d869ed46eb48d2a",
+      "configurations": {
+        "N2_seed0": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.6995368650348428,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.6405207162982225,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.4030919705189682,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 2,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 0
+          },
+          "equal_three_bucket_conditional_Q": 0.5810498506173445,
+          "pooled_fixed_support_subtotal_diagnostic": 0.08445966798915372
+        },
+        "N2_seed1": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7582819884469095,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7706025178232896,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.3976516557237622,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 2,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 1
+          },
+          "equal_three_bucket_conditional_Q": 0.6421787206646538,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09277518907566332
+        },
+        "N2_seed2": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7155577792917219,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7350169527066375,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40053277977157686,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 2,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 2
+          },
+          "equal_three_bucket_conditional_Q": 0.6170358372566455,
+          "pooled_fixed_support_subtotal_diagnostic": 0.08770608406721618
+        },
+        "N30_seed0": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7651189338434231,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7734074801082065,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40671436356279017,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 30,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 0
+          },
+          "equal_three_bucket_conditional_Q": 0.6484135925048066,
+          "pooled_fixed_support_subtotal_diagnostic": 0.0935489978044736
+        },
+        "N30_seed1": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7609875833074915,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7693224259886492,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.4033154280431461,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 30,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 1
+          },
+          "equal_three_bucket_conditional_Q": 0.6445418124464289,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09304404219386209
+        },
+        "N30_seed2": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7540896338407018,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7718153288900484,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.41017702030365866,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 30,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 2
+          },
+          "equal_three_bucket_conditional_Q": 0.6453606610114696,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09236950262661257
+        },
+        "N4_seed0": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7446894809919208,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7552157026538804,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.3998402466965793,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 4,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 0
+          },
+          "equal_three_bucket_conditional_Q": 0.6332484767807934,
+          "pooled_fixed_support_subtotal_diagnostic": 0.0910964010137464
+        },
+        "N4_seed1": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7473823584903827,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7847889545922734,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40418771195399655,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 4,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 1
+          },
+          "equal_three_bucket_conditional_Q": 0.6454530083455509,
+          "pooled_fixed_support_subtotal_diagnostic": 0.0918746588822833
+        },
+        "N4_seed2": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7425528959749615,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.8075318206197009,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40687566924097845,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 4,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 2
+          },
+          "equal_three_bucket_conditional_Q": 0.6523201286118803,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09174862343338379
+        },
+        "N8_seed0": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7466343998045444,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.8026524469904485,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.4053200192318011,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 8,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 0
+          },
+          "equal_three_bucket_conditional_Q": 0.6515356220089313,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09209401752613218
+        },
+        "N8_seed1": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7594207777161678,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.7627412802161729,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40618228753817953,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 8,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 1
+          },
+          "equal_three_bucket_conditional_Q": 0.6427814484901734,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09277362701831574
+        },
+        "N8_seed2": {
+          "buckets": {
+            "long": {
+              "conditional_Q": 0.7544380979893871,
+              "full_bucket_weight_support": 0.3146843458139829,
+              "requests": 92
+            },
+            "medium": {
+              "conditional_Q": 0.8122655861977607,
+              "full_bucket_weight_support": 0.04980366878663833,
+              "requests": 112
+            },
+            "short": {
+              "conditional_Q": 0.40376879001818217,
+              "full_bucket_weight_support": 0.003337753451099461,
+              "requests": 151
+            }
+          },
+          "config": {
+            "inner_paths": 8,
+            "pool": "stack",
+            "schedule": "half_doubling",
+            "seed_replication": 2
+          },
+          "equal_three_bucket_conditional_Q": 0.6568241580684433,
+          "pooled_fixed_support_subtotal_diagnostic": 0.09307044873901439
+        }
+      },
+      "final_paths": 1000,
+      "historical_menu": "legacy nested stack, separate cohort",
+      "matched_inner_seed_comparisons": [
+        {
+          "N": 4,
+          "N2_Q": 0.5810498506173445,
+          "inner_seed": 0,
+          "percent_lower_Q_vs_matched_N2": -8.983502208629734,
+          "target_Q": 0.6332484767807934
+        },
+        {
+          "N": 8,
+          "N2_Q": 0.5810498506173445,
+          "inner_seed": 0,
+          "percent_lower_Q_vs_matched_N2": -12.130761468520856,
+          "target_Q": 0.6515356220089313
+        },
+        {
+          "N": 30,
+          "N2_Q": 0.5810498506173445,
+          "inner_seed": 0,
+          "percent_lower_Q_vs_matched_N2": -11.593453094582262,
+          "target_Q": 0.6484135925048066
+        },
+        {
+          "N": 4,
+          "N2_Q": 0.6421787206646538,
+          "inner_seed": 1,
+          "percent_lower_Q_vs_matched_N2": -0.509871718811894,
+          "target_Q": 0.6454530083455509
+        },
+        {
+          "N": 8,
+          "N2_Q": 0.6421787206646538,
+          "inner_seed": 1,
+          "percent_lower_Q_vs_matched_N2": -0.09385671093178338,
+          "target_Q": 0.6427814484901734
+        },
+        {
+          "N": 30,
+          "N2_Q": 0.6421787206646538,
+          "inner_seed": 1,
+          "percent_lower_Q_vs_matched_N2": -0.3679803932664427,
+          "target_Q": 0.6445418124464289
+        },
+        {
+          "N": 4,
+          "N2_Q": 0.6170358372566455,
+          "inner_seed": 2,
+          "percent_lower_Q_vs_matched_N2": -5.718353655455344,
+          "target_Q": 0.6523201286118803
+        },
+        {
+          "N": 8,
+          "N2_Q": 0.6170358372566455,
+          "inner_seed": 2,
+          "percent_lower_Q_vs_matched_N2": -6.448299824641879,
+          "target_Q": 0.6568241580684433
+        },
+        {
+          "N": 30,
+          "N2_Q": 0.6170358372566455,
+          "inner_seed": 2,
+          "percent_lower_Q_vs_matched_N2": -4.5904665571382175,
+          "target_Q": 0.6453606610114696
+        }
+      ],
+      "plan_sha256": "3130d5947c8693530d7079d84aa9735d8215ff07404a39fe2bfc5a0660da8810",
+      "references_sha256": "beb2fe91b8496e0e6ac391d0e6adc9a95740cab814a384c711ee4039f8734028",
+      "requests": 355,
+      "scale_mapping_digest": "57413562fa772b90142fa892574ff3aa488911160d8700f9a5702fcc6ee9599d",
+      "seed_averages_descriptive_not_independent_panel": {
+        "2": 0.6134214695128812,
+        "30": 0.6461053553209016,
+        "4": 0.6436738712460749,
+        "8": 0.650380409522516
+      },
+      "source_closure_digest": "5b81edb3f84b603dbbf40f3916d26db175a78abeb98493818913757c5a5a459a",
+      "unique_prefixes": 355,
+      "verification_sha256": "29d9e90774a693083fbde2f2f0ae7ffe338c57456fbad971f6f8c1ead4b2e158",
+      "verified_rawloss_cells": 4260
+    }
+  ],
+  "created_utc": "2026-10-23T05:41:53.219361+00:00",
+  "financial_fits_or_forecasts_run": false,
+  "modern_finite41_mapped_precision_optimality_not_established": true,
+  "promotion": false,
+  "protocol_sha256": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+  "reproducer_sha256": "c91458f6d2c3079f38a5fc05fc3075aa47b1389173ab2a56d65faa33443afcf4",
+  "scale_index_sha256": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+  "schema": "historical-precision-V11-rescore-v1",
+  "scope": "Predeclared historical355original requests, fixedV9within-bucket fullschedule weights restricted to identical support then equal3bucket conditional mean. Not actual full320017headline. Flat167and legacy nestedstack separately, no cross-menu ranking.",
+  "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "scorer_sha256": "6fe6345747292142bb0599c1c3ec0a98b78cc39a54d7cbeb809ef7741218b52a",
+  "seed_scope": "Inner seeds0/1/2 separately; same final seed per request across N. Adaptively reused development sample, not independent validation."
+}

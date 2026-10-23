@@ -2,12 +2,17 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import math
 from pathlib import Path
 
+V11 = "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets"
+WR = "model_testing_asset_joint_blocks_replacement_v6"
+
 SINGLE_SCORE_PROTOCOLS = {
+    V11,
     "daily_portfolio_panel_crps_v4_train_sd_sqrt_h_logcalendar_two_branch",
     "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
 }
@@ -21,6 +26,10 @@ def digest(value):
 def version_key(identity):
     """Execution seeds, display names and panel coverage do not create a model."""
     return digest({k: identity[k] for k in ("model_id", "implementation_digest")})
+
+
+def is_sha256(value):
+    return isinstance(value, str) and len(value) == 64 and all(c in "0123456789abcdef" for c in value)
 
 
 def validate(record):
@@ -38,29 +47,37 @@ def validate(record):
         raise ValueError("Comparison must cover the identical successful task set")
     single = record.get("score_protocol_id") in SINGLE_SCORE_PROTOCOLS
     expanded_v9 = record.get("score_protocol_id") == "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
-    if expanded_v9:
+    expanded = expanded_v9 or record.get("score_protocol_id") == V11
+    if expanded:
         counts = coverage["requests_by_final_paths"]
         if (any(type(n) is not int or n < 0 for n in counts.values())
                 or sum(counts.values()) != coverage["expected_tasks"]
                 or coverage["same_count_within_every_pair"] is not True):
-            raise ValueError("V9 requires complete matched mixed-path counts")
+            raise ValueError("V9/V11 requires complete matched mixed-path counts")
         if record["comparison"]["reference_model_id"] != "model_testing_asset_joint_blocks_replacement_v6":
-            raise ValueError("V9 retains its fixed WR reference")
+            raise ValueError("V9/V11 retains its fixed WR reference")
         if not record["reproducibility"].get("posthoc_score_selection"):
-            raise ValueError("V9 requires retrospective selection disclosure")
+            raise ValueError("V9/V11 requires retrospective selection disclosure")
+    if record.get("score_protocol_id") == V11:
+        provenance = record["reproducibility"]
+        if (not is_sha256(provenance.get("scale_index_sha256"))
+                or not isinstance(provenance.get("scale_index_receipt"), str)
+                or not provenance["scale_index_receipt"].strip()):
+            raise ValueError("V11 requires hash-bound normalization scale-index provenance")
     profiles = ("main",) if single else ("primary", "sensitivity")
     if single and (set(record["scores"]) != {"main"} or set(record["comparison"]["public_scores"]) != {"main"}):
         raise ValueError("Single-score records require exactly one main score and matched Public score")
     for profile in profiles:
         score = record["scores"][profile]
         reference = record["comparison"]["public_scores"][profile]
-        if (not math.isfinite(score) or score < 0 or not math.isfinite(reference) or reference <= 0
+        if (not math.isfinite(score) or score < 0 or not math.isfinite(reference) or reference < 0
+                or reference == 0 and record.get("score_protocol_id") != V11
                 or not single and score == 0):
             raise ValueError("Declared score profiles and matched Public scores are required")
     worker_seconds = record["runtime"]["forecast_and_score_worker_seconds"]
     if worker_seconds is None:
-        if not expanded_v9 or not record["runtime"].get("scope"):
-            raise ValueError("Unmeasured runtime requires an explicit V9 scope")
+        if not expanded or not record["runtime"].get("scope"):
+            raise ValueError("Unmeasured runtime requires an explicit V9/V11 scope")
     elif not math.isfinite(worker_seconds) or worker_seconds < 0:
         raise ValueError("Invalid measured runtime")
     if not record["archives"] or not record["reproducibility"]:
@@ -132,6 +149,53 @@ def render(ledger):
     return "\n".join(lines)
 
 
+def v11_rescored_view(ledger, model, panel):
+    """A display-only rescore of preserved execution evidence; never append it."""
+    result = model.get("current_rescored_result")
+    status = ledger.get("current_benchmark_status", {})
+    model_id = model["identity"]["model_id"]
+    if result is None:
+        if model_id in status.get("main_Q_by_model", {}):
+            raise ValueError("Current V11 model is missing its explicit rescore identity")
+        return None
+    if (result.get("score_protocol_id") != V11 or result.get("rescore_only") is not True
+            or result.get("full_forecast_execution_version") != "expanded_v9_mixed_paths_source_bound"
+            or result.get("model_id", model_id) != model_id):
+        raise ValueError("V11 rescore identity differs from preserved forecast execution")
+    matching = [e for e in model["executions"]
+                if e.get("version") == result["full_forecast_execution_version"]
+                and e["coverage"]["panel_fingerprint"] == panel]
+    if not matching:
+        raise ValueError("V11 rescore has no matching source execution/panel")
+    source = matching[-1]
+    validate(source)
+    n = result.get("matched_requests")
+    if (source["identity"] != model["identity"] or n != source["coverage"]["successful_tasks"]
+            or n != source["coverage"]["expected_tasks"] or n != status.get("matched_requests_per_model")
+            or status.get("same_count_within_every_pair") is not True
+            or source["coverage"]["requests_by_final_paths"] != status.get("requests_by_final_paths_per_model")):
+        raise ValueError("V11 rescore identity/coverage/matched counts differ")
+    q = result.get("main_Q")
+    if (not isinstance(q, (int, float)) or not math.isfinite(q) or q < 0
+            or status.get("score_protocol_id") != V11 or status.get("fixed_reference_model_id") != WR
+            or q != status.get("main_Q_by_model", {}).get(model_id)
+            or q != status.get("models", {}).get(model_id, {}).get("Q")
+            or not is_sha256(result.get("source_rescore_sha256"))
+            or result["source_rescore_sha256"] != status.get("full_saved_rescore_sha256")
+            or not is_sha256(status.get("scale_index_sha256"))
+            or not result.get("source_report") or result["source_report"] != status.get("source_report")):
+        raise ValueError("V11 rescore score/hash/normalization provenance differs")
+    view = copy.deepcopy(source)
+    view["score_protocol_id"] = V11
+    view["scores"] = {"main": q}
+    view["comparison"]["public_scores"] = {"main": status["main_Q_by_model"][WR]}
+    view["reproducibility"].update(scale_index_sha256=status["scale_index_sha256"],
+        scale_index_receipt=str(Path(result["source_report"]).with_name("scale_index_receipt.json")),
+        source_rescore_sha256=result["source_rescore_sha256"])
+    validate(view)
+    return view
+
+
 def render_single_score(ledger):
     """Current benchmark only; historical definitions/results remain in JSON."""
     panel = ledger["current_panel_fingerprint"]
@@ -141,13 +205,20 @@ def render_single_score(ledger):
         matching = [e for e in model["executions"] if e.get("score_protocol_id") == protocol
                     and e["coverage"]["panel_fingerprint"] == panel]
         if matching:
+            validate(matching[-1])
             records.append(matching[-1])
+        elif protocol == V11:
+            view = v11_rescored_view(ledger, model, panel)
+            if view is not None:
+                records.append(view)
     lines = ["# Versioned full-panel model catalogue", "",
         (f"**{ledger['unique_full_panel_models']} unique model versions across preserved benchmarks; "
         f"{ledger['full_panel_executions']} completed executions; "
         f"{len(records)} with completed attempts on the current benchmark.**"), "",
         ("The current benchmark has one main score. Historical normalizations and all older "
         "executions remain in catalogue.json; scores from different benchmarks are not compared."), ""]
+    if protocol == V11:
+        lines += ["V11 rescoring views reuse preserved forecast executions; they do not add executions or model versions.", ""]
     for failed, title in [(False, "Complete successful coverage"), (True, "Incomplete paired results: native forecast failures")]:
         selected = [e for e in records if bool(e['coverage']['native_failed_tasks']) == failed]
         if not selected:

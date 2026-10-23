@@ -1,0 +1,1430 @@
+{
+  "canonical_pointer_changed": false,
+  "forecasts_or_fits_run": false,
+  "full_weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132",
+  "hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters",
+  "limits": [
+    "All scores are from saved 240-path, inner-2, seed-start-0 outputs; no forecasts or fits were run.",
+    "Each screen is a selected 29-request development cohort. Conditional equal-bucket values use only observed request support under frozen full-panel V9 weights.",
+    "The diverse24 group has all three calendar buckets; incident5 contains only long-bucket requests and has no equal-three-bucket headline.",
+    "The screens are separate matched cohorts and are not comparable to the 17,395 representative-mass estimate or full 320,017-request headline.",
+    "CDF candidates are compared with their matched empirical parent arm and fixed WR; ratio_partition is compared with current, mapped_ratio and fixed WR."
+  ],
+  "scale_index": {
+    "request_count": 320017,
+    "scale_index_sha256": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+    "scale_receipt_sha256": "c06ed725929778e6b4c887953c018345dfe339392e1d7cf11b69f07916dd63e4",
+    "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+  },
+  "schema": "simfolio_v11_closed_screen_diagnostics_v1",
+  "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs/panel.json": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/protocol.json": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/rescore_all_series_confirmation_v11.py": "d5ba055a38842933ecc9d1dc26cacca59219078af37111758a21095a518737dd",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/rescore_closed_screens_v11.py": "05553563b1741a396297f131106df073b4d71c2497833727ee75258ed3c0a53b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/scale_index.sqlite3": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/scale_index_receipt.json": "c06ed725929778e6b4c887953c018345dfe339392e1d7cf11b69f07916dd63e4",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/score_requested_horizon_crps_v11.py": "6fe6345747292142bb0599c1c3ec0a98b78cc39a54d7cbeb809ef7741218b52a",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_horizon_buckets_v8.py": "9a1222c60dc7adc7261fd467bfab835ab33681793e3baa8995597d690be1b70b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_series_buckets_v9.py": "c598301b977fb1d8405de640476289d071107633e8ba72fbedf3ef8712d4796c"
+  },
+  "status": "complete_conditional_development_diagnostics",
+  "full_source_result_sha256": "3aee7c40ef0d56b5a4f02a876f07bc1798f99a8e6c118e3acbd16e9d30d97411",
+  "scope": "Compact aggregate-only publication; full per-request diagnostic output retained privately. Diverse24 is predeclared primary; incident5 long-only stays separate. No full-panel candidate promotion.",
+  "screens": {
+    "gaussian_mean_cdf_screen29_v2": {
+      "candidate_artifact_commitment_sha256": "de0657c77b56262065bd900f288ba4420909485ac093b63b83584bc9094c0c99",
+      "candidate_closure_sha256": "5ce9c994d469527c8b71592d4a1498d7f6c47b5262c24f57c08e7d0f03019d91",
+      "checkpoint_commitment": "07234ab52ed36b7a95999ab18e849ae4b5382538bdd3c19d2b302d853aa72df8",
+      "control_artifact_commitment_sha256": "c801d1c3cde8a4366fd6ed0fcec834d1faa5ed8de04e7db1aec323b1f29e85be",
+      "group_results": {
+        "all29": {
+          "bucket_counts": {
+            "long": 9,
+            "medium": 2,
+            "short": 18
+          },
+          "comparisons": {
+            "current__conditional_CDF_vs_WR": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": 52.26476777849031,
+              "gain_by_bucket_percent": {
+                "long": 45.24605473431728,
+                "medium": 77.58015613042744,
+                "short": 2.4000123120720973
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]",
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "current__conditional_CDF_vs_current": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": -6.418890647316999,
+              "gain_by_bucket_percent": {
+                "long": -15.816708706842796,
+                "medium": 4.70352596889917,
+                "short": -1.774063132018422
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]",
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "mapped_ratio__conditional_CDF_vs_WR": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": 51.334678422319804,
+              "gain_by_bucket_percent": {
+                "long": 43.54528867836513,
+                "medium": 77.03813586734863,
+                "short": 2.4194068069553487
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]",
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "mapped_ratio__conditional_CDF_vs_mapped_ratio": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": 1.0385957543251445,
+              "gain_by_bucket_percent": {
+                "long": 3.3446937099659624,
+                "medium": -4.003089295709161,
+                "short": 0.5378403466881676
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]",
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            }
+          },
+          "models": {
+            "WR": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 1.2109830710375842,
+                "medium": 1.258605613275336,
+                "short": 0.4685182347031185
+              },
+              "conditional_equal_bucket_Q": 0.9793689730053462,
+              "matched_request_count": 29,
+              "observed_requests_by_bucket": {
+                "long": 9,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.010518455387205387,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "78301155e900906d9c4d47fc9bc6c030f9985647abf3ddad1a0a6cf7f567f739",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "current": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.5725089370057593,
+                "medium": 0.2961047785859481,
+                "short": 0.4493028236406149
+              },
+              "conditional_equal_bucket_Q": 0.43930551307744076,
+              "matched_request_count": 29,
+              "observed_requests_by_bucket": {
+                "long": 9,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.010518455387205387,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "78301155e900906d9c4d47fc9bc6c030f9985647abf3ddad1a0a6cf7f567f739",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "current__conditional_CDF": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.6630610078926025,
+                "medium": 0.28217741343000663,
+                "short": 0.4572737393859408
+              },
+              "conditional_equal_bucket_Q": 0.4675040535695166,
+              "matched_request_count": 29,
+              "observed_requests_by_bucket": {
+                "long": 9,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.010518455387205387,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "78301155e900906d9c4d47fc9bc6c030f9985647abf3ddad1a0a6cf7f567f739",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "mapped_ratio": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.7073145005165923,
+                "medium": 0.27787569854247524,
+                "short": 0.4596550831335796
+              },
+              "conditional_equal_bucket_Q": 0.4816150940642157,
+              "matched_request_count": 29,
+              "observed_requests_by_bucket": {
+                "long": 9,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.010518455387205387,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "78301155e900906d9c4d47fc9bc6c030f9985647abf3ddad1a0a6cf7f567f739",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "mapped_ratio__conditional_CDF": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.6836569969081366,
+                "medium": 0.2889993108862061,
+                "short": 0.4571828726408842
+              },
+              "conditional_equal_bucket_Q": 0.4766130601450757,
+              "matched_request_count": 29,
+              "observed_requests_by_bucket": {
+                "long": 9,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.010518455387205387,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "78301155e900906d9c4d47fc9bc6c030f9985647abf3ddad1a0a6cf7f567f739",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            }
+          },
+          "request_count": 29,
+          "request_ids_sha256": "c037859cef59482f4dbd2758cca3d90dd0934be50659a5e29e4e713f10284bf2",
+          "scope_note": "Conditional observed-support diagnostic under fixed V9 weights; no missing requests are imputed."
+        },
+        "diverse24": {
+          "bucket_counts": {
+            "long": 4,
+            "medium": 2,
+            "short": 18
+          },
+          "comparisons": {
+            "current__conditional_CDF_vs_WR": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": 52.32630120730251,
+              "gain_by_bucket_percent": {
+                "long": 45.4026615581271,
+                "medium": 77.58015613042744,
+                "short": 2.4000123120720973
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "current__conditional_CDF_vs_current": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": -6.423350233606517,
+              "gain_by_bucket_percent": {
+                "long": -15.84641320907345,
+                "medium": 4.70352596889917,
+                "short": -1.774063132018422
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "mapped_ratio__conditional_CDF_vs_WR": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": 51.38135763781095,
+              "gain_by_bucket_percent": {
+                "long": 43.666691525161106,
+                "medium": 77.03813586734863,
+                "short": 2.4194068069553487
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "mapped_ratio__conditional_CDF_vs_mapped_ratio": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": 1.0598718113172367,
+              "gain_by_bucket_percent": {
+                "long": 3.3896267557888993,
+                "medium": -4.003089295709161,
+                "short": 0.5378403466881676
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]"
+              ],
+              "same_weights_and_training_scales": true
+            }
+          },
+          "models": {
+            "WR": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 1.2122622276585966,
+                "medium": 1.258605613275336,
+                "short": 0.4685182347031185
+              },
+              "conditional_equal_bucket_Q": 0.9797953585456837,
+              "matched_request_count": 24,
+              "observed_requests_by_bucket": {
+                "long": 4,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.01049715909090909,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "604b165489ca8dca2733f2b142305e7283bf44a491f25ffe364999923f5a8942",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "current": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.571327927126459,
+                "medium": 0.2961047785859481,
+                "short": 0.4493028236406149
+              },
+              "conditional_equal_bucket_Q": 0.43891184311767395,
+              "matched_request_count": 24,
+              "observed_requests_by_bucket": {
+                "long": 4,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.01049715909090909,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "604b165489ca8dca2733f2b142305e7283bf44a491f25ffe364999923f5a8942",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "current__conditional_CDF": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.6618629112377518,
+                "medium": 0.28217741343000663,
+                "short": 0.4572737393859408
+              },
+              "conditional_equal_bucket_Q": 0.4671046880178997,
+              "matched_request_count": 24,
+              "observed_requests_by_bucket": {
+                "long": 4,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.01049715909090909,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "604b165489ca8dca2733f2b142305e7283bf44a491f25ffe364999923f5a8942",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "mapped_ratio": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.7068675933014169,
+                "medium": 0.27787569854247524,
+                "short": 0.4596550831335796
+              },
+              "conditional_equal_bucket_Q": 0.4814661249924906,
+              "matched_request_count": 24,
+              "observed_requests_by_bucket": {
+                "long": 4,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.01049715909090909,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "604b165489ca8dca2733f2b142305e7283bf44a491f25ffe364999923f5a8942",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "mapped_ratio__conditional_CDF": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.682907420230871,
+                "medium": 0.2889993108862061,
+                "short": 0.4571828726408842
+              },
+              "conditional_equal_bucket_Q": 0.47636320125265375,
+              "matched_request_count": 24,
+              "observed_requests_by_bucket": {
+                "long": 4,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.01049715909090909,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "604b165489ca8dca2733f2b142305e7283bf44a491f25ffe364999923f5a8942",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            }
+          },
+          "request_count": 24,
+          "request_ids_sha256": "1bac71b654d4e3b2cdd73a2ddd56ca33c566614a0251840280f853774097ac3d",
+          "scope_note": "Conditional observed-support diagnostic under fixed V9 weights; no missing requests are imputed."
+        },
+        "incident5": {
+          "bucket_counts": {
+            "long": 5,
+            "medium": 0,
+            "short": 0
+          },
+          "comparisons": {
+            "current__conditional_CDF_vs_WR": {
+              "all_three_bucket_value_available": false,
+              "conditional_equal_3bucket_gain_percent": null,
+              "gain_by_bucket_percent": {
+                "long": -115.96405424111182,
+                "medium": null,
+                "short": null
+              },
+              "matched_request_ids": [
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "current__conditional_CDF_vs_current": {
+              "all_three_bucket_value_available": false,
+              "conditional_equal_3bucket_gain_percent": null,
+              "gain_by_bucket_percent": {
+                "long": -8.571871967724798,
+                "medium": null,
+                "short": null
+              },
+              "matched_request_ids": [
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "mapped_ratio__conditional_CDF_vs_WR": {
+              "all_three_bucket_value_available": false,
+              "conditional_equal_3bucket_gain_percent": null,
+              "gain_by_bucket_percent": {
+                "long": -81.42606113761003,
+                "medium": null,
+                "short": null
+              },
+              "matched_request_ids": [
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "mapped_ratio__conditional_CDF_vs_mapped_ratio": {
+              "all_three_bucket_value_available": false,
+              "conditional_equal_3bucket_gain_percent": null,
+              "gain_by_bucket_percent": {
+                "long": -13.532921830055123,
+                "medium": null,
+                "short": null
+              },
+              "matched_request_ids": [
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            }
+          },
+          "models": {
+            "WR": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": false,
+              "bucket_Q": {
+                "long": 0.5804738798553651,
+                "medium": null,
+                "short": null
+              },
+              "conditional_equal_bucket_Q": null,
+              "matched_request_count": 5,
+              "observed_requests_by_bucket": {
+                "long": 5,
+                "medium": 0,
+                "short": 0
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 2.1296296296296296e-05,
+                "medium": 0.0,
+                "short": 0.0
+              },
+              "scale_data_commitment_sha256": "14a2f364cb7b7c95b13caec719a21da6306a826dc96ec876201d5347237374b3",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "current": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": false,
+              "bucket_Q": {
+                "long": 1.1546406099721571,
+                "medium": null,
+                "short": null
+              },
+              "conditional_equal_bucket_Q": null,
+              "matched_request_count": 5,
+              "observed_requests_by_bucket": {
+                "long": 5,
+                "medium": 0,
+                "short": 0
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 2.1296296296296296e-05,
+                "medium": 0.0,
+                "short": 0.0
+              },
+              "scale_data_commitment_sha256": "14a2f364cb7b7c95b13caec719a21da6306a826dc96ec876201d5347237374b3",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "current__conditional_CDF": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": false,
+              "bucket_Q": {
+                "long": 1.253614924746327,
+                "medium": null,
+                "short": null
+              },
+              "conditional_equal_bucket_Q": null,
+              "matched_request_count": 5,
+              "observed_requests_by_bucket": {
+                "long": 5,
+                "medium": 0,
+                "short": 0
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 2.1296296296296296e-05,
+                "medium": 0.0,
+                "short": 0.0
+              },
+              "scale_data_commitment_sha256": "14a2f364cb7b7c95b13caec719a21da6306a826dc96ec876201d5347237374b3",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "mapped_ratio": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": false,
+              "bucket_Q": {
+                "long": 0.9275995712773601,
+                "medium": null,
+                "short": null
+              },
+              "conditional_equal_bucket_Q": null,
+              "matched_request_count": 5,
+              "observed_requests_by_bucket": {
+                "long": 5,
+                "medium": 0,
+                "short": 0
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 2.1296296296296296e-05,
+                "medium": 0.0,
+                "short": 0.0
+              },
+              "scale_data_commitment_sha256": "14a2f364cb7b7c95b13caec719a21da6306a826dc96ec876201d5347237374b3",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "mapped_ratio__conditional_CDF": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": false,
+              "bucket_Q": {
+                "long": 1.0531308961542518,
+                "medium": null,
+                "short": null
+              },
+              "conditional_equal_bucket_Q": null,
+              "matched_request_count": 5,
+              "observed_requests_by_bucket": {
+                "long": 5,
+                "medium": 0,
+                "short": 0
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 2.1296296296296296e-05,
+                "medium": 0.0,
+                "short": 0.0
+              },
+              "scale_data_commitment_sha256": "14a2f364cb7b7c95b13caec719a21da6306a826dc96ec876201d5347237374b3",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            }
+          },
+          "request_count": 5,
+          "request_ids_sha256": "57dedc124c700256b855cdd239737a61e7c82467930e990cceae3f45b04029c2",
+          "scope_note": "Five targeted incident requests are all long bucket; report the long-bucket diagnostic only, not an equal-three-bucket headline."
+        }
+      },
+      "output_receipt_sha256": "3f32aeffa251687b625eb100424ee07e9a28f0e9d4aaf102ee0b5c99d33b67d7",
+      "plan_fingerprint": "26654fa09009a76605ef51c3611031f8cc8242cab063f88c26644eec75a5dcb7",
+      "plan_sha256": "199d2bb2b2a127e9713f1d7801085ed6e0e9498c9c57cfb773b63ee475a40c17",
+      "root_admission_sha256": "3efce560aae9593088888c3dbce234a71506eef004a151262bbdf9864396e66b",
+      "source_binding_count": 271,
+      "source_closure_commitment_sha256": "2810d4c2d9e7005674709ca2fedcfe1d5854d73675f10232a2e188af2e805bc7",
+      "terminal_sha256": "976dfd22e16bbe2e2d7112a64315117bcd971f4d210a8307102341e0dc85708b"
+    },
+    "ratio_partition_geometry_screen29_v1": {
+      "candidate_artifact_commitment_sha256": "e869aac22084d0f274bf30ae3dafc18925cfe649582586a5cbfe74b106a403c3",
+      "candidate_closure_sha256": "0807c2dac25173e476782419d430a15b46e33aec25d418c803a56f6f85eba833",
+      "checkpoint_commitment": "12f6f60e3d708e7034573f9cf766f6257f37b5e9b99799133b99fb3a8565f926",
+      "control_artifact_commitment_sha256": "c801d1c3cde8a4366fd6ed0fcec834d1faa5ed8de04e7db1aec323b1f29e85be",
+      "group_results": {
+        "all29": {
+          "bucket_counts": {
+            "long": 9,
+            "medium": 2,
+            "short": 18
+          },
+          "comparisons": {
+            "ratio_partition_vs_WR": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": 44.30513711942696,
+              "gain_by_bucket_percent": {
+                "long": 39.90749998447808,
+                "medium": 62.70356064535193,
+                "short": 6.247077301423188
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]",
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "ratio_partition_vs_current": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": -24.16375173376224,
+              "gain_by_bucket_percent": {
+                "long": -27.108933173545815,
+                "medium": -58.530058687715034,
+                "short": 2.2375299467748078
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]",
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "ratio_partition_vs_mapped_ratio": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": -13.256044781992603,
+              "gain_by_bucket_percent": {
+                "long": -2.883512443155034,
+                "medium": -68.92987826270054,
+                "short": 4.439316668602633
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]",
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            }
+          },
+          "models": {
+            "WR": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 1.2109830710375842,
+                "medium": 1.258605613275336,
+                "short": 0.4685182347031185
+              },
+              "conditional_equal_bucket_Q": 0.9793689730053462,
+              "matched_request_count": 29,
+              "observed_requests_by_bucket": {
+                "long": 9,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.010518455387205387,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "78301155e900906d9c4d47fc9bc6c030f9985647abf3ddad1a0a6cf7f567f739",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "current": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.5725089370057593,
+                "medium": 0.2961047785859481,
+                "short": 0.4493028236406149
+              },
+              "conditional_equal_bucket_Q": 0.43930551307744076,
+              "matched_request_count": 29,
+              "observed_requests_by_bucket": {
+                "long": 9,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.010518455387205387,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "78301155e900906d9c4d47fc9bc6c030f9985647abf3ddad1a0a6cf7f567f739",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "mapped_ratio": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.7073145005165923,
+                "medium": 0.27787569854247524,
+                "short": 0.4596550831335796
+              },
+              "conditional_equal_bucket_Q": 0.4816150940642157,
+              "matched_request_count": 29,
+              "observed_requests_by_bucket": {
+                "long": 9,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.010518455387205387,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "78301155e900906d9c4d47fc9bc6c030f9985647abf3ddad1a0a6cf7f567f739",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "ratio_partition": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.7277100021512282,
+                "medium": 0.46941507926943216,
+                "short": 0.43924953840995135
+              },
+              "conditional_equal_bucket_Q": 0.5454582066102039,
+              "matched_request_count": 29,
+              "observed_requests_by_bucket": {
+                "long": 9,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.010518455387205387,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "78301155e900906d9c4d47fc9bc6c030f9985647abf3ddad1a0a6cf7f567f739",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            }
+          },
+          "request_count": 29,
+          "request_ids_sha256": "c037859cef59482f4dbd2758cca3d90dd0934be50659a5e29e4e713f10284bf2",
+          "scope_note": "Conditional observed-support diagnostic under fixed V9 weights; no missing requests are imputed."
+        },
+        "diverse24": {
+          "bucket_counts": {
+            "long": 4,
+            "medium": 2,
+            "short": 18
+          },
+          "comparisons": {
+            "ratio_partition_vs_WR": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": 44.337635126298615,
+              "gain_by_bucket_percent": {
+                "long": 39.99093857823664,
+                "medium": 62.70356064535193,
+                "short": 6.247077301423188
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "ratio_partition_vs_current": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": -24.2566761505844,
+              "gain_by_bucket_percent": {
+                "long": -27.329183512407738,
+                "medium": -58.530058687715034,
+                "short": 2.2375299467748078
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "ratio_partition_vs_mapped_ratio": {
+              "all_three_bucket_value_available": true,
+              "conditional_equal_3bucket_gain_percent": -13.274276045442534,
+              "gain_by_bucket_percent": {
+                "long": -2.914207934028634,
+                "medium": -68.92987826270054,
+                "short": 4.439316668602633
+              },
+              "matched_request_ids": [
+                "[\"short\",36301,1]",
+                "[\"short\",36301,5]",
+                "[\"short\",35902,5]",
+                "[\"short\",35902,21]",
+                "[\"short\",49,21]",
+                "[\"original\",49,13159]",
+                "[\"original\",36709,5897]",
+                "[\"short\",36709,1]",
+                "[\"short\",35647,1]",
+                "[\"short\",35647,5]",
+                "[\"short\",26773,5]",
+                "[\"short\",26773,21]",
+                "[\"short\",38379,21]",
+                "[\"original\",38379,2103]",
+                "[\"original\",50328,8099]",
+                "[\"short\",50328,1]",
+                "[\"short\",63537,1]",
+                "[\"short\",63537,5]",
+                "[\"short\",38430,5]",
+                "[\"short\",38430,21]",
+                "[\"short\",48492,21]",
+                "[\"original\",48492,8099]",
+                "[\"original\",39399,2044]",
+                "[\"short\",39399,1]"
+              ],
+              "same_weights_and_training_scales": true
+            }
+          },
+          "models": {
+            "WR": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 1.2122622276585966,
+                "medium": 1.258605613275336,
+                "short": 0.4685182347031185
+              },
+              "conditional_equal_bucket_Q": 0.9797953585456837,
+              "matched_request_count": 24,
+              "observed_requests_by_bucket": {
+                "long": 4,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.01049715909090909,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "604b165489ca8dca2733f2b142305e7283bf44a491f25ffe364999923f5a8942",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "current": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.571327927126459,
+                "medium": 0.2961047785859481,
+                "short": 0.4493028236406149
+              },
+              "conditional_equal_bucket_Q": 0.43891184311767395,
+              "matched_request_count": 24,
+              "observed_requests_by_bucket": {
+                "long": 4,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.01049715909090909,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "604b165489ca8dca2733f2b142305e7283bf44a491f25ffe364999923f5a8942",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "mapped_ratio": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.7068675933014169,
+                "medium": 0.27787569854247524,
+                "short": 0.4596550831335796
+              },
+              "conditional_equal_bucket_Q": 0.4814661249924906,
+              "matched_request_count": 24,
+              "observed_requests_by_bucket": {
+                "long": 4,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.01049715909090909,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "604b165489ca8dca2733f2b142305e7283bf44a491f25ffe364999923f5a8942",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "ratio_partition": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": true,
+              "bucket_Q": {
+                "long": 0.727467184788484,
+                "medium": 0.46941507926943216,
+                "short": 0.43924953840995135
+              },
+              "conditional_equal_bucket_Q": 0.5453772674892892,
+              "matched_request_count": 24,
+              "observed_requests_by_bucket": {
+                "long": 4,
+                "medium": 2,
+                "short": 18
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 0.01049715909090909,
+                "medium": 0.0006771227009322248,
+                "short": 0.001042780157990375
+              },
+              "scale_data_commitment_sha256": "604b165489ca8dca2733f2b142305e7283bf44a491f25ffe364999923f5a8942",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            }
+          },
+          "request_count": 24,
+          "request_ids_sha256": "1bac71b654d4e3b2cdd73a2ddd56ca33c566614a0251840280f853774097ac3d",
+          "scope_note": "Conditional observed-support diagnostic under fixed V9 weights; no missing requests are imputed."
+        },
+        "incident5": {
+          "bucket_counts": {
+            "long": 5,
+            "medium": 0,
+            "short": 0
+          },
+          "comparisons": {
+            "ratio_partition_vs_WR": {
+              "all_three_bucket_value_available": false,
+              "conditional_equal_3bucket_gain_percent": null,
+              "gain_by_bucket_percent": {
+                "long": -45.98367937376351,
+                "medium": null,
+                "short": null
+              },
+              "matched_request_ids": [
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "ratio_partition_vs_current": {
+              "all_three_bucket_value_available": false,
+              "conditional_equal_3bucket_gain_percent": null,
+              "gain_by_bucket_percent": {
+                "long": 26.60944710433011,
+                "medium": null,
+                "short": null
+              },
+              "matched_request_ids": [
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            },
+            "ratio_partition_vs_mapped_ratio": {
+              "all_three_bucket_value_available": false,
+              "conditional_equal_3bucket_gain_percent": null,
+              "gain_by_bucket_percent": {
+                "long": 8.646235524927548,
+                "medium": null,
+                "short": null
+              },
+              "matched_request_ids": [
+                "[\"original\",28354,12106]",
+                "[\"original\",28353,18159]",
+                "[\"original\",28200,16373]",
+                "[\"original\",28711,10320]",
+                "[\"original\",28252,13027]"
+              ],
+              "same_weights_and_training_scales": true
+            }
+          },
+          "models": {
+            "WR": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": false,
+              "bucket_Q": {
+                "long": 0.5804738798553651,
+                "medium": null,
+                "short": null
+              },
+              "conditional_equal_bucket_Q": null,
+              "matched_request_count": 5,
+              "observed_requests_by_bucket": {
+                "long": 5,
+                "medium": 0,
+                "short": 0
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 2.1296296296296296e-05,
+                "medium": 0.0,
+                "short": 0.0
+              },
+              "scale_data_commitment_sha256": "14a2f364cb7b7c95b13caec719a21da6306a826dc96ec876201d5347237374b3",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "current": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": false,
+              "bucket_Q": {
+                "long": 1.1546406099721571,
+                "medium": null,
+                "short": null
+              },
+              "conditional_equal_bucket_Q": null,
+              "matched_request_count": 5,
+              "observed_requests_by_bucket": {
+                "long": 5,
+                "medium": 0,
+                "short": 0
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 2.1296296296296296e-05,
+                "medium": 0.0,
+                "short": 0.0
+              },
+              "scale_data_commitment_sha256": "14a2f364cb7b7c95b13caec719a21da6306a826dc96ec876201d5347237374b3",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "mapped_ratio": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": false,
+              "bucket_Q": {
+                "long": 0.9275995712773601,
+                "medium": null,
+                "short": null
+              },
+              "conditional_equal_bucket_Q": null,
+              "matched_request_count": 5,
+              "observed_requests_by_bucket": {
+                "long": 5,
+                "medium": 0,
+                "short": 0
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 2.1296296296296296e-05,
+                "medium": 0.0,
+                "short": 0.0
+              },
+              "scale_data_commitment_sha256": "14a2f364cb7b7c95b13caec719a21da6306a826dc96ec876201d5347237374b3",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            },
+            "ratio_partition": {
+              "Q_is_defined_only_when_all_three_buckets_are_observed": false,
+              "bucket_Q": {
+                "long": 0.8473971276165014,
+                "medium": null,
+                "short": null
+              },
+              "conditional_equal_bucket_Q": null,
+              "matched_request_count": 5,
+              "observed_requests_by_bucket": {
+                "long": 5,
+                "medium": 0,
+                "short": 0
+              },
+              "observed_weight_support_by_bucket": {
+                "long": 2.1296296296296296e-05,
+                "medium": 0.0,
+                "short": 0.0
+              },
+              "scale_data_commitment_sha256": "14a2f364cb7b7c95b13caec719a21da6306a826dc96ec876201d5347237374b3",
+              "v11_score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+              "v9_hierarchy_protocol_id": "daily_portfolio_panel_crps_v9_raw_equal_calendar_buckets_fixed_planned_series_no_quarters"
+            }
+          },
+          "request_count": 5,
+          "request_ids_sha256": "57dedc124c700256b855cdd239737a61e7c82467930e990cceae3f45b04029c2",
+          "scope_note": "Five targeted incident requests are all long bucket; report the long-bucket diagnostic only, not an equal-three-bucket headline."
+        }
+      },
+      "output_receipt_sha256": "d1385d8a76793f12372f0765e042ca8c035a2b53668d828e9f4aaa537384fdbd",
+      "plan_fingerprint": "5a35d89127b6dea705a68e7a8cc980d9c1d8978964587143cb21eeab2a9d3171",
+      "plan_sha256": "611200e265fdf71351b44eac7d7cdc5f39b50f3e4513fdceaadd7d2bc9325907",
+      "root_admission_sha256": "e077b4edbf0aaf71788b6ee1e5d25ab5969a54c67bdd72d6d6c1278b94ff3165",
+      "source_binding_count": 272,
+      "source_closure_commitment_sha256": "6f5673515e96a807d5cb9323862d71072ed00301626c1f08356fbac6b2a03615",
+      "terminal_sha256": "c994806abf71bb799785d7c7ea56102dd396ac44fb50f9fa8eddcdb7caccb924"
+    }
+  }
+}

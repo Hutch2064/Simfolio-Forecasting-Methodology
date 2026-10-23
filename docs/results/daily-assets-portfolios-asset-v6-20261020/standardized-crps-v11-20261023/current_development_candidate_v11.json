@@ -1,0 +1,30 @@
+{
+  "schema": "current-development-candidate-v11",
+  "status": "V11 development incumbent independently confirmed on all1264series representative17395request design; actual full320017 score remains unmeasured",
+  "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "candidate_module": "candidates.asset_selector_mapped_ratio_geometry_v1.candidate",
+  "mode": "mapped_ratio",
+  "model_id": "model_testing_mapped_ratio_geometry_v1_1086fd958c5bd649",
+  "financial_candidate_sha256": "ad4b04ca1b7cd15b9ea89e4e6b9a276460e1108b770daf99c06ee5f242284cff",
+  "inner_paths": 2,
+  "final_paths": 240,
+  "V11_score": 0.5765574378958978,
+  "V9_record_preserved": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/current_development_candidate_v9.json",
+  "full_panel_promoted": false,
+  "production_promoted": false,
+  "official_scoreboard": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/official_scoreboard_v11.json",
+  "V11_score_role": "Representative-mass development estimate; NOT actual full-panel headline",
+  "matched_requests": 17395,
+  "series": 1264,
+  "fixed_WR_240_Q": 0.6971753165410287,
+  "percent_lower_standardized_CRPS_vs_fixed_WR_estimate": 17.300939345294875,
+  "percent_lower_standardized_CRPS_vs_finite41_estimate": 3.1120401340945514,
+  "primary_bucket_Q": {
+    "long": 0.8104537220390491,
+    "medium": 0.512101401666765,
+    "short": 0.4071171899818792
+  },
+  "source_rescore_sha256": "8750a9ac14bc0c8b8ca835a4b9de5b09ecc3939b4751427f7f8961bea797fe78",
+  "independent_replay_sha256": "1c1ddedc17308f3e038bd38cb2a63cc6bac2e20349869efa32d00d07d1ec585a",
+  "updated_utc": "2026-10-23T05:41:46.359389+00:00"
+}

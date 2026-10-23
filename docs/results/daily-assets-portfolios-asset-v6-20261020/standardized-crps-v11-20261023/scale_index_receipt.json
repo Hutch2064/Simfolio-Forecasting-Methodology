@@ -1,0 +1,48 @@
+{
+  "all_scales_positive_finite": true,
+  "comparative_scores_read": false,
+  "created_utc": "2026-10-23T05:19:59.961043+00:00",
+  "forecasts_or_fits_run": false,
+  "index_bytes": 69853184,
+  "index_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/scale_index.sqlite3",
+  "index_sha256": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+  "portfolio_reconstruction_max_abs_error": 8.326672684688674e-17,
+  "portfolio_reconstruction_rows": 4135225,
+  "prefix_count": 64049,
+  "prefix_sd_max": 0.08801696292612354,
+  "prefix_sd_min": 0.0002861623346405186,
+  "protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "protocol_sha256": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+  "request_count": 320017,
+  "request_count_by_bucket": {
+    "long": 3429,
+    "medium": 37695,
+    "short": 278893
+  },
+  "request_count_by_kind": {
+    "original": 64049,
+    "short": 255968
+  },
+  "schema": "simfolio_v11_scale_index_receipt_v1",
+  "source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs.py": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs/panel.json": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs/portfolio_catalogue.json": "28e0c74f841f990ef5836f1e5885c46d9e156cc038bc86a9ae36d7c6bee54a98",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/score_aligned_v7.py": "085e22bbe9b6aeb6ce07369250c884e71a08ee908c033853e9ec67ee6966e003",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8/requested_calendar_mapping.npz": "91220b130fa20068c85dd2d7afede68451927555c250238a81085a026b681c80",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_horizon_buckets_v8.py": "9a1222c60dc7adc7261fd467bfab835ab33681793e3baa8995597d690be1b70b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_series_buckets_v9.py": "c598301b977fb1d8405de640476289d071107633e8ba72fbedf3ef8712d4796c",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9/protocol.json": "a1afd47e29015997c541b8a1d2455173e2353471f49467fed689abdd44dcd5be",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_reporter.py": "3aee8432dca2c149bbfa3842dd346d1e38f1e3a6458712459fc872feb410612b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/short_horizon_final240_v3/plan.json": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/training_sd_domain_scan_v1/domain_scan.json": "f9821bededc1bdc404973941f50c1eb4c235f41fddcb1d6127875e6ea382220c",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/training_sd_domain_scan_v1/scan_training_sd_domain.py": "d254daf5dc94d0d0d4ad2380d27017017c7e95d475f3b9e59f6002e51b0b25c3",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/training_standardized_requested_horizon_crps_design_review_v1.md": "8c699a254b372cfa81af419500ee1921ebd34d5a349c9e9d7c131d1bcb7b1420"
+  },
+  "sqlite_integrity_check": "ok",
+  "status": "complete",
+  "verified_input_bytes": 342898994,
+  "verified_input_file_count": 3792,
+  "verified_input_manifest_sha256": "f1c0ae6a6217129f77aa96e32d1d36118d0eaccf39931c6b9581eb16d3bb35a1",
+  "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+}

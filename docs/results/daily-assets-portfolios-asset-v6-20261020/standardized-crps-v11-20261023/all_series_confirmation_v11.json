@@ -1,0 +1,336 @@
+{
+  "analysis_limits": [
+    "Primary development estimate applies each frozen representative_weight to the V11-normalized saved raw mean and averages the three full-mass calendar buckets equally, matching the admitted all-series cohort design.",
+    "Secondary conditional diagnostic applies the full-panel V9 per-request weights and renormalizes over this observed cohort within each bucket; it can move with observed support.",
+    "The fixed comparator uses exactly 13,874 admitted 240-path WR scalar references plus 3,521 matched 240-path WR sidecars; no older-path-count full-cache WR values substitute for cohort controls.",
+    "All candidates and WR share the same 17,395 request IDs, source-bound request identities, requested-H training scales, and representative masses. No forecasts or fits were run."
+  ],
+  "canonical_pointer_changed": false,
+  "closed_cohort_receipt_sha256": "dcc71a9068b246030551983b53dbdc61f889af74c3d2a4a143159cc7dc4ac761",
+  "closed_output_review_sha256": "826c91d8043d2d5edaa7d5f88f0c732f06a44a31991c38a80559e7344a0f19d7",
+  "cohort": "finite_full_series_confirmation_v1",
+  "comparisons": {
+    "finite41_vs_fixed_WR_conditional_observed_support": {
+      "algorithm_Q": 0.6838883963201781,
+      "fixed_WR_Q": 0.8709169309602324,
+      "matched_requests": 17395,
+      "not_full_panel_headline": true,
+      "percent_better_than_WR": 21.474899383784553,
+      "same_requests_scales_and_weights": true
+    },
+    "finite41_vs_fixed_WR_representative_mass": {
+      "algorithm_Q": 0.5950764560362948,
+      "fixed_WR_Q": 0.6971753165410287,
+      "matched_requests": 17395,
+      "not_full_panel_headline": true,
+      "percent_better_than_WR": 14.644646487383984,
+      "same_requests_scales_and_weights": true
+    },
+    "finite77_vs_fixed_WR_conditional_observed_support": {
+      "algorithm_Q": 0.6791637830119054,
+      "fixed_WR_Q": 0.8709169309602324,
+      "matched_requests": 17395,
+      "not_full_panel_headline": true,
+      "percent_better_than_WR": 22.017386633752643,
+      "same_requests_scales_and_weights": true
+    },
+    "finite77_vs_fixed_WR_representative_mass": {
+      "algorithm_Q": 0.5953589159928813,
+      "fixed_WR_Q": 0.6971753165410287,
+      "matched_requests": 17395,
+      "not_full_panel_headline": true,
+      "percent_better_than_WR": 14.604131576731682,
+      "same_requests_scales_and_weights": true
+    },
+    "mapped_ratio_vs_fixed_WR_conditional_observed_support": {
+      "algorithm_Q": 0.6548429429288364,
+      "fixed_WR_Q": 0.8709169309602324,
+      "matched_requests": 17395,
+      "not_full_panel_headline": true,
+      "percent_better_than_WR": 24.80994229761533,
+      "same_requests_scales_and_weights": true
+    },
+    "mapped_ratio_vs_fixed_WR_representative_mass": {
+      "algorithm_Q": 0.5765574378958978,
+      "fixed_WR_Q": 0.6971753165410287,
+      "matched_requests": 17395,
+      "not_full_panel_headline": true,
+      "percent_better_than_WR": 17.300939345294875,
+      "same_requests_scales_and_weights": true
+    }
+  },
+  "exact_v11_scale_commitment_sha256": "17f59032069c5c35ab27a2771bfe061db13aec437d625b12cdf483cd73716ef9",
+  "fixed_WR_240_path_cohort_receipt": {
+    "matched_240_path_WR_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+    "new_240_path_sidecar_count": 3521,
+    "new_WR_sidecar_checkpoint_commitment_sha256": "c7a0af6c3a9cece789596ed385feb56577d2743498c51bfa8c7309835b045c92",
+    "request_count": 17395,
+    "retained_240_scalar_reference_count": 13874,
+    "retained_WR_score_and_lineage_commitment_sha256": "449806a8c6f59294e9b469417b25d6e510a4305235788f8770b92b7c764519ff"
+  },
+  "forecasts_or_fits_run": false,
+  "full_320017_v11_context": {
+    "endpoint_Q": 0.544202657106937,
+    "endpoint_percent_better_than_WR": 16.41240835383946,
+    "fixed_WR_Q": 0.6510567494403149,
+    "independent_review_path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11_independent_full_replay_review.json",
+    "request_count": 320017
+  },
+  "full_panel_independent_review_sha256": "85d64fa6e90832ce9a13d7288a475b15c2cacd27f8c3f85714224bb9faa09174",
+  "full_weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132",
+  "h1_alias_parity": {
+    "finite77": {
+      "raw_mean_byte_exact_with_finite41": true,
+      "request_count": 3479
+    },
+    "mapped_ratio": {
+      "raw_mean_byte_exact_with_finite41": true,
+      "request_count": 3479
+    }
+  },
+  "matched_request_coverage": true,
+  "matched_request_set_sha256": "d5f683098e6e109373071b8037c4f2157bd8142d087756b060652afc06c2f11a",
+  "method_artifact_receipts": {
+    "finite41": {
+      "native_sidecar_count": 17080,
+      "outer_seed_commitment_sha256": "6ef11040a1cee4c973805c214319ef309a332a86b54fb0f4e2adf032057ef4dd",
+      "raw_mean_and_sidecar_commitment_sha256": "2f76731e37e9a0c84480e785cb712d18e9a1fdb6de354e055643becbb0cada2c",
+      "request_count": 17395,
+      "reused_sidecar_count": 315,
+      "source_defined_H1_alias_sidecar_count": 0
+    },
+    "finite77": {
+      "native_sidecar_count": 17080,
+      "outer_seed_commitment_sha256": "6ef11040a1cee4c973805c214319ef309a332a86b54fb0f4e2adf032057ef4dd",
+      "raw_mean_and_sidecar_commitment_sha256": "906f45842987cbb4658ca7426a88577352a4458416d7d19507d57d6af95ab3ef",
+      "request_count": 17395,
+      "reused_sidecar_count": 315,
+      "source_defined_H1_alias_sidecar_count": 3416
+    },
+    "mapped_ratio": {
+      "native_sidecar_count": 17080,
+      "outer_seed_commitment_sha256": "6ef11040a1cee4c973805c214319ef309a332a86b54fb0f4e2adf032057ef4dd",
+      "raw_mean_and_sidecar_commitment_sha256": "30388d708ff33f385d71d70fedebdbd87472d7730b9e72c867195eadcd7589d8",
+      "request_count": 17395,
+      "reused_sidecar_count": 315,
+      "source_defined_H1_alias_sidecar_count": 3416
+    }
+  },
+  "plan_fingerprint": "03b9e89f4b6268c2467e1425b4653cfa36faaeee8da0a30cd2cd51f6cf6c132a",
+  "plan_sha256": "0ba4ba80ef337131cecf09628649455922a79c3b98bb12d39f3d9e3cb08aa155",
+  "primary_representative_mass_estimate": {
+    "finite41": {
+      "Q": 0.5950764560362948,
+      "bucket_Q": {
+        "long": 0.8541012747132987,
+        "medium": 0.5242138372022386,
+        "short": 0.40691425619334726
+      },
+      "full_panel_headline": false,
+      "representative_mass_by_bucket": {
+        "long": 1.0,
+        "medium": 1.0,
+        "short": 0.9999999999999994
+      },
+      "request_count_by_bucket": {
+        "long": 952,
+        "medium": 2232,
+        "short": 14211
+      }
+    },
+    "finite77": {
+      "Q": 0.5953589159928813,
+      "bucket_Q": {
+        "long": 0.8554818095072579,
+        "medium": 0.5241949784361989,
+        "short": 0.40639996003518697
+      },
+      "full_panel_headline": false,
+      "representative_mass_by_bucket": {
+        "long": 1.0,
+        "medium": 1.0,
+        "short": 0.9999999999999994
+      },
+      "request_count_by_bucket": {
+        "long": 952,
+        "medium": 2232,
+        "short": 14211
+      }
+    },
+    "mapped_ratio": {
+      "Q": 0.5765574378958978,
+      "bucket_Q": {
+        "long": 0.8104537220390491,
+        "medium": 0.512101401666765,
+        "short": 0.4071171899818792
+      },
+      "full_panel_headline": false,
+      "representative_mass_by_bucket": {
+        "long": 1.0,
+        "medium": 1.0,
+        "short": 0.9999999999999994
+      },
+      "request_count_by_bucket": {
+        "long": 952,
+        "medium": 2232,
+        "short": 14211
+      }
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "Q": 0.6971753165410287,
+      "bucket_Q": {
+        "long": 1.0390157648779843,
+        "medium": 0.6405530356780179,
+        "short": 0.41195714906708397
+      },
+      "full_panel_headline": false,
+      "representative_mass_by_bucket": {
+        "long": 1.0,
+        "medium": 1.0,
+        "short": 0.9999999999999994
+      },
+      "request_count_by_bucket": {
+        "long": 952,
+        "medium": 2232,
+        "short": 14211
+      }
+    }
+  },
+  "representative_assignment": {
+    "path": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite77_full_series_confirmation_design_addendum_v2/representative_weights.npz",
+    "representative_assignment_sha256": "15e9f37058aff2ec51a3d737364131a5f4b4cc898f676fac655a90e306caf4b7",
+    "representative_mass_by_bucket": {
+      "long": 1.0,
+      "medium": 1.0,
+      "short": 0.9999999999999994
+    },
+    "request_count": 17395,
+    "sha256": "715dc670c0586171e359f866f525632e9126c87aa65a99130c3d5ed5d7ac0be7"
+  },
+  "requests_per_model": {
+    "finite41": 17395,
+    "finite77": 17395,
+    "mapped_ratio": 17395,
+    "model_testing_asset_joint_blocks_replacement_v6": 17395
+  },
+  "root_admission_sha256": "42046cbd52d1af20bd85a7e2b8187922108648a731984c7a5eea50cb31a9cb23",
+  "root_source_qualification_sha256": "63e9674089cb19490d91dc8f086a83c71b930af9d67cfcefc7304be188134451",
+  "scale_index": {
+    "request_count": 320017,
+    "scale_index_sha256": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+    "scale_receipt_sha256": "c06ed725929778e6b4c887953c018345dfe339392e1d7cf11b69f07916dd63e4",
+    "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132"
+  },
+  "schema": "simfolio_v11_closed_all_series_cohort_rescore_v2",
+  "scope": "17,395 saved representative all-series requests. Primary is the preregistered full-series representative-mass quadrature; the selected-row conditional V9-weight estimate is secondary. Neither is the full 320,017-request headline.",
+  "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "secondary_selected_row_conditional_diagnostic": {
+    "finite41": {
+      "bucket_Q": {
+        "long": 0.8510769668350969,
+        "medium": 0.7884445655989144,
+        "short": 0.4121436565265227
+      },
+      "complete_full_panel_score": false,
+      "conditional_observed_support_Q": 0.6838883963201781,
+      "observed_request_count_by_bucket": {
+        "long": 952,
+        "medium": 2232,
+        "short": 14211
+      },
+      "observed_weight_support_by_bucket": {
+        "long": 0.5858547773985274,
+        "medium": 0.13089385247919733,
+        "short": 0.04814683685887044
+      },
+      "scale_data_commitment_sha256": "17f59032069c5c35ab27a2771bfe061db13aec437d625b12cdf483cd73716ef9"
+    },
+    "finite77": {
+      "bucket_Q": {
+        "long": 0.8496135700102455,
+        "medium": 0.7766008321841421,
+        "short": 0.4112769468413283
+      },
+      "complete_full_panel_score": false,
+      "conditional_observed_support_Q": 0.6791637830119054,
+      "observed_request_count_by_bucket": {
+        "long": 952,
+        "medium": 2232,
+        "short": 14211
+      },
+      "observed_weight_support_by_bucket": {
+        "long": 0.5858547773985274,
+        "medium": 0.13089385247919733,
+        "short": 0.04814683685887044
+      },
+      "scale_data_commitment_sha256": "17f59032069c5c35ab27a2771bfe061db13aec437d625b12cdf483cd73716ef9"
+    },
+    "mapped_ratio": {
+      "bucket_Q": {
+        "long": 0.8160439561026124,
+        "medium": 0.7363423028175067,
+        "short": 0.4121425698663901
+      },
+      "complete_full_panel_score": false,
+      "conditional_observed_support_Q": 0.6548429429288364,
+      "observed_request_count_by_bucket": {
+        "long": 952,
+        "medium": 2232,
+        "short": 14211
+      },
+      "observed_weight_support_by_bucket": {
+        "long": 0.5858547773985274,
+        "medium": 0.13089385247919733,
+        "short": 0.04814683685887044
+      },
+      "scale_data_commitment_sha256": "17f59032069c5c35ab27a2771bfe061db13aec437d625b12cdf483cd73716ef9"
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "bucket_Q": {
+        "long": 1.0430547573331512,
+        "medium": 1.1525088009968207,
+        "short": 0.4171872345507253
+      },
+      "complete_full_panel_score": false,
+      "conditional_observed_support_Q": 0.8709169309602324,
+      "observed_request_count_by_bucket": {
+        "long": 952,
+        "medium": 2232,
+        "short": 14211
+      },
+      "observed_weight_support_by_bucket": {
+        "long": 0.5858547773985274,
+        "medium": 0.13089385247919733,
+        "short": 0.04814683685887044
+      },
+      "scale_data_commitment_sha256": "17f59032069c5c35ab27a2771bfe061db13aec437d625b12cdf483cd73716ef9"
+    }
+  },
+  "source_binding_count": 195,
+  "source_closure_commitment_sha256": "6874b34a87c6acf9265ecfe058d0f0ab6c0d49a0ee7b02dd1108c723d369cfb6",
+  "source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/asset_level_v6/inputs/panel.json": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite77_full_series_confirmation_design_addendum_v2/representative_weights.npz": "715dc670c0586171e359f866f525632e9126c87aa65a99130c3d5ed5d7ac0be7",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite_full_series_confirmation_v1/output/receipt.json": "dcc71a9068b246030551983b53dbdc61f889af74c3d2a4a143159cc7dc4ac761",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite_full_series_confirmation_v1/plan.json": "0ba4ba80ef337131cecf09628649455922a79c3b98bb12d39f3d9e3cb08aa155",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite_full_series_confirmation_v1/root_admission.json": "42046cbd52d1af20bd85a7e2b8187922108648a731984c7a5eea50cb31a9cb23",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite_full_series_confirmation_v1/root_source_qualification.json": "63e9674089cb19490d91dc8f086a83c71b930af9d67cfcefc7304be188134451",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite_full_series_confirmation_v1/source_qualification_receipt.json": "01286a8de74d9fdec1b4766f21d7914dedaefc82efec9e2b3d03e209f746b543",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite_full_series_confirmation_v1/terminal.json": "e7bda93ba09bd213fe3fccf2b409dde9bd74b1d7d45457214a1221120e46389b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite_full_series_confirmation_v1_independent_closed_review.json": "826c91d8043d2d5edaa7d5f88f0c732f06a44a31991c38a80559e7344a0f19d7",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite_full_series_confirmation_v1_independent_diagnostics.json": "75c74d8747a7364914da97d8cf4b7f5be8093de427031af9e81edd7866ab8410",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite_full_series_confirmation_v1_independent_source_review.json": "f487c8aeecd81172d84f22129d80b4ab6d56e938e5b0d9937e0da6a781728c76",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/horizon_buckets_v8_reporter.py": "4f41a5732bf4a7a7b86b22e921acc31dd6b05963a61aa41851472bb170cfb5ae",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/full_primary_rescore.json": "1b3bc18d59f1ee72fe9b81b61159af1269751a7bae198edb5bdf69dd374b007a",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/protocol.json": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/rescore_all_series_confirmation_v11.py": "d5ba055a38842933ecc9d1dc26cacca59219078af37111758a21095a518737dd",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/scale_index.sqlite3": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/scale_index_receipt.json": "c06ed725929778e6b4c887953c018345dfe339392e1d7cf11b69f07916dd63e4",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/score_requested_horizon_crps_v11.py": "6fe6345747292142bb0599c1c3ec0a98b78cc39a54d7cbeb809ef7741218b52a",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_horizon_buckets_v8.py": "9a1222c60dc7adc7261fd467bfab835ab33681793e3baa8995597d690be1b70b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/score_series_buckets_v9.py": "c598301b977fb1d8405de640476289d071107633e8ba72fbedf3ef8712d4796c",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/series_buckets_v9_live/independent_full_replay_review.json": "a8ee3fd14483999737f95537077c75216c4a6afe933ac811d5da7a60e0dcb001"
+  },
+  "status": "complete_conditional_cohort_diagnostic_pending_independent_review",
+  "terminal_sha256": "e7bda93ba09bd213fe3fccf2b409dde9bd74b1d7d45457214a1221120e46389b"
+}

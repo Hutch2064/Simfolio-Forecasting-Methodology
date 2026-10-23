@@ -1,0 +1,110 @@
+{
+  "actual_saved_loss_replays": [
+    {
+      "checkpoint": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite41_broad1775_v2/output/024-finite41.npz",
+      "checkpoint_sha256": "837c23f6ff533c5771467b9c560a890ac37057295eaf2d0f18eab50ba82dccb8",
+      "independent_daily_vector_standardized_mean": 1.3511479717036765,
+      "loss_sha256": "266bc86e81d198181ea7d63bf6b9cd5a543086eb46974a9d3987474a708e3010",
+      "raw_saved_mean": 0.35982087815049285,
+      "relative_roundoff_difference": 0.0,
+      "request": {
+        "H": 7447,
+        "WR_missing": false,
+        "case_index": 35493,
+        "fixed_weight": {
+          "bucket": "long",
+          "weight": 0.016666666666666666
+        },
+        "origin_date": "1996-10-04",
+        "representative_weight": 0.016666666666666666,
+        "request_id": "[\"original\",35493,7447]",
+        "requested_end_date": "2026-05-13",
+        "series_id": "BNDSIM"
+      },
+      "standardized_scalar": 1.3511479717036765,
+      "training_sd": 0.0030859775945429537
+    },
+    {
+      "checkpoint": "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/finite41_broad1775_v2/output/020-finite41.npz",
+      "checkpoint_sha256": "d0a56e397aa1d2352f186df39abeb146b1136422f55a79dc2f14d4424f691ba8",
+      "independent_daily_vector_standardized_mean": 0.4051847739918993,
+      "loss_sha256": "3b13a73f144d6005b817cd42adf361f2341e95641a3995bc02f04ef28b6999fa",
+      "raw_saved_mean": 0.0012503911341889516,
+      "relative_roundoff_difference": 0.0,
+      "request": {
+        "H": 1,
+        "WR_missing": false,
+        "case_index": 35493,
+        "fixed_weight": {
+          "bucket": "short",
+          "weight": 5.3867700926524454e-05
+        },
+        "origin_date": "1996-10-04",
+        "representative_weight": 0.000992063492063489,
+        "request_id": "[\"short\",35493,1]",
+        "requested_end_date": "1996-10-07",
+        "series_id": "BNDSIM"
+      },
+      "standardized_scalar": 0.4051847739918993,
+      "training_sd": 0.0030859775945429537
+    }
+  ],
+  "canonical_or_public_edits": false,
+  "domain_prefix_replays": [
+    {
+      "assets": 1,
+      "case_index": 35191,
+      "decimal60_reference_sd": 0.0002861623346405184,
+      "future_append_preserves_prefix_bytes": true,
+      "origin_date": "1965-06-30",
+      "prefix_sha256": "59f865d74b44a37ea0c46ba1a8c83676fdddbc2f814f9405532940970e4b21d0",
+      "relative_difference": 7.577532339100436e-16,
+      "roundoff_comparison_bound": 1.2505552149377763e-11,
+      "series_id": "SHYSIM",
+      "training_portfolio_sd": 0.0002861623346405186,
+      "training_rows": 880,
+      "weights_sha256": "6c3c396ed6b5c36dcae172271f462051b1266b851e92df3deea8ac65478fd712"
+    },
+    {
+      "assets": 2,
+      "case_index": 63540,
+      "decimal60_reference_sd": 0.0007433634747744496,
+      "future_append_preserves_prefix_bytes": true,
+      "origin_date": "1965-06-30",
+      "prefix_sha256": "d9f17cf1df86c0b933d77fdf0cc02e40ce99d5e2dafec7dcea98c03e4f1ccf39",
+      "relative_difference": 2.9170176078787613e-16,
+      "roundoff_comparison_bound": 1.2491341294662561e-11,
+      "series_id": "P_92ab5cfddf8d0048",
+      "training_portfolio_sd": 0.0007433634747744494,
+      "training_rows": 879,
+      "weights_sha256": "606e5166986dd9f186277d16e3d18bae3887a944a829487b59fd8672bbb20251"
+    },
+    {
+      "assets": 10,
+      "case_index": 61471,
+      "decimal60_reference_sd": 0.01191320379619105,
+      "future_append_preserves_prefix_bytes": true,
+      "origin_date": "2019-03-29",
+      "prefix_sha256": "341b16299839a7e8d4bc670db5a636c6fc17ef579444744d747728a38f6444d7",
+      "relative_difference": 2.9122702937919047e-16,
+      "roundoff_comparison_bound": 3.076650045841234e-11,
+      "series_id": "P_467cf63e71a6e1f6",
+      "training_portfolio_sd": 0.011913203796191046,
+      "training_rows": 2165,
+      "weights_sha256": "7f6bbd439b360d773c9ec2d111a2c4959426b9704c3eb93197978bfced0cd369"
+    }
+  ],
+  "domain_receipt_sha256": "f9821bededc1bdc404973941f50c1eb4c235f41fddcb1d6127875e6ea382220c",
+  "domain_scan_sha256": "d254daf5dc94d0d0d4ad2380d27017017c7e95d475f3b9e59f6002e51b0b25c3",
+  "independent_prescribed_tests": 7,
+  "passed": true,
+  "scientific_fits_QPs_or_forecasts_executed": 0,
+  "scope": "Independent source/formula/prescribed/three-prefix/two-saved-loss qualification, not full rescore audit or new financial accuracy admission.",
+  "source_hashes": {
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/qualify_v11_independent_v1.py": "2d0f70a7aac48feb753ed41a2d4dfc89503353a836fa8e537a3a61af3d5066cd",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/build_scale_index_v11.py": "659d0b259a60d513614c87c0ec6d0116e35e45c4e43578fe864f50b7d200e56b",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/protocol.json": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+    "/Users/aidanhutchison/simfolio/tmp/daily-cross-asset-panel-20261020/research/accuracy-maximization-20261020/requested_horizon_crps_v11/score_requested_horizon_crps_v11.py": "6fe6345747292142bb0599c1c3ec0a98b78cc39a54d7cbeb809ef7741218b52a"
+  },
+  "source_review": "Exact training input-reader rational-constituent accounting, causal Welford prefixes, original/native-short mapped dates/H, unchanged frozen V9 hierarchy and outer1/3, shared consumed scale commitment and identity guards reviewed. Positive current inventory; zeroSD rejected without fallback. Historical files unchanged."
+}

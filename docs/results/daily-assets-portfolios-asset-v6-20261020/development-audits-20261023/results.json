@@ -28,17 +28,44 @@
       "receipt_sha256": "24b07040e60cbb1c498c3f81f6b46c13ea398e6ee67c3d95434f8e11c1974a0d",
       "tag": "research-finite-reliability-closed-20261023T0206Z",
       "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite-reliability-closed-20261023T0206Z"
+    },
+    {
+      "contains": "mapped-ratio geometry screen29 and broad1775 outputs, reviews, plans, and frozen source bindings",
+      "files_verified": 4372,
+      "fresh_remote_download_disk_restore_sha_mode_verified": true,
+      "inventory_sha256": "62a9eecd3c05f2461e22fa44ab5fa3ac9e35384d1f9ee77cae6f52989d25f58e",
+      "inventory_url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-mapped-ratio-geometry-closed-20261023T032040Z/inventory.json",
+      "inventory_url_correction_sha256": "d30b0a2a5fd1a328c88ef3b1a117bf613ce5f17bbec064ce97a6681201761065",
+      "inventory_url_correction_url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-mapped-ratio-geometry-closed-20261023T032040Z/inventory_url_correction.json",
+      "parts": 9,
+      "receipt_sha256": "0b81e6bf309b5017edee7ffdf895a7ef19125f27b8c326de573316895fa5996f",
+      "receipt_url": "https://github.com/Hutch2064/simfolio-engine/releases/download/research-mapped-ratio-geometry-closed-20261023T032040Z/receipt.json",
+      "source_bytes": 72656547,
+      "tag": "research-mapped-ratio-geometry-closed-20261023T032040Z",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-mapped-ratio-geometry-closed-20261023T032040Z"
+    },
+    {
+      "contains": "All-series finite full-series confirmation and the failed Gaussian CDF screen, with runner/source/review records, raw losses, and exact dependency references.",
+      "files_verified": 102797,
+      "source_bytes": 582929084,
+      "parts": 30,
+      "fresh_remote_download_disk_restore_sha_mode_verified": true,
+      "receipt_sha256": "4f4ac9e7d5354f701c8c39fd226c3d757896418ef0bee667baf224c745339963",
+      "inventory_sha256": "d89769cacaec919f8f550c4b31ff0b1494db702f3a2297cd8592fa2bd868ca02",
+      "dependency_recovery_references_sha256": "bf6895bcaec9ffb2a99cd36a8633c0320a9355bafad067a0fa388bf402bf05e9",
+      "tag": "research-finite-full-series-cdf29-20261023T0450Z",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite-full-series-cdf29-20261023T0450Z"
     }
   ],
   "schema": "simfolio-asset-v6-development-audit-summary-v1",
-  "scope_note": "These are closed, independently reviewed development screens. They do not change the completed V9 full-panel catalogue, add a completed full-panel model, or establish fresh holdout, statistical significance, or production qualification.",
+  "scope_note": "These are closed, independently reviewed development screens. They do not change the completed V9 full-panel catalogue, add a completed full-panel model, or establish fresh holdout, statistical significance, or production qualification. The all-series confirmation is a representative-mass development estimate (not the actual 320,017-request result); the closed Gaussian CDF screen produced no new CDF cells and has no score.",
   "source_closure": {
     "existing_public_base": "expanded-v9-20261022/scientific_source_closure.json",
     "existing_public_base_file_count": 109,
     "existing_public_base_plan_fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
     "existing_public_base_sha256": "9ed2d49a97061e146e8bcdb3b20379205f06d55e56b4b63b2fd6b769df03f33a",
     "file_manifest": "source_closure.json",
-    "full_local_experiment_source_and_output_recovery": "Private archives cover only the studies identified by private_archive_tag. Geometry output sets are not included in those archives; no complete geometry-stage recovery claim is made here.",
+    "full_local_experiment_source_and_output_recovery": "Private archives cover the studies identified by private_archive_tag, including the mapped-ratio geometry screen and broad screen in the recovery-verified geometry release. The release inventory and receipt hashes and fresh restoration verification are recorded in private_recovery. Raw geometry outputs remain private. The established 109-file V9 base closure remains linked by its exact manifest hash.",
     "public_additional_reviewed_source_files": 36
   },
   "studies": [
@@ -177,8 +204,8 @@
         "current": 0.22308998022973336,
         "mapped_ratio": 0.23161292228922106
       },
-      "private_archive_tag": null,
-      "private_recovery_note": "The two linked private releases do not contain this geometry stage raw checkpoint/output set; only the source copies and sanitized aggregate review results are included here.",
+      "private_archive_tag": "research-mapped-ratio-geometry-closed-20261023T032040Z",
+      "private_recovery_note": "The complete closed stage output set, plans, reviews, and frozen source bindings are preserved in the private geometry release identified in private_recovery. Fresh download, disk restoration, SHA-256, and file-mode verification passed; raw outputs remain private.",
       "scope": {
         "final_paths": 240,
         "primary_cohort": "diverse 24-request cohort",
@@ -217,8 +244,8 @@
       },
       "mapped_ratio_improvement_vs_current_percent": 27.834385824653452,
       "paired_scope_note": "The broad mapped geometry lowers the equal-three-bucket aggregate while increasing the long-bucket conditional loss; it is adaptive development evidence, not a full-panel result.",
-      "private_archive_tag": null,
-      "private_recovery_note": "The two linked private releases do not contain this geometry stage raw checkpoint/output set; only the source copies and sanitized aggregate review results are included here.",
+      "private_archive_tag": "research-mapped-ratio-geometry-closed-20261023T032040Z",
+      "private_recovery_note": "The complete closed stage output set, plans, reviews, and frozen source bindings are preserved in the private geometry release identified in private_recovery. Fresh download, disk restoration, SHA-256, and file-mode verification passed; raw outputs remain private.",
       "scope": {
         "contexts": 355,
         "final_paths": 240,
@@ -226,6 +253,76 @@
         "matched_requests": 1775
       },
       "status": "broad development only; promotion false"
+    },
+    {
+      "id": "finite_full_series_confirmation_v1",
+      "study_type": "all_series_representative_mass_development_estimate",
+      "status": "closed_independently_reviewed_development_estimate_not_full_panel_result",
+      "scope": "17,395 matched requests per arm across 1,264 series, with WR, finite41, finite77, and mapped_ratio. Uses full-series-by-bucket V9 representative mass and equal bucket aggregation; selected-row conditional results are diagnostic only. This is not the actual full 320,017-request score or a fresh holdout.",
+      "plan_fingerprint": "03b9e89f4b6268c2467e1425b4653cfa36faaeee8da0a30cd2cd51f6cf6c132a",
+      "matched_requests_per_arm": 17395,
+      "matched_series": 1264,
+      "primary_representative_mass_estimates": {
+        "WR": 0.5340126269212933,
+        "finite41": 0.4158285839514069,
+        "finite77": 0.4142503473434261,
+        "mapped_ratio": 0.3878719794841842
+      },
+      "primary_gain_percent_vs_fixed_wr": {
+        "finite41": 22.131319937366417,
+        "finite77": 22.426862875569913,
+        "mapped_ratio": 27.36651533497322
+      },
+      "bucket_diagnostic_percent_gain_vs_fixed_wr": {
+        "medium": 32.08713379649738,
+        "long": 22.556333221729496,
+        "short": 6.833524175435013
+      },
+      "concentration_diagnostic": "The largest mapped_ratio improvement contribution was in the medium bucket; subtracting that single contribution in the independent arithmetic diagnostic did not reverse the aggregate improvement. This is a contribution diagnostic, not an excluded-case score.",
+      "independent_closed_review": {
+        "passed": true,
+        "sha256": "826c91d8043d2d5edaa7d5f88f0c732f06a44a31991c38a80559e7344a0f19d7",
+        "actual_full_320017_headline": null
+      },
+      "independent_diagnostics": {
+        "passed": true,
+        "sha256": "75c74d8747a7364914da97d8cf4b7f5be8093de427031af9e81edd7866ab8410"
+      },
+      "independent_source_review_sha256": "f487c8aeecd81172d84f22129d80b4ab6d56e938e5b0d9937e0da6a781728c76",
+      "promotion": false,
+      "full_panel_catalogue_increment": 0,
+      "private_recovery": {
+        "tag": "research-finite-full-series-cdf29-20261023T0450Z",
+        "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite-full-series-cdf29-20261023T0450Z",
+        "receipt_sha256": "4f4ac9e7d5354f701c8c39fd226c3d757896418ef0bee667baf224c745339963",
+        "inventory_sha256": "d89769cacaec919f8f550c4b31ff0b1494db702f3a2297cd8592fa2bd868ca02",
+        "files_verified": 102797,
+        "parts": 30,
+        "fresh_remote_download_disk_restore_sha_mode_verified": true
+      }
+    },
+    {
+      "id": "gaussian_mean_cdf_screen29_v1",
+      "study_type": "failed_closed_qualification_screen",
+      "status": "failed_no_new_cdf_score",
+      "scope": "29-request screen. The frozen run expected 58 new CDF cells and completed 0; its terminal is failed and workers are drained. No CDF score or accuracy ranking is reported.",
+      "plan_fingerprint": "f80792feb6f52be8c6527b9ee8c0500ac2eef3ab1833d1316d3d0152c02fd382",
+      "expected_new_cdf_cells": 58,
+      "completed_new_cdf_cells": 0,
+      "final_headline": null,
+      "independent_source_review_sha256": "ab1bdbd86ac676a4db13a29bcc4d34a1565464c2790f48ca631da519bc9f233e",
+      "failure_terminal_sha256": "a00d00b8e7694ba376c324c3ca4cb3ad812098533c41680e27ff5c36a24bdf2d",
+      "promotion": false,
+      "full_panel_catalogue_increment": 0,
+      "private_recovery": {
+        "tag": "research-finite-full-series-cdf29-20261023T0450Z",
+        "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite-full-series-cdf29-20261023T0450Z",
+        "receipt_sha256": "4f4ac9e7d5354f701c8c39fd226c3d757896418ef0bee667baf224c745339963",
+        "inventory_sha256": "d89769cacaec919f8f550c4b31ff0b1494db702f3a2297cd8592fa2bd868ca02",
+        "files_verified": 102797,
+        "parts": 30,
+        "fresh_remote_download_disk_restore_sha_mode_verified": true
+      }
     }
   ]
 }

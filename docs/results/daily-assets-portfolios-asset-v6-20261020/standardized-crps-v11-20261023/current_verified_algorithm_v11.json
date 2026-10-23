@@ -1,0 +1,103 @@
+{
+  "schema": "current-verified-algorithm-v11",
+  "status": "complete_independently_replayed",
+  "activated_utc": "2026-10-23T05:30:16.485765+00:00",
+  "score_protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "primary_quantity": "aggregate standardized CRPS Q; lower is better",
+  "normalization": "mean daily marginal CRPS / (past portfolio sample SD * sqrt(requested native H))",
+  "weight_plan_sha256": "207ee6316df2a0d622062e56c0ba5e9697b38f387458015db031250bc20b1132",
+  "fixed_reference_model_id": "model_testing_asset_joint_blocks_replacement_v6",
+  "models": {
+    "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d": {
+      "Q": 0.544202657106937,
+      "bucket_Q": {
+        "long": 0.7303162928724909,
+        "medium": 0.48775983666367434,
+        "short": 0.4145318417846459
+      },
+      "complete": true,
+      "request_counts_by_bucket": {
+        "long": 3429,
+        "medium": 37695,
+        "short": 278893
+      },
+      "scale_data_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969"
+    },
+    "model_testing_asset_joint_blocks_replacement_v6": {
+      "Q": 0.6510567494403149,
+      "bucket_Q": {
+        "long": 0.9001174767381825,
+        "medium": 0.6281137781286859,
+        "short": 0.4249389934540763
+      },
+      "complete": true,
+      "request_counts_by_bucket": {
+        "long": 3429,
+        "medium": 37695,
+        "short": 278893
+      },
+      "scale_data_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969"
+    },
+    "model_testing_asset_joint_blocks_history_partition_v6": {
+      "Q": 0.652235953173445,
+      "bucket_Q": {
+        "long": 0.8793212599072121,
+        "medium": 0.6519305013446471,
+        "short": 0.4254560982684757
+      },
+      "complete": true,
+      "request_counts_by_bucket": {
+        "long": 3429,
+        "medium": 37695,
+        "short": 278893
+      },
+      "scale_data_commitment_sha256": "e531471e79e947de013406049fa6c1b70830bbea1642f903f1cab2c4287ac969"
+    }
+  },
+  "main_Q_by_model": {
+    "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d": 0.544202657106937,
+    "model_testing_asset_joint_blocks_replacement_v6": 0.6510567494403149,
+    "model_testing_asset_joint_blocks_history_partition_v6": 0.652235953173445
+  },
+  "percent_lower_standardized_CRPS_than_fixed_WR": 16.41240835383946,
+  "matched_requests_per_model": 320017,
+  "series": 1264,
+  "requests_by_final_paths_per_model": {
+    "1000": 59906,
+    "240": 260111
+  },
+  "same_count_within_every_pair": true,
+  "forecast_reruns": 0,
+  "methodology_changes": 0,
+  "financial_model_promotion": false,
+  "scope": "Actual complete expanded research panel, adaptively reused; approved posthoc scoring amendment, not an untouched holdout or future-performance guarantee.",
+  "historical_V9_role": "Preserved under original raw-CRPS definition; no longer current headline.",
+  "V10_role": "Experimental win-rate diagnostic only.",
+  "independent_review_sha256": {
+    "requested_horizon_crps_v11_independent_source_qualification.json": "2663d329f6abb7b402bd97f514ad87104580caa745cedacccde6de78dd01deeb",
+    "requested_horizon_crps_v11_independent_scale_index_review.json": "33e2ad3e88bb57a36968325d6f4c18c8414163fc7fdb06eda752d0930b9e013d",
+    "requested_horizon_crps_v11_independent_full_replay_review.json": "85d64fa6e90832ce9a13d7288a475b15c2cacd27f8c3f85714224bb9faa09174"
+  },
+  "full_saved_rescore_sha256": "1b3bc18d59f1ee72fe9b81b61159af1269751a7bae198edb5bdf69dd374b007a",
+  "protocol_sha256": "0472072ef517368d73bd581f11038de9f834e49efb39a5d0937bfe936ac27760",
+  "scorer_sha256": "6fe6345747292142bb0599c1c3ec0a98b78cc39a54d7cbeb809ef7741218b52a",
+  "scale_index_sha256": "f64d20747ef5ae8718feb7545fc7947e1a78c176f60526b2148f670731fb7278",
+  "model_id": "model_testing_asset_information_endpoint_components_v1_1a5c92ef4802021d",
+  "candidate_module": "candidates.asset_selector_endpoint_fit_reuse_v3.candidate",
+  "role": "Best completed financial algorithm on the actual full expanded panel; later development candidates remain separately scoped.",
+  "financial_model_unchanged": true,
+  "adapter_module": "candidates.asset_selector_endpoint_fit_reuse_v3.candidate",
+  "algorithm": "Request-local history-only endpoint-CRPS adaptive mixture over 167 joint asset forecasting recipes",
+  "inner_paths": 2,
+  "menu": "flat",
+  "schedule": "half_doubling",
+  "solver": "candidates.asset_selector_endpoint_active_qp_unique_v3.energy.fit",
+  "source_plan_fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
+  "main_score": 0.544202657106937,
+  "fixed_reference_main_score": 0.6510567494403149,
+  "percent_better_than_fixed_reference": 16.41240835383946,
+  "requests_per_model": 320017,
+  "stopping_condition_met": false,
+  "historical_financial_execution_score_record": "current_verified_algorithm_v9.json",
+  "financial_algorithm_unchanged": true
+}

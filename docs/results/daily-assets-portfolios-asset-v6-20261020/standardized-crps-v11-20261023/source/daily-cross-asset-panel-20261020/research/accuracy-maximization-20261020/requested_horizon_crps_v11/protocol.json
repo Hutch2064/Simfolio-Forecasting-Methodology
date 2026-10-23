@@ -1,0 +1,94 @@
+{
+  "schema": "simfolio_external_scoring_protocol_v11",
+  "protocol_id": "daily_portfolio_panel_crps_v11_train_sd_sqrt_requested_h_equal_days_fixed_calendar_buckets",
+  "status": "definition_frozen_for_saved_loss_rescoring",
+  "definition": {
+    "request_raw_loss": "C_mq = arithmetic mean of the saved daily empirical CRPS losses over the request's native leads 1..H",
+    "training_portfolio_return": "r_t = log1p(sum_a w_a * expm1(x_ta)), using the exact frozen AssetInputs.training constituent interval rows, weights and operation order",
+    "training_sample_sd": "sigma_q = sqrt(sum_t((r_t - mean(r))^2)/(n-1)); training rows are the exact causal prefix through and including the origin observation",
+    "requested_horizon": "H is the exact positive integer native requested horizon for that scored request; no 252-day conversion or bucket-derived substitute",
+    "request_loss": "Z_mq = C_mq / (sigma_q * sqrt(H))",
+    "outer_aggregation": "Unchanged V9 fixed planned request weights within each of the three actual-date calendar buckets, then equal one-third mean of short, medium and long bucket Q values exactly once",
+    "calendar_buckets": {
+      "short": "requested end date <= origin plus 3 calendar years",
+      "medium": "origin plus 3 calendar years < requested end date < origin plus 20 calendar years",
+      "long": "requested end date >= origin plus 20 calendar years"
+    },
+    "fixed_hierarchy": "Within each bucket, use the full planned schedule's frozen asset/portfolio branch, class, family, series and within-series planned-request weights from V9; no quarter weights and no outcome-dependent reweighting",
+    "primary_quantity": "Q_m = sum_q omega_q * Z_mq; lower is better",
+    "baseline_display": "After aggregation only, report 100 * (1 - Q_model/Q_WR) against the same fixed matched WR; this is a descriptive ratio, not the primary proper loss",
+    "domain_policy": "No epsilon, floor, clipping, exclusions or fallback. Every training SD and sigma*sqrt(H) must be positive and finite. The bound score-blind audit found 0 zero/constant prefixes and 0 nonfinite scales across all 320017 planned requests.",
+    "coverage_policy": "Require the full predeclared planned support and exact matched request identities for a final result; do not impute missing requests.",
+    "historical_policy": "V9 raw-CRPS and V10 win-rate outputs remain immutable historical/diagnostic results; V11 is a new definition and must be rescored from saved raw per-request mean CRPS."
+  },
+  "planned_support": {
+    "request_count_per_model": 320017,
+    "unique_training_prefixes": 64049,
+    "series_count": 1264,
+    "short_medium_long_requests": {
+      "short": 278893,
+      "medium": 37695,
+      "long": 3429
+    },
+    "horizon_bucket_assignment": "Frozen V8 actual-date mapping; H itself is retained independently as requested native horizon."
+  },
+  "source_bindings": {
+    "v9_hierarchy_scorer.py": {
+      "path": "score_series_buckets_v9.py",
+      "sha256": "c598301b977fb1d8405de640476289d071107633e8ba72fbedf3ef8712d4796c"
+    },
+    "v8_calendar_mapping_scorer.py": {
+      "path": "score_horizon_buckets_v8.py",
+      "sha256": "9a1222c60dc7adc7261fd467bfab835ab33681793e3baa8995597d690be1b70b"
+    },
+    "v9_protocol.json": {
+      "path": "series_buckets_v9/protocol.json",
+      "sha256": "a1afd47e29015997c541b8a1d2455173e2353471f49467fed689abdd44dcd5be"
+    },
+    "v9_reporter.py": {
+      "path": "series_buckets_v9_reporter.py",
+      "sha256": "3aee8432dca2c149bbfa3842dd346d1e38f1e3a6458712459fc872feb410612b"
+    },
+    "v7_request_loss_reference.py": {
+      "path": "asset_level_v6/score_aligned_v7.py",
+      "sha256": "085e22bbe9b6aeb6ce07369250c884e71a08ee908c033853e9ec67ee6966e003"
+    },
+    "scientific_plan.json": {
+      "path": "short_horizon_final240_v3/plan.json",
+      "sha256": "0bd146e2294c604f155966e9bf9e15281d3550e9b7f22f2544b0d86097617d8e",
+      "fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
+      "case_digest": "11e88b81a7d2bd0c88577c549ea8fe7ce7cf490570664654dca7a6a0c3e86fdc"
+    },
+    "calendar_mapping.npz": {
+      "path": "horizon_buckets_v8/requested_calendar_mapping.npz",
+      "sha256": "91220b130fa20068c85dd2d7afede68451927555c250238a81085a026b681c80"
+    },
+    "panel.json": {
+      "path": "asset_level_v6/inputs/panel.json",
+      "sha256": "c7397e62e0816a79da46c74f5b381635dbbba859523b1de883769522e0e4b90d",
+      "fingerprint": "39867e5df03ed0bd52fac5f8d4ef56836cf7116588be04190a4fea32ac7cef80"
+    },
+    "portfolio_catalogue.json": {
+      "path": "asset_level_v6/inputs/portfolio_catalogue.json",
+      "sha256": "28e0c74f841f990ef5836f1e5885c46d9e156cc038bc86a9ae36d7c6bee54a98"
+    },
+    "training_input_reader.py": {
+      "path": "asset_level_v6/inputs.py",
+      "sha256": "475a9e55e691a74936ede4737b3994f8d5e79ce324c74c9989513acbde20dad9"
+    },
+    "score_blind_domain_scan.py": {
+      "path": "training_sd_domain_scan_v1/scan_training_sd_domain.py",
+      "sha256": "d254daf5dc94d0d0d4ad2380d27017017c7e95d475f3b9e59f6002e51b0b25c3"
+    },
+    "score_blind_domain_receipt.json": {
+      "path": "training_sd_domain_scan_v1/domain_scan.json",
+      "sha256": "f9821bededc1bdc404973941f50c1eb4c235f41fddcb1d6127875e6ea382220c"
+    },
+    "design_review.md": {
+      "path": "training_standardized_requested_horizon_crps_design_review_v1.md",
+      "sha256": "8c699a254b372cfa81af419500ee1921ebd34d5a349c9e9d7c131d1bcb7b1420"
+    }
+  },
+  "comparative_scores_read_before_freeze": false,
+  "financial_fits_or_forecasts_run": false
+}
