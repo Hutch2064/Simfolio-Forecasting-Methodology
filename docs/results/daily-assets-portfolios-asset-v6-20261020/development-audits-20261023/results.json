@@ -1,0 +1,231 @@
+{
+  "as_of_date": "2026-10-23",
+  "official_full_panel_reference": {
+    "endpoint_gain_vs_fixed_wr_percent": 25.484505671234402,
+    "endpoint_main_q": 0.3732134377688732,
+    "fixed_wr_main_q": 0.5008534683031683,
+    "public_result": "expanded-v9-20261022/README.md",
+    "requests_per_model": 320017,
+    "status": "unchanged completed V9 result; the development rows below are not additional full-panel runs"
+  },
+  "private_recovery": [
+    {
+      "contains": "finite77 broad 1775, finite reliability smoke 24, recipe-axis companion evidence and source bindings",
+      "files_verified": 3996,
+      "fresh_remote_download_disk_restore_sha_mode_verified": true,
+      "inventory_sha256": "149361fcc822868c4218b9099d151af657919931821b10c9aa5a88322f1eb55e",
+      "parts": 2,
+      "receipt_sha256": "a769b8b1e718d1e92066907dce0e2b928f705de9627a83819bc35862cbbf725b",
+      "tag": "research-finite77-reliability-recipe-axis-20261023T022811Z",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite77-reliability-recipe-axis-20261023T022811Z"
+    },
+    {
+      "contains": "mean-reliability screen 29 and finite41 mean-reference broad 1775 evidence",
+      "files_verified": 8450,
+      "fresh_remote_download_disk_restore_sha_mode_verified": true,
+      "inventory_sha256": "8a0f10314248dd7c7ed1619dccdd8401e1d0ba3571c734b810dfd724165a4a46",
+      "parts": 7,
+      "receipt_sha256": "24b07040e60cbb1c498c3f81f6b46c13ea398e6ee67c3d95434f8e11c1974a0d",
+      "tag": "research-finite-reliability-closed-20261023T0206Z",
+      "url": "https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite-reliability-closed-20261023T0206Z"
+    }
+  ],
+  "schema": "simfolio-asset-v6-development-audit-summary-v1",
+  "scope_note": "These are closed, independently reviewed development screens. They do not change the completed V9 full-panel catalogue, add a completed full-panel model, or establish fresh holdout, statistical significance, or production qualification.",
+  "source_closure": {
+    "existing_public_base": "expanded-v9-20261022/scientific_source_closure.json",
+    "existing_public_base_file_count": 109,
+    "existing_public_base_plan_fingerprint": "c9bd17eeb30bc274aa48cf2974dd2246af14e3399696ad13527c3ca4db140291",
+    "existing_public_base_sha256": "9ed2d49a97061e146e8bcdb3b20379205f06d55e56b4b63b2fd6b769df03f33a",
+    "file_manifest": "source_closure.json",
+    "full_local_experiment_source_and_output_recovery": "Private archives cover only the studies identified by private_archive_tag. Geometry output sets are not included in those archives; no complete geometry-stage recovery claim is made here.",
+    "public_additional_reviewed_source_files": 36
+  },
+  "studies": [
+    {
+      "concentration": {
+        "interpretation": "The largest contribution was one BTC request; exclusion is a contribution diagnostic, not a reweighted score or sample exclusion.",
+        "largest_single_request_share_of_net_improvement": 1.0271799271970723,
+        "weighted_change_after_removing_largest_improvement_contribution": 0.0012446746679335569
+      },
+      "equal_three_bucket_conditional_development_losses": {
+        "finite41": 0.5685402983402745,
+        "finite77": 0.5227464057036665,
+        "fixed_wr": 1.0896741212988643
+      },
+      "finite77_improvement_vs_finite41_percent": 8.054643227629244,
+      "id": "finite77_broad1775_v1",
+      "independent_closed_review": {
+        "full_headline": null,
+        "passed": true,
+        "plan_fingerprint": "afafd8fe9de39101f9fbd279594f97cfe215d766ae57b7077a54a9fb1a00ebe9",
+        "promotion": false,
+        "receipt_sha256": "af5bda211b2c3bf1f2f4c11ef00b91111ccb956df31a4a44dfa1b026a5d732bc",
+        "sha256": "36a03d14fa2f50c0672260eec6570b1abbec66f1a9afaccaaeec6beb4a9334c2"
+      },
+      "independent_source_review_sha256": "980d7c58b86799329e1b1cd2536c025f4baa14c82652bed8e4f1a992bbea11e8",
+      "private_archive_tag": "research-finite77-reliability-recipe-axis-20261023T022811Z",
+      "scope": {
+        "contexts": 355,
+        "exact_reused_outputs": 24,
+        "final_paths": 240,
+        "inner_paths": 2,
+        "matched_requests": 1775
+      },
+      "status": "development only; promotion false; not full-panel Q or fresh holdout"
+    },
+    {
+      "id": "finite_reliability_smoke24_v1",
+      "independent_closed_review": {
+        "full_headline": null,
+        "passed": true,
+        "plan_fingerprint": "8c71ba6f01c2ee90fedf146ff45c55624e8f72032dda0f0398be627f48e14db9",
+        "promotion": false,
+        "receipt_sha256": "e7604e45d8097f9900dff722e01918959b16c8039bf9318e8a5ef5ed26bd9576",
+        "sha256": "45ea5c75fb4bcbfd98832429856aab051a5e9b713b6a26a242300122ef224225"
+      },
+      "independent_source_review_sha256": "65402003b8c73b64c31a1b60c028150ab224f8227dd7ace27ff90da9759aa6f0",
+      "interaction_contrast": {
+        "actual_combined_conditional_loss": 0.21516058519813297,
+        "additive_expected_conditional_loss": 0.21314583142763843,
+        "adverse_per_request": 3,
+        "favorable_per_request": 8,
+        "interaction_loss": 0.0020147537704945095,
+        "interaction_percent_of_41current_loss": 0.9031126222790278,
+        "neutral_per_request": 13
+      },
+      "private_archive_tag": "research-finite77-reliability-recipe-axis-20261023T022811Z",
+      "scope": {
+        "final_paths": 240,
+        "forced_reference_comparisons": 72,
+        "inner_paths": 2,
+        "primary_metadata_requests": 24,
+        "separate_incidents": 0
+      },
+      "status": "small closed qualification smoke; mixed exploratory comparisons; promotion false"
+    },
+    {
+      "equal_three_bucket_conditional_development_losses": {
+        "finite41_current": 0.5685402983402745,
+        "fixed_wr": 1.0896741212988643,
+        "mean_reference41": 0.632563603540809
+      },
+      "id": "finite41_mean_reference_broad1775_v2",
+      "independent_closed_review": {
+        "full_headline": null,
+        "passed": true,
+        "plan_fingerprint": "01f29846f0e8def153ded423d4129c00b2d9a3e06a581d6bd91dae0a654ce77a",
+        "promotion": false,
+        "receipt_sha256": "4fdc8281c36c62f08d39f9e1553877c73cb198931db03eedc00b811a0b1b7ecc",
+        "sha256": "1cf12db6002ce91719585a512be145414122e3d038980dcf8a21fbdebe6d036a"
+      },
+      "independent_source_review_sha256": "c515c31f13364b838e4c095bff22851095591a876ec44e6c0bb7c3cf019b68cd",
+      "mean_reference_loss_increase_vs_current_percent": 11.260996869955587,
+      "private_archive_tag": "research-finite-reliability-closed-20261023T0206Z",
+      "scope": {
+        "contexts": 355,
+        "final_paths": 240,
+        "inner_paths": 2,
+        "matched_requests": 1775
+      },
+      "status": "broad mean-reference contrast rejected on this development sample; promotion false"
+    },
+    {
+      "diverse24_pooled_fixed_full_weight_losses": {
+        "finite29_current": 0.26386821395990673,
+        "finite29_mean_reference": 0.26855521203189303,
+        "finite41_current": 0.22308998022973336,
+        "finite41_mean_reference": 0.2138867031925332
+      },
+      "id": "mean_reliability_screen29_v2",
+      "independent_closed_review": {
+        "full_headline": null,
+        "passed": true,
+        "plan_fingerprint": "335d7790077a4eba409e934d3a825d4e3ff528ecc19361f5c14ee3d6e9f3fcd1",
+        "promotion": false,
+        "receipt_sha256": "b3ebfc4c7d04fa7a31e02f4f791d8c70d624e4fe64f6eced5283a16942c56f2e",
+        "sha256": "4e7f02c9539599d78cdb45243b27231dbddfbfdb12f19b06f2be4f119c28341e"
+      },
+      "independent_source_review_sha256": "e4c900f23582e53f7f4830d619612e56628a0e7f875b72e78cb79e4a62651688",
+      "private_archive_tag": "research-finite-reliability-closed-20261023T0206Z",
+      "scope": {
+        "diverse_primary_requests": 24,
+        "final_paths": 240,
+        "separate_cohorts": true,
+        "targeted_incidents": 5
+      },
+      "status": "small mixed diagnostic; the 24-primary pooled result differs from the broad 1775 reference result; incidents kept separate; promotion false"
+    },
+    {
+      "equal_three_bucket_conditional_losses": {
+        "current": 0.236032253337117,
+        "mapped_ratio": 0.23175951616416557
+      },
+      "equal_three_bucket_improvement_percent": 1.8102344542077597,
+      "id": "finite41_mapped_ratio_geometry_screen29_v1",
+      "independent_closed_review": {
+        "full_headline": null,
+        "passed": true,
+        "plan_fingerprint": "25189f378dba75524313320740524099c1763f26f2b81f1f35550581371cac03",
+        "promotion": false,
+        "receipt_sha256": "5a2be633ee7c21397a9dc5ab4af164224ea7fc421931e198a4788c3e407271cf",
+        "sha256": "b6374b0af3be9b073333798590bf5bfdba1148bed618ef3d453a7a03825f9d9e"
+      },
+      "independent_source_review_sha256": "ae818cd932bf8c7fb7b580bcbc16c42a9d206ebf835975c9bef3bee6c8d5e9af",
+      "pooled_fixed_support_diagnostic_change_percent": -3.8204055828553907,
+      "pooled_fixed_support_diagnostic_losses": {
+        "current": 0.22308998022973336,
+        "mapped_ratio": 0.23161292228922106
+      },
+      "private_archive_tag": null,
+      "private_recovery_note": "The two linked private releases do not contain this geometry stage raw checkpoint/output set; only the source copies and sanitized aggregate review results are included here.",
+      "scope": {
+        "final_paths": 240,
+        "primary_cohort": "diverse 24-request cohort",
+        "primary_requests": 24,
+        "separate_cohort_note": "Five targeted incidents are separate from the primary aggregate.",
+        "separate_cohorts": true,
+        "targeted_incidents": 5
+      },
+      "status": "aggregation-sensitive screen; neither summary is full-panel Q; promotion false"
+    },
+    {
+      "current_bucket_losses": {
+        "long": 0.5414613275683657,
+        "medium": 1.136996145501471,
+        "short": 0.027163421950986963
+      },
+      "equal_three_bucket_conditional_losses": {
+        "current": 0.5685402983402745,
+        "fixed_wr": 1.0896741212988643,
+        "mapped_ratio": 0.41029059813160673
+      },
+      "id": "finite41_mapped_ratio_geometry_broad1775_v1",
+      "independent_closed_review": {
+        "full_headline": null,
+        "passed": true,
+        "plan_fingerprint": "738e4d3ff66f7d7d25bd0bbc0475b0529efa7f5c293159a60aa711d47a0f36a6",
+        "promotion": false,
+        "receipt_sha256": null,
+        "sha256": "bc7730936bba2fcb6498941fdf6e2924017bb9ce9d62b5b7c0c68dccc6190364"
+      },
+      "independent_source_review_sha256": "101b8b17c43a6f2204320da00bd3f2d46aee62f31b3aae9c1c372bfce282a6da",
+      "mapped_ratio_bucket_losses": {
+        "long": 0.6148939047341658,
+        "medium": 0.5889749477915059,
+        "short": 0.027002941869148374
+      },
+      "mapped_ratio_improvement_vs_current_percent": 27.834385824653452,
+      "paired_scope_note": "The broad mapped geometry lowers the equal-three-bucket aggregate while increasing the long-bucket conditional loss; it is adaptive development evidence, not a full-panel result.",
+      "private_archive_tag": null,
+      "private_recovery_note": "The two linked private releases do not contain this geometry stage raw checkpoint/output set; only the source copies and sanitized aggregate review results are included here.",
+      "scope": {
+        "contexts": 355,
+        "final_paths": 240,
+        "inner_paths": 2,
+        "matched_requests": 1775
+      },
+      "status": "broad development only; promotion false"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+# Closed development audits: finite selector and geometry
+
+This supplement records independently reviewed, closed development screens for the finite41/finite77 selector, mean-reference controls, and mapped-ratio geometry. The completed V9 result remains the only current full-panel result; its **25.4845056712%** improvement over fixed With Replacement is unchanged. These screens add no full-panel model count.
+
+## Findings
+
+- On 1,775 matched development requests, finite77 improved the finite41 equal-three-bucket conditional score by **8.0546%**. The result is highly concentrated: one BTC request represented **102.72%** of net improvement. Removing that contribution as a diagnostic leaves positive weighted deterioration; this is not a new score or an exclusion.
+- A broader 1,775-request finite41 mean-reference contrast was **11.26% worse** than current finite41 under the same equal-three-bucket conditional aggregation. A separate 24-request mean-reliability screen pointed the other way on its pooled fixed-weight primary cohort, so the evidence is mixed and the mean-reference change is not promoted. Five targeted incidents remain a separate cohort.
+- On the diverse 24-request primary cohort within the 29-request mapped-ratio screen, geometry improved the equal-three-bucket aggregate by **1.81%**; the five targeted incidents were scored separately. Geometry worsened the separate pooled-fixed-support diagnostic by **3.82%**. On the 1,775-request development screen, its equal-three-bucket aggregate was **27.83% lower** than current finite41, while the long bucket's conditional loss increased from 0.54146 to 0.61489. This is adaptive, bucket-sensitive development evidence—not a full-panel win.
+- The finite-reliability 24-request smoke retained paired interaction diagnostics without a headline or promotion.
+
+The exact aggregates, scopes, plan fingerprints, and independent-review hashes are in [results.json](results.json). The copied candidate/design/test source files are byte-bound in [source_closure.json](source_closure.json); they are reviewed source additions, not a standalone public execution environment. The established 109-file V9 base closure remains linked by its exact manifest hash. The source map also records complete SHA coverage for the frozen qualified transitive closures: finite41 (76 files), finite77 (83), finite-reliability v1 (86), mean-reliability v2 and v3 (75 each), and mapped-ratio geometry (76). Each logical source hash maps to an exact public copy in the base closure or this supplement. The finite41 host-specific audit note is omitted; its receipt-bound digest is retained.
+
+## Recovery
+
+Finite77, reliability-smoke, and mean-reference evidence is in two private, recovery-verified releases: [finite77 and reliability evidence](https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite77-reliability-recipe-axis-20261023T022811Z) and [mean-reliability/reference evidence](https://github.com/Hutch2064/simfolio-engine/releases/tag/research-finite-reliability-closed-20261023T0206Z). Their receipt, inventory, part, and restoration details are recorded in `results.json`. The two releases do not contain the geometry stages’ raw checkpoint/output sets; this addendum makes no complete geometry recovery claim. No raw provider histories, private portfolio rows, numerical loss arrays, or local filesystem paths are included here.
+
+All cases are development cohorts with reused historical origins and overlapping horizons. Independent source/output reviews verify the recorded bytes and arithmetic; they do not establish a fresh holdout, statistical significance, or production readiness.

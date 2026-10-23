@@ -1,3 +1,5 @@
+Latest closed selector development audits: [finite menus, mean-reference controls, and ratio geometry](development-audits-20261023/README.md). These screens do not alter the completed V9 full-panel result or catalogue count.
+
 Current completed expanded-panel evidence: [endpoint mixture / V9](expanded-v9-20261022/README.md). Independent full replay and private recovery are verified; the completed V9 catalogue is admitted. The dated transition snapshot below is historical.
 
 # Asset-level baseline transition: qualification complete
